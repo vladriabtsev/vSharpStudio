@@ -30,6 +30,8 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         [Browsable(false)]
         public bool IsRecordVersion { get; set; }
+        [Browsable(false)]
+        public bool IsCsNullable { get; set; }
 
         [Browsable(false)]
         public GroupListProperties ParentGroupListProperties { get { Debug.Assert(this.Parent != null); return (GroupListProperties)this.Parent; } }

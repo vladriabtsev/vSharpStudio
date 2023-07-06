@@ -244,10 +244,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void GetCodeCheckProc(StringBuilder sb, EnumCodeType sequenceType, uint maxSequenceLength, string prefix, string pname)
         {
+            sb.AppendLine("if (code == null) return false; // need auto set new code");
             switch (sequenceType)
             {
                 case EnumCodeType.Number:
-                    sb.AppendLine("if (isMinAllowedInsert && code < 1) return true;");
                     sb.Append("if (code < 1 || code > ");
                     var rmax = new string('9', (int)maxSequenceLength);
                     sb.Append(rmax);
@@ -259,7 +259,6 @@ namespace vSharpStudio.vm.ViewModels
                     sb.AppendLine("\", EnumExceptionType.CodeOutsideAllowedRange);");
                     break;
                 case EnumCodeType.Text:
-                    sb.AppendLine("if (isMinAllowedInsert && code.Length == 0) return true;");
                     var pref = prefix.Trim();
                     if (pref.Length > 0)
                     {
@@ -291,7 +290,6 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append("'=\\\"");
                     sb.Append(pref);
                     sb.AppendLine("{code}\\\". Can't parse sequence \\\"{code}\\\" to number\", EnumExceptionType.CodeOutsideAllowedRange);");
-                    sb.AppendLine("if (isMinAllowedInsert && i < 1) return true;");
                     sb.Append("if (i < 1 || i > ");
                     var rmax2 = new string('9', (int)maxSequenceLength);
                     sb.Append(rmax2);
@@ -324,7 +322,7 @@ namespace vSharpStudio.vm.ViewModels
                 var seq = (EnumeratorSequence)this.ParentDocument.Cfg.DicNodes[this.SequenceGuid];
                 this.GetCodeCheckProc(sb, seq.SequenceType, seq.MaxSequenceLength, seq.Prefix, pname);
             }
-            sb.Append("return true;");
+            sb.Append("return true; // code is valid");
             return sb.ToString();
         }
         private string GetCodeStartStr(EnumCodeType sequenceType, uint maxSequenceLength, string prefix)

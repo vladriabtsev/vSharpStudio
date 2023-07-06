@@ -697,6 +697,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(parent, guid, this.PropertyCodeName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length);
             res.Position = 9;
+            res.IsCsNullable = true;
             return res;
         }
         public IProperty GetPropertyCatalogCodeInt(ITreeConfigNode parent, string guid, uint length)
@@ -704,6 +705,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(parent, guid, this.PropertyCodeName, true);
             res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, false);
             res.Position = 9;
+            res.IsCsNullable = true;
             return res;
         }
         public IProperty GetPropertyCatalogName(ITreeConfigNode parent, string guid, uint length)
@@ -735,6 +737,7 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res);
             res.AccuracyForTime = EnumTimeAccuracyType.MAX;
             res.Position = 8;
+            res.IsCsNullable = true;
             return res;
         }
         public IProperty GetPropertyDocNumberString(ITreeConfigNode parent, string guid, uint length)
@@ -742,6 +745,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(parent, guid, this.PropertyDocCodeName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length);
             res.Position = 9;
+            res.IsCsNullable = true;
             return res;
         }
         public IProperty GetPropertyDocNumberInt(ITreeConfigNode parent, string guid, uint length)
@@ -749,6 +753,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(parent, guid, this.PropertyDocCodeName, true);
             res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, false);
             res.Position = 9;
+            res.IsCsNullable = true;
             return res;
         }
         public IProperty GetPropertyDocNumberUniqueScopeHelper(ITreeConfigNode parent, string guid)
