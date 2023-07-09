@@ -53,8 +53,6 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		code_unique_in_whole_catalog = 0,
 		[Description("Catalog Folder")]
 		code_uniqueness_by_folder_settings = 11,
-		[Description("Not Unique")]
-		code_not_unique_settings = 41,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumCatalogDetailAccess // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
@@ -202,8 +200,6 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		DOC_UNIQUE_WEEK = 34,
 		[Description("Day")]
 		DOC_UNIQUE_DAY = 37,
-		[Description("Not Required")]
-		DOC_UNIQUE_NOT_REQUIRED = 41,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumDocumentAccess // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18

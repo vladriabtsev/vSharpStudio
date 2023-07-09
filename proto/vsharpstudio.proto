@@ -2293,8 +2293,6 @@ enum proto_enum_catalog_code_unique_scope {
     code_unique_in_whole_catalog = 0;
     // @attr [Description("Catalog Folder")]
     code_uniqueness_by_folder_settings = 11;
-    // @attr [Description("Not Unique")]
-    code_not_unique_settings = 41;
 }
 // @base BaseSettings
 message proto_catalog_code_property_settings {
@@ -2559,8 +2557,6 @@ enum proto_enum_doc_number_unique_scope {
     DOC_UNIQUE_WEEK = 34;
     // @attr [Description("Day")]
     DOC_UNIQUE_DAY = 37;
-    // @attr [Description("Not Required")]
-    DOC_UNIQUE_NOT_REQUIRED = 41;
 }
 message proto_group_documents {
     // @attr [Category("")]

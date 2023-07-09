@@ -165,11 +165,6 @@
               "name": "code_uniqueness_by_folder_settings",
               "number": "11",
               "description": "@attr [Description(\"Catalog Folder\")]"
-            },
-            {
-              "name": "code_not_unique_settings",
-              "number": "41",
-              "description": "@attr [Description(\"Not Unique\")]"
             }
           ]
         },
@@ -605,11 +600,6 @@
               "name": "DOC_UNIQUE_DAY",
               "number": "37",
               "description": "@attr [Description(\"Day\")]"
-            },
-            {
-              "name": "DOC_UNIQUE_NOT_REQUIRED",
-              "number": "41",
-              "description": "@attr [Description(\"Not Required\")]"
             }
           ]
         },

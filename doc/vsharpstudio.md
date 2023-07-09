@@ -2015,7 +2015,6 @@ https://github.com/bchavez/Bogus
 | ---- | ------ | ----------- |
 | code_unique_in_whole_catalog | 0 | @attr [Description(&#34;Whole Catalog&#34;)] |
 | code_uniqueness_by_folder_settings | 11 | @attr [Description(&#34;Catalog Folder&#34;)] |
-| code_not_unique_settings | 41 | @attr [Description(&#34;Not Unique&#34;)] |
 
 
 
@@ -2191,7 +2190,6 @@ with history |
 | DOC_UNIQUE_MONTH | 31 | @attr [Description(&#34;Month&#34;)] |
 | DOC_UNIQUE_WEEK | 34 | @attr [Description(&#34;Week&#34;)] |
 | DOC_UNIQUE_DAY | 37 | @attr [Description(&#34;Day&#34;)] |
-| DOC_UNIQUE_NOT_REQUIRED | 41 | @attr [Description(&#34;Not Required&#34;)] |
 
 
 

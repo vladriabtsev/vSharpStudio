@@ -30,13 +30,10 @@ namespace vSharpStudio.vm.ViewModels
                     unique = "Month";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
-                    unique = "Month";
+                    unique = "Week";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
-                    unique = "Month";
-                    break;
-                case EnumDocNumberUniqueScope.DOC_UNIQUE_NOT_REQUIRED:
-                    unique = "Not Unique";
+                    unique = "Day";
                     break;
                 default:
                     throw new NotImplementedException();

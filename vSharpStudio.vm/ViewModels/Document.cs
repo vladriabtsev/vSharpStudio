@@ -432,7 +432,6 @@ namespace vSharpStudio.vm.ViewModels
                         res.Add(prp);
                         break;
                     case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
-                    case EnumDocNumberUniqueScope.DOC_UNIQUE_NOT_REQUIRED:
                         break;
                     default:
                         throw new NotImplementedException();
