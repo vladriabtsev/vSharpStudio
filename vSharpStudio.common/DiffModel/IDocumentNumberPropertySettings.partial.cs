@@ -8,9 +8,9 @@ namespace vSharpStudio.common
 {
     public partial interface IDocumentNumberPropertySettings
     {
-        string GetDocNumberClrTypeName();
-        string GetNextCodeProc();
-        string GetCodeCheckProc();
-        EnumCodeType GetSequenceType();
+        //string GetDocNumberClrTypeName();
+        //string GetNextCodeProc();
+        //string GetCodeCheckProc();
+        //EnumCodeType GetSequenceType();
     }
 }

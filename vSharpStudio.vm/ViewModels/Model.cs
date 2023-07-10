@@ -703,7 +703,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyCatalogCodeInt(ITreeConfigNode parent, string guid, uint length)
         {
             var res = new Property(parent, guid, this.PropertyCodeName, true);
-            res.DataType = (DataType)this.GetDataTypeNumerical(parent, length, true);
+            res.DataType = (DataType)this.GetDataTypeNumerical(res, length, true);
             res.Position = 9;
             res.IsCsNullable = true;
             return res;
@@ -751,7 +751,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyDocNumberInt(ITreeConfigNode parent, string guid, uint length)
         {
             var res = new Property(parent, guid, this.PropertyDocCodeName, true);
-            res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, false);
+            res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, true);
             res.Position = 9;
             res.IsCsNullable = true;
             return res;
