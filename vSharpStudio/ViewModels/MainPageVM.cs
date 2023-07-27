@@ -20,13 +20,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Xml.Linq;
 using AsyncAwaitBestPractices;
 using Google.Protobuf;
 using GuiLabs.Undo;
-//using Microsoft.AspNetCore.Components;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.DependencyInjection;
@@ -172,7 +172,7 @@ namespace vSharpStudio.ViewModels
                     if (!VmBindable.isUnitTests)
                     {
 #endif
-                        var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                        var res = Xceed.Wpf.Toolkit.MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                         if (res != System.Windows.MessageBoxResult.OK)
                             return;
 #if DEBUG
@@ -509,7 +509,7 @@ namespace vSharpStudio.ViewModels
 #if DEBUG
                     if (!VmBindable.isUnitTests)
 #endif
-                        MessageBox.Show($"No plugin's folders are found in folder:\n{dir}", "Warning", System.Windows.MessageBoxButton.OK);
+                        Xceed.Wpf.Toolkit.MessageBox.Show($"No plugin's folders are found in folder:\n{dir}", "Warning", System.Windows.MessageBoxButton.OK);
                 }
             }
             foreach (var t in dirs)
@@ -528,7 +528,7 @@ namespace vSharpStudio.ViewModels
 #if DEBUG
                     if (!VmBindable.isUnitTests)
 #endif
-                        MessageBox.Show($"Can't load generator plugin from folder:\n{t}\nException: {ex.Message}", "Error", System.Windows.MessageBoxButton.OK);
+                        Xceed.Wpf.Toolkit.MessageBox.Show($"Can't load generator plugin from folder:\n{t}\nException: {ex.Message}", "Error", System.Windows.MessageBoxButton.OK);
                 }
             }
         }
@@ -622,7 +622,7 @@ namespace vSharpStudio.ViewModels
                 if (!VmBindable.isUnitTests)
                 {
 #endif
-                    var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                    var res = Xceed.Wpf.Toolkit.MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                     if (res != System.Windows.MessageBoxResult.OK)
                         return;
 #if DEBUG
@@ -641,7 +641,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnOpenConfig ??= new vButtonVM<string>(
                     (o) =>
                     {
-                        this.OpenConfig();
+                        this.OpenConfig(o);
                         this.BtnConfigSave.Command.NotifyCanExecuteChanged();
                         this.BtnConfigSaveAs.Command.NotifyCanExecuteChanged();
                         this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
@@ -650,7 +650,7 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vButtonVM<string>? _BtnOpenConfig;
-        internal void OpenConfig()
+        internal void OpenConfig(string? filePath)
         {
             if (this.Config != null && this.Config.IsHasChanged)
             {
@@ -658,23 +658,34 @@ namespace vSharpStudio.ViewModels
                 if (!VmBindable.isUnitTests)
                 {
 #endif
-                    var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                    var res = Xceed.Wpf.Toolkit.MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                     if (res != System.Windows.MessageBoxResult.OK)
                         return;
 #if DEBUG
                 }
 #endif
             }
-            var dlg = new Microsoft.Win32.OpenFileDialog
+            if (filePath != null)
             {
-                FileName = emptyStr, // Default file name
-                DefaultExt = ".vcfg", // Default file extension
-                Filter = "Any file (.vcfg)|*.vcfg" // Filter files by extension
-            };
-            Nullable<bool> result = dlg.ShowDialog();
-            if (result == true)
+                if (File.Exists(filePath))
+                    this.LoadConfig(filePath, string.Empty, true);
+                else
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Selected file is not found", "Warning", System.Windows.MessageBoxButton.OK);
+                return;
+            }
+            else
             {
-                this.LoadConfig(dlg.FileName, string.Empty, true);
+                var dlg = new Microsoft.Win32.OpenFileDialog
+                {
+                    FileName = emptyStr, // Default file name
+                    DefaultExt = ".vcfg", // Default file extension
+                    Filter = "Any file (.vcfg)|*.vcfg" // Filter files by extension
+                };
+                Nullable<bool> result = dlg.ShowDialog();
+                if (result == true)
+                {
+                    this.LoadConfig(dlg.FileName, string.Empty, true);
+                }
             }
         }
         //TODO saving is not appropriate operation because loosing information about deleted objects (DB has to be updated)
@@ -739,53 +750,67 @@ namespace vSharpStudio.ViewModels
         private vButtonVM<string>? _BtnConfigSaveAs;
         internal void SaveAs(string? filePath = null, bool isCreateNewConfig = false)
         {
-            var openFileDialog = new SaveFileDialog
+            string fExt = "";
+            System.Windows.Forms.SaveFileDialog? openFileDialog = null;
+            if (filePath == null) // explicite filePath from tests
             {
-                Filter = "vConfig files (*.vcfg)|*.vcfg|All files (*.*)|*.*",
-                CheckFileExists = false,
-                CheckPathExists = true
-            };
-            if (!string.IsNullOrEmpty(this._FilePathSaveAs))
-            {
-                openFileDialog.InitialDirectory = Path.GetDirectoryName(this._FilePathSaveAs);
-            }
-            // https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=netframework-4.8
-            if (filePath != null || openFileDialog.ShowDialog() == true)
-            {
-                this.FilePathSaveAs = filePath == null ? openFileDialog.FileName : Path.GetFullPath(filePath);
-
-                if (isCreateNewConfig)
+                // https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=netframework-4.8
+                openFileDialog = new()
                 {
-                    this.NewConfig();
-                    this.Config.SetIsNeedCurrentUpdate(false);
+                    Filter = "vConfig files (*.vcfg)|*.vcfg",
+                    CheckFileExists = false,
+                    CheckPathExists = true
+                };
+                Debug.Assert(openFileDialog != null);
+                if (!string.IsNullOrEmpty(this._FilePathSaveAs))
+                {
+                    openFileDialog.InitialDirectory = Path.GetDirectoryName(this._FilePathSaveAs);
                 }
-                this.SavePrepare();
-                Utils.TryCall(
-                    () =>
+                if (openFileDialog.ShowDialog() != DialogResult.OK)
+                    return;
+                filePath = openFileDialog.FileName;
+            }
+            fExt = Path.GetExtension(filePath);
+            switch (fExt)
+            {
+                case ".vcfg":
+                    this.FilePathSaveAs = openFileDialog != null ? openFileDialog.FileName : Path.GetFullPath(filePath);
+
+                    if (isCreateNewConfig)
                     {
-                        this.CurrentCfgFilePath = this.FilePathSaveAs;
-                        Debug.Assert(this.UserSettings != null);
-                        Debug.Assert(this.CurrentCfgFilePath != null);
-                        var folder = Path.GetDirectoryName(this.CurrentCfgFilePath);
-                        Debug.Assert(folder != null);
-                        Directory.CreateDirectory(folder);
-                        File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+                        this.NewConfig();
+                        this.Config.SetIsNeedCurrentUpdate(false);
+                    }
+                    this.SavePrepare();
+                    Utils.TryCall(
+                        () =>
+                        {
+                            this.CurrentCfgFilePath = this.FilePathSaveAs;
+                            Debug.Assert(this.UserSettings != null);
+                            Debug.Assert(this.CurrentCfgFilePath != null);
+                            var folder = Path.GetDirectoryName(this.CurrentCfgFilePath);
+                            Debug.Assert(folder != null);
+                            Directory.CreateDirectory(folder);
+                            File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
 #if DEBUG
-                        //var json = JsonFormatter.Default.Format(this.pconfig_history);
-                        JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
-                        var json = formatter.Format(this.pconfig_history);
-                        File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
+                            //var json = JsonFormatter.Default.Format(this.pconfig_history);
+                            JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
+                            var json = formatter.Format(this.pconfig_history);
+                            File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
 #endif
-                        UpdateUserSettingsSaveConfigs();
-                        ResetIsChangedBeforeSave();
-                        File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
-                        this.VisibilityAndMessageInstructions();
-                        // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
-                        // File.WriteAllText(FilePathSaveAs, json);
+                            UpdateUserSettingsSaveConfigs();
+                            ResetIsChangedBeforeSave();
+                            File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+                            this.VisibilityAndMessageInstructions();
+                            // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
+                            // File.WriteAllText(FilePathSaveAs, json);
 #if DEBUG
-                        // CompareSaved(json);
+                            // CompareSaved(json);
 #endif
-                    }, "Can't save configuration. File path: '" + this.FilePathSaveAs + "'");
+                        }, "Can't save configuration. File path: '" + this.FilePathSaveAs + "'");
+                    break;
+                default:
+                    throw new Exception($"Unsupported file extention type: {fExt}");
             }
             this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
         }
@@ -833,6 +858,10 @@ namespace vSharpStudio.ViewModels
                     };
                     // insert as first
                     this.UserSettings.ListOpenConfigHistory.Insert(0, us);
+                    while (this.UserSettings.ListOpenConfigHistory.Count > 10)
+                    {
+                        this.UserSettings.ListOpenConfigHistory.RemoveAt(this.UserSettings.ListOpenConfigHistory.Count - 1);
+                    }
                 }
             }
             else // first file
@@ -889,6 +918,98 @@ namespace vSharpStudio.ViewModels
         }
         private const string _saveBaseToolTip = "Ctrl-S - save config";
         private string _SaveToolTip = _saveBaseToolTip;
+
+        #region Backup
+//        public vButtonVM<string> BtnRestore
+//        {
+//            get
+//            {
+//                return this._BtnRestore ??= new vButtonVM<string>(
+//                    (o) => { this.Restore(o); },
+//                    (o) => { return this.Config != null; });
+//            }
+//        }
+//        private vButtonVM<string>? _BtnRestore;
+//        internal void Restore(string? filePath = null)
+//        {
+//            new NotImplementedException();
+//        }
+//        public vButtonVM<string> BtnBackupAs
+//        {
+//            get
+//            {
+//                return this._BtnBackupAs ??= new vButtonVM<string>(
+//                    (o) => { this.BackupAs(o); },
+//                    (o) => { return this.Config != null; });
+//            }
+//        }
+//        private vButtonVM<string>? _BtnBackupAs;
+//        internal void BackupAs(string? filePath = null)
+//        {
+//            string fExt = "";
+//            System.Windows.Forms.SaveFileDialog? openFileDialog = null;
+//            if (filePath == null) // explicite filePath from tests
+//            {
+//                // https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=netframework-4.8
+//                openFileDialog = new()
+//                {
+//                    Filter = "Solution backup files (*.vbak)|*.vbak",
+//                    CheckFileExists = false,
+//                    CheckPathExists = true
+//                };
+//                Debug.Assert(openFileDialog != null);
+//                if (!string.IsNullOrEmpty(this._FilePathSaveAs))
+//                {
+//                    openFileDialog.InitialDirectory = Path.GetDirectoryName(this._FilePathSaveAs);
+//                }
+//                if (openFileDialog.ShowDialog() != DialogResult.OK)
+//                    return;
+//                filePath = openFileDialog.FileName;
+//            }
+//            fExt = Path.GetExtension(filePath);
+//            switch (fExt)
+//            {
+//                case ".vbak": // solution backup (config and DBs)
+
+
+//                    new NotImplementedException();
+
+//                    this.FilePathSaveAs = openFileDialog != null ? openFileDialog.FileName : Path.GetFullPath(filePath);
+//                    this.SavePrepare();
+//                    Utils.TryCall(
+//                        () =>
+//                        {
+//                            this.CurrentCfgFilePath = this.FilePathSaveAs;
+//                            Debug.Assert(this.UserSettings != null);
+//                            Debug.Assert(this.CurrentCfgFilePath != null);
+//                            var folder = Path.GetDirectoryName(this.CurrentCfgFilePath);
+//                            Debug.Assert(folder != null);
+//                            Directory.CreateDirectory(folder);
+//                            File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+//#if DEBUG
+//                            //var json = JsonFormatter.Default.Format(this.pconfig_history);
+//                            JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
+//                            var json = formatter.Format(this.pconfig_history);
+//                            File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
+//#endif
+//                            UpdateUserSettingsSaveConfigs();
+//                            ResetIsChangedBeforeSave();
+//                            File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+//                            this.VisibilityAndMessageInstructions();
+//                            // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
+//                            // File.WriteAllText(FilePathSaveAs, json);
+//#if DEBUG
+//                            // CompareSaved(json);
+//#endif
+//                        }, "Can't save configuration. File path: '" + this.FilePathSaveAs + "'");
+//                    break;
+//                default:
+//                    throw new Exception($"Unsupported file extention type: {fExt}");
+//            }
+//            this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
+//        }
+        #endregion Backup
+
         public ProgressVM ProgressVM
         {
             get
@@ -935,7 +1056,7 @@ namespace vSharpStudio.ViewModels
                                         throw;
                                     else
 #endif
-                                        MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
+                                        Xceed.Wpf.Toolkit.MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
                             }
                             finally
                             {
@@ -995,7 +1116,7 @@ namespace vSharpStudio.ViewModels
                                     if (!VmBindable.isUnitTests)
                                     {
 #endif
-                                        var res = MessageBox.Show($"There are {this._Config.CountErrors} errors in configuration. First error is\n\n{this._Config.FindValidationMessage()?.Message}\n\nFix errors and try again.",
+                                        var res = Xceed.Wpf.Toolkit.MessageBox.Show($"There are {this._Config.CountErrors} errors in configuration. First error is\n\n{this._Config.FindValidationMessage()?.Message}\n\nFix errors and try again.",
                                             "Error", System.Windows.MessageBoxButton.OK);
                                         this.cancellationTokenSource = null;
                                         this.ProgressVM.ProgressClose();
@@ -1022,7 +1143,7 @@ namespace vSharpStudio.ViewModels
 #endif
                                     if (this._Config.CountWarnings > 0)
                                     {
-                                        var res = MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                                        var res = Xceed.Wpf.Toolkit.MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                                         if (res != System.Windows.MessageBoxResult.OK)
                                             return;
                                     }
@@ -1056,7 +1177,7 @@ namespace vSharpStudio.ViewModels
                                     throw;
                                 else
 #endif
-                                    MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
+                                    Xceed.Wpf.Toolkit.MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
                             }
                             finally
                             {

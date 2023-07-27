@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,6 +72,14 @@ namespace vSharpStudio.Views
             {
                 return this._model.ValidateSelectedNodeAsync();
             }).SafeFireAndForget();
+        }
+
+        private void MenuItem_ContextMenu_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var mi = sender as MenuItem;
+            Debug.Assert(mi != null);
+            Debug.Assert(this._model.UserSettings != null);
+            this._model.UserSettings.SelectedConfigHistory = mi.DataContext as UserSettingsOpenedConfig;
         }
     }
 }

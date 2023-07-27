@@ -54,23 +54,98 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <!--Menu-->
                 <Grid Grid.Row="0">
-                    <ToolBarPanel>
+                    <Menu>
+                        <MenuItem Header="_File">
+                            <MenuItem Header="_New" Command="{Binding BtnNewConfig.Command}">
+                                <MenuItem.Icon>
+                                    <ContentControl Template="{StaticResource iconNewFile}"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="_Open" Command="{Binding BtnOpenConfig.Command}">
+                                <MenuItem.Icon>
+                                    <ContentControl Template="{StaticResource iconSettingsFile}"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Open Recent File" DataContext="{Binding UserSettings}" ItemsSource="{Binding ListOpenConfigHistory, Mode=OneWay}">
+                                <MenuItem.ItemContainerStyle>
+                                    <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                        <Setter Property="HeaderTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding DateStr, Mode=OneWay}" FontWeight="Bold"/>
+                                                        <TextBlock Text=" "/>
+                                                        <TextBlock Text="{Binding ConfigPath, Mode=OneWay}"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="Command" Value="{Binding DataContext.BtnOpenConfig.Command, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainPage}}}" />
+                                        <Setter Property="CommandParameter" Value="{Binding ConfigPath, Mode=OneWay}" />
+                                    </Style>
+                                </MenuItem.ItemContainerStyle>
+                            </MenuItem>
+                            <MenuItem Header="_Save" Command="{Binding BtnConfigSave.Command}" InputGestureText="Ctrl+S">
+                                <MenuItem.Icon>
+                                    <ContentControl Template="{StaticResource iconSave}"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Save As" Command="{Binding BtnConfigSaveAs.Command}" InputGestureText="Ctrl+A">
+                                <MenuItem.Icon>
+                                    <ContentControl Template="{StaticResource iconSaveAs}"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <!--<Separator />
+                            <MenuItem Header="Restore" Command="{Binding BtnRestore.Command}"/>
+                            <MenuItem Header="Backup As" Command="{Binding BtnBackupAs.Command}">
+                                <MenuItem.Icon>
+                                    <ContentControl Template="{StaticResource iconCheckpointBuild}"/>
+                                </MenuItem.Icon>
+                            </MenuItem>-->
+                            <Separator />
+                            <MenuItem Header="_Exit" InputGestureText="Ctrl+X">
+                                <!--<MenuItem.Icon>
+                                    <ContentControl Template="{StaticResource iconNewFile}"/>
+                                </MenuItem.Icon>-->
+                            </MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="Configuration">
+                            <MenuItem Header="Validate" Command="{Binding BtnConfigValidateAsync.Command}" InputGestureText="Ctrl+V">
+                                <MenuItem.Icon>
+                                    <ContentControl Template="{StaticResource iconValidateModel}"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Generate" Command="{Binding BtnConfigCurrentUpdateAsync.Command}" InputGestureText="Ctrl+U">
+                                <MenuItem.Icon>
+                                    <ContentControl Template="{StaticResource iconRun}"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </MenuItem>
+                    </Menu>
+                </Grid>
+                <Grid Grid.Row="1">
+
+                    <!--<ToolBarPanel>
                         <ToolBar Padding="0,1,0,0">
                             <xctk:DropDownButton BorderThickness="0" ToolTip="Recent Config Files" Height="18" 
                                                  Padding="0,0,0,0" UseLayoutRounding="False" Background="{x:Null}">
                                 <xctk:DropDownButton.DropDownContent>
                                     <Grid MinHeight="50" MaxHeight="300">
-                                        <!--Background="{DynamicResource {x:Static SystemColors.WindowColor}}"-->
+                                        -->
+                    <!--Background="{DynamicResource {x:Static SystemColors.WindowColor}}"-->
+                    <!--
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*" />
                                             <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <!--<DataGrid ItemsSource="{Binding UserSettings.ListOpenConfigHistory, Mode=OneWay}"
+                                        </Grid.RowDefinitions>-->
+
+                    <!--<DataGrid ItemsSource="{Binding UserSettings.ListOpenConfigHistory, Mode=OneWay}"
                                                   AutoGenerateColumns="False" MinWidth="100" 
                                                   Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
                                                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -79,7 +154,8 @@
                                                 <DataGridTextColumn Header="Path"  Binding="{Binding ConfigPath}" Width="*"/>
                                             </DataGrid.Columns>
                                         </DataGrid>-->
-                                        <ListBox ItemsSource="{Binding UserSettings.ListOpenConfigHistory, Mode=OneWay}"
+
+                    <!--<ListBox ItemsSource="{Binding UserSettings.ListOpenConfigHistory, Mode=OneWay}"
                                                  SelectedItem="{Binding UserSettings.SelectedConfigHistory}"
                                                  MinWidth="100" SelectionMode="Single">
                                         </ListBox>
@@ -91,10 +167,26 @@
                                         </StackPanel>
                                     </Grid>
                                 </xctk:DropDownButton.DropDownContent>
-                            </xctk:DropDownButton>
-                            <vc:vButton IconControlTemplate="{StaticResource iconSettingsFile}" DataContext="{Binding BtnOpenConfig}" ToolTip="Open Config File"/>
-                            <vc:vButton IconControlTemplate="{StaticResource iconNewFile}" DataContext="{Binding BtnNewConfig}" ToolTip="Create Empty Config"/>
-                            <!--<xctk:WatermarkComboBox ItemsSource="{Binding DicPlugins, Converter={StaticResource ConverterDicToListPlugins}, ConverterParameter={x:Static common:vPluginLayerTypeEnum.DbConnection}}" 
+                            </xctk:DropDownButton>-->
+
+
+                    <!--<xctk:DropDownButton BorderThickness="0" ToolTip="Backup solution" Height="18"
+                                                 Padding="0,0,0,0" UseLayoutRounding="False" Background="{x:Null}">
+                                <xctk:DropDownButton.Content>
+                                    <ContentControl Template="{StaticResource iconSaveAs}" />
+                                </xctk:DropDownButton.Content>
+                                <xctk:DropDownButton.DropDownContent>
+                                    <StackPanel>
+                                        <Button Command="{Binding BtnConfigSaveAs}" Content="Save configuration as"  ToolTip="Ctrl-A - save configuration as"/>
+                                        <Button Command="{Binding BtnConfigBackupAs}" Content="Backup snapshort"  ToolTip="Save configuration snapshort with DB"/>
+                                    </StackPanel>
+                                </xctk:DropDownButton.DropDownContent>
+                            </xctk:DropDownButton>-->
+
+                    <!--<vc:vButton IconControlTemplate="{StaticResource iconSettingsFile}" DataContext="{Binding BtnOpenConfig}" ToolTip="Open Config File"/>
+                            <vc:vButton IconControlTemplate="{StaticResource iconNewFile}" DataContext="{Binding BtnNewConfig}" ToolTip="Create Empty Config"/>-->
+
+                    <!--<xctk:WatermarkComboBox ItemsSource="{Binding DicPlugins, Converter={StaticResource ConverterDicToListPlugins}, ConverterParameter={x:Static common:vPluginLayerTypeEnum.DbConnection}}" 
                                             SelectedItem="{Binding SelectedDbDesignPlugin}" 
                                             DisplayMemberPath="Plugin.NameUi"
                                             ToolTip="Recent Config files"
@@ -105,9 +197,11 @@
                                     </DataTemplate>
                                 </xctk:WatermarkComboBox.WatermarkTemplate>
                             </xctk:WatermarkComboBox>-->
-                            <vc:vButton IconControlTemplate="{StaticResource iconSave}" DataContext="{Binding BtnConfigSave}" ToolTip="Ctrl-S - save configuration"/>
-                            <vc:vButton IconControlTemplate="{StaticResource iconSaveAs}" DataContext="{Binding BtnConfigSaveAs}" ToolTip="Ctrl-A - save configuration as"/>
-                            <!--<TextBlock Text=" DB conn:" FontWeight="Bold" VerticalAlignment="Center">
+
+                    <!--<vc:vButton IconControlTemplate="{StaticResource iconSave}" DataContext="{Binding BtnConfigSave}" ToolTip="Ctrl-S - save configuration"/>
+                            <vc:vButton IconControlTemplate="{StaticResource iconSaveAs}" DataContext="{Binding BtnConfigSaveAs}" ToolTip="Ctrl-A - save configuration as"/>-->
+
+                    <!--<TextBlock Text=" DB conn:" FontWeight="Bold" VerticalAlignment="Center">
                                 <TextBlock.ToolTip>Default DB connection. Will be used if solution and project DB connections are empty.</TextBlock.ToolTip>
                             </TextBlock>
                             <xctk:WatermarkComboBox ItemsSource="{Binding DicPlugins, Converter={StaticResource ConverterDicToListPlugins}, ConverterParameter={x:Static common:vPluginLayerTypeEnum.DbConnection}}" 
@@ -128,12 +222,14 @@
                                     </DataTemplate>
                                 </xctk:WatermarkComboBox.WatermarkTemplate>
                             </xctk:WatermarkComboBox>-->
-                            <vc:vButton IconControlTemplate="{StaticResource iconValidateModel}" DataContext="{Binding BtnConfigValidateAsync}" ToolTip="Ctrl-V - validate configuration"/>
-                            <vc:vButton IconControlTemplate="{StaticResource iconRun}" DataContext="{Binding BtnConfigCurrentUpdateAsync}" ToolTip="Ctrl-U - update generated code"/>
-                        </ToolBar>
-                    </ToolBarPanel>
+
+                    <!--<vc:vButton IconControlTemplate="{StaticResource iconValidateModel}" DataContext="{Binding BtnConfigValidateAsync}" ToolTip="Ctrl-V - validate configuration"/>
+                            <vc:vButton IconControlTemplate="{StaticResource iconRun}" DataContext="{Binding BtnConfigCurrentUpdateAsync}" ToolTip="Ctrl-U - update generated code"/>-->
+
+                    <!--</ToolBar>
+                    </ToolBarPanel>-->
                 </Grid>
-                <Grid Grid.Row="1" Visibility="{Binding VisibilityConfig}">
+                <Grid Grid.Row="2" Visibility="{Binding VisibilityConfig}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="264" MinWidth="20" />
                         <ColumnDefinition Width="Auto" />
@@ -187,7 +283,7 @@
                         <local:PropertiesList LostFocus="PropertiesList_LostFocus" />
                     </Grid>
                 </Grid>
-                <TextBlock Grid.Row="2" Margin="3,0,0,0" Text="{Binding MessageInstructions}" FontWeight="Bold" />
+                <TextBlock Grid.Row="3" Margin="3,0,0,0" Text="{Binding MessageInstructions}" FontWeight="Bold" />
                 <xctk:WindowContainer Grid.Row="0" Grid.RowSpan="3" x:Name="_windowContainer" ModalBackgroundBrush="LightGray">
                     <xctk:ChildWindow x:Name="_modalNodeSettingsWindow">
                         <local:GenSettings x:Name="_GenSettings" />

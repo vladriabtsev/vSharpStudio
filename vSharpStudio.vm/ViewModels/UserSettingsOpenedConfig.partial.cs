@@ -15,6 +15,8 @@ namespace vSharpStudio.vm.ViewModels
             sb.Append(this.ConfigPath);
             return sb.ToString();
         }
+        public string DateStr { get { return this.OpenedLastTimeOn.ToDateTime().ToString(DateFormat); } }
+        public string ConfigPathWithDate { get { return this.ToString(); } }
         partial void OnCreating()
         {
             this._Guid = System.Guid.NewGuid().ToString();

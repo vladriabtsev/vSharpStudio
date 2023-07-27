@@ -105,7 +105,6 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.BtnSelectionRight.CanExecute());
             Assert.IsFalse(vm.BtnSelectionUp.CanExecute());
         }
-
         [TestMethod]
         async public Task Main002CanSaveConfigAndCreateVersions()
         {
@@ -457,6 +456,52 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.PropertyCodeName, lst[3].Name);
             Assert.AreEqual(vm.Config.Model.PropertyNameName, lst[4].Name);
+        }
+        [TestMethod]
+        [Ignore("Not implemented yet")]
+        public void Main008Backups()
+        {
+            //// empty config
+            //this.remove_config();
+            //var vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            //Assert.IsTrue(vm.Config == null);
+            //Assert.IsTrue(vm.pconfig_history == null);
+
+            //vm.BtnNewConfig.Execute(@".\kuku.vcfg");
+            //Assert.IsTrue(vm.Config != null);
+            //Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
+
+            //// create object and save
+            //var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            //gr.NodeAddNewSubNode();
+            //var cnst = (Constant)vm.Config.SelectedNode;
+            //var ct = DateTime.UtcNow;
+            //Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
+            //vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg");
+            //Assert.IsTrue(vm.Config.LastUpdated != null);
+            //Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
+            //Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
+            //Assert.IsTrue(vm.Config.Version == 0);
+            //Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
+
+
+            //// can save config and DB backups
+            //vm.BtnConfigSaveAs.Execute(@".\kuku.vbak");
+            //var vmPrev = vm;
+
+            //// can restore config and DB backups, folder ? and DB bases names ?
+            //vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            //vm.BtnOpenConfig.Execute(@".\kuku.vbak");
+
+            //Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
+            //Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
+            //Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
+            //Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
+            //Assert.IsTrue(vm.Config.Version == 0);
+            //Assert.IsTrue(vm.pconfig_history != null);
+            //Assert.IsTrue(vm.pconfig_history.CurrentConfig != null);
+            //Assert.IsTrue(vm.pconfig_history.PrevStableConfig == null);
+            //Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
         }
         [TestMethod]
         public void Main009_Diff()
@@ -1454,7 +1499,6 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(set.IsGroupParam1);
             _logger.LogTrace("End test".CallerInfo());
         }
-
         [TestMethod]
         public void Main081_BaseConfigLoading()
         {
@@ -1492,7 +1536,6 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Name == "ext");
             Assert.IsTrue(vm.Config.GroupConfigLinks[0].Name == "ext");
         }
-
         [TestMethod]
         public void Main082_BaseConfigDiff()
         {
@@ -1828,7 +1871,6 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(v.IsHasErrors);
             #endregion int requirements validation
         }
-
         #region Roles
         [TestMethod]
         public void Main101_RolesTests()
