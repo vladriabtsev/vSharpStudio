@@ -58,7 +58,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListRoles.OnAddedAction = (t) =>
             {
                 var nvb = new ModelVisitorBase();
-                nvb.Run(this.Cfg, null, null, null, (p, n) =>
+                nvb.RunFromRoot(this.Cfg, null, null, null, (p, n) =>
                 {
                     if (n is IRoleAccess ra)
                         ra.InitRoleAdd(t);
@@ -67,7 +67,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListRoles.OnRemovedAction = (t) =>
             {
                 var nvb = new ModelVisitorBase();
-                nvb.Run(this.Cfg, null, null, null, (p, n) =>
+                nvb.RunFromRoot(this.Cfg, null, null, null, (p, n) =>
                 {
                     if (n is IRoleAccess ra)
                         ra.InitRoleRemove(t);

@@ -15,8 +15,6 @@ namespace vSharpStudio.vm.ViewModels
     public partial class GroupListPlugins : ITreeModel, ICanGoRight, IEditableNodeGroup
     {
         [Browsable(false)]
-        public bool IsNew { get { return false; } }
-        [Browsable(false)]
         public Config ParentConfig { get { Debug.Assert(this.Parent != null); return (Config)this.Parent; } }
         [Browsable(false)]
         public IConfig ParentConfigI { get { Debug.Assert(this.Parent != null); return (IConfig)this.Parent; } }
@@ -36,10 +34,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = "Plugins";
             this.IsEditable = false;
-            //this.ListPlugins.OnAddingAction = (t) =>
-            //{
-            //    t.IsNew = true;
-            //};
+            this.ListPlugins.OnAddingAction = (t) =>
+            {
+                t.IsNew = true;
+            };
             //this.ListPlugins.OnAddedAction = (t) =>
             //{
             //};

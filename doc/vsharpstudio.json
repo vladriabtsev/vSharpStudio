@@ -3264,7 +3264,7 @@
             },
             {
               "name": "is_need_current_update",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [Browsable(false)]\n/ \u003csummary\u003e\n/ True if configuration was changed since last code generation.\n/ Set by SetIsNeedCurrentUpdate(bool val) function.\n/ \u003c/summary\u003e",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -8823,6 +8823,16 @@
               "type": "proto_plugin_generator",
               "longType": "proto_plugin_generator",
               "fullType": "proto_config.proto_plugin_generator",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }

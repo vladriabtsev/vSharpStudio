@@ -11,10 +11,8 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Plugin:{Name,nq} Count:{ListGenerators.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class Plugin : ICanGoLeft, ICanGoRight
+    public partial class Plugin : ICanGoLeft, ICanGoRight, ICanAddNode
     {
-        [Browsable(false)]
-        public bool IsNew { get { return false; } }
         [Browsable(false)]
         public GroupListPlugins ParentGroupListPlugins { get { Debug.Assert(this.Parent != null); return (GroupListPlugins)this.Parent; } }
         [Browsable(false)]

@@ -21,11 +21,20 @@ namespace vSharpStudio.common
     }
     public interface ICanAddNode //: IOnAdded, IOnRemoved
     {
+        /// <summary>
+        /// Object is new from moment it added to configuration and until next stable/production version is created
+        /// </summary>
         bool IsNew { get; set; }
     }
     public interface IEditableNode
     {
         bool IsChanged { get; set; }
+        /// <summary>
+        /// Marked for deletion object are deleted when
+        ///  - during code generation if object is new
+        ///  - if object exist in stable/production version, then it will survive as deprecated object for next stable/production version
+        ///  - if object already exist in stable/production version as deprecated, then it will deleted when next stable/production version will be created
+        /// </summary>
         bool IsMarkedForDeletion { get; set; }
         void Remove();
     }
@@ -34,6 +43,7 @@ namespace vSharpStudio.common
         bool IsHasChanged { get; set; }
         bool IsNewOrHasNew { get; }
         bool IsHasNew { get; set; }
+        //void SetIsHasNew(bool isHasNew);
         bool IsHasMarkedForDeletion { get; set; }
         void CheckChildrenIsOrHasChanged();
         void CheckChildrenIsOrHasNew();

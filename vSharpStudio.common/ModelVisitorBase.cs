@@ -18,76 +18,97 @@ namespace vSharpStudio.common
         /// </summary>
         /// <param name="model"></param>
         /// <param name="act"></param>
-        public void Run(IModel model, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
+        public void Run(IModel model, bool isActFromRootToBottom = true, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
         {
             this._act = act;
             this.currModel = model;
             this.currCfg = model.ParentConfigI;
             this.BeginVisit(this.currModel);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel);
 
             //TODO change visiting to visit object with references to other objects after visiting referenced objects
 
-
             #region Common
             this.BeginVisit(this.currModel.GroupCommon);
-            this._act?.Invoke(this, this.currModel.GroupCommon);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCommon);
             this.BeginVisit(currModel.GroupCommon.GroupRoles);
-            this._act?.Invoke(this, this.currModel.GroupCommon.GroupRoles);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCommon.GroupRoles);
             foreach (var tt in currModel.GroupCommon.GroupRoles.ListRoles)
             {
                 this.BeginVisit(tt);
                 this._act?.Invoke(this, tt);
                 this.EndVisit(tt);
             }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCommon.GroupRoles);
             this.EndVisit(currModel.GroupCommon.GroupRoles);
             this.BeginVisit(currModel.GroupCommon.GroupViewForms);
-            this._act?.Invoke(this, this.currModel.GroupCommon.GroupViewForms);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCommon.GroupViewForms);
             foreach (var tt in currModel.GroupCommon.GroupViewForms.ListMainViewForms)
             {
                 this.BeginVisit(tt);
                 this._act?.Invoke(this, tt);
                 this.EndVisit(tt);
             }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCommon.GroupViewForms);
             this.EndVisit(currModel.GroupCommon.GroupViewForms);
             this.BeginVisit(currModel.GroupCommon.GroupListSequences);
-            this._act?.Invoke(this, this.currModel.GroupCommon.GroupListSequences);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCommon.GroupListSequences);
             foreach (var tt in currModel.GroupCommon.GroupListSequences.ListEnumeratorSequences)
             {
                 this.BeginVisit(tt);
                 this._act?.Invoke(this, tt);
                 this.EndVisit(tt);
             }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCommon.GroupListSequences);
             this.EndVisit(currModel.GroupCommon.GroupListSequences);
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCommon);
             this.EndVisit(currModel.GroupCommon);
             #endregion Common
 
             #region Constants
             this.BeginVisit(currModel.GroupConstantGroups);
-            this._act?.Invoke(this, this.currModel.GroupConstantGroups);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupConstantGroups);
             foreach (var t in currModel.GroupConstantGroups.ListConstantGroups)
             {
                 this.BeginVisit(t);
-                this._act?.Invoke(this, t);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, t);
                 foreach (var tt in t.ListConstants)
                 {
                     this.BeginVisit(tt);
                     this._act?.Invoke(this, tt);
                     this.EndVisit(tt);
                 }
+                if (!isActFromRootToBottom)
+                    this._act?.Invoke(this, t);
                 this.EndVisit(t);
             }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupConstantGroups);
             this.EndVisit(currModel.GroupConstantGroups);
             #endregion Constants
 
             #region Enumerations
             this.BeginVisit(currModel.GroupEnumerations);
-            this._act?.Invoke(this, this.currModel.GroupEnumerations);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupEnumerations);
             this.BeginVisit(currModel.GroupEnumerations.ListEnumerations);
             foreach (var tt in currModel.GroupEnumerations.ListEnumerations)
             {
                 this.currEnum = tt;
                 this.BeginVisit(tt);
-                this._act?.Invoke(this, tt);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, tt);
                 //if (tt.IsDeleted())
                 //    continue;
                 foreach (var ttt in tt.ListEnumerationPairs)
@@ -96,16 +117,21 @@ namespace vSharpStudio.common
                     this._act?.Invoke(this, ttt);
                     this.EndVisit(ttt);
                 }
+                if (!isActFromRootToBottom)
+                    this._act?.Invoke(this, tt);
                 this.EndVisit(tt);
                 this.currEnum = null;
             }
             this.EndVisit(currModel.GroupEnumerations.ListEnumerations);
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupEnumerations);
             this.EndVisit(currModel.GroupEnumerations);
             #endregion Enumerations
 
             #region Catalogs
             this.BeginVisit(currModel.GroupCatalogs);
-            this._act?.Invoke(this, this.currModel.GroupCatalogs);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCatalogs);
             this.BeginVisit(currModel.GroupCatalogs.ListCatalogs);
             foreach (var tt in currModel.GroupCatalogs.ListCatalogs)
             {
@@ -114,26 +140,31 @@ namespace vSharpStudio.common
                 this._act?.Invoke(this, tt);
                 this.BeginVisit(tt.Folder);
                 this._act?.Invoke(this, tt.Folder);
-                this.VisitProperties(tt.Folder.GroupProperties, tt.Folder.GroupProperties.ListProperties);
-                this.VisitDetails(tt.Folder.GroupDetails, tt.Folder.GroupDetails.ListDetails);
+                this.VisitProperties(tt.Folder.GroupProperties, tt.Folder.GroupProperties.ListProperties, isActFromRootToBottom);
+                this.VisitDetails(tt.Folder.GroupDetails, tt.Folder.GroupDetails.ListDetails, isActFromRootToBottom);
                 this.EndVisit(tt.Folder);
-                this.VisitProperties(tt.GroupProperties, tt.GroupProperties.ListProperties);
-                this.VisitDetails(tt.GroupDetails, tt.GroupDetails.ListDetails);
-                this.VisitForms(tt.GroupForms, tt.GroupForms.ListForms);
-                this.VisitReports(tt.GroupReports, tt.GroupReports.ListReports);
+                this.VisitProperties(tt.GroupProperties, tt.GroupProperties.ListProperties, isActFromRootToBottom);
+                this.VisitDetails(tt.GroupDetails, tt.GroupDetails.ListDetails, isActFromRootToBottom);
+                this.VisitForms(tt.GroupForms, tt.GroupForms.ListForms, isActFromRootToBottom);
+                this.VisitReports(tt.GroupReports, tt.GroupReports.ListReports, isActFromRootToBottom);
                 this.EndVisit(tt);
                 this.currCat = null;
             }
             this.EndVisit(currModel.GroupCatalogs.ListCatalogs);
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCatalogs);
             this.EndVisit(currModel.GroupCatalogs);
             #endregion Catalogs
 
             #region Documents
             this.BeginVisit(currModel.GroupDocuments);
-            this._act?.Invoke(this, this.currModel.GroupDocuments);
-            this.VisitProperties(currModel.GroupDocuments.GroupSharedProperties, currModel.GroupDocuments.GroupSharedProperties.ListProperties);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments);
+            this.BeginVisit(currModel.GroupDocuments.GroupSharedProperties);
+            this.VisitProperties(currModel.GroupDocuments.GroupSharedProperties, currModel.GroupDocuments.GroupSharedProperties.ListProperties, isActFromRootToBottom);
             this.BeginVisit(currModel.GroupDocuments.GroupListDocuments);
-            this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListDocuments);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListDocuments);
             this.BeginVisit(currModel.GroupDocuments.GroupListDocuments.ListDocuments);
             foreach (var tt in currModel.GroupDocuments.GroupListDocuments.ListDocuments)
             {
@@ -142,22 +173,26 @@ namespace vSharpStudio.common
                 this._act?.Invoke(this, tt);
                 //if (tt.IsDeleted())
                 //    continue;
-                this.VisitProperties(tt.GroupProperties, tt.GroupProperties.ListProperties);
-                this.VisitDetails(tt.GroupDetails, tt.GroupDetails.ListDetails);
-                this.VisitForms(tt.GroupForms, tt.GroupForms.ListForms);
-                this.VisitReports(tt.GroupReports, tt.GroupReports.ListReports);
+                this.VisitProperties(tt.GroupProperties, tt.GroupProperties.ListProperties, isActFromRootToBottom);
+                this.VisitDetails(tt.GroupDetails, tt.GroupDetails.ListDetails, isActFromRootToBottom);
+                this.VisitForms(tt.GroupForms, tt.GroupForms.ListForms, isActFromRootToBottom);
+                this.VisitReports(tt.GroupReports, tt.GroupReports.ListReports, isActFromRootToBottom);
                 this.EndVisit(tt);
                 this.currDoc = null;
             }
             this.EndVisit(currModel.GroupDocuments.GroupListDocuments.ListDocuments);
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListDocuments);
             this.EndVisit(currModel.GroupDocuments.GroupListDocuments);
-            this.EndVisit(currModel.GroupDocuments.GroupSharedProperties);
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments);
             this.EndVisit(currModel.GroupDocuments);
             #endregion Documents
 
             #region Journals
             this.BeginVisit(currModel.GroupJournals);
-            this._act?.Invoke(this, this.currModel.GroupJournals);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupJournals);
             foreach (var tt in currModel.GroupJournals.ListJournals)
             {
                 this.BeginVisit(tt);
@@ -172,9 +207,13 @@ namespace vSharpStudio.common
                 //this.currDoc = null;
                 this.EndVisit(tt);
             }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupJournals);
             this.EndVisit(currModel.GroupJournals);
             #endregion Journals
 
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel);
             this.EndVisit(this.currModel);
         }
         /// <summary>
@@ -185,23 +224,50 @@ namespace vSharpStudio.common
         /// <param name="prj"></param>
         /// <param name="prjGen"></param>
         /// <param name="act">Action for each node</param>
-        public void Run(IConfig curr, IAppSolution? sln, IAppProject? prj, IAppProjectGenerator? prjGen, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
+        public void RunFromRoot(IConfig curr, IAppSolution? sln, IAppProject? prj, IAppProjectGenerator? prjGen, Action<ModelVisitorBase, ITreeConfigNode>? act)
+        {
+            this.Run(curr, sln, prj, prjGen, true, act);
+        }
+        /// <summary>
+        /// Visit all config nodes.
+        /// </summary>
+        /// <param name="curr">Config to visit</param>
+        /// <param name="sln"></param>
+        /// <param name="prj"></param>
+        /// <param name="prjGen"></param>
+        /// <param name="act">Action for each node</param>
+        public void RunToRoot(IConfig curr, IAppSolution? sln, IAppProject? prj, IAppProjectGenerator? prjGen, Action<ModelVisitorBase, ITreeConfigNode>? act)
+        {
+            this.Run(curr, sln, prj, prjGen, false, act);
+        }
+        /// <summary>
+        /// Visit all config nodes.
+        /// </summary>
+        /// <param name="curr">Config to visit</param>
+        /// <param name="sln"></param>
+        /// <param name="prj"></param>
+        /// <param name="prjGen"></param>
+        /// <param name="act">Action for each node</param>
+        public void Run(IConfig curr, IAppSolution? sln, IAppProject? prj, IAppProjectGenerator? prjGen, bool isActFromRootToBottom = true, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
         {
             this._act = act;
             this.currCfg = curr;
             this.currModel = curr.Model;
 
             this.BeginVisit(this.currCfg);
-            this._act?.Invoke(this, this.currCfg);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currCfg);
 
             #region Apps
             this.BeginVisit(this.currCfg.GroupAppSolutions);
-            this._act?.Invoke(this, this.currCfg.GroupAppSolutions);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currCfg.GroupAppSolutions);
             this.BeginVisit(this.currCfg.GroupAppSolutions.ListAppSolutions);
             foreach (var t in this.currCfg.GroupAppSolutions.ListAppSolutions)
             {
                 this.BeginVisit(t);
-                this._act?.Invoke(this, t);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, t);
                 //foreach (var tt in t.ListGroupGeneratorsSettings)
                 //{
                 //    this.BeginVisit(tt);
@@ -212,7 +278,8 @@ namespace vSharpStudio.common
                 foreach (var tt in t.ListAppProjects)
                 {
                     this.BeginVisit(tt);
-                    this._act?.Invoke(this, tt);
+                    if (isActFromRootToBottom)
+                        this._act?.Invoke(this, tt);
                     this.BeginVisit(tt.ListAppProjectGenerators);
                     foreach (var ttt in tt.ListAppProjectGenerators)
                     {
@@ -220,16 +287,23 @@ namespace vSharpStudio.common
                         this._act?.Invoke(this, ttt);
                         this.EndVisit(ttt);
                     }
+                    if (!isActFromRootToBottom)
+                        this._act?.Invoke(this, tt);
                     this.EndVisit(tt);
                 }
+                if (!isActFromRootToBottom)
+                    this._act?.Invoke(this, t);
                 this.EndVisit(t);
             }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currCfg.GroupAppSolutions);
             this.EndVisit(this.currCfg.GroupAppSolutions);
             #endregion Apps
 
             #region GroupConfigLinks
             this.BeginVisit(this.currCfg.GroupConfigLinks);
-            this._act?.Invoke(this, this.currCfg.GroupConfigLinks);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currCfg.GroupConfigLinks);
             this.BeginVisit(this.currCfg.GroupConfigLinks.ListBaseConfigLinks);
             foreach (var t in this.currCfg.GroupConfigLinks.ListBaseConfigLinks)
             {
@@ -237,32 +311,42 @@ namespace vSharpStudio.common
                 this._act?.Invoke(this, t);
                 this.EndVisit(t);
             }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currCfg.GroupConfigLinks);
             this.EndVisit(this.currCfg.GroupConfigLinks.ListBaseConfigLinks);
             this.EndVisit(this.currCfg.GroupConfigLinks);
             #endregion GroupConfigLinks
 
             #region Plugins
             this.BeginVisit(this.currCfg.GroupPlugins);
-            this._act?.Invoke(this, this.currCfg.GroupPlugins);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currCfg.GroupPlugins);
             this.BeginVisit(this.currCfg.GroupPlugins.ListPlugins);
             foreach (var t in this.currCfg.GroupPlugins.ListPlugins)
             {
                 this.BeginVisit(t);
-                this._act?.Invoke(this, t);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, t);
                 foreach (var tt in t.ListGenerators)
                 {
                     this.BeginVisit(tt);
                     this._act?.Invoke(this, tt);
                     this.EndVisit(tt);
                 }
+                if (!isActFromRootToBottom)
+                    this._act?.Invoke(this, t);
                 this.EndVisit(t);
             }
             this.EndVisit(this.currCfg.GroupPlugins.ListPlugins);
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currCfg.GroupPlugins);
             this.EndVisit(this.currCfg.GroupPlugins);
             #endregion Plugins
 
-            this.Run(this.currCfg.Model, act);
+            this.Run(this.currCfg.Model, isActFromRootToBottom, act);
 
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currCfg);
             this.EndVisit(this.currCfg);
         }
 
@@ -289,10 +373,11 @@ namespace vSharpStudio.common
         protected IDetail currPropTab => this.currPropTabStack.Peek();
 
         #region Private Visits
-        private void VisitProperties(IGroupListProperties parent, IEnumerable<IProperty> lst)
+        private void VisitProperties(IGroupListProperties parent, IEnumerable<IProperty> lst, bool isActFromRootToBottom)
         {
             this.BeginVisit(parent);
-            this._act?.Invoke(this, parent);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, parent);
             foreach (var t in lst)
             {
                 this.currProp = t;
@@ -301,12 +386,15 @@ namespace vSharpStudio.common
                 this.EndVisit(t);
                 this.currProp = null;
             }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, parent);
             this.EndVisit(parent);
         }
-        private void VisitDetails(IGroupListDetails parent, IEnumerable<IDetail> lst)
+        private void VisitDetails(IGroupListDetails parent, IEnumerable<IDetail> lst, bool isActFromRootToBottom)
         {
             this.BeginVisit(parent);
-            this._act?.Invoke(this, parent);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, parent);
             foreach (var t in lst)
             {
                 this.BeginVisit(t);
@@ -314,17 +402,20 @@ namespace vSharpStudio.common
                 //    continue;
                 this.currPropTabStack.Push(t);
                 this._act?.Invoke(this, t);
-                this.VisitProperties(t.GroupProperties, t.GroupProperties.ListProperties);
-                this.VisitDetails(t.GroupDetails, t.GroupDetails.ListDetails);
+                this.VisitProperties(t.GroupProperties, t.GroupProperties.ListProperties, isActFromRootToBottom);
+                this.VisitDetails(t.GroupDetails, t.GroupDetails.ListDetails, isActFromRootToBottom);
                 this.currPropTabStack.Pop();
                 this.EndVisit(t);
             }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, parent);
             this.EndVisit(parent);
         }
-        private void VisitForms(IGroupListForms parent, IEnumerable<IForm> lst)
+        private void VisitForms(IGroupListForms parent, IEnumerable<IForm> lst, bool isActFromRootToBottom)
         {
             this.BeginVisit(parent);
-            this._act?.Invoke(this, parent);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, parent);
             foreach (var t in lst)
             {
                 this.currForm = t;
@@ -333,12 +424,15 @@ namespace vSharpStudio.common
                 this.EndVisit(t);
                 this.currForm = null;
             }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, parent);
             this.EndVisit(parent);
         }
-        private void VisitReports(IGroupListReports parent, IEnumerable<IReport> lst)
+        private void VisitReports(IGroupListReports parent, IEnumerable<IReport> lst, bool isActFromRootToBottom)
         {
             this.BeginVisit(parent);
-            this._act?.Invoke(this, parent);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, parent);
             foreach (var t in lst)
             {
                 this.currRep = t;
@@ -347,6 +441,8 @@ namespace vSharpStudio.common
                 this.EndVisit(t);
                 this.currRep = null;
             }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, parent);
             this.EndVisit(parent);
         }
         #endregion Private Visits

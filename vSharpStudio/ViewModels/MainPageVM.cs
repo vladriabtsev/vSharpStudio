@@ -418,7 +418,7 @@ namespace vSharpStudio.ViewModels
                 cfg.RefillDicGenerators();
                 // Restore dictionary of all current nodes
                 var nvb = new ModelVisitorBase();
-                nvb.Run(cfg, null, null, null, (p, n) =>
+                nvb.RunFromRoot(cfg, null, null, null, (p, n) =>
                 {
                     cfg._DicNodes[n.Guid] = n;
                     if (n is IRoleAccess ra)
@@ -598,22 +598,23 @@ namespace vSharpStudio.ViewModels
         private Config _Config;
 
         #region Main
-        public vButtonVM<string> BtnNewConfig
+        public vButtonVM BtnNewConfig
         {
             get
             {
-                return this._BtnNewConfig ??= new vButtonVM<string>(
-                    (o) =>
+                return this._BtnNewConfig ??= new vButtonVM(
+                    () =>
                     {
-                        this.SaveAs(o, true);
+
+                        this.NewConfig();
                         this.BtnConfigSave.Command.NotifyCanExecuteChanged();
                         this.BtnConfigSaveAs.Command.NotifyCanExecuteChanged();
                         this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
                     },
-                    (o) => { return this.Config == null || !string.IsNullOrEmpty(this.Config.CurrentCfgFolderPath); });
+                    () => { return this.Config == null || !string.IsNullOrEmpty(this.Config.CurrentCfgFolderPath); });
             }
         }
-        private vButtonVM<string>? _BtnNewConfig;
+        private vButtonVM? _BtnNewConfig;
         internal void NewConfig()
         {
             if (this.Config != null && this.Config.IsHasChanged)
@@ -630,7 +631,7 @@ namespace vSharpStudio.ViewModels
 #endif
             }
             this.CurrentCfgFilePath = null;
-            this.Config = new Config();
+            this.Config = new Config(true);
             this.InitConfig(this.Config);
             this.VisibilityAndMessageInstructions();
         }
@@ -726,8 +727,8 @@ namespace vSharpStudio.ViewModels
                 var json = formatter.Format(this.pconfig_history);
                 File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
 #endif
-                UpdateUserSettingsSaveConfigs();
-                ResetIsChangedBeforeSave();
+                this.UpdateUserSettingsSaveConfigs();
+                this.ResetIsChangedBeforeSave();
                 File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
 #if DEBUG
                 //var json = JsonFormatter.Default.Format(this.pconfig_history);
@@ -737,6 +738,7 @@ namespace vSharpStudio.ViewModels
             }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
             //TODO restore private ConnStr
             this.ConnectionStringSettingsSave();
+            this.Config.SetIsNew(false);
         }
         public vButtonVM<string> BtnConfigSaveAs
         {
@@ -748,11 +750,15 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vButtonVM<string>? _BtnConfigSaveAs;
-        internal void SaveAs(string? filePath = null, bool isCreateNewConfig = false)
+        internal void SaveAs(string filePath)
         {
+            if (isUnitTests)
+            {
+                Debug.Assert(!string.IsNullOrEmpty(filePath));
+            }
             string fExt = "";
             System.Windows.Forms.SaveFileDialog? openFileDialog = null;
-            if (filePath == null) // explicite filePath from tests
+            if (string.IsNullOrEmpty(filePath)) // explicite filePath from tests
             {
                 // https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=netframework-4.8
                 openFileDialog = new()
@@ -775,12 +781,6 @@ namespace vSharpStudio.ViewModels
             {
                 case ".vcfg":
                     this.FilePathSaveAs = openFileDialog != null ? openFileDialog.FileName : Path.GetFullPath(filePath);
-
-                    if (isCreateNewConfig)
-                    {
-                        this.NewConfig();
-                        this.Config.SetIsNeedCurrentUpdate(false);
-                    }
                     this.SavePrepare();
                     Utils.TryCall(
                         () =>
@@ -798,8 +798,8 @@ namespace vSharpStudio.ViewModels
                             var json = formatter.Format(this.pconfig_history);
                             File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
 #endif
-                            UpdateUserSettingsSaveConfigs();
-                            ResetIsChangedBeforeSave();
+                            this.UpdateUserSettingsSaveConfigs();
+                            this.ResetIsChangedBeforeSave();
                             File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
                             this.VisibilityAndMessageInstructions();
                             // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
@@ -812,13 +812,14 @@ namespace vSharpStudio.ViewModels
                 default:
                     throw new Exception($"Unsupported file extention type: {fExt}");
             }
+            this.Config.SetIsNew(false);
             this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
         }
         private void ResetIsChangedBeforeSave()
         {
             var vis = new ModelVisitorBase();
             IEditableNodeGroup.IsChangedNotPropagate = true;
-            vis.Run(this.Config, null, null, null, (v, n) =>
+            vis.RunFromRoot(this.Config, null, null, null, (v, n) =>
             {
                 if (n is IEditableNodeGroup pp)
                 {
@@ -920,94 +921,94 @@ namespace vSharpStudio.ViewModels
         private string _SaveToolTip = _saveBaseToolTip;
 
         #region Backup
-//        public vButtonVM<string> BtnRestore
-//        {
-//            get
-//            {
-//                return this._BtnRestore ??= new vButtonVM<string>(
-//                    (o) => { this.Restore(o); },
-//                    (o) => { return this.Config != null; });
-//            }
-//        }
-//        private vButtonVM<string>? _BtnRestore;
-//        internal void Restore(string? filePath = null)
-//        {
-//            new NotImplementedException();
-//        }
-//        public vButtonVM<string> BtnBackupAs
-//        {
-//            get
-//            {
-//                return this._BtnBackupAs ??= new vButtonVM<string>(
-//                    (o) => { this.BackupAs(o); },
-//                    (o) => { return this.Config != null; });
-//            }
-//        }
-//        private vButtonVM<string>? _BtnBackupAs;
-//        internal void BackupAs(string? filePath = null)
-//        {
-//            string fExt = "";
-//            System.Windows.Forms.SaveFileDialog? openFileDialog = null;
-//            if (filePath == null) // explicite filePath from tests
-//            {
-//                // https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=netframework-4.8
-//                openFileDialog = new()
-//                {
-//                    Filter = "Solution backup files (*.vbak)|*.vbak",
-//                    CheckFileExists = false,
-//                    CheckPathExists = true
-//                };
-//                Debug.Assert(openFileDialog != null);
-//                if (!string.IsNullOrEmpty(this._FilePathSaveAs))
-//                {
-//                    openFileDialog.InitialDirectory = Path.GetDirectoryName(this._FilePathSaveAs);
-//                }
-//                if (openFileDialog.ShowDialog() != DialogResult.OK)
-//                    return;
-//                filePath = openFileDialog.FileName;
-//            }
-//            fExt = Path.GetExtension(filePath);
-//            switch (fExt)
-//            {
-//                case ".vbak": // solution backup (config and DBs)
+        //        public vButtonVM<string> BtnRestore
+        //        {
+        //            get
+        //            {
+        //                return this._BtnRestore ??= new vButtonVM<string>(
+        //                    (o) => { this.Restore(o); },
+        //                    (o) => { return this.Config != null; });
+        //            }
+        //        }
+        //        private vButtonVM<string>? _BtnRestore;
+        //        internal void Restore(string? filePath = null)
+        //        {
+        //            new NotImplementedException();
+        //        }
+        //        public vButtonVM<string> BtnBackupAs
+        //        {
+        //            get
+        //            {
+        //                return this._BtnBackupAs ??= new vButtonVM<string>(
+        //                    (o) => { this.BackupAs(o); },
+        //                    (o) => { return this.Config != null; });
+        //            }
+        //        }
+        //        private vButtonVM<string>? _BtnBackupAs;
+        //        internal void BackupAs(string? filePath = null)
+        //        {
+        //            string fExt = "";
+        //            System.Windows.Forms.SaveFileDialog? openFileDialog = null;
+        //            if (filePath == null) // explicite filePath from tests
+        //            {
+        //                // https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=netframework-4.8
+        //                openFileDialog = new()
+        //                {
+        //                    Filter = "Solution backup files (*.vbak)|*.vbak",
+        //                    CheckFileExists = false,
+        //                    CheckPathExists = true
+        //                };
+        //                Debug.Assert(openFileDialog != null);
+        //                if (!string.IsNullOrEmpty(this._FilePathSaveAs))
+        //                {
+        //                    openFileDialog.InitialDirectory = Path.GetDirectoryName(this._FilePathSaveAs);
+        //                }
+        //                if (openFileDialog.ShowDialog() != DialogResult.OK)
+        //                    return;
+        //                filePath = openFileDialog.FileName;
+        //            }
+        //            fExt = Path.GetExtension(filePath);
+        //            switch (fExt)
+        //            {
+        //                case ".vbak": // solution backup (config and DBs)
 
 
-//                    new NotImplementedException();
+        //                    new NotImplementedException();
 
-//                    this.FilePathSaveAs = openFileDialog != null ? openFileDialog.FileName : Path.GetFullPath(filePath);
-//                    this.SavePrepare();
-//                    Utils.TryCall(
-//                        () =>
-//                        {
-//                            this.CurrentCfgFilePath = this.FilePathSaveAs;
-//                            Debug.Assert(this.UserSettings != null);
-//                            Debug.Assert(this.CurrentCfgFilePath != null);
-//                            var folder = Path.GetDirectoryName(this.CurrentCfgFilePath);
-//                            Debug.Assert(folder != null);
-//                            Directory.CreateDirectory(folder);
-//                            File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
-//#if DEBUG
-//                            //var json = JsonFormatter.Default.Format(this.pconfig_history);
-//                            JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
-//                            var json = formatter.Format(this.pconfig_history);
-//                            File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
-//#endif
-//                            UpdateUserSettingsSaveConfigs();
-//                            ResetIsChangedBeforeSave();
-//                            File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
-//                            this.VisibilityAndMessageInstructions();
-//                            // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
-//                            // File.WriteAllText(FilePathSaveAs, json);
-//#if DEBUG
-//                            // CompareSaved(json);
-//#endif
-//                        }, "Can't save configuration. File path: '" + this.FilePathSaveAs + "'");
-//                    break;
-//                default:
-//                    throw new Exception($"Unsupported file extention type: {fExt}");
-//            }
-//            this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
-//        }
+        //                    this.FilePathSaveAs = openFileDialog != null ? openFileDialog.FileName : Path.GetFullPath(filePath);
+        //                    this.SavePrepare();
+        //                    Utils.TryCall(
+        //                        () =>
+        //                        {
+        //                            this.CurrentCfgFilePath = this.FilePathSaveAs;
+        //                            Debug.Assert(this.UserSettings != null);
+        //                            Debug.Assert(this.CurrentCfgFilePath != null);
+        //                            var folder = Path.GetDirectoryName(this.CurrentCfgFilePath);
+        //                            Debug.Assert(folder != null);
+        //                            Directory.CreateDirectory(folder);
+        //                            File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+        //#if DEBUG
+        //                            //var json = JsonFormatter.Default.Format(this.pconfig_history);
+        //                            JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
+        //                            var json = formatter.Format(this.pconfig_history);
+        //                            File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
+        //#endif
+        //                            UpdateUserSettingsSaveConfigs();
+        //                            ResetIsChangedBeforeSave();
+        //                            File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+        //                            this.VisibilityAndMessageInstructions();
+        //                            // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
+        //                            // File.WriteAllText(FilePathSaveAs, json);
+        //#if DEBUG
+        //                            // CompareSaved(json);
+        //#endif
+        //                        }, "Can't save configuration. File path: '" + this.FilePathSaveAs + "'");
+        //                    break;
+        //                default:
+        //                    throw new Exception($"Unsupported file extention type: {fExt}");
+        //            }
+        //            this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
+        //        }
         #endregion Backup
 
         public ProgressVM ProgressVM
@@ -1392,7 +1393,7 @@ namespace vSharpStudio.ViewModels
                 GuiLabs.Undo.ActionManager am = new GuiLabs.Undo.ActionManager();
                 var dicRenamed = new Dictionary<string, string?>();
                 var mvr = new ModelVisitorBase();
-                mvr.Run(this.Config, null, null, null, (m, n) =>
+                mvr.RunFromRoot(this.Config, null, null, null, (m, n) =>
                 {
                     if (!dicRenamed.ContainsKey(n.Guid) && n.IsRenamed(false))
                     {
@@ -1406,7 +1407,7 @@ namespace vSharpStudio.ViewModels
                 var lst = new List<string>();
                 // delete from current model
                 var vis1 = new ModelVisitorBase();
-                vis1.Run(this.Config, null, null, null, (v, n) =>
+                vis1.RunFromRoot(this.Config, null, null, null, (v, n) =>
                 {
                     if (n is IEditableNode p)
                     {
@@ -1606,7 +1607,7 @@ namespace vSharpStudio.ViewModels
                         }
                         return Task.CompletedTask;
                     },
-                    (t) => { return this.Config != null; });
+                    (t) => { return this.Config != null && !string.IsNullOrWhiteSpace(this.Config.CurrentCfgFolderPath); });
             }
         }
         private vButtonVmAsync<TestTransformation?>? _BtnConfigCreateStableVersionAsync;
@@ -1665,7 +1666,7 @@ namespace vSharpStudio.ViewModels
                 #region Remove Deleted (was Deprecated)
                 var lst = new List<string>();
                 // delete from current model
-                vis.Run(this.Config, null, null, null, (v, n) =>
+                vis.RunFromRoot(this.Config, null, null, null, (v, n) =>
                 {
                     if (n is IEditableNode p)
                     {
@@ -1697,16 +1698,19 @@ namespace vSharpStudio.ViewModels
             this.InitConfig((Config)this.Config.PrevCurrentConfig);
             this.pconfig_history.CurrentConfig.Version++;
             IEditableNodeGroup.IsChangedNotPropagate = true;
-            vis.Run(this.Config, null, null, null, (v, n) =>
+            vis.RunToRoot(this.Config, null, null, null, (v, n) =>
             {
                 if (n is ICanAddNode p)
                 {
                     p.IsNew = false;
-                    //p.IsChanged = false;
+                }
+                if (n is IEditableNodeGroup pp)
+                {
+                    pp.IsHasNew = false;
                 }
             });
             IEditableNodeGroup.IsChangedNotPropagate = false;
-            this.Config.SetIsNeedCurrentUpdate(false);
+            //this.Config.SetIsNeedCurrentUpdate(false);
             Utils.TryCall(
                 () =>
                 {

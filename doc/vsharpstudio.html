@@ -1928,7 +1928,11 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td>is_need_current_update</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
+                  <td><p>@attr [Browsable(false)]
+/ &lt;summary&gt;
+/ True if configuration was changed since last code generation.
+/ Set by SetIsNeedCurrentUpdate(bool val) function.
+/ &lt;/summary&gt; </p></td>
                 </tr>
               
                 <tr>
@@ -6854,6 +6858,13 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td>list_generators</td>
                   <td><a href="#proto_config.proto_plugin_generator">proto_plugin_generator</a></td>
                   <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               

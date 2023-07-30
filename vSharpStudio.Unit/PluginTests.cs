@@ -126,8 +126,8 @@ namespace vSharpStudio.Unit
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.BtnNewConfig.Execute(@".\");
-            vm.BtnConfigSaveAs.Execute(@".\");
+            vm.BtnNewConfig.Execute();
+            vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
@@ -168,8 +168,8 @@ namespace vSharpStudio.Unit
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.BtnNewConfig.Execute(@".\");
-            vm.BtnConfigSaveAs.Execute(@".\");
+            vm.BtnNewConfig.Execute();
+            vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
             Assert.IsTrue(vm.Config.GroupPlugins.ListPlugins.Count > 0);
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
@@ -186,8 +186,8 @@ namespace vSharpStudio.Unit
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.BtnNewConfig.Execute(@".\");
-            vm.BtnConfigSaveAs.Execute(@".\");
+            vm.BtnNewConfig.Execute();
+            vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
@@ -366,8 +366,7 @@ namespace vSharpStudio.Unit
             // 4. When saving Config: convert all model nodes generators settings to string representations
             _logger.LogTrace("Start test".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.BtnNewConfig.Execute(@".\");
-            //vm.BtnConfigSaveAs.Execute(@".\");
+            vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
@@ -544,7 +543,7 @@ namespace vSharpStudio.Unit
             // 4. When saving Config: convert all solutions and project groups settings to string representations
             _logger.LogInformation("".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.BtnNewConfig.Execute(@".\");
+            vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
@@ -704,8 +703,8 @@ namespace vSharpStudio.Unit
             // 4. When saving Config: convert all model nodes generators settings to string representations
             _logger.LogTrace("Start test".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.BtnNewConfig.Execute(@".\");
-            vm.BtnConfigSaveAs.Execute(@".\");
+            vm.BtnNewConfig.Execute();
+            vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
@@ -780,8 +779,8 @@ namespace vSharpStudio.Unit
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.BtnNewConfig.Execute(@".\");
-            vm.BtnConfigSaveAs.Execute(@".\");
+            vm.BtnNewConfig.Execute();
+            vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
@@ -824,7 +823,8 @@ namespace vSharpStudio.Unit
         public async Task Plugin012CanProduceCodeFileCompileTargetProjectsAndUnitTestThem(string prType)
         {
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.BtnNewConfig.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
+            vm.BtnNewConfig.Execute();
+            vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
             var slnFolder = @"..\..\..\..\TestApps\" + prType;
             var slnPath = slnFolder + "Solution.sln";

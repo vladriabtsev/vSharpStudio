@@ -28,6 +28,11 @@ namespace vSharpStudio.vm.ViewModels
         public Config() : this((ITreeConfigNode?)null)
         {
         }
+        public Config(bool isNew) : this((ITreeConfigNode?)null)
+        {
+            this.IsNew = isNew;
+        }
+        public void SetIsNew(bool isNew) { this.IsNew = isNew; }
         public Config(ConfigShortHistory history) : this((ITreeConfigNode?)null)
         {
         }
@@ -47,6 +52,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         // to use xxxIsChanging(x from, x to)
         public bool IsInitialized = false;
+        public bool IsNew { get; private set; }
 
         #region ITree
         public override IChildrenCollection GetListChildren()

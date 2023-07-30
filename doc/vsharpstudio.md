@@ -405,7 +405,7 @@ Configuration config
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [ReadOnly(true)] |
 | last_updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [PropertyOrderAttribute(6)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
-| is_need_current_update | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_need_current_update | [bool](#bool) |  | @attr [Browsable(false)] / &lt;summary&gt; / True if configuration was changed since last code generation. / Set by SetIsNeedCurrentUpdate(bool val) function. / &lt;/summary&gt; |
 | group_config_links | [proto_group_list_base_config_links](#proto_config.proto_group_list_base_config_links) |  | @attr [Browsable(false)] |
 | model | [proto_model](#proto_config.proto_model) |  | @attr [Browsable(false)] |
 | group_plugins | [proto_group_list_plugins](#proto_config.proto_group_list_plugins) |  | @attr [Browsable(false)] |
@@ -1581,6 +1581,7 @@ Configuration model
 | description | [string](#string) |  | @attr [ReadOnly(true)] @attr [Description(&#34;Description of plugin&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | list_generators | [proto_plugin_generator](#proto_config.proto_plugin_generator) | repeated | @attr [Browsable(false)] |
+| is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 
 
 

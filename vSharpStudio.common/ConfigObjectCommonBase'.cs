@@ -629,7 +629,7 @@
         #region Commands
         public bool NodeCanAddNew()
         {
-            if (this is ICanAddNode)
+            if (this is ICanAddNode && this is IEditableNode)
             {
                 return true;
             }
@@ -1106,15 +1106,6 @@
                 return;
             if (IEditableNodeGroup.IsChangedNotPropagate)
                 return;
-            if (this is IConfig cfg)
-            {
-                if (cfg is IEditableNodeGroup eng)
-                {
-                    if (eng.IsHasChanged && !cfg.IsNeedCurrentUpdate)
-                        cfg.SetIsNeedCurrentUpdate(true);
-                }
-                return;
-            }
             if (this is IEditableNodeGroup p)
             {
                 if (this.Parent is IEditableNodeGroup pp)
@@ -1137,6 +1128,12 @@
                         pp.IsHasChanged = false;
                     }
                 }
+            }
+            if (this is IConfig cfg)
+            {
+                if (cfg.IsHasChanged && !cfg.IsNeedCurrentUpdate)
+                    cfg.SetIsNeedCurrentUpdate(true);
+                return;
             }
         }
         [Browsable(false)]

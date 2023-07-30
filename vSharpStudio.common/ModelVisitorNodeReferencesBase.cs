@@ -171,13 +171,13 @@ namespace vSharpStudio.common
             var tn = md.DicReferecedFromNodes[from.Guid];
             tn.DicFromFields[property.Guid] = property;
         }
-        public new void Run(IModel model, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
+        public new void Run(IModel model, bool isActFromRootToBottom = true, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
         {
             this._act = act;
             this.currModel = model;
             this.ScanForDicNodesWithReferences();
 
-            base.Run(model, act);
+            base.Run(model, isActFromRootToBottom, act);
         }
         /// <summary>
         /// Visit and annotate config nodes.
@@ -186,7 +186,7 @@ namespace vSharpStudio.common
         /// <param name="curr">Current config or clone</param>
         /// <param name="act"></param>
         /// <returns></returns>
-        public new void Run(IConfig curr, IAppSolution? sln, IAppProject? prj, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
+        public new void Run(IConfig curr, IAppSolution? sln, IAppProject? prj, bool isActFromRootToBottom = true, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
         {
             this._act = act;
             this.currCfg = curr;
@@ -236,7 +236,7 @@ namespace vSharpStudio.common
             this.EndVisit(this.currCfg.GroupConfigLinks);
             #endregion GroupConfigLinks
 
-            this.Run(this.currCfg.Model, act);
+            this.Run(this.currCfg.Model, isActFromRootToBottom, act);
 
             this.EndVisit(this.currCfg);
         }
