@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using System.Threading;
 using vPlugin.Sample;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace vSharpStudio.Unit
 {
@@ -256,7 +257,7 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
             Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
-            
+
             vm.BtnNewConfig.Execute();
             Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
 
@@ -664,19 +665,51 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(gr.IsHasNew);
             Assert.IsFalse(gr.IsHasMarkedForDeletion);
 
-            // create object and save
+            // create constant object and save
             var c1 = gr.AddConstant("c1");
             Assert.IsTrue(c1.IsNew);
+            Assert.IsTrue(gr.IsHasNew);
+            Assert.IsFalse(gr.IsHasMarkedForDeletion);
+            // create enumeration constant object
+            var en1 = cfg.Model.GroupEnumerations.AddEnumeration("en1", EnumEnumerationType.BYTE_VALUE);
+            Assert.IsTrue(en1.IsNew);
+            Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasNew);
+            Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
+            var c2 = gr.AddConstantEnumeration("c2", en1);
+            Assert.IsTrue(c2.IsNew);
+            Assert.IsTrue(gr.IsHasNew);
+            Assert.IsFalse(gr.IsHasMarkedForDeletion);
+            var cat = cfg.Model.GroupCatalogs.AddCatalog("cat");
+            var c3 = gr.AddConstantCatalog("c3", cat);
+            Assert.IsTrue(c2.IsNew);
             Assert.IsTrue(gr.IsHasNew);
             Assert.IsFalse(gr.IsHasMarkedForDeletion);
 
             vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg");
             Assert.IsFalse(vm.Config.IsHasChanged);
-            Assert.AreEqual(1, gr.ListConstants.Count());
+            Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.AreEqual(3, gr.ListConstants.Count());
             Assert.IsTrue(c1.IsNew);
             Assert.IsTrue(c1.IsNewNode());
             Assert.IsTrue(gr.IsHasNew);
             Assert.IsFalse(gr.IsHasMarkedForDeletion);
+
+            await vm.BtnConfigValidateAsync.ExecuteAsync();
+            Assert.AreEqual(0, vm.Config.CountErrors);
+            // can't update when enumeration is marked for deletion, but constant is not marked
+            en1.IsMarkedForDeletion = true;
+            await vm.BtnConfigValidateAsync.ExecuteAsync();
+            Assert.AreEqual(1, vm.Config.CountErrors);
+            c2.IsMarkedForDeletion = true;
+            await vm.BtnConfigValidateAsync.ExecuteAsync();
+            Assert.AreEqual(0, vm.Config.CountErrors);
+            // can't update when catalog is marked for deletion, but constant is not marked
+            cat.IsMarkedForDeletion = true;
+            await vm.BtnConfigValidateAsync.ExecuteAsync();
+            Assert.AreEqual(1, vm.Config.CountErrors);
+            c3.IsMarkedForDeletion = true;
+            await vm.BtnConfigValidateAsync.ExecuteAsync();
+            Assert.AreEqual(0, vm.Config.CountErrors);
 
             // c1-new -> new
             Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
@@ -685,7 +718,8 @@ namespace vSharpStudio.Unit
             await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync();
             Assert.IsFalse(vm.Config.IsHasChanged);
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
-            Assert.AreEqual(1, gr.ListConstants.Count());
+            Assert.AreEqual(0, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.AreEqual(1, gr.ListConstants.Count()); // second constant is deleted as it is new and enumeration marked for deletion
             Assert.IsTrue(c1.IsNew);
             Assert.IsTrue(gr.IsHasNew);
             Assert.IsFalse(gr.IsHasMarkedForDeletion);
@@ -708,13 +742,13 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(c1.IsNew);
             Assert.IsTrue(c1.IsMarkedForDeletion);
             Assert.IsTrue(c1.IsDeprecated());
-            var c2 = gr.AddConstant("c2");
+            c2 = gr.AddConstant("c2");
             vm.Config.SelectedNode = c2;
             vm.BtnDelete.Execute();
             Assert.IsTrue(c2.IsNew);
             Assert.IsTrue(c2.IsMarkedForDeletion);
             Assert.IsFalse(c2.IsDeprecated());
-            var c3 = gr.AddConstant("c3");
+            c3 = gr.AddConstant("c3");
             c3.DataType.Length = 101;
             Assert.AreEqual(3, gr.ListConstants.Count());
             Assert.IsTrue(gr.IsHasNew);

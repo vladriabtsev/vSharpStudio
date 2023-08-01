@@ -181,9 +181,8 @@ message proto_base_config_link {
     string relative_config_file_path = 7;
     // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [Browsable(false)]
     // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 13;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -907,7 +906,8 @@ message proto_enumerator_sequence {
     string description = 5;
     // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(11)]
@@ -986,7 +986,8 @@ message proto_role {
     string description = 5;
     // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
     // @attr [Category("")]
@@ -1172,7 +1173,8 @@ message proto_main_view_form {
     proto_group_list_main_view_forms group_list_view_forms = 6;
     // @attr [Browsable(false)]
     bool is_new = 10;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
     // @attr [Browsable(false)]
@@ -1286,7 +1288,8 @@ message proto_property {
     string default_value = 8; 
     // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 11;
 
 
@@ -1517,7 +1520,8 @@ message proto_detail {
     bool is_index_fk = 8;
     // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
     // @attr [Browsable(false)]
     proto_group_list_properties group_properties = 13;
@@ -1950,7 +1954,8 @@ message proto_group_list_constants {
     string short_id_type_for_cache_key = 7;
     // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 11;
     // @attr [Browsable(false)]
     int32 short_id = 19;
@@ -1995,7 +2000,8 @@ message proto_constant {
     string default_value = 8; 
     // @attr [Browsable(false)]
     bool is_new = 10;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
     // @attr [Browsable(false)]
@@ -2129,7 +2135,8 @@ message proto_enumeration {
     repeated proto_enumeration_pair list_enumeration_pairs = 8;
     // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
     // @attr [Browsable(false)]
@@ -2171,7 +2178,8 @@ message proto_enumeration_pair {
     int32 numeric_value = 8;
     // @attr [Browsable(false)]
     bool is_new = 10;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
     // @attr [Browsable(false)]
@@ -2201,9 +2209,8 @@ message proto_catalog_folder {
     string description = 5;
     // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [Browsable(false)]
     // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
     // @attr [Browsable(false)]
@@ -2350,7 +2357,8 @@ message proto_catalog {
     string description = 5;
     // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
     // @attr [Browsable(false)]
@@ -2681,7 +2689,8 @@ message proto_document {
     string description = 5;
     // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
     // @attr [Browsable(false)]
@@ -2857,7 +2866,8 @@ message proto_journal {
     repeated proto_document list_documents = 7;
     // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
 
@@ -2957,7 +2967,8 @@ message proto_form {
 
     // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
     // @attr [Category("List form")]
@@ -3046,7 +3057,8 @@ message proto_form_grid_system {
 
     // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
     // @attr [Browsable(false)]
@@ -3087,7 +3099,8 @@ message proto_form_grid_system_row {
     uint64 sorting_value = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
     // @attr [Browsable(false)]
@@ -3158,7 +3171,8 @@ message proto_form_grid_system_column {
     uint64 sorting_value = 21;
     // @attr [Browsable(false)]
     bool is_new = 22;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 23;
     
     // @attr [Browsable(false)]
@@ -3206,7 +3220,8 @@ message proto_form_auto_layout_block {
     uint64 sorting_value = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
     // @attr [Browsable(false)]
@@ -3242,7 +3257,8 @@ message proto_form_auto_layout_sub_block {
     uint64 sorting_value = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
     oneof result {
@@ -3282,7 +3298,8 @@ message proto_form_field {
     uint64 sorting_value = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
     // @attr [Browsable(false)]
@@ -3315,7 +3332,8 @@ message proto_form_tab_control_tab {
     uint64 sorting_value = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
     // @attr [Browsable(false)]
@@ -3356,7 +3374,8 @@ message proto_form_tab_control {
     uint64 sorting_value = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
     // @attr [Browsable(false)]
@@ -3393,7 +3412,8 @@ message proto_form_data_grid {
     uint64 sorting_value = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
     // @attr [Browsable(false)]
@@ -3428,7 +3448,8 @@ message proto_form_tree {
     uint64 sorting_value = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
     // @attr [Browsable(false)]
@@ -3486,7 +3507,8 @@ message proto_report {
     string description = 5;
     // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [Browsable(false)]
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_documents = 7;

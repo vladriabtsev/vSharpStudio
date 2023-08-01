@@ -2320,7 +2320,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]\n@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -2411,7 +2411,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -2903,7 +2903,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]\n@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -3466,7 +3466,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -3778,7 +3778,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -4160,7 +4160,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -4592,7 +4592,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -4713,7 +4713,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -4804,7 +4804,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -4925,7 +4925,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -5136,7 +5136,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -5237,7 +5237,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -5388,7 +5388,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -5489,7 +5489,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -5580,7 +5580,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -5761,7 +5761,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -5862,7 +5862,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -5963,7 +5963,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -6074,7 +6074,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -6185,7 +6185,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -6982,7 +6982,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -8134,7 +8134,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -8275,7 +8275,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -9215,7 +9215,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -9647,7 +9647,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -9738,7 +9738,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",

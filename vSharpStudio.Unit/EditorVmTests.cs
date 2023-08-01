@@ -18,6 +18,7 @@ using Xceed.Wpf.Toolkit;
 using System.Threading;
 using Microsoft.Build.Utilities;
 using Newtonsoft.Json.Linq;
+using vSharpStudio.ViewModels;
 
 namespace vSharpStudio.Unit
 {
@@ -149,18 +150,16 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Config001GuidInit()
         {
-            // Proto.Config.proto_config dto = new Proto.Config.proto_config();
-            // Config cfg = new Config(dto);
-            // Constant c = Constant.Create();
-            // cfg.GroupConstants.Add(c);
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             Assert.IsTrue(cfg.Guid.Length > 0);
         }
 
         [TestMethod]
         public void Config002CanSaveAndRestore()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
             string json = cfg.ExportToJson();
@@ -174,7 +173,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Config003CanSaveAndRestoreSortingValue()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
             gr.NodeAddNewSubNode();
@@ -204,7 +204,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Constant001GuidInit()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             var c = cfg.Model.GroupConstantGroups.NodeAddNewSubNode();
             Assert.IsTrue(c.Guid.Length > 0);
         }
@@ -212,7 +213,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Constant002AddedParent()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
             Assert.AreEqual(cfg.Model.GroupConstantGroups.ListConstantGroups[0].Parent.Guid, cfg.Model.GroupConstantGroups.Guid);
@@ -223,7 +225,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Constant003AddedDefaultName()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
             Assert.AreEqual(Defaults.ConstantName + "1", cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
@@ -236,7 +239,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Enum001GuidInit()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             var en = cfg.Model.GroupEnumerations.NodeAddNewSubNode();
             Assert.IsTrue(en.Guid.Length > 0);
         }
@@ -244,7 +248,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Enum002AddedParent()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             cfg.Model.GroupEnumerations.NodeAddNewSubNode();
             Assert.AreEqual(cfg.Model.GroupEnumerations[0].Parent.Guid, cfg.Model.GroupEnumerations.Guid);
             cfg.Model.GroupEnumerations[0].NodeAddNew();
@@ -256,7 +261,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Catalog001GuidInit()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             var c = cfg.Model.GroupCatalogs.AddCatalog();
             Assert.IsTrue(c.Guid.Length > 0);
             var p = c.AddProperty("test");
@@ -282,7 +288,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void ITreeConfigNode001_UpdateSortingValueWhenNameIsChanged()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             VmBindable.isNotValidateForUnitTests = true;
             var gc = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             var cnst = new Constant(gc);
@@ -353,7 +360,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void ITreeConfigNode002_RestoreSortingValueWhenObjectRestoredFromFile()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             var gc = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             var cnst = new Constant(gc);
             gc.Add(cnst);
@@ -370,7 +378,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void ITreeConfigNode003_ReSortedWhenSortingValueIsChanged()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             var gc = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             var cnst = new Constant(gc);
             gc.Add(cnst);
@@ -396,9 +405,10 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void ITreeConfigNode003_CanConfigTreeCommands()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
 
-#region Constants
+            #region Constants
             Assert.IsTrue(cfg.Model.GroupConstantGroups.NodeCanLeft() == true);
             Assert.IsTrue(cfg.Model.GroupConstantGroups.NodeCanRight() == true);
             Assert.IsTrue(cfg.Model.GroupConstantGroups.NodeCanMoveUp() == false);
@@ -561,7 +571,8 @@ namespace vSharpStudio.Unit
 #region Compare Tree
         private Config createTree()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
 
             cfg.Model.GroupEnumerations.NodeAddNewSubNode();
             cfg.Model.GroupEnumerations[0].DataTypeEnum = EnumEnumerationType.INTEGER_VALUE;
@@ -580,7 +591,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Rules001_DataType()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             var c = cfg.Model.GroupCatalogs.AddCatalog("Test1");
             var p = c.AddProperty("tp");
             var dt = p.DataType; ;
@@ -857,7 +869,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void DbName001_Catalog()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
 
             cfg.Model.IsUseCompositeNames = false;
             cfg.Model.IsUseGroupPrefix = false;
@@ -887,7 +900,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void DbName002_Document()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
 
             cfg.Model.IsUseCompositeNames = false;
             cfg.Model.IsUseGroupPrefix = false;
@@ -916,7 +930,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void DbName003_UniqueDbNamesValidation()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
 
             cfg.Model.IsUseCompositeNames = false;
             cfg.Model.IsUseGroupPrefix = false;
@@ -952,7 +967,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void ShortId()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             Assert.AreEqual(0, cfg.Model.LastConstantGroupShortId);
             Assert.AreEqual(0, cfg.Model.LastCatalogShortId);
             Assert.AreEqual(0, cfg.Model.LastDetailShortId);

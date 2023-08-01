@@ -25,12 +25,15 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class Config : ITreeModel, IMigration, ICanGoLeft, IEditableNodeGroup
     {
-        public Config() : this((ITreeConfigNode?)null)
-        {
-        }
+        //public Config() : this((ITreeConfigNode?)null)
+        //{
+        //}
         public Config(bool isNew) : this((ITreeConfigNode?)null)
         {
             this.IsNew = isNew;
+            this.Init();
+            if (isNew)
+                this.IsInitialized = true;
         }
         public void SetIsNew(bool isNew) { this.IsNew = isNew; }
         public Config(ConfigShortHistory history) : this((ITreeConfigNode?)null)

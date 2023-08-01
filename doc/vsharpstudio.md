@@ -256,7 +256,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [ReadOnly(true)] |
 | relative_config_file_path | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorBaseConfigFilePicker), typeof(ITypeEditor))] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -279,7 +279,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
 | use_separate_tree_for_folders | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Separate Tree&#34;)] @attr [Description(&#34;Separate tree object for folders&#34;)] |
@@ -356,7 +356,7 @@ C A T A L O G
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | use_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
 | code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog folder&#34;)] @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] |
@@ -453,7 +453,7 @@ Constant application wise value
 | is_nullable | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
 | default_value | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Default&#34;)] @attr [Description(&#34;Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | range_values_requirement_str | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Expected&#34;)] @attr [Description(&#34;Expected values or ranges of values. Use &#39;#&#39; to create range, and &#39;;&#39; to separate values or ranges&#34;)] |
 | min_length_requirement | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(34)] @attr [DisplayName(&#34;Min Length&#34;)] @attr [Description(&#34;Minimum length of string&#34;)] |
@@ -511,7 +511,7 @@ Constant application wise value
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_index_fk | [bool](#bool) |  | Create Index for foreign key navigation property @attr [PropertyOrderAttribute(5)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [Browsable(false)] |
 | group_details | [proto_group_list_details](#proto_config.proto_group_list_details) |  | @attr [Browsable(false)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
@@ -576,7 +576,7 @@ Constant application wise value
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [Browsable(false)] |
 | group_details | [proto_group_list_details](#proto_config.proto_group_list_details) |  | @attr [Browsable(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [Browsable(false)] |
@@ -646,7 +646,7 @@ Constant application wise value
 | data_type_length | [int32](#int32) |  | Length of string if &#39;STRING&#39; is selected as enumeration element type @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Length&#34;)] |
 | list_enumeration_pairs | [proto_enumeration_pair](#proto_config.proto_enumeration_pair) | repeated | @attr [DisplayName(&#34;Elements&#34;)] @attr [NewItemTypes(typeof(EnumerationPair))] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -672,7 +672,7 @@ Constant application wise value
 | is_default | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Is default&#34;)] @attr [Description(&#34;Used as default value for enumeration&#34;)] |
 | numeric_value | [int32](#int32) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Numeric Value&#34;)] @attr [Description(&#34;Enumeration element numeric value&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -695,7 +695,7 @@ Constant application wise value
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | sequence_type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Sequence type&#34;)] @attr [Description(&#34;Sequence type for code&#34;)] |
 | max_sequence_length | [uint32](#uint32) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] |
 | prefix | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
@@ -723,7 +723,7 @@ Children collection can contain:
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | is_use_code | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Use catalog item code for list view&#34;)] |
 | is_use_name | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Use catalog item name for list view&#34;)] |
 | is_use_desc | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Description&#34;)] @attr [Description(&#34;Use catalog item description for list view&#34;)] |
@@ -764,7 +764,7 @@ Children collection can contain:
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_form_auto_layout_sub_block | [proto_form_auto_layout_sub_block](#proto_config.proto_form_auto_layout_sub_block) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
@@ -789,7 +789,7 @@ https://learn.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-6.0
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | tab_control | [proto_form_tab_control](#proto_config.proto_form_tab_control) |  |  |
 | data_grid_control | [proto_form_data_grid](#proto_config.proto_form_data_grid) |  |  |
 | auto_layout_block_control | [proto_form_auto_layout_block](#proto_config.proto_form_auto_layout_block) |  |  |
@@ -819,7 +819,7 @@ No Children
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_guid_properties | [string](#string) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
@@ -843,7 +843,7 @@ No Children
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -867,7 +867,7 @@ Children are collection of Grid System Rows
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_rows | [proto_form_grid_system_row](#proto_config.proto_form_grid_system_row) | repeated | @attr [Browsable(false)] |
 | list_guid_properties | [string](#string) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -900,7 +900,7 @@ Children are collection of Auto Layout Block children
 | width_xx | [google.protobuf.UInt32Value](#google.protobuf.UInt32Value) |  | @attr [DisplayName(&#34;XX&#34;)] @attr [Description(&#34;Extra Extra Large. 4k&#43; and ultra-wide. Range: &gt;= 2560px&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | form_block | [proto_form_auto_layout_block](#proto_config.proto_form_auto_layout_block) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
@@ -925,7 +925,7 @@ Children are collection of Grid System Columns
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_columns | [proto_form_grid_system_column](#proto_config.proto_form_grid_system_column) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
@@ -950,7 +950,7 @@ Children are collection of Tab Control Tabs
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_tabs | [proto_form_tab_control_tab](#proto_config.proto_form_tab_control_tab) | repeated | @attr [Browsable(false)] |
 | list_guid_properties | [string](#string) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -976,7 +976,7 @@ Children are collection of Auto Layout Block children
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_guid_properties | [string](#string) | repeated | @attr [Browsable(false)] |
 | form_block | [proto_form_auto_layout_block](#proto_config.proto_form_auto_layout_block) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -1002,7 +1002,7 @@ No Children
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_guid_properties | [string](#string) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
@@ -1175,7 +1175,7 @@ Common parameters section
 | list_constants | [proto_constant](#proto_config.proto_constant) | repeated | @attr [Browsable(false)] |
 | short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short constant type ID for cache key generator&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | list_role_constant_access_settings | [proto_role_constant_access](#proto_config.proto_role_constant_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -1458,7 +1458,7 @@ R E P O R T S
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_documents | [proto_document](#proto_config.proto_document) | repeated | repeated proto_group_properties list_properties = 6; @attr [Browsable(false)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -1485,7 +1485,7 @@ R E P O R T S
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | group_list_view_forms | [proto_group_list_main_view_forms](#proto_config.proto_group_list_main_view_forms) |  | @attr [Browsable(false)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1713,7 +1713,7 @@ Configuration model
 | is_nullable | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
 | default_value | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Default&#34;)] @attr [Description(&#34;Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | range_values_requirement_str | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Expected&#34;)] @attr [Description(&#34;Expected values or ranges of values. Use &#39;#&#39; to create range, and &#39;;&#39; to separate values or ranges&#34;)] |
 | min_length_requirement | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(34)] @attr [DisplayName(&#34;Min Length&#34;)] @attr [Description(&#34;Minimum length of string&#34;)] |
 | max_length_requirement | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(35)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum length of string&#34;)] |
@@ -1785,7 +1785,7 @@ Configuration model
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | repeated proto_group_properties list_properties = 6; repeated proto_document list_documents = 7; @attr [Browsable(false)] |
 
 
@@ -1808,7 +1808,7 @@ Configuration model
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | default_constant_print_access_settings | [proto_enum_print_access](#proto_config.proto_enum_print_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Print Constants&#34;)] @attr [Description(&#34;Default constant-print access for role&#34;)] |
 | default_constant_edit_access_settings | [proto_enum_constant_access](#proto_config.proto_enum_constant_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Edit Constants&#34;)] @attr [Description(&#34;Default constant-edit access for role&#34;)] |
 | default_catalog_print_access_settings | [proto_enum_print_access](#proto_config.proto_enum_print_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Print Catalog&#34;)] @attr [Description(&#34;Default catalog-print access for role&#34;)] |

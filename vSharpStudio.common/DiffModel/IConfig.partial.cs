@@ -19,5 +19,6 @@ namespace vSharpStudio.common
         IReadOnlyList<IConfig> GetListConfigs();
         string? CurrentCfgFolderPath { get; }
         void SetIsNeedCurrentUpdate(bool val);
+        void SetIsNew(bool isNew);
     }
 }

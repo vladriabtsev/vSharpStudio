@@ -45,8 +45,6 @@ namespace vSharpStudio.ViewModels
 {
     //TODO 2020-08-07 Version. Faild to get working
     // https://github.com/GitTools/GitVersion
-    //TODO 2020-08-07 init Plugin tree node after clicking on emptyConfig
-    //TODO 2020-08-07 Model node setting contains generator not selected in AppProjectGenerator
     public class MainPageVM : VmValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
         public static MainPageVM Create(bool isLoadConfig, string? pluginsFolderPath = null, string? configFile = null)
@@ -55,6 +53,10 @@ namespace vSharpStudio.ViewModels
             MainPageVM vm = new MainPageVM(isLoadConfig, configFile);
             vm.Compose(pluginsFolderPath);
             vm.OnFormLoaded();
+            if (!isLoadConfig)
+            {
+                vm._Config = new Config(true);
+            }
             VmBindable.IsNotifyingStatic = true;
             return vm;
         }
@@ -216,16 +218,16 @@ namespace vSharpStudio.ViewModels
             var protoarr = File.ReadAllBytes(file_path);
             this.pconfig_history = Proto.Config.proto_config_short_history.Parser.WithDiscardUnknownFields(true).ParseFrom(protoarr);
             _logger?.LogDebug("ConvertToVM Main Config".CallerInfo());
-            var config = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
+            var config = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config(false));
             var currFolder = Path.GetDirectoryName(this.CurrentCfgFilePath);
             config.CurrentCfgFolderPath = currFolder ?? String.Empty;
-            config.PrevCurrentConfig = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
+            config.PrevCurrentConfig = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config(false));
             if (isRoot)
             {
                 if (this.pconfig_history.PrevStableConfig != null)
                 {
                     _logger?.LogDebug("ConvertToVM Prev Config".CallerInfo());
-                    config.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.PrevStableConfig, new Config());
+                    config.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.PrevStableConfig, new Config(false));
                 }
                 this.CurrentCfgFilePath = file_path;
             }
@@ -877,7 +879,7 @@ namespace vSharpStudio.ViewModels
         }
         private void CompareSaved(string json)
         {
-            var model = new Config();
+            var model = new Config(false);
             var pconfig_history = CommonUtils.ParseJson<Proto.Config.proto_config_short_history>(json, true);
             Config.ConvertToVM(pconfig_history.CurrentConfig, model);
             // https://github.com/GregFinzer/Compare-Net-Objects
@@ -1539,8 +1541,8 @@ namespace vSharpStudio.ViewModels
 #else
                     this.GenerateCode(cancellationToken, this.Config, true);
 #endif
-                    var vis = new ModelVisitorRemoveMarkedIfNewObjects();
-                    vis.Run(this.Config, null, null, null);
+                    var vis = new ModelVisitorRemoveMarkedIfNewObjects(this.Config);
+                    vis.DeleteNewMarkedForDeletion();
                     //this.Config.SetIsNeedCurrentUpdate(false);
                     //this.Save();
                     // unit test
@@ -1558,7 +1560,7 @@ namespace vSharpStudio.ViewModels
                       {
                           //this.Save();
                           var proto = Config.ConvertToProto(this.Config);
-                          this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config());
+                          this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config(false));
                           this.InitConfig((Config)this.Config.PrevCurrentConfig);
                           // unit test
                           if (tst != null && tst.IsThrowExceptionOnConfigUpdated)
@@ -1692,9 +1694,9 @@ namespace vSharpStudio.ViewModels
             var proto = Config.ConvertToProto(this.Config);
             this.pconfig_history.CurrentConfig = proto;
             this.pconfig_history.PrevStableConfig = this.pconfig_history.CurrentConfig.Clone();
-            this.Config.PrevStableConfig = Config.ConvertToVM(proto, new Config());
+            this.Config.PrevStableConfig = Config.ConvertToVM(proto, new Config(false));
             this.InitConfig((Config)this.Config.PrevStableConfig);
-            this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config());
+            this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config(false));
             this.InitConfig((Config)this.Config.PrevCurrentConfig);
             this.pconfig_history.CurrentConfig.Version++;
             IEditableNodeGroup.IsChangedNotPropagate = true;

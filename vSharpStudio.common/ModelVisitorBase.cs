@@ -248,7 +248,7 @@ namespace vSharpStudio.common
         /// <param name="prj"></param>
         /// <param name="prjGen"></param>
         /// <param name="act">Action for each node</param>
-        public void Run(IConfig curr, IAppSolution? sln, IAppProject? prj, IAppProjectGenerator? prjGen, bool isActFromRootToBottom = true, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
+        protected void Run(IConfig curr, IAppSolution? sln, IAppProject? prj, IAppProjectGenerator? prjGen, bool isActFromRootToBottom = true, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
         {
             this._act = act;
             this.currCfg = curr;

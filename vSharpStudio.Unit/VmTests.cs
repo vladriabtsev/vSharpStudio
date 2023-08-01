@@ -43,7 +43,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Editable011CanCancelDifferentLevelSimpleProperty()
         {
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             cfg.Name = "test1";
             cfg.GroupAppSolutions.Name = "kuku1";
             //cfg.DbSettings.DbSchema = "schema1";
@@ -74,12 +75,13 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Editable013CanCancelSecondLevelSimpleProperty()
         {
-            var cfg = new Config();
-            Catalog vm = cfg.Model.GroupCatalogs.AddCatalog("test1");
-            vm.BeginEdit();
-            vm.Name = "test2";
-            vm.CancelEdit();
-            Assert.IsTrue(vm.Name == "test1");
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
+            Catalog cat_vm = cfg.Model.GroupCatalogs.AddCatalog("test1");
+            cat_vm.BeginEdit();
+            cat_vm.Name = "test2";
+            cat_vm.CancelEdit();
+            Assert.IsTrue(cat_vm.Name == "test1");
         }
 
         [TestMethod]
@@ -136,7 +138,8 @@ namespace vSharpStudio.Unit
         public void Validation001_ValidationCollectionEmptyAfterInit()
         {
             ConfigValidator.Reset();
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             Assert.IsTrue(cfg.ValidationCollection != null);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
         }
@@ -149,7 +152,8 @@ namespace vSharpStudio.Unit
 
             ConfigValidator.Reset();
             CatalogValidator.Reset();
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             //cfg.SolutionPath = @"..\..\..\..\";
 
             var c = cfg.Model.GroupCatalogs.AddCatalog("test");
@@ -214,7 +218,8 @@ namespace vSharpStudio.Unit
 
             ConfigValidator.Reset();
             CatalogValidator.Reset();
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             cfg.CurrentCfgFolderPath = @".\";
             //cfg.SolutionPath = @"..\..\..\..\";
 
@@ -276,7 +281,8 @@ namespace vSharpStudio.Unit
             var token = cancellation.Token;
 
             ConfigValidator.Reset();
-            var cfg = new Config();
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
             //cfg.SolutionPath = @"..\..\..\..\";
 
             string mes1 = "test error message";

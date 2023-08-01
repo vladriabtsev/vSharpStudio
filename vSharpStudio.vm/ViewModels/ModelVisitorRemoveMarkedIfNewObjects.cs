@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using vSharpStudio.common;
@@ -8,9 +9,18 @@ namespace vSharpStudio.vm.ViewModels
 {
     public class ModelVisitorRemoveMarkedIfNewObjects : ModelVisitorBase
     {
-        //protected override void BeginVisit(IGroupDocuments cn)
-        //{
-        //}
+        public ModelVisitorRemoveMarkedIfNewObjects(Config cfg)
+        {
+            this.currCfg = cfg;
+        }
+        //private bool isVisitProperties = false;
+        public void DeleteNewMarkedForDeletion()
+        {
+            Debug.Assert(this.currCfg != null);
+            this.RunFromRoot(this.currCfg, null, null, null, null);
+            //this.isVisitProperties = true;
+            //this.RunFromRoot(this.currCfg, null, null, null, null);
+        }
         protected override void EndVisit(IGroupListCatalogs cn)
         {
             var p = (GroupListCatalogs)cn;

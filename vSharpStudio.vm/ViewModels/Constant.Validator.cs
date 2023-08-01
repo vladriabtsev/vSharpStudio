@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using FluentValidation;
+using FluentValidation.Results;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -21,8 +24,61 @@ namespace vSharpStudio.vm.ViewModels
             // RuleFor(x => x.Accuracy).LessThan(x => x.Length);
             // RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Catalog).WithMessage("Please select catalog name");
             // RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Document).WithMessage("Please select document name");
-        }
+            this.RuleFor(x => x.IsMarkedForDeletion).Custom((name, cntx) =>
+            {
+                var p = (Constant)cntx.InstanceToValidate;
+                if (p.IsMarkedForDeletion)
+                    return;
+                if (p.DataTypeEnum == EnumDataType.CATALOG || p.DataTypeEnum == EnumDataType.ENUMERATION || p.DataTypeEnum == EnumDataType.DOCUMENT)
+                {
+                    var cfg = p.Cfg;
+                    Debug.Assert(cfg.DicNodes.ContainsKey(p.ObjectGuid));
+                    var refObj = cfg.DicNodes[p.ObjectGuid];
+                    Debug.Assert(refObj != null);
+                    var refObjEditable = refObj as IEditableNode;
+                    Debug.Assert(refObjEditable != null);
+                    if (refObjEditable.IsMarkedForDeletion)
+                    {
+                        if (p.Parent is IEditableNode pe)
+                        {
+                            if (!p.IsMarkedForDeletion && !pe.IsMarkedForDeletion)
+                            {
+                                var vf = new ValidationFailure(nameof(p.IsMarkedForDeletion),
+                                    $"Constant type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this constant is not marked for deletion");
+                                vf.Severity = Severity.Error;
+                                cntx.AddFailure(vf);
+                            }
+                        }
+                    }
+                }
+                else if (p.DataTypeEnum == EnumDataType.CATALOGS || p.DataTypeEnum == EnumDataType.DOCUMENTS)
+                {
+                    var cfg = p.Cfg;
+                    foreach(var t in p.ListObjectGuids)
+                    {
+                        Debug.Assert(cfg.DicNodes.ContainsKey(t));
+                        var refObj = cfg.DicNodes[t];
+                        Debug.Assert(refObj != null);
+                        var refObjEditable = refObj as IEditableNode;
+                        Debug.Assert(refObjEditable != null);
+                        if (refObjEditable.IsMarkedForDeletion)
+                        {
+                            if (p.Parent is IEditableNode pe)
+                            {
+                                if (!p.IsMarkedForDeletion && !pe.IsMarkedForDeletion)
+                                {
+                                    var vf = new ValidationFailure(nameof(p.IsMarkedForDeletion),
+                                        $"Constant type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this constant can use it as it's type");
+                                    vf.Severity = Severity.Error;
+                                    cntx.AddFailure(vf);
+                                }
+                            }
+                        }
 
+                    }
+                }
+            });
+        }
         private bool IsUnique(Constant val)
         {
             if (val.Parent == null)

@@ -3,8 +3,9 @@
     "guid": "f9da54bd-0b2a-4dca-9fe9-2d498e8752e0",
     "name": "Config",
     "nameUi": "Config",
-    "lastUpdated": "2023-06-07T22:55:16.808891100Z",
+    "lastUpdated": "2023-07-31T23:42:59.287697300Z",
     "sortingValue": "65846508680886234",
+    "isNeedCurrentUpdate": true,
     "groupConfigLinks": {
       "guid": "b7ede35e-62e7-42e9-9cfb-fe106cd8bc65",
       "name": "BaseConfigs",
@@ -31,6 +32,7 @@
       "propertyIsFolderName": "IsFolder",
       "propertyDocDateName": "DocDate",
       "useDocDateProperty": true,
+      "lastConstantGroupShortId": 1,
       "propertyDocCodeName": "DocNumber",
       "useDocCodeProperty": true,
       "groupConstantGroups": {
@@ -38,12 +40,46 @@
         "name": "Constants",
         "sortingValue": "8136298302896683707",
         "nameUi": "Constants",
-        "prefixForDbTables": "Cnst"
+        "prefixForDbTables": "Cnst",
+        "listConstantGroups": [
+          {
+            "guid": "2f0b1bbf-27a0-489c-891c-f1b209b620b9",
+            "name": "Group1",
+            "sortingValue": "85475684767479285",
+            "nameUi": "Group1",
+            "listConstants": [
+              {
+                "guid": "691316f8-eef9-405d-8393-eb623c7a27b6",
+                "name": "Constant1",
+                "sortingValue": "65847770648717912",
+                "nameUi": "Constant1",
+                "dataType": {
+                  "dataTypeEnum": "STRING",
+                  "length": 10
+                },
+                "isNew": true
+              }
+            ],
+            "shortIdTypeForCacheKey": "t",
+            "isNew": true,
+            "shortId": 1
+          }
+        ]
       },
       "groupEnumerations": {
         "guid": "880773df-075c-4326-a668-5a5ca09c22fa",
         "name": "Enumerations",
         "nameUi": "Enumerations",
+        "listEnumerations": [
+          {
+            "guid": "53809faf-bd34-4e0d-b2dd-ec80a76f9066",
+            "name": "Enumeration1",
+            "sortingValue": "75358958087284445",
+            "nameUi": "Enumeration1",
+            "dataTypeLength": 10,
+            "isNew": true
+          }
+        ],
         "sortingValue": "9298730994942060253"
       },
       "groupCatalogs": {

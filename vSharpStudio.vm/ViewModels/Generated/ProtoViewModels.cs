@@ -2351,9 +2351,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
         [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -8542,7 +8541,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -9455,7 +9455,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -11299,7 +11300,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -12941,7 +12943,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -14634,7 +14637,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -16759,7 +16763,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -17374,7 +17379,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -18606,7 +18612,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -19073,7 +19080,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -19647,9 +19655,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
         [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -21062,7 +21069,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -24030,7 +24038,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -26121,7 +26130,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -27266,7 +27276,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -28006,7 +28017,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -28492,7 +28504,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -29094,7 +29107,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -29566,7 +29580,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -30041,7 +30056,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -30560,7 +30576,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -30974,7 +30991,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -31477,7 +31495,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -31922,7 +31941,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -32346,7 +32366,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }
@@ -33187,7 +33208,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsNewChanged();
         
-        [Browsable(false)]
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._IsMarkedForDeletion; }

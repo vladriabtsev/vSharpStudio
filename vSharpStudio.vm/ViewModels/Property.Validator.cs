@@ -787,6 +787,61 @@ namespace vSharpStudio.vm.ViewModels
                 }
             });
             #endregion Auto UI
+
+            this.RuleFor(x => x.IsMarkedForDeletion).Custom((name, cntx) =>
+            {
+                var p = (Property)cntx.InstanceToValidate;
+                if (p.IsMarkedForDeletion)
+                    return;
+                if (p.DataTypeEnum == EnumDataType.CATALOG || p.DataTypeEnum == EnumDataType.ENUMERATION || p.DataTypeEnum == EnumDataType.DOCUMENT)
+                {
+                    var cfg = p.Cfg;
+                    Debug.Assert(cfg.DicNodes.ContainsKey(p.ObjectGuid));
+                    var refObj = cfg.DicNodes[p.ObjectGuid];
+                    Debug.Assert(refObj != null);
+                    var refObjEditable = refObj as IEditableNode;
+                    Debug.Assert(refObjEditable != null);
+                    if (refObjEditable.IsMarkedForDeletion)
+                    {
+                        if (p.Parent is IEditableNode pe)
+                        {
+                            if (!p.IsMarkedForDeletion && !pe.IsMarkedForDeletion)
+                            {
+                                var vf = new ValidationFailure(nameof(p.IsMarkedForDeletion),
+                                    $"Property type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this property or object '{p.Parent.Name}' is not marked for deletion");
+                                vf.Severity = Severity.Error;
+                                cntx.AddFailure(vf);
+                            }
+                        }
+                    }
+                }
+                else if (p.DataTypeEnum == EnumDataType.CATALOGS || p.DataTypeEnum == EnumDataType.DOCUMENTS)
+                {
+                    var cfg = p.Cfg;
+                    foreach (var t in p.ListObjectGuids)
+                    {
+                        Debug.Assert(cfg.DicNodes.ContainsKey(t));
+                        var refObj = cfg.DicNodes[t];
+                        Debug.Assert(refObj != null);
+                        var refObjEditable = refObj as IEditableNode;
+                        Debug.Assert(refObjEditable != null);
+                        if (refObjEditable.IsMarkedForDeletion)
+                        {
+                            if (p.Parent is IEditableNode pe)
+                            {
+                                if (!p.IsMarkedForDeletion && !pe.IsMarkedForDeletion)
+                                {
+                                    var vf = new ValidationFailure(nameof(p.IsMarkedForDeletion),
+                                        $"Property type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this constant can use it as it's type");
+                                    vf.Severity = Severity.Error;
+                                    cntx.AddFailure(vf);
+                                }
+                            }
+                        }
+
+                    }
+                }
+            });
         }
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, Catalog c)
         {
