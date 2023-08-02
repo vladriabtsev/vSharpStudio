@@ -160,7 +160,6 @@ namespace vSharpStudio.common
             this.BeginVisit(currModel.GroupDocuments);
             if (isActFromRootToBottom)
                 this._act?.Invoke(this, this.currModel.GroupDocuments);
-            this.BeginVisit(currModel.GroupDocuments.GroupSharedProperties);
             this.VisitProperties(currModel.GroupDocuments.GroupSharedProperties, currModel.GroupDocuments.GroupSharedProperties.ListProperties, isActFromRootToBottom);
             this.BeginVisit(currModel.GroupDocuments.GroupListDocuments);
             if (isActFromRootToBottom)
