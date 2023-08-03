@@ -797,7 +797,11 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	// / </summary>
     	string ObjectGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// <summary>
-    	// / Guids of selected complex types, that are acceptable as types
+    	// / For data type CATALOGS or DOCUMENTS this field is used to store object type guid
+    	// / </summary>
+    	string FieldGuidStoringValueFromListObjectGuids { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	// <summary>
+    	// / Guids of selected complex types for data type CATALOGS or DOCUMENTS
     	// / </summary>
     	IReadOnlyList<string> ListObjectGuids { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:47
     	bool IsPKey { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56

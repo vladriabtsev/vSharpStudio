@@ -2292,11 +2292,21 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                 </tr>
               
                 <tr>
+                  <td>field_guid_storing_value_from_list_object_guids</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>&lt;summary&gt;
+/ For data type CATALOGS or DOCUMENTS this field is used to store object type guid
+/ &lt;/summary&gt;
+@attr [PropertyOrderAttribute(7)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_object_guids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>&lt;summary&gt;
-/ Guids of selected complex types, that are acceptable as types
+/ Guids of selected complex types for data type CATALOGS or DOCUMENTS
 / &lt;/summary&gt;
 @attr [PropertyOrderAttribute(8)] </p></td>
                 </tr>

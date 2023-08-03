@@ -222,6 +222,27 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType = new DataType(node);
             node.DataType.ObjectGuid = cat.Guid;
             node.DataType.DataTypeEnum = EnumDataType.CATALOG;
+            node.IsNullable = true;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Constant AddConstantCatalogs(string name, Catalog cat, Catalog? cat2 = null, string? guid = null)
+        {
+            var node = new Constant(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.DataType.ListObjectGuids.Add(cat.Guid);
+            if (cat2 != null)
+                node.DataType.ListObjectGuids.Add(cat2.Guid);
+            node.DataType.DataTypeEnum = EnumDataType.CATALOGS;
+            node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
         }

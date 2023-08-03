@@ -26,6 +26,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Length = 10;
             this.DataTypeEnum = EnumDataType.STRING;
+            this.FieldGuidStoringValueFromListObjectGuids = Guid.NewGuid().ToString();
             //Init();
         }
         //protected override void OnInitFromDto()

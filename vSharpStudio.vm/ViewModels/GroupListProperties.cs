@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -228,12 +229,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
-                if (guid != null) // for test model generation
-                {
-                    if (this.Cfg.DicNodes.ContainsKey(guid))
-                        return node;
-                    node.Guid = guid;
-                }
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
 #endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATE };
             node.IsNullable = isNullable;
@@ -244,12 +245,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
-                if (guid != null) // for test model generation
-                {
-                    if (this.Cfg.DicNodes.ContainsKey(guid))
-                        return node;
-                    node.Guid = guid;
-                }
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
 #endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATETIMEUTC };
             node.IsNullable = isNullable;
@@ -312,6 +313,44 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType.ObjectGuid = en.Guid;
             node.DataType.DataTypeEnum = EnumDataType.ENUMERATION;
             node.IsNullable = isNullable;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyCatalog(string name, Catalog cat, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.DataType.ObjectGuid = cat.Guid;
+            node.DataType.DataTypeEnum = EnumDataType.CATALOG;
+            node.IsNullable = true;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyCatalogs(string name, Catalog cat, Catalog? cat2 = null, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.DataType.ListObjectGuids.Add(cat.Guid);
+            if (cat2 != null)
+                node.DataType.ListObjectGuids.Add(cat2.Guid);
+            node.DataType.DataTypeEnum = EnumDataType.CATALOGS;
+            node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
         }

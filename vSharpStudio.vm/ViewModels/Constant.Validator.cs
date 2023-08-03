@@ -31,6 +31,14 @@ namespace vSharpStudio.vm.ViewModels
                     return;
                 if (p.DataTypeEnum == EnumDataType.CATALOG || p.DataTypeEnum == EnumDataType.ENUMERATION || p.DataTypeEnum == EnumDataType.DOCUMENT)
                 {
+                    if (string.IsNullOrWhiteSpace(p.ObjectGuid))
+                    {
+                        var vf = new ValidationFailure(nameof(p.ObjectGuid),
+                            $"Constant general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtype is not selected");
+                        vf.Severity = Severity.Error;
+                        cntx.AddFailure(vf);
+                        return;
+                    }
                     var cfg = p.Cfg;
                     Debug.Assert(cfg.DicNodes.ContainsKey(p.ObjectGuid));
                     var refObj = cfg.DicNodes[p.ObjectGuid];
@@ -53,6 +61,14 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else if (p.DataTypeEnum == EnumDataType.CATALOGS || p.DataTypeEnum == EnumDataType.DOCUMENTS)
                 {
+                    if (p.ListObjectGuids.Count == 0)
+                    {
+                        var vf = new ValidationFailure(nameof(p.ObjectGuid),
+                            $"Constant general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtypes are not selected");
+                        vf.Severity = Severity.Error;
+                        cntx.AddFailure(vf);
+                        return;
+                    }
                     var cfg = p.Cfg;
                     foreach(var t in p.ListObjectGuids)
                     {
