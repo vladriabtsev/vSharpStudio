@@ -23,6 +23,7 @@ namespace vSharpStudio.common
         IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, bool isPositive);
         // string
         IDataType GetDataTypeString(ITreeConfigNode? parent, uint length);
+        IDataType GetDataTypeStringGuid(ITreeConfigNode? parent);
         IDataType GetDataType(ITreeConfigNode? parent, ICatalog obj);
         IDataType GetDataType(ITreeConfigNode? parent, IDocument obj);
         IDataType GetDataTypeBool(ITreeConfigNode? parent);

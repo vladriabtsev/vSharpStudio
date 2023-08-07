@@ -495,6 +495,13 @@ namespace vSharpStudio.vm.ViewModels
             dt.Length = length;
             return dt;
         }
+        public IDataType GetDataTypeStringGuid(ITreeConfigNode? parent)
+        {
+            DataType dt = new DataType(parent);
+            dt.DataTypeEnum = EnumDataType.STRING;
+            dt.Length = 36;
+            return dt;
+        }
         // catalog
         public IDataType GetDataType(ITreeConfigNode? parent, ICatalog obj)
         {
