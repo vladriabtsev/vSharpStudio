@@ -502,6 +502,12 @@ namespace vSharpStudio.vm.ViewModels
             dt.Length = 36;
             return dt;
         }
+        public IDataType GetDataTypeAny(ITreeConfigNode? parent)
+        {
+            DataType dt = new DataType(parent);
+            dt.DataTypeEnum = EnumDataType.ANY;
+            return dt;
+        }
         // catalog
         public IDataType GetDataType(ITreeConfigNode? parent, ICatalog obj)
         {
