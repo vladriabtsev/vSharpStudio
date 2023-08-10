@@ -415,6 +415,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_plugin_group_model_extentions"><span class="badge">M</span>proto_plugin_group_model_extentions</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_property"><span class="badge">M</span>proto_property</a>
                 </li>
               
@@ -6779,6 +6783,14 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
+                <tr>
+                  <td>list_plugin_groups_model_extentions</td>
+                  <td><a href="#proto_config.proto_plugin_group_model_extentions">proto_plugin_group_model_extentions</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)]
+Plugin group Guid and string to store extentions </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -7147,6 +7159,38 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>string app_generator_guid = 2; </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_plugin_group_model_extentions">proto_plugin_group_model_extentions</h3>
+        <p>@base BaseSettings</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>plugin group Guid
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>settings</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>model extentions of plugin group </p></td>
                 </tr>
               
             </tbody>

@@ -8713,6 +8713,16 @@
               "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "list_plugin_groups_model_extentions",
+              "description": "@attr [Browsable(false)]\nPlugin group Guid and string to store extentions",
+              "label": "repeated",
+              "type": "proto_plugin_group_model_extentions",
+              "longType": "proto_plugin_group_model_extentions",
+              "fullType": "proto_config.proto_plugin_group_model_extentions",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -9115,6 +9125,37 @@
             {
               "name": "settings",
               "description": "string app_generator_guid = 2;",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_plugin_group_model_extentions",
+          "longName": "proto_plugin_group_model_extentions",
+          "fullName": "proto_config.proto_plugin_group_model_extentions",
+          "description": "@base BaseSettings",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "plugin group Guid\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "settings",
+              "description": "model extentions of plugin group",
               "label": "",
               "type": "string",
               "longType": "string",

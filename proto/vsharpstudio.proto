@@ -441,6 +441,14 @@ message proto_plugin_generator_node_settings {
     string settings = 7;
 }
 // @base BaseSettings
+message proto_plugin_group_model_extentions {
+    // plugin group Guid
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // model extentions of plugin group
+    string settings = 2;
+}
+// @base BaseSettings
 message proto_plugin_generator_settings {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -757,6 +765,9 @@ message proto_model {
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+    // @attr [Browsable(false)]
+    // Plugin group Guid and string to store extentions
+    repeated proto_plugin_group_model_extentions list_plugin_groups_model_extentions = 112;
 }
 /** D A T A  T Y P E
  * @exclude

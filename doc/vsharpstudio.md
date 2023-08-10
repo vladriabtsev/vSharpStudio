@@ -63,6 +63,7 @@
     - [proto_plugin_generator_project_settings](#proto_config.proto_plugin_generator_project_settings)
     - [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings)
     - [proto_plugin_generator_solution_settings](#proto_config.proto_plugin_generator_solution_settings)
+    - [proto_plugin_group_model_extentions](#proto_config.proto_plugin_group_model_extentions)
     - [proto_property](#proto_config.proto_property)
     - [proto_property_data_generator](#proto_config.proto_property_data_generator)
     - [proto_report](#proto_config.proto_report)
@@ -1543,6 +1544,7 @@ Configuration model
 | group_documents | [proto_group_documents](#proto_config.proto_group_documents) |  | @attr [Browsable(false)] |
 | group_journals | [proto_group_list_journals](#proto_config.proto_group_list_journals) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+| list_plugin_groups_model_extentions | [proto_plugin_group_model_extentions](#proto_config.proto_plugin_group_model_extentions) | repeated | @attr [Browsable(false)] Plugin group Guid and string to store extentions |
 
 
 
@@ -1690,6 +1692,22 @@ Configuration model
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | settings | [string](#string) |  | string app_generator_guid = 2; |
+
+
+
+
+
+
+<a name="proto_config.proto_plugin_group_model_extentions"></a>
+
+### proto_plugin_group_model_extentions
+@base BaseSettings
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | plugin group Guid @attr [ReadOnly(true)] |
+| settings | [string](#string) |  | model extentions of plugin group |
 
 
 
