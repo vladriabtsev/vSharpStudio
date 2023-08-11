@@ -23,6 +23,10 @@ namespace vSharpStudio.common
         /// </summary>
         string Guid { get; }
         /// <summary>
+        /// Plugin group guid
+        /// </summary>
+        string PluginGroupGuid { get; }
+        /// <summary>
         /// Plugin version
         /// </summary>
         string Version { get; }
@@ -51,5 +55,18 @@ namespace vSharpStudio.common
         /// Plugin generators
         /// </summary>
         List<IvPluginGenerator> ListGenerators { get; }
+        /// <summary>
+        /// Create plugin group model from data stored in Model node of configuration.
+        /// This function will be called once per plugin group.
+        /// Plugin implementation is responsible to create one instance of model shared by all plugins in group.
+        /// </summary>
+        /// <param name="settings"></param>
+        void PluginGroupModelFromJson(string? settings);
+        /// <summary>
+        /// Convert current plugin group model into string.
+        /// This function will be called once per plugin group.
+        /// </summary>
+        /// <returns></returns>
+        string PluginGroupModelToJson();
     }
 }

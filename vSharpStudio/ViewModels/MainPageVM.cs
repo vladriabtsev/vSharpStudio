@@ -450,6 +450,8 @@ namespace vSharpStudio.ViewModels
                     // group plugins settings
                     t.RestoreGroupSettings();
                 }
+                // Plugin group model
+                cfg.Model.RestorePluginGroupsModels();
             }
             catch (Exception ex)
             {

@@ -27,6 +27,9 @@ namespace vPlugin.Sample
             this.ListGenerators.Add(new GeneratorDbAccess());
         }
         public string Guid { get { return GuidStatic; } }
+        public string PluginGroupGuid { get { return GroupAccessGuidStatic; } }
+        public void PluginGroupModelFromJson(string? settings) { }
+        public string PluginGroupModelToJson() { return string.Empty; }
         public string Name { get; protected set; }
         public string NameUI { get; protected set; }
         public string Description { get; protected set; }

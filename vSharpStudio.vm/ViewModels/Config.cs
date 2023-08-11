@@ -438,6 +438,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 p.SaveNodeAppGenSettings();
             });
+            // Plugin group model
+            this.Model.SavePluginGroupsModels();
         }
         public string IsHasMarkedPath
         {

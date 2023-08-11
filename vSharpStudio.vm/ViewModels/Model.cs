@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.IO;
+using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 using Google.Protobuf;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Remotion.Linq.Parsing.ExpressionVisitors.Transformation.PredefinedTransformations;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -771,7 +773,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocNumberUniqueScopeHelper(ITreeConfigNode parent, string guid)
         {
-            var res = new Property(parent, guid, this.PropertyDocCodeName+"UniqueScopeHelper", true);
+            var res = new Property(parent, guid, this.PropertyDocCodeName + "UniqueScopeHelper", true);
             res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, false);
             res.Position = 10;
             res.IsNullable = true;
@@ -1000,7 +1002,60 @@ namespace vSharpStudio.vm.ViewModels
             };
             return lst.ToArray();
         }
-
+        public void SavePluginGroupsModels()
+        {
+            _logger?.Trace();
+            this.ListPluginGroupsModelExtentions.Clear();
+            var hash = new HashSet<string>();
+            foreach (var t in this.ParentConfig.GroupAppSolutions.ListAppSolutions)
+            {
+                foreach (var tt in t.ListAppProjects)
+                {
+                    foreach (var ttt in tt.ListAppProjectGenerators)
+                    {
+                        if (ttt.Plugin != null)
+                        {
+                            if (hash.Contains(ttt.Plugin.PluginGroupGuid))
+                                continue;
+                            hash.Add(ttt.Plugin.PluginGroupGuid);
+                            var settings = ttt.Plugin.PluginGroupModelToJson();
+                            var p = new PluginGroupModelExtentions(this)
+                            {
+                                Guid = ttt.Plugin.PluginGroupGuid,
+                                Settings = settings,
+                            };
+                            this.ListPluginGroupsModelExtentions.Add(p);
+                        }
+                    }
+                }
+            }
+        }
+        public void RestorePluginGroupsModels()
+        {
+            _logger?.Trace();
+            var dic = new Dictionary<string, PluginGroupModelExtentions>();
+            foreach(var t in this.ListPluginGroupsModelExtentions)
+            {
+                dic[t.Guid] = t;
+            }
+            foreach (var t in this.ParentConfig.GroupAppSolutions.ListAppSolutions)
+            {
+                foreach (var tt in t.ListAppProjects)
+                {
+                    foreach (var ttt in tt.ListAppProjectGenerators)
+                    {
+                        if (ttt.Plugin != null)
+                        {
+                            if (dic.TryGetValue(ttt.Plugin.PluginGroupGuid, out var p))
+                            {
+                                ttt.Plugin.PluginGroupModelFromJson(p.Settings);
+                                dic.Remove(ttt.Plugin.PluginGroupGuid);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     // https://stackoverflow.com/questions/3862226/how-to-dynamically-create-a-class
     //public class DynamicClass : System.Dynamic.DynamicObject
