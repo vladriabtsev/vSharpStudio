@@ -22,5 +22,10 @@ namespace vSharpStudio.common
         string PropValueValue { get; }
         IPropertyRangeValuesRequirements? RangeValuesRequirementsI { get; }
         string ComplexObjectNameWithDot();
+
+        //#region Plugin group model
+        //static virtual IConstant CreatePropertyFromJson(ITreeConfigNode parent, string settings) { throw new NotImplementedException(); }
+        //string ConvertToJson();
+        //#endregion Plugin group model
     }
 }

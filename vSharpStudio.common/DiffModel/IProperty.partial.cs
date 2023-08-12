@@ -35,6 +35,15 @@ namespace vSharpStudio.common
         bool IsGridSortableCustomGet();
         EnumPropertyAccess GetRolePropertyAccess(IRole role);
         IReadOnlyList<string> GetRolesByAccess(EnumPropertyAccess access);
+
+        #region Plugin group model
+        IProperty CreatePropertyFromJson(string settings, string subName, IDataType dt);
+        string ConvertToJson();
+        IProperty AddExtensionPropertyRefId(string subName, string guid);
+        IProperty AddExtensionPropertyGuid(string subName, string guid);
+        IProperty AddExtensionPropertyString(string subName, uint length, string guid);
+        IProperty AddExtensionPropertyNumerical(string subName, uint length, uint accuracy, string guid);
+        #endregion Plugin group model
     }
     public interface IPropertyRangeValuesRequirements
     {

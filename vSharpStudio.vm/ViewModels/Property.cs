@@ -9,7 +9,9 @@ using System.DirectoryServices;
 using System.Numerics;
 using System.Text;
 using FluentValidation;
+using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
+using Proto.Config;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -591,7 +593,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.dicPropertyAccess[tt.Guid] = tt;
             }
-            foreach(var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (!this.dicPropertyAccess.ContainsKey(t.Guid))
                 {
@@ -651,5 +653,49 @@ namespace vSharpStudio.vm.ViewModels
             return roles;
         }
         #endregion Roles
+
+        #region Plugin group model
+        public IProperty CreatePropertyFromJson(string settings, string subName, IDataType dt)
+        {
+            var proto = CommonUtils.ParseJson<proto_property>(settings, true);
+            var p = Property.ConvertToVM(proto, new Property(this));
+            p.DataType = (DataType)dt;
+            p.Name = this.Name + subName;
+            return p;
+        }
+        public string ConvertToJson()
+        {
+            var proto = Property.ConvertToProto(this);
+            return JsonFormatter.Default.Format(proto);
+        }
+        public IProperty AddExtensionPropertyRefId(string subName, string guid)
+        {
+            var node = new Property(this) { Name = this.Name + subName };
+            node.Guid = guid;
+            node.DataType = (DataType)this.Cfg.Model.GetIdDataType(node);
+            return node;
+        }
+        public IProperty AddExtensionPropertyGuid(string subName, string guid)
+        {
+            var node = new Property(this) { Name = this.Name + subName };
+            node.Guid = guid;
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = 32 };
+            return node;
+        }
+        public IProperty AddExtensionPropertyString(string subName, uint length, string guid)
+        {
+            var node = new Property(this) { Name = this.Name + subName };
+            node.Guid = guid;
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
+            return node;
+        }
+        public IProperty AddExtensionPropertyNumerical(string subName, uint length, uint accuracy, string guid)
+        {
+            var node = new Property(this) { Name = this.Name + subName };
+            node.Guid = guid;
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
+            return node;
+        }
+        #endregion Plugin group model
     }
 }
