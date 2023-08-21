@@ -26,7 +26,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Length = 10;
             this.DataTypeEnum = EnumDataType.STRING;
-            this.FieldGuidStoringValueFromListObjectGuids = Guid.NewGuid().ToString();
             //Init();
         }
         //protected override void OnInitFromDto()
@@ -950,6 +949,14 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.Parent != null && this.IsChanged)
                 this.Parent.IsChanged = true;
+        }
+        public bool IsComplex
+        {
+            get
+            {
+                return this.DataTypeEnum == EnumDataType.CATALOG || this.DataTypeEnum == EnumDataType.DOCUMENT ||
+                    this.DataTypeEnum == EnumDataType.CATALOGS || this.DataTypeEnum == EnumDataType.DOCUMENTS;
+            }
         }
     }
 }

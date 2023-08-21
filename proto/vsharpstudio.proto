@@ -849,11 +849,6 @@ message proto_data_type {
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     string object_guid = 6;
     /// <summary>
-    /// For data type CATALOGS or DOCUMENTS this field is used to store object type guid
-    /// </summary>
-    // @attr [PropertyOrderAttribute(7)]
-    string field_guid_storing_value_from_list_object_guids = 7;
-    /// <summary>
     /// Guids of selected complex types for data type CATALOGS or DOCUMENTS
     /// </summary>
     // @attr [PropertyOrderAttribute(8)]

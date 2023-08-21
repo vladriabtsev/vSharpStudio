@@ -7714,7 +7714,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm.IsPositive = from.IsPositive; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.Accuracy = from.Accuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.ObjectGuid = from.ObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
-            vm.FieldGuidStoringValueFromListObjectGuids = from.FieldGuidStoringValueFromListObjectGuids; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             foreach (var t in from.ListObjectGuids) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:49
                 vm.ListObjectGuids.Add(t);
             vm.IsPKey = from.IsPKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
@@ -7732,7 +7731,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to.IsPositive = from.IsPositive; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             to.Accuracy = from.Accuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             to.ObjectGuid = from.ObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
-            to.FieldGuidStoringValueFromListObjectGuids = from.FieldGuidStoringValueFromListObjectGuids; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
                 to.ListObjectGuids.Clear(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:130
                 foreach (var tt in from.ListObjectGuids)
                 {
@@ -7774,7 +7772,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm.IsPositive = m.IsPositive; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.Accuracy = m.Accuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.ObjectGuid = m.ObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
-            vm.FieldGuidStoringValueFromListObjectGuids = m.FieldGuidStoringValueFromListObjectGuids; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.ListObjectGuids = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:188
             foreach (var t in m.ListObjectGuids) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:189
             {
@@ -7796,7 +7793,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.IsPositive = vm.IsPositive; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             m.Accuracy = vm.Accuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             m.ObjectGuid = vm.ObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
-            m.FieldGuidStoringValueFromListObjectGuids = vm.FieldGuidStoringValueFromListObjectGuids; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             foreach (var t in vm.ListObjectGuids) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:243
                 m.ListObjectGuids.Add(t); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:245
             m.IsPKey = vm.IsPKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
@@ -7935,30 +7931,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private string _ObjectGuid = string.Empty;
         partial void OnObjectGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnObjectGuidChanged();
-        
-        // <summary>
-        // / For data type CATALOGS or DOCUMENTS this field is used to store object type guid
-        // / </summary>
-        [PropertyOrderAttribute(7)]
-        public string FieldGuidStoringValueFromListObjectGuids // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
-        { 
-            get { return this._FieldGuidStoringValueFromListObjectGuids; }
-            set
-            {
-                if (this._FieldGuidStoringValueFromListObjectGuids != value)
-                {
-                    this.OnFieldGuidStoringValueFromListObjectGuidsChanging(ref value);
-                    this._FieldGuidStoringValueFromListObjectGuids = value;
-                    this.OnFieldGuidStoringValueFromListObjectGuidsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _FieldGuidStoringValueFromListObjectGuids = string.Empty;
-        partial void OnFieldGuidStoringValueFromListObjectGuidsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
-        partial void OnFieldGuidStoringValueFromListObjectGuidsChanged();
         
         // <summary>
         // / Guids of selected complex types for data type CATALOGS or DOCUMENTS

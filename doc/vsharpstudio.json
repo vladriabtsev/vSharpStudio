@@ -3666,16 +3666,6 @@
               "defaultValue": ""
             },
             {
-              "name": "field_guid_storing_value_from_list_object_guids",
-              "description": "\u003csummary\u003e\n/ For data type CATALOGS or DOCUMENTS this field is used to store object type guid\n/ \u003c/summary\u003e\n@attr [PropertyOrderAttribute(7)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "list_object_guids",
               "description": "\u003csummary\u003e\n/ Guids of selected complex types for data type CATALOGS or DOCUMENTS\n/ \u003c/summary\u003e\n@attr [PropertyOrderAttribute(8)]",
               "label": "repeated",

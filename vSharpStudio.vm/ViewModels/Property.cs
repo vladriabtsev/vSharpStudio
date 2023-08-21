@@ -673,6 +673,8 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Property(this) { Name = this.Name + subName };
             node.Guid = guid;
             node.DataType = (DataType)this.Cfg.Model.GetIdDataType(node);
+            node.DataType.IsPKey = false;
+            node.IsNullable = true;
             return node;
         }
         public IProperty AddExtensionPropertyGuid(string subName, string guid)
@@ -680,6 +682,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Property(this) { Name = this.Name + subName };
             node.Guid = guid;
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = 32 };
+            node.IsNullable = true;
             return node;
         }
         public IProperty AddExtensionPropertyString(string subName, uint length, string guid)
