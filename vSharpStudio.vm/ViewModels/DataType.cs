@@ -475,9 +475,6 @@ namespace vSharpStudio.vm.ViewModels
                     else
                         this.ClrTypeName = string.Empty;
                     break;
-                case EnumDataType.CATALOGS:
-                    this.ClrTypeName = "object";
-                    break;
                 case EnumDataType.DOCUMENT:
                     Debug.Assert(this.Cfg != null);
                     if (!string.IsNullOrEmpty(this.ObjectGuid))
@@ -489,7 +486,13 @@ namespace vSharpStudio.vm.ViewModels
                     else
                         this.ClrTypeName = string.Empty;
                     break;
+                case EnumDataType.CATALOGS:
+                    this.ClrTypeName = "object";
+                    break;
                 case EnumDataType.DOCUMENTS:
+                    this.ClrTypeName = "object";
+                    break;
+                case EnumDataType.ANY:
                     this.ClrTypeName = "object";
                     break;
                 case EnumDataType.ENUMERATION:
@@ -955,7 +958,7 @@ namespace vSharpStudio.vm.ViewModels
             get
             {
                 return this.DataTypeEnum == EnumDataType.CATALOG || this.DataTypeEnum == EnumDataType.DOCUMENT ||
-                    this.DataTypeEnum == EnumDataType.CATALOGS || this.DataTypeEnum == EnumDataType.DOCUMENTS;
+                    this.DataTypeEnum == EnumDataType.CATALOGS || this.DataTypeEnum == EnumDataType.DOCUMENTS || this.DataTypeEnum == EnumDataType.ANY;
             }
         }
     }

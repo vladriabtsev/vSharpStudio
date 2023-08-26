@@ -316,7 +316,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyCatalog(string name, Catalog cat, string? guid = null)
+        public Property AddPropertyTypeRefCatalog(string name, Catalog cat, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -334,7 +334,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyCatalogs(string name, Catalog cat, Catalog? cat2 = null, string? guid = null)
+        public Property AddPropertyTypeRefCatalogs(string name, Catalog cat, Catalog? cat2 = null, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -350,6 +350,61 @@ namespace vSharpStudio.vm.ViewModels
             if (cat2 != null)
                 node.DataType.ListObjectGuids.Add(cat2.Guid);
             node.DataType.DataTypeEnum = EnumDataType.CATALOGS;
+            node.IsNullable = true;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyTypeRefDocument(string name, Document d, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.DataType.ObjectGuid = d.Guid;
+            node.DataType.DataTypeEnum = EnumDataType.DOCUMENT;
+            node.IsNullable = true;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyTypeRefDocuments(string name, Document d, Document? d2 = null, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.DataType.ListObjectGuids.Add(d.Guid);
+            if (d2 != null)
+                node.DataType.ListObjectGuids.Add(d2.Guid);
+            node.DataType.DataTypeEnum = EnumDataType.DOCUMENTS;
+            node.IsNullable = true;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyTypeRefAnyCatalogOrDocument(string name, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.DataType.DataTypeEnum = EnumDataType.ANY;
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;

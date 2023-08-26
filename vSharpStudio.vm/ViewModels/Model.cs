@@ -1083,6 +1083,7 @@ namespace vSharpStudio.vm.ViewModels
                     throw new ArgumentException("Unexpected EnumDataType type");
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
+                case EnumDataType.ANY:
                     foreach (var t in dt.ListObjectGuids)
                     {
                         Debug.Assert(!string.IsNullOrWhiteSpace(t));
