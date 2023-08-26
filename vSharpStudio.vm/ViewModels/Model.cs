@@ -1034,7 +1034,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             _logger?.Trace();
             var dic = new Dictionary<string, PluginGroupModelExtentions>();
-            foreach(var t in this.ListPluginGroupsModelExtentions)
+            foreach (var t in this.ListPluginGroupsModelExtentions)
             {
                 dic[t.Guid] = t;
             }
@@ -1056,7 +1056,71 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
+        /// <summary>
+        /// Get reference types for EnumDataType.CATALOGS or EnumDataType.DOCUMENTS
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns>Dictionary of type GUID and type name</returns>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="NotImplementedException"></exception>
+        public Dictionary<string, string> GetRefTypeNames(IDataType dt)
+        {
+            var res = new Dictionary<string, string>();
+            switch (dt.DataTypeEnum)
+            {
+                case EnumDataType.ENUMERATION:
+                case EnumDataType.CATALOG:
+                case EnumDataType.DOCUMENT:
+                case EnumDataType.BOOL:
+                case EnumDataType.DATE:
+                case EnumDataType.DATETIMELOCAL:
+                case EnumDataType.DATETIMEUTC:
+                //case EnumDataType.DATETIME:
+                //case EnumDataType.DATETIMEZ:
+                case EnumDataType.NUMERICAL:
+                case EnumDataType.STRING:
+                case EnumDataType.TIME:
+                    throw new ArgumentException("Unexpected EnumDataType type");
+                case EnumDataType.CATALOGS:
+                case EnumDataType.DOCUMENTS:
+                    foreach (var t in dt.ListObjectGuids)
+                    {
+                        Debug.Assert(!string.IsNullOrWhiteSpace(t));
+                        Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t));
+                        var node = this.ParentConfig.DicNodes[t];
+                        if (node is ICatalog c)
+                        {
+                            res[c.Guid] = $"Catalogs.{c.Name}";
+                        }
+                        else if (node is IDocument d)
+                        {
+                            res[d.Guid] = $"Documents.{d.Name}";
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
+                    }
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+            return res;
+        }
+        public string GetRefTypeNamesString(IDataType dt)
+        {
+            var sb = new StringBuilder();
+            var sep = string.Empty;
+            foreach (var t in this.GetRefTypeNames(dt))
+            {
+                sb.Append(sep);
+                sb.Append(t.Value);
+                sep = ", ";
+            }
+            return sb.ToString();
+        }
     }
+
     // https://stackoverflow.com/questions/3862226/how-to-dynamically-create-a-class
     //public class DynamicClass : System.Dynamic.DynamicObject
     //{

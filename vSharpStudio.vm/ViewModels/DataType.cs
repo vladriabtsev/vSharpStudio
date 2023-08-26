@@ -69,13 +69,13 @@ namespace vSharpStudio.vm.ViewModels
             this.DataTypeEnum = type;
             switch (this.DataTypeEnum)
             {
-                //case EnumDataType.ANY:
-                //    break;
                 case EnumDataType.BOOL:
                     break;
                 case EnumDataType.CATALOGS:
                     break;
                 case EnumDataType.DOCUMENTS:
+                    break;
+                case EnumDataType.ANY:
                     break;
                 case EnumDataType.NUMERICAL:
                     // TODO revisit default length and accuracy for Numerical
@@ -197,8 +197,6 @@ namespace vSharpStudio.vm.ViewModels
             var config = (Config)par!;
             switch (p.DataTypeEnum)
             {
-                //case EnumDataType.ANY:
-                //    throw new NotImplementedException();
                 case EnumDataType.CATALOG:
                     foreach (var t in config.Model.GroupCatalogs.ListCatalogs)
                     {
@@ -209,8 +207,6 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     res += ": " + objName;
                     break;
-                case EnumDataType.CATALOGS:
-                    throw new NotImplementedException();
                 case EnumDataType.DOCUMENT:
                     foreach (var t in config.Model.GroupDocuments.GroupListDocuments.ListDocuments)
                     {
@@ -221,6 +217,10 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     res += ": " + objName;
                     break;
+                case EnumDataType.ANY:
+                    throw new NotImplementedException();
+                case EnumDataType.CATALOGS:
+                    throw new NotImplementedException();
                 case EnumDataType.DOCUMENTS:
                     break;
                 case EnumDataType.ENUMERATION:
@@ -701,7 +701,6 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.CHAR:
-                //case EnumDataType.ANY:
                 case EnumDataType.BOOL:
                 case EnumDataType.DATE:
                 case EnumDataType.DATETIMELOCAL:
@@ -714,6 +713,7 @@ namespace vSharpStudio.vm.ViewModels
                 //case EnumDataType.TIMESPAN:
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
+                case EnumDataType.ANY:
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;

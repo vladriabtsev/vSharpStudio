@@ -252,7 +252,6 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.DataType.DataTypeEnum)
             {
                 case EnumDataType.CHAR:
-                //case EnumDataType.ANY:
                 case EnumDataType.BOOL:
                     this.Length = 0;
                     this.Accuracy = 0;
@@ -280,6 +279,7 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
+                case EnumDataType.ANY:
                     this.Length = 0;
                     this.Accuracy = 0;
                     this.IsPositive = false;

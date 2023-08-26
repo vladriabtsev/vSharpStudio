@@ -75,5 +75,7 @@ namespace vSharpStudio.common
         //EnumConstantAccess GetRoleConstantAccess(string roleGuid);
         //EnumCatalogDetailAccess GetRoleCatalogAccess(string roleGuid);
         //EnumDocumentAccess GetRoleDocumentAccess(string roleGuid);
+        Dictionary<string, string> GetRefTypeNames(IDataType dt);
+        string GetRefTypeNamesString(IDataType dt);
     }
 }
