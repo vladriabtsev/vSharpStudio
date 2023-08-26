@@ -1083,7 +1083,6 @@ namespace vSharpStudio.vm.ViewModels
                     throw new ArgumentException("Unexpected EnumDataType type");
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
-                case EnumDataType.ANY:
                     foreach (var t in dt.ListObjectGuids)
                     {
                         Debug.Assert(!string.IsNullOrWhiteSpace(t));
@@ -1101,6 +1100,16 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             throw new NotImplementedException();
                         }
+                    }
+                    break;
+                case EnumDataType.ANY:
+                    foreach (var t in Cfg.Model.GroupCatalogs.ListCatalogs)
+                    {
+                        res[t.Guid] = $"Catalogs.{t.Name}";
+                    }
+                    foreach (var t in Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+                    {
+                        res[t.Guid] = $"Documents.{t.Name}";
                     }
                     break;
                 default:
