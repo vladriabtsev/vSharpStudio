@@ -1082,34 +1082,97 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.TIME:
                     throw new ArgumentException("Unexpected EnumDataType type");
                 case EnumDataType.CATALOGS:
-                case EnumDataType.DOCUMENTS:
-                    foreach (var t in dt.ListObjectGuids)
+                    if (dt.ListObjectGuids.Count > 0)
                     {
-                        Debug.Assert(!string.IsNullOrWhiteSpace(t));
-                        Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t));
-                        var node = this.ParentConfig.DicNodes[t];
-                        if (node is ICatalog c)
+                        foreach (var t in dt.ListObjectGuids)
                         {
-                            res[c.Guid] = $"Catalogs.{c.Name}";
+                            Debug.Assert(!string.IsNullOrWhiteSpace(t));
+                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t));
+                            var node = this.ParentConfig.DicNodes[t];
+                            if (node is ICatalog c)
+                            {
+                                res[c.Guid] = $"Catalogs.{c.Name}";
+                            }
+                            else if (node is IDocument d)
+                            {
+                                throw new ArgumentException("EnumDataType.CATALOGS can't reference Document");
+                            }
+                            else
+                            {
+                                throw new NotImplementedException();
+                            }
                         }
-                        else if (node is IDocument d)
+                    }
+                    else
+                    {
+                        foreach (var t in Cfg.Model.GroupCatalogs.ListCatalogs)
                         {
-                            res[d.Guid] = $"Documents.{d.Name}";
+                            res[t.Guid] = $"Catalogs.{t.Name}";
                         }
-                        else
+                    }
+                    break;
+                case EnumDataType.DOCUMENTS:
+                    if (dt.ListObjectGuids.Count > 0)
+                    {
+                        foreach (var t in dt.ListObjectGuids)
                         {
-                            throw new NotImplementedException();
+                            Debug.Assert(!string.IsNullOrWhiteSpace(t));
+                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t));
+                            var node = this.ParentConfig.DicNodes[t];
+                            if (node is ICatalog c)
+                            {
+                                res[c.Guid] = $"Catalogs.{c.Name}";
+                            }
+                            else if (node is IDocument d)
+                            {
+                                res[d.Guid] = $"Documents.{d.Name}";
+                            }
+                            else
+                            {
+                                throw new NotImplementedException();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (var t in Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+                        {
+                            res[t.Guid] = $"Documents.{t.Name}";
                         }
                     }
                     break;
                 case EnumDataType.ANY:
-                    foreach (var t in Cfg.Model.GroupCatalogs.ListCatalogs)
+                    if (dt.ListObjectGuids.Count > 0)
                     {
-                        res[t.Guid] = $"Catalogs.{t.Name}";
+                        foreach (var t in dt.ListObjectGuids)
+                        {
+                            Debug.Assert(!string.IsNullOrWhiteSpace(t));
+                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t));
+                            var node = this.ParentConfig.DicNodes[t];
+                            if (node is ICatalog c)
+                            {
+                                throw new ArgumentException("EnumDataType.DOCUMENTS can't reference Catalog");
+                            }
+                            else if (node is IDocument d)
+                            {
+                                res[d.Guid] = $"Documents.{d.Name}";
+                            }
+                            else
+                            {
+                                throw new NotImplementedException();
+                            }
+                        }
                     }
-                    foreach (var t in Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+                    else
                     {
-                        res[t.Guid] = $"Documents.{t.Name}";
+                        foreach (var t in Cfg.Model.GroupCatalogs.ListCatalogs)
+                        {
+                            res[t.Guid] = $"Catalogs.{t.Name}";
+                        }
+                        foreach (var t in Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+                        {
+                            res[t.Guid] = $"Documents.{t.Name}";
+                        }
                     }
                     break;
                 default:
