@@ -80,6 +80,18 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void OnInitFromDto()
         {
+            switch (this.DataType.DataTypeEnum)
+            {
+                case EnumDataType.ANY:
+                case EnumDataType.CATALOG:
+                case EnumDataType.CATALOGS:
+                case EnumDataType.DOCUMENT:
+                case EnumDataType.DOCUMENTS:
+                    this.IsComputed = true;
+                    break;
+                default:
+                    break;
+            }
             Init();
         }
         private void Init()
@@ -676,7 +688,6 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType = (DataType)this.Cfg.Model.GetIdDataType(node);
             node.DataType.IsPKey = false;
             node.IsNullable = true;
-            node.IsReadonly = true;
             return node;
         }
         public IProperty AddExtensionPropertyGuid(string subName, string guid)
@@ -685,7 +696,6 @@ namespace vSharpStudio.vm.ViewModels
             node.Guid = guid;
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = 36 };
             node.IsNullable = true;
-            node.IsReadonly = true;
             return node;
         }
         public IProperty AddExtensionPropertyString(string subName, uint length, string guid)
