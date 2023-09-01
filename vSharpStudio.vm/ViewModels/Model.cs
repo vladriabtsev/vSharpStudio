@@ -1060,12 +1060,12 @@ namespace vSharpStudio.vm.ViewModels
         /// Get reference types for EnumDataType.CATALOGS or EnumDataType.DOCUMENTS
         /// </summary>
         /// <param name="dt"></param>
-        /// <returns>Dictionary of type GUID and type name</returns>
+        /// <returns>Dictionary of type GUID and Tuple of type name and composite name</returns>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="NotImplementedException"></exception>
-        public Dictionary<string, string> GetRefTypeNames(IDataType dt)
+        public Dictionary<string, Tuple<string, string>> GetRefTypeNames(IDataType dt)
         {
-            var res = new Dictionary<string, string>();
+            var res = new Dictionary<string, Tuple<string, string>>();
             switch (dt.DataTypeEnum)
             {
                 case EnumDataType.ENUMERATION:
@@ -1091,7 +1091,7 @@ namespace vSharpStudio.vm.ViewModels
                             var node = this.ParentConfig.DicNodes[t];
                             if (node is ICatalog c)
                             {
-                                res[c.Guid] = $"Catalogs.{c.Name}";
+                                res[c.Guid] = new Tuple<string, string>($"Catalogs.{c.Name}", c.CompositeName);
                             }
                             else if (node is IDocument d)
                             {
@@ -1107,7 +1107,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in Cfg.Model.GroupCatalogs.ListCatalogs)
                         {
-                            res[t.Guid] = $"Catalogs.{t.Name}";
+                            res[t.Guid] = new Tuple<string, string>($"Catalogs.{t.Name}", t.CompositeName);
                         }
                     }
                     break;
@@ -1121,11 +1121,11 @@ namespace vSharpStudio.vm.ViewModels
                             var node = this.ParentConfig.DicNodes[t];
                             if (node is ICatalog c)
                             {
-                                res[c.Guid] = $"Catalogs.{c.Name}";
+                                throw new ArgumentException("EnumDataType.DOCUMENTS can't reference Catalog");
                             }
                             else if (node is IDocument d)
                             {
-                                res[d.Guid] = $"Documents.{d.Name}";
+                                res[d.Guid] = new Tuple<string, string>($"Documents.{d.Name}", d.CompositeName);
                             }
                             else
                             {
@@ -1137,7 +1137,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
                         {
-                            res[t.Guid] = $"Documents.{t.Name}";
+                            res[t.Guid] = new Tuple<string, string>($"Documents.{t.Name}", t.CompositeName);
                         }
                     }
                     break;
@@ -1151,11 +1151,11 @@ namespace vSharpStudio.vm.ViewModels
                             var node = this.ParentConfig.DicNodes[t];
                             if (node is ICatalog c)
                             {
-                                throw new ArgumentException("EnumDataType.DOCUMENTS can't reference Catalog");
+                                res[c.Guid] = new Tuple<string, string>($"Catalogs.{c.Name}", c.CompositeName);
                             }
                             else if (node is IDocument d)
                             {
-                                res[d.Guid] = $"Documents.{d.Name}";
+                                res[d.Guid] = new Tuple<string, string>($"Documents.{d.Name}", d.CompositeName);
                             }
                             else
                             {
@@ -1167,11 +1167,11 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in Cfg.Model.GroupCatalogs.ListCatalogs)
                         {
-                            res[t.Guid] = $"Catalogs.{t.Name}";
+                            res[t.Guid] = new Tuple<string, string>($"Catalogs.{t.Name}", t.CompositeName);
                         }
                         foreach (var t in Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
                         {
-                            res[t.Guid] = $"Documents.{t.Name}";
+                            res[t.Guid] = new Tuple<string, string>($"Documents.{t.Name}", t.CompositeName);
                         }
                     }
                     break;
