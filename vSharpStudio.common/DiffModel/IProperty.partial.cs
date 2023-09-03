@@ -40,6 +40,8 @@ namespace vSharpStudio.common
         #region Plugin group model
         IProperty CreatePropertyFromJson(string settings, string subName, IDataType dt);
         string ConvertToJson();
+        IProperty? ParentProperty { get; set; }
+        string NameWithExtention { get; }
         IProperty AddExtensionPropertyRefId(string subName, string guid);
         IProperty AddExtensionPropertyGuid(string subName, string guid);
         IProperty AddExtensionPropertyString(string subName, uint length, string guid);

@@ -681,21 +681,28 @@ namespace vSharpStudio.vm.ViewModels
             var proto = Property.ConvertToProto(this);
             return JsonFormatter.Default.Format(proto);
         }
+        /// <summary>
+        /// Parent property if extended property is created
+        /// </summary>
+        public IProperty? ParentProperty { get; set; }
+        public string NameWithExtention { get { if (this.ParentProperty == null) return this.Name; return this.ParentProperty.Name + this.Name; } }
         public IProperty AddExtensionPropertyRefId(string subName, string guid)
         {
-            var node = new Property(this) { Name = this.Name + subName };
+            var node = new Property(this) { Name = subName };
             node.Guid = guid;
             node.DataType = (DataType)this.Cfg.Model.GetIdDataType(node);
             node.DataType.IsPKey = false;
             node.IsNullable = true;
+            node.ParentProperty = this;
             return node;
         }
         public IProperty AddExtensionPropertyGuid(string subName, string guid)
         {
-            var node = new Property(this) { Name = this.Name + subName };
+            var node = new Property(this) { Name = subName };
             node.Guid = guid;
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = 36 };
             node.IsNullable = true;
+            node.ParentProperty = this;
             return node;
         }
         public IProperty AddExtensionPropertyString(string subName, uint length, string guid)
