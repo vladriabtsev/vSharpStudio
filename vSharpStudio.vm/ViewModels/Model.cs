@@ -1187,7 +1187,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in this.GetRefTypeNames(dt))
             {
                 sb.Append(sep);
-                sb.Append(t.Value);
+                sb.Append(t.Value.Item1);
                 sep = ", ";
             }
             return sb.ToString();
