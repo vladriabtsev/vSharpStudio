@@ -329,6 +329,13 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        public bool IsDocWithSharedProperties
+        {
+            get
+            {
+                return this.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties.Count > 0;
+            }
+        }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();

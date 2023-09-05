@@ -13,8 +13,9 @@ namespace vSharpStudio.common
         IReadOnlyList<IProperty> GetAllProperties(bool isOptimistic);
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
         IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
-        IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
         IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen);
+        bool IsDocWithSharedProperties { get; }
+        IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
         void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
         ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen);
         IForm GetForm(FormType ftype, string guidAppPrjGen);
