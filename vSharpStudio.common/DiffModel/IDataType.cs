@@ -27,5 +27,7 @@ namespace vSharpStudio.common
         bool IsEnumStr();
         string EnumerationDefault { get; }
         bool IsComplex { get; }
+        bool IsComplexOne { get; }
+        bool IsComplexMany { get; }
     }
 }

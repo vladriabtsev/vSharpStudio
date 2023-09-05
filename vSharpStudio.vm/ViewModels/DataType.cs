@@ -961,5 +961,19 @@ namespace vSharpStudio.vm.ViewModels
                     this.DataTypeEnum == EnumDataType.CATALOGS || this.DataTypeEnum == EnumDataType.DOCUMENTS || this.DataTypeEnum == EnumDataType.ANY;
             }
         }
+        public bool IsComplexOne
+        {
+            get
+            {
+                return this.DataTypeEnum == EnumDataType.CATALOG || this.DataTypeEnum == EnumDataType.DOCUMENT;
+            }
+        }
+        public bool IsComplexMany
+        {
+            get
+            {
+                return this.DataTypeEnum == EnumDataType.CATALOGS || this.DataTypeEnum == EnumDataType.DOCUMENTS || this.DataTypeEnum == EnumDataType.ANY;
+            }
+        }
     }
 }
