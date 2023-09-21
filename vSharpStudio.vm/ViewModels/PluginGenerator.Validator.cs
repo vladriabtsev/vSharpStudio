@@ -27,7 +27,7 @@ namespace vSharpStudio.vm.ViewModels
                     var flr = new ValidationFailure();
                     flr.ErrorMessage = sb.ToString();
                     flr.Severity = Severity.Info;
-                    flr.PropertyName = cntx.PropertyName;
+                    flr.PropertyName = cntx.PropertyPath;
                     cntx.AddFailure(flr);
                 }
             });

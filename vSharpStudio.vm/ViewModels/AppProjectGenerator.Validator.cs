@@ -168,7 +168,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in lst)
             {
-                var r = new ValidationFailure(cntx.PropertyName, t.Message);
+                var r = new ValidationFailure(cntx.PropertyPath, t.Message);
                 switch (t.Level)
                 {
                     case ValidationPluginMessage.EnumValidationMessage.Error:
