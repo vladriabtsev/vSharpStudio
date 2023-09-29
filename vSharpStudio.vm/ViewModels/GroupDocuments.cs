@@ -57,6 +57,7 @@ namespace vSharpStudio.vm.ViewModels
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             children.Add(this.GroupSharedProperties, 2);
             children.Add(this.GroupListDocuments, 3);
+            children.Add(this.GroupListRegisters, 4);
             VmBindable.IsNotifyingStatic = true;
 
             //this.ListRoles.OnAddingAction = (t) =>

@@ -47,5 +47,8 @@
 
         public const string BaseConfigName = "BaseConfig";
         public const string BaseConfigLinksName = "BaseConfigs";
+
+        public const string RegisterName = "Register";
+        public const string RegisterGroupName = "Registers";
     }
 }

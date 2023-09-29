@@ -6384,6 +6384,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm.LastCatalogShortId = from.LastCatalogShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.LastDocumentShortId = from.LastDocumentShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.LastDetailShortId = from.LastDetailShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.LastRegisterShortId = from.LastRegisterShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.IsGridSortableCustom = from.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.IsGridFilterable = from.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
@@ -6445,6 +6446,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to.LastCatalogShortId = from.LastCatalogShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             to.LastDocumentShortId = from.LastDocumentShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             to.LastDetailShortId = from.LastDetailShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.LastRegisterShortId = from.LastRegisterShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             to.IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             to.IsGridSortableCustom = from.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             to.IsGridFilterable = from.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
@@ -6591,6 +6593,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm.LastCatalogShortId = m.LastCatalogShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.LastDocumentShortId = m.LastDocumentShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.LastDetailShortId = m.LastDetailShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.LastRegisterShortId = m.LastRegisterShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.IsGridSortable = m.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.IsGridSortableCustom = m.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.IsGridFilterable = m.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
@@ -6666,6 +6669,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.LastCatalogShortId = vm.LastCatalogShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             m.LastDocumentShortId = vm.LastDocumentShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             m.LastDetailShortId = vm.LastDetailShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.LastRegisterShortId = vm.LastRegisterShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             m.IsGridSortable = vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             m.IsGridSortableCustom = vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             m.IsGridFilterable = vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
@@ -7402,6 +7406,27 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnLastDetailShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnLastDetailShortIdChanged();
         
+        [Browsable(false)]
+        public int LastRegisterShortId // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._LastRegisterShortId; }
+            set
+            {
+                if (this._LastRegisterShortId != value)
+                {
+                    this.OnLastRegisterShortIdChanging(ref value);
+                    this._LastRegisterShortId = value;
+                    this.OnLastRegisterShortIdChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _LastRegisterShortId;
+        partial void OnLastRegisterShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnLastRegisterShortIdChanged();
+        
         [Category("DataGrid settings")]
         [DisplayName("Sortable")]
         [Description("Sortable in data grid")]
@@ -7883,7 +7908,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         
         [PropertyOrderAttribute(5)]
         [DisplayName("Accuracy")]
-        [Description("Number of decimal places in fractional part for numeric data)")]
+        [Description("Number of decimal places in fractional part for numeric data")]
         public uint Accuracy // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
             get { return this._Accuracy; }
@@ -22894,6 +22919,1159 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
+    public partial class GroupListRegistersValidator : ValidatorBase<GroupListRegisters, GroupListRegistersValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
+    public partial class GroupListRegisters : ConfigObjectVmGenSettings<GroupListRegisters, GroupListRegistersValidator>, IComparable<GroupListRegisters>, IConfigAcceptVisitor, IGroupListRegisters // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
+    {
+        #region CTOR
+        public GroupListRegisters(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:27
+            : base(parent, GroupListRegistersValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this._ListRegisters = new ConfigNodesCollection<Register>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:38
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:38
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
+        #endregion CTOR
+        #region Procedures
+        
+        public override void Sort(Type type) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:9
+        {
+            if (type == typeof(Register)) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:16
+            {
+                this.ListRegisters.Sort();
+            }
+            if (type == typeof(PluginGeneratorNodeSettings)) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:16
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
+        }
+        public static GroupListRegisters Clone(ITreeConfigNode? parent, IGroupListRegisters from, bool isDeep = true, bool isNewGuid = false) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:29
+        {
+            Debug.Assert(from != null);
+            GroupListRegisters vm = new GroupListRegisters(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:36
+            vm.IsNotifying = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:40
+            vm.IsValidate = false;
+            vm.Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.NameUi = from.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.ListRegisters = new ConfigNodesCollection<Register>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:56
+            foreach (var t in from.ListRegisters) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:57
+                vm.ListRegisters.Add(Register.Clone(vm, (Register)t, isDeep));
+            vm.SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.PrefixForDbTables = from.PrefixForDbTables; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:56
+            foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:57
+                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:73
+                vm.SetNewGuid();
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(GroupListRegisters to, IGroupListRegisters from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:80
+        {
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
+            to.Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.NameUi = from.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:89
+            {
+                foreach (var t in to.ListRegisters.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListRegisters)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            Register.Update((Register)t, (Register)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListRegisters.Remove(t);
+                }
+                foreach (var tt in from.ListRegisters)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListRegisters.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new Register(to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:120
+                        Register.Update(p, (Register)tt, isDeep);
+                        to.ListRegisters.Add(p);
+                    }
+                }
+            }
+            to.SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.PrefixForDbTables = from.PrefixForDbTables; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:89
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:120
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.Add(p);
+                    }
+                }
+            }
+        }
+        // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:150
+        #region IEditable
+        public override GroupListRegisters Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return GroupListRegisters.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:158
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(GroupListRegisters from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            GroupListRegisters.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_group_list_registers' to 'GroupListRegisters'
+        public static GroupListRegisters ConvertToVM(Proto.Config.proto_group_list_registers m, GroupListRegisters vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:174
+        {
+            Debug.Assert(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Guid = m.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.Name = m.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.NameUi = m.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.Description = m.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.ListRegisters = new ConfigNodesCollection<Register>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:195
+            foreach (var t in m.ListRegisters) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:199
+            {
+                var tvm = Register.ConvertToVM(t, new Register(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:201
+                vm.ListRegisters.Add(tvm);
+            }
+            vm.SortingValue = m.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.PrefixForDbTables = m.PrefixForDbTables; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.ShortIdTypeForCacheKey = m.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:195
+            foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:199
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:201
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
+            vm.OnInitFromDto(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:228
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'GroupListRegisters' to 'proto_group_list_registers'
+        public static Proto.Config.proto_group_list_registers ConvertToProto(GroupListRegisters vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:237
+        {
+            Debug.Assert(vm != null);
+            Proto.Config.proto_group_list_registers m = new Proto.Config.proto_group_list_registers(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:240
+            m.Guid = vm.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.Name = vm.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.NameUi = vm.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.Description = vm.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            foreach (var t in vm.ListRegisters) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:243
+                m.ListRegisters.Add(Register.ConvertToProto((Register)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:247
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.PrefixForDbTables = vm.PrefixForDbTables; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.ShortIdTypeForCacheKey = vm.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:243
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:247
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:9
+        {
+            Debug.Assert(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            foreach (var t in this.ListRegisters)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            foreach (var t in this.ListNodeGeneratorsSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [Category("")]
+        [PropertyOrderAttribute(-2)]
+        [ReadOnly(true)]
+        public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._Guid; }
+            set
+            {
+                if (this._Guid != value)
+                {
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnGuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(1)]
+        public string Name // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._Name; }
+            set
+            {
+                if (this._Name != value)
+                {
+                    this.OnNameChanging(ref value);
+                    this._Name = value;
+                    this.OnNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnNameChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(2)]
+        [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
+        public string NameUi // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._NameUi; }
+            set
+            {
+                if (this._NameUi != value)
+                {
+                    this.OnNameUiChanging(ref value);
+                    this._NameUi = value;
+                    this.OnNameUiChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnNameUiChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(3)]
+        public string Description // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._Description; }
+            set
+            {
+                if (this._Description != value)
+                {
+                    this.OnDescriptionChanging(ref value);
+                    this._Description = value;
+                    this.OnDescriptionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Description = string.Empty;
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnDescriptionChanged();
+        
+        [Browsable(false)]
+        public ConfigNodesCollection<Register> ListRegisters // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:9
+        { 
+            get { return this._ListRegisters; }
+            set
+            {
+                if (this._ListRegisters != value)
+                {
+                    this.OnListRegistersChanging(value);
+                    _ListRegisters = value;
+                    this.OnListRegistersChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<Register> _ListRegisters;
+        IReadOnlyList<IRegister> IGroupListRegisters.ListRegisters { get { return (this as GroupListRegisters).ListRegisters; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:27
+        partial void OnListRegistersChanging(ObservableCollection<Register> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:28
+        partial void OnListRegistersChanged();
+        public Register this[int index] { get { return (Register)this.ListRegisters[index]; } }
+        IRegister IGroupListRegisters.this[int index] { get { return (Register)this.ListRegisters[index]; } }
+        public void Add(Register item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:33
+        { 
+            Debug.Assert(item != null);
+            this.ListRegisters.Add(item); 
+            item.Parent = this;
+        }
+        public void AddRange(IEnumerable<Register> items) 
+        { 
+            Debug.Assert(items != null);
+            this.ListRegisters.AddRange(items); 
+            foreach (var t in items)
+                t.Parent = this;
+        }
+        public int Count() { return this.ListRegisters.Count; }
+        int IGroupListRegisters.Count() { return this.Count(); }
+        public void Remove(Register item) 
+        {
+            Debug.Assert(item != null);
+            this.ListRegisters.Remove(item); 
+            item.Parent = null;
+        }
+        
+        [Browsable(false)]
+        public ulong SortingValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._SortingValue; }
+            set
+            {
+                if (this._SortingValue != value)
+                {
+                    this.OnSortingValueChanging(ref value);
+                    this._SortingValue = value;
+                    this.OnSortingValueChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnSortingValueChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(9)]
+        [DisplayName("Db prefix")]
+        [Description("Prefix for register db table names")]
+        public string PrefixForDbTables // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PrefixForDbTables; }
+            set
+            {
+                if (this._PrefixForDbTables != value)
+                {
+                    this.OnPrefixForDbTablesChanging(ref value);
+                    this._PrefixForDbTables = value;
+                    this.OnPrefixForDbTablesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PrefixForDbTables = string.Empty;
+        partial void OnPrefixForDbTablesChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPrefixForDbTablesChanged();
+        
+        [PropertyOrderAttribute(15)]
+        [DisplayName("Short ID")]
+        [Description("Short register type ID for cache key generator")]
+        public string ShortIdTypeForCacheKey // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._ShortIdTypeForCacheKey; }
+            set
+            {
+                if (this._ShortIdTypeForCacheKey != value)
+                {
+                    this.OnShortIdTypeForCacheKeyChanging(ref value);
+                    this._ShortIdTypeForCacheKey = value;
+                    this.OnShortIdTypeForCacheKeyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ShortIdTypeForCacheKey = string.Empty;
+        partial void OnShortIdTypeForCacheKeyChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnShortIdTypeForCacheKeyChanged();
+        
+        [Browsable(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:9
+        { 
+            get { return this._ListNodeGeneratorsSettings; }
+            set
+            {
+                if (this._ListNodeGeneratorsSettings != value)
+                {
+                    this.OnListNodeGeneratorsSettingsChanging(value);
+                    _ListNodeGeneratorsSettings = value;
+                    this.OnListNodeGeneratorsSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
+        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListRegisters.ListNodeGeneratorsSettings { get { return (this as GroupListRegisters).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:27
+        partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:28
+        partial void OnListNodeGeneratorsSettingsChanged();
+    /*
+        [Browsable(false)]
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:111
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:128
+        */
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131
+        #endregion Properties
+    }
+    // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    //    IsISortingValue: True 
+    public partial class RegisterValidator : ValidatorBase<Register, RegisterValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
+    public partial class Register : ConfigObjectVmGenSettings<Register, RegisterValidator>, IComparable<Register>, IConfigAcceptVisitor, IRegister // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
+    {
+        #region CTOR
+        public Register(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:27
+            : base(parent, RegisterValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this._ListRegisterDimensions = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:36
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:38
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
+        #endregion CTOR
+        #region Procedures
+        
+        public override void Sort(Type type) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:9
+        {
+            if (type == typeof(PluginGeneratorNodeSettings)) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:16
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
+        }
+        public static Register Clone(ITreeConfigNode? parent, IRegister from, bool isDeep = true, bool isNewGuid = false) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:29
+        {
+            Debug.Assert(from != null);
+            Register vm = new Register(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:36
+            vm.IsNotifying = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:40
+            vm.IsValidate = false;
+            vm.Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.NameUi = from.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.ShortId = from.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.UseQtyAccumulator = from.UseQtyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.PropertyQtyAccumulatorName = from.PropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.PropertyQtyAccumulatorLength = from.PropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.UseMoneyAccumulator = from.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.PropertyMoneyAccumulatorName = from.PropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.PropertyMoneyAccumulatorLength = from.PropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.PropertyMoneyAccumulatorAccuracy = from.PropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            foreach (var t in from.ListRegisterDimensions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:49
+                vm.ListRegisterDimensions.Add(t);
+            vm.Position = from.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:56
+            foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:57
+                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:73
+                vm.SetNewGuid();
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(Register to, IRegister from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:80
+        {
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
+            to.Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.NameUi = from.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.ShortId = from.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.UseQtyAccumulator = from.UseQtyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.PropertyQtyAccumulatorName = from.PropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.PropertyQtyAccumulatorLength = from.PropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.UseMoneyAccumulator = from.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.PropertyMoneyAccumulatorName = from.PropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.PropertyMoneyAccumulatorLength = from.PropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.PropertyMoneyAccumulatorAccuracy = from.PropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+                to.ListRegisterDimensions.Clear(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:130
+                foreach (var tt in from.ListRegisterDimensions)
+                {
+                    to.ListRegisterDimensions.Add(tt);
+                }
+            to.Position = from.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:89
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:120
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.Add(p);
+                    }
+                }
+            }
+        }
+        // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:150
+        #region IEditable
+        public override Register Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return Register.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:158
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(Register from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            Register.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_register' to 'Register'
+        public static Register ConvertToVM(Proto.Config.proto_register m, Register vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:174
+        {
+            Debug.Assert(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Guid = m.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.Name = m.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.SortingValue = m.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.NameUi = m.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.Description = m.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.IsNew = m.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.ShortId = m.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.UseQtyAccumulator = m.UseQtyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.PropertyQtyAccumulatorName = m.PropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.PropertyQtyAccumulatorLength = m.PropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.UseMoneyAccumulator = m.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.PropertyMoneyAccumulatorName = m.PropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.PropertyMoneyAccumulatorLength = m.PropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.PropertyMoneyAccumulatorAccuracy = m.PropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.ListRegisterDimensions = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:188
+            foreach (var t in m.ListRegisterDimensions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:189
+            {
+                vm.ListRegisterDimensions.Add(t);
+            }
+            vm.Position = m.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:195
+            foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:199
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:201
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
+            vm.OnInitFromDto(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:228
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'Register' to 'proto_register'
+        public static Proto.Config.proto_register ConvertToProto(Register vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:237
+        {
+            Debug.Assert(vm != null);
+            Proto.Config.proto_register m = new Proto.Config.proto_register(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:240
+            m.Guid = vm.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.Name = vm.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.NameUi = vm.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.Description = vm.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.UseQtyAccumulator = vm.UseQtyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.PropertyQtyAccumulatorName = vm.PropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.PropertyQtyAccumulatorLength = vm.PropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.UseMoneyAccumulator = vm.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.PropertyMoneyAccumulatorName = vm.PropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.PropertyMoneyAccumulatorLength = vm.PropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.PropertyMoneyAccumulatorAccuracy = vm.PropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            foreach (var t in vm.ListRegisterDimensions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:243
+                m.ListRegisterDimensions.Add(t); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:245
+            m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:243
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:247
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:9
+        {
+            Debug.Assert(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            foreach (var t in this.ListNodeGeneratorsSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [Category("")]
+        [PropertyOrderAttribute(-2)]
+        [ReadOnly(true)]
+        public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._Guid; }
+            set
+            {
+                if (this._Guid != value)
+                {
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnGuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(1)]
+        public string Name // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._Name; }
+            set
+            {
+                if (this._Name != value)
+                {
+                    this.OnNameChanging(ref value);
+                    this._Name = value;
+                    this.OnNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnNameChanged();
+        
+        [Browsable(false)]
+        public ulong SortingValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._SortingValue; }
+            set
+            {
+                if (this._SortingValue != value)
+                {
+                    this.OnSortingValueChanging(ref value);
+                    this._SortingValue = value;
+                    this.OnSortingValueChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnSortingValueChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(2)]
+        [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
+        public string NameUi // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._NameUi; }
+            set
+            {
+                if (this._NameUi != value)
+                {
+                    this.OnNameUiChanging(ref value);
+                    this._NameUi = value;
+                    this.OnNameUiChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnNameUiChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(3)]
+        public string Description // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._Description; }
+            set
+            {
+                if (this._Description != value)
+                {
+                    this.OnDescriptionChanging(ref value);
+                    this._Description = value;
+                    this.OnDescriptionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Description = string.Empty;
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnDescriptionChanged();
+        
+        [Browsable(false)]
+        public bool IsNew // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._IsNew; }
+            set
+            {
+                if (this._IsNew != value)
+                {
+                    this.OnIsNewChanging(ref value);
+                    this._IsNew = value;
+                    this.OnIsNewChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsNew;
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnIsNewChanged();
+        
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
+        public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._IsMarkedForDeletion; }
+            set
+            {
+                if (this._IsMarkedForDeletion != value)
+                {
+                    this.OnIsMarkedForDeletionChanging(ref value);
+                    this._IsMarkedForDeletion = value;
+                    this.OnIsMarkedForDeletionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsMarkedForDeletion;
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnIsMarkedForDeletionChanged();
+        
+        [Browsable(false)]
+        public int ShortId // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._ShortId; }
+            set
+            {
+                if (this._ShortId != value)
+                {
+                    this.OnShortIdChanging(ref value);
+                    this._ShortId = value;
+                    this.OnShortIdChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _ShortId;
+        partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnShortIdChanged();
+        
+        [PropertyOrderAttribute(15)]
+        [DisplayName("Use Qty")]
+        [Description("Use quantity accumulator for register")]
+        public bool UseQtyAccumulator // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._UseQtyAccumulator; }
+            set
+            {
+                if (this._UseQtyAccumulator != value)
+                {
+                    this.OnUseQtyAccumulatorChanging(ref value);
+                    this._UseQtyAccumulator = value;
+                    this.OnUseQtyAccumulatorChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseQtyAccumulator;
+        partial void OnUseQtyAccumulatorChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnUseQtyAccumulatorChanged();
+        
+        [PropertyOrderAttribute(16)]
+        [DisplayName("Qty name")]
+        [Description("Quantity accumulator property name")]
+        public string PropertyQtyAccumulatorName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PropertyQtyAccumulatorName; }
+            set
+            {
+                if (this._PropertyQtyAccumulatorName != value)
+                {
+                    this.OnPropertyQtyAccumulatorNameChanging(ref value);
+                    this._PropertyQtyAccumulatorName = value;
+                    this.OnPropertyQtyAccumulatorNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyQtyAccumulatorName = string.Empty;
+        partial void OnPropertyQtyAccumulatorNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPropertyQtyAccumulatorNameChanged();
+        
+        [PropertyOrderAttribute(17)]
+        [DisplayName("Qty Length")]
+        [Description("Maximum decimal digits for quantity data)")]
+        public uint PropertyQtyAccumulatorLength // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PropertyQtyAccumulatorLength; }
+            set
+            {
+                if (this._PropertyQtyAccumulatorLength != value)
+                {
+                    this.OnPropertyQtyAccumulatorLengthChanging(ref value);
+                    this._PropertyQtyAccumulatorLength = value;
+                    this.OnPropertyQtyAccumulatorLengthChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _PropertyQtyAccumulatorLength;
+        partial void OnPropertyQtyAccumulatorLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPropertyQtyAccumulatorLengthChanged();
+        
+        [PropertyOrderAttribute(21)]
+        [DisplayName("Use Money")]
+        [Description("Use money accumulator for register")]
+        public bool UseMoneyAccumulator // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._UseMoneyAccumulator; }
+            set
+            {
+                if (this._UseMoneyAccumulator != value)
+                {
+                    this.OnUseMoneyAccumulatorChanging(ref value);
+                    this._UseMoneyAccumulator = value;
+                    this.OnUseMoneyAccumulatorChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseMoneyAccumulator;
+        partial void OnUseMoneyAccumulatorChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnUseMoneyAccumulatorChanged();
+        
+        [PropertyOrderAttribute(22)]
+        [DisplayName("Money name")]
+        [Description("Money accumulator property name")]
+        public string PropertyMoneyAccumulatorName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PropertyMoneyAccumulatorName; }
+            set
+            {
+                if (this._PropertyMoneyAccumulatorName != value)
+                {
+                    this.OnPropertyMoneyAccumulatorNameChanging(ref value);
+                    this._PropertyMoneyAccumulatorName = value;
+                    this.OnPropertyMoneyAccumulatorNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyMoneyAccumulatorName = string.Empty;
+        partial void OnPropertyMoneyAccumulatorNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPropertyMoneyAccumulatorNameChanged();
+        
+        [PropertyOrderAttribute(23)]
+        [DisplayName("Money Length")]
+        [Description("Maximum decimal digits for money data)")]
+        public uint PropertyMoneyAccumulatorLength // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PropertyMoneyAccumulatorLength; }
+            set
+            {
+                if (this._PropertyMoneyAccumulatorLength != value)
+                {
+                    this.OnPropertyMoneyAccumulatorLengthChanging(ref value);
+                    this._PropertyMoneyAccumulatorLength = value;
+                    this.OnPropertyMoneyAccumulatorLengthChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _PropertyMoneyAccumulatorLength;
+        partial void OnPropertyMoneyAccumulatorLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPropertyMoneyAccumulatorLengthChanged();
+        
+        [PropertyOrderAttribute(24)]
+        [DisplayName("Money accuracy")]
+        [Description("Number of decimal places in fractional part for money data)")]
+        public uint PropertyMoneyAccumulatorAccuracy // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PropertyMoneyAccumulatorAccuracy; }
+            set
+            {
+                if (this._PropertyMoneyAccumulatorAccuracy != value)
+                {
+                    this.OnPropertyMoneyAccumulatorAccuracyChanging(ref value);
+                    this._PropertyMoneyAccumulatorAccuracy = value;
+                    this.OnPropertyMoneyAccumulatorAccuracyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _PropertyMoneyAccumulatorAccuracy;
+        partial void OnPropertyMoneyAccumulatorAccuracyChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPropertyMoneyAccumulatorAccuracyChanged();
+        
+        // <summary>
+        // / Guids of selected CATALOGS types
+        // / </summary>
+        [Browsable(false)]
+        [PropertyOrderAttribute(25)]
+        public ObservableCollectionWithActions<string> ListRegisterDimensions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:9
+        { 
+            get { return this._ListRegisterDimensions; }
+            set
+            {
+                if (this._ListRegisterDimensions != value)
+                {
+                    this.OnListRegisterDimensionsChanging(value);
+                    _ListRegisterDimensions = value;
+                    this.OnListRegisterDimensionsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollectionWithActions<string> _ListRegisterDimensions;
+        IReadOnlyList<string> IRegister.ListRegisterDimensions { get { return (this as Register).ListRegisterDimensions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:27
+        partial void OnListRegisterDimensionsChanging(ObservableCollection<string> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:28
+        partial void OnListRegisterDimensionsChanged();
+        
+        // Protobuf field position
+        // Reserved positions: 1 - primary key
+        [ReadOnly(true)]
+        public uint Position // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._Position; }
+            set
+            {
+                if (this._Position != value)
+                {
+                    this.OnPositionChanging(ref value);
+                    this._Position = value;
+                    this.OnPositionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _Position;
+        partial void OnPositionChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPositionChanged();
+        
+        [Browsable(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:9
+        { 
+            get { return this._ListNodeGeneratorsSettings; }
+            set
+            {
+                if (this._ListNodeGeneratorsSettings != value)
+                {
+                    this.OnListNodeGeneratorsSettingsChanging(value);
+                    _ListNodeGeneratorsSettings = value;
+                    this.OnListNodeGeneratorsSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
+        IReadOnlyList<IPluginGeneratorNodeSettings> IRegister.ListNodeGeneratorsSettings { get { return (this as Register).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:27
+        partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:28
+        partial void OnListNodeGeneratorsSettingsChanged();
+    /*
+        [Browsable(false)]
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:111
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:128
+        */
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:136 proto_register
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        #endregion Properties
+    }
+    // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    //    IsISortingValue: False 
     public partial class GroupDocumentsValidator : ValidatorBase<GroupDocuments, GroupDocumentsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
     public partial class GroupDocuments : ConfigObjectVmGenSettings<GroupDocuments, GroupDocumentsValidator>, IComparable<GroupDocuments>, IConfigAcceptVisitor, IGroupDocuments // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
@@ -22906,6 +24084,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreating();
             this._GroupSharedProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:41
             this._GroupListDocuments = new GroupListDocuments(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:41
+            this._GroupListRegisters = new GroupListRegisters(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:41
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:38
             this.OnCreated();
             this.IsValidate = true;
@@ -22939,6 +24118,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vm.GroupSharedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupSharedProperties, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:65 IsDefaultBase=True
                 vm.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.Clone(vm, from.GroupListDocuments, isDeep);
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:65 IsDefaultBase=True
+                vm.GroupListRegisters = vSharpStudio.vm.ViewModels.GroupListRegisters.Clone(vm, from.GroupListRegisters, isDeep);
             vm.UseDocCodeProperty = from.UseDocCodeProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.MondayBeforeFirstDocDate = from.MondayBeforeFirstDocDate; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.UseDocDateProperty = from.UseDocDateProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
@@ -22968,6 +24149,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupSharedProperties, from.GroupSharedProperties, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:141
                 vSharpStudio.vm.ViewModels.GroupListDocuments.Update((GroupListDocuments)to.GroupListDocuments, from.GroupListDocuments, isDeep);
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:141
+                vSharpStudio.vm.ViewModels.GroupListRegisters.Update((GroupListRegisters)to.GroupListRegisters, from.GroupListRegisters, isDeep);
             to.UseDocCodeProperty = from.UseDocCodeProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             to.MondayBeforeFirstDocDate = from.MondayBeforeFirstDocDate; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             to.UseDocDateProperty = from.UseDocDateProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
@@ -23051,6 +24234,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             if (vm.GroupListDocuments == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:214
                 vm.GroupListDocuments = new GroupListDocuments(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToVM(m.GroupListDocuments, (GroupListDocuments)vm.GroupListDocuments); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:220
+            if (vm.GroupListRegisters == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:214
+                vm.GroupListRegisters = new GroupListRegisters(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vSharpStudio.vm.ViewModels.GroupListRegisters.ConvertToVM(m.GroupListRegisters, (GroupListRegisters)vm.GroupListRegisters); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:220
             vm.UseDocCodeProperty = (EnumUseType)m.UseDocCodeProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.MondayBeforeFirstDocDate = m.MondayBeforeFirstDocDate; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.UseDocDateProperty = (EnumUseType)m.UseDocDateProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
@@ -23083,6 +24269,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.PrefixForDbTables = vm.PrefixForDbTables; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             m.GroupSharedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupSharedProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:271
             m.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToProto((GroupListDocuments)vm.GroupListDocuments); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:271
+            m.GroupListRegisters = vSharpStudio.vm.ViewModels.GroupListRegisters.ConvertToProto((GroupListRegisters)vm.GroupListRegisters); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:271
             m.UseDocCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseDocCodeProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:275
             m.MondayBeforeFirstDocDate = vm.MondayBeforeFirstDocDate; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             m.UseDocDateProperty = (Proto.Config.proto_enum_use_type)vm.UseDocDateProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:275
@@ -23105,6 +24292,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.GroupSharedProperties.AcceptConfigNodeVisitor(visitor); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:31
         
             this.GroupListDocuments.AcceptConfigNodeVisitor(visitor); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:31
+        
+            this.GroupListRegisters.AcceptConfigNodeVisitor(visitor); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:31
         
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
@@ -23293,6 +24482,30 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnGroupListDocumentsChanging(ref GroupListDocuments to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnGroupListDocumentsChanged();
         //IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return this._GroupListDocuments; } }
+        
+        [Browsable(false)]
+        [Description("Registers for documents")]
+        public GroupListRegisters GroupListRegisters // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._GroupListRegisters; }
+            set
+            {
+                if (this._GroupListRegisters != value)
+                {
+                    this.OnGroupListRegistersChanging(ref value);
+                    this._GroupListRegisters = value;
+                    this.OnGroupListRegistersChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private GroupListRegisters _GroupListRegisters;
+        IGroupListRegisters IGroupDocuments.GroupListRegisters { get { return (this as GroupDocuments).GroupListRegisters; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+        partial void OnGroupListRegistersChanging(ref GroupListRegisters to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnGroupListRegistersChanged();
+        //IGroupListRegisters IGroupDocuments.GroupListRegisters { get { return this._GroupListRegisters; } }
         
         [Category("")]
         [PropertyOrderAttribute(22)]
@@ -33730,6 +34943,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void Visit(Proto.Config.proto_catalog_code_property_settings p);
         void Visit(Proto.Config.proto_catalog p);
         void Visit(Proto.Config.proto_group_list_catalogs p);
+        void Visit(Proto.Config.proto_group_list_registers p);
+        void Visit(Proto.Config.proto_register p);
         void Visit(Proto.Config.proto_group_documents p);
         void Visit(Proto.Config.proto_document_number_property_settings p);
         void Visit(Proto.Config.proto_document p);
@@ -34185,6 +35400,22 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnVisit((IValidatableWithSeverity)p);
         }
         protected override void OnVisitEnd(GroupListCatalogs p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:48
+        {
+            this.OnVisitEnd((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisit(GroupListRegisters p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        {
+            this.OnVisit((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisitEnd(GroupListRegisters p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:48
+        {
+            this.OnVisitEnd((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisit(Register p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        {
+            this.OnVisit((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisitEnd(Register p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:48
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
@@ -34878,6 +36109,26 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         protected virtual void OnVisit(GroupListCatalogs p) { }
         protected virtual void OnVisitEnd(GroupListCatalogs p) { }
+        public void Visit(GroupListRegisters p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(GroupListRegisters p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(GroupListRegisters p) { }
+        protected virtual void OnVisitEnd(GroupListRegisters p) { }
+        public void Visit(Register p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(Register p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(Register p) { }
+        protected virtual void OnVisitEnd(Register p) { }
         public void Visit(GroupDocuments p)
         {
             this.OnVisit(p);
@@ -35147,6 +36398,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void VisitEnd(Catalog p);
         void Visit(GroupListCatalogs p);
         void VisitEnd(GroupListCatalogs p);
+        void Visit(GroupListRegisters p);
+        void VisitEnd(GroupListRegisters p);
+        void Visit(Register p);
+        void VisitEnd(Register p);
         void Visit(GroupDocuments p);
         void VisitEnd(GroupDocuments p);
         void Visit(Document p);

@@ -1,0 +1,204 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using FluentValidation;
+using ViewModelBase;
+using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
+using vSharpStudio.wpf.Controls;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+
+namespace vSharpStudio.vm.ViewModels
+{
+    [DebuggerDisplay("Group:{Name,nq} Count:{ListRegisters.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    public partial class GroupListRegisters : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
+    {
+        [Browsable(false)]
+        public bool IsNew { get { return false; } }
+        [Browsable(false)]
+        public GroupDocuments ParentGroupDocuments { get { Debug.Assert(this.Parent != null); return (GroupDocuments)this.Parent; } }
+        [Browsable(false)]
+        public IGroupDocuments ParentGroupDocumentsI { get { Debug.Assert(this.Parent != null); return (IGroupDocuments)this.Parent; } }
+        [Browsable(false)]
+        public Model ParentModel { get { return this.ParentGroupDocuments.ParentModel; } }
+        [Browsable(false)]
+        public IModel ParentModelI { get { return this.ParentGroupDocumentsI.ParentModelI; } }
+
+        #region ITree
+        public override IChildrenCollection GetListChildren()
+        {
+            return this.Children;
+        }
+        public override IChildrenCollection GetListSiblings()
+        {
+            return this.ParentModel.Children;
+        }
+        #endregion ITree
+
+        #region Tree operations
+        public bool CanAddSubNode() { return true; }
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
+        {
+            Register node = null!;
+            if (node_impl == null)
+            {
+                node = new Register(this);
+            }
+            else
+            {
+                node = (Register)node_impl;
+            }
+            this.Add(node);
+            if (node_impl == null)
+            {
+                this.GetUniqueName(Defaults.RegisterName, node, this.ListRegisters);
+            }
+            var model = this.ParentModel;
+            node.ShortId = model.LastRegisterShortId + 1;
+            model.LastRegisterShortId = node.ShortId;
+            this.SetSelected(node);
+            return node;
+        }
+        #endregion Tree operations
+
+        public new ConfigNodesCollection<Register> Children { get { return this.ListRegisters; } }
+
+        partial void OnCreated()
+        {
+            this._Name = Defaults.RegisterGroupName;
+            this.PrefixForDbTables = "Reg";
+            this.IsEditable = false;
+            this.ShortIdTypeForCacheKey = "rg";
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+
+        private void Init()
+        {
+            //if (this.Parent is Catalog)
+            //{
+            //    this.NameUi = "Sub Catalogs";
+            //}
+            this.ListRegisters.OnAddingAction = (t) =>
+            {
+                t.IsNew = true;
+            };
+            this.ListRegisters.OnAddedAction = (t) =>
+            {
+                t.OnAdded();
+                //t.InitRoles();
+            };
+            this.ListRegisters.OnRemovedAction = (t) =>
+            {
+                this.OnRemoveChild();
+            };
+            this.ListRegisters.OnClearedAction = () =>
+            {
+                this.OnRemoveChild();
+            };
+        }
+        public int IndexOf(IRegister reg)
+        {
+            return this.ListRegisters.IndexOf((reg as Register)!);
+        }
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
+        {
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Description),
+                this.GetPropertyName(() => this.Guid),
+                this.GetPropertyName(() => this.NameUi),
+                this.GetPropertyName(() => this.Parent),
+                this.GetPropertyName(() => this.Children)
+            };
+            //if (!this.UseCodeProperty)
+            //    lst.Add(this.GetPropertyName(() => this.PropertyCodeName));
+            //if (!this.UseNameProperty)
+            //    lst.Add(this.GetPropertyName(() => this.PropertyNameName));
+            return lst.ToArray();
+        }
+        //public uint GetNextPosition()
+        //{
+        //    // ???? not sure yet
+        //    // Reserved positions
+        //    // 1  not used
+        //    // 2  not used
+        //    // 3  not used
+        //    // 4  __is_need_insert
+        //    // 5  __is_need_update
+        //    // 6  PropertyId
+        //    // 7  PropertyObjectVersion
+        //    // 8  PropertyRefParent, PropertyDocumentDate
+        //    // 9  PropertyCatalogCode, PropertyCatalogCodeInt, PropertyDocumentCodeString, PropertyDocumentCodeInt
+        //    // 10 PropertyCatalogName
+        //    // 11 PropertyCatalogDescription
+        //    // 12 PropertyIsFolder
+        //    // 13 PropertyIsOpen
+        //    if (this.LastGenPosition == 0)
+        //    {
+        //        if (this.Parent is Catalog)
+        //        {
+        //            this.LastGenPosition = 13;
+
+        //        }
+        //        else if (this.Parent is Detail)
+        //        {
+        //            this.LastGenPosition = 8;
+        //        }
+        //        else if (this.Parent is CatalogFolder)
+        //        {
+        //            this.LastGenPosition = 13;
+        //        }
+        //        else if (this.Parent is Document)
+        //        {
+        //            this.LastGenPosition = 10;
+        //        }
+        //        else if (this.Parent is GroupDocuments)
+        //        {
+        //            //this.LastGenPosition = 0;
+        //        }
+        //        else
+        //            throw new NotImplementedException();
+        //    }
+        //    this.LastGenPosition++;
+        //    return this.LastGenPosition;
+        //}
+        public Register AddRegister()
+        {
+            var node = new Register(this);
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Register AddRegister(string name, string? guid = null)
+        {
+            var node = new Register(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+
+        #region Roles
+        //public EnumCatalogDetailAccess GetRoleCatalogAccess(IRole role)
+        //{
+        //    return role.DefaultCatalogEditAccessSettings;
+        //}
+        //public EnumPrintAccess GetRoleCatalogPrint(IRole role)
+        //{
+        //    return role.DefaultCatalogPrintAccessSettings;
+        //}
+        #endregion Roles
+    }
+}

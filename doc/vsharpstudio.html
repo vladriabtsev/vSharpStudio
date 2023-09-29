@@ -363,6 +363,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_group_list_registers"><span class="badge">M</span>proto_group_list_registers</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_group_list_reports"><span class="badge">M</span>proto_group_list_reports</a>
                 </li>
               
@@ -424,6 +428,10 @@
               
                 <li>
                   <a href="#proto_config.proto_property_data_generator"><span class="badge">M</span>proto_property_data_generator</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_register"><span class="badge">M</span>proto_register</a>
                 </li>
               
                 <li>
@@ -2278,7 +2286,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(5)]
 @attr [DisplayName(&#34;Accuracy&#34;)]
-@attr [Description(&#34;Number of decimal places in fractional part for numeric data)&#34;)] </p></td>
+@attr [Description(&#34;Number of decimal places in fractional part for numeric data&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4711,6 +4719,14 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
+                  <td>group_list_registers</td>
+                  <td><a href="#proto_config.proto_group_list_registers">proto_group_list_registers</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)]
+@attr [Description(&#34;Registers for documents&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>use_doc_code_property</td>
                   <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
@@ -6058,6 +6074,98 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
 
         
       
+        <h3 id="proto_config.proto_group_list_registers">proto_group_list_registers</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_registers</td>
+                  <td><a href="#proto_config.proto_register">proto_register</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prefix_for_db_tables</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(9)]
+@attr [DisplayName(&#34;Db prefix&#34;)]
+@attr [Description(&#34;Prefix for register db table names&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id_type_for_cache_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(15)]
+@attr [DisplayName(&#34;Short ID&#34;)]
+@attr [Description(&#34;Short register type ID for cache key generator&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_group_list_reports">proto_group_list_reports</h3>
         <p>R E P O R T S</p><p>@exclude</p><p>####################################### R E P O R T S ##########################################</p>
 
@@ -6692,6 +6800,13 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
               
                 <tr>
                   <td>last_detail_short_id</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_register_short_id</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -7644,6 +7759,177 @@ Reserved positions: 1 - primary key
                   <td><a href="#proto_config.proto_enum_random_data_type">proto_enum_random_data_type</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_register">proto_register</h3>
+        <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_qty_accumulator</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(15)]
+@attr [DisplayName(&#34;Use Qty&#34;)]
+@attr [Description(&#34;Use quantity accumulator for register&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_qty_accumulator_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(16)]
+@attr [DisplayName(&#34;Qty name&#34;)]
+@attr [Description(&#34;Quantity accumulator property name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_qty_accumulator_length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(17)]
+@attr [DisplayName(&#34;Qty Length&#34;)]
+@attr [Description(&#34;Maximum decimal digits for quantity data)&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_money_accumulator</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(21)]
+@attr [DisplayName(&#34;Use Money&#34;)]
+@attr [Description(&#34;Use money accumulator for register&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_money_accumulator_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(22)]
+@attr [DisplayName(&#34;Money name&#34;)]
+@attr [Description(&#34;Money accumulator property name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_money_accumulator_length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(23)]
+@attr [DisplayName(&#34;Money Length&#34;)]
+@attr [Description(&#34;Maximum decimal digits for money data)&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_money_accumulator_accuracy</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(24)]
+@attr [DisplayName(&#34;Money accuracy&#34;)]
+@attr [Description(&#34;Number of decimal places in fractional part for money data)&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_register_dimensions</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>&lt;summary&gt;
+/ Guids of selected CATALOGS types
+/ &lt;/summary&gt;
+@attr [Browsable(false)]
+@attr [PropertyOrderAttribute(25)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Protobuf field position
+Reserved positions: 1 - primary key
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
             </tbody>

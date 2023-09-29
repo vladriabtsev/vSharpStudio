@@ -50,6 +50,7 @@
     - [proto_group_list_main_view_forms](#proto_config.proto_group_list_main_view_forms)
     - [proto_group_list_plugins](#proto_config.proto_group_list_plugins)
     - [proto_group_list_properties](#proto_config.proto_group_list_properties)
+    - [proto_group_list_registers](#proto_config.proto_group_list_registers)
     - [proto_group_list_reports](#proto_config.proto_group_list_reports)
     - [proto_group_list_roles](#proto_config.proto_group_list_roles)
     - [proto_journal](#proto_config.proto_journal)
@@ -66,6 +67,7 @@
     - [proto_plugin_group_model_extentions](#proto_config.proto_plugin_group_model_extentions)
     - [proto_property](#proto_config.proto_property)
     - [proto_property_data_generator](#proto_config.proto_property_data_generator)
+    - [proto_register](#proto_config.proto_register)
     - [proto_report](#proto_config.proto_report)
     - [proto_role](#proto_config.proto_role)
     - [proto_role_catalog_access](#proto_config.proto_role_catalog_access)
@@ -485,7 +487,7 @@ Constant application wise value
 | data_type_enum | [proto_enum_data_type](#proto_config.proto_enum_data_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Type&#34;)] |
 | length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Maximum length of data (characters in string, or decimal digits for numeric data)&#34;)] |
 | is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Positive&#34;)] @attr [Description(&#34;Expected numerical value always &gt;= 0&#34;)] |
-| accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for numeric data)&#34;)] |
+| accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for numeric data&#34;)] |
 | object_guid | [string](#string) |  | &lt;summary&gt; / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. / Numerical, string, bool, date and similar are simple types. For simple types this property is empty. / If Guid of group types is assigned, then any type of such group of types is acceptable as type / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type / &lt;/summary&gt; @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | list_object_guids | [string](#string) | repeated | &lt;summary&gt; / Guids of selected complex types for data type CATALOGS or DOCUMENTS / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
 | is_p_key | [bool](#bool) |  | @attr [Browsable(false)] |
@@ -1052,6 +1054,7 @@ C O N S T A N T
 | prefix_for_db_tables | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for document db table names. Used if set to use in config model&#34;)] |
 | group_shared_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [Browsable(false)] @attr [Description(&#34;Properties for all documents&#34;)] |
 | group_list_documents | [proto_group_list_documents](#proto_config.proto_group_list_documents) |  | @attr [Browsable(false)] |
+| group_list_registers | [proto_group_list_registers](#proto_config.proto_group_list_registers) |  | @attr [Browsable(false)] @attr [Description(&#34;Registers for documents&#34;)] |
 | use_doc_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document by default&#34;)] |
 | monday_before_first_doc_date | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Monday Date&#34;)] @attr [Description(&#34;Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions &#34;)] @attr [ReadOnly(true)] |
 | use_doc_date_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document by default&#34;)] |
@@ -1399,6 +1402,29 @@ P R O P E R T Y
 
 
 
+<a name="proto_config.proto_group_list_registers"></a>
+
+### proto_group_list_registers
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| list_registers | [proto_register](#proto_config.proto_register) | repeated | @attr [Browsable(false)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| prefix_for_db_tables | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for register db table names&#34;)] |
+| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short register type ID for cache key generator&#34;)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_group_list_reports"></a>
 
 ### proto_group_list_reports
@@ -1533,6 +1559,7 @@ Configuration model
 | last_catalog_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_document_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_detail_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
+| last_register_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -1782,6 +1809,39 @@ Configuration model
 | system | [proto_enum_system_data_type](#proto_config.proto_enum_system_data_type) |  |  |
 | vehicle | [proto_enum_vehicle_data_type](#proto_config.proto_enum_vehicle_data_type) |  |  |
 | random | [proto_enum_random_data_type](#proto_config.proto_enum_random_data_type) |  |  |
+
+
+
+
+
+
+<a name="proto_config.proto_register"></a>
+
+### proto_register
+@interface ICanAddNode
+@interface ISortingValue
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| is_new | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
+| short_id | [int32](#int32) |  | @attr [Browsable(false)] |
+| use_qty_accumulator | [bool](#bool) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Use Qty&#34;)] @attr [Description(&#34;Use quantity accumulator for register&#34;)] |
+| property_qty_accumulator_name | [string](#string) |  | @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Qty name&#34;)] @attr [Description(&#34;Quantity accumulator property name&#34;)] |
+| property_qty_accumulator_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(17)] @attr [DisplayName(&#34;Qty Length&#34;)] @attr [Description(&#34;Maximum decimal digits for quantity data)&#34;)] |
+| use_money_accumulator | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Money&#34;)] @attr [Description(&#34;Use money accumulator for register&#34;)] |
+| property_money_accumulator_name | [string](#string) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Money name&#34;)] @attr [Description(&#34;Money accumulator property name&#34;)] |
+| property_money_accumulator_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Money Length&#34;)] @attr [Description(&#34;Maximum decimal digits for money data)&#34;)] |
+| property_money_accumulator_accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Money accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for money data)&#34;)] |
+| list_register_dimensions | [string](#string) | repeated | &lt;summary&gt; / Guids of selected CATALOGS types / &lt;/summary&gt; @attr [Browsable(false)] @attr [PropertyOrderAttribute(25)] |
+| position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
 

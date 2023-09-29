@@ -736,6 +736,8 @@ message proto_model {
     int32 last_document_short_id = 33;
     // @attr [Browsable(false)]
     int32 last_detail_short_id = 34;
+    // @attr [Browsable(false)]
+    int32 last_register_short_id = 35;
 
     // @attr [Category("DataGrid settings")]
     // @attr [DisplayName("Sortable")]
@@ -837,7 +839,7 @@ message proto_data_type {
     bool is_positive = 4; 
     // @attr [PropertyOrderAttribute(5)]
     // @attr [DisplayName("Accuracy")]
-    // @attr [Description("Number of decimal places in fractional part for numeric data)")]
+    // @attr [Description("Number of decimal places in fractional part for numeric data")]
     uint32 accuracy = 5;
     /// <summary>
     /// Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
@@ -2583,6 +2585,110 @@ enum proto_enum_doc_number_unique_scope {
     // @attr [Description("Day")]
     DOC_UNIQUE_DAY = 37;
 }
+message proto_group_list_registers {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [Browsable(false)]
+    repeated proto_register list_registers = 7;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 8;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(9)]
+    // @attr [DisplayName("Db prefix")]
+    // @attr [Description("Prefix for register db table names")]
+    string prefix_for_db_tables = 9;
+    // @attr [PropertyOrderAttribute(15)]
+    // @attr [DisplayName("Short ID")]
+    // @attr [Description("Short register type ID for cache key generator")]
+    string short_id_type_for_cache_key = 15;
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+// @interface ICanAddNode
+// @interface ISortingValue
+message proto_register {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 3;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [Browsable(false)]
+    bool is_new = 9;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 10;
+
+    // @attr [Browsable(false)]
+    int32 short_id = 14;
+    // @attr [PropertyOrderAttribute(15)]
+    // @attr [DisplayName("Use Qty")]
+    // @attr [Description("Use quantity accumulator for register")]
+    bool use_qty_accumulator = 15;
+    // @attr [PropertyOrderAttribute(16)]
+    // @attr [DisplayName("Qty name")]
+    // @attr [Description("Quantity accumulator property name")]
+    string property_qty_accumulator_name = 16;
+    // @attr [PropertyOrderAttribute(17)]
+    // @attr [DisplayName("Qty Length")]
+    // @attr [Description("Maximum decimal digits for quantity data)")]
+    uint32 property_qty_accumulator_length = 17; 
+    // @attr [PropertyOrderAttribute(21)]
+    // @attr [DisplayName("Use Money")]
+    // @attr [Description("Use money accumulator for register")]
+    bool use_money_accumulator = 21;
+    // @attr [PropertyOrderAttribute(22)]
+    // @attr [DisplayName("Money name")]
+    // @attr [Description("Money accumulator property name")]
+    string property_money_accumulator_name = 22;
+    // @attr [PropertyOrderAttribute(23)]
+    // @attr [DisplayName("Money Length")]
+    // @attr [Description("Maximum decimal digits for money data)")]
+    uint32 property_money_accumulator_length = 23; 
+    // @attr [PropertyOrderAttribute(24)]
+    // @attr [DisplayName("Money accuracy")]
+    // @attr [Description("Number of decimal places in fractional part for money data)")]
+    uint32 property_money_accumulator_accuracy = 24; 
+    /// <summary>
+    /// Guids of selected CATALOGS types
+    /// </summary>
+    // @attr [Browsable(false)]
+    // @attr [PropertyOrderAttribute(25)]
+    repeated string list_register_dimensions = 25;
+
+    // Protobuf field position
+    // Reserved positions: 1 - primary key
+    // @attr [ReadOnly(true)]
+    uint32 position = 110;
+
+
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
 message proto_group_documents {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -2612,6 +2718,9 @@ message proto_group_documents {
     proto_group_list_properties group_shared_properties = 7;
     // @attr [Browsable(false)]
     proto_group_list_documents group_list_documents = 8;
+    // @attr [Browsable(false)]
+    // @attr [Description("Registers for documents")]
+    proto_group_list_registers group_list_registers = 9;
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(22)]
