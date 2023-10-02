@@ -212,9 +212,8 @@ namespace vSharpStudio.vm.ViewModels
                 node.Guid = guid;
             }
 #endif
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.TIME };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.TIME, AccuracyForTime = accuracy };
             node.IsNullable = isNullable;
-            node.AccuracyForTime = accuracy;
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -252,9 +251,8 @@ namespace vSharpStudio.vm.ViewModels
                 node.Guid = guid;
             }
 #endif
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATETIMEUTC };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATETIMEUTC, AccuracyForTime = accuracy };
             node.IsNullable = isNullable;
-            node.AccuracyForTime = accuracy;
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -269,9 +267,8 @@ namespace vSharpStudio.vm.ViewModels
                 node.Guid = guid;
             }
 #endif
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATETIMELOCAL };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATETIMELOCAL, AccuracyForTime = accuracy };
             node.IsNullable = isNullable;
-            node.AccuracyForTime = accuracy;
             this.NodeAddNewSubNode(node);
             return node;
         }

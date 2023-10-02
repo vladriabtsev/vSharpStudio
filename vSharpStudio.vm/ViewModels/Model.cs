@@ -750,7 +750,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Property(parent, guid, this.PropertyDocDateName, true);
             res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res);
-            res.AccuracyForTime = EnumTimeAccuracyType.MAX;
+            res.DataType.AccuracyForTime = EnumTimeAccuracyType.MAX;
             res.Position = 8;
             res.IsCsNullable = true;
             return res;

@@ -254,11 +254,11 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Tree operations
 
         #region Editing logic
-        partial void OnIsNullableChanged()
-        {
-            this.NotifyPropertyChanged(() => this.ClrType);
-            this.Tag = null;
-        }
+        //partial void OnIsNullableChanged()
+        //{
+        //    this.NotifyPropertyChanged(() => this.ClrType);
+        //    this.Tag = null;
+        //}
         private void OnDataTypeEnumChanged()
         {
             switch (this.DataType.DataTypeEnum)
@@ -350,7 +350,7 @@ namespace vSharpStudio.vm.ViewModels
                                                                         //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
                                                                         //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
             {
-                lst.Add(this.GetPropertyName(() => this.AccuracyForTime));
+                lst.Add(this.GetPropertyName(() => this.DataType.AccuracyForTime));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
@@ -401,7 +401,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         [Category("")]
         [DisplayName("Length")]
-        [Description("Maximum length of data (characters in string, or decimal digits for numeric data)")]
+        [Description("Maximum length of data (characters in string, or decimal digits for numeric data")]
         [PropertyOrderAttribute(12)]
         public uint Length
         {
@@ -417,7 +417,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         [Category("")]
         [DisplayName("Accuracy")]
-        [Description("Number of decimal places in fractional part for numeric data)")]
+        [Description("Number of decimal places in fractional part for numeric data")]
         [PropertyOrderAttribute(13)]
         public uint Accuracy
         {
@@ -430,6 +430,22 @@ namespace vSharpStudio.vm.ViewModels
                 this.ValidateProperty();
                 this.NotifyPropertyChanged(() => this.PropertyDefinitions);
                 this.Tag = null;
+            }
+        }
+        [Category("")]
+        [DisplayName("Time accuracy")]
+        [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
+        [PropertyOrderAttribute(13)]
+        public EnumTimeAccuracyType AccuracyForTime
+        {
+            get { return this.DataType.AccuracyForTime; }
+            set
+            {
+                this.DataType.AccuracyForTime = value;
+                this.NotifyPropertyChanged();
+                this.NotifyPropertyChanged(() => this.ClrType);
+                this.ValidateProperty();
+                this.NotifyPropertyChanged(() => this.PropertyDefinitions);
             }
         }
         [Category("")]
@@ -461,6 +477,22 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged(() => this.ClrType);
                 this.ValidateProperty();
                 this.Tag = null;
+            }
+        }
+        [Category("")]
+        [DisplayName("Can be NULL")]
+        [Description("If unchecked always expected data")]
+        [PropertyOrderAttribute(16)]
+        public bool IsNullable
+        {
+            get { return this.DataType.IsNullable; }
+            set
+            {
+                this.DataType.IsNullable = value;
+                this.NotifyPropertyChanged();
+                this.NotifyPropertyChanged(() => this.ClrType);
+                this.ValidateProperty();
+                this.NotifyPropertyChanged(() => this.PropertyDefinitions);
             }
         }
         ////[DisplayName("Positive")]

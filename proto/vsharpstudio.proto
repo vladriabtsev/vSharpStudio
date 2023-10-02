@@ -850,11 +850,21 @@ message proto_data_type {
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     string object_guid = 6;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(7)]
+    // @attr [DisplayName("Time accuracy")]
+    // @attr [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
+    proto_enum_time_accuracy_type accuracy_for_time = 7;
     /// <summary>
     /// Guids of selected complex types for data type CATALOGS or DOCUMENTS
     /// </summary>
     // @attr [PropertyOrderAttribute(8)]
     repeated string list_object_guids = 8;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(9)]
+    // @attr [DisplayName("Can be NULL")]
+    // @attr [Description("If unchecked always expected data")]
+    bool is_nullable = 9;
     // @attr [Browsable(false)]
     bool is_p_key = 21;
     // @attr [Browsable(false)]
@@ -1290,11 +1300,6 @@ message proto_property {
     // @attr [Browsable(false)]
     proto_data_type data_type = 6;
     // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(20)]
-    // @attr [DisplayName("Can be NULL")]
-    // @attr [Description("If unchecked always expected data")]
-    bool is_nullable = 7;
-    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(8)]
     // @attr [DisplayName("Default")]
     // @attr [Description("Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)")]
@@ -1321,12 +1326,6 @@ message proto_property {
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum length of string")]
     string max_length_requirement = 19;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(36)]
-    // @attr [DisplayName("Time accuracy")]
-    // @attr [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
-    proto_enum_time_accuracy_type accuracy_for_time = 20;
-
 
     // @attr [PropertyOrderAttribute(23)]
     // @attr [Category("Auto Layout")]
@@ -2655,8 +2654,12 @@ message proto_register {
     string property_qty_accumulator_name = 16;
     // @attr [PropertyOrderAttribute(17)]
     // @attr [DisplayName("Qty Length")]
-    // @attr [Description("Maximum decimal digits for quantity data)")]
+    // @attr [Description("Maximum decimal digits for quantity data")]
     uint32 property_qty_accumulator_length = 17; 
+    // @attr [PropertyOrderAttribute(18)]
+    // @attr [DisplayName("Qty accuracy")]
+    // @attr [Description("Number of decimal places in fractional part for quantity data. If negative, than maximum possible accuracy")]
+    uint32 property_qty_accumulator_accuracy = 18; 
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Money")]
     // @attr [Description("Use money accumulator for register")]
@@ -2667,11 +2670,11 @@ message proto_register {
     string property_money_accumulator_name = 22;
     // @attr [PropertyOrderAttribute(23)]
     // @attr [DisplayName("Money Length")]
-    // @attr [Description("Maximum decimal digits for money data)")]
+    // @attr [Description("Maximum decimal digits for money data")]
     uint32 property_money_accumulator_length = 23; 
     // @attr [PropertyOrderAttribute(24)]
     // @attr [DisplayName("Money accuracy")]
-    // @attr [Description("Number of decimal places in fractional part for money data)")]
+    // @attr [Description("Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy")]
     uint32 property_money_accumulator_accuracy = 24; 
     /// <summary>
     /// Guids of selected CATALOGS types

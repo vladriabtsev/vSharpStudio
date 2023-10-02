@@ -55,6 +55,14 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
+            this.UseMoneyAccumulator = true;
+            this.PropertyMoneyAccumulatorName = "AccumulatedMoney";
+            this.PropertyMoneyAccumulatorAccuracy = 2;
+            this.PropertyMoneyAccumulatorLength = 0;
+            this.UseQtyAccumulator = true;
+            this.PropertyQtyAccumulatorName = "AccumulatedQty";
+            this.PropertyQtyAccumulatorAccuracy = 4;
+            this.PropertyQtyAccumulatorLength = 0;
             Init();
         }
         protected override void OnInitFromDto()

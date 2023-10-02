@@ -3666,12 +3666,32 @@
               "defaultValue": ""
             },
             {
+              "name": "accuracy_for_time",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Time accuracy\")]\n@attr [Description(\"Time accuracy for TimeOnly type. Business model is expecting selected accuracy\")]",
+              "label": "",
+              "type": "proto_enum_time_accuracy_type",
+              "longType": "proto_enum_time_accuracy_type",
+              "fullType": "proto_config.proto_enum_time_accuracy_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_object_guids",
               "description": "\u003csummary\u003e\n/ Guids of selected complex types for data type CATALOGS or DOCUMENTS\n/ \u003c/summary\u003e\n@attr [PropertyOrderAttribute(8)]",
               "label": "repeated",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_nullable",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(9)]\n@attr [DisplayName(\"Can be NULL\")]\n@attr [Description(\"If unchecked always expected data\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
@@ -9346,16 +9366,6 @@
               "defaultValue": ""
             },
             {
-              "name": "is_nullable",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(20)]\n@attr [DisplayName(\"Can be NULL\")]\n@attr [Description(\"If unchecked always expected data\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "default_value",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Default\")]\n@attr [Description(\"Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)\")]",
               "label": "",
@@ -9412,16 +9422,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "accuracy_for_time",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(36)]\n@attr [DisplayName(\"Time accuracy\")]\n@attr [Description(\"Time accuracy for TimeOnly type. Business model is expecting selected accuracy\")]",
-              "label": "",
-              "type": "proto_enum_time_accuracy_type",
-              "longType": "proto_enum_time_accuracy_type",
-              "fullType": "proto_config.proto_enum_time_accuracy_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -9849,7 +9849,17 @@
             },
             {
               "name": "property_qty_accumulator_length",
-              "description": "@attr [PropertyOrderAttribute(17)]\n@attr [DisplayName(\"Qty Length\")]\n@attr [Description(\"Maximum decimal digits for quantity data)\")]",
+              "description": "@attr [PropertyOrderAttribute(17)]\n@attr [DisplayName(\"Qty Length\")]\n@attr [Description(\"Maximum decimal digits for quantity data\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_qty_accumulator_accuracy",
+              "description": "@attr [PropertyOrderAttribute(18)]\n@attr [DisplayName(\"Qty accuracy\")]\n@attr [Description(\"Number of decimal places in fractional part for quantity data. If negative, than maximum possible accuracy\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -9879,7 +9889,7 @@
             },
             {
               "name": "property_money_accumulator_length",
-              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Money Length\")]\n@attr [Description(\"Maximum decimal digits for money data)\")]",
+              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Money Length\")]\n@attr [Description(\"Maximum decimal digits for money data\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -9889,7 +9899,7 @@
             },
             {
               "name": "property_money_accumulator_accuracy",
-              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Money accuracy\")]\n@attr [Description(\"Number of decimal places in fractional part for money data)\")]",
+              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Money accuracy\")]\n@attr [Description(\"Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",

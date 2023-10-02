@@ -132,12 +132,12 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         [Browsable(false)]
-        public EnumEnumerationType EnumerationType
+        public EnumEnumerationType? EnumerationType
         {
             get
             {
                 if (this.DataTypeEnum != EnumDataType.ENUMERATION)
-                    throw new NotImplementedException();
+                    return null;
                 if (string.IsNullOrWhiteSpace(this.ObjectGuid))
                     throw new NotImplementedException();
                 Debug.Assert(this.Cfg != null);
@@ -151,7 +151,7 @@ namespace vSharpStudio.vm.ViewModels
             get
             {
                 if (this.DataTypeEnum != EnumDataType.ENUMERATION)
-                    throw new NotImplementedException();
+                    return 0;
                 if (string.IsNullOrWhiteSpace(this.ObjectGuid))
                     throw new NotImplementedException();
                 Debug.Assert(this.Cfg != null);

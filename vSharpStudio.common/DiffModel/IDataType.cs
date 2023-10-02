@@ -22,7 +22,7 @@ namespace vSharpStudio.common
         string ClrLiteralSuf { get; }
         string EnumerationName { get; }
         BigInteger? MaxNumericalValue { get; }
-        EnumEnumerationType EnumerationType { get; }
+        EnumEnumerationType? EnumerationType { get; }
         int EnumerationStrFieldLength { get; }
         bool IsEnumStr();
         string EnumerationDefault { get; }
