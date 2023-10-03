@@ -9868,6 +9868,16 @@
               "defaultValue": ""
             },
             {
+              "name": "property_qty_accumulator_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "use_money_accumulator",
               "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Money\")]\n@attr [Description(\"Use money accumulator for register\")]",
               "label": "",
@@ -9908,9 +9918,9 @@
               "defaultValue": ""
             },
             {
-              "name": "list_register_dimensions",
-              "description": "\u003csummary\u003e\n/ Guids of selected CATALOGS types\n/ \u003c/summary\u003e\n@attr [Browsable(false)]\n@attr [PropertyOrderAttribute(25)]",
-              "label": "repeated",
+              "name": "property_money_accumulator_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
@@ -9918,12 +9928,113 @@
               "defaultValue": ""
             },
             {
-              "name": "position",
-              "description": "Protobuf field position\nReserved positions: 1 - primary key\n@attr [ReadOnly(true)]",
+              "name": "list_register_dimensions",
+              "description": "\u003csummary\u003e\n/ Guids of selected CATALOGS types\n/ \u003c/summary\u003e\n@attr [Browsable(false)]\n@attr [PropertyOrderAttribute(25)]",
+              "label": "repeated",
+              "type": "proto_register_dimention",
+              "longType": "proto_register_dimention",
+              "fullType": "proto_config.proto_register_dimention",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_register_dimention",
+          "longName": "proto_register_dimention",
+          "fullName": "proto_config.proto_register_dimention",
+          "description": "@interface ICanAddNode\n@interface ISortingValue",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
               "label": "",
-              "type": "uint32",
-              "longType": "uint32",
-              "fullType": "uint32",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "dimention_catalog_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },

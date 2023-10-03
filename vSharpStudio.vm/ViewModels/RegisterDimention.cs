@@ -19,13 +19,13 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Register:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class Register : ICanAddNode, ICanGoLeft, INodeGenSettings, ITreeConfigNodeSortable, IEditableNode //, IRoleAccess, IPropertyAccessRoles
+    [DebuggerDisplay("RegisterDimention:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    public partial class RegisterDimention : ICanAddNode, ICanGoLeft, INodeGenSettings, ITreeConfigNodeSortable, IEditableNode //, IRoleAccess, IPropertyAccessRoles
     {
         [Browsable(false)]
-        public GroupListRegisters ParentGroupListRegisters { get { Debug.Assert(this.Parent != null); return (GroupListRegisters)this.Parent; } }
+        public Register ParentRegister { get { Debug.Assert(this.Parent != null); return (Register)this.Parent; } }
         [Browsable(false)]
-        public IGroupListRegisters ParentGroupListRegistersI { get { Debug.Assert(this.Parent != null); return (IGroupListRegisters)this.Parent; } }
+        public IRegister ParentRegisterI { get { Debug.Assert(this.Parent != null); return (IRegister)this.Parent; } }
         [Browsable(false)]
         // Can be used by a generator to keep calculated property data
         public object? Tag { get; set; }
@@ -37,7 +37,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IChildrenCollection GetListSiblings()
         {
-            return this.ParentGroupListRegisters.Children;
+            return this.ParentRegister.Children;
         }
         public override bool HasChildren()
         {
@@ -45,26 +45,16 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public static readonly string DefaultName = "Register";
+        public static readonly string DefaultName = "Dimention";
         [Browsable(false)]
-        public new string IconName { get { return "iconRegister"; } }
+        public new string IconName { get { return "iconDimention"; } }
         //protected override string GetNodeIconName() { return "iconProperty"; }
-        [Browsable(false)]
-        public string? ComplexObjectName { get; set; }
-        public string ComplexObjectNameWithDot() { if (!string.IsNullOrEmpty(this.ComplexObjectName)) return $"{this.ComplexObjectName}."; return ""; }
+        //[Browsable(false)]
+        //public string? ComplexObjectName { get; set; }
+        //public string ComplexObjectNameWithDot() { if (!string.IsNullOrEmpty(this.ComplexObjectName)) return $"{this.ComplexObjectName}."; return ""; }
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            this.UseMoneyAccumulator = true;
-            this.PropertyMoneyAccumulatorName = "AccumulatedMoney";
-            this.PropertyMoneyAccumulatorAccuracy = 2;
-            this.PropertyMoneyAccumulatorLength = 0;
-            this.PropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
-            this.UseQtyAccumulator = true;
-            this.PropertyQtyAccumulatorName = "AccumulatedQty";
-            this.PropertyQtyAccumulatorAccuracy = 4;
-            this.PropertyQtyAccumulatorLength = 0;
-            this.PropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()
@@ -101,7 +91,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentGroupListRegisters.ListRegisters.CanUp(this))
+                if (this.ParentRegister.ListRegisterDimensions.CanUp(this))
                 {
                     return true;
                 }
@@ -111,7 +101,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Register?)this.ParentGroupListRegisters.ListRegisters.GetPrev(this);
+            var prev = (Register?)this.ParentRegister.ListRegisterDimensions.GetPrev(this);
             if (prev == null)
                 return;
             this.SetSelected(prev);
@@ -119,7 +109,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            this.ParentGroupListRegisters.ListRegisters.MoveUp(this);
+            this.ParentRegister.ListRegisterDimensions.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -127,7 +117,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentGroupListRegisters.ListRegisters.CanDown(this))
+                if (this.ParentRegister.ListRegisterDimensions.CanDown(this))
                 {
                     return true;
                 }
@@ -137,7 +127,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Register?)this.ParentGroupListRegisters.ListRegisters.GetNext(this);
+            var next = (Register?)this.ParentRegister.ListRegisterDimensions.GetNext(this);
             if (next == null)
                 return;
             this.SetSelected(next);
@@ -145,20 +135,20 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            this.ParentGroupListRegisters.ListRegisters.MoveDown(this);
+            this.ParentRegister.ListRegisterDimensions.MoveDown(this);
             this.SetSelected(this);
         }
 
         public void NodeRemove(bool ask = true)
         {
-            this.ParentGroupListRegisters.Remove(this);
+            this.ParentRegister.ListRegisterDimensions.Remove(this);
             this.Parent = null;
         }
         public override ITreeConfigNode NodeAddClone()
         {
             Debug.Assert(this.Parent != null);
-            var node = Register.Clone(this.Parent, this, true, true);
-            this.ParentGroupListRegisters.Add(node);
+            var node = RegisterDimention.Clone(this.Parent, this, true, true);
+            this.ParentRegister.ListRegisterDimensions.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -172,14 +162,14 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             var node = new Register(this.Parent);
-            this.ParentGroupListRegisters.Add(node);
-            this.GetUniqueName(Register.DefaultName, node, this.ParentGroupListRegisters.ListRegisters);
+            this.ParentRegister.ListRegisterDimensions.Add(node);
+            this.GetUniqueName(Register.DefaultName, node, this.ParentRegister.ListRegisterDimensions);
             this.SetSelected(node);
             return node;
         }
         public void Remove()
         {
-            this.ParentGroupListRegisters.ListRegisters.Remove(this);
+            this.ParentRegister.ListRegisterDimensions.Remove(this);
         }
         #endregion Tree operations
 

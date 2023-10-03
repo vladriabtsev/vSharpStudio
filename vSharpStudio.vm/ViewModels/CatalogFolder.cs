@@ -279,13 +279,13 @@ namespace vSharpStudio.vm.ViewModels
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
-            var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
+            var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid, false);
             res.Add(prp);
             prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
             res.Add(prp);
             if (this.ParentCatalog.UseTree && !this.ParentCatalog.UseSeparateTreeForFolders)
             {
-                prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
+                prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid, false);
                 res.Add(prp);
             }
             if (isOptimistic)
@@ -305,12 +305,12 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (this.GetUseNameProperty())
             {
-                prp = model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
+                prp = model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength, false);
                 res.Add(prp);
             }
             if (this.GetUseDescriptionProperty())
             {
-                prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
+                prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength, true);
                 res.Add(prp);
             }
             foreach (var t in this.GroupProperties.ListProperties)
@@ -327,11 +327,11 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     case EnumCodeType.Number:
                         prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid,
-                            this.CodePropertySettings.MaxSequenceLength);
+                            this.CodePropertySettings.MaxSequenceLength, false);
                         break;
                     case EnumCodeType.Text:
                         prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid,
-                            this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length);
+                            this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false);
                         break;
                     default:
                         throw new NotImplementedException();
@@ -345,7 +345,7 @@ namespace vSharpStudio.vm.ViewModels
             IProperty prp = null!;
             if (this.GetUseNameProperty())
             {
-                prp = this.Cfg.Model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
+                prp = this.Cfg.Model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength, false);
                 lst.Add(prp);
             }
             return prp;
@@ -355,7 +355,7 @@ namespace vSharpStudio.vm.ViewModels
             IProperty prp = null!;
             if (this.GetUseDescriptionProperty())
             {
-                prp = this.Cfg.Model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
+                prp = this.Cfg.Model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength, true);
                 lst.Add(prp);
             }
             return prp;
@@ -444,11 +444,11 @@ namespace vSharpStudio.vm.ViewModels
             {
                 case EnumCodeType.Number:
                     prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid,
-                        this.CodePropertySettings.MaxSequenceLength);
+                        this.CodePropertySettings.MaxSequenceLength, false);
                     break;
                 case EnumCodeType.Text:
                     prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid,
-                        this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length);
+                        this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false);
                     break;
                 default:
                     throw new NotImplementedException();

@@ -68,6 +68,7 @@
     - [proto_property](#proto_config.proto_property)
     - [proto_property_data_generator](#proto_config.proto_property_data_generator)
     - [proto_register](#proto_config.proto_register)
+    - [proto_register_dimention](#proto_config.proto_register_dimention)
     - [proto_report](#proto_config.proto_report)
     - [proto_role](#proto_config.proto_role)
     - [proto_role_catalog_access](#proto_config.proto_role_catalog_access)
@@ -1836,12 +1837,37 @@ Configuration model
 | property_qty_accumulator_name | [string](#string) |  | @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Qty name&#34;)] @attr [Description(&#34;Quantity accumulator property name&#34;)] |
 | property_qty_accumulator_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(17)] @attr [DisplayName(&#34;Qty Length&#34;)] @attr [Description(&#34;Maximum decimal digits for quantity data&#34;)] |
 | property_qty_accumulator_accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Qty accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for quantity data. If negative, than maximum possible accuracy&#34;)] |
+| property_qty_accumulator_guid | [string](#string) |  | @attr [Browsable(false)] |
 | use_money_accumulator | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Money&#34;)] @attr [Description(&#34;Use money accumulator for register&#34;)] |
 | property_money_accumulator_name | [string](#string) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Money name&#34;)] @attr [Description(&#34;Money accumulator property name&#34;)] |
 | property_money_accumulator_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Money Length&#34;)] @attr [Description(&#34;Maximum decimal digits for money data&#34;)] |
 | property_money_accumulator_accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Money accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy&#34;)] |
-| list_register_dimensions | [string](#string) | repeated | &lt;summary&gt; / Guids of selected CATALOGS types / &lt;/summary&gt; @attr [Browsable(false)] @attr [PropertyOrderAttribute(25)] |
-| position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
+| property_money_accumulator_guid | [string](#string) |  | @attr [Browsable(false)] |
+| list_register_dimensions | [proto_register_dimention](#proto_config.proto_register_dimention) | repeated | &lt;summary&gt; / Guids of selected CATALOGS types / &lt;/summary&gt; @attr [Browsable(false)] @attr [PropertyOrderAttribute(25)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_register_dimention"></a>
+
+### proto_register_dimention
+@interface ICanAddNode
+@interface ISortingValue
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| is_new | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
+| dimention_catalog_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 

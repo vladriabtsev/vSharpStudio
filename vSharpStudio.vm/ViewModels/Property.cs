@@ -722,9 +722,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Property(this) { Name = subName };
             node.Guid = guid;
-            node.DataType = (DataType)this.Cfg.Model.GetIdDataType(node);
+            node.DataType = (DataType)this.Cfg.Model.GetIdRefDataType(node, true);
             node.DataType.IsPKey = false;
-            node.IsNullable = true;
             node.ParentProperty = this;
             return node;
         }

@@ -374,9 +374,9 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
                 throw new NotImplementedException();
-            var prp = this.Cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
+            var prp = this.Cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid, false);
             res.Add(prp);
-            prp = this.Cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parentTable);
+            prp = this.Cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parentTable, true);
             res.Add(prp);
             if (isOptimistic)
             {
@@ -408,7 +408,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             ViewListData? viewListData = null;
             Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
-            var pId = this.Cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
+            var pId = this.Cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid, false);
             viewListData = new ViewListData(pId);
             var lst = this.SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
             viewListData.ListViewProperties.AddRange(lst);

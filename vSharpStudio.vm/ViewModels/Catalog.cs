@@ -496,7 +496,7 @@ namespace vSharpStudio.vm.ViewModels
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentGroupListCatalogs.ParentModel;
-            var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
+            var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid, false);
             res.Add(prp);
             if (this.UseTree)
             {
@@ -509,7 +509,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
                     res.Add(prp);
-                    prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
+                    prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid, false);
                     res.Add(prp);
                 }
             }
@@ -538,11 +538,11 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     case EnumCodeType.Number:
                         prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid,
-                            this.CodePropertySettings.MaxSequenceLength);
+                            this.CodePropertySettings.MaxSequenceLength, false);
                         break;
                     case EnumCodeType.Text:
                         prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid,
-                            this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length);
+                            this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false);
                         break;
                     default:
                         throw new NotImplementedException();
@@ -556,7 +556,7 @@ namespace vSharpStudio.vm.ViewModels
             IProperty prp = null!;
             if (this.GetUseNameProperty())
             {
-                prp = this.Cfg.Model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
+                prp = this.Cfg.Model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength, false);
                 lst.Add(prp);
             }
             return prp;
@@ -566,7 +566,7 @@ namespace vSharpStudio.vm.ViewModels
             IProperty prp = null!;
             if (this.GetUseDescriptionProperty())
             {
-                prp = this.Cfg.Model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
+                prp = this.Cfg.Model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength, true);
                 lst.Add(prp);
             }
             return prp;
@@ -659,7 +659,7 @@ namespace vSharpStudio.vm.ViewModels
             ViewListData? viewListData = null;
             var model = this.ParentGroupListCatalogs.ParentModel;
             Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
-            IProperty pId = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
+            IProperty pId = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid, false);
             IProperty? pRefTreeParent = null;
             IProperty? pRefParent = null;
             if (this.UseTree)
@@ -678,7 +678,7 @@ namespace vSharpStudio.vm.ViewModels
                 else // only self tree
                 {
                     IProperty? pIsFolder = null;
-                    pIsFolder = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
+                    pIsFolder = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid, false);
                     viewTreeData = new ViewTreeData(pId, pRefParent, pIsFolder);
                     var lst = this.SelectViewProperties(formType, this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
                     viewTreeData.ListViewProperties.AddRange(lst);

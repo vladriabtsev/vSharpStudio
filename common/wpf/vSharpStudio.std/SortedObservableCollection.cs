@@ -8,6 +8,7 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Collections;
 using System.Windows.Threading;
+using CommunityToolkit.Diagnostics;
 
 namespace ViewModelBase
 {
@@ -247,8 +248,7 @@ namespace ViewModelBase
         {
             if (sortingWeight > 0)
             {
-                if (sortingWeight > VmBindable.MaxSortingWeight)
-                    throw new ArgumentException("sortingWeight is too big. Expected less then " + VmBindable.MaxSortingWeight);
+                Guard.IsLessThan(sortingWeight, VmBindable.MaxSortingWeight);
                 item.SortingWeight = sortingWeight << (64 - VmBindable.MaxSortingWeightShift);
                 item.SortingValue = item._SortingNameValue + item.SortingWeight;
             }

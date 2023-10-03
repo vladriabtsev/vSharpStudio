@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Diagnostics;
 
 // https://stackoverflow.com/questions/10788982/is-there-any-async-equivalent-of-process-start
 namespace ViewModelBase
@@ -97,7 +98,7 @@ namespace ViewModelBase
             {
                 //you may allow for the process to be re-used (started = false) 
                 //but I'm not sure about the guarantees of the Exited event in such a case
-                throw new InvalidOperationException("Could not start process: " + process);
+                ThrowHelper.ThrowInvalidOperationException("Could not start process: " + process);
             }
 
             //process.BeginOutputReadLine();

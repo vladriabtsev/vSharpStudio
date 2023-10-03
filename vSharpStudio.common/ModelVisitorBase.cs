@@ -464,14 +464,12 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IEnumerable<IRole> lst) { }
         protected virtual void BeginVisit(IRole p) { }
         protected virtual void EndVisit(IRole p) { }
-
         protected virtual void BeginVisit(IGroupListEnumeratorSequences cn) { }
         protected virtual void EndVisit(IGroupListEnumeratorSequences cn) { }
         //protected virtual void BeginVisit(IEnumerable<IRole> lst) { }
         //protected virtual void EndVisit(IEnumerable<IRole> lst) { }
         protected virtual void BeginVisit(IEnumeratorSequence p) { }
         protected virtual void EndVisit(IEnumeratorSequence p) { }
-
         protected virtual void BeginVisit(IGroupListMainViewForms cn) { }
         protected virtual void EndVisit(IGroupListMainViewForms cn) { }
         protected virtual void BeginVisit(IEnumerable<IMainViewForm> lst) { }
@@ -502,6 +500,12 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(ICatalogFolder ct) { }
         protected virtual void BeginVisit(IGroupDocuments cn) { }
         protected virtual void EndVisit(IGroupDocuments cn) { }
+
+        protected virtual void BeginVisit(IGroupListRegisters cn) { }
+        protected virtual void EndVisit(IGroupListRegisters cn) { }
+        protected virtual void BeginVisit(IRegister d) { }
+        protected virtual void EndVisit(IRegister d) { }
+
         protected virtual void BeginVisit(IGroupListDocuments cn) { }
         protected virtual void EndVisit(IGroupListDocuments cn) { }
         protected virtual void BeginVisit(IDocument d) { }

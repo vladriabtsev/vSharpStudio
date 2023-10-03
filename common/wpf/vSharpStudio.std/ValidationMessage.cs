@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using CommunityToolkit.Diagnostics;
 using FluentValidation;
 
 namespace ViewModelBase
@@ -88,11 +89,7 @@ namespace ViewModelBase
         /// <param name="shift"></param>
         public void RaiseSeverityLevel(int shiftLevel)
         {
-            if (shiftLevel < 0)
-                throw new ArgumentException("parameter 'shiftLevel' expected to be greater or equal 0");
-            int n = int.MaxValue / (ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity);
-            if (shiftLevel > n)
-                throw new ArgumentException("parameter 'shiftLevel' expected to be less or equal " + n);
+            Guard.IsBetween(shiftLevel, 0, int.MaxValue / (ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity));
             SortingValue += (ulong)(ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity * shiftLevel);
         }
         public int CompareTo(ValidationMessage? other)

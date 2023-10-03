@@ -123,52 +123,6 @@ namespace vSharpStudio.vm.ViewModels
             //    lst.Add(this.GetPropertyName(() => this.PropertyNameName));
             return lst.ToArray();
         }
-        //public uint GetNextPosition()
-        //{
-        //    // ???? not sure yet
-        //    // Reserved positions
-        //    // 1  not used
-        //    // 2  not used
-        //    // 3  not used
-        //    // 4  __is_need_insert
-        //    // 5  __is_need_update
-        //    // 6  PropertyId
-        //    // 7  PropertyObjectVersion
-        //    // 8  PropertyRefParent, PropertyDocumentDate
-        //    // 9  PropertyCatalogCode, PropertyCatalogCodeInt, PropertyDocumentCodeString, PropertyDocumentCodeInt
-        //    // 10 PropertyCatalogName
-        //    // 11 PropertyCatalogDescription
-        //    // 12 PropertyIsFolder
-        //    // 13 PropertyIsOpen
-        //    if (this.LastGenPosition == 0)
-        //    {
-        //        if (this.Parent is Catalog)
-        //        {
-        //            this.LastGenPosition = 13;
-
-        //        }
-        //        else if (this.Parent is Detail)
-        //        {
-        //            this.LastGenPosition = 8;
-        //        }
-        //        else if (this.Parent is CatalogFolder)
-        //        {
-        //            this.LastGenPosition = 13;
-        //        }
-        //        else if (this.Parent is Document)
-        //        {
-        //            this.LastGenPosition = 10;
-        //        }
-        //        else if (this.Parent is GroupDocuments)
-        //        {
-        //            //this.LastGenPosition = 0;
-        //        }
-        //        else
-        //            throw new NotImplementedException();
-        //    }
-        //    this.LastGenPosition++;
-        //    return this.LastGenPosition;
-        //}
         public Register AddRegister()
         {
             var node = new Register(this);

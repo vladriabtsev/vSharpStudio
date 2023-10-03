@@ -2618,6 +2618,38 @@ message proto_group_list_registers {
 }
 // @interface ICanAddNode
 // @interface ISortingValue
+message proto_register_dimention {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 3;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [Browsable(false)]
+    bool is_new = 9;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 10;
+
+    // @attr [Browsable(false)]
+    string dimention_catalog_guid = 21; 
+
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+// @interface ICanAddNode
+// @interface ISortingValue
 message proto_register {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -2660,6 +2692,8 @@ message proto_register {
     // @attr [DisplayName("Qty accuracy")]
     // @attr [Description("Number of decimal places in fractional part for quantity data. If negative, than maximum possible accuracy")]
     uint32 property_qty_accumulator_accuracy = 18; 
+    // @attr [Browsable(false)]
+    string property_qty_accumulator_guid = 19; 
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Money")]
     // @attr [Description("Use money accumulator for register")]
@@ -2676,18 +2710,14 @@ message proto_register {
     // @attr [DisplayName("Money accuracy")]
     // @attr [Description("Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy")]
     uint32 property_money_accumulator_accuracy = 24; 
+    // @attr [Browsable(false)]
+    string property_money_accumulator_guid = 26; 
     /// <summary>
     /// Guids of selected CATALOGS types
     /// </summary>
     // @attr [Browsable(false)]
     // @attr [PropertyOrderAttribute(25)]
-    repeated string list_register_dimensions = 25;
-
-    // Protobuf field position
-    // Reserved positions: 1 - primary key
-    // @attr [ReadOnly(true)]
-    uint32 position = 110;
-
+    repeated proto_register_dimention list_register_dimensions = 27;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
