@@ -872,17 +872,17 @@ namespace vSharpStudio.vm.ViewModels
             // Money accumulator
             var pMoney = this.GetPropertyNumber(p, p.PropertyMoneyAccumulatorGuid, p.PropertyMoneyAccumulatorName, p.PropertyMoneyAccumulatorLength, p.PropertyMoneyAccumulatorAccuracy, false);
             pMoney.TagInList = "ma";
-            lst.Add(pDocDate);
+            lst.Add(pMoney);
 
             // Qty accumulator
             var pQty = this.GetPropertyNumber(p, p.PropertyQtyAccumulatorGuid, p.PropertyQtyAccumulatorName, p.PropertyQtyAccumulatorLength, p.PropertyQtyAccumulatorAccuracy, false);
             pQty.TagInList = "qa";
-            lst.Add(pDocDate);
+            lst.Add(pQty);
 
             // Reference to document
             var pDocRef = this.GetPropertyId(p, p.PropertyDocRefGuid, "DocRef", false);
             pDocRef.TagInList = "dr";
-            lst.Add(pDocDate);
+            lst.Add(pDocRef);
 
             // Guid of document
             var pDocGuid = this.GetPropertyGuid(p, p.PropertyDocGuidGuid, "DocGuid", false);
