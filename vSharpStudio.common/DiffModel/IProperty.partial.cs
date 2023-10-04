@@ -30,6 +30,7 @@ namespace vSharpStudio.common
         IPropertyRangeValuesRequirements? RangeValuesRequirementsI { get; }
         string ComplexObjectNameWithDot();
         object? Tag { get; set; }
+        string? TagInList { get; set; }
         //static IConfig Config { get; set; }
         bool IsGridSortableGet();
         bool IsGridFilterableGet();

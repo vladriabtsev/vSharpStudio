@@ -43,6 +43,7 @@ namespace vSharpStudio.common
         IProperty GetPropertyDate(ITreeConfigNode parent, string guid, string name, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MAX);
         IProperty GetPropertyPkId(ITreeConfigNode parent, string guid);
         IProperty GetPropertyId(ITreeConfigNode parent, string guid, string name, bool isNullable);
+        IProperty GetPropertyNumber(ITreeConfigNode parent, string guid, string name, uint length, uint accuracy, bool isNullable);
         IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable);
         IProperty GetPropertyRefDimention(IRegister parent, string guid, string name, bool isNullable);
         IProperty GetPropertyCatalogCode(ITreeConfigNode parent, string guid, uint length, bool isNullable);
@@ -55,6 +56,8 @@ namespace vSharpStudio.common
         IProperty GetPropertyDocNumberString(ITreeConfigNode parent, string guid, uint length);
         IProperty GetPropertyDocNumberInt(ITreeConfigNode parent, string guid, uint length);
         IProperty GetPropertyDocNumberUniqueScopeHelper(ITreeConfigNode parent, string guid);
+
+        IReadOnlyList<IProperty> GetIncludedProperties(IRegister p);
 
         //IProperty GetPropertyBool(string guid, string name, bool isNullable);
         //IProperty GetPropertyInt(string guid, uint length, string name);

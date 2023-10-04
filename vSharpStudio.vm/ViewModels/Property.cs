@@ -23,6 +23,11 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode, IRoleAccess, IPropertyAccessRoles, ILayoutFieldParameters
     {
         /// <summary>
+        /// Tag to find property in list. To use for dynamically created property list
+        /// </summary>
+        [Browsable(false)]
+        public string? TagInList { get; set; }
+        /// <summary>
         /// Is hidden on UI
         /// </summary>
         [Browsable(false)]

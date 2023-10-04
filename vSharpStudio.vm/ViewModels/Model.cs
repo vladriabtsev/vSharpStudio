@@ -11,6 +11,7 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using CommunityToolkit.Diagnostics;
 using Google.Protobuf;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -727,6 +728,13 @@ namespace vSharpStudio.vm.ViewModels
             res.IsHidden = true;
             return res;
         }
+        public IProperty GetPropertyNumber(ITreeConfigNode parent, string guid, string name, uint length, uint accuracy, bool isNullable)
+        {
+            var res = new Property(parent, guid, name, false);
+            res.DataType = (DataType)this.GetDataTypeNumerical(res, length, accuracy, isNullable);
+            res.IsHidden = false;
+            return res;
+        }
         public IProperty GetPropertyVersion(ITreeConfigNode parent, string guid)
         {
             var res = new Property(parent, guid, this.RecordVersionFieldName, true);
@@ -826,6 +834,69 @@ namespace vSharpStudio.vm.ViewModels
             res.IsNullable = true;
             return res;
         }
+
+        public IReadOnlyList<IProperty> GetIncludedProperties(IRegister p)
+        {
+            var lst = new List<IProperty>();
+            var pId = this.GetPropertyPkId(p, p.Guid);
+            pId.TagInList = "id";
+            lst.Add(pId);
+            var pDocDate = this.GetPropertyDocumentDate(p, p.PropertyDocDateGuid);
+            pDocDate.TagInList = "dd";
+            lst.Add(pDocDate);
+            // For all dimensions (catalogs)
+            int i = 1;
+            foreach (var t in p.ListRegisterDimensions)
+            {
+                if (!string.IsNullOrEmpty(t.DimentionCatalogGuid))
+                {
+                    if (this.ParentConfig.DicNodes.TryGetValue(t.DimentionCatalogGuid, out var node))
+                    {
+                        if (node is ICatalog c)
+                        {
+                            var pRef = this.GetPropertyRefDimention(p, t.Guid, "Ref" + c.CompositeName, false);
+                            pRef.TagInList = i.ToString();
+                            lst.Add(pRef);
+                            i++;
+                        }
+                        else
+                            ThrowHelper.ThrowNotSupportedException();
+                    }
+                    else
+                        ThrowHelper.ThrowNotSupportedException();
+                }
+                else
+                    ThrowHelper.ThrowNotSupportedException();
+            }
+
+            // Money accumulator
+            var pMoney = this.GetPropertyNumber(p, p.PropertyMoneyAccumulatorGuid, p.PropertyMoneyAccumulatorName, p.PropertyMoneyAccumulatorLength, p.PropertyMoneyAccumulatorAccuracy, false);
+            pMoney.TagInList = "ma";
+            lst.Add(pDocDate);
+
+            // Qty accumulator
+            var pQty = this.GetPropertyNumber(p, p.PropertyQtyAccumulatorGuid, p.PropertyQtyAccumulatorName, p.PropertyQtyAccumulatorLength, p.PropertyQtyAccumulatorAccuracy, false);
+            pQty.TagInList = "qa";
+            lst.Add(pDocDate);
+
+            // Reference to document
+            var pDocRef = this.GetPropertyId(p, p.PropertyDocRefGuid, "DocRef", false);
+            pDocRef.TagInList = "dr";
+            lst.Add(pDocDate);
+
+            // Guid of document
+            var pDocGuid = this.GetPropertyGuid(p, p.PropertyDocGuidGuid, "DocGuid", false);
+            pDocGuid.TagInList = "dg";
+            lst.Add(pDocGuid);
+
+            // Document number
+            var pDocNumber = this.GetPropertyDocNumberString(p, p.PropertyDocNumberGuid, 50);
+            pDocNumber.TagInList = "dn";
+            lst.Add(pDocNumber);
+
+            return lst;
+        }
+
         //public IProperty GetPropertyString(string guid, uint length, string name)
         //{
         //    var dt = (DataType)this.GetDataType(length);
