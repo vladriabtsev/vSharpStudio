@@ -455,16 +455,6 @@
                     {
                         prefix = gr.PrefixForDbTables;
                     }
-                    else if (t is IConfig)
-                    {
-                    }
-                    else if (t is IModel)
-                    {
-                    }
-                    else
-                    {
-                        ThrowHelper.ThrowInvalidOperationException();
-                    }
                 }
             }
             string composit = sb.ToString();
