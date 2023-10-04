@@ -388,7 +388,7 @@ namespace vSharpStudio.vm.ViewModels
         {
 
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
-            var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid, false);
+            var prp = model.GetPropertyPkId(this.GroupProperties, this.PropertyIdGuid);
             res.Add(prp);
             if (isOptimistic)
             {
@@ -524,7 +524,7 @@ namespace vSharpStudio.vm.ViewModels
             ViewListData? viewListData = null;
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
             Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
-            var pId = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid, false);
+            var pId = model.GetPropertyPkId(this.GroupProperties, this.PropertyIdGuid);
             viewListData = new ViewListData(pId);
             var lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
             viewListData.ListViewProperties.AddRange(lst);

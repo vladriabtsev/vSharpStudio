@@ -27,6 +27,18 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public IModel ParentModelI { get { return this.ParentGroupDocumentsI.ParentModelI; } }
 
+        [PropertyOrder(100)]
+        [ReadOnly(true)]
+        [DisplayName("Composite")]
+        [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]
+        public string CompositeName
+        {
+            get
+            {
+                return GetCompositeName();
+            }
+        }
+
         #region ITree
         public override IChildrenCollection GetListChildren()
         {
@@ -72,6 +84,9 @@ namespace vSharpStudio.vm.ViewModels
             this.PrefixForDbTables = "Reg";
             this.IsEditable = false;
             this.ShortIdTypeForCacheKey = "rg";
+            this.PropertyRegGuidGuid = System.Guid.NewGuid().ToString();
+            this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
+            this.PropertyDocDateSequenceGuid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()

@@ -156,6 +156,32 @@ namespace vSharpStudio.common
             this.EndVisit(currModel.GroupCatalogs);
             #endregion Catalogs
 
+            #region Registers
+            this.BeginVisit(currModel.GroupDocuments.GroupListRegisters);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListRegisters);
+            foreach (var tr in currModel.GroupDocuments.GroupListRegisters.ListRegisters)
+            {
+                this.currReg = tr;
+                this.BeginVisit(tr);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, tr);
+                foreach(var td in tr.ListRegisterDimensions)
+                {
+                    this.BeginVisit(td);
+                    this._act?.Invoke(this, td);
+                    this.EndVisit(td);
+                }
+                if (!isActFromRootToBottom)
+                    this._act?.Invoke(this, tr);
+                this.EndVisit(tr);
+                this.currReg = null;
+            }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListRegisters);
+            this.EndVisit(currModel.GroupDocuments.GroupListRegisters);
+            #endregion Registers
+
             #region Documents
             this.BeginVisit(currModel.GroupDocuments);
             if (isActFromRootToBottom)
@@ -357,6 +383,7 @@ namespace vSharpStudio.common
         protected IForm? currForm = null;
         protected IReport? currRep = null;
         protected ICatalog? currCat = null;
+        protected IRegister? currReg = null;
         protected IDocument? currDoc = null;
         protected vSharpStudio.common.IProperty? currProp = null;
         protected Stack<IDetail> currPropTabStack = new Stack<IDetail>();
@@ -505,6 +532,8 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IGroupListRegisters cn) { }
         protected virtual void BeginVisit(IRegister d) { }
         protected virtual void EndVisit(IRegister d) { }
+        protected virtual void BeginVisit(IRegisterDimention d) { }
+        protected virtual void EndVisit(IRegisterDimention d) { }
 
         protected virtual void BeginVisit(IGroupListDocuments cn) { }
         protected virtual void EndVisit(IGroupListDocuments cn) { }

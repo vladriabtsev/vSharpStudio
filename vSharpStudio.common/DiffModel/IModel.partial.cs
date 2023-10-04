@@ -35,13 +35,16 @@ namespace vSharpStudio.common
         IDataType GetDataTypeDateTimeUtc(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable);
         IDataType GetDataTypeTime(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable);
         //IDataType GetDataTypeTimeZ();
-        IDataType GetIdDataType(ITreeConfigNode? parent);
+        IDataType GetIdDataType(ITreeConfigNode? parent, bool isNullable);
         IDataType GetIdRefDataType(ITreeConfigNode? parent, bool isNullable);
         //string GetVersionFieldName(IvPluginDbGenerator dbGen);
 
-        IProperty GetPropertyId(ITreeConfigNode parent, string guid, bool isNullable);
+        IProperty GetPropertyGuid(ITreeConfigNode parent, string guid, string name, bool isNullable);
+        IProperty GetPropertyDate(ITreeConfigNode parent, string guid, string name, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MAX);
+        IProperty GetPropertyPkId(ITreeConfigNode parent, string guid);
+        IProperty GetPropertyId(ITreeConfigNode parent, string guid, string name, bool isNullable);
         IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable);
-        IProperty GetPropertyRefDimention(IRegister parent, string guid, string name, uint relPosition, bool isNullable);
+        IProperty GetPropertyRefDimention(IRegister parent, string guid, string name, bool isNullable);
         IProperty GetPropertyCatalogCode(ITreeConfigNode parent, string guid, uint length, bool isNullable);
         IProperty GetPropertyCatalogCodeInt(ITreeConfigNode parent, string guid, uint length, bool isNullable);
         IProperty GetPropertyCatalogName(ITreeConfigNode parent, string guid, uint length, bool isNullable);

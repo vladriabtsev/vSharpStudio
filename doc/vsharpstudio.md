@@ -1421,6 +1421,9 @@ P R O P E R T Y
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | prefix_for_db_tables | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for register db table names&#34;)] |
 | short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short register type ID for cache key generator&#34;)] |
+| property_reg_guid_guid | [string](#string) |  | Guid for document guid property. Auto generated. @attr [Browsable(false)] |
+| property_doc_date_guid | [string](#string) |  | Guid for document date guid property. Auto generated. @attr [Browsable(false)] |
+| property_doc_date_sequence_guid | [string](#string) |  | Guid for document date secuence guid property. Auto generated. @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1844,6 +1847,13 @@ Configuration model
 | property_money_accumulator_accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Money accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy&#34;)] |
 | property_money_accumulator_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_register_dimensions | [proto_register_dimention](#proto_config.proto_register_dimention) | repeated | &lt;summary&gt; / Guids of selected CATALOGS types / &lt;/summary&gt; @attr [Browsable(false)] @attr [PropertyOrderAttribute(25)] |
+| list_doc_guids | [string](#string) | repeated | &lt;summary&gt; / Guids of selected types of DOCUMENTS / &lt;/summary&gt; @attr [Browsable(false)] |
+| property_doc_ref_guid | [string](#string) |  | Guid for document reference property. Auto generated. @attr [Browsable(false)] |
+| property_doc_guid_guid | [string](#string) |  | Guid for document guid property. Auto generated. @attr [Browsable(false)] |
+| property_doc_date_guid | [string](#string) |  | Guid for document date guid property. Auto generated. @attr [Browsable(false)] |
+| index_doc_date_dimentions_guid | [string](#string) |  | Guid for index of document date, dimentions. Auto generated. @attr [Browsable(false)] |
+| property_doc_number_guid | [string](#string) |  | Guid for document number guid property. Auto generated. @attr [Browsable(false)] |
+| index_doc_id_type_guid | [string](#string) |  | Guid for index of document Id and type. Auto generated. @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1867,7 +1877,8 @@ Configuration model
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
-| dimention_catalog_guid | [string](#string) |  | @attr [Browsable(false)] |
+| dimention_catalog_guid | [string](#string) |  | Guid of catalog used as dimention @attr [Browsable(false)] |
+| property_dimention_guid | [string](#string) |  | Guid for dimention property. Auto generated. @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 

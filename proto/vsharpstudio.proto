@@ -2613,6 +2613,15 @@ message proto_group_list_registers {
     // @attr [DisplayName("Short ID")]
     // @attr [Description("Short register type ID for cache key generator")]
     string short_id_type_for_cache_key = 15;
+    // Guid for document guid property. Auto generated.
+    // @attr [Browsable(false)]
+    string property_reg_guid_guid = 43; 
+    // Guid for document date guid property. Auto generated.
+    // @attr [Browsable(false)]
+    string property_doc_date_guid = 44; 
+    // Guid for document date secuence guid property. Auto generated.
+    // @attr [Browsable(false)]
+    string property_doc_date_sequence_guid = 45; 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -2642,8 +2651,12 @@ message proto_register_dimention {
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
+    // Guid of catalog used as dimention
     // @attr [Browsable(false)]
     string dimention_catalog_guid = 21; 
+    // Guid for dimention property. Auto generated.
+    // @attr [Browsable(false)]
+    string property_dimention_guid = 22; 
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -2718,6 +2731,29 @@ message proto_register {
     // @attr [Browsable(false)]
     // @attr [PropertyOrderAttribute(25)]
     repeated proto_register_dimention list_register_dimensions = 27;
+    /// <summary>
+    /// Guids of selected types of DOCUMENTS
+    /// </summary>
+    // @attr [Browsable(false)]
+    repeated string list_doc_guids = 41;
+    // Guid for document reference property. Auto generated.
+    // @attr [Browsable(false)]
+    string property_doc_ref_guid = 42; 
+    // Guid for document guid property. Auto generated.
+    // @attr [Browsable(false)]
+    string property_doc_guid_guid = 43; 
+    // Guid for document date guid property. Auto generated.
+    // @attr [Browsable(false)]
+    string property_doc_date_guid = 44; 
+    // Guid for index of document date, dimentions. Auto generated.
+    // @attr [Browsable(false)]
+    string index_doc_date_dimentions_guid = 45; 
+    // Guid for document number guid property. Auto generated.
+    // @attr [Browsable(false)]
+    string property_doc_number_guid = 46; 
+    // Guid for index of document Id and type. Auto generated.
+    // @attr [Browsable(false)]
+    string index_doc_id_type_guid = 47; 
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;

@@ -15,6 +15,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows;
+    using CommunityToolkit.Diagnostics;
     using FluentValidation;
     using FluentValidation.Results;
     //using JetBrains.Annotations;
@@ -414,35 +415,56 @@
             var sb = new StringBuilder();
             sb.Append("");
             string prefix = "";
-            foreach (var t in lst)
+            if (this is IGroupListRegisters gr1)
             {
-                if (t is IDetail)
+                prefix = gr1.PrefixForDbTables;
+            }
+            else
+            {
+                foreach (var t in lst)
                 {
-                    sb.Append(t.Name);
-                }
-                else if (t is IGroupListConstants)
-                {
-                    sb.Append(t.Name);
-                }
-                else if (t is IGroupConstantGroups gcg)
-                {
-                    prefix = gcg.PrefixForDbTables;
-                }
-                else if (t is ICatalog)
-                {
-                    sb.Append(t.Name);
-                }
-                else if (t is IGroupListCatalogs glc)
-                {
-                    prefix = glc.PrefixForDbTables;
-                }
-                else if (t is IDocument)
-                {
-                    sb.Append(t.Name);
-                }
-                else if (t is IGroupDocuments gd)
-                {
-                    prefix = gd.PrefixForDbTables;
+                    if (t is IDetail)
+                    {
+                        sb.Append(t.Name);
+                    }
+                    else if (t is IGroupListConstants)
+                    {
+                        sb.Append(t.Name);
+                    }
+                    else if (t is IGroupConstantGroups gcg)
+                    {
+                        prefix = gcg.PrefixForDbTables;
+                    }
+                    else if (t is ICatalog)
+                    {
+                        sb.Append(t.Name);
+                    }
+                    else if (t is IGroupListCatalogs glc)
+                    {
+                        prefix = glc.PrefixForDbTables;
+                    }
+                    else if (t is IDocument)
+                    {
+                        sb.Append(t.Name);
+                    }
+                    else if (t is IGroupDocuments gd)
+                    {
+                        prefix = gd.PrefixForDbTables;
+                    }
+                    else if (t is IGroupListRegisters gr)
+                    {
+                        prefix = gr.PrefixForDbTables;
+                    }
+                    else if (t is IConfig)
+                    {
+                    }
+                    else if (t is IModel)
+                    {
+                    }
+                    else
+                    {
+                        ThrowHelper.ThrowInvalidOperationException();
+                    }
                 }
             }
             string composit = sb.ToString();

@@ -22967,6 +22967,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm.SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.PrefixForDbTables = from.PrefixForDbTables; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.PropertyRegGuidGuid = from.PropertyRegGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.PropertyDocDateGuid = from.PropertyDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.PropertyDocDateSequenceGuid = from.PropertyDocDateSequenceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:56
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:57
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -23023,6 +23026,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to.SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             to.PrefixForDbTables = from.PrefixForDbTables; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             to.ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.PropertyRegGuidGuid = from.PropertyRegGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.PropertyDocDateGuid = from.PropertyDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.PropertyDocDateSequenceGuid = from.PropertyDocDateSequenceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:89
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -23101,6 +23107,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm.SortingValue = m.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.PrefixForDbTables = m.PrefixForDbTables; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.ShortIdTypeForCacheKey = m.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.PropertyRegGuidGuid = m.PropertyRegGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.PropertyDocDateGuid = m.PropertyDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.PropertyDocDateSequenceGuid = m.PropertyDocDateSequenceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:195
             foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:199
             {
@@ -23128,6 +23137,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             m.PrefixForDbTables = vm.PrefixForDbTables; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             m.ShortIdTypeForCacheKey = vm.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.PropertyRegGuidGuid = vm.PropertyRegGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.PropertyDocDateGuid = vm.PropertyDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.PropertyDocDateSequenceGuid = vm.PropertyDocDateSequenceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:243
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:247
             return m;
@@ -23353,6 +23365,72 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnShortIdTypeForCacheKeyChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnShortIdTypeForCacheKeyChanged();
         
+        // Guid for document guid property. Auto generated.
+        [Browsable(false)]
+        public string PropertyRegGuidGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PropertyRegGuidGuid; }
+            set
+            {
+                if (this._PropertyRegGuidGuid != value)
+                {
+                    this.OnPropertyRegGuidGuidChanging(ref value);
+                    this._PropertyRegGuidGuid = value;
+                    this.OnPropertyRegGuidGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyRegGuidGuid = string.Empty;
+        partial void OnPropertyRegGuidGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPropertyRegGuidGuidChanged();
+        
+        // Guid for document date guid property. Auto generated.
+        [Browsable(false)]
+        public string PropertyDocDateGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PropertyDocDateGuid; }
+            set
+            {
+                if (this._PropertyDocDateGuid != value)
+                {
+                    this.OnPropertyDocDateGuidChanging(ref value);
+                    this._PropertyDocDateGuid = value;
+                    this.OnPropertyDocDateGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDocDateGuid = string.Empty;
+        partial void OnPropertyDocDateGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPropertyDocDateGuidChanged();
+        
+        // Guid for document date secuence guid property. Auto generated.
+        [Browsable(false)]
+        public string PropertyDocDateSequenceGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PropertyDocDateSequenceGuid; }
+            set
+            {
+                if (this._PropertyDocDateSequenceGuid != value)
+                {
+                    this.OnPropertyDocDateSequenceGuidChanging(ref value);
+                    this._PropertyDocDateSequenceGuid = value;
+                    this.OnPropertyDocDateSequenceGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDocDateSequenceGuid = string.Empty;
+        partial void OnPropertyDocDateSequenceGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPropertyDocDateSequenceGuidChanged();
+        
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:9
         { 
@@ -23447,6 +23525,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm.IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.DimentionCatalogGuid = from.DimentionCatalogGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.PropertyDimentionGuid = from.PropertyDimentionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:56
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:57
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -23468,6 +23547,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to.IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             to.DimentionCatalogGuid = from.DimentionCatalogGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.PropertyDimentionGuid = from.PropertyDimentionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:89
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -23541,6 +23621,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm.IsNew = m.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.DimentionCatalogGuid = m.DimentionCatalogGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.PropertyDimentionGuid = m.PropertyDimentionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:195
             foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:199
             {
@@ -23567,6 +23648,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             m.DimentionCatalogGuid = vm.DimentionCatalogGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.PropertyDimentionGuid = vm.PropertyDimentionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:243
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:247
             return m;
@@ -23740,6 +23822,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnIsMarkedForDeletionChanged();
         
+        // Guid of catalog used as dimention
         [Browsable(false)]
         public string DimentionCatalogGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
         { 
@@ -23760,6 +23843,28 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private string _DimentionCatalogGuid = string.Empty;
         partial void OnDimentionCatalogGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
         partial void OnDimentionCatalogGuidChanged();
+        
+        // Guid for dimention property. Auto generated.
+        [Browsable(false)]
+        public string PropertyDimentionGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PropertyDimentionGuid; }
+            set
+            {
+                if (this._PropertyDimentionGuid != value)
+                {
+                    this.OnPropertyDimentionGuidChanging(ref value);
+                    this._PropertyDimentionGuid = value;
+                    this.OnPropertyDimentionGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDimentionGuid = string.Empty;
+        partial void OnPropertyDimentionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPropertyDimentionGuidChanged();
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:9
@@ -23827,6 +23932,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = false;
             this.OnCreating();
             this._ListRegisterDimensions = new ConfigNodesCollection<RegisterDimention>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:38
+            this._ListDocGuids = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:36
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:38
             this.OnCreated();
             this.IsValidate = true;
@@ -23875,6 +23981,14 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm.ListRegisterDimensions = new ConfigNodesCollection<RegisterDimention>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:56
             foreach (var t in from.ListRegisterDimensions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:57
                 vm.ListRegisterDimensions.Add(RegisterDimention.Clone(vm, (RegisterDimention)t, isDeep));
+            foreach (var t in from.ListDocGuids) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:49
+                vm.ListDocGuids.Add(t);
+            vm.PropertyDocRefGuid = from.PropertyDocRefGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.PropertyDocGuidGuid = from.PropertyDocGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.PropertyDocDateGuid = from.PropertyDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.IndexDocDateDimentionsGuid = from.IndexDocDateDimentionsGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.PropertyDocNumberGuid = from.PropertyDocNumberGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
+            vm.IndexDocIdTypeGuid = from.IndexDocIdTypeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:56
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:57
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -23942,6 +24056,17 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                     }
                 }
             }
+                to.ListDocGuids.Clear(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:130
+                foreach (var tt in from.ListDocGuids)
+                {
+                    to.ListDocGuids.Add(tt);
+                }
+            to.PropertyDocRefGuid = from.PropertyDocRefGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.PropertyDocGuidGuid = from.PropertyDocGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.PropertyDocDateGuid = from.PropertyDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.IndexDocDateDimentionsGuid = from.IndexDocDateDimentionsGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.PropertyDocNumberGuid = from.PropertyDocNumberGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.IndexDocIdTypeGuid = from.IndexDocIdTypeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:89
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -24031,6 +24156,17 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 var tvm = RegisterDimention.ConvertToVM(t, new RegisterDimention(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:201
                 vm.ListRegisterDimensions.Add(tvm);
             }
+            vm.ListDocGuids = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:188
+            foreach (var t in m.ListDocGuids) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:189
+            {
+                vm.ListDocGuids.Add(t);
+            }
+            vm.PropertyDocRefGuid = m.PropertyDocRefGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.PropertyDocGuidGuid = m.PropertyDocGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.PropertyDocDateGuid = m.PropertyDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.IndexDocDateDimentionsGuid = m.IndexDocDateDimentionsGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.PropertyDocNumberGuid = m.PropertyDocNumberGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.IndexDocIdTypeGuid = m.IndexDocIdTypeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:195
             foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:199
             {
@@ -24069,6 +24205,14 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.PropertyMoneyAccumulatorGuid = vm.PropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             foreach (var t in vm.ListRegisterDimensions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:243
                 m.ListRegisterDimensions.Add(RegisterDimention.ConvertToProto((RegisterDimention)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:247
+            foreach (var t in vm.ListDocGuids) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:243
+                m.ListDocGuids.Add(t); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:245
+            m.PropertyDocRefGuid = vm.PropertyDocRefGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.PropertyDocGuidGuid = vm.PropertyDocGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.PropertyDocDateGuid = vm.PropertyDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.IndexDocDateDimentionsGuid = vm.IndexDocDateDimentionsGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.PropertyDocNumberGuid = vm.PropertyDocNumberGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            m.IndexDocIdTypeGuid = vm.IndexDocIdTypeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:243
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:247
             return m;
@@ -24517,6 +24661,162 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         IReadOnlyList<IRegisterDimention> IRegister.ListRegisterDimensions { get { return (this as Register).ListRegisterDimensions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:27
         partial void OnListRegisterDimensionsChanging(ObservableCollection<RegisterDimention> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:28
         partial void OnListRegisterDimensionsChanged();
+        
+        // <summary>
+        // / Guids of selected types of DOCUMENTS
+        // / </summary>
+        [Browsable(false)]
+        public ObservableCollectionWithActions<string> ListDocGuids // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:9
+        { 
+            get { return this._ListDocGuids; }
+            set
+            {
+                if (this._ListDocGuids != value)
+                {
+                    this.OnListDocGuidsChanging(value);
+                    _ListDocGuids = value;
+                    this.OnListDocGuidsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollectionWithActions<string> _ListDocGuids;
+        IReadOnlyList<string> IRegister.ListDocGuids { get { return (this as Register).ListDocGuids; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:27
+        partial void OnListDocGuidsChanging(ObservableCollection<string> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:28
+        partial void OnListDocGuidsChanged();
+        
+        // Guid for document reference property. Auto generated.
+        [Browsable(false)]
+        public string PropertyDocRefGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PropertyDocRefGuid; }
+            set
+            {
+                if (this._PropertyDocRefGuid != value)
+                {
+                    this.OnPropertyDocRefGuidChanging(ref value);
+                    this._PropertyDocRefGuid = value;
+                    this.OnPropertyDocRefGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDocRefGuid = string.Empty;
+        partial void OnPropertyDocRefGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPropertyDocRefGuidChanged();
+        
+        // Guid for document guid property. Auto generated.
+        [Browsable(false)]
+        public string PropertyDocGuidGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PropertyDocGuidGuid; }
+            set
+            {
+                if (this._PropertyDocGuidGuid != value)
+                {
+                    this.OnPropertyDocGuidGuidChanging(ref value);
+                    this._PropertyDocGuidGuid = value;
+                    this.OnPropertyDocGuidGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDocGuidGuid = string.Empty;
+        partial void OnPropertyDocGuidGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPropertyDocGuidGuidChanged();
+        
+        // Guid for document date guid property. Auto generated.
+        [Browsable(false)]
+        public string PropertyDocDateGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PropertyDocDateGuid; }
+            set
+            {
+                if (this._PropertyDocDateGuid != value)
+                {
+                    this.OnPropertyDocDateGuidChanging(ref value);
+                    this._PropertyDocDateGuid = value;
+                    this.OnPropertyDocDateGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDocDateGuid = string.Empty;
+        partial void OnPropertyDocDateGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPropertyDocDateGuidChanged();
+        
+        // Guid for index of document date, dimentions. Auto generated.
+        [Browsable(false)]
+        public string IndexDocDateDimentionsGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._IndexDocDateDimentionsGuid; }
+            set
+            {
+                if (this._IndexDocDateDimentionsGuid != value)
+                {
+                    this.OnIndexDocDateDimentionsGuidChanging(ref value);
+                    this._IndexDocDateDimentionsGuid = value;
+                    this.OnIndexDocDateDimentionsGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _IndexDocDateDimentionsGuid = string.Empty;
+        partial void OnIndexDocDateDimentionsGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnIndexDocDateDimentionsGuidChanged();
+        
+        // Guid for document number guid property. Auto generated.
+        [Browsable(false)]
+        public string PropertyDocNumberGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._PropertyDocNumberGuid; }
+            set
+            {
+                if (this._PropertyDocNumberGuid != value)
+                {
+                    this.OnPropertyDocNumberGuidChanging(ref value);
+                    this._PropertyDocNumberGuid = value;
+                    this.OnPropertyDocNumberGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDocNumberGuid = string.Empty;
+        partial void OnPropertyDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnPropertyDocNumberGuidChanged();
+        
+        // Guid for index of document Id and type. Auto generated.
+        [Browsable(false)]
+        public string IndexDocIdTypeGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        { 
+            get { return this._IndexDocIdTypeGuid; }
+            set
+            {
+                if (this._IndexDocIdTypeGuid != value)
+                {
+                    this.OnIndexDocIdTypeGuidChanging(ref value);
+                    this._IndexDocIdTypeGuid = value;
+                    this.OnIndexDocIdTypeGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _IndexDocIdTypeGuid = string.Empty;
+        partial void OnIndexDocIdTypeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnIndexDocIdTypeGuidChanged();
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:9

@@ -39,9 +39,13 @@ namespace vSharpStudio.vm.ViewModels
                 if (string.IsNullOrEmpty(name))
                     return;
                 var p = (Property)cntx.InstanceToValidate;
+                //if (p.isSpecialItself) 
+                //    return;
                 if (p.Parent == null)
                     return;
-                if (p.Parent is Property) // no need validate extended property 
+                //if (p.Parent is Property) // no need validate extended property 
+                //    return;
+                if (!(p.Parent is GroupListProperties)) // no need validate
                     return;
                 var pg = p.ParentGroupListProperties;
                 GroupListProperties? pgs = null;

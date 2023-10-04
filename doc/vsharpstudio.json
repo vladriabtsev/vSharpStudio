@@ -8011,6 +8011,36 @@
               "defaultValue": ""
             },
             {
+              "name": "property_reg_guid_guid",
+              "description": "Guid for document guid property. Auto generated.\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_doc_date_guid",
+              "description": "Guid for document date guid property. Auto generated.\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_doc_date_sequence_guid",
+              "description": "Guid for document date secuence guid property. Auto generated.\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -9938,6 +9968,76 @@
               "defaultValue": ""
             },
             {
+              "name": "list_doc_guids",
+              "description": "\u003csummary\u003e\n/ Guids of selected types of DOCUMENTS\n/ \u003c/summary\u003e\n@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_doc_ref_guid",
+              "description": "Guid for document reference property. Auto generated.\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_doc_guid_guid",
+              "description": "Guid for document guid property. Auto generated.\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_doc_date_guid",
+              "description": "Guid for document date guid property. Auto generated.\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_doc_date_dimentions_guid",
+              "description": "Guid for index of document date, dimentions. Auto generated.\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_doc_number_guid",
+              "description": "Guid for document number guid property. Auto generated.\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_doc_id_type_guid",
+              "description": "Guid for index of document Id and type. Auto generated.\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -10030,7 +10130,17 @@
             },
             {
               "name": "dimention_catalog_guid",
-              "description": "@attr [Browsable(false)]",
+              "description": "Guid of catalog used as dimention\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_dimention_guid",
+              "description": "Guid for dimention property. Auto generated.\n@attr [Browsable(false)]",
               "label": "",
               "type": "string",
               "longType": "string",

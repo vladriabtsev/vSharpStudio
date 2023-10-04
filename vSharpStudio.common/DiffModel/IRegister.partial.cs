@@ -9,5 +9,6 @@ namespace vSharpStudio.common
 {
     public partial interface IRegister : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IDbTable
     {
+        IRegisterDimention AddDimention(string name, ICatalog c);
     }
 }

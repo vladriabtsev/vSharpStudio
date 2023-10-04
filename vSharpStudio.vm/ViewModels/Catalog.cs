@@ -496,13 +496,13 @@ namespace vSharpStudio.vm.ViewModels
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentGroupListCatalogs.ParentModel;
-            var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid, false);
+            var prp = model.GetPropertyPkId(this.GroupProperties, this.PropertyIdGuid);
             res.Add(prp);
             if (this.UseTree)
             {
                 if (this.UseSeparateTreeForFolders)
                 {
-                    prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefFolderGuid, "Ref" + this.Folder.CompositeName);
+                    prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefFolderGuid, "Ref" + this.Folder.CompositeName, false);
                     res.Add(prp);
                 }
                 else
@@ -659,7 +659,7 @@ namespace vSharpStudio.vm.ViewModels
             ViewListData? viewListData = null;
             var model = this.ParentGroupListCatalogs.ParentModel;
             Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
-            IProperty pId = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid, false);
+            IProperty pId = model.GetPropertyPkId(this.GroupProperties, this.PropertyIdGuid);
             IProperty? pRefTreeParent = null;
             IProperty? pRefParent = null;
             if (this.UseTree)

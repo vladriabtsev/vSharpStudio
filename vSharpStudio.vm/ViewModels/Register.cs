@@ -65,6 +65,12 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyQtyAccumulatorAccuracy = 4;
             this.PropertyQtyAccumulatorLength = 0;
             this.PropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
+            this.PropertyDocRefGuid = System.Guid.NewGuid().ToString();
+            this.PropertyDocGuidGuid = System.Guid.NewGuid().ToString();
+            this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
+            this.IndexDocDateDimentionsGuid = System.Guid.NewGuid().ToString();
+            this.PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
+            this.IndexDocIdTypeGuid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()
@@ -345,5 +351,11 @@ namespace vSharpStudio.vm.ViewModels
         //}
         #endregion Roles
 
+        public IRegisterDimention AddDimention(string name, ICatalog c)
+        {
+            var d = new RegisterDimention(c) { Name=name, DimentionCatalogGuid=c.Guid };
+            this.ListRegisterDimensions.Add(d);
+            return d;
+        }
     }
 }

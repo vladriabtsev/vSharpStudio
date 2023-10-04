@@ -665,20 +665,20 @@ namespace vSharpStudio.vm.ViewModels
             if (string.IsNullOrWhiteSpace(this.PKeyGuid))
                 this.PKeyGuid = System.Guid.NewGuid().ToString();
             var res = new Property(parent, this.PKeyGuid, fieldName, true);
-            res.DataType = (DataType)this.GetIdDataType(res);
+            res.DataType = (DataType)this.GetIdDataType(res, false);
             res.DataType.IsPKey = true;
             return res;
         }
-        public IDataType GetIdDataType(ITreeConfigNode? parent)
+        public IDataType GetIdDataType(ITreeConfigNode? parent, bool isNullable)
         {
             IDataType dt;
             switch (this.PKeyType)
             {
                 case EnumPrimaryKeyType.INT:
-                    dt = this.GetDataTypeFromMaxValue(parent, int.MaxValue, false, true);
+                    dt = this.GetDataTypeFromMaxValue(parent, int.MaxValue, false, isNullable);
                     break;
                 case EnumPrimaryKeyType.LONG:
-                    dt = this.GetDataTypeFromMaxValue(parent, long.MaxValue, false, true);
+                    dt = this.GetDataTypeFromMaxValue(parent, long.MaxValue, false, isNullable);
                     break;
                 default:
                     throw new ArgumentException();
@@ -697,13 +697,34 @@ namespace vSharpStudio.vm.ViewModels
                     throw new ArgumentException();
             }
         }
-        public IProperty GetPropertyId(ITreeConfigNode parent, string idGuid, bool isNullable)
+        public IProperty GetPropertyGuid(ITreeConfigNode parent, string guid, string name, bool isNullable)
+        {
+            var res = new Property(parent, guid, name, false);
+            res.DataType = (DataType)this.GetDataTypeStringGuid(res, isNullable);
+            res.IsCsNullable = true;
+            return res;
+        }
+        public IProperty GetPropertyDate(ITreeConfigNode parent, string guid, string name, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MAX)
+        {
+            var res = new Property(parent, guid, name, false);
+            res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res, enumTimeAccuracyType, isNullable);
+            res.IsCsNullable = true;
+            return res;
+        }
+        public IProperty GetPropertyPkId(ITreeConfigNode parent, string idGuid)
         {
             var res = new Property(parent, idGuid, this.PKeyName, true);
-            res.DataType = (DataType)this.GetIdDataType(res);
+            res.DataType = (DataType)this.GetIdDataType(res, false);
             res.DataType.IsPKey = true;
             res.IsHidden = true;
             res.Position = 6;
+            return res;
+        }
+        public IProperty GetPropertyId(ITreeConfigNode parent, string guid, string name, bool isNullable)
+        {
+            var res = new Property(parent, guid, name + this.PKeyName, true);
+            res.DataType = (DataType)this.GetIdDataType(res, isNullable);
+            res.IsHidden = true;
             return res;
         }
         public IProperty GetPropertyVersion(ITreeConfigNode parent, string guid)
@@ -725,12 +746,12 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = 8;
             return res;
         }
-        public IProperty GetPropertyRefDimention(IRegister parent, string guid, string name, uint relPosition, bool isNullable = false)
+        public IProperty GetPropertyRefDimention(IRegister parent, string guid, string name, bool isNullable = false)
         {
             var res = new Property(parent, guid, name, true);
             res.DataType = (DataType)this.GetIdRefDataType(res, isNullable);
             res.IsHidden = true;
-            res.Position = 10 + relPosition;
+            //res.Position = 10 + relPosition;
             return res;
         }
         public IProperty GetPropertyCatalogCode(ITreeConfigNode parent, string guid, uint length, bool isNullable)

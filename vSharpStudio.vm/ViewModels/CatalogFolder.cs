@@ -279,7 +279,7 @@ namespace vSharpStudio.vm.ViewModels
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
-            var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid, false);
+            var prp = model.GetPropertyPkId(this.GroupProperties, this.PropertyIdGuid);
             res.Add(prp);
             prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
             res.Add(prp);
