@@ -734,7 +734,8 @@ namespace vSharpStudio.ViewModels
 #endif
                 this.UpdateUserSettingsSaveConfigs();
                 this.ResetIsChangedBeforeSave();
-                File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+                if (!MainPageVM.NotSaveUserSettings)
+                    File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
 #if DEBUG
                 //var json = JsonFormatter.Default.Format(this.pconfig_history);
                 //File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
@@ -805,7 +806,8 @@ namespace vSharpStudio.ViewModels
 #endif
                             this.UpdateUserSettingsSaveConfigs();
                             this.ResetIsChangedBeforeSave();
-                            File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+                            if (!MainPageVM.NotSaveUserSettings)
+                                File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
                             this.VisibilityAndMessageInstructions();
                             // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
                             // File.WriteAllText(FilePathSaveAs, json);
@@ -842,8 +844,6 @@ namespace vSharpStudio.ViewModels
         }
         private void UpdateUserSettingsSaveConfigs()
         {
-            if (MainPageVM.NotSaveUserSettings)
-                return;
             Debug.Assert(this.UserSettings != null);
             Debug.Assert(this.CurrentCfgFilePath != null);
             if (this.UserSettings.ListOpenConfigHistory.Count > 0)
@@ -1890,6 +1890,8 @@ namespace vSharpStudio.ViewModels
 
         private void ConnectionStringSettingsSave()
         {
+            if (MainPageVM.NotSaveUserSettings)
+                return;
             var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var conns = configFile.ConnectionStrings.ConnectionStrings;
             conns.Clear();
