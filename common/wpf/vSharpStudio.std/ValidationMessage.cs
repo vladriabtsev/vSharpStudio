@@ -89,7 +89,7 @@ namespace ViewModelBase
         /// <param name="shift"></param>
         public void RaiseSeverityLevel(int shiftLevel)
         {
-            Guard.IsBetween(shiftLevel, 0, int.MaxValue / (ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity));
+            Guard.IsBetweenOrEqualTo(shiftLevel, 0, int.MaxValue / (ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity));
             SortingValue += (ulong)(ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity * shiftLevel);
         }
         public int CompareTo(ValidationMessage? other)

@@ -47,6 +47,7 @@ namespace vSharpStudio.ViewModels
     // https://github.com/GitTools/GitVersion
     public class MainPageVM : VmValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
+        public static bool NotSaveUserSettings = false;
         public static MainPageVM Create(bool isLoadConfig, string? pluginsFolderPath = null, string? configFile = null)
         {
             VmBindable.IsNotifyingStatic = false;
@@ -756,13 +757,13 @@ namespace vSharpStudio.ViewModels
         private vButtonVM<string>? _BtnConfigSaveAs;
         internal void SaveAs(string filePath)
         {
-            if (isUnitTests)
+            if (VmBindable.isUnitTests)
             {
                 Debug.Assert(!string.IsNullOrEmpty(filePath));
             }
             string fExt = "";
             System.Windows.Forms.SaveFileDialog? openFileDialog = null;
-            if (string.IsNullOrEmpty(filePath)) // explicite filePath from tests
+            if (string.IsNullOrEmpty(filePath)) // explicit filePath from tests
             {
                 // https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=netframework-4.8
                 openFileDialog = new()
@@ -841,6 +842,8 @@ namespace vSharpStudio.ViewModels
         }
         private void UpdateUserSettingsSaveConfigs()
         {
+            if (MainPageVM.NotSaveUserSettings)
+                return;
             Debug.Assert(this.UserSettings != null);
             Debug.Assert(this.CurrentCfgFilePath != null);
             if (this.UserSettings.ListOpenConfigHistory.Count > 0)
