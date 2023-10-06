@@ -835,68 +835,6 @@ namespace vSharpStudio.vm.ViewModels
             return res;
         }
 
-        public IReadOnlyList<IProperty> GetIncludedProperties(IRegister p)
-        {
-            var lst = new List<IProperty>();
-            var pId = this.GetPropertyPkId(p, p.Guid);
-            pId.TagInList = "id";
-            lst.Add(pId);
-            var pDocDate = this.GetPropertyDocumentDate(p, p.PropertyDocDateGuid);
-            pDocDate.TagInList = "dd";
-            lst.Add(pDocDate);
-            // For all dimensions (catalogs)
-            int i = 1;
-            foreach (var t in p.ListRegisterDimensions)
-            {
-                if (!string.IsNullOrEmpty(t.DimentionCatalogGuid))
-                {
-                    if (this.ParentConfig.DicNodes.TryGetValue(t.DimentionCatalogGuid, out var node))
-                    {
-                        if (node is ICatalog c)
-                        {
-                            var pRef = this.GetPropertyRefDimention(p, t.Guid, "Ref" + c.CompositeName, false);
-                            pRef.TagInList = i.ToString();
-                            lst.Add(pRef);
-                            i++;
-                        }
-                        else
-                            ThrowHelper.ThrowNotSupportedException();
-                    }
-                    else
-                        ThrowHelper.ThrowNotSupportedException();
-                }
-                else
-                    ThrowHelper.ThrowNotSupportedException();
-            }
-
-            // Money accumulator
-            var pMoney = this.GetPropertyNumber(p, p.PropertyMoneyAccumulatorGuid, p.PropertyMoneyAccumulatorName, p.PropertyMoneyAccumulatorLength, p.PropertyMoneyAccumulatorAccuracy, false);
-            pMoney.TagInList = "ma";
-            lst.Add(pMoney);
-
-            // Qty accumulator
-            var pQty = this.GetPropertyNumber(p, p.PropertyQtyAccumulatorGuid, p.PropertyQtyAccumulatorName, p.PropertyQtyAccumulatorLength, p.PropertyQtyAccumulatorAccuracy, false);
-            pQty.TagInList = "qa";
-            lst.Add(pQty);
-
-            // Reference to document
-            var pDocRef = this.GetPropertyId(p, p.PropertyDocRefGuid, "DocRef", false);
-            pDocRef.TagInList = "dr";
-            lst.Add(pDocRef);
-
-            // Guid of document
-            var pDocGuid = this.GetPropertyGuid(p, p.PropertyDocGuidGuid, "DocGuid", false);
-            pDocGuid.TagInList = "dg";
-            lst.Add(pDocGuid);
-
-            // Document number
-            var pDocNumber = this.GetPropertyDocNumberString(p, p.PropertyDocNumberGuid, 50);
-            pDocNumber.TagInList = "dn";
-            lst.Add(pDocNumber);
-
-            return lst;
-        }
-
         //public IProperty GetPropertyString(string guid, uint length, string name)
         //{
         //    var dt = (DataType)this.GetDataType(length);
@@ -994,6 +932,20 @@ namespace vSharpStudio.vm.ViewModels
             var cfg = this.ParentConfig;
             var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
             foreach (var tt in cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+            {
+                if (tt.IsIncluded(guidAppPrjGen))
+                {
+                    lst.Add(tt);
+                }
+            }
+            return lst;
+        }
+        public IReadOnlyList<IRegister> GetListRegisters(string guidAppPrjGen)
+        {
+            var lst = new List<IRegister>();
+            var cfg = this.ParentConfig;
+            var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
+            foreach (var tt in cfg.Model.GroupDocuments.GroupListRegisters.ListRegisters)
             {
                 if (tt.IsIncluded(guidAppPrjGen))
                 {

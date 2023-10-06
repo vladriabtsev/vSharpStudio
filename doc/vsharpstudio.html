@@ -6201,6 +6201,13 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
+                  <td>property_version_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
@@ -7849,6 +7856,14 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>last_gen_position</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Last generated Protobuf field position
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -8026,6 +8041,13 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>property_version_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
@@ -8120,6 +8142,15 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>Guid for dimention property. Auto generated.
 @attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Protobuf field position
+Reserved positions: 1-15
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>

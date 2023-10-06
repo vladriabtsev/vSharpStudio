@@ -9,6 +9,8 @@ namespace vSharpStudio.common
 {
     public partial interface IRegister : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IDbTable
     {
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic);
         IRegisterDimention AddDimention(string name, ICatalog c);
+        string FullName { get; } // name with config name
     }
 }

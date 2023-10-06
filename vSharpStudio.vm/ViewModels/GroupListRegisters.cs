@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using CommunityToolkit.Diagnostics;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -87,6 +88,7 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyRegGuidGuid = System.Guid.NewGuid().ToString();
             this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
             this.PropertyDocDateSequenceGuid = System.Guid.NewGuid().ToString();
+            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()
@@ -169,5 +171,43 @@ namespace vSharpStudio.vm.ViewModels
         //    return role.DefaultCatalogPrintAccessSettings;
         //}
         #endregion Roles
+
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic)
+        {
+            var lst = new List<IProperty>();
+            var m = this.ParentGroupDocuments.ParentModel;
+
+            // Field PK
+            var pId = m.GetPropertyPkId(this, this.Guid);
+            pId.TagInList = "id";
+            lst.Add(pId);
+
+            // Field record version
+            if (isOptimistic)
+            {
+                var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid);
+                pVer.TagInList = "vr";
+                lst.Add(pVer);
+            }
+
+            // Field register Guid
+            var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyRegGuidGuid, "RegGuid", false);
+            pDocGuid.Position = 9;
+            pDocGuid.TagInList = "rg";
+            lst.Add(pDocGuid);
+
+            // Field timeline value
+            var pDocDatePost = (Property)m.GetPropertyDate(this, this.PropertyDocDateGuid, "DocDatePost", false);
+            pDocDatePost.Position = 10;
+            pDocDatePost.TagInList = "pd";
+            lst.Add(pDocDatePost);
+
+            // Field timeline end
+            var pDocDatePostSequenceEnd = (Property)m.GetPropertyDate(this, this.PropertyDocDateSequenceGuid, "DocDatePostSequenceEnd", false);
+            pDocDatePostSequenceEnd.Position = 11;
+            pDocDatePostSequenceEnd.TagInList = "se";
+            lst.Add(pDocDatePostSequenceEnd);
+            return lst;
+        }
     }
 }

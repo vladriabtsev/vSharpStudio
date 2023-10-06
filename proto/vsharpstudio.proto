@@ -2623,6 +2623,8 @@ message proto_group_list_registers {
     // @attr [Browsable(false)]
     string property_doc_date_sequence_guid = 45; 
     // @attr [Browsable(false)]
+    string property_version_guid = 46;
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ICanAddNode
@@ -2658,6 +2660,10 @@ message proto_register_dimention {
     // @attr [Browsable(false)]
     string property_dimention_guid = 22; 
 
+    // Protobuf field position
+    // Reserved positions: 1-15
+    // @attr [ReadOnly(true)]
+    uint32 position = 110;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -2681,6 +2687,9 @@ message proto_register {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // Last generated Protobuf field position
+    // @attr [ReadOnly(true)]
+    uint32 last_gen_position = 7;
     // @attr [Browsable(false)]
     bool is_new = 9;
     // @attr [DisplayName("For deletion")]
@@ -2754,6 +2763,8 @@ message proto_register {
     // Guid for index of document Id and type. Auto generated.
     // @attr [Browsable(false)]
     string index_doc_id_type_guid = 47; 
+    // @attr [Browsable(false)]
+    string property_version_guid = 48;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;

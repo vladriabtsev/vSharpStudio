@@ -202,10 +202,10 @@ namespace vSharpStudio.vm.ViewModels
                         vf.Severity = Severity.Error;
                         cntx.AddFailure(vf);
                     }
-                    if (p.Length > 38)
+                    if (p.Length > 28)
                     {
                         var vf = new ValidationFailure(nameof(p.Length),
-                            $"Value greater than 38 is not supported");
+                            $"Value greater than 28 is not supported");
                         vf.Severity = Severity.Error;
                         cntx.AddFailure(vf);
                     }

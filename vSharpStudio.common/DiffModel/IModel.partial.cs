@@ -57,8 +57,6 @@ namespace vSharpStudio.common
         IProperty GetPropertyDocNumberInt(ITreeConfigNode parent, string guid, uint length);
         IProperty GetPropertyDocNumberUniqueScopeHelper(ITreeConfigNode parent, string guid);
 
-        IReadOnlyList<IProperty> GetIncludedProperties(IRegister p);
-
         //IProperty GetPropertyBool(string guid, string name, bool isNullable);
         //IProperty GetPropertyInt(string guid, uint length, string name);
         //IProperty GetPropertyString(string guid, uint length, string name);
@@ -79,6 +77,7 @@ namespace vSharpStudio.common
         IReadOnlyList<ICatalog> GetListCatalogs(string guidAppPrjGen);
         //IReadOnlyList<IDetail> GetListTabs(ITreeConfigNode node, string guidAppPrjGen);
         IReadOnlyList<IDocument> GetListDocuments(string guidAppPrjGen);
+        IReadOnlyList<IRegister> GetListRegisters(string guidAppPrjGen);
         void VisitTabs(string appGenGuig, bool isOptimistic, EnumVisitType typeOp, ITreeConfigNode p, Action<IReadOnlyList<TableInfo>> action);
         //EnumConstantAccess GetRoleConstantAccess(string roleGuid);
         //EnumCatalogDetailAccess GetRoleCatalogAccess(string roleGuid);

@@ -8,5 +8,8 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListRegisters : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName
     {
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic);
+        int IndexOf(IRegister reg);
+        string FullName { get; } // name with config name
     }
 }

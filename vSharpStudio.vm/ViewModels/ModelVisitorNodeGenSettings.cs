@@ -91,6 +91,16 @@ namespace vSharpStudio.vm.ViewModels
             if (d is INodeGenSettings ns)
                 _act2(ns);
         }
+        protected override void BeginVisit(IRegister d)
+        {
+            if (d is INodeGenSettings ns)
+                _act2(ns);
+        }
+        protected override void BeginVisit(IGroupListRegisters d)
+        {
+            if (d is INodeGenSettings ns)
+                _act2(ns);
+        }
         protected override void BeginVisit(IGroupListDetails t)
         {
             if (t is INodeGenSettings ns)

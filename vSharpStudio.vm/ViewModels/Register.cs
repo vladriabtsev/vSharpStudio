@@ -8,6 +8,8 @@ using System.Diagnostics.Eventing.Reader;
 using System.DirectoryServices;
 using System.Numerics;
 using System.Text;
+using System.Xml.Linq;
+using CommunityToolkit.Diagnostics;
 using FluentValidation;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
@@ -58,12 +60,12 @@ namespace vSharpStudio.vm.ViewModels
             this.UseMoneyAccumulator = true;
             this.PropertyMoneyAccumulatorName = "AccumulatedMoney";
             this.PropertyMoneyAccumulatorAccuracy = 2;
-            this.PropertyMoneyAccumulatorLength = 0;
+            this.PropertyMoneyAccumulatorLength = 28;
             this.PropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
             this.UseQtyAccumulator = true;
             this.PropertyQtyAccumulatorName = "AccumulatedQty";
             this.PropertyQtyAccumulatorAccuracy = 4;
-            this.PropertyQtyAccumulatorLength = 0;
+            this.PropertyQtyAccumulatorLength = 28;
             this.PropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
             this.PropertyDocRefGuid = System.Guid.NewGuid().ToString();
             this.PropertyDocGuidGuid = System.Guid.NewGuid().ToString();
@@ -71,6 +73,8 @@ namespace vSharpStudio.vm.ViewModels
             this.IndexDocDateDimentionsGuid = System.Guid.NewGuid().ToString();
             this.PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
             this.IndexDocIdTypeGuid = System.Guid.NewGuid().ToString();
+            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this.LastGenPosition = 15;
             Init();
         }
         protected override void OnInitFromDto()
@@ -353,9 +357,85 @@ namespace vSharpStudio.vm.ViewModels
 
         public IRegisterDimention AddDimention(string name, ICatalog c)
         {
-            var d = new RegisterDimention(c) { Name=name, DimentionCatalogGuid=c.Guid };
+            var d = new RegisterDimention(c) { Name = name, DimentionCatalogGuid = c.Guid };
+            this.LastGenPosition++;
+            d.Position = this.LastGenPosition;
             this.ListRegisterDimensions.Add(d);
             return d;
+        }
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic)
+        {
+            var lst = new List<IProperty>();
+            var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
+            var pId = m.GetPropertyPkId(this, this.Guid);
+            pId.TagInList = "id";
+            lst.Add(pId);
+
+            if (isOptimistic)
+            {
+                var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid);
+                pVer.TagInList = "vr";
+                lst.Add(pVer);
+            }
+            var pDocDate = m.GetPropertyDocumentDate(this, this.PropertyDocDateGuid);
+            pDocDate.TagInList = "dd";
+            lst.Add(pDocDate);
+
+            // Document number
+            var pDocNumber = m.GetPropertyDocNumberString(this, this.PropertyDocNumberGuid, 50);
+            pDocNumber.TagInList = "dn";
+            lst.Add(pDocNumber);
+
+            // Money accumulator
+            var pMoney = (Property)m.GetPropertyNumber(this, this.PropertyMoneyAccumulatorGuid, this.PropertyMoneyAccumulatorName, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
+            pMoney.Position = 11;
+            pMoney.TagInList = "ma";
+            lst.Add(pMoney);
+
+            // Qty accumulator
+            var pQty = (Property)m.GetPropertyNumber(this, this.PropertyQtyAccumulatorGuid, this.PropertyQtyAccumulatorName, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
+            pQty.Position = 12;
+            pQty.TagInList = "qa";
+            lst.Add(pQty);
+
+            // Reference to document
+            var pDocRef = (Property)m.GetPropertyId(this, this.PropertyDocRefGuid, "DocRef", false);
+            pDocRef.Position = 13;
+            pDocRef.TagInList = "dr";
+            lst.Add(pDocRef);
+
+            // Guid of document
+            var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyDocGuidGuid, "DocGuid", false);
+            pDocGuid.Position = 14;
+            pDocGuid.TagInList = "dg";
+            lst.Add(pDocGuid);
+
+            // For all dimensions (catalogs)
+            int i = 1;
+            foreach (var t in this.ListRegisterDimensions)
+            {
+                if (!string.IsNullOrEmpty(t.DimentionCatalogGuid))
+                {
+                    if (m.ParentConfig.DicNodes.TryGetValue(t.DimentionCatalogGuid, out var node))
+                    {
+                        if (node is Catalog c)
+                        {
+                            var pRef = (Property)m.GetPropertyRefDimention(this, t.Guid, "Ref" + c.CompositeName, false);
+                            pRef.Position = t.Position + 16;
+                            pRef.TagInList = i.ToString();
+                            lst.Add(pRef);
+                            i++;
+                        }
+                        else
+                            ThrowHelper.ThrowNotSupportedException();
+                    }
+                    else
+                        ThrowHelper.ThrowNotSupportedException();
+                }
+                else
+                    ThrowHelper.ThrowNotSupportedException();
+            }
+            return lst;
         }
     }
 }

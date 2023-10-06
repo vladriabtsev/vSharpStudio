@@ -8041,6 +8041,16 @@
               "defaultValue": ""
             },
             {
+              "name": "property_version_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -9828,6 +9838,16 @@
               "defaultValue": ""
             },
             {
+              "name": "last_gen_position",
+              "description": "Last generated Protobuf field position\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "is_new",
               "description": "@attr [Browsable(false)]",
               "label": "",
@@ -10038,6 +10058,16 @@
               "defaultValue": ""
             },
             {
+              "name": "property_version_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -10145,6 +10175,16 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "position",
+              "description": "Protobuf field position\nReserved positions: 1-15\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
               "ismap": false,
               "defaultValue": ""
             },
