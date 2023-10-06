@@ -157,10 +157,10 @@ namespace vSharpStudio.common
             #endregion Catalogs
 
             #region Registers
-            this.BeginVisit(currModel.GroupDocuments.GroupListRegisters);
+            this.BeginVisit(currModel.GroupListRegisters);
             if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListRegisters);
-            foreach (var tr in currModel.GroupDocuments.GroupListRegisters.ListRegisters)
+                this._act?.Invoke(this, this.currModel.GroupListRegisters);
+            foreach (var tr in currModel.GroupListRegisters.ListRegisters)
             {
                 this.currReg = tr;
                 this.BeginVisit(tr);
@@ -178,8 +178,8 @@ namespace vSharpStudio.common
                 this.currReg = null;
             }
             if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListRegisters);
-            this.EndVisit(currModel.GroupDocuments.GroupListRegisters);
+                this._act?.Invoke(this, this.currModel.GroupListRegisters);
+            this.EndVisit(currModel.GroupListRegisters);
             #endregion Registers
 
             #region Documents

@@ -6416,16 +6416,6 @@
               "defaultValue": ""
             },
             {
-              "name": "group_list_registers",
-              "description": "@attr [Browsable(false)]\n@attr [Description(\"Registers for documents\")]",
-              "label": "",
-              "type": "proto_group_list_registers",
-              "longType": "proto_group_list_registers",
-              "fullType": "proto_config.proto_group_list_registers",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "use_doc_code_property",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for document by default\")]",
               "label": "",
@@ -8862,6 +8852,16 @@
               "type": "proto_group_documents",
               "longType": "proto_group_documents",
               "fullType": "proto_config.proto_group_documents",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_list_registers",
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"Registers for documents\")]",
+              "label": "",
+              "type": "proto_group_list_registers",
+              "longType": "proto_group_list_registers",
+              "fullType": "proto_config.proto_group_list_registers",
               "ismap": false,
               "defaultValue": ""
             },

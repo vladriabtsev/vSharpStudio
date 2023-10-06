@@ -109,7 +109,8 @@ namespace vSharpStudio.vm.ViewModels
             children.Add(this.GroupEnumerations, 8);
             children.Add(this.GroupCatalogs, 9);
             children.Add(this.GroupDocuments, 10);
-            children.Add(this.GroupJournals, 11);
+            children.Add(this.GroupListRegisters, 11);
+            children.Add(this.GroupJournals, 12);
             VmBindable.IsNotifyingStatic = true;
             //this.ListMainViewForms.OnAddingAction = (t) =>
             //{
@@ -945,7 +946,7 @@ namespace vSharpStudio.vm.ViewModels
             var lst = new List<IRegister>();
             var cfg = this.ParentConfig;
             var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
-            foreach (var tt in cfg.Model.GroupDocuments.GroupListRegisters.ListRegisters)
+            foreach (var tt in cfg.Model.GroupListRegisters.ListRegisters)
             {
                 if (tt.IsIncluded(guidAppPrjGen))
                 {
