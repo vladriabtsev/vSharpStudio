@@ -366,7 +366,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic)
         {
             var lst = new List<IProperty>();
-            var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
+            var m = this.ParentGroupListRegisters.ParentModel;
             var pId = m.GetPropertyPkId(this, this.Guid);
             pId.TagInList = "id";
             lst.Add(pId);

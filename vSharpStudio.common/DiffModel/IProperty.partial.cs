@@ -15,6 +15,9 @@ namespace vSharpStudio.common
         bool IsPKey { get; }
         bool IsDocShared { get; set; }
         bool IsRecordVersion { get; }
+        bool IsComplexRefId { get; }
+        bool IsComplexRefGuid { get; }
+
         /// <summary>
         /// Can be nullable in code, but not nullable in DB. Samples: catalog code, document number, document date
         /// </summary>

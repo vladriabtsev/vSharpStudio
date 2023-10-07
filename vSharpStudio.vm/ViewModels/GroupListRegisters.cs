@@ -20,13 +20,9 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
-        public GroupDocuments ParentGroupDocuments { get { Debug.Assert(this.Parent != null); return (GroupDocuments)this.Parent; } }
+        public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }
         [Browsable(false)]
-        public IGroupDocuments ParentGroupDocumentsI { get { Debug.Assert(this.Parent != null); return (IGroupDocuments)this.Parent; } }
-        [Browsable(false)]
-        public Model ParentModel { get { return this.ParentGroupDocuments.ParentModel; } }
-        [Browsable(false)]
-        public IModel ParentModelI { get { return this.ParentGroupDocumentsI.ParentModelI; } }
+        public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
 
         [PropertyOrder(100)]
         [ReadOnly(true)]
@@ -175,7 +171,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic)
         {
             var lst = new List<IProperty>();
-            var m = this.ParentGroupDocuments.ParentModel;
+            var m = this.ParentModel;
 
             // Field PK
             var pId = m.GetPropertyPkId(this, this.Guid);

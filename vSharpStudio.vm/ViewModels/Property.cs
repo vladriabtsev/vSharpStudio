@@ -730,8 +730,11 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType = (DataType)this.Cfg.Model.GetIdRefDataType(node, true);
             node.DataType.IsPKey = false;
             node.ParentProperty = this;
+            node.IsComplexRefId = true;
             return node;
         }
+        public bool IsComplexRefId { get; private set; }
+        public bool IsComplexRefGuid { get; private set; }
         public IProperty AddExtensionPropertyGuid(string subName, string guid)
         {
             var node = new Property(this) { Name = subName };
@@ -739,6 +742,7 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = 36 };
             node.IsNullable = true;
             node.ParentProperty = this;
+            node.IsComplexRefGuid = true;
             return node;
         }
         public IProperty AddExtensionPropertyString(string subName, uint length, string guid)
