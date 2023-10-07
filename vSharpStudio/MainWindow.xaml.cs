@@ -22,13 +22,22 @@ namespace vSharpStudio
     {
         public MainWindow()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            ResizeToScreenSize();
+
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
             {
                 return;
             }
-            
+
             // vSharpStudio.std.ApplicationLogging.LoggerFactory.AddProvider(new Serilog.Sinks.File.PeriodicFlushToDiskSink()
+        }
+
+        void ResizeToScreenSize()
+        {
+            WpfScreen s = WpfScreen.GetScreenFrom(this);
+
+
         }
     }
 }
