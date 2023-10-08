@@ -7,8 +7,8 @@
         x:Class="vSharpStudio.MainWindow"
         mc:Ignorable="d"
         Icon="icons\SettingsFile_16x.png"
-        Title="{Binding CurrentCfgFilePathTitle}" 
-        WindowState="Maximized">
+        Title="{Binding CurrentCfgFilePathTitle}"
+        Loaded="Window_Loaded">
     <Grid>
         <Views:MainPage />
     </Grid>
