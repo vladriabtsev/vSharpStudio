@@ -735,6 +735,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool IsComplexRefId { get; private set; }
         public bool IsComplexRefGuid { get; private set; }
+        public bool IsComplexDesc { get; private set; }
         public IProperty AddExtensionPropertyGuid(string subName, string guid)
         {
             var node = new Property(this) { Name = subName };
@@ -743,6 +744,16 @@ namespace vSharpStudio.vm.ViewModels
             node.IsNullable = true;
             node.ParentProperty = this;
             node.IsComplexRefGuid = true;
+            return node;
+        }
+        public IProperty AddExtensionPropertyDesc(string subName, string guid)
+        {
+            var node = new Property(this) { Name = subName };
+            node.Guid = guid;
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING };
+            node.IsNullable = true;
+            node.ParentProperty = this;
+            node.IsComplexDesc = true;
             return node;
         }
         public IProperty AddExtensionPropertyString(string subName, uint length, string guid)

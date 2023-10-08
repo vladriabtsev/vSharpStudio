@@ -17,6 +17,7 @@ namespace vSharpStudio.common
         bool IsRecordVersion { get; }
         bool IsComplexRefId { get; }
         bool IsComplexRefGuid { get; }
+        bool IsComplexDesc { get; }
 
         /// <summary>
         /// Can be nullable in code, but not nullable in DB. Samples: catalog code, document number, document date
@@ -48,6 +49,7 @@ namespace vSharpStudio.common
         string NameWithExtention { get; }
         IProperty AddExtensionPropertyRefId(string subName, string guid);
         IProperty AddExtensionPropertyGuid(string subName, string guid);
+        IProperty AddExtensionPropertyDesc(string subName, string guid);
         IProperty AddExtensionPropertyString(string subName, uint length, string guid);
         IProperty AddExtensionPropertyNumerical(string subName, uint length, uint accuracy, string guid);
         #endregion Plugin group model
