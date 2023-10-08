@@ -6,7 +6,7 @@
         xmlns:Views="clr-namespace:vSharpStudio.Views" 
         x:Class="vSharpStudio.MainWindow"
         mc:Ignorable="d"
-        Icon="icons\SettingsFile_16x.png"
+        Icon="icons\icon.ico"
         Title="{Binding CurrentCfgFilePathTitle}">
     <Grid>
         <Views:MainPage />

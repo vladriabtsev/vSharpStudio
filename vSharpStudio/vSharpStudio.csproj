@@ -14,6 +14,7 @@
         <UseWindowsForms>true</UseWindowsForms>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
+        <ApplicationIcon>icons\icon.ico</ApplicationIcon>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugType>full</DebugType>
@@ -23,6 +24,7 @@
         <Optimize>true</Optimize>
     </PropertyGroup>
     <ItemGroup>
+        <None Remove="icons\icon.ico" />
         <None Remove="icons\SettingsFile_16x.png" />
         <None Remove="icons\Settings_16x.png" />
     </ItemGroup>
@@ -92,6 +94,7 @@
         <PackageReference Include="Serilog.Extensions.Logging" Version="7.0.0" />
     </ItemGroup>
     <ItemGroup>
+        <Resource Include="icons\icon.ico" />
         <Resource Include="icons\SettingsFile_16x.png" />
         <Resource Include="icons\Settings_16x.png" />
     </ItemGroup>
