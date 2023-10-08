@@ -57,7 +57,7 @@ class WpfScreen
         get { return this.GetRect(this.screen.Bounds); }
     }
 
-    public Rect WorkingArea
+    public Rect WorkingAreaPx
     {
         get { return this.GetRect(this.screen.WorkingArea); }
     }
@@ -83,4 +83,14 @@ class WpfScreen
     {
         get { return this.screen.DeviceName; }
     }
+
+    //IDisposable using only
+    public static Graphics CreateConverter() => Graphics.FromHwnd(IntPtr.Zero);
+
+    public static double XUnitsToPixels(Graphics g, double unitX) => g.DpiX / 96.0 * unitX;
+    public static double YUnitsToPixels(Graphics g, double unitY) => g.DpiY / 96.0 * unitY;
+
+    public static double XPixelsToUnits(Graphics g, double pixelX) => pixelX * 96.0 / g.DpiX;
+    public static double YPixelsToUnits(Graphics g, double pixelY) => pixelY * 96.0 / g.DpiY;
+
 }

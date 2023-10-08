@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,16 +43,6 @@ namespace vSharpStudio
             // vSharpStudio.std.ApplicationLogging.LoggerFactory.AddProvider(new Serilog.Sinks.File.PeriodicFlushToDiskSink()
         }
 
-        protected override void OnInitialized(EventArgs e)
-        {
-            base.OnInitialized(e);
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         #endregion
 
         #region Helpers
@@ -61,19 +52,28 @@ namespace vSharpStudio
             WpfScreen s = WpfScreen.GetScreenFrom(this);
 
             double margin = 20;
-            double maxHeight = s.WorkingArea.Height - 2 * margin;
-            double maxWidth = s.WorkingArea.Width - 2 * margin;
+            double maxWidth = s.WorkingAreaPx.Width - 2 * margin;
+            double maxHeight = s.WorkingAreaPx.Height - 2 * margin;
+            
+            using Graphics g = WpfScreen.CreateConverter();
+            maxWidth = WpfScreen.XPixelsToUnits(g, maxWidth);
+            maxHeight = WpfScreen.YPixelsToUnits(g, maxHeight);
 
-            if (maxHeight < _defaultHeight) Height = maxHeight;
+            if (maxHeight < _defaultHeight)
+            {
+                Height = maxHeight;
+                WindowState = WindowState.Maximized;
+            }
             else Height = _defaultHeight;
 
             if (maxWidth < _defaultWidth) Width = maxWidth;
             else Width = _defaultWidth;
 
             double magicXNumber = 120.0 / 1920.0;
-            Left = magicXNumber * s.WorkingArea.Width;
+            double left = magicXNumber * Width;
 
-            Top = s.WorkingArea.Height / 2 - Height / 2;
+            Left = left;
+            Top = WpfScreen.XPixelsToUnits(g, s.WorkingAreaPx.Height) / 2 - Height / 2;
         }
 
         #endregion        

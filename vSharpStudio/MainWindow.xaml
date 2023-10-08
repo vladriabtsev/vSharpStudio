@@ -7,8 +7,7 @@
         x:Class="vSharpStudio.MainWindow"
         mc:Ignorable="d"
         Icon="icons\SettingsFile_16x.png"
-        Title="{Binding CurrentCfgFilePathTitle}"
-        Loaded="Window_Loaded">
+        Title="{Binding CurrentCfgFilePathTitle}">
     <Grid>
         <Views:MainPage />
     </Grid>
