@@ -750,7 +750,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Property(this) { Name = subName };
             node.Guid = guid;
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = 0 };
             node.IsNullable = true;
             node.ParentProperty = this;
             node.IsComplexDesc = true;
