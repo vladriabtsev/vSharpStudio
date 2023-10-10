@@ -746,16 +746,17 @@ namespace vSharpStudio.vm.ViewModels
             node.IsComplexRefGuid = true;
             return node;
         }
-        public IProperty AddExtensionPropertyDesc(string subName, string guid)
-        {
-            var node = new Property(this) { Name = subName };
-            node.Guid = guid;
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = 0 };
-            node.IsNullable = true;
-            node.ParentProperty = this;
-            node.IsComplexDesc = true;
-            return node;
-        }
+        //public IProperty AddExtensionPropertyDesc(string subName, string guid)
+        //{
+        //    var node = new Property(this) { Name = subName };
+        //    node.Guid = guid;
+        //    node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = 0 };
+        //    node.IsNullable = true;
+        //    node.ParentProperty = this;
+        //    node.IsComplexDesc = true;
+        //    node.IsComputed = true;
+        //    return node;
+        //}
         public IProperty AddExtensionPropertyString(string subName, uint length, string guid)
         {
             var node = new Property(this) { Name = this.Name + subName };

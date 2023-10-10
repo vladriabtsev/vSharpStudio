@@ -11,6 +11,9 @@ namespace vSharpStudio.common
     {
         IGroupListProperties ParentGroupListPropertiesI { get; }
         //string DefaultValue { get; }
+        /// <summary>
+        /// Mark property as computed if it will be not stored in DB
+        /// </summary>
         bool IsComputed { get; set; }
         bool IsPKey { get; }
         bool IsDocShared { get; set; }
@@ -49,7 +52,7 @@ namespace vSharpStudio.common
         string NameWithExtention { get; }
         IProperty AddExtensionPropertyRefId(string subName, string guid);
         IProperty AddExtensionPropertyGuid(string subName, string guid);
-        IProperty AddExtensionPropertyDesc(string subName, string guid);
+        //IProperty AddExtensionPropertyDesc(string subName, string guid);
         IProperty AddExtensionPropertyString(string subName, uint length, string guid);
         IProperty AddExtensionPropertyNumerical(string subName, uint length, uint accuracy, string guid);
         #endregion Plugin group model
