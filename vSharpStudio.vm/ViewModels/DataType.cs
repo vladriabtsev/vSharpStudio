@@ -944,7 +944,7 @@ namespace vSharpStudio.vm.ViewModels
             IDataType? res = null;
             if (this.Cfg != null && this.Cfg.PrevCurrentConfig != null && this.Cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
-                res = (this.Cfg.PrevCurrentConfig.DicNodes[this.Parent.Guid] as IDataTypeObject)!.IDataType;
+                res = (this.Cfg.PrevCurrentConfig.DicNodes[this.Parent.Guid] as IDataTypeObject)?.IDataType;
             }
             return res;
         }

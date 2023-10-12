@@ -8,6 +8,7 @@ namespace Microsoft.Extensions.Logging
 {
     public static class LogExt
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string CallerInfo(this string message, [CallerMemberName] string memberName = "",
                   [CallerFilePath] string sourceFilePath = "",
                   [CallerLineNumber] int sourceLineNumber = 0)
@@ -18,6 +19,7 @@ namespace Microsoft.Extensions.Logging
 
             return $"{fileName}.cs {line} [{methodName}] {message}";
         }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string StackInfo(this string message,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
@@ -28,6 +30,7 @@ namespace Microsoft.Extensions.Logging
             var line = sourceLineNumber;
             return $"{fileName} {line} [{methodName}] {message}\n   StackTrace:\n{Environment.StackTrace}";
         }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Trace(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",

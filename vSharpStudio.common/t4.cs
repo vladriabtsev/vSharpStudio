@@ -8,6 +8,10 @@ namespace vSharpStudio.common
 {
     public static class t4
     {
+        public static string Member([CallerMemberName] string member = "")
+        {
+            return member;
+        }
         public static string FilePos(string? text = null,
                                 [CallerFilePath] string file = "",
                                 [CallerMemberName] string member = "",
