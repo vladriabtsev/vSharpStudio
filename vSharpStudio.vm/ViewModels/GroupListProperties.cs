@@ -445,6 +445,10 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     //this.LastGenPosition = 0;
                 }
+                else if (this.Parent is Register r)
+                {
+                    return r.GetNextPosition();
+                }
                 else
                     throw new NotImplementedException();
             }

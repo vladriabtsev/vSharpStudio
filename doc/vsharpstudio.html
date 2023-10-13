@@ -331,6 +331,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_group_list_dimensions"><span class="badge">M</span>proto_group_list_dimensions</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_group_list_documents"><span class="badge">M</span>proto_group_list_documents</a>
                 </li>
               
@@ -435,7 +439,7 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_register_dimention"><span class="badge">M</span>proto_register_dimention</a>
+                  <a href="#proto_config.proto_register_dimension"><span class="badge">M</span>proto_register_dimension</a>
                 </li>
               
                 <li>
@@ -5440,6 +5444,113 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
 
         
       
+        <h3 id="proto_config.proto_group_list_dimensions">proto_group_list_dimensions</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_dimensions</td>
+                  <td><a href="#proto_config.proto_register_dimension">proto_register_dimension</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Sortable&#34;)]
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Custom Sortable&#34;)]
+@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Filterable&#34;)]
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_role_property_access_settings</td>
+                  <td><a href="#proto_config.proto_role_property_access">proto_role_property_access</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_group_list_documents">proto_group_list_documents</h3>
         <p></p>
 
@@ -6805,17 +6916,17 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>property_doc_code_name</td>
+                  <td>property_doc_number_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;Property settings&#34;)]
 @attr [PropertyOrderAttribute(29)]
-@attr [DisplayName(&#34;Doc Code property&#34;)]
-@attr [Description(&#34;Name of document code auto generated property&#34;)] </p></td>
+@attr [DisplayName(&#34;Doc number property&#34;)]
+@attr [Description(&#34;Name of document number auto generated property&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>use_doc_code_property</td>
+                  <td>use_doc_number_property</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;Property settings&#34;)]
@@ -7968,18 +8079,41 @@ Reserved positions: 1 - primary key
                   <td>property_money_accumulator_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
+                  <td><p>@attr [Browsable(false)]
+
+/ &lt;summary&gt;
+/ Guids of selected CATALOGS types
+/ &lt;/summary&gt; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_register_dimensions</td>
+                  <td><a href="#proto_config.proto_group_list_dimensions">proto_group_list_dimensions</a></td>
+                  <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_register_dimensions</td>
-                  <td><a href="#proto_config.proto_register_dimention">proto_register_dimention</a></td>
-                  <td>repeated</td>
-                  <td><p>&lt;summary&gt;
-/ Guids of selected CATALOGS types
-/ &lt;/summary&gt;
-@attr [Browsable(false)]
-@attr [PropertyOrderAttribute(25)] </p></td>
+                  <td>group_attached_properties</td>
+                  <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_doc_ref_guid_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;Doc Guid property&#34;)]
+@attr [Description(&#34;Document guid property name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_doc_ref_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;Doc Ref property&#34;)]
+@attr [Description(&#34;Document reference property name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -8017,10 +8151,10 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>index_doc_date_dimentions_guid</td>
+                  <td>index_doc_date_dimensions_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Guid for index of document date, dimentions. Auto generated.
+                  <td><p>Guid for index of document date, dimensions. Auto generated.
 @attr [Browsable(false)] </p></td>
                 </tr>
               
@@ -8061,7 +8195,7 @@ Reserved positions: 1 - primary key
 
         
       
-        <h3 id="proto_config.proto_register_dimention">proto_register_dimention</h3>
+        <h3 id="proto_config.proto_register_dimension">proto_register_dimension</h3>
         <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
 
         
@@ -8129,18 +8263,24 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>dimention_catalog_guid</td>
+                  <td>catalog_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Guid of catalog used as dimention
-@attr [Browsable(false)] </p></td>
+                  <td><p>&lt;summary&gt;
+/ Guid of Catalog type.
+/ &lt;/summary&gt;
+@attr [PropertyOrderAttribute(6)]
+@attr [Category(&#34;&#34;)]
+@attr [DisplayName(&#34;Dimension catalog&#34;)]
+@attr [Description(&#34;Catalog for register dimension&#34;)]
+@attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))] </p></td>
                 </tr>
               
                 <tr>
-                  <td>property_dimention_guid</td>
+                  <td>property_dimension_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Guid for dimention property. Auto generated.
+                  <td><p>Guid for dimension property. Auto generated.
 @attr [Browsable(false)] </p></td>
                 </tr>
               

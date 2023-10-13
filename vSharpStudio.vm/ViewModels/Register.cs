@@ -49,7 +49,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public static readonly string DefaultName = "Register";
         [Browsable(false)]
-        public new string IconName { get { return "iconRegister"; } }
+        public new string IconName { get { return "iconCube"; } }
         //protected override string GetNodeIconName() { return "iconProperty"; }
         [Browsable(false)]
         public string? ComplexObjectName { get; set; }
@@ -70,11 +70,13 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyDocRefGuid = System.Guid.NewGuid().ToString();
             this.PropertyDocGuidGuid = System.Guid.NewGuid().ToString();
             this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
-            this.IndexDocDateDimentionsGuid = System.Guid.NewGuid().ToString();
+            this.IndexDocDateDimensionsGuid = System.Guid.NewGuid().ToString();
             this.PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
             this.IndexDocIdTypeGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this.LastGenPosition = 15;
+            this.LastGenPosition = 20;
+            this.PropertyDocRefGuidName = "DocGuid";
+            this.PropertyDocRefName = "DocRef";
             Init();
         }
         protected override void OnInitFromDto()
@@ -83,6 +85,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            if (this.Children.Count > 0)
+                return;
+            VmBindable.IsNotifyingStatic = false;
+            var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
+            children.Add(this.GroupRegisterDimensions, 0);
+            children.Add(this.GroupAttachedProperties, 1);
+            VmBindable.IsNotifyingStatic = true;
             //this.ListMainViewForms.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;
@@ -107,6 +116,12 @@ namespace vSharpStudio.vm.ViewModels
         internal bool isSpecialItself;
 
         #region Tree operations
+        public uint GetNextPosition()
+        {
+            if (this.LastGenPosition < 20)
+                this.LastGenPosition = 20;
+            return ++this.LastGenPosition;
+        }
         public override bool NodeCanUp()
         {
             if (this.NodeCanAddClone())
@@ -118,7 +133,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return false;
         }
-
         public override void NodeUp()
         {
             var prev = (Register?)this.ParentGroupListRegisters.ListRegisters.GetPrev(this);
@@ -126,13 +140,11 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             this.SetSelected(prev);
         }
-
         public override void NodeMoveUp()
         {
             this.ParentGroupListRegisters.ListRegisters.MoveUp(this);
             this.SetSelected(this);
         }
-
         public override bool NodeCanDown()
         {
             if (this.NodeCanAddClone())
@@ -144,7 +156,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return false;
         }
-
         public override void NodeDown()
         {
             var next = (Register?)this.ParentGroupListRegisters.ListRegisters.GetNext(this);
@@ -152,13 +163,11 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             this.SetSelected(next);
         }
-
         public override void NodeMoveDown()
         {
             this.ParentGroupListRegisters.ListRegisters.MoveDown(this);
             this.SetSelected(this);
         }
-
         public void NodeRemove(bool ask = true)
         {
             this.ParentGroupListRegisters.Remove(this);
@@ -173,7 +182,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNew()
         {
             if (!(this.Parent is GroupListProperties))
@@ -355,16 +363,33 @@ namespace vSharpStudio.vm.ViewModels
         //}
         #endregion Roles
 
-        public IRegisterDimention AddDimention(string name, ICatalog c)
+        public IRegisterDimension AddDimension(string name, ICatalog c)
         {
-            var d = new RegisterDimention(c) { Name = name, DimentionCatalogGuid = c.Guid };
+            var d = new RegisterDimension(c) { Name = name, CatalogGuid = c.Guid };
             this.LastGenPosition++;
             d.Position = this.LastGenPosition;
-            this.ListRegisterDimensions.Add(d);
+            this.GroupRegisterDimensions.ListDimensions.Add(d);
             return d;
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic)
+        public IProperty AddAttachedProperty(string name, EnumDataType type = EnumDataType.STRING, uint length = 0, uint accuracy = 0, string? guid = null)
         {
+            var node = new Property(this.GroupAttachedProperties) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node) { DataTypeEnum = type, Length = length, Accuracy = accuracy };
+            this.GroupAttachedProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
+        {
+            Debug.Assert(!isExcludeSpecial, "not implemented yet");
+
             var lst = new List<IProperty>();
             var m = this.ParentGroupListRegisters.ParentModel;
             var pId = m.GetPropertyPkId(this, this.Guid);
@@ -399,32 +424,30 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(pQty);
 
             // Reference to document
-            var pDocRef = (Property)m.GetPropertyId(this, this.PropertyDocRefGuid, "DocRef", false);
+            var pDocRef = (Property)m.GetPropertyId(this, this.PropertyDocRefGuid, this.PropertyDocRefName, false);
             pDocRef.Position = 13;
             pDocRef.TagInList = "dr";
             lst.Add(pDocRef);
 
             // Guid of document
-            var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyDocGuidGuid, "DocGuid", false);
+            var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyDocGuidGuid, this.PropertyDocRefGuidName, false);
             pDocGuid.Position = 14;
             pDocGuid.TagInList = "dg";
             lst.Add(pDocGuid);
 
-            // For all dimensions (catalogs)
-            int i = 1;
-            foreach (var t in this.ListRegisterDimensions)
+            // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
+            // For all dimensions (catalogs).
+            foreach (var t in this.GroupRegisterDimensions.ListDimensions)
             {
-                if (!string.IsNullOrEmpty(t.DimentionCatalogGuid))
+                if (!string.IsNullOrEmpty(t.CatalogGuid))
                 {
-                    if (m.ParentConfig.DicNodes.TryGetValue(t.DimentionCatalogGuid, out var node))
+                    if (m.ParentConfig.DicNodes.TryGetValue(t.CatalogGuid, out var node))
                     {
                         if (node is Catalog c)
                         {
-                            var pRef = (Property)m.GetPropertyRefDimention(this, t.Guid, "Ref" + c.CompositeName, false);
-                            pRef.Position = t.Position + 16;
-                            pRef.TagInList = i.ToString();
+                            var pRef = (Property)m.GetPropertyRefDimension(this, t.Guid, "Ref" + c.CompositeName, false);
+                            pRef.Position = t.Position;
                             lst.Add(pRef);
-                            i++;
                         }
                         else
                             ThrowHelper.ThrowNotSupportedException();
@@ -434,6 +457,12 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else
                     ThrowHelper.ThrowNotSupportedException();
+            }
+
+            // For all attached properties.
+            foreach (var t in this.GroupAttachedProperties.ListProperties)
+            {
+                lst.Add(t);
             }
             return lst;
         }

@@ -9,8 +9,9 @@ namespace vSharpStudio.common
 {
     public partial interface IRegister : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IDbTable
     {
-        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic);
-        IRegisterDimention AddDimention(string name, ICatalog c);
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial);
+        IRegisterDimension AddDimension(string name, ICatalog c);
+        IProperty AddAttachedProperty(string name, EnumDataType type = EnumDataType.STRING, uint length = 0, uint accuracy = 0, string? guid = null);
         string FullName { get; } // name with config name
     }
 }

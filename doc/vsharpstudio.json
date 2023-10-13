@@ -7194,6 +7194,127 @@
           ]
         },
         {
+          "name": "proto_group_list_dimensions",
+          "longName": "proto_group_list_dimensions",
+          "fullName": "proto_config.proto_group_list_dimensions",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_dimensions",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_register_dimension",
+              "longType": "proto_register_dimension",
+              "fullType": "proto_config.proto_register_dimension",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_role_property_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_property_access",
+              "longType": "proto_role_property_access",
+              "fullType": "proto_config.proto_role_property_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_group_list_documents",
           "longName": "proto_group_list_documents",
           "fullName": "proto_config.proto_group_list_documents",
@@ -8706,8 +8827,8 @@
               "defaultValue": ""
             },
             {
-              "name": "property_doc_code_name",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(29)]\n@attr [DisplayName(\"Doc Code property\")]\n@attr [Description(\"Name of document code auto generated property\")]",
+              "name": "property_doc_number_name",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(29)]\n@attr [DisplayName(\"Doc number property\")]\n@attr [Description(\"Name of document number auto generated property\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -8716,7 +8837,7 @@
               "defaultValue": ""
             },
             {
-              "name": "use_doc_code_property",
+              "name": "use_doc_number_property",
               "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(30)]\n@attr [DisplayName(\"Use Doc Code\")]\n@attr [Description(\"Use Code property for documents\")]",
               "label": "",
               "type": "bool",
@@ -9969,7 +10090,7 @@
             },
             {
               "name": "property_money_accumulator_guid",
-              "description": "@attr [Browsable(false)]",
+              "description": "@attr [Browsable(false)]\n\n/ \u003csummary\u003e\n/ Guids of selected CATALOGS types\n/ \u003c/summary\u003e",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -9978,12 +10099,42 @@
               "defaultValue": ""
             },
             {
-              "name": "list_register_dimensions",
-              "description": "\u003csummary\u003e\n/ Guids of selected CATALOGS types\n/ \u003c/summary\u003e\n@attr [Browsable(false)]\n@attr [PropertyOrderAttribute(25)]",
-              "label": "repeated",
-              "type": "proto_register_dimention",
-              "longType": "proto_register_dimention",
-              "fullType": "proto_config.proto_register_dimention",
+              "name": "group_register_dimensions",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_group_list_dimensions",
+              "longType": "proto_group_list_dimensions",
+              "fullType": "proto_config.proto_group_list_dimensions",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_attached_properties",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_group_list_properties",
+              "longType": "proto_group_list_properties",
+              "fullType": "proto_config.proto_group_list_properties",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_doc_ref_guid_name",
+              "description": "@attr [DisplayName(\"Doc Guid property\")]\n@attr [Description(\"Document guid property name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_doc_ref_name",
+              "description": "@attr [DisplayName(\"Doc Ref property\")]\n@attr [Description(\"Document reference property name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -10028,8 +10179,8 @@
               "defaultValue": ""
             },
             {
-              "name": "index_doc_date_dimentions_guid",
-              "description": "Guid for index of document date, dimentions. Auto generated.\n@attr [Browsable(false)]",
+              "name": "index_doc_date_dimensions_guid",
+              "description": "Guid for index of document date, dimensions. Auto generated.\n@attr [Browsable(false)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -10080,9 +10231,9 @@
           ]
         },
         {
-          "name": "proto_register_dimention",
-          "longName": "proto_register_dimention",
-          "fullName": "proto_config.proto_register_dimention",
+          "name": "proto_register_dimension",
+          "longName": "proto_register_dimension",
+          "fullName": "proto_config.proto_register_dimension",
           "description": "@interface ICanAddNode\n@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
@@ -10159,8 +10310,8 @@
               "defaultValue": ""
             },
             {
-              "name": "dimention_catalog_guid",
-              "description": "Guid of catalog used as dimention\n@attr [Browsable(false)]",
+              "name": "catalog_guid",
+              "description": "\u003csummary\u003e\n/ Guid of Catalog type.\n/ \u003c/summary\u003e\n@attr [PropertyOrderAttribute(6)]\n@attr [Category(\"\")]\n@attr [DisplayName(\"Dimension catalog\")]\n@attr [Description(\"Catalog for register dimension\")]\n@attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -10169,8 +10320,8 @@
               "defaultValue": ""
             },
             {
-              "name": "property_dimention_guid",
-              "description": "Guid for dimention property. Auto generated.\n@attr [Browsable(false)]",
+              "name": "property_dimension_guid",
+              "description": "Guid for dimension property. Auto generated.\n@attr [Browsable(false)]",
               "label": "",
               "type": "string",
               "longType": "string",

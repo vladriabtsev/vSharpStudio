@@ -82,12 +82,12 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyNameName = "Name";
             this.PropertyDescriptionName = "Description";
             this.PropertyIsFolderName = "IsFolder";
-            this.PropertyDocCodeName = "DocNumber";
+            this.PropertyDocNumberName = "DocNumber";
             this.PropertyDocDateName = "DocDate";
 
             this.UseCodeProperty = true;
             this.UseNameProperty = true;
-            this.UseDocCodeProperty = true;
+            this.UseDocNumberProperty = true;
             this.UseDocDateProperty = true;
 
             Init();
@@ -755,7 +755,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = 8;
             return res;
         }
-        public IProperty GetPropertyRefDimention(IRegister parent, string guid, string name, bool isNullable = false)
+        public IProperty GetPropertyRefDimension(IRegister parent, string guid, string name, bool isNullable = false)
         {
             var res = new Property(parent, guid, name, true);
             res.DataType = (DataType)this.GetIdRefDataType(res, isNullable);
@@ -812,7 +812,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocNumberString(ITreeConfigNode parent, string guid, uint length)
         {
-            var res = new Property(parent, guid, this.PropertyDocCodeName, true);
+            var res = new Property(parent, guid, this.PropertyDocNumberName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, false);
             res.Position = 9;
             res.IsCsNullable = true;
@@ -820,7 +820,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocNumberInt(ITreeConfigNode parent, string guid, uint length)
         {
-            var res = new Property(parent, guid, this.PropertyDocCodeName, true);
+            var res = new Property(parent, guid, this.PropertyDocNumberName, true);
             res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, true, false);
             res.DataType.IsNullable = false;
             res.Position = 9;
@@ -829,7 +829,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocNumberUniqueScopeHelper(ITreeConfigNode parent, string guid)
         {
-            var res = new Property(parent, guid, this.PropertyDocCodeName + "UniqueScopeHelper", true);
+            var res = new Property(parent, guid, this.PropertyDocNumberName + "UniqueScopeHelper", true);
             res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, false, false);
             res.Position = 10;
             res.IsNullable = true;

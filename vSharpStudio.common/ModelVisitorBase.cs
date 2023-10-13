@@ -166,12 +166,34 @@ namespace vSharpStudio.common
                 this.BeginVisit(tr);
                 if (isActFromRootToBottom)
                     this._act?.Invoke(this, tr);
-                foreach(var td in tr.ListRegisterDimensions)
+
+                
+                //this.BeginVisit(tr.GroupRegisterDimensions);
+                //if (isActFromRootToBottom)
+                //    this._act?.Invoke(this, tr.GroupRegisterDimensions);
+                foreach (var td in tr.GroupRegisterDimensions.ListDimensions)
                 {
                     this.BeginVisit(td);
                     this._act?.Invoke(this, td);
                     this.EndVisit(td);
                 }
+                //if (!isActFromRootToBottom)
+                //    this._act?.Invoke(this, tr.GroupRegisterDimensions);
+                //this.EndVisit(tr.GroupRegisterDimensions);
+
+
+                this.BeginVisit(tr.GroupAttachedProperties);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, tr.GroupAttachedProperties);
+                foreach (var td in tr.GroupAttachedProperties.ListProperties)
+                {
+                    this.BeginVisit(td);
+                    this._act?.Invoke(this, td);
+                    this.EndVisit(td);
+                }
+                if (!isActFromRootToBottom)
+                    this._act?.Invoke(this, tr.GroupAttachedProperties);
+                this.EndVisit(tr.GroupAttachedProperties);
                 if (!isActFromRootToBottom)
                     this._act?.Invoke(this, tr);
                 this.EndVisit(tr);
@@ -532,8 +554,10 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IGroupListRegisters cn) { }
         protected virtual void BeginVisit(IRegister d) { }
         protected virtual void EndVisit(IRegister d) { }
-        protected virtual void BeginVisit(IRegisterDimention d) { }
-        protected virtual void EndVisit(IRegisterDimention d) { }
+        protected virtual void BeginVisit(IRegisterDimension d) { }
+        protected virtual void EndVisit(IRegisterDimension d) { }
+        protected virtual void BeginVisit(IGroupListDimensions d) { }
+        protected virtual void EndVisit(IGroupListDimensions d) { }
 
         protected virtual void BeginVisit(IGroupListDocuments cn) { }
         protected virtual void EndVisit(IGroupListDocuments cn) { }

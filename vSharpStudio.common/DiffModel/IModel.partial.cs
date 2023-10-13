@@ -45,7 +45,7 @@ namespace vSharpStudio.common
         IProperty GetPropertyId(ITreeConfigNode parent, string guid, string name, bool isNullable);
         IProperty GetPropertyNumber(ITreeConfigNode parent, string guid, string name, uint length, uint accuracy, bool isNullable);
         IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable);
-        IProperty GetPropertyRefDimention(IRegister parent, string guid, string name, bool isNullable);
+        IProperty GetPropertyRefDimension(IRegister parent, string guid, string name, bool isNullable);
         IProperty GetPropertyCatalogCode(ITreeConfigNode parent, string guid, uint length, bool isNullable);
         IProperty GetPropertyCatalogCodeInt(ITreeConfigNode parent, string guid, uint length, bool isNullable);
         IProperty GetPropertyCatalogName(ITreeConfigNode parent, string guid, uint length, bool isNullable);

@@ -168,8 +168,10 @@ namespace vSharpStudio.vm.ViewModels
         //}
         #endregion Roles
 
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic)
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
         {
+            Debug.Assert(!isExcludeSpecial, "not implemented yet");
+
             var lst = new List<IProperty>();
             var m = this.ParentModel;
 

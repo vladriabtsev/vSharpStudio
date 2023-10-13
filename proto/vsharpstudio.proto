@@ -718,14 +718,14 @@ message proto_model {
     bool use_doc_date_property = 30;
     // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(29)]
-    // @attr [DisplayName("Doc Code property")]
-    // @attr [Description("Name of document code auto generated property")]
-    string property_doc_code_name = 41;
+    // @attr [DisplayName("Doc number property")]
+    // @attr [Description("Name of document number auto generated property")]
+    string property_doc_number_name = 41;
     // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(30)]
     // @attr [DisplayName("Use Doc Code")]
     // @attr [Description("Use Code property for documents")]
-    bool use_doc_code_property = 42;
+    bool use_doc_number_property = 42;
 
 
     // @attr [Browsable(false)]
@@ -2632,7 +2632,7 @@ message proto_group_list_registers {
 }
 // @interface ICanAddNode
 // @interface ISortingValue
-message proto_register_dimention {
+message proto_register_dimension {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
@@ -2655,18 +2655,63 @@ message proto_register_dimention {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
-
-    // Guid of catalog used as dimention
+    /// <summary>
+    /// Guid of Catalog type.
+    /// </summary>
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [Category("")]
+    // @attr [DisplayName("Dimension catalog")]
+    // @attr [Description("Catalog for register dimension")]
+    // @attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]
+    string catalog_guid = 21; 
+    // Guid for dimension property. Auto generated.
     // @attr [Browsable(false)]
-    string dimention_catalog_guid = 21; 
-    // Guid for dimention property. Auto generated.
-    // @attr [Browsable(false)]
-    string property_dimention_guid = 22; 
+    string property_dimension_guid = 22; 
 
     // Protobuf field position
     // Reserved positions: 1-15
     // @attr [ReadOnly(true)]
     uint32 position = 110;
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+message proto_group_list_dimensions {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [Browsable(false)]
+    repeated proto_register_dimension list_dimensions = 6;
+
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 8;
+
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Sortable")]
+    // @attr [Description("Sortable in data grid")]
+    proto_enum_use_type is_grid_sortable = 71;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Custom Sortable")]
+    // @attr [Description("Custom sortable in data grid by using custom function")]
+    proto_enum_use_type is_grid_sortable_custom = 72;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Filterable")]
+    // @attr [Description("Filterable in data grid")]
+    proto_enum_use_type is_grid_filterable = 73;
+
+    // @attr [Browsable(false)]
+    repeated proto_role_property_access list_role_property_access_settings = 101;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -2740,9 +2785,18 @@ message proto_register {
     /// <summary>
     /// Guids of selected CATALOGS types
     /// </summary>
+
     // @attr [Browsable(false)]
-    // @attr [PropertyOrderAttribute(25)]
-    repeated proto_register_dimention list_register_dimensions = 27;
+    proto_group_list_dimensions group_register_dimensions = 28;
+    // @attr [Browsable(false)]
+    proto_group_list_properties group_attached_properties = 31;
+
+    // @attr [DisplayName("Doc Guid property")]
+    // @attr [Description("Document guid property name")]
+    string property_doc_ref_guid_name = 39;
+    // @attr [DisplayName("Doc Ref property")]
+    // @attr [Description("Document reference property name")]
+    string property_doc_ref_name = 40;
     /// <summary>
     /// Guids of selected types of DOCUMENTS
     /// </summary>
@@ -2757,9 +2811,9 @@ message proto_register {
     // Guid for document date guid property. Auto generated.
     // @attr [Browsable(false)]
     string property_doc_date_guid = 44; 
-    // Guid for index of document date, dimentions. Auto generated.
+    // Guid for index of document date, dimensions. Auto generated.
     // @attr [Browsable(false)]
-    string index_doc_date_dimentions_guid = 45; 
+    string index_doc_date_dimensions_guid = 45; 
     // Guid for document number guid property. Auto generated.
     // @attr [Browsable(false)]
     string property_doc_number_guid = 46; 

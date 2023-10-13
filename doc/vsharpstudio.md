@@ -42,6 +42,7 @@
     - [proto_group_list_common](#proto_config.proto_group_list_common)
     - [proto_group_list_constants](#proto_config.proto_group_list_constants)
     - [proto_group_list_details](#proto_config.proto_group_list_details)
+    - [proto_group_list_dimensions](#proto_config.proto_group_list_dimensions)
     - [proto_group_list_documents](#proto_config.proto_group_list_documents)
     - [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations)
     - [proto_group_list_enumerator_sequences](#proto_config.proto_group_list_enumerator_sequences)
@@ -68,7 +69,7 @@
     - [proto_property](#proto_config.proto_property)
     - [proto_property_data_generator](#proto_config.proto_property_data_generator)
     - [proto_register](#proto_config.proto_register)
-    - [proto_register_dimention](#proto_config.proto_register_dimention)
+    - [proto_register_dimension](#proto_config.proto_register_dimension)
     - [proto_report](#proto_config.proto_report)
     - [proto_role](#proto_config.proto_role)
     - [proto_role_catalog_access](#proto_config.proto_role_catalog_access)
@@ -1221,6 +1222,31 @@ D E T A I L S
 
 
 
+<a name="proto_config.proto_group_list_dimensions"></a>
+
+### proto_group_list_dimensions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| list_dimensions | [proto_register_dimension](#proto_config.proto_register_dimension) | repeated | @attr [Browsable(false)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
+| list_role_property_access_settings | [proto_role_property_access](#proto_config.proto_role_property_access) | repeated | @attr [Browsable(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_group_list_documents"></a>
 
 ### proto_group_list_documents
@@ -1559,8 +1585,8 @@ Configuration model
 | property_is_folder_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;IsFolder property&#34;)] @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] |
 | property_doc_date_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(31)] @attr [DisplayName(&#34;Date property&#34;)] @attr [Description(&#34;Name of date auto generated property if it is used in documents&#34;)] |
 | use_doc_date_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Use Doc Date&#34;)] @attr [Description(&#34;Use Date property for documents&#34;)] |
-| property_doc_code_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Doc Code property&#34;)] @attr [Description(&#34;Name of document code auto generated property&#34;)] |
-| use_doc_code_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(30)] @attr [DisplayName(&#34;Use Doc Code&#34;)] @attr [Description(&#34;Use Code property for documents&#34;)] |
+| property_doc_number_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Doc number property&#34;)] @attr [Description(&#34;Name of document number auto generated property&#34;)] |
+| use_doc_number_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(30)] @attr [DisplayName(&#34;Use Doc Code&#34;)] @attr [Description(&#34;Use Code property for documents&#34;)] |
 | last_constant_group_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_catalog_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_document_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
@@ -1847,13 +1873,18 @@ Configuration model
 | property_money_accumulator_name | [string](#string) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Money name&#34;)] @attr [Description(&#34;Money accumulator property name&#34;)] |
 | property_money_accumulator_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Money Length&#34;)] @attr [Description(&#34;Maximum decimal digits for money data&#34;)] |
 | property_money_accumulator_accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Money accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy&#34;)] |
-| property_money_accumulator_guid | [string](#string) |  | @attr [Browsable(false)] |
-| list_register_dimensions | [proto_register_dimention](#proto_config.proto_register_dimention) | repeated | &lt;summary&gt; / Guids of selected CATALOGS types / &lt;/summary&gt; @attr [Browsable(false)] @attr [PropertyOrderAttribute(25)] |
+| property_money_accumulator_guid | [string](#string) |  | @attr [Browsable(false)]
+
+/ &lt;summary&gt; / Guids of selected CATALOGS types / &lt;/summary&gt; |
+| group_register_dimensions | [proto_group_list_dimensions](#proto_config.proto_group_list_dimensions) |  | @attr [Browsable(false)] |
+| group_attached_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [Browsable(false)] |
+| property_doc_ref_guid_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Guid property&#34;)] @attr [Description(&#34;Document guid property name&#34;)] |
+| property_doc_ref_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Ref property&#34;)] @attr [Description(&#34;Document reference property name&#34;)] |
 | list_doc_guids | [string](#string) | repeated | &lt;summary&gt; / Guids of selected types of DOCUMENTS / &lt;/summary&gt; @attr [Browsable(false)] |
 | property_doc_ref_guid | [string](#string) |  | Guid for document reference property. Auto generated. @attr [Browsable(false)] |
 | property_doc_guid_guid | [string](#string) |  | Guid for document guid property. Auto generated. @attr [Browsable(false)] |
 | property_doc_date_guid | [string](#string) |  | Guid for document date guid property. Auto generated. @attr [Browsable(false)] |
-| index_doc_date_dimentions_guid | [string](#string) |  | Guid for index of document date, dimentions. Auto generated. @attr [Browsable(false)] |
+| index_doc_date_dimensions_guid | [string](#string) |  | Guid for index of document date, dimensions. Auto generated. @attr [Browsable(false)] |
 | property_doc_number_guid | [string](#string) |  | Guid for document number guid property. Auto generated. @attr [Browsable(false)] |
 | index_doc_id_type_guid | [string](#string) |  | Guid for index of document Id and type. Auto generated. @attr [Browsable(false)] |
 | property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -1864,9 +1895,9 @@ Configuration model
 
 
 
-<a name="proto_config.proto_register_dimention"></a>
+<a name="proto_config.proto_register_dimension"></a>
 
-### proto_register_dimention
+### proto_register_dimension
 @interface ICanAddNode
 @interface ISortingValue
 
@@ -1880,8 +1911,8 @@ Configuration model
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
-| dimention_catalog_guid | [string](#string) |  | Guid of catalog used as dimention @attr [Browsable(false)] |
-| property_dimention_guid | [string](#string) |  | Guid for dimention property. Auto generated. @attr [Browsable(false)] |
+| catalog_guid | [string](#string) |  | &lt;summary&gt; / Guid of Catalog type. / &lt;/summary&gt; @attr [PropertyOrderAttribute(6)] @attr [Category(&#34;&#34;)] @attr [DisplayName(&#34;Dimension catalog&#34;)] @attr [Description(&#34;Catalog for register dimension&#34;)] @attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))] |
+| property_dimension_guid | [string](#string) |  | Guid for dimension property. Auto generated. @attr [Browsable(false)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1-15 @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 

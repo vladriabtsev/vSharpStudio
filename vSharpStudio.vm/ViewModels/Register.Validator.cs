@@ -100,7 +100,7 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.ListRegisterDimensions).Must((lst) =>
+            this.RuleFor(x => x.GroupRegisterDimensions.ListDimensions).Must((lst) =>
             {
                 if (lst.Count == 0)
                     return false;

@@ -377,7 +377,7 @@ namespace vSharpStudio.vm.ViewModels
                 sb.Append(",nq}");
             }
             sb.Append(" Number:{");
-            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PropertyDocCodeName);
+            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PropertyDocNumberName);
             sb.Append(",nq}");
             sb.Append(" Date:{");
             sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PropertyDocDateName);

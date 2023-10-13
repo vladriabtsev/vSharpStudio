@@ -773,8 +773,8 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	string PropertyIsFolderName { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	string PropertyDocDateName { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	bool UseDocDateProperty { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	string PropertyDocCodeName { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	bool UseDocCodeProperty { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyDocNumberName { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool UseDocNumberProperty { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	int LastConstantGroupShortId { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	int LastCatalogShortId { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	int LastDocumentShortId { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
@@ -1362,20 +1362,37 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IRegisterDimention : IGuid, IName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
+    public partial interface IRegisterDimension : IGuid, IName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
     	string NameUi { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	string Description { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	bool IsNew { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	bool IsMarkedForDeletion { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	// Guid of catalog used as dimention
-    	string DimentionCatalogGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	// Guid for dimention property. Auto generated.
-    	string PropertyDimentionGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	// <summary>
+    	// / Guid of Catalog type.
+    	// / </summary>
+    	string CatalogGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	// Guid for dimension property. Auto generated.
+    	string PropertyDimensionGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// Protobuf field position
     	// Reserved positions: 1-15
     	uint Position { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    }
+    
+    public partial interface IGroupListDimensions : IGuid, IName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
+    {
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IRegisterDimension> ListDimensions { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IRegisterDimension this[int index] { get; }
+    	int Count();
+    	EnumUseType IsGridSortable { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortableCustom { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridFilterable { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IRolePropertyAccess> ListRolePropertyAccessSettings { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
@@ -1398,11 +1415,15 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	string PropertyMoneyAccumulatorName { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	uint PropertyMoneyAccumulatorLength { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	uint PropertyMoneyAccumulatorAccuracy { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	string PropertyMoneyAccumulatorGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	// <summary>
+    	// 
+    	// / <summary>
     	// / Guids of selected CATALOGS types
     	// / </summary>
-    	IReadOnlyList<IRegisterDimention> ListRegisterDimensions { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	string PropertyMoneyAccumulatorGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IGroupListDimensions GroupRegisterDimensions { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListProperties GroupAttachedProperties { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	string PropertyDocRefGuidName { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyDocRefName { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// <summary>
     	// / Guids of selected types of DOCUMENTS
     	// / </summary>
@@ -1413,8 +1434,8 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	string PropertyDocGuidGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// Guid for document date guid property. Auto generated.
     	string PropertyDocDateGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	// Guid for index of document date, dimentions. Auto generated.
-    	string IndexDocDateDimentionsGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	// Guid for index of document date, dimensions. Auto generated.
+    	string IndexDocDateDimensionsGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// Guid for document number guid property. Auto generated.
     	string PropertyDocNumberGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// Guid for index of document Id and type. Auto generated.

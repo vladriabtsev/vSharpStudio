@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using CommunityToolkit.Diagnostics;
+using System.Windows.Documents;
 using FluentValidation;
 using FluentValidation.Results;
 using vSharpStudio.common;
@@ -50,6 +52,20 @@ namespace vSharpStudio.vm.ViewModels
                 var pg = p.ParentGroupListProperties;
                 GroupListProperties? pgs = null;
                 var model = pg.Cfg.Model;
+                if (name == model.PKeyName)
+                {
+                    var vf = new ValidationFailure(nameof(p.Name),
+                        $"Model is is configured to use {model.PKeyName} as primary key name. Property name {model.PKeyName} is reserved for primary key property");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+                if (name == model.RecordVersionFieldName)
+                {
+                    var vf = new ValidationFailure(nameof(p.Name),
+                        $"Model is is configured to use {model.RecordVersionFieldName} as record version name. Property name {model.RecordVersionFieldName} is reserved for record version property");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
                 if (pg.Parent is Catalog c)
                 {
                     Debug.Assert(c.Parent != null);
@@ -128,6 +144,10 @@ namespace vSharpStudio.vm.ViewModels
                 else if (pg.Parent is GroupDocuments gd)
                 {
                     ValidateSpecialProperties(name, cntx, p, gd);
+                }
+                else if (pg.Parent is Register r)
+                {
+                    ValidateSpecialProperties(name, cntx, p, r);
                 }
                 else
                 {
@@ -972,10 +992,10 @@ namespace vSharpStudio.vm.ViewModels
             var model = d.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
             if (d.GetUseDocNumberProperty())
             {
-                if (model.PropertyDocCodeName == name)
+                if (model.PropertyDocNumberName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Document parameter 'UseDocCodeProperty' is set to 'true'. Property name '{model.PropertyDocCodeName}' is reserved for auto generated property");
+                        $"Document parameter 'UseDocCodeProperty' is set to 'true'. Property name '{model.PropertyDocNumberName}' is reserved for auto generated property");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
@@ -996,10 +1016,10 @@ namespace vSharpStudio.vm.ViewModels
             var model = gd.ParentModel;
             if (gd.GetUseDocCodeProperty())
             {
-                if (model.PropertyDocCodeName == name)
+                if (model.PropertyDocNumberName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Document parameter 'UseDocCodeProperty' is set to 'true'. Property name '{model.PropertyDocCodeName}' is reserved for auto generated property");
+                        $"Document parameter 'UseDocCodeProperty' is set to 'true'. Property name '{model.PropertyDocNumberName}' is reserved for auto generated property");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
@@ -1010,6 +1030,63 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
                         $"Document parameter 'UseDocDateProperty' is set to 'true'. Property name '{model.PropertyDocDateName}' is reserved for auto generated property");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+            }
+        }
+        private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, Register r)
+        {
+            var model = r.ParentGroupListRegisters.ParentModel;
+
+            if (model.PropertyDocNumberName == name)
+            {
+                var vf = new ValidationFailure(nameof(p.Name),
+                    $"Property name '{name}' is reserved for auto generated document number property");
+                vf.Severity = Severity.Error;
+                cntx.AddFailure(vf);
+            }
+            if (model.PropertyDocDateName == name)
+            {
+                var vf = new ValidationFailure(nameof(p.Name),
+                    $"Property name '{name}' is reserved for auto generated document date property");
+                vf.Severity = Severity.Error;
+                cntx.AddFailure(vf);
+            }
+            if (r.PropertyMoneyAccumulatorName == name)
+            {
+                var vf = new ValidationFailure(nameof(p.Name),
+                    $"Property name '{name}' is reserved for auto generated money accumulator property of this register");
+                vf.Severity = Severity.Error;
+                cntx.AddFailure(vf);
+            }
+            if (r.PropertyQtyAccumulatorName == name)
+            {
+                var vf = new ValidationFailure(nameof(p.Name),
+                    $"Property name '{name}' is reserved for auto generated quantity accumulator property of this register");
+                vf.Severity = Severity.Error;
+                cntx.AddFailure(vf);
+            }
+            if (r.PropertyDocRefName == name)
+            {
+                var vf = new ValidationFailure(nameof(p.Name),
+                    $"Property name '{name}' is reserved for auto generated document reference property of this register");
+                vf.Severity = Severity.Error;
+                cntx.AddFailure(vf);
+            }
+            if (r.PropertyDocRefGuidName == name)
+            {
+                var vf = new ValidationFailure(nameof(p.Name),
+                    $"Property name '{name}' is reserved for auto generated document Guid property of this register");
+                vf.Severity = Severity.Error;
+                cntx.AddFailure(vf);
+            }
+            foreach (var t in r.GroupRegisterDimensions.ListDimensions)
+            {
+                if (t.Name == name)
+                {
+                    var vf = new ValidationFailure(nameof(p.Name),
+                        $"Property name '{name}' is already used as register dimention name");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }

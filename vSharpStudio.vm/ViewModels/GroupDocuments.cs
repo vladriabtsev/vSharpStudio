@@ -223,7 +223,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.UseDocCodeProperty == EnumUseType.No)
                 return false;
-            return this.ParentModel.UseDocCodeProperty;
+            return this.ParentModel.UseDocNumberProperty;
         }
         public bool GetUseDocDateProperty()
         {

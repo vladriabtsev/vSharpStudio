@@ -49,6 +49,8 @@
         public const string BaseConfigLinksName = "BaseConfigs";
 
         public const string RegisterName = "Register";
+        public const string RegisterDimensionName = "Dimension";
+        public const string RegisterDimensionsGroupName = "Dimensions";
         public const string RegisterGroupName = "Registers";
     }
 }

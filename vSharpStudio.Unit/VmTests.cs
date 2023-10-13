@@ -324,7 +324,7 @@ namespace vSharpStudio.Unit
         }
         #endregion Validatable
 
-        #region Property unique position for Protobuf
+        #region Unique position for Protobuf
         [TestMethod]
         public void Property001_Position()
         {
@@ -350,7 +350,50 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].Position == catPos);
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == catPos);
         }
-        #endregion Property unique position for Protobuf
+        [TestMethod]
+        public void Register001_Property_Position()
+        {
+            var mvm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            //mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
+            mvm.BtnNewConfig.Execute();
+
+            var cfg = mvm.Config;
+            uint pos = 20;
+            var reg = (IRegister)cfg.Model.GroupListRegisters.NodeAddNewSubNode();
+            Assert.AreEqual(pos, reg.LastGenPosition);
+
+            var dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
+            pos++;
+            Assert.AreEqual(pos, reg.LastGenPosition);
+            Assert.AreEqual(pos, dim.Position);
+
+            var cat = cfg.Model.GroupCatalogs.AddCatalog("test_cat");
+            dim = reg.AddDimension("test_dim", cat);
+            pos++;
+            Assert.AreEqual(pos, reg.LastGenPosition);
+            Assert.AreEqual(pos, dim.Position);
+
+            dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
+            pos++;
+            Assert.AreEqual(pos, reg.LastGenPosition);
+            Assert.AreEqual(pos, dim.Position);
+
+            var prop = (IProperty)reg.GroupAttachedProperties.NodeAddNewSubNode();
+            pos++;
+            Assert.AreEqual(pos, reg.LastGenPosition);
+            Assert.AreEqual(pos, prop.Position);
+
+            dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
+            pos++;
+            Assert.AreEqual(pos, reg.LastGenPosition);
+            Assert.AreEqual(pos, dim.Position);
+
+            prop = (IProperty)reg.AddAttachedProperty("test_prop");
+            pos++;
+            Assert.AreEqual(pos, reg.LastGenPosition);
+            Assert.AreEqual(pos, prop.Position);
+        }
+        #endregion Unique position for Protobuf
 
         //#region OnAdded in parent
         //[TestMethod]
