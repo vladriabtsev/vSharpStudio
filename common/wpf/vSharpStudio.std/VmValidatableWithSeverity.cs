@@ -20,7 +20,6 @@ namespace ViewModelBase
         public VmValidatableWithSeverity(TValidator? validator)
         {
             Debug.Assert(validator != null);
-            this.IsValidate = true;
             this._validator = validator;
             this._ValidationCollection = new SortedObservableCollection<ValidationMessage>();
             this._ValidationCollection.SortDirection = SortDirection.Descending;
@@ -175,8 +174,6 @@ namespace ViewModelBase
         protected ValidationResult? ValidationResult { get; private set; }
         public bool Validate()
         {
-            if (!this.IsValidate)
-                return true;
             var res = this._validator.Validate((T)this);
             //var resPlgn = this.ValidatePluginGeneratorSettings();
             //res.Errors.AddRange(resPlgn.Errors);
@@ -190,8 +187,6 @@ namespace ViewModelBase
         }
         public async Task<bool> ValidateAsync()
         {
-            if (!this.IsValidate)
-                return true;
             var res = await this._validator.ValidateAsync((T)this);
             //var resPlgn = await this.ValidatePluginGeneratorSettingsAsync();
             //res.Errors.AddRange(resPlgn.Errors);
@@ -213,14 +208,10 @@ namespace ViewModelBase
             Debug.Assert(propertyName != null);
             if (!VmBindable.IsValidateAll)
                 return true;
-            if (!this.IsValidate)
-                return true;
 #if DEBUG
             if (isNotValidateForUnitTests)
                 return true;
 #endif
-            //if (!this.IsValidate)
-            //    return true;
             var res = this._validator.Validate((T)this);
             bool found = false;
             foreach (var t in res.Errors)

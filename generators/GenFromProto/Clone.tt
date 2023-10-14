@@ -37,9 +37,6 @@ public static <#= message.Name.ToNameCs() #> Clone(I<#= message.Name.ToNameCs() 
 <# } else { #>
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>(); // <#=t4.FilePos() #>
 <# } #>
-<# if (this.Doc.IsBindableBase) { #>
-    vm.IsValidate = false; // <#=t4.FilePos() #>
-<# } #>
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
 <#      if (field.IsRepeated) { #>
 <# if (field.IsAny()) { #>
@@ -73,9 +70,6 @@ if (this.Doc.IsDefaultBase) {
 #>
     if (isNewGuid) // <#=t4.FilePos() #>
         vm.SetNewGuid();
-<# } #>
-<# if (this.Doc.IsValidatableBase) { #>
-    vm.IsValidate = true; // <#=t4.FilePos() #>
 <# } #>
     return vm;
 }
@@ -180,9 +174,6 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     {
         return vm;
     }
-<# if (this.Doc.IsBindableBase) { #>
-    vm.IsValidate = false; // <#=t4.FilePos() #>
-<# } #>
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { 
         if (field.IsAny())
             continue;
@@ -231,9 +222,6 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     vm.OnInitFromDto(); // <#=t4.FilePos() #>
     vm.IsChanged = false;
     vm.IsHasChanged = false;
-<# } #>
-<# if (this.Doc.IsValidatableBase) { #>
-    vm.IsValidate = true; // <#=t4.FilePos() #>
 <# } #>
     return vm;
 }
