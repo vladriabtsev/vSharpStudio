@@ -31,8 +31,13 @@
                     <local:EditorRoles />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type bvm:Catalog}">
-                    <!--<local:EditorCatalog />-->
-                    <!--DataContext="{Binding Config.SelectedNode}"-->
+                    <local:EditorCatalog />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type bvm:Document}">
+                    <local:EditorDocument />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type bvm:Register}">
+                    <local:EditorRegister />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type bvm:Form}">
                     <local:EditorForm />

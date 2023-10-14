@@ -70,6 +70,8 @@
     - [proto_property_data_generator](#proto_config.proto_property_data_generator)
     - [proto_register](#proto_config.proto_register)
     - [proto_register_dimension](#proto_config.proto_register_dimension)
+    - [proto_register_doc_to_reg](#proto_config.proto_register_doc_to_reg)
+    - [proto_register_reg_prop_to_doc_prop](#proto_config.proto_register_reg_prop_to_doc_prop)
     - [proto_report](#proto_config.proto_report)
     - [proto_role](#proto_config.proto_role)
     - [proto_role_catalog_access](#proto_config.proto_role_catalog_access)
@@ -1880,7 +1882,7 @@ Configuration model
 | group_attached_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [Browsable(false)] |
 | property_doc_ref_guid_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Guid property&#34;)] @attr [Description(&#34;Document guid property name&#34;)] |
 | property_doc_ref_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Ref property&#34;)] @attr [Description(&#34;Document reference property name&#34;)] |
-| list_doc_guids | [string](#string) | repeated | &lt;summary&gt; / Guids of selected types of DOCUMENTS / &lt;/summary&gt; @attr [Browsable(false)] |
+| list_doc_guids | [string](#string) | repeated | &lt;summary&gt; / Guids of selected types of DOCUMENTS which can POST or UNPOST for this register / &lt;/summary&gt; @attr [Browsable(false)] |
 | property_doc_ref_guid | [string](#string) |  | Guid for document reference property. Auto generated. @attr [Browsable(false)] |
 | property_doc_guid_guid | [string](#string) |  | Guid for document guid property. Auto generated. @attr [Browsable(false)] |
 | property_doc_date_guid | [string](#string) |  | Guid for document date guid property. Auto generated. @attr [Browsable(false)] |
@@ -1888,6 +1890,7 @@ Configuration model
 | property_doc_number_guid | [string](#string) |  | Guid for document number guid property. Auto generated. @attr [Browsable(false)] |
 | index_doc_id_type_guid | [string](#string) |  | Guid for index of document Id and type. Auto generated. @attr [Browsable(false)] |
 | property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
+| list_doc_mappings | [proto_register_doc_to_reg](#proto_config.proto_register_doc_to_reg) | repeated | Mapping register properties to document properties @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1915,6 +1918,40 @@ Configuration model
 | property_dimension_guid | [string](#string) |  | Guid for dimension property. Auto generated. @attr [Browsable(false)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1-15 @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_register_doc_to_reg"></a>
+
+### proto_register_doc_to_reg
+@base Object
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| doc_guid | [string](#string) |  | Document GUID |
+| list_mapings | [proto_register_reg_prop_to_doc_prop](#proto_config.proto_register_reg_prop_to_doc_prop) | repeated | Mappings |
+
+
+
+
+
+
+<a name="proto_config.proto_register_reg_prop_to_doc_prop"></a>
+
+### proto_register_reg_prop_to_doc_prop
+@base Object
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| reg_prop_guid | [string](#string) |  | Register property GUID |
+| doc_prop_guid | [string](#string) |  | Document property GUID |
 
 
 

@@ -55,27 +55,27 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
         {
             Debug.Assert(from != null);
             DbConnectionStringSettings2 vm = new DbConnectionStringSettings2(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:36
-            vm.IsNotifying = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:40
-            vm.IsValidate = false;
-            vm.StringSettings = from.StringSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
+            vm.IsNotifying = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:41
+            vm.IsValidate = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:44
+            vm.StringSettings = from.StringSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:72
+            vm.IsNotifying = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:81
+            vm.IsValidate = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:84
             return vm;
         }
-        public static void Update(DbConnectionStringSettings2 to, IDbConnectionStringSettings2 from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:80
+        public static void Update(DbConnectionStringSettings2 to, IDbConnectionStringSettings2 from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:88
         {
             Debug.Assert(to != null);
             Debug.Assert(from != null);
-            to.StringSettings = from.StringSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.StringSettings = from.StringSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:152
         }
-        // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:150
+        // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:158
         #region IEditable
         public override DbConnectionStringSettings2 Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
             Debug.Assert(this is IConfig || this.Parent != null);
-            return DbConnectionStringSettings2.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:158
+            return DbConnectionStringSettings2.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:166
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(DbConnectionStringSettings2 from)
@@ -87,26 +87,26 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_db_connection_string_settings2' to 'DbConnectionStringSettings2'
-        public static DbConnectionStringSettings2 ConvertToVM(Proto.Plugin.proto_db_connection_string_settings2 m, DbConnectionStringSettings2 vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:174
+        public static DbConnectionStringSettings2 ConvertToVM(Proto.Plugin.proto_db_connection_string_settings2 m, DbConnectionStringSettings2 vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:182
         {
             Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
             }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.StringSettings = m.StringSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
+            vm.IsNotifying = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:190
+            vm.IsValidate = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:193
+            vm.StringSettings = m.StringSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:234
+            vm.IsNotifying = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:245
+            vm.IsValidate = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:248
             return vm;
         }
         // Conversion from 'DbConnectionStringSettings2' to 'proto_db_connection_string_settings2'
-        public static Proto.Plugin.proto_db_connection_string_settings2 ConvertToProto(DbConnectionStringSettings2 vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:237
+        public static Proto.Plugin.proto_db_connection_string_settings2 ConvertToProto(DbConnectionStringSettings2 vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:253
         {
             Debug.Assert(vm != null);
-            Proto.Plugin.proto_db_connection_string_settings2 m = new Proto.Plugin.proto_db_connection_string_settings2(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:240
-            m.StringSettings = vm.StringSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            Proto.Plugin.proto_db_connection_string_settings2 m = new Proto.Plugin.proto_db_connection_string_settings2(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:256
+            m.StringSettings = vm.StringSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:293
             return m;
         }
         
@@ -118,12 +118,12 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
                 return;
             }
             visitor.Visit(this);
-            visitor.VisitEnd(this);
+            visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:36
         }
         #endregion Procedures
         #region Properties
         
-        public string StringSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        public string StringSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
         { 
             get { return this._StringSettings; }
             set
@@ -140,11 +140,11 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
             }
         }
         private string _StringSettings = string.Empty;
-        partial void OnStringSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnStringSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
         partial void OnStringSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:111
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
         { 
             get { return this._IsChanged; }
             set
@@ -161,9 +161,9 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:128
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
         */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:133
+        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -197,35 +197,35 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
         {
             Debug.Assert(from != null);
             GeneratorDbAccessSettings2 vm = new GeneratorDbAccessSettings2(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:36
-            vm.IsNotifying = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:40
-            vm.IsValidate = false;
-            vm.IsAccessParam1 = from.IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
-            vm.IsAccessParam2 = from.IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
-            vm.AccessParam3 = from.AccessParam3; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
-            vm.AccessParam4 = from.AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
-            vm.IsGenerateNotValidCode = from.IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
+            vm.IsNotifying = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:41
+            vm.IsValidate = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:44
+            vm.IsAccessParam1 = from.IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:72
+            vm.IsAccessParam2 = from.IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:72
+            vm.AccessParam3 = from.AccessParam3; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:72
+            vm.AccessParam4 = from.AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:72
+            vm.IsGenerateNotValidCode = from.IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:72
+            vm.IsNotifying = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:81
+            vm.IsValidate = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:84
             return vm;
         }
-        public static void Update(GeneratorDbAccessSettings2 to, IGeneratorDbAccessSettings2 from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:80
+        public static void Update(GeneratorDbAccessSettings2 to, IGeneratorDbAccessSettings2 from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:88
         {
             Debug.Assert(to != null);
             Debug.Assert(from != null);
-            to.IsAccessParam1 = from.IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
-            to.IsAccessParam2 = from.IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
-            to.AccessParam3 = from.AccessParam3; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
-            to.AccessParam4 = from.AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
-            to.IsGenerateNotValidCode = from.IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.IsAccessParam1 = from.IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:152
+            to.IsAccessParam2 = from.IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:152
+            to.AccessParam3 = from.AccessParam3; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:152
+            to.AccessParam4 = from.AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:152
+            to.IsGenerateNotValidCode = from.IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:152
         }
-        // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:150
+        // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:158
         #region IEditable
         public override GeneratorDbAccessSettings2 Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
             Debug.Assert(this is IConfig || this.Parent != null);
-            return GeneratorDbAccessSettings2.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:158
+            return GeneratorDbAccessSettings2.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:166
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(GeneratorDbAccessSettings2 from)
@@ -237,34 +237,34 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_generator_db_access_settings2' to 'GeneratorDbAccessSettings2'
-        public static GeneratorDbAccessSettings2 ConvertToVM(Proto.Plugin.proto_generator_db_access_settings2 m, GeneratorDbAccessSettings2 vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:174
+        public static GeneratorDbAccessSettings2 ConvertToVM(Proto.Plugin.proto_generator_db_access_settings2 m, GeneratorDbAccessSettings2 vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:182
         {
             Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
             }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.IsAccessParam1 = m.IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
-            vm.IsAccessParam2 = m.IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
-            vm.AccessParam3 = m.AccessParam3; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
-            vm.AccessParam4 = m.AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
-            vm.IsGenerateNotValidCode = m.IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
+            vm.IsNotifying = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:190
+            vm.IsValidate = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:193
+            vm.IsAccessParam1 = m.IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:234
+            vm.IsAccessParam2 = m.IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:234
+            vm.AccessParam3 = m.AccessParam3; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:234
+            vm.AccessParam4 = m.AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:234
+            vm.IsGenerateNotValidCode = m.IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:234
+            vm.IsNotifying = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:245
+            vm.IsValidate = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:248
             return vm;
         }
         // Conversion from 'GeneratorDbAccessSettings2' to 'proto_generator_db_access_settings2'
-        public static Proto.Plugin.proto_generator_db_access_settings2 ConvertToProto(GeneratorDbAccessSettings2 vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:237
+        public static Proto.Plugin.proto_generator_db_access_settings2 ConvertToProto(GeneratorDbAccessSettings2 vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:253
         {
             Debug.Assert(vm != null);
-            Proto.Plugin.proto_generator_db_access_settings2 m = new Proto.Plugin.proto_generator_db_access_settings2(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:240
-            m.IsAccessParam1 = vm.IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
-            m.IsAccessParam2 = vm.IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
-            m.AccessParam3 = vm.AccessParam3; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
-            m.AccessParam4 = vm.AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
-            m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            Proto.Plugin.proto_generator_db_access_settings2 m = new Proto.Plugin.proto_generator_db_access_settings2(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:256
+            m.IsAccessParam1 = vm.IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:293
+            m.IsAccessParam2 = vm.IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:293
+            m.AccessParam3 = vm.AccessParam3; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:293
+            m.AccessParam4 = vm.AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:293
+            m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:293
             return m;
         }
         
@@ -276,12 +276,12 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
                 return;
             }
             visitor.Visit(this);
-            visitor.VisitEnd(this);
+            visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:36
         }
         #endregion Procedures
         #region Properties
         
-        public bool IsAccessParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        public bool IsAccessParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
         { 
             get { return this._IsAccessParam1; }
             set
@@ -298,10 +298,10 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
             }
         }
         private bool _IsAccessParam1;
-        partial void OnIsAccessParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnIsAccessParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
         partial void OnIsAccessParam1Changed();
         
-        public bool? IsAccessParam2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        public bool? IsAccessParam2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
         { 
             get { return this._IsAccessParam2; }
             set
@@ -318,10 +318,10 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
             }
         }
         private bool? _IsAccessParam2;
-        partial void OnIsAccessParam2Changing(ref bool? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnIsAccessParam2Changing(ref bool? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
         partial void OnIsAccessParam2Changed();
         
-        public string AccessParam3 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        public string AccessParam3 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
         { 
             get { return this._AccessParam3; }
             set
@@ -338,10 +338,10 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
             }
         }
         private string _AccessParam3 = string.Empty;
-        partial void OnAccessParam3Changing(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnAccessParam3Changing(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
         partial void OnAccessParam3Changed();
         
-        public string? AccessParam4 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        public string? AccessParam4 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
         { 
             get { return this._AccessParam4; }
             set
@@ -358,10 +358,10 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
             }
         }
         private string? _AccessParam4;
-        partial void OnAccessParam4Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnAccessParam4Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
         partial void OnAccessParam4Changed();
         
-        public bool IsGenerateNotValidCode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        public bool IsGenerateNotValidCode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
         { 
             get { return this._IsGenerateNotValidCode; }
             set
@@ -378,11 +378,11 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
             }
         }
         private bool _IsGenerateNotValidCode;
-        partial void OnIsGenerateNotValidCodeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnIsGenerateNotValidCodeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
         partial void OnIsGenerateNotValidCodeChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:111
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
         { 
             get { return this._IsChanged; }
             set
@@ -399,9 +399,9 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:128
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
         */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:133
+        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     
@@ -419,7 +419,7 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(DbConnectionStringSettings2 p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:48
+        protected override void OnVisitEnd(DbConnectionStringSettings2 p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
@@ -427,7 +427,7 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GeneratorDbAccessSettings2 p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:48
+        protected override void OnVisitEnd(GeneratorDbAccessSettings2 p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }

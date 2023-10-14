@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using CommandLine;
 using Google.Protobuf.Reflection;
 using Microsoft.Extensions.Logging;
+using Proto.Doc;
 
 namespace GenFromProto
 {
@@ -157,7 +158,7 @@ namespace GenFromProto
         {
             if (!from.IsMessage())
             {
-                throw new ArgumentException("Expected message field",nameof(from));
+                throw new ArgumentException("Expected message field", nameof(from));
             }
             return JsonDoc.Files[from.File.Name].Messages[from.MessageType.Name];
         }
@@ -305,6 +306,22 @@ namespace GenFromProto
                     }
                 default:
                     throw new NotSupportedException();
+            }
+        }
+        public static bool IsObjectBase(this Google.Protobuf.Reflection.FieldDescriptor from, FileDescriptor root)
+        {
+            switch (from.FieldType)
+            {
+                case Google.Protobuf.Reflection.FieldType.Message:
+                    if (JsonDoc.Files[root.Name].Messages.ContainsKey(from.MessageType.Name))
+                    {
+                        var doc = JsonDoc.Files[root.Name].Messages[from.MessageType.Name];
+                        if (doc.BaseClass == "Object" || doc.BaseClass == " : Object")
+                            return true;
+                    }
+                    return false;
+                default:
+                    return false;
             }
         }
         public static string ToTypeCs(this Google.Protobuf.Reflection.FieldDescriptor from)

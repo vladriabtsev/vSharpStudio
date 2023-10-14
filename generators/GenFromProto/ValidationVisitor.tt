@@ -21,6 +21,8 @@ public partial class Validation<#= root.Package.ToNameCs() #>Visitor : <#= root.
        continue;
      if (field.MessageType.Name.EndsWith("_nullable"))
        continue;
+     if (field.IsObjectBase(root))
+       continue;
 #>
 <# if (this.IsBaseWithParent(message.Name)) { #>
 <#   if (!field.IsAny() && !field.IsCsSimple() && !field.IsDefaultBase()) { #>

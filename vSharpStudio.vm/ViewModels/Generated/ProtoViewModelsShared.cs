@@ -57,28 +57,28 @@ namespace vSharpStudio.vm.ViewModels.Shared // D:\dev\vSharpStudio.pro\submodule
         {
             Debug.Assert(from != null);
             TestSharedMesssage vm = new TestSharedMesssage(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:38
-            vm.IsNotifying = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:40
-            vm.IsValidate = false;
-            vm.BoolValue = from.BoolValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
-            vm.StringValue = from.StringValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:68
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
+            vm.IsNotifying = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:41
+            vm.IsValidate = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:44
+            vm.BoolValue = from.BoolValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:72
+            vm.StringValue = from.StringValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:72
+            vm.IsNotifying = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:81
+            vm.IsValidate = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:84
             return vm;
         }
-        public static void Update(TestSharedMesssage to, ITestSharedMesssage from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:80
+        public static void Update(TestSharedMesssage to, ITestSharedMesssage from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:88
         {
             Debug.Assert(to != null);
             Debug.Assert(from != null);
-            to.BoolValue = from.BoolValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
-            to.StringValue = from.StringValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:144
+            to.BoolValue = from.BoolValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:152
+            to.StringValue = from.StringValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:152
         }
-        // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:150
+        // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:158
         #region IEditable
         public override TestSharedMesssage Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return TestSharedMesssage.Clone(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:160
+            return TestSharedMesssage.Clone(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:168
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(TestSharedMesssage from)
@@ -90,28 +90,28 @@ namespace vSharpStudio.vm.ViewModels.Shared // D:\dev\vSharpStudio.pro\submodule
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'test_shared_messsage' to 'TestSharedMesssage'
-        public static TestSharedMesssage ConvertToVM(Proto.Config2.test_shared_messsage m, TestSharedMesssage vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:174
+        public static TestSharedMesssage ConvertToVM(Proto.Config2.test_shared_messsage m, TestSharedMesssage vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:182
         {
             Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
             }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.BoolValue = m.BoolValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
-            vm.StringValue = m.StringValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
+            vm.IsNotifying = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:190
+            vm.IsValidate = false; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:193
+            vm.BoolValue = m.BoolValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:234
+            vm.StringValue = m.StringValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:234
+            vm.IsNotifying = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:245
+            vm.IsValidate = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:248
             return vm;
         }
         // Conversion from 'TestSharedMesssage' to 'test_shared_messsage'
-        public static Proto.Config2.test_shared_messsage ConvertToProto(TestSharedMesssage vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:237
+        public static Proto.Config2.test_shared_messsage ConvertToProto(TestSharedMesssage vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:253
         {
             Debug.Assert(vm != null);
-            Proto.Config2.test_shared_messsage m = new Proto.Config2.test_shared_messsage(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:240
-            m.BoolValue = vm.BoolValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
-            m.StringValue = vm.StringValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:277
+            Proto.Config2.test_shared_messsage m = new Proto.Config2.test_shared_messsage(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:256
+            m.BoolValue = vm.BoolValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:293
+            m.StringValue = vm.StringValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:293
             return m;
         }
         
@@ -123,12 +123,12 @@ namespace vSharpStudio.vm.ViewModels.Shared // D:\dev\vSharpStudio.pro\submodule
                 return;
             }
             visitor.Visit(this);
-            visitor.VisitEnd(this);
+            visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:36
         }
         #endregion Procedures
         #region Properties
         
-        public bool BoolValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        public bool BoolValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
         { 
             get { return this._BoolValue; }
             set
@@ -145,10 +145,10 @@ namespace vSharpStudio.vm.ViewModels.Shared // D:\dev\vSharpStudio.pro\submodule
             }
         }
         private bool _BoolValue;
-        partial void OnBoolValueChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnBoolValueChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
         partial void OnBoolValueChanged();
         
-        public string StringValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:56
+        public string StringValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
         { 
             get { return this._StringValue; }
             set
@@ -165,7 +165,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // D:\dev\vSharpStudio.pro\submodule
             }
         }
         private string _StringValue = string.Empty;
-        partial void OnStringValueChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:80
+        partial void OnStringValueChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
         partial void OnStringValueChanged();
         #endregion Properties
     }
@@ -183,7 +183,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // D:\dev\vSharpStudio.pro\submodule
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(TestSharedMesssage p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:48
+        protected override void OnVisitEnd(TestSharedMesssage p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }

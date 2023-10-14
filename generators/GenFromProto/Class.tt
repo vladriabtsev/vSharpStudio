@@ -51,7 +51,9 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
     public <#= message.Name.ToNameCs() #>()<# if (this.Doc.IsValidatableBase) { #> 
         : base(<#= message.Name.ToNameCs() #>Validator.Validator)<# } #> // <#=t4.FilePos() #>
     {
+<# if (this.Doc.IsValidatableBase) { #>
         this.IsValidate = false;
+<# } #>
         this.OnCreating();
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
         if (t.IsCsSimple() && !t.IsRepeated)
@@ -74,7 +76,9 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <#		} #>
 <# } #>
         this.OnCreated();
+<# if (this.Doc.IsValidatableBase) { #>
         this.IsValidate = true;
+<# } #>
     }
 <# } #>
     partial void OnCreating();

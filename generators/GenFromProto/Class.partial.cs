@@ -91,6 +91,10 @@ namespace GenFromProto
                 this.Doc.BaseClass = " : ConfigObjectVmGenSettings<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, I" + root.Package.ToNameCs() + "AcceptVisitor";
             }
+            else if (this.Doc.BaseClass == "Object") // for generating simple classes
+            {
+                this.Doc.BaseClass = " : Object";
+            }
             else
             {
 

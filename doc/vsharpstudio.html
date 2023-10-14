@@ -443,6 +443,14 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_register_doc_to_reg"><span class="badge">M</span>proto_register_doc_to_reg</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_register_reg_prop_to_doc_prop"><span class="badge">M</span>proto_register_reg_prop_to_doc_prop</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_report"><span class="badge">M</span>proto_report</a>
                 </li>
               
@@ -8121,7 +8129,7 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>&lt;summary&gt;
-/ Guids of selected types of DOCUMENTS
+/ Guids of selected types of DOCUMENTS which can POST or UNPOST for this register
 / &lt;/summary&gt;
 @attr [Browsable(false)] </p></td>
                 </tr>
@@ -8179,6 +8187,14 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_doc_mappings</td>
+                  <td><a href="#proto_config.proto_register_doc_to_reg">proto_register_doc_to_reg</a></td>
+                  <td>repeated</td>
+                  <td><p>Mapping register properties to document properties
+@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -8298,6 +8314,86 @@ Reserved positions: 1-15
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
                   <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_register_doc_to_reg">proto_register_doc_to_reg</h3>
+        <p>@base Object</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>doc_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Document GUID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_mapings</td>
+                  <td><a href="#proto_config.proto_register_reg_prop_to_doc_prop">proto_register_reg_prop_to_doc_prop</a></td>
+                  <td>repeated</td>
+                  <td><p>Mappings </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_register_reg_prop_to_doc_prop">proto_register_reg_prop_to_doc_prop</h3>
+        <p>@base Object</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reg_prop_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Register property GUID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>doc_prop_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Document property GUID </p></td>
                 </tr>
               
             </tbody>

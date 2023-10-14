@@ -16,7 +16,9 @@ public <#=collType#><<#= field.ToTypeCs() #>> <#=FieldName#> // <#=t4.FilePos() 
             this.On<#=FieldName#>Changing(value);
             _<#=FieldName#> = value;
             this.On<#=FieldName#>Changed();
+<# if (this.DocMes.IsBindableBase) { #>
             this.NotifyPropertyChanged();
+<# } #>
 <#     if (this.DocMes.IsValidatableBase) { #>
             this.ValidateProperty();
 <#     } #>
@@ -63,7 +65,9 @@ public <#= field.ToTypeCs() #> <#=FieldName#> // <#=t4.FilePos() #>
             this.On<#=FieldName#>Changing(ref value);
             this._<#=FieldName#> = value;
             this.On<#=FieldName#>Changed();
+<#   if (this.DocMes.IsBindableBase) { #>
             this.NotifyPropertyChanged();
+<#   } #>
 <#   if (this.DocMes.IsValidatableBase && FieldName!="IsHasChanged") { #>
             this.ValidateProperty();
             this.IsChanged = true;

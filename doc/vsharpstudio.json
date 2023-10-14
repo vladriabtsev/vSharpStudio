@@ -10140,7 +10140,7 @@
             },
             {
               "name": "list_doc_guids",
-              "description": "\u003csummary\u003e\n/ Guids of selected types of DOCUMENTS\n/ \u003c/summary\u003e\n@attr [Browsable(false)]",
+              "description": "\u003csummary\u003e\n/ Guids of selected types of DOCUMENTS which can POST or UNPOST for this register\n/ \u003c/summary\u003e\n@attr [Browsable(false)]",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -10215,6 +10215,16 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_doc_mappings",
+              "description": "Mapping register properties to document properties\n@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_register_doc_to_reg",
+              "longType": "proto_register_doc_to_reg",
+              "fullType": "proto_config.proto_register_doc_to_reg",
               "ismap": false,
               "defaultValue": ""
             },
@@ -10346,6 +10356,88 @@
               "type": "proto_plugin_generator_node_settings",
               "longType": "proto_plugin_generator_node_settings",
               "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_register_doc_to_reg",
+          "longName": "proto_register_doc_to_reg",
+          "fullName": "proto_config.proto_register_doc_to_reg",
+          "description": "@base Object",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "doc_guid",
+              "description": "Document GUID",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_mapings",
+              "description": "Mappings",
+              "label": "repeated",
+              "type": "proto_register_reg_prop_to_doc_prop",
+              "longType": "proto_register_reg_prop_to_doc_prop",
+              "fullType": "proto_config.proto_register_reg_prop_to_doc_prop",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_register_reg_prop_to_doc_prop",
+          "longName": "proto_register_reg_prop_to_doc_prop",
+          "fullName": "proto_config.proto_register_reg_prop_to_doc_prop",
+          "description": "@base Object",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "reg_prop_guid",
+              "description": "Register property GUID",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "doc_prop_guid",
+              "description": "Document property GUID",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             }

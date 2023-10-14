@@ -61,7 +61,7 @@ namespace GenFromProto
             
             #line 17 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  foreach (var field in this.message.Fields.InDeclarationOrder()) { 
-     if (field.IsCsSimple() || !this.Doc.IsValidatableBase)
+     if (field.IsObjectBase(root) || field.IsCsSimple() || !this.Doc.IsValidatableBase)
        continue;
 
             
@@ -86,7 +86,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(")\r\n    {\r\n        t.Accept");
+            this.Write(") // ");
+            
+            #line 23 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    {\r\n        t.Accept");
             
             #line 25 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
@@ -120,7 +127,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("NodeVisitor(visitor);\r\n");
+            this.Write("NodeVisitor(visitor); // ");
+            
+            #line 29 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
             
             #line 30 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  } else if (this.Doc.IsValidatableBase) { 
@@ -162,7 +176,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("    visitor.VisitEnd(this);\r\n}\r\n");
+            this.Write("    visitor.VisitEnd(this); // ");
+            
+            #line 36 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n}\r\n");
             
             #line 38 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  } 

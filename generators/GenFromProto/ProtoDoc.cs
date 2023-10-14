@@ -185,6 +185,9 @@ namespace GenFromProto
                     this.IsBindableBase = true;
                     this.IsWithParent = false;
                 }
+                else if (s == "Object")
+                {
+                }
                 else if (s == "VmEditable")
                 {
                     this.IsBindableBase = true;

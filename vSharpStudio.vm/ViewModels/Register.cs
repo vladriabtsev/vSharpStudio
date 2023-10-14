@@ -466,5 +466,44 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst;
         }
+
+        #region Editor
+
+        #region Documents
+        //[Browsable(false)]
+        //public SortedObservableCollection<ISortingValue> ListSeparateTreeSelectedNotSpecialProperties
+        //{
+        //    get
+        //    {
+        //        if (this.listSeparateTreeSelectedNotSpecialProperties == null)
+        //        {
+        //            this.listSeparateTreeSelectedNotSpecialProperties = new SortedObservableCollection<ISortingValue>();
+        //            if (this.ParentGroupListForms.Parent is Catalog c)
+        //            {
+        //                if (c.UseTree && c.UseSeparateTreeForFolders)
+        //                {
+        //                    var res = new List<IProperty>();
+        //                    c.Folder.GetNormalProperties(res);
+        //                    foreach (var t in res)
+        //                    {
+        //                        foreach (var tt in this.ListGuidViewFolderProperties)
+        //                        {
+        //                            if (tt == t.Guid)
+        //                            {
+        //                                this.listSeparateTreeSelectedNotSpecialProperties.Add(t);
+        //                                break;
+        //                            }
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        return this.listSeparateTreeSelectedNotSpecialProperties;
+        //    }
+        //}
+        //private SortedObservableCollection<ISortingValue>? listSeparateTreeSelectedNotSpecialProperties;
+        #endregion Documents
+
+        #endregion Editor
     }
 }

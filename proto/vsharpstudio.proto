@@ -2798,7 +2798,7 @@ message proto_register {
     // @attr [Description("Document reference property name")]
     string property_doc_ref_name = 40;
     /// <summary>
-    /// Guids of selected types of DOCUMENTS
+    /// Guids of selected types of DOCUMENTS which can POST or UNPOST for this register
     /// </summary>
     // @attr [Browsable(false)]
     repeated string list_doc_guids = 41;
@@ -2823,8 +2823,36 @@ message proto_register {
     // @attr [Browsable(false)]
     string property_version_guid = 48;
 
+    // Mapping register properties to document properties
+    // @attr [Browsable(false)]
+    repeated proto_register_doc_to_reg list_doc_mappings = 49;
+
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+// @base Object
+message proto_register_doc_to_reg
+{
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // Document GUID
+    string doc_guid = 2;
+    // Mappings
+    repeated proto_register_reg_prop_to_doc_prop list_mapings = 3;
+}
+// @base Object
+message proto_register_reg_prop_to_doc_prop
+{
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // Register property GUID
+    string reg_prop_guid = 2;
+    // Document property GUID
+    string doc_prop_guid = 3;
 }
 message proto_group_documents {
     // @attr [Category("")]

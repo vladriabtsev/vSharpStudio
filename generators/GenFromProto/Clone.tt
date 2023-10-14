@@ -37,8 +37,12 @@ public static <#= message.Name.ToNameCs() #> Clone(I<#= message.Name.ToNameCs() 
 <# } else { #>
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>(); // <#=t4.FilePos() #>
 <# } #>
+<# if (this.Doc.IsValidatableBase) { #>
     vm.IsNotifying = false; // <#=t4.FilePos() #>
-    vm.IsValidate = false;
+<# } #>
+<# if (this.Doc.IsBindableBase) { #>
+    vm.IsValidate = false; // <#=t4.FilePos() #>
+<# } #>
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
 <#      if (field.IsRepeated) { #>
 <# if (field.IsAny()) { #>
@@ -73,8 +77,12 @@ if (this.Doc.IsDefaultBase) {
     if (isNewGuid) // <#=t4.FilePos() #>
         vm.SetNewGuid();
 <# } #>
-    vm.IsNotifying = true;
-    vm.IsValidate = true;
+<# if (this.Doc.IsBindableBase) { #>
+    vm.IsNotifying = true; // <#=t4.FilePos() #>
+<# } #>
+<# if (this.Doc.IsValidatableBase) { #>
+    vm.IsValidate = true; // <#=t4.FilePos() #>
+<# } #>
     return vm;
 }
 public static void Update(<#= message.Name.ToNameCs() #> to, I<#= message.Name.ToNameCs() #> from, bool isDeep = true) // <#=t4.FilePos() #>
@@ -178,8 +186,12 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     {
         return vm;
     }
-    vm.IsNotifying = false;
-    vm.IsValidate = false;
+<# if (this.Doc.IsValidatableBase) { #>
+    vm.IsNotifying = false; // <#=t4.FilePos() #>
+<# } #>
+<# if (this.Doc.IsBindableBase) { #>
+    vm.IsValidate = false; // <#=t4.FilePos() #>
+<# } #>
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { 
         if (field.IsAny())
             continue;
@@ -229,8 +241,12 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     vm.IsChanged = false;
     vm.IsHasChanged = false;
 <# } #>
-    vm.IsNotifying = true;
-    vm.IsValidate = true;
+<# if (this.Doc.IsBindableBase) { #>
+    vm.IsNotifying = true; // <#=t4.FilePos() #>
+<# } #>
+<# if (this.Doc.IsValidatableBase) { #>
+    vm.IsValidate = true; // <#=t4.FilePos() #>
+<# } #>
     return vm;
 }
 // Conversion from '<#= message.Name.ToNameCs() #>' to '<#= message.Name #>'

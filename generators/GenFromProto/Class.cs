@@ -390,9 +390,23 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\r\n    {\r\n        this.IsValidate = false;\r\n        this.OnCreating();\r\n");
+            this.Write("\r\n    {\r\n");
+            
+            #line 54 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+ if (this.Doc.IsValidatableBase) { 
+            
+            #line default
+            #line hidden
+            this.Write("        this.IsValidate = false;\r\n");
             
             #line 56 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("        this.OnCreating();\r\n");
+            
+            #line 58 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
  foreach (var t in message.Fields.InDeclarationOrder())	{ 
         if (t.IsCsSimple() && !t.IsRepeated)
            continue;
@@ -401,54 +415,26 @@ namespace GenFromProto
             #line default
             #line hidden
             
-            #line 60 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 62 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
  if (!t.IsMessage() || t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { 
             
             #line default
             #line hidden
             this.Write("        this._");
             
-            #line 61 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 63 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" = new ObservableCollectionWithActions<");
             
-            #line 61 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 63 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.ToTypeCs()));
             
             #line default
             #line hidden
             this.Write(">(); // ");
-            
-            #line 61 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 62 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
- } else { 
-            
-            #line default
-            #line hidden
-            this.Write("        this._");
-            
-            #line 63 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" = new ConfigNodesCollection<");
-            
-            #line 63 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write(">(this); // ");
             
             #line 63 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
@@ -458,113 +444,155 @@ namespace GenFromProto
             this.Write("\r\n");
             
             #line 64 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 65 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-		} else if (t.IsMessage()) { 
-            
-            #line default
-            #line hidden
-            
-            #line 66 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
- if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { 
-            
-            #line default
-            #line hidden
-            this.Write("        this._");
-            
-            #line 67 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" = new ");
-            
-            #line 67 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write("(); // ");
-            
-            #line 67 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 68 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
- } else if (t.IsNullable()) { 
-            
-            #line default
-            #line hidden
-            
-            #line 69 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
  } else { 
             
             #line default
             #line hidden
             this.Write("        this._");
             
-            #line 70 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 65 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" = new ConfigNodesCollection<");
+            
+            #line 65 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(">(this); // ");
+            
+            #line 65 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 66 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 67 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+		} else if (t.IsMessage()) { 
+            
+            #line default
+            #line hidden
+            
+            #line 68 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+ if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { 
+            
+            #line default
+            #line hidden
+            this.Write("        this._");
+            
+            #line 69 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" = new ");
             
+            #line 69 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write("(); // ");
+            
+            #line 69 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
             #line 70 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+ } else if (t.IsNullable()) { 
+            
+            #line default
+            #line hidden
+            
+            #line 71 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            this.Write("        this._");
+            
+            #line 72 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" = new ");
+            
+            #line 72 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.ToTypeCs()));
             
             #line default
             #line hidden
             this.Write("(this); // ");
             
-            #line 70 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 72 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 71 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 73 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 72 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 74 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
 		} else if (t.IsMap) { 
             
             #line default
             #line hidden
             this.Write("\t\tmap??? // ");
             
-            #line 73 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 75 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 74 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 76 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
 		} 
             
             #line default
             #line hidden
             
-            #line 75 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 77 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("        this.OnCreated();\r\n        this.IsValidate = true;\r\n    }\r\n");
+            this.Write("        this.OnCreated();\r\n");
             
             #line 79 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+ if (this.Doc.IsValidatableBase) { 
+            
+            #line default
+            #line hidden
+            this.Write("        this.IsValidate = true;\r\n");
+            
+            #line 81 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("    }\r\n");
+            
+            #line 83 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
             
             #line default
@@ -572,7 +600,7 @@ namespace GenFromProto
             this.Write("    partial void OnCreating();\r\n    partial void OnCreated();\r\n    #endregion CTO" +
                     "R\r\n    #region Procedures\r\n");
             
-            #line 84 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 88 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
 	
 	this.PushIndent("    ");
 	
@@ -593,7 +621,7 @@ namespace GenFromProto
             #line hidden
             this.Write("    #endregion Procedures\r\n    #region Properties\r\n");
             
-            #line 101 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 105 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
 	this.PushIndent("    ");
 	foreach (var t in this.GetFields())
 	{
@@ -605,14 +633,14 @@ namespace GenFromProto
             #line default
             #line hidden
             
-            #line 108 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 112 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
  if (this.Doc.IsWithParent) { 
             
             #line default
             #line hidden
             this.Write("/*\r\n    [Browsable(false)]\r\n    public override bool IsChanged // ");
             
-            #line 111 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 115 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
@@ -636,14 +664,14 @@ namespace GenFromProto
     }
     partial void OnIsChangedChanging(ref bool v); // ");
             
-            #line 128 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 132 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n    */\r\n");
             
-            #line 130 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 134 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
  if (this.Doc.IsConfigObjectBase) { 
             
             #line default
@@ -651,54 +679,26 @@ namespace GenFromProto
             this.Write("    protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } //" +
                     " ");
             
-            #line 131 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 135 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 132 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 136 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
  } else { 
             
             #line default
             #line hidden
             this.Write("    //partial void OnIsChangedChanged(); // ");
             
-            #line 133 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 137 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n");
-            
-            #line 134 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 135 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
- if (this.Doc.IsICanAddNode) { 
-            
-            #line default
-            #line hidden
-            this.Write("    partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // ");
-            
-            #line 136 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 136 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n    partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChan" +
-                    "ged(); }\r\n");
             
             #line 138 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
@@ -707,6 +707,34 @@ namespace GenFromProto
             #line hidden
             
             #line 139 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+ if (this.Doc.IsICanAddNode) { 
+            
+            #line default
+            #line hidden
+            this.Write("    partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // ");
+            
+            #line 140 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 140 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChan" +
+                    "ged(); }\r\n");
+            
+            #line 142 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 143 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
             
             #line default
