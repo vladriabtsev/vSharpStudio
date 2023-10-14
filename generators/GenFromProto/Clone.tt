@@ -46,18 +46,18 @@ public static <#= message.Name.ToNameCs() #> Clone(I<#= message.Name.ToNameCs() 
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
 <#      if (field.IsRepeated) { #>
 <# if (field.IsAny()) { #>
-    vm.<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<Google.Protobuf.WellKnownTypes.Any>(); // <#=t4.FilePos() #>
+    vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<Google.Protobuf.WellKnownTypes.Any>(); // <#=t4.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) 
         vm.<#= field.Name.ToNameCs() #>.Add(t.Clone());
 <# } else if (!field.IsMessage()) { #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(t);
 <# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { var isFieldWithParent=JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsWithParent; #>
-    vm.<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=t4.FilePos() #>
+    vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=t4.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (isFieldWithParent) { #>parent, <# } #><# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
 <# } else { #>
-    vm.<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=t4.FilePos() #>
+    vm._<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=t4.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
 <# } #>
@@ -69,7 +69,7 @@ public static <#= message.Name.ToNameCs() #> Clone(I<#= message.Name.ToNameCs() 
     if (isDeep) // <#=t4.FilePos() #> IsDefaultBase=<#=field.IsDefaultBase()#>
         vm.<#= field.Name.ToNameCs() #> = <#=nameSpace#>.<#= field.ToTypeCs() #>.Clone(vm, from.<#= field.Name.ToNameCs() #>, isDeep);
 <#      } else { #>
-    vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; // <#=t4.FilePos() #>
+    vm._<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; // <#=t4.FilePos() #>
 <#      } 
      } 
 if (this.Doc.IsDefaultBase) {
@@ -149,7 +149,7 @@ public static void Update(<#= message.Name.ToNameCs() #> to, I<#= message.Name.T
     if (isDeep) // <#=t4.FilePos() #>
         <#=nameSpace#>.<#= field.ToTypeCs() #>.Update((<#= field.ToTypeCs() #>)to.<#= field.Name.ToNameCs() #>, from.<#= field.Name.ToNameCs() #>, isDeep);
 <#      } else { #>
-    to.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; // <#=t4.FilePos() #>
+    to._<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; // <#=t4.FilePos() #>
 <#      } 
      } 
      #>
@@ -197,16 +197,16 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
             continue;
         if (field.IsRepeated) { #>
 <#        if (field.IsCsSimple()) { #>
-    vm.<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=t4.FilePos() #>
+    vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=t4.FilePos() #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
     {
         vm.<#= field.Name.ToNameCs() #>.Add(t);
     }
 <#        } else if (field.GetMessageDoc().IsWithParent) { #>
 <#          if (field.GetMessageDoc().IsConfigObjectBase) { #>
-    vm.<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=t4.FilePos() #>
+    vm._<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=t4.FilePos() #>
 <#          } else { #>
-    vm.<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=t4.FilePos() #>
+    vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=t4.FilePos() #>
 <#          } #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
     {
@@ -214,7 +214,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
         vm.<#= field.Name.ToNameCs() #>.Add(tvm);
     }
 <#        } else { #>
-    vm.<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=t4.FilePos() #>
+    vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=t4.FilePos() #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
     {
         var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t, new <#= field.ToTypeCs() #>()); // <#=t4.FilePos() #>
@@ -231,7 +231,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
 <#          } #>
     <#=nameSpace#>.<#= field.ToTypeCs() #>.ConvertToVM(m.<#= field.Name.ToNameCs() #>, (<#= field.ToTypeCs() #>)vm.<#= field.Name.ToNameCs() #>); // <#=t4.FilePos() #>
 <#        } else { #>
-    vm.<#= field.Name.ToNameCs() #> = <#= field.ConvertToVm("m") #>; // <#=t4.FilePos() #>
+    vm._<#= field.Name.ToNameCs() #> = <#= field.ConvertToVm("m") #>; // <#=t4.FilePos() #>
 <#        } 
         } 
      } 

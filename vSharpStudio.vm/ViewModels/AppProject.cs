@@ -58,7 +58,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
-            this.ListAppProjectGenerators.OnAddingAction = (t) =>
+            this._ListAppProjectGenerators.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
             };
@@ -66,7 +66,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    t.OnAdded();
             //};
-            this.ListAppProjectGenerators.OnRemovedAction = (t) =>
+            this._ListAppProjectGenerators.OnRemovedAction = (t) =>
             {
                 var cfg = this.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
                 cfg.RemoveNodeAppGenSettings(t.Guid);
@@ -75,7 +75,7 @@ namespace vSharpStudio.vm.ViewModels
                     cfg._DicActiveAppProjectGenerators.Remove(t.Guid);
                 this.OnRemoveChild();
             };
-            this.ListAppProjectGenerators.OnClearedAction = () =>
+            this._ListAppProjectGenerators.OnClearedAction = () =>
             {
                 this.OnRemoveChild();
             };
@@ -84,7 +84,7 @@ namespace vSharpStudio.vm.ViewModels
                         : this(parent)
         {
             Debug.Assert(parent != null);
-            this.Name = name;
+            this._Name = name;
             this.ParentAppSolution.ListAppProjects.Add(this);
             this.RelativeAppProjectPath = projectPath;
         }

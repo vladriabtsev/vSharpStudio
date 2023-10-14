@@ -326,7 +326,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("    vm.");
+            this.Write("    vm._");
             
             #line 49 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -390,7 +390,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("    vm.");
+            this.Write("    vm._");
             
             #line 56 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -480,7 +480,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("    vm.");
+            this.Write("    vm._");
             
             #line 60 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -682,7 +682,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("    vm.");
+            this.Write("    vm._");
             
             #line 72 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -1110,7 +1110,7 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write("    to.");
+            this.Write("    to._");
             
             #line 152 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -1355,7 +1355,7 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write("    vm.");
+            this.Write("    vm._");
             
             #line 200 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -1410,7 +1410,7 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write("    vm.");
+            this.Write("    vm._");
             
             #line 207 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -1438,7 +1438,7 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write("    vm.");
+            this.Write("    vm._");
             
             #line 209 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -1515,7 +1515,7 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write("    vm.");
+            this.Write("    vm._");
             
             #line 217 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
@@ -1723,7 +1723,7 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write("    vm.");
+            this.Write("    vm._");
             
             #line 234 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
