@@ -50,7 +50,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
             this.IsValidate = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -219,7 +221,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
             this.IsValidate = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -391,7 +395,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -645,7 +651,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnSortingValueChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -662,9 +668,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -691,7 +697,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -998,7 +1006,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsNewChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -1015,9 +1023,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -1043,7 +1051,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -1221,7 +1231,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnSortingValueChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -1238,9 +1248,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -1265,7 +1275,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreating();
             this.OnCreated();
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -1463,7 +1475,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this._PrevStableConfig = new Config(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:72
             this.OnCreated();
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -1648,7 +1662,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -2003,7 +2019,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -2020,9 +2036,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -2049,7 +2065,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -2383,7 +2401,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -2400,9 +2418,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -2433,7 +2451,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -2857,7 +2877,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         //IGroupListAppSolutions IConfig.GroupAppSolutions { get { return this._GroupAppSolutions; } }
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -2874,9 +2894,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -2904,7 +2924,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
             this.IsValidate = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -3184,7 +3206,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -3307,7 +3331,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -3324,9 +3348,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:139
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -3352,7 +3376,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -3475,7 +3501,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -3492,9 +3518,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:139
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -3521,7 +3547,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -3799,7 +3827,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -3816,9 +3844,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -3846,7 +3874,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -4304,7 +4334,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGeneratorsSolutionSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -4321,10 +4351,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_app_solution
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_app_solution
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -4353,7 +4383,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -4784,7 +4816,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGeneratorsProjectSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -4801,10 +4833,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_app_project
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_app_project
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -4831,7 +4863,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -5054,7 +5088,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -5071,9 +5105,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -5099,7 +5133,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -5223,7 +5259,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -5240,9 +5276,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:139
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -5268,7 +5304,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -5465,7 +5503,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -5482,9 +5520,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:139
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -5512,7 +5550,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -6100,7 +6140,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnGenScriptFileNameChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -6117,10 +6157,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_app_project_generator
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_app_project_generator
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -6147,7 +6187,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -6269,7 +6311,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -6286,9 +6328,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:139
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -6325,7 +6367,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -7701,7 +7745,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListPluginGroupsModelExtentionsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -7718,9 +7762,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -7747,7 +7791,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -8103,7 +8149,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsRefParentChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -8120,9 +8166,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:139
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -8153,7 +8199,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -8537,7 +8585,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -8554,9 +8602,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -8583,7 +8631,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -9004,7 +9054,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -9021,10 +9071,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_enumerator_sequence
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_enumerator_sequence
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -9053,7 +9103,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -9439,7 +9491,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -9456,9 +9508,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -9485,7 +9537,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -9990,7 +10044,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -10007,10 +10061,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_role
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_role
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -10039,7 +10093,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
             this.IsValidate = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -10209,7 +10265,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
             this.IsValidate = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -10379,7 +10437,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
             this.IsValidate = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -10549,7 +10609,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
             this.IsValidate = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -10719,7 +10781,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
             this.IsValidate = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -10889,7 +10953,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -11274,7 +11340,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -11291,9 +11357,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -11321,7 +11387,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -11691,7 +11759,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -11708,9 +11776,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -11739,7 +11807,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -12124,7 +12194,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -12141,9 +12211,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -12175,7 +12245,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -12739,7 +12811,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -12756,9 +12828,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -12788,7 +12860,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -13718,7 +13792,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -13735,10 +13809,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_property
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_property
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -13771,7 +13845,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -14390,7 +14466,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -14407,9 +14483,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -14440,7 +14516,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -15556,7 +15634,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -15573,10 +15651,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_detail
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_detail
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -15603,7 +15681,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -16087,7 +16167,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnRandomChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -16104,9 +16184,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:139
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -16137,7 +16217,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -16531,7 +16613,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -16548,9 +16630,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -16579,7 +16661,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -17140,7 +17224,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -17157,10 +17241,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_group_list_constants
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_group_list_constants
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -17191,7 +17275,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -17990,7 +18076,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -18007,10 +18093,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_constant
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_constant
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -18042,7 +18128,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -18427,7 +18515,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -18444,9 +18532,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -18474,7 +18562,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -18947,7 +19037,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -18964,10 +19054,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_enumeration
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_enumeration
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -18995,7 +19085,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -19415,7 +19507,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -19432,10 +19524,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_enumeration_pair
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_enumeration_pair
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -19472,7 +19564,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -20565,7 +20659,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -20582,9 +20676,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -20610,7 +20704,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -20791,7 +20887,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnUniqueScopeChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -20808,9 +20904,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:139
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -20844,7 +20940,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -22180,7 +22278,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -22197,10 +22295,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_catalog
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_catalog
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -22229,7 +22327,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -22911,7 +23011,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -22928,9 +23028,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -22958,7 +23058,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -23501,7 +23603,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -23518,9 +23620,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -23547,7 +23649,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -23969,7 +24073,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -23986,10 +24090,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_register_dimension
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_register_dimension
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -24019,7 +24123,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -24557,7 +24663,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -24574,9 +24680,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -24607,7 +24713,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -25671,7 +25779,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -25688,10 +25796,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_register
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_register
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -25718,7 +25826,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this._ListMapings = new ObservableCollectionWithActions<RegisterRegPropToDocProp>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:63
             this.OnCreated();
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -25888,7 +25998,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreating();
             this.OnCreated();
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -26018,7 +26130,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -26566,7 +26680,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -26583,9 +26697,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -26611,7 +26725,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -26874,7 +26990,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnScopePeriodStartMonthDayChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -26891,9 +27007,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:139
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -26926,7 +27042,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -27948,7 +28066,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -27965,10 +28083,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_document
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_document
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -27998,7 +28116,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -28482,7 +28602,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -28499,9 +28619,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -28532,7 +28652,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -28999,7 +29121,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -29016,9 +29138,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -29047,7 +29169,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -29614,7 +29738,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -29631,10 +29755,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_journal
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_journal
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -29664,7 +29788,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
             this.IsValidate = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -29822,7 +29948,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -30208,7 +30336,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -30225,9 +30353,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -30259,7 +30387,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -30951,7 +31081,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -30968,10 +31098,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_form
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_form
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -31002,7 +31132,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -31453,7 +31585,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -31470,10 +31602,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_form_grid_system
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_form_grid_system
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -31503,7 +31635,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -31919,7 +32053,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -31936,10 +32070,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_form_grid_system_row
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_form_grid_system_row
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -31969,7 +32103,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -32524,7 +32660,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -32541,10 +32677,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_form_grid_system_column
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_form_grid_system_column
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -32579,7 +32715,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -32995,7 +33133,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -33012,10 +33150,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_form_auto_layout_block
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_form_auto_layout_block
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -33050,7 +33188,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -33582,7 +33722,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -33599,10 +33739,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_form_auto_layout_sub_block
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_form_auto_layout_sub_block
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -33630,7 +33770,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -33970,7 +34112,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -33987,10 +34129,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_form_field
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_form_field
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -34021,7 +34163,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -34429,7 +34573,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -34446,10 +34590,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_form_tab_control_tab
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_form_tab_control_tab
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -34480,7 +34624,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -34931,7 +35077,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -34948,10 +35094,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_form_tab_control
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_form_tab_control
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -34981,7 +35127,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -35356,7 +35504,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -35373,10 +35521,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_form_data_grid
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_form_data_grid
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -35406,7 +35554,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -35781,7 +35931,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -35798,10 +35948,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_form_tree
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_form_tree
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -35833,7 +35983,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -36219,7 +36371,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -36236,9 +36388,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -36265,7 +36417,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.IsValidate = true;
             this.IsNotifying = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -36604,7 +36758,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
         [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:115
+        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:117
         { 
             get { return this._IsChanged; }
             set
@@ -36621,10 +36775,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:132
+        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134
         */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:135
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:140 proto_report
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:137
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:142 proto_report
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -36650,7 +36804,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreating();
             this.OnCreated();
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures

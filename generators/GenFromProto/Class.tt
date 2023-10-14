@@ -81,7 +81,9 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <# } #>
     }
 <# } #>
+    // Use fields to set properties of this class during creation to avoid property change notification
     partial void OnCreating();
+    // Use fields to set properties of this class during creation to avoid property change notification
     partial void OnCreated();
     #endregion CTOR
     #region Procedures

@@ -49,7 +49,9 @@ namespace vSharpStudio.vm.ViewModels.Shared // D:\dev\vSharpStudio.pro\submodule
             this.OnCreated();
             this.IsValidate = true;
         }
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
