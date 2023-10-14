@@ -83,14 +83,14 @@ namespace vSharpStudio.vm.ViewModels
             : this(parent)
         {
             this._Name = name;
-            this.DataType = new DataType(this, type, guidOfType);
+            this._DataType = new DataType(this, type, guidOfType);
         }
 
         public Constant(ITreeConfigNode parent, string name, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null)
             : this(parent)
         {
             this._Name = name;
-            this.DataType = new DataType(this, type, length, accuracy);
+            this._DataType = new DataType(this, type, length, accuracy);
         }
 
         [Category("")]

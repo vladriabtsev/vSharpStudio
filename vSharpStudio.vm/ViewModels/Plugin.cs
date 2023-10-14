@@ -22,10 +22,10 @@ namespace vSharpStudio.vm.ViewModels
             : this(parent)
         {
             Debug.Assert(plugin != null);
-            this.Guid = plugin.Guid.ToString();
+            this._Guid = plugin.Guid.ToString();
             this._Name = plugin.Name;
-            this.Description = plugin.Description;
-            this.Version = plugin.Version;
+            this._Description = plugin.Description;
+            this._Version = plugin.Version;
             this.VPlugin = plugin;
             this.IsEditable = false;
         }

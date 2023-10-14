@@ -84,11 +84,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = Defaults.RegisterDimensionsGroupName;
             this.IsEditable = false;
-            //this.ShortIdTypeForCacheKey = "rg";
-            //this.PropertyRegGuidGuid = System.Guid.NewGuid().ToString();
-            //this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
-            //this.PropertyDocDateSequenceGuid = System.Guid.NewGuid().ToString();
-            //this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()

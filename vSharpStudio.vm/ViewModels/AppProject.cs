@@ -86,7 +86,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(parent != null);
             this._Name = name;
             this.ParentAppSolution.ListAppProjects.Add(this);
-            this.RelativeAppProjectPath = projectPath;
+            this._RelativeAppProjectPath = projectPath;
         }
         public string GetProjectPath()
         {
@@ -104,8 +104,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnRelativeAppProjectPathChanging(ref string to)
         {
-            if (!this.IsNotifying)
-                return;
+            //if (!this.IsNotifying)
+            //    return;
             if (Path.IsPathRooted(to))
             {
                 this.Name = Path.GetFileNameWithoutExtension(to);

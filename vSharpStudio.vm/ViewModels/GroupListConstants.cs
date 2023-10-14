@@ -24,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsEditable = true;
-            this.ShortIdTypeForCacheKey = "t";
+            this._ShortIdTypeForCacheKey = "t";
             Init();
         }
         protected override void OnInitFromDto()

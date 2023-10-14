@@ -56,8 +56,8 @@ namespace vSharpStudio.vm.ViewModels
         public Document ParentDocument { get { Debug.Assert(this.Parent != null); return (Document)this.Parent; } }
         partial void OnCreated()
         {
-            this.ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
-            this.ScopePeriodStartMonthDay = 1;
+            this._ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
+            this._ScopePeriodStartMonthDay = 1;
             //Init();
         }
         //protected override void OnInitFromDto()

@@ -34,11 +34,9 @@
         {
             if (_logger == null)
                 _logger = Logger.CreateLogger<T>();
-            this.IsNotifying = false;
             this._Parent = parent;
             this.ListInModels = new List<IModelRow>();
             this.PropertyChanged += ConfigObjectCommonBase_PropertyChanged;
-            this.IsNotifying = true;
         }
         private void ConfigObjectCommonBase_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
@@ -842,8 +840,6 @@
                 return;
             if (!VmBindable.IsNotifyingStatic)
                 return;
-            if (!this.IsNotifying)
-                return;
             this.CheckChildrenIsOrHasChanged();
             this.CheckChildrenIsOrHasNew();
             this.CheckChildrenIsOrHasMarkedForDeletion();
@@ -889,8 +885,6 @@
         {
             if (!VmBindable.IsNotifyingStatic)
                 return;
-            if (!this.IsNotifying)
-                return;
             if (this is IEditableNodeGroup pp)
             {
                 bool isHasChanged = false;
@@ -935,8 +929,6 @@
         {
             if (!VmBindable.IsNotifyingStatic)
                 return;
-            if (!this.IsNotifying)
-                return;
             if (this is IEditableNodeGroup pp)
             {
                 bool isHasNew = false;
@@ -969,8 +961,6 @@
         public void CheckChildrenIsOrHasMarkedForDeletion()
         {
             if (!VmBindable.IsNotifyingStatic)
-                return;
-            if (!this.IsNotifying)
                 return;
             if (this is IEditableNodeGroup pp)
             {
@@ -1011,23 +1001,17 @@
                 return;
             if (!VmBindable.IsNotifyingStatic)
                 return;
-            if (!this.IsNotifying)
-                return;
             this.CheckChildrenIsOrHasChanged();
         }
         protected void OnNodeIsNewChanged()
         {
             if (!VmBindable.IsNotifyingStatic)
                 return;
-            if (!this.IsNotifying)
-                return;
             this.CheckChildrenIsOrHasNew();
         }
         protected void OnNodeIsMarkedForDeletionChanged()
         {
             if (!VmBindable.IsNotifyingStatic)
-                return;
-            if (!this.IsNotifying)
                 return;
             this.CheckChildrenIsOrHasMarkedForDeletion();
         }
@@ -1064,8 +1048,6 @@
         private void OnIsHasNewChanged()
         {
             if (!VmBindable.IsNotifyingStatic)
-                return;
-            if (!this.IsNotifying)
                 return;
             if (this is IConfig)
                 return;
@@ -1113,8 +1095,6 @@
         private void OnIsHasChangedChanged()
         {
             if (!VmBindable.IsNotifyingStatic)
-                return;
-            if (!this.IsNotifying)
                 return;
             if (IEditableNodeGroup.IsChangedNotPropagate)
                 return;
@@ -1169,8 +1149,6 @@
         private void OnIsHasMarkedForDeletionChanged()
         {
             if (!VmBindable.IsNotifyingStatic)
-                return;
-            if (!this.IsNotifying)
                 return;
             if (this is IConfig)
                 return;

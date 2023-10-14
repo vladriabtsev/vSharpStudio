@@ -22,7 +22,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnCreated()
         {
-            this.Guid = System.Guid.NewGuid().ToString();
+            this._Guid = System.Guid.NewGuid().ToString();
         }
     }
 }

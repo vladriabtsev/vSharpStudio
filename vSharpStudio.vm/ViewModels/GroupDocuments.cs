@@ -40,9 +40,9 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this._Name = Defaults.DocumentsGroupName;
-            this.PrefixForDbTables = "Doc";
+            this._PrefixForDbTables = "Doc";
+            this._MondayBeforeFirstDocDate = Timestamp.FromDateTime(new DateTime(1000, 1, 6, 0, 0, 0, DateTimeKind.Utc));
             this.IsEditable = false;
-            this.MondayBeforeFirstDocDate=Timestamp.FromDateTime(new DateTime(1000, 1, 6, 0, 0, 0, DateTimeKind.Utc));
             Init();
         }
         protected override void OnInitFromDto()

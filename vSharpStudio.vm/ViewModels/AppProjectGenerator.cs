@@ -66,7 +66,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnConnStrChanged()
         {
-            if (this.IsNotifying && this.PluginDbGenerator != null)
+            if (this.PluginDbGenerator != null)
             {
                 this.DynamicMainConnStrSettings = this.PluginDbGenerator.GetConnectionStringMvvm(this, this.ConnStr);
             }
@@ -317,8 +317,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnPluginGuidChanged()
         {
-            if (!this.IsNotifying)
-                return;
             this.PluginGeneratorGuid = string.Empty;
             this.GenFileName = string.Empty;
             if (string.IsNullOrEmpty(this.PluginGuid))
@@ -369,10 +367,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnPluginGeneratorGuidChanging(ref string to)
         {
-            //if (cfg.IsInitialized)
-            //{
-            if (!this.IsNotifying)
-                return;
             Debug.Assert(cfg != null);
             if (cfg._DicActiveAppProjectGenerators.ContainsKey(this.Guid))
                 cfg._DicActiveAppProjectGenerators.Remove(this.Guid);
@@ -393,8 +387,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnPluginGeneratorGuidChanged()
         {
-            if (!this.IsNotifying)
-                return;
             if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
                 return;
             var nv = new ModelVisitorNodeGenSettings();
@@ -644,14 +636,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnRelativePathToGenFolderChanging(ref string to)
         {
-            if (!this.IsNotifying || string.IsNullOrWhiteSpace(to))
+            if (string.IsNullOrWhiteSpace(to))
                 return;
             to = Path.GetFullPath(to);
         }
         partial void OnRelativePathToGenFolderChanged()
         {
-            if (!this.IsNotifying)
-                return;
             Debug.Assert(cfg != null);
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 throw new Exception("Config is not saved yet");

@@ -78,13 +78,13 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this._Name = Defaults.RegisterGroupName;
-            this.PrefixForDbTables = "Reg";
+            this._PrefixForDbTables = "Reg";
             this.IsEditable = false;
-            this.ShortIdTypeForCacheKey = "rg";
-            this.PropertyRegGuidGuid = System.Guid.NewGuid().ToString();
-            this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
-            this.PropertyDocDateSequenceGuid = System.Guid.NewGuid().ToString();
-            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this._ShortIdTypeForCacheKey = "rg";
+            this._PropertyRegGuidGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDocDateGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDocDateSequenceGuid = System.Guid.NewGuid().ToString();
+            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()

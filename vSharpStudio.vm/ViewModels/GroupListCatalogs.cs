@@ -65,15 +65,15 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this._Name = Defaults.CatalogsGroupName;
-            this.PrefixForDbTables = "Ctlg";
+            this._PrefixForDbTables = "Ctlg";
             this.IsEditable = false;
-            this.UseCodeProperty = EnumUseType.Default;
-            this.UseNameProperty = EnumUseType.Default;
-            this.UseDescriptionProperty = EnumUseType.Default;
-            this.UseCodePropertyInSeparateTree = true;
-            this.UseNamePropertyInSeparateTree = true;
+            this._UseCodeProperty = EnumUseType.Default;
+            this._UseNameProperty = EnumUseType.Default;
+            this._UseDescriptionProperty = EnumUseType.Default;
+            this._UseCodePropertyInSeparateTree = true;
+            this._UseNamePropertyInSeparateTree = true;
 
-            this.ShortIdTypeForCacheKey = "c";
+            this._ShortIdTypeForCacheKey = "c";
             Init();
         }
         protected override void OnInitFromDto()

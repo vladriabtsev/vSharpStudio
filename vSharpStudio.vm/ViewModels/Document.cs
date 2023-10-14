@@ -38,27 +38,27 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            this.PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this.PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this.PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
-            this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
-            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
+            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDocDateGuid = System.Guid.NewGuid().ToString();
+            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
 
-            this.IndexUniqueDocNumberGuid = System.Guid.NewGuid().ToString();
-            this.IndexYearDocNumberGuid = System.Guid.NewGuid().ToString();
-            this.IndexQuaterDocNumberGuid = System.Guid.NewGuid().ToString();
-            this.IndexMonthDocNumberGuid = System.Guid.NewGuid().ToString();
-            this.IndexWeekDocNumberGuid = System.Guid.NewGuid().ToString();
-            this.IndexDayDocNumberGuid = System.Guid.NewGuid().ToString();
-            this.IndexNotUniqueDocNumberGuid = System.Guid.NewGuid().ToString();
+            this._IndexUniqueDocNumberGuid = System.Guid.NewGuid().ToString();
+            this._IndexYearDocNumberGuid = System.Guid.NewGuid().ToString();
+            this._IndexQuaterDocNumberGuid = System.Guid.NewGuid().ToString();
+            this._IndexMonthDocNumberGuid = System.Guid.NewGuid().ToString();
+            this._IndexWeekDocNumberGuid = System.Guid.NewGuid().ToString();
+            this._IndexDayDocNumberGuid = System.Guid.NewGuid().ToString();
+            this._IndexNotUniqueDocNumberGuid = System.Guid.NewGuid().ToString();
 
-            this.DocNumberPropertySettings.SequenceType = EnumCodeType.Text;
-            this.DocNumberPropertySettings.MaxSequenceLength = 9;
-            this.DocNumberPropertySettings.Prefix = "";
-            this.DocNumberPropertySettings.SequenceGuid = "";
-            this.DocNumberPropertySettings.ScopeOfUnique = common.EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR;
-            this.DocNumberPropertySettings.ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
-            this.DocNumberPropertySettings.ScopePeriodStartMonthDay = 1;
+            this._DocNumberPropertySettings.SequenceType = EnumCodeType.Text;
+            this._DocNumberPropertySettings.MaxSequenceLength = 9;
+            this._DocNumberPropertySettings.Prefix = "";
+            this._DocNumberPropertySettings.SequenceGuid = "";
+            this._DocNumberPropertySettings.ScopeOfUnique = common.EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR;
+            this._DocNumberPropertySettings.ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
+            this._DocNumberPropertySettings.ScopePeriodStartMonthDay = 1;
 
             Init();
         }

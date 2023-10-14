@@ -43,22 +43,22 @@ namespace vSharpStudio.vm.ViewModels
             this._Description = "Catalog items groups";
             this.IsIncludableInModels = true;
 
-            this.PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
-            this.PropertyNameGuid = System.Guid.NewGuid().ToString();
-            this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
-            this.PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
-            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this.PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
-            this.ViewListWideGuid = System.Guid.NewGuid().ToString();
-            this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
+            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
+            this._PropertyCodeGuid = System.Guid.NewGuid().ToString();
+            this._PropertyNameGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
+            this._PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
+            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this._PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
+            this._ViewListWideGuid = System.Guid.NewGuid().ToString();
+            this._ViewListNarrowGuid = System.Guid.NewGuid().ToString();
 
-            this.IndexUniqueCodeGuid = System.Guid.NewGuid().ToString();
-            this.IndexRefTreeParentCodeGuid = System.Guid.NewGuid().ToString();
-            this.IndexNotUniqueCodeGuid = System.Guid.NewGuid().ToString();
+            this._IndexUniqueCodeGuid = System.Guid.NewGuid().ToString();
+            this._IndexRefTreeParentCodeGuid = System.Guid.NewGuid().ToString();
+            this._IndexNotUniqueCodeGuid = System.Guid.NewGuid().ToString();
 
-            this.MaxNameLength = 20;
-            this.MaxDescriptionLength = 100;
+            this._MaxNameLength = 20;
+            this._MaxDescriptionLength = 100;
 
             //this.CodePropertySettings.Parent = this;
             Init();
@@ -89,7 +89,7 @@ namespace vSharpStudio.vm.ViewModels
         public CatalogFolder(ITreeConfigNode parent, string name)
             : this(parent)
         {
-            this.Name = name;
+            this._Name = name;
         }
 
         public CatalogFolder(ITreeConfigNode parent, string name, List<Property> listProperties)

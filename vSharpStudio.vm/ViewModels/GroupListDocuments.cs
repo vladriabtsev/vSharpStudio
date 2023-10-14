@@ -40,7 +40,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = "Documents";
             this.IsEditable = false;
-            this.ShortIdTypeForCacheKey = "d";
+            this._ShortIdTypeForCacheKey = "d";
             Init();
         }
         protected override void OnInitFromDto()

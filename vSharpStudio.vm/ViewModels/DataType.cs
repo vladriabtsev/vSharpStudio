@@ -20,12 +20,12 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnCreating()
         {
-            this.ListObjectGuids = new ObservableCollectionWithActions<string>();
+            this._ListObjectGuids = new ObservableCollectionWithActions<string>();
         }
         partial void OnCreated()
         {
-            this.Length = 10;
-            this.DataTypeEnum = EnumDataType.STRING;
+            this._Length = 10;
+            this._DataTypeEnum = EnumDataType.STRING;
             //Init();
         }
         //protected override void OnInitFromDto()
@@ -59,14 +59,14 @@ namespace vSharpStudio.vm.ViewModels
                 length++;
                 maxValue /= 10;
             }
-            this.DataTypeEnum = EnumDataType.NUMERICAL;
-            this.Length = length;
-            this.Accuracy = 0;
-            this.IsPositive = isPositive;
+            this._DataTypeEnum = EnumDataType.NUMERICAL;
+            this._Length = length;
+            this._Accuracy = 0;
+            this._IsPositive = isPositive;
         }
         public DataType(ITreeConfigNode parent, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null) : this(parent)
         {
-            this.DataTypeEnum = type;
+            this._DataTypeEnum = type;
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.BOOL:
@@ -79,14 +79,14 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumDataType.NUMERICAL:
                     // TODO revisit default length and accuracy for Numerical
-                    this.Length = length ?? 16;
-                    this.Accuracy = accuracy ?? 2;
-                    this.IsPositive = isPositive ?? false;
+                    this._Length = length ?? 16;
+                    this._Accuracy = accuracy ?? 2;
+                    this._IsPositive = isPositive ?? false;
                     break;
                 case EnumDataType.ENUMERATION:
                     break;
                 case EnumDataType.STRING:
-                    this.Length = length ?? 30;
+                    this._Length = length ?? 30;
                     break;
                 default:
                     throw new ArgumentException();
@@ -94,9 +94,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public DataType(ITreeConfigNode parent, EnumDataType type, string guidOfType) : this(parent)
         {
-            this.DataTypeEnum = type;
-            this.ObjectGuid = guidOfType;
-            this.ListObjectGuids = new ObservableCollectionWithActions<string>();
+            this._DataTypeEnum = type;
+            this._ObjectGuid = guidOfType;
+            this._ListObjectGuids = new ObservableCollectionWithActions<string>();
         }
         public override string ToString()
         {
@@ -697,8 +697,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnDataTypeEnumChanged()
         {
-            if (!this.IsNotifying)
-                return;
             if (this.Cfg == null)
                 return;
             switch (this.DataTypeEnum)
@@ -783,8 +781,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnLengthChanged()
         {
-            if (!this.IsNotifying)
-                return;
             if (this.Cfg == null)
                 return;
             this._MaxNumericalValue = 0;
@@ -794,8 +790,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnAccuracyChanged()
         {
-            if (!this.IsNotifying)
-                return;
             if (this.Cfg == null)
                 return;
             ClrTypeNameCalc();
@@ -813,8 +807,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsPositiveChanged()
         {
-            if (!this.IsNotifying)
-                return;
             if (this.Cfg == null)
                 return;
             ClrTypeNameCalc();

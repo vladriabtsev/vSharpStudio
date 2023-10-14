@@ -57,26 +57,26 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            this.UseMoneyAccumulator = true;
-            this.PropertyMoneyAccumulatorName = "AccumulatedMoney";
-            this.PropertyMoneyAccumulatorAccuracy = 2;
-            this.PropertyMoneyAccumulatorLength = 28;
-            this.PropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
-            this.UseQtyAccumulator = true;
-            this.PropertyQtyAccumulatorName = "AccumulatedQty";
-            this.PropertyQtyAccumulatorAccuracy = 4;
-            this.PropertyQtyAccumulatorLength = 28;
-            this.PropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
-            this.PropertyDocRefGuid = System.Guid.NewGuid().ToString();
-            this.PropertyDocGuidGuid = System.Guid.NewGuid().ToString();
-            this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
-            this.IndexDocDateDimensionsGuid = System.Guid.NewGuid().ToString();
-            this.PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
-            this.IndexDocIdTypeGuid = System.Guid.NewGuid().ToString();
-            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this.LastGenPosition = 20;
-            this.PropertyDocRefGuidName = "DocGuid";
-            this.PropertyDocRefName = "DocRef";
+            this._UseMoneyAccumulator = true;
+            this._PropertyMoneyAccumulatorName = "AccumulatedMoney";
+            this._PropertyMoneyAccumulatorAccuracy = 2;
+            this._PropertyMoneyAccumulatorLength = 28;
+            this._PropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
+            this._UseQtyAccumulator = true;
+            this._PropertyQtyAccumulatorName = "AccumulatedQty";
+            this._PropertyQtyAccumulatorAccuracy = 4;
+            this._PropertyQtyAccumulatorLength = 28;
+            this._PropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDocRefGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDocGuidGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDocDateGuid = System.Guid.NewGuid().ToString();
+            this._IndexDocDateDimensionsGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
+            this._IndexDocIdTypeGuid = System.Guid.NewGuid().ToString();
+            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this._LastGenPosition = 20;
+            this._PropertyDocRefGuidName = "DocGuid";
+            this._PropertyDocRefName = "DocRef";
             Init();
         }
         protected override void OnInitFromDto()

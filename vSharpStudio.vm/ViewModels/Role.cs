@@ -36,12 +36,12 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            this.DefaultCatalogEditAccessSettings = EnumCatalogDetailAccess.C_MARK_DEL;
-            this.DefaultCatalogPrintAccessSettings = EnumPrintAccess.PR_PRINT;
-            this.DefaultConstantEditAccessSettings = EnumConstantAccess.CN_EDIT;
-            this.DefaultConstantPrintAccessSettings = EnumPrintAccess.PR_PRINT;
-            this.DefaultDocumentEditAccessSettings = EnumDocumentAccess.D_UNPOST;
-            this.DefaultDocumentPrintAccessSettings = EnumPrintAccess.PR_PRINT;
+            this._DefaultCatalogEditAccessSettings = EnumCatalogDetailAccess.C_MARK_DEL;
+            this._DefaultCatalogPrintAccessSettings = EnumPrintAccess.PR_PRINT;
+            this._DefaultConstantEditAccessSettings = EnumConstantAccess.CN_EDIT;
+            this._DefaultConstantPrintAccessSettings = EnumPrintAccess.PR_PRINT;
+            this._DefaultDocumentEditAccessSettings = EnumDocumentAccess.D_UNPOST;
+            this._DefaultDocumentPrintAccessSettings = EnumPrintAccess.PR_PRINT;
             Init();
         }
         protected override void OnInitFromDto()

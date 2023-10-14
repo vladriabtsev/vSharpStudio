@@ -49,13 +49,13 @@ namespace ViewModelBase
         public static ushort MaxSortingWeightShift = 4;
         public static ushort MaxSortingWeight = (ushort)(ulong.MaxValue - (ulong.MaxValue << MaxSortingWeightShift));
         public static ulong SortingWeightBase = ((ulong)1) << (64 - MaxSortingWeightShift);
-        [Browsable(false)]
-        public bool IsNotifying
-        {
-            get { return isNotifying; }
-            set { isNotifying = value; }
-        }
-        private bool isNotifying = true;
+        //[Browsable(false)]
+        //public bool IsNotifying
+        //{
+        //    get { return isNotifying; }
+        //    set { isNotifying = value; }
+        //}
+        //private bool isNotifying = true;
         public static bool IsNotifyingStatic = true;
         [Browsable(false)]
         public bool IsValidate { get; set; }
@@ -284,8 +284,8 @@ namespace ViewModelBase
             Debug.Assert(propertyName != null);
             if (!VmBindable.IsNotifyingStatic)
                 return;
-            if (!IsNotifying)
-                return;
+            //if (!IsNotifying)
+            //    return;
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 

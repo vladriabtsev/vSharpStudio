@@ -51,33 +51,33 @@ namespace vSharpStudio.vm.ViewModels
             //this.GroupDetails.Parent = this;
             //this.GroupForms.Parent = this;
             //this.GroupReports.Parent = this;
-            this.ItemIconType = EnumCatalogTreeIcon.None;
+            this._ItemIconType = EnumCatalogTreeIcon.None;
 
-            this.PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
-            this.PropertyNameGuid = System.Guid.NewGuid().ToString();
-            this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
-            this.PropertyRefFolderGuid = System.Guid.NewGuid().ToString();
-            this.PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
-            this.PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
-            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this.ViewListWideGuid = System.Guid.NewGuid().ToString();
-            this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
+            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
+            this._PropertyCodeGuid = System.Guid.NewGuid().ToString();
+            this._PropertyNameGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
+            this._PropertyRefFolderGuid = System.Guid.NewGuid().ToString();
+            this._PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
+            this._PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
+            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this._ViewListWideGuid = System.Guid.NewGuid().ToString();
+            this._ViewListNarrowGuid = System.Guid.NewGuid().ToString();
 
-            this.IndexUniqueCodeGuid = System.Guid.NewGuid().ToString();
-            this.IndexRefFolderCodeGuid = System.Guid.NewGuid().ToString();
-            this.IndexRefTreeParentCodeGuid = System.Guid.NewGuid().ToString();
-            this.IndexNotUniqueCodeGuid = System.Guid.NewGuid().ToString();
+            this._IndexUniqueCodeGuid = System.Guid.NewGuid().ToString();
+            this._IndexRefFolderCodeGuid = System.Guid.NewGuid().ToString();
+            this._IndexRefTreeParentCodeGuid = System.Guid.NewGuid().ToString();
+            this._IndexNotUniqueCodeGuid = System.Guid.NewGuid().ToString();
 
-            this.MaxNameLength = 20;
-            this.MaxDescriptionLength = 100;
-            this.UseTree = false;
-            this.MaxTreeLevels = 2;
-            this.UseSeparateTreeForFolders = false;
-            this.GroupIconType = EnumCatalogTreeIcon.Folder;
-            this.UseCodeProperty = EnumUseType.Default;
-            this.UseNameProperty = EnumUseType.Default;
-            this.UseDescriptionProperty = EnumUseType.Default;
+            this._MaxNameLength = 20;
+            this._MaxDescriptionLength = 100;
+            this._UseTree = false;
+            this._MaxTreeLevels = 2;
+            this._UseSeparateTreeForFolders = false;
+            this._GroupIconType = EnumCatalogTreeIcon.Folder;
+            this._UseCodeProperty = EnumUseType.Default;
+            this._UseNameProperty = EnumUseType.Default;
+            this._UseDescriptionProperty = EnumUseType.Default;
             Init();
         }
         protected override void OnInitFromDto()
@@ -135,14 +135,14 @@ namespace vSharpStudio.vm.ViewModels
         public Catalog(ITreeConfigNode parent, string name)
             : this(parent)
         {
-            this.Name = name;
+            this._Name = name;
         }
 
         public Catalog(ITreeConfigNode parent, string name, List<Property> listProperties)
             : this(parent)
         {
             Debug.Assert(listProperties != null);
-            this.Name = name;
+            this._Name = name;
             foreach (var t in listProperties)
             {
                 this.GroupProperties.ListProperties.Add(t);

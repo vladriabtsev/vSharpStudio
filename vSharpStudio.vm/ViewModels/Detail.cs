@@ -38,20 +38,20 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            this.IsIndexFk = true;
+            this._IsIndexFk = true;
 
-            this.PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this.PropertyRefParentGuid = System.Guid.NewGuid().ToString();
-            this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
-            this.PropertyNameGuid = System.Guid.NewGuid().ToString();
-            this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
-            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this.ViewListWideGuid = System.Guid.NewGuid().ToString();
-            this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
-            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
+            this._PropertyRefParentGuid = System.Guid.NewGuid().ToString();
+            this._PropertyCodeGuid = System.Guid.NewGuid().ToString();
+            this._PropertyNameGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
+            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this._ViewListWideGuid = System.Guid.NewGuid().ToString();
+            this._ViewListNarrowGuid = System.Guid.NewGuid().ToString();
+            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             Debug.Assert(glp != null);
-            this.Position = glp.GroupProperties.GetNextPosition();
+            this._Position = glp.GroupProperties.GetNextPosition();
             Init();
         }
         protected override void OnInitFromDto()

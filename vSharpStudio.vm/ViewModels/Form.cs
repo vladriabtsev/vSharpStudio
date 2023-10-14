@@ -67,7 +67,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (t == FormType.FormTypeNotSelected)
                         continue;
-                    this.EnumFormType = t;
+                    this._EnumFormType = t;
                     break;
                 }
             }

@@ -75,10 +75,10 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsNullable = false;
-            this.MinLengthRequirement = "";
-            this.MaxLengthRequirement = "";
-            this.RangeValuesRequirementStr = "";
-            this.LinesOnScreen = 1;
+            this._MinLengthRequirement = "";
+            this._MaxLengthRequirement = "";
+            this._RangeValuesRequirementStr = "";
+            this._LinesOnScreen = 1;
             this.IsIncludableInModels = true;
             this.DataType.Parent = this;
             Init();

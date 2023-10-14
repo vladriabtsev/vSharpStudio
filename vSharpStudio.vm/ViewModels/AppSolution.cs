@@ -89,14 +89,14 @@ namespace vSharpStudio.vm.ViewModels
         public AppSolution(ITreeConfigNode parent, string name)
             : this(parent)
         {
-            this.Name = name;
+            this._Name = name;
         }
 
         public AppSolution(ITreeConfigNode parent, string name, List<AppProject> listProjects)
             : this(parent)
         {
             Debug.Assert(listProjects != null);
-            this.Name = name;
+            this._Name = name;
             foreach (var t in listProjects)
             {
                 this.ListAppProjects.Add(t);
@@ -104,8 +104,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnRelativeAppSolutionPathChanging(ref string to)
         {
-            if (!this.IsNotifying)
-                return;
             if (Path.IsPathRooted(to))
             {
                 this.Name = Path.GetFileNameWithoutExtension(to);

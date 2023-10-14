@@ -27,7 +27,6 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
     public <#= message.Name.ToNameCs() #>(<#=this.Doc.ParentTypeName#>? parent) // <#=t4.FilePos() #>
         : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator)
     {
-        this.IsNotifying = false;
         this.IsValidate = false;
         this.OnCreating();
 <#    foreach (var t in message.Fields.InDeclarationOrder()) { 
@@ -45,7 +44,6 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <# } #>
         this.OnCreated();
         this.IsValidate = true;
-        this.IsNotifying = true;
     }
 <# } else { #>
     public <#= message.Name.ToNameCs() #>()<# if (this.Doc.IsValidatableBase) { #> 

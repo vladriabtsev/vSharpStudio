@@ -58,11 +58,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = Defaults.ModelName;
             // TODO validate, Id generator table, use in db names
-            this.CompositeNameMaxLength = 100;
+            this._CompositeNameMaxLength = 100;
             // TODO validate
-            this.IsUseCompositeNames = true;
+            this._IsUseCompositeNames = true;
             // TODO validate
-            this.IsUseGroupPrefix = true;
+            this._IsUseGroupPrefix = true;
 
             //this.DbSettings.DbSchema = "dbo";
             //this.DbSettings.IdGenerator = DbIdGeneratorMethod.HiLo;
@@ -71,24 +71,24 @@ namespace vSharpStudio.vm.ViewModels
             //this.DbSettings.PKeyType = EnumPrimaryKeyType.INT;
             //this.DbSettings.VersionFieldGuid = System.Guid.NewGuid().ToString();
             //this.DbSettings.VersionFieldName = "Version";
-            this.PKeyName = "Id";
-            this.PKeyGuid = System.Guid.NewGuid().ToString();
-            this.PKeyType = EnumPrimaryKeyType.INT;
-            this.RecordVersionFieldName = "ReCoRdVeRsIoN";
-            this.RecordVersionFieldGuid = System.Guid.NewGuid().ToString();
-            this.RecordVersionFieldType = EnumVersionFieldType.VER_INT;
+            this._PKeyName = "Id";
+            this._PKeyGuid = System.Guid.NewGuid().ToString();
+            this._PKeyType = EnumPrimaryKeyType.INT;
+            this._RecordVersionFieldName = "ReCoRdVeRsIoN";
+            this._RecordVersionFieldGuid = System.Guid.NewGuid().ToString();
+            this._RecordVersionFieldType = EnumVersionFieldType.VER_INT;
 
-            this.PropertyCodeName = "Code";
-            this.PropertyNameName = "Name";
-            this.PropertyDescriptionName = "Description";
-            this.PropertyIsFolderName = "IsFolder";
-            this.PropertyDocNumberName = "DocNumber";
-            this.PropertyDocDateName = "DocDate";
+            this._PropertyCodeName = "Code";
+            this._PropertyNameName = "Name";
+            this._PropertyDescriptionName = "Description";
+            this._PropertyIsFolderName = "IsFolder";
+            this._PropertyDocNumberName = "DocNumber";
+            this._PropertyDocDateName = "DocDate";
 
-            this.UseCodeProperty = true;
-            this.UseNameProperty = true;
-            this.UseDocNumberProperty = true;
-            this.UseDocDateProperty = true;
+            this._UseCodeProperty = true;
+            this._UseNameProperty = true;
+            this._UseDocNumberProperty = true;
+            this._UseDocDateProperty = true;
 
             Init();
             //this.InitRoles();

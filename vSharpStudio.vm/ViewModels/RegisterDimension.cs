@@ -54,7 +54,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            this.PropertyDimensionGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDimensionGuid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()

@@ -51,7 +51,7 @@ namespace ViewModelBase
             get { return _IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && IsNotifying)
+                if (VmBindable.IsNotifyingStatic) // && IsNotifying)
                 {
                     SetProperty(ref _IsChanged, value);
                     OnIsChangedChanged();

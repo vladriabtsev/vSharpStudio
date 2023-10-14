@@ -69,10 +69,10 @@ namespace vSharpStudio.vm.ViewModels
         public ICatalog ParentCatalogI { get { Debug.Assert(this.Parent != null); return (ICatalog)this.Parent; } }
         partial void OnCreated()
         {
-            this.SequenceType = common.EnumCodeType.Text;
-            this.MaxSequenceLength = 5;
-            this.Prefix = "";
-            this.UniqueScope = common.EnumCatalogCodeUniqueScope.code_unique_in_whole_catalog;
+            this._SequenceType = common.EnumCodeType.Text;
+            this._MaxSequenceLength = 5;
+            this._Prefix = "";
+            this._UniqueScope = common.EnumCatalogCodeUniqueScope.code_unique_in_whole_catalog;
             //Init();
         }
         //protected override void OnInitFromDto()

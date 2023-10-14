@@ -94,14 +94,14 @@ namespace vSharpStudio.vm.ViewModels
         public FormGridSystem(ITreeConfigNode parent, string name)
             : this(parent)
         {
-            this.Name = name;
+            this._Name = name;
         }
 
         public FormGridSystem(ITreeConfigNode parent, string name, List<FormGridSystemRow> listRows)
             : this(parent)
         {
             Debug.Assert(listRows != null);
-            this.Name = name;
+            this._Name = name;
             this.ListRows.AddRange(listRows);
         }
         [ExpandableObjectAttribute()]

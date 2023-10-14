@@ -66,7 +66,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this._Name = Defaults.GroupConstantGroupsName;
-            this.PrefixForDbTables = "Cnst";
+            this._PrefixForDbTables = "Cnst";
             this.IsEditable = false;
             Init();
         }
