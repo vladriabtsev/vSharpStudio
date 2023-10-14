@@ -51,8 +51,8 @@ namespace ViewModelBase
             get { return _IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic) // && IsNotifying)
-                {
+                //if (VmBindable.IsNotifyingStatic) // && IsNotifying)
+                //{
                     SetProperty(ref _IsChanged, value);
                     OnIsChangedChanged();
                     if (VmBindable.IsChangedNotificationDelay > 0)
@@ -74,7 +74,7 @@ namespace ViewModelBase
                             }
                         }
                     }
-                }
+                //}
             }
         }
         protected bool _IsChanged;

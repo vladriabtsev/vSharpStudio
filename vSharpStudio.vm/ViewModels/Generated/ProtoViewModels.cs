@@ -316,7 +316,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Browsable(false)]
@@ -337,7 +337,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private Google.Protobuf.WellKnownTypes.Timestamp _OpenedLastTimeOn = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.MinValue.AddDays(1).ToUniversalTime());
-        partial void OnOpenedLastTimeOnChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnOpenedLastTimeOnChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnOpenedLastTimeOnChanged();
         //IGoogle.Protobuf.WellKnownTypes.Timestamp IUserSettingsOpenedConfig.OpenedLastTimeOn { get { return this._OpenedLastTimeOn; } }
         
@@ -359,7 +359,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ConfigPath = string.Empty;
-        partial void OnConfigPathChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnConfigPathChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnConfigPathChanged();
         #endregion Properties
     }
@@ -545,7 +545,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -569,7 +569,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -633,7 +633,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
     /*
         [Browsable(false)]
@@ -853,7 +857,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -875,7 +879,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Version = string.Empty;
-        partial void OnVersionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnVersionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnVersionChanged();
         
         [Category("")]
@@ -898,7 +902,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [ReadOnly(true)]
@@ -920,7 +924,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -940,7 +944,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -982,7 +990,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
     /*
         [Browsable(false)]
@@ -1137,7 +1145,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
@@ -1159,7 +1167,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [ReadOnly(true)]
@@ -1181,7 +1189,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -1201,7 +1209,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
     /*
         [Browsable(false)]
@@ -1342,7 +1354,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Name = string.Empty;
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [PropertyOrderAttribute(2)]
@@ -1362,7 +1374,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _NameUi = string.Empty;
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
@@ -1381,7 +1393,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         // current migration version, increased by one on each deployment
@@ -1400,7 +1412,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _VersionMigrationCurrent;
-        partial void OnVersionMigrationCurrentChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnVersionMigrationCurrentChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnVersionMigrationCurrentChanged();
         
         // min version supported by current version for migration
@@ -1419,7 +1431,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _VersionMigrationSupportFromMin;
-        partial void OnVersionMigrationSupportFromMinChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnVersionMigrationSupportFromMinChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnVersionMigrationSupportFromMinChanged();
         #endregion Properties
     }
@@ -1543,7 +1555,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
@@ -1563,7 +1575,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Name = string.Empty;
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         public Config CurrentConfig // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -1581,8 +1593,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private Config _CurrentConfig;
-        IConfig IConfigShortHistory.CurrentConfig { get { return (this as ConfigShortHistory).CurrentConfig; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnCurrentConfigChanging(ref Config to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IConfig IConfigShortHistory.CurrentConfig { get { return (this as ConfigShortHistory).CurrentConfig; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnCurrentConfigChanging(ref Config to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnCurrentConfigChanged();
         //IConfig IConfigShortHistory.CurrentConfig { get { return this._CurrentConfig; } }
         
@@ -1601,8 +1613,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private Config _PrevStableConfig;
-        IConfig IConfigShortHistory.PrevStableConfig { get { return (this as ConfigShortHistory).PrevStableConfig; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnPrevStableConfigChanging(ref Config to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IConfig IConfigShortHistory.PrevStableConfig { get { return (this as ConfigShortHistory).PrevStableConfig; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnPrevStableConfigChanging(ref Config to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPrevStableConfigChanged();
         //IConfig IConfigShortHistory.PrevStableConfig { get { return this._PrevStableConfig; } }
         #endregion Properties
@@ -1849,7 +1861,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -1871,7 +1883,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -1894,7 +1906,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -1914,7 +1926,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -2203,7 +2219,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -2225,7 +2241,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -2245,7 +2261,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -2268,7 +2288,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Category("")]
@@ -2291,7 +2311,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _RelativeConfigFilePath = string.Empty;
-        partial void OnRelativeConfigFilePathChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnRelativeConfigFilePathChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnRelativeConfigFilePathChanged();
         
         [Browsable(false)]
@@ -2312,7 +2332,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -2334,7 +2354,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -2578,7 +2598,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -2599,7 +2619,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -2622,7 +2642,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _Version;
-        partial void OnVersionChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnVersionChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnVersionChanged();
         
         [Category("")]
@@ -2643,7 +2663,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -2666,7 +2686,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(6)]
@@ -2687,7 +2707,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private Google.Protobuf.WellKnownTypes.Timestamp _LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.MinValue.AddDays(1).ToUniversalTime());
-        partial void OnLastUpdatedChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnLastUpdatedChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnLastUpdatedChanged();
         //IGoogle.Protobuf.WellKnownTypes.Timestamp IConfig.LastUpdated { get { return this._LastUpdated; } }
         
@@ -2708,7 +2728,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         // / <summary>
@@ -2733,7 +2757,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNeedCurrentUpdate;
-        partial void OnIsNeedCurrentUpdateChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNeedCurrentUpdateChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNeedCurrentUpdateChanged();
         
         [Browsable(false)]
@@ -2754,8 +2778,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListBaseConfigLinks _GroupConfigLinks;
-        IGroupListBaseConfigLinks IConfig.GroupConfigLinks { get { return (this as Config).GroupConfigLinks; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupConfigLinksChanging(ref GroupListBaseConfigLinks to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListBaseConfigLinks IConfig.GroupConfigLinks { get { return (this as Config).GroupConfigLinks; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupConfigLinksChanging(ref GroupListBaseConfigLinks to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupConfigLinksChanged();
         //IGroupListBaseConfigLinks IConfig.GroupConfigLinks { get { return this._GroupConfigLinks; } }
         
@@ -2777,8 +2801,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private Model _Model;
-        IModel IConfig.Model { get { return (this as Config).Model; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnModelChanging(ref Model to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IModel IConfig.Model { get { return (this as Config).Model; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnModelChanging(ref Model to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnModelChanged();
         //IModel IConfig.Model { get { return this._Model; } }
         
@@ -2800,8 +2824,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListPlugins _GroupPlugins;
-        IGroupListPlugins IConfig.GroupPlugins { get { return (this as Config).GroupPlugins; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupPluginsChanging(ref GroupListPlugins to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListPlugins IConfig.GroupPlugins { get { return (this as Config).GroupPlugins; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupPluginsChanging(ref GroupListPlugins to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupPluginsChanged();
         //IGroupListPlugins IConfig.GroupPlugins { get { return this._GroupPlugins; } }
         
@@ -2823,8 +2847,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListAppSolutions _GroupAppSolutions;
-        IGroupListAppSolutions IConfig.GroupAppSolutions { get { return (this as Config).GroupAppSolutions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupAppSolutionsChanging(ref GroupListAppSolutions to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListAppSolutions IConfig.GroupAppSolutions { get { return (this as Config).GroupAppSolutions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupAppSolutionsChanging(ref GroupListAppSolutions to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupAppSolutionsChanged();
         //IGroupListAppSolutions IConfig.GroupAppSolutions { get { return this._GroupAppSolutions; } }
     /*
@@ -2993,7 +3017,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PluginGuid = string.Empty;
-        partial void OnPluginGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPluginGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPluginGuidChanged();
         
         [PropertyOrderAttribute(2)]
@@ -3015,7 +3039,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PluginName = string.Empty;
-        partial void OnPluginNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPluginNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPluginNameChanged();
         
         [PropertyOrderAttribute(3)]
@@ -3037,7 +3061,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Version = string.Empty;
-        partial void OnVersionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnVersionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnVersionChanged();
         
         [PropertyOrderAttribute(4)]
@@ -3060,7 +3084,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PluginGenGuid = string.Empty;
-        partial void OnPluginGenGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPluginGenGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPluginGenGuidChanged();
         
         [PropertyOrderAttribute(5)]
@@ -3082,7 +3106,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PluginGenName = string.Empty;
-        partial void OnPluginGenNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPluginGenNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPluginGenNameChanged();
         
         [PropertyOrderAttribute(6)]
@@ -3105,7 +3129,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ConnGuid = string.Empty;
-        partial void OnConnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnConnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnConnGuidChanged();
         
         [PropertyOrderAttribute(7)]
@@ -3127,7 +3151,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ConnName = string.Empty;
-        partial void OnConnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnConnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnConnNameChanged();
         #endregion Properties
     }
@@ -3248,7 +3272,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         // string app_generator_guid = 2;
@@ -3269,7 +3293,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Settings = string.Empty;
-        partial void OnSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSettingsChanged();
     /*
         [Browsable(false)]
@@ -3412,7 +3436,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         // string app_generator_guid = 2;
@@ -3433,7 +3457,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Settings = string.Empty;
-        partial void OnSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSettingsChanged();
     /*
         [Browsable(false)]
@@ -3645,7 +3669,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -3666,7 +3690,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -3688,7 +3712,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -3708,7 +3732,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         // List NET solutions
@@ -4037,7 +4065,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -4058,7 +4086,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -4079,7 +4107,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Browsable(false)]
@@ -4099,7 +4127,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -4121,7 +4153,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(6)]
@@ -4144,7 +4176,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ShortIdForCacheKey = string.Empty;
-        partial void OnShortIdForCacheKeyChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnShortIdForCacheKeyChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnShortIdForCacheKeyChanged();
         
         [PropertyOrderAttribute(7)]
@@ -4168,7 +4200,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _RelativeAppSolutionPath = string.Empty;
-        partial void OnRelativeAppSolutionPathChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnRelativeAppSolutionPathChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnRelativeAppSolutionPathChanged();
         
         [Browsable(false)]
@@ -4189,7 +4221,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [Browsable(false)]
@@ -4210,7 +4242,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -4536,7 +4568,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -4557,7 +4589,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -4578,7 +4610,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Browsable(false)]
@@ -4598,7 +4630,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -4620,7 +4656,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(6)]
@@ -4644,7 +4680,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _RelativeAppProjectPath = string.Empty;
-        partial void OnRelativeAppProjectPathChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnRelativeAppProjectPathChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnRelativeAppProjectPathChanged();
         
         [Browsable(false)]
@@ -4665,7 +4701,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [Browsable(false)]
@@ -4686,7 +4722,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -4895,7 +4931,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         // Guid of solution-project-generator node
@@ -4916,7 +4952,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _AppProjectGeneratorGuid = string.Empty;
-        partial void OnAppProjectGeneratorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnAppProjectGeneratorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnAppProjectGeneratorGuidChanged();
         
         // Name of solution-project-generator node
@@ -4936,7 +4972,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         public string NameUi // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -4955,7 +4991,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Browsable(false)]
@@ -4975,7 +5011,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         // string node_settings_vm_guid = 6;
@@ -4996,7 +5036,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Settings = string.Empty;
-        partial void OnSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSettingsChanged();
     /*
         [Browsable(false)]
@@ -5140,7 +5180,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         // model extentions of plugin group
@@ -5161,7 +5201,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Settings = string.Empty;
-        partial void OnSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSettingsChanged();
     /*
         [Browsable(false)]
@@ -5316,7 +5356,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
@@ -5337,7 +5377,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Name = string.Empty;
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [PropertyOrderAttribute(2)]
@@ -5358,7 +5398,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _NameUi = string.Empty;
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         // Guid of solution-project-generator node
@@ -5379,7 +5419,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _AppProjectGeneratorGuid = string.Empty;
-        partial void OnAppProjectGeneratorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnAppProjectGeneratorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnAppProjectGeneratorGuidChanged();
         
         public string Settings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -5399,7 +5439,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Settings = string.Empty;
-        partial void OnSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSettingsChanged();
     /*
         [Browsable(false)]
@@ -5624,7 +5664,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -5645,7 +5685,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -5666,7 +5706,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Browsable(false)]
@@ -5686,7 +5726,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -5708,7 +5752,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(4)]
@@ -5732,7 +5776,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PluginGuid = string.Empty;
-        partial void OnPluginGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPluginGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPluginGuidChanged();
         
         [PropertyOrderAttribute(5)]
@@ -5755,7 +5799,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _DescriptionPlugin = string.Empty;
-        partial void OnDescriptionPluginChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionPluginChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionPluginChanged();
         
         [PropertyOrderAttribute(6)]
@@ -5779,7 +5823,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PluginGeneratorGuid = string.Empty;
-        partial void OnPluginGeneratorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPluginGeneratorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPluginGeneratorGuidChanged();
         
         [PropertyOrderAttribute(7)]
@@ -5802,7 +5846,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _DescriptionGenerator = string.Empty;
-        partial void OnDescriptionGeneratorChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionGeneratorChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionGeneratorChanged();
         
         // Relative folder path to project file
@@ -5827,7 +5871,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _RelativePathToGenFolder = string.Empty;
-        partial void OnRelativePathToGenFolderChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnRelativePathToGenFolderChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnRelativePathToGenFolderChanged();
         
         // Generator output file name
@@ -5851,7 +5895,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _GenFileName = string.Empty;
-        partial void OnGenFileNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGenFileNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGenFileNameChanged();
         
         [Browsable(false)]
@@ -5872,7 +5916,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [Browsable(false)]
@@ -5893,7 +5937,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -5914,7 +5958,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _GeneratorSettings = string.Empty;
-        partial void OnGeneratorSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGeneratorSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGeneratorSettingsChanged();
         
         [PropertyOrderAttribute(29)]
@@ -5936,8 +5980,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private PluginGeneratorSettings _GeneratorSettingsVm;
-        IPluginGeneratorSettings IAppProjectGenerator.GeneratorSettingsVm { get { return (this as AppProjectGenerator).GeneratorSettingsVm; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGeneratorSettingsVmChanging(ref PluginGeneratorSettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IPluginGeneratorSettings IAppProjectGenerator.GeneratorSettingsVm { get { return (this as AppProjectGenerator).GeneratorSettingsVm; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGeneratorSettingsVmChanging(ref PluginGeneratorSettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGeneratorSettingsVmChanged();
         //IPluginGeneratorSettings IAppProjectGenerator.GeneratorSettingsVm { get { return this._GeneratorSettingsVm; } }
         
@@ -5960,7 +6004,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ConnStr = string.Empty;
-        partial void OnConnStrChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnConnStrChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnConnStrChanged();
         
         [PropertyOrderAttribute(13)]
@@ -5983,7 +6027,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ConnStrToPrevStable = string.Empty;
-        partial void OnConnStrToPrevStableChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnConnStrToPrevStableChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnConnStrToPrevStableChanged();
         
         [PropertyOrderAttribute(14)]
@@ -6006,7 +6050,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsGenerateSqlSqriptToUpdatePrevStable;
-        partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanged();
         
         // Generator output file name
@@ -6030,7 +6074,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _GenScriptFileName = string.Empty;
-        partial void OnGenScriptFileNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGenScriptFileNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGenScriptFileNameChanged();
     /*
         [Browsable(false)]
@@ -6175,7 +6219,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _NodeSettingsVmGuid = string.Empty;
-        partial void OnNodeSettingsVmGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNodeSettingsVmGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNodeSettingsVmGuidChanged();
         
         public string Settings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -6195,7 +6239,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Settings = string.Empty;
-        partial void OnSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSettingsChanged();
     /*
         [Browsable(false)]
@@ -6663,7 +6707,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -6686,7 +6730,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _Version;
-        partial void OnVersionChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnVersionChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnVersionChanged();
         
         [Category("")]
@@ -6707,7 +6751,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -6727,7 +6771,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -6749,7 +6797,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -6771,7 +6819,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(8)]
@@ -6794,7 +6842,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _CompositeNameMaxLength;
-        partial void OnCompositeNameMaxLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnCompositeNameMaxLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnCompositeNameMaxLengthChanged();
         
         [PropertyOrderAttribute(9)]
@@ -6818,7 +6866,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsUseCompositeNames;
-        partial void OnIsUseCompositeNamesChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsUseCompositeNamesChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsUseCompositeNamesChanged();
         
         [PropertyOrderAttribute(10)]
@@ -6842,7 +6890,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsUseGroupPrefix;
-        partial void OnIsUseGroupPrefixChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsUseGroupPrefixChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsUseGroupPrefixChanged();
         
         [Browsable(false)]
@@ -6863,7 +6911,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PKeyGuid = string.Empty;
-        partial void OnPKeyGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPKeyGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPKeyGuidChanged();
         
         [PropertyOrderAttribute(14)]
@@ -6887,7 +6935,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PKeyName = string.Empty;
-        partial void OnPKeyNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPKeyNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPKeyNameChanged();
         
         [PropertyOrderAttribute(15)]
@@ -6911,7 +6959,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumPrimaryKeyType _PKeyType;
-        partial void OnPKeyTypeChanging(ref EnumPrimaryKeyType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPKeyTypeChanging(ref EnumPrimaryKeyType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPKeyTypeChanged();
         
         [Browsable(false)]
@@ -6932,7 +6980,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _RecordVersionFieldGuid = string.Empty;
-        partial void OnRecordVersionFieldGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnRecordVersionFieldGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnRecordVersionFieldGuidChanged();
         
         [PropertyOrderAttribute(18)]
@@ -6956,7 +7004,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _RecordVersionFieldName = string.Empty;
-        partial void OnRecordVersionFieldNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnRecordVersionFieldNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnRecordVersionFieldNameChanged();
         
         [PropertyOrderAttribute(19)]
@@ -6980,7 +7028,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumVersionFieldType _RecordVersionFieldType;
-        partial void OnRecordVersionFieldTypeChanging(ref EnumVersionFieldType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnRecordVersionFieldTypeChanging(ref EnumVersionFieldType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnRecordVersionFieldTypeChanged();
         
         [Category("Property settings")]
@@ -7004,7 +7052,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyCodeName = string.Empty;
-        partial void OnPropertyCodeNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyCodeNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyCodeNameChanged();
         
         [Category("Property settings")]
@@ -7028,7 +7076,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _UseCodeProperty;
-        partial void OnUseCodePropertyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseCodePropertyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseCodePropertyChanged();
         
         [Category("Property settings")]
@@ -7052,7 +7100,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyNameName = string.Empty;
-        partial void OnPropertyNameNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyNameNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyNameNameChanged();
         
         [Category("Property settings")]
@@ -7076,7 +7124,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _UseNameProperty;
-        partial void OnUseNamePropertyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseNamePropertyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseNamePropertyChanged();
         
         [Category("Property settings")]
@@ -7100,7 +7148,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDescriptionName = string.Empty;
-        partial void OnPropertyDescriptionNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDescriptionNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDescriptionNameChanged();
         
         [Category("Property settings")]
@@ -7124,7 +7172,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _UseDescriptionProperty;
-        partial void OnUseDescriptionPropertyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseDescriptionPropertyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseDescriptionPropertyChanged();
         
         [Category("Property settings")]
@@ -7148,7 +7196,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyIsFolderName = string.Empty;
-        partial void OnPropertyIsFolderNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyIsFolderNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyIsFolderNameChanged();
         
         [Category("Property settings")]
@@ -7172,7 +7220,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDocDateName = string.Empty;
-        partial void OnPropertyDocDateNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDocDateNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDocDateNameChanged();
         
         [Category("Property settings")]
@@ -7196,7 +7244,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _UseDocDateProperty;
-        partial void OnUseDocDatePropertyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseDocDatePropertyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseDocDatePropertyChanged();
         
         [Category("Property settings")]
@@ -7220,7 +7268,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDocNumberName = string.Empty;
-        partial void OnPropertyDocNumberNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDocNumberNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDocNumberNameChanged();
         
         [Category("Property settings")]
@@ -7244,7 +7292,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _UseDocNumberProperty;
-        partial void OnUseDocNumberPropertyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseDocNumberPropertyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseDocNumberPropertyChanged();
         
         [Browsable(false)]
@@ -7265,7 +7313,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _LastConstantGroupShortId;
-        partial void OnLastConstantGroupShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnLastConstantGroupShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnLastConstantGroupShortIdChanged();
         
         [Browsable(false)]
@@ -7286,7 +7334,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _LastCatalogShortId;
-        partial void OnLastCatalogShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnLastCatalogShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnLastCatalogShortIdChanged();
         
         [Browsable(false)]
@@ -7307,7 +7355,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _LastDocumentShortId;
-        partial void OnLastDocumentShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnLastDocumentShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnLastDocumentShortIdChanged();
         
         [Browsable(false)]
@@ -7328,7 +7376,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _LastDetailShortId;
-        partial void OnLastDetailShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnLastDetailShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnLastDetailShortIdChanged();
         
         [Browsable(false)]
@@ -7349,7 +7397,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _LastRegisterShortId;
-        partial void OnLastRegisterShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnLastRegisterShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnLastRegisterShortIdChanged();
         
         [Category("DataGrid settings")]
@@ -7372,7 +7420,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableChanged();
         
         [Category("DataGrid settings")]
@@ -7395,7 +7443,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableCustomChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableCustomChanged();
         
         [Category("DataGrid settings")]
@@ -7418,7 +7466,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridFilterableChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
@@ -7439,8 +7487,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListCommon _GroupCommon;
-        IGroupListCommon IModel.GroupCommon { get { return (this as Model).GroupCommon; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupCommonChanging(ref GroupListCommon to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListCommon IModel.GroupCommon { get { return (this as Model).GroupCommon; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupCommonChanging(ref GroupListCommon to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupCommonChanged();
         //IGroupListCommon IModel.GroupCommon { get { return this._GroupCommon; } }
         
@@ -7462,8 +7510,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupConstantGroups _GroupConstantGroups;
-        IGroupConstantGroups IModel.GroupConstantGroups { get { return (this as Model).GroupConstantGroups; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupConstantGroupsChanging(ref GroupConstantGroups to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupConstantGroups IModel.GroupConstantGroups { get { return (this as Model).GroupConstantGroups; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupConstantGroupsChanging(ref GroupConstantGroups to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupConstantGroupsChanged();
         //IGroupConstantGroups IModel.GroupConstantGroups { get { return this._GroupConstantGroups; } }
         
@@ -7485,8 +7533,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListEnumerations _GroupEnumerations;
-        IGroupListEnumerations IModel.GroupEnumerations { get { return (this as Model).GroupEnumerations; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupEnumerationsChanging(ref GroupListEnumerations to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListEnumerations IModel.GroupEnumerations { get { return (this as Model).GroupEnumerations; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupEnumerationsChanging(ref GroupListEnumerations to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupEnumerationsChanged();
         //IGroupListEnumerations IModel.GroupEnumerations { get { return this._GroupEnumerations; } }
         
@@ -7508,8 +7556,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListCatalogs _GroupCatalogs;
-        IGroupListCatalogs IModel.GroupCatalogs { get { return (this as Model).GroupCatalogs; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupCatalogsChanging(ref GroupListCatalogs to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListCatalogs IModel.GroupCatalogs { get { return (this as Model).GroupCatalogs; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupCatalogsChanging(ref GroupListCatalogs to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupCatalogsChanged();
         //IGroupListCatalogs IModel.GroupCatalogs { get { return this._GroupCatalogs; } }
         
@@ -7531,8 +7579,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupDocuments _GroupDocuments;
-        IGroupDocuments IModel.GroupDocuments { get { return (this as Model).GroupDocuments; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupDocumentsChanging(ref GroupDocuments to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupDocuments IModel.GroupDocuments { get { return (this as Model).GroupDocuments; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupDocumentsChanging(ref GroupDocuments to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupDocumentsChanged();
         //IGroupDocuments IModel.GroupDocuments { get { return this._GroupDocuments; } }
         
@@ -7555,8 +7603,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListRegisters _GroupListRegisters;
-        IGroupListRegisters IModel.GroupListRegisters { get { return (this as Model).GroupListRegisters; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupListRegistersChanging(ref GroupListRegisters to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListRegisters IModel.GroupListRegisters { get { return (this as Model).GroupListRegisters; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupListRegistersChanging(ref GroupListRegisters to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupListRegistersChanged();
         //IGroupListRegisters IModel.GroupListRegisters { get { return this._GroupListRegisters; } }
         
@@ -7578,8 +7626,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListJournals _GroupJournals;
-        IGroupListJournals IModel.GroupJournals { get { return (this as Model).GroupJournals; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupJournalsChanging(ref GroupListJournals to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListJournals IModel.GroupJournals { get { return (this as Model).GroupJournals; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupJournalsChanging(ref GroupListJournals to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupJournalsChanged();
         //IGroupListJournals IModel.GroupJournals { get { return this._GroupJournals; } }
         
@@ -7810,7 +7858,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumDataType _DataTypeEnum;
-        partial void OnDataTypeEnumChanging(ref EnumDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDataTypeEnumChanging(ref EnumDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDataTypeEnumChanged();
         
         [PropertyOrderAttribute(3)]
@@ -7833,7 +7881,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _Length;
-        partial void OnLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnLengthChanged();
         
         [PropertyOrderAttribute(4)]
@@ -7856,7 +7904,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsPositive;
-        partial void OnIsPositiveChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsPositiveChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsPositiveChanged();
         
         [PropertyOrderAttribute(5)]
@@ -7879,7 +7927,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _Accuracy;
-        partial void OnAccuracyChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnAccuracyChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnAccuracyChanged();
         
         // <summary>
@@ -7907,7 +7955,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ObjectGuid = string.Empty;
-        partial void OnObjectGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnObjectGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnObjectGuidChanged();
         
         [Category("")]
@@ -7931,7 +7979,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumTimeAccuracyType _AccuracyForTime;
-        partial void OnAccuracyForTimeChanging(ref EnumTimeAccuracyType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnAccuracyForTimeChanging(ref EnumTimeAccuracyType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnAccuracyForTimeChanged();
         
         // <summary>
@@ -7979,7 +8027,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNullable;
-        partial void OnIsNullableChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNullableChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNullableChanged();
         
         [Browsable(false)]
@@ -8000,7 +8048,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsPKey;
-        partial void OnIsPKeyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsPKeyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsPKeyChanged();
         
         [Browsable(false)]
@@ -8021,7 +8069,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsRefParent;
-        partial void OnIsRefParentChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsRefParentChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsRefParentChanged();
     /*
         [Browsable(false)]
@@ -8276,7 +8324,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -8297,7 +8345,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -8319,7 +8367,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -8341,7 +8389,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -8361,7 +8409,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -8382,8 +8434,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListRoles _GroupRoles;
-        IGroupListRoles IGroupListCommon.GroupRoles { get { return (this as GroupListCommon).GroupRoles; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupRolesChanging(ref GroupListRoles to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListRoles IGroupListCommon.GroupRoles { get { return (this as GroupListCommon).GroupRoles; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupRolesChanging(ref GroupListRoles to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupRolesChanged();
         //IGroupListRoles IGroupListCommon.GroupRoles { get { return this._GroupRoles; } }
         
@@ -8405,8 +8457,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListMainViewForms _GroupViewForms;
-        IGroupListMainViewForms IGroupListCommon.GroupViewForms { get { return (this as GroupListCommon).GroupViewForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupViewFormsChanging(ref GroupListMainViewForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListMainViewForms IGroupListCommon.GroupViewForms { get { return (this as GroupListCommon).GroupViewForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupViewFormsChanging(ref GroupListMainViewForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupViewFormsChanged();
         //IGroupListMainViewForms IGroupListCommon.GroupViewForms { get { return this._GroupViewForms; } }
         
@@ -8428,8 +8480,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListEnumeratorSequences _GroupListSequences;
-        IGroupListEnumeratorSequences IGroupListCommon.GroupListSequences { get { return (this as GroupListCommon).GroupListSequences; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupListSequencesChanging(ref GroupListEnumeratorSequences to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListEnumeratorSequences IGroupListCommon.GroupListSequences { get { return (this as GroupListCommon).GroupListSequences; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupListSequencesChanging(ref GroupListEnumeratorSequences to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupListSequencesChanged();
         //IGroupListEnumeratorSequences IGroupListCommon.GroupListSequences { get { return this._GroupListSequences; } }
         
@@ -8692,7 +8744,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -8713,7 +8765,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -8733,7 +8785,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -8756,7 +8812,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -8778,7 +8834,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -8799,7 +8855,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -8821,7 +8877,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Category("")]
@@ -8845,7 +8901,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumCodeType _SequenceType;
-        partial void OnSequenceTypeChanging(ref EnumCodeType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnSequenceTypeChanging(ref EnumCodeType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSequenceTypeChanged();
         
         [Category("")]
@@ -8869,7 +8925,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _MaxSequenceLength;
-        partial void OnMaxSequenceLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnMaxSequenceLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnMaxSequenceLengthChanged();
         
         [Category("")]
@@ -8893,7 +8949,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Prefix = string.Empty;
-        partial void OnPrefixChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPrefixChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPrefixChanged();
         
         [Browsable(false)]
@@ -9193,7 +9249,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -9214,7 +9270,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -9234,7 +9290,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -9257,7 +9317,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -9279,7 +9339,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -9598,7 +9658,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -9619,7 +9679,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -9639,7 +9699,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -9662,7 +9726,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -9684,7 +9748,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -9705,7 +9769,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -9727,7 +9791,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Category("")]
@@ -9751,7 +9815,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumPrintAccess _DefaultConstantPrintAccessSettings;
-        partial void OnDefaultConstantPrintAccessSettingsChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDefaultConstantPrintAccessSettingsChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDefaultConstantPrintAccessSettingsChanged();
         
         [Category("")]
@@ -9775,7 +9839,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumConstantAccess _DefaultConstantEditAccessSettings;
-        partial void OnDefaultConstantEditAccessSettingsChanging(ref EnumConstantAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDefaultConstantEditAccessSettingsChanging(ref EnumConstantAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDefaultConstantEditAccessSettingsChanged();
         
         [Category("")]
@@ -9799,7 +9863,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumPrintAccess _DefaultCatalogPrintAccessSettings;
-        partial void OnDefaultCatalogPrintAccessSettingsChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDefaultCatalogPrintAccessSettingsChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDefaultCatalogPrintAccessSettingsChanged();
         
         [Category("")]
@@ -9823,7 +9887,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumCatalogDetailAccess _DefaultCatalogEditAccessSettings;
-        partial void OnDefaultCatalogEditAccessSettingsChanging(ref EnumCatalogDetailAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDefaultCatalogEditAccessSettingsChanging(ref EnumCatalogDetailAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDefaultCatalogEditAccessSettingsChanged();
         
         [Category("")]
@@ -9847,7 +9911,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumPrintAccess _DefaultDocumentPrintAccessSettings;
-        partial void OnDefaultDocumentPrintAccessSettingsChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDefaultDocumentPrintAccessSettingsChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDefaultDocumentPrintAccessSettingsChanged();
         
         [Category("")]
@@ -9871,7 +9935,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumDocumentAccess _DefaultDocumentEditAccessSettings;
-        partial void OnDefaultDocumentEditAccessSettingsChanging(ref EnumDocumentAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDefaultDocumentEditAccessSettingsChanging(ref EnumDocumentAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDefaultDocumentEditAccessSettingsChanged();
         
         [Browsable(false)]
@@ -10044,7 +10108,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         public EnumConstantAccess EditAccess // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -10064,7 +10128,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumConstantAccess _EditAccess;
-        partial void OnEditAccessChanging(ref EnumConstantAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnEditAccessChanging(ref EnumConstantAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnEditAccessChanged();
         
         public EnumPrintAccess PrintAccess // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -10084,7 +10148,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumPrintAccess _PrintAccess;
-        partial void OnPrintAccessChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPrintAccessChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPrintAccessChanged();
         #endregion Properties
     }
@@ -10212,7 +10276,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         public EnumPropertyAccess EditAccess // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -10232,7 +10296,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumPropertyAccess _EditAccess;
-        partial void OnEditAccessChanging(ref EnumPropertyAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnEditAccessChanging(ref EnumPropertyAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnEditAccessChanged();
         
         public EnumPrintAccess PrintAccess // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -10252,7 +10316,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumPrintAccess _PrintAccess;
-        partial void OnPrintAccessChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPrintAccessChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPrintAccessChanged();
         #endregion Properties
     }
@@ -10380,7 +10444,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         public EnumCatalogDetailAccess EditAccess // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -10400,7 +10464,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumCatalogDetailAccess _EditAccess;
-        partial void OnEditAccessChanging(ref EnumCatalogDetailAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnEditAccessChanging(ref EnumCatalogDetailAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnEditAccessChanged();
         
         public EnumPrintAccess PrintAccess // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -10420,7 +10484,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumPrintAccess _PrintAccess;
-        partial void OnPrintAccessChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPrintAccessChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPrintAccessChanged();
         #endregion Properties
     }
@@ -10548,7 +10612,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         public EnumCatalogDetailAccess EditAccess // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -10568,7 +10632,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumCatalogDetailAccess _EditAccess;
-        partial void OnEditAccessChanging(ref EnumCatalogDetailAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnEditAccessChanging(ref EnumCatalogDetailAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnEditAccessChanged();
         
         public EnumPrintAccess PrintAccess // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -10588,7 +10652,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumPrintAccess _PrintAccess;
-        partial void OnPrintAccessChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPrintAccessChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPrintAccessChanged();
         #endregion Properties
     }
@@ -10716,7 +10780,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         public EnumDocumentAccess EditAccess // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -10736,7 +10800,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumDocumentAccess _EditAccess;
-        partial void OnEditAccessChanging(ref EnumDocumentAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnEditAccessChanging(ref EnumDocumentAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnEditAccessChanged();
         
         public EnumPrintAccess PrintAccess // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -10756,7 +10820,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumPrintAccess _PrintAccess;
-        partial void OnPrintAccessChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPrintAccessChanging(ref EnumPrintAccess to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPrintAccessChanged();
         #endregion Properties
     }
@@ -11011,7 +11075,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -11032,7 +11096,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -11055,7 +11119,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -11077,7 +11141,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -11141,7 +11205,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -11402,7 +11470,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -11423,7 +11491,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -11443,7 +11511,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -11466,7 +11538,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -11488,7 +11560,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -11509,8 +11581,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListMainViewForms _GroupListViewForms;
-        IGroupListMainViewForms IMainViewForm.GroupListViewForms { get { return (this as MainViewForm).GroupListViewForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupListViewFormsChanging(ref GroupListMainViewForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListMainViewForms IMainViewForm.GroupListViewForms { get { return (this as MainViewForm).GroupListViewForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupListViewFormsChanging(ref GroupListMainViewForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupListViewFormsChanged();
         //IGroupListMainViewForms IMainViewForm.GroupListViewForms { get { return this._GroupListViewForms; } }
         
@@ -11532,7 +11604,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -11554,7 +11626,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -11853,7 +11925,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -11874,7 +11946,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -11897,7 +11969,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -11919,7 +11991,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -11983,7 +12055,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -12352,7 +12428,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -12373,7 +12449,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -12396,7 +12472,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -12418,7 +12494,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -12484,7 +12560,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _LastGenPosition;
-        partial void OnLastGenPositionChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnLastGenPositionChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnLastGenPositionChanged();
         
         [Browsable(false)]
@@ -12504,7 +12580,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("Auto Layout")]
@@ -12527,7 +12607,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableChanged();
         
         [Category("Auto Layout")]
@@ -12550,7 +12630,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableCustomChanged();
         
         [Category("Auto Layout")]
@@ -12573,7 +12653,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
@@ -12974,7 +13054,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -12996,7 +13076,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -13016,7 +13096,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -13039,7 +13123,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -13063,7 +13147,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -13084,8 +13168,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private DataType _DataType;
-        IDataType IProperty.DataType { get { return (this as Property).DataType; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnDataTypeChanging(ref DataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IDataType IProperty.DataType { get { return (this as Property).DataType; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnDataTypeChanging(ref DataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDataTypeChanged();
         //IDataType IProperty.DataType { get { return this._DataType; } }
         
@@ -13110,7 +13194,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _DefaultValue = string.Empty;
-        partial void OnDefaultValueChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDefaultValueChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDefaultValueChanged();
         
         [Browsable(false)]
@@ -13131,7 +13215,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -13153,7 +13237,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Category("")]
@@ -13177,7 +13261,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _RangeValuesRequirementStr = string.Empty;
-        partial void OnRangeValuesRequirementStrChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnRangeValuesRequirementStrChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnRangeValuesRequirementStrChanged();
         
         [Category("")]
@@ -13201,7 +13285,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _MinLengthRequirement = string.Empty;
-        partial void OnMinLengthRequirementChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnMinLengthRequirementChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnMinLengthRequirementChanged();
         
         [Category("")]
@@ -13225,7 +13309,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _MaxLengthRequirement = string.Empty;
-        partial void OnMaxLengthRequirementChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnMaxLengthRequirementChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnMaxLengthRequirementChanged();
         
         [PropertyOrderAttribute(23)]
@@ -13249,7 +13333,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsTryAttach;
-        partial void OnIsTryAttachChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsTryAttachChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsTryAttachChanged();
         
         [PropertyOrderAttribute(22)]
@@ -13273,7 +13357,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _LinesOnScreen;
-        partial void OnLinesOnScreenChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnLinesOnScreenChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnLinesOnScreenChanged();
         
         [PropertyOrderAttribute(24)]
@@ -13297,7 +13381,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsStartNewRow;
-        partial void OnIsStartNewRowChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsStartNewRowChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsStartNewRowChanged();
         
         [PropertyOrderAttribute(26)]
@@ -13321,7 +13405,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _TabName = string.Empty;
-        partial void OnTabNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnTabNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnTabNameChanged();
         
         [PropertyOrderAttribute(25)]
@@ -13345,7 +13429,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsStartNewTabControl;
-        partial void OnIsStartNewTabControlChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsStartNewTabControlChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsStartNewTabControlChanged();
         
         [PropertyOrderAttribute(27)]
@@ -13369,7 +13453,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsStopTabControl;
-        partial void OnIsStopTabControlChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsStopTabControlChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsStopTabControlChanged();
         
         [PropertyOrderAttribute(31)]
@@ -13393,8 +13477,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private PropertyDataGenerator _DataGenerator;
-        IPropertyDataGenerator IProperty.DataGenerator { get { return (this as Property).DataGenerator; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnDataGeneratorChanging(ref PropertyDataGenerator to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IPropertyDataGenerator IProperty.DataGenerator { get { return (this as Property).DataGenerator; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnDataGeneratorChanging(ref PropertyDataGenerator to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDataGeneratorChanged();
         //IPropertyDataGenerator IProperty.DataGenerator { get { return this._DataGenerator; } }
         
@@ -13500,7 +13584,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableChanged();
         
         [Category("Auto Layout")]
@@ -13523,7 +13607,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableCustomChanged();
         
         [Category("Auto Layout")]
@@ -13546,7 +13630,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridFilterableChanged();
         
         // Protobuf field position
@@ -13569,7 +13653,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _Position;
-        partial void OnPositionChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPositionChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPositionChanged();
         
         [Browsable(false)]
@@ -13948,7 +14032,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -13969,7 +14053,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -13992,7 +14076,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -14014,7 +14098,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -14078,7 +14162,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(22)]
@@ -14101,7 +14189,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseCodeProperty;
-        partial void OnUseCodePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseCodePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseCodePropertyChanged();
         
         [PropertyOrderAttribute(24)]
@@ -14124,7 +14212,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseNameProperty;
-        partial void OnUseNamePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseNamePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseNamePropertyChanged();
         
         [PropertyOrderAttribute(26)]
@@ -14147,7 +14235,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseDescriptionProperty;
-        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseDescriptionPropertyChanged();
         
         [Category("Auto Layout")]
@@ -14170,7 +14258,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableChanged();
         
         [Category("Auto Layout")]
@@ -14193,7 +14281,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableCustomChanged();
         
         [Category("Auto Layout")]
@@ -14216,7 +14304,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
@@ -14664,7 +14752,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -14685,7 +14773,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -14705,7 +14793,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -14728,7 +14820,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -14750,7 +14842,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         // Create Index for foreign key navigation property
@@ -14772,7 +14864,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsIndexFk;
-        partial void OnIsIndexFkChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsIndexFkChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsIndexFkChanged();
         
         [Browsable(false)]
@@ -14793,7 +14885,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -14815,7 +14907,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -14836,8 +14928,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListProperties _GroupProperties;
-        IGroupListProperties IDetail.GroupProperties { get { return (this as Detail).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListProperties IDetail.GroupProperties { get { return (this as Detail).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupPropertiesChanged();
         //IGroupListProperties IDetail.GroupProperties { get { return this._GroupProperties; } }
         
@@ -14859,8 +14951,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListDetails _GroupDetails;
-        IGroupListDetails IDetail.GroupDetails { get { return (this as Detail).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupDetailsChanging(ref GroupListDetails to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListDetails IDetail.GroupDetails { get { return (this as Detail).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupDetailsChanging(ref GroupListDetails to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupDetailsChanged();
         //IGroupListDetails IDetail.GroupDetails { get { return this._GroupDetails; } }
         
@@ -14884,7 +14976,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _Position;
-        partial void OnPositionChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPositionChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPositionChanged();
         
         [PropertyOrderAttribute(22)]
@@ -14907,7 +14999,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseCodeProperty;
-        partial void OnUseCodePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseCodePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseCodePropertyChanged();
         
         [PropertyOrderAttribute(24)]
@@ -14930,7 +15022,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseNameProperty;
-        partial void OnUseNamePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseNamePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseNamePropertyChanged();
         
         [PropertyOrderAttribute(26)]
@@ -14953,7 +15045,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseDescriptionProperty;
-        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseDescriptionPropertyChanged();
         
         [Browsable(false)]
@@ -14974,7 +15066,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _ShortId;
-        partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnShortIdChanged();
         
         [PropertyOrderAttribute(22)]
@@ -14998,7 +15090,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsTryAttach;
-        partial void OnIsTryAttachChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsTryAttachChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsTryAttachChanged();
         
         [PropertyOrderAttribute(23)]
@@ -15022,7 +15114,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsStartNewRow;
-        partial void OnIsStartNewRowChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsStartNewRowChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsStartNewRowChanged();
         
         [PropertyOrderAttribute(24)]
@@ -15046,7 +15138,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsStartNewTab;
-        partial void OnIsStartNewTabChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsStartNewTabChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsStartNewTabChanged();
         
         [PropertyOrderAttribute(25)]
@@ -15070,7 +15162,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _TabName = string.Empty;
-        partial void OnTabNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnTabNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnTabNameChanged();
         
         [PropertyOrderAttribute(26)]
@@ -15094,7 +15186,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsStartNewTabControl;
-        partial void OnIsStartNewTabControlChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsStartNewTabControlChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsStartNewTabControlChanged();
         
         [PropertyOrderAttribute(27)]
@@ -15118,7 +15210,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsStopTabControl;
-        partial void OnIsStopTabControlChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsStopTabControlChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsStopTabControlChanged();
         
         [Browsable(false)]
@@ -15139,7 +15231,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ViewListWideGuid = string.Empty;
-        partial void OnViewListWideGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnViewListWideGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnViewListWideGuidChanged();
         
         [Browsable(false)]
@@ -15160,7 +15252,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ViewListNarrowGuid = string.Empty;
-        partial void OnViewListNarrowGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnViewListNarrowGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnViewListNarrowGuidChanged();
         
         [Browsable(false)]
@@ -15181,7 +15273,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyIdGuid = string.Empty;
-        partial void OnPropertyIdGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyIdGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyIdGuidChanged();
         
         [Browsable(false)]
@@ -15202,7 +15294,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyCodeGuid = string.Empty;
-        partial void OnPropertyCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyCodeGuidChanged();
         
         [Browsable(false)]
@@ -15223,7 +15315,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyNameGuid = string.Empty;
-        partial void OnPropertyNameGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyNameGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyNameGuidChanged();
         
         [Browsable(false)]
@@ -15244,7 +15336,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDescriptionGuid = string.Empty;
-        partial void OnPropertyDescriptionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDescriptionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDescriptionGuidChanged();
         
         [Browsable(false)]
@@ -15265,7 +15357,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyRefParentGuid = string.Empty;
-        partial void OnPropertyRefParentGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyRefParentGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyRefParentGuidChanged();
         
         [Browsable(false)]
@@ -15286,7 +15378,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyVersionGuid = string.Empty;
-        partial void OnPropertyVersionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyVersionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyVersionGuidChanged();
         
         [Category("Auto Layout")]
@@ -15309,7 +15401,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableChanged();
         
         [Category("Auto Layout")]
@@ -15332,7 +15424,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableCustomChanged();
         
         [Category("Auto Layout")]
@@ -15355,7 +15447,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
@@ -15376,8 +15468,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListForms _GroupForms;
-        IGroupListForms IDetail.GroupForms { get { return (this as Detail).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupFormsChanging(ref GroupListForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListForms IDetail.GroupForms { get { return (this as Detail).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupFormsChanging(ref GroupListForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupFormsChanged();
         //IGroupListForms IDetail.GroupForms { get { return this._GroupForms; } }
         
@@ -15627,7 +15719,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumPropertyDataType _DataType;
-        partial void OnDataTypeChanging(ref EnumPropertyDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDataTypeChanging(ref EnumPropertyDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDataTypeChanged();
         
         public EnumAddressDataType Address // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15647,7 +15739,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumAddressDataType _Address;
-        partial void OnAddressChanging(ref EnumAddressDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnAddressChanging(ref EnumAddressDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnAddressChanged();
         
         public EnumCommerceDataType Commerce // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15667,7 +15759,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumCommerceDataType _Commerce;
-        partial void OnCommerceChanging(ref EnumCommerceDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnCommerceChanging(ref EnumCommerceDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnCommerceChanged();
         
         public EnumCompanyDataType Company // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15687,7 +15779,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumCompanyDataType _Company;
-        partial void OnCompanyChanging(ref EnumCompanyDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnCompanyChanging(ref EnumCompanyDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnCompanyChanged();
         
         public EnumDateDataType Date // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15707,7 +15799,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumDateDataType _Date;
-        partial void OnDateChanging(ref EnumDateDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDateChanging(ref EnumDateDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDateChanged();
         
         public EnumDatabaseDataType Database // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15727,7 +15819,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumDatabaseDataType _Database;
-        partial void OnDatabaseChanging(ref EnumDatabaseDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDatabaseChanging(ref EnumDatabaseDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDatabaseChanged();
         
         public EnumFinanceDataType Finance // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15747,7 +15839,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumFinanceDataType _Finance;
-        partial void OnFinanceChanging(ref EnumFinanceDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnFinanceChanging(ref EnumFinanceDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnFinanceChanged();
         
         public EnumHackerDataType Hacker // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15767,7 +15859,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumHackerDataType _Hacker;
-        partial void OnHackerChanging(ref EnumHackerDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnHackerChanging(ref EnumHackerDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnHackerChanged();
         
         public EnumImageDataType Image // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15787,7 +15879,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumImageDataType _Image;
-        partial void OnImageChanging(ref EnumImageDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnImageChanging(ref EnumImageDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnImageChanged();
         
         public EnumInternetDataType Internet // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15807,7 +15899,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumInternetDataType _Internet;
-        partial void OnInternetChanging(ref EnumInternetDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnInternetChanging(ref EnumInternetDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnInternetChanged();
         
         public EnumLoremDataType Lorem // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15827,7 +15919,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumLoremDataType _Lorem;
-        partial void OnLoremChanging(ref EnumLoremDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnLoremChanging(ref EnumLoremDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnLoremChanged();
         
         public EnumNameDataType Name // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15847,7 +15939,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumNameDataType _Name;
-        partial void OnNameChanging(ref EnumNameDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref EnumNameDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         public EnumPhoneDataType Phone // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15867,7 +15959,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumPhoneDataType _Phone;
-        partial void OnPhoneChanging(ref EnumPhoneDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPhoneChanging(ref EnumPhoneDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPhoneChanged();
         
         public EnumRantDataType Rant // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15887,7 +15979,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumRantDataType _Rant;
-        partial void OnRantChanging(ref EnumRantDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnRantChanging(ref EnumRantDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnRantChanged();
         
         public EnumSystemDataType System // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15907,7 +15999,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumSystemDataType _System;
-        partial void OnSystemChanging(ref EnumSystemDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnSystemChanging(ref EnumSystemDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSystemChanged();
         
         public EnumVehicleDataType Vehicle // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15927,7 +16019,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumVehicleDataType _Vehicle;
-        partial void OnVehicleChanging(ref EnumVehicleDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnVehicleChanging(ref EnumVehicleDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnVehicleChanged();
         
         public EnumRandomDataType Random // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -15947,7 +16039,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumRandomDataType _Random;
-        partial void OnRandomChanging(ref EnumRandomDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnRandomChanging(ref EnumRandomDataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnRandomChanged();
     /*
         [Browsable(false)]
@@ -16231,7 +16323,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -16254,7 +16346,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -16274,7 +16366,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -16298,7 +16394,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -16321,7 +16417,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Category("")]
@@ -16345,7 +16441,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PrefixForDbTables = string.Empty;
-        partial void OnPrefixForDbTablesChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPrefixForDbTablesChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPrefixForDbTablesChanged();
         
         [Browsable(false)]
@@ -16732,7 +16828,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -16754,7 +16850,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -16774,7 +16870,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -16797,7 +16897,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -16819,7 +16919,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -16886,7 +16986,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ShortIdTypeForCacheKey = string.Empty;
-        partial void OnShortIdTypeForCacheKeyChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnShortIdTypeForCacheKeyChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnShortIdTypeForCacheKeyChanged();
         
         [Browsable(false)]
@@ -16907,7 +17007,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -16929,7 +17029,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -16950,7 +17050,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _ShortId;
-        partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnShortIdChanged();
         
         [Browsable(false)]
@@ -17339,7 +17439,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -17361,7 +17461,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -17381,7 +17481,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -17404,7 +17508,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -17427,7 +17531,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -17448,8 +17552,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private DataType _DataType;
-        IDataType IConstant.DataType { get { return (this as Constant).DataType; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnDataTypeChanging(ref DataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IDataType IConstant.DataType { get { return (this as Constant).DataType; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnDataTypeChanging(ref DataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDataTypeChanged();
         //IDataType IConstant.DataType { get { return this._DataType; } }
         
@@ -17474,7 +17578,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNullable;
-        partial void OnIsNullableChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNullableChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNullableChanged();
         
         [Category("")]
@@ -17498,7 +17602,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _DefaultValue = string.Empty;
-        partial void OnDefaultValueChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDefaultValueChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDefaultValueChanged();
         
         [Browsable(false)]
@@ -17519,7 +17623,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -17541,7 +17645,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -17562,7 +17666,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _ShortId;
-        partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnShortIdChanged();
         
         [Category("")]
@@ -17586,7 +17690,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _RangeValuesRequirementStr = string.Empty;
-        partial void OnRangeValuesRequirementStrChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnRangeValuesRequirementStrChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnRangeValuesRequirementStrChanged();
         
         [Category("")]
@@ -17610,7 +17714,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _MinLengthRequirement = string.Empty;
-        partial void OnMinLengthRequirementChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnMinLengthRequirementChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnMinLengthRequirementChanged();
         
         [Category("")]
@@ -17634,7 +17738,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _MaxLengthRequirement = string.Empty;
-        partial void OnMaxLengthRequirementChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnMaxLengthRequirementChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnMaxLengthRequirementChanged();
         
         [Category("")]
@@ -17658,7 +17762,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumTimeAccuracyType _AccuracyForTime;
-        partial void OnAccuracyForTimeChanging(ref EnumTimeAccuracyType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnAccuracyForTimeChanging(ref EnumTimeAccuracyType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnAccuracyForTimeChanged();
         
         [Category("Auto Layout")]
@@ -17681,7 +17785,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsTryAttach;
-        partial void OnIsTryAttachChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsTryAttachChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsTryAttachChanged();
         
         [Category("Auto Layout")]
@@ -17704,7 +17808,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _LinesOnScreen;
-        partial void OnLinesOnScreenChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnLinesOnScreenChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnLinesOnScreenChanged();
         
         [Category("Auto Layout")]
@@ -17727,7 +17831,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsStartNewRow;
-        partial void OnIsStartNewRowChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsStartNewRowChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsStartNewRowChanged();
         
         [Category("Auto Layout")]
@@ -17750,7 +17854,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _TabName = string.Empty;
-        partial void OnTabNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnTabNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnTabNameChanged();
         
         [Category("Auto Layout")]
@@ -17773,7 +17877,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsStartNewTabControl;
-        partial void OnIsStartNewTabControlChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsStartNewTabControlChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsStartNewTabControlChanged();
         
         [Category("Auto Layout")]
@@ -17796,7 +17900,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsStopTabControl;
-        partial void OnIsStopTabControlChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsStopTabControlChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsStopTabControlChanged();
         
         [Browsable(false)]
@@ -18120,7 +18224,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -18141,7 +18245,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -18164,7 +18268,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -18186,7 +18290,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -18250,7 +18354,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -18564,7 +18672,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -18586,7 +18694,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -18606,7 +18714,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -18629,7 +18741,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -18653,7 +18765,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         // Enumeration element type
@@ -18677,7 +18789,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumEnumerationType _DataTypeEnum;
-        partial void OnDataTypeEnumChanging(ref EnumEnumerationType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDataTypeEnumChanging(ref EnumEnumerationType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDataTypeEnumChanged();
         
         // Length of string if 'STRING' is selected as enumeration element type
@@ -18701,7 +18813,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _DataTypeLength;
-        partial void OnDataTypeLengthChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDataTypeLengthChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDataTypeLengthChanged();
         
         [DisplayName("Elements")]
@@ -18744,7 +18856,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -18766,7 +18878,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -19030,7 +19142,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -19052,7 +19164,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -19072,7 +19184,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -19095,7 +19211,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -19118,7 +19234,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(6)]
@@ -19141,7 +19257,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Value = string.Empty;
-        partial void OnValueChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnValueChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnValueChanged();
         
         [PropertyOrderAttribute(9)]
@@ -19164,7 +19280,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsDefault;
-        partial void OnIsDefaultChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsDefaultChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsDefaultChanged();
         
         [PropertyOrderAttribute(8)]
@@ -19187,7 +19303,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _NumericValue;
-        partial void OnNumericValueChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNumericValueChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNumericValueChanged();
         
         [Browsable(false)]
@@ -19208,7 +19324,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -19230,7 +19346,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -19672,7 +19788,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -19693,7 +19809,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -19713,7 +19829,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -19736,7 +19856,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -19758,7 +19878,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -19779,7 +19899,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -19801,7 +19921,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -19822,7 +19942,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyIdGuid = string.Empty;
-        partial void OnPropertyIdGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyIdGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyIdGuidChanged();
         
         [PropertyOrderAttribute(21)]
@@ -19845,7 +19965,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseCodeProperty;
-        partial void OnUseCodePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseCodePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseCodePropertyChanged();
         
         [PropertyOrderAttribute(22)]
@@ -19869,8 +19989,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private CatalogCodePropertySettings _CodePropertySettings;
-        ICatalogCodePropertySettings ICatalogFolder.CodePropertySettings { get { return (this as CatalogFolder).CodePropertySettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnCodePropertySettingsChanging(ref CatalogCodePropertySettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        ICatalogCodePropertySettings ICatalogFolder.CodePropertySettings { get { return (this as CatalogFolder).CodePropertySettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnCodePropertySettingsChanging(ref CatalogCodePropertySettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnCodePropertySettingsChanged();
         //ICatalogCodePropertySettings ICatalogFolder.CodePropertySettings { get { return this._CodePropertySettings; } }
         
@@ -19892,7 +20012,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyCodeGuid = string.Empty;
-        partial void OnPropertyCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyCodeGuidChanged();
         
         [Browsable(false)]
@@ -19913,7 +20033,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyVersionGuid = string.Empty;
-        partial void OnPropertyVersionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyVersionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyVersionGuidChanged();
         
         [Browsable(false)]
@@ -19934,7 +20054,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexUniqueCodeGuid = string.Empty;
-        partial void OnIndexUniqueCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexUniqueCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexUniqueCodeGuidChanged();
         
         [Browsable(false)]
@@ -19955,7 +20075,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexRefTreeParentCodeGuid = string.Empty;
-        partial void OnIndexRefTreeParentCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexRefTreeParentCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexRefTreeParentCodeGuidChanged();
         
         [Browsable(false)]
@@ -19976,7 +20096,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexNotUniqueCodeGuid = string.Empty;
-        partial void OnIndexNotUniqueCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexNotUniqueCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexNotUniqueCodeGuidChanged();
         
         [PropertyOrderAttribute(41)]
@@ -19999,7 +20119,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseNameProperty;
-        partial void OnUseNamePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseNamePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseNamePropertyChanged();
         
         [PropertyOrderAttribute(42)]
@@ -20022,7 +20142,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _MaxNameLength;
-        partial void OnMaxNameLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnMaxNameLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnMaxNameLengthChanged();
         
         [Browsable(false)]
@@ -20043,7 +20163,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyNameGuid = string.Empty;
-        partial void OnPropertyNameGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyNameGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyNameGuidChanged();
         
         [PropertyOrderAttribute(51)]
@@ -20066,7 +20186,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseDescriptionProperty;
-        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseDescriptionPropertyChanged();
         
         [PropertyOrderAttribute(52)]
@@ -20089,7 +20209,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _MaxDescriptionLength;
-        partial void OnMaxDescriptionLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnMaxDescriptionLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnMaxDescriptionLengthChanged();
         
         [Browsable(false)]
@@ -20110,7 +20230,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDescriptionGuid = string.Empty;
-        partial void OnPropertyDescriptionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDescriptionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDescriptionGuidChanged();
         
         [Browsable(false)]
@@ -20131,7 +20251,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ViewListWideGuid = string.Empty;
-        partial void OnViewListWideGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnViewListWideGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnViewListWideGuidChanged();
         
         [Browsable(false)]
@@ -20152,7 +20272,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ViewListNarrowGuid = string.Empty;
-        partial void OnViewListNarrowGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnViewListNarrowGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnViewListNarrowGuidChanged();
         
         [Browsable(false)]
@@ -20173,7 +20293,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyIsFolderGuid = string.Empty;
-        partial void OnPropertyIsFolderGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyIsFolderGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyIsFolderGuidChanged();
         
         [Browsable(false)]
@@ -20194,7 +20314,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyRefSelfGuid = string.Empty;
-        partial void OnPropertyRefSelfGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyRefSelfGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyRefSelfGuidChanged();
         
         [Category("Auto Layout")]
@@ -20217,7 +20337,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableChanged();
         
         [Category("Auto Layout")]
@@ -20240,7 +20360,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableCustomChanged();
         
         [Category("Auto Layout")]
@@ -20263,7 +20383,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
@@ -20284,8 +20404,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListProperties _GroupProperties;
-        IGroupListProperties ICatalogFolder.GroupProperties { get { return (this as CatalogFolder).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListProperties ICatalogFolder.GroupProperties { get { return (this as CatalogFolder).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupPropertiesChanged();
         //IGroupListProperties ICatalogFolder.GroupProperties { get { return this._GroupProperties; } }
         
@@ -20307,8 +20427,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListDetails _GroupDetails;
-        IGroupListDetails ICatalogFolder.GroupDetails { get { return (this as CatalogFolder).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupDetailsChanging(ref GroupListDetails to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListDetails ICatalogFolder.GroupDetails { get { return (this as CatalogFolder).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupDetailsChanging(ref GroupListDetails to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupDetailsChanged();
         //IGroupListDetails ICatalogFolder.GroupDetails { get { return this._GroupDetails; } }
         
@@ -20330,8 +20450,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListForms _GroupForms;
-        IGroupListForms ICatalogFolder.GroupForms { get { return (this as CatalogFolder).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupFormsChanging(ref GroupListForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListForms ICatalogFolder.GroupForms { get { return (this as CatalogFolder).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupFormsChanging(ref GroupListForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupFormsChanged();
         //IGroupListForms ICatalogFolder.GroupForms { get { return this._GroupForms; } }
         
@@ -20353,8 +20473,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListReports _GroupReports;
-        IGroupListReports ICatalogFolder.GroupReports { get { return (this as CatalogFolder).GroupReports; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupReportsChanging(ref GroupListReports to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListReports ICatalogFolder.GroupReports { get { return (this as CatalogFolder).GroupReports; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupReportsChanging(ref GroupListReports to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupReportsChanged();
         //IGroupListReports ICatalogFolder.GroupReports { get { return this._GroupReports; } }
         
@@ -20550,7 +20670,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumCodeType _SequenceType;
-        partial void OnSequenceTypeChanging(ref EnumCodeType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnSequenceTypeChanging(ref EnumCodeType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSequenceTypeChanged();
         
         [PropertyOrderAttribute(2)]
@@ -20573,7 +20693,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _MaxSequenceLength;
-        partial void OnMaxSequenceLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnMaxSequenceLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnMaxSequenceLengthChanged();
         
         [PropertyOrderAttribute(3)]
@@ -20596,7 +20716,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Prefix = string.Empty;
-        partial void OnPrefixChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPrefixChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPrefixChanged();
         
         [PropertyOrderAttribute(7)]
@@ -20619,7 +20739,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumCatalogCodeUniqueScope _UniqueScope;
-        partial void OnUniqueScopeChanging(ref EnumCatalogCodeUniqueScope to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUniqueScopeChanging(ref EnumCatalogCodeUniqueScope to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUniqueScopeChanged();
     /*
         [Browsable(false)]
@@ -21078,7 +21198,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -21099,7 +21219,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -21119,7 +21239,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -21142,7 +21266,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -21164,7 +21288,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -21185,7 +21309,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -21207,7 +21331,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -21228,7 +21352,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _ShortId;
-        partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnShortIdChanged();
         
         [PropertyOrderAttribute(20)]
@@ -21251,7 +21375,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _UseTree;
-        partial void OnUseTreeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseTreeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseTreeChanged();
         
         [PropertyOrderAttribute(21)]
@@ -21274,7 +21398,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _UseSeparateTreeForFolders;
-        partial void OnUseSeparateTreeForFoldersChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseSeparateTreeForFoldersChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseSeparateTreeForFoldersChanged();
         
         [PropertyOrderAttribute(22)]
@@ -21297,7 +21421,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _MaxTreeLevels;
-        partial void OnMaxTreeLevelsChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnMaxTreeLevelsChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnMaxTreeLevelsChanged();
         
         [PropertyOrderAttribute(25)]
@@ -21320,7 +21444,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseCodeProperty;
-        partial void OnUseCodePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseCodePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseCodePropertyChanged();
         
         [PropertyOrderAttribute(26)]
@@ -21344,8 +21468,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private CatalogCodePropertySettings _CodePropertySettings;
-        ICatalogCodePropertySettings ICatalog.CodePropertySettings { get { return (this as Catalog).CodePropertySettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnCodePropertySettingsChanging(ref CatalogCodePropertySettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        ICatalogCodePropertySettings ICatalog.CodePropertySettings { get { return (this as Catalog).CodePropertySettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnCodePropertySettingsChanging(ref CatalogCodePropertySettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnCodePropertySettingsChanged();
         //ICatalogCodePropertySettings ICatalog.CodePropertySettings { get { return this._CodePropertySettings; } }
         
@@ -21369,7 +21493,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseNameProperty;
-        partial void OnUseNamePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseNamePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseNamePropertyChanged();
         
         [PropertyOrderAttribute(28)]
@@ -21392,7 +21516,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _MaxNameLength;
-        partial void OnMaxNameLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnMaxNameLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnMaxNameLengthChanged();
         
         [PropertyOrderAttribute(29)]
@@ -21415,7 +21539,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseDescriptionProperty;
-        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseDescriptionPropertyChanged();
         
         [PropertyOrderAttribute(30)]
@@ -21438,7 +21562,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _MaxDescriptionLength;
-        partial void OnMaxDescriptionLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnMaxDescriptionLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnMaxDescriptionLengthChanged();
         
         [Browsable(false)]
@@ -21459,7 +21583,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexUniqueCodeGuid = string.Empty;
-        partial void OnIndexUniqueCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexUniqueCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexUniqueCodeGuidChanged();
         
         [Browsable(false)]
@@ -21480,7 +21604,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexRefFolderCodeGuid = string.Empty;
-        partial void OnIndexRefFolderCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexRefFolderCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexRefFolderCodeGuidChanged();
         
         [Browsable(false)]
@@ -21501,7 +21625,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexRefTreeParentCodeGuid = string.Empty;
-        partial void OnIndexRefTreeParentCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexRefTreeParentCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexRefTreeParentCodeGuidChanged();
         
         [Browsable(false)]
@@ -21522,7 +21646,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexNotUniqueCodeGuid = string.Empty;
-        partial void OnIndexNotUniqueCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexNotUniqueCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexNotUniqueCodeGuidChanged();
         
         [PropertyOrderAttribute(41)]
@@ -21545,7 +21669,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumCatalogTreeIcon _ItemIconType;
-        partial void OnItemIconTypeChanging(ref EnumCatalogTreeIcon to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnItemIconTypeChanging(ref EnumCatalogTreeIcon to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnItemIconTypeChanged();
         
         [PropertyOrderAttribute(42)]
@@ -21568,7 +21692,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumCatalogTreeIcon _GroupIconType;
-        partial void OnGroupIconTypeChanging(ref EnumCatalogTreeIcon to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGroupIconTypeChanging(ref EnumCatalogTreeIcon to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupIconTypeChanged();
         
         [Browsable(false)]
@@ -21589,7 +21713,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ViewListWideGuid = string.Empty;
-        partial void OnViewListWideGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnViewListWideGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnViewListWideGuidChanged();
         
         [Browsable(false)]
@@ -21610,7 +21734,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ViewListNarrowGuid = string.Empty;
-        partial void OnViewListNarrowGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnViewListNarrowGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnViewListNarrowGuidChanged();
         
         [Browsable(false)]
@@ -21631,7 +21755,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyIdGuid = string.Empty;
-        partial void OnPropertyIdGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyIdGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyIdGuidChanged();
         
         [Browsable(false)]
@@ -21652,7 +21776,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyCodeGuid = string.Empty;
-        partial void OnPropertyCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyCodeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyCodeGuidChanged();
         
         [Browsable(false)]
@@ -21673,7 +21797,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyNameGuid = string.Empty;
-        partial void OnPropertyNameGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyNameGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyNameGuidChanged();
         
         [Browsable(false)]
@@ -21694,7 +21818,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDescriptionGuid = string.Empty;
-        partial void OnPropertyDescriptionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDescriptionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDescriptionGuidChanged();
         
         [Browsable(false)]
@@ -21715,7 +21839,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyIsFolderGuid = string.Empty;
-        partial void OnPropertyIsFolderGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyIsFolderGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyIsFolderGuidChanged();
         
         [Browsable(false)]
@@ -21736,7 +21860,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyRefSelfGuid = string.Empty;
-        partial void OnPropertyRefSelfGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyRefSelfGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyRefSelfGuidChanged();
         
         [Browsable(false)]
@@ -21757,7 +21881,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyRefFolderGuid = string.Empty;
-        partial void OnPropertyRefFolderGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyRefFolderGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyRefFolderGuidChanged();
         
         [Browsable(false)]
@@ -21778,7 +21902,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyVersionGuid = string.Empty;
-        partial void OnPropertyVersionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyVersionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyVersionGuidChanged();
         
         [Category("Auto Layout")]
@@ -21801,7 +21925,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableChanged();
         
         [Category("Auto Layout")]
@@ -21824,7 +21948,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableCustomChanged();
         
         [Category("Auto Layout")]
@@ -21847,7 +21971,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
@@ -21868,8 +21992,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private CatalogFolder _Folder;
-        ICatalogFolder ICatalog.Folder { get { return (this as Catalog).Folder; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnFolderChanging(ref CatalogFolder to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        ICatalogFolder ICatalog.Folder { get { return (this as Catalog).Folder; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnFolderChanging(ref CatalogFolder to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnFolderChanged();
         //ICatalogFolder ICatalog.Folder { get { return this._Folder; } }
         
@@ -21891,8 +22015,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListProperties _GroupProperties;
-        IGroupListProperties ICatalog.GroupProperties { get { return (this as Catalog).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListProperties ICatalog.GroupProperties { get { return (this as Catalog).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupPropertiesChanged();
         //IGroupListProperties ICatalog.GroupProperties { get { return this._GroupProperties; } }
         
@@ -21914,8 +22038,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListDetails _GroupDetails;
-        IGroupListDetails ICatalog.GroupDetails { get { return (this as Catalog).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupDetailsChanging(ref GroupListDetails to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListDetails ICatalog.GroupDetails { get { return (this as Catalog).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupDetailsChanging(ref GroupListDetails to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupDetailsChanged();
         //IGroupListDetails ICatalog.GroupDetails { get { return this._GroupDetails; } }
         
@@ -21937,8 +22061,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListForms _GroupForms;
-        IGroupListForms ICatalog.GroupForms { get { return (this as Catalog).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupFormsChanging(ref GroupListForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListForms ICatalog.GroupForms { get { return (this as Catalog).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupFormsChanging(ref GroupListForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupFormsChanged();
         //IGroupListForms ICatalog.GroupForms { get { return this._GroupForms; } }
         
@@ -21960,8 +22084,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListReports _GroupReports;
-        IGroupListReports ICatalog.GroupReports { get { return (this as Catalog).GroupReports; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupReportsChanging(ref GroupListReports to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListReports ICatalog.GroupReports { get { return (this as Catalog).GroupReports; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupReportsChanging(ref GroupListReports to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupReportsChanged();
         //IGroupListReports ICatalog.GroupReports { get { return this._GroupReports; } }
         
@@ -22327,7 +22451,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -22348,7 +22472,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -22371,7 +22495,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -22393,7 +22517,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(4)]
@@ -22416,7 +22540,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PrefixForDbTables = string.Empty;
-        partial void OnPrefixForDbTablesChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPrefixForDbTablesChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPrefixForDbTablesChanged();
         
         [PropertyOrderAttribute(7)]
@@ -22439,7 +22563,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ShortIdTypeForCacheKey = string.Empty;
-        partial void OnShortIdTypeForCacheKeyChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnShortIdTypeForCacheKeyChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnShortIdTypeForCacheKeyChanged();
         
         [Browsable(false)]
@@ -22503,7 +22627,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(22)]
@@ -22526,7 +22654,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseCodeProperty;
-        partial void OnUseCodePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseCodePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseCodePropertyChanged();
         
         [PropertyOrderAttribute(24)]
@@ -22549,7 +22677,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseNameProperty;
-        partial void OnUseNamePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseNamePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseNamePropertyChanged();
         
         [PropertyOrderAttribute(26)]
@@ -22572,7 +22700,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseDescriptionProperty;
-        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseDescriptionPropertyChanged();
         
         [PropertyOrderAttribute(32)]
@@ -22595,7 +22723,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _UseCodePropertyInSeparateTree;
-        partial void OnUseCodePropertyInSeparateTreeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseCodePropertyInSeparateTreeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseCodePropertyInSeparateTreeChanged();
         
         [PropertyOrderAttribute(34)]
@@ -22618,7 +22746,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _UseNamePropertyInSeparateTree;
-        partial void OnUseNamePropertyInSeparateTreeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseNamePropertyInSeparateTreeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseNamePropertyInSeparateTreeChanged();
         
         [PropertyOrderAttribute(36)]
@@ -22641,7 +22769,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _UseDescriptionPropertyInSeparateTree;
-        partial void OnUseDescriptionPropertyInSeparateTreeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseDescriptionPropertyInSeparateTreeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseDescriptionPropertyInSeparateTreeChanged();
         
         [Category("Auto Layout")]
@@ -22664,7 +22792,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableChanged();
         
         [Category("Auto Layout")]
@@ -22687,7 +22815,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableCustomChanged();
         
         [Category("Auto Layout")]
@@ -22710,7 +22838,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
@@ -23032,7 +23160,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -23053,7 +23181,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -23076,7 +23204,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -23098,7 +23226,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -23162,7 +23290,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -23186,7 +23318,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PrefixForDbTables = string.Empty;
-        partial void OnPrefixForDbTablesChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPrefixForDbTablesChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPrefixForDbTablesChanged();
         
         [PropertyOrderAttribute(15)]
@@ -23209,7 +23341,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ShortIdTypeForCacheKey = string.Empty;
-        partial void OnShortIdTypeForCacheKeyChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnShortIdTypeForCacheKeyChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnShortIdTypeForCacheKeyChanged();
         
         // Guid for document guid property. Auto generated.
@@ -23231,7 +23363,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyRegGuidGuid = string.Empty;
-        partial void OnPropertyRegGuidGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyRegGuidGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyRegGuidGuidChanged();
         
         // Guid for document date guid property. Auto generated.
@@ -23253,7 +23385,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDocDateGuid = string.Empty;
-        partial void OnPropertyDocDateGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDocDateGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDocDateGuidChanged();
         
         // Guid for document date secuence guid property. Auto generated.
@@ -23275,7 +23407,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDocDateSequenceGuid = string.Empty;
-        partial void OnPropertyDocDateSequenceGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDocDateSequenceGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDocDateSequenceGuidChanged();
         
         [Browsable(false)]
@@ -23296,7 +23428,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyVersionGuid = string.Empty;
-        partial void OnPropertyVersionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyVersionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyVersionGuidChanged();
         
         [Browsable(false)]
@@ -23558,7 +23690,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -23579,7 +23711,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -23599,7 +23731,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -23622,7 +23758,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -23644,7 +23780,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -23665,7 +23801,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -23687,7 +23823,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         // <summary>
@@ -23715,7 +23851,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _CatalogGuid = string.Empty;
-        partial void OnCatalogGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnCatalogGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnCatalogGuidChanged();
         
         // Guid for dimension property. Auto generated.
@@ -23737,7 +23873,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDimensionGuid = string.Empty;
-        partial void OnPropertyDimensionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDimensionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDimensionGuidChanged();
         
         // Protobuf field position
@@ -23760,7 +23896,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _Position;
-        partial void OnPositionChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPositionChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPositionChanged();
         
         [Browsable(false)]
@@ -24124,7 +24260,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -24145,7 +24281,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -24168,7 +24304,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -24190,7 +24326,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -24254,7 +24390,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("Auto Layout")]
@@ -24277,7 +24417,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableChanged();
         
         [Category("Auto Layout")]
@@ -24300,7 +24440,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableCustomChanged();
         
         [Category("Auto Layout")]
@@ -24323,7 +24463,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
@@ -24763,7 +24903,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -24784,7 +24924,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -24804,7 +24944,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -24827,7 +24971,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -24849,7 +24993,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         // Last generated Protobuf field position
@@ -24871,7 +25015,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _LastGenPosition;
-        partial void OnLastGenPositionChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnLastGenPositionChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnLastGenPositionChanged();
         
         [Browsable(false)]
@@ -24892,7 +25036,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -24914,7 +25058,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -24935,7 +25079,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _ShortId;
-        partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnShortIdChanged();
         
         [PropertyOrderAttribute(15)]
@@ -24958,7 +25102,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _UseQtyAccumulator;
-        partial void OnUseQtyAccumulatorChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseQtyAccumulatorChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseQtyAccumulatorChanged();
         
         [PropertyOrderAttribute(16)]
@@ -24981,7 +25125,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyQtyAccumulatorName = string.Empty;
-        partial void OnPropertyQtyAccumulatorNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyQtyAccumulatorNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyQtyAccumulatorNameChanged();
         
         [PropertyOrderAttribute(17)]
@@ -25004,7 +25148,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _PropertyQtyAccumulatorLength;
-        partial void OnPropertyQtyAccumulatorLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyQtyAccumulatorLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyQtyAccumulatorLengthChanged();
         
         [PropertyOrderAttribute(18)]
@@ -25027,7 +25171,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _PropertyQtyAccumulatorAccuracy;
-        partial void OnPropertyQtyAccumulatorAccuracyChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyQtyAccumulatorAccuracyChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyQtyAccumulatorAccuracyChanged();
         
         [Browsable(false)]
@@ -25048,7 +25192,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyQtyAccumulatorGuid = string.Empty;
-        partial void OnPropertyQtyAccumulatorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyQtyAccumulatorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyQtyAccumulatorGuidChanged();
         
         [PropertyOrderAttribute(21)]
@@ -25071,7 +25215,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _UseMoneyAccumulator;
-        partial void OnUseMoneyAccumulatorChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseMoneyAccumulatorChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseMoneyAccumulatorChanged();
         
         [PropertyOrderAttribute(22)]
@@ -25094,7 +25238,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyMoneyAccumulatorName = string.Empty;
-        partial void OnPropertyMoneyAccumulatorNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyMoneyAccumulatorNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyMoneyAccumulatorNameChanged();
         
         [PropertyOrderAttribute(23)]
@@ -25117,7 +25261,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _PropertyMoneyAccumulatorLength;
-        partial void OnPropertyMoneyAccumulatorLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyMoneyAccumulatorLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyMoneyAccumulatorLengthChanged();
         
         [PropertyOrderAttribute(24)]
@@ -25140,7 +25284,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _PropertyMoneyAccumulatorAccuracy;
-        partial void OnPropertyMoneyAccumulatorAccuracyChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyMoneyAccumulatorAccuracyChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyMoneyAccumulatorAccuracyChanged();
         
         // 
@@ -25165,7 +25309,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyMoneyAccumulatorGuid = string.Empty;
-        partial void OnPropertyMoneyAccumulatorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyMoneyAccumulatorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyMoneyAccumulatorGuidChanged();
         
         [Browsable(false)]
@@ -25186,8 +25330,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListDimensions _GroupRegisterDimensions;
-        IGroupListDimensions IRegister.GroupRegisterDimensions { get { return (this as Register).GroupRegisterDimensions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupRegisterDimensionsChanging(ref GroupListDimensions to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListDimensions IRegister.GroupRegisterDimensions { get { return (this as Register).GroupRegisterDimensions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupRegisterDimensionsChanging(ref GroupListDimensions to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupRegisterDimensionsChanged();
         //IGroupListDimensions IRegister.GroupRegisterDimensions { get { return this._GroupRegisterDimensions; } }
         
@@ -25209,8 +25353,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListProperties _GroupAttachedProperties;
-        IGroupListProperties IRegister.GroupAttachedProperties { get { return (this as Register).GroupAttachedProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupAttachedPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListProperties IRegister.GroupAttachedProperties { get { return (this as Register).GroupAttachedProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupAttachedPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupAttachedPropertiesChanged();
         //IGroupListProperties IRegister.GroupAttachedProperties { get { return this._GroupAttachedProperties; } }
         
@@ -25233,7 +25377,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDocRefGuidName = string.Empty;
-        partial void OnPropertyDocRefGuidNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDocRefGuidNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDocRefGuidNameChanged();
         
         [DisplayName("Doc Ref property")]
@@ -25255,7 +25399,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDocRefName = string.Empty;
-        partial void OnPropertyDocRefNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDocRefNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDocRefNameChanged();
         
         // <summary>
@@ -25301,7 +25445,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDocRefGuid = string.Empty;
-        partial void OnPropertyDocRefGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDocRefGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDocRefGuidChanged();
         
         // Guid for document guid property. Auto generated.
@@ -25323,7 +25467,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDocGuidGuid = string.Empty;
-        partial void OnPropertyDocGuidGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDocGuidGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDocGuidGuidChanged();
         
         // Guid for document date guid property. Auto generated.
@@ -25345,7 +25489,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDocDateGuid = string.Empty;
-        partial void OnPropertyDocDateGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDocDateGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDocDateGuidChanged();
         
         // Guid for index of document date, dimensions. Auto generated.
@@ -25367,7 +25511,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexDocDateDimensionsGuid = string.Empty;
-        partial void OnIndexDocDateDimensionsGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexDocDateDimensionsGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexDocDateDimensionsGuidChanged();
         
         // Guid for document number guid property. Auto generated.
@@ -25389,7 +25533,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDocNumberGuid = string.Empty;
-        partial void OnPropertyDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDocNumberGuidChanged();
         
         // Guid for index of document Id and type. Auto generated.
@@ -25411,7 +25555,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexDocIdTypeGuid = string.Empty;
-        partial void OnIndexDocIdTypeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexDocIdTypeGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexDocIdTypeGuidChanged();
         
         [Browsable(false)]
@@ -25432,7 +25576,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyVersionGuid = string.Empty;
-        partial void OnPropertyVersionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyVersionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyVersionGuidChanged();
         
         // Mapping register properties to document properties
@@ -25635,7 +25779,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         // Document GUID
@@ -25653,7 +25797,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _DocGuid = string.Empty;
-        partial void OnDocGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDocGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDocGuidChanged();
         
         // Mappings
@@ -25764,7 +25908,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         // Register property GUID
@@ -25782,7 +25926,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _RegPropGuid = string.Empty;
-        partial void OnRegPropGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnRegPropGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnRegPropGuidChanged();
         
         // Document property GUID
@@ -25800,7 +25944,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _DocPropGuid = string.Empty;
-        partial void OnDocPropGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDocPropGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDocPropGuidChanged();
         #endregion Properties
     }
@@ -26049,7 +26193,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -26070,7 +26214,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -26090,7 +26234,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -26113,7 +26261,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -26135,7 +26283,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Category("")]
@@ -26159,7 +26307,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PrefixForDbTables = string.Empty;
-        partial void OnPrefixForDbTablesChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPrefixForDbTablesChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPrefixForDbTablesChanged();
         
         [Browsable(false)]
@@ -26181,8 +26329,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListProperties _GroupSharedProperties;
-        IGroupListProperties IGroupDocuments.GroupSharedProperties { get { return (this as GroupDocuments).GroupSharedProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupSharedPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListProperties IGroupDocuments.GroupSharedProperties { get { return (this as GroupDocuments).GroupSharedProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupSharedPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupSharedPropertiesChanged();
         //IGroupListProperties IGroupDocuments.GroupSharedProperties { get { return this._GroupSharedProperties; } }
         
@@ -26204,8 +26352,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListDocuments _GroupListDocuments;
-        IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return (this as GroupDocuments).GroupListDocuments; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupListDocumentsChanging(ref GroupListDocuments to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return (this as GroupDocuments).GroupListDocuments; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupListDocumentsChanging(ref GroupListDocuments to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupListDocumentsChanged();
         //IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return this._GroupListDocuments; } }
         
@@ -26230,7 +26378,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseDocCodeProperty;
-        partial void OnUseDocCodePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseDocCodePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseDocCodePropertyChanged();
         
         [Category("")]
@@ -26255,7 +26403,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private Google.Protobuf.WellKnownTypes.Timestamp _MondayBeforeFirstDocDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.MinValue.AddDays(1).ToUniversalTime());
-        partial void OnMondayBeforeFirstDocDateChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnMondayBeforeFirstDocDateChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnMondayBeforeFirstDocDateChanged();
         //IGoogle.Protobuf.WellKnownTypes.Timestamp IGroupDocuments.MondayBeforeFirstDocDate { get { return this._MondayBeforeFirstDocDate; } }
         
@@ -26280,7 +26428,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseDocDateProperty;
-        partial void OnUseDocDatePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseDocDatePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseDocDatePropertyChanged();
         
         [Category("Auto Layout")]
@@ -26303,7 +26451,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableChanged();
         
         [Category("Auto Layout")]
@@ -26326,7 +26474,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableCustomChanged();
         
         [Category("Auto Layout")]
@@ -26349,7 +26497,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
@@ -26535,7 +26683,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumCodeType _SequenceType;
-        partial void OnSequenceTypeChanging(ref EnumCodeType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnSequenceTypeChanging(ref EnumCodeType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSequenceTypeChanged();
         
         [PropertyOrderAttribute(2)]
@@ -26558,7 +26706,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _MaxSequenceLength;
-        partial void OnMaxSequenceLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnMaxSequenceLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnMaxSequenceLengthChanged();
         
         [PropertyOrderAttribute(3)]
@@ -26581,7 +26729,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Prefix = string.Empty;
-        partial void OnPrefixChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPrefixChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPrefixChanged();
         
         [PropertyOrderAttribute(0)]
@@ -26605,7 +26753,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _SequenceGuid = string.Empty;
-        partial void OnSequenceGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnSequenceGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSequenceGuidChanged();
         
         [PropertyOrderAttribute(7)]
@@ -26628,7 +26776,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumDocNumberUniqueScope _ScopeOfUnique;
-        partial void OnScopeOfUniqueChanging(ref EnumDocNumberUniqueScope to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnScopeOfUniqueChanging(ref EnumDocNumberUniqueScope to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnScopeOfUniqueChanged();
         
         [PropertyOrderAttribute(9)]
@@ -26651,7 +26799,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumMonths _ScopePeriodStartMonth;
-        partial void OnScopePeriodStartMonthChanging(ref EnumMonths to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnScopePeriodStartMonthChanging(ref EnumMonths to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnScopePeriodStartMonthChanged();
         
         [PropertyOrderAttribute(10)]
@@ -26674,7 +26822,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint _ScopePeriodStartMonthDay;
-        partial void OnScopePeriodStartMonthDayChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnScopePeriodStartMonthDayChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnScopePeriodStartMonthDayChanged();
     /*
         [Browsable(false)]
@@ -27078,7 +27226,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -27099,7 +27247,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -27119,7 +27267,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -27142,7 +27294,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -27164,7 +27316,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -27185,7 +27337,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -27207,7 +27359,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -27228,8 +27380,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListProperties _GroupProperties;
-        IGroupListProperties IDocument.GroupProperties { get { return (this as Document).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListProperties IDocument.GroupProperties { get { return (this as Document).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupPropertiesChanged();
         //IGroupListProperties IDocument.GroupProperties { get { return this._GroupProperties; } }
         
@@ -27251,8 +27403,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListDetails _GroupDetails;
-        IGroupListDetails IDocument.GroupDetails { get { return (this as Document).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupDetailsChanging(ref GroupListDetails to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListDetails IDocument.GroupDetails { get { return (this as Document).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupDetailsChanging(ref GroupListDetails to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupDetailsChanged();
         //IGroupListDetails IDocument.GroupDetails { get { return this._GroupDetails; } }
         
@@ -27274,8 +27426,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListForms _GroupForms;
-        IGroupListForms IDocument.GroupForms { get { return (this as Document).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupFormsChanging(ref GroupListForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListForms IDocument.GroupForms { get { return (this as Document).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupFormsChanging(ref GroupListForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupFormsChanged();
         //IGroupListForms IDocument.GroupForms { get { return this._GroupForms; } }
         
@@ -27297,8 +27449,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private GroupListReports _GroupReports;
-        IGroupListReports IDocument.GroupReports { get { return (this as Document).GroupReports; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGroupReportsChanging(ref GroupListReports to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IGroupListReports IDocument.GroupReports { get { return (this as Document).GroupReports; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGroupReportsChanging(ref GroupListReports to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupReportsChanged();
         //IGroupListReports IDocument.GroupReports { get { return this._GroupReports; } }
         
@@ -27320,7 +27472,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private int _ShortId;
-        partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnShortIdChanged();
         
         [PropertyOrderAttribute(21)]
@@ -27343,7 +27495,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseDocNumberProperty;
-        partial void OnUseDocNumberPropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseDocNumberPropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseDocNumberPropertyChanged();
         
         [PropertyOrderAttribute(22)]
@@ -27367,8 +27519,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private DocumentNumberPropertySettings _DocNumberPropertySettings;
-        IDocumentNumberPropertySettings IDocument.DocNumberPropertySettings { get { return (this as Document).DocNumberPropertySettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnDocNumberPropertySettingsChanging(ref DocumentNumberPropertySettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IDocumentNumberPropertySettings IDocument.DocNumberPropertySettings { get { return (this as Document).DocNumberPropertySettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnDocNumberPropertySettingsChanging(ref DocumentNumberPropertySettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDocNumberPropertySettingsChanged();
         //IDocumentNumberPropertySettings IDocument.DocNumberPropertySettings { get { return this._DocNumberPropertySettings; } }
         
@@ -27392,7 +27544,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _UseDocDateProperty;
-        partial void OnUseDocDatePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnUseDocDatePropertyChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnUseDocDatePropertyChanged();
         
         // unique index of special field YEAR and DocNumber
@@ -27415,7 +27567,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexYearDocNumberGuid = string.Empty;
-        partial void OnIndexYearDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexYearDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexYearDocNumberGuidChanged();
         
         // unique index of special field QUATER and DocNumber
@@ -27438,7 +27590,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexQuaterDocNumberGuid = string.Empty;
-        partial void OnIndexQuaterDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexQuaterDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexQuaterDocNumberGuidChanged();
         
         // unique index of special field MONTH and DocNumber
@@ -27461,7 +27613,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexMonthDocNumberGuid = string.Empty;
-        partial void OnIndexMonthDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexMonthDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexMonthDocNumberGuidChanged();
         
         // unique index of special field WEEK and DocNumber
@@ -27484,7 +27636,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexWeekDocNumberGuid = string.Empty;
-        partial void OnIndexWeekDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexWeekDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexWeekDocNumberGuidChanged();
         
         // unique index of special field Day and DocNumber
@@ -27507,7 +27659,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexDayDocNumberGuid = string.Empty;
-        partial void OnIndexDayDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexDayDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexDayDocNumberGuidChanged();
         
         [Browsable(false)]
@@ -27528,7 +27680,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexUniqueDocNumberGuid = string.Empty;
-        partial void OnIndexUniqueDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexUniqueDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexUniqueDocNumberGuidChanged();
         
         [Browsable(false)]
@@ -27549,7 +27701,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _IndexNotUniqueDocNumberGuid = string.Empty;
-        partial void OnIndexNotUniqueDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIndexNotUniqueDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIndexNotUniqueDocNumberGuidChanged();
         
         [Browsable(false)]
@@ -27570,7 +27722,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyIdGuid = string.Empty;
-        partial void OnPropertyIdGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyIdGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyIdGuidChanged();
         
         [Browsable(false)]
@@ -27591,7 +27743,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDocNumberGuid = string.Empty;
-        partial void OnPropertyDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDocNumberGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDocNumberGuidChanged();
         
         [Browsable(false)]
@@ -27612,7 +27764,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyDocDateGuid = string.Empty;
-        partial void OnPropertyDocDateGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyDocDateGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyDocDateGuidChanged();
         
         [Browsable(false)]
@@ -27633,7 +27785,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _PropertyVersionGuid = string.Empty;
-        partial void OnPropertyVersionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnPropertyVersionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnPropertyVersionGuidChanged();
         
         [Category("Auto Layout")]
@@ -27656,7 +27808,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableChanged();
         
         [Category("Auto Layout")]
@@ -27679,7 +27831,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableCustomChanged();
         
         [Category("Auto Layout")]
@@ -27702,7 +27854,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
@@ -28079,7 +28231,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -28100,7 +28252,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -28123,7 +28275,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -28145,7 +28297,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(6)]
@@ -28168,7 +28320,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _ShortIdTypeForCacheKey = string.Empty;
-        partial void OnShortIdTypeForCacheKeyChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnShortIdTypeForCacheKeyChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnShortIdTypeForCacheKeyChanged();
         
         [Browsable(false)]
@@ -28232,7 +28384,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -28566,7 +28722,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -28587,7 +28743,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -28610,7 +28766,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -28632,7 +28788,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         // repeated proto_property list_shared_properties = 6;
@@ -28697,7 +28853,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("Auto Layout")]
@@ -28720,7 +28880,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableChanged();
         
         [Category("Auto Layout")]
@@ -28743,7 +28903,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableCustomChanged();
         
         [Category("Auto Layout")]
@@ -28766,7 +28926,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
@@ -29136,7 +29296,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -29157,7 +29317,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -29177,7 +29337,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -29200,7 +29364,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -29222,7 +29386,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         // repeated proto_group_properties list_properties = 6;
@@ -29265,7 +29429,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -29287,7 +29451,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Category("Auto Layout")]
@@ -29310,7 +29474,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableChanged();
         
         [Category("Auto Layout")]
@@ -29333,7 +29497,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridSortableCustomChanged();
         
         [Category("Auto Layout")]
@@ -29356,7 +29520,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
@@ -29556,7 +29720,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         public ObservableCollectionWithActions<string> ListPropertyGuids // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:9
@@ -29834,7 +29998,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -29855,7 +30019,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -29878,7 +30042,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -29900,7 +30064,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         // repeated proto_property list_shared_properties = 6;
@@ -29965,7 +30129,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -30294,7 +30462,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -30315,7 +30483,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -30335,7 +30503,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -30358,7 +30530,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -30380,7 +30552,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -30401,7 +30573,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -30423,7 +30595,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Category("List form")]
@@ -30447,7 +30619,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsUseCode;
-        partial void OnIsUseCodeChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsUseCodeChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsUseCodeChanged();
         
         [Category("List form")]
@@ -30471,7 +30643,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsUseName;
-        partial void OnIsUseNameChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsUseNameChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsUseNameChanged();
         
         [Category("List form")]
@@ -30495,7 +30667,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsUseDesc;
-        partial void OnIsUseDescChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsUseDescChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsUseDescChanged();
         
         [Category("List form")]
@@ -30519,7 +30691,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsUseFolderCode;
-        partial void OnIsUseFolderCodeChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsUseFolderCodeChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsUseFolderCodeChanged();
         
         [Category("List form")]
@@ -30543,7 +30715,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsUseFolderName;
-        partial void OnIsUseFolderNameChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsUseFolderNameChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsUseFolderNameChanged();
         
         [Category("List form")]
@@ -30567,7 +30739,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsUseFolderDesc;
-        partial void OnIsUseFolderDescChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsUseFolderDescChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsUseFolderDescChanged();
         
         [Category("List form")]
@@ -30591,7 +30763,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumUseType _IsUseDocDate;
-        partial void OnIsUseDocDateChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsUseDocDateChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsUseDocDateChanged();
         
         [Category("Edit form")]
@@ -30615,7 +30787,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsDummy;
-        partial void OnIsDummyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsDummyChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsDummyChanged();
         
         [Category("")]
@@ -30639,7 +30811,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private FormType _EnumFormType;
-        partial void OnEnumFormTypeChanging(ref FormType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnEnumFormTypeChanging(ref FormType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnEnumFormTypeChanged();
         
         [Browsable(false)]
@@ -30660,8 +30832,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private FormGridSystem _GridSystem;
-        IFormGridSystem IForm.GridSystem { get { return (this as Form).GridSystem; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGridSystemChanging(ref FormGridSystem to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IFormGridSystem IForm.GridSystem { get { return (this as Form).GridSystem; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGridSystemChanging(ref FormGridSystem to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGridSystemChanged();
         //IFormGridSystem IForm.GridSystem { get { return this._GridSystem; } }
         
@@ -31028,7 +31200,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -31050,7 +31222,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -31073,7 +31245,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -31097,7 +31269,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -31117,7 +31289,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -31138,7 +31314,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -31160,7 +31336,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -31511,7 +31687,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -31533,7 +31709,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -31556,7 +31732,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -31580,7 +31756,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -31600,7 +31776,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -31621,7 +31801,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -31643,7 +31823,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -31956,7 +32136,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -31978,7 +32158,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -32001,7 +32181,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -32025,7 +32205,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [DisplayName("When Hide")]
@@ -32047,7 +32227,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private EnumHiddenType _HideType;
-        partial void OnHideTypeChanging(ref EnumHiddenType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnHideTypeChanging(ref EnumHiddenType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnHideTypeChanged();
         
         [DisplayName("XS")]
@@ -32069,7 +32249,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint? _WidthXs;
-        partial void OnWidthXsChanging(ref uint? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnWidthXsChanging(ref uint? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnWidthXsChanged();
         
         [DisplayName("SM")]
@@ -32091,7 +32271,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint? _WidthSm;
-        partial void OnWidthSmChanging(ref uint? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnWidthSmChanging(ref uint? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnWidthSmChanged();
         
         [DisplayName("MD")]
@@ -32113,7 +32293,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint? _WidthMd;
-        partial void OnWidthMdChanging(ref uint? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnWidthMdChanging(ref uint? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnWidthMdChanged();
         
         [DisplayName("LG")]
@@ -32135,7 +32315,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint? _WidthLg;
-        partial void OnWidthLgChanging(ref uint? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnWidthLgChanging(ref uint? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnWidthLgChanged();
         
         [DisplayName("XL")]
@@ -32157,7 +32337,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint? _WidthXl;
-        partial void OnWidthXlChanging(ref uint? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnWidthXlChanging(ref uint? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnWidthXlChanged();
         
         [DisplayName("XX")]
@@ -32179,7 +32359,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private uint? _WidthXx;
-        partial void OnWidthXxChanging(ref uint? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnWidthXxChanging(ref uint? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnWidthXxChanged();
         
         [Browsable(false)]
@@ -32199,7 +32379,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -32220,7 +32404,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -32242,7 +32426,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -32263,8 +32447,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private FormAutoLayoutBlock _FormBlock;
-        IFormAutoLayoutBlock IFormGridSystemColumn.FormBlock { get { return (this as FormGridSystemColumn).FormBlock; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnFormBlockChanging(ref FormAutoLayoutBlock to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IFormAutoLayoutBlock IFormGridSystemColumn.FormBlock { get { return (this as FormGridSystemColumn).FormBlock; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnFormBlockChanging(ref FormAutoLayoutBlock to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnFormBlockChanged();
         //IFormAutoLayoutBlock IFormGridSystemColumn.FormBlock { get { return this._FormBlock; } }
         
@@ -32579,7 +32763,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -32601,7 +32785,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -32624,7 +32808,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -32648,7 +32832,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -32668,7 +32852,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -32689,7 +32877,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -32711,7 +32899,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -33051,7 +33239,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -33073,7 +33261,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -33096,7 +33284,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -33120,7 +33308,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -33140,7 +33328,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -33161,7 +33353,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -33183,7 +33375,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         public FormTabControl TabControl // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -33203,8 +33395,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private FormTabControl _TabControl;
-        IFormTabControl IFormAutoLayoutSubBlock.TabControl { get { return (this as FormAutoLayoutSubBlock).TabControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnTabControlChanging(ref FormTabControl to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IFormTabControl IFormAutoLayoutSubBlock.TabControl { get { return (this as FormAutoLayoutSubBlock).TabControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnTabControlChanging(ref FormTabControl to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnTabControlChanged();
         //IFormTabControl IFormAutoLayoutSubBlock.TabControl { get { return this._TabControl; } }
         
@@ -33225,8 +33417,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private FormDataGrid _DataGridControl;
-        IFormDataGrid IFormAutoLayoutSubBlock.DataGridControl { get { return (this as FormAutoLayoutSubBlock).DataGridControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnDataGridControlChanging(ref FormDataGrid to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IFormDataGrid IFormAutoLayoutSubBlock.DataGridControl { get { return (this as FormAutoLayoutSubBlock).DataGridControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnDataGridControlChanging(ref FormDataGrid to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDataGridControlChanged();
         //IFormDataGrid IFormAutoLayoutSubBlock.DataGridControl { get { return this._DataGridControl; } }
         
@@ -33247,8 +33439,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private FormAutoLayoutBlock _AutoLayoutBlockControl;
-        IFormAutoLayoutBlock IFormAutoLayoutSubBlock.AutoLayoutBlockControl { get { return (this as FormAutoLayoutSubBlock).AutoLayoutBlockControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnAutoLayoutBlockControlChanging(ref FormAutoLayoutBlock to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IFormAutoLayoutBlock IFormAutoLayoutSubBlock.AutoLayoutBlockControl { get { return (this as FormAutoLayoutSubBlock).AutoLayoutBlockControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnAutoLayoutBlockControlChanging(ref FormAutoLayoutBlock to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnAutoLayoutBlockControlChanged();
         //IFormAutoLayoutBlock IFormAutoLayoutSubBlock.AutoLayoutBlockControl { get { return this._AutoLayoutBlockControl; } }
         
@@ -33269,8 +33461,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private FormField _FieldControl;
-        IFormField IFormAutoLayoutSubBlock.FieldControl { get { return (this as FormAutoLayoutSubBlock).FieldControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnFieldControlChanging(ref FormField to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IFormField IFormAutoLayoutSubBlock.FieldControl { get { return (this as FormAutoLayoutSubBlock).FieldControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnFieldControlChanging(ref FormField to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnFieldControlChanged();
         //IFormField IFormAutoLayoutSubBlock.FieldControl { get { return this._FieldControl; } }
         
@@ -33291,8 +33483,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private FormGridSystem _GridSystemControl;
-        IFormGridSystem IFormAutoLayoutSubBlock.GridSystemControl { get { return (this as FormAutoLayoutSubBlock).GridSystemControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnGridSystemControlChanging(ref FormGridSystem to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IFormGridSystem IFormAutoLayoutSubBlock.GridSystemControl { get { return (this as FormAutoLayoutSubBlock).GridSystemControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnGridSystemControlChanging(ref FormGridSystem to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGridSystemControlChanged();
         //IFormGridSystem IFormAutoLayoutSubBlock.GridSystemControl { get { return this._GridSystemControl; } }
         
@@ -33313,8 +33505,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private FormTree _TreeControl;
-        IFormTree IFormAutoLayoutSubBlock.TreeControl { get { return (this as FormAutoLayoutSubBlock).TreeControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnTreeControlChanging(ref FormTree to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IFormTree IFormAutoLayoutSubBlock.TreeControl { get { return (this as FormAutoLayoutSubBlock).TreeControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnTreeControlChanging(ref FormTree to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnTreeControlChanged();
         //IFormTree IFormAutoLayoutSubBlock.TreeControl { get { return this._TreeControl; } }
         
@@ -33567,7 +33759,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -33589,7 +33781,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -33612,7 +33804,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -33636,7 +33828,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -33656,7 +33848,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -33677,7 +33873,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -33699,7 +33895,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -33978,7 +34174,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -34000,7 +34196,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -34023,7 +34219,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -34047,7 +34243,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -34067,7 +34263,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -34088,7 +34288,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -34110,7 +34310,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -34152,8 +34352,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private FormAutoLayoutBlock _FormBlock;
-        IFormAutoLayoutBlock IFormTabControlTab.FormBlock { get { return (this as FormTabControlTab).FormBlock; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:82
-        partial void OnFormBlockChanging(ref FormAutoLayoutBlock to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        IFormAutoLayoutBlock IFormTabControlTab.FormBlock { get { return (this as FormTabControlTab).FormBlock; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:88
+        partial void OnFormBlockChanging(ref FormAutoLayoutBlock to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnFormBlockChanged();
         //IFormAutoLayoutBlock IFormTabControlTab.FormBlock { get { return this._FormBlock; } }
         
@@ -34478,7 +34678,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -34500,7 +34700,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -34523,7 +34723,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -34547,7 +34747,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -34567,7 +34767,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -34588,7 +34792,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -34610,7 +34814,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -34920,7 +35124,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -34942,7 +35146,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -34965,7 +35169,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -34989,7 +35193,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -35009,7 +35213,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -35030,7 +35238,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -35052,7 +35260,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -35341,7 +35549,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -35363,7 +35571,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -35386,7 +35594,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -35410,7 +35618,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -35430,7 +35638,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -35451,7 +35663,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -35473,7 +35685,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         [Browsable(false)]
@@ -35797,7 +36009,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -35818,7 +36030,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Category("")]
@@ -35841,7 +36053,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -35863,7 +36075,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         // repeated proto_property list_shared_properties = 6;
@@ -35928,7 +36140,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Browsable(false)]
@@ -36178,7 +36394,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         [Category("")]
@@ -36199,7 +36415,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         [Browsable(false)]
@@ -36219,7 +36435,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnSortingValueChanged();
         
         [Category("")]
@@ -36242,7 +36462,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameUiChanged();
         
         [Category("")]
@@ -36264,7 +36484,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnDescriptionChanged();
         
         [Browsable(false)]
@@ -36285,7 +36505,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
@@ -36307,7 +36527,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsMarkedForDeletionChanged();
         
         // repeated proto_group_properties list_properties = 6;
@@ -36450,7 +36670,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _GroupName = string.Empty;
-        partial void OnGroupNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGroupNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGroupNameChanged();
         
         public string Name // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -36468,7 +36688,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Name = string.Empty;
-        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnNameChanged();
         
         public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -36486,7 +36706,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnGuidChanged();
         
         public bool IsIncluded // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
@@ -36504,7 +36724,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
         }
         private bool _IsIncluded;
-        partial void OnIsIncludedChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:84
+        partial void OnIsIncludedChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
         partial void OnIsIncludedChanged();
         #endregion Properties
     }

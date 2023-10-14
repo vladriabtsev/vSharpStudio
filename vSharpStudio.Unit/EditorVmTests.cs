@@ -115,6 +115,10 @@ namespace vSharpStudio.Unit
                     }
                 }
             }
+            public void SetSortingValueField(ulong sortValue)
+            {
+                this._SortingValue = sortValue;
+            }
         }
 
         [TestMethod]

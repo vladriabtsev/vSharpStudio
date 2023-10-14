@@ -79,8 +79,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.Children.Count > 0)
                 return;
-            VmBindable.IsNotifyingStatic = false;
-            VmBindable.IsNotifyingStatic = true;
         }
         public void OnAdded()
         {

@@ -63,7 +63,7 @@ namespace ViewModelBase
         {
             get
             {
-                switch(SeverityWeight)
+                switch (SeverityWeight)
                 {
                     case SeverityWeight.VeryHigh:
                         return "!!";
@@ -97,6 +97,10 @@ namespace ViewModelBase
             if (other == null)
                 return -1;
             return this.SortingValue.CompareTo(other.SortingValue);
+        }
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this.SortingValue = sortValue;
         }
     }
 }

@@ -20,6 +20,11 @@ namespace ViewModelBase
     {
         ulong _SortingNameValue { get; }
         ulong SortingValue { get; set; }
+        /// <summary>
+        /// Set sorting value field without changing IsChanged
+        /// </summary>
+        /// <param name="sortValue"></param>
+        void SetSortingValueField(ulong sortValue);
         ulong SortingWeight { get; set; }
     }
     public enum SortDirection { Ascending, Descending }
@@ -250,7 +255,8 @@ namespace ViewModelBase
             {
                 Guard.IsLessThan(sortingWeight, VmBindable.MaxSortingWeight);
                 item.SortingWeight = sortingWeight << (64 - VmBindable.MaxSortingWeightShift);
-                item.SortingValue = item._SortingNameValue + item.SortingWeight;
+                //item.SortingValue = item._SortingNameValue + item.SortingWeight;
+                item.SetSortingValueField(item._SortingNameValue + item.SortingWeight);
             }
             base.Add(item);
             InternalSort();

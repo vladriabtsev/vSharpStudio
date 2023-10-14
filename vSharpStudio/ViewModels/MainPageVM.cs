@@ -50,7 +50,6 @@ namespace vSharpStudio.ViewModels
         public static bool NotSaveUserSettings = false;
         public static MainPageVM Create(bool isLoadConfig, string? pluginsFolderPath = null, string? configFile = null)
         {
-            VmBindable.IsNotifyingStatic = false;
             MainPageVM vm = new MainPageVM(isLoadConfig, configFile);
             vm.Compose(pluginsFolderPath);
             vm.OnFormLoaded();
@@ -58,7 +57,6 @@ namespace vSharpStudio.ViewModels
             {
                 vm._Config = new Config(true);
             }
-            VmBindable.IsNotifyingStatic = true;
             return vm;
         }
         private readonly ILogger? _logger;

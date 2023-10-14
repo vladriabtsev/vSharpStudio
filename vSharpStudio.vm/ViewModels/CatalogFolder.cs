@@ -71,13 +71,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.Children.Count > 0)
                 return;
-            VmBindable.IsNotifyingStatic = false;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             children.Add(this.GroupProperties, 2);
             children.Add(this.GroupDetails, 3);
             children.Add(this.GroupForms, 4);
             children.Add(this.GroupReports, 5);
-            VmBindable.IsNotifyingStatic = true;
         }
         public void OnAdded()
         {

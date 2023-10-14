@@ -75,6 +75,12 @@ public <#= field.ToTypeCs() #> <#=FieldName#> // <#=t4.FilePos() #>
         }
     }
 }
+<#   if (FieldName == "SortingValue") {#>
+public void SetSortingValueField(ulong sortValue)
+{
+    this._SortingValue = sortValue;
+}
+<#   } #>
 <# if (IsNotSkip) { #>
 private <#= field.ToTypeCs() #> _<#=FieldName#><#=field.ToSetDefaultCs()#>;
 <# } #>

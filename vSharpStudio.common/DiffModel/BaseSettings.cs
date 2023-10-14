@@ -23,8 +23,6 @@ namespace vSharpStudio.common
         }
         protected override void OnIsChangedChanged()
         {
-            if (!VmBindable.IsNotifyingStatic)
-                return;
             Debug.Assert(this.Parent != null);
             if (this.Parent is IEditableNodeGroup pp)
             {
@@ -51,8 +49,6 @@ namespace vSharpStudio.common
         }
         protected override void OnIsChangedChanged()
         {
-            if (!VmBindable.IsNotifyingStatic)
-                return;
             Debug.Assert(this.Parent != null);
             //if (this.Parent is IEditableNodeGroup pp)
             //{

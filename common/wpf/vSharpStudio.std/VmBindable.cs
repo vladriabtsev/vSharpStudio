@@ -49,32 +49,10 @@ namespace ViewModelBase
         public static ushort MaxSortingWeightShift = 4;
         public static ushort MaxSortingWeight = (ushort)(ulong.MaxValue - (ulong.MaxValue << MaxSortingWeightShift));
         public static ulong SortingWeightBase = ((ulong)1) << (64 - MaxSortingWeightShift);
-        //[Browsable(false)]
-        //public bool IsNotifying
-        //{
-        //    get { return isNotifying; }
-        //    set { isNotifying = value; }
-        //}
-        //private bool isNotifying = true;
-        public static bool IsNotifyingStatic = true;
         [Browsable(false)]
         public bool IsValidate { get; set; }
         public static bool IsValidateAll = true;
 
-        //[BrowsableAttribute(false)]
-        //public bool IsBusy
-        //{
-        //    get { return _isBusy; }
-        //    set { if (SetProperty<bool>(ref _isBusy, value)) { this.IsNotBusy = !this.IsBusy; this.IsBusyChanged(); } }
-        //}
-        //private bool _isBusy;
-        //[BrowsableAttribute(false)]
-        //public bool IsNotBusy
-        //{
-        //    get { return _isNotBusy; }
-        //    set { if (SetProperty<bool>(ref _isNotBusy, value)) { this.IsBusyChanged(); } }
-        //}
-        //private bool _isNotBusy = true;
         protected virtual void IsBusyChanged() { }
 
         #region Dispatcher Methods
@@ -282,9 +260,7 @@ namespace ViewModelBase
         protected void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             Debug.Assert(propertyName != null);
-            if (!VmBindable.IsNotifyingStatic)
-                return;
-            //if (!IsNotifying)
+            //if (!VmBindable.IsNotifyingStatic)
             //    return;
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

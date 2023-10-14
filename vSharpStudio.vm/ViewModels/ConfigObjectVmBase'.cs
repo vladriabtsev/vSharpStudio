@@ -22,6 +22,7 @@ namespace vSharpStudio.vm.ViewModels
             : base(parent, validator)
         {
         }
+
         //public object NodeIcon
         //{
         //    get

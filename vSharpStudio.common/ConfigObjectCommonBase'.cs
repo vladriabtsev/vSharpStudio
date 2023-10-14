@@ -838,8 +838,6 @@
         {
             if (IEditableNodeGroup.IsChangedNotPropagate)
                 return;
-            if (!VmBindable.IsNotifyingStatic)
-                return;
             this.CheckChildrenIsOrHasChanged();
             this.CheckChildrenIsOrHasNew();
             this.CheckChildrenIsOrHasMarkedForDeletion();
@@ -883,8 +881,6 @@
         }
         public void CheckChildrenIsOrHasChanged()
         {
-            if (!VmBindable.IsNotifyingStatic)
-                return;
             if (this is IEditableNodeGroup pp)
             {
                 bool isHasChanged = false;
@@ -927,8 +923,6 @@
         }
         public void CheckChildrenIsOrHasNew()
         {
-            if (!VmBindable.IsNotifyingStatic)
-                return;
             if (this is IEditableNodeGroup pp)
             {
                 bool isHasNew = false;
@@ -960,8 +954,6 @@
         }
         public void CheckChildrenIsOrHasMarkedForDeletion()
         {
-            if (!VmBindable.IsNotifyingStatic)
-                return;
             if (this is IEditableNodeGroup pp)
             {
                 bool isHasMarked = false;
@@ -999,20 +991,14 @@
         {
             if (IEditableNodeGroup.IsChangedNotPropagate)
                 return;
-            if (!VmBindable.IsNotifyingStatic)
-                return;
             this.CheckChildrenIsOrHasChanged();
         }
         protected void OnNodeIsNewChanged()
         {
-            if (!VmBindable.IsNotifyingStatic)
-                return;
             this.CheckChildrenIsOrHasNew();
         }
         protected void OnNodeIsMarkedForDeletionChanged()
         {
-            if (!VmBindable.IsNotifyingStatic)
-                return;
             this.CheckChildrenIsOrHasMarkedForDeletion();
         }
 
@@ -1047,8 +1033,6 @@
         partial void OnIsHasNewChanging(ref bool to);
         private void OnIsHasNewChanged()
         {
-            if (!VmBindable.IsNotifyingStatic)
-                return;
             if (this is IConfig)
                 return;
             if (this is IEditableNodeGroup p)
@@ -1094,8 +1078,6 @@
         //partial void OnIsHasChangedChanging(ref bool to);
         private void OnIsHasChangedChanged()
         {
-            if (!VmBindable.IsNotifyingStatic)
-                return;
             if (IEditableNodeGroup.IsChangedNotPropagate)
                 return;
             if (this is IEditableNodeGroup p)
@@ -1148,8 +1130,6 @@
         partial void OnIsHasMarkedForDeletionChanging(ref bool to);
         private void OnIsHasMarkedForDeletionChanged()
         {
-            if (!VmBindable.IsNotifyingStatic)
-                return;
             if (this is IConfig)
                 return;
             if (this is IEditableNodeGroup p)

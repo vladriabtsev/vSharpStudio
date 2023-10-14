@@ -109,7 +109,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             //if (this.Children.Count > 0)
             //    return;
-            VmBindable.IsNotifyingStatic = false;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             children.Clear();
             if (this.UseTree && this.UseSeparateTreeForFolders)
@@ -121,7 +120,6 @@ namespace vSharpStudio.vm.ViewModels
             children.Add(this.GroupForms, 4);
             children.Add(this.GroupReports, 5);
             this.CodePropertySettings.Parent = this;
-            VmBindable.IsNotifyingStatic = true;
         }
         public void OnAdded()
         {

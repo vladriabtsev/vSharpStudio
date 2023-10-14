@@ -87,11 +87,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.Children.Count > 0)
                 return;
-            VmBindable.IsNotifyingStatic = false;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             children.Add(this.GroupRegisterDimensions, 0);
             children.Add(this.GroupAttachedProperties, 1);
-            VmBindable.IsNotifyingStatic = true;
             //this.ListMainViewForms.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;
