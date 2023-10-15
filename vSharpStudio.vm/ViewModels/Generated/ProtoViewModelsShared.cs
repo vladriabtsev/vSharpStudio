@@ -120,44 +120,42 @@ namespace vSharpStudio.vm.ViewModels.Shared // D:\dev\vSharpStudio.pro\submodule
         #endregion Procedures
         #region Properties
         
-        public bool BoolValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
+        public bool BoolValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
         { 
             get { return this._BoolValue; }
             set
             {
-                if (this._BoolValue != value)
+                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnBoolValueChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                if (SetProperty(ref this._BoolValue, value))
                 {
-                    this.OnBoolValueChanging(ref value);
-                    this._BoolValue = value;
                     this.OnBoolValueChanged();
-                    this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
         private bool _BoolValue;
-        partial void OnBoolValueChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
+        partial void OnBoolValueChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
         partial void OnBoolValueChanged();
         
-        public string StringValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
+        public string StringValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
         { 
             get { return this._StringValue; }
             set
             {
-                if (this._StringValue != value)
+                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnStringValueChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                if (SetProperty(ref this._StringValue, value))
                 {
-                    this.OnStringValueChanging(ref value);
-                    this._StringValue = value;
                     this.OnStringValueChanged();
-                    this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
         private string _StringValue = string.Empty;
-        partial void OnStringValueChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
+        partial void OnStringValueChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
         partial void OnStringValueChanged();
         #endregion Properties
     }

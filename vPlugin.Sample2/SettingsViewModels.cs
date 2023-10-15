@@ -113,24 +113,23 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
         #endregion Procedures
         #region Properties
         
-        public string StringSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
+        public string StringSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
         { 
             get { return this._StringSettings; }
             set
             {
-                if (this._StringSettings != value)
+                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnStringSettingsChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                if (SetProperty(ref this._StringSettings, value))
                 {
-                    this.OnStringSettingsChanging(ref value);
-                    this._StringSettings = value;
                     this.OnStringSettingsChanged();
-                    this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
         private string _StringSettings = string.Empty;
-        partial void OnStringSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
+        partial void OnStringSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
         partial void OnStringSettingsChanged();
     /*
         [Browsable(false)]
@@ -261,104 +260,99 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
         #endregion Procedures
         #region Properties
         
-        public bool IsAccessParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
+        public bool IsAccessParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
         { 
             get { return this._IsAccessParam1; }
             set
             {
-                if (this._IsAccessParam1 != value)
+                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsAccessParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                if (SetProperty(ref this._IsAccessParam1, value))
                 {
-                    this.OnIsAccessParam1Changing(ref value);
-                    this._IsAccessParam1 = value;
                     this.OnIsAccessParam1Changed();
-                    this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
         private bool _IsAccessParam1;
-        partial void OnIsAccessParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
+        partial void OnIsAccessParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
         partial void OnIsAccessParam1Changed();
         
-        public bool? IsAccessParam2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
+        public bool? IsAccessParam2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
         { 
             get { return this._IsAccessParam2; }
             set
             {
-                if (this._IsAccessParam2 != value)
+                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsAccessParam2Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                if (SetProperty(ref this._IsAccessParam2, value))
                 {
-                    this.OnIsAccessParam2Changing(ref value);
-                    this._IsAccessParam2 = value;
                     this.OnIsAccessParam2Changed();
-                    this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
         private bool? _IsAccessParam2;
-        partial void OnIsAccessParam2Changing(ref bool? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
+        partial void OnIsAccessParam2Changing(ref bool? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
         partial void OnIsAccessParam2Changed();
         
-        public string AccessParam3 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
+        public string AccessParam3 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
         { 
             get { return this._AccessParam3; }
             set
             {
-                if (this._AccessParam3 != value)
+                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnAccessParam3Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                if (SetProperty(ref this._AccessParam3, value))
                 {
-                    this.OnAccessParam3Changing(ref value);
-                    this._AccessParam3 = value;
                     this.OnAccessParam3Changed();
-                    this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
         private string _AccessParam3 = string.Empty;
-        partial void OnAccessParam3Changing(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
+        partial void OnAccessParam3Changing(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
         partial void OnAccessParam3Changed();
         
-        public string? AccessParam4 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
+        public string? AccessParam4 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
         { 
             get { return this._AccessParam4; }
             set
             {
-                if (this._AccessParam4 != value)
+                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnAccessParam4Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                if (SetProperty(ref this._AccessParam4, value))
                 {
-                    this.OnAccessParam4Changing(ref value);
-                    this._AccessParam4 = value;
                     this.OnAccessParam4Changed();
-                    this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
         private string? _AccessParam4;
-        partial void OnAccessParam4Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
+        partial void OnAccessParam4Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
         partial void OnAccessParam4Changed();
         
-        public bool IsGenerateNotValidCode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:58
+        public bool IsGenerateNotValidCode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
         { 
             get { return this._IsGenerateNotValidCode; }
             set
             {
-                if (this._IsGenerateNotValidCode != value)
+                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsGenerateNotValidCodeChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                if (SetProperty(ref this._IsGenerateNotValidCode, value))
                 {
-                    this.OnIsGenerateNotValidCodeChanging(ref value);
-                    this._IsGenerateNotValidCode = value;
                     this.OnIsGenerateNotValidCodeChanged();
-                    this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
         private bool _IsGenerateNotValidCode;
-        partial void OnIsGenerateNotValidCodeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:90
+        partial void OnIsGenerateNotValidCodeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
         partial void OnIsGenerateNotValidCodeChanged();
     /*
         [Browsable(false)]

@@ -51,30 +51,27 @@ namespace ViewModelBase
             get { return _IsChanged; }
             set
             {
-                //if (VmBindable.IsNotifyingStatic) // && IsNotifying)
-                //{
-                    SetProperty(ref _IsChanged, value);
-                    OnIsChangedChanged();
-                    if (VmBindable.IsChangedNotificationDelay > 0)
+                SetProperty(ref _IsChanged, value);
+                OnIsChangedChanged();
+                if (VmBindable.IsChangedNotificationDelay > 0)
+                {
+                    lock (lockObject)
                     {
-                        lock (lockObject)
+                        if (!isDelayActivated)
                         {
-                            if (!isDelayActivated)
+                            isDelayActivated = true;
+                            var t = Task.Run(async delegate
                             {
-                                isDelayActivated = true;
-                                var t = Task.Run(async delegate
+                                await Task.Delay(VmBindable.IsChangedNotificationDelay);
+                                UIDispatcher.Invoke(delegate
                                 {
-                                    await Task.Delay(VmBindable.IsChangedNotificationDelay);
-                                    UIDispatcher.Invoke(delegate
-                                    {
-                                        isDelayActivated = false;
-                                        OnIsChangedChangedWithDelay();
-                                    });
+                                    isDelayActivated = false;
+                                    OnIsChangedChangedWithDelay();
                                 });
-                            }
+                            });
                         }
                     }
-                //}
+                }
             }
         }
         protected bool _IsChanged;

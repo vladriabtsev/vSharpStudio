@@ -31,13 +31,14 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ViewModelBase
 {
     /// <summary>
     /// Implementation of <see cref="INotifyPropertyChanged"/> to simplify models.
     /// </summary>
-    public class VmBindable : INotifyPropertyChanged
+    public class VmBindable : ObservableObject
     {
         public VmBindable()
         {
@@ -49,7 +50,6 @@ namespace ViewModelBase
         public static ushort MaxSortingWeightShift = 4;
         public static ushort MaxSortingWeight = (ushort)(ulong.MaxValue - (ulong.MaxValue << MaxSortingWeightShift));
         public static ulong SortingWeightBase = ((ulong)1) << (64 - MaxSortingWeightShift);
-        public static bool IsValidateAll = true;
 
         protected virtual void IsBusyChanged() { }
 
@@ -209,52 +209,6 @@ namespace ViewModelBase
 
         #region Methods
 
-        /// <summary>
-        /// Checks if a property already matches a desired value.  Sets the property and
-        /// notifies listeners only when necessary.
-        /// </summary>
-        /// <typeparam name="T">Type of the property.</typeparam>
-        /// <param name="storage">Reference to a property with both getter and setter.</param>
-        /// <param name="value">Desired value for the property.</param>
-        /// <param name="propertyName">Name of the property used to notify listeners.  This
-        /// value is optional and can be provided automatically when invoked from compilers that
-        /// support CallerMemberName.</param>
-        /// <returns>True if the value was changed, false if the existing value matched the
-        /// desired value.</returns>
-        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string? propertyName = null)
-        {
-            Debug.Assert(propertyName != null);
-            if (System.Collections.Generic.EqualityComparer<T>.Default.Equals(storage, value))
-            {
-                return false;
-            }
-            else
-            {
-                storage = value;
-                this.NotifyPropertyChanged(propertyName);
-                return true;
-            }
-        }
-        //protected bool SetProperty<T>(ref T? storage, T? value, [CallerMemberName] String? propertyName = null)
-        //{
-        //    if (System.Collections.Generic.EqualityComparer<T>.Default.Equals(storage, value))
-        //    {
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        storage = value;
-        //        this.NotifyPropertyChanged(propertyName);
-        //        return true;
-        //    }
-        //}
-
-        /// <summary>
-        /// Notifies listeners that a property value has changed.
-        /// </summary>
-        /// <param name="propertyName">Optional name of the property used to notify listeners.  This
-        /// value is optional and can be provided automatically when invoked from compilers
-        /// that support <see cref="CallerMemberNameAttribute"/>.</param>
         protected void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             Debug.Assert(propertyName != null);

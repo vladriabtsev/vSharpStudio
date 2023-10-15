@@ -206,8 +206,6 @@ namespace ViewModelBase
         protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
             Debug.Assert(propertyName != null);
-            if (!VmBindable.IsValidateAll)
-                return true;
 #if DEBUG
             if (isNotValidateForUnitTests)
                 return true;

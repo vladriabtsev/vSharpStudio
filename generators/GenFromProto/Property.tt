@@ -11,18 +11,31 @@ public <#=collType#><<#= field.ToTypeCs() #>> <#=FieldName#> // <#=t4.FilePos() 
     get { return this._<#=FieldName#>; }
     set
     {
-        if (this._<#=FieldName#> != value)
-        {
-            this.On<#=FieldName#>Changing(value);
-            _<#=FieldName#> = value;
-            this.On<#=FieldName#>Changed();
+        // Use 'On<#=FieldName#>Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
 <# if (this.DocMes.IsBindableBase) { #>
-            this.NotifyPropertyChanged();
-<# } #>
+        this.On<#=FieldName#>Changing(value); // <#=t4.FilePos() #>
+        if (SetProperty(ref this._<#=FieldName#>, value))
+        {
+            this.On<#=FieldName#>Changed();
 <#     if (this.DocMes.IsValidatableBase) { #>
             this.ValidateProperty();
 <#     } #>
+            this.IsChanged = true;
         }
+<# } else { #>
+        this.On<#=FieldName#>Changing(value);
+        if (this._<#=FieldName#> != value) // <#=t4.FilePos() #>
+        {
+            _<#=FieldName#> = value;
+            this.On<#=FieldName#>Changed();
+<#     if (this.DocMes.IsValidatableBase) { #>
+            this.ValidateProperty();
+<#     } #>
+<#     if (this.DocMes.IsEditableBase) { #>
+            this.IsChanged = true;
+<#     } #>
+        }
+<# } #>
     }
 }
 private <#=collType#><<#= field.ToTypeCs() #>> _<#=FieldName#>;
@@ -60,19 +73,30 @@ public <#= field.ToTypeCs() #> <#=FieldName#> // <#=t4.FilePos() #>
     get { return this._<#=FieldName#>; }
     set
     {
-        if (this._<#=FieldName#> != value)
+        // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+<# if (this.DocMes.IsBindableBase) { #>
+        this.On<#=FieldName#>Changing(ref value); // <#=t4.FilePos() #>
+<#   if (this.isSetPropertyByRef) { #>
+        if (SetProperty(ref this._<#=FieldName#>, value))
         {
-            this.On<#=FieldName#>Changing(ref value);
-            this._<#=FieldName#> = value;
             this.On<#=FieldName#>Changed();
-<#   if (this.DocMes.IsBindableBase) { #>
-            this.NotifyPropertyChanged();
-<#   } #>
-<#   if (this.DocMes.IsValidatableBase && FieldName!="IsHasChanged") { #>
+<#     if (this.DocMes.IsValidatableBase && FieldName!="IsHasChanged") { #>
             this.ValidateProperty();
             this.IsChanged = true;
-<#   } #>
+<#     } #>
         }
+<#   } else { #>
+        if (this._<#=FieldName#> != value) // <#=t4.FilePos() #>
+        {
+            _<#=FieldName#> = value;
+            this.On<#=FieldName#>Changed();
+<#     if (this.DocMes.IsValidatableBase && FieldName!="IsHasChanged") { #>
+            this.ValidateProperty();
+            this.IsChanged = true;
+<#     } #>
+        }
+<#   } #>
+<# } #>
     }
 }
 <#   if (FieldName == "SortingValue") {#>
