@@ -10,7 +10,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("PluginGeneratorSettings:{Name,nq} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class PluginGeneratorSettings : IParent
     {
         public IvPluginGeneratorSettings? SettingsVm { get; set; }

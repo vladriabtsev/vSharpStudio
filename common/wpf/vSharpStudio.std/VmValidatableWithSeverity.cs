@@ -17,6 +17,13 @@ namespace ViewModelBase
         where TValidator : AbstractValidator<T>
         where T : VmValidatableWithSeverity<T, TValidator>//, IComparable<T>
     {
+        public override string ToDebugString()
+        {
+            var mes = "";
+            if (this.CountErrors > 0)
+                mes = " ErrCnt:" + this.CountErrors;
+            return base.ToDebugString() + mes;
+        }
         public VmValidatableWithSeverity(TValidator? validator)
         {
             Debug.Assert(validator != null);

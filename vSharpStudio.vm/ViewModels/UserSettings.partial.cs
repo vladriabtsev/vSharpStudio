@@ -36,10 +36,8 @@ namespace vSharpStudio.vm.ViewModels
             get { return this._SelectedConfigHistory; }
             set
             {
-                if (this._SelectedConfigHistory != value)
+                if (SetProperty(ref this._SelectedConfigHistory, value))
                 {
-                    _SelectedConfigHistory = value;
-                    this.NotifyPropertyChanged();
                     this.CommandOpenRecentConfig.RaiseCanExecuteChanged();
                     this.CommandDeleteRecentConfig.RaiseCanExecuteChanged();
                 }

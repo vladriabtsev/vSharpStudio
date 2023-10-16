@@ -609,11 +609,7 @@
             }
             set
             {
-                if (this._IsSelected != value)
-                {
-                    this._IsSelected = value;
-                    this.NotifyPropertyChanged();
-                }
+                SetProperty(ref this._IsSelected, value);
             }
         }
         private bool _IsSelected;
@@ -626,10 +622,8 @@
             }
             set
             {
-                if (this._IsExpanded != value)
+                if (SetProperty(ref this._IsExpanded, value))
                 {
-                    this._IsExpanded = value;
-                    this.NotifyPropertyChanged();
                     this.NotifyPropertyChanged(nameof(this.IconName));
                 }
             }
@@ -1018,12 +1012,10 @@
             get { return this._IsHasNew; }
             set
             {
-                if (this._IsHasNew != value)
+                this.OnIsHasNewChanging(ref value);
+                if (SetProperty(ref this._IsHasNew, value))
                 {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
                     this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
                     this.NotifyPropertyChanged(() => this.IsNewOrHasNew);
                     this.ValidateProperty();
                 }
@@ -1065,12 +1057,9 @@
             get { return this._IsHasChanged; }
             set
             {
-                if (this._IsHasChanged != value)
+                if (SetProperty(ref this._IsHasChanged, value))
                 {
-                    //this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
                     this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -1116,12 +1105,10 @@
             get { return this._IsHasMarkedForDeletion; }
             set
             {
-                if (this._IsHasMarkedForDeletion != value)
+                this.OnIsHasMarkedForDeletionChanging(ref value);
+                if (SetProperty(ref this._IsHasMarkedForDeletion, value))
                 {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
                     this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
                     this.ValidateProperty();
                 }
             }

@@ -18,7 +18,10 @@ namespace GenFromProto
         readonly string ClassName;
         readonly string FieldName;
         readonly string FieldType;
+        readonly string PropType;
         readonly bool isSetPropertyByRef = true;
+        readonly string refstr="ref ";
+        readonly string defstr = "";
         public Property(FileDescriptor root, MessageDescriptor message, FieldDescriptor field)
         {
             this.root = root;
@@ -29,9 +32,23 @@ namespace GenFromProto
             this.ClassName = message.Name.ToNameCs();
             this.FieldName = field.Name.ToNameCs();
             this.FieldType = field.ToTypeCs();
+            this.PropType = this.FieldType;
             if (FieldName == "Guid" || FieldName == "SortingValue" || FieldName == "Name" || FieldName == "NameUi")
             {
                 this.isSetPropertyByRef = false;
+            }
+            if (this.IsCollection)
+            {
+                this.refstr = "";
+                //if (this.IsObservable)
+                this.PropType = $"{CollectionName(field)}<{this.FieldType}>";
+                //else
+                //if (field.IsCsSimple() || field.IsMap || )
+                //this.FieldType = $"IReadOnlyList<{this.FieldType}>";
+            }
+            else
+            {
+                defstr = field.ToSetDefaultCs();
             }
         }
         private bool IsNotSpecial(string fieldName)

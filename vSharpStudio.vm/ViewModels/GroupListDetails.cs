@@ -15,9 +15,13 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} Count:{ListDetails.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class GroupListDetails : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup, IRoleAccess
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" Count:{ListDetails.Count}";
+        }
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         #region ITree

@@ -13,9 +13,13 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("GroupConstants:{Name,nq} Count:{ListConstants.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IEditableNode, IRoleAccess
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" Count:{ListConstants.Count}";
+        }
         [Browsable(false)]
         public GroupConstantGroups ParentGroupConstantGroups { get { Debug.Assert(this.Parent != null); return (GroupConstantGroups)this.Parent; } }
         [Browsable(false)]

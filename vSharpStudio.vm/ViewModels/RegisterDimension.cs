@@ -19,9 +19,13 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("RegisterDimention:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class RegisterDimension : ICanAddNode, ICanGoLeft, INodeGenSettings, ITreeConfigNodeSortable, IEditableNode //, IRoleAccess, IPropertyAccessRoles
     {
+        //partial void OnDebugStringExtend(ref string mes)
+        //{
+        //    mes = mes + $" Type:{this.}";
+        //}
         [Browsable(false)]
         public GroupListDimensions ParentGroupListDimensions { get { Debug.Assert(this.Parent != null); return (GroupListDimensions)this.Parent; } }
         [Browsable(false)]

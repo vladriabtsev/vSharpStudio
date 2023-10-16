@@ -14,9 +14,13 @@ using vSharpStudio.common.DiffModel;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IDbTable, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" props:{GroupProperties.ListProperties.Count}";
+        }
         [Browsable(false)]
         public Catalog ParentCatalog { get { Debug.Assert(this.Parent != null); return (Catalog)this.Parent; } }
         [Browsable(false)]

@@ -298,23 +298,106 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c1.Guid));
         }
         [TestMethod]
-        public void Main005IsChangedAndIsTreeChanged()
+        public async Task Main005IsChangedAndIsTreeChanged()
         {
             this.remove_config();
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
-            Assert.IsTrue(vm.Config.IsHasChanged); // all plugins are new for new configuration
-            vm.Config.Name = "test1";
-            Assert.IsTrue(vm.Config.IsChanged);
+            Assert.IsTrue(vm.Config.IsNew);
+            Assert.IsTrue(vm.Config.IsHasNew); // all plugins are new for new configuration
+            Assert.IsFalse(vm.Config.IsChanged);
             Assert.IsTrue(vm.Config.IsHasChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsHasChanged);
+            Assert.IsFalse(vm.Config.GroupPlugins.IsNew); // always false
+            Assert.IsTrue(vm.Config.GroupPlugins.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupPlugins.IsChanged);
+            Assert.IsTrue(vm.Config.GroupPlugins.IsHasChanged);
+            foreach(var plugin in vm.Config.GroupPlugins.ListPlugins)
+            {
+                Assert.IsTrue(plugin.IsNew);
+                Assert.IsFalse(plugin.IsHasNew);
+                Assert.IsTrue(plugin.IsChanged);
+                Assert.IsFalse(plugin.IsHasChanged);
+            }
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsNew); // always false
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsChanged);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasChanged);
+            Assert.AreEqual(0, vm.Config.GroupAppSolutions.ListAppSolutions.Count);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsNew); // always false
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsChanged);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasChanged);
+            Assert.AreEqual(0, vm.Config.GroupConfigLinks.ListBaseConfigLinks.Count);
+            Assert.IsFalse(vm.Config.Model.IsNew); // always false
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.Model.IsChanged);
+            Assert.IsFalse(vm.Config.Model.IsHasChanged);
 
             vm.BtnConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
+            Assert.IsFalse(vm.Config.IsNew);
+            Assert.IsTrue(vm.Config.IsHasNew); // all plugins are new for new configuration
             Assert.IsFalse(vm.Config.IsChanged);
             Assert.IsFalse(vm.Config.IsHasChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsHasChanged);
+            Assert.IsTrue(vm.Config.GroupPlugins.IsHasNew);
+            foreach (var plugin in vm.Config.GroupPlugins.ListPlugins)
+            {
+                Assert.IsTrue(plugin.IsNew); // stil new because stable version is not created yet
+                Assert.IsFalse(plugin.IsHasNew);
+                Assert.IsFalse(plugin.IsChanged);
+                Assert.IsFalse(plugin.IsHasChanged);
+            }
+
+            // Update current config
+            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync();
+            Assert.IsTrue(vm.Config.IsHasNew);
+            Assert.IsTrue(vm.Config.GroupPlugins.IsHasNew);
+            foreach (var plugin in vm.Config.GroupPlugins.ListPlugins)
+            {
+                Assert.IsTrue(plugin.IsNew); // stil new because stable version is not created yet
+            }
+
+            // Update current config
+            await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
+            Assert.IsFalse(vm.Config.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupPlugins.IsHasNew);
+            foreach (var plugin in vm.Config.GroupPlugins.ListPlugins)
+            {
+                Assert.IsFalse(plugin.IsNew); // stil new because stable version is not created yet
+            }
+
+            // Modifying Config
+            vm.Config.Name = "test1";
+            Assert.IsFalse(vm.Config.IsNew);
+            Assert.IsFalse(vm.Config.IsHasNew);
+            Assert.IsTrue(vm.Config.IsChanged);
+            Assert.IsFalse(vm.Config.IsHasChanged);
+            vm.BtnConfigSave.Execute();
+            Assert.IsFalse(vm.Config.IsChanged);
+            Assert.IsFalse(vm.Config.IsHasChanged);
+
+            // Modifying Config.GroupAppSolutions
+            vm.Config.GroupAppSolutions.Description = "test1";
+            Assert.IsTrue(vm.Config.GroupAppSolutions.IsChanged);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasChanged);
+            Assert.IsFalse(vm.Config.IsChanged);
+            Assert.IsTrue(vm.Config.IsHasChanged);
+            vm.BtnConfigSave.Execute();
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsChanged);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasChanged);
+            Assert.IsFalse(vm.Config.IsHasNew);
+            Assert.IsFalse(vm.Config.IsChanged);
+            Assert.IsFalse(vm.Config.IsHasChanged);
+            Assert.AreEqual(0, vm.Config.GroupAppSolutions.ListAppSolutions.Count);
+            vm.Config.GroupAppSolutions.NodeAddNewSubNode();
+            Assert.IsTrue(vm.Config.IsHasNew);
+            Assert.IsFalse(vm.Config.IsChanged);
+            Assert.IsTrue(vm.Config.IsHasChanged);
+            Assert.IsTrue(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsChanged);
+            Assert.IsTrue(vm.Config.GroupAppSolutions.IsHasChanged);
+            Assert.AreEqual(1, vm.Config.GroupAppSolutions.ListAppSolutions.Count);
+            Assert.IsTrue(vm.Config.GroupAppSolutions[0].IsNew);
+            Assert.IsTrue(vm.Config.GroupAppSolutions[0].IsChanged);
 
             var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();

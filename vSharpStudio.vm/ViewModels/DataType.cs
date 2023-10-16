@@ -15,9 +15,13 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
-    [DebuggerDisplay("DataType:{DataType.GetTypeDesc(this),nq} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class DataType : IParent
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" Type:{DataType.GetTypeDesc(this)}";
+        }
         partial void OnCreating()
         {
             this._ListObjectGuids = new ObservableCollectionWithActions<string>();
@@ -255,12 +259,7 @@ namespace vSharpStudio.vm.ViewModels
             get { if (_MinValue == null) MinValueCalc(); Debug.Assert(_MinValue != null); return _MinValue; }
             set
             {
-                if (this._MinValue != value)
-                {
-                    this._MinValue = value;
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
+                SetProperty(ref this._MinValue, value);
             }
         }
         private string? _MinValue = null;
@@ -293,12 +292,7 @@ namespace vSharpStudio.vm.ViewModels
             get { if (_MaxValue == null) MaxValueCalc(); Debug.Assert(_MaxValue != null); return _MaxValue; }
             set
             {
-                if (this._MaxValue != value)
-                {
-                    this._MaxValue = value;
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
+                SetProperty(ref this._MaxValue, value);
             }
         }
         private string? _MaxValue = null;
@@ -347,12 +341,7 @@ namespace vSharpStudio.vm.ViewModels
             get { if (_MaxNumericalValue == null) ClrTypeNameCalc(); return _MaxNumericalValue; }
             set
             {
-                if (this._MaxNumericalValue != value)
-                {
-                    this._MaxNumericalValue = value;
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
+                SetProperty(ref this._MaxNumericalValue, value);
             }
         }
         private BigInteger? _MaxNumericalValue = null;
@@ -419,12 +408,7 @@ namespace vSharpStudio.vm.ViewModels
             get { if (_ClrTypeName == null) ClrTypeNameCalc(); return _ClrTypeName!; }
             set
             {
-                if (this._ClrTypeName != value)
-                {
-                    this._ClrTypeName = value;
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
+                SetProperty(ref this._ClrTypeName, value);
             }
         }
         private string? _ClrTypeName = null;
@@ -434,12 +418,7 @@ namespace vSharpStudio.vm.ViewModels
             get { if (_ClrLiteralSuf == null) ClrTypeNameCalc(); Debug.Assert(_ClrLiteralSuf != null); return _ClrLiteralSuf!; }
             set
             {
-                if (this._ClrLiteralSuf != value)
-                {
-                    this._ClrLiteralSuf = value;
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
+                SetProperty(ref this._ClrLiteralSuf, value);
             }
         }
         private string? _ClrLiteralSuf = null;
@@ -833,12 +812,7 @@ namespace vSharpStudio.vm.ViewModels
 
             set
             {
-                if (this._VisibilityLength == value)
-                {
-                    return;
-                }
-                this._VisibilityLength = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._VisibilityLength, value);
             }
         }
         private Visibility _VisibilityLength = Visibility.Collapsed;
@@ -852,12 +826,7 @@ namespace vSharpStudio.vm.ViewModels
 
             set
             {
-                if (this._VisibilityAccuracy == value)
-                {
-                    return;
-                }
-                this._VisibilityAccuracy = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._VisibilityAccuracy, value);
             }
         }
         private Visibility _VisibilityAccuracy = Visibility.Collapsed;
@@ -871,12 +840,7 @@ namespace vSharpStudio.vm.ViewModels
 
             set
             {
-                if (this._VisibilityIsPositive == value)
-                {
-                    return;
-                }
-                this._VisibilityIsPositive = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._VisibilityIsPositive, value);
             }
         }
         private Visibility _VisibilityIsPositive = Visibility.Collapsed;
@@ -890,12 +854,7 @@ namespace vSharpStudio.vm.ViewModels
 
             set
             {
-                if (this._VisibilityObjectName == value)
-                {
-                    return;
-                }
-                this._VisibilityObjectName = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._VisibilityObjectName, value);
             }
         }
         private Visibility _VisibilityObjectName = Visibility.Collapsed;

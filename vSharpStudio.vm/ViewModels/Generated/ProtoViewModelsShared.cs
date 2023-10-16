@@ -36,13 +36,32 @@ namespace vSharpStudio.vm.ViewModels.Shared // D:\dev\vSharpStudio.pro\submodule
     public partial class TestSharedMesssageValidator : ValidatorBase<TestSharedMesssage, TestSharedMesssageValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
     public partial class TestSharedMesssage : VmValidatableWithSeverity<TestSharedMesssage, TestSharedMesssageValidator>, ITestSharedMesssage // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
+        public override string ToDebugString()
+        {
+            var t = this.GetType();
+            var mes = t.Name + ":";
+            var p = t.GetProperty("Name");
+            if (p != null)
+                mes = mes + (string?)p.GetValue(this) + ":";
+            p = t.GetProperty("IsNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " New";
+            p = t.GetProperty("IsHasNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " HasNew";
+            OnDebugStringExtend(ref mes);
+            return mes + base.ToDebugString();
+        }
+        partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        /*public TestSharedMesssage() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:21
+        /*public TestSharedMesssage() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:42
         {
             this.OnCreating();
         }*/
         public TestSharedMesssage() 
-            : base(TestSharedMesssageValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:48
+            : base(TestSharedMesssageValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:69
         {
             this.OnCreating();
             this.OnCreated();
@@ -120,42 +139,42 @@ namespace vSharpStudio.vm.ViewModels.Shared // D:\dev\vSharpStudio.pro\submodule
         #endregion Procedures
         #region Properties
         
-        public bool BoolValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool BoolValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._BoolValue; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnBoolValueChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnBoolValueChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnBoolValueChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._BoolValue, value))
                 {
                     this.OnBoolValueChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _BoolValue;
-        partial void OnBoolValueChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _BoolValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnBoolValueChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnBoolValueChanged();
         
-        public string StringValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public string StringValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._StringValue; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnStringValueChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnStringValueChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnStringValueChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._StringValue, value))
                 {
                     this.OnStringValueChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private string _StringValue = string.Empty;
-        partial void OnStringValueChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private string _StringValue = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnStringValueChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnStringValueChanged();
         #endregion Properties
     }

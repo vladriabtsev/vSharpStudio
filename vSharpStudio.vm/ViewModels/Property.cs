@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.DirectoryServices;
 using System.Numerics;
+using System.Runtime.InteropServices;
 using System.Text;
 using FluentValidation;
 using Google.Protobuf;
@@ -19,9 +20,13 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode, IRoleAccess, IPropertyAccessRoles, ILayoutFieldParameters
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" Type:{DataType.GetTypeDesc(this.DataType)}";
+        }
         /// <summary>
         /// Tag to find property in list. To use for dynamically created property list
         /// </summary>

@@ -16,6 +16,27 @@
 public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { } // <#=t4.FilePos() #>
 <#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>, I<#= message.Name.ToNameCs() #> // <#=t4.FilePos() #>
 {
+<# if (this.Doc.IsBindableBase) { #>
+    public override string ToDebugString()
+    {
+        var t = this.GetType();
+        var mes = t.Name + ":";
+        var p = t.GetProperty("Name");
+        if (p != null)
+            mes = mes + (string?)p.GetValue(this) + ":";
+        p = t.GetProperty("IsNew");
+        if (p != null)
+            if ((bool?)p.GetValue(this) == true)
+                mes = mes + " New";
+        p = t.GetProperty("IsHasNew");
+        if (p != null)
+            if ((bool?)p.GetValue(this) == true)
+                mes = mes + " HasNew";
+        OnDebugStringExtend(ref mes);
+        return mes + base.ToDebugString();
+    }
+    partial void OnDebugStringExtend(ref string mes);
+<# } #>
     #region CTOR
 <# if (!this.Doc.IsWithParent) { #>
     /*public <#= message.Name.ToNameCs() #>() // <#=t4.FilePos() #>
@@ -102,31 +123,9 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 	}
 	this.PopIndent(); #>
 <# if (this.Doc.IsWithParent) { #>
-/*
-    [Browsable(false)]
-    public override bool IsChanged // <#=t4.FilePos() #>
-    { 
-        get { return this._IsChanged; }
-        set
-        {
-            if (VmBindable.IsNotifyingStatic && this.IsNotifying)
-            {
-                if (this._IsChanged != value)
-                {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-    }
-    partial void OnIsChangedChanging(ref bool v); // <#=t4.FilePos() #>
-    */
-<# if (this.Doc.IsConfigObjectBase) { #>
+<#   if (this.Doc.IsConfigObjectBase) { #>
     protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // <#=t4.FilePos() #>
-<# } else { #>
-    //partial void OnIsChangedChanged(); // <#=t4.FilePos() #>
+<#   } else { #>
 <# } #>
 <# if (this.Doc.IsICanAddNode) { #>
     partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // <#=t4.FilePos() #> <#=message.Name#>

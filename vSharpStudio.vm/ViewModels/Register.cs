@@ -21,9 +21,13 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Register:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Register : ICanAddNode, ICanGoLeft, INodeGenSettings, ITreeConfigNodeSortable, IEditableNode //, IRoleAccess, IPropertyAccessRoles
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" Docs:{this.ListDocGuids.Count} Dims:{this.GroupRegisterDimensions.ListDimensions.Count} Atchs:{this.GroupAttachedProperties.ListProperties.Count} Maps:{this.ListDocMappings.Count}";
+        }
         [Browsable(false)]
         public GroupListRegisters ParentGroupListRegisters { get { Debug.Assert(this.Parent != null); return (GroupListRegisters)this.Parent; } }
         [Browsable(false)]

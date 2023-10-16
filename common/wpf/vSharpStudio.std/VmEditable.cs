@@ -10,16 +10,18 @@ namespace ViewModelBase
     public class VmEditable<T> : VmBindable, IEditableObjectExt
         where T : VmEditable<T>
     {
+        public override string ToDebugString() { return base.ToDebugString() + (IsChanged ? " Changed" : ""); }
         public VmEditable()
         {
-            //this.PropertyChanged += VmEditable_PropertyChanged;
+            if (!VmBindable.IsModifyIsChangedExplicitly)
+                this.PropertyChanged += VmEditable_PropertyChanged;
             //this._dtoBackup = this.Backup();
         }
-
-        //private void VmEditable_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        //{
-        //    this.IsChanged = true;
-        //}
+        private void VmEditable_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != nameof(this.IsChanged) && e.PropertyName != "IsNewOrHasNew")
+                this.IsChanged = true;
+        }
 
         //public virtual void ResetAllChanges()
         //{

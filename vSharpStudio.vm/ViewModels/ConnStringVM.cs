@@ -29,11 +29,9 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return this._Name;
             }
-
             set
             {
-                this._Name = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._Name, value);
             }
         }
         private string? _Name;
@@ -44,11 +42,9 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return this._ConnectionString;
             }
-
             set
             {
-                this._ConnectionString = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._ConnectionString, value);
             }
         }
         private string? _ConnectionString;
@@ -59,11 +55,9 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return this._Provider;
             }
-
             set
             {
-                this._Provider = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._Provider, value);
             }
         }
         private string? _Provider;

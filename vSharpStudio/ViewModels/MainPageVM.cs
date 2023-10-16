@@ -50,6 +50,8 @@ namespace vSharpStudio.ViewModels
         public static bool NotSaveUserSettings = false;
         public static MainPageVM Create(bool isLoadConfig, string? pluginsFolderPath = null, string? configFile = null)
         {
+            // IsChanged in all classes is changed only if configuration objects properties are changed. Auto generated in code.
+            VmBindable.IsModifyIsChangedExplicitly = true;
             MainPageVM vm = new MainPageVM(isLoadConfig, configFile);
             vm.Compose(pluginsFolderPath);
             vm.OnFormLoaded();
@@ -466,8 +468,7 @@ namespace vSharpStudio.ViewModels
             }
             set
             {
-                this._ListDbDesignPlugins = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._ListDbDesignPlugins, value);
             }
         }
         public List<IvPluginDbGenerator>? _ListDbDesignPlugins;
@@ -479,8 +480,7 @@ namespace vSharpStudio.ViewModels
             }
             set
             {
-                this._SelectedDbDesignPlugin = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._SelectedDbDesignPlugin, value);
             }
         }
         private PluginRow? _SelectedDbDesignPlugin;
@@ -492,8 +492,7 @@ namespace vSharpStudio.ViewModels
             }
             set
             {
-                this._SelectedDbDesignPluginSettings = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._SelectedDbDesignPluginSettings, value);
             }
         }
         private INotifyPropertyChanged? _SelectedDbDesignPluginSettings;
@@ -574,10 +573,9 @@ namespace vSharpStudio.ViewModels
             }
             set
             {
-                this._Config = value;
+                SetProperty(ref this._Config, value);
                 MainPageVM.ConfigInstance = value;
                 Debug.Assert(this._Config != null);
-                this.NotifyPropertyChanged();
                 this.ValidateProperty();
                 this._Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath) ?? String.Empty;
                 this._Config.OnSelectedNodeChanged = () =>
@@ -904,8 +902,7 @@ namespace vSharpStudio.ViewModels
             }
             set
             {
-                this._FilePathSaveAs = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._FilePathSaveAs, value);
                 this.SaveToolTip = _saveBaseToolTip + " as " + this._FilePathSaveAs;
             }
         }
@@ -918,8 +915,7 @@ namespace vSharpStudio.ViewModels
             }
             set
             {
-                this._SaveToolTip = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._SaveToolTip, value);
             }
         }
         private const string _saveBaseToolTip = "Ctrl-S - save config";
@@ -1744,8 +1740,7 @@ namespace vSharpStudio.ViewModels
         {
             set
             {
-                _MessageInstructions = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._MessageInstructions, value);
             }
             get { return _MessageInstructions; }
         }
@@ -1754,8 +1749,7 @@ namespace vSharpStudio.ViewModels
         {
             set
             {
-                _VisibilityConfig = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._VisibilityConfig, value);
             }
             get { return _VisibilityConfig; }
         }

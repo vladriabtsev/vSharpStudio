@@ -13,9 +13,13 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Enumeration:{Name,nq} Type:{Enumeration.GetTypeDesc(this),nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Enumeration : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" Type:{Enumeration.GetTypeDesc(this)}";
+        }
         [Browsable(false)]
         public GroupListEnumerations ParentGroupListEnumerations { get { Debug.Assert(this.Parent != null); return (GroupListEnumerations)this.Parent; } }
         [Browsable(false)]

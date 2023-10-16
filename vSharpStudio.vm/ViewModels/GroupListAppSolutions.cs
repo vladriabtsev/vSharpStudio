@@ -13,9 +13,13 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} Count:{ListAppSolutions.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class GroupListAppSolutions : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, IEditableNodeGroup
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" Count:{ListAppSolutions.Count}";
+        }
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]

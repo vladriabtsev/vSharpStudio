@@ -15,10 +15,14 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
         IDbTable, INodeWithProperties, IViewList, ITreeConfigNodeSortable, IRoleAccess, ICatalogDetailAccessRoles
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" props:{GroupProperties.ListProperties.Count}";
+        }
         [Browsable(false)]
         public GroupListCatalogs ParentGroupListCatalogs { get { Debug.Assert(this.Parent != null); return (GroupListCatalogs)this.Parent; } }
         [Browsable(false)]

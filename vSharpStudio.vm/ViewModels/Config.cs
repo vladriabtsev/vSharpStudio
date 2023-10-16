@@ -313,15 +313,10 @@ namespace vSharpStudio.vm.ViewModels
 #endif
                     if (ITreeConfigNode.IsSorting)
                         return;
-                    if (this.OnSelectedNodeChanging != null)
+                    this.OnSelectedNodeChanging?.Invoke(this._SelectedNode, value);
+                    if (SetProperty(ref this._SelectedNode, value))
                     {
-                        this.OnSelectedNodeChanging(this._SelectedNode, value);
-                    }
-                    this._SelectedNode = value;
-                    this.NotifyPropertyChanged();
-                    if (this.OnSelectedNodeChanged != null)
-                    {
-                        this.OnSelectedNodeChanged();
+                        this.OnSelectedNodeChanged?.Invoke();
                     }
 #if DEBUG
                     stopWatch.Stop();

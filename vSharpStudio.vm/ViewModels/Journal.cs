@@ -10,7 +10,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Journal:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Journal : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         [Browsable(false)]
@@ -180,8 +180,7 @@ namespace vSharpStudio.vm.ViewModels
             get { return this.listNotIncludedDocuments; }
             set
             {
-                this.listNotIncludedDocuments = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this.listNotIncludedDocuments, value);
             }
         }
         private ObservableCollection<ISortingValue> listNotIncludedDocuments = new ObservableCollection<ISortingValue>();
@@ -191,8 +190,7 @@ namespace vSharpStudio.vm.ViewModels
             get { return this.listIncludedDocuments; }
             set
             {
-                this.listIncludedDocuments = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this.listIncludedDocuments, value);
             }
         }
         private SortedObservableCollection<ISortingValue> listIncludedDocuments = new SortedObservableCollection<ISortingValue>();
@@ -202,8 +200,7 @@ namespace vSharpStudio.vm.ViewModels
             get { return selectedIncludedDocument; }
             set
             {
-                selectedIncludedDocument = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this.selectedIncludedDocument, value);
                 this.GetNotIncludedProperties();
                 this.GetIncludedProperties();
                 if (value == null)
@@ -223,8 +220,7 @@ namespace vSharpStudio.vm.ViewModels
             get { return selectedDocumentTitle; }
             set
             {
-                selectedDocumentTitle = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this.selectedDocumentTitle, value);
             }
         }
         private string? selectedDocumentTitle;
@@ -239,8 +235,7 @@ namespace vSharpStudio.vm.ViewModels
             get { return this.listNotIncludedProperties; }
             set
             {
-                this.listNotIncludedProperties = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this.listNotIncludedProperties, value);
             }
         }
         private ObservableCollection<ISortingValue> listNotIncludedProperties = new ObservableCollection<ISortingValue>();
@@ -276,8 +271,7 @@ namespace vSharpStudio.vm.ViewModels
             get { return this.listIncludedProperties; }
             set
             {
-                this.listIncludedProperties = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this.listIncludedProperties, value);
             }
         }
         private SortedObservableCollection<ISortingValue> listIncludedProperties = new SortedObservableCollection<ISortingValue>();
@@ -313,9 +307,10 @@ namespace vSharpStudio.vm.ViewModels
             get { return selectedNotIncludedProperty; }
             set
             {
-                selectedNotIncludedProperty = value;
-                this.NotifyPropertyChanged();
-                this.SelectedIncludedDocument = null;
+                if (SetProperty(ref this.selectedNotIncludedProperty, value))
+                {
+                    this.SelectedIncludedDocument = null;
+                }
             }
         }
         private IProperty? selectedNotIncludedProperty;

@@ -42,11 +42,11 @@ public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefa
          this.PushIndent("\t"); #>
 <#= this.FieldDoc.Comments #><# if (field.IsRepeated) { #>
 <# if (field.IsMap()) { #>
-IReadOnlyList<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
+IReadOnlyList<<#=field.ToTypeCs()#>> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
 <# } else if (field.IsCsSimple()) { #>
-IReadOnlyList<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
+IReadOnlyList<<#=field.ToTypeCs()#>> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
 <# } else { #>
-IReadOnlyList<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
+IReadOnlyList<I<#=field.ToTypeCs()#>> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
 <#   if (message.Name.EndsWith(field.Name)) { #>
 I<#= field.MessageType.Name.ToNameCs() #> this[int index] { get; }
 int Count();

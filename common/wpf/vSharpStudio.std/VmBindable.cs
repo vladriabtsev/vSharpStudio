@@ -40,9 +40,11 @@ namespace ViewModelBase
     /// </summary>
     public class VmBindable : ObservableObject
     {
+        public virtual string ToDebugString() { return ""; }
         public VmBindable()
         {
         }
+        public static bool IsModifyIsChangedExplicitly = false;
         public static bool isUnitTests;
 #if DEBUG
         public static bool isNotValidateForUnitTests;

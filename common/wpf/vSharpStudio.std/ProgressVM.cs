@@ -16,8 +16,7 @@ namespace ViewModelBase
             {
                 UIDispatcher.Invoke(() =>
                 {
-                    _cancellationToken = value;
-                    this.NotifyPropertyChanged();
+                    SetProperty(ref this._cancellationToken, value);
                     if (_cancellationToken == null)
                         CancelVisibility = Visibility.Collapsed;
                     else
@@ -31,11 +30,7 @@ namespace ViewModelBase
             get { return _CancelVisibility; }
             set
             {
-                if (_CancelVisibility != value)
-                {
-                    _CancelVisibility = value;
-                    this.NotifyPropertyChanged();
-                }
+                SetProperty(ref this._CancelVisibility, value);
             }
         }
         public Visibility _CancelVisibility;
@@ -46,8 +41,7 @@ namespace ViewModelBase
             {
                 UIDispatcher.Invoke(() =>
                 {
-                    _pauseToken = value;
-                    this.NotifyPropertyChanged();
+                    SetProperty(ref this._pauseToken, value);
                     if (_pauseToken == null)
                         PauseVisibility = Visibility.Collapsed;
                     else
@@ -62,11 +56,7 @@ namespace ViewModelBase
             get { return _PauseVisibility; }
             set
             {
-                if (_PauseVisibility != value)
-                {
-                    _PauseVisibility = value;
-                    this.NotifyPropertyChanged();
-                }
+                SetProperty(ref this._PauseVisibility, value);
             }
         }
         public Visibility _PauseVisibility;
@@ -83,8 +73,7 @@ namespace ViewModelBase
                 {
                     UIDispatcher.Invoke(() =>
                     {
-                        _Title = value;
-                        this.NotifyPropertyChanged();
+                        SetProperty(ref this._Title, value);
                         if (_Title == null)
                             TitleVisibility = Visibility.Collapsed;
                         else
@@ -99,11 +88,7 @@ namespace ViewModelBase
             get { return _TitleVisibility; }
             set
             {
-                if (_TitleVisibility != value)
-                {
-                    _TitleVisibility = value;
-                    this.NotifyPropertyChanged();
-                }
+                SetProperty(ref this._TitleVisibility, value);
             }
         }
         public Visibility _TitleVisibility = Visibility.Collapsed;
@@ -120,8 +105,7 @@ namespace ViewModelBase
                 {
                     UIDispatcher.Invoke(() =>
                     {
-                        _Name = value;
-                        this.NotifyPropertyChanged();
+                        SetProperty(ref this._Name, value);
                         if (_Name == null)
                             NameVisibility = Visibility.Collapsed;
                         else
@@ -136,11 +120,7 @@ namespace ViewModelBase
             get { return _NameVisibility; }
             set
             {
-                if (_NameVisibility != value)
-                {
-                    _NameVisibility = value;
-                    this.NotifyPropertyChanged();
-                }
+                SetProperty(ref this._NameVisibility, value);
             }
         }
         public Visibility _NameVisibility = Visibility.Collapsed;
@@ -158,8 +138,7 @@ namespace ViewModelBase
                     UIDispatcher.Invoke(() =>
                     {
                         Debug.Assert(value >= 0 && value <= 100);
-                        _Progress = value;
-                        this.NotifyPropertyChanged();
+                        SetProperty(ref this._Progress, value);
                         if (_Progress == 0)
                             ProgressVisibility = Visibility.Collapsed;
                         else
@@ -174,11 +153,7 @@ namespace ViewModelBase
             get { return _ProgressVisibility; }
             set
             {
-                if (_ProgressVisibility != value)
-                {
-                    _ProgressVisibility = value;
-                    this.NotifyPropertyChanged();
-                }
+                SetProperty(ref this._ProgressVisibility, value);
             }
         }
         public Visibility _ProgressVisibility = Visibility.Collapsed;
@@ -195,9 +170,7 @@ namespace ViewModelBase
                 {
                     UIDispatcher.Invoke(() =>
                     {
-                        _SubName = value;
-                        this.NotifyPropertyChanged();
-                        //this.SubProgress = null;
+                        SetProperty(ref this._SubName, value);
                         if (_SubName == null)
                         {
                             SubNameVisibility = Visibility.Collapsed;
@@ -216,11 +189,7 @@ namespace ViewModelBase
             get { return _SubNameVisibility; }
             set
             {
-                if (_SubNameVisibility != value)
-                {
-                    _SubNameVisibility = value;
-                    this.NotifyPropertyChanged();
-                }
+                SetProperty(ref this._SubNameVisibility, value);
             }
         }
         public Visibility _SubNameVisibility = Visibility.Collapsed;
@@ -238,8 +207,7 @@ namespace ViewModelBase
                     UIDispatcher.Invoke(() =>
                     {
                         Debug.Assert(value >= 0 && value <= 100);
-                        _SubProgress = value;
-                        this.NotifyPropertyChanged();
+                        SetProperty(ref this._SubProgress, value);
                         if (_SubProgress == 0)
                             SubProgressVisibility = Visibility.Collapsed;
                         else
@@ -254,11 +222,7 @@ namespace ViewModelBase
             get { return _SubProgressVisibility; }
             set
             {
-                if (_SubProgressVisibility != value)
-                {
-                    _SubProgressVisibility = value;
-                    this.NotifyPropertyChanged();
-                }
+                SetProperty(ref this._SubProgressVisibility, value);
             }
         }
         public Visibility _SubProgressVisibility = Visibility.Collapsed;
@@ -340,11 +304,7 @@ namespace ViewModelBase
             get { return _Exception; }
             set
             {
-                if (_Exception != value)
-                {
-                    _Exception = value;
-                    this.NotifyPropertyChanged();
-                }
+                SetProperty(ref this._Exception, value);
             }
         }
         public Exception? _Exception;
@@ -353,11 +313,7 @@ namespace ViewModelBase
             get { return _IsBusy; }
             set
             {
-                if (_IsBusy != value)
-                {
-                    _IsBusy = value;
-                    this.NotifyPropertyChanged();
-                }
+                SetProperty(ref this._IsBusy, value);
             }
         }
         private bool _IsBusy;

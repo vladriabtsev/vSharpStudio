@@ -36,8 +36,27 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     public partial class DbConnectionStringSettingsValidator : ValidatorBase<DbConnectionStringSettings, DbConnectionStringSettingsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
     public partial class DbConnectionStringSettings : BaseSettings<DbConnectionStringSettings, DbConnectionStringSettingsValidator>, IDbConnectionStringSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
+        public override string ToDebugString()
+        {
+            var t = this.GetType();
+            var mes = t.Name + ":";
+            var p = t.GetProperty("Name");
+            if (p != null)
+                mes = mes + (string?)p.GetValue(this) + ":";
+            p = t.GetProperty("IsNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " New";
+            p = t.GetProperty("IsHasNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " HasNew";
+            OnDebugStringExtend(ref mes);
+            return mes + base.ToDebugString();
+        }
+        partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        public DbConnectionStringSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:27
+        public DbConnectionStringSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:48
             : base(parent, DbConnectionStringSettingsValidator.Validator)
         {
             this.OnCreating();
@@ -113,46 +132,24 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         #endregion Procedures
         #region Properties
         
-        public string StringSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public string StringSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._StringSettings; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnStringSettingsChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnStringSettingsChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnStringSettingsChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._StringSettings, value))
                 {
                     this.OnStringSettingsChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private string _StringSettings = string.Empty;
-        partial void OnStringSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private string _StringSettings = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnStringSettingsChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnStringSettingsChanged();
-    /*
-        [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:107
-        { 
-            get { return this._IsChanged; }
-            set
-            {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
-                {
-                    if (this._IsChanged != value)
-                    {
-                        this.OnIsChangedChanging(ref value);
-                        this._IsChanged = value;
-                        this.OnIsChangedChanged();
-                        this.NotifyPropertyChanged();
-                    }
-                }
-            }
-        }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:124
-        */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:129
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -167,8 +164,27 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     public partial class PluginsGroupSolutionSubSettingsValidator : ValidatorBase<PluginsGroupSolutionSubSettings, PluginsGroupSolutionSubSettingsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
     public partial class PluginsGroupSolutionSubSettings : BaseSubSettings<PluginsGroupSolutionSubSettings, PluginsGroupSolutionSubSettingsValidator>, IPluginsGroupSolutionSubSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
+        public override string ToDebugString()
+        {
+            var t = this.GetType();
+            var mes = t.Name + ":";
+            var p = t.GetProperty("Name");
+            if (p != null)
+                mes = mes + (string?)p.GetValue(this) + ":";
+            p = t.GetProperty("IsNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " New";
+            p = t.GetProperty("IsHasNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " HasNew";
+            OnDebugStringExtend(ref mes);
+            return mes + base.ToDebugString();
+        }
+        partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        public PluginsGroupSolutionSubSettings(IEditableObjectExt? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:27
+        public PluginsGroupSolutionSubSettings(IEditableObjectExt? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:48
             : base(parent, PluginsGroupSolutionSubSettingsValidator.Validator)
         {
             this.OnCreating();
@@ -248,65 +264,43 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         #endregion Procedures
         #region Properties
         
-        public bool IsSubParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool IsSubParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsSubParam1; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsSubParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsSubParam1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsSubParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsSubParam1, value))
                 {
                     this.OnIsSubParam1Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _IsSubParam1;
-        partial void OnIsSubParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _IsSubParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsSubParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsSubParam1Changed();
         
-        public bool IsSubParam2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool IsSubParam2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsSubParam2; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsSubParam2Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsSubParam2Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsSubParam2Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsSubParam2, value))
                 {
                     this.OnIsSubParam2Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _IsSubParam2;
-        partial void OnIsSubParam2Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _IsSubParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsSubParam2Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsSubParam2Changed();
-    /*
-        [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:107
-        { 
-            get { return this._IsChanged; }
-            set
-            {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
-                {
-                    if (this._IsChanged != value)
-                    {
-                        this.OnIsChangedChanging(ref value);
-                        this._IsChanged = value;
-                        this.OnIsChangedChanged();
-                        this.NotifyPropertyChanged();
-                    }
-                }
-            }
-        }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:124
-        */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:129
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -321,12 +315,31 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     public partial class PluginsGroupSolutionSettingsValidator : ValidatorBase<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
     public partial class PluginsGroupSolutionSettings : BaseSettings<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator>, IPluginsGroupSolutionSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
+        public override string ToDebugString()
+        {
+            var t = this.GetType();
+            var mes = t.Name + ":";
+            var p = t.GetProperty("Name");
+            if (p != null)
+                mes = mes + (string?)p.GetValue(this) + ":";
+            p = t.GetProperty("IsNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " New";
+            p = t.GetProperty("IsHasNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " HasNew";
+            OnDebugStringExtend(ref mes);
+            return mes + base.ToDebugString();
+        }
+        partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        public PluginsGroupSolutionSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:27
+        public PluginsGroupSolutionSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:48
             : base(parent, PluginsGroupSolutionSettingsValidator.Validator)
         {
             this.OnCreating();
-            this._SubSettings = new PluginsGroupSolutionSubSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:39
+            this._SubSettings = new PluginsGroupSolutionSubSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:60
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
@@ -412,71 +425,47 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         [PropertyOrderAttribute(1)]
         [DisplayName("Param1")]
         [Description("Sample of Param1")]
-        public bool IsGroupParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool IsGroupParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsGroupParam1; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsGroupParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsGroupParam1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsGroupParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsGroupParam1, value))
                 {
                     this.OnIsGroupParam1Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _IsGroupParam1;
-        partial void OnIsGroupParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _IsGroupParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsGroupParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsGroupParam1Changed();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("Sub Settings")]
         [Description("Sample of Sub Settings")]
         [ExpandableObjectAttribute()]
-        public PluginsGroupSolutionSubSettings SubSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public PluginsGroupSolutionSubSettings SubSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._SubSettings; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnSubSettingsChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnSubSettingsChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnSubSettingsChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._SubSettings, value))
                 {
                     this.OnSubSettingsChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
                 }
             }
         }
-        private PluginsGroupSolutionSubSettings _SubSettings;
-        IPluginsGroupSolutionSubSettings IPluginsGroupSolutionSettings.SubSettings { get { return (this as PluginsGroupSolutionSettings).SubSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:112
-        partial void OnSubSettingsChanging(ref PluginsGroupSolutionSubSettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private PluginsGroupSolutionSubSettings _SubSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnSubSettingsChanging(ref PluginsGroupSolutionSubSettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnSubSettingsChanged();
-        //IPluginsGroupSolutionSubSettings IPluginsGroupSolutionSettings.SubSettings { get { return this._SubSettings; } }
-    /*
-        [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:107
-        { 
-            get { return this._IsChanged; }
-            set
-            {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
-                {
-                    if (this._IsChanged != value)
-                    {
-                        this.OnIsChangedChanging(ref value);
-                        this._IsChanged = value;
-                        this.OnIsChangedChanged();
-                        this.NotifyPropertyChanged();
-                    }
-                }
-            }
-        }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:124
-        */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:129
+        IPluginsGroupSolutionSubSettings IPluginsGroupSolutionSettings.SubSettings { get { return (this as PluginsGroupSolutionSettings).SubSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -491,8 +480,27 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     public partial class PluginsGroupProjectSettingsValidator : ValidatorBase<PluginsGroupProjectSettings, PluginsGroupProjectSettingsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
     public partial class PluginsGroupProjectSettings : BaseSettings<PluginsGroupProjectSettings, PluginsGroupProjectSettingsValidator>, IPluginsGroupProjectSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
+        public override string ToDebugString()
+        {
+            var t = this.GetType();
+            var mes = t.Name + ":";
+            var p = t.GetProperty("Name");
+            if (p != null)
+                mes = mes + (string?)p.GetValue(this) + ":";
+            p = t.GetProperty("IsNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " New";
+            p = t.GetProperty("IsHasNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " HasNew";
+            OnDebugStringExtend(ref mes);
+            return mes + base.ToDebugString();
+        }
+        partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        public PluginsGroupProjectSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:27
+        public PluginsGroupProjectSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:48
             : base(parent, PluginsGroupProjectSettingsValidator.Validator)
         {
             this.OnCreating();
@@ -568,46 +576,24 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         #endregion Procedures
         #region Properties
         
-        public bool IsGroupProjectParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool IsGroupProjectParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsGroupProjectParam1; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsGroupProjectParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsGroupProjectParam1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsGroupProjectParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsGroupProjectParam1, value))
                 {
                     this.OnIsGroupProjectParam1Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _IsGroupProjectParam1;
-        partial void OnIsGroupProjectParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _IsGroupProjectParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsGroupProjectParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsGroupProjectParam1Changed();
-    /*
-        [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:107
-        { 
-            get { return this._IsChanged; }
-            set
-            {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
-                {
-                    if (this._IsChanged != value)
-                    {
-                        this.OnIsChangedChanging(ref value);
-                        this._IsChanged = value;
-                        this.OnIsChangedChanged();
-                        this.NotifyPropertyChanged();
-                    }
-                }
-            }
-        }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:124
-        */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:129
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -622,8 +608,27 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     public partial class GeneratorDbSchemaSettingsValidator : ValidatorBase<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
     public partial class GeneratorDbSchemaSettings : BaseSettings<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator>, IGeneratorDbSchemaSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
+        public override string ToDebugString()
+        {
+            var t = this.GetType();
+            var mes = t.Name + ":";
+            var p = t.GetProperty("Name");
+            if (p != null)
+                mes = mes + (string?)p.GetValue(this) + ":";
+            p = t.GetProperty("IsNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " New";
+            p = t.GetProperty("IsHasNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " HasNew";
+            OnDebugStringExtend(ref mes);
+            return mes + base.ToDebugString();
+        }
+        partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        public GeneratorDbSchemaSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:27
+        public GeneratorDbSchemaSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:48
             : base(parent, GeneratorDbSchemaSettingsValidator.Validator)
         {
             this.OnCreating();
@@ -707,84 +712,62 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         #endregion Procedures
         #region Properties
         
-        public bool IsSchemaParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool IsSchemaParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsSchemaParam1; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsSchemaParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsSchemaParam1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsSchemaParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsSchemaParam1, value))
                 {
                     this.OnIsSchemaParam1Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _IsSchemaParam1;
-        partial void OnIsSchemaParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _IsSchemaParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsSchemaParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsSchemaParam1Changed();
         
-        public bool? IsSchemaParam2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool? IsSchemaParam2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsSchemaParam2; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsSchemaParam2Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsSchemaParam2Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsSchemaParam2Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsSchemaParam2, value))
                 {
                     this.OnIsSchemaParam2Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool? _IsSchemaParam2;
-        partial void OnIsSchemaParam2Changing(ref bool? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool? _IsSchemaParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsSchemaParam2Changing(ref bool? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsSchemaParam2Changed();
         
-        public string SchemaParam3 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public string SchemaParam3 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._SchemaParam3; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnSchemaParam3Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnSchemaParam3Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnSchemaParam3Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._SchemaParam3, value))
                 {
                     this.OnSchemaParam3Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private string _SchemaParam3 = string.Empty;
-        partial void OnSchemaParam3Changing(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private string _SchemaParam3 = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnSchemaParam3Changing(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnSchemaParam3Changed();
-    /*
-        [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:107
-        { 
-            get { return this._IsChanged; }
-            set
-            {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
-                {
-                    if (this._IsChanged != value)
-                    {
-                        this.OnIsChangedChanging(ref value);
-                        this._IsChanged = value;
-                        this.OnIsChangedChanged();
-                        this.NotifyPropertyChanged();
-                    }
-                }
-            }
-        }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:124
-        */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:129
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -799,8 +782,27 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     public partial class GeneratorDbSchemaNodeSettingsValidator : ValidatorBase<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
     public partial class GeneratorDbSchemaNodeSettings : BaseSettings<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator>, IGeneratorDbSchemaNodeSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
+        public override string ToDebugString()
+        {
+            var t = this.GetType();
+            var mes = t.Name + ":";
+            var p = t.GetProperty("Name");
+            if (p != null)
+                mes = mes + (string?)p.GetValue(this) + ":";
+            p = t.GetProperty("IsNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " New";
+            p = t.GetProperty("IsHasNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " HasNew";
+            OnDebugStringExtend(ref mes);
+            return mes + base.ToDebugString();
+        }
+        partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        public GeneratorDbSchemaNodeSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:27
+        public GeneratorDbSchemaNodeSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:48
             : base(parent, GeneratorDbSchemaNodeSettingsValidator.Validator)
         {
             this.OnCreating();
@@ -888,103 +890,81 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         #endregion Procedures
         #region Properties
         
-        public bool IsParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool IsParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsParam1; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsParam1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsParam1, value))
                 {
                     this.OnIsParam1Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _IsParam1;
-        partial void OnIsParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _IsParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsParam1Changed();
         
-        public bool? IsIncluded // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool? IsIncluded // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsIncluded; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsIncludedChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsIncludedChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsIncludedChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsIncluded, value))
                 {
                     this.OnIsIncludedChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool? _IsIncluded;
-        partial void OnIsIncludedChanging(ref bool? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool? _IsIncluded; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsIncludedChanging(ref bool? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsIncludedChanged();
         
-        public bool IsConstantParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool IsConstantParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsConstantParam1; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsConstantParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsConstantParam1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsConstantParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsConstantParam1, value))
                 {
                     this.OnIsConstantParam1Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _IsConstantParam1;
-        partial void OnIsConstantParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _IsConstantParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsConstantParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsConstantParam1Changed();
         
-        public bool IsCatalogFormParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool IsCatalogFormParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsCatalogFormParam1; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsCatalogFormParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsCatalogFormParam1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsCatalogFormParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsCatalogFormParam1, value))
                 {
                     this.OnIsCatalogFormParam1Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _IsCatalogFormParam1;
-        partial void OnIsCatalogFormParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _IsCatalogFormParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsCatalogFormParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsCatalogFormParam1Changed();
-    /*
-        [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:107
-        { 
-            get { return this._IsChanged; }
-            set
-            {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
-                {
-                    if (this._IsChanged != value)
-                    {
-                        this.OnIsChangedChanging(ref value);
-                        this._IsChanged = value;
-                        this.OnIsChangedChanged();
-                        this.NotifyPropertyChanged();
-                    }
-                }
-            }
-        }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:124
-        */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:129
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -999,8 +979,27 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     public partial class GeneratorDbAccessSettingsValidator : ValidatorBase<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
     public partial class GeneratorDbAccessSettings : BaseSettings<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator>, IGeneratorDbAccessSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
+        public override string ToDebugString()
+        {
+            var t = this.GetType();
+            var mes = t.Name + ":";
+            var p = t.GetProperty("Name");
+            if (p != null)
+                mes = mes + (string?)p.GetValue(this) + ":";
+            p = t.GetProperty("IsNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " New";
+            p = t.GetProperty("IsHasNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " HasNew";
+            OnDebugStringExtend(ref mes);
+            return mes + base.ToDebugString();
+        }
+        partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        public GeneratorDbAccessSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:27
+        public GeneratorDbAccessSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:48
             : base(parent, GeneratorDbAccessSettingsValidator.Validator)
         {
             this.OnCreating();
@@ -1092,122 +1091,100 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         #endregion Procedures
         #region Properties
         
-        public bool IsAccessParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool IsAccessParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsAccessParam1; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsAccessParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsAccessParam1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsAccessParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsAccessParam1, value))
                 {
                     this.OnIsAccessParam1Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _IsAccessParam1;
-        partial void OnIsAccessParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsAccessParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsAccessParam1Changed();
         
-        public bool? IsAccessParam2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool? IsAccessParam2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsAccessParam2; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsAccessParam2Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsAccessParam2Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsAccessParam2Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsAccessParam2, value))
                 {
                     this.OnIsAccessParam2Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool? _IsAccessParam2;
-        partial void OnIsAccessParam2Changing(ref bool? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool? _IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsAccessParam2Changing(ref bool? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsAccessParam2Changed();
         
-        public string AccessParam3 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public string AccessParam3 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._AccessParam3; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnAccessParam3Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnAccessParam3Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnAccessParam3Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._AccessParam3, value))
                 {
                     this.OnAccessParam3Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private string _AccessParam3 = string.Empty;
-        partial void OnAccessParam3Changing(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private string _AccessParam3 = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnAccessParam3Changing(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnAccessParam3Changed();
         
-        public string? AccessParam4 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public string? AccessParam4 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._AccessParam4; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnAccessParam4Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnAccessParam4Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnAccessParam4Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._AccessParam4, value))
                 {
                     this.OnAccessParam4Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private string? _AccessParam4;
-        partial void OnAccessParam4Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private string? _AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnAccessParam4Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnAccessParam4Changed();
         
-        public bool IsGenerateNotValidCode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool IsGenerateNotValidCode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsGenerateNotValidCode; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsGenerateNotValidCodeChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsGenerateNotValidCodeChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsGenerateNotValidCodeChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsGenerateNotValidCode, value))
                 {
                     this.OnIsGenerateNotValidCodeChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _IsGenerateNotValidCode;
-        partial void OnIsGenerateNotValidCodeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsGenerateNotValidCodeChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsGenerateNotValidCodeChanged();
-    /*
-        [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:107
-        { 
-            get { return this._IsChanged; }
-            set
-            {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
-                {
-                    if (this._IsChanged != value)
-                    {
-                        this.OnIsChangedChanging(ref value);
-                        this._IsChanged = value;
-                        this.OnIsChangedChanged();
-                        this.NotifyPropertyChanged();
-                    }
-                }
-            }
-        }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:124
-        */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:129
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -1222,8 +1199,27 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     public partial class GeneratorDbAccessNodeSettingsValidator : ValidatorBase<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
     public partial class GeneratorDbAccessNodeSettings : BaseSettings<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator>, IGeneratorDbAccessNodeSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
+        public override string ToDebugString()
+        {
+            var t = this.GetType();
+            var mes = t.Name + ":";
+            var p = t.GetProperty("Name");
+            if (p != null)
+                mes = mes + (string?)p.GetValue(this) + ":";
+            p = t.GetProperty("IsNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " New";
+            p = t.GetProperty("IsHasNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " HasNew";
+            OnDebugStringExtend(ref mes);
+            return mes + base.ToDebugString();
+        }
+        partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        public GeneratorDbAccessNodeSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:27
+        public GeneratorDbAccessNodeSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:48
             : base(parent, GeneratorDbAccessNodeSettingsValidator.Validator)
         {
             this.OnCreating();
@@ -1311,103 +1307,81 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         #endregion Procedures
         #region Properties
         
-        public bool IsParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool IsParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsParam1; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsParam1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsParam1, value))
                 {
                     this.OnIsParam1Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _IsParam1;
-        partial void OnIsParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _IsParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsParam1Changed();
         
-        public bool? IsIncluded // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool? IsIncluded // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsIncluded; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsIncludedChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsIncludedChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsIncludedChanging(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsIncluded, value))
                 {
                     this.OnIsIncludedChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool? _IsIncluded;
-        partial void OnIsIncludedChanging(ref bool? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool? _IsIncluded; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsIncludedChanging(ref bool? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsIncludedChanged();
         
-        public bool IsPropertyParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool IsPropertyParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsPropertyParam1; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsPropertyParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsPropertyParam1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsPropertyParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsPropertyParam1, value))
                 {
                     this.OnIsPropertyParam1Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _IsPropertyParam1;
-        partial void OnIsPropertyParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _IsPropertyParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsPropertyParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsPropertyParam1Changed();
         
-        public bool IsCatalogFormParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:71
+        public bool IsCatalogFormParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._IsCatalogFormParam1; }
             set
             {
-                // Use to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                this.OnIsCatalogFormParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:78
+                // Use 'OnIsCatalogFormParam1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                this.OnIsCatalogFormParam1Changing(ref value); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 if (SetProperty(ref this._IsCatalogFormParam1, value))
                 {
                     this.OnIsCatalogFormParam1Changed();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:20
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:23
                 }
             }
         }
-        private bool _IsCatalogFormParam1;
-        partial void OnIsCatalogFormParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:114
+        private bool _IsCatalogFormParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsCatalogFormParam1Changing(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnIsCatalogFormParam1Changed();
-    /*
-        [Browsable(false)]
-        public override bool IsChanged // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:107
-        { 
-            get { return this._IsChanged; }
-            set
-            {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
-                {
-                    if (this._IsChanged != value)
-                    {
-                        this.OnIsChangedChanging(ref value);
-                        this._IsChanged = value;
-                        this.OnIsChangedChanged();
-                        this.NotifyPropertyChanged();
-                    }
-                }
-            }
-        }
-        partial void OnIsChangedChanging(ref bool v); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:124
-        */
-        //partial void OnIsChangedChanged(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:129
         #endregion Properties
     }
     

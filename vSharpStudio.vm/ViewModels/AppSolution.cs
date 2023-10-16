@@ -18,9 +18,13 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("AppSolution:{Name,nq} prj:{ListAppProjects.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" prj:{ListAppProjects.Count}";
+        }
         [Browsable(false)]
         public GroupListAppSolutions ParentGroupListAppSolutions { get { Debug.Assert(this.Parent != null); return (GroupListAppSolutions)this.Parent; } }
         [Browsable(false)]
@@ -184,8 +188,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             set
             {
-                _DynamicPluginGroupSettings = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._DynamicPluginGroupSettings, value);
             }
         }
         private object? _DynamicPluginGroupSettings;

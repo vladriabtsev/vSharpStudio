@@ -17,10 +17,13 @@ using FluentValidation.Results;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    // [DebuggerDisplay("AppProject:{Name,nq} props:{listProperties.Count,nq}")]
-    [DebuggerDisplay("AppProject:{Name,nq} RelPath:{RelativeAppProjectPath,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" RelPath:{RelativeAppProjectPath}";
+        }
         [Browsable(false)]
         public AppSolution ParentAppSolution { get { Debug.Assert(this.Parent != null); return (AppSolution)this.Parent; } }
         [Browsable(false)]
@@ -276,8 +279,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             set
             {
-                _DynamicPluginGroupSettings = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._DynamicPluginGroupSettings, value);
             }
         }
         private object? _DynamicPluginGroupSettings;

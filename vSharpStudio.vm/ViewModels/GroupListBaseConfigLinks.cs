@@ -11,9 +11,13 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} configs:{ListBaseConfigLinks.Count,nq} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class GroupListBaseConfigLinks : ITreeModel, ICanAddSubNode, ICanGoRight, IEditableNodeGroup // , INodeGenSettings
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" configs:{ListBaseConfigLinks.Count}";
+        }
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]

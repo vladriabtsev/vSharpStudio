@@ -11,9 +11,15 @@ using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} Count:{ListPlugins.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class GroupListPlugins : ITreeModel, ICanGoRight, IEditableNodeGroup
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" Count:{ListPlugins.Count}";
+        }
+        [Browsable(false)]
+        public bool IsNew { get { return false; } }
         [Browsable(false)]
         public Config ParentConfig { get { Debug.Assert(this.Parent != null); return (Config)this.Parent; } }
         [Browsable(false)]

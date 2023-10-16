@@ -28,7 +28,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Model:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Model : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, IEditableNodeGroup, INodeGenSettings //, IRoleAccess
     {
         [Browsable(false)]
@@ -394,17 +394,11 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return this._SelectedNode;
             }
-
             set
             {
-                if (this._SelectedNode != value)
+                if (SetProperty(ref this._SelectedNode, value))
                 {
-                    this._SelectedNode = value;
-                    this.NotifyPropertyChanged();
-                }
-                if (this.OnSelectedNodeChanged != null)
-                {
-                    this.OnSelectedNodeChanged();
+                    this.OnSelectedNodeChanged?.Invoke();
                 }
             }
         }

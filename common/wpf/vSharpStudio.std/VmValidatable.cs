@@ -14,6 +14,23 @@ namespace ViewModelBase
         where TValidator : AbstractValidator<T>
         where T : VmValidatable<T, TValidator>//, IComparable<T>
     {
+        public override string ToDebugString()
+        {
+            int CountErrors()
+            {
+                var cnt = 0;
+                foreach (var t in _errors)
+                {
+                    cnt += t.Value.Count;
+                }
+                return cnt;
+            }
+            var cnt = CountErrors();
+            var mes = "";
+            if (cnt > 0)
+                mes = " ErrCnt:" + cnt;
+            return base.ToDebugString() + mes;
+        }
         public VmValidatable(TValidator validator)
         {
             this._validator = validator;

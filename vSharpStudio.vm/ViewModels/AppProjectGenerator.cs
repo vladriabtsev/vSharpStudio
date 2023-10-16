@@ -13,9 +13,13 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("AppPrjGen:{Name,nq} Conn:{ConnStr,nq} File:{GenFileName,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class AppProjectGenerator : ICanRemoveNode, ICanAddNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" Conn:{ConnStr} File:{GenFileName}";
+        }
         private Config? cfg;
         [Browsable(false)]
         public AppProject ParentAppProject { get { Debug.Assert(this.Parent != null); return (AppProject)this.Parent; } }
@@ -173,8 +177,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             set
             {
-                this._DynamicMainConnStrSettings = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._DynamicMainConnStrSettings, value);
             }
         }
 
@@ -210,8 +213,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             set
             {
-                this._DynamicGeneratorSettings = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._DynamicGeneratorSettings, value);
             }
         }
         private IvPluginGeneratorSettings? _DynamicGeneratorSettings;
@@ -241,8 +243,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             set
             {
-                this._DynamicModelNodeSettings = value;
-                this.NotifyPropertyChanged();
+                SetProperty(ref this._DynamicModelNodeSettings, value);
             }
         }
         private object? _DynamicModelNodeSettings;
