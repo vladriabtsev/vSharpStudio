@@ -44,6 +44,10 @@ namespace ViewModelBase
         public VmBindable()
         {
         }
+        /// <summary>
+        /// If false then any PropertyChanged event will set IsChanged to true.
+        /// If true then code in property setter has to change IsChanged explicitly.
+        /// </summary>
         public static bool IsModifyIsChangedExplicitly = false;
         public static bool isUnitTests;
 #if DEBUG
