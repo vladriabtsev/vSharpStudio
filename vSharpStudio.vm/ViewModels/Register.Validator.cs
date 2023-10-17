@@ -100,12 +100,6 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.GroupRegisterDimensions.ListDimensions).Must((lst) =>
-            {
-                if (lst.Count == 0)
-                    return false;
-                return true;
-            }).WithMessage("Register dimentions are not selected");
             this.RuleFor(x => x.UseQtyAccumulator).Custom((use, cntx) =>
             {
                 var p = (Register)cntx.InstanceToValidate;
@@ -128,6 +122,18 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             });
+            this.RuleFor(x => x.GroupRegisterDimensions.ListDimensions).Must((lst) =>
+            {
+                if (lst.Count == 0)
+                    return false;
+                return true;
+            }).WithMessage("Register dimentions are not selected");
+            this.RuleFor(x => x.ListDocGuids).Must((lst) =>
+            {
+                if (lst.Count == 0)
+                    return false;
+                return true;
+            }).WithMessage("List of Document types for Register is empty");
         }
     }
 }

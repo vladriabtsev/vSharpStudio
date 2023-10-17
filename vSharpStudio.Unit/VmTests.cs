@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
@@ -394,6 +395,36 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(pos, prop.Position);
         }
         #endregion Unique position for Protobuf
+
+        [TestMethod]
+        public void Register002_Validation()
+        {
+            var mvm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            //mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
+            mvm.BtnNewConfig.Execute();
+
+            var cfg = mvm.Config;
+            var reg = (IRegister)cfg.Model.GroupListRegisters.NodeAddNewSubNode();
+            reg.Validate();
+            Assert.AreEqual(2, reg.ValidationCollection.Count);
+            reg.ValidationCollection.Single(m => m.Message.StartsWith("Register dimentions are not selected"));
+            reg.ValidationCollection.Single(m => m.Message.StartsWith("List of Document types for Register is empty"));
+
+            var dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
+            Assert.AreEqual(1, reg.GroupRegisterDimensions.ListDimensions.Count);
+            reg.Validate();
+            Assert.AreEqual(1, reg.ValidationCollection.Count);
+            reg.ValidationCollection.Single(m => m.Message.StartsWith("List of Document types for Register is empty"));
+
+            mvm.BtnConfigSaveAs.Execute(@".\test.vcfg");
+            mvm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            Assert.AreEqual(1, mvm.Config.Model.GroupListRegisters.ListRegisters.Count);
+            Assert.AreEqual(1, mvm.Config.Model.GroupListRegisters.ListRegisters[0].GroupRegisterDimensions.ListDimensions.Count);
+            reg = mvm.Config.Model.GroupListRegisters.ListRegisters[0];
+            reg.Validate();
+            Assert.AreEqual(1, reg.ValidationCollection.Count);
+            reg.ValidationCollection.Single(m => m.Message.StartsWith("List of Document types for Register is empty"));
+        }
 
         //#region OnAdded in parent
         //[TestMethod]
