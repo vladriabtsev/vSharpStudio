@@ -20,11 +20,11 @@ namespace vPlugin.Sample
             this.DicNodeExcludedProperties = new Dictionary<string, string?>();
             if (!(this.Parent is IConstant))
             {
-                DicNodeExcludedProperties[this.GetPropertyName(() => this.IsConstantParam1)] = null; ;
+                DicNodeExcludedProperties[nameof(this.IsConstantParam1)] = null; ;
             }
             if (!(this.Parent?.Parent is ICatalog) && !(this.Parent is IForm))
             {
-                DicNodeExcludedProperties[this.GetPropertyName(() => this.IsCatalogFormParam1)] = null;
+                DicNodeExcludedProperties[nameof(this.IsCatalogFormParam1)] = null;
             }
         }
         [Browsable(false)]

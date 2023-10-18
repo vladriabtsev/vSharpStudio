@@ -114,7 +114,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnSequenceGuidChanged()
         {
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
             this.ParentDocument.NotifyCodePropertySettingsChanged();
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
@@ -122,9 +122,9 @@ namespace vSharpStudio.vm.ViewModels
             var lst = new List<string>();
             if (!string.IsNullOrWhiteSpace(this.SequenceGuid))
             {
-                lst.Add(this.GetPropertyName(() => this.SequenceType));
-                lst.Add(this.GetPropertyName(() => this.MaxSequenceLength));
-                lst.Add(this.GetPropertyName(() => this.Prefix));
+                lst.Add(nameof(this.SequenceType));
+                lst.Add(nameof(this.MaxSequenceLength));
+                lst.Add(nameof(this.Prefix));
             }
             switch (this.ScopeOfUnique)
             {
@@ -132,8 +132,8 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
                     break;
                 default:
-                    lst.Add(this.GetPropertyName(() => this.ScopePeriodStartMonth));
-                    lst.Add(this.GetPropertyName(() => this.ScopePeriodStartMonthDay));
+                    lst.Add(nameof(this.ScopePeriodStartMonth));
+                    lst.Add(nameof(this.ScopePeriodStartMonthDay));
                     break;
             }
             return lst.ToArray();

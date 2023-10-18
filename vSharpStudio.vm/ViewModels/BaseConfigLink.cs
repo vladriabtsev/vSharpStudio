@@ -92,7 +92,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var lst = new List<string>
             {
-                this.GetPropertyName(() => this.Parent)
+                nameof(this.Parent)
             };
             return lst.ToArray();
         }

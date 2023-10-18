@@ -278,7 +278,7 @@ namespace vSharpStudio.ViewModels
                         this.Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath) + "\\";
                 }
                 this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(() => this.CurrentCfgFilePathTitle);
+                this.NotifyPropertyChanged(nameof(this.CurrentCfgFilePathTitle));
             }
         }
         private string? _CurrentCfgFilePath;

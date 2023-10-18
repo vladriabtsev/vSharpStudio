@@ -118,7 +118,7 @@ namespace vSharpStudio.vm.ViewModels
         #region Editing logic
         partial void OnIsNullableChanged()
         {
-            this.NotifyPropertyChanged(() => this.ClrType);
+            this.NotifyPropertyChanged(nameof(this.ClrType));
             this.Tag = null;
         }
         private void OnDataTypeEnumChanged()
@@ -186,7 +186,7 @@ namespace vSharpStudio.vm.ViewModels
                 default:
                     throw new NotSupportedException();
             }
-            this.NotifyPropertyChanged(() => this.ClrType);
+            this.NotifyPropertyChanged(nameof(this.ClrType));
             this.Tag = null;
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
@@ -194,17 +194,17 @@ namespace vSharpStudio.vm.ViewModels
             var lst = new List<string>();
             if (this.DataType.DataTypeEnum != EnumDataType.STRING)
             {
-                lst.Add(this.GetPropertyName(() => this.MinLengthRequirement));
-                lst.Add(this.GetPropertyName(() => this.MaxLengthRequirement));
+                lst.Add(nameof(this.MinLengthRequirement));
+                lst.Add(nameof(this.MaxLengthRequirement));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
             {
-                lst.Add(this.GetPropertyName(() => this.Accuracy));
-                lst.Add(this.GetPropertyName(() => this.IsPositive));
+                lst.Add(nameof(this.Accuracy));
+                lst.Add(nameof(this.IsPositive));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
             {
-                lst.Add(this.GetPropertyName(() => this.Length));
+                lst.Add(nameof(this.Length));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
@@ -212,25 +212,25 @@ namespace vSharpStudio.vm.ViewModels
                                                                         //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
                                                                         //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
             {
-                lst.Add(this.GetPropertyName(() => this.AccuracyForTime));
+                lst.Add(nameof(this.AccuracyForTime));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
             {
-                lst.Add(this.GetPropertyName(() => this.ListObjectGuids));
-                lst.Add(this.GetPropertyName(() => this.DefaultValue));
+                lst.Add(nameof(this.ListObjectGuids));
+                lst.Add(nameof(this.DefaultValue));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENT &&
                 this.DataType.DataTypeEnum != EnumDataType.ENUMERATION &&
                 this.DataType.DataTypeEnum != EnumDataType.ANY)
             {
-                lst.Add(this.GetPropertyName(() => this.ObjectGuid));
-                lst.Add(this.GetPropertyName(() => this.DefaultValue));
+                lst.Add(nameof(this.ObjectGuid));
+                lst.Add(nameof(this.DefaultValue));
             }
             if (this.Accuracy != 0)
             {
-                lst.Add(this.GetPropertyName(() => this.IsPositive));
+                lst.Add(nameof(this.IsPositive));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.STRING &&
                 this.DataType.DataTypeEnum != EnumDataType.CHAR &&
@@ -241,7 +241,7 @@ namespace vSharpStudio.vm.ViewModels
                 //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
                 this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
             {
-                lst.Add(this.GetPropertyName(() => this.RangeValuesRequirements));
+                lst.Add(nameof(this.RangeValuesRequirements));
             }
             return lst.ToArray();
         }
@@ -257,7 +257,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
                 this.ValidateProperty();
                 this.OnDataTypeEnumChanged();
-                this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+                this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
                 this.Tag = null;
             }
         }
@@ -272,7 +272,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.DataType.Length = value;
                 this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(() => this.ClrType);
+                this.NotifyPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
                 this.Tag = null;
             }
@@ -288,9 +288,9 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.DataType.Accuracy = value;
                 this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(() => this.ClrType);
+                this.NotifyPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
-                this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+                this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
                 this.Tag = null;
             }
         }
@@ -305,7 +305,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.DataType.IsPositive = value;
                 this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(() => this.ClrType);
+                this.NotifyPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
                 this.Tag = null;
             }
@@ -320,7 +320,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.DataType.ObjectGuid = value;
                 this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(() => this.ClrType);
+                this.NotifyPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
                 this.Tag = null;
             }

@@ -116,11 +116,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             var lst = new List<string>
             {
-                this.GetPropertyName(() => this.Description),
-                this.GetPropertyName(() => this.Guid),
-                //lst.Add(this.GetPropertyName(() => this.NameUi));
-                this.GetPropertyName(() => this.Parent),
-                this.GetPropertyName(() => this.Children)
+                nameof(this.Description),
+                nameof(this.Guid),
+                //lst.Add(nameof(this.NameUi));
+                nameof(this.Parent),
+                nameof(this.Children)
             };
             return lst.ToArray();
         }

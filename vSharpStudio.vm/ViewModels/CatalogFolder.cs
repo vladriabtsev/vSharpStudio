@@ -461,14 +461,14 @@ namespace vSharpStudio.vm.ViewModels
         public string CodePropertySettingsText { get { return this.CodePropertySettings.ToString(); } }
         public void NotifyCodePropertySettingsChanged()
         {
-            this.NotifyPropertyChanged(() => this.CodePropertySettingsText);
+            this.NotifyPropertyChanged(nameof(this.CodePropertySettingsText));
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>
             {
-                this.GetPropertyName(() => this.Parent),
-                this.GetPropertyName(() => this.Children)
+                nameof(this.Parent),
+                nameof(this.Children)
             };
             return lst.ToArray();
         }

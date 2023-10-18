@@ -128,16 +128,16 @@ namespace vSharpStudio.vm.ViewModels
         {
             var lst = new List<string>
             {
-                this.GetPropertyName(() => this.Description),
-                this.GetPropertyName(() => this.Guid),
-                this.GetPropertyName(() => this.NameUi),
-                this.GetPropertyName(() => this.Parent),
-                this.GetPropertyName(() => this.Children)
+                nameof(this.Description),
+                nameof(this.Guid),
+                nameof(this.NameUi),
+                nameof(this.Parent),
+                nameof(this.Children)
             };
             //if (!this.UseCodeProperty)
-            //    lst.Add(this.GetPropertyName(() => this.PropertyCodeName));
+            //    lst.Add(nameof(this.PropertyCodeName));
             //if (!this.UseNameProperty)
-            //    lst.Add(this.GetPropertyName(() => this.PropertyNameName));
+            //    lst.Add(nameof(this.PropertyNameName));
             return lst.ToArray();
         }
         public Register AddRegister()

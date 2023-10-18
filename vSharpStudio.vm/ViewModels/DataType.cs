@@ -31,7 +31,53 @@ namespace vSharpStudio.vm.ViewModels
             this._Length = 10;
             this._DataTypeEnum = EnumDataType.STRING;
             //Init();
+            this.PropertyChanging += DataType_PropertyChanging;
+            //this.PropertyChanged += DataType_PropertyChanged;
         }
+        private void DataType_PropertyChanging(object? sender, PropertyChangingEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(this.DataTypeEnum):
+                    switch (this.DataTypeEnum)
+                    {
+                        case EnumDataType.CATALOG:
+                            this.ListObjectGuids.Clear();
+                            break;
+                        case EnumDataType.CATALOGS:
+                            this.ObjectGuid = string.Empty;
+                            break;
+                        case EnumDataType.DOCUMENT:
+                            this.ListObjectGuids.Clear();
+                            break;
+                        case EnumDataType.DOCUMENTS:
+                            this.ObjectGuid = string.Empty;
+                            break;
+                        case EnumDataType.ENUMERATION:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        //private void DataType_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        //{
+        //    switch (e.PropertyName)
+        //    {
+        //        case nameof(this.EnumFormType):
+        //            if (this.EnumFormType == FormType.FormTypeNotSelected)
+        //                return;
+        //            var cnt = (from p in this.ParentGroupListForms.ListForms
+        //                       where p.EnumFormType == this.EnumFormType
+        //                       select p).Count();
+        //            if (cnt > 1)
+        //                MessageBox.Show($"List forms already contains '{Enum.GetName<FormType>(this.EnumFormType)}' form type", "Warning", System.Windows.MessageBoxButton.OK);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
         //protected override void OnInitFromDto()
         //{
         //    Init();
@@ -654,26 +700,6 @@ namespace vSharpStudio.vm.ViewModels
                 return null;
             }
         }
-        partial void OnDataTypeEnumChanging(ref EnumDataType to)
-        {
-            switch (this.DataTypeEnum)
-            {
-                case EnumDataType.CATALOG:
-                    this.ListObjectGuids.Clear();
-                    break;
-                case EnumDataType.CATALOGS:
-                    this.ObjectGuid = string.Empty;
-                    break;
-                case EnumDataType.DOCUMENT:
-                    this.ListObjectGuids.Clear();
-                    break;
-                case EnumDataType.DOCUMENTS:
-                    this.ObjectGuid = string.Empty;
-                    break;
-                case EnumDataType.ENUMERATION:
-                    break;
-            }
-        }
         partial void OnDataTypeEnumChanged()
         {
             if (this.Cfg == null)
@@ -701,7 +727,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    this.NotifyPropertyChanged(() => this.ListObjects);
+                    this.NotifyPropertyChanged(nameof(this.ListObjects));
                     break;
                 case EnumDataType.CATALOG:
                 case EnumDataType.DOCUMENT:
@@ -713,7 +739,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    this.NotifyPropertyChanged(() => this.ListObjects);
+                    this.NotifyPropertyChanged(nameof(this.ListObjects));
                     break;
                 case EnumDataType.NUMERICAL:
                     if (this.Accuracy == 0)
@@ -733,7 +759,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._IsPositive = false;
                     this._ObjectGuid = string.Empty;
                     this.ListObjectGuids.Clear();
-                    this.NotifyPropertyChanged(() => this.ListObjects);
+                    this.NotifyPropertyChanged(nameof(this.ListObjects));
                     break;
                 case EnumDataType.STRING:
                     this.VisibilityIsPositive = Visibility.Collapsed;
@@ -745,7 +771,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._IsPositive = false;
                     this._ObjectGuid = string.Empty;
                     this.ListObjectGuids.Clear();
-                    this.NotifyPropertyChanged(() => this.ListObjects);
+                    this.NotifyPropertyChanged(nameof(this.ListObjects));
                     break;
                 default:
                     throw new NotSupportedException();
@@ -753,10 +779,10 @@ namespace vSharpStudio.vm.ViewModels
             ClrTypeNameCalc();
             MinValueCalc();
             MaxValueCalc();
-            this.NotifyPropertyChanged(() => this.Length);
-            this.NotifyPropertyChanged(() => this.Accuracy);
-            this.NotifyPropertyChanged(() => this.IsPositive);
-            this.NotifyPropertyChanged(() => this.ObjectGuid);
+            this.NotifyPropertyChanged(nameof(this.Length));
+            this.NotifyPropertyChanged(nameof(this.Accuracy));
+            this.NotifyPropertyChanged(nameof(this.IsPositive));
+            this.NotifyPropertyChanged(nameof(this.ObjectGuid));
         }
         partial void OnLengthChanged()
         {

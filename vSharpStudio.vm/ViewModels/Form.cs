@@ -73,6 +73,33 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.IsIncludableInModels = true;
             Init();
+            //this.PropertyChanging += Form_PropertyChanging;
+            this.PropertyChanged += Form_PropertyChanged;
+        }
+        //private void Form_PropertyChanging(object? sender, PropertyChangingEventArgs e)
+        //{
+        //    switch(e.PropertyName)
+        //    {
+        //        default:
+        //            break;
+        //    }
+        //}
+        private void Form_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(this.EnumFormType):
+                    if (this.EnumFormType == FormType.FormTypeNotSelected)
+                        return;
+                    var cnt = (from p in this.ParentGroupListForms.ListForms
+                             where p.EnumFormType == this.EnumFormType
+                             select p).Count();
+                    if (cnt > 1)
+                        MessageBox.Show($"List forms already contains '{Enum.GetName<FormType>(this.EnumFormType)}' form type", "Warning", System.Windows.MessageBoxButton.OK);
+                    break;
+                default:
+                    break;
+            }
         }
         protected override void OnInitFromDto()
         {
@@ -216,47 +243,47 @@ namespace vSharpStudio.vm.ViewModels
             {
                 var c = (Catalog)this.Parent.Parent;
                 if (!c.GetUseCodeProperty())
-                    lst.Add(this.GetPropertyName(() => this.IsUseCode));
+                    lst.Add(nameof(this.IsUseCode));
                 if (!c.GetUseNameProperty())
-                    lst.Add(this.GetPropertyName(() => this.IsUseName));
+                    lst.Add(nameof(this.IsUseName));
                 if (!c.GetUseDescriptionProperty())
-                    lst.Add(this.GetPropertyName(() => this.IsUseDesc));
+                    lst.Add(nameof(this.IsUseDesc));
                 if (!c.UseTree || !(c.UseTree && c.UseSeparateTreeForFolders))
                 {
-                    lst.Add(this.GetPropertyName(() => this.IsUseFolderCode));
-                    lst.Add(this.GetPropertyName(() => this.IsUseFolderName));
-                    lst.Add(this.GetPropertyName(() => this.IsUseFolderDesc));
+                    lst.Add(nameof(this.IsUseFolderCode));
+                    lst.Add(nameof(this.IsUseFolderName));
+                    lst.Add(nameof(this.IsUseFolderDesc));
                 }
                 else
                 {
                     if (!c.Folder.GetUseCodeProperty())
-                        lst.Add(this.GetPropertyName(() => this.IsUseFolderCode));
+                        lst.Add(nameof(this.IsUseFolderCode));
                     if (!c.Folder.GetUseNameProperty())
-                        lst.Add(this.GetPropertyName(() => this.IsUseFolderName));
+                        lst.Add(nameof(this.IsUseFolderName));
                     if (!c.Folder.GetUseDescriptionProperty())
-                        lst.Add(this.GetPropertyName(() => this.IsUseFolderDesc));
+                        lst.Add(nameof(this.IsUseFolderDesc));
                 }
-                lst.Add(this.GetPropertyName(() => this.IsUseDocDate));
+                lst.Add(nameof(this.IsUseDocDate));
             }
             else if (this.Parent.Parent is IDetail)
             {
                 var c = (IDetail)this.Parent.Parent;
-                lst.Add(this.GetPropertyName(() => this.IsUseCode));
-                lst.Add(this.GetPropertyName(() => this.IsUseName));
-                lst.Add(this.GetPropertyName(() => this.IsUseDesc));
-                lst.Add(this.GetPropertyName(() => this.IsUseFolderCode));
-                lst.Add(this.GetPropertyName(() => this.IsUseFolderName));
-                lst.Add(this.GetPropertyName(() => this.IsUseFolderDesc));
-                lst.Add(this.GetPropertyName(() => this.IsUseDocDate));
+                lst.Add(nameof(this.IsUseCode));
+                lst.Add(nameof(this.IsUseName));
+                lst.Add(nameof(this.IsUseDesc));
+                lst.Add(nameof(this.IsUseFolderCode));
+                lst.Add(nameof(this.IsUseFolderName));
+                lst.Add(nameof(this.IsUseFolderDesc));
+                lst.Add(nameof(this.IsUseDocDate));
             }
             else if (this.Parent.Parent is IDocument)
             {
-                lst.Add(this.GetPropertyName(() => this.EnumFormType));
-                lst.Add(this.GetPropertyName(() => this.IsUseName));
-                lst.Add(this.GetPropertyName(() => this.IsUseDesc));
-                lst.Add(this.GetPropertyName(() => this.IsUseFolderCode));
-                lst.Add(this.GetPropertyName(() => this.IsUseFolderName));
-                lst.Add(this.GetPropertyName(() => this.IsUseFolderDesc));
+                lst.Add(nameof(this.EnumFormType));
+                lst.Add(nameof(this.IsUseName));
+                lst.Add(nameof(this.IsUseDesc));
+                lst.Add(nameof(this.IsUseFolderCode));
+                lst.Add(nameof(this.IsUseFolderName));
+                lst.Add(nameof(this.IsUseFolderDesc));
             }
             else
             {
@@ -266,18 +293,18 @@ namespace vSharpStudio.vm.ViewModels
             {
                 case FormType.ListNarrow:
                 case FormType.ListWide:
-                    lst.Add(this.GetPropertyName(() => this.IsDummy));
+                    lst.Add(nameof(this.IsDummy));
                     break;
                 case FormType.ItemEditForm:
                 case FormType.FolderEditForm:
                     break;
                 default:
-                    lst.Add(this.GetPropertyName(() => this.IsUseCode));
-                    lst.Add(this.GetPropertyName(() => this.IsUseName));
-                    lst.Add(this.GetPropertyName(() => this.IsUseDesc));
-                    lst.Add(this.GetPropertyName(() => this.IsUseFolderCode));
-                    lst.Add(this.GetPropertyName(() => this.IsUseFolderName));
-                    lst.Add(this.GetPropertyName(() => this.IsUseFolderDesc));
+                    lst.Add(nameof(this.IsUseCode));
+                    lst.Add(nameof(this.IsUseName));
+                    lst.Add(nameof(this.IsUseDesc));
+                    lst.Add(nameof(this.IsUseFolderCode));
+                    lst.Add(nameof(this.IsUseFolderName));
+                    lst.Add(nameof(this.IsUseFolderDesc));
                     break;
             }
             return lst.ToArray();
@@ -468,25 +495,10 @@ namespace vSharpStudio.vm.ViewModels
                 this.ListGuidViewProperties.Add(((IProperty)t).Guid);
             }
         }
-
-        partial void OnEnumFormTypeChanging(ref FormType to)
-        {
-            if (to == FormType.FormTypeNotSelected)
-                return;
-            var ft = to;
-            var f = (from p in this.ParentGroupListForms.ListForms
-                     where p.EnumFormType == ft
-                     select p).SingleOrDefault();
-            if (f != null)
-            {
-                MessageBox.Show($"List forms already contains '{Enum.GetName<FormType>(ft)}' form type", "Warning", System.Windows.MessageBoxButton.OK);
-                to = FormType.FormTypeNotSelected;
-            }
-        }
         partial void OnEnumFormTypeChanged()
         {
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
-            this.NotifyPropertyChanged(() => this.IsListForm);
+            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
+            this.NotifyPropertyChanged(nameof(this.IsListForm));
         }
         [Browsable(false)]
         public bool IsListForm

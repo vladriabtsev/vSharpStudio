@@ -205,11 +205,11 @@ namespace ViewModelBase
             NotifyPropertyChanged(nameof(this.HasInfos));
             return isValid;
         }
-        protected void ValidateProperty(Expression<Func<T>> property)
-        {
-            var propertyName = this.GetPropertyName<T>(property);
-            ValidateProperty(propertyName);
-        }
+        //protected void ValidateProperty(Expression<Func<T>> property)
+        //{
+        //    var propertyName = this.GetPropertyName<T>(property);
+        //    ValidateProperty(propertyName);
+        //}
         protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
             Debug.Assert(propertyName != null);

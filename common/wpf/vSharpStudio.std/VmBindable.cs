@@ -277,11 +277,11 @@ namespace ViewModelBase
         /// </summary>
         /// <typeparam name="T">Type of the property in the expression.</typeparam>
         /// <param name="property">Expression to retrieve the property. Example: () => this.FirstName</param>
-        protected void NotifyPropertyChanged<T>(Expression<Func<T>> property)
-        {
-            var propertyName = this.GetPropertyName<T>(property);
-            this.NotifyPropertyChanged(propertyName);
-        }
+        //protected void NotifyPropertyChanged<T>(Expression<Func<T>> property)
+        //{
+        //    var propertyName = this.GetPropertyName<T>(property);
+        //    this.NotifyPropertyChanged(propertyName);
+        //}
 
         /// <summary>
         /// Gets the string name of a property expression.
@@ -289,11 +289,11 @@ namespace ViewModelBase
         /// <typeparam name="T">Type of the property in the expression.</typeparam>
         /// <param name="property">Expression to retrieve the property. Example: () => this.FirstName</param>
         /// <returns>String value representing the property name.</returns>
-        public string GetPropertyName<T>(Expression<Func<T>> property)
-        {
-            MemberExpression memberExpression = GetMememberExpression<T>(property);
-            return memberExpression.Member.Name;
-        }
+        //public string GetPropertyName<T>(Expression<Func<T>> property)
+        //{
+        //    MemberExpression memberExpression = GetMememberExpression<T>(property);
+        //    return memberExpression.Member.Name;
+        //}
 
         /// <summary>
         /// Gets the MemberExpression from a property expression.

@@ -44,14 +44,14 @@
             {
                 case "IsChanged":
                 case "IsHasChanged":
-                    this.NotifyPropertyChanged(() => this.IsChangedOrHasChanged);
+                    this.NotifyPropertyChanged(nameof(this.IsChangedOrHasChanged));
                     break;
                 case "IsNew":
-                    this.NotifyPropertyChanged(() => this.NodeNameDecorations);
-                    this.NotifyPropertyChanged(() => this.IsNewOrHasNew);
+                    this.NotifyPropertyChanged(nameof(this.NodeNameDecorations));
+                    this.NotifyPropertyChanged(nameof(this.IsNewOrHasNew));
                     break;
                 case "IsMarkedForDeletion":
-                    this.NotifyPropertyChanged(() => this.NodeNameDecorations);
+                    this.NotifyPropertyChanged(nameof(this.NodeNameDecorations));
                     break;
             }
         }
@@ -864,13 +864,13 @@
                     }
                 }
                 this._IsHasChanged = isHasChanged;
-                this.NotifyPropertyChanged(() => this.IsHasChanged);
-                this.NotifyPropertyChanged(() => this.IsChangedOrHasChanged);
+                this.NotifyPropertyChanged(nameof(this.IsHasChanged));
+                this.NotifyPropertyChanged(nameof(this.IsChangedOrHasChanged));
                 this._IsHasNew = isHasNew;
-                this.NotifyPropertyChanged(() => this.IsHasNew);
-                this.NotifyPropertyChanged(() => this.IsNewOrHasNew);
+                this.NotifyPropertyChanged(nameof(this.IsHasNew));
+                this.NotifyPropertyChanged(nameof(this.IsNewOrHasNew));
                 this._IsHasMarkedForDeletion = isHasMarked;
-                this.NotifyPropertyChanged(() => this.IsHasMarkedForDeletion);
+                this.NotifyPropertyChanged(nameof(this.IsHasMarkedForDeletion));
             }
         }
         public void CheckChildrenIsOrHasChanged()
@@ -1016,7 +1016,7 @@
                 if (SetProperty(ref this._IsHasNew, value))
                 {
                     this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged(() => this.IsNewOrHasNew);
+                    this.NotifyPropertyChanged(nameof(this.IsNewOrHasNew));
                     this.ValidateProperty();
                 }
             }

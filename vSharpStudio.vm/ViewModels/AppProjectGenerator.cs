@@ -48,26 +48,34 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public IvPluginGenerator? PluginGenerator
         {
-            get
+            get { return this._PluginGenerator; }
+            //get
+            //{
+            //if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
+            //    return null;
+            //Debug.Assert(cfg != null);
+            //Debug.Assert(cfg.DicGenerators != null);
+            //if (!cfg.DicGenerators.ContainsKey(this.PluginGeneratorGuid))
+            //    return null;
+            //var gntr = cfg.DicGenerators[this.PluginGeneratorGuid];
+            //return gntr;
+            //}
+            set
             {
-                if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
-                    return null;
-                Debug.Assert(cfg != null);
-                Debug.Assert(cfg.DicGenerators != null);
-                if (!cfg.DicGenerators.ContainsKey(this.PluginGeneratorGuid))
-                    return null;
-                var gntr = cfg.DicGenerators[this.PluginGeneratorGuid];
-                return gntr;
+                if (this.SetProperty(ref this._PluginGenerator, value))
+                {
+                    this.PluginDbGenerator = this._PluginGenerator as IvPluginDbGenerator;
+                }
             }
         }
+        private IvPluginGenerator? _PluginGenerator;
         [Browsable(false)]
         public IvPluginDbGenerator? PluginDbGenerator
         {
-            get
-            {
-                return this.PluginGenerator as IvPluginDbGenerator;
-            }
+            get { return this._PluginDbGenerator; }
+            set { this.SetProperty(ref this._PluginGenerator, value); }
         }
+        private IvPluginDbGenerator? _PluginDbGenerator;
         partial void OnConnStrChanged()
         {
             DebugExt.WriteLineWithStack();
@@ -138,65 +146,68 @@ namespace vSharpStudio.vm.ViewModels
         [Description("DB connection string generator settings")]
         public IvPluginGeneratorSettings? DynamicMainConnStrSettings
         {
-            get
-            {
-                Debug.Assert(cfg != null);
-                DebugExt.WriteLineWithStack();
-                if (_DynamicMainConnStrSettings == null && cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
-                {
-                    if (this.PluginGenerator is IvPluginDbGenerator)
-                    {
-                        DebugExt.WriteLine($"Trying get connection string model from DB generator. this.ConnStr='{this.ConnStr}'");
-                        //if (this.PluginGenerator.Guid ==)
-                        var db_gen = this.PluginGenerator as IvPluginDbGenerator;
-                        try
-                        {
-                            this._DynamicMainConnStrSettings = db_gen?.GetConnectionStringMvvm(this, this.ConnStr);
-                        }
-                        catch (Exception ex)
-                        {
-#if DEBUG
-                            if (VmBindable.isUnitTests)
-                                throw;
-                            else
-#endif
-                                MessageBox.Show($"Can't create connection string VM.\nError: {ex.Message}\nChoose another provider!", "Error", System.Windows.MessageBoxButton.OKCancel);
-                            this._DynamicMainConnStrSettings = null;
-                            return this._DynamicMainConnStrSettings;
-                        }
-                        Debug.Assert(this._DynamicMainConnStrSettings != null);
-                        this._DynamicMainConnStrSettings.PropertyChanged += _DynamicMainConnStrSettings_PropertyChanged;
-                    }
-                    else
-                    {
-                        DebugExt.WriteLine("Resetting _DynamicMainConnStrSettings");
-                        this._DynamicMainConnStrSettings = null;
-                    }
-                    if (this._DynamicMainConnStrSettings != null)
-                    {
-                        this.NotifyPropertyChanged();
-                        this.ValidateProperty();
-                    }
-                }
-                return this._DynamicMainConnStrSettings;
-            }
+            get { return this._DynamicMainConnStrSettings; }
             set
             {
-                DebugExt.WriteLine($"this._DynamicMainConnStrSettings='{value}'");
-                //SetProperty(ref this._DynamicMainConnStrSettings, value);
-                this._DynamicMainConnStrSettings = value;
-                this.NotifyPropertyChanged();
+                if (this.SetProperty(ref this._DynamicMainConnStrSettings, value))
+                {
+                    Debug.Assert(this._DynamicMainConnStrSettings != null);
+                    Debug.Assert(cfg != null);
+                    this._ConnStr = this._DynamicMainConnStrSettings.GenerateCode(this.cfg, this.ParentAppProject.ParentAppSolution, this.ParentAppProject, this);
+                    DebugExt.WriteLineWithStack($"this._ConnStr='{this._ConnStr}'");
+                    this.NotifyPropertyChanged(nameof(this.ConnStr));
+                }
             }
+//            get
+//            {
+//                Debug.Assert(cfg != null);
+//                DebugExt.WriteLineWithStack();
+//                if (_DynamicMainConnStrSettings == null && cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
+//                {
+//                    if (this.PluginGenerator is IvPluginDbGenerator)
+//                    {
+//                        DebugExt.WriteLine($"Trying get connection string model from DB generator. this.ConnStr='{this.ConnStr}'");
+//                        //if (this.PluginGenerator.Guid ==)
+//                        var db_gen = this.PluginGenerator as IvPluginDbGenerator;
+//                        try
+//                        {
+//                            this._DynamicMainConnStrSettings = db_gen?.GetConnectionStringMvvm(this, this.ConnStr);
+//                        }
+//                        catch (Exception ex)
+//                        {
+//#if DEBUG
+//                            if (VmBindable.isUnitTests)
+//                                throw;
+//                            else
+//#endif
+//                                MessageBox.Show($"Can't create connection string VM.\nError: {ex.Message}\nChoose another provider!", "Error", System.Windows.MessageBoxButton.OKCancel);
+//                            this._DynamicMainConnStrSettings = null;
+//                            return this._DynamicMainConnStrSettings;
+//                        }
+//                        Debug.Assert(this._DynamicMainConnStrSettings != null);
+//                        this._DynamicMainConnStrSettings.PropertyChanged += _DynamicMainConnStrSettings_PropertyChanged;
+//                    }
+//                    else
+//                    {
+//                        DebugExt.WriteLine("Resetting _DynamicMainConnStrSettings");
+//                        this._DynamicMainConnStrSettings = null;
+//                    }
+//                    if (this._DynamicMainConnStrSettings != null)
+//                    {
+//                        this.NotifyPropertyChanged();
+//                        this.ValidateProperty();
+//                    }
+//                }
+//                return this._DynamicMainConnStrSettings;
+//            }
+//            set
+//            {
+//                DebugExt.WriteLine($"this._DynamicMainConnStrSettings='{value}'");
+//                //SetProperty(ref this._DynamicMainConnStrSettings, value);
+//                this._DynamicMainConnStrSettings = value;
+//                this.NotifyPropertyChanged();
+//            }
         }
-        private void _DynamicMainConnStrSettings_PropertyChanged(object? sender, PropertyChangedEventArgs e)
-        {
-            Debug.Assert(this._DynamicMainConnStrSettings != null);
-            Debug.Assert(cfg != null);
-            this._ConnStr = this._DynamicMainConnStrSettings.GenerateCode(this.cfg, this.ParentAppProject.ParentAppSolution, this.ParentAppProject, this);
-            DebugExt.WriteLineWithStack($"this._ConnStr='{this._ConnStr}'");
-            this.NotifyPropertyChanged(() => this.ConnStr);
-        }
-
         private IvPluginGeneratorSettings? _DynamicMainConnStrSettings;
         [PropertyOrderAttribute(11)]
         [ExpandableObjectAttribute()]
@@ -369,7 +380,7 @@ namespace vSharpStudio.vm.ViewModels
                 prevRelativePathToGenFolder = this.RelativePathToGenFolder;
             this.RelativePathToGenFolder = string.Empty;
 
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
 
             var sln = this.ParentAppProject.ParentAppSolution;
             sln.DynamicPluginGroupSettings = null;
@@ -447,15 +458,15 @@ namespace vSharpStudio.vm.ViewModels
                 this._GenFileName = prevGenFileName;
                 this._RelativePathToGenFolder = prevRelativePathToGenFolder;
             }
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
-            this.NotifyPropertyChanged(() => this.IconName);
-            this.NotifyPropertyChanged(() => this.DynamicModelNodeSettings);
-            this.NotifyPropertyChanged(() => this.DynamicGeneratorSettings);
-            this.NotifyPropertyChanged(() => this.DynamicMainConnStrSettings);
+            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
+            this.NotifyPropertyChanged(nameof(this.IconName));
+            this.NotifyPropertyChanged(nameof(this.DynamicModelNodeSettings));
+            this.NotifyPropertyChanged(nameof(this.DynamicGeneratorSettings));
+            this.NotifyPropertyChanged(nameof(this.DynamicMainConnStrSettings));
         }
         partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanged()
         {
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
         }
         protected override void OnValidated(ValidationResult res)
         {
@@ -537,7 +548,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.PluginGenerator = null;
             //    this.PluginDbGenerator = null;
             //}
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
         }
         public void SaveSettings()
         {
@@ -575,18 +586,18 @@ namespace vSharpStudio.vm.ViewModels
             var lst = new List<string>();
             if (this.PluginGenerator == null)
             {
-                lst.Add(this.GetPropertyName(() => this.GenScriptFileName));
-                lst.Add(this.GetPropertyName(() => this.ConnStrToPrevStable));
-                lst.Add(this.GetPropertyName(() => this.ConnStr));
-                lst.Add(this.GetPropertyName(() => this.RelativePathToGenFolder));
-                lst.Add(this.GetPropertyName(() => this.GenFileName));
-                lst.Add(this.GetPropertyName(() => this.ListGenerators));
-                lst.Add(this.GetPropertyName(() => this.ListInModels));
-                lst.Add(this.GetPropertyName(() => this.DynamicGeneratorSettings));
-                lst.Add(this.GetPropertyName(() => this.DynamicMainConnStrSettings));
-                lst.Add(this.GetPropertyName(() => this.DynamicModelNodeSettings));
-                lst.Add(this.GetPropertyName(() => this.NameUi));
-                lst.Add(this.GetPropertyName(() => this.IsGenerateSqlSqriptToUpdatePrevStable));
+                lst.Add(nameof(this.GenScriptFileName));
+                lst.Add(nameof(this.ConnStrToPrevStable));
+                lst.Add(nameof(this.ConnStr));
+                lst.Add(nameof(this.RelativePathToGenFolder));
+                lst.Add(nameof(this.GenFileName));
+                lst.Add(nameof(this.ListGenerators));
+                lst.Add(nameof(this.ListInModels));
+                lst.Add(nameof(this.DynamicGeneratorSettings));
+                lst.Add(nameof(this.DynamicMainConnStrSettings));
+                lst.Add(nameof(this.DynamicModelNodeSettings));
+                lst.Add(nameof(this.NameUi));
+                lst.Add(nameof(this.IsGenerateSqlSqriptToUpdatePrevStable));
             }
             //else if (gen is IvPluginDbConnStringGenerator)
             //{
@@ -619,31 +630,31 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.IsGenerateSqlSqriptToUpdatePrevStable)
                 {
-                    lst.Add(this.GetPropertyName(() => this.GenFileName));
-                    lst.Add(this.GetPropertyName(() => this.ListGenerators));
-                    lst.Add(this.GetPropertyName(() => this.ListInModels));
-                    lst.Add(this.GetPropertyName(() => this.RelativePathToGenFolder));
-                    lst.Add(this.GetPropertyName(() => this.NameUi));
+                    lst.Add(nameof(this.GenFileName));
+                    lst.Add(nameof(this.ListGenerators));
+                    lst.Add(nameof(this.ListInModels));
+                    lst.Add(nameof(this.RelativePathToGenFolder));
+                    lst.Add(nameof(this.NameUi));
                 }
                 else
                 {
-                    lst.Add(this.GetPropertyName(() => this.GenScriptFileName));
-                    lst.Add(this.GetPropertyName(() => this.GenFileName));
-                    lst.Add(this.GetPropertyName(() => this.ListGenerators));
-                    lst.Add(this.GetPropertyName(() => this.ListInModels));
-                    lst.Add(this.GetPropertyName(() => this.RelativePathToGenFolder));
-                    lst.Add(this.GetPropertyName(() => this.NameUi));
+                    lst.Add(nameof(this.GenScriptFileName));
+                    lst.Add(nameof(this.GenFileName));
+                    lst.Add(nameof(this.ListGenerators));
+                    lst.Add(nameof(this.ListInModels));
+                    lst.Add(nameof(this.RelativePathToGenFolder));
+                    lst.Add(nameof(this.NameUi));
                 }
             }
             else
             {
-                lst.Add(this.GetPropertyName(() => this.DynamicMainConnStrSettings));
-                lst.Add(this.GetPropertyName(() => this.ConnStr));
-                lst.Add(this.GetPropertyName(() => this.NameUi));
-                lst.Add(this.GetPropertyName(() => this.ListInModels));
-                lst.Add(this.GetPropertyName(() => this.IsGenerateSqlSqriptToUpdatePrevStable));
-                lst.Add(this.GetPropertyName(() => this.GenScriptFileName));
-                lst.Add(this.GetPropertyName(() => this.ConnStrToPrevStable));
+                lst.Add(nameof(this.DynamicMainConnStrSettings));
+                lst.Add(nameof(this.ConnStr));
+                lst.Add(nameof(this.NameUi));
+                lst.Add(nameof(this.ListInModels));
+                lst.Add(nameof(this.IsGenerateSqlSqriptToUpdatePrevStable));
+                lst.Add(nameof(this.GenScriptFileName));
+                lst.Add(nameof(this.ConnStrToPrevStable));
             }
             return lst.ToArray();
         }

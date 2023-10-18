@@ -336,16 +336,16 @@ namespace vSharpStudio.vm.ViewModels
         public string CodePropertySettingsText { get { return this.CodePropertySettings.ToString(); } }
         public void NotifyCodePropertySettingsChanged()
         {
-            this.NotifyPropertyChanged(() => this.CodePropertySettingsText);
+            this.NotifyPropertyChanged(nameof(this.CodePropertySettingsText));
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
             if (!this.UseTree)
             {
-                lst.Add(this.GetPropertyName(() => this.GroupIconType));
-                lst.Add(this.GetPropertyName(() => this.MaxTreeLevels));
-                lst.Add(this.GetPropertyName(() => this.UseSeparateTreeForFolders));
+                lst.Add(nameof(this.GroupIconType));
+                lst.Add(nameof(this.MaxTreeLevels));
+                lst.Add(nameof(this.UseSeparateTreeForFolders));
             }
             //else
             //{
@@ -356,15 +356,15 @@ namespace vSharpStudio.vm.ViewModels
             //}
             if (!this.GetUseCodeProperty())
             {
-                lst.Add(this.GetPropertyName(() => this.CodePropertySettings));
+                lst.Add(nameof(this.CodePropertySettings));
             }
             if (!this.GetUseNameProperty())
             {
-                lst.Add(this.GetPropertyName(() => this.MaxNameLength));
+                lst.Add(nameof(this.MaxNameLength));
             }
             if (!this.GetUseDescriptionProperty())
             {
-                lst.Add(this.GetPropertyName(() => this.MaxDescriptionLength));
+                lst.Add(nameof(this.MaxDescriptionLength));
             }
             if (lst.Count == 0)
             {
@@ -378,22 +378,22 @@ namespace vSharpStudio.vm.ViewModels
         #region OnChanged
         partial void OnUseCodePropertyChanged()
         {
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
         }
         partial void OnUseNamePropertyChanged()
         {
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
         }
         partial void OnUseDescriptionPropertyChanged()
         {
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
         }
         partial void OnUseSeparateTreeForFoldersChanged()
         {
             this.RefillChildren();
-            this.NotifyPropertyChanged(() => this.Children);
-            this.NotifyPropertyChanged(() => this.IsShowRefSelfTree);
-            this.NotifyPropertyChanged(() => this.IsShowIsFolder);
+            this.NotifyPropertyChanged(nameof(this.Children));
+            this.NotifyPropertyChanged(nameof(this.IsShowRefSelfTree));
+            this.NotifyPropertyChanged(nameof(this.IsShowIsFolder));
         }
         partial void OnUseTreeChanged()
         {
@@ -402,10 +402,10 @@ namespace vSharpStudio.vm.ViewModels
                 this.UseSeparateTreeForFolders = false;
             }
             this.RefillChildren();
-            this.NotifyPropertyChanged(() => this.Children);
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
-            this.NotifyPropertyChanged(() => this.IsShowRefSelfTree);
-            this.NotifyPropertyChanged(() => this.IsShowIsFolder);
+            this.NotifyPropertyChanged(nameof(this.Children));
+            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
+            this.NotifyPropertyChanged(nameof(this.IsShowRefSelfTree));
+            this.NotifyPropertyChanged(nameof(this.IsShowIsFolder));
         }
         #endregion OnChanged
 

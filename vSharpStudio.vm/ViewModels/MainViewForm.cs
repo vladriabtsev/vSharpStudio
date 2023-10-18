@@ -147,8 +147,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var lst = new List<string>
             {
-                this.GetPropertyName(() => this.Parent),
-                this.GetPropertyName(() => this.Children)
+                nameof(this.Parent),
+                nameof(this.Children)
             };
             return lst.ToArray();
         }

@@ -276,18 +276,18 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnDataTypeEnumChanged()
         {
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>
             {
-                this.GetPropertyName(() => this.Parent),
-                this.GetPropertyName(() => this.Children)
+                nameof(this.Parent),
+                nameof(this.Children)
             };
             if (this.DataTypeEnum != EnumEnumerationType.STRING_VALUE)
             {
-                lst.Add(this.GetPropertyName(() => this.DataTypeLength));
+                lst.Add(nameof(this.DataTypeLength));
             }
             return lst.ToArray();
         }
