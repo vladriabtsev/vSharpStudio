@@ -22,6 +22,7 @@ namespace GenFromProto
         readonly bool isSetPropertyByRef = true;
         readonly string refstr="ref ";
         readonly string defstr = "";
+
         public Property(FileDescriptor root, MessageDescriptor message, FieldDescriptor field)
         {
             this.root = root;

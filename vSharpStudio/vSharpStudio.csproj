@@ -27,9 +27,6 @@
         <None Remove="icons\Settings_16x.png" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="..\common\wpf\vSharpStudio.std\LoggerExt.cs" Link="ViewModels\LoggerExt.cs" />
-    </ItemGroup>
-    <ItemGroup>
         <Compile Update="Controls\vButton.xaml.cs">
             <SubType>Code</SubType>
         </Compile>

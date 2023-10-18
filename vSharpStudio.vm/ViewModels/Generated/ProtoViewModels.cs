@@ -202,8 +202,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListOpenConfigHistoryChanging(ObservableCollectionWithActions<UserSettingsOpenedConfig> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListOpenConfigHistoryChanged();
         IReadOnlyList<IUserSettingsOpenedConfig> IUserSettings.ListOpenConfigHistory { get { return (this as UserSettings).ListOpenConfigHistory; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListOpenConfigHistoryChanging(ObservableCollection<UserSettingsOpenedConfig> to);
-        //partial void OnListOpenConfigHistoryChanged();
         
         #endregion Properties
     }
@@ -629,12 +627,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListPluginsChanging(ConfigNodesCollection<Plugin> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListPluginsChanged();
         IReadOnlyList<IPlugin> IGroupListPlugins.ListPlugins { get { return (this as GroupListPlugins).ListPlugins; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListPluginsChanging(ObservableCollection<Plugin> to);
-        //partial void OnListPluginsChanged();
         
         public Plugin this[int index] { get { return (Plugin)this.ListPlugins[index]; } }
         IPlugin IGroupListPlugins.this[int index] { get { return (Plugin)this.ListPlugins[index]; } }
-        public void Add(Plugin item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(Plugin item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListPlugins.Add(item); 
@@ -1000,8 +996,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGeneratorsChanging(ConfigNodesCollection<PluginGenerator> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListGeneratorsChanged();
         IReadOnlyList<IPluginGenerator> IPlugin.ListGenerators { get { return (this as Plugin).ListGenerators; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListGeneratorsChanging(ObservableCollection<PluginGenerator> to);
-        //partial void OnListGeneratorsChanged();
         
         
         [Browsable(false)]
@@ -1633,7 +1627,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private Config _CurrentConfig; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnCurrentConfigChanging(ref Config to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnCurrentConfigChanged();
-        IConfig IConfigShortHistory.CurrentConfig { get { return (this as ConfigShortHistory).CurrentConfig; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IConfig IConfigShortHistory.CurrentConfig { get { return (this as ConfigShortHistory).CurrentConfig; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         public Config PrevStableConfig // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
@@ -1651,7 +1645,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private Config _PrevStableConfig; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnPrevStableConfigChanging(ref Config to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnPrevStableConfigChanged();
-        IConfig IConfigShortHistory.PrevStableConfig { get { return (this as ConfigShortHistory).PrevStableConfig; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IConfig IConfigShortHistory.PrevStableConfig { get { return (this as ConfigShortHistory).PrevStableConfig; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -1999,12 +1993,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListBaseConfigLinksChanging(ConfigNodesCollection<BaseConfigLink> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListBaseConfigLinksChanged();
         IReadOnlyList<IBaseConfigLink> IGroupListBaseConfigLinks.ListBaseConfigLinks { get { return (this as GroupListBaseConfigLinks).ListBaseConfigLinks; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListBaseConfigLinksChanging(ObservableCollection<BaseConfigLink> to);
-        //partial void OnListBaseConfigLinksChanged();
         
         public BaseConfigLink this[int index] { get { return (BaseConfigLink)this.ListBaseConfigLinks[index]; } }
         IBaseConfigLink IGroupListBaseConfigLinks.this[int index] { get { return (BaseConfigLink)this.ListBaseConfigLinks[index]; } }
-        public void Add(BaseConfigLink item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(BaseConfigLink item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListBaseConfigLinks.Add(item); 
@@ -2045,8 +2037,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListBaseConfigLinks.ListNodeGeneratorsSettings { get { return (this as GroupListBaseConfigLinks).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -2415,8 +2405,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IBaseConfigLink.ListNodeGeneratorsSettings { get { return (this as BaseConfigLink).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -2806,7 +2794,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListBaseConfigLinks _GroupConfigLinks; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupConfigLinksChanging(ref GroupListBaseConfigLinks to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupConfigLinksChanged();
-        IGroupListBaseConfigLinks IConfig.GroupConfigLinks { get { return (this as Config).GroupConfigLinks; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListBaseConfigLinks IConfig.GroupConfigLinks { get { return (this as Config).GroupConfigLinks; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public Model Model // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -2826,7 +2814,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private Model _Model; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnModelChanging(ref Model to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnModelChanged();
-        IModel IConfig.Model { get { return (this as Config).Model; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IModel IConfig.Model { get { return (this as Config).Model; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListPlugins GroupPlugins // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -2846,7 +2834,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListPlugins _GroupPlugins; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupPluginsChanging(ref GroupListPlugins to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupPluginsChanged();
-        IGroupListPlugins IConfig.GroupPlugins { get { return (this as Config).GroupPlugins; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListPlugins IConfig.GroupPlugins { get { return (this as Config).GroupPlugins; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListAppSolutions GroupAppSolutions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -2866,7 +2854,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListAppSolutions _GroupAppSolutions; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupAppSolutionsChanging(ref GroupListAppSolutions to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupAppSolutionsChanged();
-        IGroupListAppSolutions IConfig.GroupAppSolutions { get { return (this as Config).GroupAppSolutions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListAppSolutions IConfig.GroupAppSolutions { get { return (this as Config).GroupAppSolutions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
     }
@@ -3752,12 +3740,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListAppSolutionsChanging(ConfigNodesCollection<AppSolution> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListAppSolutionsChanged();
         IReadOnlyList<IAppSolution> IGroupListAppSolutions.ListAppSolutions { get { return (this as GroupListAppSolutions).ListAppSolutions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListAppSolutionsChanging(ObservableCollection<AppSolution> to);
-        //partial void OnListAppSolutionsChanged();
         
         public AppSolution this[int index] { get { return (AppSolution)this.ListAppSolutions[index]; } }
         IAppSolution IGroupListAppSolutions.this[int index] { get { return (AppSolution)this.ListAppSolutions[index]; } }
-        public void Add(AppSolution item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(AppSolution item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListAppSolutions.Add(item); 
@@ -4246,8 +4232,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListAppProjectsChanging(ConfigNodesCollection<AppProject> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListAppProjectsChanged();
         IReadOnlyList<IAppProject> IAppSolution.ListAppProjects { get { return (this as AppSolution).ListAppProjects; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListAppProjectsChanging(ObservableCollection<AppProject> to);
-        //partial void OnListAppProjectsChanged();
         
         
         // 
@@ -4271,8 +4255,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGeneratorsSolutionSettingsChanging(ObservableCollectionWithActions<PluginGeneratorSolutionSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListGeneratorsSolutionSettingsChanged();
         IReadOnlyList<IPluginGeneratorSolutionSettings> IAppSolution.ListGeneratorsSolutionSettings { get { return (this as AppSolution).ListGeneratorsSolutionSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListGeneratorsSolutionSettingsChanging(ObservableCollection<PluginGeneratorSolutionSettings> to);
-        //partial void OnListGeneratorsSolutionSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_app_solution
@@ -4718,8 +4700,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListAppProjectGeneratorsChanging(ConfigNodesCollection<AppProjectGenerator> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListAppProjectGeneratorsChanged();
         IReadOnlyList<IAppProjectGenerator> IAppProject.ListAppProjectGenerators { get { return (this as AppProject).ListAppProjectGenerators; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListAppProjectGeneratorsChanging(ObservableCollection<AppProjectGenerator> to);
-        //partial void OnListAppProjectGeneratorsChanged();
         
         
         // 
@@ -4743,8 +4723,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGeneratorsProjectSettingsChanging(ObservableCollectionWithActions<PluginGeneratorProjectSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListGeneratorsProjectSettingsChanged();
         IReadOnlyList<IPluginGeneratorProjectSettings> IAppProject.ListGeneratorsProjectSettings { get { return (this as AppProject).ListGeneratorsProjectSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListGeneratorsProjectSettingsChanging(ObservableCollection<PluginGeneratorProjectSettings> to);
-        //partial void OnListGeneratorsProjectSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_app_project
@@ -5909,7 +5887,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private PluginGeneratorSettings _GeneratorSettingsVm; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGeneratorSettingsVmChanging(ref PluginGeneratorSettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGeneratorSettingsVmChanged();
-        IPluginGeneratorSettings IAppProjectGenerator.GeneratorSettingsVm { get { return (this as AppProjectGenerator).GeneratorSettingsVm; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IPluginGeneratorSettings IAppProjectGenerator.GeneratorSettingsVm { get { return (this as AppProjectGenerator).GeneratorSettingsVm; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [PropertyOrderAttribute(9)]
         [Description("Db connection string. Directly editable or generated based on settings")]
@@ -7360,7 +7338,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListCommon _GroupCommon; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupCommonChanging(ref GroupListCommon to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupCommonChanged();
-        IGroupListCommon IModel.GroupCommon { get { return (this as Model).GroupCommon; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListCommon IModel.GroupCommon { get { return (this as Model).GroupCommon; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupConstantGroups GroupConstantGroups // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -7380,7 +7358,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupConstantGroups _GroupConstantGroups; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupConstantGroupsChanging(ref GroupConstantGroups to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupConstantGroupsChanged();
-        IGroupConstantGroups IModel.GroupConstantGroups { get { return (this as Model).GroupConstantGroups; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupConstantGroups IModel.GroupConstantGroups { get { return (this as Model).GroupConstantGroups; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListEnumerations GroupEnumerations // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -7400,7 +7378,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListEnumerations _GroupEnumerations; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupEnumerationsChanging(ref GroupListEnumerations to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupEnumerationsChanged();
-        IGroupListEnumerations IModel.GroupEnumerations { get { return (this as Model).GroupEnumerations; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListEnumerations IModel.GroupEnumerations { get { return (this as Model).GroupEnumerations; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListCatalogs GroupCatalogs // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -7420,7 +7398,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListCatalogs _GroupCatalogs; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupCatalogsChanging(ref GroupListCatalogs to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupCatalogsChanged();
-        IGroupListCatalogs IModel.GroupCatalogs { get { return (this as Model).GroupCatalogs; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListCatalogs IModel.GroupCatalogs { get { return (this as Model).GroupCatalogs; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupDocuments GroupDocuments // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -7440,7 +7418,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupDocuments _GroupDocuments; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupDocumentsChanging(ref GroupDocuments to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupDocumentsChanged();
-        IGroupDocuments IModel.GroupDocuments { get { return (this as Model).GroupDocuments; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupDocuments IModel.GroupDocuments { get { return (this as Model).GroupDocuments; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         [Description("Registers for documents")]
@@ -7461,7 +7439,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListRegisters _GroupListRegisters; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupListRegistersChanging(ref GroupListRegisters to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupListRegistersChanged();
-        IGroupListRegisters IModel.GroupListRegisters { get { return (this as Model).GroupListRegisters; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListRegisters IModel.GroupListRegisters { get { return (this as Model).GroupListRegisters; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListJournals GroupJournals // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -7481,7 +7459,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListJournals _GroupJournals; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupJournalsChanging(ref GroupListJournals to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupJournalsChanged();
-        IGroupListJournals IModel.GroupJournals { get { return (this as Model).GroupJournals; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListJournals IModel.GroupJournals { get { return (this as Model).GroupJournals; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -7502,8 +7480,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IModel.ListNodeGeneratorsSettings { get { return (this as Model).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         
         // Plugin group Guid and string to store extentions
@@ -7526,8 +7502,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListPluginGroupsModelExtentionsChanging(ObservableCollectionWithActions<PluginGroupModelExtentions> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListPluginGroupsModelExtentionsChanged();
         IReadOnlyList<IPluginGroupModelExtentions> IModel.ListPluginGroupsModelExtentions { get { return (this as Model).ListPluginGroupsModelExtentions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListPluginGroupsModelExtentionsChanging(ObservableCollection<PluginGroupModelExtentions> to);
-        //partial void OnListPluginGroupsModelExtentionsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -7847,8 +7821,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListObjectGuidsChanging(ObservableCollectionWithActions<string> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListObjectGuidsChanged();
         IReadOnlyList<string> IDataType.ListObjectGuids { get { return (this as DataType).ListObjectGuids; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListObjectGuidsChanging(ObservableCollection<string> to);
-        //partial void OnListObjectGuidsChanged();
         
         
         [Category("")]
@@ -8266,7 +8238,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListRoles _GroupRoles; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupRolesChanging(ref GroupListRoles to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupRolesChanged();
-        IGroupListRoles IGroupListCommon.GroupRoles { get { return (this as GroupListCommon).GroupRoles; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListRoles IGroupListCommon.GroupRoles { get { return (this as GroupListCommon).GroupRoles; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListMainViewForms GroupViewForms // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -8286,7 +8258,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListMainViewForms _GroupViewForms; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupViewFormsChanging(ref GroupListMainViewForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupViewFormsChanged();
-        IGroupListMainViewForms IGroupListCommon.GroupViewForms { get { return (this as GroupListCommon).GroupViewForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListMainViewForms IGroupListCommon.GroupViewForms { get { return (this as GroupListCommon).GroupViewForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListEnumeratorSequences GroupListSequences // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -8306,7 +8278,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListEnumeratorSequences _GroupListSequences; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupListSequencesChanging(ref GroupListEnumeratorSequences to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupListSequencesChanged();
-        IGroupListEnumeratorSequences IGroupListCommon.GroupListSequences { get { return (this as GroupListCommon).GroupListSequences; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListEnumeratorSequences IGroupListCommon.GroupListSequences { get { return (this as GroupListCommon).GroupListSequences; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -8327,8 +8299,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListCommon.ListNodeGeneratorsSettings { get { return (this as GroupListCommon).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -8782,8 +8752,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IEnumeratorSequence.ListNodeGeneratorsSettings { get { return (this as EnumeratorSequence).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_enumerator_sequence
@@ -9166,12 +9134,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListEnumeratorSequencesChanging(ConfigNodesCollection<EnumeratorSequence> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListEnumeratorSequencesChanged();
         IReadOnlyList<IEnumeratorSequence> IGroupListEnumeratorSequences.ListEnumeratorSequences { get { return (this as GroupListEnumeratorSequences).ListEnumeratorSequences; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListEnumeratorSequencesChanging(ObservableCollection<EnumeratorSequence> to);
-        //partial void OnListEnumeratorSequencesChanged();
         
         public EnumeratorSequence this[int index] { get { return (EnumeratorSequence)this.ListEnumeratorSequences[index]; } }
         IEnumeratorSequence IGroupListEnumeratorSequences.this[int index] { get { return (EnumeratorSequence)this.ListEnumeratorSequences[index]; } }
-        public void Add(EnumeratorSequence item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(EnumeratorSequence item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListEnumeratorSequences.Add(item); 
@@ -9212,8 +9178,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListEnumeratorSequences.ListNodeGeneratorsSettings { get { return (this as GroupListEnumeratorSequences).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -9748,8 +9712,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IRole.ListNodeGeneratorsSettings { get { return (this as Role).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_role
@@ -11002,12 +10964,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRolesChanging(ConfigNodesCollection<Role> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRolesChanged();
         IReadOnlyList<IRole> IGroupListRoles.ListRoles { get { return (this as GroupListRoles).ListRoles; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRolesChanging(ObservableCollection<Role> to);
-        //partial void OnListRolesChanged();
         
         public Role this[int index] { get { return (Role)this.ListRoles[index]; } }
         IRole IGroupListRoles.this[int index] { get { return (Role)this.ListRoles[index]; } }
-        public void Add(Role item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(Role item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListRoles.Add(item); 
@@ -11072,8 +11032,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListRoles.ListNodeGeneratorsSettings { get { return (this as GroupListRoles).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -11415,7 +11373,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListMainViewForms _GroupListViewForms; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupListViewFormsChanging(ref GroupListMainViewForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupListViewFormsChanged();
-        IGroupListMainViewForms IMainViewForm.GroupListViewForms { get { return (this as MainViewForm).GroupListViewForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListMainViewForms IMainViewForm.GroupListViewForms { get { return (this as MainViewForm).GroupListViewForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public bool IsNew // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -11477,8 +11435,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IMainViewForm.ListNodeGeneratorsSettings { get { return (this as MainViewForm).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -11835,12 +11791,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListMainViewFormsChanging(ConfigNodesCollection<MainViewForm> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListMainViewFormsChanged();
         IReadOnlyList<IMainViewForm> IGroupListMainViewForms.ListMainViewForms { get { return (this as GroupListMainViewForms).ListMainViewForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListMainViewFormsChanging(ObservableCollection<MainViewForm> to);
-        //partial void OnListMainViewFormsChanged();
         
         public MainViewForm this[int index] { get { return (MainViewForm)this.ListMainViewForms[index]; } }
         IMainViewForm IGroupListMainViewForms.this[int index] { get { return (MainViewForm)this.ListMainViewForms[index]; } }
-        public void Add(MainViewForm item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(MainViewForm item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListMainViewForms.Add(item); 
@@ -11905,8 +11859,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListMainViewForms.ListNodeGeneratorsSettings { get { return (this as GroupListMainViewForms).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -12333,12 +12285,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListPropertiesChanging(ConfigNodesCollection<Property> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListPropertiesChanged();
         IReadOnlyList<IProperty> IGroupListProperties.ListProperties { get { return (this as GroupListProperties).ListProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListPropertiesChanging(ObservableCollection<Property> to);
-        //partial void OnListPropertiesChanged();
         
         public Property this[int index] { get { return (Property)this.ListProperties[index]; } }
         IProperty IGroupListProperties.this[int index] { get { return (Property)this.ListProperties[index]; } }
-        public void Add(Property item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(Property item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListProperties.Add(item); 
@@ -12490,8 +12440,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRolePropertyAccessSettingsChanging(ObservableCollectionWithActions<RolePropertyAccess> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRolePropertyAccessSettingsChanged();
         IReadOnlyList<IRolePropertyAccess> IGroupListProperties.ListRolePropertyAccessSettings { get { return (this as GroupListProperties).ListRolePropertyAccessSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRolePropertyAccessSettingsChanging(ObservableCollection<RolePropertyAccess> to);
-        //partial void OnListRolePropertyAccessSettingsChanged();
         
         
         [Browsable(false)]
@@ -12513,8 +12461,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListProperties.ListNodeGeneratorsSettings { get { return (this as GroupListProperties).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -12978,7 +12924,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private DataType _DataType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnDataTypeChanging(ref DataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnDataTypeChanged();
-        IDataType IProperty.DataType { get { return (this as Property).DataType; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IDataType IProperty.DataType { get { return (this as Property).DataType; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Category("")]
         [PropertyOrderAttribute(8)]
@@ -13272,7 +13218,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private PropertyDataGenerator _DataGenerator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnDataGeneratorChanging(ref PropertyDataGenerator to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnDataGeneratorChanged();
-        IPropertyDataGenerator IProperty.DataGenerator { get { return (this as Property).DataGenerator; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IPropertyDataGenerator IProperty.DataGenerator { get { return (this as Property).DataGenerator; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         // 
         // // @attr [PropertyOrderAttribute(28)]
@@ -13354,8 +13300,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRolePropertyAccessSettingsChanging(ObservableCollectionWithActions<RolePropertyAccess> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRolePropertyAccessSettingsChanged();
         IReadOnlyList<IRolePropertyAccess> IProperty.ListRolePropertyAccessSettings { get { return (this as Property).ListRolePropertyAccessSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRolePropertyAccessSettingsChanging(ObservableCollection<RolePropertyAccess> to);
-        //partial void OnListRolePropertyAccessSettingsChanged();
         
         
         [Category("Auto Layout")]
@@ -13465,8 +13409,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IProperty.ListNodeGeneratorsSettings { get { return (this as Property).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_property
@@ -13903,12 +13845,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListDetailsChanging(ConfigNodesCollection<Detail> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListDetailsChanged();
         IReadOnlyList<IDetail> IGroupListDetails.ListDetails { get { return (this as GroupListDetails).ListDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListDetailsChanging(ObservableCollection<Detail> to);
-        //partial void OnListDetailsChanged();
         
         public Detail this[int index] { get { return (Detail)this.ListDetails[index]; } }
         IDetail IGroupListDetails.this[int index] { get { return (Detail)this.ListDetails[index]; } }
-        public void Add(Detail item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(Detail item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListDetails.Add(item); 
@@ -14105,8 +14045,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRoleDetailAccessSettingsChanging(ObservableCollectionWithActions<RoleDetailAccess> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRoleDetailAccessSettingsChanged();
         IReadOnlyList<IRoleDetailAccess> IGroupListDetails.ListRoleDetailAccessSettings { get { return (this as GroupListDetails).ListRoleDetailAccessSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRoleDetailAccessSettingsChanging(ObservableCollection<RoleDetailAccess> to);
-        //partial void OnListRoleDetailAccessSettingsChanged();
         
         
         [Browsable(false)]
@@ -14128,8 +14066,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListDetails.ListNodeGeneratorsSettings { get { return (this as GroupListDetails).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -14699,7 +14635,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListProperties _GroupProperties; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupPropertiesChanged();
-        IGroupListProperties IDetail.GroupProperties { get { return (this as Detail).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListProperties IDetail.GroupProperties { get { return (this as Detail).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListDetails GroupDetails // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -14719,7 +14655,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListDetails _GroupDetails; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupDetailsChanging(ref GroupListDetails to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupDetailsChanged();
-        IGroupListDetails IDetail.GroupDetails { get { return (this as Detail).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListDetails IDetail.GroupDetails { get { return (this as Detail).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         // Protobuf field position
         // Reserved positions: 1 - primary key
@@ -15211,7 +15147,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListForms _GroupForms; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupFormsChanging(ref GroupListForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupFormsChanged();
-        IGroupListForms IDetail.GroupForms { get { return (this as Detail).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListForms IDetail.GroupForms { get { return (this as Detail).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public ObservableCollectionWithActions<RoleDetailAccess> ListRoleDetailAccessSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -15232,8 +15168,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRoleDetailAccessSettingsChanging(ObservableCollectionWithActions<RoleDetailAccess> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRoleDetailAccessSettingsChanged();
         IReadOnlyList<IRoleDetailAccess> IDetail.ListRoleDetailAccessSettings { get { return (this as Detail).ListRoleDetailAccessSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRoleDetailAccessSettingsChanging(ObservableCollection<RoleDetailAccess> to);
-        //partial void OnListRoleDetailAccessSettingsChanged();
         
         
         [Browsable(false)]
@@ -15255,8 +15189,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IDetail.ListNodeGeneratorsSettings { get { return (this as Detail).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_detail
@@ -16172,8 +16104,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListConstantGroupsChanging(ConfigNodesCollection<GroupListConstants> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListConstantGroupsChanged();
         IReadOnlyList<IGroupListConstants> IGroupConstantGroups.ListConstantGroups { get { return (this as GroupConstantGroups).ListConstantGroups; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListConstantGroupsChanging(ObservableCollection<GroupListConstants> to);
-        //partial void OnListConstantGroupsChanged();
         
         
         [Browsable(false)]
@@ -16195,8 +16125,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupConstantGroups.ListNodeGeneratorsSettings { get { return (this as GroupConstantGroups).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -16645,12 +16573,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListConstantsChanging(ConfigNodesCollection<Constant> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListConstantsChanged();
         IReadOnlyList<IConstant> IGroupListConstants.ListConstants { get { return (this as GroupListConstants).ListConstants; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListConstantsChanging(ObservableCollection<Constant> to);
-        //partial void OnListConstantsChanged();
         
         public Constant this[int index] { get { return (Constant)this.ListConstants[index]; } }
         IConstant IGroupListConstants.this[int index] { get { return (Constant)this.ListConstants[index]; } }
-        public void Add(Constant item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(Constant item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListConstants.Add(item); 
@@ -16774,8 +16700,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRoleConstantAccessSettingsChanging(ObservableCollectionWithActions<RoleConstantAccess> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRoleConstantAccessSettingsChanged();
         IReadOnlyList<IRoleConstantAccess> IGroupListConstants.ListRoleConstantAccessSettings { get { return (this as GroupListConstants).ListRoleConstantAccessSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRoleConstantAccessSettingsChanging(ObservableCollection<RoleConstantAccess> to);
-        //partial void OnListRoleConstantAccessSettingsChanged();
         
         
         [Browsable(false)]
@@ -16797,8 +16721,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListConstants.ListNodeGeneratorsSettings { get { return (this as GroupListConstants).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_group_list_constants
@@ -17249,7 +17171,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private DataType _DataType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnDataTypeChanging(ref DataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnDataTypeChanged();
-        IDataType IConstant.DataType { get { return (this as Constant).DataType; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IDataType IConstant.DataType { get { return (this as Constant).DataType; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Category("")]
         [PropertyOrderAttribute(20)]
@@ -17601,8 +17523,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRoleConstantAccessSettingsChanging(ObservableCollectionWithActions<RoleConstantAccess> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRoleConstantAccessSettingsChanged();
         IReadOnlyList<IRoleConstantAccess> IConstant.ListRoleConstantAccessSettings { get { return (this as Constant).ListRoleConstantAccessSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRoleConstantAccessSettingsChanging(ObservableCollection<RoleConstantAccess> to);
-        //partial void OnListRoleConstantAccessSettingsChanged();
         
         
         [Browsable(false)]
@@ -17624,8 +17544,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IConstant.ListNodeGeneratorsSettings { get { return (this as Constant).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_constant
@@ -17986,12 +17904,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListEnumerationsChanging(ConfigNodesCollection<Enumeration> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListEnumerationsChanged();
         IReadOnlyList<IEnumeration> IGroupListEnumerations.ListEnumerations { get { return (this as GroupListEnumerations).ListEnumerations; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListEnumerationsChanging(ObservableCollection<Enumeration> to);
-        //partial void OnListEnumerationsChanged();
         
         public Enumeration this[int index] { get { return (Enumeration)this.ListEnumerations[index]; } }
         IEnumeration IGroupListEnumerations.this[int index] { get { return (Enumeration)this.ListEnumerations[index]; } }
-        public void Add(Enumeration item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(Enumeration item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListEnumerations.Add(item); 
@@ -18056,8 +17972,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListEnumerations.ListNodeGeneratorsSettings { get { return (this as GroupListEnumerations).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -18503,8 +18417,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListEnumerationPairsChanging(ConfigNodesCollection<EnumerationPair> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListEnumerationPairsChanged();
         IReadOnlyList<IEnumerationPair> IEnumeration.ListEnumerationPairs { get { return (this as Enumeration).ListEnumerationPairs; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListEnumerationPairsChanging(ObservableCollection<EnumerationPair> to);
-        //partial void OnListEnumerationPairsChanged();
         
         
         [Browsable(false)]
@@ -18567,8 +18479,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IEnumeration.ListNodeGeneratorsSettings { get { return (this as Enumeration).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_enumeration
@@ -19023,8 +18933,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IEnumerationPair.ListNodeGeneratorsSettings { get { return (this as EnumerationPair).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_enumeration_pair
@@ -19633,7 +19541,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private CatalogCodePropertySettings _CodePropertySettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnCodePropertySettingsChanging(ref CatalogCodePropertySettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnCodePropertySettingsChanged();
-        ICatalogCodePropertySettings ICatalogFolder.CodePropertySettings { get { return (this as CatalogFolder).CodePropertySettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        ICatalogCodePropertySettings ICatalogFolder.CodePropertySettings { get { return (this as CatalogFolder).CodePropertySettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public string PropertyCodeGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -20027,7 +19935,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListProperties _GroupProperties; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupPropertiesChanged();
-        IGroupListProperties ICatalogFolder.GroupProperties { get { return (this as CatalogFolder).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListProperties ICatalogFolder.GroupProperties { get { return (this as CatalogFolder).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListDetails GroupDetails // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -20047,7 +19955,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListDetails _GroupDetails; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupDetailsChanging(ref GroupListDetails to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupDetailsChanged();
-        IGroupListDetails ICatalogFolder.GroupDetails { get { return (this as CatalogFolder).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListDetails ICatalogFolder.GroupDetails { get { return (this as CatalogFolder).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListForms GroupForms // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -20067,7 +19975,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListForms _GroupForms; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupFormsChanging(ref GroupListForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupFormsChanged();
-        IGroupListForms ICatalogFolder.GroupForms { get { return (this as CatalogFolder).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListForms ICatalogFolder.GroupForms { get { return (this as CatalogFolder).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListReports GroupReports // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -20087,7 +19995,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListReports _GroupReports; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupReportsChanging(ref GroupListReports to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupReportsChanged();
-        IGroupListReports ICatalogFolder.GroupReports { get { return (this as CatalogFolder).GroupReports; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListReports ICatalogFolder.GroupReports { get { return (this as CatalogFolder).GroupReports; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public ObservableCollectionWithActions<RoleCatalogAccess> ListRoleCatalogAccessSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -20108,8 +20016,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRoleCatalogAccessSettingsChanging(ObservableCollectionWithActions<RoleCatalogAccess> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRoleCatalogAccessSettingsChanged();
         IReadOnlyList<IRoleCatalogAccess> ICatalogFolder.ListRoleCatalogAccessSettings { get { return (this as CatalogFolder).ListRoleCatalogAccessSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRoleCatalogAccessSettingsChanging(ObservableCollection<RoleCatalogAccess> to);
-        //partial void OnListRoleCatalogAccessSettingsChanged();
         
         
         [Browsable(false)]
@@ -20131,8 +20037,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> ICatalogFolder.ListNodeGeneratorsSettings { get { return (this as CatalogFolder).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -21054,7 +20958,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private CatalogCodePropertySettings _CodePropertySettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnCodePropertySettingsChanging(ref CatalogCodePropertySettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnCodePropertySettingsChanged();
-        ICatalogCodePropertySettings ICatalog.CodePropertySettings { get { return (this as Catalog).CodePropertySettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        ICatalogCodePropertySettings ICatalog.CodePropertySettings { get { return (this as Catalog).CodePropertySettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [PropertyOrderAttribute(27)]
         [DisplayName("Use Name")]
@@ -21552,7 +21456,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private CatalogFolder _Folder; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnFolderChanging(ref CatalogFolder to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnFolderChanged();
-        ICatalogFolder ICatalog.Folder { get { return (this as Catalog).Folder; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        ICatalogFolder ICatalog.Folder { get { return (this as Catalog).Folder; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListProperties GroupProperties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -21572,7 +21476,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListProperties _GroupProperties; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupPropertiesChanged();
-        IGroupListProperties ICatalog.GroupProperties { get { return (this as Catalog).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListProperties ICatalog.GroupProperties { get { return (this as Catalog).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListDetails GroupDetails // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -21592,7 +21496,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListDetails _GroupDetails; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupDetailsChanging(ref GroupListDetails to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupDetailsChanged();
-        IGroupListDetails ICatalog.GroupDetails { get { return (this as Catalog).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListDetails ICatalog.GroupDetails { get { return (this as Catalog).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListForms GroupForms // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -21612,7 +21516,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListForms _GroupForms; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupFormsChanging(ref GroupListForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupFormsChanged();
-        IGroupListForms ICatalog.GroupForms { get { return (this as Catalog).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListForms ICatalog.GroupForms { get { return (this as Catalog).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListReports GroupReports // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -21632,7 +21536,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListReports _GroupReports; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupReportsChanging(ref GroupListReports to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupReportsChanged();
-        IGroupListReports ICatalog.GroupReports { get { return (this as Catalog).GroupReports; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListReports ICatalog.GroupReports { get { return (this as Catalog).GroupReports; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public ObservableCollectionWithActions<RoleCatalogAccess> ListRoleCatalogAccessSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -21653,8 +21557,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRoleCatalogAccessSettingsChanging(ObservableCollectionWithActions<RoleCatalogAccess> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRoleCatalogAccessSettingsChanged();
         IReadOnlyList<IRoleCatalogAccess> ICatalog.ListRoleCatalogAccessSettings { get { return (this as Catalog).ListRoleCatalogAccessSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRoleCatalogAccessSettingsChanging(ObservableCollection<RoleCatalogAccess> to);
-        //partial void OnListRoleCatalogAccessSettingsChanged();
         
         
         [Browsable(false)]
@@ -21676,8 +21578,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> ICatalog.ListNodeGeneratorsSettings { get { return (this as Catalog).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_catalog
@@ -22123,12 +22023,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListCatalogsChanging(ConfigNodesCollection<Catalog> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListCatalogsChanged();
         IReadOnlyList<ICatalog> IGroupListCatalogs.ListCatalogs { get { return (this as GroupListCatalogs).ListCatalogs; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListCatalogsChanging(ObservableCollection<Catalog> to);
-        //partial void OnListCatalogsChanged();
         
         public Catalog this[int index] { get { return (Catalog)this.ListCatalogs[index]; } }
         ICatalog IGroupListCatalogs.this[int index] { get { return (Catalog)this.ListCatalogs[index]; } }
-        public void Add(Catalog item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(Catalog item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListCatalogs.Add(item); 
@@ -22391,8 +22289,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListCatalogs.ListNodeGeneratorsSettings { get { return (this as GroupListCatalogs).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -22772,12 +22668,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRegistersChanging(ConfigNodesCollection<Register> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRegistersChanged();
         IReadOnlyList<IRegister> IGroupListRegisters.ListRegisters { get { return (this as GroupListRegisters).ListRegisters; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRegistersChanging(ObservableCollection<Register> to);
-        //partial void OnListRegistersChanged();
         
         public Register this[int index] { get { return (Register)this.ListRegisters[index]; } }
         IRegister IGroupListRegisters.this[int index] { get { return (Register)this.ListRegisters[index]; } }
-        public void Add(Register item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(Register item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListRegisters.Add(item); 
@@ -22970,8 +22864,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListRegisters.ListNodeGeneratorsSettings { get { return (this as GroupListRegisters).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -23426,8 +23318,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IRegisterDimension.ListNodeGeneratorsSettings { get { return (this as RegisterDimension).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_register_dimension
@@ -23849,12 +23739,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListDimensionsChanging(ConfigNodesCollection<RegisterDimension> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListDimensionsChanged();
         IReadOnlyList<IRegisterDimension> IGroupListDimensions.ListDimensions { get { return (this as GroupListDimensions).ListDimensions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListDimensionsChanging(ObservableCollection<RegisterDimension> to);
-        //partial void OnListDimensionsChanged();
         
         public RegisterDimension this[int index] { get { return (RegisterDimension)this.ListDimensions[index]; } }
         IRegisterDimension IGroupListDimensions.this[int index] { get { return (RegisterDimension)this.ListDimensions[index]; } }
-        public void Add(RegisterDimension item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(RegisterDimension item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListDimensions.Add(item); 
@@ -23985,8 +23873,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRolePropertyAccessSettingsChanging(ObservableCollectionWithActions<RolePropertyAccess> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRolePropertyAccessSettingsChanged();
         IReadOnlyList<IRolePropertyAccess> IGroupListDimensions.ListRolePropertyAccessSettings { get { return (this as GroupListDimensions).ListRolePropertyAccessSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRolePropertyAccessSettingsChanging(ObservableCollection<RolePropertyAccess> to);
-        //partial void OnListRolePropertyAccessSettingsChanged();
         
         
         [Browsable(false)]
@@ -24008,8 +23894,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListDimensions.ListNodeGeneratorsSettings { get { return (this as GroupListDimensions).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -24811,7 +24695,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListDimensions _GroupRegisterDimensions; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupRegisterDimensionsChanging(ref GroupListDimensions to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupRegisterDimensionsChanged();
-        IGroupListDimensions IRegister.GroupRegisterDimensions { get { return (this as Register).GroupRegisterDimensions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListDimensions IRegister.GroupRegisterDimensions { get { return (this as Register).GroupRegisterDimensions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListProperties GroupAttachedProperties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -24831,7 +24715,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListProperties _GroupAttachedProperties; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupAttachedPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupAttachedPropertiesChanged();
-        IGroupListProperties IRegister.GroupAttachedProperties { get { return (this as Register).GroupAttachedProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListProperties IRegister.GroupAttachedProperties { get { return (this as Register).GroupAttachedProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [DisplayName("Doc Guid property")]
         [Description("Document guid property name")]
@@ -24898,8 +24782,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListDocGuidsChanging(ObservableCollectionWithActions<string> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListDocGuidsChanged();
         IReadOnlyList<string> IRegister.ListDocGuids { get { return (this as Register).ListDocGuids; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListDocGuidsChanging(ObservableCollection<string> to);
-        //partial void OnListDocGuidsChanged();
         
         
         // Guid for document reference property. Auto generated.
@@ -25068,8 +24950,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListDocMappingsChanging(ObservableCollectionWithActions<RegisterDocToReg> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListDocMappingsChanged();
         IReadOnlyList<IRegisterDocToReg> IRegister.ListDocMappings { get { return (this as Register).ListDocMappings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListDocMappingsChanging(ObservableCollection<RegisterDocToReg> to);
-        //partial void OnListDocMappingsChanged();
         
         
         [Browsable(false)]
@@ -25091,8 +24971,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IRegister.ListNodeGeneratorsSettings { get { return (this as Register).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_register
@@ -25273,8 +25151,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListMapingsChanging(ObservableCollectionWithActions<RegisterRegPropToDocProp> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListMapingsChanged();
         IReadOnlyList<IRegisterRegPropToDocProp> IRegisterDocToReg.ListMapings { get { return (this as RegisterDocToReg).ListMapings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListMapingsChanging(ObservableCollection<RegisterRegPropToDocProp> to);
-        //partial void OnListMapingsChanged();
         
         #endregion Properties
     }
@@ -25801,7 +25677,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListProperties _GroupSharedProperties; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupSharedPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupSharedPropertiesChanged();
-        IGroupListProperties IGroupDocuments.GroupSharedProperties { get { return (this as GroupDocuments).GroupSharedProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListProperties IGroupDocuments.GroupSharedProperties { get { return (this as GroupDocuments).GroupSharedProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListDocuments GroupListDocuments // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -25821,7 +25697,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListDocuments _GroupListDocuments; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupListDocumentsChanging(ref GroupListDocuments to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupListDocumentsChanged();
-        IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return (this as GroupDocuments).GroupListDocuments; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return (this as GroupDocuments).GroupListDocuments; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Category("")]
         [PropertyOrderAttribute(22)]
@@ -25978,8 +25854,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupDocuments.ListNodeGeneratorsSettings { get { return (this as GroupDocuments).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -26814,7 +26688,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListProperties _GroupProperties; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupPropertiesChanged();
-        IGroupListProperties IDocument.GroupProperties { get { return (this as Document).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListProperties IDocument.GroupProperties { get { return (this as Document).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListDetails GroupDetails // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -26834,7 +26708,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListDetails _GroupDetails; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupDetailsChanging(ref GroupListDetails to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupDetailsChanged();
-        IGroupListDetails IDocument.GroupDetails { get { return (this as Document).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListDetails IDocument.GroupDetails { get { return (this as Document).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListForms GroupForms // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -26854,7 +26728,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListForms _GroupForms; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupFormsChanging(ref GroupListForms to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupFormsChanged();
-        IGroupListForms IDocument.GroupForms { get { return (this as Document).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListForms IDocument.GroupForms { get { return (this as Document).GroupForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public GroupListReports GroupReports // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -26874,7 +26748,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private GroupListReports _GroupReports; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupReportsChanging(ref GroupListReports to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGroupReportsChanged();
-        IGroupListReports IDocument.GroupReports { get { return (this as Document).GroupReports; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IGroupListReports IDocument.GroupReports { get { return (this as Document).GroupReports; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public int ShortId // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -26939,7 +26813,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private DocumentNumberPropertySettings _DocNumberPropertySettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnDocNumberPropertySettingsChanging(ref DocumentNumberPropertySettings to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnDocNumberPropertySettingsChanged();
-        IDocumentNumberPropertySettings IDocument.DocNumberPropertySettings { get { return (this as Document).DocNumberPropertySettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IDocumentNumberPropertySettings IDocument.DocNumberPropertySettings { get { return (this as Document).DocNumberPropertySettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [PropertyOrderAttribute(24)]
         [DisplayName("Use Date")]
@@ -27278,8 +27152,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRoleDocumentAccessSettingsChanging(ObservableCollectionWithActions<RoleDocumentAccess> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRoleDocumentAccessSettingsChanged();
         IReadOnlyList<IRoleDocumentAccess> IDocument.ListRoleDocumentAccessSettings { get { return (this as Document).ListRoleDocumentAccessSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRoleDocumentAccessSettingsChanging(ObservableCollection<RoleDocumentAccess> to);
-        //partial void OnListRoleDocumentAccessSettingsChanged();
         
         
         [Browsable(false)]
@@ -27301,8 +27173,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IDocument.ListNodeGeneratorsSettings { get { return (this as Document).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_document
@@ -27738,12 +27608,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListDocumentsChanging(ConfigNodesCollection<Document> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListDocumentsChanged();
         IReadOnlyList<IDocument> IGroupListDocuments.ListDocuments { get { return (this as GroupListDocuments).ListDocuments; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListDocumentsChanging(ObservableCollection<Document> to);
-        //partial void OnListDocumentsChanged();
         
         public Document this[int index] { get { return (Document)this.ListDocuments[index]; } }
         IDocument IGroupListDocuments.this[int index] { get { return (Document)this.ListDocuments[index]; } }
-        public void Add(Document item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(Document item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListDocuments.Add(item); 
@@ -27808,8 +27676,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRoleDocumentAccessSettingsChanging(ObservableCollectionWithActions<RoleDocumentAccess> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRoleDocumentAccessSettingsChanged();
         IReadOnlyList<IRoleDocumentAccess> IGroupListDocuments.ListRoleDocumentAccessSettings { get { return (this as GroupListDocuments).ListRoleDocumentAccessSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRoleDocumentAccessSettingsChanging(ObservableCollection<RoleDocumentAccess> to);
-        //partial void OnListRoleDocumentAccessSettingsChanged();
         
         
         [Browsable(false)]
@@ -27831,8 +27697,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListDocuments.ListNodeGeneratorsSettings { get { return (this as GroupListDocuments).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -28204,12 +28068,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListJournalsChanging(ConfigNodesCollection<Journal> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListJournalsChanged();
         IReadOnlyList<IJournal> IGroupListJournals.ListJournals { get { return (this as GroupListJournals).ListJournals; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListJournalsChanging(ObservableCollection<Journal> to);
-        //partial void OnListJournalsChanged();
         
         public Journal this[int index] { get { return (Journal)this.ListJournals[index]; } }
         IJournal IGroupListJournals.this[int index] { get { return (Journal)this.ListJournals[index]; } }
-        public void Add(Journal item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(Journal item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListJournals.Add(item); 
@@ -28340,8 +28202,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListJournals.ListNodeGeneratorsSettings { get { return (this as GroupListJournals).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -28794,8 +28654,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListDocumentsChanging(ConfigNodesCollection<Document> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListDocumentsChanged();
         IReadOnlyList<IDocument> IJournal.ListDocuments { get { return (this as Journal).ListDocuments; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListDocumentsChanging(ObservableCollection<Document> to);
-        //partial void OnListDocumentsChanged();
         
         
         [Browsable(false)]
@@ -28924,8 +28782,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListSelectedDocsWithPropertiesChanging(ObservableCollectionWithActions<DocInJournal> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListSelectedDocsWithPropertiesChanged();
         IReadOnlyList<IDocInJournal> IJournal.ListSelectedDocsWithProperties { get { return (this as Journal).ListSelectedDocsWithProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListSelectedDocsWithPropertiesChanging(ObservableCollection<DocInJournal> to);
-        //partial void OnListSelectedDocsWithPropertiesChanged();
         
         
         [Browsable(false)]
@@ -28947,8 +28803,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IJournal.ListNodeGeneratorsSettings { get { return (this as Journal).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_journal
@@ -29120,8 +28974,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListPropertyGuidsChanging(ObservableCollectionWithActions<string> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListPropertyGuidsChanged();
         IReadOnlyList<string> IDocInJournal.ListPropertyGuids { get { return (this as DocInJournal).ListPropertyGuids; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListPropertyGuidsChanging(ObservableCollection<string> to);
-        //partial void OnListPropertyGuidsChanged();
         
         #endregion Properties
     }
@@ -29480,12 +29332,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListFormsChanging(ConfigNodesCollection<Form> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListFormsChanged();
         IReadOnlyList<IForm> IGroupListForms.ListForms { get { return (this as GroupListForms).ListForms; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListFormsChanging(ObservableCollection<Form> to);
-        //partial void OnListFormsChanged();
         
         public Form this[int index] { get { return (Form)this.ListForms[index]; } }
         IForm IGroupListForms.this[int index] { get { return (Form)this.ListForms[index]; } }
-        public void Add(Form item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(Form item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListForms.Add(item); 
@@ -29550,8 +29400,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListForms.ListNodeGeneratorsSettings { get { return (this as GroupListForms).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -30209,7 +30057,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private FormGridSystem _GridSystem; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGridSystemChanging(ref FormGridSystem to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGridSystemChanged();
-        IFormGridSystem IForm.GridSystem { get { return (this as Form).GridSystem; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IFormGridSystem IForm.GridSystem { get { return (this as Form).GridSystem; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public ObservableCollectionWithActions<string> ListGuidViewProperties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -30231,8 +30079,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGuidViewPropertiesChanging(ObservableCollectionWithActions<string> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListGuidViewPropertiesChanged();
         IReadOnlyList<string> IForm.ListGuidViewProperties { get { return (this as Form).ListGuidViewProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListGuidViewPropertiesChanging(ObservableCollection<string> to);
-        //partial void OnListGuidViewPropertiesChanged();
         
         
         [Browsable(false)]
@@ -30255,8 +30101,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGuidViewFolderPropertiesChanging(ObservableCollectionWithActions<string> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListGuidViewFolderPropertiesChanged();
         IReadOnlyList<string> IForm.ListGuidViewFolderProperties { get { return (this as Form).ListGuidViewFolderProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListGuidViewFolderPropertiesChanging(ObservableCollection<string> to);
-        //partial void OnListGuidViewFolderPropertiesChanged();
         
         
         [Browsable(false)]
@@ -30278,8 +30122,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IForm.ListNodeGeneratorsSettings { get { return (this as Form).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_form
@@ -30729,8 +30571,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListRowsChanging(ConfigNodesCollection<FormGridSystemRow> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListRowsChanged();
         IReadOnlyList<IFormGridSystemRow> IFormGridSystem.ListRows { get { return (this as FormGridSystem).ListRows; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListRowsChanging(ObservableCollection<FormGridSystemRow> to);
-        //partial void OnListRowsChanged();
         
         
         [Browsable(false)]
@@ -30753,8 +30593,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGuidPropertiesChanging(ObservableCollectionWithActions<string> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListGuidPropertiesChanged();
         IReadOnlyList<string> IFormGridSystem.ListGuidProperties { get { return (this as FormGridSystem).ListGuidProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListGuidPropertiesChanging(ObservableCollection<string> to);
-        //partial void OnListGuidPropertiesChanged();
         
         
         [Browsable(false)]
@@ -30776,8 +30614,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormGridSystem.ListNodeGeneratorsSettings { get { return (this as FormGridSystem).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_form_grid_system
@@ -31212,8 +31048,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListColumnsChanging(ConfigNodesCollection<FormGridSystemColumn> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListColumnsChanged();
         IReadOnlyList<IFormGridSystemColumn> IFormGridSystemRow.ListColumns { get { return (this as FormGridSystemRow).ListColumns; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListColumnsChanging(ObservableCollection<FormGridSystemColumn> to);
-        //partial void OnListColumnsChanged();
         
         
         [Browsable(false)]
@@ -31235,8 +31069,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormGridSystemRow.ListNodeGeneratorsSettings { get { return (this as FormGridSystemRow).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_form_grid_system_row
@@ -31800,7 +31632,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private FormAutoLayoutBlock _FormBlock; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnFormBlockChanging(ref FormAutoLayoutBlock to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnFormBlockChanged();
-        IFormAutoLayoutBlock IFormGridSystemColumn.FormBlock { get { return (this as FormGridSystemColumn).FormBlock; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IFormAutoLayoutBlock IFormGridSystemColumn.FormBlock { get { return (this as FormGridSystemColumn).FormBlock; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -31821,8 +31653,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormGridSystemColumn.ListNodeGeneratorsSettings { get { return (this as FormGridSystemColumn).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_form_grid_system_column
@@ -32262,8 +32092,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListFormAutoLayoutSubBlockChanging(ConfigNodesCollection<FormAutoLayoutSubBlock> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListFormAutoLayoutSubBlockChanged();
         IReadOnlyList<IFormAutoLayoutSubBlock> IFormAutoLayoutBlock.ListFormAutoLayoutSubBlock { get { return (this as FormAutoLayoutBlock).ListFormAutoLayoutSubBlock; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListFormAutoLayoutSubBlockChanging(ObservableCollection<FormAutoLayoutSubBlock> to);
-        //partial void OnListFormAutoLayoutSubBlockChanged();
         
         
         [Browsable(false)]
@@ -32285,8 +32113,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormAutoLayoutBlock.ListNodeGeneratorsSettings { get { return (this as FormAutoLayoutBlock).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_form_auto_layout_block
@@ -32729,7 +32555,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private FormTabControl _TabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnTabControlChanging(ref FormTabControl to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnTabControlChanged();
-        IFormTabControl IFormAutoLayoutSubBlock.TabControl { get { return (this as FormAutoLayoutSubBlock).TabControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IFormTabControl IFormAutoLayoutSubBlock.TabControl { get { return (this as FormAutoLayoutSubBlock).TabControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         public FormDataGrid DataGridControl // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
@@ -32748,7 +32574,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private FormDataGrid _DataGridControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnDataGridControlChanging(ref FormDataGrid to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnDataGridControlChanged();
-        IFormDataGrid IFormAutoLayoutSubBlock.DataGridControl { get { return (this as FormAutoLayoutSubBlock).DataGridControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IFormDataGrid IFormAutoLayoutSubBlock.DataGridControl { get { return (this as FormAutoLayoutSubBlock).DataGridControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         public FormAutoLayoutBlock AutoLayoutBlockControl // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
@@ -32767,7 +32593,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private FormAutoLayoutBlock _AutoLayoutBlockControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnAutoLayoutBlockControlChanging(ref FormAutoLayoutBlock to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnAutoLayoutBlockControlChanged();
-        IFormAutoLayoutBlock IFormAutoLayoutSubBlock.AutoLayoutBlockControl { get { return (this as FormAutoLayoutSubBlock).AutoLayoutBlockControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IFormAutoLayoutBlock IFormAutoLayoutSubBlock.AutoLayoutBlockControl { get { return (this as FormAutoLayoutSubBlock).AutoLayoutBlockControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         public FormField FieldControl // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
@@ -32786,7 +32612,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private FormField _FieldControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnFieldControlChanging(ref FormField to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnFieldControlChanged();
-        IFormField IFormAutoLayoutSubBlock.FieldControl { get { return (this as FormAutoLayoutSubBlock).FieldControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IFormField IFormAutoLayoutSubBlock.FieldControl { get { return (this as FormAutoLayoutSubBlock).FieldControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         public FormGridSystem GridSystemControl // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
@@ -32805,7 +32631,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private FormGridSystem _GridSystemControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGridSystemControlChanging(ref FormGridSystem to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnGridSystemControlChanged();
-        IFormGridSystem IFormAutoLayoutSubBlock.GridSystemControl { get { return (this as FormAutoLayoutSubBlock).GridSystemControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IFormGridSystem IFormAutoLayoutSubBlock.GridSystemControl { get { return (this as FormAutoLayoutSubBlock).GridSystemControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         public FormTree TreeControl // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
@@ -32824,7 +32650,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private FormTree _TreeControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnTreeControlChanging(ref FormTree to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnTreeControlChanged();
-        IFormTree IFormAutoLayoutSubBlock.TreeControl { get { return (this as FormAutoLayoutSubBlock).TreeControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IFormTree IFormAutoLayoutSubBlock.TreeControl { get { return (this as FormAutoLayoutSubBlock).TreeControl; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -32845,8 +32671,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormAutoLayoutSubBlock.ListNodeGeneratorsSettings { get { return (this as FormAutoLayoutSubBlock).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_form_auto_layout_sub_block
@@ -33224,8 +33048,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormField.ListNodeGeneratorsSettings { get { return (this as FormField).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_form_field
@@ -33631,8 +33453,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGuidPropertiesChanging(ObservableCollectionWithActions<string> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListGuidPropertiesChanged();
         IReadOnlyList<string> IFormTabControlTab.ListGuidProperties { get { return (this as FormTabControlTab).ListGuidProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListGuidPropertiesChanging(ObservableCollection<string> to);
-        //partial void OnListGuidPropertiesChanged();
         
         
         [Browsable(false)]
@@ -33653,7 +33473,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private FormAutoLayoutBlock _FormBlock; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnFormBlockChanging(ref FormAutoLayoutBlock to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnFormBlockChanged();
-        IFormAutoLayoutBlock IFormTabControlTab.FormBlock { get { return (this as FormTabControlTab).FormBlock; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:79
+        IFormAutoLayoutBlock IFormTabControlTab.FormBlock { get { return (this as FormTabControlTab).FormBlock; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -33674,8 +33494,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormTabControlTab.ListNodeGeneratorsSettings { get { return (this as FormTabControlTab).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_form_tab_control_tab
@@ -34125,8 +33943,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListTabsChanging(ConfigNodesCollection<FormTabControlTab> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListTabsChanged();
         IReadOnlyList<IFormTabControlTab> IFormTabControl.ListTabs { get { return (this as FormTabControl).ListTabs; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListTabsChanging(ObservableCollection<FormTabControlTab> to);
-        //partial void OnListTabsChanged();
         
         
         [Browsable(false)]
@@ -34149,8 +33965,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGuidPropertiesChanging(ObservableCollectionWithActions<string> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListGuidPropertiesChanged();
         IReadOnlyList<string> IFormTabControl.ListGuidProperties { get { return (this as FormTabControl).ListGuidProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListGuidPropertiesChanging(ObservableCollection<string> to);
-        //partial void OnListGuidPropertiesChanged();
         
         
         [Browsable(false)]
@@ -34172,8 +33986,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormTabControl.ListNodeGeneratorsSettings { get { return (this as FormTabControl).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_form_tab_control
@@ -34568,8 +34380,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGuidPropertiesChanging(ObservableCollectionWithActions<string> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListGuidPropertiesChanged();
         IReadOnlyList<string> IFormDataGrid.ListGuidProperties { get { return (this as FormDataGrid).ListGuidProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListGuidPropertiesChanging(ObservableCollection<string> to);
-        //partial void OnListGuidPropertiesChanged();
         
         
         [Browsable(false)]
@@ -34591,8 +34401,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormDataGrid.ListNodeGeneratorsSettings { get { return (this as FormDataGrid).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_form_data_grid
@@ -34987,8 +34795,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGuidPropertiesChanging(ObservableCollectionWithActions<string> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListGuidPropertiesChanged();
         IReadOnlyList<string> IFormTree.ListGuidProperties { get { return (this as FormTree).ListGuidProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListGuidPropertiesChanging(ObservableCollection<string> to);
-        //partial void OnListGuidPropertiesChanged();
         
         
         [Browsable(false)]
@@ -35010,8 +34816,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormTree.ListNodeGeneratorsSettings { get { return (this as FormTree).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_form_tree
@@ -35373,12 +35177,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListReportsChanging(ConfigNodesCollection<Report> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListReportsChanged();
         IReadOnlyList<IReport> IGroupListReports.ListReports { get { return (this as GroupListReports).ListReports; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListReportsChanging(ObservableCollection<Report> to);
-        //partial void OnListReportsChanged();
         
         public Report this[int index] { get { return (Report)this.ListReports[index]; } }
         IReport IGroupListReports.this[int index] { get { return (Report)this.ListReports[index]; } }
-        public void Add(Report item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:55
+        public void Add(Report item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:53
         { 
             Debug.Assert(item != null);
             this.ListReports.Add(item); 
@@ -35443,8 +35245,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListReports.ListNodeGeneratorsSettings { get { return (this as GroupListReports).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         #endregion Properties
@@ -35819,8 +35619,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:45
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IReport.ListNodeGeneratorsSettings { get { return (this as Report).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:48
-        //partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to);
-        //partial void OnListNodeGeneratorsSettingsChanged();
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:127
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:131 proto_report

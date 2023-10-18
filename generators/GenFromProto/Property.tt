@@ -11,7 +11,7 @@
     set
     {
         // Use 'On<#=FieldName#>Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-<# if (this.DocMes.IsBindableBase && this.isSetPropertyByRef) { #>
+<#   if (this.DocMes.IsBindableBase && this.isSetPropertyByRef) { #>
         this.On<#=FieldName#>Changing(<#=refstr#>value); // <#=t4.FilePos() #>
         if (SetProperty(ref this._<#=FieldName#>, value))
         {
@@ -23,7 +23,7 @@
             this.IsChanged = true; // <#=t4.FilePos() #>
 <#     } #>
         }
-<# } else { #>
+<#   } else { #>
         this.On<#=FieldName#>Changing(<#=refstr#>value);
         if (this._<#=FieldName#> != value) // <#=t4.FilePos() #>
         {
@@ -36,7 +36,7 @@
             this.IsChanged = true; // <#=t4.FilePos() #>
 <#     } #>
         }
-<# } #>
+<#   } #>
     }
 }
 <# if (IsNotSkip) { #>
@@ -46,8 +46,6 @@ partial void On<#=FieldName#>Changing(<#=refstr#><#=PropType#> to); // <#=t4.Fil
 partial void On<#=FieldName#>Changed();
 <# if (this.IsCollection /*this.IsSelfCollection*/) { #>
 IReadOnlyList<<#if (!IsSimple) {#>I<#}#><#=FieldType#>> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassName#>).<#=FieldName#>; } } // <#=t4.FilePos() #>
-//partial void On<#=FieldName#>Changing(ObservableCollection<<#= field.ToTypeCs() #>> to);
-//partial void On<#=FieldName#>Changed();
 
 <#   if (this.IsSelfCollection) { #>
 public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#=FieldName#>[index]; } }
