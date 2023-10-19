@@ -289,6 +289,7 @@ namespace GenFromProto
 
         public Proto.Doc.message message;
         public bool IsDefaultBase = true;
+        //public bool IsProto = false;
         public bool IsConfigObjectBase = false;
         public bool IsGenSettings = false;
         public bool IsWithParent = false;

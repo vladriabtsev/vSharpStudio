@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnDebugStringExtend(ref string mes)
         {
-            mes = mes + $" Count:{ListAppSolutions.Count}";
+            mes = mes + $" Slns:{ListAppSolutions.Count}";
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }

@@ -92,7 +92,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(", value, (t) => { this.On");
+            this.Write(", value, (t) => { /*this.On");
             
             #line 15 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FieldName));
@@ -106,7 +106,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("value); this._");
+            this.Write("value);*/ this._");
             
             #line 15 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FieldName));
@@ -189,7 +189,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\r\n        {\r\n            this.On");
+            this.Write("\r\n        {\r\n            //this.On");
             
             #line 27 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FieldName));
@@ -306,7 +306,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("partial void On");
+            this.Write("//partial void On");
             
             #line 43 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FieldName));

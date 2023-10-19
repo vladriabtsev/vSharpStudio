@@ -1636,7 +1636,7 @@ if (this.Doc.IsDefaultBase) {
             #line hidden
             
             #line 221 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
- if (this.Doc.IsDefaultBase) { 
+ if (this.Doc.IsConfigObjectBase || this.Doc.IsGenSettings) { 
             
             #line default
             #line hidden

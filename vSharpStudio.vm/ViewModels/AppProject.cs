@@ -22,7 +22,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnDebugStringExtend(ref string mes)
         {
-            mes = mes + $" RelPath:{RelativeAppProjectPath}";
+            mes = mes + $" Gens:{ListAppProjectGenerators.Count} RelPath:{RelativeAppProjectPath}";
         }
         [Browsable(false)]
         public AppSolution ParentAppSolution { get { Debug.Assert(this.Parent != null); return (AppSolution)this.Parent; } }
@@ -64,6 +64,12 @@ namespace vSharpStudio.vm.ViewModels
             this._ListAppProjectGenerators.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
+                var cfg = this.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
+                //var nv = new ModelVisitorNodeGenSettings();
+                //nv.NodeGenSettingsApplyAction(cfg, (p) =>
+                //{
+                //    p.RestoreNodeAppGenSettingsVm(t.Guid);
+                //});
             };
             //this.ListAppProjectGenerators.OnAddedAction = (t) =>
             //{
@@ -72,7 +78,11 @@ namespace vSharpStudio.vm.ViewModels
             this._ListAppProjectGenerators.OnRemovedAction = (t) =>
             {
                 var cfg = this.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
-                cfg.RemoveNodeAppGenSettings(t.Guid);
+                var nv = new ModelVisitorNodeGenSettings();
+                nv.NodeGenSettingsApplyAction(cfg, (p) =>
+                {
+                    p.RemoveNodeAppGenSettings(t.Guid);
+                });
                 t.PluginGuid = string.Empty;
                 if (cfg._DicActiveAppProjectGenerators.ContainsKey(t.Guid))
                     cfg._DicActiveAppProjectGenerators.Remove(t.Guid);
@@ -82,6 +92,39 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+        }
+        protected override void OnConfigInitializedVirtual()
+        {
+            // All computed properties have to implement init logic in their getters
+            // On...Changed procedure chaging fields and notifying properties changes to let binding start computing
+            // It will help work with computed properties after loading configuration
+            //Debug.Assert(cfg != null);
+            //Debug.Assert(cfg.DicPlugins != null);
+            //if (this.PluginGuid == string.Empty)
+            //{
+            //}
+            //else
+            //{
+            //    this.plugin = cfg.DicPlugins[this.PluginGuid];
+            //    if (this.PluginGeneratorGuid == string.Empty)
+            //    {
+            //    }
+            //    else
+            //    {
+            //        UpdateListGenerators();
+            //        Debug.Assert(this.ListGenerators != null);
+            //        foreach (var t in this.ListGenerators)
+            //        {
+            //            if (t.Guid == this.PluginGeneratorGuid)
+            //            {
+            //                Debug.Assert(t.Generator != null);
+            //                cfg._DicActiveAppProjectGenerators[this.Guid] = t.Generator;
+            //                this.PluginGenerator = t.Generator;
+            //                break;
+            //            }
+            //        }
+            //    }
+            //}
         }
         public AppProject(ITreeConfigNode parent, string name, string projectPath)
                         : this(parent)
@@ -105,15 +148,17 @@ namespace vSharpStudio.vm.ViewModels
             path = path[..(path.LastIndexOf(@"\") + 1)];
             return path;
         }
-        partial void OnRelativeAppProjectPathChanging(ref string to)
+        partial void OnRelativeAppProjectPathChanged()
         {
-            //if (!this.IsNotifying)
-            //    return;
-            if (Path.IsPathRooted(to))
+            if (string.IsNullOrWhiteSpace(this._RelativeAppProjectPath))
             {
-                this.Name = Path.GetFileNameWithoutExtension(to);
-                var slnPath = this.ParentAppSolution.GetSolutionFolderPath();
-                to = Path.GetRelativePath(slnPath, to);
+            }
+            else
+            {
+                if (Path.IsPathRooted(this._RelativeAppProjectPath))
+                {
+                    this._RelativeAppProjectPath = this.GetRelativeToConfigDiskPath(this._RelativeAppProjectPath);
+                }
             }
         }
         public AppProjectGenerator AddGenerator(string name, string pluginGuid, string generatorGuid, string outFile, string? generationPath = null)

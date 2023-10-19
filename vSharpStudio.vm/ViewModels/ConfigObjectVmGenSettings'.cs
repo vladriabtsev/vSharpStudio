@@ -194,8 +194,6 @@ namespace vSharpStudio.vm.ViewModels
         public void RemoveNodeAppGenSettings(string appGenGuid)
         {
             _logger?.Trace();
-            if (!this.DicGenNodeSettings.ContainsKey(appGenGuid))
-                return;
             var ngs = (INodeGenSettings)this;
             for (int i = ngs.ListNodeGeneratorsSettings.Count - 1; i > -1; i--)
             {
@@ -206,7 +204,7 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 }
             }
-            this._DicGenNodeSettings.Remove(appGenGuid);
+            this._DicGenNodeSettings.TryRemove(appGenGuid);
         }
 
         #endregion Node App Generator Settings

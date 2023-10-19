@@ -64,5 +64,6 @@ namespace vSharpStudio.common
         bool IsIncludableInModels { get; }
         List<IModelRow> ListInModels { get; }
         IConfig Cfg { get; }
+        void OnConfigInitialized();
     }
 }

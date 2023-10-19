@@ -433,6 +433,12 @@ namespace vSharpStudio.ViewModels
                 {
                     p.RestoreNodeAppGenSettingsVm();
                 });
+                // Plugin group model
+                cfg.Model.RestorePluginGroupsModels();
+                nvb.RunFromRoot(cfg, null, null, null, (p, n) =>
+                {
+                    n.OnConfigInitialized();
+                });
                 // Create Settings VM for all project generators
                 foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
                 {
@@ -451,8 +457,6 @@ namespace vSharpStudio.ViewModels
                     // group plugins settings
                     t.RestoreGroupSettings();
                 }
-                // Plugin group model
-                cfg.Model.RestorePluginGroupsModels();
             }
             catch (Exception ex)
             {

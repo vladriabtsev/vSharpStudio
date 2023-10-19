@@ -122,6 +122,324 @@ namespace vSharpStudio.Unit
         //}
         //private string pluginsFolderPath = "";
         [TestMethod]
+        public void Plugin001AppGeneratorModelTests()
+        {
+            _logger.LogTrace("Start test".CallerInfo());
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            vm.BtnNewConfig.Execute();
+            vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
+
+            var pluginSimple2Gen1 = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample2.SamplePlugin select p).Single();
+            var pluginSimpleGen2 = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
+            var genDb = (IvPluginDbGenerator)(from p in pluginSimpleGen2.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
+            var genDbAccess = (IvPluginGenerator)(from p in pluginSimpleGen2.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
+            vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
+
+            var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
+            sln.RelativeAppSolutionPath = Path.Combine(vm.Config.CurrentCfgFolderPath, @"Solution.sln");
+
+            var prj = (AppProject)sln.NodeAddNewSubNode();
+            prj.RelativeAppProjectPath = Path.Combine(sln.GetSolutionFolderPath(), @"ConsoleApp1\ConsoleApp1.csproj");
+
+            var apg = (AppProjectGenerator)prj.NodeAddNewSubNode();
+            apg.RelativePathToGenFolder = Path.Combine(prj.GetProjectFolderPath(), @"Generated");
+
+            // PluginGuid null
+            Assert.AreEqual(string.Empty, apg.PluginGuid);
+            Assert.IsNull(apg.Plugin);
+            Assert.AreEqual(string.Empty, apg.PluginGeneratorGuid);
+            Assert.IsNull(apg.PluginGenerator);
+            Assert.IsNull(apg.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg.ConnStr);
+            Assert.AreEqual(0, apg.ListGenerators.Count);
+            Assert.AreEqual(string.Empty, apg.GeneratorSettings);
+            Assert.AreEqual(string.Empty, apg.DescriptionGenerator);
+            Assert.IsNull(apg.DynamicGeneratorSettings);
+            Assert.IsNull(apg.DynamicModelNodeSettings);
+            Assert.IsNull(apg.DynamicMainConnStrSettings);
+            // restore
+            vm.BtnConfigSave.Execute();
+            var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg2 = vm2.Config;
+            Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
+            var sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
+            Assert.AreEqual(1, sln2.ListAppProjects.Count);
+            var prj2 = sln2.ListAppProjects[0];
+            Assert.AreEqual(1, prj2.ListAppProjectGenerators.Count);
+            var apg2= prj2.ListAppProjectGenerators[0];
+            Assert.AreEqual(string.Empty, apg2.PluginGuid);
+            Assert.IsNull(apg2.Plugin);
+            Assert.AreEqual(string.Empty, apg2.PluginGeneratorGuid);
+            Assert.IsNull(apg2.PluginGenerator);
+            Assert.IsNull(apg2.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg2.ConnStr);
+            Assert.AreEqual(0, apg2.ListGenerators.Count);
+            Assert.AreEqual(string.Empty, apg2.GeneratorSettings);
+            Assert.AreEqual(string.Empty, apg2.DescriptionGenerator);
+            Assert.IsNull(apg2.DynamicGeneratorSettings);
+            Assert.IsNull(apg2.DynamicModelNodeSettings);
+            Assert.IsNull(apg2.DynamicMainConnStrSettings);
+
+            // PluginGuid not null
+            apg.PluginGuid = pluginSimpleGen2.Guid;
+            Assert.AreEqual(pluginSimpleGen2.Guid, apg.PluginGuid);
+            Assert.IsNotNull(apg.Plugin);
+            Assert.AreEqual(string.Empty, apg.PluginGeneratorGuid);
+            Assert.IsNull(apg.PluginGenerator);
+            Assert.IsNull(apg.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg.ConnStr);
+            Assert.AreEqual(2, apg.ListGenerators.Count);
+            Assert.AreEqual(string.Empty, apg.GeneratorSettings);
+            Assert.AreEqual(string.Empty, apg.DescriptionGenerator);
+            Assert.IsNull(apg.DynamicGeneratorSettings);
+            Assert.IsNull(apg.DynamicModelNodeSettings);
+            Assert.IsNull(apg.DynamicMainConnStrSettings);
+            // restore
+            vm.BtnConfigSave.Execute();
+            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            cfg2 = vm2.Config;
+            Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
+            sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
+            Assert.AreEqual(1, sln2.ListAppProjects.Count);
+            prj2 = sln2.ListAppProjects[0];
+            Assert.AreEqual(1, prj2.ListAppProjectGenerators.Count);
+            apg2 = prj2.ListAppProjectGenerators[0];
+            Assert.AreEqual(pluginSimpleGen2.Guid, apg2.PluginGuid);
+            Assert.IsNotNull(apg2.Plugin);
+            Assert.AreEqual(string.Empty, apg2.PluginGeneratorGuid);
+            Assert.IsNull(apg2.PluginGenerator);
+            Assert.IsNull(apg2.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg2.ConnStr);
+            Assert.AreEqual(2, apg2.ListGenerators.Count);
+            Assert.AreEqual(string.Empty, apg2.GeneratorSettings);
+            Assert.AreEqual(string.Empty, apg2.DescriptionGenerator);
+            Assert.IsNull(apg2.DynamicGeneratorSettings);
+            Assert.IsNull(apg2.DynamicModelNodeSettings);
+            Assert.IsNull(apg2.DynamicMainConnStrSettings);
+
+            // PluginGeneratorGuid not null
+            apg.PluginGeneratorGuid = genDbAccess.Guid;
+            Assert.AreEqual(pluginSimpleGen2.Guid, apg.PluginGuid);
+            Assert.IsNotNull(apg.Plugin);
+            Assert.AreEqual(genDbAccess.Guid, apg.PluginGeneratorGuid);
+            Assert.IsNotNull(apg.PluginGenerator);
+            Assert.IsNull(apg.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg.ConnStr);
+            Assert.AreEqual(2, apg.ListGenerators.Count);
+            Assert.AreEqual(string.Empty, apg.GeneratorSettings);
+            Assert.AreNotEqual(string.Empty, apg.DescriptionGenerator);
+            Assert.IsNotNull(apg.DynamicGeneratorSettings);
+            Assert.IsNotNull(apg.DynamicModelNodeSettings);
+            Assert.IsNull(apg.DynamicMainConnStrSettings);
+            // restore
+            vm.BtnConfigSave.Execute();
+            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            cfg2 = vm2.Config;
+            Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
+            sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
+            Assert.AreEqual(1, sln2.ListAppProjects.Count);
+            prj2 = sln2.ListAppProjects[0];
+            Assert.AreEqual(1, prj2.ListAppProjectGenerators.Count);
+            apg2 = prj2.ListAppProjectGenerators[0];
+            Assert.AreEqual(pluginSimpleGen2.Guid, apg2.PluginGuid);
+            Assert.IsNotNull(apg2.Plugin);
+            Assert.AreEqual(genDbAccess.Guid, apg2.PluginGeneratorGuid);
+            Assert.IsNotNull(apg2.PluginGenerator);
+            Assert.IsNull(apg2.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg2.ConnStr);
+            Assert.AreEqual(2, apg2.ListGenerators.Count);
+            Assert.AreEqual("{ }", apg2.GeneratorSettings);
+            Assert.AreNotEqual(string.Empty, apg2.DescriptionGenerator);
+            Assert.IsNotNull(apg2.DynamicGeneratorSettings);
+            Assert.IsNotNull(apg2.DynamicModelNodeSettings);
+            Assert.IsNull(apg2.DynamicMainConnStrSettings);
+
+            // PluginGeneratorGuid empty
+            apg.PluginGeneratorGuid = string.Empty;
+            Assert.AreEqual(pluginSimpleGen2.Guid, apg.PluginGuid);
+            Assert.IsNotNull(apg.Plugin);
+            Assert.AreEqual(string.Empty, apg.PluginGeneratorGuid);
+            Assert.IsNull(apg.PluginGenerator);
+            Assert.IsNull(apg.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg.ConnStr);
+            Assert.AreEqual(2, apg.ListGenerators.Count);
+            Assert.AreEqual(string.Empty, apg.GeneratorSettings);
+            Assert.AreEqual(string.Empty, apg.DescriptionGenerator);
+            Assert.IsNull(apg.DynamicGeneratorSettings);
+            Assert.IsNull(apg.DynamicModelNodeSettings);
+            Assert.IsNull(apg.DynamicMainConnStrSettings);
+            // restore
+            vm.BtnConfigSave.Execute();
+            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            cfg2 = vm2.Config;
+            Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
+            sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
+            Assert.AreEqual(1, sln2.ListAppProjects.Count);
+            prj2 = sln2.ListAppProjects[0];
+            Assert.AreEqual(1, prj2.ListAppProjectGenerators.Count);
+            apg2 = prj2.ListAppProjectGenerators[0];
+            Assert.AreEqual(pluginSimpleGen2.Guid, apg2.PluginGuid);
+            Assert.IsNotNull(apg2.Plugin);
+            Assert.AreEqual(string.Empty, apg2.PluginGeneratorGuid);
+            Assert.IsNull(apg2.PluginGenerator);
+            Assert.IsNull(apg2.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg2.ConnStr);
+            Assert.AreEqual(2, apg2.ListGenerators.Count);
+            Assert.AreEqual(string.Empty, apg2.GeneratorSettings);
+            Assert.AreEqual(string.Empty, apg2.DescriptionGenerator);
+            Assert.IsNull(apg2.DynamicGeneratorSettings);
+            Assert.IsNull(apg2.DynamicModelNodeSettings);
+            Assert.IsNull(apg2.DynamicMainConnStrSettings);
+
+            // PluginGeneratorGuid not null
+            apg.PluginGeneratorGuid = genDb.Guid;
+            Assert.AreEqual(pluginSimpleGen2.Guid, apg.PluginGuid);
+            Assert.IsNotNull(apg.Plugin);
+            Assert.AreEqual(genDb.Guid, apg.PluginGeneratorGuid);
+            Assert.IsNotNull(apg.PluginGenerator);
+            Assert.IsNotNull(apg.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg.ConnStr);
+            Assert.AreEqual(2, apg.ListGenerators.Count);
+            Assert.AreEqual(string.Empty, apg.GeneratorSettings);
+            Assert.AreNotEqual(string.Empty, apg.DescriptionGenerator);
+            Assert.IsNotNull(apg.DynamicGeneratorSettings);
+            Assert.IsNotNull(apg.DynamicModelNodeSettings);
+            Assert.IsNotNull(apg.DynamicMainConnStrSettings);
+            // restore
+            vm.BtnConfigSave.Execute();
+            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            cfg2 = vm2.Config;
+            Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
+            sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
+            Assert.AreEqual(1, sln2.ListAppProjects.Count);
+            prj2 = sln2.ListAppProjects[0];
+            Assert.AreEqual(1, prj2.ListAppProjectGenerators.Count);
+            apg2 = prj2.ListAppProjectGenerators[0];
+            Assert.AreEqual(pluginSimpleGen2.Guid, apg2.PluginGuid);
+            Assert.IsNotNull(apg2.Plugin);
+            Assert.AreEqual(genDb.Guid, apg2.PluginGeneratorGuid);
+            Assert.IsNotNull(apg2.PluginGenerator);
+            Assert.IsNotNull(apg2.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg2.ConnStr);
+            Assert.AreEqual(2, apg2.ListGenerators.Count);
+            Assert.AreEqual("{ }", apg2.GeneratorSettings);
+            Assert.AreNotEqual(string.Empty, apg2.DescriptionGenerator);
+            Assert.IsNotNull(apg2.DynamicGeneratorSettings);
+            Assert.IsNotNull(apg2.DynamicModelNodeSettings);
+            Assert.IsNotNull(apg2.DynamicMainConnStrSettings);
+
+            // PluginGeneratorGuid empty
+            apg.PluginGeneratorGuid = string.Empty;
+            Assert.AreEqual(pluginSimpleGen2.Guid, apg.PluginGuid);
+            Assert.IsNotNull(apg.Plugin);
+            Assert.AreEqual(string.Empty, apg.PluginGeneratorGuid);
+            Assert.IsNull(apg.PluginGenerator);
+            Assert.IsNull(apg.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg.ConnStr);
+            Assert.AreEqual(2, apg.ListGenerators.Count);
+            Assert.AreEqual(string.Empty, apg.GeneratorSettings);
+            Assert.AreEqual(string.Empty, apg.DescriptionGenerator);
+            Assert.IsNull(apg.DynamicGeneratorSettings);
+            Assert.IsNull(apg.DynamicModelNodeSettings);
+            Assert.IsNull(apg.DynamicMainConnStrSettings);
+            // restore
+            vm.BtnConfigSave.Execute();
+            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            cfg2 = vm2.Config;
+            Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
+            sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
+            Assert.AreEqual(1, sln2.ListAppProjects.Count);
+            prj2 = sln2.ListAppProjects[0];
+            Assert.AreEqual(1, prj2.ListAppProjectGenerators.Count);
+            apg2 = prj2.ListAppProjectGenerators[0];
+            Assert.AreEqual(pluginSimpleGen2.Guid, apg2.PluginGuid);
+            Assert.IsNotNull(apg2.Plugin);
+            Assert.AreEqual(string.Empty, apg2.PluginGeneratorGuid);
+            Assert.IsNull(apg2.PluginGenerator);
+            Assert.IsNull(apg2.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg2.ConnStr);
+            Assert.AreEqual(2, apg2.ListGenerators.Count);
+            Assert.AreEqual(string.Empty, apg2.GeneratorSettings);
+            Assert.AreEqual(string.Empty, apg2.DescriptionGenerator);
+            Assert.IsNull(apg2.DynamicGeneratorSettings);
+            Assert.IsNull(apg2.DynamicModelNodeSettings);
+            Assert.IsNull(apg2.DynamicMainConnStrSettings);
+
+            // PluginGuid null
+            apg.PluginGuid = string.Empty;
+            Assert.AreEqual(string.Empty, apg.PluginGuid);
+            Assert.IsNull(apg.Plugin);
+            Assert.AreEqual(string.Empty, apg.PluginGeneratorGuid);
+            Assert.IsNull(apg.PluginGenerator);
+            Assert.IsNull(apg.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg.ConnStr);
+            Assert.AreEqual(0, apg.ListGenerators.Count);
+            Assert.AreEqual(string.Empty, apg.GeneratorSettings);
+            Assert.AreEqual(string.Empty, apg.DescriptionGenerator);
+            Assert.IsNull(apg.DynamicGeneratorSettings);
+            Assert.IsNull(apg.DynamicModelNodeSettings);
+            Assert.IsNull(apg.DynamicMainConnStrSettings);
+            // restore
+            vm.BtnConfigSave.Execute();
+            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            cfg2 = vm2.Config;
+            Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
+            sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
+            Assert.AreEqual(1, sln2.ListAppProjects.Count);
+            prj2 = sln2.ListAppProjects[0];
+            Assert.AreEqual(1, prj2.ListAppProjectGenerators.Count);
+            apg2 = prj2.ListAppProjectGenerators[0];
+            Assert.AreEqual(string.Empty, apg2.PluginGuid);
+            Assert.IsNull(apg2.Plugin);
+            Assert.AreEqual(string.Empty, apg2.PluginGeneratorGuid);
+            Assert.IsNull(apg2.PluginGenerator);
+            Assert.IsNull(apg2.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg2.ConnStr);
+            Assert.AreEqual(0, apg2.ListGenerators.Count);
+            Assert.AreEqual(string.Empty, apg2.GeneratorSettings);
+            Assert.AreEqual(string.Empty, apg2.DescriptionGenerator);
+            Assert.IsNull(apg2.DynamicGeneratorSettings);
+            Assert.IsNull(apg2.DynamicModelNodeSettings);
+            Assert.IsNull(apg2.DynamicMainConnStrSettings);
+
+            // PluginGuid with one generator
+            apg.PluginGuid = pluginSimple2Gen1.Guid;
+            Assert.AreEqual(pluginSimple2Gen1.Guid, apg.PluginGuid);
+            Assert.IsNotNull(apg.Plugin);
+            Assert.AreNotEqual(string.Empty, apg.PluginGeneratorGuid);
+            Assert.IsNotNull(apg.PluginGenerator);
+            Assert.IsNull(apg.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg.ConnStr);
+            Assert.AreEqual(1, apg.ListGenerators.Count);
+            Assert.AreEqual(string.Empty, apg.GeneratorSettings);
+            Assert.AreNotEqual(string.Empty, apg.DescriptionGenerator);
+            Assert.IsNotNull(apg.DynamicGeneratorSettings);
+            Assert.IsNull(apg.DynamicModelNodeSettings);
+            Assert.IsNull(apg.DynamicMainConnStrSettings);
+            // restore
+            vm.BtnConfigSave.Execute();
+            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            cfg2 = vm2.Config;
+            Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
+            sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
+            Assert.AreEqual(1, sln2.ListAppProjects.Count);
+            prj2 = sln2.ListAppProjects[0];
+            Assert.AreEqual(1, prj2.ListAppProjectGenerators.Count);
+            apg2 = prj2.ListAppProjectGenerators[0];
+            Assert.AreEqual(pluginSimple2Gen1.Guid, apg2.PluginGuid);
+            Assert.IsNotNull(apg2.Plugin);
+            Assert.AreNotEqual(string.Empty, apg2.PluginGeneratorGuid);
+            Assert.IsNotNull(apg2.PluginGenerator);
+            Assert.IsNull(apg2.PluginDbGenerator);
+            Assert.AreEqual(string.Empty, apg2.ConnStr);
+            Assert.AreEqual(1, apg2.ListGenerators.Count);
+            Assert.AreEqual("{ }", apg2.GeneratorSettings);
+            Assert.AreNotEqual(string.Empty, apg2.DescriptionGenerator);
+            Assert.IsNotNull(apg2.DynamicGeneratorSettings);
+            Assert.IsNull(apg2.DynamicModelNodeSettings);
+            Assert.IsNull(apg2.DynamicMainConnStrSettings);
+        }
+        [TestMethod]
         public void Plugin002WorkWithAppGeneratorNames()
         {
             _logger.LogTrace("Start test".CallerInfo());
@@ -216,9 +534,6 @@ namespace vSharpStudio.Unit
 
             gen.Validate();
 
-            Assert.AreEqual(1, prj.DicPluginsGroupSettings.Count);
-            Assert.AreEqual(1, sln.DicPluginsGroupSettings.Count);
-
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(2, gen.ListGenerators.Count);
             Assert.IsNotNull(gen.DynamicGeneratorSettings);
@@ -254,9 +569,6 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(prms.IsAccessParam2, prms2.IsAccessParam2);
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
             Assert.AreEqual(prms.AccessParam4, prms2.AccessParam4);
-
-            Assert.AreEqual(1, prj2.DicPluginsGroupSettings.Count);
-            Assert.AreEqual(1, sln2.DicPluginsGroupSettings.Count);
 
             #region DicDiffResult
 #if DEBUG
@@ -618,7 +930,7 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
 
             // second generator removing
-            gen2.PluginGeneratorGuid = null;
+            gen2.PluginGeneratorGuid = string.Empty;
             Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
             Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
@@ -632,7 +944,7 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
 
             // second generator removing
-            gen2.PluginGuid = null;
+            gen2.PluginGuid = string.Empty;
             Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
             Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
@@ -679,6 +991,8 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(plgn);
             sln = vm2.Config.GroupAppSolutions[0];
             prj = sln.ListAppProjects[0];
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
             Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGenerator.SolutionParametersGuid));
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
             Assert.IsTrue(prj.DicPluginsGroupSettings.ContainsKey(gen.PluginGenerator.ProjectParametersGuid));

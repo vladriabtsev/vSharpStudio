@@ -89,7 +89,39 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
-
+        //protected override void OnConfigInitializedVirtual()
+        //{
+        //    // All computed properties have to implement init logic in their getters
+        //    // On...Changed procedure chaging fields and notifying properties changes to let binding start computing
+        //    // It will help work with computed properties after loading configuration
+        //    Debug.Assert(cfg != null);
+        //    Debug.Assert(cfg.DicPlugins != null);
+        //    if (this.PluginGuid == string.Empty)
+        //    {
+        //    }
+        //    else
+        //    {
+        //        this.plugin = cfg.DicPlugins[this.PluginGuid];
+        //        if (this.PluginGeneratorGuid == string.Empty)
+        //        {
+        //        }
+        //        else
+        //        {
+        //            UpdateListGenerators();
+        //            Debug.Assert(this.ListGenerators != null);
+        //            foreach (var t in this.ListGenerators)
+        //            {
+        //                if (t.Guid == this.PluginGeneratorGuid)
+        //                {
+        //                    Debug.Assert(t.Generator != null);
+        //                    cfg._DicActiveAppProjectGenerators[this.Guid] = t.Generator;
+        //                    this.PluginGenerator = t.Generator;
+        //                    break;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
         public AppSolution(ITreeConfigNode parent, string name)
             : this(parent)
         {
@@ -106,13 +138,19 @@ namespace vSharpStudio.vm.ViewModels
                 this.ListAppProjects.Add(t);
             }
         }
-        partial void OnRelativeAppSolutionPathChanging(ref string to)
+        partial void OnRelativeAppSolutionPathChanged()
         {
-            if (Path.IsPathRooted(to))
+            if (string.IsNullOrWhiteSpace(this._RelativeAppSolutionPath))
             {
-                this.Name = Path.GetFileNameWithoutExtension(to);
-                //var path = to.Replace(this.Name, "");
-                to = this.GetRelativeToConfigDiskPath(to);
+                this.Name = string.Empty;
+            }
+            else
+            {
+                if (Path.IsPathRooted(this._RelativeAppSolutionPath))
+                {
+                    this._RelativeAppSolutionPath = this.GetRelativeToConfigDiskPath(this._RelativeAppSolutionPath);
+                }
+                this.Name = Path.GetFileNameWithoutExtension(this._RelativeAppSolutionPath);
             }
         }
         public string GetSolutionPath()

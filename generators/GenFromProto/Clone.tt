@@ -218,7 +218,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
         } 
      } 
      #>
-<# if (this.Doc.IsDefaultBase) { #>
+<# if (this.Doc.IsConfigObjectBase || this.Doc.IsGenSettings) { #>
     vm.OnInitFromDto(); // <#=t4.FilePos() #>
     vm.IsChanged = false;
     vm.IsHasChanged = false;

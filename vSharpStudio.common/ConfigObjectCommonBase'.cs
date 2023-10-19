@@ -55,9 +55,9 @@
                     break;
             }
         }
-        protected virtual void OnInitFromDto()
-        {
-        }
+        public void OnConfigInitialized() { this.OnConfigInitializedVirtual(); }
+        protected virtual void OnConfigInitializedVirtual() { }
+        protected virtual void OnInitFromDto() { }
         private static int _maxlen = 0;
         protected override void OnCountErrorsChanged()
         {

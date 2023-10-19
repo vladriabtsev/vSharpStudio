@@ -226,7 +226,7 @@ namespace vSharpStudio.Unit
 
             var sol1 = cfg.GroupAppSolutions.AddAppSolution("sol1","./");
             var prj1 = sol1.AddAppProject("prj1", "./");
-            var gen1 = prj1.AddGenerator("gen1", null, null, "");
+            var gen1 = prj1.AddGenerator("gen1", string.Empty, string.Empty, "");
 
             string mes1 = "test error message";
             string mes2 = "test warning message";
@@ -242,7 +242,7 @@ namespace vSharpStudio.Unit
 
             await cfg.ValidateSubTreeFromNodeAsync(sol1, null, token);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
-            Assert.IsTrue(sol1.ValidationCollection.Count == 6);
+            Assert.IsTrue(sol1.ValidationCollection.Count == 7);
             //var p = sol1.ValidationCollection[0];
             //Assert.IsTrue(p.Severity == FluentValidation.Severity.Error);
             //Assert.IsTrue(p.Message == mes1);
