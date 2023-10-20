@@ -137,6 +137,7 @@ namespace vSharpStudio.Unit
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
             sln.RelativeAppSolutionPath = Path.Combine(vm.Config.CurrentCfgFolderPath, @"Solution.sln");
+            Assert.IsNull(sln.DynamicPluginGroupSettings);
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
             prj.RelativeAppProjectPath = Path.Combine(sln.GetSolutionFolderPath(), @"ConsoleApp1\ConsoleApp1.csproj");
@@ -144,6 +145,7 @@ namespace vSharpStudio.Unit
             var apg = (AppProjectGenerator)prj.NodeAddNewSubNode();
             apg.RelativePathToGenFolder = Path.Combine(prj.GetProjectFolderPath(), @"Generated");
 
+            #region initial configuration
             // PluginGuid null
             Assert.AreEqual(string.Empty, apg.PluginGuid);
             Assert.IsNull(apg.Plugin);
@@ -157,6 +159,10 @@ namespace vSharpStudio.Unit
             Assert.IsNull(apg.DynamicGeneratorSettings);
             Assert.IsNull(apg.DynamicModelNodeSettings);
             Assert.IsNull(apg.DynamicMainConnStrSettings);
+            Assert.AreEqual(0, sln.DicPluginsGroupSettings.Count);
+            Assert.IsNull(sln.DynamicPluginGroupSettings);
+            Assert.AreEqual(0, prj.DicPluginsGroupSettings.Count);
+            Assert.IsNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
             var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
@@ -179,7 +185,13 @@ namespace vSharpStudio.Unit
             Assert.IsNull(apg2.DynamicGeneratorSettings);
             Assert.IsNull(apg2.DynamicModelNodeSettings);
             Assert.IsNull(apg2.DynamicMainConnStrSettings);
+            Assert.AreEqual(0, sln2.DicPluginsGroupSettings.Count);
+            Assert.IsNull(sln2.DynamicPluginGroupSettings);
+            Assert.AreEqual(0, prj2.DicPluginsGroupSettings.Count);
+            Assert.IsNull(prj2.DynamicPluginGroupSettings);
+            #endregion initial configuration
 
+            #region set plugin
             // PluginGuid not null
             apg.PluginGuid = pluginSimpleGen2.Guid;
             Assert.AreEqual(pluginSimpleGen2.Guid, apg.PluginGuid);
@@ -194,6 +206,10 @@ namespace vSharpStudio.Unit
             Assert.IsNull(apg.DynamicGeneratorSettings);
             Assert.IsNull(apg.DynamicModelNodeSettings);
             Assert.IsNull(apg.DynamicMainConnStrSettings);
+            Assert.AreEqual(0, sln.DicPluginsGroupSettings.Count);
+            Assert.IsNull(sln.DynamicPluginGroupSettings);
+            Assert.AreEqual(0, prj.DicPluginsGroupSettings.Count);
+            Assert.IsNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
             vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
@@ -216,7 +232,13 @@ namespace vSharpStudio.Unit
             Assert.IsNull(apg2.DynamicGeneratorSettings);
             Assert.IsNull(apg2.DynamicModelNodeSettings);
             Assert.IsNull(apg2.DynamicMainConnStrSettings);
+            Assert.AreEqual(0, sln2.DicPluginsGroupSettings.Count);
+            Assert.IsNull(sln2.DynamicPluginGroupSettings);
+            Assert.AreEqual(0, prj2.DicPluginsGroupSettings.Count);
+            Assert.IsNull(prj2.DynamicPluginGroupSettings);
+            #endregion set plugin
 
+            #region set plugin generator
             // PluginGeneratorGuid not null
             apg.PluginGeneratorGuid = genDbAccess.Guid;
             Assert.AreEqual(pluginSimpleGen2.Guid, apg.PluginGuid);
@@ -231,6 +253,10 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(apg.DynamicGeneratorSettings);
             Assert.IsNotNull(apg.DynamicModelNodeSettings);
             Assert.IsNull(apg.DynamicMainConnStrSettings);
+            Assert.AreEqual(1, sln.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.AreEqual(1, prj.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
             vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
@@ -253,7 +279,13 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(apg2.DynamicGeneratorSettings);
             Assert.IsNotNull(apg2.DynamicModelNodeSettings);
             Assert.IsNull(apg2.DynamicMainConnStrSettings);
+            Assert.AreEqual(1, sln2.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(sln2.DynamicPluginGroupSettings);
+            Assert.AreEqual(1, prj2.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(prj2.DynamicPluginGroupSettings);
+            #endregion set plugin generator
 
+            #region set plugin generator empty
             // PluginGeneratorGuid empty
             apg.PluginGeneratorGuid = string.Empty;
             Assert.AreEqual(pluginSimpleGen2.Guid, apg.PluginGuid);
@@ -268,6 +300,11 @@ namespace vSharpStudio.Unit
             Assert.IsNull(apg.DynamicGeneratorSettings);
             Assert.IsNull(apg.DynamicModelNodeSettings);
             Assert.IsNull(apg.DynamicMainConnStrSettings);
+            // Keep user settings until Save (for case if generater from same group will be added later)
+            Assert.AreEqual(1, sln.DicPluginsGroupSettings.Count); 
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.AreEqual(1, prj.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
             vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
@@ -290,7 +327,13 @@ namespace vSharpStudio.Unit
             Assert.IsNull(apg2.DynamicGeneratorSettings);
             Assert.IsNull(apg2.DynamicModelNodeSettings);
             Assert.IsNull(apg2.DynamicMainConnStrSettings);
+            Assert.AreEqual(0, sln2.DicPluginsGroupSettings.Count);
+            Assert.IsNull(sln2.DynamicPluginGroupSettings);
+            Assert.AreEqual(0, prj2.DicPluginsGroupSettings.Count);
+            Assert.IsNull(prj2.DynamicPluginGroupSettings);
+            #endregion set plugin generator empty
 
+            #region set plugin generator again
             // PluginGeneratorGuid not null
             apg.PluginGeneratorGuid = genDb.Guid;
             Assert.AreEqual(pluginSimpleGen2.Guid, apg.PluginGuid);
@@ -305,6 +348,10 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(apg.DynamicGeneratorSettings);
             Assert.IsNotNull(apg.DynamicModelNodeSettings);
             Assert.IsNotNull(apg.DynamicMainConnStrSettings);
+            Assert.AreEqual(1, sln.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.AreEqual(1, prj.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
             vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
@@ -327,7 +374,13 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(apg2.DynamicGeneratorSettings);
             Assert.IsNotNull(apg2.DynamicModelNodeSettings);
             Assert.IsNotNull(apg2.DynamicMainConnStrSettings);
+            Assert.AreEqual(1, sln2.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(sln2.DynamicPluginGroupSettings);
+            Assert.AreEqual(1, prj2.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(prj2.DynamicPluginGroupSettings);
+            #endregion set plugin generator again
 
+            #region set plugin generator empty
             // PluginGeneratorGuid empty
             apg.PluginGeneratorGuid = string.Empty;
             Assert.AreEqual(pluginSimpleGen2.Guid, apg.PluginGuid);
@@ -342,6 +395,11 @@ namespace vSharpStudio.Unit
             Assert.IsNull(apg.DynamicGeneratorSettings);
             Assert.IsNull(apg.DynamicModelNodeSettings);
             Assert.IsNull(apg.DynamicMainConnStrSettings);
+            // Keep user settings until Save (for case if generater from same group will be added later)
+            Assert.AreEqual(1, sln.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.AreEqual(1, prj.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
             vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
@@ -364,7 +422,13 @@ namespace vSharpStudio.Unit
             Assert.IsNull(apg2.DynamicGeneratorSettings);
             Assert.IsNull(apg2.DynamicModelNodeSettings);
             Assert.IsNull(apg2.DynamicMainConnStrSettings);
+            Assert.AreEqual(0, sln2.DicPluginsGroupSettings.Count);
+            Assert.IsNull(sln2.DynamicPluginGroupSettings);
+            Assert.AreEqual(0, prj2.DicPluginsGroupSettings.Count);
+            Assert.IsNull(prj2.DynamicPluginGroupSettings);
+            #endregion set plugin generator empty
 
+            #region set plugin empty
             // PluginGuid null
             apg.PluginGuid = string.Empty;
             Assert.AreEqual(string.Empty, apg.PluginGuid);
@@ -379,6 +443,11 @@ namespace vSharpStudio.Unit
             Assert.IsNull(apg.DynamicGeneratorSettings);
             Assert.IsNull(apg.DynamicModelNodeSettings);
             Assert.IsNull(apg.DynamicMainConnStrSettings);
+            // Keep user settings until Save (for case if generater from same group will be added later)
+            Assert.AreEqual(1, sln.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.AreEqual(1, prj.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
             vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
@@ -401,12 +470,20 @@ namespace vSharpStudio.Unit
             Assert.IsNull(apg2.DynamicGeneratorSettings);
             Assert.IsNull(apg2.DynamicModelNodeSettings);
             Assert.IsNull(apg2.DynamicMainConnStrSettings);
+            // there are no plugins of group
+            Assert.AreEqual(0, sln2.DicPluginsGroupSettings.Count);
+            Assert.IsNull(sln2.DynamicPluginGroupSettings);
+            Assert.AreEqual(0, prj2.DicPluginsGroupSettings.Count);
+            Assert.IsNull(prj2.DynamicPluginGroupSettings);
+            #endregion set plugin empty
 
+            #region set plugin (and plugin generator by default)
             // PluginGuid with one generator
             apg.PluginGuid = pluginSimple2Gen1.Guid;
             Assert.AreEqual(pluginSimple2Gen1.Guid, apg.PluginGuid);
             Assert.IsNotNull(apg.Plugin);
             Assert.AreNotEqual(string.Empty, apg.PluginGeneratorGuid);
+            Assert.AreEqual(pluginSimple2Gen1.ListGenerators[0].Guid, apg.PluginGeneratorGuid);
             Assert.IsNotNull(apg.PluginGenerator);
             Assert.IsNull(apg.PluginDbGenerator);
             Assert.AreEqual(string.Empty, apg.ConnStr);
@@ -414,8 +491,14 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(string.Empty, apg.GeneratorSettings);
             Assert.AreNotEqual(string.Empty, apg.DescriptionGenerator);
             Assert.IsNotNull(apg.DynamicGeneratorSettings);
+            // pluginSimple2Gen1 generator doesn't have node settings
             Assert.IsNull(apg.DynamicModelNodeSettings);
             Assert.IsNull(apg.DynamicMainConnStrSettings);
+            // pluginSimple2Gen1 generator doesn't have solution and project settings, but we keep previous settings in case if user will use them again 
+            Assert.AreEqual(1, sln.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.AreEqual(1, prj.DicPluginsGroupSettings.Count);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
             vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
@@ -429,6 +512,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(pluginSimple2Gen1.Guid, apg2.PluginGuid);
             Assert.IsNotNull(apg2.Plugin);
             Assert.AreNotEqual(string.Empty, apg2.PluginGeneratorGuid);
+            Assert.AreEqual(pluginSimple2Gen1.ListGenerators[0].Guid, apg2.PluginGeneratorGuid);
             Assert.IsNotNull(apg2.PluginGenerator);
             Assert.IsNull(apg2.PluginDbGenerator);
             Assert.AreEqual(string.Empty, apg2.ConnStr);
@@ -436,8 +520,15 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("{ }", apg2.GeneratorSettings);
             Assert.AreNotEqual(string.Empty, apg2.DescriptionGenerator);
             Assert.IsNotNull(apg2.DynamicGeneratorSettings);
+            // pluginSimple2Gen1 generator doesn't have node settings
             Assert.IsNull(apg2.DynamicModelNodeSettings);
             Assert.IsNull(apg2.DynamicMainConnStrSettings);
+            // pluginSimple2Gen1 generator doesn't have solution and project settings
+            Assert.AreEqual(0, sln2.DicPluginsGroupSettings.Count);
+            Assert.IsNull(sln2.DynamicPluginGroupSettings);
+            Assert.AreEqual(0, prj2.DicPluginsGroupSettings.Count);
+            Assert.IsNull(prj2.DynamicPluginGroupSettings);
+            #endregion set plugin (and plugin generator by default)
         }
         [TestMethod]
         public void Plugin002WorkWithAppGeneratorNames()

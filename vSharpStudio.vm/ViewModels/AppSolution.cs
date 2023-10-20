@@ -231,19 +231,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         private object? _DynamicPluginGroupSettings;
         // GroupGeneratorsSettings guid, settings
-        private DictionaryExt<string, IvPluginGroupSettings?>? dicPluginsGroupSettings = null;
+        private DictionaryExt<string, IvPluginGroupSettings?> dicPluginsGroupSettings =
+            new DictionaryExt<string, IvPluginGroupSettings?>(5, false, true, (ki, v) => { }, (kr, v) => { }, () => { });
         [Browsable(false)]
         public DictionaryExt<string, IvPluginGroupSettings?> DicPluginsGroupSettings
         {
-            get
-            {
-                if (dicPluginsGroupSettings == null)
-                {
-                    dicPluginsGroupSettings = new DictionaryExt<string, IvPluginGroupSettings?>(5, false, true,
-                        (ki, v) => { }, (kr, v) => { }, () => { });
-                }
-                return dicPluginsGroupSettings;
-            }
+            get { return dicPluginsGroupSettings; }
         }
         public IvPluginGroupSettings? GetGroupSettings(string groupSettingsGuid)
         {

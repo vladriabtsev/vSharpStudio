@@ -12,5 +12,6 @@ namespace vSharpStudio.common
         IvPluginDbGenerator? PluginDbGenerator { get; }
         IvPluginGeneratorSettings? DynamicGeneratorSettings { get; }
         IvPlugin? Plugin { get; }
+        void NotifyConnStrChanged();
     }
 }

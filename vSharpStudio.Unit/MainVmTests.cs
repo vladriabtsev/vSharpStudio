@@ -1595,9 +1595,9 @@ namespace vSharpStudio.Unit
         {
             // Settings workflow:
             // 1. When Config is loaded: init plugin generators settings on all solution and project nodes
-            // 2. When generator is removed, appropriate project/solution settings has to be removed if it is a last plugin generator in project/solution
+            // 2. When generator is removed, appropriate project/solution settings are still kept in case user will use them again. Such setting will be removed when configuration is restored.
             // 3. When new generator is added and it is having new project/solution settings, than appropriate project/solution settings has to be added in project/solution
-            // 4. When saving Config: convert all projects/solutions settings to string representations
+            // 4. When saving Config: Only for active generators projects/solutions settings will be converted to string representations and saved.
             _logger.LogTrace("Start test".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
             //vm.BtnNewConfig.Execute(@".\kuku.vcfg");
@@ -1639,29 +1639,29 @@ namespace vSharpStudio.Unit
 
             vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg");
 
-            // 2. When generator is removed, appropriate project/solution settings has to be removed if it is a last plugin generator in project/solution
-            gen.PluginGuid = null;
+            // 2. When generator is removed, appropriate project/solution settings are still kept in case user will use them again. Such setting will be removed when configuration is restored.
+            gen.PluginGuid = string.Empty;
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
-            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic));
-            Assert.IsNull(sln.DynamicPluginGroupSettings);
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic));
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
 
             // 3. When new generator is added and it is having new project/solution settings, than appropriate project/solution settings has to be added in project/solution
             gen.PluginGuid = pluginNode.Guid;
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
             plgn = vm.Config.DicPlugins[pluginNode.Guid];
             Assert.IsNotNull(plgn);
-            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic));
-            Assert.IsNull(sln.DynamicPluginGroupSettings);
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic));
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
 
             gen.PluginGeneratorGuid = genDbAccess.Guid;
             Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic));
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
 
-            // 2. When generator is removed, appropriate project/solution settings has to be removed if it is a last plugin generator in project/solution
+            // 2. When generator is removed, appropriate project/solution settings are still kept in case user will use them again. Such setting will be removed when configuration is restored.
             gen.NodeRemove(false);
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
-            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic));
-            Assert.IsNull(sln.DynamicPluginGroupSettings);
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic));
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
 
 
             // 1. When Config is loaded: init plugin generators settings on all solution and project nodes

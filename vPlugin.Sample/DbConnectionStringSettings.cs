@@ -38,6 +38,10 @@ namespace vPlugin.Sample
         {
             return this.StringSettings;
         }
+        partial void OnStringSettingsChanged()
+        {
+            ((IAppProjectGenerator)this.Parent).NotifyConnStrChanged();
+        }
         public IvPluginGenerator? Generator { get; set; }
         public ValidationResult? ValidateSettings()
         {
