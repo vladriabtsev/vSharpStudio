@@ -827,6 +827,13 @@ enum proto_enum_time_accuracy_type {
     // @attr [DisplayName("Microsecond")]
     //MKS = 4;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+enum proto_enum_relation_type {
+    // @attr [Description("One to Many")]
+    ONE_TO_MANY = 0;
+    // @attr [Description("One to One")]
+    ONE_TO_ONE = 1;
+}
 // @base BaseSettings
 message proto_data_type {
     // @attr [PropertyOrderAttribute(1)]
@@ -868,6 +875,11 @@ message proto_data_type {
     // @attr [DisplayName("Can be NULL")]
     // @attr [Description("If unchecked always expected data")]
     bool is_nullable = 9;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(7)]
+    // @attr [DisplayName("Relation")]
+    // @attr [Description("Relation type with selected type of complex object/objects")]
+    proto_enum_relation_type relation_type = 10;
     // @attr [Browsable(false)]
     bool is_p_key = 21;
     // @attr [Browsable(false)]

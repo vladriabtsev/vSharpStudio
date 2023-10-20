@@ -1472,6 +1472,24 @@
           ]
         },
         {
+          "name": "proto_enum_relation_type",
+          "longName": "proto_enum_relation_type",
+          "fullName": "proto_config.proto_enum_relation_type",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
+          "values": [
+            {
+              "name": "ONE_TO_MANY",
+              "number": "0",
+              "description": "@attr [Description(\"One to Many\")]"
+            },
+            {
+              "name": "ONE_TO_ONE",
+              "number": "1",
+              "description": "@attr [Description(\"One to One\")]"
+            }
+          ]
+        },
+        {
           "name": "proto_enum_system_data_type",
           "longName": "proto_enum_system_data_type",
           "fullName": "proto_config.proto_enum_system_data_type",
@@ -3692,6 +3710,16 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "relation_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Relation\")]\n@attr [Description(\"Relation type with selected type of complex object/objects\")]",
+              "label": "",
+              "type": "proto_enum_relation_type",
+              "longType": "proto_enum_relation_type",
+              "fullType": "proto_config.proto_enum_relation_type",
               "ismap": false,
               "defaultValue": ""
             },

@@ -334,8 +334,9 @@ namespace vSharpStudio.vm.ViewModels
                 default:
                     throw new NotSupportedException();
             }
-            this.NotifyPropertyChanged(nameof(this.ClrType));
             this.Tag = null;
+            this.NotifyPropertyChanged(nameof(this.ClrType));
+            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
@@ -369,12 +370,18 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(nameof(this.DefaultValue));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
+                this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENT &&
                 this.DataType.DataTypeEnum != EnumDataType.ENUMERATION &&
                 this.DataType.DataTypeEnum != EnumDataType.ANY)
             {
                 lst.Add(nameof(this.ObjectGuid));
                 lst.Add(nameof(this.DefaultValue));
+            }
+            if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
+                this.DataType.DataTypeEnum != EnumDataType.CATALOGS)
+            {
+                lst.Add(nameof(this.RelationType));
             }
             if (this.Accuracy != 0)
             {
@@ -405,7 +412,6 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
                 this.ValidateProperty();
                 this.OnDataTypeEnumChanged();
-                this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
                 this.Tag = null;
             }
         }
@@ -490,6 +496,22 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         [Category("")]
+        [DisplayName("Relation")]
+        [Description("Relation type with selected complex object/objects")]
+        [PropertyOrderAttribute(16)]
+        public EnumRelationType RelationType
+        {
+            get { return this.DataType.RelationType; }
+            set
+            {
+                this.DataType.RelationType = value;
+                this.NotifyPropertyChanged();
+                this.NotifyPropertyChanged(nameof(this.ClrType));
+                this.ValidateProperty();
+                this.Tag = null;
+            }
+        }
+        [Category("")]
         [DisplayName("Can be NULL")]
         [Description("If unchecked always expected data")]
         [PropertyOrderAttribute(16)]
@@ -522,7 +544,7 @@ namespace vSharpStudio.vm.ViewModels
         //[DisplayName("Positive")]
         //[Description("Expected always >= 0")]
         [Category("")]
-        [PropertyOrderAttribute(16)]
+        [PropertyOrderAttribute(17)]
         public ObservableCollection<string> ListObjectGuids
         {
             get { return this.DataType.ListObjectGuids; }

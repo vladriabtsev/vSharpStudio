@@ -112,6 +112,7 @@
     - [proto_enum_property_data_type](#proto_config.proto_enum_property_data_type)
     - [proto_enum_random_data_type](#proto_config.proto_enum_random_data_type)
     - [proto_enum_rant_data_type](#proto_config.proto_enum_rant_data_type)
+    - [proto_enum_relation_type](#proto_config.proto_enum_relation_type)
     - [proto_enum_system_data_type](#proto_config.proto_enum_system_data_type)
     - [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type)
     - [proto_enum_use_type](#proto_config.proto_enum_use_type)
@@ -496,6 +497,7 @@ Constant application wise value
 | accuracy_for_time | [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Time accuracy&#34;)] @attr [Description(&#34;Time accuracy for TimeOnly type. Business model is expecting selected accuracy&#34;)] |
 | list_object_guids | [string](#string) | repeated | &lt;summary&gt; / Guids of selected complex types for data type CATALOGS or DOCUMENTS / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
 | is_nullable | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
+| relation_type | [proto_enum_relation_type](#proto_config.proto_enum_relation_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Relation&#34;)] @attr [Description(&#34;Relation type with selected type of complex object/objects&#34;)] |
 | is_p_key | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_ref_parent | [bool](#bool) |  | @attr [Browsable(false)] |
 
@@ -2691,6 +2693,18 @@ with history |
 | R_NONE | 0 |  |
 | R_REVIEW | 1 |  |
 | R_REVIEWS | 2 |  |
+
+
+
+<a name="proto_config.proto_enum_relation_type"></a>
+
+### proto_enum_relation_type
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ONE_TO_MANY | 0 | @attr [Description(&#34;One to Many&#34;)] |
+| ONE_TO_ONE | 1 | @attr [Description(&#34;One to One&#34;)] |
 
 
 
