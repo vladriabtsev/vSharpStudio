@@ -266,7 +266,7 @@ namespace vSharpStudio.vm.ViewModels
         #region Editing logic
         //partial void OnIsNullableChanged()
         //{
-        //    this.NotifyPropertyChanged(nameof(this.ClrType));
+        //    this.OnPropertyChanged(nameof(this.ClrType));
         //    this.Tag = null;
         //}
         private void OnDataTypeEnumChanged()
@@ -335,8 +335,8 @@ namespace vSharpStudio.vm.ViewModels
                     throw new NotSupportedException();
             }
             this.Tag = null;
-            this.NotifyPropertyChanged(nameof(this.ClrType));
-            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
+            this.OnPropertyChanged(nameof(this.ClrType));
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
@@ -408,7 +408,7 @@ namespace vSharpStudio.vm.ViewModels
             set
             {
                 this.DataType.DataTypeEnum = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
                 this.ValidateProperty();
                 this.OnDataTypeEnumChanged();
                 this.Tag = null;
@@ -424,8 +424,8 @@ namespace vSharpStudio.vm.ViewModels
             set
             {
                 this.DataType.Length = value;
-                this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(nameof(this.ClrType));
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
                 this.Tag = null;
             }
@@ -440,10 +440,10 @@ namespace vSharpStudio.vm.ViewModels
             set
             {
                 this.DataType.Accuracy = value;
-                this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(nameof(this.ClrType));
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
-                this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
+                this.OnPropertyChanged(nameof(this.PropertyDefinitions));
                 this.Tag = null;
             }
         }
@@ -457,10 +457,10 @@ namespace vSharpStudio.vm.ViewModels
             set
             {
                 this.DataType.AccuracyForTime = value;
-                this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(nameof(this.ClrType));
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
-                this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
+                this.OnPropertyChanged(nameof(this.PropertyDefinitions));
             }
         }
         [Category("")]
@@ -473,8 +473,8 @@ namespace vSharpStudio.vm.ViewModels
             set
             {
                 this.DataType.IsPositive = value;
-                this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(nameof(this.ClrType));
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
                 this.Tag = null;
             }
@@ -488,8 +488,8 @@ namespace vSharpStudio.vm.ViewModels
             set
             {
                 this.DataType.ObjectGuid = value;
-                this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(nameof(this.ClrType));
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
                 this.Tag = null;
             }
@@ -504,8 +504,8 @@ namespace vSharpStudio.vm.ViewModels
             set
             {
                 this.DataType.RelationType = value;
-                this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(nameof(this.ClrType));
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
                 this.Tag = null;
             }
@@ -520,10 +520,10 @@ namespace vSharpStudio.vm.ViewModels
             set
             {
                 this.DataType.IsNullable = value;
-                this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(nameof(this.ClrType));
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
-                this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
+                this.OnPropertyChanged(nameof(this.PropertyDefinitions));
             }
         }
         ////[DisplayName("Positive")]
@@ -536,7 +536,7 @@ namespace vSharpStudio.vm.ViewModels
         //    set
         //    {
         //        this.DataType.ObjectName = value;
-        //        this.NotifyPropertyChanged();
+        //        this.OnPropertyChanged();
         //        this.ValidateProperty();
         //    }
         //}
@@ -597,23 +597,23 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsStopTabControlChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.NodeNameDecorations));
+            this.OnPropertyChanged(nameof(this.NodeNameDecorations));
         }
         partial void OnIsStartNewTabControlChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.NodeNameDecorations));
+            this.OnPropertyChanged(nameof(this.NodeNameDecorations));
         }
         partial void OnTabNameChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.NodeNameDecorations));
+            this.OnPropertyChanged(nameof(this.NodeNameDecorations));
         }
         //partial void OnIsTryAttachChanged()
         //{
-        //    this.NotifyPropertyChanged(nameof(this.NodeNameDecorations));
+        //    this.OnPropertyChanged(nameof(this.NodeNameDecorations));
         //}
         partial void OnIsStartNewRowChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.NodeNameDecorations));
+            this.OnPropertyChanged(nameof(this.NodeNameDecorations));
         }
         //[BrowsableAttribute(false)]
         //public new bool IsHasNew { get { return this.IsNew; } }

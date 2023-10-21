@@ -44,14 +44,14 @@
             {
                 case "IsChanged":
                 case "IsHasChanged":
-                    this.NotifyPropertyChanged(nameof(this.IsChangedOrHasChanged));
+                    this.OnPropertyChanged(nameof(this.IsChangedOrHasChanged));
                     break;
                 case "IsNew":
-                    this.NotifyPropertyChanged(nameof(this.NodeNameDecorations));
-                    this.NotifyPropertyChanged(nameof(this.IsNewOrHasNew));
+                    this.OnPropertyChanged(nameof(this.NodeNameDecorations));
+                    this.OnPropertyChanged(nameof(this.IsNewOrHasNew));
                     break;
                 case "IsMarkedForDeletion":
-                    this.NotifyPropertyChanged(nameof(this.NodeNameDecorations));
+                    this.OnPropertyChanged(nameof(this.NodeNameDecorations));
                     break;
             }
         }
@@ -61,15 +61,15 @@
         private static int _maxlen = 0;
         protected override void OnCountErrorsChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.IconStatus));
+            this.OnPropertyChanged(nameof(this.IconStatus));
         }
         protected override void OnCountWarningsChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.IconStatus));
+            this.OnPropertyChanged(nameof(this.IconStatus));
         }
         protected override void OnCountInfosChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.IconStatus));
+            this.OnPropertyChanged(nameof(this.IconStatus));
         }
         public ITreeConfigNode? FindSiblingWithValidationMessage(FluentValidation.Severity severity)
         {
@@ -624,7 +624,7 @@
             {
                 if (SetProperty(ref this._IsExpanded, value))
                 {
-                    this.NotifyPropertyChanged(nameof(this.IconName));
+                    this.OnPropertyChanged(nameof(this.IconName));
                 }
             }
         }
@@ -864,13 +864,13 @@
                     }
                 }
                 this._IsHasChanged = isHasChanged;
-                this.NotifyPropertyChanged(nameof(this.IsHasChanged));
-                this.NotifyPropertyChanged(nameof(this.IsChangedOrHasChanged));
+                this.OnPropertyChanged(nameof(this.IsHasChanged));
+                this.OnPropertyChanged(nameof(this.IsChangedOrHasChanged));
                 this._IsHasNew = isHasNew;
-                this.NotifyPropertyChanged(nameof(this.IsHasNew));
-                this.NotifyPropertyChanged(nameof(this.IsNewOrHasNew));
+                this.OnPropertyChanged(nameof(this.IsHasNew));
+                this.OnPropertyChanged(nameof(this.IsNewOrHasNew));
                 this._IsHasMarkedForDeletion = isHasMarked;
-                this.NotifyPropertyChanged(nameof(this.IsHasMarkedForDeletion));
+                this.OnPropertyChanged(nameof(this.IsHasMarkedForDeletion));
             }
         }
         public void CheckChildrenIsOrHasChanged()
@@ -1016,7 +1016,7 @@
                 if (SetProperty(ref this._IsHasNew, value))
                 {
                     this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged(nameof(this.IsNewOrHasNew));
+                    this.OnPropertyChanged(nameof(this.IsNewOrHasNew));
                     this.ValidateProperty();
                 }
             }

@@ -829,10 +829,10 @@ enum proto_enum_time_accuracy_type {
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_relation_type {
-    // @attr [Description("One to Many")]
-    ONE_TO_MANY = 0;
     // @attr [Description("One to One")]
-    ONE_TO_ONE = 1;
+    ONE_TO_ONE = 0;
+    // @attr [Description("One to Many")]
+    ONE_TO_MANY = 1;
 }
 // @base BaseSettings
 message proto_data_type {

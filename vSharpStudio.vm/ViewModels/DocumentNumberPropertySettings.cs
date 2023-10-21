@@ -114,7 +114,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnSequenceGuidChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
             this.ParentDocument.NotifyCodePropertySettingsChanged();
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()

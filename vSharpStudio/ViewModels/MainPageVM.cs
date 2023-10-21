@@ -277,8 +277,8 @@ namespace vSharpStudio.ViewModels
                     if (this.Config != null)
                         this.Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath) + "\\";
                 }
-                this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(nameof(this.CurrentCfgFilePathTitle));
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.CurrentCfgFilePathTitle));
             }
         }
         private string? _CurrentCfgFilePath;
@@ -488,18 +488,18 @@ namespace vSharpStudio.ViewModels
             }
         }
         private PluginRow? _SelectedDbDesignPlugin;
-        public INotifyPropertyChanged? SelectedDbDesignPluginSettings
-        {
-            get
-            {
-                return this._SelectedDbDesignPluginSettings;
-            }
-            set
-            {
-                SetProperty(ref this._SelectedDbDesignPluginSettings, value);
-            }
-        }
-        private INotifyPropertyChanged? _SelectedDbDesignPluginSettings;
+        //public IOnPropertyChanged? SelectedDbDesignPluginSettings
+        //{
+        //    get
+        //    {
+        //        return this._SelectedDbDesignPluginSettings;
+        //    }
+        //    set
+        //    {
+        //        SetProperty(ref this._SelectedDbDesignPluginSettings, value);
+        //    }
+        //}
+        //private IOnPropertyChanged? _SelectedDbDesignPluginSettings;
         private void AgregateCatalogs(string dir, string search, AggregateCatalog catalog, bool isPluginsFolder = false)
         {
             if (!Directory.Exists(dir))
@@ -2017,7 +2017,7 @@ namespace vSharpStudio.ViewModels
         //        if (_PathToProjectWithConnectionString != value)
         //        {
         //            _PathToProjectWithConnectionString = value;
-        //            NotifyPropertyChanged();
+        //            OnPropertyChanged();
         //        }
         //    }
         //    get { return _PathToProjectWithConnectionString; }
@@ -2029,7 +2029,7 @@ namespace vSharpStudio.ViewModels
         //    set
         //    {
         //        _ConnectionString = value;
-        //        NotifyPropertyChanged();
+        //        OnPropertyChanged();
         //    }
         // }
         // private string _ConnectionString;

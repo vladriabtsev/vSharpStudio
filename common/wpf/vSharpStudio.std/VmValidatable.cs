@@ -57,14 +57,14 @@ namespace ViewModelBase
         {
             var res = this._validator.Validate((T)this);
             var isValid = ValidationChange(res);
-            NotifyPropertyChanged(nameof(this.HasErrors));
+            OnPropertyChanged(nameof(this.HasErrors));
             return isValid;
         }
         public async Task<bool> ValidateAsync()
         {
             var res = await this._validator.ValidateAsync((T)this);
             var isValid = ValidationChange(res);
-            NotifyPropertyChanged(nameof(this.HasErrors));
+            OnPropertyChanged(nameof(this.HasErrors));
             return isValid;
         }
         protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
@@ -133,7 +133,7 @@ namespace ViewModelBase
             if (!_errors.ContainsKey(propertyName))
                 _errors.Add(propertyName, new List<string> { errorMessage });
             RaiseErrorsChanged(propertyName);
-            NotifyPropertyChanged(nameof(this.HasErrors));
+            OnPropertyChanged(nameof(this.HasErrors));
         }
         public void SetOneError(string errorMessage, [System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
@@ -147,7 +147,7 @@ namespace ViewModelBase
                 _errors.Remove(propertyName);
             RaiseErrorsChanged(propertyName);
 
-            NotifyPropertyChanged(nameof(this.HasErrors));
+            OnPropertyChanged(nameof(this.HasErrors));
         }
         protected void ClearErrors([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
@@ -156,7 +156,7 @@ namespace ViewModelBase
                 _errors.Remove(propertyName);
             RaiseErrorsChanged(propertyName);
 
-            NotifyPropertyChanged(nameof(this.HasErrors));
+            OnPropertyChanged(nameof(this.HasErrors));
         }
         protected void ClearAllErrors()
         {

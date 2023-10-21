@@ -276,7 +276,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnDataTypeEnumChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

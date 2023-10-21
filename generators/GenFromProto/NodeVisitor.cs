@@ -46,7 +46,7 @@ namespace GenFromProto
             this.Write("Node // ");
             
             #line 8 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NodeVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden

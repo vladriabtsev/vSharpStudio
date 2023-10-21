@@ -204,96 +204,8 @@ namespace ViewModelBase
         //    return CompareToById(obj);
         //}
 
-        #region Events
-
-        /// <summary>
-        /// Multicast event for property change notifications.
-        /// </summary>
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        #endregion
 
         #region Methods
-
-//#if nCommunityMVVM
-//#else
-//        /// <summary>
-//        /// Checks if a property already matches a desired value.  Sets the property and
-//        /// notifies listeners only when necessary.
-//        /// </summary>
-//        /// <typeparam name="T">Type of the property.</typeparam>
-//        /// <param name="storage">Reference to a property with both getter and setter.</param>
-//        /// <param name="value">Desired value for the property.</param>
-//        /// <param name="propertyName">Name of the property used to notify listeners.  This
-//        /// value is optional and can be provided automatically when invoked from compilers that
-//        /// support CallerMemberName.</param>
-//        /// <returns>True if the value was changed, false if the existing value matched the
-//        /// desired value.</returns>
-//        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string? propertyName = null)
-//        {
-//            Debug.Assert(propertyName != null);
-//            if (System.Collections.Generic.EqualityComparer<T>.Default.Equals(storage, value))
-//            {
-//                return false;
-//            }
-//            else
-//            {
-//                storage = value;
-//                this.NotifyPropertyChanged(propertyName);
-//                return true;
-//            }
-//        }
-//        //protected bool SetProperty<T>(ref T? storage, T? value, [CallerMemberName] String? propertyName = null)
-//        //{
-//        //    if (System.Collections.Generic.EqualityComparer<T>.Default.Equals(storage, value))
-//        //    {
-//        //        return false;
-//        //    }
-//        //    else
-//        //    {
-//        //        storage = value;
-//        //        this.NotifyPropertyChanged(propertyName);
-//        //        return true;
-//        //    }
-//        //}
-
-//        /// <summary>
-//        /// Notifies listeners that a property value has changed.
-//        /// </summary>
-//        /// <param name="propertyName">Optional name of the property used to notify listeners.  This
-//        /// value is optional and can be provided automatically when invoked from compilers
-//        /// that support <see cref="CallerMemberNameAttribute"/>.</param>
-//#endif
-        protected void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            Debug.Assert(propertyName != null);
-            //if (!VmBindable.IsNotifyingStatic)
-            //    return;
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        /// <summary>
-        /// Notifies listeners that a property value has changed.
-        /// </summary>
-        /// <typeparam name="T">Type of the property in the expression.</typeparam>
-        /// <param name="property">Expression to retrieve the property. Example: () => this.FirstName</param>
-        //protected void NotifyPropertyChanged<T>(Expression<Func<T>> property)
-        //{
-        //    var propertyName = this.GetPropertyName<T>(property);
-        //    this.NotifyPropertyChanged(propertyName);
-        //}
-
-        /// <summary>
-        /// Gets the string name of a property expression.
-        /// </summary>
-        /// <typeparam name="T">Type of the property in the expression.</typeparam>
-        /// <param name="property">Expression to retrieve the property. Example: () => this.FirstName</param>
-        /// <returns>String value representing the property name.</returns>
-        //public string GetPropertyName<T>(Expression<Func<T>> property)
-        //{
-        //    MemberExpression memberExpression = GetMememberExpression<T>(property);
-        //    return memberExpression.Member.Name;
-        //}
 
         /// <summary>
         /// Gets the MemberExpression from a property expression.
@@ -301,21 +213,21 @@ namespace ViewModelBase
         /// <typeparam name="T">Type of the property in the expression.</typeparam>
         /// <param name="property">Expression to retrieve the property. Example: () => this.FirstName</param>
         /// <returns>MemberExpression instance presenting the property expression.</returns>
-        private MemberExpression GetMememberExpression<T>(Expression<Func<T>> property)
-        {
-            var lambda = (LambdaExpression)property;
+        //private MemberExpression GetMememberExpression<T>(Expression<Func<T>> property)
+        //{
+        //    var lambda = (LambdaExpression)property;
 
-            MemberExpression memberExpression;
-            if (lambda.Body is UnaryExpression)
-            {
-                var unaryExpression = (UnaryExpression)lambda.Body;
-                memberExpression = (MemberExpression)unaryExpression.Operand;
-            }
-            else
-                memberExpression = (MemberExpression)lambda.Body;
+        //    MemberExpression memberExpression;
+        //    if (lambda.Body is UnaryExpression)
+        //    {
+        //        var unaryExpression = (UnaryExpression)lambda.Body;
+        //        memberExpression = (MemberExpression)unaryExpression.Operand;
+        //    }
+        //    else
+        //        memberExpression = (MemberExpression)lambda.Body;
 
-            return memberExpression;
-        }
+        //    return memberExpression;
+        //}
 
         /// <summary>
         /// Retrieves a PropertyInfo object representing the property in the specified expression.

@@ -497,8 +497,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnEnumFormTypeChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
-            this.NotifyPropertyChanged(nameof(this.IsListForm));
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+            this.OnPropertyChanged(nameof(this.IsListForm));
         }
         [Browsable(false)]
         public bool IsListForm

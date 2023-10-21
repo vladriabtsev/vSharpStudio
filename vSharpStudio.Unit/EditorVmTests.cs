@@ -81,7 +81,7 @@ namespace vSharpStudio.Unit
                     if (this._Guid != value)
                     {
                         this._Guid = value;
-                        this.NotifyPropertyChanged();
+                        this.OnPropertyChanged();
                         this.ValidateProperty();
                         this.IsChanged = true;
                     }
@@ -95,7 +95,7 @@ namespace vSharpStudio.Unit
                     if (this._Name != value)
                     {
                         this._Name = value;
-                        this.NotifyPropertyChanged();
+                        this.OnPropertyChanged();
                         this.ValidateProperty();
                         this.IsChanged = true;
                     }
@@ -109,7 +109,7 @@ namespace vSharpStudio.Unit
                     if (this._SortingValue != value)
                     {
                         this._SortingValue = value;
-                        this.NotifyPropertyChanged();
+                        this.OnPropertyChanged();
                         this.ValidateProperty();
                         this.IsChanged = true;
                     }

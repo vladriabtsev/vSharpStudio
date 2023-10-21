@@ -613,7 +613,7 @@ namespace vSharpStudio.vm.ViewModels
         public string CodePropertySettingsText { get { return this.DocNumberPropertySettings.ToString(); } }
         public void NotifyCodePropertySettingsChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.CodePropertySettingsText));
+            this.OnPropertyChanged(nameof(this.CodePropertySettingsText));
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

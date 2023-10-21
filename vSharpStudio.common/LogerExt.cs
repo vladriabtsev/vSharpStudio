@@ -19,7 +19,7 @@ namespace vSharpStudio.common
             [CallerMemberName] string member = "",
             [CallerLineNumber] int line = 0)
         {
-            Debug.WriteLine(LogExt.GetDebugText(message, file, member, line, (int)stackDeepness).ToString());
+            Debug.WriteLine(LogerExt.GetDebugText(message, file, member, line, (int)stackDeepness).ToString());
         }
         [Conditional("DEBUG")]
         // Use after DebugExt.WriteLineWithStack later in a same procedure
@@ -28,7 +28,7 @@ namespace vSharpStudio.common
             [CallerMemberName] string member = "",
             [CallerLineNumber] int line = 0)
         {
-            Debug.WriteLine(LogExt.GetDebugText(message, file, member, line, -1).ToString());
+            Debug.WriteLine(LogerExt.GetDebugText(message, file, member, line, -1).ToString());
         }
         [Conditional("DEBUG")]
         public static void Write(string message, bool isWithPosition = false,
@@ -37,7 +37,7 @@ namespace vSharpStudio.common
             [CallerLineNumber] int line = 0)
         {
             if (isWithPosition)
-                Debug.Write(LogExt.GetDebugText(message, file, member, line, -1).ToString());
+                Debug.Write(LogerExt.GetDebugText(message, file, member, line, -1).ToString());
             else
                 Debug.Write(message);
         }
@@ -46,10 +46,10 @@ namespace vSharpStudio.common
             [CallerMemberName] string member = "",
             [CallerLineNumber] int line = 0)
         {
-            return LogExt.FilePos(text, file, member, line);
+            return LogerExt.FilePos(text, file, member, line);
         }
     }
-    public static class LogExt
+    public static class LogerExt
     {
         public static string Member([CallerMemberName] string member = "")
         {

@@ -32,7 +32,7 @@ namespace GenFromProto
             this.Write("// ");
             
             #line 7 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -116,7 +116,7 @@ namespace GenFromProto
             this.Write("Validator> { } // ");
             
             #line 16 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -156,7 +156,7 @@ namespace GenFromProto
             this.Write(" // ");
             
             #line 17 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -210,7 +210,7 @@ namespace GenFromProto
             this.Write("() // ");
             
             #line 42 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -244,7 +244,7 @@ namespace GenFromProto
             this.Write("? parent) // ");
             
             #line 48 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -286,7 +286,7 @@ namespace GenFromProto
             this.Write(">(); // ");
             
             #line 55 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -314,7 +314,7 @@ namespace GenFromProto
             this.Write(">(this); // ");
             
             #line 57 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -348,7 +348,7 @@ namespace GenFromProto
             this.Write("(this); // ");
             
             #line 60 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -362,7 +362,7 @@ namespace GenFromProto
             this.Write("\t\tmap??? // ");
             
             #line 62 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -417,7 +417,7 @@ namespace GenFromProto
             this.Write(" // ");
             
             #line 69 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -454,7 +454,7 @@ namespace GenFromProto
             this.Write(">(); // ");
             
             #line 77 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -482,7 +482,7 @@ namespace GenFromProto
             this.Write(">(this); // ");
             
             #line 79 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -522,7 +522,7 @@ namespace GenFromProto
             this.Write("(); // ");
             
             #line 83 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -556,7 +556,7 @@ namespace GenFromProto
             this.Write("(this); // ");
             
             #line 86 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -576,7 +576,7 @@ namespace GenFromProto
             this.Write("\t\tmap??? // ");
             
             #line 89 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -656,7 +656,7 @@ namespace GenFromProto
                     " ");
             
             #line 127 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -682,7 +682,7 @@ namespace GenFromProto
             this.Write("    partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // ");
             
             #line 131 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden

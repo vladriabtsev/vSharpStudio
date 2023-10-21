@@ -59,7 +59,7 @@ namespace GenFromProto
             this.Write(" // ");
             
             #line 8 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -123,7 +123,7 @@ namespace GenFromProto
             this.Write("Changed(); })) // ");
             
             #line 15 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -137,7 +137,7 @@ namespace GenFromProto
             this.Write("            this.ValidateProperty(); // ");
             
             #line 18 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -157,7 +157,7 @@ namespace GenFromProto
             this.Write("            this.IsChanged = true; // ");
             
             #line 21 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -185,7 +185,7 @@ namespace GenFromProto
             this.Write(" != value) // ");
             
             #line 25 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -227,7 +227,7 @@ namespace GenFromProto
             this.Write("            this.ValidateProperty(); // ");
             
             #line 31 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -247,7 +247,7 @@ namespace GenFromProto
             this.Write("            this.IsChanged = true; // ");
             
             #line 34 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -295,7 +295,7 @@ namespace GenFromProto
             this.Write("; // ");
             
             #line 41 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -329,7 +329,7 @@ namespace GenFromProto
             this.Write(" to); // ");
             
             #line 43 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -398,7 +398,7 @@ if (!IsSimple) {
             this.Write("; } } // ");
             
             #line 46 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -468,7 +468,7 @@ if (!IsSimple) {
             this.Write(" item) // ");
             
             #line 51 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -579,7 +579,7 @@ if (!IsSimple) {
             this.Write("; } } // ");
             
             #line 75 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden

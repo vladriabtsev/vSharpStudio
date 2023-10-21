@@ -477,7 +477,7 @@ namespace vSharpStudio.vm.ViewModels
         //        if (this._ClrTypeNameNotNull != value)
         //        {
         //            this._ClrTypeNameNotNull = value;
-        //            this.NotifyPropertyChanged();
+        //            this.OnPropertyChanged();
         //            this.ValidateProperty();
         //        }
         //    }
@@ -727,7 +727,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    this.NotifyPropertyChanged(nameof(this.ListObjects));
+                    this.OnPropertyChanged(nameof(this.ListObjects));
                     break;
                 case EnumDataType.CATALOG:
                 case EnumDataType.DOCUMENT:
@@ -739,7 +739,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    this.NotifyPropertyChanged(nameof(this.ListObjects));
+                    this.OnPropertyChanged(nameof(this.ListObjects));
                     break;
                 case EnumDataType.NUMERICAL:
                     if (this.Accuracy == 0)
@@ -759,7 +759,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._IsPositive = false;
                     this._ObjectGuid = string.Empty;
                     this.ListObjectGuids.Clear();
-                    this.NotifyPropertyChanged(nameof(this.ListObjects));
+                    this.OnPropertyChanged(nameof(this.ListObjects));
                     break;
                 case EnumDataType.STRING:
                     this.VisibilityIsPositive = Visibility.Collapsed;
@@ -771,7 +771,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._IsPositive = false;
                     this._ObjectGuid = string.Empty;
                     this.ListObjectGuids.Clear();
-                    this.NotifyPropertyChanged(nameof(this.ListObjects));
+                    this.OnPropertyChanged(nameof(this.ListObjects));
                     break;
                 default:
                     throw new NotSupportedException();
@@ -779,10 +779,10 @@ namespace vSharpStudio.vm.ViewModels
             ClrTypeNameCalc();
             MinValueCalc();
             MaxValueCalc();
-            this.NotifyPropertyChanged(nameof(this.Length));
-            this.NotifyPropertyChanged(nameof(this.Accuracy));
-            this.NotifyPropertyChanged(nameof(this.IsPositive));
-            this.NotifyPropertyChanged(nameof(this.ObjectGuid));
+            this.OnPropertyChanged(nameof(this.Length));
+            this.OnPropertyChanged(nameof(this.Accuracy));
+            this.OnPropertyChanged(nameof(this.IsPositive));
+            this.OnPropertyChanged(nameof(this.ObjectGuid));
         }
         partial void OnLengthChanged()
         {

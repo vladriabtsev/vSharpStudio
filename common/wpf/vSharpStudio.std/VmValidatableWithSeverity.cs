@@ -59,7 +59,7 @@ namespace ViewModelBase
                     UIDispatcher.Invoke(() =>
                     {
                         _CountErrors = value;
-                        NotifyPropertyChanged();
+                        OnPropertyChanged();
                         OnCountErrorsChanged();
                     });
                 }
@@ -80,7 +80,7 @@ namespace ViewModelBase
                     UIDispatcher.Invoke(() =>
                     {
                         _CountWarnings = value;
-                        NotifyPropertyChanged();
+                        OnPropertyChanged();
                         OnCountWarningsChanged();
                     });
                 }
@@ -101,7 +101,7 @@ namespace ViewModelBase
                     UIDispatcher.Invoke(() =>
                     {
                         _CountInfos = value;
-                        NotifyPropertyChanged();
+                        OnPropertyChanged();
                         OnCountInfosChanged();
                     });
                 }
@@ -119,7 +119,7 @@ namespace ViewModelBase
                     UIDispatcher.Invoke(() =>
                     {
                         _ValidationCollection = value;
-                        NotifyPropertyChanged();
+                        OnPropertyChanged();
                     });
                 }
             }
@@ -187,9 +187,9 @@ namespace ViewModelBase
             this.ValidationResult = res;
             OnValidated(res);
             var isValid = ValidationChange(res);
-            NotifyPropertyChanged(nameof(this.HasErrors));
-            NotifyPropertyChanged(nameof(this.HasWarnings));
-            NotifyPropertyChanged(nameof(this.HasInfos));
+            OnPropertyChanged(nameof(this.HasErrors));
+            OnPropertyChanged(nameof(this.HasWarnings));
+            OnPropertyChanged(nameof(this.HasInfos));
             return isValid;
         }
         public async Task<bool> ValidateAsync()
@@ -200,9 +200,9 @@ namespace ViewModelBase
             var tsks = OnValidatedAsync(res);
             await Task.WhenAll(tsks);
             var isValid = ValidationChange(res);
-            NotifyPropertyChanged(nameof(this.HasErrors));
-            NotifyPropertyChanged(nameof(this.HasWarnings));
-            NotifyPropertyChanged(nameof(this.HasInfos));
+            OnPropertyChanged(nameof(this.HasErrors));
+            OnPropertyChanged(nameof(this.HasWarnings));
+            OnPropertyChanged(nameof(this.HasInfos));
             return isValid;
         }
         //protected void ValidateProperty(Expression<Func<T>> property)
@@ -282,9 +282,9 @@ namespace ViewModelBase
                 _infos.Remove(propertyName);
             RaiseErrorsChanged(propertyName);
 
-            NotifyPropertyChanged(nameof(this.HasErrors));
-            NotifyPropertyChanged(nameof(this.HasWarnings));
-            NotifyPropertyChanged(nameof(this.HasInfos));
+            OnPropertyChanged(nameof(this.HasErrors));
+            OnPropertyChanged(nameof(this.HasWarnings));
+            OnPropertyChanged(nameof(this.HasInfos));
         }
         protected void ClearErrors([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
@@ -297,9 +297,9 @@ namespace ViewModelBase
                 _infos.Remove(propertyName);
             RaiseErrorsChanged(propertyName);
 
-            NotifyPropertyChanged(nameof(this.HasErrors));
-            NotifyPropertyChanged(nameof(this.HasWarnings));
-            NotifyPropertyChanged(nameof(this.HasInfos));
+            OnPropertyChanged(nameof(this.HasErrors));
+            OnPropertyChanged(nameof(this.HasWarnings));
+            OnPropertyChanged(nameof(this.HasInfos));
         }
         protected void ClearAllErrors()
         {

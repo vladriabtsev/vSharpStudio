@@ -46,7 +46,7 @@ namespace GenFromProto
             this.Write("Visitor // ");
             
             #line 8 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -71,7 +71,7 @@ namespace GenFromProto
             this.Write(" p) // ");
             
             #line 16 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -117,7 +117,7 @@ namespace GenFromProto
             this.Write(") // ");
             
             #line 30 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -138,7 +138,7 @@ namespace GenFromProto
             this.Write("); // ");
             
             #line 33 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -189,7 +189,7 @@ namespace GenFromProto
             this.Write(") // ");
             
             #line 40 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -210,7 +210,7 @@ namespace GenFromProto
             this.Write("); // ");
             
             #line 43 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden
@@ -255,7 +255,7 @@ namespace GenFromProto
             this.Write(" p) // ");
             
             #line 50 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
             
             #line default
             #line hidden

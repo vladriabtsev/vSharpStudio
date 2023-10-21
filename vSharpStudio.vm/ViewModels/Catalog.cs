@@ -336,7 +336,7 @@ namespace vSharpStudio.vm.ViewModels
         public string CodePropertySettingsText { get { return this.CodePropertySettings.ToString(); } }
         public void NotifyCodePropertySettingsChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.CodePropertySettingsText));
+            this.OnPropertyChanged(nameof(this.CodePropertySettingsText));
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
@@ -378,22 +378,22 @@ namespace vSharpStudio.vm.ViewModels
         #region OnChanged
         partial void OnUseCodePropertyChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
         }
         partial void OnUseNamePropertyChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
         }
         partial void OnUseDescriptionPropertyChanged()
         {
-            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
         }
         partial void OnUseSeparateTreeForFoldersChanged()
         {
             this.RefillChildren();
-            this.NotifyPropertyChanged(nameof(this.Children));
-            this.NotifyPropertyChanged(nameof(this.IsShowRefSelfTree));
-            this.NotifyPropertyChanged(nameof(this.IsShowIsFolder));
+            this.OnPropertyChanged(nameof(this.Children));
+            this.OnPropertyChanged(nameof(this.IsShowRefSelfTree));
+            this.OnPropertyChanged(nameof(this.IsShowIsFolder));
         }
         partial void OnUseTreeChanged()
         {
@@ -402,10 +402,10 @@ namespace vSharpStudio.vm.ViewModels
                 this.UseSeparateTreeForFolders = false;
             }
             this.RefillChildren();
-            this.NotifyPropertyChanged(nameof(this.Children));
-            this.NotifyPropertyChanged(nameof(this.PropertyDefinitions));
-            this.NotifyPropertyChanged(nameof(this.IsShowRefSelfTree));
-            this.NotifyPropertyChanged(nameof(this.IsShowIsFolder));
+            this.OnPropertyChanged(nameof(this.Children));
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+            this.OnPropertyChanged(nameof(this.IsShowRefSelfTree));
+            this.OnPropertyChanged(nameof(this.IsShowIsFolder));
         }
         #endregion OnChanged
 
