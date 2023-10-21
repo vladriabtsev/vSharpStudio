@@ -324,7 +324,7 @@ namespace vSharpStudio.vm.ViewModels
                     //string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
                     //Console.WriteLine("RunTime " + elapsedTime);
                     string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
-                    Debug.WriteLine($"RunTime {elapsedTime} {t4.FilePos()}");
+                    Debug.WriteLine($"RunTime {elapsedTime} {LogExt.FilePos()}");
 #endif
                 }
             }

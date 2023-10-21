@@ -56,7 +56,7 @@ namespace ");
             this.Write(" // ");
             
             #line 24 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -76,7 +76,7 @@ namespace ");
             this.Write("AcceptVisitor // ");
             
             #line 30 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden

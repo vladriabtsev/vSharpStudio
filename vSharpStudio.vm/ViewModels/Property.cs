@@ -370,7 +370,6 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(nameof(this.DefaultValue));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
-                this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENT &&
                 this.DataType.DataTypeEnum != EnumDataType.ENUMERATION &&
                 this.DataType.DataTypeEnum != EnumDataType.ANY)

@@ -38,7 +38,7 @@ namespace GenFromProto
             this.Write("\r\npublic override void Sort(Type type) // ");
             
             #line 9 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -68,7 +68,7 @@ namespace GenFromProto
             this.Write(")) // ");
             
             #line 16 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -152,7 +152,7 @@ namespace GenFromProto
             this.Write(") // ");
             
             #line 29 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -194,7 +194,7 @@ namespace GenFromProto
             this.Write(") // ");
             
             #line 31 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -229,7 +229,7 @@ namespace GenFromProto
             this.Write("(parent); // ");
             
             #line 36 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -257,7 +257,7 @@ namespace GenFromProto
             this.Write("(); // ");
             
             #line 38 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -297,7 +297,7 @@ namespace GenFromProto
                     "");
             
             #line 43 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -332,7 +332,7 @@ namespace GenFromProto
             this.Write(") // ");
             
             #line 47 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -367,7 +367,7 @@ namespace GenFromProto
             this.Write(">(); // ");
             
             #line 50 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -381,7 +381,7 @@ namespace GenFromProto
             this.Write(") // ");
             
             #line 51 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -457,7 +457,7 @@ namespace GenFromProto
             this.Write(">(vm); // ");
             
             #line 54 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -471,7 +471,7 @@ namespace GenFromProto
             this.Write(") // ");
             
             #line 55 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -554,7 +554,7 @@ namespace GenFromProto
             this.Write(")null; // ");
             
             #line 59 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -582,7 +582,7 @@ namespace GenFromProto
             this.Write(".Clone(); // ");
             
             #line 61 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -596,7 +596,7 @@ namespace GenFromProto
             this.Write("    if (isDeep) // ");
             
             #line 63 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -659,7 +659,7 @@ namespace GenFromProto
             this.Write("; // ");
             
             #line 66 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -676,7 +676,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("    if (isNewGuid) // ");
             
             #line 71 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -704,7 +704,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(" from, bool isDeep = true) // ");
             
             #line 76 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -727,7 +727,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("    if (isDeep) // ");
             
             #line 85 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -810,7 +810,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("(to); // ");
             
             #line 116 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -831,7 +831,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("(); // ");
             
             #line 118 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -880,7 +880,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(".Clear(); // ");
             
             #line 126 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -928,7 +928,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("; // ");
             
             #line 133 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -970,7 +970,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(")null; // ");
             
             #line 135 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -984,7 +984,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("    if (isDeep) // ");
             
             #line 137 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1047,7 +1047,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("; // ");
             
             #line 140 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1070,7 +1070,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("// ");
             
             #line 146 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1099,7 +1099,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(".Clone(this.Parent, this); // ");
             
             #line 154 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1134,7 +1134,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("this); // ");
             
             #line 156 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1214,7 +1214,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(" vm) // ");
             
             #line 170 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1252,7 +1252,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(">(); // ");
             
             #line 182 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1266,7 +1266,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(") // ");
             
             #line 183 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1307,7 +1307,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(">(vm); // ");
             
             #line 189 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1335,7 +1335,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(">(); // ");
             
             #line 191 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1356,7 +1356,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(") // ");
             
             #line 193 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1377,7 +1377,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("(vm)); // ");
             
             #line 195 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1412,7 +1412,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(">(); // ");
             
             #line 199 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1426,7 +1426,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(") // ");
             
             #line 200 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1447,7 +1447,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("()); // ");
             
             #line 202 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1487,7 +1487,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(" == null) // ");
             
             #line 208 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1515,7 +1515,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("(vm); // ");
             
             #line 210 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1543,7 +1543,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("(); // ");
             
             #line 212 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1592,7 +1592,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("); // ");
             
             #line 214 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1620,7 +1620,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("; // ");
             
             #line 216 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1643,7 +1643,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("    vm.OnInitFromDto(); // ");
             
             #line 222 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1692,7 +1692,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(" vm) // ");
             
             #line 229 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1727,7 +1727,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("(); // ");
             
             #line 232 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1749,7 +1749,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(") // ");
             
             #line 235 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1770,7 +1770,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(".Add(t); // ");
             
             #line 237 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1805,7 +1805,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(")t)); // ");
             
             #line 239 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1846,7 +1846,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("(); // ");
             
             #line 242 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -1916,7 +1916,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("(); // ");
             
             #line 246 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -2042,7 +2042,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("(); // ");
             
             #line 258 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -2098,7 +2098,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("; // ");
             
             #line 261 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -2147,7 +2147,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("); // ");
             
             #line 263 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -2175,7 +2175,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("); // ");
             
             #line 265 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -2217,7 +2217,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("; // ");
             
             #line 267 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -2245,7 +2245,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("; // ");
             
             #line 269 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden

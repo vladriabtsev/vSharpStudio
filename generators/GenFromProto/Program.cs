@@ -11,6 +11,7 @@ using CommandLine;
 using Google.Protobuf.Reflection;
 using Microsoft.Extensions.Logging;
 using Proto.Doc;
+using vSharpStudio.common;
 
 namespace GenFromProto
 {

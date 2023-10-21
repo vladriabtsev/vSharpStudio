@@ -41,7 +41,7 @@ namespace GenFromProto
             this.Write(" // ");
             
             #line 14 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -75,7 +75,7 @@ namespace GenFromProto
             this.Write(" // ");
             
             #line 18 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -177,7 +177,7 @@ namespace GenFromProto
             this.Write(" // ");
             
             #line 34 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -192,7 +192,7 @@ namespace GenFromProto
                     "Settings); // ");
             
             #line 37 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -247,7 +247,7 @@ namespace GenFromProto
             this.Write(" { get; } // ");
             
             #line 45 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -275,7 +275,7 @@ namespace GenFromProto
             this.Write(" { get; } // ");
             
             #line 47 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -303,7 +303,7 @@ namespace GenFromProto
             this.Write(" { get; } // ");
             
             #line 49 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -363,7 +363,7 @@ namespace GenFromProto
             this.Write("} // ");
             
             #line 56 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -390,7 +390,7 @@ namespace GenFromProto
             this.Write(" { get; } // ");
             
             #line 58 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden
@@ -418,7 +418,7 @@ namespace GenFromProto
             this.Write(" { get; } // ");
             
             #line 60 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(LogExt.FilePos()));
             
             #line default
             #line hidden

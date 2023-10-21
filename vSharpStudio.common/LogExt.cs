@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -54,6 +55,13 @@ namespace vSharpStudio.common
         {
             return member;
         }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string Line([CallerLineNumber] int line = 0)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(line);
+            return sb.ToString();
+        }
         public static string FilePos(string? text = null,
             [CallerFilePath] string file = "",
             [CallerMemberName] string member = "",
@@ -61,6 +69,95 @@ namespace vSharpStudio.common
         {
             var sb = GetDebugText(text, file, member, line);
             return sb.ToString();
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string CallerInfo(this string message, [CallerMemberName] string memberName = "",
+                  [CallerFilePath] string sourceFilePath = "",
+                  [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+            var methodName = memberName;
+            var line = sourceLineNumber;
+
+            return $"{fileName}.cs {line} [{methodName}] {message}";
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string StackInfo(this string message,
+            [CallerMemberName] string memberName = "",
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+            var methodName = memberName;
+            var line = sourceLineNumber;
+            return $"{fileName} {line} [{methodName}] {message}\n   StackTrace:\n{Environment.StackTrace}";
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Trace(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+            [CallerMemberName] string memberName = "",
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+            var methodName = memberName;
+            var line = sourceLineNumber;
+            var msg = $"{fileName} {line} [{methodName}] {message}";
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg);
+        }
+        //public static void Debug(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+        //    [CallerMemberName] string memberName = "",
+        //    [CallerFilePath] string sourceFilePath = "",
+        //    [CallerLineNumber] int sourceLineNumber = 0)
+        //{
+        //    var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+        //    var methodName = memberName;
+        //    var line = sourceLineNumber;
+        //    var msg = $"{fileName} {line} [{methodName}] {message}";
+        //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, null, msg);
+        //}
+        public static void Information(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+            [CallerMemberName] string memberName = "",
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+            var methodName = memberName;
+            var line = sourceLineNumber;
+            var msg = $"{fileName} {line} [{methodName}] {message}";
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, null, msg);
+        }
+        public static void Warning(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+            [CallerMemberName] string memberName = "",
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+            var methodName = memberName;
+            var line = sourceLineNumber;
+            var msg = $"{fileName} {line} [{methodName}] {message}";
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, null, msg);
+        }
+        public static void LoggerError(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+            [CallerMemberName] string memberName = "",
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+            var methodName = memberName;
+            var line = sourceLineNumber;
+            var msg = $"{fileName} {line} [{methodName}] {message}";
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, null, msg);
+        }
+        public static void Critical(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+            [CallerMemberName] string memberName = "",
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+            var methodName = memberName;
+            var line = sourceLineNumber;
+            var msg = $"{fileName} {line} [{methodName}] {message}";
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, null, msg);
         }
         internal static StringBuilder GetDebugText(string? text, string file, string member, int line, int maxStackDeep = -1)
         {
@@ -156,129 +253,129 @@ namespace vSharpStudio.common
         }
     }
 }
-namespace Microsoft.Extensions.Logging
-{
-    public static class LogExt
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string Line([CallerLineNumber] int line = 0)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(line);
-            return sb.ToString();
-        }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string FilePos([CallerFilePath] string file = "",
-                                        [CallerMemberName] string member = "",
-                                        [CallerLineNumber] int line = 0)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(Path.GetFileName(file));
-            sb.Append(" Line: ");
-            sb.Append(line);
-            return sb.ToString();
-        }
-        public static string FilePos(this string text,
-                                        [CallerFilePath] string file = "",
-                                        [CallerMemberName] string member = "",
-                                        [CallerLineNumber] int line = 0)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(text);
-            sb.Append(" ");
-            sb.Append(Path.GetFileName(file));
-            sb.Append(" Line: ");
-            sb.Append(line);
-            return sb.ToString();
-        }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string CallerInfo(this string message, [CallerMemberName] string memberName = "",
-                  [CallerFilePath] string sourceFilePath = "",
-                  [CallerLineNumber] int sourceLineNumber = 0)
-        {
-            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
-            var methodName = memberName;
-            var line = sourceLineNumber;
+//namespace Microsoft.Extensions.Logging
+//{
+//    public static class LogExt
+//    {
+//        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//        public static string Line([CallerLineNumber] int line = 0)
+//        {
+//            StringBuilder sb = new StringBuilder();
+//            sb.Append(line);
+//            return sb.ToString();
+//        }
+//        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//        public static string FilePos([CallerFilePath] string file = "",
+//                                        [CallerMemberName] string member = "",
+//                                        [CallerLineNumber] int line = 0)
+//        {
+//            StringBuilder sb = new StringBuilder();
+//            sb.Append(Path.GetFileName(file));
+//            sb.Append(" Line: ");
+//            sb.Append(line);
+//            return sb.ToString();
+//        }
+//        public static string FilePos(this string text,
+//                                        [CallerFilePath] string file = "",
+//                                        [CallerMemberName] string member = "",
+//                                        [CallerLineNumber] int line = 0)
+//        {
+//            StringBuilder sb = new StringBuilder();
+//            sb.Append(text);
+//            sb.Append(" ");
+//            sb.Append(Path.GetFileName(file));
+//            sb.Append(" Line: ");
+//            sb.Append(line);
+//            return sb.ToString();
+//        }
+//        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//        public static string CallerInfo(this string message, [CallerMemberName] string memberName = "",
+//                  [CallerFilePath] string sourceFilePath = "",
+//                  [CallerLineNumber] int sourceLineNumber = 0)
+//        {
+//            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+//            var methodName = memberName;
+//            var line = sourceLineNumber;
 
-            return $"{fileName}.cs {line} [{methodName}] {message}";
-        }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string StackInfo(this string message,
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-        {
-            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
-            var methodName = memberName;
-            var line = sourceLineNumber;
-            return $"{fileName} {line} [{methodName}] {message}\n   StackTrace:\n{Environment.StackTrace}";
-        }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Trace(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-        {
-            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
-            var methodName = memberName;
-            var line = sourceLineNumber;
-            var msg = $"{fileName} {line} [{methodName}] {message}";
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg);
-        }
-        public static void Debug(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-        {
-            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
-            var methodName = memberName;
-            var line = sourceLineNumber;
-            var msg = $"{fileName} {line} [{methodName}] {message}";
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, null, msg);
-        }
-        public static void Information(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-        {
-            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
-            var methodName = memberName;
-            var line = sourceLineNumber;
-            var msg = $"{fileName} {line} [{methodName}] {message}";
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, null, msg);
-        }
-        public static void Warning(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-        {
-            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
-            var methodName = memberName;
-            var line = sourceLineNumber;
-            var msg = $"{fileName} {line} [{methodName}] {message}";
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, null, msg);
-        }
-        public static void LoggerError(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-        {
-            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
-            var methodName = memberName;
-            var line = sourceLineNumber;
-            var msg = $"{fileName} {line} [{methodName}] {message}";
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, null, msg);
-        }
-        public static void Critical(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-        {
-            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
-            var methodName = memberName;
-            var line = sourceLineNumber;
-            var msg = $"{fileName} {line} [{methodName}] {message}";
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, null, msg);
-        }
-    }
-}
+//            return $"{fileName}.cs {line} [{methodName}] {message}";
+//        }
+//        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//        public static string StackInfo(this string message,
+//            [CallerMemberName] string memberName = "",
+//            [CallerFilePath] string sourceFilePath = "",
+//            [CallerLineNumber] int sourceLineNumber = 0)
+//        {
+//            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+//            var methodName = memberName;
+//            var line = sourceLineNumber;
+//            return $"{fileName} {line} [{methodName}] {message}\n   StackTrace:\n{Environment.StackTrace}";
+//        }
+//        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//        public static void Trace(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+//            [CallerMemberName] string memberName = "",
+//            [CallerFilePath] string sourceFilePath = "",
+//            [CallerLineNumber] int sourceLineNumber = 0)
+//        {
+//            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+//            var methodName = memberName;
+//            var line = sourceLineNumber;
+//            var msg = $"{fileName} {line} [{methodName}] {message}";
+//            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg);
+//        }
+//        public static void Debug(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+//            [CallerMemberName] string memberName = "",
+//            [CallerFilePath] string sourceFilePath = "",
+//            [CallerLineNumber] int sourceLineNumber = 0)
+//        {
+//            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+//            var methodName = memberName;
+//            var line = sourceLineNumber;
+//            var msg = $"{fileName} {line} [{methodName}] {message}";
+//            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, null, msg);
+//        }
+//        public static void Information(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+//            [CallerMemberName] string memberName = "",
+//            [CallerFilePath] string sourceFilePath = "",
+//            [CallerLineNumber] int sourceLineNumber = 0)
+//        {
+//            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+//            var methodName = memberName;
+//            var line = sourceLineNumber;
+//            var msg = $"{fileName} {line} [{methodName}] {message}";
+//            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, null, msg);
+//        }
+//        public static void Warning(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+//            [CallerMemberName] string memberName = "",
+//            [CallerFilePath] string sourceFilePath = "",
+//            [CallerLineNumber] int sourceLineNumber = 0)
+//        {
+//            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+//            var methodName = memberName;
+//            var line = sourceLineNumber;
+//            var msg = $"{fileName} {line} [{methodName}] {message}";
+//            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, null, msg);
+//        }
+//        public static void LoggerError(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+//            [CallerMemberName] string memberName = "",
+//            [CallerFilePath] string sourceFilePath = "",
+//            [CallerLineNumber] int sourceLineNumber = 0)
+//        {
+//            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+//            var methodName = memberName;
+//            var line = sourceLineNumber;
+//            var msg = $"{fileName} {line} [{methodName}] {message}";
+//            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, null, msg);
+//        }
+//        public static void Critical(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+//            [CallerMemberName] string memberName = "",
+//            [CallerFilePath] string sourceFilePath = "",
+//            [CallerLineNumber] int sourceLineNumber = 0)
+//        {
+//            var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
+//            var methodName = memberName;
+//            var line = sourceLineNumber;
+//            var msg = $"{fileName} {line} [{methodName}] {message}";
+//            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, null, msg);
+//        }
+//    }
+//}

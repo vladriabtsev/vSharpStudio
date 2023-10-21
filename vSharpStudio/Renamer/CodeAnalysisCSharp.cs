@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using vSharpStudio.common.DiffModel;
 using System.Diagnostics;
+using vSharpStudio.common;
 
 namespace Renamer
 {

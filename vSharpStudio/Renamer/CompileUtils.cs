@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Renamer;
+using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using Microsoft.CodeAnalysis;
 
