@@ -833,6 +833,19 @@ enum proto_enum_relation_type {
     ONE_TO_ONE = 0;
     // @attr [Description("One to Many")]
     ONE_TO_MANY = 1;
+    // @attr [Description("Many to Many")]
+    MANY_TO_MANY = 2;
+}
+// @base BaseSettings
+message proto_catalogs_relation_many_to_many_table {
+    string guid = 1;
+    string name = 2;
+    google.protobuf.StringValue guid_cat1 = 3;
+    string ref_cat1_guid = 4;
+    google.protobuf.StringValue guid_cat2 = 5;
+    string ref_cat2_guid = 6;
+    bool is_with_history = 7;
+    uint64 sorting_value = 8;
 }
 // @base BaseSettings
 message proto_data_type {
@@ -2577,6 +2590,8 @@ message proto_group_list_catalogs {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
+    // @attr [Browsable(false)]
+    repeated proto_catalogs_relation_many_to_many_table list_all_catalogs_many_to_many_relations = 109;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

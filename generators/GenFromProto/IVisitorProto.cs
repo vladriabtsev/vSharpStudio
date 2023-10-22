@@ -32,7 +32,7 @@ namespace GenFromProto
             this.Write("\r\npublic interface IVisitorProto // ");
             
             #line 8 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\IVisitorProto.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden

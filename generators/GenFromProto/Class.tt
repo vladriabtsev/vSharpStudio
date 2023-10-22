@@ -24,6 +24,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
         var p = t.GetProperty("Name");
         if (p != null)
             mes = mes + (string?)p.GetValue(this) + ":";
+<# if (this.Doc.IsConfigObjectBase) { #>
         p = t.GetProperty("IsNew");
         if (p != null)
             if ((bool?)p.GetValue(this) == true)
@@ -32,6 +33,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
         if (p != null)
             if ((bool?)p.GetValue(this) == true)
                 mes = mes + " HasNew";
+<# } #>
         OnDebugStringExtend(ref mes);
         return mes + base.ToDebugString();
     }

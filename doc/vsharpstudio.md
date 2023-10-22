@@ -12,6 +12,7 @@
     - [proto_catalog](#proto_config.proto_catalog)
     - [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings)
     - [proto_catalog_folder](#proto_config.proto_catalog_folder)
+    - [proto_catalogs_relation_many_to_many_table](#proto_config.proto_catalogs_relation_many_to_many_table)
     - [proto_config](#proto_config.proto_config)
     - [proto_config_short_history](#proto_config.proto_config_short_history)
     - [proto_constant](#proto_config.proto_constant)
@@ -392,6 +393,28 @@ C A T A L O G
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [Browsable(false)] |
 | list_role_catalog_access_settings | [proto_role_catalog_access](#proto_config.proto_role_catalog_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_catalogs_relation_many_to_many_table"></a>
+
+### proto_catalogs_relation_many_to_many_table
+@base BaseSettings
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| guid_cat1 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  |  |
+| ref_cat1_guid | [string](#string) |  |  |
+| guid_cat2 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  |  |
+| ref_cat2_guid | [string](#string) |  |  |
+| is_with_history | [bool](#bool) |  |  |
+| sorting_value | [uint64](#uint64) |  |  |
 
 
 
@@ -1139,6 +1162,7 @@ C O N S T A N T
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
+| list_all_catalogs_many_to_many_relations | [proto_catalogs_relation_many_to_many_table](#proto_config.proto_catalogs_relation_many_to_many_table) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -2703,8 +2727,9 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ONE_TO_MANY | 0 | @attr [Description(&#34;One to Many&#34;)] |
-| ONE_TO_ONE | 1 | @attr [Description(&#34;One to One&#34;)] |
+| ONE_TO_ONE | 0 | @attr [Description(&#34;One to One&#34;)] |
+| ONE_TO_MANY | 1 | @attr [Description(&#34;One to Many&#34;)] |
+| MANY_TO_MANY | 2 | @attr [Description(&#34;Many to Many&#34;)] |
 
 
 

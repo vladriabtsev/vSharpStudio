@@ -1478,14 +1478,19 @@
           "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
-              "name": "ONE_TO_MANY",
+              "name": "ONE_TO_ONE",
               "number": "0",
+              "description": "@attr [Description(\"One to One\")]"
+            },
+            {
+              "name": "ONE_TO_MANY",
+              "number": "1",
               "description": "@attr [Description(\"One to Many\")]"
             },
             {
-              "name": "ONE_TO_ONE",
-              "number": "1",
-              "description": "@attr [Description(\"One to One\")]"
+              "name": "MANY_TO_MANY",
+              "number": "2",
+              "description": "@attr [Description(\"Many to Many\")]"
             }
           ]
         },
@@ -3196,6 +3201,97 @@
               "type": "proto_plugin_generator_node_settings",
               "longType": "proto_plugin_generator_node_settings",
               "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_catalogs_relation_many_to_many_table",
+          "longName": "proto_catalogs_relation_many_to_many_table",
+          "fullName": "proto_config.proto_catalogs_relation_many_to_many_table",
+          "description": "@base BaseSettings",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "guid_cat1",
+              "description": "",
+              "label": "",
+              "type": "StringValue",
+              "longType": "google.protobuf.StringValue",
+              "fullType": "google.protobuf.StringValue",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "ref_cat1_guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "guid_cat2",
+              "description": "",
+              "label": "",
+              "type": "StringValue",
+              "longType": "google.protobuf.StringValue",
+              "fullType": "google.protobuf.StringValue",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "ref_cat2_guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_with_history",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             }
@@ -6823,6 +6919,16 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_all_catalogs_many_to_many_relations",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_catalogs_relation_many_to_many_table",
+              "longType": "proto_catalogs_relation_many_to_many_table",
+              "fullType": "proto_config.proto_catalogs_relation_many_to_many_table",
               "ismap": false,
               "defaultValue": ""
             },

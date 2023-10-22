@@ -26,6 +26,13 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" Type:{DataType.GetTypeDesc(this.DataType)}";
+            if (this.TagInList != null)
+            {
+                if (this.TagInList is string)
+                    mes = mes + $" Tag:{(string)this.TagInList}";
+                else
+                    mes = mes + $" Tag:{this.TagInList?.ToString()}";
+            }
         }
         /// <summary>
         /// Tag to find property in list. To use for dynamically created property list

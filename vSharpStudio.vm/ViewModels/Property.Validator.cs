@@ -105,6 +105,92 @@ namespace vSharpStudio.vm.ViewModels
                             }
                         }
                     }
+                    if (p.DataType.DataTypeEnum == EnumDataType.CATALOG)
+                    {
+                        if (!string.IsNullOrWhiteSpace(p.DataType.ObjectGuid) && p.DataType.RelationType == EnumRelationType.MANY_TO_MANY)
+                        {
+                            var ttt = p.DataType.ObjectGuid;
+                            var c2 = (Catalog)model.Cfg.DicNodes[ttt];
+                            bool found = false;
+                            foreach (var t in c2.GroupProperties.ListProperties)
+                            {
+                                if (t.DataType.DataTypeEnum == EnumDataType.CATALOG)
+                                {
+                                    if (t.DataType.ObjectGuid == c.Guid)
+                                    {
+                                        found = true;
+                                        break;
+                                    }
+                                }
+                                else if (t.DataType.DataTypeEnum == EnumDataType.CATALOGS)
+                                {
+                                    foreach (var tt in t.DataType.ListObjectGuids)
+                                    {
+                                        if (tt == c.Guid)
+                                        {
+                                            found = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (found)
+                                    break;
+                            }
+                            if (!found)
+                            {
+                                var vf = new ValidationFailure(nameof(p.Name),
+                                    $"Relation type with catalog '{c2.Name}' is set to 'Many to Many', but catalog '{c2.Name}' doesn't have 'Many to Many' property pointing to this '{c.Name}' catalog");
+                                vf.Severity = Severity.Error;
+                                cntx.AddFailure(vf);
+                            }
+                        }
+                    }
+                    else if (p.DataType.DataTypeEnum == EnumDataType.CATALOGS)
+                    {
+                        if (!string.IsNullOrWhiteSpace(p.DataType.ObjectGuid) && p.DataType.RelationType == EnumRelationType.MANY_TO_MANY)
+                        {
+                            foreach (var ttt in p.DataType.ListObjectGuids)
+                            {
+                                var c2 = (Catalog)model.Cfg.DicNodes[ttt];
+                                bool found = false;
+                                foreach (var t in c2.GroupProperties.ListProperties)
+                                {
+                                    if (t.DataType.DataTypeEnum == EnumDataType.CATALOG)
+                                    {
+                                        if (t.DataType.ObjectGuid == c.Guid)
+                                        {
+                                            found = true;
+                                            break;
+                                        }
+                                    }
+                                    else if (t.DataType.DataTypeEnum == EnumDataType.CATALOGS)
+                                    {
+                                        foreach (var tt in t.DataType.ListObjectGuids)
+                                        {
+                                            if (tt == c.Guid)
+                                            {
+                                                found = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if (found)
+                                        break;
+                                }
+                                if (!found)
+                                {
+                                    var vf = new ValidationFailure(nameof(p.Name),
+                                        $"Relation type with catalog '{c2.Name}' is set to 'Many to Many', but catalog '{c2.Name}' doesn't have 'Many to Many' property pointing to this '{c.Name}' catalog");
+                                    vf.Severity = Severity.Error;
+                                    cntx.AddFailure(vf);
+                                }
+                            }
+                        }
+                    }
+                    else if (p.DataType.DataTypeEnum == EnumDataType.DOCUMENT || p.DataType.DataTypeEnum == EnumDataType.DOCUMENTS)
+                    {
+                        ThrowHelper.ThrowInvalidOperationException();
+                    }
                 }
                 else if (pg.Parent is CatalogFolder cf)
                 {

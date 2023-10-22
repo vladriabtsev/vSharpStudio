@@ -19,6 +19,8 @@ namespace vSharpStudio.vm.ViewModels
                 dt = (DataType)propertyItem.Instance;
             else if (propertyItem.Instance is Property)
                 dt = ((Property)propertyItem.Instance).DataType;
+            else if (propertyItem.Instance is Constant)
+                dt = ((Constant)propertyItem.Instance).DataType;
             else
                 throw new Exception();
             ComboBox cbx = new ComboBox();

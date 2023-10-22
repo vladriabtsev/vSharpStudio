@@ -52,7 +52,7 @@ namespace GenFromProto
             this.Write("Visitor visitor) // ");
             
             #line 9 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
@@ -89,7 +89,7 @@ namespace GenFromProto
             this.Write(") // ");
             
             #line 23 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
@@ -130,7 +130,7 @@ namespace GenFromProto
             this.Write("NodeVisitor(visitor); // ");
             
             #line 29 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
@@ -158,7 +158,7 @@ namespace GenFromProto
             this.Write("NodeVisitor(visitor); // ");
             
             #line 31 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
@@ -179,7 +179,7 @@ namespace GenFromProto
             this.Write("    visitor.VisitEnd(this); // ");
             
             #line 36 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden

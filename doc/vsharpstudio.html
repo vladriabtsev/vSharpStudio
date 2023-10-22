@@ -211,6 +211,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_catalogs_relation_many_to_many_table"><span class="badge">M</span>proto_catalogs_relation_many_to_many_table</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_config"><span class="badge">M</span>proto_config</a>
                 </li>
               
@@ -1879,6 +1883,79 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
                   <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_catalogs_relation_many_to_many_table">proto_catalogs_relation_many_to_many_table</h3>
+        <p>@base BaseSettings</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>guid_cat1</td>
+                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref_cat1_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>guid_cat2</td>
+                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref_cat2_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_with_history</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -5118,6 +5195,13 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><p>@attr [Category(&#34;Auto Layout&#34;)]
 @attr [DisplayName(&#34;Filterable&#34;)]
 @attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_all_catalogs_many_to_many_relations</td>
+                  <td><a href="#proto_config.proto_catalogs_relation_many_to_many_table">proto_catalogs_relation_many_to_many_table</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -10761,15 +10845,21 @@ with history</p></td>
           <tbody>
             
               <tr>
-                <td>ONE_TO_MANY</td>
+                <td>ONE_TO_ONE</td>
                 <td>0</td>
+                <td><p>@attr [Description(&#34;One to One&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>ONE_TO_MANY</td>
+                <td>1</td>
                 <td><p>@attr [Description(&#34;One to Many&#34;)]</p></td>
               </tr>
             
               <tr>
-                <td>ONE_TO_ONE</td>
-                <td>1</td>
-                <td><p>@attr [Description(&#34;One to One&#34;)]</p></td>
+                <td>MANY_TO_MANY</td>
+                <td>2</td>
+                <td><p>@attr [Description(&#34;Many to Many&#34;)]</p></td>
               </tr>
             
           </tbody>

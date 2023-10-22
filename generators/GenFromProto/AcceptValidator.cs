@@ -32,7 +32,7 @@ namespace GenFromProto
             this.Write("\r\npublic void AcceptValidator(VisitorConfigNode visitor) // ");
             
             #line 8 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
@@ -63,7 +63,7 @@ namespace GenFromProto
             this.Write(")\r\n\t\tt.AcceptConfigNode(visitor); // ");
             
             #line 19 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
@@ -84,7 +84,7 @@ namespace GenFromProto
             this.Write(".AcceptConfigNode(visitor); // ");
             
             #line 21 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(LogerExt.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
