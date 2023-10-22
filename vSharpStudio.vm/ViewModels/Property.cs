@@ -87,6 +87,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsNullable = false;
+            this.IsUseHistory = false;
             this._MinLengthRequirement = "";
             this._MaxLengthRequirement = "";
             this._RangeValuesRequirementStr = "";
@@ -348,6 +349,10 @@ namespace vSharpStudio.vm.ViewModels
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
+            if (!(this.ParentGroupListProperties.Parent is Catalog))
+            {
+                lst.Add(nameof(this.IsUseHistory));
+            }
             if (this.DataType.DataTypeEnum != EnumDataType.STRING)
             {
                 lst.Add(nameof(this.MinLengthRequirement));
@@ -527,6 +532,22 @@ namespace vSharpStudio.vm.ViewModels
             set
             {
                 this.DataType.IsNullable = value;
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.ClrType));
+                this.ValidateProperty();
+                this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+            }
+        }
+        [Category("")]
+        [DisplayName("Use History")]
+        [Description("Use history for property value")]
+        [PropertyOrderAttribute(17)]
+        public bool IsUseHistory
+        {
+            get { return this.DataType.IsUseHistory; }
+            set
+            {
+                this.DataType.IsUseHistory = value;
                 this.OnPropertyChanged();
                 this.OnPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();

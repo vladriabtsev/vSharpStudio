@@ -220,7 +220,8 @@ namespace vSharpStudio.common
                 sb.Append(' ');
             }
             var indent = Environment.StackTrace.Split('\n').Length;
-            sb.Append(indent.ToString().PadLeft(stackLength));
+            sb.Append("Stack Level:");
+            sb.Append(indent.ToString().PadLeft(stackLength / 10 + 1));
             sb.Append(", ");
             if (maxStackDeep == 0)
             {
@@ -244,7 +245,9 @@ namespace vSharpStudio.common
             {
                 sb.Append("\"\" ");
             }
-            sb.Append(" --- File: ");
+            sb.Append(" --- Member: ");
+            sb.Append(member);
+            sb.Append(" File: ");
             sb.Append(Path.GetFileName(file));
             //sb.Append(file);
             sb.Append(" Line: ");

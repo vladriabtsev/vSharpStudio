@@ -274,20 +274,20 @@ namespace vSharpStudio.Unit
         }
         #endregion Catalog
 
-#region Diff
-// [TestMethod]
-// public void DiffConstant001Added()
-// {
-//    Assert.IsTrue(false);
-// }
-// [TestMethod]
-// public void DiffConfig001CanDiffwithDb()
-// {
-//    Assert.IsTrue(false);
-// }
-#endregion Diff
+        #region Diff
+        // [TestMethod]
+        // public void DiffConstant001Added()
+        // {
+        //    Assert.IsTrue(false);
+        // }
+        // [TestMethod]
+        // public void DiffConfig001CanDiffwithDb()
+        // {
+        //    Assert.IsTrue(false);
+        // }
+        #endregion Diff
 
-#region ITreeConfigNode
+        #region ITreeConfigNode
 #if DEBUG
         [TestMethod]
         public void ITreeConfigNode001_UpdateSortingValueWhenNameIsChanged()
@@ -443,9 +443,9 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cnst2.NodeCanMoveUp() == true);
             Assert.IsTrue(cnst2.NodeCanMoveDown() == false);
 
-#endregion Constants
+            #endregion Constants
 
-#region Enumerations
+            #region Enumerations
 
             Assert.IsTrue(cfg.Model.GroupEnumerations.NodeCanLeft() == false);
             Assert.IsTrue(cfg.Model.GroupEnumerations.NodeCanRight() == true);
@@ -505,9 +505,9 @@ namespace vSharpStudio.Unit
 
             // #endregion Properties
 
-#endregion Enumerations
+            #endregion Enumerations
 
-#region Catalogs
+            #region Catalogs
 
             Assert.IsTrue(cfg.Model.GroupCatalogs.NodeCanLeft() == false);
             Assert.IsTrue(cfg.Model.GroupCatalogs.NodeCanRight() == true);
@@ -528,7 +528,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].NodeCanAddNew() == true);
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].NodeCanAddNewSubNode() == false);
 
-#region Properties
+            #region Properties
 
             cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
             Assert.IsTrue(cfg.SelectedNode != null);
@@ -565,14 +565,14 @@ namespace vSharpStudio.Unit
             // Assert.IsTrue(5 == cfg.Model.GroupCatalogs[0].GroupProperties.ListProperties[2].DataType.MinValue);
             // Assert.IsTrue(6 == cfg.Model.GroupCatalogs[0].GroupProperties.ListProperties[2].DataType.MaxValue);
 
-#endregion Properties
+            #endregion Properties
 
-#endregion Catalogs
+            #endregion Catalogs
 
         }
-#endregion ITreeConfigNode
+        #endregion ITreeConfigNode
 
-#region Compare Tree
+        #region Compare Tree
         private Config createTree()
         {
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
@@ -867,9 +867,9 @@ namespace vSharpStudio.Unit
             // Assert.IsTrue((string)errenum.Current == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
             // Assert.IsTrue(errenum.MoveNext() == false);
         }
-#endregion Compare Tree
+        #endregion Compare Tree
 
-#region Db table names
+        #region Db table names
         [TestMethod]
         public void DbName001_Catalog()
         {
@@ -967,7 +967,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
         }
 
-#endregion Db table names
+        #endregion Db table names
         [TestMethod]
         public void ShortId()
         {
@@ -1012,6 +1012,39 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, cfg2.Model.LastCatalogShortId);
             Assert.AreEqual(2, cfg2.Model.LastDetailShortId);
             Assert.AreEqual(1, cfg2.Model.LastDocumentShortId);
+        }
+        [TestMethod]
+        public void HistoryPropertyTests()
+        {
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var cfg = vm.Config;
+            // Use History is saved and restored simple data
+            // Use History is saved and restored complex OneToOne data
+            // Use History is saved and restored complex OneToMany data
+            // Use History is saved and restored complex ManyToMany data
+            Assert.AreEqual(0, cfg.Model.GroupCatalogs.ListAllCatalogsManyToManyRelations.Count);
+            var c1 = cfg.Model.GroupCatalogs.AddCatalog();
+            Assert.AreEqual(0, cfg.Model.GroupCatalogs.ListAllCatalogsManyToManyRelations.Count);
+            var c2 = cfg.Model.GroupCatalogs.AddCatalog();
+            Assert.AreEqual(0, cfg.Model.GroupCatalogs.ListAllCatalogsManyToManyRelations.Count);
+            var p11 = c1.AddProperty("c2");
+            p11.DataTypeEnum = EnumDataType.CATALOG;
+            p11.ObjectGuid = c2.Guid;
+            Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
+            p11.RelationType = EnumRelationType.MANY_TO_MANY;
+            Assert.AreEqual(1, cfg.Model.GroupCatalogs.ListAllCatalogsManyToManyRelations.Count);
+            p11.RelationType = EnumRelationType.ONE_TO_MANY;
+            Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
+            p11.RelationType = EnumRelationType.MANY_TO_MANY;
+            Assert.AreEqual(1, cfg.Model.GroupCatalogs.ListAllCatalogsManyToManyRelations.Count);
+            var mtm = cfg.Model.GroupCatalogs.ListAllCatalogsManyToManyRelations[0];
+
+            Assert.AreEqual(1, cfg.Model.ValidationCollection.Count);
+
+            cfg.Model.Validate();
+            Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
+
+            Assert.IsTrue(false);
         }
     }
 }

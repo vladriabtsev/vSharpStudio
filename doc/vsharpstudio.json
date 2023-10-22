@@ -3284,16 +3284,6 @@
               "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
             }
           ]
         },
@@ -3816,6 +3806,16 @@
               "type": "proto_enum_relation_type",
               "longType": "proto_enum_relation_type",
               "fullType": "proto_config.proto_enum_relation_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_history",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Use History\")]\n@attr [Description(\"Use history for property value\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
