@@ -1022,34 +1022,34 @@ namespace vSharpStudio.Unit
             // Use History is saved and restored complex OneToOne data
             // Use History is saved and restored complex OneToMany data
             // Use History is saved and restored complex ManyToMany data
-            Assert.AreEqual(0, cfg.Model.GroupCatalogs.GroupListRelations.ListCatalogsManyToManyRelations.Count);
+            Assert.AreEqual(0, cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Count);
             var c1 = cfg.Model.GroupCatalogs.AddCatalog();
             var c2 = cfg.Model.GroupCatalogs.AddCatalog();
 
             // without history, not optimistic
-            cfg.Model.GroupCatalogs.GroupListRelations.ListCatalogsManyToManyRelations.Clear();
-            var rel = cfg.Model.GroupCatalogs.GroupListRelations.AddRelation("test_rel", c1, c2, false);
+            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Clear();
+            var rel = cfg.Model.GroupRelations.GroupListCatalogsRelations.AddRelation("test_rel", c1, c2, false);
             var lst = rel.GetIncludedProperties(null, false, false);
             // Id, RefCat1, RefCat2
             Assert.AreEqual(3, lst.Count);
 
             // without history, optimistic
-            cfg.Model.GroupCatalogs.GroupListRelations.ListCatalogsManyToManyRelations.Clear();
-            rel = cfg.Model.GroupCatalogs.GroupListRelations.AddRelation("test_rel", c1, c2, false);
+            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Clear();
+            rel = cfg.Model.GroupRelations.GroupListCatalogsRelations.AddRelation("test_rel", c1, c2, false);
             lst = rel.GetIncludedProperties(null, true, false);
             // Id, RefCat1, RefCat2, version
             Assert.AreEqual(4, lst.Count);
 
             // history, optimistic
-            cfg.Model.GroupCatalogs.GroupListRelations.ListCatalogsManyToManyRelations.Clear();
-            rel = cfg.Model.GroupCatalogs.GroupListRelations.AddRelation("test_rel", c1, c2, true);
+            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Clear();
+            rel = cfg.Model.GroupRelations.GroupListCatalogsRelations.AddRelation("test_rel", c1, c2, true);
             lst = rel.GetIncludedProperties(null, true, false);
             // Id, RefCat1, RefCat2, date_time_utc, version
             Assert.AreEqual(5, lst.Count);
 
             // history, not optimistic
-            cfg.Model.GroupCatalogs.GroupListRelations.ListCatalogsManyToManyRelations.Clear();
-            rel = cfg.Model.GroupCatalogs.GroupListRelations.AddRelation("test_rel", c1, c2, true);
+            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Clear();
+            rel = cfg.Model.GroupRelations.GroupListCatalogsRelations.AddRelation("test_rel", c1, c2, true);
             lst = rel.GetIncludedProperties(null, false, false);
             // Id, RefCat1, RefCat2, date_time_utc
             Assert.AreEqual(4, lst.Count);

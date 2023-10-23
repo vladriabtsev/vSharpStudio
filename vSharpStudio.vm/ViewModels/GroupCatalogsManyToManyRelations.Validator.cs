@@ -5,15 +5,15 @@ using FluentValidation;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class GroupCatalogManyToManyRelationsValidator
+    public partial class GroupCatalogsManyToManyRelationsValidator
     {
-        public GroupCatalogManyToManyRelationsValidator()
+        public GroupCatalogsManyToManyRelationsValidator()
         {
             this.RuleFor(x => x.PrefixForDbTables).Must((o, prefix) =>
             {
                 if (!string.IsNullOrWhiteSpace(prefix))
                     return true;
-                if (o.ParentGroupListCatalogs.ParentModel.IsUseGroupPrefix)
+                if (o.ParentGroupRelations.ParentModel.IsUseGroupPrefix)
                     return false;
                 return true;
             }).WithMessage("Prefix can't be empty if prefix usage is chosen for DB table names in the model");

@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class GroupCatalogManyToManyRelations : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
+    public partial class GroupCatalogsManyToManyRelations : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -23,9 +23,9 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
-        public GroupListCatalogs ParentGroupListCatalogs { get { Debug.Assert(this.Parent != null); return (GroupListCatalogs)this.Parent; } }
+        public GroupRelations ParentGroupRelations { get { Debug.Assert(this.Parent != null); return (GroupRelations)this.Parent; } }
         [Browsable(false)]
-        public IGroupListCatalogs ParentGroupListCatalogsI { get { Debug.Assert(this.Parent != null); return (IGroupListCatalogs)this.Parent; } }
+        public IGroupRelations ParentGroupRelationsI { get { Debug.Assert(this.Parent != null); return (IGroupRelations)this.Parent; } }
 
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IChildrenCollection GetListSiblings()
         {
-            return this.ParentGroupListCatalogs.Children;
+            return this.ParentGroupRelations.Children;
         }
         #endregion ITree
 
@@ -56,7 +56,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.GetUniqueName(Defaults.CatalogMtmRelationName, node, this.ListCatalogsManyToManyRelations);
             }
-            var model = this.ParentGroupListCatalogs.ParentModel;
+            var model = this.ParentGroupRelations.ParentModel;
             node.ShortId = model.LastCatalogRelationShortId + 1;
             model.LastCatalogRelationShortId = node.ShortId;
             this.SetSelected(node);

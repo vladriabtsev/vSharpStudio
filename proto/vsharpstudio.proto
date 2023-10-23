@@ -771,6 +771,8 @@ message proto_model {
     proto_group_list_registers group_list_registers = 107;
     // @attr [Browsable(false)]
     proto_group_list_journals group_journals = 105;
+    // @attr [Browsable(false)]
+    proto_group_relations group_relations = 108;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -832,7 +834,7 @@ enum proto_enum_time_accuracy_type {
     //MKS = 4;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-enum proto_enum_relation_type {
+enum proto_enum_one_to_relation_type {
     // @attr [Description("One to One")]
     ONE_TO_ONE = 0;
     // @attr [Description("One to Many")]
@@ -883,7 +885,7 @@ message proto_data_type {
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Relation")]
     // @attr [Description("Relation type with selected type of complex object/objects")]
-    proto_enum_relation_type relation_type = 10;
+    proto_enum_one_to_relation_type relation_type = 10;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(15)]
     // @attr [DisplayName("Use History")]
@@ -2239,96 +2241,6 @@ enum proto_enum_catalog_code_unique_scope {
     // @attr [Description("Catalog Folder")]
     code_uniqueness_by_folder_settings = 11;
 }
-// @interface ICanAddNode
-// @interface ISortingValue
-message proto_catalogs_many_to_many_relation {
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(-2)]
-    // @attr [ReadOnly(true)]
-    string guid = 1;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(1)]
-    string name = 2;
-    // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("UI name")]
-    // @attr [Description("Used as label/name for UI")]
-    string name_ui = 4;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(3)]
-    string description = 5;
-
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(6)]
-    // @attr [DisplayName("Catalog")]
-    // @attr [Description("Catalog of Many To Many relation")]
-    google.protobuf.StringValue guid_cat1 = 6;
-    // @attr [Browsable(false)]
-    string ref_cat1_guid = 7;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(8)]
-    // @attr [DisplayName("Catalog")]
-    // @attr [Description("Catalog of Many To Many relation")]
-    google.protobuf.StringValue guid_cat2 = 8;
-    // @attr [Browsable(false)]
-    string ref_cat2_guid = 9;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(10)]
-    // @attr [DisplayName("Use History")]
-    // @attr [Description("Use history for relation")]
-    bool is_use_history = 10;
-
-
-    // @attr [Browsable(false)]
-    bool is_new = 11;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 12;
-    // @attr [Browsable(false)]
-    int32 short_id = 19;
-
-    // @attr [Browsable(false)]
-    string property_id_guid = 61;
-    // @attr [Browsable(false)]
-    string property_version_guid = 69;
-
-    // @attr [Browsable(false)]
-    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
-}
-message proto_group_catalog_many_to_many_relations {
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(-2)]
-    // @attr [ReadOnly(true)]
-    string guid = 1;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(1)]
-    string name = 2;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("UI name")]
-    // @attr [Description("Used as label/name for UI")]
-    string name_ui = 4;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(3)]
-    string description = 5;
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Db prefix")]
-    // @attr [Description("Prefix for catalog db table names. Used if set to use in config model")]
-    string prefix_for_db_tables = 6;
-    // @attr [PropertyOrderAttribute(7)]
-    // @attr [DisplayName("Short ID")]
-    // @attr [Description("Short catalog type ID for cache key generator")]
-    string short_id_type_for_cache_key = 7;
-    // @attr [Browsable(false)]
-    uint64 sorting_value = 9;
-
-    // @attr [Browsable(false)]
-    repeated proto_catalogs_many_to_many_relation list_catalogs_many_to_many_relations = 21;
-    // @attr [Browsable(false)]
-    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
-}
 message proto_catalog_folder {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -2634,8 +2546,6 @@ message proto_group_list_catalogs {
     string short_id_type_for_cache_key = 7;
     // @attr [Browsable(false)]
     repeated proto_catalog list_catalogs = 8;
-    // @attr [Browsable(false)]
-    proto_group_catalog_many_to_many_relations group_list_relations = 10;
     // @attr [Browsable(false)]
     uint64 sorting_value = 9;
 
@@ -3192,6 +3102,219 @@ message proto_group_list_documents {
     uint64 sorting_value = 8;
     // @attr [Browsable(false)]
     repeated proto_role_document_access list_role_document_access_settings = 101;
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+/** M A N Y   T O   M A N Y   R E L A T I O N
+ * @exclude
+ * ######################### M A N Y   T O   M A N Y   R E L A T I O N ############################
+ */
+message proto_group_relations {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 3;
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [Browsable(false)]
+    // @attr [Description("Many to many setting for catalogs")]
+    proto_group_catalogs_many_to_many_relations group_list_catalogs_relations = 7;
+    // @attr [Browsable(false)]
+    // @attr [Description("Many to many setting for documents")]
+    proto_group_documents_many_to_many_relations group_list_documents_relations = 8;
+
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+// @interface ICanAddNode
+// @interface ISortingValue
+message proto_catalogs_many_to_many_relation {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 3;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [DisplayName("Catalog")]
+    // @attr [Description("Catalog of Many To Many relation")]
+    google.protobuf.StringValue guid_cat1 = 6;
+    // @attr [Browsable(false)]
+    string ref_cat1_guid = 7;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [DisplayName("Catalog")]
+    // @attr [Description("Catalog of Many To Many relation")]
+    google.protobuf.StringValue guid_cat2 = 8;
+    // @attr [Browsable(false)]
+    string ref_cat2_guid = 9;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(10)]
+    // @attr [DisplayName("Use History")]
+    // @attr [Description("Use history for relation")]
+    bool is_use_history = 10;
+
+
+    // @attr [Browsable(false)]
+    bool is_new = 11;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 12;
+    // @attr [Browsable(false)]
+    int32 short_id = 19;
+
+    // @attr [Browsable(false)]
+    string property_id_guid = 61;
+    // @attr [Browsable(false)]
+    string property_version_guid = 69;
+
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+message proto_group_catalogs_many_to_many_relations {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Db prefix")]
+    // @attr [Description("Prefix for catalog db table names. Used if set to use in config model")]
+    string prefix_for_db_tables = 6;
+    // @attr [PropertyOrderAttribute(7)]
+    // @attr [DisplayName("Short ID")]
+    // @attr [Description("Short catalog type ID for cache key generator")]
+    string short_id_type_for_cache_key = 7;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 9;
+
+    // @attr [Browsable(false)]
+    repeated proto_catalogs_many_to_many_relation list_catalogs_many_to_many_relations = 21;
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+// @interface ICanAddNode
+// @interface ISortingValue
+message proto_documents_many_to_many_relation {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 3;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [DisplayName("Catalog")]
+    // @attr [Description("Catalog of Many To Many relation")]
+    google.protobuf.StringValue guid_doc1 = 6;
+    // @attr [Browsable(false)]
+    string ref_doc1_guid = 7;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [DisplayName("Catalog")]
+    // @attr [Description("Catalog of Many To Many relation")]
+    google.protobuf.StringValue guid_doc2 = 8;
+    // @attr [Browsable(false)]
+    string ref_doc2_guid = 9;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(10)]
+    // @attr [DisplayName("Use History")]
+    // @attr [Description("Use history for relation")]
+    bool is_use_history = 10;
+
+
+    // @attr [Browsable(false)]
+    bool is_new = 11;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 12;
+    // @attr [Browsable(false)]
+    int32 short_id = 19;
+
+    // @attr [Browsable(false)]
+    string property_id_guid = 61;
+    // @attr [Browsable(false)]
+    string property_version_guid = 69;
+
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+message proto_group_documents_many_to_many_relations {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Db prefix")]
+    // @attr [Description("Prefix for catalog db table names. Used if set to use in config model")]
+    string prefix_for_db_tables = 6;
+    // @attr [PropertyOrderAttribute(7)]
+    // @attr [DisplayName("Short ID")]
+    // @attr [Description("Short catalog type ID for cache key generator")]
+    string short_id_type_for_cache_key = 7;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 9;
+
+    // @attr [Browsable(false)]
+    repeated proto_documents_many_to_many_relation list_documents_many_to_many_relations = 21;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

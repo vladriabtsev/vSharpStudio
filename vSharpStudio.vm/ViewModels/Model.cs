@@ -108,8 +108,9 @@ namespace vSharpStudio.vm.ViewModels
             children.Add(this.GroupEnumerations, 8);
             children.Add(this.GroupCatalogs, 9);
             children.Add(this.GroupDocuments, 10);
-            children.Add(this.GroupListRegisters, 11);
-            children.Add(this.GroupJournals, 12);
+            children.Add(this.GroupRelations, 11);
+            children.Add(this.GroupListRegisters, 12);
+            children.Add(this.GroupJournals, 13);
             //this.ListMainViewForms.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;

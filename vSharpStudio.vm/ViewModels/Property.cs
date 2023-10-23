@@ -509,7 +509,7 @@ namespace vSharpStudio.vm.ViewModels
         [DisplayName("Relation")]
         [Description("Relation type with selected complex object/objects")]
         [PropertyOrderAttribute(16)]
-        public EnumRelationType RelationType
+        public EnumOneToRelationType RelationType
         {
             get { return this.DataType.RelationType; }
             set

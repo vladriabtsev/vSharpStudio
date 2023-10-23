@@ -28,7 +28,7 @@
         public const string GroupCatalogsName = "Catalogs";
         public const string CatalogsName = "Catalogs";
         public const string CatalogName = "Catalog";
-        public const string CatalogMtmRelationsGroupName = "Relations";
+        public const string CatalogMtmRelationsGroupName = "Catalogs";
         public const string CatalogMtmRelationName = "Relation";
         //public const string Folder = "Folder";
         public const string DetailName = "Detail";
@@ -59,6 +59,8 @@
         public const string DocumentName = "Document";
         public const string DocumentsGroupName = "Documents";
         public const string Documents = "Documents";
+        public const string DocumentMtmRelationsGroupName = "Documents";
+        public const string DocumentMtmRelationName = "Relation";
 
         public const string GroupJournalsName = "Journals";
         public const string JournalName = "Journal";
