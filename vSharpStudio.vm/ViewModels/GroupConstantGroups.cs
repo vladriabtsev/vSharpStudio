@@ -96,7 +96,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.GroupConstantsName;
+            this._Name = Defaults.GroupConstantsGroupsName;
         }
         public GroupListConstants AddGroupConstants(string name)
         {

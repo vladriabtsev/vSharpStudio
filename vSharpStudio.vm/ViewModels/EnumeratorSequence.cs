@@ -19,7 +19,6 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListEnumeratorSequences ParentGroupListSequences { get { Debug.Assert(this.Parent != null); return (GroupListEnumeratorSequences)this.Parent; } }
         [Browsable(false)]
         public IGroupListEnumeratorSequences ParentGroupListSequencesI { get { Debug.Assert(this.Parent != null); return (IGroupListEnumeratorSequences)this.Parent; } }
-        public static readonly string DefaultName = "Sequence";
 
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -138,7 +137,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new EnumeratorSequence(this.Parent);
             this.ParentGroupListSequences.Add(node);
-            this.GetUniqueName(EnumeratorSequence.DefaultName, node, this.ParentGroupListSequences.ListEnumeratorSequences);
+            this.GetUniqueName(Defaults.SequenceName, node, this.ParentGroupListSequences.ListEnumeratorSequences);
             this.SetSelected(node);
             return node;
         }

@@ -17,7 +17,6 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListJournals ParentGroupListJournals { get { Debug.Assert(this.Parent != null); return (GroupListJournals)this.Parent; } }
         [Browsable(false)]
         public IGroupListJournals ParentGroupListJournalsI { get { Debug.Assert(this.Parent != null); return (IGroupListJournals)this.Parent; } }
-        public static readonly string DefaultName = "Journal";
 
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -127,7 +126,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Journal(this.ParentGroupListJournals);
             this.ParentGroupListJournals.Add(node);
-            this.GetUniqueName(Journal.DefaultName, node, this.ParentGroupListJournals.ListJournals);
+            this.GetUniqueName(Defaults.JournalName, node, this.ParentGroupListJournals.ListJournals);
             this.SetSelected(node);
             return node;
         }

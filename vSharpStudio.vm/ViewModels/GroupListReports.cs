@@ -44,7 +44,6 @@ namespace vSharpStudio.vm.ViewModels
         public new ConfigNodesCollection<Report> Children { get { return this.ListReports; } }
         partial void OnCreated()
         {
-            this._Name = "Reports";
             this.IsEditable = false;
             Init();
         }
@@ -68,6 +67,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListReports.OnClearedAction = () => {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.GroupReportsName;
         }
 
         #region Tree operations
@@ -90,7 +90,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Report.DefaultName, node, this.ListReports);
+                this.GetUniqueName(Defaults.ReportName, node, this.ListReports);
             }
 
             this.SetSelected(node);

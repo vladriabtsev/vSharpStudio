@@ -42,7 +42,6 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._Name = "Code Sequences";
             this.IsEditable = false;
             Init();
         }
@@ -68,6 +67,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.GroupSequenceName;
         }
         public EnumeratorSequence AddSequence(string name, string? guid = null)
         {

@@ -38,7 +38,6 @@ namespace vSharpStudio.vm.ViewModels
         public new ConfigNodesCollection<Journal> Children { get { return this.ListJournals; } }
         partial void OnCreated()
         {
-            this._Name = "Journals";
             this.IsEditable = false;
 
             Init();
@@ -63,6 +62,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListJournals.OnClearedAction = () => {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.GroupJournalsName;
         }
 
         #region Tree operations
@@ -86,7 +86,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Journal.DefaultName, node, this.ListJournals);
+                this.GetUniqueName(Defaults.JournalName, node, this.ListJournals);
             }
 
             this.SetSelected(node);

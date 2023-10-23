@@ -17,7 +17,6 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListReports ParentGroupListReports { get { Debug.Assert(this.Parent != null); return (GroupListReports)this.Parent; } }
         [Browsable(false)]
         public IGroupListReports ParentGroupListReportsI { get { Debug.Assert(this.Parent != null); return (IGroupListReports)this.Parent; } }
-        public static readonly string DefaultName = "Report";
 
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -128,7 +127,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Report(this.Parent);
             this.ParentGroupListReports.Add(node);
-            this.GetUniqueName(Report.DefaultName, node, this.ParentGroupListReports.ListReports);
+            this.GetUniqueName(Defaults.ReportName, node, this.ParentGroupListReports.ListReports);
             this.SetSelected(node);
             return node;
         }

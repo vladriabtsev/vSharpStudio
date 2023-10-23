@@ -54,7 +54,6 @@ namespace vSharpStudio.vm.ViewModels
         public new ConfigNodesCollection<Detail> Children { get { return this.ListDetails; } }
         partial void OnCreated()
         {
-            this._Name = "Details";
             this.IsEditable = false;
             Init();
         }
@@ -79,6 +78,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListDetails.OnClearedAction = () => {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.GroupDetailsName;
         }
         public int IndexOf(IDetail det)
         {

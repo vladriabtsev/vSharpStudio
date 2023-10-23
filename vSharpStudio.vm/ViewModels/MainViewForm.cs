@@ -17,7 +17,6 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListMainViewForms ParentGroupListMainViewForms { get { Debug.Assert(this.Parent != null); return (GroupListMainViewForms) this.Parent; } }
         [Browsable(false)]
         public IGroupListMainViewForms ParentGroupListMainViewFormsI { get { Debug.Assert(this.Parent != null); return (IGroupListMainViewForms)this.Parent; } }
-        public static readonly string DefaultName = "MainViewForm";
 
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -134,7 +133,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new MainViewForm(this.Parent);
             this.ParentGroupListMainViewForms.Add(node);
-            this.GetUniqueName(MainViewForm.DefaultName, node, this.ParentGroupListMainViewForms.ListMainViewForms);
+            this.GetUniqueName(Defaults.MainFormName, node, this.ParentGroupListMainViewForms.ListMainViewForms);
             this.SetSelected(node);
             return node;
         }

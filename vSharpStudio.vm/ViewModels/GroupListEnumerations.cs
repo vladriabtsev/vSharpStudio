@@ -41,7 +41,6 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._Name = Defaults.GroupEnumerationsName;
             this.IsEditable = false;
             Init();
         }
@@ -65,6 +64,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListEnumerations.OnClearedAction = () => {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.GroupEnumerationsName;
         }
 
         #region Tree operations

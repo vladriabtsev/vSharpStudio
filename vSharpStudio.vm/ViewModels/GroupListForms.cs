@@ -43,7 +43,6 @@ namespace vSharpStudio.vm.ViewModels
         public new ConfigNodesCollection<Form> Children { get { return this.ListForms; } }
         partial void OnCreated()
         {
-            this._Name = "Forms";
             this.IsEditable = false;
             Init();
         }
@@ -69,6 +68,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.GroupFormsName;
         }
 
         #region Tree operations

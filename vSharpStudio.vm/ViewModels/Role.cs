@@ -17,7 +17,6 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListRoles ParentGroupListRoles { get { Debug.Assert(this.Parent != null); return (GroupListRoles)this.Parent; } }
         [Browsable(false)]
         public IGroupListRoles ParentGroupListRolesI { get { Debug.Assert(this.Parent != null); return (IGroupListRoles)this.Parent; } }
-        public static readonly string DefaultName = "Role";
 
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -142,7 +141,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Role(this.Parent);
             this.ParentGroupListRoles.Add(node);
-            this.GetUniqueName(Role.DefaultName, node, this.ParentGroupListRoles.ListRoles);
+            this.GetUniqueName(Defaults.RoleName, node, this.ParentGroupListRoles.ListRoles);
             this.SetSelected(node);
             return node;
         }

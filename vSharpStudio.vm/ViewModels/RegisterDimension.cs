@@ -167,7 +167,7 @@ namespace vSharpStudio.vm.ViewModels
 
             var node = new Register(this.Parent);
             this.ParentGroupListDimensions.ListDimensions.Add(node);
-            this.GetUniqueName(Register.DefaultName, node, this.ParentGroupListDimensions.ListDimensions);
+            this.GetUniqueName(Defaults.RegisterDimensionName, node, this.ParentGroupListDimensions.ListDimensions);
             this.SetSelected(node);
             return node;
         }

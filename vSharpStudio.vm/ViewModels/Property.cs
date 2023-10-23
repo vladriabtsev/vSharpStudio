@@ -77,7 +77,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public static readonly string DefaultName = "Property";
         [Browsable(false)]
         public new string IconName { get { return "iconProperty"; } }
         //protected override string GetNodeIconName() { return "iconProperty"; }
@@ -261,7 +260,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Property(this.Parent);
             this.ParentGroupListProperties.Add(node);
             node.Position = this.ParentGroupListProperties.GetNextPosition();
-            this.GetUniqueName(Property.DefaultName, node, this.ParentGroupListProperties.ListProperties);
+            this.GetUniqueName(Defaults.PropertyName, node, this.ParentGroupListProperties.ListProperties);
             this.SetSelected(node);
             return node;
         }

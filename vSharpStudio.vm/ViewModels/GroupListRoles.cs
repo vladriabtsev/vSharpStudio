@@ -39,7 +39,6 @@ namespace vSharpStudio.vm.ViewModels
         public new ConfigNodesCollection<Role> Children { get { return this.ListRoles; } }
         partial void OnCreated()
         {
-            this._Name = "Roles";
             this.IsEditable = false;
             Init();
         }
@@ -81,6 +80,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.GroupRolesName;
         }
 
         #region Tree operations
@@ -105,7 +105,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Role.DefaultName, node, this.ListRoles);
+                this.GetUniqueName(Defaults.RoleName, node, this.ListRoles);
             }
 
             this.SetSelected(node);

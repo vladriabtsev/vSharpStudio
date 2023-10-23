@@ -86,7 +86,6 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._Name = Defaults.RegisterDimensionsGroupName;
             this.IsEditable = false;
             Init();
         }
@@ -118,6 +117,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.RegisterDimensionsGroupName;
         }
         public int IndexOf(IRegisterDimension dim)
         {

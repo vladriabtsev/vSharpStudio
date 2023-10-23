@@ -42,7 +42,6 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._Name = Defaults.Documents;
             this.IsEditable = false;
             this._ShortIdTypeForCacheKey = "d";
             Init();
@@ -70,6 +69,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.Documents;
         }
         public Document AddDocument(string name)
         {

@@ -81,7 +81,6 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._Name = Defaults.RegisterGroupName;
             this._PrefixForDbTables = "Reg";
             this.IsEditable = false;
             this._ShortIdTypeForCacheKey = "rg";
@@ -119,6 +118,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.RegisterGroupName;
         }
         public int IndexOf(IRegister reg)
         {

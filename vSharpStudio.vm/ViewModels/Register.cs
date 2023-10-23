@@ -51,7 +51,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public static readonly string DefaultName = "Register";
         [Browsable(false)]
         public new string IconName { get { return "iconCube"; } }
         //protected override string GetNodeIconName() { return "iconProperty"; }
@@ -193,7 +192,7 @@ namespace vSharpStudio.vm.ViewModels
 
             var node = new Register(this.Parent);
             this.ParentGroupListRegisters.Add(node);
-            this.GetUniqueName(Register.DefaultName, node, this.ParentGroupListRegisters.ListRegisters);
+            this.GetUniqueName(Defaults.RegisterName, node, this.ParentGroupListRegisters.ListRegisters);
             this.SetSelected(node);
             return node;
         }

@@ -67,14 +67,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
-            if (this.Parent is GroupDocuments)
-            {
-                this._Name = Defaults.PropertiesSharedGroupName;
-            }
-            else
-            {
-                this._Name = Defaults.PropertiesGroupName;
-            }
             this.ListProperties.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
@@ -92,17 +84,25 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+            if (this.Parent is GroupDocuments)
+            {
+                this._Name = Defaults.GroupSharedPropertiesName;
+            }
+            else
+            {
+                this._Name = Defaults.GroupPropertiesName;
+            }
         }
 
         protected override void OnParentChanged()
         {
             if (this.Parent is GroupDocuments)
             {
-                this._Name = Defaults.PropertiesSharedGroupName;
+                this._Name = Defaults.GroupSharedPropertiesName;
             }
             else
             {
-                this._Name = Defaults.PropertiesGroupName;
+                this._Name = Defaults.GroupPropertiesName;
             }
         }
 
@@ -476,7 +476,7 @@ namespace vSharpStudio.vm.ViewModels
             node.Position = this.GetNextPosition();
             if (node_impl == null)
             {
-                this.GetUniqueName(Property.DefaultName, node, this.ListProperties);
+                this.GetUniqueName(Defaults.PropertyName, node, this.ListProperties);
             }
 
             this.SetSelected(node);
