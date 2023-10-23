@@ -699,10 +699,11 @@ namespace vSharpStudio.vm.ViewModels
             res.IsCsNullable = true;
             return res;
         }
-        public IProperty GetPropertyDate(ITreeConfigNode parent, string guid, string name, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MAX)
+        public IProperty GetPropertyDateTimeUtc(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MAX)
         {
             var res = new Property(parent, guid, name, false);
             res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res, enumTimeAccuracyType, isNullable);
+            res.Position = position;
             res.IsCsNullable = true;
             return res;
         }
@@ -739,12 +740,13 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = 7;
             return res;
         }
-        public IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, bool isNullable = false)
+        public IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable = false)
         {
             var res = new Property(parent, guid, name, true);
             res.DataType = (DataType)this.GetIdRefDataType(res, isNullable);
             res.DataType.IsRefParent = true;
             res.IsHidden = true;
+            res.Position = position;
             return res;
         }
         public IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable = false)
@@ -756,11 +758,12 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = 8;
             return res;
         }
-        public IProperty GetPropertyRefDimension(IRegister parent, string guid, string name, bool isNullable = false)
+        public IProperty GetPropertyRefDimension(IRegister parent, string guid, string name, uint position, bool isNullable = false)
         {
             var res = new Property(parent, guid, name, true);
             res.DataType = (DataType)this.GetIdRefDataType(res, isNullable);
             res.IsHidden = true;
+            res.Position = position;
             //res.Position = 10 + relPosition;
             return res;
         }

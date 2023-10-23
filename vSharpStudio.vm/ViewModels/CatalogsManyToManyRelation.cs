@@ -60,6 +60,7 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this._Guid = System.Guid.NewGuid().ToString();
             this._PropertyIdGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDataTimeGuid = System.Guid.NewGuid().ToString();
             this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
             this._RefCat1Guid = System.Guid.NewGuid().ToString();
             this._RefCat2Guid = System.Guid.NewGuid().ToString();
@@ -249,33 +250,32 @@ namespace vSharpStudio.vm.ViewModels
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentGroupCatalogManyToManyRelations.ParentGroupRelations.ParentModel;
-            var prp = model.GetPropertyPkId(this.ParentGroupCatalogManyToManyRelations, this.PropertyIdGuid);
+            var prp = model.GetPropertyPkId(this.ParentGroupCatalogManyToManyRelations, this.PropertyIdGuid); // position 6
             res.Add(prp);
             if (isOptimistic)
             {
-                prp = model.GetPropertyVersion(this.ParentGroupCatalogManyToManyRelations, this.PropertyVersionGuid);
+                prp = model.GetPropertyVersion(this.ParentGroupCatalogManyToManyRelations, this.PropertyVersionGuid); // position 7
                 res.Add(prp);
             }
             if (this.GuidCat1 != null)
             {
                 if (model.IsUseCompositeNames)
-                    prp = model.GetPropertyRef(this.ParentGroupCatalogManyToManyRelations, this.RefCat1Guid, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidCat1]).CompositeName, false);
+                    prp = model.GetPropertyRef(this.ParentGroupCatalogManyToManyRelations, this.RefCat1Guid, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidCat1]).CompositeName, 1, false);
                 else
-                    prp = model.GetPropertyRef(this.ParentGroupCatalogManyToManyRelations, this.RefCat1Guid, "Ref" + this.Cfg.DicNodes[this.GuidCat1].Name, false);
+                    prp = model.GetPropertyRef(this.ParentGroupCatalogManyToManyRelations, this.RefCat1Guid, "Ref" + this.Cfg.DicNodes[this.GuidCat1].Name, 1, false);
                 res.Add(prp);
             }
             if (this.GuidCat2 != null)
             {
                 if (model.IsUseCompositeNames)
-                    prp = model.GetPropertyRef(this.ParentGroupCatalogManyToManyRelations, this.RefCat2Guid, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidCat2]).CompositeName, false);
+                    prp = model.GetPropertyRef(this.ParentGroupCatalogManyToManyRelations, this.RefCat2Guid, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidCat2]).CompositeName, 2, false);
                 else
-                    prp = model.GetPropertyRef(this.ParentGroupCatalogManyToManyRelations, this.RefCat2Guid, "Ref" + this.Cfg.DicNodes[this.GuidCat2].Name, false);
+                    prp = model.GetPropertyRef(this.ParentGroupCatalogManyToManyRelations, this.RefCat2Guid, "Ref" + this.Cfg.DicNodes[this.GuidCat2].Name, 2, false);
                 res.Add(prp);
             }
             if (this.IsUseHistory)
             {
-                //   ???
-                prp = model.GetPropertyRef(this.ParentGroupCatalogManyToManyRelations, this.RefCat1Guid, "Ref" + this.Cfg.DicNodes[this.GuidCat2].Name, false);
+                prp = model.GetPropertyDateTimeUtc(this.ParentGroupCatalogManyToManyRelations, this.PropertyDataTimeGuid, "DataTimeUtc", 3, false);
                 res.Add(prp);
             }
         }

@@ -1032,6 +1032,8 @@ namespace vSharpStudio.Unit
             var lst = rel.GetIncludedProperties(null, false, false);
             // Id, RefCat1, RefCat2
             Assert.AreEqual(3, lst.Count);
+            cfg.Model.Validate();
+            Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
 
             // without history, optimistic
             cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Clear();
@@ -1039,6 +1041,8 @@ namespace vSharpStudio.Unit
             lst = rel.GetIncludedProperties(null, true, false);
             // Id, RefCat1, RefCat2, version
             Assert.AreEqual(4, lst.Count);
+            cfg.Model.Validate();
+            Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
 
             // history, optimistic
             cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Clear();
@@ -1046,6 +1050,8 @@ namespace vSharpStudio.Unit
             lst = rel.GetIncludedProperties(null, true, false);
             // Id, RefCat1, RefCat2, date_time_utc, version
             Assert.AreEqual(5, lst.Count);
+            cfg.Model.Validate();
+            Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
 
             // history, not optimistic
             cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Clear();
@@ -1053,7 +1059,6 @@ namespace vSharpStudio.Unit
             lst = rel.GetIncludedProperties(null, false, false);
             // Id, RefCat1, RefCat2, date_time_utc
             Assert.AreEqual(4, lst.Count);
-
             cfg.Model.Validate();
             Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
         }

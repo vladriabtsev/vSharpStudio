@@ -136,11 +136,12 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public CatalogsManyToManyRelation AddRelation(string name, ICatalog? cat1, ICatalog? cat2, bool isUseHistory, string? guid = null)
+        public CatalogsManyToManyRelation AddRelation(string name, ICatalog cat1, ICatalog cat2, bool isUseHistory, string? guid = null)
         {
             var node = new CatalogsManyToManyRelation(this) { Name = name };
             node.GuidCat1 = cat1.Guid;
             node.GuidCat2 = cat2.Guid;
+            node.IsUseHistory = isUseHistory;
 #if DEBUG
             if (guid != null) // for test model generation
             {

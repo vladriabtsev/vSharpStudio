@@ -199,14 +199,12 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(pDocGuid);
 
             // Field timeline value
-            var pDocDatePost = (Property)m.GetPropertyDate(this, this.PropertyDocDateGuid, "DocDatePost", false);
-            pDocDatePost.Position = 10;
+            var pDocDatePost = (Property)m.GetPropertyDateTimeUtc(this, this.PropertyDocDateGuid, "DocDatePost", 10, false);
             pDocDatePost.TagInList = "pd";
             lst.Add(pDocDatePost);
 
             // Field timeline end
-            var pDocDatePostSequenceEnd = (Property)m.GetPropertyDate(this, this.PropertyDocDateSequenceGuid, "DocDatePostSequenceEnd", false);
-            pDocDatePostSequenceEnd.Position = 11;
+            var pDocDatePostSequenceEnd = (Property)m.GetPropertyDateTimeUtc(this, this.PropertyDocDateSequenceGuid, "DocDatePostSequenceEnd", 11, false);
             pDocDatePostSequenceEnd.TagInList = "se";
             lst.Add(pDocDatePostSequenceEnd);
             return lst;

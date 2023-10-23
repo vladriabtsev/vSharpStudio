@@ -3351,6 +3351,16 @@
               "defaultValue": ""
             },
             {
+              "name": "property_data_time_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "property_version_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
@@ -4861,6 +4871,16 @@
             },
             {
               "name": "property_id_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_data_time_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",

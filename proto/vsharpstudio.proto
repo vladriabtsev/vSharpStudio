@@ -3193,6 +3193,8 @@ message proto_catalogs_many_to_many_relation {
     // @attr [Browsable(false)]
     string property_id_guid = 61;
     // @attr [Browsable(false)]
+    string property_data_time_guid = 62;
+    // @attr [Browsable(false)]
     string property_version_guid = 69;
 
     // @attr [Browsable(false)]
@@ -3284,6 +3286,8 @@ message proto_documents_many_to_many_relation {
 
     // @attr [Browsable(false)]
     string property_id_guid = 61;
+    // @attr [Browsable(false)]
+    string property_data_time_guid = 62;
     // @attr [Browsable(false)]
     string property_version_guid = 69;
 

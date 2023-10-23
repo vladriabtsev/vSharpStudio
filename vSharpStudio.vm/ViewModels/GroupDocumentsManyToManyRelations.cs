@@ -136,7 +136,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public DocumentsManyToManyRelation AddRelation(string name, IDocument? doc1, IDocument? doc2, bool isUseHistory, string? guid = null)
+        public DocumentsManyToManyRelation AddRelation(string name, IDocument doc1, IDocument doc2, bool isUseHistory, string? guid = null)
         {
             var node = new DocumentsManyToManyRelation(this) { Name = name };
             node.GuidDoc1 = doc1.Guid;
