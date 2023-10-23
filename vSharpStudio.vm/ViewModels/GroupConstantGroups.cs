@@ -69,7 +69,6 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
-            this._Name = Defaults.GroupConstantGroupsName;
             this._PrefixForDbTables = "Cnst";
             this.IsEditable = false;
             Init();
@@ -97,6 +96,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.GroupConstantsName;
         }
         public GroupListConstants AddGroupConstants(string name)
         {

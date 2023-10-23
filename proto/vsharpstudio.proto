@@ -52,6 +52,7 @@ message proto_user_settings_opened_config {
  * ####################################### P L U G I N S ##################################
  */
 // @base ConfigObjectVmBase
+// @attr [Description("Installed plugins")]
 message proto_group_list_plugins {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -277,6 +278,7 @@ message proto_plugin_generator_project_settings {
     string settings = 3; 
 }
 // @base ConfigObjectVmBase
+// @attr [Description("User application settings (Solutions/Projects/Generators)")]
 message proto_group_list_app_solutions {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -601,7 +603,7 @@ enum proto_enum_code_type {
     Text = 1;
 }
 // Configuration model
-// @attr [CategoryOrder("Db Names Generation", 5)]
+// @attr [Description("Model for application generation in 'User Applications' group")]
 message proto_model {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]

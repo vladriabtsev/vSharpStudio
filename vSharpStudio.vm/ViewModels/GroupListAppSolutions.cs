@@ -41,7 +41,6 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._Name = "Apps";
             this.IsEditable = false;
             //this.DefaultDb.Parent = this;
             Init();
@@ -62,6 +61,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListAppSolutions.OnClearedAction = () => {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.ApplicationGroupName;
         }
         //[PropertyOrderAttribute(11)]
         //[ExpandableObjectAttribute()]

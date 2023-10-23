@@ -1134,6 +1134,7 @@ C O N S T A N T
 
 ### proto_group_list_app_solutions
 @base ConfigObjectVmBase
+@attr [Description(&#34;User application settings (Solutions/Projects/Generators)&#34;)]
 
 
 | Field | Type | Label | Description |
@@ -1448,6 +1449,7 @@ main view forms hierarchy node with children
 
 ### proto_group_list_plugins
 @base ConfigObjectVmBase
+@attr [Description(&#34;Installed plugins&#34;)]
 
 
 | Field | Type | Label | Description |
@@ -1616,7 +1618,7 @@ R E P O R T S
 
 ### proto_model
 Configuration model
-@attr [CategoryOrder(&#34;Db Names Generation&#34;, 5)]
+@attr [Description(&#34;Model for application generation in &#39;User Applications&#39; group&#34;)]
 
 
 | Field | Type | Label | Description |

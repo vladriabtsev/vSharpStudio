@@ -42,7 +42,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._Name = "Documents";
+            this._Name = Defaults.Documents;
             this.IsEditable = false;
             this._ShortIdTypeForCacheKey = "d";
             Init();

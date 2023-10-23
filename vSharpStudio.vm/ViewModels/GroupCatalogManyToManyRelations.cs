@@ -68,7 +68,6 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._Name = Defaults.CatalogMtmRelationsGroupName;
             this._PrefixForDbTables = "CtlgManyToMany";
             this.IsEditable = false;
 
@@ -103,6 +102,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.CatalogMtmRelationsGroupName;
         }
         public int IndexOf(ICatalogsManyToManyRelation cat)
         {

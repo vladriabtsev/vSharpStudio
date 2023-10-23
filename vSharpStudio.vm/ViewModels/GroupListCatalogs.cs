@@ -68,7 +68,6 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._Name = Defaults.CatalogsGroupName;
             this._PrefixForDbTables = "Ctlg";
             this.IsEditable = false;
             this._UseCodeProperty = EnumUseType.Default;
@@ -108,6 +107,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.GroupCatalogsName;
         }
         public int IndexOf(ICatalog cat)
         {

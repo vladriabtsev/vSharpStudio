@@ -38,7 +38,6 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._Name = "Common";
             this.IsEditable = false;
             Init();
         }
@@ -70,6 +69,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.OnRemoveChild();
             //};
+            this._Name = Defaults.GroupCommonName;
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

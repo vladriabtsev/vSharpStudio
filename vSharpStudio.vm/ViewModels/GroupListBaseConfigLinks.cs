@@ -41,7 +41,6 @@ namespace vSharpStudio.vm.ViewModels
         // public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnCreated()
         {
-            this._Name = Defaults.BaseConfigLinksName;
             this.IsEditable = false;
             // this.Children = new SortedObservableCollection<ITreeConfigNode>();
             // this.GroupSharedProperties.Parent = this;
@@ -73,6 +72,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+            this._Name = Defaults.BaseConfigLinksName;
         }
 
         #region Tree operations

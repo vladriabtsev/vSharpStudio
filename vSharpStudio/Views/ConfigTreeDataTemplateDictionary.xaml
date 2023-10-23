@@ -36,7 +36,7 @@
             <StackPanel Orientation="Horizontal" Visibility="{Binding TabName, Converter={StaticResource ConverterStringToVisible}, Mode=OneWay}">
                 <!--PreviewTab-->
                 <ContentControl Template="{StaticResource iconTab}" />
-                <TextBlock Text="{Binding TabName}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" />
+                <TextBlock Text="{Binding TabName}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" ToolTip="{Binding ToolTipText}" />
             </StackPanel>
             <ContentControl Template="{StaticResource iconDock}" Visibility="{Binding IsStopTabControl, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}"/>
             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
@@ -74,7 +74,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding Name}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding Name}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" ToolTip="{Binding ToolTipText}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
                 <Viewbox Height="7" Width="7" VerticalAlignment="Top" Visibility="{Binding IsNewOrHasNew, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
                     <ContentControl Template="{StaticResource iconAdd}" />

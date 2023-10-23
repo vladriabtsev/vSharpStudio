@@ -43,7 +43,6 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
-            this._Name = Defaults.DocumentsGroupName;
             this._PrefixForDbTables = "Doc";
             this._MondayBeforeFirstDocDate = Timestamp.FromDateTime(new DateTime(1000, 1, 6, 0, 0, 0, DateTimeKind.Utc));
             this.IsEditable = false;
@@ -77,6 +76,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.OnRemoveChild();
             //};
+            this._Name = Defaults.DocumentsGroupName;
         }
         public Document AddDocument(string name, string? guid = null)
         {
