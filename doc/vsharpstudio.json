@@ -1486,11 +1486,6 @@
               "name": "ONE_TO_MANY",
               "number": "1",
               "description": "@attr [Description(\"One to Many\")]"
-            },
-            {
-              "name": "MANY_TO_MANY",
-              "number": "2",
-              "description": "@attr [Description(\"Many to Many\")]"
             }
           ]
         },
@@ -2859,7 +2854,7 @@
           "name": "proto_catalog_folder",
           "longName": "proto_catalog_folder",
           "fullName": "proto_config.proto_catalog_folder",
-          "description": "C A T A L O G\n@exclude\n####################################### C A T A L O G ##########################################",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -3207,17 +3202,17 @@
           ]
         },
         {
-          "name": "proto_catalogs_relation_many_to_many_table",
-          "longName": "proto_catalogs_relation_many_to_many_table",
-          "fullName": "proto_config.proto_catalogs_relation_many_to_many_table",
-          "description": "@base BaseSettings",
+          "name": "proto_catalogs_many_to_many_relation",
+          "longName": "proto_catalogs_many_to_many_relation",
+          "fullName": "proto_config.proto_catalogs_many_to_many_relation",
+          "description": "@interface ICanAddNode\n@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3227,7 +3222,37 @@
             },
             {
               "name": "name",
-              "description": "",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3237,7 +3262,7 @@
             },
             {
               "name": "guid_cat1",
-              "description": "",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Catalog\")]\n@attr [Description(\"Catalog of Many To Many relation\")]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
@@ -3247,7 +3272,7 @@
             },
             {
               "name": "ref_cat1_guid",
-              "description": "",
+              "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3257,7 +3282,7 @@
             },
             {
               "name": "guid_cat2",
-              "description": "",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Catalog\")]\n@attr [Description(\"Catalog of Many To Many relation\")]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
@@ -3267,7 +3292,7 @@
             },
             {
               "name": "ref_cat2_guid",
-              "description": "",
+              "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3276,12 +3301,72 @@
               "defaultValue": ""
             },
             {
-              "name": "is_with_history",
-              "description": "",
+              "name": "is_use_history",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(10)]\n@attr [DisplayName(\"Use History\")]\n@attr [Description(\"Use history for relation\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "short_id",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_id_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_version_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -4364,7 +4449,7 @@
             },
             {
               "name": "use_doc_number_property",
-              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Number\")]\n@attr [Description(\"Use DocNumber property for document\")]",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Doc Number\")]\n@attr [Description(\"Use document number property for documents\")]",
               "label": "",
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
@@ -4374,7 +4459,7 @@
             },
             {
               "name": "doc_number_property_settings",
-              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Code property settings for Document\")]\n@attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [ReadOnly(true)]\n@attr [DisplayName(\"Sequence\")]\n@attr [Description(\"Document number property sequence settings\")]\n@attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]",
               "label": "",
               "type": "proto_document_number_property_settings",
               "longType": "proto_document_number_property_settings",
@@ -4384,7 +4469,7 @@
             },
             {
               "name": "use_doc_date_property",
-              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Date\")]\n@attr [Description(\"Use Date property for document\")]",
+              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Doc Date\")]\n@attr [Description(\"Use document date property for documents\")]",
               "label": "",
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
@@ -6360,6 +6445,107 @@
           ]
         },
         {
+          "name": "proto_group_catalog_many_to_many_relations",
+          "longName": "proto_group_catalog_many_to_many_relations",
+          "fullName": "proto_config.proto_group_catalog_many_to_many_relations",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "prefix_for_db_tables",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Db prefix\")]\n@attr [Description(\"Prefix for catalog db table names. Used if set to use in config model\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "short_id_type_for_cache_key",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Short ID\")]\n@attr [Description(\"Short catalog type ID for cache key generator\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_catalogs_many_to_many_relations",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_catalogs_many_to_many_relation",
+              "longType": "proto_catalogs_many_to_many_relation",
+              "fullType": "proto_config.proto_catalogs_many_to_many_relation",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_group_constant_groups",
           "longName": "proto_group_constant_groups",
           "fullName": "proto_config.proto_group_constant_groups",
@@ -6561,7 +6747,7 @@
             },
             {
               "name": "use_doc_date_property",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Date\")]\n@attr [Description(\"Use Date property for document by default\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Doc Date\")]\n@attr [Description(\"Use Date property for documents\")]",
               "label": "",
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
@@ -6823,6 +7009,16 @@
               "defaultValue": ""
             },
             {
+              "name": "group_list_relations",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_group_catalog_many_to_many_relations",
+              "longType": "proto_group_catalog_many_to_many_relations",
+              "fullType": "proto_config.proto_group_catalog_many_to_many_relations",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "sorting_value",
               "description": "@attr [Browsable(false)]",
               "label": "",
@@ -6919,16 +7115,6 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_all_catalogs_many_to_many_relations",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_catalogs_relation_many_to_many_table",
-              "longType": "proto_catalogs_relation_many_to_many_table",
-              "fullType": "proto_config.proto_catalogs_relation_many_to_many_table",
               "ismap": false,
               "defaultValue": ""
             },
@@ -8872,7 +9058,7 @@
             },
             {
               "name": "property_code_name",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Code property\")]\n@attr [Description(\"Name of code auto generated property if it is used in catalog\")]",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Code property\")]\n@attr [Description(\"Name of code auto generated property if it is used in catalog\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -8882,7 +9068,7 @@
             },
             {
               "name": "use_code_property",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item by default\")]",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item by default\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -8892,7 +9078,7 @@
             },
             {
               "name": "property_name_name",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Name property\")]\n@attr [Description(\"Name of name auto generated property if it is used in catalog\")]",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Name property\")]\n@attr [Description(\"Name of name auto generated property if it is used in catalog\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -8902,7 +9088,7 @@
             },
             {
               "name": "use_name_property",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item by default\")]",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item by default\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -8912,7 +9098,7 @@
             },
             {
               "name": "property_description_name",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"Description property\")]\n@attr [Description(\"Name of description auto generated property if it is used in catalog\")]",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(26)]\n@attr [DisplayName(\"Description property\")]\n@attr [Description(\"Name of description auto generated property if it is used in catalog\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -8922,7 +9108,7 @@
             },
             {
               "name": "use_description_property",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(26)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item by default\")]",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item by default\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -8932,7 +9118,7 @@
             },
             {
               "name": "property_is_folder_name",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(27)]\n@attr [DisplayName(\"IsFolder property\")]\n@attr [Description(\"Name of is folder auto generated property if it is used in catalog\")]",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(45)]\n@attr [DisplayName(\"IsFolder property\")]\n@attr [Description(\"Name of is folder auto generated property if it is used in catalog\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -8942,7 +9128,7 @@
             },
             {
               "name": "property_doc_date_name",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(31)]\n@attr [DisplayName(\"Date property\")]\n@attr [Description(\"Name of date auto generated property if it is used in documents\")]",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(30)]\n@attr [DisplayName(\"Doc Date property\")]\n@attr [Description(\"Name of document date auto generated property if it is used in documents\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -8952,7 +9138,7 @@
             },
             {
               "name": "use_doc_date_property",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Use Doc Date\")]\n@attr [Description(\"Use Date property for documents\")]",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(29)]\n@attr [DisplayName(\"Use Doc Date\")]\n@attr [Description(\"Use document date property for documents\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -8962,7 +9148,7 @@
             },
             {
               "name": "property_doc_number_name",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(29)]\n@attr [DisplayName(\"Doc number property\")]\n@attr [Description(\"Name of document number auto generated property\")]",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(42)]\n@attr [DisplayName(\"Doc Number property\")]\n@attr [Description(\"Name of document number auto generated property\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -8972,7 +9158,7 @@
             },
             {
               "name": "use_doc_number_property",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(30)]\n@attr [DisplayName(\"Use Doc Code\")]\n@attr [Description(\"Use Code property for documents\")]",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(41)]\n@attr [DisplayName(\"Use Doc Number\")]\n@attr [Description(\"Use document number property for documents\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -9022,6 +9208,16 @@
             },
             {
               "name": "last_register_short_id",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "last_catalog_relation_short_id",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "int32",

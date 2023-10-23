@@ -260,24 +260,6 @@ namespace vSharpStudio.vm.ViewModels
                 res = false;
             return res;
         }
-        public string GetDebuggerDisplay(bool isOptimistic)
-        {
-            var sb = new StringBuilder();
-            sb.Append("FOL ");
-            sb.Append(this.Name);
-            sb.Append(", ");
-            sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentModel.PKeyName);
-            sb.Append(":{");
-            sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentModel.PKeyName);
-            sb.Append(",nq} RefTreeParent:{RefTreeParent,nq}");
-            if (isOptimistic)
-            {
-                sb.Append(" RecVer:{");
-                sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentModel.RecordVersionFieldName);
-                sb.Append(",nq}");
-            }
-            return sb.ToString();
-        }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;

@@ -9,8 +9,13 @@ using vSharpStudio.common.ViewModels;
 
 namespace vSharpStudio.vm.ViewModels
 {
+    [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class DocumentNumberPropertySettings : IParent
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" {this.ToString()}";
+        }
         public override string ToString()
         {
             string unique = "";

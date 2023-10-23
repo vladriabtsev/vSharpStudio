@@ -6029,6 +6029,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._LastDocumentShortId = from.LastDocumentShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._LastDetailShortId = from.LastDetailShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._LastRegisterShortId = from.LastRegisterShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._LastCatalogRelationShortId = from.LastCatalogRelationShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsGridSortableCustom = from.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsGridFilterable = from.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
@@ -6091,6 +6092,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._LastDocumentShortId = from.LastDocumentShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._LastDetailShortId = from.LastDetailShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._LastRegisterShortId = from.LastRegisterShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._LastCatalogRelationShortId = from.LastCatalogRelationShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsGridSortableCustom = from.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsGridFilterable = from.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
@@ -6238,6 +6240,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._LastDocumentShortId = m.LastDocumentShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._LastDetailShortId = m.LastDetailShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._LastRegisterShortId = m.LastRegisterShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._LastCatalogRelationShortId = m.LastCatalogRelationShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsGridSortable = m.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsGridSortableCustom = m.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsGridFilterable = m.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
@@ -6315,6 +6318,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.LastDocumentShortId = vm.LastDocumentShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.LastDetailShortId = vm.LastDetailShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.LastRegisterShortId = vm.LastRegisterShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.LastCatalogRelationShortId = vm.LastCatalogRelationShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.IsGridSortable = vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.IsGridSortableCustom = vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.IsGridFilterable = vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
@@ -6678,7 +6682,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnRecordVersionFieldTypeChanged();
         
         [Category("Property settings")]
-        [PropertyOrderAttribute(21)]
+        [PropertyOrderAttribute(22)]
         [DisplayName("Code property")]
         [Description("Name of code auto generated property if it is used in catalog")]
         public string PropertyCodeName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -6699,7 +6703,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnPropertyCodeNameChanged();
         
         [Category("Property settings")]
-        [PropertyOrderAttribute(22)]
+        [PropertyOrderAttribute(21)]
         [DisplayName("Use Code")]
         [Description("Use Code property for catalog item by default")]
         public bool UseCodeProperty // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -6720,7 +6724,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnUseCodePropertyChanged();
         
         [Category("Property settings")]
-        [PropertyOrderAttribute(23)]
+        [PropertyOrderAttribute(24)]
         [DisplayName("Name property")]
         [Description("Name of name auto generated property if it is used in catalog")]
         public string PropertyNameName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -6741,7 +6745,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnPropertyNameNameChanged();
         
         [Category("Property settings")]
-        [PropertyOrderAttribute(24)]
+        [PropertyOrderAttribute(23)]
         [DisplayName("Use Name")]
         [Description("Use Name property for catalog item by default")]
         public bool UseNameProperty // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -6762,7 +6766,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnUseNamePropertyChanged();
         
         [Category("Property settings")]
-        [PropertyOrderAttribute(25)]
+        [PropertyOrderAttribute(26)]
         [DisplayName("Description property")]
         [Description("Name of description auto generated property if it is used in catalog")]
         public string PropertyDescriptionName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -6783,7 +6787,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnPropertyDescriptionNameChanged();
         
         [Category("Property settings")]
-        [PropertyOrderAttribute(26)]
+        [PropertyOrderAttribute(25)]
         [DisplayName("Use Description")]
         [Description("Use Description property for catalog item by default")]
         public bool UseDescriptionProperty // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -6804,7 +6808,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnUseDescriptionPropertyChanged();
         
         [Category("Property settings")]
-        [PropertyOrderAttribute(27)]
+        [PropertyOrderAttribute(45)]
         [DisplayName("IsFolder property")]
         [Description("Name of is folder auto generated property if it is used in catalog")]
         public string PropertyIsFolderName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -6825,9 +6829,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnPropertyIsFolderNameChanged();
         
         [Category("Property settings")]
-        [PropertyOrderAttribute(31)]
-        [DisplayName("Date property")]
-        [Description("Name of date auto generated property if it is used in documents")]
+        [PropertyOrderAttribute(30)]
+        [DisplayName("Doc Date property")]
+        [Description("Name of document date auto generated property if it is used in documents")]
         public string PropertyDocDateName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._PropertyDocDateName; }
@@ -6846,9 +6850,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnPropertyDocDateNameChanged();
         
         [Category("Property settings")]
-        [PropertyOrderAttribute(32)]
+        [PropertyOrderAttribute(29)]
         [DisplayName("Use Doc Date")]
-        [Description("Use Date property for documents")]
+        [Description("Use document date property for documents")]
         public bool UseDocDateProperty // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._UseDocDateProperty; }
@@ -6867,8 +6871,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnUseDocDatePropertyChanged();
         
         [Category("Property settings")]
-        [PropertyOrderAttribute(29)]
-        [DisplayName("Doc number property")]
+        [PropertyOrderAttribute(42)]
+        [DisplayName("Doc Number property")]
         [Description("Name of document number auto generated property")]
         public string PropertyDocNumberName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
@@ -6888,9 +6892,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnPropertyDocNumberNameChanged();
         
         [Category("Property settings")]
-        [PropertyOrderAttribute(30)]
-        [DisplayName("Use Doc Code")]
-        [Description("Use Code property for documents")]
+        [PropertyOrderAttribute(41)]
+        [DisplayName("Use Doc Number")]
+        [Description("Use document number property for documents")]
         public bool UseDocNumberProperty // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._UseDocNumberProperty; }
@@ -6997,6 +7001,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private int _LastRegisterShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
         //partial void OnLastRegisterShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnLastRegisterShortIdChanged();
+        
+        [Browsable(false)]
+        public int LastCatalogRelationShortId // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._LastCatalogRelationShortId; }
+            set
+            {
+                // Use 'OnLastCatalogRelationShortIdChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._LastCatalogRelationShortId, value, (t) => { /*this.OnLastCatalogRelationShortIdChanging(ref value);*/ this._LastCatalogRelationShortId = value; this.OnLastCatalogRelationShortIdChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private int _LastCatalogRelationShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnLastCatalogRelationShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnLastCatalogRelationShortIdChanged();
         
         [Category("DataGrid settings")]
         [DisplayName("Sortable")]
@@ -7224,256 +7246,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         IReadOnlyList<IPluginGroupModelExtentions> IModel.ListPluginGroupsModelExtentions { get { return (this as Model).ListPluginGroupsModelExtentions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:129
-        #endregion Properties
-    }
-    // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
-    //       IsWithParent: True 
-    //      IsDefaultBase: False 
-    // IsConfigObjectBase: False 
-    //      IsGenSettings: False 
-    //     IsBindableBase: True 
-    //     IsEditableBase: True 
-    //  IsValidatableBase: True 
-    //    IsISortingValue: False 
-    public partial class CatalogsRelationManyToManyTableValidator : ValidatorBase<CatalogsRelationManyToManyTable, CatalogsRelationManyToManyTableValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
-    public partial class CatalogsRelationManyToManyTable : BaseSettings<CatalogsRelationManyToManyTable, CatalogsRelationManyToManyTableValidator>, ICatalogsRelationManyToManyTable // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
-    {
-        public override string ToDebugString()
-        {
-            var t = this.GetType();
-            var mes = t.Name + ":";
-            var p = t.GetProperty("Name");
-            if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes);
-            return mes + base.ToDebugString();
-        }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR
-        public CatalogsRelationManyToManyTable(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:50
-            : base(parent, CatalogsRelationManyToManyTableValidator.Validator)
-        {
-            this.OnCreating();
-            this.OnCreated();
-        }
-        // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating();
-        // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreated();
-        #endregion CTOR
-        #region Procedures
-        public static CatalogsRelationManyToManyTable Clone(ITreeConfigNode? parent, ICatalogsRelationManyToManyTable from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:29
-        {
-            Debug.Assert(from != null);
-            CatalogsRelationManyToManyTable vm = new CatalogsRelationManyToManyTable(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:36
-            vm._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._GuidCat1 = from.GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._RefCat1Guid = from.RefCat1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._GuidCat2 = from.GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._RefCat2Guid = from.RefCat2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._IsWithHistory = from.IsWithHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            return vm;
-        }
-        public static void Update(CatalogsRelationManyToManyTable to, ICatalogsRelationManyToManyTable from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:76
-        {
-            Debug.Assert(to != null);
-            Debug.Assert(from != null);
-            to._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._GuidCat1 = from.GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._RefCat1Guid = from.RefCat1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._GuidCat2 = from.GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._RefCat2Guid = from.RefCat2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._IsWithHistory = from.IsWithHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-        }
-        // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:146
-        #region IEditable
-        public override CatalogsRelationManyToManyTable Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            Debug.Assert(this is IConfig || this.Parent != null);
-            return CatalogsRelationManyToManyTable.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:154
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(CatalogsRelationManyToManyTable from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            CatalogsRelationManyToManyTable.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_catalogs_relation_many_to_many_table' to 'CatalogsRelationManyToManyTable'
-        public static CatalogsRelationManyToManyTable ConvertToVM(Proto.Config.proto_catalogs_relation_many_to_many_table m, CatalogsRelationManyToManyTable vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:170
-        {
-            Debug.Assert(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm._Guid = m.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._Name = m.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._GuidCat1 = m.GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._RefCat1Guid = m.RefCat1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._GuidCat2 = m.GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._RefCat2Guid = m.RefCat2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._IsWithHistory = m.IsWithHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            return vm;
-        }
-        // Conversion from 'CatalogsRelationManyToManyTable' to 'proto_catalogs_relation_many_to_many_table'
-        public static Proto.Config.proto_catalogs_relation_many_to_many_table ConvertToProto(CatalogsRelationManyToManyTable vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:229
-        {
-            Debug.Assert(vm != null);
-            Proto.Config.proto_catalogs_relation_many_to_many_table m = new Proto.Config.proto_catalogs_relation_many_to_many_table(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:232
-            m.Guid = vm.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.Name = vm.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.GuidCat1 = vm.GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.RefCat1Guid = vm.RefCat1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.GuidCat2 = vm.GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.RefCat2Guid = vm.RefCat2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.IsWithHistory = vm.IsWithHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:9
-        {
-            Debug.Assert(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:36
-        }
-        #endregion Procedures
-        #region Properties
-        
-        public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
-        { 
-            get { return this._Guid; }
-            set
-            {
-                // Use 'OnGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (this._Guid != value) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:25
-                {
-                    //this.OnGuidChanging(ref value);
-                    _Guid = value;
-                    this.OnGuidChanged();
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:31
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:34
-                }
-            }
-        }
-        private string _Guid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnGuidChanged();
-        
-        public string Name // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
-        { 
-            get { return this._Name; }
-            set
-            {
-                // Use 'OnNameChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (this._Name != value) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:25
-                {
-                    //this.OnNameChanging(ref value);
-                    _Name = value;
-                    this.OnNameChanged();
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:31
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:34
-                }
-            }
-        }
-        private string _Name = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnNameChanged();
-        
-        public string? GuidCat1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
-        { 
-            get { return this._GuidCat1; }
-            set
-            {
-                // Use 'OnGuidCat1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._GuidCat1, value, (t) => { /*this.OnGuidCat1Changing(ref value);*/ this._GuidCat1 = value; this.OnGuidCat1Changed(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
-                }
-            }
-        }
-        private string? _GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnGuidCat1Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnGuidCat1Changed();
-        
-        public string RefCat1Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
-        { 
-            get { return this._RefCat1Guid; }
-            set
-            {
-                // Use 'OnRefCat1GuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._RefCat1Guid, value, (t) => { /*this.OnRefCat1GuidChanging(ref value);*/ this._RefCat1Guid = value; this.OnRefCat1GuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
-                }
-            }
-        }
-        private string _RefCat1Guid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnRefCat1GuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnRefCat1GuidChanged();
-        
-        public string? GuidCat2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
-        { 
-            get { return this._GuidCat2; }
-            set
-            {
-                // Use 'OnGuidCat2Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._GuidCat2, value, (t) => { /*this.OnGuidCat2Changing(ref value);*/ this._GuidCat2 = value; this.OnGuidCat2Changed(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
-                }
-            }
-        }
-        private string? _GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnGuidCat2Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnGuidCat2Changed();
-        
-        public string RefCat2Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
-        { 
-            get { return this._RefCat2Guid; }
-            set
-            {
-                // Use 'OnRefCat2GuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._RefCat2Guid, value, (t) => { /*this.OnRefCat2GuidChanging(ref value);*/ this._RefCat2Guid = value; this.OnRefCat2GuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
-                }
-            }
-        }
-        private string _RefCat2Guid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnRefCat2GuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnRefCat2GuidChanged();
-        
-        public bool IsWithHistory // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
-        { 
-            get { return this._IsWithHistory; }
-            set
-            {
-                // Use 'OnIsWithHistoryChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._IsWithHistory, value, (t) => { /*this.OnIsWithHistoryChanging(ref value);*/ this._IsWithHistory = value; this.OnIsWithHistoryChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
-                }
-            }
-        }
-        private bool _IsWithHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnIsWithHistoryChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnIsWithHistoryChanged();
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
@@ -18531,11 +18303,1001 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
+    //    IsISortingValue: True 
+    public partial class CatalogsManyToManyRelationValidator : ValidatorBase<CatalogsManyToManyRelation, CatalogsManyToManyRelationValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
+    public partial class CatalogsManyToManyRelation : ConfigObjectVmGenSettings<CatalogsManyToManyRelation, CatalogsManyToManyRelationValidator>, IComparable<CatalogsManyToManyRelation>, IConfigAcceptVisitor, ICatalogsManyToManyRelation // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
+    {
+        public override string ToDebugString()
+        {
+            var t = this.GetType();
+            var mes = t.Name + ":";
+            var p = t.GetProperty("Name");
+            if (p != null)
+                mes = mes + (string?)p.GetValue(this) + ":";
+            p = t.GetProperty("IsNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " New";
+            p = t.GetProperty("IsHasNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " HasNew";
+            OnDebugStringExtend(ref mes);
+            return mes + base.ToDebugString();
+        }
+        partial void OnDebugStringExtend(ref string mes);
+        #region CTOR
+        public CatalogsManyToManyRelation(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:50
+            : base(parent, CatalogsManyToManyRelationValidator.Validator)
+        {
+            this.OnCreating();
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:59
+            this.OnCreated();
+        }
+        // Use fields to set properties of this class during creation to avoid property change notification
+        partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
+        partial void OnCreated();
+        #endregion CTOR
+        #region Procedures
+        
+        public override void Sort(Type type) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:9
+        {
+            if (type == typeof(PluginGeneratorNodeSettings)) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:16
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
+        }
+        public static CatalogsManyToManyRelation Clone(ITreeConfigNode? parent, ICatalogsManyToManyRelation from, bool isDeep = true, bool isNewGuid = false) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:29
+        {
+            Debug.Assert(from != null);
+            CatalogsManyToManyRelation vm = new CatalogsManyToManyRelation(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:36
+            vm._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._NameUi = from.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._GuidCat1 = from.GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._RefCat1Guid = from.RefCat1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._GuidCat2 = from.GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._RefCat2Guid = from.RefCat2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._IsUseHistory = from.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._ShortId = from.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._PropertyVersionGuid = from.PropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:54
+            foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:55
+                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:71
+                vm.SetNewGuid();
+            return vm;
+        }
+        public static void Update(CatalogsManyToManyRelation to, ICatalogsManyToManyRelation from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:76
+        {
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
+            to._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._NameUi = from.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._GuidCat1 = from.GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._RefCat1Guid = from.RefCat1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._GuidCat2 = from.GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._RefCat2Guid = from.RefCat2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._IsUseHistory = from.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._ShortId = from.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._PropertyVersionGuid = from.PropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:85
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:116
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.Add(p);
+                    }
+                }
+            }
+        }
+        // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:146
+        #region IEditable
+        public override CatalogsManyToManyRelation Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return CatalogsManyToManyRelation.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:154
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(CatalogsManyToManyRelation from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            CatalogsManyToManyRelation.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_catalogs_many_to_many_relation' to 'CatalogsManyToManyRelation'
+        public static CatalogsManyToManyRelation ConvertToVM(Proto.Config.proto_catalogs_many_to_many_relation m, CatalogsManyToManyRelation vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:170
+        {
+            Debug.Assert(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm._Guid = m.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._Name = m.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._SortingValue = m.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._NameUi = m.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._Description = m.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._GuidCat1 = m.GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._RefCat1Guid = m.RefCat1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._GuidCat2 = m.GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._RefCat2Guid = m.RefCat2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._IsUseHistory = m.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._IsNew = m.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._IsMarkedForDeletion = m.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._ShortId = m.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._PropertyIdGuid = m.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._PropertyVersionGuid = m.PropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:189
+            foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:193
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:195
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
+            vm.OnInitFromDto(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
+            return vm;
+        }
+        // Conversion from 'CatalogsManyToManyRelation' to 'proto_catalogs_many_to_many_relation'
+        public static Proto.Config.proto_catalogs_many_to_many_relation ConvertToProto(CatalogsManyToManyRelation vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:229
+        {
+            Debug.Assert(vm != null);
+            Proto.Config.proto_catalogs_many_to_many_relation m = new Proto.Config.proto_catalogs_many_to_many_relation(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:232
+            m.Guid = vm.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.Name = vm.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.NameUi = vm.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.Description = vm.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.GuidCat1 = vm.GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.RefCat1Guid = vm.RefCat1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.GuidCat2 = vm.GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.RefCat2Guid = vm.RefCat2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.IsUseHistory = vm.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.PropertyIdGuid = vm.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.PropertyVersionGuid = vm.PropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:235
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:239
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:9
+        {
+            Debug.Assert(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            foreach (var t in this.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:23
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:36
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [Category("")]
+        [PropertyOrderAttribute(-2)]
+        [ReadOnly(true)]
+        public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._Guid; }
+            set
+            {
+                // Use 'OnGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (this._Guid != value) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:25
+                {
+                    //this.OnGuidChanging(ref value);
+                    _Guid = value;
+                    this.OnGuidChanged();
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:31
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:34
+                }
+            }
+        }
+        //partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnGuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(1)]
+        public string Name // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._Name; }
+            set
+            {
+                // Use 'OnNameChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (this._Name != value) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:25
+                {
+                    //this.OnNameChanging(ref value);
+                    _Name = value;
+                    this.OnNameChanged();
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:31
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:34
+                }
+            }
+        }
+        //partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnNameChanged();
+        
+        [Browsable(false)]
+        public ulong SortingValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._SortingValue; }
+            set
+            {
+                // Use 'OnSortingValueChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (this._SortingValue != value) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:25
+                {
+                    //this.OnSortingValueChanging(ref value);
+                    _SortingValue = value;
+                    this.OnSortingValueChanged();
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:31
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:34
+                }
+            }
+        }
+        //partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnSortingValueChanged();
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        
+        [Category("")]
+        [PropertyOrderAttribute(2)]
+        [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
+        public string NameUi // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._NameUi; }
+            set
+            {
+                // Use 'OnNameUiChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (this._NameUi != value) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:25
+                {
+                    //this.OnNameUiChanging(ref value);
+                    _NameUi = value;
+                    this.OnNameUiChanged();
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:31
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:34
+                }
+            }
+        }
+        //partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnNameUiChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(3)]
+        public string Description // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._Description; }
+            set
+            {
+                // Use 'OnDescriptionChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._Description, value, (t) => { /*this.OnDescriptionChanging(ref value);*/ this._Description = value; this.OnDescriptionChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _Description = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnDescriptionChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(6)]
+        [DisplayName("Catalog")]
+        [Description("Catalog of Many To Many relation")]
+        public string? GuidCat1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._GuidCat1; }
+            set
+            {
+                // Use 'OnGuidCat1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._GuidCat1, value, (t) => { /*this.OnGuidCat1Changing(ref value);*/ this._GuidCat1 = value; this.OnGuidCat1Changed(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string? _GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnGuidCat1Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnGuidCat1Changed();
+        
+        [Browsable(false)]
+        public string RefCat1Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._RefCat1Guid; }
+            set
+            {
+                // Use 'OnRefCat1GuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._RefCat1Guid, value, (t) => { /*this.OnRefCat1GuidChanging(ref value);*/ this._RefCat1Guid = value; this.OnRefCat1GuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _RefCat1Guid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnRefCat1GuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnRefCat1GuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(8)]
+        [DisplayName("Catalog")]
+        [Description("Catalog of Many To Many relation")]
+        public string? GuidCat2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._GuidCat2; }
+            set
+            {
+                // Use 'OnGuidCat2Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._GuidCat2, value, (t) => { /*this.OnGuidCat2Changing(ref value);*/ this._GuidCat2 = value; this.OnGuidCat2Changed(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string? _GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnGuidCat2Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnGuidCat2Changed();
+        
+        [Browsable(false)]
+        public string RefCat2Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._RefCat2Guid; }
+            set
+            {
+                // Use 'OnRefCat2GuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._RefCat2Guid, value, (t) => { /*this.OnRefCat2GuidChanging(ref value);*/ this._RefCat2Guid = value; this.OnRefCat2GuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _RefCat2Guid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnRefCat2GuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnRefCat2GuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(10)]
+        [DisplayName("Use History")]
+        [Description("Use history for relation")]
+        public bool IsUseHistory // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._IsUseHistory; }
+            set
+            {
+                // Use 'OnIsUseHistoryChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._IsUseHistory, value, (t) => { /*this.OnIsUseHistoryChanging(ref value);*/ this._IsUseHistory = value; this.OnIsUseHistoryChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private bool _IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnIsUseHistoryChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsUseHistoryChanged();
+        
+        [Browsable(false)]
+        public bool IsNew // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._IsNew; }
+            set
+            {
+                // Use 'OnIsNewChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._IsNew, value, (t) => { /*this.OnIsNewChanging(ref value);*/ this._IsNew = value; this.OnIsNewChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private bool _IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnIsNewChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsNewChanged();
+        
+        [DisplayName("For deletion")]
+        [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
+        public bool IsMarkedForDeletion // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._IsMarkedForDeletion; }
+            set
+            {
+                // Use 'OnIsMarkedForDeletionChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._IsMarkedForDeletion, value, (t) => { /*this.OnIsMarkedForDeletionChanging(ref value);*/ this._IsMarkedForDeletion = value; this.OnIsMarkedForDeletionChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private bool _IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnIsMarkedForDeletionChanged();
+        
+        [Browsable(false)]
+        public int ShortId // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._ShortId; }
+            set
+            {
+                // Use 'OnShortIdChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._ShortId, value, (t) => { /*this.OnShortIdChanging(ref value);*/ this._ShortId = value; this.OnShortIdChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private int _ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnShortIdChanging(ref int to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnShortIdChanged();
+        
+        [Browsable(false)]
+        public string PropertyIdGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._PropertyIdGuid; }
+            set
+            {
+                // Use 'OnPropertyIdGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._PropertyIdGuid, value, (t) => { /*this.OnPropertyIdGuidChanging(ref value);*/ this._PropertyIdGuid = value; this.OnPropertyIdGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _PropertyIdGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnPropertyIdGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnPropertyIdGuidChanged();
+        
+        [Browsable(false)]
+        public string PropertyVersionGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._PropertyVersionGuid; }
+            set
+            {
+                // Use 'OnPropertyVersionGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._PropertyVersionGuid, value, (t) => { /*this.OnPropertyVersionGuidChanging(ref value);*/ this._PropertyVersionGuid = value; this.OnPropertyVersionGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _PropertyVersionGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnPropertyVersionGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnPropertyVersionGuidChanged();
+        
+        [Browsable(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._ListNodeGeneratorsSettings; }
+            set
+            {
+                // Use 'OnListNodeGeneratorsSettingsChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._ListNodeGeneratorsSettings, value, (t) => { /*this.OnListNodeGeneratorsSettingsChanging(value);*/ this._ListNodeGeneratorsSettings = value; this.OnListNodeGeneratorsSettingsChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnListNodeGeneratorsSettingsChanged();
+        IReadOnlyList<IPluginGeneratorNodeSettings> ICatalogsManyToManyRelation.ListNodeGeneratorsSettings { get { return (this as CatalogsManyToManyRelation).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
+        
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:129
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:133 proto_catalogs_many_to_many_relation
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        #endregion Properties
+    }
+    // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    //    IsISortingValue: False 
+    public partial class GroupCatalogManyToManyRelationsValidator : ValidatorBase<GroupCatalogManyToManyRelations, GroupCatalogManyToManyRelationsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
+    public partial class GroupCatalogManyToManyRelations : ConfigObjectVmGenSettings<GroupCatalogManyToManyRelations, GroupCatalogManyToManyRelationsValidator>, IComparable<GroupCatalogManyToManyRelations>, IConfigAcceptVisitor, IGroupCatalogManyToManyRelations // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
+    {
+        public override string ToDebugString()
+        {
+            var t = this.GetType();
+            var mes = t.Name + ":";
+            var p = t.GetProperty("Name");
+            if (p != null)
+                mes = mes + (string?)p.GetValue(this) + ":";
+            p = t.GetProperty("IsNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " New";
+            p = t.GetProperty("IsHasNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " HasNew";
+            OnDebugStringExtend(ref mes);
+            return mes + base.ToDebugString();
+        }
+        partial void OnDebugStringExtend(ref string mes);
+        #region CTOR
+        public GroupCatalogManyToManyRelations(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:50
+            : base(parent, GroupCatalogManyToManyRelationsValidator.Validator)
+        {
+            this.OnCreating();
+            this._ListCatalogsManyToManyRelations = new ConfigNodesCollection<CatalogsManyToManyRelation>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:59
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:59
+            this.OnCreated();
+        }
+        // Use fields to set properties of this class during creation to avoid property change notification
+        partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
+        partial void OnCreated();
+        #endregion CTOR
+        #region Procedures
+        
+        public override void Sort(Type type) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:9
+        {
+            if (type == typeof(CatalogsManyToManyRelation)) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:16
+            {
+                this.ListCatalogsManyToManyRelations.Sort();
+            }
+            if (type == typeof(PluginGeneratorNodeSettings)) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:16
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
+        }
+        public static GroupCatalogManyToManyRelations Clone(ITreeConfigNode? parent, IGroupCatalogManyToManyRelations from, bool isDeep = true, bool isNewGuid = false) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:29
+        {
+            Debug.Assert(from != null);
+            GroupCatalogManyToManyRelations vm = new GroupCatalogManyToManyRelations(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:36
+            vm._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._NameUi = from.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._PrefixForDbTables = from.PrefixForDbTables; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._ListCatalogsManyToManyRelations = new ConfigNodesCollection<CatalogsManyToManyRelation>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:54
+            foreach (var t in from.ListCatalogsManyToManyRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:55
+                vm.ListCatalogsManyToManyRelations.Add(CatalogsManyToManyRelation.Clone(vm, (CatalogsManyToManyRelation)t, isDeep));
+            vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:54
+            foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:55
+                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:71
+                vm.SetNewGuid();
+            return vm;
+        }
+        public static void Update(GroupCatalogManyToManyRelations to, IGroupCatalogManyToManyRelations from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:76
+        {
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
+            to._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._NameUi = from.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._PrefixForDbTables = from.PrefixForDbTables; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:85
+            {
+                foreach (var t in to.ListCatalogsManyToManyRelations.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListCatalogsManyToManyRelations)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            CatalogsManyToManyRelation.Update((CatalogsManyToManyRelation)t, (CatalogsManyToManyRelation)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListCatalogsManyToManyRelations.Remove(t);
+                }
+                foreach (var tt in from.ListCatalogsManyToManyRelations)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListCatalogsManyToManyRelations.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new CatalogsManyToManyRelation(to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:116
+                        CatalogsManyToManyRelation.Update(p, (CatalogsManyToManyRelation)tt, isDeep);
+                        to.ListCatalogsManyToManyRelations.Add(p);
+                    }
+                }
+            }
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:85
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:116
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.Add(p);
+                    }
+                }
+            }
+        }
+        // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:146
+        #region IEditable
+        public override GroupCatalogManyToManyRelations Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return GroupCatalogManyToManyRelations.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:154
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(GroupCatalogManyToManyRelations from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            GroupCatalogManyToManyRelations.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_group_catalog_many_to_many_relations' to 'GroupCatalogManyToManyRelations'
+        public static GroupCatalogManyToManyRelations ConvertToVM(Proto.Config.proto_group_catalog_many_to_many_relations m, GroupCatalogManyToManyRelations vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:170
+        {
+            Debug.Assert(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm._Guid = m.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._Name = m.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._NameUi = m.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._Description = m.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._PrefixForDbTables = m.PrefixForDbTables; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._ShortIdTypeForCacheKey = m.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._SortingValue = m.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._ListCatalogsManyToManyRelations = new ConfigNodesCollection<CatalogsManyToManyRelation>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:189
+            foreach (var t in m.ListCatalogsManyToManyRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:193
+            {
+                var tvm = CatalogsManyToManyRelation.ConvertToVM(t, new CatalogsManyToManyRelation(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:195
+                vm.ListCatalogsManyToManyRelations.Add(tvm);
+            }
+            vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:189
+            foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:193
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:195
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
+            vm.OnInitFromDto(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:222
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
+            return vm;
+        }
+        // Conversion from 'GroupCatalogManyToManyRelations' to 'proto_group_catalog_many_to_many_relations'
+        public static Proto.Config.proto_group_catalog_many_to_many_relations ConvertToProto(GroupCatalogManyToManyRelations vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:229
+        {
+            Debug.Assert(vm != null);
+            Proto.Config.proto_group_catalog_many_to_many_relations m = new Proto.Config.proto_group_catalog_many_to_many_relations(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:232
+            m.Guid = vm.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.Name = vm.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.NameUi = vm.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.Description = vm.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.PrefixForDbTables = vm.PrefixForDbTables; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.ShortIdTypeForCacheKey = vm.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            foreach (var t in vm.ListCatalogsManyToManyRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:235
+                m.ListCatalogsManyToManyRelations.Add(CatalogsManyToManyRelation.ConvertToProto((CatalogsManyToManyRelation)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:239
+            foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:235
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:239
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:9
+        {
+            Debug.Assert(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            foreach (var t in this.ListCatalogsManyToManyRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:23
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            foreach (var t in this.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:23
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:36
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [Category("")]
+        [PropertyOrderAttribute(-2)]
+        [ReadOnly(true)]
+        public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._Guid; }
+            set
+            {
+                // Use 'OnGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (this._Guid != value) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:25
+                {
+                    //this.OnGuidChanging(ref value);
+                    _Guid = value;
+                    this.OnGuidChanged();
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:31
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:34
+                }
+            }
+        }
+        //partial void OnGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnGuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(1)]
+        public string Name // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._Name; }
+            set
+            {
+                // Use 'OnNameChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (this._Name != value) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:25
+                {
+                    //this.OnNameChanging(ref value);
+                    _Name = value;
+                    this.OnNameChanged();
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:31
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:34
+                }
+            }
+        }
+        //partial void OnNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnNameChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(2)]
+        [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
+        public string NameUi // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._NameUi; }
+            set
+            {
+                // Use 'OnNameUiChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (this._NameUi != value) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:25
+                {
+                    //this.OnNameUiChanging(ref value);
+                    _NameUi = value;
+                    this.OnNameUiChanged();
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:31
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:34
+                }
+            }
+        }
+        //partial void OnNameUiChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnNameUiChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(3)]
+        public string Description // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._Description; }
+            set
+            {
+                // Use 'OnDescriptionChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._Description, value, (t) => { /*this.OnDescriptionChanging(ref value);*/ this._Description = value; this.OnDescriptionChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _Description = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnDescriptionChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnDescriptionChanged();
+        
+        [PropertyOrderAttribute(4)]
+        [DisplayName("Db prefix")]
+        [Description("Prefix for catalog db table names. Used if set to use in config model")]
+        public string PrefixForDbTables // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._PrefixForDbTables; }
+            set
+            {
+                // Use 'OnPrefixForDbTablesChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._PrefixForDbTables, value, (t) => { /*this.OnPrefixForDbTablesChanging(ref value);*/ this._PrefixForDbTables = value; this.OnPrefixForDbTablesChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _PrefixForDbTables = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnPrefixForDbTablesChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnPrefixForDbTablesChanged();
+        
+        [PropertyOrderAttribute(7)]
+        [DisplayName("Short ID")]
+        [Description("Short catalog type ID for cache key generator")]
+        public string ShortIdTypeForCacheKey // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._ShortIdTypeForCacheKey; }
+            set
+            {
+                // Use 'OnShortIdTypeForCacheKeyChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._ShortIdTypeForCacheKey, value, (t) => { /*this.OnShortIdTypeForCacheKeyChanging(ref value);*/ this._ShortIdTypeForCacheKey = value; this.OnShortIdTypeForCacheKeyChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _ShortIdTypeForCacheKey = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnShortIdTypeForCacheKeyChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnShortIdTypeForCacheKeyChanged();
+        
+        [Browsable(false)]
+        public ulong SortingValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._SortingValue; }
+            set
+            {
+                // Use 'OnSortingValueChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (this._SortingValue != value) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:25
+                {
+                    //this.OnSortingValueChanging(ref value);
+                    _SortingValue = value;
+                    this.OnSortingValueChanged();
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:31
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:34
+                }
+            }
+        }
+        //partial void OnSortingValueChanging(ref ulong to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnSortingValueChanged();
+        public void SetSortingValueField(ulong sortValue)
+        {
+            this._SortingValue = sortValue;
+        }
+        
+        [Browsable(false)]
+        public ConfigNodesCollection<CatalogsManyToManyRelation> ListCatalogsManyToManyRelations // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._ListCatalogsManyToManyRelations; }
+            set
+            {
+                // Use 'OnListCatalogsManyToManyRelationsChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._ListCatalogsManyToManyRelations, value, (t) => { /*this.OnListCatalogsManyToManyRelationsChanging(value);*/ this._ListCatalogsManyToManyRelations = value; this.OnListCatalogsManyToManyRelationsChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                }
+            }
+        }
+        private ConfigNodesCollection<CatalogsManyToManyRelation> _ListCatalogsManyToManyRelations; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnListCatalogsManyToManyRelationsChanging(ConfigNodesCollection<CatalogsManyToManyRelation> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnListCatalogsManyToManyRelationsChanged();
+        IReadOnlyList<ICatalogsManyToManyRelation> IGroupCatalogManyToManyRelations.ListCatalogsManyToManyRelations { get { return (this as GroupCatalogManyToManyRelations).ListCatalogsManyToManyRelations; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
+        
+        
+        [Browsable(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._ListNodeGeneratorsSettings; }
+            set
+            {
+                // Use 'OnListNodeGeneratorsSettingsChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._ListNodeGeneratorsSettings, value, (t) => { /*this.OnListNodeGeneratorsSettingsChanging(value);*/ this._ListNodeGeneratorsSettings = value; this.OnListNodeGeneratorsSettingsChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnListNodeGeneratorsSettingsChanged();
+        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupCatalogManyToManyRelations.ListNodeGeneratorsSettings { get { return (this as GroupCatalogManyToManyRelations).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
+        
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:129
+        #endregion Properties
+    }
+    // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:7
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class CatalogFolderValidator : ValidatorBase<CatalogFolder, CatalogFolderValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
-    // C A T A L O G
-    // @exclude
-    // ####################################### C A T A L O G ##########################################
     public partial class CatalogFolder : ConfigObjectVmGenSettings<CatalogFolder, CatalogFolderValidator>, IComparable<CatalogFolder>, IConfigAcceptVisitor, ICatalogFolder // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
         public override string ToDebugString()
@@ -21051,7 +21813,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             this.OnCreating();
             this._ListCatalogs = new ConfigNodesCollection<Catalog>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:59
-            this._ListAllCatalogsManyToManyRelations = new ObservableCollectionWithActions<CatalogsRelationManyToManyTable>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:57
+            this._GroupListRelations = new GroupCatalogManyToManyRelations(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:62
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:59
             this.OnCreated();
         }
@@ -21086,6 +21848,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._ListCatalogs = new ConfigNodesCollection<Catalog>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:54
             foreach (var t in from.ListCatalogs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:55
                 vm.ListCatalogs.Add(Catalog.Clone(vm, (Catalog)t, isDeep));
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:63 IsDefaultBase=True
+                vm.GroupListRelations = vSharpStudio.vm.ViewModels.GroupCatalogManyToManyRelations.Clone(vm, from.GroupListRelations, isDeep);
             vm._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._UseCodeProperty = from.UseCodeProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._UseNameProperty = from.UseNameProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
@@ -21096,9 +21860,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsGridSortableCustom = from.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsGridFilterable = from.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._ListAllCatalogsManyToManyRelations = new ObservableCollectionWithActions<CatalogsRelationManyToManyTable>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:50
-            foreach (var t in from.ListAllCatalogsManyToManyRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:51
-                vm.ListAllCatalogsManyToManyRelations.Add(CatalogsRelationManyToManyTable.Clone(parent, (CatalogsRelationManyToManyTable)t, isDeep));
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:54
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:55
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -21152,6 +21913,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                     }
                 }
             }
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:137
+                vSharpStudio.vm.ViewModels.GroupCatalogManyToManyRelations.Update((GroupCatalogManyToManyRelations)to.GroupListRelations, from.GroupListRelations, isDeep);
             to._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._UseCodeProperty = from.UseCodeProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._UseNameProperty = from.UseNameProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
@@ -21162,42 +21925,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsGridSortableCustom = from.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsGridFilterable = from.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:85
-            {
-                foreach (var t in to.ListAllCatalogsManyToManyRelations.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListAllCatalogsManyToManyRelations)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            CatalogsRelationManyToManyTable.Update((CatalogsRelationManyToManyTable)t, (CatalogsRelationManyToManyTable)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListAllCatalogsManyToManyRelations.Remove(t);
-                }
-                foreach (var tt in from.ListAllCatalogsManyToManyRelations)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListAllCatalogsManyToManyRelations.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new CatalogsRelationManyToManyTable(to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:116
-                        CatalogsRelationManyToManyTable.Update(p, (CatalogsRelationManyToManyTable)tt, isDeep);
-                        to.ListAllCatalogsManyToManyRelations.Add(p);
-                    }
-                }
-            }
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:85
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -21273,6 +22000,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 var tvm = Catalog.ConvertToVM(t, new Catalog(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:195
                 vm.ListCatalogs.Add(tvm);
             }
+            if (vm.GroupListRelations == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:208
+                vm.GroupListRelations = new GroupCatalogManyToManyRelations(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:210
+            vSharpStudio.vm.ViewModels.GroupCatalogManyToManyRelations.ConvertToVM(m.GroupListRelations, (GroupCatalogManyToManyRelations)vm.GroupListRelations); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:214
             vm._SortingValue = m.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._UseCodeProperty = (EnumUseType)m.UseCodeProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._UseNameProperty = (EnumUseType)m.UseNameProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
@@ -21283,12 +22013,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsGridSortable = (EnumUseType)m.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsGridFilterable = (EnumUseType)m.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._ListAllCatalogsManyToManyRelations = new ObservableCollectionWithActions<CatalogsRelationManyToManyTable>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:191
-            foreach (var t in m.ListAllCatalogsManyToManyRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:193
-            {
-                var tvm = CatalogsRelationManyToManyTable.ConvertToVM(t, new CatalogsRelationManyToManyTable(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:195
-                vm.ListAllCatalogsManyToManyRelations.Add(tvm);
-            }
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:189
             foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:193
             {
@@ -21313,6 +22037,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.ShortIdTypeForCacheKey = vm.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             foreach (var t in vm.ListCatalogs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:235
                 m.ListCatalogs.Add(Catalog.ConvertToProto((Catalog)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:239
+            m.GroupListRelations = vSharpStudio.vm.ViewModels.GroupCatalogManyToManyRelations.ConvertToProto((GroupCatalogManyToManyRelations)vm.GroupListRelations); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:263
             m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.UseCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseCodeProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:267
             m.UseNameProperty = (Proto.Config.proto_enum_use_type)vm.UseNameProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:267
@@ -21323,8 +22048,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:267
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:267
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:267
-            foreach (var t in vm.ListAllCatalogsManyToManyRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:235
-                m.ListAllCatalogsManyToManyRelations.Add(CatalogsRelationManyToManyTable.ConvertToProto((CatalogsRelationManyToManyTable)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:239
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:235
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:239
             return m;
@@ -21342,10 +22065,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             {
                 t.AcceptConfigNodeVisitor(visitor);
             }
-            foreach (var t in this.ListAllCatalogsManyToManyRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:23
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
+            this.GroupListRelations.AcceptConfigNodeVisitor(visitor); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:31
+        
             foreach (var t in this.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt Line:23
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -21521,6 +22242,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.ListCatalogs.Remove(item); 
             item.Parent = null;
         }
+        
+        [Browsable(false)]
+        public GroupCatalogManyToManyRelations GroupListRelations // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._GroupListRelations; }
+            set
+            {
+                // Use 'OnGroupListRelationsChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._GroupListRelations, value, (t) => { /*this.OnGroupListRelationsChanging(ref value);*/ this._GroupListRelations = value; this.OnGroupListRelationsChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                }
+            }
+        }
+        private GroupCatalogManyToManyRelations _GroupListRelations; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnGroupListRelationsChanging(ref GroupCatalogManyToManyRelations to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnGroupListRelationsChanged();
+        IGroupCatalogManyToManyRelations IGroupListCatalogs.GroupListRelations { get { return (this as GroupListCatalogs).GroupListRelations; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:75
         
         [Browsable(false)]
         public ulong SortingValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -21725,25 +22464,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private EnumUseType _IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
         //partial void OnIsGridFilterableChanging(ref EnumUseType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnIsGridFilterableChanged();
-        
-        [Browsable(false)]
-        public ObservableCollectionWithActions<CatalogsRelationManyToManyTable> ListAllCatalogsManyToManyRelations // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
-        { 
-            get { return this._ListAllCatalogsManyToManyRelations; }
-            set
-            {
-                // Use 'OnListAllCatalogsManyToManyRelationsChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._ListAllCatalogsManyToManyRelations, value, (t) => { /*this.OnListAllCatalogsManyToManyRelationsChanging(value);*/ this._ListAllCatalogsManyToManyRelations = value; this.OnListAllCatalogsManyToManyRelationsChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
-                }
-            }
-        }
-        private ObservableCollectionWithActions<CatalogsRelationManyToManyTable> _ListAllCatalogsManyToManyRelations; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnListAllCatalogsManyToManyRelationsChanging(ObservableCollectionWithActions<CatalogsRelationManyToManyTable> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnListAllCatalogsManyToManyRelationsChanged();
-        IReadOnlyList<ICatalogsRelationManyToManyTable> IGroupListCatalogs.ListAllCatalogsManyToManyRelations { get { return (this as GroupListCatalogs).ListAllCatalogsManyToManyRelations; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
-        
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -25105,8 +25825,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         
         [Category("")]
         [PropertyOrderAttribute(24)]
-        [DisplayName("Use Date")]
-        [Description("Use Date property for document by default")]
+        [DisplayName("Use Doc Date")]
+        [Description("Use Date property for documents")]
         public EnumUseType UseDocDateProperty // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._UseDocDateProperty; }
@@ -26080,8 +26800,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnShortIdChanged();
         
         [PropertyOrderAttribute(21)]
-        [DisplayName("Use Number")]
-        [Description("Use DocNumber property for document")]
+        [DisplayName("Use Doc Number")]
+        [Description("Use document number property for documents")]
         public EnumUseType UseDocNumberProperty // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._UseDocNumberProperty; }
@@ -26100,8 +26820,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnUseDocNumberPropertyChanged();
         
         [PropertyOrderAttribute(22)]
-        [DisplayName("Code")]
-        [Description("Code property settings for Document")]
+        [ReadOnly(true)]
+        [DisplayName("Sequence")]
+        [Description("Document number property sequence settings")]
         [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]
         public DocumentNumberPropertySettings DocNumberPropertySettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
@@ -26121,8 +26842,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         IDocumentNumberPropertySettings IDocument.DocNumberPropertySettings { get { return (this as Document).DocNumberPropertySettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:75
         
         [PropertyOrderAttribute(24)]
-        [DisplayName("Use Date")]
-        [Description("Use Date property for document")]
+        [DisplayName("Use Doc Date")]
+        [Description("Use document date property for documents")]
         public EnumUseType UseDocDateProperty // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._UseDocDateProperty; }
@@ -34844,7 +35565,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void Visit(Proto.Config.proto_app_project_generator p);
         void Visit(Proto.Config.proto_plugin_generator_node_default_settings p);
         void Visit(Proto.Config.proto_model p);
-        void Visit(Proto.Config.proto_catalogs_relation_many_to_many_table p);
         void Visit(Proto.Config.proto_data_type p);
         void Visit(Proto.Config.proto_group_list_common p);
         void Visit(Proto.Config.proto_enumerator_sequence p);
@@ -34869,6 +35589,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void Visit(Proto.Config.proto_group_list_enumerations p);
         void Visit(Proto.Config.proto_enumeration p);
         void Visit(Proto.Config.proto_enumeration_pair p);
+        void Visit(Proto.Config.proto_catalogs_many_to_many_relation p);
+        void Visit(Proto.Config.proto_group_catalog_many_to_many_relations p);
         void Visit(Proto.Config.proto_catalog_folder p);
         void Visit(Proto.Config.proto_catalog_code_property_settings p);
         void Visit(Proto.Config.proto_catalog p);
@@ -35092,14 +35814,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(CatalogsRelationManyToManyTable p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
-        {
-            this.OnVisit((IValidatableWithSeverity)p);
-        }
-        protected override void OnVisitEnd(CatalogsRelationManyToManyTable p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
-        {
-            this.OnVisitEnd((IValidatableWithSeverity)p);
-        }
         protected override void OnVisit(DataType p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
@@ -35307,6 +36021,22 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
+        protected override void OnVisit(CatalogsManyToManyRelation p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        {
+            this.OnVisit((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisitEnd(CatalogsManyToManyRelation p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        {
+            this.OnVisitEnd((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisit(GroupCatalogManyToManyRelations p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        {
+            this.OnVisit((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisitEnd(GroupCatalogManyToManyRelations p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        {
+            this.OnVisitEnd((IValidatableWithSeverity)p);
+        }
         protected override void OnVisit(CatalogFolder p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
@@ -35340,8 +36070,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         protected override void OnVisit(GroupListCatalogs p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListAllCatalogsManyToManyRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
-                ValidateSubAndCollectErrors(p, t);
         }
         protected override void OnVisitEnd(GroupListCatalogs p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
         {
@@ -35807,16 +36535,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         protected virtual void OnVisit(Model p) { }
         protected virtual void OnVisitEnd(Model p) { }
-        public void Visit(CatalogsRelationManyToManyTable p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(CatalogsRelationManyToManyTable p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(CatalogsRelationManyToManyTable p) { }
-        protected virtual void OnVisitEnd(CatalogsRelationManyToManyTable p) { }
         public void Visit(DataType p)
         {
             this.OnVisit(p);
@@ -36057,6 +36775,26 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         protected virtual void OnVisit(EnumerationPair p) { }
         protected virtual void OnVisitEnd(EnumerationPair p) { }
+        public void Visit(CatalogsManyToManyRelation p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(CatalogsManyToManyRelation p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(CatalogsManyToManyRelation p) { }
+        protected virtual void OnVisitEnd(CatalogsManyToManyRelation p) { }
+        public void Visit(GroupCatalogManyToManyRelations p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(GroupCatalogManyToManyRelations p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(GroupCatalogManyToManyRelations p) { }
+        protected virtual void OnVisitEnd(GroupCatalogManyToManyRelations p) { }
         public void Visit(CatalogFolder p)
         {
             this.OnVisit(p);
@@ -36420,6 +37158,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void VisitEnd(Enumeration p);
         void Visit(EnumerationPair p);
         void VisitEnd(EnumerationPair p);
+        void Visit(CatalogsManyToManyRelation p);
+        void VisitEnd(CatalogsManyToManyRelation p);
+        void Visit(GroupCatalogManyToManyRelations p);
+        void VisitEnd(GroupCatalogManyToManyRelations p);
         void Visit(CatalogFolder p);
         void VisitEnd(CatalogFolder p);
         void Visit(Catalog p);

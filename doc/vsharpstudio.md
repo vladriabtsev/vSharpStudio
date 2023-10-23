@@ -12,7 +12,7 @@
     - [proto_catalog](#proto_config.proto_catalog)
     - [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings)
     - [proto_catalog_folder](#proto_config.proto_catalog_folder)
-    - [proto_catalogs_relation_many_to_many_table](#proto_config.proto_catalogs_relation_many_to_many_table)
+    - [proto_catalogs_many_to_many_relation](#proto_config.proto_catalogs_many_to_many_relation)
     - [proto_config](#proto_config.proto_config)
     - [proto_config_short_history](#proto_config.proto_config_short_history)
     - [proto_constant](#proto_config.proto_constant)
@@ -35,6 +35,7 @@
     - [proto_form_tab_control](#proto_config.proto_form_tab_control)
     - [proto_form_tab_control_tab](#proto_config.proto_form_tab_control_tab)
     - [proto_form_tree](#proto_config.proto_form_tree)
+    - [proto_group_catalog_many_to_many_relations](#proto_config.proto_group_catalog_many_to_many_relations)
     - [proto_group_constant_groups](#proto_config.proto_group_constant_groups)
     - [proto_group_documents](#proto_config.proto_group_documents)
     - [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions)
@@ -352,9 +353,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 <a name="proto_config.proto_catalog_folder"></a>
 
 ### proto_catalog_folder
-C A T A L O G
-@exclude
-####################################### C A T A L O G ##########################################
+
 
 
 | Field | Type | Label | Description |
@@ -399,21 +398,31 @@ C A T A L O G
 
 
 
-<a name="proto_config.proto_catalogs_relation_many_to_many_table"></a>
+<a name="proto_config.proto_catalogs_many_to_many_relation"></a>
 
-### proto_catalogs_relation_many_to_many_table
-@base BaseSettings
+### proto_catalogs_many_to_many_relation
+@interface ICanAddNode
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| guid_cat1 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  |  |
-| ref_cat1_guid | [string](#string) |  |  |
-| guid_cat2 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  |  |
-| ref_cat2_guid | [string](#string) |  |  |
-| is_with_history | [bool](#bool) |  |  |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| guid_cat1 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Catalog&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] |
+| ref_cat1_guid | [string](#string) |  | @attr [Browsable(false)] |
+| guid_cat2 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Catalog&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] |
+| ref_cat2_guid | [string](#string) |  | @attr [Browsable(false)] |
+| is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
+| is_new | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
+| short_id | [int32](#int32) |  | @attr [Browsable(false)] |
+| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
 
@@ -616,9 +625,9 @@ Constant application wise value
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [Browsable(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [Browsable(false)] |
 | short_id | [int32](#int32) |  | @attr [Browsable(false)] |
-| use_doc_number_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Number&#34;)] @attr [Description(&#34;Use DocNumber property for document&#34;)] |
-| doc_number_property_settings | [proto_document_number_property_settings](#proto_config.proto_document_number_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for Document&#34;)] @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] |
-| use_doc_date_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document&#34;)] |
+| use_doc_number_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Doc Number&#34;)] @attr [Description(&#34;Use document number property for documents&#34;)] |
+| doc_number_property_settings | [proto_document_number_property_settings](#proto_config.proto_document_number_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ReadOnly(true)] @attr [DisplayName(&#34;Sequence&#34;)] @attr [Description(&#34;Document number property sequence settings&#34;)] @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] |
+| use_doc_date_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Doc Date&#34;)] @attr [Description(&#34;Use document date property for documents&#34;)] |
 | index_year_doc_number_guid | [string](#string) |  | unique index of special field YEAR and DocNumber YEAR = DocDate.Year @attr [Browsable(false)] |
 | index_quater_doc_number_guid | [string](#string) |  | unique index of special field QUATER and DocNumber QUATER = DocDate.Year * 4 &#43; DocDate.Month / 3 @attr [Browsable(false)] |
 | index_month_doc_number_guid | [string](#string) |  | unique index of special field MONTH and DocNumber MONTH = DocDate.Year * 12 &#43; DocDate.Month @attr [Browsable(false)] |
@@ -1045,6 +1054,29 @@ No Children
 
 
 
+<a name="proto_config.proto_group_catalog_many_to_many_relations"></a>
+
+### proto_group_catalog_many_to_many_relations
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] |
+| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| list_catalogs_many_to_many_relations | [proto_catalogs_many_to_many_relation](#proto_config.proto_catalogs_many_to_many_relation) | repeated | @attr [Browsable(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_group_constant_groups"></a>
 
 ### proto_group_constant_groups
@@ -1087,7 +1119,7 @@ C O N S T A N T
 | group_list_documents | [proto_group_list_documents](#proto_config.proto_group_list_documents) |  | @attr [Browsable(false)] |
 | use_doc_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document by default&#34;)] |
 | monday_before_first_doc_date | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Monday Date&#34;)] @attr [Description(&#34;Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions &#34;)] @attr [ReadOnly(true)] |
-| use_doc_date_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document by default&#34;)] |
+| use_doc_date_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Doc Date&#34;)] @attr [Description(&#34;Use Date property for documents&#34;)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -1152,6 +1184,7 @@ C O N S T A N T
 | prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] |
 | short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] |
 | list_catalogs | [proto_catalog](#proto_config.proto_catalog) | repeated | @attr [Browsable(false)] |
+| group_list_relations | [proto_group_catalog_many_to_many_relations](#proto_config.proto_group_catalog_many_to_many_relations) |  | @attr [Browsable(false)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | use_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item by default&#34;)] |
 | use_name_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item by default&#34;)] |
@@ -1162,7 +1195,6 @@ C O N S T A N T
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| list_all_catalogs_many_to_many_relations | [proto_catalogs_relation_many_to_many_table](#proto_config.proto_catalogs_relation_many_to_many_table) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1604,22 +1636,23 @@ Configuration model
 | record_version_field_guid | [string](#string) |  | @attr [Browsable(false)] |
 | record_version_field_name | [string](#string) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Version field&#34;)] @attr [Description(&#34;Record version field name&#34;)] @attr [Category(&#34;Property settings&#34;)] |
 | record_version_field_type | [proto_enum_version_field_type](#proto_config.proto_enum_version_field_type) |  | @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Version type&#34;)] @attr [Description(&#34;Record version field type&#34;)] @attr [Category(&#34;Property settings&#34;)] |
-| property_code_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Code property&#34;)] @attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] |
-| use_code_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item by default&#34;)] |
-| property_name_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Name property&#34;)] @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] |
-| use_name_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item by default&#34;)] |
-| property_description_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Description property&#34;)] @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] |
-| use_description_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item by default&#34;)] |
-| property_is_folder_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;IsFolder property&#34;)] @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] |
-| property_doc_date_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(31)] @attr [DisplayName(&#34;Date property&#34;)] @attr [Description(&#34;Name of date auto generated property if it is used in documents&#34;)] |
-| use_doc_date_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Use Doc Date&#34;)] @attr [Description(&#34;Use Date property for documents&#34;)] |
-| property_doc_number_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Doc number property&#34;)] @attr [Description(&#34;Name of document number auto generated property&#34;)] |
-| use_doc_number_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(30)] @attr [DisplayName(&#34;Use Doc Code&#34;)] @attr [Description(&#34;Use Code property for documents&#34;)] |
+| property_code_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Code property&#34;)] @attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] |
+| use_code_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item by default&#34;)] |
+| property_name_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Name property&#34;)] @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] |
+| use_name_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item by default&#34;)] |
+| property_description_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Description property&#34;)] @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] |
+| use_description_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item by default&#34;)] |
+| property_is_folder_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(45)] @attr [DisplayName(&#34;IsFolder property&#34;)] @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] |
+| property_doc_date_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(30)] @attr [DisplayName(&#34;Doc Date property&#34;)] @attr [Description(&#34;Name of document date auto generated property if it is used in documents&#34;)] |
+| use_doc_date_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Use Doc Date&#34;)] @attr [Description(&#34;Use document date property for documents&#34;)] |
+| property_doc_number_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Doc Number property&#34;)] @attr [Description(&#34;Name of document number auto generated property&#34;)] |
+| use_doc_number_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Doc Number&#34;)] @attr [Description(&#34;Use document number property for documents&#34;)] |
 | last_constant_group_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_catalog_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_document_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_detail_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_register_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
+| last_catalog_relation_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -2729,7 +2762,6 @@ with history |
 | ---- | ------ | ----------- |
 | ONE_TO_ONE | 0 | @attr [Description(&#34;One to One&#34;)] |
 | ONE_TO_MANY | 1 | @attr [Description(&#34;One to Many&#34;)] |
-| MANY_TO_MANY | 2 | @attr [Description(&#34;Many to Many&#34;)] |
 
 
 

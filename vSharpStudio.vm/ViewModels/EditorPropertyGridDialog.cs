@@ -47,21 +47,14 @@ namespace vSharpStudio.vm.ViewModels
             grd.ColumnDefinitions.Add(cd2);
 
             textBox = new PropertyGridEditorTextBox();
+            textBox.IsEnabled = false;
             //textBox.Watermark = propertyItem.Value.ToString();
-            var _binding = new Binding($"Instance.{propertyItem.PropertyName}Text");
+            var _binding = new Binding($"Instance.{propertyItem.PropertyName}");
             _binding.Mode = BindingMode.OneWay;
             _binding.Source = propertyItem;
             _binding.ValidatesOnExceptions = true;
             _binding.ValidatesOnDataErrors = true;
             BindingOperations.SetBinding(textBox, PropertyGridEditorTextBox.WatermarkProperty, _binding);
-
-
-            //var _binding = new Binding("Value"); //bind to the Value property of the PropertyItem
-            //_binding.Source = propertyItem;
-            //_binding.ValidatesOnExceptions = true;
-            //_binding.ValidatesOnDataErrors = true;
-            //_binding.Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay;
-            //BindingOperations.SetBinding(textBox, PropertyGridEditorTextBox.TextProperty, _binding);
 
             Button b = new Button();
             b.Content = "...";

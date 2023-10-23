@@ -18,6 +18,8 @@
         public const string EnumerationPairName = "Element";
         public const string CatalogsGroupName = "Catalogs";
         public const string CatalogName = "Catalog";
+        public const string CatalogMtmRelationsGroupName = "Relations";
+        public const string CatalogMtmRelationName = "Relation";
         //public const string Folder = "Folder";
         public const string DocumentName = "Document";
         public const string DetailName = "Detail";

@@ -738,6 +738,14 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = 7;
             return res;
         }
+        public IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, bool isNullable = false)
+        {
+            var res = new Property(parent, guid, name, true);
+            res.DataType = (DataType)this.GetIdRefDataType(res, isNullable);
+            res.DataType.IsRefParent = true;
+            res.IsHidden = true;
+            return res;
+        }
         public IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable = false)
         {
             var res = new Property(parent, guid, name, true);

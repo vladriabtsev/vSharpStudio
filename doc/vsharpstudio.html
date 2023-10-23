@@ -211,7 +211,7 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_catalogs_relation_many_to_many_table"><span class="badge">M</span>proto_catalogs_relation_many_to_many_table</a>
+                  <a href="#proto_config.proto_catalogs_many_to_many_relation"><span class="badge">M</span>proto_catalogs_many_to_many_relation</a>
                 </li>
               
                 <li>
@@ -300,6 +300,10 @@
               
                 <li>
                   <a href="#proto_config.proto_form_tree"><span class="badge">M</span>proto_form_tree</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_group_catalog_many_to_many_relations"><span class="badge">M</span>proto_group_catalog_many_to_many_relations</a>
                 </li>
               
                 <li>
@@ -1611,7 +1615,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
         
       
         <h3 id="proto_config.proto_catalog_folder">proto_catalog_folder</h3>
-        <p>C A T A L O G</p><p>@exclude</p><p>####################################### C A T A L O G ##########################################</p>
+        <p></p>
 
         
           <table class="field-table">
@@ -1892,8 +1896,8 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 
         
       
-        <h3 id="proto_config.proto_catalogs_relation_many_to_many_table">proto_catalogs_relation_many_to_many_table</h3>
-        <p>@base BaseSettings</p>
+        <h3 id="proto_config.proto_catalogs_many_to_many_relation">proto_catalogs_many_to_many_relation</h3>
+        <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
 
         
           <table class="field-table">
@@ -1906,49 +1910,129 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
                 </tr>
               
                 <tr>
                   <td>guid_cat1</td>
                   <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(6)]
+@attr [DisplayName(&#34;Catalog&#34;)]
+@attr [Description(&#34;Catalog of Many To Many relation&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>ref_cat1_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
                   <td>guid_cat2</td>
                   <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(8)]
+@attr [DisplayName(&#34;Catalog&#34;)]
+@attr [Description(&#34;Catalog of Many To Many relation&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>ref_cat2_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>is_with_history</td>
+                  <td>is_use_history</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(10)]
+@attr [DisplayName(&#34;Use History&#34;)]
+@attr [Description(&#34;Use history for relation&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_id_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_version_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2905,8 +2989,8 @@ Reserved positions: 1 - primary key
                   <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(21)]
-@attr [DisplayName(&#34;Use Number&#34;)]
-@attr [Description(&#34;Use DocNumber property for document&#34;)] </p></td>
+@attr [DisplayName(&#34;Use Doc Number&#34;)]
+@attr [Description(&#34;Use document number property for documents&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2914,8 +2998,9 @@ Reserved positions: 1 - primary key
                   <td><a href="#proto_config.proto_document_number_property_settings">proto_document_number_property_settings</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(22)]
-@attr [DisplayName(&#34;Code&#34;)]
-@attr [Description(&#34;Code property settings for Document&#34;)]
+@attr [ReadOnly(true)]
+@attr [DisplayName(&#34;Sequence&#34;)]
+@attr [Description(&#34;Document number property sequence settings&#34;)]
 @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] </p></td>
                 </tr>
               
@@ -2924,8 +3009,8 @@ Reserved positions: 1 - primary key
                   <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(24)]
-@attr [DisplayName(&#34;Use Date&#34;)]
-@attr [Description(&#34;Use Date property for document&#34;)] </p></td>
+@attr [DisplayName(&#34;Use Doc Date&#34;)]
+@attr [Description(&#34;Use document date property for documents&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4684,6 +4769,97 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
 
         
       
+        <h3 id="proto_config.proto_group_catalog_many_to_many_relations">proto_group_catalog_many_to_many_relations</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prefix_for_db_tables</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Db prefix&#34;)]
+@attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id_type_for_cache_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)]
+@attr [DisplayName(&#34;Short ID&#34;)]
+@attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_catalogs_many_to_many_relations</td>
+                  <td><a href="#proto_config.proto_catalogs_many_to_many_relation">proto_catalogs_many_to_many_relation</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_group_constant_groups">proto_group_constant_groups</h3>
         <p>C O N S T A N T</p><p>@exclude</p><p>####################################### C O N S T A N T ##########################################</p>
 
@@ -4875,8 +5051,8 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(24)]
-@attr [DisplayName(&#34;Use Date&#34;)]
-@attr [Description(&#34;Use Date property for document by default&#34;)] </p></td>
+@attr [DisplayName(&#34;Use Doc Date&#34;)]
+@attr [Description(&#34;Use Date property for documents&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5113,6 +5289,13 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
+                  <td>group_list_relations</td>
+                  <td><a href="#proto_config.proto_group_catalog_many_to_many_relations">proto_group_catalog_many_to_many_relations</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
@@ -5198,13 +5381,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><p>@attr [Category(&#34;Auto Layout&#34;)]
 @attr [DisplayName(&#34;Filterable&#34;)]
 @attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_all_catalogs_many_to_many_relations</td>
-                  <td><a href="#proto_config.proto_catalogs_relation_many_to_many_table">proto_catalogs_relation_many_to_many_table</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -6939,7 +7115,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(21)]
+@attr [PropertyOrderAttribute(22)]
 @attr [DisplayName(&#34;Code property&#34;)]
 @attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] </p></td>
                 </tr>
@@ -6949,7 +7125,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(22)]
+@attr [PropertyOrderAttribute(21)]
 @attr [DisplayName(&#34;Use Code&#34;)]
 @attr [Description(&#34;Use Code property for catalog item by default&#34;)] </p></td>
                 </tr>
@@ -6959,7 +7135,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(23)]
+@attr [PropertyOrderAttribute(24)]
 @attr [DisplayName(&#34;Name property&#34;)]
 @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] </p></td>
                 </tr>
@@ -6969,7 +7145,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(24)]
+@attr [PropertyOrderAttribute(23)]
 @attr [DisplayName(&#34;Use Name&#34;)]
 @attr [Description(&#34;Use Name property for catalog item by default&#34;)] </p></td>
                 </tr>
@@ -6979,7 +7155,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(25)]
+@attr [PropertyOrderAttribute(26)]
 @attr [DisplayName(&#34;Description property&#34;)]
 @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] </p></td>
                 </tr>
@@ -6989,7 +7165,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(26)]
+@attr [PropertyOrderAttribute(25)]
 @attr [DisplayName(&#34;Use Description&#34;)]
 @attr [Description(&#34;Use Description property for catalog item by default&#34;)] </p></td>
                 </tr>
@@ -6999,7 +7175,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(27)]
+@attr [PropertyOrderAttribute(45)]
 @attr [DisplayName(&#34;IsFolder property&#34;)]
 @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] </p></td>
                 </tr>
@@ -7009,9 +7185,9 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(31)]
-@attr [DisplayName(&#34;Date property&#34;)]
-@attr [Description(&#34;Name of date auto generated property if it is used in documents&#34;)] </p></td>
+@attr [PropertyOrderAttribute(30)]
+@attr [DisplayName(&#34;Doc Date property&#34;)]
+@attr [Description(&#34;Name of document date auto generated property if it is used in documents&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -7019,9 +7195,9 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(32)]
+@attr [PropertyOrderAttribute(29)]
 @attr [DisplayName(&#34;Use Doc Date&#34;)]
-@attr [Description(&#34;Use Date property for documents&#34;)] </p></td>
+@attr [Description(&#34;Use document date property for documents&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -7029,8 +7205,8 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(29)]
-@attr [DisplayName(&#34;Doc number property&#34;)]
+@attr [PropertyOrderAttribute(42)]
+@attr [DisplayName(&#34;Doc Number property&#34;)]
 @attr [Description(&#34;Name of document number auto generated property&#34;)] </p></td>
                 </tr>
               
@@ -7039,9 +7215,9 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(30)]
-@attr [DisplayName(&#34;Use Doc Code&#34;)]
-@attr [Description(&#34;Use Code property for documents&#34;)] </p></td>
+@attr [PropertyOrderAttribute(41)]
+@attr [DisplayName(&#34;Use Doc Number&#34;)]
+@attr [Description(&#34;Use document number property for documents&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -7074,6 +7250,13 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
               
                 <tr>
                   <td>last_register_short_id</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_catalog_relation_short_id</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -10857,12 +11040,6 @@ with history</p></td>
                 <td>ONE_TO_MANY</td>
                 <td>1</td>
                 <td><p>@attr [Description(&#34;One to Many&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>MANY_TO_MANY</td>
-                <td>2</td>
-                <td><p>@attr [Description(&#34;Many to Many&#34;)]</p></td>
               </tr>
             
           </tbody>

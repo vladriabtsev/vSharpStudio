@@ -460,41 +460,6 @@ namespace vSharpStudio.vm.ViewModels
             this.Folder.GetNormalProperties(res);
             return res;
         }
-        public string GetDebuggerDisplay(bool isOptimistic)
-        {
-            var sb = new StringBuilder();
-            sb.Append("CAT ");
-            sb.Append(this.Name);
-            sb.Append(", ");
-            sb.Append(this.ParentGroupListCatalogs.ParentModel.PKeyName);
-            sb.Append(":{");
-            sb.Append(this.ParentGroupListCatalogs.ParentModel.PKeyName);
-            sb.Append(",nq}");
-            if (this.UseTree)
-            {
-                if (this.UseSeparateTreeForFolders)
-                {
-                    sb.Append(" Ref");
-                    sb.Append(this.Folder.CompositeName);
-                    sb.Append(":{Ref");
-                    sb.Append(this.Folder.CompositeName);
-                    sb.Append(",nq}");
-                }
-                else
-                {
-                    sb.Append(" RefTreeParent:{RefTreeParent,nq}");
-                    //prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
-                    //res.Add(prp);
-                }
-            }
-            if (isOptimistic)
-            {
-                sb.Append(" RecVer:{");
-                sb.Append(this.ParentGroupListCatalogs.ParentModel.RecordVersionFieldName);
-                sb.Append(",nq}");
-            }
-            return sb.ToString();
-        }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentGroupListCatalogs.ParentModel;
@@ -517,7 +482,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (isOptimistic)
             {
-                prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
+                prp = model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
+                //prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
                 res.Add(prp);
             }
         }

@@ -331,30 +331,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public string GetDebuggerDisplay(bool isOptimistic)
-        {
-            var sb = new StringBuilder();
-            sb.Append(this.Name);
-            sb.Append(", ");
-            sb.Append(this.Cfg.Model.PKeyName);
-            sb.Append(":{");
-            sb.Append(this.Cfg.Model.PKeyName);
-            sb.Append(",nq}");
-            if (isOptimistic)
-            {
-                sb.Append(" RecVer:{");
-                sb.Append(this.Cfg.Model.RecordVersionFieldName);
-                sb.Append(",nq}");
-            }
-            sb.Append(" Ref");
-            Debug.Assert(this.ParentGroupListDetails.Parent != null);
-            var compName = ((ICompositeName)this.ParentGroupListDetails.Parent).CompositeName;
-            sb.Append(compName);
-            sb.Append(":{Ref");
-            sb.Append(compName);
-            sb.Append(",nq}");
-            return sb.ToString();
-        }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             string parentTable = "";
