@@ -50,10 +50,10 @@
                     <ContentControl Template="{StaticResource iconStatusNew}" />
                 </Viewbox>-->
                 <Viewbox Height="7" Width="7" VerticalAlignment="Top" Visibility="{Binding IsNewOrHasNew, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
-                    <ContentControl Template="{StaticResource iconAdd}" />
+                    <ContentControl Template="{StaticResource iconAdd}" ToolTip="Is new" />
                 </Viewbox>
                 <Viewbox Height="8" Width="8" VerticalAlignment="Top" Visibility="{Binding IsChangedOrHasChanged, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
-                    <ContentControl Template="{StaticResource iconStatusNew}" />
+                    <ContentControl Template="{StaticResource iconStatusNew}" ToolTip="Is changed"/>
                 </Viewbox>
             </StackPanel>
             <StackPanel VerticalAlignment="Center">
@@ -77,16 +77,16 @@
             <TextBlock Text="{Binding Name}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" ToolTip="{Binding ToolTipText}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
                 <Viewbox Height="7" Width="7" VerticalAlignment="Top" Visibility="{Binding IsNewOrHasNew, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
-                    <ContentControl Template="{StaticResource iconAdd}" />
+                    <ContentControl Template="{StaticResource iconAdd}" ToolTip="Is new or has new subnodes" />
                 </Viewbox>
                 <!--<Viewbox Height="8" Width="8" VerticalAlignment="Top" Visibility="{Binding IsNew, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
                     <ContentControl Template="{StaticResource iconStatusNew}" />
                 </Viewbox>-->
                 <Viewbox Height="8" Width="7" VerticalAlignment="Top" Visibility="{Binding IsChangedOrHasChanged, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
-                    <ContentControl Template="{StaticResource iconStatusNew}" />
+                    <ContentControl Template="{StaticResource iconStatusNew}" ToolTip="Is changed or has changed subnodes"/>
                 </Viewbox>
                 <Viewbox Height="7" Width="7" VerticalAlignment="Top" Visibility="{Binding IsHasMarkedForDeletion, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
-                    <ContentControl Template="{StaticResource iconCancel}" />
+                    <ContentControl Template="{StaticResource iconCancel}" ToolTip="Is marked for deletion or has marked for deletion subnodes" />
                 </Viewbox>
             </StackPanel>
             <StackPanel VerticalAlignment="Center">
