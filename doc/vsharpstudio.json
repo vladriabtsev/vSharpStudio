@@ -3262,7 +3262,7 @@
             },
             {
               "name": "guid_cat1",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Catalog\")]\n@attr [Description(\"Catalog of Many To Many relation\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Catalog 1\")]\n@attr [Description(\"Catalog of Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
@@ -3282,7 +3282,7 @@
             },
             {
               "name": "guid_cat2",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Catalog\")]\n@attr [Description(\"Catalog of Many To Many relation\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Catalog 2\")]\n@attr [Description(\"Catalog of Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
@@ -4781,7 +4781,7 @@
             },
             {
               "name": "guid_doc1",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Catalog\")]\n@attr [Description(\"Catalog of Many To Many relation\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Document 1\")]\n@attr [Description(\"Document of Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
@@ -4801,7 +4801,7 @@
             },
             {
               "name": "guid_doc2",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Catalog\")]\n@attr [Description(\"Catalog of Many To Many relation\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Document 2\")]\n@attr [Description(\"Document of Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",

@@ -274,8 +274,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (this.IsUseHistory)
             {
-             //   ???
-                    prp = model.GetPropertyRef(this.ParentGroupCatalogManyToManyRelations, this.RefCat1Guid, "Ref" + this.Cfg.DicNodes[this.GuidCat2].Name, false);
+                //   ???
+                prp = model.GetPropertyRef(this.ParentGroupCatalogManyToManyRelations, this.RefCat1Guid, "Ref" + this.Cfg.DicNodes[this.GuidCat2].Name, false);
                 res.Add(prp);
             }
         }
@@ -297,5 +297,14 @@ namespace vSharpStudio.vm.ViewModels
             return res;
         }
         #endregion Get Properties and Details
+        [Browsable(false)]
+        public SortedObservableCollection<ITreeConfigNodeSortable>? ListObjects
+        {
+            get
+            {
+                Debug.Assert(this.Cfg != null);
+                return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Cfg.Model.GroupCatalogs.ListCatalogs);
+            }
+        }
     }
 }

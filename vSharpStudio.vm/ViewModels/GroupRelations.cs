@@ -74,7 +74,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.OnRemoveChild();
             //};
-            this._Name = Defaults.DocumentsGroupName;
+            this._Name = Defaults.GroupMtmRelationsName;
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

@@ -3161,15 +3161,17 @@ message proto_catalogs_many_to_many_relation {
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(6)]
-    // @attr [DisplayName("Catalog")]
+    // @attr [DisplayName("Catalog 1")]
     // @attr [Description("Catalog of Many To Many relation")]
+    // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     google.protobuf.StringValue guid_cat1 = 6;
     // @attr [Browsable(false)]
     string ref_cat1_guid = 7;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(8)]
-    // @attr [DisplayName("Catalog")]
+    // @attr [DisplayName("Catalog 2")]
     // @attr [Description("Catalog of Many To Many relation")]
+    // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     google.protobuf.StringValue guid_cat2 = 8;
     // @attr [Browsable(false)]
     string ref_cat2_guid = 9;
@@ -3251,15 +3253,17 @@ message proto_documents_many_to_many_relation {
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(6)]
-    // @attr [DisplayName("Catalog")]
-    // @attr [Description("Catalog of Many To Many relation")]
+    // @attr [DisplayName("Document 1")]
+    // @attr [Description("Document of Many To Many relation")]
+    // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     google.protobuf.StringValue guid_doc1 = 6;
     // @attr [Browsable(false)]
     string ref_doc1_guid = 7;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(8)]
-    // @attr [DisplayName("Catalog")]
-    // @attr [Description("Catalog of Many To Many relation")]
+    // @attr [DisplayName("Document 2")]
+    // @attr [Description("Document of Many To Many relation")]
+    // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     google.protobuf.StringValue guid_doc2 = 8;
     // @attr [Browsable(false)]
     string ref_doc2_guid = 9;

@@ -296,5 +296,14 @@ namespace vSharpStudio.vm.ViewModels
             return res;
         }
         #endregion Get Properties and Details
+        [Browsable(false)]
+        public SortedObservableCollection<ITreeConfigNodeSortable>? ListObjects
+        {
+            get
+            {
+                Debug.Assert(this.Cfg != null);
+                return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
+            }
+        }
     }
 }

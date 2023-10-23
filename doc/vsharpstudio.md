@@ -415,9 +415,9 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| guid_cat1 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Catalog&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] |
+| guid_cat1 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Catalog 1&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | ref_cat1_guid | [string](#string) |  | @attr [Browsable(false)] |
-| guid_cat2 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Catalog&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] |
+| guid_cat2 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Catalog 2&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | ref_cat2_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
@@ -688,9 +688,9 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| guid_doc1 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Catalog&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] |
+| guid_doc1 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Document 1&#34;)] @attr [Description(&#34;Document of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | ref_doc1_guid | [string](#string) |  | @attr [Browsable(false)] |
-| guid_doc2 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Catalog&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] |
+| guid_doc2 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Document 2&#34;)] @attr [Description(&#34;Document of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | ref_doc2_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |

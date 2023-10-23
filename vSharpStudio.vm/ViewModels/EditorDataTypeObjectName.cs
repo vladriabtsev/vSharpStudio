@@ -14,23 +14,25 @@ namespace vSharpStudio.vm.ViewModels
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Debug.Assert(propertyItem != null);
-            DataType dt = null!;
-            if (propertyItem.Instance is DataType)
-                dt = (DataType)propertyItem.Instance;
-            else if (propertyItem.Instance is Property)
-                dt = ((Property)propertyItem.Instance).DataType;
-            else if (propertyItem.Instance is Constant)
-                dt = ((Constant)propertyItem.Instance).DataType;
-            else
-                throw new Exception();
             ComboBox cbx = new ComboBox();
             cbx.DisplayMemberPath = "Name";
             cbx.SelectedValuePath = "Guid";
             var _binding_lst = new Binding("ListObjects"); // bind to the Value property of the PropertyItem
-            _binding_lst.Source = dt;
             _binding_lst.ValidatesOnExceptions = false;
             _binding_lst.ValidatesOnDataErrors = false;
             _binding_lst.Mode = BindingMode.OneWay;
+            if (propertyItem.Instance is DataType)
+                _binding_lst.Source = (DataType)propertyItem.Instance;
+            else if (propertyItem.Instance is Property)
+                _binding_lst.Source = ((Property)propertyItem.Instance).DataType;
+            else if (propertyItem.Instance is Constant)
+                _binding_lst.Source = ((Constant)propertyItem.Instance).DataType;
+            else if (propertyItem.Instance is CatalogsManyToManyRelation)
+                _binding_lst.Source = propertyItem.Instance;
+            else if (propertyItem.Instance is DocumentsManyToManyRelation)
+                _binding_lst.Source = propertyItem.Instance;
+            else
+                throw new Exception();
             BindingOperations.SetBinding(cbx, ComboBox.ItemsSourceProperty, _binding_lst);
             var _binding = new Binding("Value"); // bind to the Value property of the PropertyItem
             _binding.Source = propertyItem;

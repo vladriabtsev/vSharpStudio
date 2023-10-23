@@ -27414,8 +27414,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         
         [Category("")]
         [PropertyOrderAttribute(6)]
-        [DisplayName("Catalog")]
+        [DisplayName("Catalog 1")]
         [Description("Catalog of Many To Many relation")]
+        [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
         public string? GuidCat1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._GuidCat1; }
@@ -27453,8 +27454,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         
         [Category("")]
         [PropertyOrderAttribute(8)]
-        [DisplayName("Catalog")]
+        [DisplayName("Catalog 2")]
         [Description("Catalog of Many To Many relation")]
+        [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
         public string? GuidCat2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._GuidCat2; }
@@ -28407,8 +28409,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         
         [Category("")]
         [PropertyOrderAttribute(6)]
-        [DisplayName("Catalog")]
-        [Description("Catalog of Many To Many relation")]
+        [DisplayName("Document 1")]
+        [Description("Document of Many To Many relation")]
+        [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
         public string? GuidDoc1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._GuidDoc1; }
@@ -28446,8 +28449,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         
         [Category("")]
         [PropertyOrderAttribute(8)]
-        [DisplayName("Catalog")]
-        [Description("Catalog of Many To Many relation")]
+        [DisplayName("Document 2")]
+        [Description("Document of Many To Many relation")]
+        [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
         public string? GuidDoc2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._GuidDoc2; }
