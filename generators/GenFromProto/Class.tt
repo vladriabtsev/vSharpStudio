@@ -50,6 +50,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
     public <#= message.Name.ToNameCs() #>(<#=this.Doc.ParentTypeName#>? parent) // <#=t4.FilePos() #>
         : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator)
     {
+        //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
         this.OnCreating();
 <#    foreach (var t in message.Fields.InDeclarationOrder()) { 
          if (t.IsRepeated) {#>

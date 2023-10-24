@@ -20,6 +20,30 @@ namespace vSharpStudio.vm.ViewModels
         {
             mes = mes + $" props:{GroupProperties.ListProperties.Count} details:{GroupDetails.ListDetails.Count}";
         }
+        public string GetDebuggerDisplay(bool isOptimistic)
+        {
+            var sb = new StringBuilder();
+            sb.Append("DOC ");
+            sb.Append(this.Name);
+            sb.Append(", ");
+            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PKeyName);
+            sb.Append(":{");
+            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PKeyName);
+            sb.Append(",nq}");
+            if (isOptimistic)
+            {
+                sb.Append(" RecVer:{");
+                sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.RecordVersionFieldName);
+                sb.Append(",nq}");
+            }
+            sb.Append(" Number:{");
+            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PropertyDocNumberName);
+            sb.Append(",nq}");
+            sb.Append(" Date:{");
+            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PropertyDocDateName);
+            sb.Append(",nq}");
+            return sb.ToString();
+        }
         [Browsable(false)]
         public GroupListDocuments ParentGroupListDocuments { get { Debug.Assert(this.Parent != null); return (GroupListDocuments)this.Parent; } }
         [Browsable(false)]

@@ -21,6 +21,24 @@ namespace vSharpStudio.vm.ViewModels
         {
             mes = mes + $" props:{GroupProperties.ListProperties.Count}";
         }
+        public string GetDebuggerDisplay(bool isOptimistic)
+        {
+            var sb = new StringBuilder();
+            sb.Append("FOL ");
+            sb.Append(this.Name);
+            sb.Append(", ");
+            sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentModel.PKeyName);
+            sb.Append(":{");
+            sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentModel.PKeyName);
+            sb.Append(",nq} RefTreeParent:{RefTreeParent,nq}");
+            if (isOptimistic)
+            {
+                sb.Append(" RecVer:{");
+                sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentModel.RecordVersionFieldName);
+                sb.Append(",nq}");
+            }
+            return sb.ToString();
+        }
         [Browsable(false)]
         public Catalog ParentCatalog { get { Debug.Assert(this.Parent != null); return (Catalog)this.Parent; } }
         [Browsable(false)]

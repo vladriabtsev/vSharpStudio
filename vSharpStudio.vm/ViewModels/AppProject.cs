@@ -132,7 +132,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(parent != null);
             this._Name = name;
             this.ParentAppSolution.ListAppProjects.Add(this);
-            this._RelativeAppProjectPath = projectPath;
+            this.RelativeAppProjectPath = projectPath;
         }
         public string GetProjectPath()
         {

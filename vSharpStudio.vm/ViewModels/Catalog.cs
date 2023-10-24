@@ -23,6 +23,41 @@ namespace vSharpStudio.vm.ViewModels
         {
             mes = mes + $" props:{GroupProperties.ListProperties.Count}";
         }
+        public string GetDebuggerDisplay(bool isOptimistic)
+        {
+            var sb = new StringBuilder();
+            sb.Append("CAT ");
+            sb.Append(this.Name);
+            sb.Append(", ");
+            sb.Append(this.ParentGroupListCatalogs.ParentModel.PKeyName);
+            sb.Append(":{");
+            sb.Append(this.ParentGroupListCatalogs.ParentModel.PKeyName);
+            sb.Append(",nq}");
+            if (this.UseTree)
+            {
+                if (this.UseSeparateTreeForFolders)
+                {
+                    sb.Append(" Ref");
+                    sb.Append(this.Folder.CompositeName);
+                    sb.Append(":{Ref");
+                    sb.Append(this.Folder.CompositeName);
+                    sb.Append(",nq}");
+                }
+                else
+                {
+                    sb.Append(" RefTreeParent:{RefTreeParent,nq}");
+                    //prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
+                    //res.Add(prp);
+                }
+            }
+            if (isOptimistic)
+            {
+                sb.Append(" RecVer:{");
+                sb.Append(this.ParentGroupListCatalogs.ParentModel.RecordVersionFieldName);
+                sb.Append(",nq}");
+            }
+            return sb.ToString();
+        }
         [Browsable(false)]
         public GroupListCatalogs ParentGroupListCatalogs { get { Debug.Assert(this.Parent != null); return (GroupListCatalogs)this.Parent; } }
         [Browsable(false)]

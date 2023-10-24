@@ -20,6 +20,30 @@ namespace vSharpStudio.vm.ViewModels
         {
             mes = mes + $" props:{GroupProperties.ListProperties.Count} details:{GroupDetails.ListDetails.Count}";
         }
+        public string GetDebuggerDisplay(bool isOptimistic)
+        {
+            var sb = new StringBuilder();
+            sb.Append(this.Name);
+            sb.Append(", ");
+            sb.Append(this.Cfg.Model.PKeyName);
+            sb.Append(":{");
+            sb.Append(this.Cfg.Model.PKeyName);
+            sb.Append(",nq}");
+            if (isOptimistic)
+            {
+                sb.Append(" RecVer:{");
+                sb.Append(this.Cfg.Model.RecordVersionFieldName);
+                sb.Append(",nq}");
+            }
+            sb.Append(" Ref");
+            Debug.Assert(this.ParentGroupListDetails.Parent != null);
+            var compName = ((ICompositeName)this.ParentGroupListDetails.Parent).CompositeName;
+            sb.Append(compName);
+            sb.Append(":{Ref");
+            sb.Append(compName);
+            sb.Append(",nq}");
+            return sb.ToString();
+        }
         [Browsable(false)]
         public GroupListDetails ParentGroupListDetails { get { Debug.Assert(this.Parent != null); return (GroupListDetails)this.Parent; } }
         [Browsable(false)]

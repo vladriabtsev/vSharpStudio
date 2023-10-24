@@ -53,7 +53,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // D:\dev\vSharpStudio.pro\submodule
             this.OnCreating();
         }*/
         public TestSharedMesssage() 
-            : base(TestSharedMesssageValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:71
+            : base(TestSharedMesssageValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:72
         {
             this.OnCreating();
             this.OnCreated();

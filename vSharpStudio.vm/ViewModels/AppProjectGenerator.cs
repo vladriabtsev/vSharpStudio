@@ -374,6 +374,7 @@ namespace vSharpStudio.vm.ViewModels
                 });
                 //this.RemoveGroupSettingsIfLast();
             }
+            this.PluginGeneratorGuid = string.Empty;
             cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
 
             cfg._DicActiveAppProjectGenerators.TryRemove(this.Guid);
@@ -391,7 +392,6 @@ namespace vSharpStudio.vm.ViewModels
 
                 UpdateListGenerators();
 
-                this.PluginGeneratorGuid = string.Empty;
                 this.GenFileName = string.Empty;
                 //if (cfg.IsInitialized)
                 //{
@@ -430,7 +430,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnPluginGeneratorGuidChanged()
         {
-            Debug.Assert(this._PluginGeneratorGuid != null);
+            Debug.Assert(this._PluginGeneratorGuid != null); // expect empty
             DebugExt.WriteLineWithStack();
             var nv = new ModelVisitorNodeGenSettings();
             nv.NodeGenSettingsApplyAction(cfg, (p) =>

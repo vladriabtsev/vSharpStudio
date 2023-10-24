@@ -27,5 +27,6 @@ namespace vSharpStudio.common
         EnumPrintAccess GetRoleCatalogPrint(IRole role);
         IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access);
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
+        string GetDebuggerDisplay(bool isOptimistic);
     }
 }
