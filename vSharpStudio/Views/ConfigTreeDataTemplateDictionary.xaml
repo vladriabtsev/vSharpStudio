@@ -56,7 +56,7 @@
                     <ContentControl Template="{StaticResource iconStatusNew}" ToolTip="Is changed"/>
                 </Viewbox>
             </StackPanel>
-            <StackPanel VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Center" ToolTip="Indicator of amount of errors, warnings, and info messages">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
                 <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
@@ -89,7 +89,7 @@
                     <ContentControl Template="{StaticResource iconCancel}" ToolTip="Is marked for deletion or has marked for deletion subnodes" />
                 </Viewbox>
             </StackPanel>
-            <StackPanel VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Center" ToolTip="Indicator of amount of errors, warnings, and info messages">
                 <Rectangle Fill="Red" Height="4" Width="{Binding CountErrors, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
                 <Rectangle Fill="#FFFBA104" Height="4" Width="{Binding CountWarnings, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" Margin="0,1,0,1" />
                 <Rectangle Fill="#FF04EEF9" Height="4" Width="{Binding CountInfos, Converter={StaticResource ConverterCountToWidth}, Mode=OneWay}" VerticalAlignment="Bottom" />
