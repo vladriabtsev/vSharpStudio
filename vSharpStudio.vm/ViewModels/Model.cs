@@ -768,6 +768,14 @@ namespace vSharpStudio.vm.ViewModels
             //res.Position = 10 + relPosition;
             return res;
         }
+        public IProperty GetPropertyRefCatalog(ITreeConfigNode parent, string guid, ICatalog c, uint position, bool isNullable)
+        {
+            var res = new Property(parent, guid, "Ref" + c.CompositeName, true);
+            res.DataType = (DataType)this.GetDataType(parent, c, isNullable);
+            res.Position = position;
+            res.IsCsNullable = true;
+            return res;
+        }
         public IProperty GetPropertyCatalogCode(ITreeConfigNode parent, string guid, uint length, bool isNullable)
         {
             var res = new Property(parent, guid, this.PropertyCodeName, true);
@@ -805,6 +813,14 @@ namespace vSharpStudio.vm.ViewModels
             res.IsHidden = true;
             res.IsNullable = isNullable;
             res.Position = 12;
+            return res;
+        }
+        public IProperty GetPropertyRefDocument(ITreeConfigNode parent, string guid, IDocument d, uint position, bool isNullable)
+        {
+            var res = new Property(parent, guid, "Ref" + d.CompositeName, true);
+            res.DataType = (DataType)this.GetDataType(parent, d, isNullable);
+            res.Position = position;
+            res.IsCsNullable = true;
             return res;
         }
         public IProperty GetPropertyDocumentDate(ITreeConfigNode parent, string guid, bool isPKey = false)

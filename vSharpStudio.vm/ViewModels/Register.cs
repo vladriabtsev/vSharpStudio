@@ -481,8 +481,8 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (node is Catalog c)
                         {
-                            var pRef = (Property)m.GetPropertyRefDimension(this, t.Guid, "Ref" + c.CompositeName, t.Position, false);
-                            lst.Add(pRef);
+                            var pCat = (Property)m.GetPropertyRefCatalog(this, t.Guid, c, t.Position, false);
+                            lst.Add(pCat);
                         }
                         else
                             ThrowHelper.ThrowNotSupportedException();

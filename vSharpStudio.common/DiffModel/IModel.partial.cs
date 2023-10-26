@@ -46,12 +46,14 @@ namespace vSharpStudio.common
         IProperty GetPropertyNumber(ITreeConfigNode parent, string guid, string name, uint length, uint accuracy, bool isNullable);
         IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable);
         IProperty GetPropertyRefDimension(IRegister parent, string guid, string name, uint position, bool isNullable);
+        IProperty GetPropertyRefCatalog(ITreeConfigNode parent, string guid, ICatalog c, uint position, bool isNullable);
         IProperty GetPropertyCatalogCode(ITreeConfigNode parent, string guid, uint length, bool isNullable);
         IProperty GetPropertyCatalogCodeInt(ITreeConfigNode parent, string guid, uint length, bool isNullable);
         IProperty GetPropertyCatalogName(ITreeConfigNode parent, string guid, uint length, bool isNullable);
         IProperty GetPropertyCatalogDescription(ITreeConfigNode parent, string guid, uint length, bool isNullable);
         IProperty GetPropertyIsFolder(ITreeConfigNode parent, string guid, bool isNullable);
         IProperty GetPropertyVersion(ITreeConfigNode parent, string guid);
+        IProperty GetPropertyRefDocument(ITreeConfigNode parent, string guid, IDocument d, uint position, bool isNullable);
         IProperty GetPropertyDocumentDate(ITreeConfigNode parent, string guid, bool isPKey = false);
         IProperty GetPropertyDocNumberString(ITreeConfigNode parent, string guid, uint length);
         IProperty GetPropertyDocNumberInt(ITreeConfigNode parent, string guid, uint length);
