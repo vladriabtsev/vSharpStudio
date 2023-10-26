@@ -10892,7 +10892,7 @@
               "defaultValue": ""
             },
             {
-              "name": "index_doc_date_dimensions_guid",
+              "name": "index_doc_date_guid",
               "description": "Guid for index of document date, dimensions. Auto generated.\n@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -10938,6 +10938,16 @@
               "type": "proto_register_doc_to_reg",
               "longType": "proto_register_doc_to_reg",
               "fullType": "proto_config.proto_register_doc_to_reg",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "table_posted_data_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },

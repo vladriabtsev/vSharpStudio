@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class Detail : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles, ILayoutParameters
+    public partial class Detail : ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles, ILayoutParameters
     {
         partial void OnDebugStringExtend(ref string mes)
         {

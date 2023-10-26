@@ -18,7 +18,7 @@
     </UserControl.Resources>
     <UserControl.InputBindings>
         <KeyBinding Modifiers="" Key="Insert" Command="{Binding BtnAddNew.Command}"/>
-        <KeyBinding Modifiers="Alt" Key="Insert" Command="{Binding BtnAddNewChild.Command}"/>
+        <!--<KeyBinding Modifiers="Alt" Key="Insert" Command="{Binding BtnAddNewChild.Command}"/>-->
         <KeyBinding Modifiers="Ctrl" Key="Insert" Command="{Binding BtnAddClone.Command}"/>
         <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding BtnMoveDown.Command}"/>
         <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding BtnMoveUp.Command}"/>
@@ -36,7 +36,7 @@
         <ToolBarPanel>
             <ToolBar Padding="0,1,0,0">
                 <vc:vButton IconControlTemplate="{StaticResource iconAdd}" DataContext="{Binding BtnAddNew}" ToolTip="Ins - insert new object after selected"/>
-                <vc:vButton IconControlTemplate="{StaticResource iconAddChildNode}" DataContext="{Binding BtnAddNewChild}" ToolTip="Alt+Ins - insert new child object"/>
+                <!--<vc:vButton IconControlTemplate="{StaticResource iconAddChildNode}" DataContext="{Binding BtnAddNewChild}" ToolTip="Alt+Ins - insert new child object"/>-->
                 <vc:vButton IconControlTemplate="{StaticResource iconCopy}" DataContext="{Binding BtnAddClone}" ToolTip="Ctrl+Ins - insert clone of selected object"/>
                 <vc:vButton IconControlTemplate="{StaticResource iconCollapseChevronDown}" DataContext="{Binding BtnMoveDown}" ToolTip="Ctrl+Down - move select node down"/>
                 <vc:vButton IconControlTemplate="{StaticResource iconCollapseChevronUp}" DataContext="{Binding BtnMoveUp}" ToolTip="Ctrl+Up - move select node upper"/>

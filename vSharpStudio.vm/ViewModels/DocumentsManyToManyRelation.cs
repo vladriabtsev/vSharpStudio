@@ -216,7 +216,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new DocumentsManyToManyRelation(this.Parent);
             this.ParentGroupCatalogManyToManyRelations.Add(node);
-            this.GetUniqueName(Defaults.CatalogName, node, this.ParentGroupCatalogManyToManyRelations.ListDocumentsManyToManyRelations);
+            this.GetUniqueName(Defaults.DocumentMtmRelationName, node, this.ParentGroupCatalogManyToManyRelations.ListDocumentsManyToManyRelations);
             this.SetSelected(node);
             return node;
         }

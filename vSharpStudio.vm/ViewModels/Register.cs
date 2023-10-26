@@ -73,10 +73,11 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyDocRefGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocGuidGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocDateGuid = System.Guid.NewGuid().ToString();
-            this._IndexDocDateDimensionsGuid = System.Guid.NewGuid().ToString();
+            this._IndexDocDateGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
             this._IndexDocIdTypeGuid = System.Guid.NewGuid().ToString();
             this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this._TablePostedDataGuid = System.Guid.NewGuid().ToString();
             this._LastGenPosition = 20;
             this._PropertyDocRefGuidName = "DocGuid";
             this._PropertyDocRefName = "DocRef";
@@ -185,11 +186,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            if (!(this.Parent is GroupListProperties))
-            {
-                throw new Exception();
-            }
-
             var node = new Register(this.Parent);
             this.ParentGroupListRegisters.Add(node);
             this.GetUniqueName(Defaults.RegisterName, node, this.ParentGroupListRegisters.ListRegisters);
@@ -393,24 +389,70 @@ namespace vSharpStudio.vm.ViewModels
 
             var lst = new List<IProperty>();
             var m = this.ParentGroupListRegisters.ParentModel;
-            var pId = m.GetPropertyPkId(this, this.Guid);
+
+            // Id
+            var pId = m.GetPropertyPkId(this, this.Guid); // position 6
             pId.TagInList = "id";
             lst.Add(pId);
 
             if (isOptimistic)
             {
-                var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid);
+                // Version
+                var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid); // position 7
                 pVer.TagInList = "vr";
                 lst.Add(pVer);
             }
-            var pDocDate = m.GetPropertyDocumentDate(this, this.PropertyDocDateGuid);
+
+            // Document date
+            var pDocDate = m.GetPropertyDocumentDate(this, this.PropertyDocDateGuid); // position 8
+            //var pDocDate = m.GetPropertyDocumentDate(this, this.PropertyDocDateGuid, true);
             pDocDate.TagInList = "dd";
             lst.Add(pDocDate);
 
+            // Reference to document
+            var pDocRef = (Property)m.GetPropertyId(this, this.PropertyDocRefGuid, this.PropertyDocRefName, false);
+            pDocRef.Position = 11;
+            pDocRef.TagInList = "dr";
+            lst.Add(pDocRef);
+
+            // Guid of document
+            var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyDocGuidGuid, this.PropertyDocRefGuidName, false);
+            pDocGuid.Position = 13;
+            pDocGuid.TagInList = "dg";
+            lst.Add(pDocGuid);
+
             // Document number
-            var pDocNumber = m.GetPropertyDocNumberString(this, this.PropertyDocNumberGuid, 50);
+            var pDocNumber = (Property)m.GetPropertyDocNumberString(this, this.PropertyDocNumberGuid, 50);
+            pDocNumber.Position = 15;
             pDocNumber.TagInList = "dn";
             lst.Add(pDocNumber);
+
+            // For all attached properties.
+            foreach (var t in this.GroupAttachedProperties.ListProperties)
+            {
+                lst.Add(t);
+            }
+            return lst;
+        }
+        public IReadOnlyList<IProperty> GetIncludedPostDataProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
+        {
+            Debug.Assert(!isExcludeSpecial, "not implemented yet");
+
+            var lst = new List<IProperty>();
+            var m = this.ParentGroupListRegisters.ParentModel;
+
+            // Id
+            var pId = m.GetPropertyPkId(this, this.TablePostedDataGuid); // position 6
+            pId.TagInList = "id";
+            lst.Add(pId);
+
+            if (isOptimistic)
+            {
+                // Version
+                var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid); // position 7
+                pVer.TagInList = "vr";
+                lst.Add(pVer);
+            }
 
             // Money accumulator
             var pMoney = (Property)m.GetPropertyNumber(this, this.PropertyMoneyAccumulatorGuid, this.PropertyMoneyAccumulatorName, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
@@ -424,17 +466,10 @@ namespace vSharpStudio.vm.ViewModels
             pQty.TagInList = "qa";
             lst.Add(pQty);
 
-            // Reference to document
-            var pDocRef = (Property)m.GetPropertyId(this, this.PropertyDocRefGuid, this.PropertyDocRefName, false);
-            pDocRef.Position = 13;
-            pDocRef.TagInList = "dr";
-            lst.Add(pDocRef);
-
-            // Guid of document
-            var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyDocGuidGuid, this.PropertyDocRefGuidName, false);
-            pDocGuid.Position = 14;
-            pDocGuid.TagInList = "dg";
-            lst.Add(pDocGuid);
+            // Reference to register header
+            var pRegRef = (Property)m.GetPropertyRef(this, this.Guid, "Ref" + this.CompositeName, 13);
+            pRegRef.TagInList = "rr";
+            lst.Add(pRegRef);
 
             // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
             // For all dimensions (catalogs).

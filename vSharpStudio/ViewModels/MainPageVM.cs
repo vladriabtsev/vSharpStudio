@@ -585,7 +585,7 @@ namespace vSharpStudio.ViewModels
                 this._Config.OnSelectedNodeChanged = () =>
                 {
                     this.BtnAddNew.Command.NotifyCanExecuteChanged();
-                    this.BtnAddNewChild.Command.NotifyCanExecuteChanged();
+                    //this.BtnAddNewChild.Command.NotifyCanExecuteChanged();
                     this.BtnAddClone.Command.NotifyCanExecuteChanged();
                     this.BtnMoveDown.Command.NotifyCanExecuteChanged();
                     this.BtnMoveUp.Command.NotifyCanExecuteChanged();
@@ -1763,21 +1763,31 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._BtnAddNew ??= new vButtonVM(
-                () => { Utils.TryCall(() => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddNew(); }, "Add new node command"); },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNew(); });
+                () =>
+                {
+                    Utils.TryCall(() =>
+                    {
+                        Debug.Assert(this.Config.SelectedNode != null);
+                        if (this.Config.SelectedNode.NodeCanAddNew())
+                            this.Config.SelectedNode.NodeAddNew();
+                        if (this.Config.SelectedNode.NodeCanAddNewSubNode())
+                            this.Config.SelectedNode.NodeAddNewSubNode();
+                    }, "Add new node command");
+                },
+                () => { return this.Config != null && this.Config.SelectedNode != null && (this.Config.SelectedNode.NodeCanAddNew() || this.Config.SelectedNode.NodeCanAddNewSubNode()); });
             }
         }
         private vButtonVM? _BtnAddNew;
-        public vButtonVM BtnAddNewChild
-        {
-            get
-            {
-                return this._BtnAddNewChild ??= new vButtonVM(
-                () => { Utils.TryCall(() => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddNewSubNode(); }, "Add new sub node command"); },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNewSubNode(); });
-            }
-        }
-        private vButtonVM? _BtnAddNewChild;
+        //public vButtonVM BtnAddNewChild
+        //{
+        //    get
+        //    {
+        //        return this._BtnAddNewChild ??= new vButtonVM(
+        //        () => { Utils.TryCall(() => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddNewSubNode(); }, "Add new sub node command"); },
+        //        () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNewSubNode(); });
+        //    }
+        //}
+        //private vButtonVM? _BtnAddNewChild;
         public vButtonVM BtnAddClone
         {
             get

@@ -32,7 +32,7 @@ namespace vSharpStudio.common
         //IDataType GetDataTypeDateTime();
         //IDataType GetDataTypeDateTimeZ();
         IDataType GetDataTypeDateTimeLocal(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable);
-        IDataType GetDataTypeDateTimeUtc(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable);
+        IDataType GetDataTypeDateTimeUtc(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable, bool isPKey = false);
         IDataType GetDataTypeTime(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable);
         //IDataType GetDataTypeTimeZ();
         IDataType GetIdDataType(ITreeConfigNode? parent, bool isNullable);
@@ -52,7 +52,7 @@ namespace vSharpStudio.common
         IProperty GetPropertyCatalogDescription(ITreeConfigNode parent, string guid, uint length, bool isNullable);
         IProperty GetPropertyIsFolder(ITreeConfigNode parent, string guid, bool isNullable);
         IProperty GetPropertyVersion(ITreeConfigNode parent, string guid);
-        IProperty GetPropertyDocumentDate(ITreeConfigNode parent, string guid);
+        IProperty GetPropertyDocumentDate(ITreeConfigNode parent, string guid, bool isPKey = false);
         IProperty GetPropertyDocNumberString(ITreeConfigNode parent, string guid, uint length);
         IProperty GetPropertyDocNumberInt(ITreeConfigNode parent, string guid, uint length);
         IProperty GetPropertyDocNumberUniqueScopeHelper(ITreeConfigNode parent, string guid);
