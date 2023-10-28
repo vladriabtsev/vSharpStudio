@@ -61,23 +61,26 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this._UseMoneyAccumulator = true;
-            this._PropertyMoneyAccumulatorName = "AccumulatedMoney";
-            this._PropertyMoneyAccumulatorAccuracy = 2;
-            this._PropertyMoneyAccumulatorLength = 28;
-            this._PropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
+            this._TableDimensionPropertyMoneyAccumulatorName = "AccumulatedMoney";
+            this._TableDimensionPropertyMoneyAccumulatorAccuracy = 2;
+            this._TableDimensionPropertyMoneyAccumulatorLength = 28;
             this._UseQtyAccumulator = true;
-            this._PropertyQtyAccumulatorName = "AccumulatedQty";
-            this._PropertyQtyAccumulatorAccuracy = 4;
-            this._PropertyQtyAccumulatorLength = 28;
-            this._PropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
+            this._TableDimensionPropertyQtyAccumulatorName = "AccumulatedQty";
+            this._TableDimensionPropertyQtyAccumulatorAccuracy = 4;
+            this._TableDimensionPropertyQtyAccumulatorLength = 28;
+            this._TableDimensionPropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
+            this._TableDimensionPropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocRefGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocGuidGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocDateGuid = System.Guid.NewGuid().ToString();
             this._IndexDocDateGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
             this._IndexDocIdTypeGuid = System.Guid.NewGuid().ToString();
+            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
             this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this._TablePostedDataGuid = System.Guid.NewGuid().ToString();
+            this._TableDimensionGuid = System.Guid.NewGuid().ToString();
+            this._TableDimensionPropertyIdGuid = System.Guid.NewGuid().ToString();
+            this._TableDimensionPropertyVersionGuid = System.Guid.NewGuid().ToString();
             this._LastGenPosition = 20;
             this._PropertyDocRefGuidName = "DocGuid";
             this._PropertyDocRefName = "DocRef";
@@ -434,7 +437,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst;
         }
-        public IReadOnlyList<IProperty> GetIncludedPostDataProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
+        public IReadOnlyList<IProperty> GetIncludedDimensionsProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
         {
             Debug.Assert(!isExcludeSpecial, "not implemented yet");
 
@@ -442,7 +445,7 @@ namespace vSharpStudio.vm.ViewModels
             var m = this.ParentGroupListRegisters.ParentModel;
 
             // Id
-            var pId = m.GetPropertyPkId(this, this.TablePostedDataGuid); // position 6
+            var pId = m.GetPropertyPkId(this, this.PropertyIdGuid); // position 6
             pId.TagInList = "id";
             lst.Add(pId);
 
@@ -455,13 +458,13 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             // Money accumulator
-            var pMoney = (Property)m.GetPropertyNumber(this, this.PropertyMoneyAccumulatorGuid, this.PropertyMoneyAccumulatorName, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
+            var pMoney = (Property)m.GetPropertyNumber(this, this.TableDimensionPropertyMoneyAccumulatorGuid, this.TableDimensionPropertyMoneyAccumulatorName, this.TableDimensionPropertyMoneyAccumulatorLength, this.TableDimensionPropertyMoneyAccumulatorAccuracy, false);
             pMoney.Position = 11;
             pMoney.TagInList = "ma";
             lst.Add(pMoney);
 
             // Qty accumulator
-            var pQty = (Property)m.GetPropertyNumber(this, this.PropertyQtyAccumulatorGuid, this.PropertyQtyAccumulatorName, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
+            var pQty = (Property)m.GetPropertyNumber(this, this.TableDimensionPropertyQtyAccumulatorGuid, this.TableDimensionPropertyQtyAccumulatorName, this.TableDimensionPropertyQtyAccumulatorLength, this.TableDimensionPropertyQtyAccumulatorAccuracy, false);
             pQty.Position = 12;
             pQty.TagInList = "qa";
             lst.Add(pQty);

@@ -8647,7 +8647,7 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_qty_accumulator_name</td>
+                  <td>table_dimension_property_qty_accumulator_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(16)]
@@ -8656,7 +8656,7 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_qty_accumulator_length</td>
+                  <td>table_dimension_property_qty_accumulator_length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(17)]
@@ -8665,7 +8665,7 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_qty_accumulator_accuracy</td>
+                  <td>table_dimension_property_qty_accumulator_accuracy</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(18)]
@@ -8674,7 +8674,7 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_qty_accumulator_guid</td>
+                  <td>table_dimension_property_qty_accumulator_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -8690,7 +8690,7 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_money_accumulator_name</td>
+                  <td>table_dimension_property_money_accumulator_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(22)]
@@ -8699,7 +8699,7 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_money_accumulator_length</td>
+                  <td>table_dimension_property_money_accumulator_length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(23)]
@@ -8708,7 +8708,7 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_money_accumulator_accuracy</td>
+                  <td>table_dimension_property_money_accumulator_accuracy</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(24)]
@@ -8717,14 +8717,10 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_money_accumulator_guid</td>
+                  <td>table_dimension_property_money_accumulator_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [Browsable(false)]
-
-/ &lt;summary&gt;
-/ Guids of selected CATALOGS types
-/ &lt;/summary&gt; </p></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -8737,6 +8733,20 @@ Reserved positions: 1 - primary key
                 <tr>
                   <td>group_attached_properties</td>
                   <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_id_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_version_guid</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -8816,7 +8826,21 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_version_guid</td>
+                  <td>table_dimension_property_id_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>table_dimension_property_version_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>table_dimension_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -8828,13 +8852,6 @@ Reserved positions: 1 - primary key
                   <td>repeated</td>
                   <td><p>Mapping register properties to document properties
 @attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>table_posted_data_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -8929,15 +8946,11 @@ Reserved positions: 1 - primary key
 @attr [Category(&#34;&#34;)]
 @attr [DisplayName(&#34;Dimension catalog&#34;)]
 @attr [Description(&#34;Catalog for register dimension&#34;)]
-@attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_dimension_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Guid for dimension property. Auto generated.
-@attr [Browsable(false)] </p></td>
+@attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]
+
+Guid for dimension property. Auto generated.
+@attr [Browsable(false)]
+string property_dimension_guid = 22; </p></td>
                 </tr>
               
                 <tr>

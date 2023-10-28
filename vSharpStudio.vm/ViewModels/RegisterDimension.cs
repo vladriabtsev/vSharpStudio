@@ -8,6 +8,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.DirectoryServices;
 using System.Numerics;
 using System.Text;
+using CommunityToolkit.Diagnostics;
 using FluentValidation;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
@@ -58,7 +59,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            this._PropertyDimensionGuid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()

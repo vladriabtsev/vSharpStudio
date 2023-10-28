@@ -2689,7 +2689,7 @@ message proto_register_dimension {
     string catalog_guid = 21; 
     // Guid for dimension property. Auto generated.
     // @attr [Browsable(false)]
-    string property_dimension_guid = 22; 
+    //string property_dimension_guid = 22; 
 
     // Protobuf field position
     // Reserved positions: 1-15
@@ -2776,17 +2776,17 @@ message proto_register {
     // @attr [PropertyOrderAttribute(16)]
     // @attr [DisplayName("Qty name")]
     // @attr [Description("Quantity accumulator property name")]
-    string property_qty_accumulator_name = 16;
+    string table_dimension_property_qty_accumulator_name = 16;
     // @attr [PropertyOrderAttribute(17)]
     // @attr [DisplayName("Qty Length")]
     // @attr [Description("Maximum decimal digits for quantity data")]
-    uint32 property_qty_accumulator_length = 17; 
+    uint32 table_dimension_property_qty_accumulator_length = 17; 
     // @attr [PropertyOrderAttribute(18)]
     // @attr [DisplayName("Qty accuracy")]
     // @attr [Description("Number of decimal places in fractional part for quantity data. If negative, than maximum possible accuracy")]
-    uint32 property_qty_accumulator_accuracy = 18; 
+    uint32 table_dimension_property_qty_accumulator_accuracy = 18; 
     // @attr [Browsable(false)]
-    string property_qty_accumulator_guid = 19; 
+    string table_dimension_property_qty_accumulator_guid = 19; 
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Money")]
     // @attr [Description("Use money accumulator for register")]
@@ -2794,25 +2794,28 @@ message proto_register {
     // @attr [PropertyOrderAttribute(22)]
     // @attr [DisplayName("Money name")]
     // @attr [Description("Money accumulator property name")]
-    string property_money_accumulator_name = 22;
+    string table_dimension_property_money_accumulator_name = 22;
     // @attr [PropertyOrderAttribute(23)]
     // @attr [DisplayName("Money Length")]
     // @attr [Description("Maximum decimal digits for money data")]
-    uint32 property_money_accumulator_length = 23; 
+    uint32 table_dimension_property_money_accumulator_length = 23; 
     // @attr [PropertyOrderAttribute(24)]
     // @attr [DisplayName("Money accuracy")]
     // @attr [Description("Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy")]
-    uint32 property_money_accumulator_accuracy = 24; 
+    uint32 table_dimension_property_money_accumulator_accuracy = 24; 
     // @attr [Browsable(false)]
-    string property_money_accumulator_guid = 26; 
-    /// <summary>
-    /// Guids of selected CATALOGS types
-    /// </summary>
+    string table_dimension_property_money_accumulator_guid = 25; 
+
 
     // @attr [Browsable(false)]
     proto_group_list_dimensions group_register_dimensions = 28;
     // @attr [Browsable(false)]
     proto_group_list_properties group_attached_properties = 31;
+
+    // @attr [Browsable(false)]
+    string property_id_guid = 37;
+    // @attr [Browsable(false)]
+    string property_version_guid = 38;
 
     // @attr [DisplayName("Doc Guid property")]
     // @attr [Description("Document guid property name")]
@@ -2843,15 +2846,17 @@ message proto_register {
     // Guid for index of document Id and type. Auto generated.
     // @attr [Browsable(false)]
     string index_doc_id_type_guid = 47; 
+
     // @attr [Browsable(false)]
-    string property_version_guid = 48;
+    string table_dimension_property_id_guid = 50;
+    // @attr [Browsable(false)]
+    string table_dimension_property_version_guid = 51;
+    // @attr [Browsable(false)]
+    string table_dimension_guid = 52;
 
     // Mapping register properties to document properties
     // @attr [Browsable(false)]
-    repeated proto_register_doc_to_reg list_doc_mappings = 49;
-
-    // @attr [Browsable(false)]
-    string table_posted_data_guid = 50;
+    repeated proto_register_doc_to_reg list_doc_mappings = 71;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;

@@ -34,67 +34,67 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
-            this.RuleFor(x => x.PropertyMoneyAccumulatorAccuracy).Custom((acc, cntx) =>
+            this.RuleFor(x => x.TableDimensionPropertyMoneyAccumulatorAccuracy).Custom((acc, cntx) =>
             {
                 var p = (Register)cntx.InstanceToValidate;
                 if (!p.UseMoneyAccumulator)
                     return;
-                if (acc >= p.PropertyMoneyAccumulatorLength)
+                if (acc >= p.TableDimensionPropertyMoneyAccumulatorLength)
                 {
-                    var vf = new ValidationFailure(nameof(p.PropertyMoneyAccumulatorAccuracy),
-                        $"Value greater or equal than {nameof(p.PropertyMoneyAccumulatorLength)} property value");
+                    var vf = new ValidationFailure(nameof(p.TableDimensionPropertyMoneyAccumulatorAccuracy),
+                        $"Value greater or equal than {nameof(p.TableDimensionPropertyMoneyAccumulatorLength)} property value");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.PropertyMoneyAccumulatorLength).Custom((len, cntx) =>
+            this.RuleFor(x => x.TableDimensionPropertyMoneyAccumulatorLength).Custom((len, cntx) =>
             {
                 var p = (Register)cntx.InstanceToValidate;
                 if (!p.UseMoneyAccumulator)
                     return;
-                if (len <= p.PropertyMoneyAccumulatorAccuracy)
+                if (len <= p.TableDimensionPropertyMoneyAccumulatorAccuracy)
                 {
-                    var vf = new ValidationFailure(nameof(p.PropertyMoneyAccumulatorLength),
-                        $"Value less or equal than {nameof(p.PropertyMoneyAccumulatorAccuracy)} property value");
+                    var vf = new ValidationFailure(nameof(p.TableDimensionPropertyMoneyAccumulatorLength),
+                        $"Value less or equal than {nameof(p.TableDimensionPropertyMoneyAccumulatorAccuracy)} property value");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
                 if (len > 28)
                 {
-                    var vf = new ValidationFailure(nameof(p.PropertyMoneyAccumulatorLength),
+                    var vf = new ValidationFailure(nameof(p.TableDimensionPropertyMoneyAccumulatorLength),
                         $"Value greater than 28 is not supported");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.PropertyQtyAccumulatorAccuracy).Custom((acc, cntx) =>
+            this.RuleFor(x => x.TableDimensionPropertyQtyAccumulatorAccuracy).Custom((acc, cntx) =>
             {
                 var p = (Register)cntx.InstanceToValidate;
                 if (!p.UseQtyAccumulator)
                     return;
-                if (acc >= p.PropertyQtyAccumulatorLength)
+                if (acc >= p.TableDimensionPropertyQtyAccumulatorLength)
                 {
-                    var vf = new ValidationFailure(nameof(p.PropertyQtyAccumulatorAccuracy),
-                        $"Value greater or equal than {nameof(p.PropertyQtyAccumulatorLength)} property value");
+                    var vf = new ValidationFailure(nameof(p.TableDimensionPropertyQtyAccumulatorAccuracy),
+                        $"Value greater or equal than {nameof(p.TableDimensionPropertyQtyAccumulatorLength)} property value");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.PropertyQtyAccumulatorLength).Custom((len, cntx) =>
+            this.RuleFor(x => x.TableDimensionPropertyQtyAccumulatorLength).Custom((len, cntx) =>
             {
                 var p = (Register)cntx.InstanceToValidate;
                 if (!p.UseQtyAccumulator)
                     return;
-                if (len <= p.PropertyQtyAccumulatorAccuracy)
+                if (len <= p.TableDimensionPropertyQtyAccumulatorAccuracy)
                 {
-                    var vf = new ValidationFailure(nameof(p.PropertyQtyAccumulatorLength),
-                        $"Value less or equal than {nameof(p.PropertyQtyAccumulatorAccuracy)} property value");
+                    var vf = new ValidationFailure(nameof(p.TableDimensionPropertyQtyAccumulatorLength),
+                        $"Value less or equal than {nameof(p.TableDimensionPropertyQtyAccumulatorAccuracy)} property value");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
                 if (len > 28)
                 {
-                    var vf = new ValidationFailure(nameof(p.PropertyQtyAccumulatorLength),
+                    var vf = new ValidationFailure(nameof(p.TableDimensionPropertyQtyAccumulatorLength),
                         $"Value greater than 28 is not supported");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);

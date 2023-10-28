@@ -10722,7 +10722,7 @@
               "defaultValue": ""
             },
             {
-              "name": "property_qty_accumulator_name",
+              "name": "table_dimension_property_qty_accumulator_name",
               "description": "@attr [PropertyOrderAttribute(16)]\n@attr [DisplayName(\"Qty name\")]\n@attr [Description(\"Quantity accumulator property name\")]",
               "label": "",
               "type": "string",
@@ -10732,7 +10732,7 @@
               "defaultValue": ""
             },
             {
-              "name": "property_qty_accumulator_length",
+              "name": "table_dimension_property_qty_accumulator_length",
               "description": "@attr [PropertyOrderAttribute(17)]\n@attr [DisplayName(\"Qty Length\")]\n@attr [Description(\"Maximum decimal digits for quantity data\")]",
               "label": "",
               "type": "uint32",
@@ -10742,7 +10742,7 @@
               "defaultValue": ""
             },
             {
-              "name": "property_qty_accumulator_accuracy",
+              "name": "table_dimension_property_qty_accumulator_accuracy",
               "description": "@attr [PropertyOrderAttribute(18)]\n@attr [DisplayName(\"Qty accuracy\")]\n@attr [Description(\"Number of decimal places in fractional part for quantity data. If negative, than maximum possible accuracy\")]",
               "label": "",
               "type": "uint32",
@@ -10752,7 +10752,7 @@
               "defaultValue": ""
             },
             {
-              "name": "property_qty_accumulator_guid",
+              "name": "table_dimension_property_qty_accumulator_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -10772,7 +10772,7 @@
               "defaultValue": ""
             },
             {
-              "name": "property_money_accumulator_name",
+              "name": "table_dimension_property_money_accumulator_name",
               "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Money name\")]\n@attr [Description(\"Money accumulator property name\")]",
               "label": "",
               "type": "string",
@@ -10782,7 +10782,7 @@
               "defaultValue": ""
             },
             {
-              "name": "property_money_accumulator_length",
+              "name": "table_dimension_property_money_accumulator_length",
               "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Money Length\")]\n@attr [Description(\"Maximum decimal digits for money data\")]",
               "label": "",
               "type": "uint32",
@@ -10792,7 +10792,7 @@
               "defaultValue": ""
             },
             {
-              "name": "property_money_accumulator_accuracy",
+              "name": "table_dimension_property_money_accumulator_accuracy",
               "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Money accuracy\")]\n@attr [Description(\"Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy\")]",
               "label": "",
               "type": "uint32",
@@ -10802,8 +10802,8 @@
               "defaultValue": ""
             },
             {
-              "name": "property_money_accumulator_guid",
-              "description": "@attr [Browsable(false)]\n\n/ \u003csummary\u003e\n/ Guids of selected CATALOGS types\n/ \u003c/summary\u003e",
+              "name": "table_dimension_property_money_accumulator_guid",
+              "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -10828,6 +10828,26 @@
               "type": "proto_group_list_properties",
               "longType": "proto_group_list_properties",
               "fullType": "proto_config.proto_group_list_properties",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_id_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_version_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -10922,7 +10942,27 @@
               "defaultValue": ""
             },
             {
-              "name": "property_version_guid",
+              "name": "table_dimension_property_id_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "table_dimension_property_version_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "table_dimension_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -10938,16 +10978,6 @@
               "type": "proto_register_doc_to_reg",
               "longType": "proto_register_doc_to_reg",
               "fullType": "proto_config.proto_register_doc_to_reg",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "table_posted_data_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -11044,17 +11074,7 @@
             },
             {
               "name": "catalog_guid",
-              "description": "\u003csummary\u003e\n/ Guid of Catalog type.\n/ \u003c/summary\u003e\n@attr [PropertyOrderAttribute(6)]\n@attr [Category(\"\")]\n@attr [DisplayName(\"Dimension catalog\")]\n@attr [Description(\"Catalog for register dimension\")]\n@attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_dimension_guid",
-              "description": "Guid for dimension property. Auto generated.\n@attr [Browsable(false)]",
+              "description": "\u003csummary\u003e\n/ Guid of Catalog type.\n/ \u003c/summary\u003e\n@attr [PropertyOrderAttribute(6)]\n@attr [Category(\"\")]\n@attr [DisplayName(\"Dimension catalog\")]\n@attr [Description(\"Catalog for register dimension\")]\n@attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]\n\nGuid for dimension property. Auto generated.\n@attr [Browsable(false)]\nstring property_dimension_guid = 22;",
               "label": "",
               "type": "string",
               "longType": "string",
