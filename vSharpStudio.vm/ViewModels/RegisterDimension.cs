@@ -21,7 +21,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class RegisterDimension : ICanAddNode, ICanGoLeft, INodeGenSettings, ITreeConfigNodeSortable, IEditableNode //, IRoleAccess, IPropertyAccessRoles
+    public partial class RegisterDimension : ICanAddNode, ICanGoLeft, INodeGenSettings, ITreeConfigNodeSortable, IEditableNode //, IDetail //, IRoleAccess, IPropertyAccessRoles
     {
         //partial void OnDebugStringExtend(ref string mes)
         //{
@@ -362,6 +362,86 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 return new SortedObservableCollection<ITreeConfigNodeSortable>(lst);
             }
+        }
+        public IReadOnlyList<IItemWithSubItems> GetIncludedDetails(string guidAppPrjDbGen)
+        {
+            return new List<IItemWithSubItems>();
+        }
+        public IReadOnlyList<IForm> GetListForms(string guidAppPrjDbGen)
+        {
+            throw new NotImplementedException();
+        }
+        public IForm GetForm(FormType ftype, string guidAppPrjGen)
+        {
+            throw new NotImplementedException();
+        }
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
+        {
+            Debug.Assert(!isExcludeSpecial, "not implemented yet");
+
+            var lst = new List<IProperty>();
+            var r = this.ParentGroupListDimensions.ParentRegister;
+            var m = r.ParentGroupListRegisters.ParentModel;
+
+            // Id
+            var pId = m.GetPropertyPkId(this, r.PropertyIdGuid); // position 6
+            pId.TagInList = "id";
+            lst.Add(pId);
+
+            if (isOptimistic)
+            {
+                // Version
+                var pVer = m.GetPropertyVersion(this, r.PropertyVersionGuid); // position 7
+                pVer.TagInList = "vr";
+                lst.Add(pVer);
+            }
+
+            // Money accumulator
+            var pMoney = (Property)m.GetPropertyNumber(this, r.TableDimensionPropertyMoneyAccumulatorGuid, r.TableDimensionPropertyMoneyAccumulatorName, r.TableDimensionPropertyMoneyAccumulatorLength, r.TableDimensionPropertyMoneyAccumulatorAccuracy, false);
+            pMoney.Position = 11;
+            pMoney.TagInList = "ma";
+            lst.Add(pMoney);
+
+            // Qty accumulator
+            var pQty = (Property)m.GetPropertyNumber(this, r.TableDimensionPropertyQtyAccumulatorGuid, r.TableDimensionPropertyQtyAccumulatorName, r.TableDimensionPropertyQtyAccumulatorLength, r.TableDimensionPropertyQtyAccumulatorAccuracy, false);
+            pQty.Position = 12;
+            pQty.TagInList = "qa";
+            lst.Add(pQty);
+
+            // Reference to register header
+            var pRegRef = (Property)m.GetPropertyRef(this, this.ParentGroupListDimensions.ParentRegister.Guid, "Ref" + r.CompositeName, 13);
+            pRegRef.TagInList = "rr";
+            lst.Add(pRegRef);
+
+            // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
+            // For all dimensions (catalogs).
+            foreach (var t in r.GroupRegisterDimensions.ListDimensions)
+            {
+                if (!string.IsNullOrEmpty(t.CatalogGuid))
+                {
+                    if (m.ParentConfig.DicNodes.TryGetValue(t.CatalogGuid, out var node))
+                    {
+                        if (node is Catalog c)
+                        {
+                            var pCat = (Property)m.GetPropertyRefCatalog(this, t.Guid, c, t.Position, false);
+                            lst.Add(pCat);
+                        }
+                        else
+                            ThrowHelper.ThrowNotSupportedException();
+                    }
+                    else
+                        ThrowHelper.ThrowNotSupportedException();
+                }
+                else
+                    ThrowHelper.ThrowNotSupportedException();
+            }
+
+            // For all attached properties.
+            foreach (var t in r.GroupAttachedProperties.ListProperties)
+            {
+                lst.Add(t);
+            }
+            return lst;
         }
     }
 }

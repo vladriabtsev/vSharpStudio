@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class Detail : ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles, ILayoutParameters
+    public partial class Detail : ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, IItemWithSubItems, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles, ILayoutParameters
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -394,9 +394,9 @@ namespace vSharpStudio.vm.ViewModels
                 res.Add(t);
             }
         }
-        public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
+        public IReadOnlyList<IItemWithSubItems> GetIncludedDetails(string guidAppPrjGen)
         {
-            var res = new List<IDetail>();
+            var res = new List<IItemWithSubItems>();
             foreach (var t in this.GroupDetails.ListDetails)
             {
                 if (t.IsIncluded(guidAppPrjGen))

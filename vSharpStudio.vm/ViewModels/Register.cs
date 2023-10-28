@@ -437,72 +437,21 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst;
         }
-        public IReadOnlyList<IProperty> GetIncludedDimensionsProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
+        public IReadOnlyList<IItemWithSubItems> GetIncludedDetails(string guidAppPrjDbGen)
         {
-            Debug.Assert(!isExcludeSpecial, "not implemented yet");
-
-            var lst = new List<IProperty>();
-            var m = this.ParentGroupListRegisters.ParentModel;
-
-            // Id
-            var pId = m.GetPropertyPkId(this, this.PropertyIdGuid); // position 6
-            pId.TagInList = "id";
-            lst.Add(pId);
-
-            if (isOptimistic)
-            {
-                // Version
-                var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid); // position 7
-                pVer.TagInList = "vr";
-                lst.Add(pVer);
-            }
-
-            // Money accumulator
-            var pMoney = (Property)m.GetPropertyNumber(this, this.TableDimensionPropertyMoneyAccumulatorGuid, this.TableDimensionPropertyMoneyAccumulatorName, this.TableDimensionPropertyMoneyAccumulatorLength, this.TableDimensionPropertyMoneyAccumulatorAccuracy, false);
-            pMoney.Position = 11;
-            pMoney.TagInList = "ma";
-            lst.Add(pMoney);
-
-            // Qty accumulator
-            var pQty = (Property)m.GetPropertyNumber(this, this.TableDimensionPropertyQtyAccumulatorGuid, this.TableDimensionPropertyQtyAccumulatorName, this.TableDimensionPropertyQtyAccumulatorLength, this.TableDimensionPropertyQtyAccumulatorAccuracy, false);
-            pQty.Position = 12;
-            pQty.TagInList = "qa";
-            lst.Add(pQty);
-
-            // Reference to register header
-            var pRegRef = (Property)m.GetPropertyRef(this, this.Guid, "Ref" + this.CompositeName, 13);
-            pRegRef.TagInList = "rr";
-            lst.Add(pRegRef);
-
-            // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
-            // For all dimensions (catalogs).
-            foreach (var t in this.GroupRegisterDimensions.ListDimensions)
-            {
-                if (!string.IsNullOrEmpty(t.CatalogGuid))
-                {
-                    if (m.ParentConfig.DicNodes.TryGetValue(t.CatalogGuid, out var node))
-                    {
-                        if (node is Catalog c)
-                        {
-                            var pCat = (Property)m.GetPropertyRefCatalog(this, t.Guid, c, t.Position, false);
-                            lst.Add(pCat);
-                        }
-                        else
-                            ThrowHelper.ThrowNotSupportedException();
-                    }
-                    else
-                        ThrowHelper.ThrowNotSupportedException();
-                }
-                else
-                    ThrowHelper.ThrowNotSupportedException();
-            }
-
-            // For all attached properties.
-            foreach (var t in this.GroupAttachedProperties.ListProperties)
-            {
-                lst.Add(t);
-            }
-            return lst;
+            throw new NotImplementedException();
+            //if (this.GroupRegisterDimensions.ListDimensions.Count > 0)
+            //    return new List<IDetail>() { this.GroupRegisterDimensions.ListDimensions[0] };
+            //else
+            //    return new List<IDetail>();
+        }
+        public IReadOnlyList<IForm> GetListForms(string guidAppPrjDbGen)
+        {
+            throw new NotImplementedException();
+        }
+        public IForm GetForm(FormType ftype, string guidAppPrjGen)
+        {
+            throw new NotImplementedException();
         }
 
         #region Editor

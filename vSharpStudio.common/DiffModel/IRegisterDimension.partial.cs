@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IRegisterDimension : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IDbTable
+    public partial interface IRegisterDimension : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IItemWithSubItems
     {
     }
 }

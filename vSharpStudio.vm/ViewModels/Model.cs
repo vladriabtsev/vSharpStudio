@@ -1002,10 +1002,11 @@ namespace vSharpStudio.vm.ViewModels
                 throw new ArgumentException();
             }
         }
-        private void TabsRecursive(string appGenGuig, bool isOptimistic, IReadOnlyList<IDetail> lstt, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst)
+        private void TabsRecursive(string appGenGuig, bool isOptimistic, IReadOnlyList<IItemWithSubItems> lstt, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst)
         {
-            foreach (var t in lstt)
+            foreach (var tt in lstt)
             {
+                var t = (IDetail)tt;
                 Debug.Assert(t.Parent != null);
                 Debug.Assert(t.Parent.Parent != null);
                 var ti = new TableInfo(t.Name, t.CompositeName, (t.Parent.Parent as ICompositeName)!.CompositeName, t, t.GetIncludedProperties(appGenGuig, isOptimistic));

@@ -4,18 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModelBase;
+using vSharpStudio.common.DiffModel;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IDbTable
+    public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IItemWithSubItems
     {
         IGroupListCatalogs ParentGroupListCatalogsI { get; }
-        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false);
-        IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjDbGen);
         void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
         ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen);
-        IForm GetForm(FormType ftype, string guidAppPrjGen);
-        IReadOnlyList<IForm> GetListForms(string guidAppPrjGen);
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();

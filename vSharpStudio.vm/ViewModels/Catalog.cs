@@ -17,7 +17,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
-        IDbTable, INodeWithProperties, IViewList, ITreeConfigNodeSortable, IRoleAccess, ICatalogDetailAccessRoles
+        IItemWithSubItems, INodeWithProperties, IViewList, ITreeConfigNodeSortable, IRoleAccess, ICatalogDetailAccessRoles
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -592,9 +592,9 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjDbGen)
+        public IReadOnlyList<IItemWithSubItems> GetIncludedDetails(string guidAppPrjDbGen)
         {
-            var res = new List<IDetail>();
+            var res = new List<IItemWithSubItems>();
             foreach (var t in this.GroupDetails.ListDetails)
             {
                 if (t.IsIncluded(guidAppPrjDbGen))

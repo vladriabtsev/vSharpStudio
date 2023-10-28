@@ -6,14 +6,10 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalogFolder : ITreeConfigNodeSortable, IGetNodeSetting, IDbTable
+    public partial interface ICatalogFolder : ITreeConfigNodeSortable, IGetNodeSetting, IItemWithSubItems
     {
         ICatalog ParentCatalogI { get; }
-        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false);
-        IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
         void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
-        IForm GetForm(FormType ftype, string guidAppPrjGen);
-        IReadOnlyList<IForm> GetListForms(string guidAppPrjGen);
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();

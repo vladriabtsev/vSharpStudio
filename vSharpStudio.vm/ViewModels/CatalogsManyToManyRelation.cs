@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class CatalogsManyToManyRelation : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
-        IDbTable, ITreeConfigNodeSortable
+        IItemWithSubItems, ITreeConfigNodeSortable
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -295,6 +295,18 @@ namespace vSharpStudio.vm.ViewModels
             if (!isExcludeSpecial)
                 this.GetSpecialProperties(res, isOptimistic);
             return res;
+        }
+        public IReadOnlyList<IItemWithSubItems> GetIncludedDetails(string guidAppPrjGen)
+        {
+            return new List<IItemWithSubItems>();
+        }
+        public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
+        {
+            throw new NotImplementedException();
+        }
+        public IForm GetForm(FormType ftype, string guidAppPrjGen)
+        {
+            throw new NotImplementedException();
         }
         #endregion Get Properties and Details
         [Browsable(false)]
