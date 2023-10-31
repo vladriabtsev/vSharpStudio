@@ -219,20 +219,22 @@ namespace vSharpStudio.common
                 }
                 sb.Append(' ');
             }
-            var indent = Environment.StackTrace.Split('\n').Length;
-            sb.Append("Stack Level:");
-            sb.Append(indent.ToString().PadLeft(stackLength / 10 + 1));
-            sb.Append(", ");
-            if (maxStackDeep == 0)
-            {
-                if (lineLength > 0)
-                {
-                    if (lineLength > lineStr.Length)
-                        sb.Append(new String(' ', lineLength - lineStr.Length));
-                    sb.Append(lineStr);
-                    sb.Append(' ');
-                }
-            }
+
+            //var indent = Environment.StackTrace.Split('\n').Length;
+            //sb.Append("Stack Level:");
+            //sb.Append(indent.ToString().PadLeft(stackLength / 10 + 1));
+            //sb.Append(", ");
+            //if (maxStackDeep == 0)
+            //{
+            //    if (lineLength > 0)
+            //    {
+            //        if (lineLength > lineStr.Length)
+            //            sb.Append(new String(' ', lineLength - lineStr.Length));
+            //        sb.Append(lineStr);
+            //        sb.Append(' ');
+            //    }
+            //}
+
             // same position for all calls
             if (text != null)
             {
@@ -245,7 +247,7 @@ namespace vSharpStudio.common
             {
                 sb.Append("\"\" ");
             }
-            sb.Append(" --- Member: ");
+            sb.Append(" Member: ");
             sb.Append(member);
             sb.Append(" File: ");
             sb.Append(Path.GetFileName(file));

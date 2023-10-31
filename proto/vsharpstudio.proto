@@ -2738,6 +2738,40 @@ message proto_group_list_dimensions {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+enum proto_enum_register_type {
+    /// <summary>
+    /// Balance data for selected register dimentions. Balance always contains latest accumulated data. One record per period.
+    /// </summary>
+    // @attr [Description("Balance")]
+    BALANCE = 0;
+    /// <summary>
+    /// Only turnovers data for selected register periodicity and dimentions. Many records per period.
+    /// </summary>
+    // @attr [Description("Turnover")]
+    TURNOVER = 11;
+    /// <summary>
+    /// Balance and turnovers data for selected register periodicity and dimentions. 
+    /// Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period.
+    /// </summary>
+    // @attr [Description("Balance and Turnover")]
+    BALANCE_AND_TURNOVER = 21;
+}
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+enum proto_enum_register_periodicity {
+    // @attr [Description("Year")]
+    REGISTER_PERIOD_YEAR = 0;
+    // @attr [Description("Quater")]
+    REGISTER_PERIOD_QUATER = 11;
+    // @attr [Description("Month")]
+    REGISTER_PERIOD_MONTH = 21;
+    // @attr [Description("Week")]
+    REGISTER_PERIOD_WEEK = 31;
+    // @attr [Description("Day")]
+    REGISTER_PERIOD_DAY = 41;
+    // @attr [Description("Hour")]
+    REGISTER_PERIOD_HOUR = 51;
+}
 // @interface ICanAddNode
 // @interface ISortingValue
 message proto_register {
@@ -2758,6 +2792,14 @@ message proto_register {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // @attr [Category("")]
+    // @attr [DisplayName("Register Type")]
+    // @attr [PropertyOrderAttribute(7)]
+    proto_enum_register_type register_type = 6;
+    // @attr [Category("")]
+    // @attr [DisplayName("Register Type")]
+    // @attr [PropertyOrderAttribute(9)]
+    proto_enum_register_periodicity register_periodicity = 11;
     // Last generated Protobuf field position
     // @attr [ReadOnly(true)]
     uint32 last_gen_position = 7;
@@ -2805,6 +2847,8 @@ message proto_register {
     uint32 table_dimension_property_money_accumulator_accuracy = 24; 
     // @attr [Browsable(false)]
     string table_dimension_property_money_accumulator_guid = 25; 
+    // @attr [Browsable(false)]
+    string table_dimension_property_is_starting_balance_guid = 26; 
 
 
     // @attr [Browsable(false)]

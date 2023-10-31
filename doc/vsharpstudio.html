@@ -632,6 +632,14 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_enum_register_periodicity"><span class="badge">E</span>proto_enum_register_periodicity</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_enum_register_type"><span class="badge">E</span>proto_enum_register_type</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_enum_system_data_type"><span class="badge">E</span>proto_enum_system_data_type</a>
                 </li>
               
@@ -8608,6 +8616,24 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>register_type</td>
+                  <td><a href="#proto_config.proto_enum_register_type">proto_enum_register_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [DisplayName(&#34;Register Type&#34;)]
+@attr [PropertyOrderAttribute(7)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>register_periodicity</td>
+                  <td><a href="#proto_config.proto_enum_register_periodicity">proto_enum_register_periodicity</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [DisplayName(&#34;Register Type&#34;)]
+@attr [PropertyOrderAttribute(9)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>last_gen_position</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
@@ -8718,6 +8744,13 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>table_dimension_property_money_accumulator_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>table_dimension_property_is_starting_balance_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -11409,6 +11442,92 @@ with history</p></td>
                 <td>R_REVIEWS</td>
                 <td>2</td>
                 <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_register_periodicity">proto_enum_register_periodicity</h3>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>REGISTER_PERIOD_YEAR</td>
+                <td>0</td>
+                <td><p>@attr [Description(&#34;Year&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>REGISTER_PERIOD_QUATER</td>
+                <td>11</td>
+                <td><p>@attr [Description(&#34;Quater&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>REGISTER_PERIOD_MONTH</td>
+                <td>21</td>
+                <td><p>@attr [Description(&#34;Month&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>REGISTER_PERIOD_WEEK</td>
+                <td>31</td>
+                <td><p>@attr [Description(&#34;Week&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>REGISTER_PERIOD_DAY</td>
+                <td>41</td>
+                <td><p>@attr [Description(&#34;Day&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>REGISTER_PERIOD_HOUR</td>
+                <td>51</td>
+                <td><p>@attr [Description(&#34;Hour&#34;)]</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_register_type">proto_enum_register_type</h3>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>BALANCE</td>
+                <td>0</td>
+                <td><p>&lt;summary&gt;
+/ Balance data for selected register dimentions. Balance always contains latest accumulated data. One record per period.
+/ &lt;/summary&gt;
+@attr [Description(&#34;Balance&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>TURNOVER</td>
+                <td>11</td>
+                <td><p>&lt;summary&gt;
+/ Only turnovers data for selected register periodicity and dimentions. Many records per period.
+/ &lt;/summary&gt;
+@attr [Description(&#34;Turnover&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>BALANCE_AND_TURNOVER</td>
+                <td>21</td>
+                <td><p>&lt;summary&gt;
+/ Balance and turnovers data for selected register periodicity and dimentions. 
+/ Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period.
+/ &lt;/summary&gt;
+@attr [Description(&#34;Balance and Turnover&#34;)]</p></td>
               </tr>
             
           </tbody>

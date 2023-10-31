@@ -776,12 +776,13 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         public IProperty? ParentProperty { get; set; }
         public string NameWithExtention { get { if (this.ParentProperty == null) return this.Name; return this.ParentProperty.Name + this.Name; } }
-        public IProperty AddExtensionPropertyRefId(string subName, string guid)
+        public IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable)
         {
             var node = new Property(this) { Name = subName };
             node.Guid = guid;
             node.DataType = (DataType)this.Cfg.Model.GetIdRefDataType(node, true);
             node.DataType.IsPKey = false;
+            node.IsNullable = isNullable;
             node.ParentProperty = this;
             node.IsComplexRefId = true;
             return node;
@@ -789,12 +790,12 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsComplexRefId { get; private set; }
         public bool IsComplexRefGuid { get; private set; }
         public bool IsComplexDesc { get; private set; }
-        public IProperty AddExtensionPropertyGuid(string subName, string guid)
+        public IProperty AddExtensionPropertyGuid(string subName, string guid, bool isNullable)
         {
             var node = new Property(this) { Name = subName };
             node.Guid = guid;
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = 36 };
-            node.IsNullable = true;
+            node.IsNullable = isNullable;
             node.ParentProperty = this;
             node.IsComplexRefGuid = true;
             return node;

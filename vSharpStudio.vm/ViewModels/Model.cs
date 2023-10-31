@@ -507,6 +507,46 @@ namespace vSharpStudio.vm.ViewModels
             dt.IsNullable = isNullable;
             return dt;
         }
+        public IDataType GetDataTypeCatalog(ITreeConfigNode? parent, string catGuid, bool isNullable)
+        {
+            DataType dt = new DataType(parent);
+            dt.DataTypeEnum = EnumDataType.CATALOG;
+            dt.ObjectGuid = catGuid;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataTypeCatalogs(ITreeConfigNode? parent, IEnumerable<string> lstCatGuids, bool isNullable)
+        {
+            DataType dt = new DataType(parent);
+            dt.DataTypeEnum = EnumDataType.CATALOGS;
+            dt.ListObjectGuids.AddRange(lstCatGuids);
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataTypeDocument(ITreeConfigNode? parent, string docGuid, bool isNullable)
+        {
+            DataType dt = new DataType(parent);
+            dt.DataTypeEnum = EnumDataType.DOCUMENT;
+            dt.ObjectGuid = docGuid;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataTypeDocuments(ITreeConfigNode? parent, IEnumerable<string> lstDocGuids, bool isNullable)
+        {
+            DataType dt = new DataType(parent);
+            dt.DataTypeEnum = EnumDataType.DOCUMENTS;
+            dt.ListObjectGuids.AddRange(lstDocGuids);
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataTypeCatalogsDocuments(ITreeConfigNode? parent, IEnumerable<string> lstCatDocGuids, bool isNullable)
+        {
+            DataType dt = new DataType(parent);
+            dt.DataTypeEnum = EnumDataType.ANY;
+            dt.ListObjectGuids.AddRange(lstCatDocGuids);
+            dt.IsNullable = isNullable;
+            return dt;
+        }
         public IDataType GetDataTypeAny(ITreeConfigNode? parent, bool isNullable)
         {
             DataType dt = new DataType(parent);
@@ -518,18 +558,18 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataType(ITreeConfigNode? parent, ICatalog obj, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.CATALOG;
             dt.ObjectGuid = obj.Guid;
             dt.IsNullable = isNullable;
+            dt.DataTypeEnum = EnumDataType.CATALOG;
             return dt;
         }
         // document
         public IDataType GetDataType(ITreeConfigNode? parent, IDocument obj, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.DOCUMENT;
             dt.ObjectGuid = obj.Guid;
             dt.IsNullable = isNullable;
+            dt.DataTypeEnum = EnumDataType.DOCUMENT;
             return dt;
         }
         public IDataType GetDataTypeBool(ITreeConfigNode? parent, bool isNullable)
@@ -724,6 +764,14 @@ namespace vSharpStudio.vm.ViewModels
             res.IsHidden = true;
             return res;
         }
+        public IProperty GetPropertyBool(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable)
+        {
+            var res = new Property(parent, guid, name, false);
+            res.DataType = (DataType)this.GetDataTypeBool(res, isNullable);
+            res.IsHidden = false;
+            res.Position = position;
+            return res;
+        }
         public IProperty GetPropertyNumber(ITreeConfigNode parent, string guid, string name, uint length, uint accuracy, bool isNullable)
         {
             var res = new Property(parent, guid, name, false);
@@ -771,9 +819,9 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyRefCatalog(ITreeConfigNode parent, string guid, ICatalog c, uint position, bool isNullable)
         {
             var res = new Property(parent, guid, "Ref" + c.CompositeName, true);
-            res.DataType = (DataType)this.GetDataType(parent, c, isNullable);
             res.Position = position;
             res.IsCsNullable = true;
+            res.DataType = (DataType)this.GetDataType(parent, c, isNullable);
             return res;
         }
         public IProperty GetPropertyCatalogCode(ITreeConfigNode parent, string guid, uint length, bool isNullable)
@@ -818,9 +866,9 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyRefDocument(ITreeConfigNode parent, string guid, IDocument d, uint position, bool isNullable)
         {
             var res = new Property(parent, guid, "Ref" + d.CompositeName, true);
-            res.DataType = (DataType)this.GetDataType(parent, d, isNullable);
             res.Position = position;
             res.IsCsNullable = true;
+            res.DataType = (DataType)this.GetDataType(parent, d, isNullable);
             return res;
         }
         public IProperty GetPropertyDocumentDate(ITreeConfigNode parent, string guid, bool isPKey = false)
@@ -854,6 +902,56 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, false, false);
             res.Position = 10;
             res.IsNullable = true;
+            return res;
+        }
+
+
+        public IProperty GetPropertyCatalog(ITreeConfigNode parent, string guid, string name, string catGuid, uint position, bool isNullable)
+        {
+            var res = new Property(parent, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = (DataType)this.GetDataTypeCatalog(parent, catGuid, isNullable);
+            return res;
+        }
+        public IProperty GetPropertyCatalogs(ITreeConfigNode parent, string guid, string name, IEnumerable<string> lstCatGuids, uint position, bool isNullable)
+        {
+            var res = new Property(parent, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = (DataType)this.GetDataTypeCatalogs(parent, lstCatGuids, isNullable);
+            return res;
+        }
+        public IProperty GetPropertyDocument(ITreeConfigNode parent, string guid, string name, string docGuid, uint position, bool isNullable)
+        {
+            var res = new Property(parent, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = (DataType)this.GetDataTypeDocument(parent, docGuid, isNullable);
+            return res;
+        }
+        public IProperty GetPropertyDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<string> lstDocGuids, uint position, bool isNullable)
+        {
+            var res = new Property(parent, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = (DataType)this.GetDataTypeDocuments(parent, lstDocGuids, isNullable);
+            return res;
+        }
+        public IProperty GetPropertyCatalogsDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<string> lstCatOrDocGuids, uint position, bool isNullable)
+        {
+            var res = new Property(parent, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = (DataType)this.GetDataTypeCatalogsDocuments(parent, lstCatOrDocGuids, isNullable);
+            return res;
+        }
+        public IProperty GetPropertyAny(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable)
+        {
+            var res = new Property(parent, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = (DataType)this.GetDataTypeAny(parent, isNullable);
             return res;
         }
 
@@ -1020,7 +1118,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     if (lstReverse.Count > 0)
                         action(lstReverse);
-                    var lstt2 = t.GetIncludedDetails(appGenGuig);
+                    var lstt2 = t.GetIncludedSubItems(appGenGuig);
                     TabsRecursive(appGenGuig, isOptimistic, lstt2, action, typeOp, lst);
                     lst.Remove(ti);
                 }
@@ -1032,7 +1130,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         lstReverse.Add(lst[i]);
                     }
-                    var lstt2 = t.GetIncludedDetails(appGenGuig);
+                    var lstt2 = t.GetIncludedSubItems(appGenGuig);
                     TabsRecursive(appGenGuig, isOptimistic, lstt2, action, typeOp, lst);
                     if (lstReverse.Count > 0)
                         action(lstReverse);
@@ -1048,7 +1146,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (lst == null)
                 lst = new List<TableInfo>();
-            var lstt = p.GetIncludedDetails(appGenGuig);
+            var lstt = p.GetIncludedSubItems(appGenGuig);
             if (lstt.Count == 0)
                 return;
             TabsRecursive(appGenGuig, isOptimistic, lstt, action, typeOp, lst);
@@ -1057,7 +1155,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (lst == null)
                 lst = new List<TableInfo>();
-            var lstt = p.GetIncludedDetails(appGenGuig);
+            var lstt = p.GetIncludedSubItems(appGenGuig);
             if (lstt.Count == 0)
                 return;
             TabsRecursive(appGenGuig, isOptimistic, lstt, action, typeOp, lst);
@@ -1066,7 +1164,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (lst == null)
                 lst = new List<TableInfo>();
-            var lstt = p.GetIncludedDetails(appGenGuig);
+            var lstt = p.GetIncludedSubItems(appGenGuig);
             if (lstt.Count == 0)
                 return;
             TabsRecursive(appGenGuig, isOptimistic, lstt, action, typeOp, lst);
@@ -1075,7 +1173,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (lst == null)
                 lst = new List<TableInfo>();
-            var lstt = p.GetIncludedDetails(appGenGuig);
+            var lstt = p.GetIncludedSubItems(appGenGuig);
             if (lstt.Count == 0)
                 return;
             TabsRecursive(appGenGuig, isOptimistic, lstt, action, typeOp, lst);

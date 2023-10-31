@@ -27,6 +27,10 @@ namespace vSharpStudio.vm.ViewModels
         //{
         //    mes = mes + $" Type:{this.}";
         //}
+        public string GetDebuggerDisplay(bool isOptimistic)
+        {
+            return "";
+        }
         [Browsable(false)]
         public GroupListDimensions ParentGroupListDimensions { get { Debug.Assert(this.Parent != null); return (GroupListDimensions)this.Parent; } }
         [Browsable(false)]
@@ -347,14 +351,14 @@ namespace vSharpStudio.vm.ViewModels
                 Debug.Assert(this.Cfg != null);
                 var lst = new List<ICatalog>();
                 var hs = new HashSet<string>();
-                foreach(var t in this.ParentGroupListDimensions.ListDimensions)
+                foreach (var t in this.ParentGroupListDimensions.ListDimensions)
                 {
                     if (t.Guid == this.Guid)
                         continue;
-                   if (!string.IsNullOrWhiteSpace(t.CatalogGuid))
+                    if (!string.IsNullOrWhiteSpace(t.CatalogGuid))
                         hs.Add(t.CatalogGuid);
                 }
-                foreach(var t in this.Cfg.Model.GroupCatalogs.ListCatalogs)
+                foreach (var t in this.Cfg.Model.GroupCatalogs.ListCatalogs)
                 {
                     if (hs.Contains(t.Guid))
                         continue;
@@ -363,7 +367,7 @@ namespace vSharpStudio.vm.ViewModels
                 return new SortedObservableCollection<ITreeConfigNodeSortable>(lst);
             }
         }
-        public IReadOnlyList<IItemWithSubItems> GetIncludedDetails(string guidAppPrjDbGen)
+        public IReadOnlyList<IItemWithSubItems> GetIncludedSubItems(string guidAppPrjDbGen)
         {
             return new List<IItemWithSubItems>();
         }
@@ -413,6 +417,14 @@ namespace vSharpStudio.vm.ViewModels
             pRegRef.TagInList = "rr";
             lst.Add(pRegRef);
 
+            if (r.RegisterType != EnumRegisterType.TURNOVER)
+            {
+                // Register starting balances on period
+                var pIsStartBalance = (Property)m.GetPropertyBool(this, this.ParentGroupListDimensions.ParentRegister.TableDimensionPropertyIsStartingBalanceGuid, "IsStartingBalance", 14, true);
+                pRegRef.TagInList = "ib";
+                lst.Add(pRegRef);
+            }
+
             // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
             // For all dimensions (catalogs).
             foreach (var t in r.GroupRegisterDimensions.ListDimensions)
@@ -423,7 +435,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (node is Catalog c)
                         {
-                            var pCat = (Property)m.GetPropertyRefCatalog(this, t.Guid, c, t.Position, false);
+                            var pCat = (Property)m.GetPropertyCatalog(this, t.Guid, t.Name, c.Guid, t.Position, false);
                             lst.Add(pCat);
                         }
                         else

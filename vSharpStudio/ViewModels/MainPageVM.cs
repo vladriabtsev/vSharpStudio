@@ -1768,10 +1768,15 @@ namespace vSharpStudio.ViewModels
                     Utils.TryCall(() =>
                     {
                         Debug.Assert(this.Config.SelectedNode != null);
-                        if (this.Config.SelectedNode.NodeCanAddNew())
-                            this.Config.SelectedNode.NodeAddNew();
                         if (this.Config.SelectedNode.NodeCanAddNewSubNode())
+                        {
                             this.Config.SelectedNode.NodeAddNewSubNode();
+                        }
+                        else
+                        {
+                            if (this.Config.SelectedNode.NodeCanAddNew())
+                                this.Config.SelectedNode.NodeAddNew();
+                        }
                     }, "Add new node command");
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && (this.Config.SelectedNode.NodeCanAddNew() || this.Config.SelectedNode.NodeCanAddNewSubNode()); });

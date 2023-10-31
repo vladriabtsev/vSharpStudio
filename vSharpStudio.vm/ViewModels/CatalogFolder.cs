@@ -380,7 +380,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IItemWithSubItems> GetIncludedDetails(string guidAppPrjGen)
+        public IReadOnlyList<IItemWithSubItems> GetIncludedSubItems(string guidAppPrjGen)
         {
             var res = new List<IDetail>();
             foreach (var t in this.GroupDetails.ListDetails)

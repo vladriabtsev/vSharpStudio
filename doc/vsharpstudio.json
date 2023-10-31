@@ -1490,6 +1490,67 @@
           ]
         },
         {
+          "name": "proto_enum_register_periodicity",
+          "longName": "proto_enum_register_periodicity",
+          "fullName": "proto_config.proto_enum_register_periodicity",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
+          "values": [
+            {
+              "name": "REGISTER_PERIOD_YEAR",
+              "number": "0",
+              "description": "@attr [Description(\"Year\")]"
+            },
+            {
+              "name": "REGISTER_PERIOD_QUATER",
+              "number": "11",
+              "description": "@attr [Description(\"Quater\")]"
+            },
+            {
+              "name": "REGISTER_PERIOD_MONTH",
+              "number": "21",
+              "description": "@attr [Description(\"Month\")]"
+            },
+            {
+              "name": "REGISTER_PERIOD_WEEK",
+              "number": "31",
+              "description": "@attr [Description(\"Week\")]"
+            },
+            {
+              "name": "REGISTER_PERIOD_DAY",
+              "number": "41",
+              "description": "@attr [Description(\"Day\")]"
+            },
+            {
+              "name": "REGISTER_PERIOD_HOUR",
+              "number": "51",
+              "description": "@attr [Description(\"Hour\")]"
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_register_type",
+          "longName": "proto_enum_register_type",
+          "fullName": "proto_config.proto_enum_register_type",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
+          "values": [
+            {
+              "name": "BALANCE",
+              "number": "0",
+              "description": "\u003csummary\u003e\n/ Balance data for selected register dimentions. Balance always contains latest accumulated data. One record per period.\n/ \u003c/summary\u003e\n@attr [Description(\"Balance\")]"
+            },
+            {
+              "name": "TURNOVER",
+              "number": "11",
+              "description": "\u003csummary\u003e\n/ Only turnovers data for selected register periodicity and dimentions. Many records per period.\n/ \u003c/summary\u003e\n@attr [Description(\"Turnover\")]"
+            },
+            {
+              "name": "BALANCE_AND_TURNOVER",
+              "number": "21",
+              "description": "\u003csummary\u003e\n/ Balance and turnovers data for selected register periodicity and dimentions. \n/ Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period.\n/ \u003c/summary\u003e\n@attr [Description(\"Balance and Turnover\")]"
+            }
+          ]
+        },
+        {
           "name": "proto_enum_system_data_type",
           "longName": "proto_enum_system_data_type",
           "fullName": "proto_config.proto_enum_system_data_type",
@@ -10672,6 +10733,26 @@
               "defaultValue": ""
             },
             {
+              "name": "register_type",
+              "description": "@attr [Category(\"\")]\n@attr [DisplayName(\"Register Type\")]\n@attr [PropertyOrderAttribute(7)]",
+              "label": "",
+              "type": "proto_enum_register_type",
+              "longType": "proto_enum_register_type",
+              "fullType": "proto_config.proto_enum_register_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "register_periodicity",
+              "description": "@attr [Category(\"\")]\n@attr [DisplayName(\"Register Type\")]\n@attr [PropertyOrderAttribute(9)]",
+              "label": "",
+              "type": "proto_enum_register_periodicity",
+              "longType": "proto_enum_register_periodicity",
+              "fullType": "proto_config.proto_enum_register_periodicity",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "last_gen_position",
               "description": "Last generated Protobuf field position\n@attr [ReadOnly(true)]",
               "label": "",
@@ -10803,6 +10884,16 @@
             },
             {
               "name": "table_dimension_property_money_accumulator_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "table_dimension_property_is_starting_balance_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",

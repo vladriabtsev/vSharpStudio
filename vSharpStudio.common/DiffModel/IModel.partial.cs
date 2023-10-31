@@ -24,7 +24,14 @@ namespace vSharpStudio.common
         // string
         IDataType GetDataTypeString(ITreeConfigNode? parent, uint length, bool isNullable);
         IDataType GetDataTypeStringGuid(ITreeConfigNode? parent, bool isNullable);
+
+        IDataType GetDataTypeCatalog(ITreeConfigNode? parent, string catGuid, bool isNullable);
+        IDataType GetDataTypeCatalogs(ITreeConfigNode? parent, IEnumerable<string> lstCatGuids, bool isNullable);
+        IDataType GetDataTypeDocument(ITreeConfigNode? parent, string docGuid, bool isNullable);
+        IDataType GetDataTypeDocuments(ITreeConfigNode? parent, IEnumerable<string> lstDocGuids, bool isNullable);
+        IDataType GetDataTypeCatalogsDocuments(ITreeConfigNode? parent, IEnumerable<string> lstCatDocGuids, bool isNullable);
         IDataType GetDataTypeAny(ITreeConfigNode? parent, bool isNullable);
+
         IDataType GetDataType(ITreeConfigNode? parent, ICatalog obj, bool isNullable);
         IDataType GetDataType(ITreeConfigNode? parent, IDocument obj, bool isNullable);
         IDataType GetDataTypeBool(ITreeConfigNode? parent, bool isNullable);
@@ -43,6 +50,7 @@ namespace vSharpStudio.common
         IProperty GetPropertyDateTimeUtc(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MAX);
         IProperty GetPropertyPkId(ITreeConfigNode parent, string guid);
         IProperty GetPropertyId(ITreeConfigNode parent, string guid, string name, bool isNullable);
+        IProperty GetPropertyBool(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable);
         IProperty GetPropertyNumber(ITreeConfigNode parent, string guid, string name, uint length, uint accuracy, bool isNullable);
         IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable);
         IProperty GetPropertyRefDimension(IRegister parent, string guid, string name, uint position, bool isNullable);
@@ -58,6 +66,14 @@ namespace vSharpStudio.common
         IProperty GetPropertyDocNumberString(ITreeConfigNode parent, string guid, uint length);
         IProperty GetPropertyDocNumberInt(ITreeConfigNode parent, string guid, uint length);
         IProperty GetPropertyDocNumberUniqueScopeHelper(ITreeConfigNode parent, string guid);
+
+        IProperty GetPropertyCatalog(ITreeConfigNode parent, string guid, string name, string catGuid, uint position, bool isNullable);
+        IProperty GetPropertyCatalogs(ITreeConfigNode parent, string guid, string name, IEnumerable<string> lstCatGuids, uint position, bool isNullable);
+        IProperty GetPropertyDocument(ITreeConfigNode parent, string guid, string name, string docGuid, uint position, bool isNullable);
+        IProperty GetPropertyDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<string> lstDocGuids, uint position, bool isNullable);
+        IProperty GetPropertyCatalogsDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<string> lstCatOrDocGuids, uint position, bool isNullable);
+        IProperty GetPropertyAny(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable);
+
 
         //IProperty GetPropertyBool(string guid, string name, bool isNullable);
         //IProperty GetPropertyInt(string guid, uint length, string name);

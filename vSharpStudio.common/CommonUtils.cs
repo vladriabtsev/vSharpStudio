@@ -300,6 +300,34 @@ namespace vSharpStudio.common
         private static readonly string commentBegSummary = "/// <summary>";
         private static readonly string commentEndSummary = "/// </summary>";
         private static readonly string comment = "/// ";
+        public static string Comment(ITreeConfigNode t, string indent = "")
+        {
+            if (t is IProperty p)
+            {
+                return Comment(p);
+            }
+            else if (t is ICatalog c)
+            {
+                return Comment(c);
+            }
+            else if (t is IDocument d)
+            {
+                return Comment(d);
+            }
+            else if (t is IDetail dt)
+            {
+                return Comment(dt);
+            }
+            else if (t is IRegister r)
+            {
+                return Comment(r);
+            }
+            else if (t is IRegisterDimension rd)
+            {
+                return Comment(rd);
+            }
+            throw new NotImplementedException();
+        }
         public static string Comment(IGroupListConstants t, string indent = "")
         {
             var sb = new StringBuilder();
@@ -638,6 +666,40 @@ namespace vSharpStudio.common
                 sb.Append(commentEndSummary);
                 //sb.AppendLine();
             }
+            return sb.ToString();
+        }
+        public static string Comment(IItemWithSubItems t, string indent = "")
+        {
+            var sb = new StringBuilder();
+            //if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
+            //{
+            //    sb.Append(indent);
+            //    sb.Append(commentBegSummary);
+            //    sb.AppendLine();
+
+            //    if (t.NameUi != t.Name)
+            //    {
+            //        sb.Append(indent);
+            //        sb.Append(comment);
+            //        sb.Append(t.NameUi);
+            //        sb.Append(": ");
+            //        if (!string.IsNullOrWhiteSpace(t.Description))
+            //            sb.Append(t.Description);
+            //        sb.AppendLine();
+            //    }
+            //    else if (!string.IsNullOrWhiteSpace(t.Description))
+            //    {
+            //        sb.Append(indent);
+            //        sb.Append(comment);
+            //        //sb.Append("Description: ");
+            //        sb.Append(t.Description);
+            //        sb.AppendLine();
+            //    }
+
+            //    sb.Append(indent);
+            //    sb.Append(commentEndSummary);
+            //    //sb.AppendLine();
+            //}
             return sb.ToString();
         }
         public static string Comment(IProperty t, string indent = "")

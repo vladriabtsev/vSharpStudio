@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.DirectoryServices;
 using System.Numerics;
 using System.Text;
+using System.Windows.Controls;
 using System.Xml.Linq;
 using CommunityToolkit.Diagnostics;
 using FluentValidation;
@@ -18,6 +20,7 @@ using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -27,6 +30,10 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" Docs:{this.ListDocGuids.Count} Dims:{this.GroupRegisterDimensions.ListDimensions.Count} Atchs:{this.GroupAttachedProperties.ListProperties.Count} Maps:{this.ListDocMappings.Count}";
+        }
+        public string GetDebuggerDisplay(bool isOptimistic)
+        {
+            return "";
         }
         [Browsable(false)]
         public GroupListRegisters ParentGroupListRegisters { get { Debug.Assert(this.Parent != null); return (GroupListRegisters)this.Parent; } }
@@ -81,9 +88,12 @@ namespace vSharpStudio.vm.ViewModels
             this._TableDimensionGuid = System.Guid.NewGuid().ToString();
             this._TableDimensionPropertyIdGuid = System.Guid.NewGuid().ToString();
             this._TableDimensionPropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this._TableDimensionPropertyIsStartingBalanceGuid = System.Guid.NewGuid().ToString();
             this._LastGenPosition = 20;
             this._PropertyDocRefGuidName = "DocGuid";
             this._PropertyDocRefName = "DocRef";
+            this._RegisterType = EnumRegisterType.TURNOVER;
+            this._RegisterPeriodicity = EnumRegisterPeriodicity.REGISTER_PERIOD_MONTH;
             Init();
         }
         protected override void OnInitFromDto()
@@ -406,23 +416,43 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(pVer);
             }
 
+            if (this.ListDocGuids.Count>0)
+            {
+                //if (this.ListDocGuids.Count == 1)
+                //{
+                //    var pDoc = (Property)m.GetPropertyDocument(this, this.PropertyDocRefGuid, "DocRef", this.ListDocGuids[0], 9, false);
+                //    lst.Add(pDoc);
+                //    // Guid of document
+                //    var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyDocGuidGuid, this.PropertyDocRefGuidName, false);
+                //    pDocGuid.Position = 13;
+                //    pDocGuid.TagInList = "dg";
+                //    lst.Add(pDocGuid);
+                //}
+                //else
+                //{
+                    var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "DocRef", this.ListDocGuids, 10, false);
+                    lst.Add(pDoc);
+                //}
+            }
+
+
+            //// Reference to document
+            //var pDocRef = (Property)m.GetPropertyId(this, this.PropertyDocRefGuid, this.PropertyDocRefName, false);
+            //pDocRef.Position = 11;
+            //pDocRef.TagInList = "dr";
+            //lst.Add(pDocRef);
+
+            //// Guid of document
+            //var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyDocGuidGuid, this.PropertyDocRefGuidName, false);
+            //pDocGuid.Position = 13;
+            //pDocGuid.TagInList = "dg";
+            //lst.Add(pDocGuid);
+
             // Document date
             var pDocDate = m.GetPropertyDocumentDate(this, this.PropertyDocDateGuid); // position 8
             //var pDocDate = m.GetPropertyDocumentDate(this, this.PropertyDocDateGuid, true);
             pDocDate.TagInList = "dd";
             lst.Add(pDocDate);
-
-            // Reference to document
-            var pDocRef = (Property)m.GetPropertyId(this, this.PropertyDocRefGuid, this.PropertyDocRefName, false);
-            pDocRef.Position = 11;
-            pDocRef.TagInList = "dr";
-            lst.Add(pDocRef);
-
-            // Guid of document
-            var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyDocGuidGuid, this.PropertyDocRefGuidName, false);
-            pDocGuid.Position = 13;
-            pDocGuid.TagInList = "dg";
-            lst.Add(pDocGuid);
 
             // Document number
             var pDocNumber = (Property)m.GetPropertyDocNumberString(this, this.PropertyDocNumberGuid, 50);
@@ -437,13 +467,14 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst;
         }
-        public IReadOnlyList<IItemWithSubItems> GetIncludedDetails(string guidAppPrjDbGen)
+        public IReadOnlyList<IItemWithSubItems> GetIncludedSubItems(string guidAppPrjDbGen)
         {
-            throw new NotImplementedException();
-            //if (this.GroupRegisterDimensions.ListDimensions.Count > 0)
-            //    return new List<IDetail>() { this.GroupRegisterDimensions.ListDimensions[0] };
-            //else
-            //    return new List<IDetail>();
+            var res = new List<IItemWithSubItems>();
+            foreach (var t in this.GroupRegisterDimensions.ListDimensions)
+            {
+                res.Add(t);
+            }
+            return res;
         }
         public IReadOnlyList<IForm> GetListForms(string guidAppPrjDbGen)
         {

@@ -7,11 +7,12 @@ using vSharpStudio.common.DiffModel;
 
 namespace vSharpStudio.common
 {
-    public interface IItemWithSubItems: IGuid, IName, ICompositeName
+    public interface IItemWithSubItems : IGuid, IName, ICompositeName, IParent
     {
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
-        IReadOnlyList<IItemWithSubItems> GetIncludedDetails(string guidAppPrjGen);
+        IReadOnlyList<IItemWithSubItems> GetIncludedSubItems(string guidAppPrjGen);
         IReadOnlyList<IForm> GetListForms(string guidAppPrjGen);
         IForm GetForm(FormType ftype, string guidAppPrjGen);
+        string GetDebuggerDisplay(bool isOptimistic);
     }
 }

@@ -118,6 +118,8 @@
     - [proto_enum_property_data_type](#proto_config.proto_enum_property_data_type)
     - [proto_enum_random_data_type](#proto_config.proto_enum_random_data_type)
     - [proto_enum_rant_data_type](#proto_config.proto_enum_rant_data_type)
+    - [proto_enum_register_periodicity](#proto_config.proto_enum_register_periodicity)
+    - [proto_enum_register_type](#proto_config.proto_enum_register_type)
     - [proto_enum_system_data_type](#proto_config.proto_enum_system_data_type)
     - [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type)
     - [proto_enum_use_type](#proto_config.proto_enum_use_type)
@@ -2006,6 +2008,8 @@ Configuration model
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| register_type | [proto_enum_register_type](#proto_config.proto_enum_register_type) |  | @attr [Category(&#34;&#34;)] @attr [DisplayName(&#34;Register Type&#34;)] @attr [PropertyOrderAttribute(7)] |
+| register_periodicity | [proto_enum_register_periodicity](#proto_config.proto_enum_register_periodicity) |  | @attr [Category(&#34;&#34;)] @attr [DisplayName(&#34;Register Type&#34;)] @attr [PropertyOrderAttribute(9)] |
 | last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
@@ -2020,6 +2024,7 @@ Configuration model
 | table_dimension_property_money_accumulator_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Money Length&#34;)] @attr [Description(&#34;Maximum decimal digits for money data&#34;)] |
 | table_dimension_property_money_accumulator_accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Money accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy&#34;)] |
 | table_dimension_property_money_accumulator_guid | [string](#string) |  | @attr [Browsable(false)] |
+| table_dimension_property_is_starting_balance_guid | [string](#string) |  | @attr [Browsable(false)] |
 | group_register_dimensions | [proto_group_list_dimensions](#proto_config.proto_group_list_dimensions) |  | @attr [Browsable(false)] |
 | group_attached_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [Browsable(false)] |
 | property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -2850,6 +2855,35 @@ with history |
 | R_NONE | 0 |  |
 | R_REVIEW | 1 |  |
 | R_REVIEWS | 2 |  |
+
+
+
+<a name="proto_config.proto_enum_register_periodicity"></a>
+
+### proto_enum_register_periodicity
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| REGISTER_PERIOD_YEAR | 0 | @attr [Description(&#34;Year&#34;)] |
+| REGISTER_PERIOD_QUATER | 11 | @attr [Description(&#34;Quater&#34;)] |
+| REGISTER_PERIOD_MONTH | 21 | @attr [Description(&#34;Month&#34;)] |
+| REGISTER_PERIOD_WEEK | 31 | @attr [Description(&#34;Week&#34;)] |
+| REGISTER_PERIOD_DAY | 41 | @attr [Description(&#34;Day&#34;)] |
+| REGISTER_PERIOD_HOUR | 51 | @attr [Description(&#34;Hour&#34;)] |
+
+
+
+<a name="proto_config.proto_enum_register_type"></a>
+
+### proto_enum_register_type
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| BALANCE | 0 | &lt;summary&gt; / Balance data for selected register dimentions. Balance always contains latest accumulated data. One record per period. / &lt;/summary&gt; @attr [Description(&#34;Balance&#34;)] |
+| TURNOVER | 11 | &lt;summary&gt; / Only turnovers data for selected register periodicity and dimentions. Many records per period. / &lt;/summary&gt; @attr [Description(&#34;Turnover&#34;)] |
+| BALANCE_AND_TURNOVER | 21 | &lt;summary&gt; / Balance and turnovers data for selected register periodicity and dimentions. / Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period. / &lt;/summary&gt; @attr [Description(&#34;Balance and Turnover&#34;)] |
 
 
 
