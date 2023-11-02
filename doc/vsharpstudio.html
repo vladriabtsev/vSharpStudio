@@ -347,10 +347,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_group_list_dimensions"><span class="badge">M</span>proto_group_list_dimensions</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_group_list_documents"><span class="badge">M</span>proto_group_list_documents</a>
                 </li>
               
@@ -380,6 +376,10 @@
               
                 <li>
                   <a href="#proto_config.proto_group_list_properties"><span class="badge">M</span>proto_group_list_properties</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_group_list_register_dimensions"><span class="badge">M</span>proto_group_list_register_dimensions</a>
                 </li>
               
                 <li>
@@ -5997,113 +5997,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
 
         
       
-        <h3 id="proto_config.proto_group_list_dimensions">proto_group_list_dimensions</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(-2)]
-@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(1)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name_ui</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)]
-@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(3)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_dimensions</td>
-                  <td><a href="#proto_config.proto_register_dimension">proto_register_dimension</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_grid_sortable</td>
-                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
-@attr [DisplayName(&#34;Sortable&#34;)]
-@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_grid_sortable_custom</td>
-                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
-@attr [DisplayName(&#34;Custom Sortable&#34;)]
-@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_grid_filterable</td>
-                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
-@attr [DisplayName(&#34;Filterable&#34;)]
-@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_role_property_access_settings</td>
-                  <td><a href="#proto_config.proto_role_property_access">proto_role_property_access</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_node_generators_settings</td>
-                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="proto_config.proto_group_list_documents">proto_group_list_documents</h3>
         <p></p>
 
@@ -6697,6 +6590,113 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td></td>
                   <td><p>Last generated Protobuf field position
 @attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Sortable&#34;)]
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Custom Sortable&#34;)]
+@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Filterable&#34;)]
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_role_property_access_settings</td>
+                  <td><a href="#proto_config.proto_role_property_access">proto_role_property_access</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_group_list_register_dimensions">proto_group_list_register_dimensions</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_dimensions</td>
+                  <td><a href="#proto_config.proto_register_dimension">proto_register_dimension</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -8758,7 +8758,7 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>group_register_dimensions</td>
-                  <td><a href="#proto_config.proto_group_list_dimensions">proto_group_list_dimensions</a></td>
+                  <td><a href="#proto_config.proto_group_list_register_dimensions">proto_group_list_register_dimensions</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>

@@ -32,9 +32,9 @@ namespace vSharpStudio.vm.ViewModels
             return "";
         }
         [Browsable(false)]
-        public GroupListDimensions ParentGroupListDimensions { get { Debug.Assert(this.Parent != null); return (GroupListDimensions)this.Parent; } }
+        public GroupListRegisterDimensions ParentGroupListRegisterDimensions { get { Debug.Assert(this.Parent != null); return (GroupListRegisterDimensions)this.Parent; } }
         [Browsable(false)]
-        public IGroupListDimensions ParentGroupListDimensionsI { get { Debug.Assert(this.Parent != null); return (IGroupListDimensions)this.Parent; } }
+        public IGroupListRegisterDimensions ParentGroupListRegisterDimensionsI { get { Debug.Assert(this.Parent != null); return (IGroupListRegisterDimensions)this.Parent; } }
         [Browsable(false)]
         // Can be used by a generator to keep calculated property data
         public object? Tag { get; set; }
@@ -46,7 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IChildrenCollection GetListSiblings()
         {
-            return this.ParentGroupListDimensions.Children;
+            return this.ParentGroupListRegisterDimensions.Children;
         }
         public override bool HasChildren()
         {
@@ -99,7 +99,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentGroupListDimensions.ListDimensions.CanUp(this))
+                if (this.ParentGroupListRegisterDimensions.ListDimensions.CanUp(this))
                 {
                     return true;
                 }
@@ -109,7 +109,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Register?)this.ParentGroupListDimensions.ListDimensions.GetPrev(this);
+            var prev = (Register?)this.ParentGroupListRegisterDimensions.ListDimensions.GetPrev(this);
             if (prev == null)
                 return;
             this.SetSelected(prev);
@@ -117,7 +117,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            this.ParentGroupListDimensions.ListDimensions.MoveUp(this);
+            this.ParentGroupListRegisterDimensions.ListDimensions.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -125,7 +125,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentGroupListDimensions.ListDimensions.CanDown(this))
+                if (this.ParentGroupListRegisterDimensions.ListDimensions.CanDown(this))
                 {
                     return true;
                 }
@@ -135,7 +135,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Register?)this.ParentGroupListDimensions.ListDimensions.GetNext(this);
+            var next = (Register?)this.ParentGroupListRegisterDimensions.ListDimensions.GetNext(this);
             if (next == null)
                 return;
             this.SetSelected(next);
@@ -143,20 +143,20 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            this.ParentGroupListDimensions.ListDimensions.MoveDown(this);
+            this.ParentGroupListRegisterDimensions.ListDimensions.MoveDown(this);
             this.SetSelected(this);
         }
 
         public void NodeRemove(bool ask = true)
         {
-            this.ParentGroupListDimensions.ListDimensions.Remove(this);
+            this.ParentGroupListRegisterDimensions.ListDimensions.Remove(this);
             this.Parent = null;
         }
         public override ITreeConfigNode NodeAddClone()
         {
             Debug.Assert(this.Parent != null);
             var node = RegisterDimension.Clone(this.Parent, this, true, true);
-            this.ParentGroupListDimensions.ListDimensions.Add(node);
+            this.ParentGroupListRegisterDimensions.ListDimensions.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -170,14 +170,14 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             var node = new Register(this.Parent);
-            this.ParentGroupListDimensions.ListDimensions.Add(node);
-            this.GetUniqueName(Defaults.RegisterDimensionName, node, this.ParentGroupListDimensions.ListDimensions);
+            this.ParentGroupListRegisterDimensions.ListDimensions.Add(node);
+            this.GetUniqueName(Defaults.RegisterDimensionName, node, this.ParentGroupListRegisterDimensions.ListDimensions);
             this.SetSelected(node);
             return node;
         }
         public void Remove()
         {
-            this.ParentGroupListDimensions.ListDimensions.Remove(this);
+            this.ParentGroupListRegisterDimensions.ListDimensions.Remove(this);
         }
         #endregion Tree operations
 
@@ -351,7 +351,7 @@ namespace vSharpStudio.vm.ViewModels
                 Debug.Assert(this.Cfg != null);
                 var lst = new List<ICatalog>();
                 var hs = new HashSet<string>();
-                foreach (var t in this.ParentGroupListDimensions.ListDimensions)
+                foreach (var t in this.ParentGroupListRegisterDimensions.ListDimensions)
                 {
                     if (t.Guid == this.Guid)
                         continue;
@@ -384,7 +384,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(!isExcludeSpecial, "not implemented yet");
 
             var lst = new List<IProperty>();
-            var r = this.ParentGroupListDimensions.ParentRegister;
+            var r = this.ParentGroupListRegisterDimensions.ParentRegister;
             var m = r.ParentGroupListRegisters.ParentModel;
 
             // Id
@@ -413,14 +413,14 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(pQty);
 
             // Reference to register header
-            var pRegRef = (Property)m.GetPropertyRef(this, this.ParentGroupListDimensions.ParentRegister.Guid, "Ref" + r.CompositeName, 13);
+            var pRegRef = (Property)m.GetPropertyRef(this, this.ParentGroupListRegisterDimensions.ParentRegister.Guid, "Ref" + r.CompositeName, 13);
             pRegRef.TagInList = "rr";
             lst.Add(pRegRef);
 
             if (r.RegisterType != EnumRegisterType.TURNOVER)
             {
                 // Register starting balances on period
-                var pIsStartBalance = (Property)m.GetPropertyBool(this, this.ParentGroupListDimensions.ParentRegister.TableDimensionPropertyIsStartingBalanceGuid, "IsStartingBalance", 14, true);
+                var pIsStartBalance = (Property)m.GetPropertyBool(this, this.ParentGroupListRegisterDimensions.ParentRegister.TableDimensionPropertyIsStartingBalanceGuid, "IsStartingBalance", 14, true);
                 pRegRef.TagInList = "ib";
                 lst.Add(pRegRef);
             }

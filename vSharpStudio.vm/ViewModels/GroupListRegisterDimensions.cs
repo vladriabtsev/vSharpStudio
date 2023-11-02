@@ -15,7 +15,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class GroupListDimensions : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
+    public partial class GroupListRegisterDimensions : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -69,7 +69,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (RegisterDimension)node_impl;
             }
-            this.Add(node);
+            this.ListDimensions.Add(node);
             if (node_impl == null)
             {
                 this.GetUniqueName(Defaults.RegisterDimensionName, node, this.ListDimensions);

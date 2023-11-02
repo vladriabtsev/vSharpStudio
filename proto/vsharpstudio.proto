@@ -2698,7 +2698,7 @@ message proto_register_dimension {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-message proto_group_list_dimensions {
+message proto_group_list_register_dimensions {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
@@ -2852,7 +2852,7 @@ message proto_register {
 
 
     // @attr [Browsable(false)]
-    proto_group_list_dimensions group_register_dimensions = 28;
+    proto_group_list_register_dimensions group_register_dimensions = 28;
     // @attr [Browsable(false)]
     proto_group_list_properties group_attached_properties = 31;
 

@@ -22526,8 +22526,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
-    public partial class GroupListDimensionsValidator : ValidatorBase<GroupListDimensions, GroupListDimensionsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
-    public partial class GroupListDimensions : ConfigObjectVmGenSettings<GroupListDimensions, GroupListDimensionsValidator>, IComparable<GroupListDimensions>, IConfigAcceptVisitor, IGroupListDimensions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
+    public partial class GroupListRegisterDimensionsValidator : ValidatorBase<GroupListRegisterDimensions, GroupListRegisterDimensionsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
+    public partial class GroupListRegisterDimensions : ConfigObjectVmGenSettings<GroupListRegisterDimensions, GroupListRegisterDimensionsValidator>, IComparable<GroupListRegisterDimensions>, IConfigAcceptVisitor, IGroupListRegisterDimensions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
         public override string ToDebugString()
         {
@@ -22549,8 +22549,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        public GroupListDimensions(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:50
-            : base(parent, GroupListDimensionsValidator.Validator)
+        public GroupListRegisterDimensions(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:50
+            : base(parent, GroupListRegisterDimensionsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
@@ -22577,10 +22577,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListDimensions Clone(ITreeConfigNode? parent, IGroupListDimensions from, bool isDeep = true, bool isNewGuid = false) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:29
+        public static GroupListRegisterDimensions Clone(ITreeConfigNode? parent, IGroupListRegisterDimensions from, bool isDeep = true, bool isNewGuid = false) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:29
         {
             Debug.Assert(from != null);
-            GroupListDimensions vm = new GroupListDimensions(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:36
+            GroupListRegisterDimensions vm = new GroupListRegisterDimensions(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:36
             vm._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._NameUi = from.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
@@ -22602,7 +22602,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vm.SetNewGuid();
             return vm;
         }
-        public static void Update(GroupListDimensions to, IGroupListDimensions from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:76
+        public static void Update(GroupListRegisterDimensions to, IGroupListRegisterDimensions from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:76
         {
             Debug.Assert(to != null);
             Debug.Assert(from != null);
@@ -22725,24 +22725,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:146
         #region IEditable
-        public override GroupListDimensions Backup()
+        public override GroupListRegisterDimensions Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
             Debug.Assert(this is IConfig || this.Parent != null);
-            return GroupListDimensions.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:154
+            return GroupListRegisterDimensions.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:154
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(GroupListDimensions from)
+        public override void Restore(GroupListRegisterDimensions from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            GroupListDimensions.Update(this, from, isDeep);
+            GroupListRegisterDimensions.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_group_list_dimensions' to 'GroupListDimensions'
-        public static GroupListDimensions ConvertToVM(Proto.Config.proto_group_list_dimensions m, GroupListDimensions vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:170
+        // Conversion from 'proto_group_list_register_dimensions' to 'GroupListRegisterDimensions'
+        public static GroupListRegisterDimensions ConvertToVM(Proto.Config.proto_group_list_register_dimensions m, GroupListRegisterDimensions vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:170
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -22780,11 +22780,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm.IsHasChanged = false;
             return vm;
         }
-        // Conversion from 'GroupListDimensions' to 'proto_group_list_dimensions'
-        public static Proto.Config.proto_group_list_dimensions ConvertToProto(GroupListDimensions vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:229
+        // Conversion from 'GroupListRegisterDimensions' to 'proto_group_list_register_dimensions'
+        public static Proto.Config.proto_group_list_register_dimensions ConvertToProto(GroupListRegisterDimensions vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:229
         {
             Debug.Assert(vm != null);
-            Proto.Config.proto_group_list_dimensions m = new Proto.Config.proto_group_list_dimensions(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:232
+            Proto.Config.proto_group_list_register_dimensions m = new Proto.Config.proto_group_list_register_dimensions(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:232
             m.Guid = vm.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.Name = vm.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.NameUi = vm.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
@@ -22928,31 +22928,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private ConfigNodesCollection<RegisterDimension> _ListDimensions; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
         //partial void OnListDimensionsChanging(ConfigNodesCollection<RegisterDimension> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnListDimensionsChanged();
-        IReadOnlyList<IRegisterDimension> IGroupListDimensions.ListDimensions { get { return (this as GroupListDimensions).ListDimensions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
+        IReadOnlyList<IRegisterDimension> IGroupListRegisterDimensions.ListDimensions { get { return (this as GroupListRegisterDimensions).ListDimensions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
         
-        public RegisterDimension this[int index] { get { return (RegisterDimension)this.ListDimensions[index]; } }
-        IRegisterDimension IGroupListDimensions.this[int index] { get { return (RegisterDimension)this.ListDimensions[index]; } }
-        public void Add(RegisterDimension item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:51
-        { 
-            Debug.Assert(item != null);
-            this.ListDimensions.Add(item); 
-            item.Parent = this;
-        }
-        public void AddRange(IEnumerable<RegisterDimension> items) 
-        { 
-            Debug.Assert(items != null);
-            this.ListDimensions.AddRange(items); 
-            foreach (var t in items)
-                t.Parent = this;
-        }
-        public int Count() { return this.ListDimensions.Count; }
-        int IGroupListDimensions.Count() { return this.Count(); }
-        public void Remove(RegisterDimension item) 
-        {
-            Debug.Assert(item != null);
-            this.ListDimensions.Remove(item); 
-            item.Parent = null;
-        }
         
         [Browsable(false)]
         public ulong SortingValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -23054,7 +23031,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private ObservableCollectionWithActions<RolePropertyAccess> _ListRolePropertyAccessSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
         //partial void OnListRolePropertyAccessSettingsChanging(ObservableCollectionWithActions<RolePropertyAccess> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnListRolePropertyAccessSettingsChanged();
-        IReadOnlyList<IRolePropertyAccess> IGroupListDimensions.ListRolePropertyAccessSettings { get { return (this as GroupListDimensions).ListRolePropertyAccessSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
+        IReadOnlyList<IRolePropertyAccess> IGroupListRegisterDimensions.ListRolePropertyAccessSettings { get { return (this as GroupListRegisterDimensions).ListRolePropertyAccessSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
         
         
         [Browsable(false)]
@@ -23073,7 +23050,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
         //partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnListNodeGeneratorsSettingsChanged();
-        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListDimensions.ListNodeGeneratorsSettings { get { return (this as GroupListDimensions).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
+        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListRegisterDimensions.ListNodeGeneratorsSettings { get { return (this as GroupListRegisterDimensions).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:130
         #endregion Properties
@@ -23115,7 +23092,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._GroupRegisterDimensions = new GroupListDimensions(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:63
+            this._GroupRegisterDimensions = new GroupListRegisterDimensions(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:63
             this._GroupAttachedProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:63
             this._ListDocGuids = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:58
             this._ListDocMappings = new ObservableCollectionWithActions<RegisterDocToReg>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:58
@@ -23163,7 +23140,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._TableDimensionPropertyMoneyAccumulatorGuid = from.TableDimensionPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._TableDimensionPropertyIsStartingBalanceGuid = from.TableDimensionPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:63 IsDefaultBase=True
-                vm.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListDimensions.Clone(vm, from.GroupRegisterDimensions, isDeep);
+                vm.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Clone(vm, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:63 IsDefaultBase=True
                 vm.GroupAttachedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupAttachedProperties, isDeep);
             vm._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
@@ -23218,7 +23195,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._TableDimensionPropertyMoneyAccumulatorGuid = from.TableDimensionPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._TableDimensionPropertyIsStartingBalanceGuid = from.TableDimensionPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:137
-                vSharpStudio.vm.ViewModels.GroupListDimensions.Update((GroupListDimensions)to.GroupRegisterDimensions, from.GroupRegisterDimensions, isDeep);
+                vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Update((GroupListRegisterDimensions)to.GroupRegisterDimensions, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:137
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupAttachedProperties, from.GroupAttachedProperties, isDeep);
             to._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
@@ -23361,8 +23338,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._TableDimensionPropertyMoneyAccumulatorGuid = m.TableDimensionPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._TableDimensionPropertyIsStartingBalanceGuid = m.TableDimensionPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             if (vm.GroupRegisterDimensions == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:208
-                vm.GroupRegisterDimensions = new GroupListDimensions(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:210
-            vSharpStudio.vm.ViewModels.GroupListDimensions.ConvertToVM(m.GroupRegisterDimensions, (GroupListDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:214
+                vm.GroupRegisterDimensions = new GroupListRegisterDimensions(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:210
+            vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.ConvertToVM(m.GroupRegisterDimensions, (GroupListRegisterDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:214
             if (vm.GroupAttachedProperties == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:208
                 vm.GroupAttachedProperties = new GroupListProperties(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:210
             vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupAttachedProperties, (GroupListProperties)vm.GroupAttachedProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:214
@@ -23428,7 +23405,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.TableDimensionPropertyMoneyAccumulatorAccuracy = vm.TableDimensionPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.TableDimensionPropertyMoneyAccumulatorGuid = vm.TableDimensionPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.TableDimensionPropertyIsStartingBalanceGuid = vm.TableDimensionPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListDimensions.ConvertToProto((GroupListDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:263
+            m.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.ConvertToProto((GroupListRegisterDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:263
             m.GroupAttachedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupAttachedProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:263
             m.PropertyIdGuid = vm.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyVersionGuid = vm.PropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
@@ -23911,7 +23888,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnTableDimensionPropertyIsStartingBalanceGuidChanged();
         
         [Browsable(false)]
-        public GroupListDimensions GroupRegisterDimensions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public GroupListRegisterDimensions GroupRegisterDimensions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._GroupRegisterDimensions; }
             set
@@ -23923,10 +23900,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        private GroupListDimensions _GroupRegisterDimensions; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnGroupRegisterDimensionsChanging(ref GroupListDimensions to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        private GroupListRegisterDimensions _GroupRegisterDimensions; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnGroupRegisterDimensionsChanging(ref GroupListRegisterDimensions to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupRegisterDimensionsChanged();
-        IGroupListDimensions IRegister.GroupRegisterDimensions { get { return (this as Register).GroupRegisterDimensions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:75
+        IGroupListRegisterDimensions IRegister.GroupRegisterDimensions { get { return (this as Register).GroupRegisterDimensions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:75
         
         [Browsable(false)]
         public GroupListProperties GroupAttachedProperties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -37224,7 +37201,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void Visit(Proto.Config.proto_group_list_catalogs p);
         void Visit(Proto.Config.proto_group_list_registers p);
         void Visit(Proto.Config.proto_register_dimension p);
-        void Visit(Proto.Config.proto_group_list_dimensions p);
+        void Visit(Proto.Config.proto_group_list_register_dimensions p);
         void Visit(Proto.Config.proto_register p);
         void Visit(Proto.Config.proto_register_doc_to_reg p);
         void Visit(Proto.Config.proto_register_reg_prop_to_doc_prop p);
@@ -37707,13 +37684,13 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListDimensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListRegisterDimensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
             foreach (var t in p.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(GroupListDimensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListRegisterDimensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
@@ -38491,16 +38468,16 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         protected virtual void OnVisit(RegisterDimension p) { }
         protected virtual void OnVisitEnd(RegisterDimension p) { }
-        public void Visit(GroupListDimensions p)
+        public void Visit(GroupListRegisterDimensions p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(GroupListDimensions p)
+        public void VisitEnd(GroupListRegisterDimensions p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(GroupListDimensions p) { }
-        protected virtual void OnVisitEnd(GroupListDimensions p) { }
+        protected virtual void OnVisit(GroupListRegisterDimensions p) { }
+        protected virtual void OnVisitEnd(GroupListRegisterDimensions p) { }
         public void Visit(Register p)
         {
             this.OnVisit(p);
@@ -38854,8 +38831,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void VisitEnd(GroupListRegisters p);
         void Visit(RegisterDimension p);
         void VisitEnd(RegisterDimension p);
-        void Visit(GroupListDimensions p);
-        void VisitEnd(GroupListDimensions p);
+        void Visit(GroupListRegisterDimensions p);
+        void VisitEnd(GroupListRegisterDimensions p);
         void Visit(Register p);
         void VisitEnd(Register p);
         void Visit(GroupDocuments p);

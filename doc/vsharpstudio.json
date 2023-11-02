@@ -7857,127 +7857,6 @@
           ]
         },
         {
-          "name": "proto_group_list_dimensions",
-          "longName": "proto_group_list_dimensions",
-          "fullName": "proto_config.proto_group_list_dimensions",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_dimensions",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_register_dimension",
-              "longType": "proto_register_dimension",
-              "fullType": "proto_config.proto_register_dimension",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_grid_sortable",
-              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
-              "label": "",
-              "type": "proto_enum_use_type",
-              "longType": "proto_enum_use_type",
-              "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_grid_sortable_custom",
-              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
-              "label": "",
-              "type": "proto_enum_use_type",
-              "longType": "proto_enum_use_type",
-              "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_grid_filterable",
-              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
-              "label": "",
-              "type": "proto_enum_use_type",
-              "longType": "proto_enum_use_type",
-              "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_role_property_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_property_access",
-              "longType": "proto_role_property_access",
-              "fullType": "proto_config.proto_role_property_access",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_node_generators_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_plugin_generator_node_settings",
-              "longType": "proto_plugin_generator_node_settings",
-              "fullType": "proto_config.proto_plugin_generator_node_settings",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "proto_group_list_documents",
           "longName": "proto_group_list_documents",
           "fullName": "proto_config.proto_group_list_documents",
@@ -8630,6 +8509,127 @@
               "type": "uint32",
               "longType": "uint32",
               "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_role_property_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_property_access",
+              "longType": "proto_role_property_access",
+              "fullType": "proto_config.proto_role_property_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_group_list_register_dimensions",
+          "longName": "proto_group_list_register_dimensions",
+          "fullName": "proto_config.proto_group_list_register_dimensions",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_dimensions",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_register_dimension",
+              "longType": "proto_register_dimension",
+              "fullType": "proto_config.proto_register_dimension",
               "ismap": false,
               "defaultValue": ""
             },
@@ -10906,9 +10906,9 @@
               "name": "group_register_dimensions",
               "description": "@attr [Browsable(false)]",
               "label": "",
-              "type": "proto_group_list_dimensions",
-              "longType": "proto_group_list_dimensions",
-              "fullType": "proto_config.proto_group_list_dimensions",
+              "type": "proto_group_list_register_dimensions",
+              "longType": "proto_group_list_register_dimensions",
+              "fullType": "proto_config.proto_group_list_register_dimensions",
               "ismap": false,
               "defaultValue": ""
             },
