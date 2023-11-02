@@ -510,40 +510,40 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataTypeCatalog(ITreeConfigNode? parent, string catGuid, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.CATALOG;
             dt.ObjectGuid = catGuid;
+            dt.DataTypeEnum = EnumDataType.CATALOG;
             dt.IsNullable = isNullable;
             return dt;
         }
         public IDataType GetDataTypeCatalogs(ITreeConfigNode? parent, IEnumerable<string> lstCatGuids, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.CATALOGS;
             dt.ListObjectGuids.AddRange(lstCatGuids);
+            dt.DataTypeEnum = EnumDataType.CATALOGS;
             dt.IsNullable = isNullable;
             return dt;
         }
         public IDataType GetDataTypeDocument(ITreeConfigNode? parent, string docGuid, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.DOCUMENT;
             dt.ObjectGuid = docGuid;
+            dt.DataTypeEnum = EnumDataType.DOCUMENT;
             dt.IsNullable = isNullable;
             return dt;
         }
         public IDataType GetDataTypeDocuments(ITreeConfigNode? parent, IEnumerable<string> lstDocGuids, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.DOCUMENTS;
             dt.ListObjectGuids.AddRange(lstDocGuids);
+            dt.DataTypeEnum = EnumDataType.DOCUMENTS;
             dt.IsNullable = isNullable;
             return dt;
         }
         public IDataType GetDataTypeCatalogsDocuments(ITreeConfigNode? parent, IEnumerable<string> lstCatDocGuids, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.ANY;
             dt.ListObjectGuids.AddRange(lstCatDocGuids);
+            dt.DataTypeEnum = EnumDataType.ANY;
             dt.IsNullable = isNullable;
             return dt;
         }

@@ -430,7 +430,7 @@ namespace vSharpStudio.vm.ViewModels
                 //}
                 //else
                 //{
-                    var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "DocRef", this.ListDocGuids, 10, false);
+                    var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "DocRef", this.ListDocGuids, 10, true);
                     lst.Add(pDoc);
                 //}
             }
