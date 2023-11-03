@@ -24,6 +24,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }
+        public int IndexOf(IProperty p)
+        {
+            return this.ListProperties.IndexOf((Property)p);
+        }
         #region ITree
         public override IChildrenCollection GetListChildren()
         {

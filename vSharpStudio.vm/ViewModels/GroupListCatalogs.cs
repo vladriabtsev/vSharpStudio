@@ -111,7 +111,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public int IndexOf(ICatalog cat)
         {
-            return this.ListCatalogs.IndexOf((cat as Catalog)!);
+            return this.ListCatalogs.IndexOf((Catalog)cat);
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

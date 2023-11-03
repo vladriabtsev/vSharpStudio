@@ -8,6 +8,7 @@ using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Net.WebSockets;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ using vSharpStudio.vm.Migration;
 using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 //using System.Linq.Expressions;
 //using System.Linq.Dynamic.Core;
 
@@ -1177,6 +1179,67 @@ namespace vSharpStudio.vm.ViewModels
             if (lstt.Count == 0)
                 return;
             TabsRecursive(appGenGuig, isOptimistic, lstt, action, typeOp, lst);
+        }
+        public string GetUniquePropertyShortID(IProperty p)
+        {
+            return $"p{p.ParentGroupListPropertiesI.IndexOf(p).ToString()}";
+        }
+        public string GetUniquePropertyFullShortID(IProperty p)
+        {
+            Debug.Assert(p.ParentGroupListPropertiesI.Parent != null);
+            var parenId = GetUniqueObjectFullShortID(p.ParentGroupListPropertiesI.Parent);
+            return $"{parenId}p{p.ParentGroupListPropertiesI.IndexOf(p).ToString()}";
+        }
+        public string GetUniqueObjectFullShortID(ITreeConfigNode node)
+        {
+            if (node is ICatalog c)
+            {
+                return $"c{c.ParentGroupListCatalogsI.IndexOf(c).ToString()}";
+            }
+            else if (node is IDocument d)
+            {
+                return $"d{d.ParentGroupListDocumentsI.IndexOf(d).ToString()}";
+            }
+            else if (node is IDetail t)
+            {
+                return GetTypeCacheIdWithParents((IItemWithSubItems)t.ParentGroupListDetailsI.Parent!,
+                    $"t{t.ParentGroupListDetailsI.IndexOf(t).ToString()}");
+            }
+            else if (node is IRegister r)
+            {
+                return $"r{r.ParentGroupListRegistersI.IndexOf(r).ToString()}";
+            }
+            else if (node is IRegisterDimension rd)
+            {
+                var grd = rd.ParentGroupListRegisterDimensionsI;
+                var rr = grd.ParentRegisterI;
+                var gr = rr.ParentGroupListRegistersI;
+                return $"r{gr.IndexOf(rr).ToString()}rd{grd.IndexOf(rd).ToString()}";
+            }
+            ThrowHelper.ThrowInvalidOperationException();
+            return "";
+            string GetTypeCacheIdWithParents(IItemWithSubItems node, string res)
+            {
+                if (node is IModel)
+                    return res;
+                Debug.Assert(node.Parent != null);
+                if (node is IDetail t)
+                {
+                    var gt = (IGroupListDetails)t.Parent;
+                    return $"t{gt.IndexOf(t).ToString()}{res}";
+                }
+                else if (node is ICatalog c)
+                {
+                    var gc = c.ParentGroupListCatalogsI;
+                    return $"c{gc.IndexOf(c).ToString()}{res}";
+                }
+                else if (node is IDocument d)
+                {
+                    var gd = d.ParentGroupListDocumentsI;
+                    return $"d{gd.IndexOf(d).ToString()}{res}";
+                }
+                return res;
+            }
         }
         #endregion Utils
 
