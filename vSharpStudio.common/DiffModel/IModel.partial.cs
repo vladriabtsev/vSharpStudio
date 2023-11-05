@@ -21,6 +21,7 @@ namespace vSharpStudio.common
         IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, uint accuracy, bool isNullable);
         // numerical
         IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, bool isPositive, bool isNullable);
+        IDataType GetDataTypeInt(ITreeConfigNode? parent, bool isPositive, bool isNullable);
         // string
         IDataType GetDataTypeString(ITreeConfigNode? parent, uint length, bool isNullable);
         IDataType GetDataTypeStringGuid(ITreeConfigNode? parent, bool isNullable);

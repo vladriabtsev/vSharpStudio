@@ -55,6 +55,10 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
+        public int IndexOf(IConstant cnst)
+        {
+            return this.ListConstants.IndexOf((Constant)cnst);
+        }
 
         [PropertyOrder(100)]
         [ReadOnly(true)]

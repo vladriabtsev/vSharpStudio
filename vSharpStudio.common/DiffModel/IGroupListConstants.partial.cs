@@ -8,6 +8,7 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListConstants : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName
     {
+        int IndexOf(IConstant cnst);
         IGroupConstantGroups ParentGroupConstantGroupsI { get; }
         IReadOnlyList<IConstant> GetIncludedConstants(string guidAppPrjGen);
         EnumConstantAccess GetRoleConstantAccess(IRole role);

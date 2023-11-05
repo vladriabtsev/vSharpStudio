@@ -435,7 +435,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (node is Catalog c)
                         {
-                            var pCat = (Property)m.GetPropertyCatalog(this, t.Guid, t.Name + "Ref", c.Guid, t.Position, false);
+                            var pCat = (Property)m.GetPropertyCatalog(this, t.Guid, t.Name, c.Guid, t.Position, false);
                             lst.Add(pCat);
                         }
                         else

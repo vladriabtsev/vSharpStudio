@@ -790,11 +790,11 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsComplexRefId { get; private set; }
         public bool IsComplexRefGuid { get; private set; }
         public bool IsComplexDesc { get; private set; }
-        public IProperty AddExtensionPropertyGuid(string subName, string guid, bool isNullable)
+        public IProperty AddExtensionPropertyGd(string subName, string guid, bool isNullable)
         {
             var node = new Property(this) { Name = subName };
             node.Guid = guid;
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = 36 };
+            node.DataType = (DataType)this.Cfg.Model.GetDataTypeInt(node, false, isNullable);
             node.IsNullable = isNullable;
             node.ParentProperty = this;
             node.IsComplexRefGuid = true;

@@ -25,6 +25,7 @@ using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 //using System.Linq.Expressions;
 //using System.Linq.Dynamic.Core;
 
@@ -491,6 +492,10 @@ namespace vSharpStudio.vm.ViewModels
             dt.IsPositive = isPositive;
             dt.IsNullable = isNullable;
             return dt;
+        }
+        public IDataType GetDataTypeInt(ITreeConfigNode? parent, bool isPositive, bool isNullable)
+        {
+            return this.GetDataTypeFromMaxValue(parent, int.MaxValue, isPositive, isNullable);
         }
         // string
         public IDataType GetDataTypeString(ITreeConfigNode? parent, uint length, bool isNullable)
@@ -1196,6 +1201,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return $"c{c.ParentGroupListCatalogsI.IndexOf(c).ToString()}";
             }
+            else if (node is ICatalogFolder cf)
+            {
+                return $"cf{cf.ParentCatalogI.ParentGroupListCatalogsI.IndexOf(cf.ParentCatalogI).ToString()}";
+            }
             else if (node is IDocument d)
             {
                 return $"d{d.ParentGroupListDocumentsI.IndexOf(d).ToString()}";
@@ -1215,6 +1224,14 @@ namespace vSharpStudio.vm.ViewModels
                 var rr = grd.ParentRegisterI;
                 var gr = rr.ParentGroupListRegistersI;
                 return $"r{gr.IndexOf(rr).ToString()}rd{grd.IndexOf(rd).ToString()}";
+            }
+            else if (node is IGroupListConstants cts)
+            {
+                return $"cts{cts.ParentGroupConstantGroupsI.IndexOf(cts).ToString()}";
+            }
+            else if (node is IConstant ct)
+            {
+                return $"cts{ct.ParentGroupListConstantsI.ParentGroupConstantGroupsI.IndexOf(ct.ParentGroupListConstantsI).ToString()}ct{ct.ParentGroupListConstantsI.IndexOf(ct).ToString()}";
             }
             ThrowHelper.ThrowInvalidOperationException();
             return "";

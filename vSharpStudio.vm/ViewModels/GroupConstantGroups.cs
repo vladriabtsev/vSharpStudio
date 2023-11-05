@@ -25,7 +25,10 @@ namespace vSharpStudio.vm.ViewModels
         public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }
         [Browsable(false)]
         public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
-
+        public int IndexOf(IGroupListConstants cnstg)
+        {
+            return this.ListConstantGroups.IndexOf((GroupListConstants)cnstg);
+        }
         #region ITree
         public override IChildrenCollection GetListChildren()
         {
