@@ -133,7 +133,7 @@
                     </Grid>
                 </Grid>
             </TabItem>-->
-            <TabItem Header="***General" ToolTip="Register settings">
+            <TabItem Header="Document mappings" ToolTip="Selecting Register documents and document properties mapping">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

@@ -157,6 +157,12 @@ namespace ViewModelBase
         {
             this.AddRange(lst);
         }
+        //public SortedObservableCollection(Action<T> onAddingAction, Action<T> onRemovingAction, Action? onClearingAction = null)
+        //{
+        //    this.OnAddingAction = onAddingAction;
+        //    this.OnRemovingAction = onRemovingAction;
+        //    this.OnClearingAction = onClearingAction;
+        //}
         //public SortedObservableCollection(object parent, bool isSort = true) : this()
         //{
         //    this.Parent = parent;

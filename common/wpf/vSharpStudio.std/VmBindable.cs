@@ -463,5 +463,6 @@ namespace ViewModelBase
         /// Several changes during delay period will introduce only one notification.
         /// </summary>
         public static int IsChangedNotificationDelay { get; set; }
+        public virtual void OnOpeningEditor() { }
     }
 }

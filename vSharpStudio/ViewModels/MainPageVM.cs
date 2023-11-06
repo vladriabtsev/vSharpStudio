@@ -582,6 +582,11 @@ namespace vSharpStudio.ViewModels
                 Debug.Assert(this._Config != null);
                 this.ValidateProperty();
                 this._Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath) ?? String.Empty;
+                this.Config.OnSelectedNodeChanging = (oldValue, newValue) =>
+                {
+                    if (newValue != null)
+                        ((VmBindable)newValue).OnOpeningEditor();
+                };
                 this._Config.OnSelectedNodeChanged = () =>
                 {
                     this.BtnAddNew.Command.NotifyCanExecuteChanged();

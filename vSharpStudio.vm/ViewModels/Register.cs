@@ -94,8 +94,13 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyDocRefName = "DocRef";
             this._RegisterType = EnumRegisterType.TURNOVER;
             this._RegisterPeriodicity = EnumRegisterPeriodicity.REGISTER_PERIOD_MONTH;
+            this._ListNotSelectedDocuments = new SortedObservableCollection<ISortingValue>();
+            //this._ListNotSelectedDocuments.CollectionChanged += _ListNotSelectedDocuments_CollectionChanged;
+            this._ListSelectedDocuments = new SortedObservableCollection<ISortingValue>();
+            this._ListSelectedDocuments.CollectionChanged += _ListSelectedDocuments_CollectionChanged;
             Init();
         }
+
         protected override void OnInitFromDto()
         {
             Init();
@@ -416,7 +421,7 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(pVer);
             }
 
-            if (this.ListDocGuids.Count>0)
+            if (this.ListDocGuids.Count > 0)
             {
                 //if (this.ListDocGuids.Count == 1)
                 //{
@@ -430,8 +435,8 @@ namespace vSharpStudio.vm.ViewModels
                 //}
                 //else
                 //{
-                    var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "DocRef", this.ListDocGuids, 10, true);
-                    lst.Add(pDoc);
+                var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "Doc", this.ListDocGuids, 10, true);
+                lst.Add(pDoc);
                 //}
             }
 
@@ -487,39 +492,89 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Editor
 
+        public override void OnOpeningEditor()
+        {
+            #region ListNotSelectedDocuments
+            this.ListNotSelectedDocuments.Clear();
+            foreach (var t in this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+            {
+                bool found = false;
+                foreach (var tt in this.ListDocGuids)
+                {
+                    if (t.Guid == tt)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found)
+                    continue;
+                this.ListNotSelectedDocuments.Add(t);
+            }
+            #endregion ListNotSelectedDocuments
+
+            #region ListSelectedDocuments
+            this.ListSelectedDocuments.Clear();
+            foreach (var t in this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+            {
+                bool found = false;
+                foreach (var tt in this.ListDocGuids)
+                {
+                    if (t.Guid == tt)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    continue;
+                this.ListSelectedDocuments.Add(t);
+            }
+            #endregion ListSelectedDocuments
+
+        }
+
         #region Documents
-        //[Browsable(false)]
-        //public SortedObservableCollection<ISortingValue> ListSeparateTreeSelectedNotSpecialProperties
-        //{
-        //    get
-        //    {
-        //        if (this.listSeparateTreeSelectedNotSpecialProperties == null)
-        //        {
-        //            this.listSeparateTreeSelectedNotSpecialProperties = new SortedObservableCollection<ISortingValue>();
-        //            if (this.ParentGroupListForms.Parent is Catalog c)
-        //            {
-        //                if (c.UseTree && c.UseSeparateTreeForFolders)
-        //                {
-        //                    var res = new List<IProperty>();
-        //                    c.Folder.GetNormalProperties(res);
-        //                    foreach (var t in res)
-        //                    {
-        //                        foreach (var tt in this.ListGuidViewFolderProperties)
-        //                        {
-        //                            if (tt == t.Guid)
-        //                            {
-        //                                this.listSeparateTreeSelectedNotSpecialProperties.Add(t);
-        //                                break;
-        //                            }
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        return this.listSeparateTreeSelectedNotSpecialProperties;
-        //    }
-        //}
-        //private SortedObservableCollection<ISortingValue>? listSeparateTreeSelectedNotSpecialProperties;
+        [Browsable(false)]
+        public SortedObservableCollection<ISortingValue> ListNotSelectedDocuments
+        {
+            get => _ListNotSelectedDocuments;
+            set => SetProperty(ref _ListNotSelectedDocuments, value);
+        }
+        private SortedObservableCollection<ISortingValue> _ListNotSelectedDocuments;
+        [Browsable(false)]
+        public SortedObservableCollection<ISortingValue> ListSelectedDocuments
+        {
+            get => _ListSelectedDocuments;
+            set => SetProperty(ref _ListSelectedDocuments, value);
+        }
+        private void _ListSelectedDocuments_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                    if (e.NewItems != null)
+                    {
+                        foreach (var t in e.NewItems)
+                        {
+                            this.ListDocGuids.Add(((Document)t).Guid);
+                        }
+                    }
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                    if (e.OldItems != null)
+                    {
+                        foreach (var t in e.OldItems)
+                        {
+                            this.ListDocGuids.Add(((Document)t).Guid);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        private SortedObservableCollection<ISortingValue> _ListSelectedDocuments;
         #endregion Documents
 
         #endregion Editor
