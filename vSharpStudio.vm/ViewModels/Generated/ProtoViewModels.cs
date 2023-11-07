@@ -22445,14 +22445,14 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         //partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnIsMarkedForDeletionChanged();
         
-        // <summary>
+        // / <summary>
         // / Guid of Catalog type.
         // / </summary>
         // 
         // Guid for dimension property. Auto generated.
         // string property_dimension_guid = 22;
-        [PropertyOrderAttribute(6)]
         [Category("")]
+        [PropertyOrderAttribute(4)]
         [DisplayName("Dimension catalog")]
         [Description("Catalog for register dimension")]
         [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]

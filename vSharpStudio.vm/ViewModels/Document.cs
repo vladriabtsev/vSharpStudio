@@ -386,6 +386,13 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        public void GetNormalProperties(List<IProperty> res)
+        {
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                res.Add(t);
+            }
+        }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
 

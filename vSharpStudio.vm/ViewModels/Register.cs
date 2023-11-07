@@ -492,8 +492,11 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Editor
 
+        private bool isOnOpeningEditor = false;
         public override void OnOpeningEditor()
         {
+            this.isOnOpeningEditor = true;
+
             #region ListNotSelectedDocuments
             this.ListNotSelectedDocuments.Clear();
             foreach (var t in this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
@@ -532,6 +535,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             #endregion ListSelectedDocuments
 
+            this.isOnOpeningEditor = false;
         }
 
         #region Documents
@@ -550,14 +554,33 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void _ListSelectedDocuments_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            if (this.isOnOpeningEditor)
+                return;
             switch (e.Action)
             {
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
                     if (e.NewItems != null)
                     {
+#if DEBUG
+                        // Chack new item is not added yet
                         foreach (var t in e.NewItems)
                         {
-                            this.ListDocGuids.Add(((Document)t).Guid);
+                            var guid = ((IGuid)t).Guid;
+                            var j = -1;
+                            for (int i = 0; i < this.ListDocGuids.Count; i++)
+                            {
+                                if (this.ListDocGuids[i] == guid)
+                                {
+                                    j = i;
+                                    break;
+                                }
+                            }
+                            Debug.Assert(j == -1);
+                        }
+#endif
+                        foreach (var t in e.NewItems)
+                        {
+                            this.ListDocGuids.Add(((IGuid)t).Guid);
                         }
                     }
                     break;
@@ -566,7 +589,18 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in e.OldItems)
                         {
-                            this.ListDocGuids.Add(((Document)t).Guid);
+                            var guid = ((IGuid)t).Guid;
+                            var j = -1;
+                            for (int i = 0; i < this.ListDocGuids.Count; i++)
+                            {
+                                if (this.ListDocGuids[i] == guid)
+                                {
+                                    j = i;
+                                    break;
+                                }
+                            }
+                            Debug.Assert(j >= 0);
+                            this.ListDocGuids.RemoveAt(j);
                         }
                     }
                     break;

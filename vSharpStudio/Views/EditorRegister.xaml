@@ -138,7 +138,6 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <Grid.RowDefinitions>
@@ -154,19 +153,6 @@
                         </controls:CollectionFromCollection>
                     </Grid>
                     <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="Mapping selected document properties to this register" FontWeight="Bold" />
-                        <controls:CollectionFromCollection Grid.Row="1"
-                                                           TitleLeft="Register properties"
-                                                           ListLeft="{Binding ListNotSelectedDocuments}"
-                                                           TitleRight="Mapped to"
-                                                           ListRight="{Binding ListSelectedDocuments}">
-                        </controls:CollectionFromCollection>
-                    </Grid>
-                    <Grid Grid.Column="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>

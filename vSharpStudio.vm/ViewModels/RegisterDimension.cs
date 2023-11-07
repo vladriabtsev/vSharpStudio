@@ -63,6 +63,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
+            this.CatalogGuid = string.Empty;
             Init();
         }
         protected override void OnInitFromDto()
@@ -197,62 +198,62 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Editing logic
-        protected override string[]? OnGetWhatHideOnPropertyGrid()
-        {
-            var lst = new List<string>();
-            //if (this.DataType.DataTypeEnum != EnumDataType.STRING)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.MinLengthRequirement));
-            //    lst.Add(this.GetPropertyName(() => this.MaxLengthRequirement));
-            //}
-            //if (this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.Accuracy));
-            //    lst.Add(this.GetPropertyName(() => this.IsPositive));
-            //}
-            //if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.Length));
-            //}
-            //if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC) // &&
-            //                                                            //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
-            //                                                            //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.AccuracyForTime));
-            //}
-            //if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.ListObjectGuids));
-            //    lst.Add(this.GetPropertyName(() => this.DefaultValue));
-            //}
-            //if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DOCUMENT &&
-            //    this.DataType.DataTypeEnum != EnumDataType.ENUMERATION &&
-            //    this.DataType.DataTypeEnum != EnumDataType.ANY)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.ObjectGuid));
-            //    lst.Add(this.GetPropertyName(() => this.DefaultValue));
-            //}
-            //if (this.Accuracy != 0)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.IsPositive));
-            //}
-            //if (this.DataType.DataTypeEnum != EnumDataType.STRING &&
-            //    this.DataType.DataTypeEnum != EnumDataType.CHAR &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DATE &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC &&
-            //    //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
-            //    //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
-            //    this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.RangeValuesRequirements));
-            //}
-            return lst.ToArray();
-        }
+        //protected override string[]? OnGetWhatHideOnPropertyGrid()
+        //{
+        //    var lst = new List<string>();
+        //    //if (this.DataType.DataTypeEnum != EnumDataType.STRING)
+        //    //{
+        //    //    lst.Add(this.GetPropertyName(() => this.MinLengthRequirement));
+        //    //    lst.Add(this.GetPropertyName(() => this.MaxLengthRequirement));
+        //    //}
+        //    //if (this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
+        //    //{
+        //    //    lst.Add(this.GetPropertyName(() => this.Accuracy));
+        //    //    lst.Add(this.GetPropertyName(() => this.IsPositive));
+        //    //}
+        //    //if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
+        //    //{
+        //    //    lst.Add(this.GetPropertyName(() => this.Length));
+        //    //}
+        //    //if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
+        //    //    this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
+        //    //    this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC) // &&
+        //    //                                                            //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
+        //    //                                                            //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
+        //    //{
+        //    //    lst.Add(this.GetPropertyName(() => this.AccuracyForTime));
+        //    //}
+        //    //if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
+        //    //    this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
+        //    //{
+        //    //    lst.Add(this.GetPropertyName(() => this.ListObjectGuids));
+        //    //    lst.Add(this.GetPropertyName(() => this.DefaultValue));
+        //    //}
+        //    //if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
+        //    //    this.DataType.DataTypeEnum != EnumDataType.DOCUMENT &&
+        //    //    this.DataType.DataTypeEnum != EnumDataType.ENUMERATION &&
+        //    //    this.DataType.DataTypeEnum != EnumDataType.ANY)
+        //    //{
+        //    //    lst.Add(this.GetPropertyName(() => this.ObjectGuid));
+        //    //    lst.Add(this.GetPropertyName(() => this.DefaultValue));
+        //    //}
+        //    //if (this.Accuracy != 0)
+        //    //{
+        //    //    lst.Add(this.GetPropertyName(() => this.IsPositive));
+        //    //}
+        //    //if (this.DataType.DataTypeEnum != EnumDataType.STRING &&
+        //    //    this.DataType.DataTypeEnum != EnumDataType.CHAR &&
+        //    //    this.DataType.DataTypeEnum != EnumDataType.DATE &&
+        //    //    this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
+        //    //    this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC &&
+        //    //    //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
+        //    //    //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
+        //    //    this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
+        //    //{
+        //    //    lst.Add(this.GetPropertyName(() => this.RangeValuesRequirements));
+        //    //}
+        //    return lst.ToArray();
+        //}
         #endregion Editing logic
 
         #region Roles

@@ -2678,14 +2678,14 @@ message proto_register_dimension {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
-    /// <summary>
-    /// Guid of Catalog type.
-    /// </summary>
-    // @attr [PropertyOrderAttribute(6)]
     // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("Dimension catalog")]
     // @attr [Description("Catalog for register dimension")]
     // @attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]
+    /// <summary>
+    /// Guid of Catalog type.
+    /// </summary>
     string catalog_guid = 21; 
     // Guid for dimension property. Auto generated.
     // @attr [Browsable(false)]
