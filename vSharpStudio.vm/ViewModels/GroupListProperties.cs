@@ -426,7 +426,7 @@ namespace vSharpStudio.vm.ViewModels
             // 7  PropertyObjectVersion
             // 8  PropertyRefParent, PropertyDocumentDate
             // 9  PropertyCatalogCode, PropertyCatalogCodeInt, PropertyDocumentCodeString, PropertyDocumentCodeInt
-            // 10 PropertyCatalogName
+            // 10 PropertyCatalogName, IsPosted(document only)
             // 11 PropertyCatalogDescription
             // 12 PropertyIsFolder
             // 13 PropertyIsOpen

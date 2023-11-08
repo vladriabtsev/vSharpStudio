@@ -1,5 +1,5 @@
 ﻿#if DEBUG
-#define _TRACE_n
+#define _TRACE_
 #endif
 using FluentValidation;
 using System;

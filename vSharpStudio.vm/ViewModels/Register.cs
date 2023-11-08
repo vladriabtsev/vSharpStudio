@@ -380,7 +380,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public IRegisterDimension AddDimension(string name, ICatalog c)
         {
-            var d = new RegisterDimension(c) { Name = name, CatalogGuid = c.Guid };
+            var d = new RegisterDimension(c) { Name = name, DimensionCatalogGuid = c.Guid };
             this.LastGenPosition++;
             d.Position = this.LastGenPosition;
             this.GroupRegisterDimensions.ListDimensions.Add(d);

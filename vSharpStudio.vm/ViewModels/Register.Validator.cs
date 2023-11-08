@@ -128,12 +128,86 @@ namespace vSharpStudio.vm.ViewModels
                     return false;
                 return true;
             }).WithMessage("Register dimentions are not selected");
-            this.RuleFor(x => x.ListDocGuids).Must((lst) =>
+            //this.RuleFor(x => x.ListDocGuids).Must((lst) =>
+            //{
+            //    if (lst.Count == 0)
+            //        return false;
+            //    return true;
+            //}).WithMessage("List of Document types for Register is empty");
+            this.RuleFor(x => x.ListDocGuids).Custom((lst, cntx) =>
             {
-                if (lst.Count == 0)
-                    return false;
-                return true;
-            }).WithMessage("List of Document types for Register is empty");
+                var r = (Register)cntx.InstanceToValidate;
+                foreach (var t in lst)
+                {
+                    var doc = (IDocument)r.Cfg.DicNodes[t];
+                    foreach (var rd in r.GroupRegisterDimensions.ListDimensions)
+                    {
+                        if (string.IsNullOrEmpty(rd.DimensionCatalogGuid))
+                            continue;
+                        var cat = (ICatalog)rd.Cfg.DicNodes[rd.DimensionCatalogGuid];
+                        int found = 0;
+                        foreach (var p in doc.GetAllProperties(false))
+                        {
+                            if (p.DataType.ObjectGuid == rd.DimensionCatalogGuid)
+                                found++;
+                            found += this.TryFindPropertyByCatalogGuid(doc.GroupDetails, rd.DimensionCatalogGuid);
+                        }
+                        if (found == 0)
+                        {
+                            var vf = new ValidationFailure(nameof(r.ListDocGuids),
+                                $"Document '{doc.Name}' doesn't have property of catalog type '{cat.Name}' which is required by dimension {rd.Name}.");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+                        else if (found > 1)
+                        {
+                            // check if explicitly mapped
+                            bool isExplicitlyMapped = false;
+                            foreach (var dm in r.ListDocMappings)
+                            {
+                                if (dm.DocGuid != doc.Guid)
+                                    continue;
+                                foreach(var m in dm.ListMapings)
+                                {
+                                    if (string.IsNullOrEmpty(m.DocPropGuid))
+                                        continue;
+                                    var p = (IProperty)rd.Cfg.DicNodes[m.DocPropGuid];
+                                    if (string.IsNullOrEmpty(p.DataType.ObjectGuid))
+                                        continue;
+                                    if (p.DataType.ObjectGuid == rd.DimensionCatalogGuid)
+                                    {
+                                        isExplicitlyMapped = true;
+                                        break;
+                                    }
+                                }
+                                if (isExplicitlyMapped)
+                                    break;
+                            }
+                            if (!isExplicitlyMapped)
+                            {
+                                var vf = new ValidationFailure(nameof(r.ListDocGuids),
+                                    $"Document '{doc.Name}' has more than one property of catalog type '{cat.Name}' which is required by dimension {rd.Name}. Need manual mapping.");
+                                vf.Severity = Severity.Error;
+                                cntx.AddFailure(vf);
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        private int TryFindPropertyByCatalogGuid(IGroupListDetails gd, string dimensionCatalogGuid)
+        {
+            int found = 0;
+            foreach(var t in gd.ListDetails)
+            {
+                foreach(var p in t.GroupProperties.ListProperties)
+                {
+                    if (p.Guid == dimensionCatalogGuid)
+                        found++;
+                }
+                found += this.TryFindPropertyByCatalogGuid(t.GroupDetails, dimensionCatalogGuid);
+            }
+            return found;
         }
     }
 }

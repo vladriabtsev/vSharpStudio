@@ -4689,6 +4689,16 @@
               "defaultValue": ""
             },
             {
+              "name": "property_is_posted_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_role_document_access_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -11164,8 +11174,8 @@
               "defaultValue": ""
             },
             {
-              "name": "catalog_guid",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Dimension catalog\")]\n@attr [Description(\"Catalog for register dimension\")]\n@attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]\n/ \u003csummary\u003e\n/ Guid of Catalog type.\n/ \u003c/summary\u003e\n\nGuid for dimension property. Auto generated.\n@attr [Browsable(false)]\nstring property_dimension_guid = 22;",
+              "name": "dimension_catalog_guid",
+              "description": "\u003csummary\u003e\n/ Guid of Catalog type.\n/ \u003c/summary\u003e\n@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Dimension catalog\")]\n@attr [Description(\"Catalog for register dimension\")]\n@attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]",
               "label": "",
               "type": "string",
               "longType": "string",

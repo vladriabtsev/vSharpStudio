@@ -63,7 +63,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            this.CatalogGuid = string.Empty;
+            this.DimensionCatalogGuid = string.Empty;
             Init();
         }
         protected override void OnInitFromDto()
@@ -198,62 +198,62 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Editing logic
-        //protected override string[]? OnGetWhatHideOnPropertyGrid()
-        //{
-        //    var lst = new List<string>();
-        //    //if (this.DataType.DataTypeEnum != EnumDataType.STRING)
-        //    //{
-        //    //    lst.Add(this.GetPropertyName(() => this.MinLengthRequirement));
-        //    //    lst.Add(this.GetPropertyName(() => this.MaxLengthRequirement));
-        //    //}
-        //    //if (this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
-        //    //{
-        //    //    lst.Add(this.GetPropertyName(() => this.Accuracy));
-        //    //    lst.Add(this.GetPropertyName(() => this.IsPositive));
-        //    //}
-        //    //if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
-        //    //{
-        //    //    lst.Add(this.GetPropertyName(() => this.Length));
-        //    //}
-        //    //if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
-        //    //    this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
-        //    //    this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC) // &&
-        //    //                                                            //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
-        //    //                                                            //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
-        //    //{
-        //    //    lst.Add(this.GetPropertyName(() => this.AccuracyForTime));
-        //    //}
-        //    //if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
-        //    //    this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
-        //    //{
-        //    //    lst.Add(this.GetPropertyName(() => this.ListObjectGuids));
-        //    //    lst.Add(this.GetPropertyName(() => this.DefaultValue));
-        //    //}
-        //    //if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
-        //    //    this.DataType.DataTypeEnum != EnumDataType.DOCUMENT &&
-        //    //    this.DataType.DataTypeEnum != EnumDataType.ENUMERATION &&
-        //    //    this.DataType.DataTypeEnum != EnumDataType.ANY)
-        //    //{
-        //    //    lst.Add(this.GetPropertyName(() => this.ObjectGuid));
-        //    //    lst.Add(this.GetPropertyName(() => this.DefaultValue));
-        //    //}
-        //    //if (this.Accuracy != 0)
-        //    //{
-        //    //    lst.Add(this.GetPropertyName(() => this.IsPositive));
-        //    //}
-        //    //if (this.DataType.DataTypeEnum != EnumDataType.STRING &&
-        //    //    this.DataType.DataTypeEnum != EnumDataType.CHAR &&
-        //    //    this.DataType.DataTypeEnum != EnumDataType.DATE &&
-        //    //    this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
-        //    //    this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC &&
-        //    //    //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
-        //    //    //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
-        //    //    this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
-        //    //{
-        //    //    lst.Add(this.GetPropertyName(() => this.RangeValuesRequirements));
-        //    //}
-        //    return lst.ToArray();
-        //}
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
+        {
+            var lst = new List<string>();
+            //if (this.DataType.DataTypeEnum != EnumDataType.STRING)
+            //{
+            //    lst.Add(this.GetPropertyName(() => this.MinLengthRequirement));
+            //    lst.Add(this.GetPropertyName(() => this.MaxLengthRequirement));
+            //}
+            //if (this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
+            //{
+            //    lst.Add(this.GetPropertyName(() => this.Accuracy));
+            //    lst.Add(this.GetPropertyName(() => this.IsPositive));
+            //}
+            //if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
+            //{
+            //    lst.Add(this.GetPropertyName(() => this.Length));
+            //}
+            //if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
+            //    this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
+            //    this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC) // &&
+            //                                                            //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
+            //                                                            //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
+            //{
+            //    lst.Add(this.GetPropertyName(() => this.AccuracyForTime));
+            //}
+            //if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
+            //    this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
+            //{
+            //    lst.Add(this.GetPropertyName(() => this.ListObjectGuids));
+            //    lst.Add(this.GetPropertyName(() => this.DefaultValue));
+            //}
+            //if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
+            //    this.DataType.DataTypeEnum != EnumDataType.DOCUMENT &&
+            //    this.DataType.DataTypeEnum != EnumDataType.ENUMERATION &&
+            //    this.DataType.DataTypeEnum != EnumDataType.ANY)
+            //{
+            //    lst.Add(this.GetPropertyName(() => this.ObjectGuid));
+            //    lst.Add(this.GetPropertyName(() => this.DefaultValue));
+            //}
+            //if (this.Accuracy != 0)
+            //{
+            //    lst.Add(this.GetPropertyName(() => this.IsPositive));
+            //}
+            //if (this.DataType.DataTypeEnum != EnumDataType.STRING &&
+            //    this.DataType.DataTypeEnum != EnumDataType.CHAR &&
+            //    this.DataType.DataTypeEnum != EnumDataType.DATE &&
+            //    this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
+            //    this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC &&
+            //    //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
+            //    //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
+            //    this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
+            //{
+            //    lst.Add(this.GetPropertyName(() => this.RangeValuesRequirements));
+            //}
+            return lst.ToArray();
+        }
         #endregion Editing logic
 
         #region Roles
@@ -356,8 +356,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (t.Guid == this.Guid)
                         continue;
-                    if (!string.IsNullOrWhiteSpace(t.CatalogGuid))
-                        hs.Add(t.CatalogGuid);
+                    if (!string.IsNullOrWhiteSpace(t.DimensionCatalogGuid))
+                        hs.Add(t.DimensionCatalogGuid);
                 }
                 foreach (var t in this.Cfg.Model.GroupCatalogs.ListCatalogs)
                 {
@@ -430,9 +430,9 @@ namespace vSharpStudio.vm.ViewModels
             // For all dimensions (catalogs).
             foreach (var t in r.GroupRegisterDimensions.ListDimensions)
             {
-                if (!string.IsNullOrEmpty(t.CatalogGuid))
+                if (!string.IsNullOrEmpty(t.DimensionCatalogGuid))
                 {
-                    if (m.ParentConfig.DicNodes.TryGetValue(t.CatalogGuid, out var node))
+                    if (m.ParentConfig.DicNodes.TryGetValue(t.DimensionCatalogGuid, out var node))
                     {
                         if (node is Catalog c)
                         {

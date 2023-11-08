@@ -71,6 +71,7 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocDateGuid = System.Guid.NewGuid().ToString();
             this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this._PropertyIsPostedGuid = System.Guid.NewGuid().ToString();
 
             this._IndexUniqueDocNumberGuid = System.Guid.NewGuid().ToString();
             this._IndexYearDocNumberGuid = System.Guid.NewGuid().ToString();
@@ -453,6 +454,8 @@ namespace vSharpStudio.vm.ViewModels
                         throw new NotImplementedException();
                 }
             }
+            prp = model.GetPropertyBool(this.GroupProperties, this.PropertyIsPostedGuid, "IsPosted", 10, true);
+            res.Add(prp);
         }
         public IReadOnlyList<IItemWithSubItems> GetIncludedSubItems(string guidAppPrjGen)
         {

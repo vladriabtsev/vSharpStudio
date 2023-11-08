@@ -2678,15 +2678,16 @@ message proto_register_dimension {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
+    /// <summary>
+    /// Guid of Catalog type.
+    /// </summary>
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("Dimension catalog")]
     // @attr [Description("Catalog for register dimension")]
     // @attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]
-    /// <summary>
-    /// Guid of Catalog type.
-    /// </summary>
-    string catalog_guid = 21; 
+    string dimension_catalog_guid = 21; 
+
     // Guid for dimension property. Auto generated.
     // @attr [Browsable(false)]
     //string property_dimension_guid = 22; 
@@ -3122,6 +3123,9 @@ message proto_document {
     // @attr [DisplayName("Filterable")]
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
+    
+    // @attr [Browsable(false)]
+    string property_is_posted_guid = 75;
 
     // @attr [Browsable(false)]
     repeated proto_role_document_access list_role_document_access_settings = 101;
