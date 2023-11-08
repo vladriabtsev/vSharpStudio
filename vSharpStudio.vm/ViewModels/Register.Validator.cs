@@ -155,7 +155,7 @@ namespace vSharpStudio.vm.ViewModels
                         if (found == 0)
                         {
                             var vf = new ValidationFailure(nameof(r.ListDocGuids),
-                                $"Document '{doc.Name}' doesn't have property of catalog type '{cat.Name}' which is required by dimension {rd.Name}.");
+                                $"Document '{doc.Name}' doesn't have property of type catalog '{cat.Name}' which is required by dimension {rd.Name}.");
                             vf.Severity = Severity.Error;
                             cntx.AddFailure(vf);
                         }
@@ -186,7 +186,7 @@ namespace vSharpStudio.vm.ViewModels
                             if (!isExplicitlyMapped)
                             {
                                 var vf = new ValidationFailure(nameof(r.ListDocGuids),
-                                    $"Document '{doc.Name}' has more than one property of catalog type '{cat.Name}' which is required by dimension {rd.Name}. Need manual mapping.");
+                                    $"Document '{doc.Name}' has more than one property of type catalog '{cat.Name}' which is required by dimension {rd.Name}. Need manual mapping.");
                                 vf.Severity = Severity.Error;
                                 cntx.AddFailure(vf);
                             }
