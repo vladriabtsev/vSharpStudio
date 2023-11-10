@@ -11,6 +11,7 @@ namespace vSharpStudio.common
     public partial interface IDocument : ITreeConfigNodeSortable, IGetNodeSetting, IItemWithSubItems
     {
         IGroupListDocuments ParentGroupListDocumentsI { get; }
+        IReadOnlyList<IProperty> GetProperties();
         IReadOnlyList<IProperty> GetAllProperties(bool isOptimistic);
         IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
         IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen);

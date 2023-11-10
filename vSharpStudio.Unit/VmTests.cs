@@ -403,18 +403,85 @@ namespace vSharpStudio.Unit
             //mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
             mvm.BtnNewConfig.Execute();
 
+            // only register without dimensions
             var cfg = mvm.Config;
-            var reg = (IRegister)cfg.Model.GroupListRegisters.NodeAddNewSubNode();
+            var reg = (Register)cfg.Model.GroupListRegisters.NodeAddNewSubNode();
             reg.Validate();
             Assert.AreEqual(2, reg.ValidationCollection.Count);
             reg.ValidationCollection.Single(m => m.Message.StartsWith("Register dimentions are not selected"));
             reg.ValidationCollection.Single(m => m.Message.StartsWith("List of Document types for Register is empty"));
 
-            var dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
+            // register with one dimension, but without selected catalog
+            var dim = (RegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
             Assert.AreEqual(1, reg.GroupRegisterDimensions.ListDimensions.Count);
+            dim.Validate();
+            Assert.AreEqual(1, dim.ValidationCollection.Count);
+            dim.ValidationCollection.Single(m => m.Message.StartsWith("Catalog type is not selected for register dimension"));
             reg.Validate();
             Assert.AreEqual(1, reg.ValidationCollection.Count);
-            reg.ValidationCollection.Single(m => m.Message.StartsWith("List of Document types for Register is empty"));
+
+            // without accumulator
+            reg.UseMoneyAccumulator = false;
+            reg.UseQtyAccumulator = false;
+            reg.Validate();
+            Assert.AreEqual(3, reg.ValidationCollection.Count);
+            reg.ValidationCollection[0].Message.StartsWith("At least one accumulator type has to be selected");
+            reg.ValidationCollection[1].Message.StartsWith("At least one accumulator type has to be selected");
+            reg.UseQtyAccumulator = true;
+
+            // register with one dimension with selected catalog
+            var cat = (Catalog)cfg.Model.GroupCatalogs.NodeAddNewSubNode();
+            dim.DimensionCatalogGuid = cat.Guid;
+            dim.Validate();
+            Assert.AreEqual(0, dim.ValidationCollection.Count);
+            reg.Validate();
+            Assert.AreEqual(1, reg.ValidationCollection.Count);
+
+            // register, document without proper catalog property
+            var doc = (Document)cfg.Model.GroupDocuments.GroupListDocuments.NodeAddNewSubNode();
+            reg.ListDocGuids.Add(doc.Guid);
+            reg.Validate();
+            Assert.AreEqual(1, reg.ValidationCollection.Count);
+            reg.ValidationCollection.Single(m => m.Message.Contains("doesn't have property of type catalog"));
+
+            // register, document with proper catalog property
+            var doc_cat_prop = (Property)doc.GroupProperties.NodeAddNewSubNode();
+            doc_cat_prop.DataType.DataTypeEnum = EnumDataType.CATALOG;
+            doc_cat_prop.DataType.ObjectGuid = cat.Guid;
+            reg.Validate();
+            Assert.AreEqual(0, reg.ValidationCollection.Count);
+
+            // register, document with two proper catalog property
+            var doc_cat_prop2 = (Property)doc.GroupProperties.NodeAddNewSubNode();
+            doc_cat_prop2.DataType.DataTypeEnum = EnumDataType.CATALOG;
+            doc_cat_prop2.DataType.ObjectGuid = cat.Guid;
+            reg.Validate();
+            Assert.AreEqual(1, reg.ValidationCollection.Count);
+            reg.ValidationCollection.Single(m => m.Message.Contains("has more than one property of type catalog"));
+
+            // register, document with proper catalog property
+            doc.GroupProperties.ListProperties.Clear();
+            doc.GroupProperties.ListProperties.Add(doc_cat_prop);
+            var det = (Detail)doc.GroupDetails.NodeAddNewSubNode();
+            reg.Validate();
+            Assert.AreEqual(0, reg.ValidationCollection.Count);
+
+            // register, document with proper catalog property and catalog property in details
+            det.GroupProperties.ListProperties.Add(doc_cat_prop2);
+            reg.Validate();
+            Assert.AreEqual(1, reg.ValidationCollection.Count);
+            reg.ValidationCollection.Single(m => m.Message.Contains("has more than one property of type catalog"));
+
+            // register, document with proper catalog property in details
+            doc.GroupProperties.ListProperties.Clear();
+            reg.Validate();
+            Assert.AreEqual(0, reg.ValidationCollection.Count);
+
+            //// dimension with QTY accumulating
+            //reg.UseQtyAccumulator = true;
+            //reg.Validate();
+            //Assert.AreEqual(1, reg.ValidationCollection.Count);
+            //reg.ValidationCollection.Single(m => m.Message.Contains("doesn't have property of type decimal"));
 
             mvm.BtnConfigSaveAs.Execute(@".\test.vcfg");
             mvm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
@@ -422,8 +489,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, mvm.Config.Model.GroupListRegisters.ListRegisters[0].GroupRegisterDimensions.ListDimensions.Count);
             reg = mvm.Config.Model.GroupListRegisters.ListRegisters[0];
             reg.Validate();
-            Assert.AreEqual(1, reg.ValidationCollection.Count);
-            reg.ValidationCollection.Single(m => m.Message.StartsWith("List of Document types for Register is empty"));
+            Assert.AreEqual(0, reg.ValidationCollection.Count);
         }
 
         //#region OnAdded in parent

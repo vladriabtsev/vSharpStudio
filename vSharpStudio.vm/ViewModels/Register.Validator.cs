@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -128,30 +129,40 @@ namespace vSharpStudio.vm.ViewModels
                     return false;
                 return true;
             }).WithMessage("Register dimentions are not selected");
-            //this.RuleFor(x => x.ListDocGuids).Must((lst) =>
-            //{
-            //    if (lst.Count == 0)
-            //        return false;
-            //    return true;
-            //}).WithMessage("List of Document types for Register is empty");
+            this.RuleFor(x => x.ListDocGuids).Must((lst) =>
+            {
+                if (lst.Count == 0)
+                    return false;
+                return true;
+            }).WithMessage("List of Document types for Register is empty"); //.WithSeverity(Severity.Warning);
             this.RuleFor(x => x.ListDocGuids).Custom((lst, cntx) =>
             {
                 var r = (Register)cntx.InstanceToValidate;
                 foreach (var t in lst)
                 {
                     var doc = (IDocument)r.Cfg.DicNodes[t];
+                    this.foundDic.Clear();
                     foreach (var rd in r.GroupRegisterDimensions.ListDimensions)
                     {
                         if (string.IsNullOrEmpty(rd.DimensionCatalogGuid))
                             continue;
                         var cat = (ICatalog)rd.Cfg.DicNodes[rd.DimensionCatalogGuid];
+                        int level = 0;
+                        uint pos = 0;
                         int found = 0;
-                        foreach (var p in doc.GetAllProperties(false))
+                        foreach (var p in doc.GetProperties())
                         {
                             if (p.DataType.ObjectGuid == rd.DimensionCatalogGuid)
+                            {
                                 found++;
-                            found += this.TryFindPropertyByCatalogGuid(doc.GroupDetails, rd.DimensionCatalogGuid);
+                                if (!foundDic.TryGetValue(rd, out var d_rd)) { d_rd = new(); foundDic[rd] = d_rd; }
+                                if (!d_rd.TryGetValue(level, out var d_rd_level)) { d_rd_level = new(); d_rd[level] = d_rd_level; }
+                                if (!d_rd_level.TryGetValue(pos, out var d_rd_level_pos)) { d_rd_level_pos = new(); d_rd_level[pos] = d_rd_level_pos; }
+                                d_rd_level_pos.Add(p);
+                            }
                         }
+                        found += this.TryFindPropertyByCatalogGuid(doc.GroupDetails, rd, level);
+                        // Chack if dimension catalog reference can be found
                         if (found == 0)
                         {
                             var vf = new ValidationFailure(nameof(r.ListDocGuids),
@@ -167,7 +178,7 @@ namespace vSharpStudio.vm.ViewModels
                             {
                                 if (dm.DocGuid != doc.Guid)
                                     continue;
-                                foreach(var m in dm.ListMapings)
+                                foreach (var m in dm.ListMapings)
                                 {
                                     if (string.IsNullOrEmpty(m.DocPropGuid))
                                         continue;
@@ -192,20 +203,61 @@ namespace vSharpStudio.vm.ViewModels
                             }
                         }
                     }
+                    //// Check if all catalog references are on an one branch (or on a same node)
+                    //Dictionary<uint, List<IProperty>> deepestNode = new();
+                    //var deepestLevel = -1;
+                    //foreach (var nrd in this.foundDic)
+                    //{
+                    //    foreach (var lev in nrd.Value.Keys)
+                    //    {
+                    //        if (lev > deepestLevel)
+                    //        {
+                    //            deepestLevel = lev;
+                    //            deepestNode = nrd.Value[lev];
+                    //        }
+                    //    }
+                    //}
+                    //if (deepestLevel != -1)
+                    //{
+                    //    Debug.Assert(deepestNode.Keys.Count == 1);
+                    //    deepestNode[deepestNode.Keys[0]]
+
+
+
+                    //        //var vf = new ValidationFailure(nameof(r.ListDocGuids),
+                    //        //    $"Document '{doc.Name}' doesn't have property of type catalog '{cat.Name}' which is required by dimension {rd.Name}.");
+                    //        //vf.Severity = Severity.Error;
+                    //        //cntx.AddFailure(vf);
+
+
+                    //    // Chack if all accumulation properties can be found on deepest node
+
+                    //}
+                    foundDic.Clear();
                 }
             });
         }
-        private int TryFindPropertyByCatalogGuid(IGroupListDetails gd, string dimensionCatalogGuid)
+        // IRegisterDimension, tree level (0 for root), detail position (0 for root), property
+        private Dictionary<IRegisterDimension, Dictionary<int, Dictionary<uint, List<IProperty>>>> foundDic = new();
+        private int TryFindPropertyByCatalogGuid(IGroupListDetails gd, IRegisterDimension rd, int level)
         {
+            level++;
             int found = 0;
-            foreach(var t in gd.ListDetails)
+            foreach (var t in gd.ListDetails)
             {
-                foreach(var p in t.GroupProperties.ListProperties)
+                var pos = t.Position;
+                foreach (var p in t.GroupProperties.ListProperties)
                 {
-                    if (p.Guid == dimensionCatalogGuid)
+                    if (p.DataType.ObjectGuid == rd.DimensionCatalogGuid)
+                    {
                         found++;
+                        if (!foundDic.TryGetValue(rd, out var d_rd)) { d_rd = new(); foundDic[rd] = d_rd; }
+                        if (!d_rd.TryGetValue(level, out var d_rd_level)) { d_rd_level = new(); d_rd[level] = d_rd_level; }
+                        if (!d_rd_level.TryGetValue(pos, out var d_rd_level_pos)) { d_rd_level_pos = new(); d_rd_level[pos] = d_rd_level_pos; }
+                        d_rd_level_pos.Add(p);
+                    }
                 }
-                found += this.TryFindPropertyByCatalogGuid(t.GroupDetails, dimensionCatalogGuid);
+                found += this.TryFindPropertyByCatalogGuid(t.GroupDetails, rd, level);
             }
             return found;
         }

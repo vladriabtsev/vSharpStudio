@@ -279,6 +279,21 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddPropertyCatalog(string name, string catGuid, bool isNullable = false, bool isCsNullable = true, string? guidProperty = null)
+        {
+            var node = new Property(this.GroupProperties) { Name = name, IsNullable = isNullable, IsCsNullable = isCsNullable };
+#if DEBUG
+            if (guidProperty != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guidProperty))
+                    return node;
+                node.Guid = guidProperty;
+            }
+#endif
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = catGuid };
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
         public IEnumerable<ITreeConfigNode> GetParentList()
         {
             return this.ParentGroupListDetails.ListDetails;

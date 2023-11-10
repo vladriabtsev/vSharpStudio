@@ -1,36 +1,23 @@
-Å
-$71fab8b3-6798-46ba-bfe9-a405568c6ea5test2*test1:¾’©ª€‰Š@×¯Àä–¶óƒ€ª<
-$24c7159a-0c97-457a-b3df-6729b804f3f0BaseConfigs@º¾ØÎú×œi²¾
-$44737c2c-f9b2-438e-a6d2-e7d8df6bd88eModel óØ“Öƒ›©Ê*Model@dHPj$d9662168-2319-4e6e-9a33-334b432f981drIdŠ$915db25f-793b-458f-b8df-b751acbb8e95’ReCoRdVeRsIoN˜ªCode°ºNameÀÊDescriptionÚIsFolderêDocDateğÊ	DocNumberĞªL
-$9b249cee-0f02-4911-952b-976eaecbb9b6	Constants»õ”–­†üôp"	Constants2Cnst²M
-$d2f2c91b-baba-46ee-b97f-522e8d3b7443Enumerations"Enumerations@İÍ¾»«Òî…ºT
-$117c932f-e189-4920-a950-8b5ddf46f959Catalogs"Catalogs2Ctlg:cH¦Ÿ¦Ûƒàâñ€Âÿ
-$bfff5961-8739-4b2f-92b4-48eff08d01e6	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:X
-$166e4aed-b70c-4787-a86f-ea3d344fe19aDefault Properties"Default Properties@šÍ×Á¤“û BI
-$dd5e0584-a4f8-4ace-9ca2-80bcda87cbf7	Documents"	Documents2d@¸ÀÖŸŒÓ¸ı0º€ÈüÿÿÿÿÊE
-$b588202c-99d3-49ac-93d6-3fdd6d64eb99Journals"Journals@Ú½Ì—¦„ç°ÑÒ”
-$411b866d-91a2-4e89-88ce-9bb44b4c55b8Common Group"Common Group0‚œ‹Ö™ûô`:>
-$82ed094d-af6c-4e7a-8e25-a1281c3b8152Roles"Roles@—æÉ—¾ªŠõaB>
-$8a224670-e135-4ecb-ad9d-dfa5f10928b7Views"Views@ ßäµœ›é•JF
-$3e4ad407-52e1-4dba-af22-77179dd50463	Sequences’ıáÙšÁ¬û"	SequencesÚì
-$395ad4ff-8301-4845-9aff-23536f53055d	Registers"	Registers@Š´¸ÃÏöŞòÁJRegzrgÚ$a0e98c40-08b6-442f-a593-bb1ffa95c8c2â$edd1ce8a-6ef1-47c2-981e-3ac106264191ê$d630a9cb-ffed-4a33-bef7-2aefa2f70c38ò$55b1f6e4-e2de-4538-86f5-286a2a042592â€
-$1adcb430-5aef-4a76-8e1a-e8c2eadeacc7Many To ManyâõÉ·Ëõ“Ç±"Many To Many:W
-$503fd376-6105-4fd6-b4bb-c4ebb5ac6404Catalogs"Catalogs2CtlgManyToMany:mH¦Ÿ¦Ûƒàâñ BX
-$4100af78-0dc4-4128-996d-1eadeadf7903	Documents"	Documents2DocManyToMany:mH¸ÀÖŸŒÓ¸ı0Âª
-$6accd13f-98c5-41fa-bfe7-d705509747e5Plugins"º
-$3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(†ÛİƒéÓk2[
-$1E35FCDB-6425-4C66-B047-6882738AF552
-RepositoryDB repository code generation ØŞèİ›ŸæòX"É
-$052C7318-3D73-4605-B1AE-749FC7E104120.1DbRepository"4vSharpStudio plugin. DB access layer repository code(ËËŠÄÄ‘Äz2M
-$E59B393E-AF34-4438-977F-7BF120E28A0C
-RepositoryDb Access Layer ØŞèİ›ŸæòX"ã
-$EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(Øç»Â±¨ë—2|
-$32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions °Œ½¹¨ë—X"Õ
-$C94175E4-E8F4-4A84-871B-6994199A20760.1MsSql"7vSharpStudio plugin. Database design support for MS SQL(ÒœŸ°Ó«Ë2\
-$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design#DB structure creation and migration ®çÔ¢¥Õ{X"Ş
-$3A29FC48-3892-498A-AE36-CB0C9916C6C90.1
-PostgreSql";vSharpStudio plugin. Database design support for PostgreSql(¨ôê–Æ…ä2\
-$C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migration ®çÔ¢¥Õ{X"§
+œ
+$5ff6a8c5-a3bb-4c94-9a00-0183cd5388b7test2*test1:ÓüµªÄÊS@×¯Àä–¶óƒ€ª<
+$8fb9e04c-5d36-4b22-a125-defad7d277f1BaseConfigs@º¾ØÎú×œi²¾
+$32c1fb57-a897-4aba-8aa2-9db26ae5d3d2Model óØ“Öƒ›©Ê*Model@dHPj$dcaa9bed-86f6-4667-8c08-f8eafce9a255rIdŠ$68efe758-62f7-4af6-aafd-18593c922a0d’ReCoRdVeRsIoN˜ªCode°ºNameÀÊDescriptionÚIsFolderêDocDateğÊ	DocNumberĞªL
+$4a623030-f5ef-4b7f-9c8c-43f6bcc4b643	Constants»õ”–­†üôp"	Constants2Cnst²M
+$7f234bba-454b-4be1-8d55-0455437a9c7eEnumerations"Enumerations@İÍ¾»«Òî…ºT
+$454c3ec3-2dae-4bee-99e7-8586f8045340Catalogs"Catalogs2Ctlg:cH¦Ÿ¦Ûƒàâñ€Âÿ
+$6a81df2a-dd38-4ddd-9408-d7890d1bd654	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:X
+$15e1394c-8358-4196-85e0-c218c42ad005Default Properties"Default Properties@šÍ×Á¤“û BI
+$3006ef8e-5947-4cd8-b0fa-4f212c2d44dd	Documents"	Documents2d@¸ÀÖŸŒÓ¸ı0º€ÈüÿÿÿÿÊE
+$b082a313-c808-4678-a499-c57cfe523bbbJournals"Journals@Ú½Ì—¦„ç°ÑÒ”
+$bd31700e-b60d-4b5e-821e-e8548bfda011Common Group"Common Group0‚œ‹Ö™ûô`:>
+$f918e759-506a-496f-90be-cbd8c465e6b4Roles"Roles@—æÉ—¾ªŠõaB>
+$27f6b83e-74ca-4e64-bb01-940ac1760dbdViews"Views@ ßäµœ›é•JF
+$72f4fe1e-98e6-40c5-be71-8520208260c4	Sequences’ıáÙšÁ¬û"	SequencesÚì
+$7225b611-387c-471f-9c99-456b2647b7fa	Registers"	Registers@Š´¸ÃÏöŞòÁJRegzrgÚ$32bc8f62-7dc4-468c-a522-1f9e3f211de4â$b38d03d6-9e0d-43eb-8c57-ab0ccfa940ccê$579f8670-9690-4b15-be2b-0dc767c494b4ò$72285ee0-6bfc-42e4-9c87-368ca4d37530â€
+$36959216-0a82-47e4-87b7-fb105e9c05f4Many To ManyâõÉ·Ëõ“Ç±"Many To Many:W
+$9f03639f-3c6f-468e-b29b-260116176fb1Catalogs"Catalogs2CtlgManyToMany:mH¦Ÿ¦Ûƒàâñ BX
+$842f52d4-0336-4852-a41a-4cea44077397	Documents"	Documents2DocManyToMany:mH¸ÀÖŸŒÓ¸ı0Â‚
+$bc448ce5-ab58-4cd7-b874-d5fd969417fbPlugins"§
 $ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators(ö¨°‹º³ú2a
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema ¯¡„ÃÓœõ`2V
 $7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zX"Â
@@ -38,4 +25,4 @@ $D535B939-6A33-4B96-B64C-F8FB78FD9F940.1Sample2"'vSharpStudio plugin with on
 $8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer ¿µÔ¦•Á¶zX"Ö
 $16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2\
 $553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migration ®çÔ¢¥Õ{X@„™„§à›®ã‘ÊD
-$7262009a-7218-4188-b0e2-c5afc52df1e6User Applications@˜¸Ÿ²ñË¢
+$94cfca12-9a2d-4c05-9a83-7381e1a0652bUser Applications@˜¸Ÿ²ñË¢

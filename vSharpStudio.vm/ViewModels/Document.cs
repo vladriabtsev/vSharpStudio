@@ -243,6 +243,21 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddPropertyCatalog(string name, string catGuid, bool isNullable = false, bool isCsNullable = true, string? guidProperty = null)
+        {
+            var node = new Property(this.GroupProperties) { Name = name, IsNullable = isNullable, IsCsNullable = isCsNullable };
+#if DEBUG
+            if (guidProperty != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guidProperty))
+                    return node;
+                node.Guid = guidProperty;
+            }
+#endif
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = catGuid };
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddPropertyString(string name, uint length, string? guid = null)
         {
             var node = new Property(this.GroupProperties) { Name = name };
@@ -393,6 +408,19 @@ namespace vSharpStudio.vm.ViewModels
             {
                 res.Add(t);
             }
+        }
+        public IReadOnlyList<IProperty> GetProperties()
+        {
+            List<IProperty> res = new List<IProperty>();
+            foreach (var t in this.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties)
+            {
+                res.Add(t);
+            }
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                res.Add(t);
+            }
+            return res;
         }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {

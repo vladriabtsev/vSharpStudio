@@ -421,25 +421,27 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(pVer);
             }
 
-            if (this.ListDocGuids.Count > 0)
-            {
-                //if (this.ListDocGuids.Count == 1)
-                //{
-                //    var pDoc = (Property)m.GetPropertyDocument(this, this.PropertyDocRefGuid, "DocRef", this.ListDocGuids[0], 9, false);
-                //    lst.Add(pDoc);
-                //    // Guid of document
-                //    var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyDocGuidGuid, this.PropertyDocRefGuidName, false);
-                //    pDocGuid.Position = 13;
-                //    pDocGuid.TagInList = "dg";
-                //    lst.Add(pDocGuid);
-                //}
-                //else
-                //{
-                var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "Doc", this.ListDocGuids, 10, true);
-                lst.Add(pDoc);
-                //}
-            }
+            //if (this.ListDocGuids.Count > 0)
+            //{
+            //    //if (this.ListDocGuids.Count == 1)
+            //    //{
+            //    //    var pDoc = (Property)m.GetPropertyDocument(this, this.PropertyDocRefGuid, "DocRef", this.ListDocGuids[0], 9, false);
+            //    //    lst.Add(pDoc);
+            //    //    // Guid of document
+            //    //    var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyDocGuidGuid, this.PropertyDocRefGuidName, false);
+            //    //    pDocGuid.Position = 13;
+            //    //    pDocGuid.TagInList = "dg";
+            //    //    lst.Add(pDocGuid);
+            //    //}
+            //    //else
+            //    //{
+            //    var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "Doc", this.ListDocGuids, 10, true);
+            //    lst.Add(pDoc);
+            //    //}
+            //}
 
+            var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "Doc", this.ListDocGuids, 10, true);
+            lst.Add(pDoc);
 
             //// Reference to document
             //var pDocRef = (Property)m.GetPropertyId(this, this.PropertyDocRefGuid, this.PropertyDocRefName, false);
