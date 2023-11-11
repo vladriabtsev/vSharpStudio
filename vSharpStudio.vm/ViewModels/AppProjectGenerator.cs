@@ -362,6 +362,7 @@ namespace vSharpStudio.vm.ViewModels
         //}
         partial void OnPluginGuidChanged()
         {
+            Debug.Assert(this.cfg != null);
             Debug.Assert(this.PluginGuid != null);
             Debug.Assert(this.ListGenerators != null);
             DebugExt.WriteLineWithStack();

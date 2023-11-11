@@ -94,7 +94,6 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyDocRefName = "DocRef";
             this._RegisterType = EnumRegisterType.TURNOVER;
             this._RegisterPeriodicity = EnumRegisterPeriodicity.REGISTER_PERIOD_MONTH;
-            this._ListNotSelectedDocuments = new SortedObservableCollection<ISortingValue>();
             //this._ListNotSelectedDocuments.CollectionChanged += _ListNotSelectedDocuments_CollectionChanged;
             this._ListSelectedDocuments = new SortedObservableCollection<ISortingValue>();
             this._ListSelectedDocuments.CollectionChanged += _ListSelectedDocuments_CollectionChanged;
@@ -547,7 +546,7 @@ namespace vSharpStudio.vm.ViewModels
             get => _ListNotSelectedDocuments;
             set => SetProperty(ref _ListNotSelectedDocuments, value);
         }
-        private SortedObservableCollection<ISortingValue> _ListNotSelectedDocuments;
+        private SortedObservableCollection<ISortingValue> _ListNotSelectedDocuments = new SortedObservableCollection<ISortingValue>();
         [Browsable(false)]
         public SortedObservableCollection<ISortingValue> ListSelectedDocuments
         {
@@ -610,7 +609,7 @@ namespace vSharpStudio.vm.ViewModels
                     break;
             }
         }
-        private SortedObservableCollection<ISortingValue> _ListSelectedDocuments;
+        private SortedObservableCollection<ISortingValue> _ListSelectedDocuments = new SortedObservableCollection<ISortingValue>();
         #endregion Documents
 
         #endregion Editor

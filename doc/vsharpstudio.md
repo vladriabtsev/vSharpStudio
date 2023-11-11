@@ -1734,6 +1734,7 @@ Configuration model
 | use_doc_date_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Use Doc Date&#34;)] @attr [Description(&#34;Use document date property for documents&#34;)] |
 | property_doc_number_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Doc Number property&#34;)] @attr [Description(&#34;Name of document number auto generated property&#34;)] |
 | use_doc_number_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Doc Number&#34;)] @attr [Description(&#34;Use document number property for documents&#34;)] |
+| complex_property_descr_length | [uint32](#uint32) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Descr Max&#34;)] @attr [Description(&#34;Complex property description maximum length. Unlimited if zero&#34;)] |
 | last_constant_group_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_catalog_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_document_short_id | [int32](#int32) |  | @attr [Browsable(false)] |

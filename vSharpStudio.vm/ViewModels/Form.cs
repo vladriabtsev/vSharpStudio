@@ -527,7 +527,7 @@ namespace vSharpStudio.vm.ViewModels
             get => _ListSeparateTreeAllNotSpecialProperties;
             set => SetProperty(ref _ListSeparateTreeAllNotSpecialProperties, value);
         }
-        private SortedObservableCollection<ISortingValue> _ListSeparateTreeAllNotSpecialProperties;
+        private SortedObservableCollection<ISortingValue> _ListSeparateTreeAllNotSpecialProperties = new SortedObservableCollection<ISortingValue>();
         [Browsable(false)]
         public SortedObservableCollection<ISortingValue> ListSeparateTreeSelectedNotSpecialProperties
         {
@@ -562,14 +562,14 @@ namespace vSharpStudio.vm.ViewModels
                     break;
             }
         }
-        private SortedObservableCollection<ISortingValue> _ListSeparateTreeSelectedNotSpecialProperties;
+        private SortedObservableCollection<ISortingValue> _ListSeparateTreeSelectedNotSpecialProperties = new SortedObservableCollection<ISortingValue>();
         [Browsable(false)]
         public SortedObservableCollection<ISortingValue> ListAllNotSpecialProperties
         {
             get => _ListAllNotSpecialProperties;
             set => SetProperty(ref _ListAllNotSpecialProperties, value);
         }
-        private SortedObservableCollection<ISortingValue> _ListAllNotSpecialProperties;
+        private SortedObservableCollection<ISortingValue> _ListAllNotSpecialProperties = new SortedObservableCollection<ISortingValue>();
         [Browsable(false)]
         public SortedObservableCollection<ISortingValue> ListSelectedNotSpecialProperties
         {
@@ -632,7 +632,7 @@ namespace vSharpStudio.vm.ViewModels
                     break;
             }
         }
-        private SortedObservableCollection<ISortingValue> _ListSelectedNotSpecialProperties;
+        private SortedObservableCollection<ISortingValue> _ListSelectedNotSpecialProperties = new SortedObservableCollection<ISortingValue>();
         partial void OnEnumFormTypeChanged()
         {
             this.OnPropertyChanged(nameof(this.PropertyDefinitions));

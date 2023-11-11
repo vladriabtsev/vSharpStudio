@@ -728,6 +728,11 @@ message proto_model {
     // @attr [DisplayName("Use Doc Number")]
     // @attr [Description("Use document number property for documents")]
     bool use_doc_number_property = 42;
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(20)]
+    // @attr [DisplayName("Descr Max")]
+    // @attr [Description("Complex property description maximum length. Unlimited if zero")]
+    uint32 complex_property_descr_length = 43;
 
 
     // @attr [Browsable(false)]

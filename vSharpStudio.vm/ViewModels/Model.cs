@@ -1081,110 +1081,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst;
         }
-        public void VisitTabs(string appGenGuig, bool isOptimistic, EnumVisitType typeOp, ITreeConfigNode p, Action<IReadOnlyList<TableInfo>> action)
-        {
-            if (p is IDetail dt)
-            {
-                this.VisitTabs(appGenGuig, isOptimistic, dt, action, typeOp);
-            }
-            else if (p is ICatalog c)
-            {
-                this.VisitTabs(appGenGuig, isOptimistic, c, action, typeOp);
-            }
-            else if (p is ICatalogFolder cf)
-            {
-                this.VisitTabs(appGenGuig, isOptimistic, cf, action, typeOp);
-            }
-            else if (p is IDocument d)
-            {
-                this.VisitTabs(appGenGuig, isOptimistic, d, action, typeOp);
-            }
-            else if (p is IGroupListConstants)
-            {
-            }
-            else
-            {
-                throw new ArgumentException();
-            }
-        }
-        private void TabsRecursive(string appGenGuig, bool isOptimistic, IReadOnlyList<IItemWithSubItems> lstt, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst)
-        {
-            foreach (var tt in lstt)
-            {
-                var t = (IDetail)tt;
-                Debug.Assert(t.Parent != null);
-                Debug.Assert(t.Parent.Parent != null);
-                var ti = new TableInfo(t.Name, t.CompositeName, (t.Parent.Parent as ICompositeName)!.CompositeName, t, t.GetIncludedProperties(appGenGuig, isOptimistic));
-                if (typeOp == EnumVisitType.Load) // from current to top
-                {
-                    lst.Add(ti);
-                    List<TableInfo> lstReverse = new List<TableInfo>();
-                    for (int i = lst.Count - 1; i > -1; i--)
-                    {
-                        lstReverse.Add(lst[i]);
-                    }
-                    if (lstReverse.Count > 0)
-                        action(lstReverse);
-                    var lstt2 = t.GetIncludedSubItems(appGenGuig);
-                    TabsRecursive(appGenGuig, isOptimistic, lstt2, action, typeOp, lst);
-                    lst.Remove(ti);
-                }
-                else if (typeOp == EnumVisitType.Remove)
-                {
-                    lst.Add(ti);
-                    List<TableInfo> lstReverse = new List<TableInfo>();
-                    for (int i = lst.Count - 1; i > -1; i--)
-                    {
-                        lstReverse.Add(lst[i]);
-                    }
-                    var lstt2 = t.GetIncludedSubItems(appGenGuig);
-                    TabsRecursive(appGenGuig, isOptimistic, lstt2, action, typeOp, lst);
-                    if (lstReverse.Count > 0)
-                        action(lstReverse);
-                    lst.Remove(ti);
-                }
-                else
-                {
-                    throw new NotImplementedException();
-                }
-            }
-        }
-        private void VisitTabs(string appGenGuig, bool isOptimistic, ICatalog p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo>? lst = null)
-        {
-            if (lst == null)
-                lst = new List<TableInfo>();
-            var lstt = p.GetIncludedSubItems(appGenGuig);
-            if (lstt.Count == 0)
-                return;
-            TabsRecursive(appGenGuig, isOptimistic, lstt, action, typeOp, lst);
-        }
-        private void VisitTabs(string appGenGuig, bool isOptimistic, ICatalogFolder p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo>? lst = null)
-        {
-            if (lst == null)
-                lst = new List<TableInfo>();
-            var lstt = p.GetIncludedSubItems(appGenGuig);
-            if (lstt.Count == 0)
-                return;
-            TabsRecursive(appGenGuig, isOptimistic, lstt, action, typeOp, lst);
-        }
-        private void VisitTabs(string appGenGuig, bool isOptimistic, IDocument p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo>? lst = null)
-        {
-            if (lst == null)
-                lst = new List<TableInfo>();
-            var lstt = p.GetIncludedSubItems(appGenGuig);
-            if (lstt.Count == 0)
-                return;
-            TabsRecursive(appGenGuig, isOptimistic, lstt, action, typeOp, lst);
-        }
-        private void VisitTabs(string appGenGuig, bool isOptimistic, IDetail p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo>? lst = null)
-        {
-            if (lst == null)
-                lst = new List<TableInfo>();
-            var lstt = p.GetIncludedSubItems(appGenGuig);
-            if (lstt.Count == 0)
-                return;
-            TabsRecursive(appGenGuig, isOptimistic, lstt, action, typeOp, lst);
-        }
         public string GetUniquePropertyShortID(IProperty p)
         {
             return $"p{p.ParentGroupListPropertiesI.IndexOf(p).ToString()}";
@@ -1242,7 +1138,7 @@ namespace vSharpStudio.vm.ViewModels
                 Debug.Assert(node.Parent != null);
                 if (node is IDetail t)
                 {
-                    var gt = (IGroupListDetails)t.Parent;
+                    var gt = t.ParentGroupListDetailsI;
                     return $"t{gt.IndexOf(t).ToString()}{res}";
                 }
                 else if (node is ICatalog c)
