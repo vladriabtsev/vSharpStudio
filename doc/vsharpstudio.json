@@ -9611,7 +9611,7 @@
               "defaultValue": ""
             },
             {
-              "name": "complex_property_descr_length",
+              "name": "complex_property_ref_descr_length",
               "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(20)]\n@attr [DisplayName(\"Descr Max\")]\n@attr [Description(\"Complex property description maximum length. Unlimited if zero\")]",
               "label": "",
               "type": "uint32",

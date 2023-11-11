@@ -804,11 +804,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Property(this) { Name = subName };
             node.Guid = guid;
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = this.Cfg.Model.ComplexPropertyDescrLength };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = this.Cfg.Model.ComplexPropertyRefDescrLength };
             node.IsNullable = true;
             node.ParentProperty = this;
             node.IsComplexDesc = true;
-            node.IsComputed = true;
             return node;
         }
         public IProperty AddExtensionPropertyString(string subName, uint length, string guid)

@@ -732,7 +732,7 @@ message proto_model {
     // @attr [PropertyOrderAttribute(20)]
     // @attr [DisplayName("Descr Max")]
     // @attr [Description("Complex property description maximum length. Unlimited if zero")]
-    uint32 complex_property_descr_length = 43;
+    uint32 complex_property_ref_descr_length = 43;
 
 
     // @attr [Browsable(false)]
