@@ -23164,6 +23164,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vm.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Clone(vm, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:63 IsDefaultBase=True
                 vm.GroupAttachedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupAttachedProperties, isDeep);
+            vm._PropertyPostDateGuid = from.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyVersionGuid = from.PropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyDocRefGuidName = from.PropertyDocRefGuidName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
@@ -23219,6 +23220,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Update((GroupListRegisterDimensions)to.GroupRegisterDimensions, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:137
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupAttachedProperties, from.GroupAttachedProperties, isDeep);
+            to._PropertyPostDateGuid = from.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyVersionGuid = from.PropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyDocRefGuidName = from.PropertyDocRefGuidName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
@@ -23364,6 +23366,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             if (vm.GroupAttachedProperties == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:208
                 vm.GroupAttachedProperties = new GroupListProperties(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:210
             vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupAttachedProperties, (GroupListProperties)vm.GroupAttachedProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:214
+            vm._PropertyPostDateGuid = m.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyIdGuid = m.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyVersionGuid = m.PropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyDocRefGuidName = m.PropertyDocRefGuidName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
@@ -23428,6 +23431,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.TableDimensionPropertyIsStartingBalanceGuid = vm.TableDimensionPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.ConvertToProto((GroupListRegisterDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:263
             m.GroupAttachedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupAttachedProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:263
+            m.PropertyPostDateGuid = vm.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyIdGuid = vm.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyVersionGuid = vm.PropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyDocRefGuidName = vm.PropertyDocRefGuidName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
@@ -23943,6 +23947,25 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         //partial void OnGroupAttachedPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupAttachedPropertiesChanged();
         IGroupListProperties IRegister.GroupAttachedProperties { get { return (this as Register).GroupAttachedProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:75
+        
+        // Guid for posting date guid property. Auto generated.
+        [Browsable(false)]
+        public string PropertyPostDateGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._PropertyPostDateGuid; }
+            set
+            {
+                // Use 'OnPropertyPostDateGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._PropertyPostDateGuid, value, (t) => { /*this.OnPropertyPostDateGuidChanging(ref value);*/ this._PropertyPostDateGuid = value; this.OnPropertyPostDateGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _PropertyPostDateGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnPropertyPostDateGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnPropertyPostDateGuidChanged();
         
         [Browsable(false)]
         public string PropertyIdGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8

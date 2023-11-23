@@ -2029,6 +2029,7 @@ Configuration model
 | table_dimension_property_is_starting_balance_guid | [string](#string) |  | @attr [Browsable(false)] |
 | group_register_dimensions | [proto_group_list_register_dimensions](#proto_config.proto_group_list_register_dimensions) |  | @attr [Browsable(false)] |
 | group_attached_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [Browsable(false)] |
+| property_post_date_guid | [string](#string) |  | Guid for posting date guid property. Auto generated. @attr [Browsable(false)] |
 | property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_doc_ref_guid_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Guid property&#34;)] @attr [Description(&#34;Document guid property name&#34;)] |

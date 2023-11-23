@@ -290,7 +290,7 @@ namespace vSharpStudio.vm.ViewModels
                 node.Guid = guidProperty;
             }
 #endif
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = catGuid };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = catGuid, IsNullable = isNullable };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }

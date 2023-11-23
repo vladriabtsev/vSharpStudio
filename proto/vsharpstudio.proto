@@ -2862,6 +2862,9 @@ message proto_register {
     // @attr [Browsable(false)]
     proto_group_list_properties group_attached_properties = 31;
 
+    // Guid for posting date guid property. Auto generated.
+    // @attr [Browsable(false)]
+    string property_post_date_guid = 36; 
     // @attr [Browsable(false)]
     string property_id_guid = 37;
     // @attr [Browsable(false)]

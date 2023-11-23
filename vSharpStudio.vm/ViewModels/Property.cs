@@ -778,12 +778,11 @@ namespace vSharpStudio.vm.ViewModels
         public string NameWithExtention { get { if (this.ParentProperty == null) return this.Name; return this.ParentProperty.Name + this.Name; } }
         public IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable)
         {
-            var node = new Property(this) { Name = subName };
+            var node = new Property(this) { Name = subName, ParentProperty = this };
             node.Guid = guid;
             node.DataType = (DataType)this.Cfg.Model.GetIdRefDataType(node, true);
             node.DataType.IsPKey = false;
             node.IsNullable = isNullable;
-            node.ParentProperty = this;
             node.IsComplexRefId = true;
             return node;
         }

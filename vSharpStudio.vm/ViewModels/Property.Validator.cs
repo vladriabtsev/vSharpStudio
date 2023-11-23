@@ -332,6 +332,28 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             });
+            this.RuleFor(x => x.IsNullable).Custom((isNullable, cntx) =>
+            {
+                if (isNullable)
+                    return;
+                var p = (Property)cntx.InstanceToValidate;
+                if (p.Parent is IRegisterDimension)
+                    return;
+                switch (p.DataTypeEnum)
+                {
+                    case EnumDataType.CATALOG:
+                    case EnumDataType.CATALOGS:
+                    case EnumDataType.DOCUMENT:
+                    case EnumDataType.DOCUMENTS:
+                        var vf = new ValidationFailure(nameof(p.IsNullable),
+                            $"Reference property to complex type expected to be nullable");
+                        vf.Severity = Severity.Error;
+                        cntx.AddFailure(vf);
+                        break;
+                    default:
+                        break;
+                }
+            });
 
             this.RuleFor(x => x.MinLengthRequirement).Custom((name, cntx) =>
             {

@@ -10943,6 +10943,16 @@
               "defaultValue": ""
             },
             {
+              "name": "property_post_date_guid",
+              "description": "Guid for posting date guid property. Auto generated.\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "property_id_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",

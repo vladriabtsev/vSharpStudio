@@ -77,6 +77,7 @@ namespace vSharpStudio.vm.ViewModels
             this._TableDimensionPropertyQtyAccumulatorLength = 28;
             this._TableDimensionPropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
             this._TableDimensionPropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
+            this._PropertyPostDateGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocRefGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocGuidGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocDateGuid = System.Guid.NewGuid().ToString();
@@ -438,6 +439,11 @@ namespace vSharpStudio.vm.ViewModels
             //    lst.Add(pDoc);
             //    //}
             //}
+
+            // Post date
+            var pPostDate = m.GetPropertyDateTimeUtc(this, this.PropertyPostDateGuid, "PostDate", 9, false); // position 9
+            pPostDate.TagInList = "pd";
+            lst.Add(pPostDate);
 
             var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "Doc", this.ListDocGuids, 10, true);
             lst.Add(pDoc);
