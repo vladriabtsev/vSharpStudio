@@ -5,7 +5,6 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Primitives;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace vSharpStudio.common
