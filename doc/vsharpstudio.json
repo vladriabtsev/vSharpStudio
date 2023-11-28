@@ -11063,7 +11063,7 @@
               "defaultValue": ""
             },
             {
-              "name": "table_dimension_property_id_guid",
+              "name": "table_turnover_property_id_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -11073,7 +11073,7 @@
               "defaultValue": ""
             },
             {
-              "name": "table_dimension_property_version_guid",
+              "name": "table_turnover_property_version_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -11083,7 +11083,37 @@
               "defaultValue": ""
             },
             {
-              "name": "table_dimension_guid",
+              "name": "table_turnover_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "table_balance_property_id_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "table_balance_property_version_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "table_balance_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",

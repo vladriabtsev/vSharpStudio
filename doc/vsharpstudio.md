@@ -2041,9 +2041,12 @@ Configuration model
 | index_doc_date_guid | [string](#string) |  | Guid for index of document date, dimensions. Auto generated. @attr [Browsable(false)] |
 | property_doc_number_guid | [string](#string) |  | Guid for document number guid property. Auto generated. @attr [Browsable(false)] |
 | index_doc_id_type_guid | [string](#string) |  | Guid for index of document Id and type. Auto generated. @attr [Browsable(false)] |
-| table_dimension_property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
-| table_dimension_property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
-| table_dimension_guid | [string](#string) |  | @attr [Browsable(false)] |
+| table_turnover_property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
+| table_turnover_property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
+| table_turnover_guid | [string](#string) |  | @attr [Browsable(false)] |
+| table_balance_property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
+| table_balance_property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
+| table_balance_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_doc_mappings | [proto_register_doc_to_reg](#proto_config.proto_register_doc_to_reg) | repeated | Mapping register properties to document properties @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 

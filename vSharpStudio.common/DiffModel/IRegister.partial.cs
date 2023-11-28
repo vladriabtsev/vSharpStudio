@@ -13,5 +13,8 @@ namespace vSharpStudio.common
         IRegisterDimension AddDimension(string name, ICatalog c);
         IProperty AddAttachedProperty(string name, EnumDataType type = EnumDataType.STRING, uint length = 0, uint accuracy = 0, string? guid = null);
         string FullName { get; } // name with config name
+        string GetDebuggerDisplayTurnover(bool isOptimistic);
+        string GetDebuggerDisplayBalance(bool isOptimistic);
+        IReadOnlyList<IProperty> GetIncludedTurnoverProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial);
     }
 }

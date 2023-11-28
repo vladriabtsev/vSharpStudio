@@ -33,6 +33,56 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string GetDebuggerDisplay(bool isOptimistic)
         {
+            var sb = new StringBuilder();
+            sb.Append("REG ");
+            sb.Append(this.Name);
+            sb.Append(", ");
+            sb.Append(this.ParentGroupListRegisters.ParentModel.PKeyName);
+            sb.Append(":{");
+            sb.Append(this.ParentGroupListRegisters.ParentModel.PKeyName);
+            sb.Append(",nq}");
+            sb.Append(", Doc:{DocDescr,nq}");
+            sb.Append(", Turnovers:{ListTurnovers.Count}");
+            if (isOptimistic)
+            {
+                sb.Append(" RecVer:{");
+                sb.Append(this.ParentGroupListRegisters.ParentModel.RecordVersionFieldName);
+                sb.Append(",nq}");
+            }
+            return sb.ToString();
+        }
+        public string GetDebuggerDisplayTurnover(bool isOptimistic)
+        {
+            var sb = new StringBuilder();
+            sb.Append("POST ");
+            sb.Append(this.Name);
+            sb.Append(", ");
+            sb.Append(this.ParentGroupListRegisters.ParentModel.PKeyName);
+            sb.Append(":{");
+            sb.Append(this.ParentGroupListRegisters.ParentModel.PKeyName);
+            sb.Append(",nq}");
+            foreach (var t in this.GroupRegisterDimensions.ListDimensions)
+            {
+                sb.Append(", ");
+                sb.Append(t.Name);
+                sb.Append(":{");
+                sb.Append(t.Name);
+                sb.Append("Descr ,nq}");
+            }
+            if (this.UseQtyAccumulator)
+                sb.Append(", Qty:{AccumulatedQty,nq}");
+            if (this.UseMoneyAccumulator)
+                sb.Append(", Money:{AccumulatedMoney,nq}");
+            if (isOptimistic)
+            {
+                sb.Append(" RecVer:{");
+                sb.Append(this.ParentGroupListRegisters.ParentModel.RecordVersionFieldName);
+                sb.Append(",nq}");
+            }
+            return sb.ToString();
+        }
+        public string GetDebuggerDisplayBalance(bool isOptimistic)
+        {
             return "";
         }
         [Browsable(false)]
@@ -86,9 +136,12 @@ namespace vSharpStudio.vm.ViewModels
             this._IndexDocIdTypeGuid = System.Guid.NewGuid().ToString();
             this._PropertyIdGuid = System.Guid.NewGuid().ToString();
             this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this._TableDimensionGuid = System.Guid.NewGuid().ToString();
-            this._TableDimensionPropertyIdGuid = System.Guid.NewGuid().ToString();
-            this._TableDimensionPropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this._TableTurnoverGuid = System.Guid.NewGuid().ToString();
+            this._TableTurnoverPropertyIdGuid = System.Guid.NewGuid().ToString();
+            this._TableTurnoverPropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this._TableBalanceGuid = System.Guid.NewGuid().ToString();
+            this._TableBalancePropertyIdGuid = System.Guid.NewGuid().ToString();
+            this._TableBalancePropertyVersionGuid = System.Guid.NewGuid().ToString();
             this._TableDimensionPropertyIsStartingBalanceGuid = System.Guid.NewGuid().ToString();
             this._LastGenPosition = 20;
             this._PropertyDocRefGuidName = "DocGuid";
@@ -471,6 +524,81 @@ namespace vSharpStudio.vm.ViewModels
             pDocNumber.Position = 15;
             pDocNumber.TagInList = "dn";
             lst.Add(pDocNumber);
+
+            // For all attached properties.
+            foreach (var t in this.GroupAttachedProperties.ListProperties)
+            {
+                lst.Add(t);
+            }
+            return lst;
+        }
+        public IReadOnlyList<IProperty> GetIncludedTurnoverProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
+        {
+            Debug.Assert(!isExcludeSpecial, "not implemented yet");
+
+            var lst = new List<IProperty>();
+            var m = this.ParentGroupListRegisters.ParentModel;
+
+            // Id
+            var pId = m.GetPropertyPkId(this, this.PropertyIdGuid); // position 6
+            pId.TagInList = "id";
+            lst.Add(pId);
+
+            if (isOptimistic)
+            {
+                // Version
+                var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid); // position 7
+                pVer.TagInList = "vr";
+                lst.Add(pVer);
+            }
+
+            // Money accumulator
+            var pMoney = (Property)m.GetPropertyNumber(this, this.TableDimensionPropertyMoneyAccumulatorGuid, this.TableDimensionPropertyMoneyAccumulatorName, this.TableDimensionPropertyMoneyAccumulatorLength, this.TableDimensionPropertyMoneyAccumulatorAccuracy, false);
+            pMoney.Position = 11;
+            pMoney.TagInList = "ma";
+            lst.Add(pMoney);
+
+            // Qty accumulator
+            var pQty = (Property)m.GetPropertyNumber(this, this.TableDimensionPropertyQtyAccumulatorGuid, this.TableDimensionPropertyQtyAccumulatorName, this.TableDimensionPropertyQtyAccumulatorLength, this.TableDimensionPropertyQtyAccumulatorAccuracy, false);
+            pQty.Position = 12;
+            pQty.TagInList = "qa";
+            lst.Add(pQty);
+
+            // Reference to register header
+            var pRegRef = (Property)m.GetPropertyRef(this, this.Guid, "Ref" + this.CompositeName, 13);
+            pRegRef.TagInList = "rr";
+            lst.Add(pRegRef);
+
+            if (this.RegisterType != EnumRegisterType.TURNOVER)
+            {
+                // Register starting balances on period
+                var pIsStartBalance = (Property)m.GetPropertyBool(this, this.TableDimensionPropertyIsStartingBalanceGuid, "IsStartingBalance", 14, true);
+                pRegRef.TagInList = "ib";
+                lst.Add(pRegRef);
+            }
+
+            // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
+            // For all dimensions (catalogs).
+            foreach (var t in this.GroupRegisterDimensions.ListDimensions)
+            {
+                if (!string.IsNullOrEmpty(t.DimensionCatalogGuid))
+                {
+                    if (m.ParentConfig.DicNodes.TryGetValue(t.DimensionCatalogGuid, out var node))
+                    {
+                        if (node is Catalog c)
+                        {
+                            var pCat = (Property)m.GetPropertyCatalog(this, t.Guid, t.Name, c.Guid, t.Position, false);
+                            lst.Add(pCat);
+                        }
+                        else
+                            ThrowHelper.ThrowNotSupportedException();
+                    }
+                    else
+                        ThrowHelper.ThrowNotSupportedException();
+                }
+                else
+                    ThrowHelper.ThrowNotSupportedException();
+            }
 
             // For all attached properties.
             foreach (var t in this.GroupAttachedProperties.ListProperties)

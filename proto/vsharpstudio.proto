@@ -2901,11 +2901,17 @@ message proto_register {
     string index_doc_id_type_guid = 47; 
 
     // @attr [Browsable(false)]
-    string table_dimension_property_id_guid = 50;
+    string table_turnover_property_id_guid = 50;
     // @attr [Browsable(false)]
-    string table_dimension_property_version_guid = 51;
+    string table_turnover_property_version_guid = 51;
     // @attr [Browsable(false)]
-    string table_dimension_guid = 52;
+    string table_turnover_guid = 52;
+    // @attr [Browsable(false)]
+    string table_balance_property_id_guid = 55;
+    // @attr [Browsable(false)]
+    string table_balance_property_version_guid = 56;
+    // @attr [Browsable(false)]
+    string table_balance_guid = 57;
 
     // Mapping register properties to document properties
     // @attr [Browsable(false)]
