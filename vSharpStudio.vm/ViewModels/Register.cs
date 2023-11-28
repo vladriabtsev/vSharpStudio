@@ -494,10 +494,10 @@ namespace vSharpStudio.vm.ViewModels
             //    //}
             //}
 
-            // Post date
-            var pPostDate = m.GetPropertyDateTimeUtc(this, this.PropertyPostDateGuid, "PostDate", 9, false); // position 9
-            pPostDate.TagInList = "pd";
-            lst.Add(pPostDate);
+            //// Post date
+            //var pPostDate = m.GetPropertyDateTimeUtc(this, this.PropertyPostDateGuid, "PostDate", 9, false); // position 9
+            //pPostDate.TagInList = "pd";
+            //lst.Add(pPostDate);
 
             var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "Doc", this.ListDocGuids, 10, true);
             lst.Add(pDoc);
@@ -553,10 +553,10 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(pVer);
             }
 
-            // Post date
-            var pPostDate = m.GetPropertyDateTimeUtc(this, this.TableTurnoverPropertyPostDateGuid, "PostDate", 9, false); // position 9
-            pPostDate.TagInList = "pd";
-            lst.Add(pPostDate);
+            //// Post date
+            //var pPostDate = m.GetPropertyDateTimeUtc(this, this.TableTurnoverPropertyPostDateGuid, "PostDate", 9, false); // position 9
+            //pPostDate.TagInList = "pd";
+            //lst.Add(pPostDate);
 
             // Money accumulator
             var pMoney = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName, this.TableTurnoverPropertyMoneyAccumulatorLength, this.TableTurnoverPropertyMoneyAccumulatorAccuracy, false);
