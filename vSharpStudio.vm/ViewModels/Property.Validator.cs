@@ -1161,14 +1161,14 @@ namespace vSharpStudio.vm.ViewModels
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
-            if (r.TableDimensionPropertyMoneyAccumulatorName == name)
+            if (r.TableTurnoverPropertyMoneyAccumulatorName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
                     $"Property name '{name}' is reserved for auto generated money accumulator property of this register");
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
-            if (r.TableDimensionPropertyQtyAccumulatorName == name)
+            if (r.TableTurnoverPropertyQtyAccumulatorName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
                     $"Property name '{name}' is reserved for auto generated quantity accumulator property of this register");

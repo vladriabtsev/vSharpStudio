@@ -16,5 +16,6 @@ namespace vSharpStudio.common
         string GetDebuggerDisplayTurnover(bool isOptimistic);
         string GetDebuggerDisplayBalance(bool isOptimistic);
         IReadOnlyList<IProperty> GetIncludedTurnoverProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial);
+        IReadOnlyList<IProperty> GetIncludedBalanceProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial);
     }
 }

@@ -1451,16 +1451,16 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	bool IsMarkedForDeletion { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	int ShortId { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	bool UseQtyAccumulator { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	string TableDimensionPropertyQtyAccumulatorName { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	uint TableDimensionPropertyQtyAccumulatorLength { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	uint TableDimensionPropertyQtyAccumulatorAccuracy { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	string TableDimensionPropertyQtyAccumulatorGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string TableTurnoverPropertyQtyAccumulatorName { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint TableTurnoverPropertyQtyAccumulatorLength { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint TableTurnoverPropertyQtyAccumulatorAccuracy { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string TableTurnoverPropertyQtyAccumulatorGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	bool UseMoneyAccumulator { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	string TableDimensionPropertyMoneyAccumulatorName { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	uint TableDimensionPropertyMoneyAccumulatorLength { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	uint TableDimensionPropertyMoneyAccumulatorAccuracy { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	string TableDimensionPropertyMoneyAccumulatorGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	string TableDimensionPropertyIsStartingBalanceGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string TableTurnoverPropertyMoneyAccumulatorName { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint TableTurnoverPropertyMoneyAccumulatorLength { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint TableTurnoverPropertyMoneyAccumulatorAccuracy { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string TableTurnoverPropertyMoneyAccumulatorGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string TableTurnoverPropertyIsStartingBalanceGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	IGroupListRegisterDimensions GroupRegisterDimensions { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
     	IGroupListProperties GroupAttachedProperties { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
     	// Guid for posting date guid property. Auto generated.
@@ -1488,6 +1488,7 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	string TableTurnoverPropertyIdGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	string TableTurnoverPropertyVersionGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	string TableTurnoverGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string TableTurnoverPropertyPostDateGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	string TableBalancePropertyIdGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	string TableBalancePropertyVersionGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	string TableBalanceGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56

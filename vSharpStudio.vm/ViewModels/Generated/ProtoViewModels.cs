@@ -23150,16 +23150,16 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._ShortId = from.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._UseQtyAccumulator = from.UseQtyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._TableDimensionPropertyQtyAccumulatorName = from.TableDimensionPropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._TableDimensionPropertyQtyAccumulatorLength = from.TableDimensionPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._TableDimensionPropertyQtyAccumulatorAccuracy = from.TableDimensionPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._TableDimensionPropertyQtyAccumulatorGuid = from.TableDimensionPropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._TableTurnoverPropertyQtyAccumulatorName = from.TableTurnoverPropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._TableTurnoverPropertyQtyAccumulatorLength = from.TableTurnoverPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._TableTurnoverPropertyQtyAccumulatorAccuracy = from.TableTurnoverPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._TableTurnoverPropertyQtyAccumulatorGuid = from.TableTurnoverPropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._UseMoneyAccumulator = from.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._TableDimensionPropertyMoneyAccumulatorName = from.TableDimensionPropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._TableDimensionPropertyMoneyAccumulatorLength = from.TableDimensionPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._TableDimensionPropertyMoneyAccumulatorAccuracy = from.TableDimensionPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._TableDimensionPropertyMoneyAccumulatorGuid = from.TableDimensionPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._TableDimensionPropertyIsStartingBalanceGuid = from.TableDimensionPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._TableTurnoverPropertyMoneyAccumulatorName = from.TableTurnoverPropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._TableTurnoverPropertyMoneyAccumulatorLength = from.TableTurnoverPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._TableTurnoverPropertyMoneyAccumulatorAccuracy = from.TableTurnoverPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._TableTurnoverPropertyMoneyAccumulatorGuid = from.TableTurnoverPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._TableTurnoverPropertyIsStartingBalanceGuid = from.TableTurnoverPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:63 IsDefaultBase=True
                 vm.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Clone(vm, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:63 IsDefaultBase=True
@@ -23180,6 +23180,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._TableTurnoverPropertyIdGuid = from.TableTurnoverPropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._TableTurnoverPropertyVersionGuid = from.TableTurnoverPropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._TableTurnoverGuid = from.TableTurnoverGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._TableTurnoverPropertyPostDateGuid = from.TableTurnoverPropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._TableBalancePropertyIdGuid = from.TableBalancePropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._TableBalancePropertyVersionGuid = from.TableBalancePropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._TableBalanceGuid = from.TableBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
@@ -23209,16 +23210,16 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._ShortId = from.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._UseQtyAccumulator = from.UseQtyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._TableDimensionPropertyQtyAccumulatorName = from.TableDimensionPropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._TableDimensionPropertyQtyAccumulatorLength = from.TableDimensionPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._TableDimensionPropertyQtyAccumulatorAccuracy = from.TableDimensionPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._TableDimensionPropertyQtyAccumulatorGuid = from.TableDimensionPropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._TableTurnoverPropertyQtyAccumulatorName = from.TableTurnoverPropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._TableTurnoverPropertyQtyAccumulatorLength = from.TableTurnoverPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._TableTurnoverPropertyQtyAccumulatorAccuracy = from.TableTurnoverPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._TableTurnoverPropertyQtyAccumulatorGuid = from.TableTurnoverPropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._UseMoneyAccumulator = from.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._TableDimensionPropertyMoneyAccumulatorName = from.TableDimensionPropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._TableDimensionPropertyMoneyAccumulatorLength = from.TableDimensionPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._TableDimensionPropertyMoneyAccumulatorAccuracy = from.TableDimensionPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._TableDimensionPropertyMoneyAccumulatorGuid = from.TableDimensionPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._TableDimensionPropertyIsStartingBalanceGuid = from.TableDimensionPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._TableTurnoverPropertyMoneyAccumulatorName = from.TableTurnoverPropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._TableTurnoverPropertyMoneyAccumulatorLength = from.TableTurnoverPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._TableTurnoverPropertyMoneyAccumulatorAccuracy = from.TableTurnoverPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._TableTurnoverPropertyMoneyAccumulatorGuid = from.TableTurnoverPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._TableTurnoverPropertyIsStartingBalanceGuid = from.TableTurnoverPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:137
                 vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Update((GroupListRegisterDimensions)to.GroupRegisterDimensions, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:137
@@ -23242,6 +23243,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._TableTurnoverPropertyIdGuid = from.TableTurnoverPropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._TableTurnoverPropertyVersionGuid = from.TableTurnoverPropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._TableTurnoverGuid = from.TableTurnoverGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._TableTurnoverPropertyPostDateGuid = from.TableTurnoverPropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._TableBalancePropertyIdGuid = from.TableBalancePropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._TableBalancePropertyVersionGuid = from.TableBalancePropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._TableBalanceGuid = from.TableBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
@@ -23356,16 +23358,16 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsMarkedForDeletion = m.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._ShortId = m.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._UseQtyAccumulator = m.UseQtyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._TableDimensionPropertyQtyAccumulatorName = m.TableDimensionPropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._TableDimensionPropertyQtyAccumulatorLength = m.TableDimensionPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._TableDimensionPropertyQtyAccumulatorAccuracy = m.TableDimensionPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._TableDimensionPropertyQtyAccumulatorGuid = m.TableDimensionPropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._TableTurnoverPropertyQtyAccumulatorName = m.TableTurnoverPropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._TableTurnoverPropertyQtyAccumulatorLength = m.TableTurnoverPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._TableTurnoverPropertyQtyAccumulatorAccuracy = m.TableTurnoverPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._TableTurnoverPropertyQtyAccumulatorGuid = m.TableTurnoverPropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._UseMoneyAccumulator = m.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._TableDimensionPropertyMoneyAccumulatorName = m.TableDimensionPropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._TableDimensionPropertyMoneyAccumulatorLength = m.TableDimensionPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._TableDimensionPropertyMoneyAccumulatorAccuracy = m.TableDimensionPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._TableDimensionPropertyMoneyAccumulatorGuid = m.TableDimensionPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._TableDimensionPropertyIsStartingBalanceGuid = m.TableDimensionPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._TableTurnoverPropertyMoneyAccumulatorName = m.TableTurnoverPropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._TableTurnoverPropertyMoneyAccumulatorLength = m.TableTurnoverPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._TableTurnoverPropertyMoneyAccumulatorAccuracy = m.TableTurnoverPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._TableTurnoverPropertyMoneyAccumulatorGuid = m.TableTurnoverPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._TableTurnoverPropertyIsStartingBalanceGuid = m.TableTurnoverPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             if (vm.GroupRegisterDimensions == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:208
                 vm.GroupRegisterDimensions = new GroupListRegisterDimensions(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:210
             vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.ConvertToVM(m.GroupRegisterDimensions, (GroupListRegisterDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:214
@@ -23391,6 +23393,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._TableTurnoverPropertyIdGuid = m.TableTurnoverPropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._TableTurnoverPropertyVersionGuid = m.TableTurnoverPropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._TableTurnoverGuid = m.TableTurnoverGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._TableTurnoverPropertyPostDateGuid = m.TableTurnoverPropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._TableBalancePropertyIdGuid = m.TableBalancePropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._TableBalancePropertyVersionGuid = m.TableBalancePropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._TableBalanceGuid = m.TableBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
@@ -23428,16 +23431,16 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.UseQtyAccumulator = vm.UseQtyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.TableDimensionPropertyQtyAccumulatorName = vm.TableDimensionPropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.TableDimensionPropertyQtyAccumulatorLength = vm.TableDimensionPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.TableDimensionPropertyQtyAccumulatorAccuracy = vm.TableDimensionPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.TableDimensionPropertyQtyAccumulatorGuid = vm.TableDimensionPropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.TableTurnoverPropertyQtyAccumulatorName = vm.TableTurnoverPropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.TableTurnoverPropertyQtyAccumulatorLength = vm.TableTurnoverPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.TableTurnoverPropertyQtyAccumulatorAccuracy = vm.TableTurnoverPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.TableTurnoverPropertyQtyAccumulatorGuid = vm.TableTurnoverPropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.UseMoneyAccumulator = vm.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.TableDimensionPropertyMoneyAccumulatorName = vm.TableDimensionPropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.TableDimensionPropertyMoneyAccumulatorLength = vm.TableDimensionPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.TableDimensionPropertyMoneyAccumulatorAccuracy = vm.TableDimensionPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.TableDimensionPropertyMoneyAccumulatorGuid = vm.TableDimensionPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.TableDimensionPropertyIsStartingBalanceGuid = vm.TableDimensionPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.TableTurnoverPropertyMoneyAccumulatorName = vm.TableTurnoverPropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.TableTurnoverPropertyMoneyAccumulatorLength = vm.TableTurnoverPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.TableTurnoverPropertyMoneyAccumulatorAccuracy = vm.TableTurnoverPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.TableTurnoverPropertyMoneyAccumulatorGuid = vm.TableTurnoverPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.TableTurnoverPropertyIsStartingBalanceGuid = vm.TableTurnoverPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.ConvertToProto((GroupListRegisterDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:263
             m.GroupAttachedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupAttachedProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:263
             m.PropertyPostDateGuid = vm.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
@@ -23456,6 +23459,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.TableTurnoverPropertyIdGuid = vm.TableTurnoverPropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.TableTurnoverPropertyVersionGuid = vm.TableTurnoverPropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.TableTurnoverGuid = vm.TableTurnoverGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.TableTurnoverPropertyPostDateGuid = vm.TableTurnoverPropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.TableBalancePropertyIdGuid = vm.TableBalancePropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.TableBalancePropertyVersionGuid = vm.TableBalancePropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.TableBalanceGuid = vm.TableBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
@@ -23733,80 +23737,80 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         [PropertyOrderAttribute(16)]
         [DisplayName("Qty name")]
         [Description("Quantity accumulator property name")]
-        public string TableDimensionPropertyQtyAccumulatorName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public string TableTurnoverPropertyQtyAccumulatorName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._TableDimensionPropertyQtyAccumulatorName; }
+            get { return this._TableTurnoverPropertyQtyAccumulatorName; }
             set
             {
-                // Use 'OnTableDimensionPropertyQtyAccumulatorNameChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._TableDimensionPropertyQtyAccumulatorName, value, (t) => { /*this.OnTableDimensionPropertyQtyAccumulatorNameChanging(ref value);*/ this._TableDimensionPropertyQtyAccumulatorName = value; this.OnTableDimensionPropertyQtyAccumulatorNameChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnTableTurnoverPropertyQtyAccumulatorNameChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._TableTurnoverPropertyQtyAccumulatorName, value, (t) => { /*this.OnTableTurnoverPropertyQtyAccumulatorNameChanging(ref value);*/ this._TableTurnoverPropertyQtyAccumulatorName = value; this.OnTableTurnoverPropertyQtyAccumulatorNameChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _TableDimensionPropertyQtyAccumulatorName = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnTableDimensionPropertyQtyAccumulatorNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnTableDimensionPropertyQtyAccumulatorNameChanged();
+        private string _TableTurnoverPropertyQtyAccumulatorName = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnTableTurnoverPropertyQtyAccumulatorNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnTableTurnoverPropertyQtyAccumulatorNameChanged();
         
         [PropertyOrderAttribute(17)]
         [DisplayName("Qty Length")]
         [Description("Maximum decimal digits for quantity data")]
-        public uint TableDimensionPropertyQtyAccumulatorLength // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public uint TableTurnoverPropertyQtyAccumulatorLength // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._TableDimensionPropertyQtyAccumulatorLength; }
+            get { return this._TableTurnoverPropertyQtyAccumulatorLength; }
             set
             {
-                // Use 'OnTableDimensionPropertyQtyAccumulatorLengthChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._TableDimensionPropertyQtyAccumulatorLength, value, (t) => { /*this.OnTableDimensionPropertyQtyAccumulatorLengthChanging(ref value);*/ this._TableDimensionPropertyQtyAccumulatorLength = value; this.OnTableDimensionPropertyQtyAccumulatorLengthChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnTableTurnoverPropertyQtyAccumulatorLengthChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._TableTurnoverPropertyQtyAccumulatorLength, value, (t) => { /*this.OnTableTurnoverPropertyQtyAccumulatorLengthChanging(ref value);*/ this._TableTurnoverPropertyQtyAccumulatorLength = value; this.OnTableTurnoverPropertyQtyAccumulatorLengthChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private uint _TableDimensionPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnTableDimensionPropertyQtyAccumulatorLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnTableDimensionPropertyQtyAccumulatorLengthChanged();
+        private uint _TableTurnoverPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnTableTurnoverPropertyQtyAccumulatorLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnTableTurnoverPropertyQtyAccumulatorLengthChanged();
         
         [PropertyOrderAttribute(18)]
         [DisplayName("Qty accuracy")]
         [Description("Number of decimal places in fractional part for quantity data. If negative, than maximum possible accuracy")]
-        public uint TableDimensionPropertyQtyAccumulatorAccuracy // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public uint TableTurnoverPropertyQtyAccumulatorAccuracy // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._TableDimensionPropertyQtyAccumulatorAccuracy; }
+            get { return this._TableTurnoverPropertyQtyAccumulatorAccuracy; }
             set
             {
-                // Use 'OnTableDimensionPropertyQtyAccumulatorAccuracyChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._TableDimensionPropertyQtyAccumulatorAccuracy, value, (t) => { /*this.OnTableDimensionPropertyQtyAccumulatorAccuracyChanging(ref value);*/ this._TableDimensionPropertyQtyAccumulatorAccuracy = value; this.OnTableDimensionPropertyQtyAccumulatorAccuracyChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnTableTurnoverPropertyQtyAccumulatorAccuracyChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._TableTurnoverPropertyQtyAccumulatorAccuracy, value, (t) => { /*this.OnTableTurnoverPropertyQtyAccumulatorAccuracyChanging(ref value);*/ this._TableTurnoverPropertyQtyAccumulatorAccuracy = value; this.OnTableTurnoverPropertyQtyAccumulatorAccuracyChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private uint _TableDimensionPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnTableDimensionPropertyQtyAccumulatorAccuracyChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnTableDimensionPropertyQtyAccumulatorAccuracyChanged();
+        private uint _TableTurnoverPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnTableTurnoverPropertyQtyAccumulatorAccuracyChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnTableTurnoverPropertyQtyAccumulatorAccuracyChanged();
         
         [Browsable(false)]
-        public string TableDimensionPropertyQtyAccumulatorGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public string TableTurnoverPropertyQtyAccumulatorGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._TableDimensionPropertyQtyAccumulatorGuid; }
+            get { return this._TableTurnoverPropertyQtyAccumulatorGuid; }
             set
             {
-                // Use 'OnTableDimensionPropertyQtyAccumulatorGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._TableDimensionPropertyQtyAccumulatorGuid, value, (t) => { /*this.OnTableDimensionPropertyQtyAccumulatorGuidChanging(ref value);*/ this._TableDimensionPropertyQtyAccumulatorGuid = value; this.OnTableDimensionPropertyQtyAccumulatorGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnTableTurnoverPropertyQtyAccumulatorGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._TableTurnoverPropertyQtyAccumulatorGuid, value, (t) => { /*this.OnTableTurnoverPropertyQtyAccumulatorGuidChanging(ref value);*/ this._TableTurnoverPropertyQtyAccumulatorGuid = value; this.OnTableTurnoverPropertyQtyAccumulatorGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _TableDimensionPropertyQtyAccumulatorGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnTableDimensionPropertyQtyAccumulatorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnTableDimensionPropertyQtyAccumulatorGuidChanged();
+        private string _TableTurnoverPropertyQtyAccumulatorGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnTableTurnoverPropertyQtyAccumulatorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnTableTurnoverPropertyQtyAccumulatorGuidChanged();
         
         [PropertyOrderAttribute(21)]
         [DisplayName("Use Money")]
@@ -23831,98 +23835,98 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         [PropertyOrderAttribute(22)]
         [DisplayName("Money name")]
         [Description("Money accumulator property name")]
-        public string TableDimensionPropertyMoneyAccumulatorName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public string TableTurnoverPropertyMoneyAccumulatorName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._TableDimensionPropertyMoneyAccumulatorName; }
+            get { return this._TableTurnoverPropertyMoneyAccumulatorName; }
             set
             {
-                // Use 'OnTableDimensionPropertyMoneyAccumulatorNameChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._TableDimensionPropertyMoneyAccumulatorName, value, (t) => { /*this.OnTableDimensionPropertyMoneyAccumulatorNameChanging(ref value);*/ this._TableDimensionPropertyMoneyAccumulatorName = value; this.OnTableDimensionPropertyMoneyAccumulatorNameChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnTableTurnoverPropertyMoneyAccumulatorNameChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._TableTurnoverPropertyMoneyAccumulatorName, value, (t) => { /*this.OnTableTurnoverPropertyMoneyAccumulatorNameChanging(ref value);*/ this._TableTurnoverPropertyMoneyAccumulatorName = value; this.OnTableTurnoverPropertyMoneyAccumulatorNameChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _TableDimensionPropertyMoneyAccumulatorName = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnTableDimensionPropertyMoneyAccumulatorNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnTableDimensionPropertyMoneyAccumulatorNameChanged();
+        private string _TableTurnoverPropertyMoneyAccumulatorName = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnTableTurnoverPropertyMoneyAccumulatorNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnTableTurnoverPropertyMoneyAccumulatorNameChanged();
         
         [PropertyOrderAttribute(23)]
         [DisplayName("Money Length")]
         [Description("Maximum decimal digits for money data")]
-        public uint TableDimensionPropertyMoneyAccumulatorLength // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public uint TableTurnoverPropertyMoneyAccumulatorLength // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._TableDimensionPropertyMoneyAccumulatorLength; }
+            get { return this._TableTurnoverPropertyMoneyAccumulatorLength; }
             set
             {
-                // Use 'OnTableDimensionPropertyMoneyAccumulatorLengthChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._TableDimensionPropertyMoneyAccumulatorLength, value, (t) => { /*this.OnTableDimensionPropertyMoneyAccumulatorLengthChanging(ref value);*/ this._TableDimensionPropertyMoneyAccumulatorLength = value; this.OnTableDimensionPropertyMoneyAccumulatorLengthChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnTableTurnoverPropertyMoneyAccumulatorLengthChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._TableTurnoverPropertyMoneyAccumulatorLength, value, (t) => { /*this.OnTableTurnoverPropertyMoneyAccumulatorLengthChanging(ref value);*/ this._TableTurnoverPropertyMoneyAccumulatorLength = value; this.OnTableTurnoverPropertyMoneyAccumulatorLengthChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private uint _TableDimensionPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnTableDimensionPropertyMoneyAccumulatorLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnTableDimensionPropertyMoneyAccumulatorLengthChanged();
+        private uint _TableTurnoverPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnTableTurnoverPropertyMoneyAccumulatorLengthChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnTableTurnoverPropertyMoneyAccumulatorLengthChanged();
         
         [PropertyOrderAttribute(24)]
         [DisplayName("Money accuracy")]
         [Description("Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy")]
-        public uint TableDimensionPropertyMoneyAccumulatorAccuracy // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public uint TableTurnoverPropertyMoneyAccumulatorAccuracy // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._TableDimensionPropertyMoneyAccumulatorAccuracy; }
+            get { return this._TableTurnoverPropertyMoneyAccumulatorAccuracy; }
             set
             {
-                // Use 'OnTableDimensionPropertyMoneyAccumulatorAccuracyChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._TableDimensionPropertyMoneyAccumulatorAccuracy, value, (t) => { /*this.OnTableDimensionPropertyMoneyAccumulatorAccuracyChanging(ref value);*/ this._TableDimensionPropertyMoneyAccumulatorAccuracy = value; this.OnTableDimensionPropertyMoneyAccumulatorAccuracyChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnTableTurnoverPropertyMoneyAccumulatorAccuracyChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._TableTurnoverPropertyMoneyAccumulatorAccuracy, value, (t) => { /*this.OnTableTurnoverPropertyMoneyAccumulatorAccuracyChanging(ref value);*/ this._TableTurnoverPropertyMoneyAccumulatorAccuracy = value; this.OnTableTurnoverPropertyMoneyAccumulatorAccuracyChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private uint _TableDimensionPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnTableDimensionPropertyMoneyAccumulatorAccuracyChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnTableDimensionPropertyMoneyAccumulatorAccuracyChanged();
+        private uint _TableTurnoverPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnTableTurnoverPropertyMoneyAccumulatorAccuracyChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnTableTurnoverPropertyMoneyAccumulatorAccuracyChanged();
         
         [Browsable(false)]
-        public string TableDimensionPropertyMoneyAccumulatorGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public string TableTurnoverPropertyMoneyAccumulatorGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._TableDimensionPropertyMoneyAccumulatorGuid; }
+            get { return this._TableTurnoverPropertyMoneyAccumulatorGuid; }
             set
             {
-                // Use 'OnTableDimensionPropertyMoneyAccumulatorGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._TableDimensionPropertyMoneyAccumulatorGuid, value, (t) => { /*this.OnTableDimensionPropertyMoneyAccumulatorGuidChanging(ref value);*/ this._TableDimensionPropertyMoneyAccumulatorGuid = value; this.OnTableDimensionPropertyMoneyAccumulatorGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnTableTurnoverPropertyMoneyAccumulatorGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._TableTurnoverPropertyMoneyAccumulatorGuid, value, (t) => { /*this.OnTableTurnoverPropertyMoneyAccumulatorGuidChanging(ref value);*/ this._TableTurnoverPropertyMoneyAccumulatorGuid = value; this.OnTableTurnoverPropertyMoneyAccumulatorGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _TableDimensionPropertyMoneyAccumulatorGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnTableDimensionPropertyMoneyAccumulatorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnTableDimensionPropertyMoneyAccumulatorGuidChanged();
+        private string _TableTurnoverPropertyMoneyAccumulatorGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnTableTurnoverPropertyMoneyAccumulatorGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnTableTurnoverPropertyMoneyAccumulatorGuidChanged();
         
         [Browsable(false)]
-        public string TableDimensionPropertyIsStartingBalanceGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public string TableTurnoverPropertyIsStartingBalanceGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._TableDimensionPropertyIsStartingBalanceGuid; }
+            get { return this._TableTurnoverPropertyIsStartingBalanceGuid; }
             set
             {
-                // Use 'OnTableDimensionPropertyIsStartingBalanceGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._TableDimensionPropertyIsStartingBalanceGuid, value, (t) => { /*this.OnTableDimensionPropertyIsStartingBalanceGuidChanging(ref value);*/ this._TableDimensionPropertyIsStartingBalanceGuid = value; this.OnTableDimensionPropertyIsStartingBalanceGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnTableTurnoverPropertyIsStartingBalanceGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._TableTurnoverPropertyIsStartingBalanceGuid, value, (t) => { /*this.OnTableTurnoverPropertyIsStartingBalanceGuidChanging(ref value);*/ this._TableTurnoverPropertyIsStartingBalanceGuid = value; this.OnTableTurnoverPropertyIsStartingBalanceGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _TableDimensionPropertyIsStartingBalanceGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnTableDimensionPropertyIsStartingBalanceGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnTableDimensionPropertyIsStartingBalanceGuidChanged();
+        private string _TableTurnoverPropertyIsStartingBalanceGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnTableTurnoverPropertyIsStartingBalanceGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnTableTurnoverPropertyIsStartingBalanceGuidChanged();
         
         [Browsable(false)]
         public GroupListRegisterDimensions GroupRegisterDimensions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -24243,6 +24247,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private string _TableTurnoverGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
         //partial void OnTableTurnoverGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnTableTurnoverGuidChanged();
+        
+        [Browsable(false)]
+        public string TableTurnoverPropertyPostDateGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._TableTurnoverPropertyPostDateGuid; }
+            set
+            {
+                // Use 'OnTableTurnoverPropertyPostDateGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._TableTurnoverPropertyPostDateGuid, value, (t) => { /*this.OnTableTurnoverPropertyPostDateGuidChanging(ref value);*/ this._TableTurnoverPropertyPostDateGuid = value; this.OnTableTurnoverPropertyPostDateGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _TableTurnoverPropertyPostDateGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnTableTurnoverPropertyPostDateGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnTableTurnoverPropertyPostDateGuidChanged();
         
         [Browsable(false)]
         public string TableBalancePropertyIdGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8

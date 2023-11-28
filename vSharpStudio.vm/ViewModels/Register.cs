@@ -118,15 +118,15 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this._UseMoneyAccumulator = true;
-            this._TableDimensionPropertyMoneyAccumulatorName = "AccumulatedMoney";
-            this._TableDimensionPropertyMoneyAccumulatorAccuracy = 2;
-            this._TableDimensionPropertyMoneyAccumulatorLength = 28;
+            this._TableTurnoverPropertyMoneyAccumulatorName = "AccumulatedMoney";
+            this._TableTurnoverPropertyMoneyAccumulatorAccuracy = 2;
+            this._TableTurnoverPropertyMoneyAccumulatorLength = 28;
             this._UseQtyAccumulator = true;
-            this._TableDimensionPropertyQtyAccumulatorName = "AccumulatedQty";
-            this._TableDimensionPropertyQtyAccumulatorAccuracy = 4;
-            this._TableDimensionPropertyQtyAccumulatorLength = 28;
-            this._TableDimensionPropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
-            this._TableDimensionPropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
+            this._TableTurnoverPropertyQtyAccumulatorName = "AccumulatedQty";
+            this._TableTurnoverPropertyQtyAccumulatorAccuracy = 4;
+            this._TableTurnoverPropertyQtyAccumulatorLength = 28;
+            this._TableTurnoverPropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
+            this._TableTurnoverPropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
             this._PropertyPostDateGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocRefGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocGuidGuid = System.Guid.NewGuid().ToString();
@@ -142,7 +142,8 @@ namespace vSharpStudio.vm.ViewModels
             this._TableBalanceGuid = System.Guid.NewGuid().ToString();
             this._TableBalancePropertyIdGuid = System.Guid.NewGuid().ToString();
             this._TableBalancePropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this._TableDimensionPropertyIsStartingBalanceGuid = System.Guid.NewGuid().ToString();
+            this._TableTurnoverPropertyIsStartingBalanceGuid = System.Guid.NewGuid().ToString();
+            this._TableTurnoverPropertyPostDateGuid = System.Guid.NewGuid().ToString();
             this._LastGenPosition = 20;
             this._PropertyDocRefGuidName = "DocGuid";
             this._PropertyDocRefName = "DocRef";
@@ -552,14 +553,19 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(pVer);
             }
 
+            // Post date
+            var pPostDate = m.GetPropertyDateTimeUtc(this, this.TableTurnoverPropertyPostDateGuid, "PostDate", 9, false); // position 9
+            pPostDate.TagInList = "pd";
+            lst.Add(pPostDate);
+
             // Money accumulator
-            var pMoney = (Property)m.GetPropertyNumber(this, this.TableDimensionPropertyMoneyAccumulatorGuid, this.TableDimensionPropertyMoneyAccumulatorName, this.TableDimensionPropertyMoneyAccumulatorLength, this.TableDimensionPropertyMoneyAccumulatorAccuracy, false);
+            var pMoney = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName, this.TableTurnoverPropertyMoneyAccumulatorLength, this.TableTurnoverPropertyMoneyAccumulatorAccuracy, false);
             pMoney.Position = 11;
             pMoney.TagInList = "ma";
             lst.Add(pMoney);
 
             // Qty accumulator
-            var pQty = (Property)m.GetPropertyNumber(this, this.TableDimensionPropertyQtyAccumulatorGuid, this.TableDimensionPropertyQtyAccumulatorName, this.TableDimensionPropertyQtyAccumulatorLength, this.TableDimensionPropertyQtyAccumulatorAccuracy, false);
+            var pQty = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName, this.TableTurnoverPropertyQtyAccumulatorLength, this.TableTurnoverPropertyQtyAccumulatorAccuracy, false);
             pQty.Position = 12;
             pQty.TagInList = "qa";
             lst.Add(pQty);
@@ -572,7 +578,84 @@ namespace vSharpStudio.vm.ViewModels
             if (this.RegisterType != EnumRegisterType.TURNOVER)
             {
                 // Register starting balances on period
-                var pIsStartBalance = (Property)m.GetPropertyBool(this, this.TableDimensionPropertyIsStartingBalanceGuid, "IsStartingBalance", 14, true);
+                var pIsStartBalance = (Property)m.GetPropertyBool(this, this.TableTurnoverPropertyIsStartingBalanceGuid, "IsStartingBalance", 14, true);
+                pRegRef.TagInList = "ib";
+                lst.Add(pRegRef);
+            }
+
+            // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
+            // For all dimensions (catalogs).
+            foreach (var t in this.GroupRegisterDimensions.ListDimensions)
+            {
+                if (!string.IsNullOrEmpty(t.DimensionCatalogGuid))
+                {
+                    if (m.ParentConfig.DicNodes.TryGetValue(t.DimensionCatalogGuid, out var node))
+                    {
+                        if (node is Catalog c)
+                        {
+                            var pCat = (Property)m.GetPropertyCatalog(this, t.Guid, t.Name, c.Guid, t.Position, false);
+                            lst.Add(pCat);
+                        }
+                        else
+                            ThrowHelper.ThrowNotSupportedException();
+                    }
+                    else
+                        ThrowHelper.ThrowNotSupportedException();
+                }
+                else
+                    ThrowHelper.ThrowNotSupportedException();
+            }
+
+            // For all attached properties.
+            foreach (var t in this.GroupAttachedProperties.ListProperties)
+            {
+                lst.Add(t);
+            }
+            return lst;
+        }
+        public IReadOnlyList<IProperty> GetIncludedBalanceProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
+        {
+            throw new NotImplementedException();
+
+            Debug.Assert(!isExcludeSpecial, "not implemented yet");
+
+            var lst = new List<IProperty>();
+            var m = this.ParentGroupListRegisters.ParentModel;
+
+            // Id
+            var pId = m.GetPropertyPkId(this, this.PropertyIdGuid); // position 6
+            pId.TagInList = "id";
+            lst.Add(pId);
+
+            if (isOptimistic)
+            {
+                // Version
+                var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid); // position 7
+                pVer.TagInList = "vr";
+                lst.Add(pVer);
+            }
+
+            // Money accumulator
+            var pMoney = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName, this.TableTurnoverPropertyMoneyAccumulatorLength, this.TableTurnoverPropertyMoneyAccumulatorAccuracy, false);
+            pMoney.Position = 11;
+            pMoney.TagInList = "ma";
+            lst.Add(pMoney);
+
+            // Qty accumulator
+            var pQty = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName, this.TableTurnoverPropertyQtyAccumulatorLength, this.TableTurnoverPropertyQtyAccumulatorAccuracy, false);
+            pQty.Position = 12;
+            pQty.TagInList = "qa";
+            lst.Add(pQty);
+
+            // Reference to register header
+            var pRegRef = (Property)m.GetPropertyRef(this, this.Guid, "Ref" + this.CompositeName, 13);
+            pRegRef.TagInList = "rr";
+            lst.Add(pRegRef);
+
+            if (this.RegisterType != EnumRegisterType.TURNOVER)
+            {
+                // Register starting balances on period
+                var pIsStartBalance = (Property)m.GetPropertyBool(this, this.TableTurnoverPropertyIsStartingBalanceGuid, "IsStartingBalance", 14, true);
                 pRegRef.TagInList = "ib";
                 lst.Add(pRegRef);
             }

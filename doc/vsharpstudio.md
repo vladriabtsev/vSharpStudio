@@ -2017,16 +2017,16 @@ Configuration model
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | use_qty_accumulator | [bool](#bool) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Use Qty&#34;)] @attr [Description(&#34;Use quantity accumulator for register&#34;)] |
-| table_dimension_property_qty_accumulator_name | [string](#string) |  | @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Qty name&#34;)] @attr [Description(&#34;Quantity accumulator property name&#34;)] |
-| table_dimension_property_qty_accumulator_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(17)] @attr [DisplayName(&#34;Qty Length&#34;)] @attr [Description(&#34;Maximum decimal digits for quantity data&#34;)] |
-| table_dimension_property_qty_accumulator_accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Qty accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for quantity data. If negative, than maximum possible accuracy&#34;)] |
-| table_dimension_property_qty_accumulator_guid | [string](#string) |  | @attr [Browsable(false)] |
+| table_turnover_property_qty_accumulator_name | [string](#string) |  | @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Qty name&#34;)] @attr [Description(&#34;Quantity accumulator property name&#34;)] |
+| table_turnover_property_qty_accumulator_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(17)] @attr [DisplayName(&#34;Qty Length&#34;)] @attr [Description(&#34;Maximum decimal digits for quantity data&#34;)] |
+| table_turnover_property_qty_accumulator_accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Qty accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for quantity data. If negative, than maximum possible accuracy&#34;)] |
+| table_turnover_property_qty_accumulator_guid | [string](#string) |  | @attr [Browsable(false)] |
 | use_money_accumulator | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Money&#34;)] @attr [Description(&#34;Use money accumulator for register&#34;)] |
-| table_dimension_property_money_accumulator_name | [string](#string) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Money name&#34;)] @attr [Description(&#34;Money accumulator property name&#34;)] |
-| table_dimension_property_money_accumulator_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Money Length&#34;)] @attr [Description(&#34;Maximum decimal digits for money data&#34;)] |
-| table_dimension_property_money_accumulator_accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Money accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy&#34;)] |
-| table_dimension_property_money_accumulator_guid | [string](#string) |  | @attr [Browsable(false)] |
-| table_dimension_property_is_starting_balance_guid | [string](#string) |  | @attr [Browsable(false)] |
+| table_turnover_property_money_accumulator_name | [string](#string) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Money name&#34;)] @attr [Description(&#34;Money accumulator property name&#34;)] |
+| table_turnover_property_money_accumulator_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Money Length&#34;)] @attr [Description(&#34;Maximum decimal digits for money data&#34;)] |
+| table_turnover_property_money_accumulator_accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Money accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy&#34;)] |
+| table_turnover_property_money_accumulator_guid | [string](#string) |  | @attr [Browsable(false)] |
+| table_turnover_property_is_starting_balance_guid | [string](#string) |  | @attr [Browsable(false)] |
 | group_register_dimensions | [proto_group_list_register_dimensions](#proto_config.proto_group_list_register_dimensions) |  | @attr [Browsable(false)] |
 | group_attached_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [Browsable(false)] |
 | property_post_date_guid | [string](#string) |  | Guid for posting date guid property. Auto generated. @attr [Browsable(false)] |
@@ -2044,6 +2044,7 @@ Configuration model
 | table_turnover_property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | table_turnover_property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | table_turnover_guid | [string](#string) |  | @attr [Browsable(false)] |
+| table_turnover_property_post_date_guid | [string](#string) |  | @attr [Browsable(false)] |
 | table_balance_property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | table_balance_property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | table_balance_guid | [string](#string) |  | @attr [Browsable(false)] |
