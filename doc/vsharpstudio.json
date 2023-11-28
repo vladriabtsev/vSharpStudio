@@ -1665,9 +1665,9 @@
               "description": "@attr [Description(\"Millisecond\")]"
             },
             {
-              "name": "MAX",
-              "number": "5",
-              "description": "@attr [Description(\"100 nanoseconds\")]"
+              "name": "MKS",
+              "number": "4",
+              "description": "@attr [Description(\"Microsecond\")]"
             }
           ]
         },

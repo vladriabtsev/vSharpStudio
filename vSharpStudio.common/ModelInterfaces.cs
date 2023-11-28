@@ -527,8 +527,8 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		HOUR = 2,
 		[Description("Millisecond")]
 		MS = 3,
-		[Description("100 nanoseconds")]
-		MAX = 5,
+		[Description("Microsecond")]
+		MKS = 4,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumUseType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18

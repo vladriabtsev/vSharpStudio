@@ -48,7 +48,7 @@ namespace vSharpStudio.common
         //string GetVersionFieldName(IvPluginDbGenerator dbGen);
 
         IProperty GetPropertyGuid(ITreeConfigNode parent, string guid, string name, bool isNullable);
-        IProperty GetPropertyDateTimeUtc(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MAX);
+        IProperty GetPropertyDateTimeUtc(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MKS);
         IProperty GetPropertyPkId(ITreeConfigNode parent, string guid);
         IProperty GetPropertyId(ITreeConfigNode parent, string guid, string name, bool isNullable);
         IProperty GetPropertyBool(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable);

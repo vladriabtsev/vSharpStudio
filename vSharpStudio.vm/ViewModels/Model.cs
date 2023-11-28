@@ -747,7 +747,7 @@ namespace vSharpStudio.vm.ViewModels
             res.IsCsNullable = true;
             return res;
         }
-        public IProperty GetPropertyDateTimeUtc(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MAX)
+        public IProperty GetPropertyDateTimeUtc(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MKS)
         {
             var res = new Property(parent, guid, name, false);
             res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res, enumTimeAccuracyType, isNullable);
@@ -881,7 +881,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyDocumentDate(ITreeConfigNode parent, string guid, bool isPKey = false)
         {
             var res = new Property(parent, guid, this.PropertyDocDateName, true);
-            res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res, EnumTimeAccuracyType.MAX, false, isPKey);
+            res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res, EnumTimeAccuracyType.MKS, false, isPKey);
             res.Position = 8;
             res.IsCsNullable = true;
             return res;

@@ -2929,7 +2929,7 @@ with history |
 | MINUTE | 1 | @attr [Description(&#34;Minute&#34;)] |
 | HOUR | 2 | @attr [Description(&#34;Hour&#34;)] |
 | MS | 3 | @attr [Description(&#34;Millisecond&#34;)] |
-| MAX | 5 | @attr [Description(&#34;100 nanoseconds&#34;)] |
+| MKS | 4 | @attr [Description(&#34;Microsecond&#34;)] |
 
 
 
