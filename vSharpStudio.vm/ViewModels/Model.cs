@@ -881,7 +881,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyDocumentDate(ITreeConfigNode parent, string guid, bool isPKey = false)
         {
             var res = new Property(parent, guid, this.PropertyDocDateName, true);
-            res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res, EnumTimeAccuracyType.MKS, false, isPKey);
+            res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res, EnumTimeAccuracyType.MAX, false, isPKey);
             res.Position = 8;
             res.IsCsNullable = true;
             return res;
