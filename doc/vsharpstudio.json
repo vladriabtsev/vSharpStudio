@@ -1668,6 +1668,11 @@
               "name": "MKS",
               "number": "4",
               "description": "@attr [Description(\"Microsecond\")]"
+            },
+            {
+              "name": "MAX",
+              "number": "5",
+              "description": "@attr [Description(\"Max accuracy (may be limited by DB)\")]"
             }
           ]
         },

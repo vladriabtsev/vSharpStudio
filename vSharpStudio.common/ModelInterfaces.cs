@@ -529,6 +529,8 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		MS = 3,
 		[Description("Microsecond")]
 		MKS = 4,
+		[Description("Max accuracy (may be limited by DB)")]
+		MAX = 5,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumUseType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18

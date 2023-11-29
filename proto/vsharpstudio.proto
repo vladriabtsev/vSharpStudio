@@ -834,9 +834,8 @@ enum proto_enum_time_accuracy_type {
     MS = 3;
     // @attr [Description("Microsecond")]
     MKS = 4;
-
-    // @attr [Description("100 nanoseconds")]
-    //MAX = 5;
+    // @attr [Description("Max accuracy (may be limited by DB)")]
+    MAX = 5;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_one_to_relation_type {
