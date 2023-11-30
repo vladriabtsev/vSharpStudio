@@ -830,7 +830,7 @@ namespace vSharpStudio.ViewModels
         private void ResetIsChangedBeforeSave()
         {
             var vis = new ModelVisitorBase();
-            IEditableNodeGroup.IsChangedNotPropagate = true;
+            IEditableObjectExt.IsTraceChanges = false;
             vis.RunFromRoot(this.Config, null, null, null, (v, n) =>
             {
                 if (n is IEditableNodeGroup pp)
@@ -839,7 +839,7 @@ namespace vSharpStudio.ViewModels
                 }
                 n.IsChanged = false;
             });
-            IEditableNodeGroup.IsChangedNotPropagate = false;
+            IEditableObjectExt.IsTraceChanges = true;
             if (this.Config.IsHasChanged)
             {
                 var sss = this.Config.IsHasChangedPath;
@@ -1707,7 +1707,7 @@ namespace vSharpStudio.ViewModels
             this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config(false));
             this.InitConfig((Config)this.Config.PrevCurrentConfig);
             this.pconfig_history.CurrentConfig.Version++;
-            IEditableNodeGroup.IsChangedNotPropagate = true;
+            IEditableObjectExt.IsTraceChanges = false;
             vis.RunToRoot(this.Config, null, null, null, (v, n) =>
             {
                 if (n is ICanAddNode p)
@@ -1719,7 +1719,7 @@ namespace vSharpStudio.ViewModels
                     pp.IsHasNew = false;
                 }
             });
-            IEditableNodeGroup.IsChangedNotPropagate = false;
+            IEditableObjectExt.IsTraceChanges = true;
             //this.Config.SetIsNeedCurrentUpdate(false);
             Utils.TryCall(
                 () =>

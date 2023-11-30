@@ -830,7 +830,7 @@
         }
         protected void OnRemoveChild()
         {
-            if (IEditableNodeGroup.IsChangedNotPropagate)
+            if (!IEditableObjectExt.IsTraceChanges)
                 return;
             this.CheckChildrenIsOrHasChanged();
             this.CheckChildrenIsOrHasNew();
@@ -983,7 +983,7 @@
         }
         protected void OnNodeIsChangedChanged()
         {
-            if (IEditableNodeGroup.IsChangedNotPropagate)
+            if (!IEditableObjectExt.IsTraceChanges)
                 return;
             this.CheckChildrenIsOrHasChanged();
         }
@@ -1067,7 +1067,7 @@
         //partial void OnIsHasChangedChanging(ref bool to);
         private void OnIsHasChangedChanged()
         {
-            if (IEditableNodeGroup.IsChangedNotPropagate)
+            if (!IEditableObjectExt.IsTraceChanges)
                 return;
             if (this is IEditableNodeGroup p)
             {

@@ -20,7 +20,10 @@ namespace ViewModelBase
         private void VmEditable_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName != nameof(this.IsChanged) && e.PropertyName != "IsNewOrHasNew")
-                this.IsChanged = true;
+            {
+                if (IEditableObjectExt.IsTraceChanges)
+                    this.IsChanged = true;
+            }
         }
 
         //public virtual void ResetAllChanges()

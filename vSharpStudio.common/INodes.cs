@@ -47,7 +47,6 @@ namespace vSharpStudio.common
         void CheckChildrenIsOrHasNew();
         void CheckChildrenIsOrHasMarkedForDeletion();
         void RestoreIsHas();
-        static bool IsChangedNotPropagate { get; set; }
     }
     public interface IOnRemoved
     {

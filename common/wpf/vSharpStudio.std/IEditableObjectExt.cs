@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace ViewModelBase
 {
-	public interface IEditableObjectExt : IEditableObject
-	{
-		bool IsChanged { get; set; }
-		bool IsInEdit { get; }
-	}
+    public interface IEditableObjectExt : IEditableObject
+    {
+        static bool IsTraceChanges { get; set; } = true;
+        bool IsChanged { get; set; }
+        bool IsInEdit { get; }
+    }
 }
