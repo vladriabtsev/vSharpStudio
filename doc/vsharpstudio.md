@@ -12,7 +12,6 @@
     - [proto_catalog](#proto_config.proto_catalog)
     - [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings)
     - [proto_catalog_folder](#proto_config.proto_catalog_folder)
-    - [proto_catalogs_many_to_many_relation](#proto_config.proto_catalogs_many_to_many_relation)
     - [proto_config](#proto_config.proto_config)
     - [proto_config_short_history](#proto_config.proto_config_short_history)
     - [proto_constant](#proto_config.proto_constant)
@@ -21,7 +20,6 @@
     - [proto_doc_in_journal](#proto_config.proto_doc_in_journal)
     - [proto_document](#proto_config.proto_document)
     - [proto_document_number_property_settings](#proto_config.proto_document_number_property_settings)
-    - [proto_documents_many_to_many_relation](#proto_config.proto_documents_many_to_many_relation)
     - [proto_enumeration](#proto_config.proto_enumeration)
     - [proto_enumeration_pair](#proto_config.proto_enumeration_pair)
     - [proto_enumerator_sequence](#proto_config.proto_enumerator_sequence)
@@ -36,10 +34,8 @@
     - [proto_form_tab_control](#proto_config.proto_form_tab_control)
     - [proto_form_tab_control_tab](#proto_config.proto_form_tab_control_tab)
     - [proto_form_tree](#proto_config.proto_form_tree)
-    - [proto_group_catalogs_many_to_many_relations](#proto_config.proto_group_catalogs_many_to_many_relations)
     - [proto_group_constant_groups](#proto_config.proto_group_constant_groups)
     - [proto_group_documents](#proto_config.proto_group_documents)
-    - [proto_group_documents_many_to_many_relations](#proto_config.proto_group_documents_many_to_many_relations)
     - [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions)
     - [proto_group_list_base_config_links](#proto_config.proto_group_list_base_config_links)
     - [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs)
@@ -58,9 +54,13 @@
     - [proto_group_list_registers](#proto_config.proto_group_list_registers)
     - [proto_group_list_reports](#proto_config.proto_group_list_reports)
     - [proto_group_list_roles](#proto_config.proto_group_list_roles)
-    - [proto_group_relations](#proto_config.proto_group_relations)
     - [proto_journal](#proto_config.proto_journal)
     - [proto_main_view_form](#proto_config.proto_main_view_form)
+    - [proto_many_to_many_catalogs_relation](#proto_config.proto_many_to_many_catalogs_relation)
+    - [proto_many_to_many_documents_relation](#proto_config.proto_many_to_many_documents_relation)
+    - [proto_many_to_many_group_catalogs_relations](#proto_config.proto_many_to_many_group_catalogs_relations)
+    - [proto_many_to_many_group_documents_relations](#proto_config.proto_many_to_many_group_documents_relations)
+    - [proto_many_to_many_group_relations](#proto_config.proto_many_to_many_group_relations)
     - [proto_model](#proto_config.proto_model)
     - [proto_model_row](#proto_config.proto_model_row)
     - [proto_plugin](#proto_config.proto_plugin)
@@ -403,38 +403,6 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 
 
 
-<a name="proto_config.proto_catalogs_many_to_many_relation"></a>
-
-### proto_catalogs_many_to_many_relation
-@interface ICanAddNode
-@interface ISortingValue
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
-| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
-| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| guid_cat1 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Catalog 1&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
-| ref_cat1_guid | [string](#string) |  | @attr [Browsable(false)] |
-| guid_cat2 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Catalog 2&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
-| ref_cat2_guid | [string](#string) |  | @attr [Browsable(false)] |
-| is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
-| is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
-| short_id | [int32](#int32) |  | @attr [Browsable(false)] |
-| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
-| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
-
-
-
-
-
-
 <a name="proto_config.proto_config"></a>
 
 ### proto_config
@@ -672,38 +640,6 @@ Constant application wise value
 | scope_of_unique | [proto_enum_doc_number_unique_scope](#proto_config.proto_enum_doc_number_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
 | scope_period_start_month | [proto_enum_months](#proto_config.proto_enum_months) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Start Month&#34;)] @attr [Description(&#34;Start month of scope period&#34;)] |
 | scope_period_start_month_day | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Start Day&#34;)] @attr [Description(&#34;Start month day of scope period&#34;)] |
-
-
-
-
-
-
-<a name="proto_config.proto_documents_many_to_many_relation"></a>
-
-### proto_documents_many_to_many_relation
-@interface ICanAddNode
-@interface ISortingValue
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
-| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
-| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| guid_doc1 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Document 1&#34;)] @attr [Description(&#34;Document of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
-| ref_doc1_guid | [string](#string) |  | @attr [Browsable(false)] |
-| guid_doc2 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Document 2&#34;)] @attr [Description(&#34;Document of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
-| ref_doc2_guid | [string](#string) |  | @attr [Browsable(false)] |
-| is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
-| is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
-| short_id | [int32](#int32) |  | @attr [Browsable(false)] |
-| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
-| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
 
@@ -1093,29 +1029,6 @@ No Children
 
 
 
-<a name="proto_config.proto_group_catalogs_many_to_many_relations"></a>
-
-### proto_group_catalogs_many_to_many_relations
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
-| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] |
-| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] |
-| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
-| list_catalogs_many_to_many_relations | [proto_catalogs_many_to_many_relation](#proto_config.proto_catalogs_many_to_many_relation) | repeated | @attr [Browsable(false)] |
-| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
-
-
-
-
-
-
 <a name="proto_config.proto_group_constant_groups"></a>
 
 ### proto_group_constant_groups
@@ -1162,29 +1075,6 @@ C O N S T A N T
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
-
-
-
-
-
-
-<a name="proto_config.proto_group_documents_many_to_many_relations"></a>
-
-### proto_group_documents_many_to_many_relations
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
-| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] |
-| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] |
-| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
-| list_documents_many_to_many_relations | [proto_documents_many_to_many_relation](#proto_config.proto_documents_many_to_many_relation) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1624,30 +1514,6 @@ R E P O R T S
 
 
 
-<a name="proto_config.proto_group_relations"></a>
-
-### proto_group_relations
-M A N Y   T O   M A N Y   R E L A T I O N
-@exclude
-######################### M A N Y   T O   M A N Y   R E L A T I O N ############################
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
-| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
-| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| group_list_catalogs_relations | [proto_group_catalogs_many_to_many_relations](#proto_config.proto_group_catalogs_many_to_many_relations) |  | @attr [Browsable(false)] @attr [Description(&#34;Many to many setting for catalogs&#34;)] |
-| group_list_documents_relations | [proto_group_documents_many_to_many_relations](#proto_config.proto_group_documents_many_to_many_relations) |  | @attr [Browsable(false)] @attr [Description(&#34;Many to many setting for documents&#34;)] |
-| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
-
-
-
-
-
-
 <a name="proto_config.proto_journal"></a>
 
 ### proto_journal
@@ -1692,6 +1558,140 @@ M A N Y   T O   M A N Y   R E L A T I O N
 | group_list_view_forms | [proto_group_list_main_view_forms](#proto_config.proto_group_list_main_view_forms) |  | @attr [Browsable(false)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_many_to_many_catalogs_relation"></a>
+
+### proto_many_to_many_catalogs_relation
+@interface ICanAddNode
+@interface ISortingValue
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| guid_cat1 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Catalog 1&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| ref_cat1_guid | [string](#string) |  | @attr [Browsable(false)] |
+| guid_cat2 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Catalog 2&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| ref_cat2_guid | [string](#string) |  | @attr [Browsable(false)] |
+| is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
+| is_new | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
+| short_id | [int32](#int32) |  | @attr [Browsable(false)] |
+| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_many_to_many_documents_relation"></a>
+
+### proto_many_to_many_documents_relation
+@interface ICanAddNode
+@interface ISortingValue
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| guid_doc1 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Document 1&#34;)] @attr [Description(&#34;Document of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| ref_doc1_guid | [string](#string) |  | @attr [Browsable(false)] |
+| guid_doc2 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Document 2&#34;)] @attr [Description(&#34;Document of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| ref_doc2_guid | [string](#string) |  | @attr [Browsable(false)] |
+| is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
+| is_new | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
+| short_id | [int32](#int32) |  | @attr [Browsable(false)] |
+| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_many_to_many_group_catalogs_relations"></a>
+
+### proto_many_to_many_group_catalogs_relations
+@interface ISortingValue
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] |
+| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| list_catalogs_relations | [proto_many_to_many_catalogs_relation](#proto_config.proto_many_to_many_catalogs_relation) | repeated | @attr [Browsable(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_many_to_many_group_documents_relations"></a>
+
+### proto_many_to_many_group_documents_relations
+@interface ISortingValue
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] |
+| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| list_documents_relations | [proto_many_to_many_documents_relation](#proto_config.proto_many_to_many_documents_relation) | repeated | @attr [Browsable(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_many_to_many_group_relations"></a>
+
+### proto_many_to_many_group_relations
+M A N Y   T O   M A N Y   R E L A T I O N
+@exclude
+######################### M A N Y   T O   M A N Y   R E L A T I O N ############################
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| group_list_catalogs_relations | [proto_many_to_many_group_catalogs_relations](#proto_config.proto_many_to_many_group_catalogs_relations) |  | @attr [Browsable(false)] @attr [Description(&#34;Many to many setting for catalogs&#34;)] |
+| group_list_documents_relations | [proto_many_to_many_group_documents_relations](#proto_config.proto_many_to_many_group_documents_relations) |  | @attr [Browsable(false)] @attr [Description(&#34;Many to many setting for documents&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1751,7 +1751,7 @@ Configuration model
 | group_documents | [proto_group_documents](#proto_config.proto_group_documents) |  | @attr [Browsable(false)] |
 | group_list_registers | [proto_group_list_registers](#proto_config.proto_group_list_registers) |  | @attr [Browsable(false)] @attr [Description(&#34;Registers for documents&#34;)] |
 | group_journals | [proto_group_list_journals](#proto_config.proto_group_list_journals) |  | @attr [Browsable(false)] |
-| group_relations | [proto_group_relations](#proto_config.proto_group_relations) |  | @attr [Browsable(false)] |
+| group_relations | [proto_many_to_many_group_relations](#proto_config.proto_many_to_many_group_relations) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 | list_plugin_groups_model_extentions | [proto_plugin_group_model_extentions](#proto_config.proto_plugin_group_model_extentions) | repeated | @attr [Browsable(false)] Plugin group Guid and string to store extentions |
 

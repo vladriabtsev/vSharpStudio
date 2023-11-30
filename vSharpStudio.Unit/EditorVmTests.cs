@@ -1022,12 +1022,12 @@ namespace vSharpStudio.Unit
             // Use History is saved and restored complex OneToOne data
             // Use History is saved and restored complex OneToMany data
             // Use History is saved and restored complex ManyToMany data
-            Assert.AreEqual(0, cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Count);
+            Assert.AreEqual(0, cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsRelations.Count);
             var c1 = cfg.Model.GroupCatalogs.AddCatalog();
             var c2 = cfg.Model.GroupCatalogs.AddCatalog();
 
             // without history, not optimistic
-            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Clear();
+            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsRelations.Clear();
             var rel = cfg.Model.GroupRelations.GroupListCatalogsRelations.AddRelation("test_rel", c1, c2, false);
             var lst = rel.GetIncludedProperties(null, false, false);
             // Id, RefCat1, RefCat2
@@ -1036,7 +1036,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
 
             // without history, optimistic
-            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Clear();
+            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsRelations.Clear();
             rel = cfg.Model.GroupRelations.GroupListCatalogsRelations.AddRelation("test_rel", c1, c2, false);
             lst = rel.GetIncludedProperties(null, true, false);
             // Id, RefCat1, RefCat2, version
@@ -1045,7 +1045,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
 
             // history, optimistic
-            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Clear();
+            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsRelations.Clear();
             rel = cfg.Model.GroupRelations.GroupListCatalogsRelations.AddRelation("test_rel", c1, c2, true);
             lst = rel.GetIncludedProperties(null, true, false);
             // Id, RefCat1, RefCat2, date_time_utc, version
@@ -1054,7 +1054,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
 
             // history, not optimistic
-            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Clear();
+            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsRelations.Clear();
             rel = cfg.Model.GroupRelations.GroupListCatalogsRelations.AddRelation("test_rel", c1, c2, true);
             lst = rel.GetIncludedProperties(null, false, false);
             // Id, RefCat1, RefCat2, date_time_utc

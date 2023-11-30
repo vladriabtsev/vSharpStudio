@@ -14,11 +14,11 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class GroupRelations : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
+    public partial class ManyToManyGroupRelations : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
     {
         partial void OnDebugStringExtend(ref string mes)
         {
-            mes = mes + $" Cats:{this.GroupListCatalogsRelations.ListCatalogsManyToManyRelations.Count} Docs:{this.GroupListDocumentsRelations.ListDocumentsManyToManyRelations.Count}";
+            mes = mes + $" Cats:{this.GroupListCatalogsRelations.ListCatalogsRelations.Count} Docs:{this.GroupListDocumentsRelations.ListDocumentsRelations.Count}";
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }

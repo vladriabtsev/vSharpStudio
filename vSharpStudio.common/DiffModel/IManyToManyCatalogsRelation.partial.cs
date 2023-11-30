@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IDocumentsManyToManyRelation : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IItemWithSubItems
+    public partial interface IManyToManyCatalogsRelation : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IItemWithSubItems
     {
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false);
         void GetSpecialProperties(List<IProperty> res, bool isOptimistic);

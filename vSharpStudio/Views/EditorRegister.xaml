@@ -158,8 +158,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Mapping selected document properties to this register" FontWeight="Bold" />
-                        <TextBlock Grid.Row="1" Text="Register properties" FontWeight="Bold" HorizontalAlignment="Left" />
+                        <TextBlock Text="Mapping register dimensions to selected document properties" FontWeight="Bold" />
+                        <TextBlock Grid.Row="1" Text="Register dimensions" FontWeight="Bold" HorizontalAlignment="Left" />
                         <TextBlock Grid.Row="1" Text="Document properties" FontWeight="Bold" HorizontalAlignment="Right"  />
                         <DataGrid Grid.Row="2">
                             

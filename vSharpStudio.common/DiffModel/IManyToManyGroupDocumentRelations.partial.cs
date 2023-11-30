@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IGroupDocumentsManyToManyRelations : ITreeConfigNodeSortable, IGetNodeSetting
+    public partial interface IManyToManyGroupDocumentsRelations : ITreeConfigNodeSortable, IGetNodeSetting
     {
         IGroupRelations ParentGroupRelationsI { get; }
-        int IndexOf(IDocumentsManyToManyRelation rel);
+        int IndexOf(IManyToManyDocumentsRelation rel);
     }
 }

@@ -14,16 +14,16 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class GroupDocumentsManyToManyRelations : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
+    public partial class ManyToManyGroupCatalogsRelations : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
     {
         partial void OnDebugStringExtend(ref string mes)
         {
-            mes = mes + $" Count:{ListDocumentsManyToManyRelations.Count}";
+            mes = mes + $" Count:{ListCatalogsRelations.Count}";
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
-        public GroupRelations ParentGroupRelations { get { Debug.Assert(this.Parent != null); return (GroupRelations)this.Parent; } }
+        public ManyToManyGroupRelations ParentGroupRelations { get { Debug.Assert(this.Parent != null); return (ManyToManyGroupRelations)this.Parent; } }
         [Browsable(false)]
         public IGroupRelations ParentGroupRelationsI { get { Debug.Assert(this.Parent != null); return (IGroupRelations)this.Parent; } }
 
@@ -42,19 +42,19 @@ namespace vSharpStudio.vm.ViewModels
         public bool CanAddSubNode() { return true; }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            DocumentsManyToManyRelation node = null!;
+            ManyToManyCatalogsRelation node = null!;
             if (node_impl == null)
             {
-                node = new DocumentsManyToManyRelation(this);
+                node = new ManyToManyCatalogsRelation(this);
             }
             else
             {
-                node = (DocumentsManyToManyRelation)node_impl;
+                node = (ManyToManyCatalogsRelation)node_impl;
             }
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Defaults.CatalogMtmRelationName, node, this.ListDocumentsManyToManyRelations);
+                this.GetUniqueName(Defaults.CatalogMtmRelationName, node, this.ListCatalogsRelations);
             }
             var model = this.ParentGroupRelations.ParentModel;
             node.ShortId = model.LastCatalogRelationShortId + 1;
@@ -64,11 +64,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Tree operations
 
-        public new ConfigNodesCollection<DocumentsManyToManyRelation> Children { get { return this.ListDocumentsManyToManyRelations; } }
+        public new ConfigNodesCollection<ManyToManyCatalogsRelation> Children { get { return this.ListCatalogsRelations; } }
 
         partial void OnCreated()
         {
-            this._PrefixForDbTables = "DocManyToMany";
+            this._PrefixForDbTables = "CtlgManyToMany";
             this.IsEditable = false;
 
             this._ShortIdTypeForCacheKey = "m";
@@ -85,28 +85,28 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.NameUi = "Sub Catalogs";
             //}
-            this.ListDocumentsManyToManyRelations.OnAddingAction = (t) =>
+            this.ListCatalogsRelations.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
             };
-            //this.ListDocumentsManyToManyRelations.OnAddedAction = (t) =>
+            //this.ListCatalogsManyToManyRelations.OnAddedAction = (t) =>
             //{
             //    t.OnAdded();
             //    t.InitRoles();
             //};
-            this.ListDocumentsManyToManyRelations.OnRemovedAction = (t) =>
+            this.ListCatalogsRelations.OnRemovedAction = (t) =>
             {
                 this.OnRemoveChild();
             };
-            this.ListDocumentsManyToManyRelations.OnClearedAction = () =>
+            this.ListCatalogsRelations.OnClearedAction = () =>
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.DocumentMtmRelationsGroupName;
+            this._Name = Defaults.CatalogMtmRelationsGroupName;
         }
-        public int IndexOf(IDocumentsManyToManyRelation doc)
+        public int IndexOf(IManyToManyCatalogsRelation cat)
         {
-            return this.ListDocumentsManyToManyRelations.IndexOf((doc as DocumentsManyToManyRelation)!);
+            return this.ListCatalogsRelations.IndexOf((cat as ManyToManyCatalogsRelation)!);
         }
         //protected override string[]? OnGetWhatHideOnPropertyGrid()
         //{
@@ -124,23 +124,24 @@ namespace vSharpStudio.vm.ViewModels
         //    //    lst.Add(nameof(this.PropertyNameName));
         //    return lst.ToArray();
         //}
-        public void Add(DocumentsManyToManyRelation item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:51
+        public void Add(ManyToManyCatalogsRelation item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:51
         {
             Debug.Assert(item != null);
-            this.ListDocumentsManyToManyRelations.Add(item);
+            this.ListCatalogsRelations.Add(item);
             item.Parent = this;
         }
-        public DocumentsManyToManyRelation AddRelation()
+        public ManyToManyCatalogsRelation AddRelation()
         {
-            var node = new DocumentsManyToManyRelation(this);
+            var node = new ManyToManyCatalogsRelation(this);
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public DocumentsManyToManyRelation AddRelation(string name, IDocument doc1, IDocument doc2, bool isUseHistory, string? guid = null)
+        public ManyToManyCatalogsRelation AddRelation(string name, ICatalog cat1, ICatalog cat2, bool isUseHistory, string? guid = null)
         {
-            var node = new DocumentsManyToManyRelation(this) { Name = name };
-            node.GuidDoc1 = doc1.Guid;
-            node.GuidDoc2 = doc2.Guid;
+            var node = new ManyToManyCatalogsRelation(this) { Name = name };
+            node.GuidCat1 = cat1.Guid;
+            node.GuidCat2 = cat2.Guid;
+            node.IsUseHistory = isUseHistory;
 #if DEBUG
             if (guid != null) // for test model generation
             {
