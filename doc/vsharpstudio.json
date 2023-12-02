@@ -408,9 +408,19 @@
               "description": "@attr [Description(\"DateTimeOffset\")]"
             },
             {
+              "name": "TIMESPAN",
+              "number": "39",
+              "description": "@attr [Description(\"TimeSpan\")]"
+            },
+            {
               "name": "TIME",
               "number": "41",
               "description": "@attr [Description(\"Time\")]"
+            },
+            {
+              "name": "TIMEZ",
+              "number": "45",
+              "description": "@attr [Description(\"Time with Time Zone\")]"
             },
             {
               "name": "DATE",
@@ -430,7 +440,7 @@
             {
               "name": "DATETIMEZ",
               "number": "75",
-              "description": "@attr [Description(\"DateTime with Zone\")]"
+              "description": "@attr [Description(\"DateTime with Time Zone\")]"
             },
             {
               "name": "ENUMERATION",

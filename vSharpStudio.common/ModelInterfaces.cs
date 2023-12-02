@@ -139,15 +139,19 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		BOOL = 31,
 		[Description("DateTimeOffset")]
 		DATETIMEOFFSET = 35,
+		[Description("TimeSpan")]
+		TIMESPAN = 39,
 		[Description("Time")]
 		TIME = 41,
+		[Description("Time with Time Zone")]
+		TIMEZ = 45,
 		[Description("Date")]
 		DATE = 51,
 		[Description("DateTime Local")]
 		DATETIMELOCAL = 61,
 		[Description("DateTime UTC")]
 		DATETIMEUTC = 71,
-		[Description("DateTime with Zone")]
+		[Description("DateTime with Time Zone")]
 		DATETIMEZ = 75,
 		[Description("Enumeration")]
 		ENUMERATION = 81,

@@ -2472,11 +2472,13 @@ with history |
 | NUMERICAL | 21 | @attr [Description(&#34;Numerical&#34;)] |
 | BOOL | 31 | @attr [Description(&#34;Boolean&#34;)] |
 | DATETIMEOFFSET | 35 | @attr [Description(&#34;DateTimeOffset&#34;)] |
+| TIMESPAN | 39 | @attr [Description(&#34;TimeSpan&#34;)] |
 | TIME | 41 | @attr [Description(&#34;Time&#34;)] |
+| TIMEZ | 45 | @attr [Description(&#34;Time with Time Zone&#34;)] |
 | DATE | 51 | @attr [Description(&#34;Date&#34;)] |
 | DATETIMELOCAL | 61 | @attr [Description(&#34;DateTime Local&#34;)] |
 | DATETIMEUTC | 71 | @attr [Description(&#34;DateTime UTC&#34;)] |
-| DATETIMEZ | 75 | @attr [Description(&#34;DateTime with Zone&#34;)] |
+| DATETIMEZ | 75 | @attr [Description(&#34;DateTime with Time Zone&#34;)] |
 | ENUMERATION | 81 | @attr [Description(&#34;Enumeration&#34;)] |
 | CATALOG | 91 | @attr [Description(&#34;Catalog&#34;)] |
 | CATALOGS | 101 | @attr [Description(&#34;Catalogs&#34;)] |

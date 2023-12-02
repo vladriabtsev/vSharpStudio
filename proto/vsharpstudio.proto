@@ -801,15 +801,19 @@ enum proto_enum_data_type {
     BOOL = 31;
     // @attr [Description("DateTimeOffset")]
     DATETIMEOFFSET = 35;
+    // @attr [Description("TimeSpan")]
+    TIMESPAN = 39;
     // @attr [Description("Time")]
     TIME = 41;
+    // @attr [Description("Time with Time Zone")]
+    TIMEZ = 45;
     // @attr [Description("Date")]
     DATE = 51;
     // @attr [Description("DateTime Local")]
     DATETIMELOCAL = 61;
     // @attr [Description("DateTime UTC")]
     DATETIMEUTC = 71;
-    // @attr [Description("DateTime with Zone")]
+    // @attr [Description("DateTime with Time Zone")]
     DATETIMEZ = 75;
     // @attr [Description("Enumeration")]
     ENUMERATION = 81;

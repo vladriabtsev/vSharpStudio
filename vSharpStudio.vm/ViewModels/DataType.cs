@@ -526,7 +526,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.ClrTypeName = this.EnumerationName;
                     break;
                 case EnumDataType.TIME:
-                    //case EnumDataType.TIMEZ:
+                case EnumDataType.TIMEZ:
                     this.ClrTypeName = "TimeOnly";
                     break;
                 case EnumDataType.DATE:
@@ -543,8 +543,9 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMEOFFSET:
                     this.ClrTypeName = "DateTimeOffset";
                     break;
-                //case EnumDataType.TIMESPAN:
-                //    return "TimeSpan" + sn;
+                case EnumDataType.TIMESPAN:
+                    this.ClrTypeName = "TimeSpan";
+                    break;
                 case EnumDataType.BOOL:
                     this.ClrTypeName = "bool";
                     break;
@@ -718,8 +719,8 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMEZ:
                 case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.TIME:
-                //case EnumDataType.TIMEZ:
-                //case EnumDataType.TIMESPAN:
+                case EnumDataType.TIMEZ:
+                case EnumDataType.TIMESPAN:
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
                 case EnumDataType.ANY:

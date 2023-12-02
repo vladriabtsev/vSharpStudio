@@ -225,13 +225,22 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        //public Property AddPropertyTimeZ(string name, bool isNullable = false)
-        //{
-        //    var dt = new DataType() { DataTypeEnum = EnumDataType.TIMEZ, IsNullable = isNullable };
-        //    var node = new Property(this) { Name = name, DataType = dt };
-        //    this.NodeAddNewSubNode(node);
-        //    return node;
-        //}
+        public Property AddPropertyTimeZ(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.TIMEZ, AccuracyForTime = accuracy };
+            node.IsNullable = isNullable;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddPropertyDate(string name, bool isNullable = false, string? guid = null)
         {
             var node = new Property(this) { Name = name };
@@ -280,29 +289,57 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        //public Property AddPropertyDateTimeZ(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
-        //{
-        //    var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMEZ };
-        //    var node = new Property(this) { Name = name, DataType = dt };
-        //    node.IsNullable = isNullable;
-        //    node.AccuracyForTime = accuracy;
-        //    this.NodeAddNewSubNode(node);
-        //    return node;
-        //}
-        //public Property AddPropertyDateTimeOffset(string name, bool isNullable = false)
-        //{
-        //    var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMEOFFSET, IsNullable = isNullable };
-        //    var node = new Property(this) { Name = name, DataType = dt };
-        //    this.NodeAddNewSubNode(node);
-        //    return node;
-        //}
-        //public Property AddPropertyTimeSpan(string name, bool isNullable = false)
-        //{
-        //    var dt = new DataType() { DataTypeEnum = EnumDataType.TIMESPAN, IsNullable = isNullable };
-        //    var node = new Property(this) { Name = name, DataType = dt };
-        //    this.NodeAddNewSubNode(node);
-        //    return node;
-        //}
+        public Property AddPropertyDateTimeZ(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATETIMEZ, AccuracyForTime = accuracy };
+            node.IsNullable = isNullable;
+            node.AccuracyForTime = accuracy;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyDateTimeOffset(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATETIMEOFFSET, AccuracyForTime = accuracy };
+            node.IsNullable = isNullable;
+            node.AccuracyForTime = accuracy;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyTimeSpan(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.TIMESPAN, AccuracyForTime = accuracy };
+            node.IsNullable = isNullable;
+            node.AccuracyForTime = accuracy;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable, string? guid = null)
         {
             var node = new Property(this) { Name = name };
