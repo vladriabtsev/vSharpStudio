@@ -298,7 +298,8 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMELOCAL:
                 case EnumDataType.DATETIMEUTC:
                 //case EnumDataType.DATETIME:
-                //case EnumDataType.DATETIMEZ:
+                case EnumDataType.DATETIMEZ:
+                case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.TIME:
                     this.Length = 0;
                     this.Accuracy = 0;
@@ -403,7 +404,8 @@ namespace vSharpStudio.vm.ViewModels
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC &&
                 //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
-                //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIMEOFFSET &&
                 this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
             {
                 lst.Add(nameof(this.RangeValuesRequirements));

@@ -205,7 +205,7 @@ namespace vSharpStudio.vm.ViewModels
             else if (//p.DataTypeEnum == EnumDataType.DATETIME || 
                 p.DataTypeEnum == EnumDataType.DATETIMELOCAL || 
                 p.DataTypeEnum == EnumDataType.DATETIMEUTC || 
-                //p.DataTypeEnum == EnumDataType.DATETIMEZ || 
+                p.DataTypeEnum == EnumDataType.DATETIMEZ || 
                 p.DataTypeEnum == EnumDataType.DATE)
             {
                 DateTime res;

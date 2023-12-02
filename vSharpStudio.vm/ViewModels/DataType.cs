@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Numerics;
 using System.Text;
 using System.Windows;
+using System.Windows.Shapes;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -530,16 +532,17 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATE:
                     this.ClrTypeName = "DateOnly";
                     break;
-                //case EnumDataType.DATETIMEZ:
-                //    this.ClrTypeName = "DateTimeOffset";
-                //    break;
+                case EnumDataType.DATETIMEZ:
+                    this.ClrTypeName = "DateTimeOffset";
+                    break;
                 case EnumDataType.DATETIMELOCAL:
                 case EnumDataType.DATETIMEUTC:
                     //case EnumDataType.DATETIME:
                     this.ClrTypeName = "DateTime";
                     break;
-                //case EnumDataType.DATETIMEOFFSET:
-                //    return "DateTimeOffset" + sn;
+                case EnumDataType.DATETIMEOFFSET:
+                    this.ClrTypeName = "DateTimeOffset";
+                    break;
                 //case EnumDataType.TIMESPAN:
                 //    return "TimeSpan" + sn;
                 case EnumDataType.BOOL:
@@ -712,8 +715,8 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMELOCAL:
                 case EnumDataType.DATETIMEUTC:
                 //case EnumDataType.DATETIME:
-                //case EnumDataType.DATETIMEZ:
-                //case EnumDataType.DATETIMEOFFSET:
+                case EnumDataType.DATETIMEZ:
+                case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.TIME:
                 //case EnumDataType.TIMEZ:
                 //case EnumDataType.TIMESPAN:

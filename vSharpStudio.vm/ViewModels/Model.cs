@@ -617,16 +617,26 @@ namespace vSharpStudio.vm.ViewModels
         //    dt.IsNullable = isNullable;
         //    return dt;
         //}
-        //public IDataType GetDataTypeDateTimeZ()
-        //{
-        //    DataType dt = new DataType();
-        //    dt.DataTypeEnum = EnumDataType.DATETIMEZ;
-        //    return dt;
-        //}
+        public IDataType GetDataTypeDateTimeZ(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable)
+        {
+            DataType dt = new DataType(parent);
+            dt.DataTypeEnum = EnumDataType.DATETIMEZ;
+            dt.IsNullable = isNullable;
+            dt.AccuracyForTime = accuracyForTime;
+            return dt;
+        }
         public IDataType GetDataTypeTime(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable)
         {
             DataType dt = new DataType(parent);
             dt.DataTypeEnum = EnumDataType.TIME;
+            dt.IsNullable = isNullable;
+            dt.AccuracyForTime = accuracyForTime;
+            return dt;
+        }
+        public IDataType GetDataTypeDateTimeOffset(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable)
+        {
+            DataType dt = new DataType(parent);
+            dt.DataTypeEnum = EnumDataType.DATETIMEOFFSET;
             dt.IsNullable = isNullable;
             dt.AccuracyForTime = accuracyForTime;
             return dt;
@@ -1243,7 +1253,8 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMELOCAL:
                 case EnumDataType.DATETIMEUTC:
                 //case EnumDataType.DATETIME:
-                //case EnumDataType.DATETIMEZ:
+                case EnumDataType.DATETIMEZ:
+                case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.NUMERICAL:
                 case EnumDataType.STRING:
                 case EnumDataType.TIME:

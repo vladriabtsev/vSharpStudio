@@ -135,11 +135,11 @@
             </TabItem>-->
             <TabItem Header="Document mappings" ToolTip="Selecting Register documents and document properties mapping">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
@@ -152,7 +152,7 @@
                                                            ListRight="{Binding ListSelectedDocuments}">
                         </controls:CollectionFromCollection>
                     </Grid>
-                    <Grid Grid.Column="1">
+                    <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>

@@ -799,6 +799,8 @@ enum proto_enum_data_type {
     NUMERICAL = 21;
     // @attr [Description("Boolean")]
     BOOL = 31;
+    // @attr [Description("DateTimeOffset")]
+    DATETIMEOFFSET = 35;
     // @attr [Description("Time")]
     TIME = 41;
     // @attr [Description("Date")]
@@ -807,6 +809,8 @@ enum proto_enum_data_type {
     DATETIMELOCAL = 61;
     // @attr [Description("DateTime UTC")]
     DATETIMEUTC = 71;
+    // @attr [Description("DateTime with Zone")]
+    DATETIMEZ = 75;
     // @attr [Description("Enumeration")]
     ENUMERATION = 81;
     // @attr [Description("Catalog")]
@@ -819,23 +823,21 @@ enum proto_enum_data_type {
     DOCUMENTS = 121;
     // @attr [Description("Any")]
     ANY = 131;
-
-    //DATETIMEZ = 7;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_time_accuracy_type {
-    // @attr [Description("Second")]
-    SECOND = 0;
-    // @attr [Description("Minute")]
-    MINUTE = 1;
     // @attr [Description("Hour")]
-    HOUR = 2;
+    HOUR = 0;
+    // @attr [Description("Minute")]
+    MINUTE = 10;
+    // @attr [Description("Second")]
+    SECOND = 20;
     // @attr [Description("Millisecond")]
-    MS = 3;
+    MS = 30;
     // @attr [Description("Microsecond")]
-    MKS = 4;
+    MKS = 40;
     // @attr [Description("Max accuracy (may be limited by DB)")]
-    MAX = 5;
+    MAX = 50;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_one_to_relation_type {

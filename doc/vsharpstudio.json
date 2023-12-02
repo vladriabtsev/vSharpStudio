@@ -403,6 +403,11 @@
               "description": "@attr [Description(\"Boolean\")]"
             },
             {
+              "name": "DATETIMEOFFSET",
+              "number": "35",
+              "description": "@attr [Description(\"DateTimeOffset\")]"
+            },
+            {
               "name": "TIME",
               "number": "41",
               "description": "@attr [Description(\"Time\")]"
@@ -421,6 +426,11 @@
               "name": "DATETIMEUTC",
               "number": "71",
               "description": "@attr [Description(\"DateTime UTC\")]"
+            },
+            {
+              "name": "DATETIMEZ",
+              "number": "75",
+              "description": "@attr [Description(\"DateTime with Zone\")]"
             },
             {
               "name": "ENUMERATION",
@@ -1645,33 +1655,33 @@
           "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
-              "name": "SECOND",
-              "number": "0",
-              "description": "@attr [Description(\"Second\")]"
-            },
-            {
-              "name": "MINUTE",
-              "number": "1",
-              "description": "@attr [Description(\"Minute\")]"
-            },
-            {
               "name": "HOUR",
-              "number": "2",
+              "number": "0",
               "description": "@attr [Description(\"Hour\")]"
             },
             {
+              "name": "MINUTE",
+              "number": "10",
+              "description": "@attr [Description(\"Minute\")]"
+            },
+            {
+              "name": "SECOND",
+              "number": "20",
+              "description": "@attr [Description(\"Second\")]"
+            },
+            {
               "name": "MS",
-              "number": "3",
+              "number": "30",
               "description": "@attr [Description(\"Millisecond\")]"
             },
             {
               "name": "MKS",
-              "number": "4",
+              "number": "40",
               "description": "@attr [Description(\"Microsecond\")]"
             },
             {
               "name": "MAX",
-              "number": "5",
+              "number": "50",
               "description": "@attr [Description(\"Max accuracy (may be limited by DB)\")]"
             }
           ]

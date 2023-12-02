@@ -42,7 +42,8 @@ namespace vSharpStudio.common
         IDataType GetDataTypeDateTimeLocal(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable);
         IDataType GetDataTypeDateTimeUtc(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable, bool isPKey = false);
         IDataType GetDataTypeTime(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable);
-        //IDataType GetDataTypeTimeZ();
+        IDataType GetDataTypeDateTimeZ(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable);
+        IDataType GetDataTypeDateTimeOffset(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable);
         IDataType GetIdDataType(ITreeConfigNode? parent, bool isNullable);
         IDataType GetIdRefDataType(ITreeConfigNode? parent, bool isNullable);
         //string GetVersionFieldName(IvPluginDbGenerator dbGen);

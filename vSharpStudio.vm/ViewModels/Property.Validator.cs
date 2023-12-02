@@ -496,11 +496,20 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                     case EnumDataType.DATETIMELOCAL:
                     case EnumDataType.DATETIMEUTC:
-                        //case EnumDataType.DATETIMEZ:
+                    case EnumDataType.DATETIMEZ:
                         if (!DateTime.TryParse(val, out DateTime vdt))
                         {
                             var vf = new ValidationFailure(nameof(p.DefaultValue),
                                 $"Can't parse by DateTime.Parse() default property value");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+                        break;
+                    case EnumDataType.DATETIMEOFFSET:
+                        if (!DateTimeOffset.TryParse(val, out DateTimeOffset vdto))
+                        {
+                            var vf = new ValidationFailure(nameof(p.DefaultValue),
+                                $"Can't parse by DateTimeOffset.Parse() default property value");
                             vf.Severity = Severity.Error;
                             cntx.AddFailure(vf);
                         }

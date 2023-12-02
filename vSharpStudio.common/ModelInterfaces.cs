@@ -137,6 +137,8 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		NUMERICAL = 21,
 		[Description("Boolean")]
 		BOOL = 31,
+		[Description("DateTimeOffset")]
+		DATETIMEOFFSET = 35,
 		[Description("Time")]
 		TIME = 41,
 		[Description("Date")]
@@ -145,6 +147,8 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		DATETIMELOCAL = 61,
 		[Description("DateTime UTC")]
 		DATETIMEUTC = 71,
+		[Description("DateTime with Zone")]
+		DATETIMEZ = 75,
 		[Description("Enumeration")]
 		ENUMERATION = 81,
 		[Description("Catalog")]
@@ -519,18 +523,18 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumTimeAccuracyType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
-		[Description("Second")]
-		SECOND = 0,
-		[Description("Minute")]
-		MINUTE = 1,
 		[Description("Hour")]
-		HOUR = 2,
+		HOUR = 0,
+		[Description("Minute")]
+		MINUTE = 10,
+		[Description("Second")]
+		SECOND = 20,
 		[Description("Millisecond")]
-		MS = 3,
+		MS = 30,
 		[Description("Microsecond")]
-		MKS = 4,
+		MKS = 40,
 		[Description("Max accuracy (may be limited by DB)")]
-		MAX = 5,
+		MAX = 50,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumUseType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18

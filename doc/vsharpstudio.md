@@ -2471,10 +2471,12 @@ with history |
 | STRING | 11 | @attr [Description(&#34;String&#34;)] |
 | NUMERICAL | 21 | @attr [Description(&#34;Numerical&#34;)] |
 | BOOL | 31 | @attr [Description(&#34;Boolean&#34;)] |
+| DATETIMEOFFSET | 35 | @attr [Description(&#34;DateTimeOffset&#34;)] |
 | TIME | 41 | @attr [Description(&#34;Time&#34;)] |
 | DATE | 51 | @attr [Description(&#34;Date&#34;)] |
 | DATETIMELOCAL | 61 | @attr [Description(&#34;DateTime Local&#34;)] |
 | DATETIMEUTC | 71 | @attr [Description(&#34;DateTime UTC&#34;)] |
+| DATETIMEZ | 75 | @attr [Description(&#34;DateTime with Zone&#34;)] |
 | ENUMERATION | 81 | @attr [Description(&#34;Enumeration&#34;)] |
 | CATALOG | 91 | @attr [Description(&#34;Catalog&#34;)] |
 | CATALOGS | 101 | @attr [Description(&#34;Catalogs&#34;)] |
@@ -2925,12 +2927,12 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| SECOND | 0 | @attr [Description(&#34;Second&#34;)] |
-| MINUTE | 1 | @attr [Description(&#34;Minute&#34;)] |
-| HOUR | 2 | @attr [Description(&#34;Hour&#34;)] |
-| MS | 3 | @attr [Description(&#34;Millisecond&#34;)] |
-| MKS | 4 | @attr [Description(&#34;Microsecond&#34;)] |
-| MAX | 5 | @attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)] |
+| HOUR | 0 | @attr [Description(&#34;Hour&#34;)] |
+| MINUTE | 10 | @attr [Description(&#34;Minute&#34;)] |
+| SECOND | 20 | @attr [Description(&#34;Second&#34;)] |
+| MS | 30 | @attr [Description(&#34;Millisecond&#34;)] |
+| MKS | 40 | @attr [Description(&#34;Microsecond&#34;)] |
+| MAX | 50 | @attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)] |
 
 
 
