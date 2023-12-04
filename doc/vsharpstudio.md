@@ -2476,8 +2476,8 @@ with history |
 | NUMERICAL | 21 | @attr [Description(&#34;Numerical&#34;)] |
 | BOOL | 31 | @attr [Description(&#34;Boolean&#34;)] |
 | DATETIMEOFFSET | 35 | @attr [Browsable(false)] @attr [Description(&#34;DateTimeOffset&#34;)] not supported in PG, not storing ZONE |
-| TIMESPAN_TIME_ONLY | 37 | @attr [Browsable(false)] @attr [Description(&#34;TimeSpan with Time only&#34;)] no need ? |
-| TIMESPAN | 39 | @attr [Browsable(false)] @attr [Description(&#34;TimeSpan&#34;)] no need ? |
+| TIMESPAN_TIME_ONLY | 37 | @attr [Description(&#34;TimeSpan with Time only&#34;)] |
+| TIMESPAN | 39 | @attr [Browsable(false)] @attr [Description(&#34;TimeSpan&#34;)] which DB type to use for whole TimeSpan ??? |
 | TIME | 41 | @attr [Description(&#34;Time&#34;)] |
 | TIMEZ | 45 | @attr [Description(&#34;Time with Time Zone&#34;)] |
 | DATE | 51 | @attr [Description(&#34;Date&#34;)] |

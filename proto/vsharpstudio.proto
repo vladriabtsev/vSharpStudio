@@ -803,13 +803,11 @@ enum proto_enum_data_type {
     // @attr [Description("DateTimeOffset")]
     // not supported in PG, not storing ZONE
     DATETIMEOFFSET = 35;
-    // @attr [Browsable(false)]
     // @attr [Description("TimeSpan with Time only")]
-    // no need ?
     TIMESPAN_TIME_ONLY = 37;
     // @attr [Browsable(false)]
     // @attr [Description("TimeSpan")]
-    // no need ?
+    // which DB type to use for whole TimeSpan ???
     TIMESPAN = 39;
     // @attr [Description("Time")]
     TIME = 41;

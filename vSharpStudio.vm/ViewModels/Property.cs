@@ -293,6 +293,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.TIME:
                 case EnumDataType.TIMEZ:
+                case EnumDataType.TIMESPAN_TIME_ONLY:
                     this.Length = 0;
                     break;
                 case EnumDataType.CATALOGS:
@@ -344,6 +345,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
                 this.DataType.DataTypeEnum != EnumDataType.TIMEZ &&
+                this.DataType.DataTypeEnum != EnumDataType.TIMESPAN_TIME_ONLY &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMEOFFSET &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&

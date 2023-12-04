@@ -410,12 +410,12 @@
             {
               "name": "TIMESPAN_TIME_ONLY",
               "number": "37",
-              "description": "@attr [Browsable(false)]\n@attr [Description(\"TimeSpan with Time only\")]\nno need ?"
+              "description": "@attr [Description(\"TimeSpan with Time only\")]"
             },
             {
               "name": "TIMESPAN",
               "number": "39",
-              "description": "@attr [Browsable(false)]\n@attr [Description(\"TimeSpan\")]\nno need ?"
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"TimeSpan\")]\nwhich DB type to use for whole TimeSpan ???"
             },
             {
               "name": "TIME",

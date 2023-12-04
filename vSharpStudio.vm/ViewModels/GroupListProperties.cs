@@ -342,6 +342,23 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddPropertyTimeSpanTimeonly(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND_TIME_ACC, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.TIMESPAN_TIME_ONLY };
+            node.IsNullable = isNullable;
+            node.AccuracyForTime = accuracy;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable, string? guid = null)
         {
             var node = new Property(this) { Name = name };

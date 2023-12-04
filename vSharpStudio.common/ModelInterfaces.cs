@@ -141,11 +141,9 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		[Browsable(false)]
 		[Description("DateTimeOffset")]
 		DATETIMEOFFSET = 35,
-		// no need ?
-		[Browsable(false)]
 		[Description("TimeSpan with Time only")]
 		TIMESPAN_TIME_ONLY = 37,
-		// no need ?
+		// which DB type to use for whole TimeSpan ???
 		[Browsable(false)]
 		[Description("TimeSpan")]
 		TIMESPAN = 39,

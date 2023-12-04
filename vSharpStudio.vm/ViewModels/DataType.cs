@@ -543,6 +543,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMEOFFSET:
                     this.ClrTypeName = "DateTimeOffset";
                     break;
+                case EnumDataType.TIMESPAN_TIME_ONLY:
                 case EnumDataType.TIMESPAN:
                     this.ClrTypeName = "TimeSpan";
                     break;
@@ -751,6 +752,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._IsPositive = false;
                     break;
                 case EnumDataType.TIMESPAN:
+                case EnumDataType.TIMESPAN_TIME_ONLY:
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityIsPositive = Visibility.Visible;
                     this.VisibilityLength = Visibility.Visible;
