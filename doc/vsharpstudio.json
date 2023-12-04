@@ -405,7 +405,17 @@
             {
               "name": "DATETIMEOFFSET",
               "number": "35",
-              "description": "@attr [Description(\"DateTimeOffset\")]"
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"DateTimeOffset\")]\nnot supported in PG, not storing ZONE"
+            },
+            {
+              "name": "TIMESPAN_TIME_ONLY",
+              "number": "37",
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"TimeSpan with Time only\")]\nno need ?"
+            },
+            {
+              "name": "TIMESPAN",
+              "number": "39",
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"TimeSpan\")]\nno need ?"
             },
             {
               "name": "TIME",
@@ -3927,6 +3937,26 @@
               "type": "proto_enum_one_to_relation_type",
               "longType": "proto_enum_one_to_relation_type",
               "fullType": "proto_config.proto_enum_one_to_relation_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "timespan_accuracy",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"TimeSpan accuracy\")]\n@attr [Description(\"TimeSpan accuracy\")]",
+              "label": "",
+              "type": "proto_enum_timespan_boundary_type",
+              "longType": "proto_enum_timespan_boundary_type",
+              "fullType": "proto_config.proto_enum_timespan_boundary_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "timespan_max_value",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"TimeSpan Max\")]\n@attr [Description(\"TimeSpan maximum value\")]",
+              "label": "",
+              "type": "proto_enum_timespan_boundary_type",
+              "longType": "proto_enum_timespan_boundary_type",
+              "fullType": "proto_config.proto_enum_timespan_boundary_type",
               "ismap": false,
               "defaultValue": ""
             },

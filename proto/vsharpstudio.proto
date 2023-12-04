@@ -799,13 +799,18 @@ enum proto_enum_data_type {
     NUMERICAL = 21;
     // @attr [Description("Boolean")]
     BOOL = 31;
+    // @attr [Browsable(false)]
     // @attr [Description("DateTimeOffset")]
+    // not supported in PG, not storing ZONE
     DATETIMEOFFSET = 35;
-
-    /*
+    // @attr [Browsable(false)]
+    // @attr [Description("TimeSpan with Time only")]
+    // no need ?
+    TIMESPAN_TIME_ONLY = 37;
+    // @attr [Browsable(false)]
     // @attr [Description("TimeSpan")]
-    TIMESPAN = 39;*/
-
+    // no need ?
+    TIMESPAN = 39;
     // @attr [Description("Time")]
     TIME = 41;
     // @attr [Description("Time with Time Zone")]
@@ -949,8 +954,6 @@ message proto_data_type {
     // @attr [DisplayName("Relation")]
     // @attr [Description("Relation type with selected type of complex object/objects")]
     proto_enum_one_to_relation_type relation_type = 10;
-
-    /*
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(11)]
     // @attr [DisplayName("TimeSpan accuracy")]
@@ -961,8 +964,6 @@ message proto_data_type {
     // @attr [DisplayName("TimeSpan Max")]
     // @attr [Description("TimeSpan maximum value")]
     proto_enum_timespan_boundary_type timespan_max_value = 12;
-    */
-
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(15)]
     // @attr [DisplayName("Use History")]

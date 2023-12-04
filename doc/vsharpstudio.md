@@ -505,6 +505,8 @@ Constant application wise value
 | list_object_guids | [string](#string) | repeated | &lt;summary&gt; / Guids of selected complex types for data type CATALOGS or DOCUMENTS / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
 | is_nullable | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
 | relation_type | [proto_enum_one_to_relation_type](#proto_config.proto_enum_one_to_relation_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Relation&#34;)] @attr [Description(&#34;Relation type with selected type of complex object/objects&#34;)] |
+| timespan_accuracy | [proto_enum_timespan_boundary_type](#proto_config.proto_enum_timespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;TimeSpan accuracy&#34;)] @attr [Description(&#34;TimeSpan accuracy&#34;)] |
+| timespan_max_value | [proto_enum_timespan_boundary_type](#proto_config.proto_enum_timespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;TimeSpan Max&#34;)] @attr [Description(&#34;TimeSpan maximum value&#34;)] |
 | is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for property value&#34;)] |
 | is_p_key | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_ref_parent | [bool](#bool) |  | @attr [Browsable(false)] |
@@ -2473,7 +2475,9 @@ with history |
 | STRING | 11 | @attr [Description(&#34;String&#34;)] |
 | NUMERICAL | 21 | @attr [Description(&#34;Numerical&#34;)] |
 | BOOL | 31 | @attr [Description(&#34;Boolean&#34;)] |
-| DATETIMEOFFSET | 35 | @attr [Description(&#34;DateTimeOffset&#34;)] |
+| DATETIMEOFFSET | 35 | @attr [Browsable(false)] @attr [Description(&#34;DateTimeOffset&#34;)] not supported in PG, not storing ZONE |
+| TIMESPAN_TIME_ONLY | 37 | @attr [Browsable(false)] @attr [Description(&#34;TimeSpan with Time only&#34;)] no need ? |
+| TIMESPAN | 39 | @attr [Browsable(false)] @attr [Description(&#34;TimeSpan&#34;)] no need ? |
 | TIME | 41 | @attr [Description(&#34;Time&#34;)] |
 | TIMEZ | 45 | @attr [Description(&#34;Time with Time Zone&#34;)] |
 | DATE | 51 | @attr [Description(&#34;Date&#34;)] |

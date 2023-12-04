@@ -305,9 +305,9 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.ENUMERATION:
                     this.Length = 0;
                     break;
-                //case EnumDataType.TIMESPAN:
-                //    this.Length = 6;
-                //    break;
+                case EnumDataType.TIMESPAN:
+                    this.Length = 6;
+                    break;
                 case EnumDataType.NUMERICAL:
                     this.Length = 6;
                     break;
@@ -351,11 +351,11 @@ namespace vSharpStudio.vm.ViewModels
             {
                 lst.Add(nameof(this.DataType.AccuracyForTime));
             }
-            //if (this.DataType.DataTypeEnum != EnumDataType.TIMESPAN)
-            //{
-            //    lst.Add(nameof(this.DataType.TimespanAccuracy));
-            //    lst.Add(nameof(this.DataType.TimespanMaxValue));
-            //}
+            if (this.DataType.DataTypeEnum != EnumDataType.TIMESPAN)
+            {
+                lst.Add(nameof(this.DataType.TimespanAccuracy));
+                lst.Add(nameof(this.DataType.TimespanMaxValue));
+            }
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
             {
@@ -446,34 +446,34 @@ namespace vSharpStudio.vm.ViewModels
                 this.Tag = null;
             }
         }
-        //[Category("")]
-        //[DisplayName("Accuracy")]
-        //[Description("TimeSpan accuracy")]
-        //[PropertyOrderAttribute(12)]
-        //public EnumTimespanBoundaryType TimespanAccuracy
-        //{
-        //    get { return this.DataType.TimespanAccuracy; }
-        //    set
-        //    {
-        //        this.DataType.TimespanAccuracy = value;
-        //        this.OnPropertyChanged();
-        //        this.ValidateProperty();
-        //    }
-        //}
-        //[Category("")]
-        //[DisplayName("Max value")]
-        //[Description("TimeSpan maximum value")]
-        //[PropertyOrderAttribute(13)]
-        //public EnumTimespanBoundaryType TimespanMaxValue
-        //{
-        //    get { return this.DataType.TimespanMaxValue; }
-        //    set
-        //    {
-        //        this.DataType.TimespanMaxValue = value;
-        //        this.OnPropertyChanged();
-        //        this.ValidateProperty();
-        //    }
-        //}
+        [Category("")]
+        [DisplayName("Accuracy")]
+        [Description("TimeSpan accuracy")]
+        [PropertyOrderAttribute(12)]
+        public EnumTimespanBoundaryType TimespanAccuracy
+        {
+            get { return this.DataType.TimespanAccuracy; }
+            set
+            {
+                this.DataType.TimespanAccuracy = value;
+                this.OnPropertyChanged();
+                this.ValidateProperty();
+            }
+        }
+        [Category("")]
+        [DisplayName("Max value")]
+        [Description("TimeSpan maximum value")]
+        [PropertyOrderAttribute(13)]
+        public EnumTimespanBoundaryType TimespanMaxValue
+        {
+            get { return this.DataType.TimespanMaxValue; }
+            set
+            {
+                this.DataType.TimespanMaxValue = value;
+                this.OnPropertyChanged();
+                this.ValidateProperty();
+            }
+        }
         [Category("")]
         [DisplayName("Accuracy")]
         [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]

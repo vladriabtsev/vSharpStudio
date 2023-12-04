@@ -323,25 +323,25 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-//        public Property AddPropertyTimeSpan(string name, bool isNullable = false, EnumTimespanBoundaryType accuracy = EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC, 
-//            EnumTimespanBoundaryType maxValue = EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC, string? guid = null)
-//        {
-//            var node = new Property(this) { Name = name };
-//#if DEBUG
-//            if (guid != null) // for test model generation
-//            {
-//                if (this.Cfg.DicNodes.ContainsKey(guid))
-//                    return node;
-//                node.Guid = guid;
-//            }
-//#endif
-//            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.TIMESPAN };
-//            node.IsNullable = isNullable;
-//            node.TimespanAccuracy = accuracy;
-//            node.TimespanMaxValue = maxValue;
-//            this.NodeAddNewSubNode(node);
-//            return node;
-//        }
+        public Property AddPropertyTimeSpan(string name, bool isNullable = false, EnumTimespanBoundaryType accuracy = EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC,
+            EnumTimespanBoundaryType maxValue = EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.TIMESPAN };
+            node.IsNullable = isNullable;
+            node.TimespanAccuracy = accuracy;
+            node.TimespanMaxValue = maxValue;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable, string? guid = null)
         {
             var node = new Property(this) { Name = name };
