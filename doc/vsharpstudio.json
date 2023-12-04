@@ -408,11 +408,6 @@
               "description": "@attr [Description(\"DateTimeOffset\")]"
             },
             {
-              "name": "TIMESPAN",
-              "number": "39",
-              "description": "@attr [Description(\"TimeSpan\")]"
-            },
-            {
               "name": "TIME",
               "number": "41",
               "description": "@attr [Description(\"Time\")]"
@@ -3932,26 +3927,6 @@
               "type": "proto_enum_one_to_relation_type",
               "longType": "proto_enum_one_to_relation_type",
               "fullType": "proto_config.proto_enum_one_to_relation_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "timespan_accuracy",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"TimeSpan accuracy\")]\n@attr [Description(\"TimeSpan accuracy\")]",
-              "label": "",
-              "type": "proto_enum_timespan_boundary_type",
-              "longType": "proto_enum_timespan_boundary_type",
-              "fullType": "proto_config.proto_enum_timespan_boundary_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "timespan_max_value",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"TimeSpan Max\")]\n@attr [Description(\"TimeSpan maximum value\")]",
-              "label": "",
-              "type": "proto_enum_timespan_boundary_type",
-              "longType": "proto_enum_timespan_boundary_type",
-              "fullType": "proto_config.proto_enum_timespan_boundary_type",
               "ismap": false,
               "defaultValue": ""
             },

@@ -7373,8 +7373,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vm.ListObjectGuids.Add(t);
             vm._IsNullable = from.IsNullable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._RelationType = from.RelationType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._TimespanAccuracy = from.TimespanAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._TimespanMaxValue = from.TimespanMaxValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsUseHistory = from.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsPKey = from.IsPKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsRefParent = from.IsRefParent; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
@@ -7397,8 +7395,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             to._IsNullable = from.IsNullable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._RelationType = from.RelationType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._TimespanAccuracy = from.TimespanAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._TimespanMaxValue = from.TimespanMaxValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsUseHistory = from.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsPKey = from.IsPKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsRefParent = from.IsRefParent; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
@@ -7442,8 +7438,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
             vm._IsNullable = m.IsNullable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._RelationType = (EnumOneToRelationType)m.RelationType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._TimespanAccuracy = (EnumTimespanBoundaryType)m.TimespanAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._TimespanMaxValue = (EnumTimespanBoundaryType)m.TimespanMaxValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsUseHistory = m.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsPKey = m.IsPKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsRefParent = m.IsRefParent; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
@@ -7464,8 +7458,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 m.ListObjectGuids.Add(t); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:237
             m.IsNullable = vm.IsNullable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.RelationType = (Proto.Config.proto_enum_one_to_relation_type)vm.RelationType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:267
-            m.TimespanAccuracy = (Proto.Config.proto_enum_timespan_boundary_type)vm.TimespanAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:267
-            m.TimespanMaxValue = (Proto.Config.proto_enum_timespan_boundary_type)vm.TimespanMaxValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:267
             m.IsUseHistory = vm.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.IsPKey = vm.IsPKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.IsRefParent = vm.IsRefParent; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
@@ -7674,48 +7666,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private EnumOneToRelationType _RelationType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
         //partial void OnRelationTypeChanging(ref EnumOneToRelationType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnRelationTypeChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(11)]
-        [DisplayName("TimeSpan accuracy")]
-        [Description("TimeSpan accuracy")]
-        public EnumTimespanBoundaryType TimespanAccuracy // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
-        { 
-            get { return this._TimespanAccuracy; }
-            set
-            {
-                // Use 'OnTimespanAccuracyChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._TimespanAccuracy, value, (t) => { /*this.OnTimespanAccuracyChanging(ref value);*/ this._TimespanAccuracy = value; this.OnTimespanAccuracyChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
-                }
-            }
-        }
-        private EnumTimespanBoundaryType _TimespanAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnTimespanAccuracyChanging(ref EnumTimespanBoundaryType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnTimespanAccuracyChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(12)]
-        [DisplayName("TimeSpan Max")]
-        [Description("TimeSpan maximum value")]
-        public EnumTimespanBoundaryType TimespanMaxValue // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
-        { 
-            get { return this._TimespanMaxValue; }
-            set
-            {
-                // Use 'OnTimespanMaxValueChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._TimespanMaxValue, value, (t) => { /*this.OnTimespanMaxValueChanging(ref value);*/ this._TimespanMaxValue = value; this.OnTimespanMaxValueChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
-                }
-            }
-        }
-        private EnumTimespanBoundaryType _TimespanMaxValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnTimespanMaxValueChanging(ref EnumTimespanBoundaryType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnTimespanMaxValueChanged();
         
         [Category("")]
         [PropertyOrderAttribute(15)]

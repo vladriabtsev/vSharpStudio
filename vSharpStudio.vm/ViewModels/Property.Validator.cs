@@ -354,38 +354,38 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                 }
             });
-            this.RuleFor(x => x.TimespanAccuracy).Custom((acc, cntx) =>
-            {
-                var p = (Property)cntx.InstanceToValidate;
-                if (p.DataTypeEnum != EnumDataType.TIMESPAN)
-                    return;
-                if (acc == EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC)
-                    return;
-                if (p.TimespanMaxValue != EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC && (int)p.TimespanMaxValue > (int)acc)
-                {
-                    p.ClearValidationForProperty(nameof(p.TimespanMaxValue));
-                    var vf = new ValidationFailure(nameof(p.TimespanAccuracy),
-                        $"TimeSpan Accuracy has to be less or equal than TimeSpan Max value");
-                    vf.Severity = Severity.Error;
-                    cntx.AddFailure(vf);
-                }
-            });
-            this.RuleFor(x => x.TimespanMaxValue).Custom((acc, cntx) =>
-            {
-                var p = (Property)cntx.InstanceToValidate;
-                if (p.DataTypeEnum != EnumDataType.TIMESPAN)
-                    return;
-                if (acc == EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC)
-                    return;
-                if (p.TimespanAccuracy != EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC && (int)p.TimespanAccuracy < (int)acc)
-                {
-                    p.ClearValidationForProperty(nameof(p.TimespanAccuracy));
-                    var vf = new ValidationFailure(nameof(p.TimespanMaxValue),
-                        $"TimeSpan Max has to be greater or equal than TimeSpan Accuracy");
-                    vf.Severity = Severity.Error;
-                    cntx.AddFailure(vf);
-                }
-            });
+            //this.RuleFor(x => x.TimespanAccuracy).Custom((acc, cntx) =>
+            //{
+            //    var p = (Property)cntx.InstanceToValidate;
+            //    if (p.DataTypeEnum != EnumDataType.TIMESPAN)
+            //        return;
+            //    if (acc == EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC)
+            //        return;
+            //    if (p.TimespanMaxValue != EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC && (int)p.TimespanMaxValue < (int)acc)
+            //    {
+            //        p.ClearValidationForProperty(nameof(p.TimespanMaxValue));
+            //        var vf = new ValidationFailure(nameof(p.TimespanAccuracy),
+            //            $"TimeSpan Accuracy has to be less or equal than TimeSpan Max value");
+            //        vf.Severity = Severity.Error;
+            //        cntx.AddFailure(vf);
+            //    }
+            //});
+            //this.RuleFor(x => x.TimespanMaxValue).Custom((acc, cntx) =>
+            //{
+            //    var p = (Property)cntx.InstanceToValidate;
+            //    if (p.DataTypeEnum != EnumDataType.TIMESPAN)
+            //        return;
+            //    if (acc == EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC)
+            //        return;
+            //    if (p.TimespanAccuracy != EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC && (int)p.TimespanAccuracy > (int)acc)
+            //    {
+            //        p.ClearValidationForProperty(nameof(p.TimespanAccuracy));
+            //        var vf = new ValidationFailure(nameof(p.TimespanMaxValue),
+            //            $"TimeSpan Max has to be greater or equal than TimeSpan Accuracy");
+            //        vf.Severity = Severity.Error;
+            //        cntx.AddFailure(vf);
+            //    }
+            //});
 
             this.RuleFor(x => x.MinLengthRequirement).Custom((name, cntx) =>
             {

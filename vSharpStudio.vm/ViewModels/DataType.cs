@@ -543,9 +543,9 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMEOFFSET:
                     this.ClrTypeName = "DateTimeOffset";
                     break;
-                case EnumDataType.TIMESPAN:
-                    this.ClrTypeName = "TimeSpan";
-                    break;
+                //case EnumDataType.TIMESPAN:
+                //    this.ClrTypeName = "TimeSpan";
+                //    break;
                 case EnumDataType.BOOL:
                     this.ClrTypeName = "bool";
                     break;
@@ -750,17 +750,17 @@ namespace vSharpStudio.vm.ViewModels
                     this._Accuracy = 0;
                     this._IsPositive = false;
                     break;
-                case EnumDataType.TIMESPAN:
-                    this.VisibilityAccuracy = Visibility.Collapsed;
-                    this.VisibilityIsPositive = Visibility.Visible;
-                    this.VisibilityLength = Visibility.Visible;
-                    this.VisibilityObjectName = Visibility.Collapsed;
-                    this._Length = 6;
-                    this._Accuracy = 0;
-                    this._IsPositive = false;
-                    this._ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
-                    break;
+                //case EnumDataType.TIMESPAN:
+                //    this.VisibilityAccuracy = Visibility.Collapsed;
+                //    this.VisibilityIsPositive = Visibility.Visible;
+                //    this.VisibilityLength = Visibility.Visible;
+                //    this.VisibilityObjectName = Visibility.Collapsed;
+                //    this._Length = 6;
+                //    this._Accuracy = 0;
+                //    this._IsPositive = false;
+                //    this._ObjectGuid = string.Empty;
+                //    this.ListObjectGuids.Clear();
+                //    break;
                 case EnumDataType.NUMERICAL:
                     if (this.Accuracy == 0)
                     {

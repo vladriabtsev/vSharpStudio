@@ -801,8 +801,11 @@ enum proto_enum_data_type {
     BOOL = 31;
     // @attr [Description("DateTimeOffset")]
     DATETIMEOFFSET = 35;
+
+    /*
     // @attr [Description("TimeSpan")]
-    TIMESPAN = 39;
+    TIMESPAN = 39;*/
+
     // @attr [Description("Time")]
     TIME = 41;
     // @attr [Description("Time with Time Zone")]
@@ -946,6 +949,8 @@ message proto_data_type {
     // @attr [DisplayName("Relation")]
     // @attr [Description("Relation type with selected type of complex object/objects")]
     proto_enum_one_to_relation_type relation_type = 10;
+
+    /*
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(11)]
     // @attr [DisplayName("TimeSpan accuracy")]
@@ -956,6 +961,8 @@ message proto_data_type {
     // @attr [DisplayName("TimeSpan Max")]
     // @attr [Description("TimeSpan maximum value")]
     proto_enum_timespan_boundary_type timespan_max_value = 12;
+    */
+
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(15)]
     // @attr [DisplayName("Use History")]
