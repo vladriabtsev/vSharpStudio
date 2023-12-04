@@ -100,6 +100,7 @@
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
     - [proto_enum_database_data_type](#proto_config.proto_enum_database_data_type)
     - [proto_enum_date_data_type](#proto_config.proto_enum_date_data_type)
+    - [proto_enum_date_time_accuracy_type](#proto_config.proto_enum_date_time_accuracy_type)
     - [proto_enum_doc_number_unique_scope](#proto_config.proto_enum_doc_number_unique_scope)
     - [proto_enum_document_access](#proto_config.proto_enum_document_access)
     - [proto_enum_finance_data_type](#proto_config.proto_enum_finance_data_type)
@@ -122,6 +123,7 @@
     - [proto_enum_register_type](#proto_config.proto_enum_register_type)
     - [proto_enum_system_data_type](#proto_config.proto_enum_system_data_type)
     - [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type)
+    - [proto_enum_timespan_boundary_type](#proto_config.proto_enum_timespan_boundary_type)
     - [proto_enum_use_type](#proto_config.proto_enum_use_type)
     - [proto_enum_vehicle_data_type](#proto_config.proto_enum_vehicle_data_type)
     - [proto_enum_version_field_type](#proto_config.proto_enum_version_field_type)
@@ -503,6 +505,8 @@ Constant application wise value
 | list_object_guids | [string](#string) | repeated | &lt;summary&gt; / Guids of selected complex types for data type CATALOGS or DOCUMENTS / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
 | is_nullable | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
 | relation_type | [proto_enum_one_to_relation_type](#proto_config.proto_enum_one_to_relation_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Relation&#34;)] @attr [Description(&#34;Relation type with selected type of complex object/objects&#34;)] |
+| timespan_accuracy | [proto_enum_timespan_boundary_type](#proto_config.proto_enum_timespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;TimeSpan accuracy&#34;)] @attr [Description(&#34;TimeSpan accuracy&#34;)] |
+| timespan_max_value | [proto_enum_timespan_boundary_type](#proto_config.proto_enum_timespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;TimeSpan Max&#34;)] @attr [Description(&#34;TimeSpan maximum value&#34;)] |
 | is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for property value&#34;)] |
 | is_p_key | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_ref_parent | [bool](#bool) |  | @attr [Browsable(false)] |
@@ -2527,6 +2531,26 @@ with history |
 
 
 
+<a name="proto_config.proto_enum_date_time_accuracy_type"></a>
+
+### proto_enum_date_time_accuracy_type
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| MAX_DT_ACC | 0 | @attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)] |
+| YEAR_DT_ACC | 10 | @attr [Description(&#34;Year&#34;)] |
+| MOUNTH_DT_ACC | 20 | @attr [Description(&#34;Month&#34;)] |
+| WEEK_DT_ACC | 30 | @attr [Description(&#34;Week&#34;)] |
+| DAY_DT_ACC | 40 | @attr [Description(&#34;Day&#34;)] |
+| HOUR_DT_ACC | 50 | @attr [Description(&#34;Hour&#34;)] |
+| MINUTE_DT_ACC | 60 | @attr [Description(&#34;Minute&#34;)] |
+| SECOND_DT_ACC | 70 | @attr [Description(&#34;Second&#34;)] |
+| MS_DT_ACC | 80 | @attr [Description(&#34;Millisecond&#34;)] |
+| MKS_DT_ACC | 90 | @attr [Description(&#34;Microsecond&#34;)] |
+
+
+
 <a name="proto_config.proto_enum_doc_number_unique_scope"></a>
 
 ### proto_enum_doc_number_unique_scope
@@ -2929,12 +2953,34 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| HOUR | 0 | @attr [Description(&#34;Hour&#34;)] |
-| MINUTE | 10 | @attr [Description(&#34;Minute&#34;)] |
-| SECOND | 20 | @attr [Description(&#34;Second&#34;)] |
-| MS | 30 | @attr [Description(&#34;Millisecond&#34;)] |
-| MKS | 40 | @attr [Description(&#34;Microsecond&#34;)] |
-| MAX | 50 | @attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)] |
+| MAX_TIME_ACC | 0 | @attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)] |
+| HOUR_TIME_ACC | 50 | @attr [Description(&#34;Hour&#34;)] |
+| MINUTE_TIME_ACC | 60 | @attr [Description(&#34;Minute&#34;)] |
+| SECOND_TIME_ACC | 70 | @attr [Description(&#34;Second&#34;)] |
+| MS_TIME_ACC | 80 | @attr [Description(&#34;Millisecond&#34;)] |
+| MKS_TIME_ACC | 90 | @attr [Description(&#34;Microsecond&#34;)] |
+
+
+
+<a name="proto_config.proto_enum_timespan_boundary_type"></a>
+
+### proto_enum_timespan_boundary_type
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NOT_SELECTED_BNDR_ACC | 0 | @attr [Description(&#34;Not Selected&#34;)] |
+| MILLENNIUM_BNDR_ACC | 10 | @attr [Description(&#34;Millennium&#34;)] |
+| CENTURY_BNDR_ACC | 20 | @attr [Description(&#34;Century&#34;)] |
+| YEAR_BNDR_ACC | 30 | @attr [Description(&#34;Year&#34;)] |
+| MOUNTH_BNDR_ACC | 40 | @attr [Description(&#34;Month&#34;)] |
+| WEEK_BNDR_ACC | 50 | @attr [Description(&#34;Week&#34;)] |
+| DAY_BNDR_ACC | 60 | @attr [Description(&#34;Day&#34;)] |
+| HOUR_BNDR_ACC | 70 | @attr [Description(&#34;Hour&#34;)] |
+| MINUTE_BNDR_ACC | 80 | @attr [Description(&#34;Minute&#34;)] |
+| SECOND_BNDR_ACC | 90 | @attr [Description(&#34;Second&#34;)] |
+| MS_BNDR_ACC | 100 | @attr [Description(&#34;Millisecond&#34;)] |
+| MKS_BNDR_ACC | 110 | @attr [Description(&#34;Microsecond&#34;)] |
 
 
 

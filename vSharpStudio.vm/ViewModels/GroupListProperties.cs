@@ -209,7 +209,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyTime(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
+        public Property AddPropertyTime(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND_TIME_ACC, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -225,7 +225,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyTimeZ(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
+        public Property AddPropertyTimeZ(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND_TIME_ACC, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -257,7 +257,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyDateTimeUtc(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
+        public Property AddPropertyDateTimeUtc(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND_TIME_ACC, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -273,7 +273,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyDateTimeLocal(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
+        public Property AddPropertyDateTimeLocal(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND_TIME_ACC, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -289,7 +289,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyDateTimeZ(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
+        public Property AddPropertyDateTimeZ(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND_TIME_ACC, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -306,7 +306,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyDateTimeOffset(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
+        public Property AddPropertyDateTimeOffset(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND_TIME_ACC, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -323,7 +323,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyTimeSpan(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
+        public Property AddPropertyTimeSpan(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND_TIME_ACC, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG

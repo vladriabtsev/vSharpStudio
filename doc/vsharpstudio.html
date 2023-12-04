@@ -560,6 +560,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_enum_date_time_accuracy_type"><span class="badge">E</span>proto_enum_date_time_accuracy_type</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_enum_doc_number_unique_scope"><span class="badge">E</span>proto_enum_doc_number_unique_scope</a>
                 </li>
               
@@ -645,6 +649,10 @@
               
                 <li>
                   <a href="#proto_config.proto_enum_time_accuracy_type"><span class="badge">E</span>proto_enum_time_accuracy_type</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_enum_timespan_boundary_type"><span class="badge">E</span>proto_enum_timespan_boundary_type</a>
                 </li>
               
                 <li>
@@ -2389,6 +2397,26 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 @attr [PropertyOrderAttribute(7)]
 @attr [DisplayName(&#34;Relation&#34;)]
 @attr [Description(&#34;Relation type with selected type of complex object/objects&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timespan_accuracy</td>
+                  <td><a href="#proto_config.proto_enum_timespan_boundary_type">proto_enum_timespan_boundary_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(11)]
+@attr [DisplayName(&#34;TimeSpan accuracy&#34;)]
+@attr [Description(&#34;TimeSpan accuracy&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timespan_max_value</td>
+                  <td><a href="#proto_config.proto_enum_timespan_boundary_type">proto_enum_timespan_boundary_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(12)]
+@attr [DisplayName(&#34;TimeSpan Max&#34;)]
+@attr [Description(&#34;TimeSpan maximum value&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -10382,6 +10410,77 @@ with history</p></td>
           </tbody>
         </table>
       
+        <h3 id="proto_config.proto_enum_date_time_accuracy_type">proto_enum_date_time_accuracy_type</h3>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>MAX_DT_ACC</td>
+                <td>0</td>
+                <td><p>@attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>YEAR_DT_ACC</td>
+                <td>10</td>
+                <td><p>@attr [Description(&#34;Year&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MOUNTH_DT_ACC</td>
+                <td>20</td>
+                <td><p>@attr [Description(&#34;Month&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEEK_DT_ACC</td>
+                <td>30</td>
+                <td><p>@attr [Description(&#34;Week&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DAY_DT_ACC</td>
+                <td>40</td>
+                <td><p>@attr [Description(&#34;Day&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>HOUR_DT_ACC</td>
+                <td>50</td>
+                <td><p>@attr [Description(&#34;Hour&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MINUTE_DT_ACC</td>
+                <td>60</td>
+                <td><p>@attr [Description(&#34;Minute&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>SECOND_DT_ACC</td>
+                <td>70</td>
+                <td><p>@attr [Description(&#34;Second&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MS_DT_ACC</td>
+                <td>80</td>
+                <td><p>@attr [Description(&#34;Millisecond&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MKS_DT_ACC</td>
+                <td>90</td>
+                <td><p>@attr [Description(&#34;Microsecond&#34;)]</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="proto_config.proto_enum_doc_number_unique_scope">proto_enum_doc_number_unique_scope</h3>
         <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
@@ -11722,39 +11821,122 @@ with history</p></td>
           <tbody>
             
               <tr>
-                <td>HOUR</td>
+                <td>MAX_TIME_ACC</td>
                 <td>0</td>
+                <td><p>@attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>HOUR_TIME_ACC</td>
+                <td>50</td>
                 <td><p>@attr [Description(&#34;Hour&#34;)]</p></td>
               </tr>
             
               <tr>
-                <td>MINUTE</td>
-                <td>10</td>
+                <td>MINUTE_TIME_ACC</td>
+                <td>60</td>
                 <td><p>@attr [Description(&#34;Minute&#34;)]</p></td>
               </tr>
             
               <tr>
-                <td>SECOND</td>
-                <td>20</td>
+                <td>SECOND_TIME_ACC</td>
+                <td>70</td>
                 <td><p>@attr [Description(&#34;Second&#34;)]</p></td>
               </tr>
             
               <tr>
-                <td>MS</td>
-                <td>30</td>
+                <td>MS_TIME_ACC</td>
+                <td>80</td>
                 <td><p>@attr [Description(&#34;Millisecond&#34;)]</p></td>
               </tr>
             
               <tr>
-                <td>MKS</td>
-                <td>40</td>
+                <td>MKS_TIME_ACC</td>
+                <td>90</td>
                 <td><p>@attr [Description(&#34;Microsecond&#34;)]</p></td>
               </tr>
             
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_timespan_boundary_type">proto_enum_timespan_boundary_type</h3>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
               <tr>
-                <td>MAX</td>
+                <td>NOT_SELECTED_BNDR_ACC</td>
+                <td>0</td>
+                <td><p>@attr [Description(&#34;Not Selected&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MILLENNIUM_BNDR_ACC</td>
+                <td>10</td>
+                <td><p>@attr [Description(&#34;Millennium&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>CENTURY_BNDR_ACC</td>
+                <td>20</td>
+                <td><p>@attr [Description(&#34;Century&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>YEAR_BNDR_ACC</td>
+                <td>30</td>
+                <td><p>@attr [Description(&#34;Year&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MOUNTH_BNDR_ACC</td>
+                <td>40</td>
+                <td><p>@attr [Description(&#34;Month&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEEK_BNDR_ACC</td>
                 <td>50</td>
-                <td><p>@attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Week&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DAY_BNDR_ACC</td>
+                <td>60</td>
+                <td><p>@attr [Description(&#34;Day&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>HOUR_BNDR_ACC</td>
+                <td>70</td>
+                <td><p>@attr [Description(&#34;Hour&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MINUTE_BNDR_ACC</td>
+                <td>80</td>
+                <td><p>@attr [Description(&#34;Minute&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>SECOND_BNDR_ACC</td>
+                <td>90</td>
+                <td><p>@attr [Description(&#34;Second&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MS_BNDR_ACC</td>
+                <td>100</td>
+                <td><p>@attr [Description(&#34;Millisecond&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MKS_BNDR_ACC</td>
+                <td>110</td>
+                <td><p>@attr [Description(&#34;Microsecond&#34;)]</p></td>
               </tr>
             
           </tbody>

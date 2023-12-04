@@ -194,6 +194,30 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		D_WEEKDAY = 13,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
+	public enum EnumDateTimeAccuracyType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
+	{
+		[Description("Max accuracy (may be limited by DB)")]
+		MAX_DT_ACC = 0,
+		[Description("Year")]
+		YEAR_DT_ACC = 10,
+		[Description("Month")]
+		MOUNTH_DT_ACC = 20,
+		[Description("Week")]
+		WEEK_DT_ACC = 30,
+		[Description("Day")]
+		DAY_DT_ACC = 40,
+		[Description("Hour")]
+		HOUR_DT_ACC = 50,
+		[Description("Minute")]
+		MINUTE_DT_ACC = 60,
+		[Description("Second")]
+		SECOND_DT_ACC = 70,
+		[Description("Millisecond")]
+		MS_DT_ACC = 80,
+		[Description("Microsecond")]
+		MKS_DT_ACC = 90,
+	}
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumDocNumberUniqueScope // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Allways")]
@@ -527,18 +551,46 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumTimeAccuracyType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
-		[Description("Hour")]
-		HOUR = 0,
-		[Description("Minute")]
-		MINUTE = 10,
-		[Description("Second")]
-		SECOND = 20,
-		[Description("Millisecond")]
-		MS = 30,
-		[Description("Microsecond")]
-		MKS = 40,
 		[Description("Max accuracy (may be limited by DB)")]
-		MAX = 50,
+		MAX_TIME_ACC = 0,
+		[Description("Hour")]
+		HOUR_TIME_ACC = 50,
+		[Description("Minute")]
+		MINUTE_TIME_ACC = 60,
+		[Description("Second")]
+		SECOND_TIME_ACC = 70,
+		[Description("Millisecond")]
+		MS_TIME_ACC = 80,
+		[Description("Microsecond")]
+		MKS_TIME_ACC = 90,
+	}
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
+	public enum EnumTimespanBoundaryType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
+	{
+		[Description("Not Selected")]
+		NOT_SELECTED_BNDR_ACC = 0,
+		[Description("Millennium")]
+		MILLENNIUM_BNDR_ACC = 10,
+		[Description("Century")]
+		CENTURY_BNDR_ACC = 20,
+		[Description("Year")]
+		YEAR_BNDR_ACC = 30,
+		[Description("Month")]
+		MOUNTH_BNDR_ACC = 40,
+		[Description("Week")]
+		WEEK_BNDR_ACC = 50,
+		[Description("Day")]
+		DAY_BNDR_ACC = 60,
+		[Description("Hour")]
+		HOUR_BNDR_ACC = 70,
+		[Description("Minute")]
+		MINUTE_BNDR_ACC = 80,
+		[Description("Second")]
+		SECOND_BNDR_ACC = 90,
+		[Description("Millisecond")]
+		MS_BNDR_ACC = 100,
+		[Description("Microsecond")]
+		MKS_BNDR_ACC = 110,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumUseType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
@@ -872,6 +924,8 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	IReadOnlyList<string> ListObjectGuids { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:47
     	bool IsNullable { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	EnumOneToRelationType RelationType { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumTimespanBoundaryType TimespanAccuracy { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumTimespanBoundaryType TimespanMaxValue { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	bool IsUseHistory { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	bool IsPKey { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	bool IsRefParent { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56

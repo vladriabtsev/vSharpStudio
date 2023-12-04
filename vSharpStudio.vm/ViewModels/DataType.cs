@@ -713,14 +713,6 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.CHAR:
                 case EnumDataType.BOOL:
                 case EnumDataType.DATE:
-                case EnumDataType.DATETIMELOCAL:
-                case EnumDataType.DATETIMEUTC:
-                //case EnumDataType.DATETIME:
-                case EnumDataType.DATETIMEZ:
-                case EnumDataType.DATETIMEOFFSET:
-                case EnumDataType.TIME:
-                case EnumDataType.TIMEZ:
-                case EnumDataType.TIMESPAN:
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
                 case EnumDataType.ANY:
@@ -731,7 +723,21 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    this.OnPropertyChanged(nameof(this.ListObjects));
+                    break;
+                case EnumDataType.DATETIMELOCAL:
+                case EnumDataType.DATETIMEUTC:
+                //case EnumDataType.DATETIME:
+                case EnumDataType.DATETIMEZ:
+                case EnumDataType.DATETIMEOFFSET:
+                case EnumDataType.TIME:
+                case EnumDataType.TIMEZ:
+                    this.VisibilityAccuracy = Visibility.Collapsed;
+                    this.VisibilityLength = Visibility.Collapsed;
+                    this.VisibilityObjectName = Visibility.Collapsed;
+                    this.VisibilityIsPositive = Visibility.Collapsed;
+                    this._Length = 0;
+                    this._Accuracy = 0;
+                    this._IsPositive = false;
                     break;
                 case EnumDataType.CATALOG:
                 case EnumDataType.DOCUMENT:
@@ -743,7 +749,17 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    this.OnPropertyChanged(nameof(this.ListObjects));
+                    break;
+                case EnumDataType.TIMESPAN:
+                    this.VisibilityAccuracy = Visibility.Collapsed;
+                    this.VisibilityIsPositive = Visibility.Visible;
+                    this.VisibilityLength = Visibility.Visible;
+                    this.VisibilityObjectName = Visibility.Collapsed;
+                    this._Length = 6;
+                    this._Accuracy = 0;
+                    this._IsPositive = false;
+                    this._ObjectGuid = string.Empty;
+                    this.ListObjectGuids.Clear();
                     break;
                 case EnumDataType.NUMERICAL:
                     if (this.Accuracy == 0)
@@ -754,7 +770,6 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         this.VisibilityIsPositive = Visibility.Collapsed;
                     }
-
                     this.VisibilityAccuracy = Visibility.Visible;
                     this.VisibilityLength = Visibility.Visible;
                     this.VisibilityObjectName = Visibility.Collapsed;
@@ -763,7 +778,6 @@ namespace vSharpStudio.vm.ViewModels
                     this._IsPositive = false;
                     this._ObjectGuid = string.Empty;
                     this.ListObjectGuids.Clear();
-                    this.OnPropertyChanged(nameof(this.ListObjects));
                     break;
                 case EnumDataType.STRING:
                     this.VisibilityIsPositive = Visibility.Collapsed;
@@ -775,7 +789,6 @@ namespace vSharpStudio.vm.ViewModels
                     this._IsPositive = false;
                     this._ObjectGuid = string.Empty;
                     this.ListObjectGuids.Clear();
-                    this.OnPropertyChanged(nameof(this.ListObjects));
                     break;
                 default:
                     throw new NotSupportedException();
@@ -787,6 +800,7 @@ namespace vSharpStudio.vm.ViewModels
             this.OnPropertyChanged(nameof(this.Accuracy));
             this.OnPropertyChanged(nameof(this.IsPositive));
             this.OnPropertyChanged(nameof(this.ObjectGuid));
+            this.OnPropertyChanged(nameof(this.ListObjects));
         }
         partial void OnLengthChanged()
         {
@@ -888,6 +902,20 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private Visibility _VisibilityObjectName = Visibility.Collapsed;
+        [Browsable(false)]
+        public Visibility VisibilityTimespan
+        {
+            get
+            {
+                return this._VisibilityTimespan;
+            }
+
+            set
+            {
+                SetProperty(ref this._VisibilityTimespan, value);
+            }
+        }
+        private Visibility _VisibilityTimespan = Visibility.Collapsed;
         #endregion Visibility
 
         public Config? Cfg

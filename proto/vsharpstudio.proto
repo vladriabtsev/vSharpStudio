@@ -830,18 +830,68 @@ enum proto_enum_data_type {
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_time_accuracy_type {
-    // @attr [Description("Hour")]
-    HOUR = 0;
-    // @attr [Description("Minute")]
-    MINUTE = 10;
-    // @attr [Description("Second")]
-    SECOND = 20;
-    // @attr [Description("Millisecond")]
-    MS = 30;
-    // @attr [Description("Microsecond")]
-    MKS = 40;
     // @attr [Description("Max accuracy (may be limited by DB)")]
-    MAX = 50;
+    MAX_TIME_ACC = 0;
+    // @attr [Description("Hour")]
+    HOUR_TIME_ACC = 50;
+    // @attr [Description("Minute")]
+    MINUTE_TIME_ACC = 60;
+    // @attr [Description("Second")]
+    SECOND_TIME_ACC = 70;
+    // @attr [Description("Millisecond")]
+    MS_TIME_ACC = 80;
+    // @attr [Description("Microsecond")]
+    MKS_TIME_ACC = 90;
+}
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+enum proto_enum_date_time_accuracy_type {
+    // @attr [Description("Max accuracy (may be limited by DB)")]
+    MAX_DT_ACC = 0;
+    // @attr [Description("Year")]
+    YEAR_DT_ACC = 10;
+    // @attr [Description("Month")]
+    MOUNTH_DT_ACC = 20;
+    // @attr [Description("Week")]
+    WEEK_DT_ACC = 30;
+    // @attr [Description("Day")]
+    DAY_DT_ACC = 40;
+    // @attr [Description("Hour")]
+    HOUR_DT_ACC = 50;
+    // @attr [Description("Minute")]
+    MINUTE_DT_ACC = 60;
+    // @attr [Description("Second")]
+    SECOND_DT_ACC = 70;
+    // @attr [Description("Millisecond")]
+    MS_DT_ACC = 80;
+    // @attr [Description("Microsecond")]
+    MKS_DT_ACC = 90;
+}
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+enum proto_enum_timespan_boundary_type {
+    // @attr [Description("Not Selected")]
+    NOT_SELECTED_BNDR_ACC = 0;
+    // @attr [Description("Millennium")]
+    MILLENNIUM_BNDR_ACC = 10;
+    // @attr [Description("Century")]
+    CENTURY_BNDR_ACC = 20;
+    // @attr [Description("Year")]
+    YEAR_BNDR_ACC = 30;
+    // @attr [Description("Month")]
+    MOUNTH_BNDR_ACC = 40;
+    // @attr [Description("Week")]
+    WEEK_BNDR_ACC = 50;
+    // @attr [Description("Day")]
+    DAY_BNDR_ACC = 60;
+    // @attr [Description("Hour")]
+    HOUR_BNDR_ACC = 70;
+    // @attr [Description("Minute")]
+    MINUTE_BNDR_ACC = 80;
+    // @attr [Description("Second")]
+    SECOND_BNDR_ACC = 90;
+    // @attr [Description("Millisecond")]
+    MS_BNDR_ACC = 100;
+    // @attr [Description("Microsecond")]
+    MKS_BNDR_ACC = 110;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_one_to_relation_type {
@@ -896,6 +946,16 @@ message proto_data_type {
     // @attr [DisplayName("Relation")]
     // @attr [Description("Relation type with selected type of complex object/objects")]
     proto_enum_one_to_relation_type relation_type = 10;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(11)]
+    // @attr [DisplayName("TimeSpan accuracy")]
+    // @attr [Description("TimeSpan accuracy")]
+    proto_enum_timespan_boundary_type timespan_accuracy = 11;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(12)]
+    // @attr [DisplayName("TimeSpan Max")]
+    // @attr [Description("TimeSpan maximum value")]
+    proto_enum_timespan_boundary_type timespan_max_value = 12;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(15)]
     // @attr [DisplayName("Use History")]

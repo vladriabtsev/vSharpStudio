@@ -125,6 +125,19 @@ namespace ViewModelBase
             }
         }
         private SortedObservableCollection<ValidationMessage> _ValidationCollection;
+        public void ClearValidationForProperty(string propertyName)
+        {
+            if (_errors.ContainsKey(propertyName))
+                _errors.Remove(propertyName);
+            if (_warnings.ContainsKey(propertyName))
+                _warnings.Remove(propertyName);
+            if (_infos.ContainsKey(propertyName))
+                _infos.Remove(propertyName);
+            UIDispatcher.Invoke(() =>
+            {
+                RaiseErrorsChanged(propertyName);
+            });
+        }
         protected bool ValidationChange(FluentValidation.Results.ValidationResult res)
         {
             ClearAllErrors();

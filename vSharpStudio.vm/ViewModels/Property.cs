@@ -283,61 +283,36 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.CHAR:
                 case EnumDataType.BOOL:
                     this.Length = 0;
-                    this.Accuracy = 0;
-                    this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
                     break;
                 case EnumDataType.DATE:
                     this.Length = 0;
-                    this.Accuracy = 0;
-                    this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
                     break;
                 case EnumDataType.DATETIMELOCAL:
                 case EnumDataType.DATETIMEUTC:
-                //case EnumDataType.DATETIME:
                 case EnumDataType.DATETIMEZ:
                 case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.TIME:
+                case EnumDataType.TIMEZ:
                     this.Length = 0;
-                    this.Accuracy = 0;
-                    this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
                     break;
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
                 case EnumDataType.ANY:
                     this.Length = 0;
-                    this.Accuracy = 0;
-                    this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
                     break;
                 case EnumDataType.CATALOG:
                 case EnumDataType.DOCUMENT:
                 case EnumDataType.ENUMERATION:
                     this.Length = 0;
-                    this.Accuracy = 0;
-                    this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
+                    break;
+                case EnumDataType.TIMESPAN:
+                    this.Length = 6;
                     break;
                 case EnumDataType.NUMERICAL:
                     this.Length = 6;
-                    this.Accuracy = 0;
-                    this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
                     break;
                 case EnumDataType.STRING:
                     this.Length = 25;
-                    this.Accuracy = 0;
-                    this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
                     break;
                 default:
                     throw new NotSupportedException();
@@ -368,12 +343,18 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(nameof(this.Length));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
+                this.DataType.DataTypeEnum != EnumDataType.TIMEZ &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIMEOFFSET &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
-                this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC) // &&
-                                                                        //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
-                                                                        //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
+                this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC)
             {
                 lst.Add(nameof(this.DataType.AccuracyForTime));
+            }
+            if (this.DataType.DataTypeEnum != EnumDataType.TIMESPAN)
+            {
+                lst.Add(nameof(this.DataType.TimespanAccuracy));
+                lst.Add(nameof(this.DataType.TimespanMaxValue));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
@@ -420,10 +401,15 @@ namespace vSharpStudio.vm.ViewModels
             get { return this.DataType.DataTypeEnum; }
             set
             {
+                this.Accuracy = 0;
+                this.IsPositive = false;
+                this.ObjectGuid = string.Empty;
+                this.ListObjectGuids.Clear();
+
                 this.DataType.DataTypeEnum = value;
+                this.OnDataTypeEnumChanged();
                 this.OnPropertyChanged();
                 this.ValidateProperty();
-                this.OnDataTypeEnumChanged();
                 this.Tag = null;
             }
         }
@@ -461,7 +447,35 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         [Category("")]
-        [DisplayName("Time accuracy")]
+        [DisplayName("Accuracy")]
+        [Description("TimeSpan accuracy")]
+        [PropertyOrderAttribute(12)]
+        public EnumTimespanBoundaryType TimespanAccuracy
+        {
+            get { return this.DataType.TimespanAccuracy; }
+            set
+            {
+                this.DataType.TimespanAccuracy = value;
+                this.OnPropertyChanged();
+                this.ValidateProperty();
+            }
+        }
+        [Category("")]
+        [DisplayName("Max value")]
+        [Description("TimeSpan maximum value")]
+        [PropertyOrderAttribute(13)]
+        public EnumTimespanBoundaryType TimespanMaxValue
+        {
+            get { return this.DataType.TimespanMaxValue; }
+            set
+            {
+                this.DataType.TimespanMaxValue = value;
+                this.OnPropertyChanged();
+                this.ValidateProperty();
+            }
+        }
+        [Category("")]
+        [DisplayName("Accuracy")]
         [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
         [PropertyOrderAttribute(13)]
         public EnumTimeAccuracyType AccuracyForTime
@@ -502,8 +516,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.DataType.ObjectGuid = value;
                 this.OnPropertyChanged();
-                this.OnPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
+                this.OnPropertyChanged(nameof(this.ClrType));
                 this.Tag = null;
             }
         }

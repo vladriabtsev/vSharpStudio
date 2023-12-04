@@ -586,6 +586,64 @@
           ]
         },
         {
+          "name": "proto_enum_date_time_accuracy_type",
+          "longName": "proto_enum_date_time_accuracy_type",
+          "fullName": "proto_config.proto_enum_date_time_accuracy_type",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
+          "values": [
+            {
+              "name": "MAX_DT_ACC",
+              "number": "0",
+              "description": "@attr [Description(\"Max accuracy (may be limited by DB)\")]"
+            },
+            {
+              "name": "YEAR_DT_ACC",
+              "number": "10",
+              "description": "@attr [Description(\"Year\")]"
+            },
+            {
+              "name": "MOUNTH_DT_ACC",
+              "number": "20",
+              "description": "@attr [Description(\"Month\")]"
+            },
+            {
+              "name": "WEEK_DT_ACC",
+              "number": "30",
+              "description": "@attr [Description(\"Week\")]"
+            },
+            {
+              "name": "DAY_DT_ACC",
+              "number": "40",
+              "description": "@attr [Description(\"Day\")]"
+            },
+            {
+              "name": "HOUR_DT_ACC",
+              "number": "50",
+              "description": "@attr [Description(\"Hour\")]"
+            },
+            {
+              "name": "MINUTE_DT_ACC",
+              "number": "60",
+              "description": "@attr [Description(\"Minute\")]"
+            },
+            {
+              "name": "SECOND_DT_ACC",
+              "number": "70",
+              "description": "@attr [Description(\"Second\")]"
+            },
+            {
+              "name": "MS_DT_ACC",
+              "number": "80",
+              "description": "@attr [Description(\"Millisecond\")]"
+            },
+            {
+              "name": "MKS_DT_ACC",
+              "number": "90",
+              "description": "@attr [Description(\"Microsecond\")]"
+            }
+          ]
+        },
+        {
           "name": "proto_enum_doc_number_unique_scope",
           "longName": "proto_enum_doc_number_unique_scope",
           "fullName": "proto_config.proto_enum_doc_number_unique_scope",
@@ -1665,34 +1723,102 @@
           "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
-              "name": "HOUR",
+              "name": "MAX_TIME_ACC",
               "number": "0",
+              "description": "@attr [Description(\"Max accuracy (may be limited by DB)\")]"
+            },
+            {
+              "name": "HOUR_TIME_ACC",
+              "number": "50",
               "description": "@attr [Description(\"Hour\")]"
             },
             {
-              "name": "MINUTE",
-              "number": "10",
+              "name": "MINUTE_TIME_ACC",
+              "number": "60",
               "description": "@attr [Description(\"Minute\")]"
             },
             {
-              "name": "SECOND",
-              "number": "20",
+              "name": "SECOND_TIME_ACC",
+              "number": "70",
               "description": "@attr [Description(\"Second\")]"
             },
             {
-              "name": "MS",
-              "number": "30",
+              "name": "MS_TIME_ACC",
+              "number": "80",
               "description": "@attr [Description(\"Millisecond\")]"
             },
             {
-              "name": "MKS",
-              "number": "40",
+              "name": "MKS_TIME_ACC",
+              "number": "90",
               "description": "@attr [Description(\"Microsecond\")]"
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_timespan_boundary_type",
+          "longName": "proto_enum_timespan_boundary_type",
+          "fullName": "proto_config.proto_enum_timespan_boundary_type",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
+          "values": [
+            {
+              "name": "NOT_SELECTED_BNDR_ACC",
+              "number": "0",
+              "description": "@attr [Description(\"Not Selected\")]"
             },
             {
-              "name": "MAX",
+              "name": "MILLENNIUM_BNDR_ACC",
+              "number": "10",
+              "description": "@attr [Description(\"Millennium\")]"
+            },
+            {
+              "name": "CENTURY_BNDR_ACC",
+              "number": "20",
+              "description": "@attr [Description(\"Century\")]"
+            },
+            {
+              "name": "YEAR_BNDR_ACC",
+              "number": "30",
+              "description": "@attr [Description(\"Year\")]"
+            },
+            {
+              "name": "MOUNTH_BNDR_ACC",
+              "number": "40",
+              "description": "@attr [Description(\"Month\")]"
+            },
+            {
+              "name": "WEEK_BNDR_ACC",
               "number": "50",
-              "description": "@attr [Description(\"Max accuracy (may be limited by DB)\")]"
+              "description": "@attr [Description(\"Week\")]"
+            },
+            {
+              "name": "DAY_BNDR_ACC",
+              "number": "60",
+              "description": "@attr [Description(\"Day\")]"
+            },
+            {
+              "name": "HOUR_BNDR_ACC",
+              "number": "70",
+              "description": "@attr [Description(\"Hour\")]"
+            },
+            {
+              "name": "MINUTE_BNDR_ACC",
+              "number": "80",
+              "description": "@attr [Description(\"Minute\")]"
+            },
+            {
+              "name": "SECOND_BNDR_ACC",
+              "number": "90",
+              "description": "@attr [Description(\"Second\")]"
+            },
+            {
+              "name": "MS_BNDR_ACC",
+              "number": "100",
+              "description": "@attr [Description(\"Millisecond\")]"
+            },
+            {
+              "name": "MKS_BNDR_ACC",
+              "number": "110",
+              "description": "@attr [Description(\"Microsecond\")]"
             }
           ]
         },
@@ -3806,6 +3932,26 @@
               "type": "proto_enum_one_to_relation_type",
               "longType": "proto_enum_one_to_relation_type",
               "fullType": "proto_config.proto_enum_one_to_relation_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "timespan_accuracy",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"TimeSpan accuracy\")]\n@attr [Description(\"TimeSpan accuracy\")]",
+              "label": "",
+              "type": "proto_enum_timespan_boundary_type",
+              "longType": "proto_enum_timespan_boundary_type",
+              "fullType": "proto_config.proto_enum_timespan_boundary_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "timespan_max_value",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"TimeSpan Max\")]\n@attr [Description(\"TimeSpan maximum value\")]",
+              "label": "",
+              "type": "proto_enum_timespan_boundary_type",
+              "longType": "proto_enum_timespan_boundary_type",
+              "fullType": "proto_config.proto_enum_timespan_boundary_type",
               "ismap": false,
               "defaultValue": ""
             },

@@ -270,13 +270,13 @@ namespace ViewModelBase
         public new bool Remove(T item)
         {
             var res = base.Remove(item);
-            InternalSort();
+            // InternalSort(); no need for resorting
             return res;
         }
         public new void RemoveAt(int indx)
         {
             base.RemoveAt(indx);
-            InternalSort();
+            // InternalSort(); no need for resorting
         }
         public void AddRange(IEnumerable<T> collection, ulong sortingWeight = 0)
         {
