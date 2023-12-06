@@ -10627,6 +10627,16 @@
               "defaultValue": ""
             },
             {
+              "name": "mapped_register_attached_property_to_doc_property_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_role_property_access_settings",
               "description": "@attr [Browsable(false)]\n\n// @attr [PropertyOrderAttribute(28)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"Start Grid\")]\n// @attr [Description(\"Start new container of 12 columns grid system\")]\nbool is_start_12_col_grid_system = 28;\n// @attr [PropertyOrderAttribute(29)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"Stop Grid\")]\n// @attr [Description(\"Stop current container of 12 columns grid system\")]\nbool is_stop_12_col_grid_system = 29;\n// @attr [PropertyOrderAttribute(30)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"Start Column\")]\n// @attr [Description(\"Start new column of 12 columns grid system\")]\nbool is_start_new_column_12_col_grid_system = 30;\n// @attr [PropertyOrderAttribute(32)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"Start Row\")]\n// @attr [Description(\"Start new row of 12 columns grid system\")]\nbool is_start_new_row_12_col_grid_system = 31;\n// @attr [PropertyOrderAttribute(31)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"Column Name\")]\n// @attr [Description(\"Column Name of 12 columns grid system\")]\nstring column_name_12_col_grid_system = 32;\n// @attr [PropertyOrderAttribute(33)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"When Hide\")]\n// @attr [Description(\"Condition of hiding base on screen size\")]\nproto_enum_hidden_type hide_type = 33;\n// @attr [PropertyOrderAttribute(34)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"XS\")]\n// @attr [Description(\"Extra small. Small to large phone. Range: \u003c 600px\")]\ngoogle.protobuf.UInt32Value width_xs = 34;\n// @attr [PropertyOrderAttribute(35)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"SM\")]\n// @attr [Description(\"Small. Small to medium tablet. Range: 600px \u003e \u003c 960px\")]\ngoogle.protobuf.UInt32Value width_sm = 35;\n// @attr [PropertyOrderAttribute(36)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"MD\")]\n// @attr [Description(\"Medium. Large tablet to laptop. Range: 960px \u003e \u003c 1280px\")]\ngoogle.protobuf.UInt32Value width_md = 36;\n// @attr [PropertyOrderAttribute(37)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"LG\")]\n// @attr [Description(\"Large. Desktop. Range: 1280px \u003e \u003c 1920px\")]\ngoogle.protobuf.UInt32Value width_lg = 37;\n// @attr [PropertyOrderAttribute(38)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"XL\")]\n// @attr [Description(\"Extra Large. HD and 4k. Range: 1920px \u003e \u003c 2560px\")]\ngoogle.protobuf.UInt32Value width_xl = 38;\n// @attr [PropertyOrderAttribute(39)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"XX\")]\n// @attr [Description(\"Extra Extra Large. 4k+ and ultra-wide. Range: \u003e= 2560px\")]\ngoogle.protobuf.UInt32Value width_xx = 39;",
               "label": "repeated",
@@ -10940,7 +10950,7 @@
             },
             {
               "name": "register_periodicity",
-              "description": "@attr [Category(\"\")]\n@attr [DisplayName(\"Register Type\")]\n@attr [PropertyOrderAttribute(9)]",
+              "description": "@attr [Category(\"\")]\n@attr [DisplayName(\"Periodicity\")]\n@attr [PropertyOrderAttribute(9)]",
               "label": "",
               "type": "proto_enum_register_periodicity",
               "longType": "proto_enum_register_periodicity",
@@ -11115,6 +11125,26 @@
               "type": "proto_group_list_properties",
               "longType": "proto_group_list_properties",
               "fullType": "proto_config.proto_group_list_properties",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "mapped_money_accumulator_property_to_doc_property_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "mapped_qty_accumulator_property_to_doc_property_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -11412,6 +11442,16 @@
             {
               "name": "dimension_catalog_guid",
               "description": "\u003csummary\u003e\n/ Guid of Catalog type.\n/ \u003c/summary\u003e\n@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Dimension catalog\")]\n@attr [Description(\"Catalog for register dimension\")]\n@attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "mapped_register_dimension_to_doc_property_guid",
+              "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
               "longType": "string",

@@ -9,9 +9,11 @@ using System.Diagnostics.Eventing.Reader;
 using System.DirectoryServices;
 using System.Numerics;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Xml.Linq;
 using CommunityToolkit.Diagnostics;
+using CommunityToolkit.Mvvm.ComponentModel;
 using FluentValidation;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
@@ -753,9 +755,215 @@ namespace vSharpStudio.vm.ViewModels
             }
             #endregion ListSelectedDocuments
 
+            #region ListMappings
+            UpdateListMappings();
+            #endregion ListMappings
+
             this.isOnOpeningEditor = false;
         }
-
+        private void UpdateListMappings()
+        {
+            this.fulListToMap.Clear();
+            this.ListMappings.Clear();
+            if (this.SelectedDoc != null)
+            {
+                foreach (var t in this.GroupRegisterDimensions.ListDimensions)
+                {
+                    var row = new MappingRow(this, t);
+                    this.ListMappings.Add(row);
+                }
+                if (this.UseQtyAccumulator)
+                {
+                    var row = new MappingRow(this, this.TableTurnoverPropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName);
+                    this.ListMappings.Add(row);
+                }
+                if (this.UseMoneyAccumulator)
+                {
+                    var row = new MappingRow(this, this.TableTurnoverPropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName);
+                    this.ListMappings.Add(row);
+                }
+                foreach (var t in this.GroupAttachedProperties.ListProperties)
+                {
+                    var row = new MappingRow(this, t.Guid, t.Name);
+                    this.ListMappings.Add(row);
+                }
+                var doc = (Document)this.SelectedDoc;
+                foreach (var t in doc.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties)
+                {
+                    this.fulListToMap.Add(t);
+                }
+                foreach (var t in doc.GroupProperties.ListProperties)
+                {
+                    this.fulListToMap.Add(t);
+                }
+                foreach (var tt in doc.GroupDetails.ListDetails)
+                {
+                    this.AddDetailProperties(tt);
+                }
+                // select properties for mapping
+                foreach (var t in this.ListMappings)
+                {
+                    Property? selected = null;
+                    int cnt = 0;
+                    foreach (var tt in this.fulListToMap)
+                    {
+                        this.AddCompatibleProperty(t, tt);
+                        if (t.Dimension != null && tt.Guid == t.Dimension.MappedRegisterDimensionToDocPropertyGuid)
+                        {
+                            selected = tt;
+                            cnt++;
+                        }
+                        else if (t.AttachedProperty != null && tt.Guid == t.AttachedProperty.MappedRegisterAttachedPropertyToDocPropertyGuid)
+                        {
+                            selected = tt;
+                            cnt++;
+                        }
+                        else if (!string.IsNullOrEmpty(t.AccumulatorGuid))
+                        {
+                            if (this.TableTurnoverPropertyMoneyAccumulatorGuid == t.AccumulatorGuid && this.MappedMoneyAccumulatorPropertyToDocPropertyGuid == tt.Guid)
+                            {
+                                selected = tt;
+                                cnt++;
+                            }
+                            else if (this.TableTurnoverPropertyQtyAccumulatorGuid == t.AccumulatorGuid && this.MappedQtyAccumulatorPropertyToDocPropertyGuid == tt.Guid)
+                            {
+                                selected = tt;
+                                cnt++;
+                            }
+                        }
+                    }
+                    Debug.Assert(cnt < 2);
+                    t.Selected = selected;
+                }
+            }
+        }
+        private void AddDetailProperties(Detail d)
+        {
+            foreach (var t in d.GroupProperties.ListProperties)
+            {
+                this.fulListToMap.Add(t);
+            }
+            foreach (var tt in d.GroupDetails.ListDetails)
+            {
+                this.AddDetailProperties(tt);
+            }
+        }
+        private void AddCompatibleProperty(MappingRow row, Property p)
+        {
+            if (this.IsShowCompatible)
+            {
+                if (row.Dimension != null)
+                {
+                    if (string.IsNullOrEmpty(row.Dimension.DimensionCatalogGuid))
+                        return;
+                    var cat = this.Cfg.DicNodes[row.Dimension.DimensionCatalogGuid];
+                    if (p.DataType.DataTypeEnum != EnumDataType.CATALOG || cat.Guid != p.DataType.ObjectGuid)
+                        return;
+                }
+                else if (row.AttachedProperty != null)
+                {
+                    if (p.IsNullable && !row.AttachedProperty.IsNullable)
+                        return;
+                    switch (row.AttachedProperty.DataType.DataTypeEnum)
+                    {
+                        case EnumDataType.CATALOG:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            if (p.DataType.ObjectGuid != row.AttachedProperty.DataType.ObjectGuid)
+                                return;
+                            break;
+                        case EnumDataType.CATALOGS:
+                            return;
+                        case EnumDataType.CHAR:
+                            if (p.DataType.DataTypeEnum != EnumDataType.CHAR && p.DataType.DataTypeEnum != EnumDataType.STRING)
+                                return;
+                            break;
+                        case EnumDataType.DATE:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            break;
+                        case EnumDataType.DATETIMELOCAL:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            break;
+                        case EnumDataType.DATETIMEOFFSET:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            break;
+                        case EnumDataType.DATETIMEUTC:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            break;
+                        case EnumDataType.DATETIMEZ:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            break;
+                        case EnumDataType.DOCUMENT:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            break;
+                        case EnumDataType.DOCUMENTS:
+                            return;
+                        case EnumDataType.ENUMERATION:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            if (p.DataType.EnumerationType != row.AttachedProperty.DataType.EnumerationType)
+                                return;
+                            break;
+                        case EnumDataType.NUMERICAL:
+                            if (p.DataType.Accuracy > 0 && p.DataType.Accuracy > row.AttachedProperty.DataType.Accuracy)
+                                return;
+                            if (p.DataType.Length > row.AttachedProperty.DataType.Length)
+                                return;
+                            break;
+                        case EnumDataType.STRING:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            break;
+                        case EnumDataType.TIME:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            break;
+                        case EnumDataType.TIMESPAN:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            break;
+                        case EnumDataType.TIMESPAN_TIME_ONLY:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            break;
+                        case EnumDataType.TIMEZ:
+                            break;
+                        default:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            break;
+                    }
+                }
+                else if (row.AccumulatorGuid != null)
+                {
+                    if (p.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
+                        return;
+                    if (row.AccumulatorGuid == this.TableTurnoverPropertyMoneyAccumulatorGuid)
+                    {
+                        if (p.DataType.Accuracy > 0 && p.DataType.Accuracy > this.TableTurnoverPropertyMoneyAccumulatorAccuracy)
+                            return;
+                        if (p.DataType.Length > this.TableTurnoverPropertyMoneyAccumulatorLength)
+                            return;
+                    }
+                    else if (row.AccumulatorGuid == this.TableTurnoverPropertyQtyAccumulatorGuid)
+                    {
+                        if (p.DataType.Accuracy > 0 && p.DataType.Accuracy > this.TableTurnoverPropertyQtyAccumulatorAccuracy)
+                            return;
+                        if (p.DataType.Length > this.TableTurnoverPropertyQtyAccumulatorLength)
+                            return;
+                    }
+                    else
+                        throw new NotImplementedException();
+                }
+            }
+            row.ListToMap.Add(p);
+        }
         #region Documents
         [Browsable(false)]
         public SortedObservableCollection<ISortingValue> ListNotSelectedDocuments
@@ -829,6 +1037,101 @@ namespace vSharpStudio.vm.ViewModels
         private SortedObservableCollection<ISortingValue> _ListSelectedDocuments = new SortedObservableCollection<ISortingValue>();
         #endregion Documents
 
+        #region Mapping
+        [Browsable(false)]
+        public bool IsShowCompatible
+        {
+            get => _IsShowCompatible;
+            set => SetProperty(ref _IsShowCompatible, value);
+        }
+        private bool _IsShowCompatible = true;
+        [Browsable(false)]
+        public ISortingValue? SelectedDoc
+        {
+            get => _SelectedDoc;
+            set
+            {
+                if (SetProperty(ref _SelectedDoc, value))
+                {
+                    if (_SelectedDoc == null)
+                    {
+                        this.VisibilityTextDocNotSelected = Visibility.Visible;
+                        this.VisibilityTextDocSelected = Visibility.Hidden;
+                    }
+                    else
+                    {
+                        this.VisibilityTextDocNotSelected = Visibility.Hidden;
+                        this.VisibilityTextDocSelected = Visibility.Visible;
+                        this.TextDocSelected = $"Mapping register to '{((IName)_SelectedDoc).Name}' document properties";
+                    }
+                    UpdateListMappings();
+                }
+            }
+        }
+        private ISortingValue? _SelectedDoc;
+        private ObservableCollection<Property> fulListToMap = new ObservableCollection<Property>();
+        [Browsable(false)]
+        public Visibility VisibilityTextDocNotSelected
+        {
+            get => _VisibilityTextDocNotSelected;
+            set => SetProperty(ref _VisibilityTextDocNotSelected, value);
+        }
+        private Visibility _VisibilityTextDocNotSelected = Visibility.Visible;
+        [Browsable(false)]
+        public string TextDocSelected
+        {
+            get => _TextDocSelected;
+            set => SetProperty(ref _TextDocSelected, value);
+        }
+        private string _TextDocSelected = string.Empty;
+        [Browsable(false)]
+        public Visibility VisibilityTextDocSelected
+        {
+            get => _VisibilityTextDocSelected;
+            set => SetProperty(ref _VisibilityTextDocSelected, value);
+        }
+        private Visibility _VisibilityTextDocSelected = Visibility.Hidden;
+        [Browsable(false)]
+        public ObservableCollection<MappingRow> ListMappings
+        {
+            get => _ListMappings;
+            set => SetProperty(ref _ListMappings, value);
+        }
+        private ObservableCollection<MappingRow> _ListMappings = new ObservableCollection<MappingRow>();
+        #endregion Mapping
+
         #endregion Editor
+    }
+    public class MappingRow : ObservableObject
+    {
+        public Register Reg { get; private set; }
+        public RegisterDimension? Dimension { get; private set; }
+        public Property? AttachedProperty { get; private set; }
+        public string? AccumulatorGuid { get; private set; }
+        public MappingRow(Register reg, RegisterDimension dim)
+        {
+            this.Reg = reg;
+            this.Dimension = dim;
+            this.Name = dim.Name;
+        }
+        public MappingRow(Register reg, string accumulatorGuid, string accumulatorName)
+        {
+            this.Reg = reg;
+            this.AccumulatorGuid = accumulatorGuid;
+            this.Name = accumulatorName;
+        }
+        public string Name { get; private set; }
+        public Property? Selected
+        {
+            get => _Selected;
+            set => SetProperty(ref _Selected, value);
+        }
+        private Property? _Selected;
+        public ObservableCollection<Property> ListToMap
+        {
+            get => _ListToMap;
+            set => SetProperty(ref _ListToMap, value);
+        }
+        private ObservableCollection<Property> _ListToMap = new ObservableCollection<Property>();
     }
 }

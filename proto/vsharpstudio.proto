@@ -1468,6 +1468,9 @@ message proto_property {
     proto_property_data_generator data_generator = 31; 
 
     // @attr [Browsable(false)]
+    string mapped_register_attached_property_to_doc_property_guid = 33;
+
+    // @attr [Browsable(false)]
     repeated proto_role_property_access list_role_property_access_settings = 101;
 /*
     // @attr [PropertyOrderAttribute(28)]
@@ -2763,6 +2766,8 @@ message proto_register_dimension {
     // @attr [Description("Catalog for register dimension")]
     // @attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]
     string dimension_catalog_guid = 21; 
+    // @attr [Browsable(false)]
+    string mapped_register_dimension_to_doc_property_guid = 33;
 
     // Guid for dimension property. Auto generated.
     // @attr [Browsable(false)]
@@ -2874,7 +2879,7 @@ message proto_register {
     // @attr [PropertyOrderAttribute(7)]
     proto_enum_register_type register_type = 6;
     // @attr [Category("")]
-    // @attr [DisplayName("Register Type")]
+    // @attr [DisplayName("Periodicity")]
     // @attr [PropertyOrderAttribute(9)]
     proto_enum_register_periodicity register_periodicity = 11;
     // Last generated Protobuf field position
@@ -2932,6 +2937,11 @@ message proto_register {
     proto_group_list_register_dimensions group_register_dimensions = 28;
     // @attr [Browsable(false)]
     proto_group_list_properties group_attached_properties = 31;
+
+    // @attr [Browsable(false)]
+    string mapped_money_accumulator_property_to_doc_property_guid = 33;
+    // @attr [Browsable(false)]
+    string mapped_qty_accumulator_property_to_doc_property_guid = 34;
 
     // Guid for posting date guid property. Auto generated.
     // @attr [Browsable(false)]

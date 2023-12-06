@@ -35,6 +35,11 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         /// <summary>
+        /// Property Path in object. Samples: Property1, Detail1->Property1
+        /// </summary>
+        [Browsable(false)]
+        public string PathInObject { get; set; } = string.Empty;
+        /// <summary>
         /// Tag to find property in list. To use for dynamically created property list
         /// </summary>
         [Browsable(false)]
@@ -110,6 +115,31 @@ namespace vSharpStudio.vm.ViewModels
                     break;
             }
             Init();
+            var sb = ToRoot(this);
+            this.PathInObject = sb.ToString();
+        }
+        private StringBuilder ToRoot(ITreeConfigNode n, StringBuilder? sb = null)
+        {
+            if (sb == null)
+                sb = new StringBuilder();
+            if (n is Document)
+                return sb;
+            if (n is Catalog)
+                return sb;
+            if (n is GroupDocuments)
+                return sb;
+            Debug.Assert(n.Parent != null);
+            ToRoot(n.Parent, sb);
+            if (n is Property p)
+            {
+                sb.Append(p.Name);
+            }
+            else if (n is Detail d)
+            {
+                sb.Append(d.Name);
+                sb.Append('.');
+            }
+            return sb;
         }
         private void Init()
         {

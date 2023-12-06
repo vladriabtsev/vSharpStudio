@@ -12295,6 +12295,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsStopTabControl = from.IsStopTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:63 IsDefaultBase=False
                 vm.DataGenerator = vSharpStudio.vm.ViewModels.PropertyDataGenerator.Clone(vm, from.DataGenerator, isDeep);
+            vm._MappedRegisterAttachedPropertyToDocPropertyGuid = from.MappedRegisterAttachedPropertyToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:50
             foreach (var t in from.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:51
                 vm.ListRolePropertyAccessSettings.Add(RolePropertyAccess.Clone((RolePropertyAccess)t, isDeep));
@@ -12334,6 +12335,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._IsStopTabControl = from.IsStopTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:137
                 vSharpStudio.vm.ViewModels.PropertyDataGenerator.Update((PropertyDataGenerator)to.DataGenerator, from.DataGenerator, isDeep);
+            to._MappedRegisterAttachedPropertyToDocPropertyGuid = from.MappedRegisterAttachedPropertyToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:85
             {
                 foreach (var t in to.ListRolePropertyAccessSettings.ToList())
@@ -12460,6 +12462,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             if (vm.DataGenerator == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:208
                 vm.DataGenerator = new PropertyDataGenerator(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:210
             vSharpStudio.vm.ViewModels.PropertyDataGenerator.ConvertToVM(m.DataGenerator, (PropertyDataGenerator)vm.DataGenerator); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:214
+            vm._MappedRegisterAttachedPropertyToDocPropertyGuid = m.MappedRegisterAttachedPropertyToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:199
             foreach (var t in m.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:200
             {
@@ -12505,6 +12508,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.IsStartNewTabControl = vm.IsStartNewTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.IsStopTabControl = vm.IsStopTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.DataGenerator = vSharpStudio.vm.ViewModels.PropertyDataGenerator.ConvertToProto((PropertyDataGenerator)vm.DataGenerator); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:263
+            m.MappedRegisterAttachedPropertyToDocPropertyGuid = vm.MappedRegisterAttachedPropertyToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             foreach (var t in vm.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:235
                 m.ListRolePropertyAccessSettings.Add(RolePropertyAccess.ConvertToProto((RolePropertyAccess)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:239
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:267
@@ -12938,6 +12942,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         //partial void OnDataGeneratorChanging(ref PropertyDataGenerator to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnDataGeneratorChanged();
         IPropertyDataGenerator IProperty.DataGenerator { get { return (this as Property).DataGenerator; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:75
+        
+        [Browsable(false)]
+        public string MappedRegisterAttachedPropertyToDocPropertyGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._MappedRegisterAttachedPropertyToDocPropertyGuid; }
+            set
+            {
+                // Use 'OnMappedRegisterAttachedPropertyToDocPropertyGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._MappedRegisterAttachedPropertyToDocPropertyGuid, value, (t) => { /*this.OnMappedRegisterAttachedPropertyToDocPropertyGuidChanging(ref value);*/ this._MappedRegisterAttachedPropertyToDocPropertyGuid = value; this.OnMappedRegisterAttachedPropertyToDocPropertyGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _MappedRegisterAttachedPropertyToDocPropertyGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnMappedRegisterAttachedPropertyToDocPropertyGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnMappedRegisterAttachedPropertyToDocPropertyGuidChanged();
         
         // 
         // // @attr [PropertyOrderAttribute(28)]
@@ -22234,6 +22256,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._DimensionCatalogGuid = from.DimensionCatalogGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._MappedRegisterDimensionToDocPropertyGuid = from.MappedRegisterDimensionToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._Position = from.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:54
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:55
@@ -22254,6 +22277,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._DimensionCatalogGuid = from.DimensionCatalogGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._MappedRegisterDimensionToDocPropertyGuid = from.MappedRegisterDimensionToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._Position = from.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:85
             {
@@ -22326,6 +22350,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsNew = m.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsMarkedForDeletion = m.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._DimensionCatalogGuid = m.DimensionCatalogGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._MappedRegisterDimensionToDocPropertyGuid = m.MappedRegisterDimensionToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._Position = m.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:189
             foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:193
@@ -22351,6 +22376,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.DimensionCatalogGuid = vm.DimensionCatalogGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.MappedRegisterDimensionToDocPropertyGuid = vm.MappedRegisterDimensionToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:235
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:239
@@ -22544,6 +22570,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private string _DimensionCatalogGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
         //partial void OnDimensionCatalogGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnDimensionCatalogGuidChanged();
+        
+        [Browsable(false)]
+        public string MappedRegisterDimensionToDocPropertyGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._MappedRegisterDimensionToDocPropertyGuid; }
+            set
+            {
+                // Use 'OnMappedRegisterDimensionToDocPropertyGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._MappedRegisterDimensionToDocPropertyGuid, value, (t) => { /*this.OnMappedRegisterDimensionToDocPropertyGuidChanging(ref value);*/ this._MappedRegisterDimensionToDocPropertyGuid = value; this.OnMappedRegisterDimensionToDocPropertyGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _MappedRegisterDimensionToDocPropertyGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnMappedRegisterDimensionToDocPropertyGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnMappedRegisterDimensionToDocPropertyGuidChanged();
         
         // Protobuf field position
         // Reserved positions: 1-15
@@ -23214,6 +23258,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vm.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Clone(vm, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:63 IsDefaultBase=True
                 vm.GroupAttachedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupAttachedProperties, isDeep);
+            vm._MappedMoneyAccumulatorPropertyToDocPropertyGuid = from.MappedMoneyAccumulatorPropertyToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._MappedQtyAccumulatorPropertyToDocPropertyGuid = from.MappedQtyAccumulatorPropertyToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyPostDateGuid = from.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyVersionGuid = from.PropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
@@ -23274,6 +23320,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Update((GroupListRegisterDimensions)to.GroupRegisterDimensions, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:137
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupAttachedProperties, from.GroupAttachedProperties, isDeep);
+            to._MappedMoneyAccumulatorPropertyToDocPropertyGuid = from.MappedMoneyAccumulatorPropertyToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._MappedQtyAccumulatorPropertyToDocPropertyGuid = from.MappedQtyAccumulatorPropertyToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyPostDateGuid = from.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyVersionGuid = from.PropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
@@ -23424,6 +23472,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             if (vm.GroupAttachedProperties == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:208
                 vm.GroupAttachedProperties = new GroupListProperties(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:210
             vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupAttachedProperties, (GroupListProperties)vm.GroupAttachedProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:214
+            vm._MappedMoneyAccumulatorPropertyToDocPropertyGuid = m.MappedMoneyAccumulatorPropertyToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._MappedQtyAccumulatorPropertyToDocPropertyGuid = m.MappedQtyAccumulatorPropertyToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyPostDateGuid = m.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyIdGuid = m.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyVersionGuid = m.PropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
@@ -23493,6 +23543,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.TableTurnoverPropertyIsStartingBalanceGuid = vm.TableTurnoverPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.ConvertToProto((GroupListRegisterDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:263
             m.GroupAttachedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupAttachedProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:263
+            m.MappedMoneyAccumulatorPropertyToDocPropertyGuid = vm.MappedMoneyAccumulatorPropertyToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.MappedQtyAccumulatorPropertyToDocPropertyGuid = vm.MappedQtyAccumulatorPropertyToDocPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyPostDateGuid = vm.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyIdGuid = vm.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyVersionGuid = vm.PropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
@@ -23671,7 +23723,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnRegisterTypeChanged();
         
         [Category("")]
-        [DisplayName("Register Type")]
+        [DisplayName("Periodicity")]
         [PropertyOrderAttribute(9)]
         public EnumRegisterPeriodicity RegisterPeriodicity // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
@@ -24013,6 +24065,42 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         //partial void OnGroupAttachedPropertiesChanging(ref GroupListProperties to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupAttachedPropertiesChanged();
         IGroupListProperties IRegister.GroupAttachedProperties { get { return (this as Register).GroupAttachedProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:75
+        
+        [Browsable(false)]
+        public string MappedMoneyAccumulatorPropertyToDocPropertyGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._MappedMoneyAccumulatorPropertyToDocPropertyGuid; }
+            set
+            {
+                // Use 'OnMappedMoneyAccumulatorPropertyToDocPropertyGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._MappedMoneyAccumulatorPropertyToDocPropertyGuid, value, (t) => { /*this.OnMappedMoneyAccumulatorPropertyToDocPropertyGuidChanging(ref value);*/ this._MappedMoneyAccumulatorPropertyToDocPropertyGuid = value; this.OnMappedMoneyAccumulatorPropertyToDocPropertyGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _MappedMoneyAccumulatorPropertyToDocPropertyGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnMappedMoneyAccumulatorPropertyToDocPropertyGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnMappedMoneyAccumulatorPropertyToDocPropertyGuidChanged();
+        
+        [Browsable(false)]
+        public string MappedQtyAccumulatorPropertyToDocPropertyGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._MappedQtyAccumulatorPropertyToDocPropertyGuid; }
+            set
+            {
+                // Use 'OnMappedQtyAccumulatorPropertyToDocPropertyGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._MappedQtyAccumulatorPropertyToDocPropertyGuid, value, (t) => { /*this.OnMappedQtyAccumulatorPropertyToDocPropertyGuidChanging(ref value);*/ this._MappedQtyAccumulatorPropertyToDocPropertyGuid = value; this.OnMappedQtyAccumulatorPropertyToDocPropertyGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _MappedQtyAccumulatorPropertyToDocPropertyGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnMappedQtyAccumulatorPropertyToDocPropertyGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnMappedQtyAccumulatorPropertyToDocPropertyGuidChanged();
         
         // Guid for posting date guid property. Auto generated.
         [Browsable(false)]
