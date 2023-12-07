@@ -1468,9 +1468,6 @@ message proto_property {
     proto_property_data_generator data_generator = 31; 
 
     // @attr [Browsable(false)]
-    string mapped_register_attached_property_to_doc_property_guid = 33;
-
-    // @attr [Browsable(false)]
     repeated proto_role_property_access list_role_property_access_settings = 101;
 /*
     // @attr [PropertyOrderAttribute(28)]
@@ -2766,8 +2763,6 @@ message proto_register_dimension {
     // @attr [Description("Catalog for register dimension")]
     // @attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]
     string dimension_catalog_guid = 21; 
-    // @attr [Browsable(false)]
-    string mapped_register_dimension_to_doc_property_guid = 33;
 
     // Guid for dimension property. Auto generated.
     // @attr [Browsable(false)]
@@ -2938,11 +2933,6 @@ message proto_register {
     // @attr [Browsable(false)]
     proto_group_list_properties group_attached_properties = 31;
 
-    // @attr [Browsable(false)]
-    string mapped_money_accumulator_property_to_doc_property_guid = 33;
-    // @attr [Browsable(false)]
-    string mapped_qty_accumulator_property_to_doc_property_guid = 34;
-
     // Guid for posting date guid property. Auto generated.
     // @attr [Browsable(false)]
     string property_post_date_guid = 36; 
@@ -3013,7 +3003,7 @@ message proto_register_doc_to_reg
     // Document GUID
     string doc_guid = 2;
     // Mappings
-    repeated proto_register_reg_prop_to_doc_prop list_mapings = 3;
+    repeated proto_register_reg_prop_to_doc_prop list_mappings = 3;
 }
 // @base Object
 message proto_register_reg_prop_to_doc_prop

@@ -122,6 +122,21 @@ namespace vSharpStudio.vm.ViewModels
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
+                //if (use && string.IsNullOrWhiteSpace(p.MappedMoneyAccumulatorPropertyToDocPropertyGuid))
+                //{
+                //    p.ListDocMappings
+                //    foreach(var t in p.ListDocGuids)
+                //    {
+
+                //    }
+
+                //    ???
+
+                //    var vf = new ValidationFailure(nameof(p.UseMoneyAccumulator),
+                //        $"Accumulator Property '{p.TableTurnoverPropertyMoneyAccumulatorName}' is not mapped to document property");
+                //    vf.Severity = Severity.Error;
+                //    cntx.AddFailure(vf);
+                //}
             });
             this.RuleFor(x => x.GroupRegisterDimensions.ListDimensions).Must((lst) =>
             {
@@ -176,9 +191,10 @@ namespace vSharpStudio.vm.ViewModels
                             bool isExplicitlyMapped = false;
                             foreach (var dm in r.ListDocMappings)
                             {
+                                Debug.Assert(!string.IsNullOrWhiteSpace(dm.DocGuid));
                                 if (dm.DocGuid != doc.Guid)
                                     continue;
-                                foreach (var m in dm.ListMapings)
+                                foreach (var m in dm.ListMappings)
                                 {
                                     if (string.IsNullOrEmpty(m.DocPropGuid))
                                         continue;

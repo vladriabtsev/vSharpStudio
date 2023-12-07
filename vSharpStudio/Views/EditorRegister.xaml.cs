@@ -26,24 +26,15 @@ namespace vSharpStudio.Views
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var row = (MappingRow)((System.Windows.FrameworkElement)sender).DataContext;
-            if (e.AddedItems.Count > 0)
+            foreach (var t in e.RemovedItems)
             {
-                var prop = (Property)e.AddedItems[0];
-                if (row.Dimension != null)
-                    row.Dimension.MappedRegisterDimensionToDocPropertyGuid = prop.Guid;
-                else if (row.AttachedProperty != null)
-                    row.AttachedProperty.MappedRegisterAttachedPropertyToDocPropertyGuid = prop.Guid;
-                else if (!string.IsNullOrEmpty(row.AccumulatorGuid))
-                {
-                    if (row.Reg.TableTurnoverPropertyMoneyAccumulatorGuid == row.AccumulatorGuid)
-                        row.Reg.MappedMoneyAccumulatorPropertyToDocPropertyGuid = prop.Guid;
-                    else if (row.Reg.TableTurnoverPropertyQtyAccumulatorGuid == row.AccumulatorGuid)
-                        row.Reg.MappedQtyAccumulatorPropertyToDocPropertyGuid = prop.Guid;
-                    else
-                        throw new NotImplementedException();
-                }
-                else
-                    throw new NotImplementedException();
+                //var prop = (Property)t;
+                row.Reg.MappingRegPropertyRemove(row.Doc.Guid, row.RegPropertyGuid);
+            }
+            foreach (var t in e.AddedItems)
+            {
+                var prop = (Property)t;
+                row.Reg.MappingRegPropertyAdd(row.Doc.Guid, row.RegPropertyGuid, prop.Guid);
             }
         }
     }
