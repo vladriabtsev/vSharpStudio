@@ -360,7 +360,7 @@ namespace vSharpStudio.Unit
 
             var cfg = mvm.Config;
             uint pos = 20;
-            var reg = (IRegister)cfg.Model.GroupListRegisters.NodeAddNewSubNode();
+            var reg = (Register)cfg.Model.GroupListRegisters.NodeAddNewSubNode();
             Assert.AreEqual(pos, reg.LastGenPosition);
 
             var dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
@@ -397,99 +397,169 @@ namespace vSharpStudio.Unit
         #endregion Unique position for Protobuf
 
         [TestMethod]
-        public void Register002_Validation()
+        async public System.Threading.Tasks.Task Register002_Validation()
         {
-            var mvm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            //mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
-            mvm.BtnNewConfig.Execute();
+            var cancellation = new CancellationTokenSource();
+            var token = cancellation.Token;
 
-            // only register without dimensions
-            var cfg = mvm.Config;
-            var reg = (Register)cfg.Model.GroupListRegisters.NodeAddNewSubNode();
-            reg.Validate();
-            Assert.AreEqual(2, reg.ValidationCollection.Count);
-            reg.ValidationCollection.Single(m => m.Message.StartsWith("Register dimentions are not selected"));
-            reg.ValidationCollection.Single(m => m.Message.StartsWith("List of Document types for Register is empty"));
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            vm.BtnNewConfig.Execute();
 
-            // register with one dimension, but without selected catalog
-            var dim = (RegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
-            Assert.AreEqual(1, reg.GroupRegisterDimensions.ListDimensions.Count);
-            dim.Validate();
-            Assert.AreEqual(1, dim.ValidationCollection.Count);
-            dim.ValidationCollection.Single(m => m.Message.StartsWith("Catalog type is not selected for register dimension"));
-            reg.Validate();
-            Assert.AreEqual(1, reg.ValidationCollection.Count);
+            var cfg = vm.Config;
 
-            // without accumulator
-            reg.UseMoneyAccumulator = false;
-            reg.UseQtyAccumulator = false;
-            reg.Validate();
-            Assert.AreEqual(3, reg.ValidationCollection.Count);
-            reg.ValidationCollection[0].Message.StartsWith("At least one accumulator type has to be selected");
-            reg.ValidationCollection[1].Message.StartsWith("At least one accumulator type has to be selected");
-            reg.UseQtyAccumulator = true;
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountErrors == 0);
+            Assert.IsTrue(cfg.CountInfos == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.ValidationCollection.Count == 0);
 
-            // register with one dimension with selected catalog
-            var cat = (Catalog)cfg.Model.GroupCatalogs.NodeAddNewSubNode();
-            dim.DimensionCatalogGuid = cat.Guid;
-            dim.Validate();
-            Assert.AreEqual(0, dim.ValidationCollection.Count);
-            reg.Validate();
-            Assert.AreEqual(1, reg.ValidationCollection.Count);
+            // Can work with register without catalogs and docs
+            var reg1 = cfg.Model.GroupListRegisters.AddRegister("turnover", EnumRegisterType.TURNOVER);
+            reg1.TableTurnoverPropertyMoneyAccumulatorLength = 20;
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountInfos == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountErrors == 1);
+            //cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimensions are not selected."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. List of Document types for Register is empty"));
 
-            // register, document without proper catalog property
-            var doc = (Document)cfg.Model.GroupDocuments.GroupListDocuments.NodeAddNewSubNode();
-            reg.ListDocGuids.Add(doc.Guid);
-            reg.Validate();
-            Assert.AreEqual(1, reg.ValidationCollection.Count);
-            reg.ValidationCollection.Single(m => m.Message.Contains("doesn't have property of type catalog"));
+            // Remove one error by adding document for register
+            var doc1 = cfg.Model.GroupDocuments.AddDocument("doc1");
+            reg1.SelectedDoc = doc1;
+            reg1.ListDocGuids.Add(doc1.Guid);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountInfos == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountErrors == 1);
+            //cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimensions are not selected."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. There are no any mappings for 'doc1' document."));
 
-            // register, document with proper catalog property
-            var doc_cat_prop = (Property)doc.GroupProperties.NodeAddNewSubNode();
-            doc_cat_prop.DataType.DataTypeEnum = EnumDataType.CATALOG;
-            doc_cat_prop.DataType.ObjectGuid = cat.Guid;
-            reg.Validate();
-            Assert.AreEqual(0, reg.ValidationCollection.Count);
+            // Dimension without selected catalog will produce another error
+            var dim1 = (RegisterDimension)reg1.AddDimension("cat_dimension1");
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountInfos == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountErrors == 2);
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. There are no any mappings for 'doc1' document."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Catalog type is not selected for register dimension"));
 
-            // register, document with two proper catalog property
-            var doc_cat_prop2 = (Property)doc.GroupProperties.NodeAddNewSubNode();
-            doc_cat_prop2.DataType.DataTypeEnum = EnumDataType.CATALOG;
-            doc_cat_prop2.DataType.ObjectGuid = cat.Guid;
-            reg.Validate();
-            Assert.AreEqual(1, reg.ValidationCollection.Count);
-            reg.ValidationCollection.Single(m => m.Message.Contains("has more than one property of type catalog"));
+            // Set catalog type for dimension
+            var cat1 = cfg.Model.GroupCatalogs.AddCatalog("cat1");
+            dim1.DimensionCatalogGuid = cat1.Guid;
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountInfos == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountErrors == 1);
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. There are no any mappings for 'doc1' document."));
 
-            // register, document with proper catalog property
-            doc.GroupProperties.ListProperties.Clear();
-            doc.GroupProperties.ListProperties.Add(doc_cat_prop);
-            var det = (Detail)doc.GroupDetails.NodeAddNewSubNode();
-            reg.Validate();
-            Assert.AreEqual(0, reg.ValidationCollection.Count);
+            // Map Money Accumulator to property with low accuracy
+            var p_num28_5 = doc1.AddPropertyNumerical("num28_5", 28, 5);
+            reg1.MappingRegPropertyAdd(doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid, p_num28_5.Guid);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountInfos == 2);
+            Assert.IsTrue(cfg.CountErrors == 2);
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimesion 'cat_dimension1' is not mapped to 'doc1' document property."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' has length less than length 'num28_5' property of 'doc1' document."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' has accuracy less than accuracy 'num28_5' property of 'doc1' document."));
 
-            // register, document with proper catalog property and catalog property in details
-            det.GroupProperties.ListProperties.Add(doc_cat_prop2);
-            reg.Validate();
-            Assert.AreEqual(1, reg.ValidationCollection.Count);
-            reg.ValidationCollection.Single(m => m.Message.Contains("has more than one property of type catalog"));
+            // Map Money Accumulator
+            reg1.MappingRegPropertyRemove(doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid);
+            var p_num10_2 = doc1.AddPropertyNumerical("num10_2", 10, 2);
+            reg1.MappingRegPropertyAdd(doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid, p_num10_2.Guid);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountInfos == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountErrors == 2);
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimesion 'cat_dimension1' is not mapped to 'doc1' document property."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
 
-            // register, document with proper catalog property in details
-            doc.GroupProperties.ListProperties.Clear();
-            reg.Validate();
-            Assert.AreEqual(0, reg.ValidationCollection.Count);
+            // Map dimension
+            var det1 = doc1.AddDetails("det1");
+            var p_det1_cat1 = det1.AddPropertyCatalog("cat1", cat1.Guid, true);
+            reg1.MappingRegPropertyAdd(doc1.Guid, dim1.Guid, p_det1_cat1.Guid);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountInfos == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountErrors == 2);
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' not mapped on a same record as a deepest dimension 'cat_dimension1' of 'doc1' document."));
 
-            //// dimension with QTY accumulating
-            //reg.UseQtyAccumulator = true;
-            //reg.Validate();
-            //Assert.AreEqual(1, reg.ValidationCollection.Count);
-            //reg.ValidationCollection.Single(m => m.Message.Contains("doesn't have property of type decimal"));
+            // Map Money Accumulator on a same record as deepest dimension
+            var pd_num10_2 = det1.AddPropertyNumerical("num10_2", 10, 2);
+            reg1.MappingRegPropertyRemove(doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid);
+            reg1.MappingRegPropertyAdd(doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid, pd_num10_2.Guid);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountInfos == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountErrors == 1);
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
 
-            mvm.BtnConfigSaveAs.Execute(@".\test.vcfg");
-            mvm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.AreEqual(1, mvm.Config.Model.GroupListRegisters.ListRegisters.Count);
-            Assert.AreEqual(1, mvm.Config.Model.GroupListRegisters.ListRegisters[0].GroupRegisterDimensions.ListDimensions.Count);
-            reg = mvm.Config.Model.GroupListRegisters.ListRegisters[0];
-            reg.Validate();
-            Assert.AreEqual(0, reg.ValidationCollection.Count);
+            // Map Qty Accumulator on a same record as deepest dimension
+            var pd_num10_4 = det1.AddPropertyNumerical("num10_4", 10, 4);
+            reg1.MappingRegPropertyAdd(doc1.Guid, reg1.TableTurnoverPropertyQtyAccumulatorGuid, pd_num10_4.Guid);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountInfos == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountErrors == 0);
+
+            // Add dimension
+            var dim2 = (RegisterDimension)reg1.AddDimension("cat_dimension2");
+            reg1.MappingRegPropertyAdd(doc1.Guid, reg1.TableTurnoverPropertyQtyAccumulatorGuid, pd_num10_4.Guid);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountInfos == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountErrors == 2);
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimesion 'cat_dimension2' is not mapped to 'doc1' document property."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Catalog type is not selected for register dimension."));
+
+            // Change dimension type to same as first dimension type
+            dim2.DimensionCatalogGuid = cat1.Guid;
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountInfos == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountErrors == 3);
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimesion 'cat_dimension2' is not mapped to 'doc1' document property."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover' dimension 'cat_dimension1'. Selected catalog type for register dimension is already used for 'cat_dimension2' dimension."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover' dimension 'cat_dimension2'. Selected catalog type for register dimension is already used for 'cat_dimension1' dimension."));
+
+            // Change dimension type to another catalog
+            var cat2 = cfg.Model.GroupCatalogs.AddCatalog("cat2");
+            dim2.DimensionCatalogGuid = cat2.Guid;
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountInfos == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountErrors == 1);
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimesion 'cat_dimension2' is not mapped to 'doc1' document property."));
+
+            // Map dimension 2
+            var p_doc1_cat1 = doc1.AddPropertyCatalog("cat1", cat1.Guid, true);
+            reg1.MappingRegPropertyAdd(doc1.Guid, dim2.Guid, p_doc1_cat1.Guid);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.IsTrue(cfg.CountInfos == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountErrors == 0);
+
+            //var s_qty5_2 = cfg.Model.GroupDocuments.AddSharedPropertyNumerical("qty", 5, 2);
+
+            // 1. Can find doc shared property to map register dimention 
+
+            // 2. Can find doc property to map register dimention 
+
+            // 3. Can find doc numerical property to map register property.
+            // Length of doc property has to be less or equal than numerical register property length.
+            // Accuracy of doc property has to be less or equal than numerical register property accuracy.
+
+            // 4. Can find doc string property to map register property.
+            // Length of doc property has to be less or equal than register property length.
+
+            // 5. Can find doc string property to map register attached property.
+            // Length of doc property has to be less or equal than register property length.
+
+            // 6. Can find doc catalog property to map register attached property.
+
+            //await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
         }
 
         //#region OnAdded in parent

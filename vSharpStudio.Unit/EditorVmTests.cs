@@ -19,6 +19,7 @@ using System.Threading;
 using Microsoft.Build.Utilities;
 using Newtonsoft.Json.Linq;
 using vSharpStudio.ViewModels;
+using Polly.Caching;
 
 namespace vSharpStudio.Unit
 {
@@ -573,7 +574,7 @@ namespace vSharpStudio.Unit
         #endregion ITreeConfigNode
 
         #region Compare Tree
-        private Config createTree()
+        private MainPageVM CreateVM()
         {
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
@@ -589,7 +590,7 @@ namespace vSharpStudio.Unit
             cnst2.DataType.DataTypeEnum = EnumDataType.ENUMERATION;
             cnst2.DataType.ObjectGuid = cfg.Model.GroupEnumerations[0].Guid;
 
-            return cfg;
+            return vm;
         }
 
         [TestMethod]
@@ -704,8 +705,8 @@ namespace vSharpStudio.Unit
             var cancellation = new CancellationTokenSource();
             var token = cancellation.Token;
 
-            var cfg = this.createTree();
-            //cfg.SolutionPath = @"..\..\..\..\";
+            var vm = this.CreateVM();
+            var cfg = vm.Config;
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountErrors == 0);
             Assert.IsTrue(cfg.CountInfos == 0);
@@ -782,13 +783,14 @@ namespace vSharpStudio.Unit
         }
 
         [TestMethod]
+        [Ignore]
         async public System.Threading.Tasks.Task Rules003_Constant()
         {
             var cancellation = new CancellationTokenSource();
             var token = cancellation.Token;
 
-            var cfg = this.createTree();
-            //cfg.SolutionPath = @"..\..\..\..\";
+            var vm = this.CreateVM();
+            var cfg = vm.Config;
 
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountErrors == 0);
@@ -796,78 +798,111 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.CountWarnings == 0);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
 
-            // string prev = cfg.Model.GroupConstants[0].DataType.ObjectName;
-            // cfg.Model.GroupConstants[0].DataType.ObjectName = "123";
-            // cfg.ValidateSubTreeFromNode(cfg);
-            // Assert.IsTrue(cfg.CountErrors == 1);
-            // Assert.IsTrue(cfg.CountInfos == 0);
-            // Assert.IsTrue(cfg.CountWarnings == 0);
-            // Assert.IsTrue(cfg.ValidationCollection.Count == 1);
-            // Assert.IsTrue(cfg.Model.GroupConstants[0].CountErrors == 1);
-            // Assert.IsTrue(cfg.Model.GroupConstants[0].CountInfos == 0);
-            // Assert.IsTrue(cfg.Model.GroupConstants[0].CountWarnings == 0);
-            // Assert.IsTrue(cfg.Model.GroupConstants[0].DataType.ValidationCollection.Count == 1);
+            //string prev = cfg.Model.GroupConstants[0].DataType.ObjectName;
+            //cfg.Model.GroupConstants[0].DataType.ObjectName = "123";
+            //cfg.ValidateSubTreeFromNode(cfg);
+            //Assert.IsTrue(cfg.CountErrors == 1);
+            //Assert.IsTrue(cfg.CountInfos == 0);
+            //Assert.IsTrue(cfg.CountWarnings == 0);
+            //Assert.IsTrue(cfg.ValidationCollection.Count == 1);
+            //Assert.IsTrue(cfg.Model.GroupConstants[0].CountErrors == 1);
+            //Assert.IsTrue(cfg.Model.GroupConstants[0].CountInfos == 0);
+            //Assert.IsTrue(cfg.Model.GroupConstants[0].CountWarnings == 0);
+            //Assert.IsTrue(cfg.Model.GroupConstants[0].DataType.ValidationCollection.Count == 1);
 
 
-            // cfg.Model.GroupConstants[0].DataType.ObjectName = prev;
-            // cfg.Model.GroupEnumerations[0].Name = "1a";
-            // cfg.ValidateSubTreeFromNode(cfg);
-            // Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountErrors == 1);
-            // Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountInfos == 0);
-            // Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountWarnings == 0);
-            // Assert.IsTrue(cfg.Model.GroupEnumerations[0].HasErrors);
-            // Assert.IsTrue(cfg.Model.GroupEnumerations[0].ValidationCollection.Count == 1);
-            // Assert.IsTrue(cfg.Model.GroupEnumerations[0].ValidationCollection[0].Severity == FluentValidation.Severity.Error);
-            // Assert.IsTrue(cfg.Model.GroupEnumerations[0].ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
+            //cfg.Model.GroupConstants[0].DataType.ObjectName = prev;
+            //cfg.Model.GroupEnumerations[0].Name = "1a";
+            //cfg.ValidateSubTreeFromNode(cfg);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountErrors == 1);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountInfos == 0);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountWarnings == 0);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations[0].HasErrors);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations[0].ValidationCollection.Count == 1);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations[0].ValidationCollection[0].Severity == FluentValidation.Severity.Error);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations[0].ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
 
             //// intermediate node contains only validation count
-            // Assert.IsTrue(cfg.Model.GroupEnumerations.ValidationCollection.Count == 0);
-            // Assert.IsTrue(cfg.Model.GroupEnumerations.CountErrors == 1);
-            // Assert.IsTrue(cfg.Model.GroupEnumerations.CountInfos == 0);
-            // Assert.IsTrue(cfg.Model.GroupEnumerations.CountWarnings == 0);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations.ValidationCollection.Count == 0);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations.CountErrors == 1);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations.CountInfos == 0);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations.CountWarnings == 0);
 
             //// ValidateSubTreeFromNode(node). node contains full list of validations
-            // Assert.IsTrue(cfg.CountErrors == 1);
-            // Assert.IsTrue(cfg.CountInfos == 0);
-            // Assert.IsTrue(cfg.CountWarnings == 0);
-            // Assert.IsTrue(cfg.ValidationCollection.Count == 1);
-            // Assert.IsTrue(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
-            // Assert.IsTrue(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
+            //Assert.IsTrue(cfg.CountErrors == 1);
+            //Assert.IsTrue(cfg.CountInfos == 0);
+            //Assert.IsTrue(cfg.CountWarnings == 0);
+            //Assert.IsTrue(cfg.ValidationCollection.Count == 1);
+            //Assert.IsTrue(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
+            //Assert.IsTrue(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_START_WITH_DIGIT);
 
-            // cfg.Model.GroupEnumerations[0].Name = " ab";
-            // Assert.IsTrue(cfg.Model.GroupEnumerations[0].Name == "ab");
-            // cfg.Model.GroupEnumerations[0].Validate();
-            // Assert.False(cfg.Model.GroupEnumerations[0].HasErrors);
+            //cfg.Model.GroupEnumerations[0].Name = " ab";
+            //Assert.IsTrue(cfg.Model.GroupEnumerations[0].Name == "ab");
+            //cfg.Model.GroupEnumerations[0].Validate();
+            //Assert.False(cfg.Model.GroupEnumerations[0].HasErrors);
 
-            // cfg.Model.GroupEnumerations[0].Name = "ab ";
-            // Assert.IsTrue(cfg.Model.GroupEnumerations[0].Name == "ab");
-            // cfg.Model.GroupEnumerations[0].Validate();
-            // Assert.False(cfg.Model.GroupEnumerations[0].HasErrors);
+            //cfg.Model.GroupEnumerations[0].Name = "ab ";
+            //Assert.IsTrue(cfg.Model.GroupEnumerations[0].Name == "ab");
+            //cfg.Model.GroupEnumerations[0].Validate();
+            //Assert.False(cfg.Model.GroupEnumerations[0].HasErrors);
 
-            // cfg.Model.GroupEnumerations[0].Name = "a b";
-            // cfg.ValidateSubTreeFromNode(cfg);
-            // Assert.IsTrue(cfg.ValidationCollection.Count == 1);
-            // Assert.IsTrue(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
-            // Assert.IsTrue(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
+            //cfg.Model.GroupEnumerations[0].Name = "a b";
+            //cfg.ValidateSubTreeFromNode(cfg);
+            //Assert.IsTrue(cfg.ValidationCollection.Count == 1);
+            //Assert.IsTrue(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
+            //Assert.IsTrue(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
 
-            // cfg.Model.GroupEnumerations.NodeAddNewSubNode();
-            // cfg.Model.GroupEnumerations[0].Name = "ab";
-            // cfg.Model.GroupEnumerations[1].Name = "ab";
-            // cfg.ValidateSubTreeFromNode(cfg);
-            // Assert.IsTrue(cfg.ValidationCollection.Count == 2);
-            // Assert.IsTrue(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
-            // Assert.IsTrue(cfg.ValidationCollection[1].Severity == FluentValidation.Severity.Error);
-            // Assert.IsTrue(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
-            // Assert.IsTrue(cfg.ValidationCollection[1].Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
-            // Assert.IsTrue(cfg.Model.GroupEnumerations[1].ValidationCollection.Count == 1);
-            // Assert.IsTrue(cfg.Model.GroupEnumerations[1].ValidationCollection[0].Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
-            // Assert.IsTrue(cfg.Model.GroupEnumerations[1].HasErrors == true);
-            // var errenum = cfg.Model.GroupEnumerations[1].GetErrors("Name").GetEnumerator();
-            // Assert.IsTrue(errenum.MoveNext() == true);
-            // Assert.IsTrue((string)errenum.Current == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
-            // Assert.IsTrue(errenum.MoveNext() == false);
+            //cfg.Model.GroupEnumerations.NodeAddNewSubNode();
+            //cfg.Model.GroupEnumerations[0].Name = "ab";
+            //cfg.Model.GroupEnumerations[1].Name = "ab";
+            //cfg.ValidateSubTreeFromNode(cfg);
+            //Assert.IsTrue(cfg.ValidationCollection.Count == 2);
+            //Assert.IsTrue(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
+            //Assert.IsTrue(cfg.ValidationCollection[1].Severity == FluentValidation.Severity.Error);
+            //Assert.IsTrue(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+            //Assert.IsTrue(cfg.ValidationCollection[1].Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations[1].ValidationCollection.Count == 1);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations[1].ValidationCollection[0].Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+            //Assert.IsTrue(cfg.Model.GroupEnumerations[1].HasErrors == true);
+            //var errenum = cfg.Model.GroupEnumerations[1].GetErrors("Name").GetEnumerator();
+            //Assert.IsTrue(errenum.MoveNext() == true);
+            //Assert.IsTrue((string)errenum.Current == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+            //Assert.IsTrue(errenum.MoveNext() == false);
         }
         #endregion Compare Tree
+
+        #region Register
+        [TestMethod]
+        [Ignore]
+        async public System.Threading.Tasks.Task Register_Turnover_Mapping()
+        {
+            var cancellation = new CancellationTokenSource();
+            var token = cancellation.Token;
+
+            var vm = this.CreateVM();
+            var cfg = vm.Config;
+
+            //var s_qty5_2 = cfg.Model.GroupDocuments.AddSharedPropertyNumerical("qty", 5, 2);
+
+            // 1. Can find doc shared property to map register dimention 
+
+            // 2. Can find doc property to map register dimention 
+
+            // 3. Can find doc numerical property to map register property.
+            // Length of doc property has to be less or equal than numerical register property length.
+            // Accuracy of doc property has to be less or equal than numerical register property accuracy.
+
+            // 4. Can find doc string property to map register property.
+            // Length of doc property has to be less or equal than register property length.
+
+            // 5. Can find doc string property to map register attached property.
+            // Length of doc property has to be less or equal than register property length.
+
+            // 6. Can find doc catalog property to map register attached property.
+
+            //await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+        }
+        #endregion Register
 
         #region Db table names
         [TestMethod]

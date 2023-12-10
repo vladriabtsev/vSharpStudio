@@ -454,15 +454,23 @@ namespace vSharpStudio.vm.ViewModels
         //}
         #endregion Roles
 
-        public IRegisterDimension AddDimension(string name, ICatalog c)
+        public RegisterDimension AddDimension(string name)
         {
-            var d = new RegisterDimension(c) { Name = name, DimensionCatalogGuid = c.Guid };
+            var d = new RegisterDimension(this.GroupRegisterDimensions) { Name = name };
             this.LastGenPosition++;
             d.Position = this.LastGenPosition;
             this.GroupRegisterDimensions.ListDimensions.Add(d);
             return d;
         }
-        public IProperty AddAttachedProperty(string name, EnumDataType type = EnumDataType.STRING, uint length = 0, uint accuracy = 0, string? guid = null)
+        public RegisterDimension AddDimension(string name, ICatalog c)
+        {
+            var d = new RegisterDimension(this.GroupRegisterDimensions) { Name = name, DimensionCatalogGuid = c.Guid };
+            this.LastGenPosition++;
+            d.Position = this.LastGenPosition;
+            this.GroupRegisterDimensions.ListDimensions.Add(d);
+            return d;
+        }
+        public Property AddAttachedProperty(string name, EnumDataType type = EnumDataType.STRING, uint length = 0, uint accuracy = 0, string? guid = null)
         {
             var node = new Property(this.GroupAttachedProperties) { Name = name };
 #if DEBUG
@@ -906,7 +914,7 @@ namespace vSharpStudio.vm.ViewModels
 
             return res;
         }
-        private void UpdateListMappings()
+        public void UpdateListMappings()
         {
             this.fulListToMap.Clear();
             this.ListMappings.Clear();
@@ -1276,7 +1284,16 @@ namespace vSharpStudio.vm.ViewModels
         public Property? Selected
         {
             get => _Selected;
-            set => SetProperty(ref _Selected, value);
+            set
+            {
+                if (SetProperty(ref _Selected, value))
+                {
+                    if (_Selected != null)
+                        this.Reg.MappingRegPropertyAdd(this.Doc.Guid, this.RegPropertyGuid, _Selected.Guid);
+                    else
+                        this.Reg.MappingRegPropertyRemove(this.Doc.Guid, this.RegPropertyGuid);
+                }
+            }
         }
         private Property? _Selected;
         public ObservableCollection<Property> ListToMap

@@ -175,7 +175,8 @@ namespace vSharpStudio.common
                 sb.AppendLine(" ");
                 var lstStack = Environment.StackTrace.Split("\r\n");
                 var lst = new List<string>();
-                int i = 0;
+                //int i = 0;
+                int i = -1; // to keep stack deepness when avoiding repeating 'at' information
                 bool isDebugExt = false;
                 foreach (var t in lstStack)
                 {
@@ -188,7 +189,7 @@ namespace vSharpStudio.common
                     {
                         if (!t.Contains(":line"))
                             break;
-                        lst.Add(t);
+                        lst.Add(t.Replace("at ", ""));
                         i++;
                         if (i >= maxStackDeep)
                             break;
@@ -196,7 +197,8 @@ namespace vSharpStudio.common
                     }
                     isDebugExt = true;
                 }
-                for (int j = lst.Count - 1; j >= 0; --j)
+                //for (int j = lst.Count - 1; j >= 0; --j)
+                for (int j = lst.Count - 1; j > 0; --j) // to avoid repeating 'at' information
                 {
                     sb.AppendLine(lst[j]);
                 }

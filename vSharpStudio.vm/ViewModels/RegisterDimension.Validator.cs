@@ -30,6 +30,18 @@ namespace vSharpStudio.vm.ViewModels
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
+                var r = rd.ParentGroupListRegisterDimensions.ParentRegister;
+                foreach(var t in rd.ParentGroupListRegisterDimensions.ListDimensions)
+                {
+                    if (t.Guid == rd.Guid) continue;
+                    if (t.DimensionCatalogGuid == rd.DimensionCatalogGuid)
+                    {
+                        var vf = new ValidationFailure(nameof(rd.DimensionCatalogGuid),
+                            $"Register '{r.Name}' dimension '{rd.Name}'. Selected catalog type for register dimension is already used for '{t.Name}' dimension.");
+                        vf.Severity = Severity.Error;
+                        cntx.AddFailure(vf);
+                    }
+                }
             });
         }
     }

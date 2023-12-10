@@ -160,6 +160,20 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public Register AddRegister(string name, EnumRegisterType regType, string? guid = null)
+        {
+            var node = new Register(this) { Name = name, RegisterType = regType };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
 
         #region Roles
         //public EnumCatalogDetailAccess GetRoleCatalogAccess(IRole role)
@@ -171,7 +185,18 @@ namespace vSharpStudio.vm.ViewModels
         //    return role.DefaultCatalogPrintAccessSettings;
         //}
         #endregion Roles
-
+        public IReadOnlyList<IRegister> GetIncludedRegisters(string guidAppPrjGen)
+        {
+            var res = new List<IRegister>();
+            foreach (var t in this.ListRegisters)
+            {
+                if (t.IsIncluded(guidAppPrjGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
         {
             Debug.Assert(!isExcludeSpecial, "not implemented yet");

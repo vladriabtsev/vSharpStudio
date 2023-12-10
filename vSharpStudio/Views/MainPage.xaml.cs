@@ -42,6 +42,8 @@ namespace vSharpStudio.Views
             }
             this._model = new MainPageVM(true, null, this);
             MainPage.MainPageVM = this._model;
+            this.DataContext = this._model;
+            //this._modalBaseSettingsEditWindow.DataContext = this._model;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -57,7 +59,6 @@ namespace vSharpStudio.Views
             //    InitConfig((Config)this.Config.PrevCurrentConfig);
             this._model.Compose();
             this._model.OnFormLoaded();
-            this.DataContext = this._model;
             FrameworkElement p = (FrameworkElement)this.Parent;
             while (!(p is MainWindow))
             {
