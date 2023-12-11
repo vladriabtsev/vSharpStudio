@@ -9,6 +9,7 @@ using System.DirectoryServices;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
+using CommunityToolkit.Diagnostics;
 using FluentValidation;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
@@ -872,5 +873,150 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Plugin group model
+
+        /// <summary>
+        /// Check if assignment is possible.
+        /// </summary>
+        /// <param name="from">Source property</param>
+        /// <returns>Empty string is assigment is possible. If not, then returning a reason.</returns>
+        public string CanAssignFrom(Property from)
+        {
+            if (this.DataType.DataTypeEnum == EnumDataType.ANY && 
+                (from.DataType.DataTypeEnum == EnumDataType.CATALOG || from.DataType.DataTypeEnum == EnumDataType.CATALOGS
+                || from.DataType.DataTypeEnum == EnumDataType.DOCUMENT || from.DataType.DataTypeEnum == EnumDataType.DOCUMENTS))
+                return string.Empty;
+            if (from.DataType.DataTypeEnum != this.DataType.DataTypeEnum)
+                return $"Destination type '{System.Enum.GetName<EnumDataType>(this.DataType.DataTypeEnum)}' is not compatible with source type '{System.Enum.GetName<EnumDataType>(this.DataType.DataTypeEnum)}'.";
+            if (!this.IsNullable && from.IsNullable)
+                return "Can't assign nullable value to not nullable.";
+            switch (from.DataType.DataTypeEnum)
+            {
+                case EnumDataType.ANY:
+                case EnumDataType.BOOL:
+                case EnumDataType.CHAR:
+                case EnumDataType.DATE:
+                case EnumDataType.DATETIMELOCAL:
+                case EnumDataType.DATETIMEOFFSET:
+                case EnumDataType.DATETIMEUTC:
+                case EnumDataType.DATETIMEZ:
+                case EnumDataType.TIME:
+                case EnumDataType.TIMESPAN:
+                case EnumDataType.TIMESPAN_TIME_ONLY:
+                case EnumDataType.TIMEZ:
+                    break;
+                case EnumDataType.CATALOG:
+                    if (this.DataType.ObjectGuid != from.DataType.ObjectGuid)
+                    {
+                        var cf = (Catalog)this.Cfg.DicNodes[from.DataType.ObjectGuid];
+                        var cd = (Catalog)this.Cfg.DicNodes[this.DataType.ObjectGuid];
+                        return $"Destination catalog type '{cd.Name}' not equal source catalog type '{cf.Name}'.";
+                    }
+                    break;
+                case EnumDataType.DOCUMENT:
+                    if (this.DataType.ObjectGuid != from.DataType.ObjectGuid)
+                    {
+                        var cf = (Document)this.Cfg.DicNodes[from.DataType.ObjectGuid];
+                        var cd = (Document)this.Cfg.DicNodes[this.DataType.ObjectGuid];
+                        return $"Destination document type '{cd.Name}' not equal source document type '{cf.Name}'.";
+                    }
+                    break;
+                case EnumDataType.CATALOGS:
+                    if (from.DataType.DataTypeEnum == EnumDataType.CATALOG)
+                    {
+                        bool found = false;
+                        foreach (var t in this.DataType.ListObjectGuids)
+                        {
+                            if (t == from.DataType.ObjectGuid)
+                            { found = true; break; }
+                        }
+                        if (!found)
+                        {
+                            var cf = (Catalog)this.Cfg.DicNodes[from.DataType.ObjectGuid];
+                            return $"Destination catalogs type '{this.Name}' property is not supporting source catalog type '{cf.Name}'.";
+                        }
+                    }
+                    if (from.DataType.DataTypeEnum == EnumDataType.CATALOGS)
+                    {
+                        ThrowHelper.ThrowNotSupportedException();
+                        //return $"Destination '{this.Name}' property is not supporting source catalogs type of '{from.Name}' property";
+                    }
+                    break;
+                case EnumDataType.DOCUMENTS:
+                    if (from.DataType.DataTypeEnum == EnumDataType.DOCUMENT)
+                    {
+                        bool found = false;
+                        foreach (var t in this.DataType.ListObjectGuids)
+                        {
+                            if (t == from.DataType.ObjectGuid)
+                            { found = true; break; }
+                        }
+                        if (!found)
+                        {
+                            var cf = (Document)this.Cfg.DicNodes[from.DataType.ObjectGuid];
+                            return $"Destination documents type '{this.Name}' property is not supporting source document type '{cf.Name}'.";
+                        }
+                    }
+                    if (from.DataType.DataTypeEnum == EnumDataType.DOCUMENTS)
+                    {
+                        ThrowHelper.ThrowNotSupportedException();
+                        //bool found = false;
+                        //foreach (var t in this.DataType.ListObjectGuids)
+                        //{
+                        //    foreach (var t in this.DataType.ListObjectGuids)
+                        //    {
+                        //        if (t == from.DataType.ObjectGuid)
+                        //        { found = true; break; }
+                        //    }
+                        //}
+                        //if (!found)
+                        //{
+                        //    return $"Destination '{this.Name}' property is not supporting source documents type of '{from.Name}' property";
+                        //}
+                    }
+                    break;
+                case EnumDataType.ENUMERATION:
+                    if (this.DataType.EnumerationName != from.DataType.EnumerationName)
+                        return $"Destination enumeration type '{this.DataType.EnumerationName}' not equal source enumeration type '{from.DataType.EnumerationName}'.";
+                    break;
+                case EnumDataType.NUMERICAL:
+                    return CanAssignFromNumerical(from.Length, from.Accuracy, this.IsNullable);
+                case EnumDataType.STRING:
+                    if (this.Length < from.Length)
+                        return "Destination length is shorter than source length.";
+                    break;
+                default:
+                    ThrowHelper.ThrowNotSupportedException();
+                    break;
+            }
+            return string.Empty;
+        }
+        public string CanAssignFromNumerical(uint fromLength, uint fromAccuracy, bool fromIsNullable)
+        {
+            if (!this.IsNullable && fromIsNullable)
+                return "Can't assign nullable value to not nullable.";
+            if (this.Length < fromLength)
+                return "Destination length is shorter than source length.";
+            if (this.Accuracy < fromAccuracy)
+                return "Destination accuracy is less than source accuracy.";
+            return string.Empty;
+        }
+        public string CanAssignToNumerical(uint toLength, uint toAccuracy, bool toIsNullable)
+        {
+            if (this.IsNullable && !toIsNullable)
+                return "Can't assign nullable value to not nullable.";
+            if (this.Length > toLength)
+                return "Destination length is shorter than source length.";
+            if (this.Accuracy > toAccuracy)
+                return "Destination accuracy is less than source accuracy.";
+            return string.Empty;
+        }
+        //public string CanAssignFromString(uint fromLength, bool fromIsNullable)
+        //{
+        //    if (!this.IsNullable && fromIsNullable)
+        //        return "Can't assign nullable value to not nullable";
+        //    if (this.Length < fromLength)
+        //        return "Destination length is shorter than source length";
+        //    return string.Empty;
+        //}
     }
 }

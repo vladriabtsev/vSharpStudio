@@ -534,8 +534,8 @@ namespace vSharpStudio.Unit
             cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimesion 'cat_dimension2' is not mapped to 'doc1' document property."));
 
             // Map dimension 2
-            var p_doc1_cat1 = doc1.AddPropertyCatalog("cat1", cat1.Guid, true);
-            reg1.MappingRegPropertyAdd(doc1.Guid, dim2.Guid, p_doc1_cat1.Guid);
+            var p_doc1_cat2 = doc1.AddPropertyCatalog("cat2", cat2.Guid, true);
+            reg1.MappingRegPropertyAdd(doc1.Guid, dim2.Guid, p_doc1_cat2.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);

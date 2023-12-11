@@ -904,7 +904,8 @@ namespace vSharpStudio.vm.ViewModels
                     this.IsChanged = true;
                 }
             }
-            Debug.Assert(mappingDic.ContainsKey(docGuid));
+            if (!mappingDic.ContainsKey(docGuid))
+                this.mappingDic[docGuid] = new Dictionary<string, string>();
             var dic = this.mappingDic[docGuid];
             dic[regPropertyGuid] = docPropertyGuid;
         }
