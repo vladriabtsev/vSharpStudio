@@ -213,7 +213,6 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else if (pg.Parent is Detail dd)
                 {
-                    ValidateSpecialProperties(name, cntx, p, dd);
                     if (name == "RefParent")
                     {
                         var vf = new ValidationFailure(nameof(p.Name),
@@ -332,6 +331,7 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             });
+            //TODO: Migration from nullable to not nullable can have DB constraints. Need solution.
             this.RuleFor(x => x.IsNullable).Custom((isNullable, cntx) =>
             {
                 if (isNullable)
@@ -341,12 +341,13 @@ namespace vSharpStudio.vm.ViewModels
                     return;
                 switch (p.DataTypeEnum)
                 {
+                    case EnumDataType.ANY:
                     case EnumDataType.CATALOG:
                     case EnumDataType.CATALOGS:
                     case EnumDataType.DOCUMENT:
                     case EnumDataType.DOCUMENTS:
                         var vf = new ValidationFailure(nameof(p.IsNullable),
-                            $"Reference property to complex type expected to be nullable");
+                            $"Reference property to complex type expected to be nullable. For example, when object is created.");
                         vf.Severity = Severity.Error;
                         cntx.AddFailure(vf);
                         break;
@@ -1097,40 +1098,6 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
                         $"Catalog folder parameter 'UseDescriptionProperty' is set to 'true'. Property name '{model.PropertyDescriptionName}' is reserved for auto generated property");
-                    vf.Severity = Severity.Error;
-                    cntx.AddFailure(vf);
-                }
-            }
-        }
-        private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, Detail dd)
-        {
-            var model = dd.Cfg.Model;
-            if (dd.GetUseCodeProperty())
-            {
-                if (model.PropertyCodeName == name)
-                {
-                    var vf = new ValidationFailure(nameof(p.Name),
-                        $"Detail parameter 'UseCodeProperty' is set to 'true'. Property name '{model.PropertyCodeName}' is reserved for auto generated property");
-                    vf.Severity = Severity.Error;
-                    cntx.AddFailure(vf);
-                }
-            }
-            if (dd.GetUseNameProperty())
-            {
-                if (model.PropertyNameName == name)
-                {
-                    var vf = new ValidationFailure(nameof(p.Name),
-                        $"Detail parameter 'UseNameProperty' is set to 'true'. Property name '{model.PropertyNameName}' is reserved for auto generated property");
-                    vf.Severity = Severity.Error;
-                    cntx.AddFailure(vf);
-                }
-            }
-            if (dd.GetUseDescriptionProperty())
-            {
-                if (model.PropertyDescriptionName == name)
-                {
-                    var vf = new ValidationFailure(nameof(p.Name),
-                        $"Detail parameter 'UseDescriptionProperty' is set to 'true'. Property name '{model.PropertyDescriptionName}' is reserved for auto generated property");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }

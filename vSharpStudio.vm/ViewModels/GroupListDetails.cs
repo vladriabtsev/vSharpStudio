@@ -182,54 +182,6 @@ namespace vSharpStudio.vm.ViewModels
                 return cf.IsGridSortableCustomGet();
             throw new NotImplementedException();
         }
-        public bool GetUseCodeProperty()
-        {
-            if (this.UseCodeProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseCodeProperty == EnumUseType.No)
-                return false;
-            if (this.Parent is Catalog c)
-                return c.GetUseCodeProperty();
-            if (this.Parent is Document d)
-                return d.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.UseCodeProperty;
-            if (this.Parent is Detail dd)
-                return dd.GetUseCodeProperty();
-            if (this.Parent is CatalogFolder cf)
-                return cf.GetUseCodeProperty();
-            throw new NotImplementedException();
-        }
-        public bool GetUseNameProperty()
-        {
-            if (this.UseNameProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseNameProperty == EnumUseType.No)
-                return false;
-            if (this.Parent is Catalog c)
-                return c.GetUseNameProperty();
-            if (this.Parent is Document d)
-                return d.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.UseNameProperty;
-            if (this.Parent is Detail dd)
-                return dd.GetUseNameProperty();
-            if (this.Parent is CatalogFolder cf)
-                return cf.GetUseNameProperty();
-            throw new NotImplementedException();
-        }
-        public bool GetUseDescriptionProperty()
-        {
-            if (this.UseDescriptionProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseDescriptionProperty == EnumUseType.No)
-                return false;
-            if (this.Parent is Catalog c)
-                return c.GetUseDescriptionProperty();
-            if (this.Parent is Document d)
-                return d.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.UseDescriptionProperty;
-            if (this.Parent is Detail dd)
-                return dd.GetUseDescriptionProperty();
-            if (this.Parent is CatalogFolder cf)
-                return cf.GetUseDescriptionProperty();
-            throw new NotImplementedException();
-        }
 
         #region Roles
         public object GetRoleAccess(IRole role)

@@ -189,6 +189,7 @@ namespace vSharpStudio.vm.ViewModels
             #endregion ObjectGuid
 
             #region Loose data
+            //TODO: Migration one DataTypeEnum to another need creation new property an made current OBSOLETE. Need data migration code. Deletion of OBSOLETE objects for next iteration.
             this.RuleFor(x => x.DataTypeEnum).Custom((path, cntx) =>
             {
                 var pg = (DataType)cntx.InstanceToValidate;

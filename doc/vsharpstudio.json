@@ -3064,6 +3064,16 @@
               "fullType": "proto_config.proto_enum_catalog_code_unique_scope",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "property_code_name",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Name of Code property\")]\n@attr [Description(\"Name of code auto generated property if it is used in catalog. If empty, default model catalog Code will be used.\")]",
+              "label": "",
+              "type": "StringValue",
+              "longType": "google.protobuf.StringValue",
+              "fullType": "google.protobuf.StringValue",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -4108,36 +4118,6 @@
               "type": "uint32",
               "longType": "uint32",
               "fullType": "uint32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_code_property",
-              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for detail item\")]",
-              "label": "",
-              "type": "proto_enum_use_type",
-              "longType": "proto_enum_use_type",
-              "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_name_property",
-              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for detail item\")]",
-              "label": "",
-              "type": "proto_enum_use_type",
-              "longType": "proto_enum_use_type",
-              "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_description_property",
-              "description": "@attr [PropertyOrderAttribute(26)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for detail item\")]",
-              "label": "",
-              "type": "proto_enum_use_type",
-              "longType": "proto_enum_use_type",
-              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },

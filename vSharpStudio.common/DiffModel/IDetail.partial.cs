@@ -18,9 +18,6 @@ namespace vSharpStudio.common
         bool IsGridSortableCustomGet();
         IGroupListDetails ParentGroupListDetailsI { get; }
 
-        bool GetUseCodeProperty();
-        bool GetUseNameProperty();
-        bool GetUseDescriptionProperty();
         EnumPropertyAccess GetRolePropertyAccess(IRole role);
         EnumPrintAccess GetRolePropertyPrint(IRole role);
         EnumCatalogDetailAccess GetRoleDetailAccess(IRole role);

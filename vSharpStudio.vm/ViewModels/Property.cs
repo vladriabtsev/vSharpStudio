@@ -825,35 +825,38 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         public IProperty? ParentProperty { get; set; }
         public string NameWithExtention { get { if (this.ParentProperty == null) return this.Name; return this.ParentProperty.Name + this.Name; } }
-        public IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable)
+        public IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable, bool isCsNullable)
         {
             var node = new Property(this) { Name = subName, ParentProperty = this };
             node.Guid = guid;
             node.DataType = (DataType)this.Cfg.Model.GetIdRefDataType(node, true);
             node.DataType.IsPKey = false;
             node.IsNullable = isNullable;
+            node.IsCsNullable = isCsNullable;
             node.IsComplexRefId = true;
             return node;
         }
         public bool IsComplexRefId { get; private set; }
         public bool IsComplexRefGuid { get; private set; }
         public bool IsComplexDesc { get; private set; }
-        public IProperty AddExtensionPropertyGd(string subName, string guid, bool isNullable)
+        public IProperty AddExtensionPropertyGd(string subName, string guid, bool isNullable, bool isCsNullable)
         {
             var node = new Property(this) { Name = subName };
             node.Guid = guid;
             node.DataType = (DataType)this.Cfg.Model.GetDataTypeStringGuid(node, isNullable);
             node.IsNullable = isNullable;
+            node.IsCsNullable = isCsNullable;
             node.ParentProperty = this;
             node.IsComplexRefGuid = true;
             return node;
         }
-        public IProperty AddExtensionPropertyDesc(string subName, string guid)
+        public IProperty AddExtensionPropertyDesc(string subName, string guid, bool isNullable, bool isCsNullable)
         {
             var node = new Property(this) { Name = subName };
             node.Guid = guid;
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = this.Cfg.Model.ComplexPropertyRefDescrLength };
-            node.IsNullable = true;
+            node.IsNullable = isNullable;
+            node.IsCsNullable = isCsNullable;
             node.ParentProperty = this;
             node.IsComplexDesc = true;
             return node;

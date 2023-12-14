@@ -1577,19 +1577,6 @@ message proto_group_list_details {
     // @attr [Browsable(false)]
     uint64 sorting_value = 8;
 
-    // @attr [PropertyOrderAttribute(22)]
-    // @attr [DisplayName("Use Code")]
-    // @attr [Description("Use Code property for detail item")]
-    proto_enum_use_type use_code_property = 16;
-    // @attr [PropertyOrderAttribute(24)]
-    // @attr [DisplayName("Use Name")]
-    // @attr [Description("Use Name property for detail item")]
-    proto_enum_use_type use_name_property = 17;
-    // @attr [PropertyOrderAttribute(26)]
-    // @attr [DisplayName("Use Description")]
-    // @attr [Description("Use Description property for detail item")]
-    proto_enum_use_type use_description_property = 18;
-
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
     // @attr [Description("Sortable in data grid")]
@@ -1646,19 +1633,6 @@ message proto_detail {
     // Reserved positions: 1 - primary key
     // @attr [ReadOnly(true)]
     uint32 position = 15;
-
-    // @attr [PropertyOrderAttribute(22)]
-    // @attr [DisplayName("Use Code")]
-    // @attr [Description("Use Code property for detail item")]
-    proto_enum_use_type use_code_property = 16;
-    // @attr [PropertyOrderAttribute(24)]
-    // @attr [DisplayName("Use Name")]
-    // @attr [Description("Use Name property for detail item")]
-    proto_enum_use_type use_name_property = 17;
-    // @attr [PropertyOrderAttribute(26)]
-    // @attr [DisplayName("Use Description")]
-    // @attr [Description("Use Description property for detail item")]
-    proto_enum_use_type use_description_property = 18;
 
     // @attr [Browsable(false)]
     int32 short_id = 19;
@@ -2439,6 +2413,10 @@ message proto_catalog_code_property_settings {
     // @attr [DisplayName("Unique Scope")]
     // @attr [Description("Code has to be unique in selected scope")]
     proto_enum_catalog_code_unique_scope unique_scope = 7;
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [DisplayName("Name of Code property")]
+    // @attr [Description("Name of code auto generated property if it is used in catalog. If empty, default model catalog Code will be used.")]
+    google.protobuf.StringValue property_code_name = 8;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_use_type {

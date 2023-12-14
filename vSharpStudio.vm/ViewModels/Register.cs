@@ -529,7 +529,8 @@ namespace vSharpStudio.vm.ViewModels
             //pPostDate.TagInList = "pd";
             //lst.Add(pPostDate);
 
-            var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "Doc", this.ListDocGuids, 10, true);
+            var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "Doc", this.ListDocGuids, 10, false);
+            pDoc.IsCsNullable = true;
             lst.Add(pDoc);
 
             //// Reference to document

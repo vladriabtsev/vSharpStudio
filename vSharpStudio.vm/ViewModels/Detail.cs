@@ -500,30 +500,6 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentGroupListDetails.GetIsGridSortableCustom();
         }
-        public bool GetUseCodeProperty()
-        {
-            if (this.UseCodeProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseCodeProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListDetails.GetUseCodeProperty();
-        }
-        public bool GetUseNameProperty()
-        {
-            if (this.UseNameProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseNameProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListDetails.GetUseNameProperty();
-        }
-        public bool GetUseDescriptionProperty()
-        {
-            if (this.UseDescriptionProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseDescriptionProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListDetails.GetUseDescriptionProperty();
-        }
 
         #region Roles
         public object GetRoleAccess(IRole role)

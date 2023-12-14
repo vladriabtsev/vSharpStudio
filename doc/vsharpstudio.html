@@ -1635,6 +1635,15 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 @attr [Description(&#34;Code has to be unique in selected scope&#34;)] </p></td>
                 </tr>
               
+                <tr>
+                  <td>property_code_name</td>
+                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(8)]
+@attr [DisplayName(&#34;Name of Code property&#34;)]
+@attr [Description(&#34;Name of code auto generated property if it is used in catalog. If empty, default model catalog Code will be used.&#34;)] </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2546,33 +2555,6 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td><p>Protobuf field position
 Reserved positions: 1 - primary key
 @attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_code_property</td>
-                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(22)]
-@attr [DisplayName(&#34;Use Code&#34;)]
-@attr [Description(&#34;Use Code property for detail item&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_name_property</td>
-                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(24)]
-@attr [DisplayName(&#34;Use Name&#34;)]
-@attr [Description(&#34;Use Name property for detail item&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_description_property</td>
-                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(26)]
-@attr [DisplayName(&#34;Use Description&#34;)]
-@attr [Description(&#34;Use Description property for detail item&#34;)] </p></td>
                 </tr>
               
                 <tr>
