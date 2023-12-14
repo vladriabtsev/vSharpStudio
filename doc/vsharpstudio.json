@@ -7377,36 +7377,6 @@
               "defaultValue": ""
             },
             {
-              "name": "use_code_property",
-              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for detail item\")]",
-              "label": "",
-              "type": "proto_enum_use_type",
-              "longType": "proto_enum_use_type",
-              "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_name_property",
-              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for detail item\")]",
-              "label": "",
-              "type": "proto_enum_use_type",
-              "longType": "proto_enum_use_type",
-              "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_description_property",
-              "description": "@attr [PropertyOrderAttribute(26)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for detail item\")]",
-              "label": "",
-              "type": "proto_enum_use_type",
-              "longType": "proto_enum_use_type",
-              "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "is_grid_sortable",
               "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
               "label": "",
