@@ -25,7 +25,7 @@ namespace vSharpStudio.vm.ViewModels
                         return;
                     }
                     var instance = (Form)cntx.InstanceToValidate;
-                    if (ft == FormType.ListWide || ft == FormType.ListNarrow)
+                    if (ft == FormType.ListCustom || ft == FormType.ListDefault)
                     {
                         if (instance.ListSelectedNotSpecialProperties.Count == 0)
                         {

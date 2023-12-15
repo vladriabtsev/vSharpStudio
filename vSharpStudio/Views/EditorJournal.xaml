@@ -18,7 +18,7 @@
     </UserControl.Resources>
     <Grid>
         <TabControl>
-            <TabItem Header="Narrow" ToolTip="Narrow list view form for selection from editing form">
+            <TabItem Header="Default" ToolTip="Default list view form for selection from editing form">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>

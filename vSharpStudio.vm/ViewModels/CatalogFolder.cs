@@ -72,8 +72,8 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
             this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
             this._PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
-            this._ViewListWideGuid = System.Guid.NewGuid().ToString();
-            this._ViewListNarrowGuid = System.Guid.NewGuid().ToString();
+            this._ViewListCustomGuid = System.Guid.NewGuid().ToString();
+            this._ViewListDefaultGuid = System.Guid.NewGuid().ToString();
 
             this._IndexUniqueCodeGuid = System.Guid.NewGuid().ToString();
             this._IndexRefTreeParentCodeGuid = System.Guid.NewGuid().ToString();
@@ -430,8 +430,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IForm>
             {
-                this.GetForm(FormType.ListNarrow, guidAppPrjGen),
-                this.GetForm(FormType.ListWide, guidAppPrjGen)
+                this.GetForm(FormType.ListDefault, guidAppPrjGen),
+                this.GetForm(FormType.ListCustom, guidAppPrjGen)
             };
             return res;
         }

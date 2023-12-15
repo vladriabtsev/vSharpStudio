@@ -606,8 +606,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IForm>
             {
-                this.GetForm(FormType.ListNarrow, guidAppPrjGen),
-                this.GetForm(FormType.ListWide, guidAppPrjGen)
+                this.GetForm(FormType.ListDefault, guidAppPrjGen),
+                this.GetForm(FormType.ListCustom, guidAppPrjGen)
             };
             return res;
         }

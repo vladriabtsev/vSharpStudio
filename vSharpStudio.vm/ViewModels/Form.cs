@@ -29,8 +29,8 @@ namespace vSharpStudio.vm.ViewModels
             this._ListProperties = lst;
             switch (ftype)
             {
-                case FormType.ListWide:
-                case FormType.ListNarrow:
+                case FormType.ListCustom:
+                case FormType.ListDefault:
                     this._Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
                     break;
                 default:
@@ -298,8 +298,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             switch (this.EnumFormType)
             {
-                case FormType.ListNarrow:
-                case FormType.ListWide:
+                case FormType.ListDefault:
+                case FormType.ListCustom:
                     lst.Add(nameof(this.IsDummy));
                     break;
                 case FormType.ItemEditForm:
@@ -643,7 +643,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                return this.EnumFormType == FormType.ListWide || this.EnumFormType == FormType.ListNarrow;
+                return this.EnumFormType == FormType.ListCustom || this.EnumFormType == FormType.ListDefault;
             }
         }
         [Browsable(false)]

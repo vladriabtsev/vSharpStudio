@@ -1946,9 +1946,9 @@
               "description": "@attr [Description(\"Not selected\")]"
             },
             {
-              "name": "ListWide",
+              "name": "ListCustom",
               "number": "11",
-              "description": "@attr [Description(\"Wide list view form\")]"
+              "description": "@attr [Description(\"Custom list view form\")]"
             },
             {
               "name": "ItemEditForm",
@@ -1961,9 +1961,9 @@
               "description": "@attr [Description(\"Folder edit form\")]"
             },
             {
-              "name": "ListNarrow",
+              "name": "ListDefault",
               "number": "41",
-              "description": "@attr [Description(\"Narrow list view form\")]"
+              "description": "@attr [Description(\"Default list view form\")]"
             }
           ]
         }
@@ -2815,7 +2815,7 @@
               "defaultValue": ""
             },
             {
-              "name": "view_list_wide_guid",
+              "name": "view_list_custom_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -2825,7 +2825,7 @@
               "defaultValue": ""
             },
             {
-              "name": "view_list_narrow_guid",
+              "name": "view_list_default_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -3297,7 +3297,7 @@
               "defaultValue": ""
             },
             {
-              "name": "view_list_wide_guid",
+              "name": "view_list_custom_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -3307,7 +3307,7 @@
               "defaultValue": ""
             },
             {
-              "name": "view_list_narrow_guid",
+              "name": "view_list_default_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -4192,7 +4192,7 @@
               "defaultValue": ""
             },
             {
-              "name": "view_list_wide_guid",
+              "name": "view_list_custom_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -4202,7 +4202,7 @@
               "defaultValue": ""
             },
             {
-              "name": "view_list_narrow_guid",
+              "name": "view_list_default_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",

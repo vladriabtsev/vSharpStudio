@@ -111,8 +111,8 @@ namespace vSharpStudio.vm.ViewModels
             FormAutoLayoutBlock? ablock = null;
             switch (formType)
             {
-                case FormType.ListNarrow:
-                    form.Name = "ViewListNarrow";
+                case FormType.ListDefault:
+                    form.Name = "ViewListDefault";
                     if (c.UseTree && c.UseSeparateTreeForFolders)
                     {
                         col = (FormGridSystemColumn)row.AddGridSystemColumn();
@@ -131,8 +131,8 @@ namespace vSharpStudio.vm.ViewModels
                     if (c.GetUseNameProperty())
                         dg.ListGuidProperties.Add(c.PropertyNameGuid);
                     break;
-                case FormType.ListWide:
-                    form.Name = "ViewListWide";
+                case FormType.ListCustom:
+                    form.Name = "ViewListCustom";
                     if (c.UseTree && c.UseSeparateTreeForFolders)
                     {
                         col = (FormGridSystemColumn)row.AddGridSystemColumn();

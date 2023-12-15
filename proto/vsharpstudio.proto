@@ -1669,9 +1669,9 @@ message proto_detail {
     bool is_stop_tab_control = 27;
 
     // @attr [Browsable(false)]
-    string view_list_wide_guid = 54;
+    string view_list_custom_guid = 54;
     // @attr [Browsable(false)]
-    string view_list_narrow_guid = 55;
+    string view_list_default_guid = 55;
 
     // @attr [Browsable(false)]
     string property_id_guid = 61;
@@ -2359,9 +2359,9 @@ message proto_catalog_folder {
     // @attr [Browsable(false)]
     string property_description_guid = 53;
     // @attr [Browsable(false)]
-    string view_list_wide_guid = 54;
+    string view_list_custom_guid = 54;
     // @attr [Browsable(false)]
-    string view_list_narrow_guid = 55;
+    string view_list_default_guid = 55;
 
     // @attr [Browsable(false)]
     string property_is_folder_guid = 63;
@@ -2512,9 +2512,9 @@ message proto_catalog {
     proto_enum_catalog_tree_icon group_icon_type = 42;
 
     // @attr [Browsable(false)]
-    string view_list_wide_guid = 54;
+    string view_list_custom_guid = 54;
     // @attr [Browsable(false)]
-    string view_list_narrow_guid = 55;
+    string view_list_default_guid = 55;
 
     // @attr [Browsable(false)]
     string property_id_guid = 61;
@@ -2563,9 +2563,9 @@ message proto_catalog {
     //repeated string list_guid_view_folder_properties = 92;
 
     // @attr [Browsable(false)]
-    //string guid_narrow_list_form = 91;
+    //string guid_default_list_form = 91;
     // @attr [Browsable(false)]
-    //string guid_wide_list_form = 92;
+    //string guid_custom_list_form = 92;
     // @attr [Browsable(false)]
     //string guid_edit_form = 93;
 
@@ -3583,14 +3583,14 @@ enum proto_form_orientation {
 enum proto_form_type {
     // @attr [Description("Not selected")]
     FormTypeNotSelected = 0;
-    // @attr [Description("Wide list view form")]
-    ListWide = 11;
+    // @attr [Description("Custom list view form")]
+    ListCustom = 11;
     // @attr [Description("Item edit form")]
     ItemEditForm = 21;
     // @attr [Description("Folder edit form")]
     FolderEditForm = 31;
-    // @attr [Description("Narrow list view form")]
-    ListNarrow = 41;
+    // @attr [Description("Default list view form")]
+    ListDefault = 41;
 }
 // Children collection can contain:
 //   - Children of Grid System

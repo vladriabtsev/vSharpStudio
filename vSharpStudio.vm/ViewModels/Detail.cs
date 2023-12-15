@@ -74,8 +74,8 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyNameGuid = System.Guid.NewGuid().ToString();
             this._PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
             this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this._ViewListWideGuid = System.Guid.NewGuid().ToString();
-            this._ViewListNarrowGuid = System.Guid.NewGuid().ToString();
+            this._ViewListCustomGuid = System.Guid.NewGuid().ToString();
+            this._ViewListDefaultGuid = System.Guid.NewGuid().ToString();
             this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             Debug.Assert(glp != null);
@@ -351,8 +351,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IForm>
             {
-                this.GetForm(FormType.ListNarrow, guidAppPrjGen),
-                this.GetForm(FormType.ListWide, guidAppPrjGen)
+                this.GetForm(FormType.ListDefault, guidAppPrjGen),
+                this.GetForm(FormType.ListCustom, guidAppPrjGen)
             };
             return res;
         }
