@@ -749,8 +749,8 @@ namespace vSharpStudio.vm.ViewModels
                 var lstp = new List<IProperty>();
                 if (this.RegisterType == EnumRegisterType.TURNOVER)
                 {
-                    lstp.AddRange(this.GetIncludedProperties(guidAppPrjGen, false, false));
-                    lstp.AddRange(this.GetIncludedTurnoverProperties(guidAppPrjGen, false, false));
+                    lstp.AddRange( this.GetIncludedProperties(guidAppPrjGen, false, false));
+                    //lstp.AddRange(this.GetIncludedTurnoverProperties(guidAppPrjGen, false, false));
                 }
                 else
                     ThrowHelper.ThrowPlatformNotSupportedException();
