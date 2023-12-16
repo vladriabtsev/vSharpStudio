@@ -198,7 +198,7 @@ namespace vSharpStudio.vm.ViewModels
                                     cntx.AddFailure(vf);
                                 }
                             }
-                            foreach (var ra in r.GroupAttachedProperties.ListProperties)
+                            foreach (var ra in r.GroupProperties.ListProperties)
                             {
                                 found = false;
                                 foreach (var dpm in dtr.ListMappings)

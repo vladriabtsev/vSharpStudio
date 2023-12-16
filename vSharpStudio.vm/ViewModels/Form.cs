@@ -384,6 +384,12 @@ namespace vSharpStudio.vm.ViewModels
             else if (this.ParentGroupListForms.Parent is Document d2)
             {
             }
+            else if (this.ParentGroupListForms.Parent is Detail dt2)
+            {
+            }
+            else if (this.ParentGroupListForms.Parent is Register r2)
+            {
+            }
             else
             {
                 Debug.Assert(false, "Not implemented");

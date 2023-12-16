@@ -379,7 +379,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(pos, reg.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);
 
-            var prop = (IProperty)reg.GroupAttachedProperties.NodeAddNewSubNode();
+            var prop = (IProperty)reg.GroupProperties.NodeAddNewSubNode();
             pos++;
             Assert.AreEqual(pos, reg.LastGenPosition);
             Assert.AreEqual(pos, prop.Position);

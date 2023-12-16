@@ -2027,7 +2027,7 @@ Configuration model
 | table_turnover_property_money_accumulator_guid | [string](#string) |  | @attr [Browsable(false)] |
 | table_turnover_property_is_starting_balance_guid | [string](#string) |  | @attr [Browsable(false)] |
 | group_register_dimensions | [proto_group_list_register_dimensions](#proto_config.proto_group_list_register_dimensions) |  | @attr [Browsable(false)] |
-| group_attached_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [Browsable(false)] |
+| group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [Browsable(false)] |
 | property_post_date_guid | [string](#string) |  | Guid for posting date guid property. Auto generated. @attr [Browsable(false)] |
 | property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -2048,6 +2048,8 @@ Configuration model
 | table_balance_property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | table_balance_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_doc_mappings | [proto_register_doc_to_reg](#proto_config.proto_register_doc_to_reg) | repeated | Mapping register properties to document properties @attr [Browsable(false)] |
+| group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [Browsable(false)] |
+| group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 

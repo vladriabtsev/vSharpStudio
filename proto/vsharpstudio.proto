@@ -2909,7 +2909,7 @@ message proto_register {
     // @attr [Browsable(false)]
     proto_group_list_register_dimensions group_register_dimensions = 28;
     // @attr [Browsable(false)]
-    proto_group_list_properties group_attached_properties = 31;
+    proto_group_list_properties group_properties = 31;
 
     // Guid for posting date guid property. Auto generated.
     // @attr [Browsable(false)]
@@ -2967,6 +2967,11 @@ message proto_register {
     // Mapping register properties to document properties
     // @attr [Browsable(false)]
     repeated proto_register_doc_to_reg list_doc_mappings = 71;
+
+    // @attr [Browsable(false)]
+    proto_group_list_forms group_forms = 84;
+    // @attr [Browsable(false)]
+    proto_group_list_reports group_reports = 85;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;

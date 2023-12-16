@@ -182,18 +182,19 @@ namespace vSharpStudio.common
                 //this.EndVisit(tr.GroupRegisterDimensions);
 
 
-                this.BeginVisit(tr.GroupAttachedProperties);
+                this.BeginVisit(tr.GroupProperties);
                 if (isActFromRootToBottom)
-                    this._act?.Invoke(this, tr.GroupAttachedProperties);
-                foreach (var td in tr.GroupAttachedProperties.ListProperties)
+                    this._act?.Invoke(this, tr.GroupProperties);
+                foreach (var td in tr.GroupProperties.ListProperties)
                 {
                     this.BeginVisit(td);
                     this._act?.Invoke(this, td);
                     this.EndVisit(td);
                 }
                 if (!isActFromRootToBottom)
-                    this._act?.Invoke(this, tr.GroupAttachedProperties);
-                this.EndVisit(tr.GroupAttachedProperties);
+                    this._act?.Invoke(this, tr.GroupProperties);
+                this.EndVisit(tr.GroupProperties);
+                this.VisitForms(tr.GroupForms, tr.GroupForms.ListForms, isActFromRootToBottom);
                 if (!isActFromRootToBottom)
                     this._act?.Invoke(this, tr);
                 this.EndVisit(tr);
@@ -451,6 +452,7 @@ namespace vSharpStudio.common
                 this.currPropTabStack.Push(t);
                 this._act?.Invoke(this, t);
                 this.VisitProperties(t.GroupProperties, t.GroupProperties.ListProperties, isActFromRootToBottom);
+                this.VisitForms(t.GroupForms, t.GroupForms.ListForms, isActFromRootToBottom);
                 this.VisitDetails(t.GroupDetails, t.GroupDetails.ListDetails, isActFromRootToBottom);
                 this.currPropTabStack.Pop();
                 this.EndVisit(t);

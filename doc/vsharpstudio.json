@@ -11059,7 +11059,7 @@
               "defaultValue": ""
             },
             {
-              "name": "group_attached_properties",
+              "name": "group_properties",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "proto_group_list_properties",
@@ -11265,6 +11265,26 @@
               "type": "proto_register_doc_to_reg",
               "longType": "proto_register_doc_to_reg",
               "fullType": "proto_config.proto_register_doc_to_reg",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_forms",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_group_list_forms",
+              "longType": "proto_group_list_forms",
+              "fullType": "proto_config.proto_group_list_forms",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_reports",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_group_list_reports",
+              "longType": "proto_group_list_reports",
+              "fullType": "proto_config.proto_group_list_reports",
               "ismap": false,
               "defaultValue": ""
             },
