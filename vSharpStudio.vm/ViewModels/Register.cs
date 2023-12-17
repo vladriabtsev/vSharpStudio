@@ -487,24 +487,33 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
+        public void GetNormalProperties(List<IProperty> res)
+        {
+            var lst = this.GetIncludedProperties("", false, true);
+            foreach (var t in lst)
+            {
+                res.Add(t);
+            }
+        }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
         {
-            Debug.Assert(!isExcludeSpecial, "not implemented yet");
-
             var lst = new List<IProperty>();
             var m = this.ParentGroupListRegisters.ParentModel;
 
-            // Id
-            var pId = m.GetPropertyPkId(this, this.Guid); // position 6
-            pId.TagInList = "id";
-            lst.Add(pId);
-
-            if (isOptimistic)
+            if (!isExcludeSpecial)
             {
-                // Version
-                var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid); // position 7
-                pVer.TagInList = "vr";
-                lst.Add(pVer);
+                // Id
+                var pId = m.GetPropertyPkId(this, this.Guid); // position 6
+                pId.TagInList = "id";
+                lst.Add(pId);
+
+                if (isOptimistic)
+                {
+                    // Version
+                    var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid); // position 7
+                    pVer.TagInList = "vr";
+                    lst.Add(pVer);
+                }
             }
 
             //if (this.ListDocGuids.Count > 0)
@@ -749,7 +758,7 @@ namespace vSharpStudio.vm.ViewModels
                 var lstp = new List<IProperty>();
                 if (this.RegisterType == EnumRegisterType.TURNOVER)
                 {
-                    lstp.AddRange( this.GetIncludedProperties(guidAppPrjGen, false, false));
+                    lstp.AddRange(this.GetIncludedProperties(guidAppPrjGen, false, false));
                     //lstp.AddRange(this.GetIncludedTurnoverProperties(guidAppPrjGen, false, false));
                 }
                 else

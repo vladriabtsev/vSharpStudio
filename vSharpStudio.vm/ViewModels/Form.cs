@@ -292,6 +292,17 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(nameof(this.IsUseFolderName));
                 lst.Add(nameof(this.IsUseFolderDesc));
             }
+            else if (this.Parent.Parent is IRegister)
+            {
+                var c = (IRegister)this.Parent.Parent;
+                lst.Add(nameof(this.IsUseCode));
+                lst.Add(nameof(this.IsUseName));
+                lst.Add(nameof(this.IsUseDesc));
+                lst.Add(nameof(this.IsUseFolderCode));
+                lst.Add(nameof(this.IsUseFolderName));
+                lst.Add(nameof(this.IsUseFolderDesc));
+                lst.Add(nameof(this.IsUseDocDate));
+            }
             else
             {
                 Debug.Assert(false);
@@ -422,6 +433,12 @@ namespace vSharpStudio.vm.ViewModels
             else if (this.ParentGroupListForms.Parent is Document d1)
             {
             }
+            else if (this.ParentGroupListForms.Parent is Detail dt1)
+            {
+            }
+            else if (this.ParentGroupListForms.Parent is Register r1)
+            {
+            }
             else
             {
                 Debug.Assert(false, "Not implemented");
@@ -473,6 +490,50 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 this._ListAllNotSpecialProperties.AddRange(lst);
             }
+            else if (this.ParentGroupListForms.Parent is Detail dt4)
+            {
+                this._ListAllNotSpecialProperties.Clear();
+                var res = new List<IProperty>();
+                dt4.GetNormalProperties(res);
+                var lst = new List<ISortingValue>();
+                foreach (var t in res)
+                {
+                    var found = false;
+                    foreach (var tt in this.ListGuidViewProperties)
+                    {
+                        if (tt == t.Guid)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                        lst.Add(t);
+                }
+                this._ListAllNotSpecialProperties.AddRange(lst);
+            }
+            else if (this.ParentGroupListForms.Parent is Register r4)
+            {
+                this._ListAllNotSpecialProperties.Clear();
+                var res = new List<IProperty>();
+                r4.GetNormalProperties(res);
+                var lst = new List<ISortingValue>();
+                foreach (var t in res)
+                {
+                    var found = false;
+                    foreach (var tt in this.ListGuidViewProperties)
+                    {
+                        if (tt == t.Guid)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                        lst.Add(t);
+                }
+                this._ListAllNotSpecialProperties.AddRange(lst);
+            }
             else
             {
                 Debug.Assert(false, "Not implemented");
@@ -504,6 +565,44 @@ namespace vSharpStudio.vm.ViewModels
                 this._ListSelectedNotSpecialProperties.Clear();
                 var res = new List<IProperty>();
                 d5.GetNormalProperties(res);
+                var lst = new List<ISortingValue>();
+                foreach (var t in res)
+                {
+                    foreach (var tt in this.ListGuidViewProperties)
+                    {
+                        if (tt == t.Guid)
+                        {
+                            lst.Add(t);
+                            break;
+                        }
+                    }
+                }
+                this._ListSelectedNotSpecialProperties.AddRange(lst);
+            }
+            else if (this.ParentGroupListForms.Parent is Detail dt5)
+            {
+                this._ListSelectedNotSpecialProperties.Clear();
+                var res = new List<IProperty>();
+                dt5.GetNormalProperties(res);
+                var lst = new List<ISortingValue>();
+                foreach (var t in res)
+                {
+                    foreach (var tt in this.ListGuidViewProperties)
+                    {
+                        if (tt == t.Guid)
+                        {
+                            lst.Add(t);
+                            break;
+                        }
+                    }
+                }
+                this._ListSelectedNotSpecialProperties.AddRange(lst);
+            }
+            else if (this.ParentGroupListForms.Parent is Register r5)
+            {
+                this._ListSelectedNotSpecialProperties.Clear();
+                var res = new List<IProperty>();
+                r5.GetNormalProperties(res);
                 var lst = new List<ISortingValue>();
                 foreach (var t in res)
                 {

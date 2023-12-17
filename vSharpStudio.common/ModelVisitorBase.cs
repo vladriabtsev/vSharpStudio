@@ -156,54 +156,46 @@ namespace vSharpStudio.common
             this.EndVisit(currModel.GroupCatalogs);
             #endregion Catalogs
 
-            #region Registers
-            this.BeginVisit(currModel.GroupListRegisters);
+            #region ManyToMany
+            this.BeginVisit(currModel.GroupRelations);
             if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupListRegisters);
-            foreach (var tr in currModel.GroupListRegisters.ListRegisters)
+                this._act?.Invoke(this, this.currModel.GroupRelations);
+            this.BeginVisit(currModel.GroupRelations.GroupListCatalogsRelations);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListCatalogsRelations);
+            foreach (var tr in currModel.GroupRelations.GroupListCatalogsRelations.ListCatalogsRelations)
             {
-                this.currReg = tr;
+                this.currCatRelation = tr;
                 this.BeginVisit(tr);
                 if (isActFromRootToBottom)
                     this._act?.Invoke(this, tr);
-
-                
-                //this.BeginVisit(tr.GroupRegisterDimensions);
-                //if (isActFromRootToBottom)
-                //    this._act?.Invoke(this, tr.GroupRegisterDimensions);
-                foreach (var td in tr.GroupRegisterDimensions.ListDimensions)
-                {
-                    this.BeginVisit(td);
-                    this._act?.Invoke(this, td);
-                    this.EndVisit(td);
-                }
-                //if (!isActFromRootToBottom)
-                //    this._act?.Invoke(this, tr.GroupRegisterDimensions);
-                //this.EndVisit(tr.GroupRegisterDimensions);
-
-
-                this.BeginVisit(tr.GroupProperties);
-                if (isActFromRootToBottom)
-                    this._act?.Invoke(this, tr.GroupProperties);
-                foreach (var td in tr.GroupProperties.ListProperties)
-                {
-                    this.BeginVisit(td);
-                    this._act?.Invoke(this, td);
-                    this.EndVisit(td);
-                }
-                if (!isActFromRootToBottom)
-                    this._act?.Invoke(this, tr.GroupProperties);
-                this.EndVisit(tr.GroupProperties);
-                this.VisitForms(tr.GroupForms, tr.GroupForms.ListForms, isActFromRootToBottom);
                 if (!isActFromRootToBottom)
                     this._act?.Invoke(this, tr);
                 this.EndVisit(tr);
                 this.currReg = null;
             }
             if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupListRegisters);
-            this.EndVisit(currModel.GroupListRegisters);
-            #endregion Registers
+                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListCatalogsRelations);
+            this.BeginVisit(currModel.GroupRelations.GroupListDocumentsRelations);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListDocumentsRelations);
+            foreach (var tr in currModel.GroupRelations.GroupListDocumentsRelations.ListDocumentsRelations)
+            {
+                this.currDocRelation = tr;
+                this.BeginVisit(tr);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, tr);
+                if (!isActFromRootToBottom)
+                    this._act?.Invoke(this, tr);
+                this.EndVisit(tr);
+                this.currReg = null;
+            }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListDocumentsRelations);
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupRelations);
+            this.EndVisit(currModel.GroupRelations);
+            #endregion ManyToMany
 
             #region Documents
             this.BeginVisit(currModel.GroupDocuments);
@@ -236,6 +228,39 @@ namespace vSharpStudio.common
                 this._act?.Invoke(this, this.currModel.GroupDocuments);
             this.EndVisit(currModel.GroupDocuments);
             #endregion Documents
+
+            #region Registers
+            this.BeginVisit(currModel.GroupListRegisters);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupListRegisters);
+            foreach (var tr in currModel.GroupListRegisters.ListRegisters)
+            {
+                this.currReg = tr;
+                this.BeginVisit(tr);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, tr);
+                this.BeginVisit(tr.GroupRegisterDimensions);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, tr.GroupRegisterDimensions);
+                foreach (var td in tr.GroupRegisterDimensions.ListDimensions)
+                {
+                    this.BeginVisit(td);
+                    this._act?.Invoke(this, td);
+                    this.EndVisit(td);
+                }
+                if (!isActFromRootToBottom)
+                    this._act?.Invoke(this, tr.GroupRegisterDimensions);
+                this.EndVisit(tr.GroupRegisterDimensions);
+                this.VisitProperties(tr.GroupProperties, tr.GroupProperties.ListProperties, isActFromRootToBottom);
+                this.VisitForms(tr.GroupForms, tr.GroupForms.ListForms, isActFromRootToBottom);
+                this.VisitReports(tr.GroupReports, tr.GroupReports.ListReports, isActFromRootToBottom);
+                this.EndVisit(tr);
+                this.currReg = null;
+            }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupListRegisters);
+            this.EndVisit(currModel.GroupListRegisters);
+            #endregion Registers
 
             #region Journals
             this.BeginVisit(currModel.GroupJournals);
@@ -409,6 +434,10 @@ namespace vSharpStudio.common
         protected IRegister? currReg = null;
         protected IDocument? currDoc = null;
         protected vSharpStudio.common.IProperty? currProp = null;
+        protected IManyToManyCatalogsRelation? currCatRelation = null;
+        protected IManyToManyDocumentsRelation? currDocRelation = null;
+
+
         protected Stack<IDetail> currPropTabStack = new Stack<IDetail>();
         protected Action<ModelVisitorBase, ITreeConfigNode>? _act = null;
         // 0 - previous, 1 - previous of previous
@@ -501,90 +530,140 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IConfig cfg) { }
 
         #region Model Visits
-        //protected virtual void BeginVisit(IEnumerable<IConstant> lst) { }
-        //protected virtual void EndVisit(IEnumerable<IConstant> lst) { }
-        protected virtual void BeginVisit(IEnumerable<IEnumeration> lst) { }
-        protected virtual void EndVisit(IEnumerable<IEnumeration> lst) { }
-        protected virtual void BeginVisit(IEnumerable<ICatalog> lst) { }
-        protected virtual void EndVisit(IEnumerable<ICatalog> lst) { }
-        protected virtual void BeginVisit(IEnumerable<IDocument> lst) { }
-        protected virtual void EndVisit(IEnumerable<IDocument> lst) { }
-        protected virtual void BeginVisit(IGroupListRoles cn) { }
-        protected virtual void EndVisit(IGroupListRoles cn) { }
-        protected virtual void BeginVisit(IEnumerable<IRole> lst) { }
-        protected virtual void EndVisit(IEnumerable<IRole> lst) { }
-        protected virtual void BeginVisit(IRole p) { }
-        protected virtual void EndVisit(IRole p) { }
-        protected virtual void BeginVisit(IGroupListEnumeratorSequences cn) { }
-        protected virtual void EndVisit(IGroupListEnumeratorSequences cn) { }
-        //protected virtual void BeginVisit(IEnumerable<IRole> lst) { }
-        //protected virtual void EndVisit(IEnumerable<IRole> lst) { }
-        protected virtual void BeginVisit(IEnumeratorSequence p) { }
-        protected virtual void EndVisit(IEnumeratorSequence p) { }
-        protected virtual void BeginVisit(IGroupListMainViewForms cn) { }
-        protected virtual void EndVisit(IGroupListMainViewForms cn) { }
-        protected virtual void BeginVisit(IEnumerable<IMainViewForm> lst) { }
-        protected virtual void EndVisit(IEnumerable<IMainViewForm> lst) { }
-        protected virtual void BeginVisit(IMainViewForm p) { }
-        protected virtual void EndVisit(IMainViewForm p) { }
-        protected virtual void BeginVisit(IModel m) { }
-        protected virtual void EndVisit(IModel m) { }
-        protected virtual void BeginVisit(IGroupListCommon cn) { }
-        protected virtual void EndVisit(IGroupListCommon cn) { }
-        protected virtual void BeginVisit(IGroupConstantGroups cn) { }
-        protected virtual void EndVisit(IGroupConstantGroups cn) { }
-        protected virtual void BeginVisit(IGroupListConstants cn) { }
-        protected virtual void EndVisit(IGroupListConstants cn) { }
-        protected virtual void BeginVisit(IConstant cn) { }
-        protected virtual void EndVisit(IConstant cn) { }
+
+        #region Enumeration
         protected virtual void BeginVisit(IGroupListEnumerations cn) { }
         protected virtual void EndVisit(IGroupListEnumerations cn) { }
         protected virtual void BeginVisit(IEnumeration en) { }
         protected virtual void EndVisit(IEnumeration en) { }
         protected virtual void BeginVisit(IEnumerationPair p) { }
         protected virtual void EndVisit(IEnumerationPair p) { }
+        protected virtual void BeginVisit(IEnumerable<IEnumeration> lst) { }
+        protected virtual void EndVisit(IEnumerable<IEnumeration> lst) { }
+        protected virtual void BeginVisit(IGroupListEnumeratorSequences cn) { }
+        protected virtual void EndVisit(IGroupListEnumeratorSequences cn) { }
+        protected virtual void BeginVisit(IEnumeratorSequence p) { }
+        protected virtual void EndVisit(IEnumeratorSequence p) { }
+        #endregion Enumeration
+
+        #region Constant
+        protected virtual void BeginVisit(IGroupConstantGroups cn) { }
+        protected virtual void EndVisit(IGroupConstantGroups cn) { }
+        protected virtual void BeginVisit(IGroupListConstants cn) { }
+        protected virtual void EndVisit(IGroupListConstants cn) { }
+        protected virtual void BeginVisit(IConstant cn) { }
+        protected virtual void EndVisit(IConstant cn) { }
+        //protected virtual void BeginVisit(IEnumerable<IConstant> lst) { }
+        //protected virtual void EndVisit(IEnumerable<IConstant> lst) { }
+        #endregion Constant
+
+        #region Catalog
         protected virtual void BeginVisit(IGroupListCatalogs cn) { }
         protected virtual void EndVisit(IGroupListCatalogs cn) { }
         protected virtual void BeginVisit(ICatalog ct) { }
         protected virtual void EndVisit(ICatalog ct) { }
         protected virtual void BeginVisit(ICatalogFolder ct) { }
         protected virtual void EndVisit(ICatalogFolder ct) { }
+        protected virtual void BeginVisit(IEnumerable<ICatalog> lst) { }
+        protected virtual void EndVisit(IEnumerable<ICatalog> lst) { }
+        #endregion Catalog
+
+        #region Detail
+        protected virtual void BeginVisit(IGroupListDetails cn) { }
+        protected virtual void EndVisit(IGroupListDetails cn) { }
+        protected virtual void BeginVisit(IDetail t) { }
+        protected virtual void EndVisit(IDetail t) { }
+        #endregion Detail
+
+        #region ManyToMany
+        protected virtual void BeginVisit(IManyToManyGroupRelations d) { }
+        protected virtual void EndVisit(IManyToManyGroupRelations d) { }
+        protected virtual void BeginVisit(IManyToManyGroupCatalogsRelations d) { }
+        protected virtual void EndVisit(IManyToManyGroupCatalogsRelations d) { }
+        protected virtual void BeginVisit(IManyToManyCatalogsRelation d) { }
+        protected virtual void EndVisit(IManyToManyCatalogsRelation d) { }
+        protected virtual void BeginVisit(IManyToManyGroupDocumentsRelations d) { }
+        protected virtual void EndVisit(IManyToManyGroupDocumentsRelations d) { }
+        protected virtual void BeginVisit(IManyToManyDocumentsRelation d) { }
+        protected virtual void EndVisit(IManyToManyDocumentsRelation d) { }
+        #endregion ManyToMany
+
+        #region Document
         protected virtual void BeginVisit(IGroupDocuments cn) { }
         protected virtual void EndVisit(IGroupDocuments cn) { }
+        protected virtual void BeginVisit(IEnumerable<IDocument> lst) { }
+        protected virtual void EndVisit(IEnumerable<IDocument> lst) { }
+        protected virtual void BeginVisit(IGroupListDocuments cn) { }
+        protected virtual void EndVisit(IGroupListDocuments cn) { }
+        protected virtual void BeginVisit(IDocument d) { }
+        protected virtual void EndVisit(IDocument d) { }
+        #endregion Document
 
+        #region Register
         protected virtual void BeginVisit(IGroupListRegisters cn) { }
         protected virtual void EndVisit(IGroupListRegisters cn) { }
         protected virtual void BeginVisit(IRegister d) { }
         protected virtual void EndVisit(IRegister d) { }
         protected virtual void BeginVisit(IRegisterDimension d) { }
         protected virtual void EndVisit(IRegisterDimension d) { }
+        protected virtual void BeginVisit(IGroupListRegisterDimensions d) { }
+        protected virtual void EndVisit(IGroupListRegisterDimensions d) { }
         protected virtual void BeginVisit(IGroupListDimensions d) { }
         protected virtual void EndVisit(IGroupListDimensions d) { }
+        #endregion Register
 
-        protected virtual void BeginVisit(IGroupListDocuments cn) { }
-        protected virtual void EndVisit(IGroupListDocuments cn) { }
-        protected virtual void BeginVisit(IDocument d) { }
-        protected virtual void EndVisit(IDocument d) { }
-        protected virtual void BeginVisit(IGroupListProperties cn) { }
-        protected virtual void EndVisit(IGroupListProperties cn) { }
-        protected virtual void BeginVisit(IProperty p) { }
-        protected virtual void EndVisit(IProperty p) { }
-        protected virtual void BeginVisit(IGroupListDetails cn) { }
-        protected virtual void EndVisit(IGroupListDetails cn) { }
-        protected virtual void BeginVisit(IDetail t) { }
-        protected virtual void EndVisit(IDetail t) { }
-        protected virtual void BeginVisit(IGroupListForms cn) { }
-        protected virtual void EndVisit(IGroupListForms cn) { }
-        protected virtual void BeginVisit(IForm p) { }
-        protected virtual void EndVisit(IForm p) { }
+        #region Journal
         protected virtual void BeginVisit(IGroupListJournals cn) { }
         protected virtual void EndVisit(IGroupListJournals cn) { }
         protected virtual void BeginVisit(IJournal cn) { }
         protected virtual void EndVisit(IJournal cn) { }
+        #endregion Journal
+
+        #region Form
+        protected virtual void BeginVisit(IGroupListMainViewForms cn) { }
+        protected virtual void EndVisit(IGroupListMainViewForms cn) { }
+        protected virtual void BeginVisit(IEnumerable<IMainViewForm> lst) { }
+        protected virtual void EndVisit(IEnumerable<IMainViewForm> lst) { }
+        protected virtual void BeginVisit(IMainViewForm p) { }
+        protected virtual void EndVisit(IMainViewForm p) { }
+        protected virtual void BeginVisit(IGroupListForms cn) { }
+        protected virtual void EndVisit(IGroupListForms cn) { }
+        protected virtual void BeginVisit(IForm p) { }
+        protected virtual void EndVisit(IForm p) { }
+        #endregion Form
+
+        #region Report
         protected virtual void BeginVisit(IGroupListReports cn) { }
         protected virtual void EndVisit(IGroupListReports cn) { }
         protected virtual void BeginVisit(IReport p) { }
         protected virtual void EndVisit(IReport p) { }
+        #endregion Report
+
+        #region Common
+        protected virtual void BeginVisit(IGroupListCommon cn) { }
+        protected virtual void EndVisit(IGroupListCommon cn) { }
+        #endregion Common
+
+        #region Property
+        protected virtual void BeginVisit(IGroupListProperties cn) { }
+        protected virtual void EndVisit(IGroupListProperties cn) { }
+        protected virtual void BeginVisit(IProperty p) { }
+        protected virtual void EndVisit(IProperty p) { }
+        #endregion Property
+
+        #region Role
+        protected virtual void BeginVisit(IGroupListRoles cn) { }
+        protected virtual void EndVisit(IGroupListRoles cn) { }
+        protected virtual void BeginVisit(IEnumerable<IRole> lst) { }
+        protected virtual void EndVisit(IEnumerable<IRole> lst) { }
+        protected virtual void BeginVisit(IRole p) { }
+        protected virtual void EndVisit(IRole p) { }
+        //protected virtual void BeginVisit(IEnumerable<IRole> lst) { }
+        //protected virtual void EndVisit(IEnumerable<IRole> lst) { }
+        #endregion Role
+
+        protected virtual void BeginVisit(IModel m) { }
+        protected virtual void EndVisit(IModel m) { }
         #endregion Model Visits
 
         #region Links Visits

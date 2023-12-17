@@ -110,8 +110,8 @@ namespace vSharpStudio.vm.ViewModels
             children.Add(this.GroupConstantGroups, 7);
             children.Add(this.GroupEnumerations, 8);
             children.Add(this.GroupCatalogs, 9);
-            children.Add(this.GroupDocuments, 10);
-            children.Add(this.GroupRelations, 11);
+            children.Add(this.GroupRelations, 10);
+            children.Add(this.GroupDocuments, 11);
             children.Add(this.GroupListRegisters, 12);
             children.Add(this.GroupJournals, 13);
             //this.ListMainViewForms.OnAddingAction = (t) =>
