@@ -1454,6 +1454,7 @@ P R O P E R T Y
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| accuracy_for_document_time_line | [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Timeline accuracy&#34;)] @attr [Description(&#34;Document time line accuracy. Only one document can posted at any point of time line.&#34;)] |
 | list_registers | [proto_register](#proto_config.proto_register) | repeated | @attr [Browsable(false)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | prefix_for_db_tables | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for register db table names&#34;)] |

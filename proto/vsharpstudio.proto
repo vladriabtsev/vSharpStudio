@@ -2680,6 +2680,11 @@ message proto_group_list_registers {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [DisplayName("Timeline accuracy")]
+    // @attr [Description("Document time line accuracy. Only one document can posted at any point of time line.")]
+    proto_enum_time_accuracy_type accuracy_for_document_time_line = 6;
     // @attr [Browsable(false)]
     repeated proto_register list_registers = 7;
     // @attr [Browsable(false)]
