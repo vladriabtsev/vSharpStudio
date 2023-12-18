@@ -844,10 +844,14 @@ enum proto_enum_time_accuracy_type {
     MINUTE_TIME_ACC = 60;
     // @attr [Description("Second")]
     SECOND_TIME_ACC = 70;
+    // @attr [Description("Ten Milliseconds")]
+    TEN_MS_TIME_ACC = 75;
     // @attr [Description("Millisecond")]
     MS_TIME_ACC = 80;
     // @attr [Description("Microsecond")]
     MKS_TIME_ACC = 90;
+    // @attr [Description("Nanosecond")]
+    NS_TIME_ACC = 100;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_date_time_accuracy_type {

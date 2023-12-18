@@ -1748,6 +1748,11 @@
               "description": "@attr [Description(\"Second\")]"
             },
             {
+              "name": "TEN_MS_TIME_ACC",
+              "number": "75",
+              "description": "@attr [Description(\"Ten Milliseconds\")]"
+            },
+            {
               "name": "MS_TIME_ACC",
               "number": "80",
               "description": "@attr [Description(\"Millisecond\")]"
@@ -1756,6 +1761,11 @@
               "name": "MKS_TIME_ACC",
               "number": "90",
               "description": "@attr [Description(\"Microsecond\")]"
+            },
+            {
+              "name": "NS_TIME_ACC",
+              "number": "100",
+              "description": "@attr [Description(\"Nanosecond\")]"
             }
           ]
         },

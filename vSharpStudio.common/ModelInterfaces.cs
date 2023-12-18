@@ -565,10 +565,14 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		MINUTE_TIME_ACC = 60,
 		[Description("Second")]
 		SECOND_TIME_ACC = 70,
+		[Description("Ten Milliseconds")]
+		TEN_MS_TIME_ACC = 75,
 		[Description("Millisecond")]
 		MS_TIME_ACC = 80,
 		[Description("Microsecond")]
 		MKS_TIME_ACC = 90,
+		[Description("Nanosecond")]
+		NS_TIME_ACC = 100,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumTimespanBoundaryType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18

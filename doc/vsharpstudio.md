@@ -2956,8 +2956,10 @@ with history |
 | HOUR_TIME_ACC | 50 | @attr [Description(&#34;Hour&#34;)] |
 | MINUTE_TIME_ACC | 60 | @attr [Description(&#34;Minute&#34;)] |
 | SECOND_TIME_ACC | 70 | @attr [Description(&#34;Second&#34;)] |
+| TEN_MS_TIME_ACC | 75 | @attr [Description(&#34;Ten Milliseconds&#34;)] |
 | MS_TIME_ACC | 80 | @attr [Description(&#34;Millisecond&#34;)] |
 | MKS_TIME_ACC | 90 | @attr [Description(&#34;Microsecond&#34;)] |
+| NS_TIME_ACC | 100 | @attr [Description(&#34;Nanosecond&#34;)] |
 
 
 
