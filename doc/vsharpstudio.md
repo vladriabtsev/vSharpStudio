@@ -1741,6 +1741,8 @@ Configuration model
 | last_detail_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_register_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_catalog_relation_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
+| last_document_relation_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
+| last_constant_short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |

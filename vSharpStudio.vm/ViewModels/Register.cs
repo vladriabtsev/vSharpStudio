@@ -556,8 +556,15 @@ namespace vSharpStudio.vm.ViewModels
             //pDocGuid.TagInList = "dg";
             //lst.Add(pDocGuid);
 
-            // Document date
-            var pDocDate = m.GetPropertyDocumentDate(this, this.PropertyDocDateGuid); // position 8
+            // Document timeline
+            var pDocDate = new Property(this, this.PropertyDocDateGuid, this.Cfg.Model.PropertyDocDateName, true);
+            pDocDate.Name = "DocTimeline";
+            pDocDate.DataType = (DataType)this.Cfg.Model.GetDataTypeDateTimeUtc(pDocDate, this.Cfg.Model.GroupListRegisters.AccuracyForDocumentTimeLine, false, false);
+            pDocDate.Position = 8;
+            pDocDate.IsCsNullable = true;
+            //var pDocDate = m.GetPropertyDocumentDate(this, this.PropertyDocDateGuid); // position 8
+            //pDocDate.Name = "DocTimeline";
+            //pDocDate.DataType.AccuracyForTime = this.Cfg.Model.GroupListRegisters.AccuracyForDocumentTimeLine;
             //var pDocDate = m.GetPropertyDocumentDate(this, this.PropertyDocDateGuid, true);
             pDocDate.TagInList = "dd";
             lst.Add(pDocDate);

@@ -1093,51 +1093,53 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string GetUniquePropertyShortID(IProperty p)
         {
+            //use numerical short id
             return $"p{p.ParentGroupListPropertiesI.IndexOf(p).ToString()}";
         }
         public string GetUniquePropertyFullShortID(IProperty p)
         {
+            //use numerical short id
             Debug.Assert(p.ParentGroupListPropertiesI.Parent != null);
-            var parenId = GetUniqueObjectFullShortID(p.ParentGroupListPropertiesI.Parent);
+            var parenId = GetUniqueStringShortID(p.ParentGroupListPropertiesI.Parent);
             return $"{parenId}p{p.ParentGroupListPropertiesI.IndexOf(p).ToString()}";
         }
-        public string GetUniqueObjectFullShortID(ITreeConfigNode node)
+        public string GetUniqueStringShortID(ITreeConfigNode node)
         {
             if (node is ICatalog c)
             {
-                return $"c{c.ParentGroupListCatalogsI.IndexOf(c).ToString()}";
+                return $"c{c.ShortId.ToString()}";
             }
             else if (node is ICatalogFolder cf)
             {
-                return $"cf{cf.ParentCatalogI.ParentGroupListCatalogsI.IndexOf(cf.ParentCatalogI).ToString()}";
+                return $"cf{cf.ParentCatalogI.ShortId.ToString()}";
             }
             else if (node is IDocument d)
             {
-                return $"d{d.ParentGroupListDocumentsI.IndexOf(d).ToString()}";
+                return $"d{d.ShortId.ToString()}";
             }
             else if (node is IDetail t)
             {
                 return GetTypeCacheIdWithParents((IItemWithSubItems)t.ParentGroupListDetailsI.Parent!,
-                    $"t{t.ParentGroupListDetailsI.IndexOf(t).ToString()}");
+                    $"t{t.ShortId.ToString()}");
             }
             else if (node is IRegister r)
             {
-                return $"r{r.ParentGroupListRegistersI.IndexOf(r).ToString()}";
+                return $"r{r.ShortId.ToString()}";
             }
-            else if (node is IRegisterDimension rd)
-            {
-                var grd = rd.ParentGroupListRegisterDimensionsI;
-                var rr = grd.ParentRegisterI;
-                var gr = rr.ParentGroupListRegistersI;
-                return $"r{gr.IndexOf(rr).ToString()}rd{grd.IndexOf(rd).ToString()}";
-            }
+            //else if (node is IRegisterDimension rd)
+            //{
+            //    var grd = rd.ParentGroupListRegisterDimensionsI;
+            //    var rr = grd.ParentRegisterI;
+            //    var gr = rr.ParentGroupListRegistersI;
+            //    return $"r{gr.IndexOf(rr).ToString()}rd{grd.IndexOf(rd).ToString()}";
+            //}
             else if (node is IGroupListConstants cts)
             {
-                return $"cts{cts.ParentGroupConstantGroupsI.IndexOf(cts).ToString()}";
+                return $"cts{cts.ShortId.ToString()}";
             }
             else if (node is IConstant ct)
             {
-                return $"cts{ct.ParentGroupListConstantsI.ParentGroupConstantGroupsI.IndexOf(ct.ParentGroupListConstantsI).ToString()}ct{ct.ParentGroupListConstantsI.IndexOf(ct).ToString()}";
+                return $"cts{ct.ShortId.ToString()}";
             }
             ThrowHelper.ThrowInvalidOperationException();
             return "";

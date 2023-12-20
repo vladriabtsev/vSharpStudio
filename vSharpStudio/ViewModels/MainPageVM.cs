@@ -25,6 +25,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Xml.Linq;
 using AsyncAwaitBestPractices;
+using CommunityToolkit.Diagnostics;
 using Google.Protobuf;
 using GuiLabs.Undo;
 using Microsoft.CodeAnalysis;
@@ -463,6 +464,9 @@ namespace vSharpStudio.ViewModels
                 _logger?.LogCritical(ex, emptyStr.CallerInfo());
                 throw;
             }
+#if DEBUG
+            this.CheckShortIdUniqueness(cfg);
+#endif
         }
         public List<IvPluginDbGenerator>? ListDbDesignPlugins
         {
@@ -710,8 +714,95 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vButtonVM? _BtnConfigSave;
+#if DEBUG
+        private void CheckShortIdUniqueness(Config cfg)
+        {
+            var hash = new HashSet<int>();
+            // Constant groups
+            foreach (var t in cfg.Model.GroupConstantGroups.ListConstantGroups)
+            {
+                if (hash.Contains(t.ShortId))
+                    throw new NotSupportedException();
+                if (t.ShortId == 0)
+                    throw new NotSupportedException();
+                hash.Add(t.ShortId);
+            }
+            // Constants
+            hash.Clear();
+            foreach (var tt in cfg.Model.GroupConstantGroups.ListConstantGroups)
+            {
+                foreach (var t in tt.ListConstants)
+                {
+                    if (hash.Contains(t.ShortId))
+                        throw new NotSupportedException();
+                    if (t.ShortId == 0)
+                        throw new NotSupportedException();
+                    hash.Add(t.ShortId);
+                }
+            }
+            // Catalogs
+            hash.Clear();
+            foreach (var t in cfg.Model.GroupCatalogs.ListCatalogs)
+            {
+                if (hash.Contains(t.ShortId))
+                    throw new NotSupportedException();
+                if (t.ShortId == 0)
+                    throw new NotSupportedException();
+                hash.Add(t.ShortId);
+            }
+            // Documents
+            hash.Clear();
+            foreach (var t in cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+            {
+                if (hash.Contains(t.ShortId))
+                    throw new NotSupportedException();
+                if (t.ShortId == 0)
+                    throw new NotSupportedException();
+                hash.Add(t.ShortId);
+            }
+            // Registers
+            hash.Clear();
+            foreach (var t in cfg.Model.GroupListRegisters.ListRegisters)
+            {
+                if (hash.Contains(t.ShortId))
+                    throw new NotSupportedException();
+                if (t.ShortId == 0)
+                    throw new NotSupportedException();
+                hash.Add(t.ShortId);
+            }
+            // Details
+            hash.Clear();
+            foreach (var tt in cfg.Model.GroupCatalogs.ListCatalogs)
+            {
+                foreach (var t in tt.GroupDetails.ListDetails)
+                {
+                    if (hash.Contains(t.ShortId))
+                        throw new NotSupportedException();
+                    if (t.ShortId == 0)
+                        throw new NotSupportedException();
+                    hash.Add(t.ShortId);
+                }
+            }
+            foreach (var tt in cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+            {
+                foreach (var t in tt.GroupDetails.ListDetails)
+                {
+                    if (hash.Contains(t.ShortId))
+                        throw new NotSupportedException();
+                    if (t.ShortId == 0)
+                        throw new NotSupportedException();
+                    hash.Add(t.ShortId);
+                }
+            }
+            // finish
+            hash.Clear();
+        }
+#endif
         internal void SavePrepare()
         {
+#if DEBUG
+            this.CheckShortIdUniqueness(this.Config);
+#endif
             this.Config.PluginSettingsToModel();
             this.Config.SetLastUpdated(DateTime.UtcNow);
             var proto = Config.ConvertToProto(this._Config);
@@ -1403,6 +1494,7 @@ namespace vSharpStudio.ViewModels
                 GuiLabs.Undo.ActionManager am = new GuiLabs.Undo.ActionManager();
                 var dicRenamed = new Dictionary<string, string?>();
                 var mvr = new ModelVisitorBase();
+                // Collect renamed objects
                 mvr.RunFromRoot(this.Config, null, null, null, (m, n) =>
                 {
                     if (!dicRenamed.ContainsKey(n.Guid) && n.IsRenamed(false))

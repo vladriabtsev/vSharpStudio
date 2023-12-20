@@ -101,7 +101,7 @@ namespace vSharpStudio.common
         Dictionary<string, Tuple<string, string>> GetRefTypeNames(IDataType dt);
         string GetRefTypeNamesString(IDataType dt);
 
-        string GetUniqueObjectFullShortID(ITreeConfigNode node);
+        string GetUniqueStringShortID(ITreeConfigNode node);
         string GetUniquePropertyFullShortID(IProperty p);
         string GetUniquePropertyShortID(IProperty p);
     }
