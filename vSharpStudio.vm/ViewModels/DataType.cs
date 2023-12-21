@@ -238,8 +238,8 @@ namespace vSharpStudio.vm.ViewModels
         public static string? GetTypeDesc(DataType p)
         {
             Debug.Assert(p != null);
-            string res = Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum)!;
-            string objName = "Not found";
+            var sb = new StringBuilder();
+            sb.Append(Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum)!);
             Debug.Assert(p.Parent != null);
             ITreeConfigNode par = p.Parent;
             while (par != null && par.Parent != null)
@@ -250,54 +250,97 @@ namespace vSharpStudio.vm.ViewModels
             switch (p.DataTypeEnum)
             {
                 case EnumDataType.CATALOG:
+                    sb.Append(": ");
                     foreach (var t in config.Model.GroupCatalogs.ListCatalogs)
                     {
                         if (p.ObjectGuid == t.Guid)
                         {
-                            objName = t.Name;
+                            sb.Append(t.Name);
                         }
                     }
-                    res += ": " + objName;
                     break;
                 case EnumDataType.DOCUMENT:
+                    sb.Append(": ");
                     foreach (var t in config.Model.GroupDocuments.GroupListDocuments.ListDocuments)
                     {
                         if (p.ObjectGuid == t.Guid)
                         {
-                            objName = t.Name;
+                            sb.Append(t.Name);
                         }
                     }
-                    res += ": " + objName;
                     break;
                 case EnumDataType.ANY:
-                    throw new NotImplementedException();
+                    break;
                 case EnumDataType.CATALOGS:
-                    throw new NotImplementedException();
+                    sb.Append(": ");
+                    sb.Append(p.ListObjectGuids.Count);
+                    sb.Append(" types");
+                    foreach (var tt in p.ListObjectGuids)
+                    {
+                        foreach (var t in config.Model.GroupCatalogs.ListCatalogs)
+                        {
+                            if (tt == t.Guid)
+                            {
+                                sb.Append(", ");
+                                sb.Append(t.Name);
+                            }
+                        }
+                    }
+                    break;
                 case EnumDataType.DOCUMENTS:
+                    sb.Append(": ");
+                    sb.Append(p.ListObjectGuids.Count);
+                    sb.Append(" types");
+                    foreach (var tt in p.ListObjectGuids)
+                    {
+                        foreach (var t in config.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+                        {
+                            if (tt == t.Guid)
+                            {
+                                sb.Append(", ");
+                                sb.Append(t.Name);
+                            }
+                        }
+                    }
                     break;
                 case EnumDataType.ENUMERATION:
+                    sb.Append(": ");
                     foreach (var t in config.Model.GroupEnumerations.ListEnumerations)
                     {
                         if (p.ObjectGuid == t.Guid)
                         {
-                            objName = t.Name;
+                            sb.Append(t.Name);
                         }
                     }
-                    res += ": " + objName;
                     break;
                 case EnumDataType.NUMERICAL:
-                    res += ", " + (p.IsPositive ? "+" : string.Empty) + " " + p.Length + (p.Accuracy > 0 ? "." + p.Accuracy : string.Empty) + " clr:" + p.ClrTypeName; // + " proto:" + p.ProtoType;
+                    sb.Append(", ");
+                    if (p.IsPositive)
+                        sb.Append("+ ");
+                    sb.Append(p.Length);
+                    if (p.Accuracy > 0)
+                    {
+                        sb.Append(".");
+                        sb.Append(p.Accuracy);
+                        sb.Append(" ");
+                    }
+                    sb.Append("clr:");
+                    sb.Append(p.ClrTypeName);
                     break;
                 case EnumDataType.STRING:
-                    res += ", Length:" + (p.Length > 0 ? p.Length.ToString() : " unlimited");
+                    sb.Append(", Length: ");
+                    if (p.Length > 0)
+                        sb.Append(p.Length);
+                    else
+                        sb.Append("unlimited");
                     break;
                 case EnumDataType.BOOL:
                     break;
                 default:
-                    res += " - Not supported";
+                    sb.Append(" - NOT SUPPORTED");
                     break;
             }
-            return res;
+            return sb.ToString();
         }
         [PropertyOrderAttribute(14)]
         [DisplayName("Min Len")]

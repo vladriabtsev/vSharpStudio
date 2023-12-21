@@ -129,6 +129,8 @@ namespace vSharpStudio.vm.ViewModels
                 return sb;
             if (n is GroupDocuments)
                 return sb;
+            if (n is GroupListRegisters)
+                return sb;
             Debug.Assert(n.Parent != null);
             ToRoot(n.Parent, sb);
             if (n is Property p)
