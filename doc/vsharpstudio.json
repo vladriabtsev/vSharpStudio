@@ -9927,7 +9927,7 @@
               "defaultValue": ""
             },
             {
-              "name": "group_list_registers",
+              "name": "group_registers",
               "description": "@attr [Browsable(false)]\n@attr [Description(\"Registers for documents\")]",
               "label": "",
               "type": "proto_group_list_registers",

@@ -762,7 +762,7 @@ namespace vSharpStudio.ViewModels
             }
             // Registers
             hash.Clear();
-            foreach (var t in cfg.Model.GroupListRegisters.ListRegisters)
+            foreach (var t in cfg.Model.GroupRegisters.ListRegisters)
             {
                 if (hash.Contains(t.ShortId))
                     throw new NotSupportedException();

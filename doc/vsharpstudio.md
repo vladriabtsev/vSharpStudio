@@ -1751,7 +1751,7 @@ Configuration model
 | group_enumerations | [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations) |  | @attr [Browsable(false)] |
 | group_catalogs | [proto_group_list_catalogs](#proto_config.proto_group_list_catalogs) |  | @attr [Browsable(false)] |
 | group_documents | [proto_group_documents](#proto_config.proto_group_documents) |  | @attr [Browsable(false)] |
-| group_list_registers | [proto_group_list_registers](#proto_config.proto_group_list_registers) |  | @attr [Browsable(false)] @attr [Description(&#34;Registers for documents&#34;)] |
+| group_registers | [proto_group_list_registers](#proto_config.proto_group_list_registers) |  | @attr [Browsable(false)] @attr [Description(&#34;Registers for documents&#34;)] |
 | group_journals | [proto_group_list_journals](#proto_config.proto_group_list_journals) |  | @attr [Browsable(false)] |
 | group_relations | [proto_many_to_many_group_relations](#proto_config.proto_many_to_many_group_relations) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |

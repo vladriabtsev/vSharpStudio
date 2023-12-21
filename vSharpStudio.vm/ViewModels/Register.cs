@@ -559,7 +559,7 @@ namespace vSharpStudio.vm.ViewModels
             // Document timeline
             var pDocDate = new Property(this, this.PropertyDocDateGuid, this.Cfg.Model.PropertyDocDateName, true);
             pDocDate.Name = "DocTimeline";
-            pDocDate.DataType = (DataType)this.Cfg.Model.GetDataTypeDateTimeUtc(pDocDate, this.Cfg.Model.GroupListRegisters.AccuracyForDocumentTimeLine, false, false);
+            pDocDate.DataType = (DataType)this.Cfg.Model.GetDataTypeDateTimeUtc(pDocDate, this.Cfg.Model.GroupRegisters.AccuracyForDocumentTimeLine, false, false);
             pDocDate.Position = 8;
             pDocDate.IsCsNullable = true;
             //var pDocDate = m.GetPropertyDocumentDate(this, this.PropertyDocDateGuid); // position 8

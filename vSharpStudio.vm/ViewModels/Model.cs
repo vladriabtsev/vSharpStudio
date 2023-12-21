@@ -112,7 +112,7 @@ namespace vSharpStudio.vm.ViewModels
             children.Add(this.GroupCatalogs, 9);
             children.Add(this.GroupRelations, 10);
             children.Add(this.GroupDocuments, 11);
-            children.Add(this.GroupListRegisters, 12);
+            children.Add(this.GroupRegisters, 12);
             children.Add(this.GroupJournals, 13);
             //this.ListMainViewForms.OnAddingAction = (t) =>
             //{
@@ -1082,7 +1082,7 @@ namespace vSharpStudio.vm.ViewModels
             var lst = new List<IRegister>();
             var cfg = this.ParentConfig;
             var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
-            foreach (var tt in cfg.Model.GroupListRegisters.ListRegisters)
+            foreach (var tt in cfg.Model.GroupRegisters.ListRegisters)
             {
                 if (tt.IsIncluded(guidAppPrjGen))
                 {

@@ -360,7 +360,7 @@ namespace vSharpStudio.Unit
 
             var cfg = mvm.Config;
             uint pos = 20;
-            var reg = (Register)cfg.Model.GroupListRegisters.NodeAddNewSubNode();
+            var reg = (Register)cfg.Model.GroupRegisters.NodeAddNewSubNode();
             Assert.AreEqual(pos, reg.LastGenPosition);
 
             var dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
@@ -414,7 +414,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
 
             // Can work with register without catalogs and docs
-            var reg1 = cfg.Model.GroupListRegisters.AddRegister("turnover", EnumRegisterType.TURNOVER);
+            var reg1 = cfg.Model.GroupRegisters.AddRegister("turnover", EnumRegisterType.TURNOVER);
             reg1.TableTurnoverPropertyMoneyAccumulatorLength = 20;
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);

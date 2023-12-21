@@ -777,7 +777,7 @@ message proto_model {
     proto_group_documents group_documents = 104;
     // @attr [Browsable(false)]
     // @attr [Description("Registers for documents")]
-    proto_group_list_registers group_list_registers = 107;
+    proto_group_list_registers group_registers = 107;
     // @attr [Browsable(false)]
     proto_group_list_journals group_journals = 105;
     // @attr [Browsable(false)]
