@@ -1,27 +1,27 @@
 {
   "currentConfig": {
-    "guid": "48f2b44f-9c81-4b4b-acf9-622a2652c338",
+    "guid": "740b8e4f-442d-4b6d-b6e8-fe398e026746",
     "name": "test1",
     "nameUi": "test1",
-    "lastUpdated": "2023-12-21T14:23:35.680875800Z",
+    "lastUpdated": "2023-12-21T17:53:13.841007400Z",
     "sortingValue": "146311672261392142",
     "isNeedCurrentUpdate": true,
     "groupConfigLinks": {
-      "guid": "f162d25c-504c-42d9-85d1-dd5954edc714",
+      "guid": "d6a296d9-e0ff-4a56-930b-083307c261cc",
       "name": "BaseConfigs",
       "sortingValue": "59235912622939962"
     },
     "model": {
-      "guid": "32b38974-ee86-434c-9751-3d38b3488c60",
+      "guid": "e2923639-d314-4242-aa19-e72b0fe12b08",
       "name": "Model",
       "sortingValue": "1266818643803827315",
       "nameUi": "Model",
       "compositeNameMaxLength": 100,
       "isUseCompositeNames": true,
       "isUseGroupPrefix": true,
-      "pKeyGuid": "d9cb8ea1-b428-4780-9da0-546afb28d84e",
+      "pKeyGuid": "2ebcc604-f792-4e48-95f9-aa1d36b00844",
       "pKeyName": "kuku",
-      "recordVersionFieldGuid": "2f3a3f6d-4a3b-4b82-80b3-d6873dea51a7",
+      "recordVersionFieldGuid": "42000032-993e-4f43-a9f5-bb11ea0d8f28",
       "recordVersionFieldName": "ReCoRdVeRsIoN",
       "recordVersionFieldType": "VER_INT",
       "propertyCodeName": "Code",
@@ -37,20 +37,20 @@
       "propertyDocNumberName": "DocNumber",
       "useDocNumberProperty": true,
       "groupConstantGroups": {
-        "guid": "6ca324e0-025b-4ac3-8a75-55c10a8ff264",
+        "guid": "69d25c9c-c9f9-4552-88e8-5869d244eb06",
         "name": "Constants",
         "sortingValue": "8136298302896683707",
         "nameUi": "Constants",
         "prefixForDbTables": "Cnst",
         "listConstantGroups": [
           {
-            "guid": "627c23a4-e694-4e3d-a1a8-9b8d35c0aeaa",
+            "guid": "11ef0c84-947d-49b8-bc4a-b3d013c2bdd4",
             "name": "Gr",
             "sortingValue": "85384863045365589",
             "nameUi": "Gr",
             "listConstants": [
               {
-                "guid": "640784e5-b56c-4f01-bed0-f9da95f9a9e7",
+                "guid": "07f1a2a9-16b0-4b22-9c8d-214440a4eb07",
                 "name": "Constant1",
                 "sortingValue": "65847770648717912",
                 "nameUi": "Constant1",
@@ -62,8 +62,8 @@
                 "shortId": 1,
                 "listNodeGeneratorsSettings": [
                   {
-                    "guid": "a5c5fef5-73d6-451d-afc7-2c7089a743a9",
-                    "appProjectGeneratorGuid": "4d9744bc-4e65-44ba-835f-cdf44253330d",
+                    "guid": "f341b592-a030-4069-8194-b47626b42bc1",
+                    "appProjectGeneratorGuid": "da946191-95c6-40ca-953a-265df3d72b7f",
                     "name": "Generator1",
                     "nameUi": "Generator1",
                     "sortingValue": "83781156573733227"
@@ -78,8 +78,8 @@
         ],
         "listNodeGeneratorsSettings": [
           {
-            "guid": "4d6e6cc8-6830-42a1-8628-9bfbfd4c2581",
-            "appProjectGeneratorGuid": "4d9744bc-4e65-44ba-835f-cdf44253330d",
+            "guid": "7dd88ad0-dedd-4d09-b213-e93998d61be2",
+            "appProjectGeneratorGuid": "da946191-95c6-40ca-953a-265df3d72b7f",
             "name": "Generator1",
             "nameUi": "Generator1",
             "sortingValue": "83781156573733227",
@@ -88,14 +88,14 @@
         ]
       },
       "groupEnumerations": {
-        "guid": "b6f68309-ffbe-4b70-9361-45f975dfe9af",
+        "guid": "d37f5781-2d14-483e-840c-849b80be8df1",
         "name": "Enumerations",
         "nameUi": "Enumerations",
         "sortingValue": "9298730994942060253",
         "listNodeGeneratorsSettings": [
           {
-            "guid": "35526f93-b7bb-4818-aea7-433239f5b17a",
-            "appProjectGeneratorGuid": "4d9744bc-4e65-44ba-835f-cdf44253330d",
+            "guid": "9a4dd610-c466-40d5-a534-684244c0bbec",
+            "appProjectGeneratorGuid": "da946191-95c6-40ca-953a-265df3d72b7f",
             "name": "Generator1",
             "nameUi": "Generator1",
             "sortingValue": "83781156573733227"
@@ -103,7 +103,7 @@
         ]
       },
       "groupCatalogs": {
-        "guid": "44160e33-156d-4861-83dd-9012280cd1fe",
+        "guid": "2add0acd-a0d5-4c03-8c7e-146bd6381bac",
         "name": "Catalogs",
         "nameUi": "Catalogs",
         "prefixForDbTables": "Ctlg",
@@ -113,19 +113,19 @@
         "useNamePropertyInSeparateTree": true
       },
       "groupDocuments": {
-        "guid": "003cf2f8-a80b-4cb3-8233-557179efd851",
+        "guid": "7637fd74-07d9-4aeb-bd20-324d408a15bb",
         "name": "Documents",
         "sortingValue": "12752754440603541560",
         "nameUi": "Documents",
         "prefixForDbTables": "Doc",
         "groupSharedProperties": {
-          "guid": "490cf159-49d2-4e80-9364-f58536716cd9",
+          "guid": "8905522d-2c49-4499-9e04-2ec95d9dbce9",
           "name": "Default Properties",
           "nameUi": "Default Properties",
           "sortingValue": "2375169941565728410"
         },
         "groupListDocuments": {
-          "guid": "6af95440-9b71-4874-9d6e-0583a1a3158a",
+          "guid": "e538f099-1d48-464f-8e63-c123cf5e4b35",
           "name": "Documents",
           "nameUi": "Documents",
           "shortIdTypeForCacheKey": "d",
@@ -134,54 +134,54 @@
         "mondayBeforeFirstDocDate": "1000-01-06T00:00:00Z"
       },
       "groupJournals": {
-        "guid": "6ff52578-51f3-47b8-affc-56eb5fd1716e",
+        "guid": "268a6fb9-562d-49ec-be65-2f4f49c134a1",
         "name": "Journals",
         "nameUi": "Journals",
         "sortingValue": "15087511898170793690"
       },
       "groupCommon": {
-        "guid": "3460a79a-cd5c-4c50-b312-815910258a97",
+        "guid": "cbe6e984-8b9c-42bf-a37e-23e46f5b3906",
         "name": "Common Group",
         "nameUi": "Common Group",
         "sortingValue": "6983372704246320642",
         "groupRoles": {
-          "guid": "bf328000-979f-4e96-80c2-2ef8b73f426a",
+          "guid": "7522a20a-171e-4b96-a6b6-8bac9e3638cf",
           "name": "Roles",
           "nameUi": "Roles",
           "sortingValue": "7055497206495867671"
         },
         "groupViewForms": {
-          "guid": "6f6d7895-4a91-4fe0-9b29-372463670f2c",
+          "guid": "db5b4f89-dca6-4533-9f9a-83a78d201ddd",
           "name": "Views",
           "nameUi": "Views",
           "sortingValue": "156399867323297696"
         },
         "groupListSequences": {
-          "guid": "ab451efc-b480-487f-a0d6-6f1012d5ce96",
+          "guid": "c8b25932-9ebb-4167-ba8d-89a356e4f87e",
           "name": "Sequences",
           "sortingValue": "1294417697512652434",
           "nameUi": "Sequences"
         }
       },
-      "groupListRegisters": {
-        "guid": "13755d2e-ad62-4208-9092-e83e4cf3ad15",
+      "groupRegisters": {
+        "guid": "a846d203-f854-4ace-96e7-dcd9396a3083",
         "name": "Registers",
         "nameUi": "Registers",
         "sortingValue": "13971709436179126794",
         "prefixForDbTables": "Reg",
         "shortIdTypeForCacheKey": "rg",
-        "propertyRegGuidGuid": "b5388cb7-5832-4ba4-8e33-0ea687c5f818",
-        "propertyDocDateGuid": "d350cb55-9c69-41ab-96ef-b94e916cfae3",
-        "propertyDocDateSequenceGuid": "62353d2a-9d77-40ff-a7f7-b7e77165ab9a",
-        "propertyVersionGuid": "e533ec7c-68e1-43a8-98ff-d0ed589f92e8"
+        "propertyRegGuidGuid": "d69065be-07a3-4f0e-b1fd-98d52323d840",
+        "propertyDocDateGuid": "cdb5e640-0efd-45f9-bd4b-560f2cd6d3d7",
+        "propertyDocDateSequenceGuid": "b1367bf1-f013-412a-8dfe-da3a1c31c1b1",
+        "propertyVersionGuid": "18678791-e96e-40c7-89eb-91befb7d49d1"
       },
       "groupRelations": {
-        "guid": "d396122f-bd51-44e1-af3b-42dc2bf47a16",
+        "guid": "4efbacee-cebe-44f4-acfb-9e22ea903b98",
         "name": "Many To Many",
         "sortingValue": "11641329690021624546",
         "nameUi": "Many To Many",
         "groupListCatalogsRelations": {
-          "guid": "8194d9ad-87d7-4f87-8965-acd3710b1e96",
+          "guid": "3a153f5c-190d-439b-b722-e9218db7d78b",
           "name": "Catalogs",
           "nameUi": "Catalogs",
           "prefixForDbTables": "CtlgManyToMany",
@@ -189,7 +189,7 @@
           "sortingValue": "2369890662040047526"
         },
         "groupListDocumentsRelations": {
-          "guid": "bb41e93f-8277-4d7d-83cf-c507c4ee2e34",
+          "guid": "46105e61-2f43-4e23-a520-67520282511b",
           "name": "Documents",
           "nameUi": "Documents",
           "prefixForDbTables": "DocManyToMany",
@@ -199,8 +199,8 @@
       },
       "listNodeGeneratorsSettings": [
         {
-          "guid": "a120b13a-2eae-4777-88f9-a1a1b47ab69a",
-          "appProjectGeneratorGuid": "4d9744bc-4e65-44ba-835f-cdf44253330d",
+          "guid": "f3e04ea1-3558-46e4-b34a-f535c1f3d32e",
+          "appProjectGeneratorGuid": "da946191-95c6-40ca-953a-265df3d72b7f",
           "name": "Generator1",
           "nameUi": "Generator1",
           "sortingValue": "83781156573733227",
@@ -214,7 +214,7 @@
       ]
     },
     "groupPlugins": {
-      "guid": "ac1cac27-6853-4e73-8a5f-6a7bfa4ab20b",
+      "guid": "957628d6-b7ef-4e6a-b252-069d91c8d09d",
       "name": "Plugins",
       "listPlugins": [
         {
@@ -347,13 +347,13 @@
       "sortingValue": "10504286444592368772"
     },
     "groupAppSolutions": {
-      "guid": "0e558baf-65aa-490e-a06b-54fdcbc76ca6",
+      "guid": "cdb77cd1-5de9-4d97-9796-6be3da945d49",
       "name": "User Applications",
       "description": "test1",
       "sortingValue": "11682105398164708376",
       "listAppSolutions": [
         {
-          "guid": "de2165d3-fef8-4d57-b48e-f2e23d0279ad",
+          "guid": "b5a69c04-327d-401f-8617-d09640067160",
           "name": "Solution",
           "nameUi": "Solution",
           "sortingValue": "142778286068569081",
@@ -361,7 +361,7 @@
           "isNew": true,
           "listAppProjects": [
             {
-              "guid": "c471ac53-06fe-4441-b919-21b65df805f7",
+              "guid": "839262ae-6117-421e-ac00-dce0919bbbf9",
               "name": "Project1",
               "nameUi": "Project1",
               "sortingValue": "128751872464710627",
@@ -369,7 +369,7 @@
               "isNew": true,
               "listAppProjectGenerators": [
                 {
-                  "guid": "4d9744bc-4e65-44ba-835f-cdf44253330d",
+                  "guid": "da946191-95c6-40ca-953a-265df3d72b7f",
                   "name": "Sample-DbAccess",
                   "nameUi": "Sample-DbAccess",
                   "sortingValue": "140961838680975452",
@@ -399,7 +399,7 @@
           ]
         },
         {
-          "guid": "de16252a-74ca-4399-abf0-c5e92c7c346d",
+          "guid": "4870ee7c-1334-4f29-b7f7-f9fffc53f459",
           "name": "Solution1",
           "nameUi": "Solution1",
           "sortingValue": "142778286068571819",
@@ -409,27 +409,27 @@
     }
   },
   "prevStableConfig": {
-    "guid": "48f2b44f-9c81-4b4b-acf9-622a2652c338",
+    "guid": "740b8e4f-442d-4b6d-b6e8-fe398e026746",
     "name": "Config",
     "nameUi": "Config",
-    "lastUpdated": "2023-12-21T14:23:35.238493900Z",
+    "lastUpdated": "2023-12-21T17:53:13.350958300Z",
     "sortingValue": "65846508680886234",
     "groupConfigLinks": {
-      "guid": "f162d25c-504c-42d9-85d1-dd5954edc714",
+      "guid": "d6a296d9-e0ff-4a56-930b-083307c261cc",
       "name": "BaseConfigs",
       "sortingValue": "59235912622939962"
     },
     "model": {
-      "guid": "32b38974-ee86-434c-9751-3d38b3488c60",
+      "guid": "e2923639-d314-4242-aa19-e72b0fe12b08",
       "name": "Model",
       "sortingValue": "1266818643803827315",
       "nameUi": "Model",
       "compositeNameMaxLength": 100,
       "isUseCompositeNames": true,
       "isUseGroupPrefix": true,
-      "pKeyGuid": "d9cb8ea1-b428-4780-9da0-546afb28d84e",
+      "pKeyGuid": "2ebcc604-f792-4e48-95f9-aa1d36b00844",
       "pKeyName": "Id",
-      "recordVersionFieldGuid": "2f3a3f6d-4a3b-4b82-80b3-d6873dea51a7",
+      "recordVersionFieldGuid": "42000032-993e-4f43-a9f5-bb11ea0d8f28",
       "recordVersionFieldName": "ReCoRdVeRsIoN",
       "recordVersionFieldType": "VER_INT",
       "propertyCodeName": "Code",
@@ -443,20 +443,20 @@
       "propertyDocNumberName": "DocNumber",
       "useDocNumberProperty": true,
       "groupConstantGroups": {
-        "guid": "6ca324e0-025b-4ac3-8a75-55c10a8ff264",
+        "guid": "69d25c9c-c9f9-4552-88e8-5869d244eb06",
         "name": "Constants",
         "sortingValue": "8136298302896683707",
         "nameUi": "Constants",
         "prefixForDbTables": "Cnst"
       },
       "groupEnumerations": {
-        "guid": "b6f68309-ffbe-4b70-9361-45f975dfe9af",
+        "guid": "d37f5781-2d14-483e-840c-849b80be8df1",
         "name": "Enumerations",
         "nameUi": "Enumerations",
         "sortingValue": "9298730994942060253"
       },
       "groupCatalogs": {
-        "guid": "44160e33-156d-4861-83dd-9012280cd1fe",
+        "guid": "2add0acd-a0d5-4c03-8c7e-146bd6381bac",
         "name": "Catalogs",
         "nameUi": "Catalogs",
         "prefixForDbTables": "Ctlg",
@@ -466,19 +466,19 @@
         "useNamePropertyInSeparateTree": true
       },
       "groupDocuments": {
-        "guid": "003cf2f8-a80b-4cb3-8233-557179efd851",
+        "guid": "7637fd74-07d9-4aeb-bd20-324d408a15bb",
         "name": "Documents",
         "sortingValue": "12752754440603541560",
         "nameUi": "Documents",
         "prefixForDbTables": "Doc",
         "groupSharedProperties": {
-          "guid": "490cf159-49d2-4e80-9364-f58536716cd9",
+          "guid": "8905522d-2c49-4499-9e04-2ec95d9dbce9",
           "name": "Default Properties",
           "nameUi": "Default Properties",
           "sortingValue": "2375169941565728410"
         },
         "groupListDocuments": {
-          "guid": "6af95440-9b71-4874-9d6e-0583a1a3158a",
+          "guid": "e538f099-1d48-464f-8e63-c123cf5e4b35",
           "name": "Documents",
           "nameUi": "Documents",
           "shortIdTypeForCacheKey": "d",
@@ -487,54 +487,54 @@
         "mondayBeforeFirstDocDate": "1000-01-06T00:00:00Z"
       },
       "groupJournals": {
-        "guid": "6ff52578-51f3-47b8-affc-56eb5fd1716e",
+        "guid": "268a6fb9-562d-49ec-be65-2f4f49c134a1",
         "name": "Journals",
         "nameUi": "Journals",
         "sortingValue": "15087511898170793690"
       },
       "groupCommon": {
-        "guid": "3460a79a-cd5c-4c50-b312-815910258a97",
+        "guid": "cbe6e984-8b9c-42bf-a37e-23e46f5b3906",
         "name": "Common Group",
         "nameUi": "Common Group",
         "sortingValue": "6983372704246320642",
         "groupRoles": {
-          "guid": "bf328000-979f-4e96-80c2-2ef8b73f426a",
+          "guid": "7522a20a-171e-4b96-a6b6-8bac9e3638cf",
           "name": "Roles",
           "nameUi": "Roles",
           "sortingValue": "7055497206495867671"
         },
         "groupViewForms": {
-          "guid": "6f6d7895-4a91-4fe0-9b29-372463670f2c",
+          "guid": "db5b4f89-dca6-4533-9f9a-83a78d201ddd",
           "name": "Views",
           "nameUi": "Views",
           "sortingValue": "156399867323297696"
         },
         "groupListSequences": {
-          "guid": "ab451efc-b480-487f-a0d6-6f1012d5ce96",
+          "guid": "c8b25932-9ebb-4167-ba8d-89a356e4f87e",
           "name": "Sequences",
           "sortingValue": "1294417697512652434",
           "nameUi": "Sequences"
         }
       },
-      "groupListRegisters": {
-        "guid": "13755d2e-ad62-4208-9092-e83e4cf3ad15",
+      "groupRegisters": {
+        "guid": "a846d203-f854-4ace-96e7-dcd9396a3083",
         "name": "Registers",
         "nameUi": "Registers",
         "sortingValue": "13971709436179126794",
         "prefixForDbTables": "Reg",
         "shortIdTypeForCacheKey": "rg",
-        "propertyRegGuidGuid": "b5388cb7-5832-4ba4-8e33-0ea687c5f818",
-        "propertyDocDateGuid": "d350cb55-9c69-41ab-96ef-b94e916cfae3",
-        "propertyDocDateSequenceGuid": "62353d2a-9d77-40ff-a7f7-b7e77165ab9a",
-        "propertyVersionGuid": "e533ec7c-68e1-43a8-98ff-d0ed589f92e8"
+        "propertyRegGuidGuid": "d69065be-07a3-4f0e-b1fd-98d52323d840",
+        "propertyDocDateGuid": "cdb5e640-0efd-45f9-bd4b-560f2cd6d3d7",
+        "propertyDocDateSequenceGuid": "b1367bf1-f013-412a-8dfe-da3a1c31c1b1",
+        "propertyVersionGuid": "18678791-e96e-40c7-89eb-91befb7d49d1"
       },
       "groupRelations": {
-        "guid": "d396122f-bd51-44e1-af3b-42dc2bf47a16",
+        "guid": "4efbacee-cebe-44f4-acfb-9e22ea903b98",
         "name": "Many To Many",
         "sortingValue": "11641329690021624546",
         "nameUi": "Many To Many",
         "groupListCatalogsRelations": {
-          "guid": "8194d9ad-87d7-4f87-8965-acd3710b1e96",
+          "guid": "3a153f5c-190d-439b-b722-e9218db7d78b",
           "name": "Catalogs",
           "nameUi": "Catalogs",
           "prefixForDbTables": "CtlgManyToMany",
@@ -542,7 +542,7 @@
           "sortingValue": "2369890662040047526"
         },
         "groupListDocumentsRelations": {
-          "guid": "bb41e93f-8277-4d7d-83cf-c507c4ee2e34",
+          "guid": "46105e61-2f43-4e23-a520-67520282511b",
           "name": "Documents",
           "nameUi": "Documents",
           "prefixForDbTables": "DocManyToMany",
@@ -552,7 +552,7 @@
       }
     },
     "groupPlugins": {
-      "guid": "ac1cac27-6853-4e73-8a5f-6a7bfa4ab20b",
+      "guid": "957628d6-b7ef-4e6a-b252-069d91c8d09d",
       "name": "Plugins",
       "listPlugins": [
         {
@@ -693,7 +693,7 @@
       "sortingValue": "10504286444592368772"
     },
     "groupAppSolutions": {
-      "guid": "0e558baf-65aa-490e-a06b-54fdcbc76ca6",
+      "guid": "cdb77cd1-5de9-4d97-9796-6be3da945d49",
       "name": "User Applications",
       "sortingValue": "11682105398164708376"
     }
