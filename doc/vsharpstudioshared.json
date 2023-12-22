@@ -18,6 +18,7 @@
           "description": "@base VmValidatableWithSeverity",
           "hasExtensions": false,
           "hasFields": true,
+          "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
@@ -28,6 +29,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -38,6 +41,8 @@
               "longType": "string",
               "fullType": "string",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             }
           ]

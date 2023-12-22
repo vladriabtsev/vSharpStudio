@@ -18,6 +18,7 @@
           "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
+          "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
@@ -28,6 +29,8 @@
               "longType": "string",
               "fullType": "string",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             }
           ]
@@ -39,6 +42,7 @@
           "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
+          "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
@@ -49,6 +53,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -59,6 +65,8 @@
               "longType": "google.protobuf.BoolValue",
               "fullType": "google.protobuf.BoolValue",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -69,6 +77,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -79,6 +89,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             }
           ]
@@ -90,6 +102,7 @@
           "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
+          "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
@@ -100,6 +113,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -110,6 +125,8 @@
               "longType": "google.protobuf.BoolValue",
               "fullType": "google.protobuf.BoolValue",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -120,6 +137,8 @@
               "longType": "string",
               "fullType": "string",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -130,6 +149,8 @@
               "longType": "google.protobuf.StringValue",
               "fullType": "google.protobuf.StringValue",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -140,6 +161,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             }
           ]
@@ -151,6 +174,7 @@
           "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
+          "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
@@ -161,6 +185,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -171,6 +197,8 @@
               "longType": "google.protobuf.BoolValue",
               "fullType": "google.protobuf.BoolValue",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -181,6 +209,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -191,6 +221,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             }
           ]
@@ -202,6 +234,7 @@
           "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
+          "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
@@ -212,6 +245,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -222,6 +257,8 @@
               "longType": "google.protobuf.BoolValue",
               "fullType": "google.protobuf.BoolValue",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -232,6 +269,8 @@
               "longType": "string",
               "fullType": "string",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             }
           ]
@@ -243,6 +282,7 @@
           "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
+          "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
@@ -253,6 +293,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             }
           ]
@@ -264,6 +306,7 @@
           "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
+          "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
@@ -274,6 +317,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -284,6 +329,8 @@
               "longType": "proto_plugins_group_solution_sub_settings",
               "fullType": "proto_plugin_sample.proto_plugins_group_solution_sub_settings",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             }
           ]
@@ -295,6 +342,7 @@
           "description": "@base BaseSubSettings",
           "hasExtensions": false,
           "hasFields": true,
+          "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
@@ -305,6 +353,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             },
             {
@@ -315,6 +365,8 @@
               "longType": "bool",
               "fullType": "bool",
               "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
               "defaultValue": ""
             }
           ]

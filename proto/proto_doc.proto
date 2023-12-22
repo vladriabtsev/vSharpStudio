@@ -45,8 +45,9 @@ message message {
 	string description = 4;
 	bool hasExtensions = 5;
 	bool hasFields = 6;
-	repeated extension extensions = 7;
-	repeated field fields = 8;
+	bool hasOneofs = 7;
+	repeated extension extensions = 8;
+	repeated field fields = 9;
 }
 message field {
 	string name = 1;
@@ -56,7 +57,9 @@ message field {
 	string longType = 5;
 	string fullType = 6;
 	bool ismap = 7;
-	string defaultValue = 8;
+	bool isoneof = 8;
+	string oneofdecl = 9;
+	string defaultValue = 10;
 }
 message service {
 	string name = 1;
