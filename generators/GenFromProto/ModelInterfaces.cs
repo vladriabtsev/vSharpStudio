@@ -230,7 +230,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("IReadOnlyList<");
+            this.Write("Dictionary<string, ");
             
             #line 45 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));

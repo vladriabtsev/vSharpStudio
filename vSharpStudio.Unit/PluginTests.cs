@@ -129,7 +129,7 @@ namespace vSharpStudio.Unit
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
-            var pluginSimple2Gen1 = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample2.SamplePlugin select p).Single();
+            var pluginSimple2Gen1 = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample2.SamplePlugin2 select p).Single();
             var pluginSimpleGen2 = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginSimpleGen2.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginSimpleGen2.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
@@ -569,7 +569,7 @@ namespace vSharpStudio.Unit
             gen.PluginGeneratorGuid = genDbAccess.Guid;
             Assert.AreEqual("Sample-DbAccess", gen.Name);
 
-            gen.PluginGuid = vPlugin.Sample2.SamplePlugin.GuidStatic;
+            gen.PluginGuid = vPlugin.Sample2.SamplePlugin2.GuidStatic;
             Assert.AreEqual("Sample2", gen.Name);
         }
         [TestMethod]

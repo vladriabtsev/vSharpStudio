@@ -42,7 +42,7 @@ public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefa
          this.PushIndent("\t"); #>
 <#= this.FieldDoc.Comments #><# if (field.IsRepeated) { #>
 <# if (field.IsMap()) { #>
-IReadOnlyList<<#=field.ToTypeCs()#>> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
+Dictionary<string, <#=field.ToTypeCs()#>> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
 <# } else if (field.IsCsSimple()) { #>
 IReadOnlyList<<#=field.ToTypeCs()#>> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
 <# } else { #>

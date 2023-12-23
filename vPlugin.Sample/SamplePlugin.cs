@@ -37,7 +37,6 @@ namespace vPlugin.Sample
         public string Version { get; protected set; }
         public string Url { get; protected set; }
         public string Licence { get; protected set; }
-
         public List<IvPluginGenerator> ListGenerators { get; }
     }
 }

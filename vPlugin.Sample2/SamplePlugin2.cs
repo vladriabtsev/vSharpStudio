@@ -8,12 +8,12 @@ using vSharpStudio.common;
 // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.2
 namespace vPlugin.Sample2
 {
-    public class SamplePlugin : IvPlugin
+    public class SamplePlugin2 : IvPlugin
     {
         public const string GuidStatic = "D535B939-6A33-4B96-B64C-F8FB78FD9F94";
-        public const string GroupAccessGuidStatic = "007CFD6E-E879-42EE-8F98-8AE8F9ED65D8";
+        public const string GroupPluginsGuidStatic = "007CFD6E-E879-42EE-8F98-8AE8F9ED65D8";
 
-        public SamplePlugin()
+        public SamplePlugin2()
         {
             this.Name = "Sample2";
             this.NameUI = "Sample2 plugin";
@@ -26,7 +26,7 @@ namespace vPlugin.Sample2
             this.ListGenerators.Add(new GeneratorDbAccess());
         }
         public string Guid { get { return GuidStatic; } }
-        public string PluginGroupGuid { get { return GroupAccessGuidStatic; } }
+        public string PluginGroupGuid { get { return GroupPluginsGuidStatic; } }
         public void PluginGroupModelFromJson(string? settings) { }
         public string PluginGroupModelToJson() { return string.Empty; }
         public string Name { get; protected set; }
@@ -36,7 +36,6 @@ namespace vPlugin.Sample2
         public string Version { get; protected set; }
         public string Url { get; protected set; }
         public string Licence { get; protected set; }
-
         public List<IvPluginGenerator> ListGenerators { get; }
     }
 }

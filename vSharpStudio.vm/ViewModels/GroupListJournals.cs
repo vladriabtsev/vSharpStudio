@@ -39,7 +39,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsEditable = false;
-
             Init();
         }
         protected override void OnInitFromDto()
