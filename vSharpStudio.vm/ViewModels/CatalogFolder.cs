@@ -15,7 +15,7 @@ using vSharpStudio.common.DiffModel;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IItemWithSubItems, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles
+    public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IItemWithDetails, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -380,7 +380,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IItemWithSubItems> GetIncludedSubItems(string guidAppPrjGen)
+        public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
         {
             var res = new List<IDetail>();
             foreach (var t in this.GroupDetails.ListDetails)

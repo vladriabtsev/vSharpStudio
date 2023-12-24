@@ -8,7 +8,7 @@ using vSharpStudio.common.DiffModel;
 
 namespace vSharpStudio.common
 {
-    public partial interface IDetail : ITreeConfigNodeSortable, IGetNodeSetting, IItemWithSubItems
+    public partial interface IDetail : ITreeConfigNodeSortable, IGetNodeSetting, IItemWithDetails
     {
         //IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);
         void GetSpecialProperties(List<IProperty> res, bool isOptimistic);

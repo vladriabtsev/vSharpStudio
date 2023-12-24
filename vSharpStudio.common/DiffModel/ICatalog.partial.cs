@@ -8,7 +8,7 @@ using vSharpStudio.common.DiffModel;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IItemWithSubItems
+    public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IItemWithDetails
     {
         IGroupListCatalogs ParentGroupListCatalogsI { get; }
         void GetSpecialProperties(List<IProperty> res, bool isOptimistic);

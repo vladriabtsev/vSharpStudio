@@ -18,6 +18,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             mes = mes + $" Count:{ListJournals.Count}";
         }
+        public string GetDebuggerDisplay(bool isOptimistic)
+        {
+            var sb = new StringBuilder();
+            sb.Append("Journals Count:{ListJournals.Count,nq}");
+            return sb.ToString();
+        }
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
@@ -62,6 +68,18 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
             this._Name = Defaults.GroupJournalsName;
+        }
+
+        [PropertyOrder(100)]
+        [ReadOnly(true)]
+        [DisplayName("Composite")]
+        [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]
+        public string CompositeName
+        {
+            get
+            {
+                return "DocTimelineJournal";
+            }
         }
 
         #region Tree operations

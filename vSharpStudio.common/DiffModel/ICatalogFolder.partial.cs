@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalogFolder : ITreeConfigNodeSortable, IGetNodeSetting, IItemWithSubItems
+    public partial interface ICatalogFolder : ITreeConfigNodeSortable, IGetNodeSetting, IItemWithDetails
     {
         ICatalog ParentCatalogI { get; }
         void GetSpecialProperties(List<IProperty> res, bool isOptimistic);

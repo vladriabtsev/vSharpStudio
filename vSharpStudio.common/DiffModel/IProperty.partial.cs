@@ -25,7 +25,7 @@ namespace vSharpStudio.common
         /// <summary>
         /// Can be nullable in code, but not nullable in DB. Samples: catalog code, document number, document date
         /// </summary>
-        bool IsCsNullable { get; }
+        bool IsCsNullable { get; set; }
         bool IsReadonly { get; }
 
         /// <summary>

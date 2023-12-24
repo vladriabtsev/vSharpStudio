@@ -739,15 +739,15 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst;
         }
-        public IReadOnlyList<IItemWithSubItems> GetIncludedSubItems(string guidAppPrjDbGen)
-        {
-            var res = new List<IItemWithSubItems>();
-            foreach (var t in this.GroupRegisterDimensions.ListDimensions)
-            {
-                res.Add(t);
-            }
-            return res;
-        }
+        //public IReadOnlyList<IItemWithDetails> GetIncludedSubItems(string guidAppPrjDbGen)
+        //{
+        //    var res = new List<IItemWithDetails>();
+        //    foreach (var t in this.GroupRegisterDimensions.ListDimensions)
+        //    {
+        //        res.Add(t);
+        //    }
+        //    return res;
+        //}
         public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
         {
             var res = new List<IForm>

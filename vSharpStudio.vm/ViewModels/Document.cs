@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IItemWithSubItems, INodeWithProperties, IRoleAccess, IDocumentAccessRoles
+    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IItemWithDetails, INodeWithProperties, IRoleAccess, IDocumentAccessRoles
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -485,9 +485,9 @@ namespace vSharpStudio.vm.ViewModels
             prp = model.GetPropertyBool(this.GroupProperties, this.PropertyIsPostedGuid, "IsPosted", 10, true);
             res.Add(prp);
         }
-        public IReadOnlyList<IItemWithSubItems> GetIncludedSubItems(string guidAppPrjGen)
+        public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
         {
-            var res = new List<IItemWithSubItems>();
+            var res = new List<IDetail>();
             foreach (var t in this.GroupDetails.ListDetails)
             {
                 if (t.IsIncluded(guidAppPrjGen))

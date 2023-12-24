@@ -668,7 +668,7 @@ namespace vSharpStudio.common
             }
             return sb.ToString();
         }
-        public static string Comment(IItemWithSubItems t, string indent = "")
+        public static string Comment(IItemWithDetails t, string indent = "")
         {
             var sb = new StringBuilder();
             //if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))

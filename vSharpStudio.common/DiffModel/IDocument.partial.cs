@@ -8,7 +8,7 @@ using vSharpStudio.common.DiffModel;
 
 namespace vSharpStudio.common
 {
-    public partial interface IDocument : ITreeConfigNodeSortable, IGetNodeSetting, IItemWithSubItems
+    public partial interface IDocument : ITreeConfigNodeSortable, IGetNodeSetting, IItemWithDetails
     {
         IGroupListDocuments ParentGroupListDocumentsI { get; }
         IReadOnlyList<IProperty> GetProperties();

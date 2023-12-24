@@ -1119,7 +1119,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else if (node is IDetail t)
             {
-                return GetTypeCacheIdWithParents((IItemWithSubItems)t.ParentGroupListDetailsI.Parent!,
+                return GetTypeCacheIdWithParents((IItemWithDetails)t.ParentGroupListDetailsI.Parent!,
                     $"t{t.ShortId.ToString()}");
             }
             else if (node is IRegister r)
@@ -1143,7 +1143,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             ThrowHelper.ThrowInvalidOperationException();
             return "";
-            string GetTypeCacheIdWithParents(IItemWithSubItems node, string res)
+            string GetTypeCacheIdWithParents(IItemWithDetails node, string res)
             {
                 if (node is IModel)
                     return res;
