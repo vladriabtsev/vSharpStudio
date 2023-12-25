@@ -29,8 +29,8 @@ namespace vSharpStudio.vm.ViewModels
             this._ListProperties = lst;
             switch (ftype)
             {
-                case FormType.ListCustom:
-                case FormType.ListDefault:
+                case FormType.ListDataGrid:
+                case FormType.ListComboBox:
                     this._Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
                     break;
                 default:
@@ -309,8 +309,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             switch (this.EnumFormType)
             {
-                case FormType.ListDefault:
-                case FormType.ListCustom:
+                case FormType.ListComboBox:
+                case FormType.ListDataGrid:
                     lst.Add(nameof(this.IsDummy));
                     break;
                 case FormType.ItemEditForm:
@@ -748,7 +748,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                return this.EnumFormType == FormType.ListCustom || this.EnumFormType == FormType.ListDefault;
+                return this.EnumFormType == FormType.ListDataGrid || this.EnumFormType == FormType.ListComboBox;
             }
         }
         [Browsable(false)]

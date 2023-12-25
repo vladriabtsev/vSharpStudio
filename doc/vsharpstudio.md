@@ -310,8 +310,8 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | index_not_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | item_icon_type | [proto_enum_catalog_tree_icon](#proto_config-proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Item Icon&#34;)] @attr [Description(&#34;Catalog item icon type&#34;)] |
 | group_icon_type | [proto_enum_catalog_tree_icon](#proto_config-proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Group Icon&#34;)] @attr [Description(&#34;Catalog group icon type&#34;)] |
-| view_list_custom_guid | [string](#string) |  | @attr [Browsable(false)] |
-| view_list_default_guid | [string](#string) |  | @attr [Browsable(false)] |
+| view_list_datagrid_guid | [string](#string) |  | @attr [Browsable(false)] |
+| view_list_combo_box_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_name_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -384,8 +384,8 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | use_description_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
 | max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(52)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
 | property_description_guid | [string](#string) |  | @attr [Browsable(false)] |
-| view_list_custom_guid | [string](#string) |  | @attr [Browsable(false)] |
-| view_list_default_guid | [string](#string) |  | @attr [Browsable(false)] |
+| view_list_datagrid_guid | [string](#string) |  | @attr [Browsable(false)] |
+| view_list_combo_box_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_is_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_ref_self_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
@@ -541,8 +541,8 @@ Constant application wise value
 | tab_name | [string](#string) |  | @attr [PropertyOrderAttribute(25)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Tab Name&#34;)] @attr [Description(&#34;If not empty, try to find tab in previous tab controls. If not found, then start new tab in tab control. If empty, then continue adding data grids in current tab control&#34;)] |
 | is_start_new_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(26)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Start Tab Control&#34;)] @attr [Description(&#34;Start new tab control as current control&#34;)] |
 | is_stop_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(27)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
-| view_list_custom_guid | [string](#string) |  | @attr [Browsable(false)] |
-| view_list_default_guid | [string](#string) |  | @attr [Browsable(false)] |
+| view_list_datagrid_guid | [string](#string) |  | @attr [Browsable(false)] |
+| view_list_combo_box_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_name_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -3047,10 +3047,10 @@ with history |
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | FormTypeNotSelected | 0 | @attr [Description(&#34;Not selected&#34;)] |
-| ListCustom | 11 | @attr [Description(&#34;Custom list view form&#34;)] |
+| ListDataGrid | 11 | @attr [Description(&#34;List view form for data grid&#34;)] |
 | ItemEditForm | 21 | @attr [Description(&#34;Item edit form&#34;)] |
 | FolderEditForm | 31 | @attr [Description(&#34;Folder edit form&#34;)] |
-| ListDefault | 41 | @attr [Description(&#34;Default list view form&#34;)] |
+| ListComboBox | 41 | @attr [Description(&#34;List view form for combo box&#34;)] |
 
 
  

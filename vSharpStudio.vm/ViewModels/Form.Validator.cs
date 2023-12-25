@@ -25,7 +25,7 @@ namespace vSharpStudio.vm.ViewModels
                         return;
                     }
                     var instance = (Form)cntx.InstanceToValidate;
-                    if (ft == FormType.ListCustom || ft == FormType.ListDefault)
+                    if (ft == FormType.ListDataGrid || ft == FormType.ListComboBox)
                     {
                         if (instance.ListSelectedNotSpecialProperties.Count == 0)
                         {

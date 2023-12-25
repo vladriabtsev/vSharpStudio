@@ -13812,8 +13812,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._TabName = from.TabName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsStartNewTabControl = from.IsStartNewTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsStopTabControl = from.IsStopTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._ViewListCustomGuid = from.ViewListCustomGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._ViewListDefaultGuid = from.ViewListDefaultGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._ViewListDatagridGuid = from.ViewListDatagridGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._ViewListComboBoxGuid = from.ViewListComboBoxGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyCodeGuid = from.PropertyCodeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyNameGuid = from.PropertyNameGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
@@ -13859,8 +13859,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._TabName = from.TabName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsStartNewTabControl = from.IsStartNewTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsStopTabControl = from.IsStopTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._ViewListCustomGuid = from.ViewListCustomGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._ViewListDefaultGuid = from.ViewListDefaultGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._ViewListDatagridGuid = from.ViewListDatagridGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._ViewListComboBoxGuid = from.ViewListComboBoxGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyCodeGuid = from.PropertyCodeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyNameGuid = from.PropertyNameGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
@@ -13993,8 +13993,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._TabName = m.TabName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsStartNewTabControl = m.IsStartNewTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsStopTabControl = m.IsStopTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._ViewListCustomGuid = m.ViewListCustomGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._ViewListDefaultGuid = m.ViewListDefaultGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._ViewListDatagridGuid = m.ViewListDatagridGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._ViewListComboBoxGuid = m.ViewListComboBoxGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyIdGuid = m.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyCodeGuid = m.PropertyCodeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyNameGuid = m.PropertyNameGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
@@ -14047,8 +14047,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.TabName = vm.TabName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.IsStartNewTabControl = vm.IsStartNewTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.IsStopTabControl = vm.IsStopTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.ViewListCustomGuid = vm.ViewListCustomGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.ViewListDefaultGuid = vm.ViewListDefaultGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.ViewListDatagridGuid = vm.ViewListDatagridGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.ViewListComboBoxGuid = vm.ViewListComboBoxGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyIdGuid = vm.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyCodeGuid = vm.PropertyCodeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyNameGuid = vm.PropertyNameGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
@@ -14459,40 +14459,40 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsStopTabControlChanged();
         
         [Browsable(false)]
-        public string ViewListCustomGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public string ViewListDatagridGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._ViewListCustomGuid; }
+            get { return this._ViewListDatagridGuid; }
             set
             {
-                // Use 'OnViewListCustomGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._ViewListCustomGuid, value, (t) => { /*this.OnViewListCustomGuidChanging(ref value);*/ this._ViewListCustomGuid = value; this.OnViewListCustomGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnViewListDatagridGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._ViewListDatagridGuid, value, (t) => { /*this.OnViewListDatagridGuidChanging(ref value);*/ this._ViewListDatagridGuid = value; this.OnViewListDatagridGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _ViewListCustomGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnViewListCustomGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnViewListCustomGuidChanged();
+        private string _ViewListDatagridGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnViewListDatagridGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnViewListDatagridGuidChanged();
         
         [Browsable(false)]
-        public string ViewListDefaultGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public string ViewListComboBoxGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._ViewListDefaultGuid; }
+            get { return this._ViewListComboBoxGuid; }
             set
             {
-                // Use 'OnViewListDefaultGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._ViewListDefaultGuid, value, (t) => { /*this.OnViewListDefaultGuidChanging(ref value);*/ this._ViewListDefaultGuid = value; this.OnViewListDefaultGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnViewListComboBoxGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._ViewListComboBoxGuid, value, (t) => { /*this.OnViewListComboBoxGuidChanging(ref value);*/ this._ViewListComboBoxGuid = value; this.OnViewListComboBoxGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _ViewListDefaultGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnViewListDefaultGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnViewListDefaultGuidChanged();
+        private string _ViewListComboBoxGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnViewListComboBoxGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnViewListComboBoxGuidChanged();
         
         [Browsable(false)]
         public string PropertyIdGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -17962,8 +17962,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._UseDescriptionProperty = from.UseDescriptionProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._MaxDescriptionLength = from.MaxDescriptionLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyDescriptionGuid = from.PropertyDescriptionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._ViewListCustomGuid = from.ViewListCustomGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._ViewListDefaultGuid = from.ViewListDefaultGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._ViewListDatagridGuid = from.ViewListDatagridGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._ViewListComboBoxGuid = from.ViewListComboBoxGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyIsFolderGuid = from.PropertyIsFolderGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyRefSelfGuid = from.PropertyRefSelfGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
@@ -18013,8 +18013,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._UseDescriptionProperty = from.UseDescriptionProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._MaxDescriptionLength = from.MaxDescriptionLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyDescriptionGuid = from.PropertyDescriptionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._ViewListCustomGuid = from.ViewListCustomGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._ViewListDefaultGuid = from.ViewListDefaultGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._ViewListDatagridGuid = from.ViewListDatagridGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._ViewListComboBoxGuid = from.ViewListComboBoxGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyIsFolderGuid = from.PropertyIsFolderGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyRefSelfGuid = from.PropertyRefSelfGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
@@ -18150,8 +18150,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._UseDescriptionProperty = (EnumUseType)m.UseDescriptionProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._MaxDescriptionLength = m.MaxDescriptionLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyDescriptionGuid = m.PropertyDescriptionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._ViewListCustomGuid = m.ViewListCustomGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._ViewListDefaultGuid = m.ViewListDefaultGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._ViewListDatagridGuid = m.ViewListDatagridGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._ViewListComboBoxGuid = m.ViewListComboBoxGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyIsFolderGuid = m.PropertyIsFolderGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyRefSelfGuid = m.PropertyRefSelfGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsGridSortable = (EnumUseType)m.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
@@ -18212,8 +18212,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.UseDescriptionProperty = (Proto.Config.proto_enum_use_type)vm.UseDescriptionProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:267
             m.MaxDescriptionLength = vm.MaxDescriptionLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyDescriptionGuid = vm.PropertyDescriptionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.ViewListCustomGuid = vm.ViewListCustomGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.ViewListDefaultGuid = vm.ViewListDefaultGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.ViewListDatagridGuid = vm.ViewListDatagridGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.ViewListComboBoxGuid = vm.ViewListComboBoxGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyIsFolderGuid = vm.PropertyIsFolderGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyRefSelfGuid = vm.PropertyRefSelfGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:267
@@ -18673,40 +18673,40 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnPropertyDescriptionGuidChanged();
         
         [Browsable(false)]
-        public string ViewListCustomGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public string ViewListDatagridGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._ViewListCustomGuid; }
+            get { return this._ViewListDatagridGuid; }
             set
             {
-                // Use 'OnViewListCustomGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._ViewListCustomGuid, value, (t) => { /*this.OnViewListCustomGuidChanging(ref value);*/ this._ViewListCustomGuid = value; this.OnViewListCustomGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnViewListDatagridGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._ViewListDatagridGuid, value, (t) => { /*this.OnViewListDatagridGuidChanging(ref value);*/ this._ViewListDatagridGuid = value; this.OnViewListDatagridGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _ViewListCustomGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnViewListCustomGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnViewListCustomGuidChanged();
+        private string _ViewListDatagridGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnViewListDatagridGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnViewListDatagridGuidChanged();
         
         [Browsable(false)]
-        public string ViewListDefaultGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public string ViewListComboBoxGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._ViewListDefaultGuid; }
+            get { return this._ViewListComboBoxGuid; }
             set
             {
-                // Use 'OnViewListDefaultGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._ViewListDefaultGuid, value, (t) => { /*this.OnViewListDefaultGuidChanging(ref value);*/ this._ViewListDefaultGuid = value; this.OnViewListDefaultGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnViewListComboBoxGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._ViewListComboBoxGuid, value, (t) => { /*this.OnViewListComboBoxGuidChanging(ref value);*/ this._ViewListComboBoxGuid = value; this.OnViewListComboBoxGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _ViewListDefaultGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnViewListDefaultGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnViewListDefaultGuidChanged();
+        private string _ViewListComboBoxGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnViewListComboBoxGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnViewListComboBoxGuidChanged();
         
         [Browsable(false)]
         public string PropertyIsFolderGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -19223,8 +19223,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IndexNotUniqueCodeGuid = from.IndexNotUniqueCodeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._ItemIconType = from.ItemIconType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._GroupIconType = from.GroupIconType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._ViewListCustomGuid = from.ViewListCustomGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._ViewListDefaultGuid = from.ViewListDefaultGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._ViewListDatagridGuid = from.ViewListDatagridGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
+            vm._ViewListComboBoxGuid = from.ViewListComboBoxGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyCodeGuid = from.PropertyCodeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._PropertyNameGuid = from.PropertyNameGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
@@ -19284,8 +19284,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._IndexNotUniqueCodeGuid = from.IndexNotUniqueCodeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._ItemIconType = from.ItemIconType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._GroupIconType = from.GroupIconType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._ViewListCustomGuid = from.ViewListCustomGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
-            to._ViewListDefaultGuid = from.ViewListDefaultGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._ViewListDatagridGuid = from.ViewListDatagridGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
+            to._ViewListComboBoxGuid = from.ViewListComboBoxGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyCodeGuid = from.PropertyCodeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._PropertyNameGuid = from.PropertyNameGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
@@ -19431,8 +19431,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IndexNotUniqueCodeGuid = m.IndexNotUniqueCodeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._ItemIconType = (EnumCatalogTreeIcon)m.ItemIconType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._GroupIconType = (EnumCatalogTreeIcon)m.GroupIconType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._ViewListCustomGuid = m.ViewListCustomGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._ViewListDefaultGuid = m.ViewListDefaultGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._ViewListDatagridGuid = m.ViewListDatagridGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
+            vm._ViewListComboBoxGuid = m.ViewListComboBoxGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyIdGuid = m.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyCodeGuid = m.PropertyCodeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._PropertyNameGuid = m.PropertyNameGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
@@ -19504,8 +19504,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.IndexNotUniqueCodeGuid = vm.IndexNotUniqueCodeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.ItemIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.ItemIconType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:267
             m.GroupIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.GroupIconType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:267
-            m.ViewListCustomGuid = vm.ViewListCustomGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
-            m.ViewListDefaultGuid = vm.ViewListDefaultGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.ViewListDatagridGuid = vm.ViewListDatagridGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
+            m.ViewListComboBoxGuid = vm.ViewListComboBoxGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyIdGuid = vm.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyCodeGuid = vm.PropertyCodeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.PropertyNameGuid = vm.PropertyNameGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
@@ -20020,40 +20020,40 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnGroupIconTypeChanged();
         
         [Browsable(false)]
-        public string ViewListCustomGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public string ViewListDatagridGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._ViewListCustomGuid; }
+            get { return this._ViewListDatagridGuid; }
             set
             {
-                // Use 'OnViewListCustomGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._ViewListCustomGuid, value, (t) => { /*this.OnViewListCustomGuidChanging(ref value);*/ this._ViewListCustomGuid = value; this.OnViewListCustomGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnViewListDatagridGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._ViewListDatagridGuid, value, (t) => { /*this.OnViewListDatagridGuidChanging(ref value);*/ this._ViewListDatagridGuid = value; this.OnViewListDatagridGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _ViewListCustomGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnViewListCustomGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnViewListCustomGuidChanged();
+        private string _ViewListDatagridGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnViewListDatagridGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnViewListDatagridGuidChanged();
         
         [Browsable(false)]
-        public string ViewListDefaultGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public string ViewListComboBoxGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._ViewListDefaultGuid; }
+            get { return this._ViewListComboBoxGuid; }
             set
             {
-                // Use 'OnViewListDefaultGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._ViewListDefaultGuid, value, (t) => { /*this.OnViewListDefaultGuidChanging(ref value);*/ this._ViewListDefaultGuid = value; this.OnViewListDefaultGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnViewListComboBoxGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._ViewListComboBoxGuid, value, (t) => { /*this.OnViewListComboBoxGuidChanging(ref value);*/ this._ViewListComboBoxGuid = value; this.OnViewListComboBoxGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _ViewListDefaultGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnViewListDefaultGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnViewListDefaultGuidChanged();
+        private string _ViewListComboBoxGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnViewListComboBoxGuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnViewListComboBoxGuidChanged();
         
         [Browsable(false)]
         public string PropertyIdGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8

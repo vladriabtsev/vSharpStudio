@@ -606,8 +606,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IForm>
             {
-                this.GetForm(FormType.ListDefault, guidAppPrjGen),
-                this.GetForm(FormType.ListCustom, guidAppPrjGen)
+                this.GetForm(FormType.ListComboBox, guidAppPrjGen),
+                this.GetForm(FormType.ListDataGrid, guidAppPrjGen)
             };
             return res;
         }

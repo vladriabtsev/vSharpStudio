@@ -1956,9 +1956,9 @@
               "description": "@attr [Description(\"Not selected\")]"
             },
             {
-              "name": "ListCustom",
+              "name": "ListDataGrid",
               "number": "11",
-              "description": "@attr [Description(\"Custom list view form\")]"
+              "description": "@attr [Description(\"List view form for data grid\")]"
             },
             {
               "name": "ItemEditForm",
@@ -1971,9 +1971,9 @@
               "description": "@attr [Description(\"Folder edit form\")]"
             },
             {
-              "name": "ListDefault",
+              "name": "ListComboBox",
               "number": "41",
-              "description": "@attr [Description(\"Default list view form\")]"
+              "description": "@attr [Description(\"List view form for combo box\")]"
             }
           ]
         }
@@ -2987,7 +2987,7 @@
               "defaultValue": ""
             },
             {
-              "name": "view_list_custom_guid",
+              "name": "view_list_datagrid_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -2999,7 +2999,7 @@
               "defaultValue": ""
             },
             {
-              "name": "view_list_default_guid",
+              "name": "view_list_combo_box_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -3563,7 +3563,7 @@
               "defaultValue": ""
             },
             {
-              "name": "view_list_custom_guid",
+              "name": "view_list_datagrid_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -3575,7 +3575,7 @@
               "defaultValue": ""
             },
             {
-              "name": "view_list_default_guid",
+              "name": "view_list_combo_box_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -4631,7 +4631,7 @@
               "defaultValue": ""
             },
             {
-              "name": "view_list_custom_guid",
+              "name": "view_list_datagrid_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -4643,7 +4643,7 @@
               "defaultValue": ""
             },
             {
-              "name": "view_list_default_guid",
+              "name": "view_list_combo_box_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",

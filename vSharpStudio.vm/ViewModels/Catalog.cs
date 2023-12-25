@@ -100,8 +100,8 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
             this._PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
             this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this._ViewListCustomGuid = System.Guid.NewGuid().ToString();
-            this._ViewListDefaultGuid = System.Guid.NewGuid().ToString();
+            this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();
+            this._ViewListComboBoxGuid = System.Guid.NewGuid().ToString();
 
             this._IndexUniqueCodeGuid = System.Guid.NewGuid().ToString();
             this._IndexRefFolderCodeGuid = System.Guid.NewGuid().ToString();
@@ -614,7 +614,7 @@ namespace vSharpStudio.vm.ViewModels
                 var lstp = new List<IProperty>();
                 this.GetCodeProperty(lstp);
                 this.GetNameProperty(lstp);
-                if (ftype == FormType.ListCustom)
+                if (ftype == FormType.ListDataGrid)
                 {
                     this.GetDescriptionProperty(lstp);
                 }
@@ -651,8 +651,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IForm>
             {
-                this.GetForm(FormType.ListDefault, guidAppPrjGen),
-                this.GetForm(FormType.ListCustom, guidAppPrjGen)
+                this.GetForm(FormType.ListComboBox, guidAppPrjGen),
+                this.GetForm(FormType.ListDataGrid, guidAppPrjGen)
             };
             return res;
         }
@@ -719,7 +719,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.GetCodeProperty(res);
                 this.GetNameProperty(res);
-                if (formType == FormType.ListCustom)
+                if (formType == FormType.ListDataGrid)
                 {
                     this.GetDescriptionProperty(res);
                 }

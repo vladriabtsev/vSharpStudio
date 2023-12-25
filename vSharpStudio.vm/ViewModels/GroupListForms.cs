@@ -111,7 +111,7 @@ namespace vSharpStudio.vm.ViewModels
             FormAutoLayoutBlock? ablock = null;
             switch (formType)
             {
-                case FormType.ListDefault:
+                case FormType.ListComboBox:
                     form.Name = "ViewListDefault";
                     if (c.UseTree && c.UseSeparateTreeForFolders)
                     {
@@ -131,7 +131,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (c.GetUseNameProperty())
                         dg.ListGuidProperties.Add(c.PropertyNameGuid);
                     break;
-                case FormType.ListCustom:
+                case FormType.ListDataGrid:
                     form.Name = "ViewListCustom";
                     if (c.UseTree && c.UseSeparateTreeForFolders)
                     {

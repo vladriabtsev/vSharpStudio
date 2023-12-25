@@ -222,6 +222,8 @@ namespace vSharpStudio.vm.ViewModels
         /// <returns></returns>
         public bool IsIncluded(string guidAppPrjGen) //, bool isFromPrevStable = false)
         {
+            if (guidAppPrjGen == string.Empty)
+                return true;
             //if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
             //    throw new Exception();
 
