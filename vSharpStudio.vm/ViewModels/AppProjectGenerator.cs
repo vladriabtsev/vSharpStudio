@@ -191,7 +191,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     else
                         this._ConnStr = string.Empty;
-                    DebugExt.WriteLineWithStack($"this._ConnStr='{this._ConnStr}'");
+                    //DebugExt.WriteLineWithStack($"this._ConnStr='{this._ConnStr}'");
                     this.OnPropertyChanged(nameof(this.ConnStr));
                 }
             }
@@ -212,7 +212,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.PluginDbGenerator != null)
             {
-                DebugExt.WriteLine($"this.ConnStr='{this.ConnStr}'");
+                //DebugExt.WriteLine($"this.ConnStr='{this.ConnStr}'");
                 try
                 {
                     this.DynamicMainConnStrSettings = this.PluginDbGenerator.GetConnectionStringMvvm(this, this.ConnStr);
@@ -230,7 +230,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                DebugExt.WriteLine("Resetting DynamicMainConnStrSettings");
+                //DebugExt.WriteLine("Resetting DynamicMainConnStrSettings");
                 this.DynamicMainConnStrSettings = null;
             }
         }
