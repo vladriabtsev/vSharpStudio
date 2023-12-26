@@ -107,8 +107,8 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             children.Add(this.GroupCommon, 6);
-            children.Add(this.GroupConstantGroups, 7);
-            children.Add(this.GroupEnumerations, 8);
+            children.Add(this.GroupEnumerations, 7);
+            children.Add(this.GroupConstantGroups, 8);
             children.Add(this.GroupCatalogs, 9);
             children.Add(this.GroupRelations, 10);
             children.Add(this.GroupDocuments, 11);

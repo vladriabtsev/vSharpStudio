@@ -3223,6 +3223,12 @@ message proto_group_list_journals {
     // @attr [Browsable(false)]
     uint64 sorting_value = 8;
 
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [DisplayName("All journal")]
+    // @attr [Description("Name of journal for all documents")]
+    string journal_all_documents_name = 9;
+
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
     // @attr [Description("Sortable in data grid")]

@@ -45,6 +45,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsEditable = false;
+            this._JournalAllDocumentsName = "General";
             Init();
         }
         protected override void OnInitFromDto()

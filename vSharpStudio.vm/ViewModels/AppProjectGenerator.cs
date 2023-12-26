@@ -210,7 +210,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnConnStrChanged()
         {
-            DebugExt.WriteLineWithStack();
             if (this.PluginDbGenerator != null)
             {
                 DebugExt.WriteLine($"this.ConnStr='{this.ConnStr}'");
@@ -245,7 +244,6 @@ namespace vSharpStudio.vm.ViewModels
             get
             {
                 Debug.Assert(cfg != null);
-                DebugExt.WriteLineWithStack();
                 //if (_DynamicGeneratorSettings == null && cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
                 //{
                 //    Debug.Assert(this.PluginGenerator != null);
@@ -259,7 +257,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             set
             {
-                DebugExt.WriteLineWithStack();
                 //SetProperty(ref this._DynamicGeneratorSettings, value);
                 this._DynamicGeneratorSettings = value;
                 this.OnPropertyChanged();
@@ -276,7 +273,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                DebugExt.WriteLineWithStack();
                 //if (_DynamicModelNodeSettings == null)
                 //{
                 //    Debug.Assert(cfg != null);
@@ -294,7 +290,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             set
             {
-                DebugExt.WriteLineWithStack();
                 //SetProperty(ref this._DynamicModelNodeSettings, value);
                 this._DynamicModelNodeSettings = value;
                 this.OnPropertyChanged();
@@ -310,7 +305,6 @@ namespace vSharpStudio.vm.ViewModels
         public IvPluginGeneratorNodeSettings? GetDefaultNodeSettings()
         {
             Debug.Assert(cfg != null);
-            DebugExt.WriteLineWithStack();
             return this.cfg.Model.GetSettings(this.Guid);
         }
         private string prevRelativePathToGenFolder = string.Empty;
@@ -365,7 +359,6 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(this.cfg != null);
             Debug.Assert(this.PluginGuid != null);
             Debug.Assert(this.ListGenerators != null);
-            DebugExt.WriteLineWithStack();
             if (!string.IsNullOrEmpty(this._PluginGeneratorGuid))
             {
                 var nv = new ModelVisitorNodeGenSettings();
@@ -432,7 +425,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnPluginGeneratorGuidChanged()
         {
             Debug.Assert(this._PluginGeneratorGuid != null); // expect empty
-            DebugExt.WriteLineWithStack();
             var nv = new ModelVisitorNodeGenSettings();
             nv.NodeGenSettingsApplyAction(cfg, (p) =>
             {
@@ -511,7 +503,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void OnValidated(ValidationResult res)
         {
-            DebugExt.WriteLineWithStack();
             if (this.PluginGeneratorSettings == null)
                 return;
             var res2 = this.PluginGeneratorSettings.ValidateSettings();
@@ -527,7 +518,6 @@ namespace vSharpStudio.vm.ViewModels
         IvPluginGeneratorSettings? PluginGeneratorSettings { get; set; }
         public void RestoreSettings()
         {
-            DebugExt.WriteLineWithStack();
             if (this.PluginGenerator != null)
             {
                 if (string.IsNullOrWhiteSpace(this.GeneratorSettings))
@@ -593,7 +583,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void SaveSettings()
         {
-            DebugExt.WriteLineWithStack();
             if (this.DynamicGeneratorSettings != null)
                 this.GeneratorSettings = this.DynamicGeneratorSettings.SettingsAsJson;
             else
@@ -602,7 +591,6 @@ namespace vSharpStudio.vm.ViewModels
         public void UpdateListGenerators()
         {
             Debug.Assert(cfg != null);
-            DebugExt.WriteLineWithStack();
             if (cfg.IsInitialized && !string.IsNullOrWhiteSpace(this.PluginGuid))
             {
                 var plg = (Plugin)cfg.DicNodes[this.PluginGuid];
@@ -623,7 +611,6 @@ namespace vSharpStudio.vm.ViewModels
         //}
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            DebugExt.WriteLineWithStack();
             var lst = new List<string>();
             if (this.PluginGenerator == null)
             {
@@ -701,7 +688,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string GetGenerationFilePath()
         {
-            DebugExt.WriteLineWithStack();
             var path = this.GetGenerationFolderPath();
             path = Path.Combine(path, this.GenFileName);
             return path;
@@ -709,7 +695,6 @@ namespace vSharpStudio.vm.ViewModels
         public string GetGenerationFolderPath()
         {
             Debug.Assert(cfg != null);
-            DebugExt.WriteLineWithStack();
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 return "";
             var path = this.ParentAppProject.GetProjectFolderPath();
@@ -727,7 +712,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnRelativePathToGenFolderChanged()
         {
             Debug.Assert(cfg != null);
-            DebugExt.WriteLineWithStack();
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 throw new Exception("Config is not saved yet");
             var prj = this.ParentAppProject;
@@ -867,12 +851,10 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Tree operations
         public void Remove()
         {
-            DebugExt.WriteLineWithStack();
             this.ParentAppProject.ListAppProjectGenerators.Remove(this);
         }
         public void Delete()
         {
-            DebugExt.WriteLineWithStack();
             var res = MessageBox.Show("You are going remove generator. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
             if (res == System.Windows.MessageBoxResult.OK)
                 this.Remove();

@@ -40,7 +40,7 @@
                         <controls:CollectionFromCollection.UpperRightContent>
                             <Grid>
                                 <StackPanel>
-                                    <StackPanel>
+                                    <StackPanel Margin="8,0,0,0">
                                         <TextBlock Text="Id"/>
                                         <!--<TextBlock Text="RefTreeParent" Visibility="{Binding IsShowRefSelfTree, Converter={StaticResource ConverterBoolToVisible}}"/>
                                             <TextBlock Text="RefParent" Visibility="{Binding UseSeparateTreeForFolders, Converter={StaticResource ConverterBoolToVisible}}"/>
