@@ -285,6 +285,8 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Register(this.Parent);
             this.ParentGroupListRegisters.Add(node);
             this.GetUniqueName(Defaults.RegisterName, node, this.ParentGroupListRegisters.ListRegisters);
+            var model = this.ParentGroupListRegisters.ParentModel;
+            node.ShortId = model.LastTypeShortRefIdForNode(node);
             this.SetSelected(node);
             return node;
         }

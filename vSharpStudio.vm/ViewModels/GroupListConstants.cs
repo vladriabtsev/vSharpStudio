@@ -159,6 +159,8 @@ namespace vSharpStudio.vm.ViewModels
             var node = new GroupListConstants(this.ParentGroupConstantGroups);
             this.ParentGroupConstantGroups.ListConstantGroups.Add(node);
             this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ParentGroupConstantGroups.ListConstantGroups);
+            var model = this.ParentGroupConstantGroups.ParentModel;
+            node.ShortId = model.LastTypeShortRefIdForNode(node);
             this.SetSelected(node);
             return node;
         }
@@ -327,8 +329,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.GetUniqueName(Defaults.ConstantName, node, this.ListConstants);
             }
             var model = this.ParentGroupConstantGroups.ParentModel;
-            node.ShortId = model.LastConstantShortId + 1;
-            model.LastConstantShortId = node.ShortId;
+            node.ShortId = model.LastTypeShortRefIdForNode(node);
 
             this.SetSelected(node);
             return node;

@@ -1372,6 +1372,88 @@ namespace vSharpStudio.vm.ViewModels
             }
             return sb.ToString();
         }
+        public uint LastTypeShortRefIdForNode(ITreeConfigNode n)
+        {
+            uint res = ++this.LastTypeShortRefId;
+            const int nbits = 27; // bits for short ID
+            uint imax = (0x1 << (nbits + 1)) - 1;
+            uint id = 0; // 32 - nbits = 5 bits, up to 32 different reference types
+            if (res > imax)
+            {
+                ThrowHelper.ThrowNotSupportedException($"Amount of types with short reference ID exceeded {imax}.");
+            }
+            if (n is Catalog)
+            {
+                id = 1u;
+            }
+            else if (n is CatalogFolder)
+            {
+                id = 2u;
+            }
+            else if (n is Document)
+            {
+                id = 3u;
+            }
+            else if (n is Detail)
+            {
+                Debug.Assert(n.Parent != null);
+                var p = n.Parent.Parent;
+                while (p is Detail)
+                {
+                    p = n.Parent;
+                }
+                if (p is Catalog)
+                {
+                    id = 4u;
+                }
+                else if (p is Document)
+                {
+                    id = 5u;
+                }
+                else if (p is CatalogFolder)
+                {
+                    id = 6u;
+                }
+                else
+                    Debug.Assert(false);
+            }
+            else if (n is Constant)
+            {
+                id = 7u;
+            }
+            else if (n is ManyToManyCatalogsRelation)
+            {
+                id = 8u;
+            }
+            else if (n is ManyToManyDocumentsRelation)
+            {
+                id = 9u;
+            }
+            else if (n is GroupListConstants)
+            {
+                id = 10u;
+            }
+            else if (n is Register)
+            {
+                id = 11u;
+            }
+            //else if (n is GroupConstantGroups)
+            //{
+            //    id = 8u;
+            //}
+            //else if (n is ManyToManyGroupCatalogsRelations)
+            //{
+            //    id = 9u;
+            //}
+            //else if (n is ManyToManyGroupDocumentsRelations)
+            //{
+            //    id = 11u;
+            //}
+            else
+                Debug.Assert(false);
+            res = res + (id << nbits);
+            return res;
+        }
     }
 
     // https://stackoverflow.com/questions/3862226/how-to-dynamically-create-a-class

@@ -602,6 +602,14 @@ enum proto_enum_code_type {
     // @attr [Description("Text")]
     Text = 1;
 }
+enum proto_enum_ref_type {
+    REF_TYPE_NOT_SELECTED = 0;
+    REF_TYPE_CONSTANT = 1;
+    REF_TYPE_CATALOG = 2;
+    REF_TYPE_CATALOG_DETAIL = 3;
+    REF_TYPE_DOCUMENT = 4;
+    REF_TYPE_DOCUMENT_DETAIL = 5;
+}
 // Configuration model
 // @attr [Description("Model for application generation in 'User Applications' group")]
 message proto_model {
@@ -734,23 +742,8 @@ message proto_model {
     // @attr [Description("Complex property description maximum length. Unlimited if zero")]
     uint32 complex_property_ref_descr_length = 43;
 
-
     // @attr [Browsable(false)]
-    int32 last_constant_group_short_id = 31;
-    // @attr [Browsable(false)]
-    int32 last_catalog_short_id = 32;
-    // @attr [Browsable(false)]
-    int32 last_document_short_id = 33;
-    // @attr [Browsable(false)]
-    int32 last_detail_short_id = 34;
-    // @attr [Browsable(false)]
-    int32 last_register_short_id = 35;
-    // @attr [Browsable(false)]
-    int32 last_catalog_relation_short_id = 36;
-    // @attr [Browsable(false)]
-    int32 last_document_relation_short_id = 37;
-    // @attr [Browsable(false)]
-    int32 last_constant_short_id = 38;
+    uint32 last_type_short_ref_id = 31;
 
     // @attr [Category("DataGrid settings")]
     // @attr [DisplayName("Sortable")]
@@ -1643,7 +1636,7 @@ message proto_detail {
     uint32 position = 15;
 
     // @attr [Browsable(false)]
-    int32 short_id = 19;
+    uint32 short_id = 19;
 
     // @attr [PropertyOrderAttribute(22)]
     // @attr [Category("Auto Layout")]
@@ -1784,7 +1777,7 @@ message proto_group_list_constants {
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 11;
     // @attr [Browsable(false)]
-    int32 short_id = 19;
+    uint32 short_id = 19;
     // @attr [Browsable(false)]
     repeated proto_role_constant_access list_role_constant_access_settings = 101;
     // @attr [Browsable(false)]
@@ -1831,7 +1824,7 @@ message proto_constant {
     bool is_marked_for_deletion = 12;
 
     // @attr [Browsable(false)]
-    int32 short_id = 19;
+    uint32 short_id = 19;
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(32)]
@@ -2192,7 +2185,7 @@ message proto_catalog {
     bool is_marked_for_deletion = 10;
 
     // @attr [Browsable(false)]
-    int32 short_id = 19;
+    uint32 short_id = 19;
     // @attr [PropertyOrderAttribute(20)]
     // @attr [DisplayName("Use Tree")]
     // @attr [Description("Use tree catalog structure")]
@@ -2608,7 +2601,7 @@ message proto_register {
     bool is_marked_for_deletion = 10;
 
     // @attr [Browsable(false)]
-    int32 short_id = 14;
+    uint32 short_id = 14;
     // @attr [PropertyOrderAttribute(15)]
     // @attr [DisplayName("Use Qty")]
     // @attr [Description("Use quantity accumulator for register")]
@@ -2874,7 +2867,7 @@ message proto_document {
     proto_group_list_reports group_reports = 18;
 
     // @attr [Browsable(false)]
-    int32 short_id = 19;
+    uint32 short_id = 19;
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Doc Number")]
     // @attr [Description("Use document number property for documents")]
@@ -3057,7 +3050,7 @@ message proto_many_to_many_catalogs_relation {
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
     // @attr [Browsable(false)]
-    int32 short_id = 19;
+    uint32 short_id = 19;
 
     // @attr [Browsable(false)]
     string property_id_guid = 61;
@@ -3152,7 +3145,7 @@ message proto_many_to_many_documents_relation {
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
     // @attr [Browsable(false)]
-    int32 short_id = 19;
+    uint32 short_id = 19;
 
     // @attr [Browsable(false)]
     string property_id_guid = 61;

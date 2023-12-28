@@ -318,6 +318,10 @@ namespace vSharpStudio.common
             {
                 return Comment(dt);
             }
+            else if (t is ICatalogFolder cf)
+            {
+                return Comment(cf);
+            }
             else if (t is IRegister r)
             {
                 return Comment(r);
@@ -465,6 +469,40 @@ namespace vSharpStudio.common
             return sb.ToString();
         }
         public static string Comment(ICatalog t, string indent = "")
+        {
+            var sb = new StringBuilder();
+            if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
+            {
+                sb.Append(indent);
+                sb.Append(commentBegSummary);
+                sb.AppendLine();
+
+                if (t.NameUi != t.Name)
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    sb.Append(t.NameUi);
+                    sb.Append(": ");
+                    if (!string.IsNullOrWhiteSpace(t.Description))
+                        sb.Append(t.Description);
+                    sb.AppendLine();
+                }
+                else if (!string.IsNullOrWhiteSpace(t.Description))
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    //sb.Append("Description: ");
+                    sb.Append(t.Description);
+                    sb.AppendLine();
+                }
+
+                sb.Append(indent);
+                sb.Append(commentEndSummary);
+                //sb.AppendLine();
+            }
+            return sb.ToString();
+        }
+        public static string Comment(ICatalogFolder t, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))

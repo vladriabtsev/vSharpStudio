@@ -1006,47 +1006,39 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void ShortId()
         {
+            const int nbits = 27; // bits for short ID
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
-            Assert.AreEqual(0, cfg.Model.LastConstantGroupShortId);
-            Assert.AreEqual(0, cfg.Model.LastCatalogShortId);
-            Assert.AreEqual(0, cfg.Model.LastDetailShortId);
-            Assert.AreEqual(0, cfg.Model.LastDocumentShortId);
+            Assert.AreEqual(0u, cfg.Model.LastTypeShortRefId);
 
-            cfg.Model.GroupConstantGroups.AddGroupConstants("CnstGroup1");
-            Assert.AreEqual(1, cfg.Model.LastConstantGroupShortId);
-            Assert.AreEqual(1, cfg.Model.GroupConstantGroups.ListConstantGroups[0].ShortId);
+            var cg = cfg.Model.GroupConstantGroups.AddGroupConstants("CnstGroup1");
+            Assert.AreEqual(1u, cfg.Model.LastTypeShortRefId);
+            Assert.AreEqual(1u + (10u << nbits), cg.ShortId);
 
-            cfg.Model.GroupCatalogs.AddCatalog("Cat1");
-            Assert.AreEqual(1, cfg.Model.LastCatalogShortId);
-            Assert.AreEqual(1, cfg.Model.GroupCatalogs.ListCatalogs[0].ShortId);
+            var c1 = cfg.Model.GroupCatalogs.AddCatalog("Cat1");
+            Assert.AreEqual(2u, cfg.Model.LastTypeShortRefId);
+            Assert.AreEqual(2u + (1u << nbits), c1.ShortId);
 
-            Assert.AreEqual(0, cfg.Model.LastDetailShortId);
-            cfg.Model.GroupCatalogs[0].GroupDetails.AddPropertiesTab("CatTab1");
-            Assert.AreEqual(1, cfg.Model.LastDetailShortId);
-            Assert.AreEqual(1, cfg.Model.GroupCatalogs.ListCatalogs[0].GroupDetails.ListDetails[0].ShortId);
+            var t1 = cfg.Model.GroupCatalogs[0].GroupDetails.AddPropertiesTab("CatTab1");
+            Assert.AreEqual(3u, cfg.Model.LastTypeShortRefId);
+            Assert.AreEqual(3u + (4u << nbits), t1.ShortId);
 
-            cfg.Model.GroupDocuments.AddDocument("Doc1");
-            Assert.AreEqual(1, cfg.Model.LastDocumentShortId);
-            Assert.AreEqual(1, cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].ShortId);
+            var d1 = cfg.Model.GroupDocuments.AddDocument("Doc1");
+            Assert.AreEqual(4u, cfg.Model.LastTypeShortRefId);
+            Assert.AreEqual(4u + (3u << nbits), d1.ShortId);
 
-            Assert.AreEqual(1, cfg.Model.LastDetailShortId);
-            cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GroupDetails.AddPropertiesTab("DocTab1");
-            Assert.AreEqual(2, cfg.Model.LastDetailShortId);
-            Assert.AreEqual(2, cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GroupDetails.ListDetails[0].ShortId);
-
+            var t2 = cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GroupDetails.AddPropertiesTab("DocTab1");
+            Assert.AreEqual(5u, cfg.Model.LastTypeShortRefId);
+            Assert.AreEqual(5u + (5u << nbits), t2.ShortId);
 
             string json = cfg.ExportToJson();
             var cfg2 = new Config(json);
-            Assert.AreEqual(1, cfg2.Model.GroupCatalogs.ListCatalogs[0].ShortId);
-            Assert.AreEqual(1, cfg2.Model.GroupCatalogs.ListCatalogs[0].GroupDetails.ListDetails[0].ShortId);
-            Assert.AreEqual(1, cfg2.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].ShortId);
-            Assert.AreEqual(2, cfg2.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GroupDetails.ListDetails[0].ShortId);
+            Assert.AreEqual(2u + (1u << nbits), cfg2.Model.GroupCatalogs.ListCatalogs[0].ShortId);
+            Assert.AreEqual(3u + (4u << nbits), cfg2.Model.GroupCatalogs.ListCatalogs[0].GroupDetails.ListDetails[0].ShortId);
+            Assert.AreEqual(4u + (3u << nbits), cfg2.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].ShortId);
+            Assert.AreEqual(5u + (5u << nbits), cfg2.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GroupDetails.ListDetails[0].ShortId);
 
-            Assert.AreEqual(1, cfg2.Model.LastConstantGroupShortId);
-            Assert.AreEqual(1, cfg2.Model.LastCatalogShortId);
-            Assert.AreEqual(2, cfg2.Model.LastDetailShortId);
-            Assert.AreEqual(1, cfg2.Model.LastDocumentShortId);
+            Assert.AreEqual(5u, cfg2.Model.LastTypeShortRefId);
         }
         [TestMethod]
         public void HistoryPropertyTests()

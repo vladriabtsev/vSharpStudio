@@ -636,6 +636,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_enum_ref_type"><span class="badge">E</span>proto_enum_ref_type</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_enum_register_periodicity"><span class="badge">E</span>proto_enum_register_periodicity</a>
                 </li>
               
@@ -1303,7 +1307,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
               
                 <tr>
                   <td>short_id</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -2189,7 +2193,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
               
                 <tr>
                   <td>short_id</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -2559,7 +2563,7 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>short_id</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -2863,7 +2867,7 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>short_id</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -5362,7 +5366,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
               
                 <tr>
                   <td>short_id</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -6868,7 +6872,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
               
                 <tr>
                   <td>short_id</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -7023,7 +7027,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
               
                 <tr>
                   <td>short_id</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -7591,57 +7595,8 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>last_constant_group_short_id</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>last_catalog_short_id</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>last_document_short_id</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>last_detail_short_id</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>last_register_short_id</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>last_catalog_relation_short_id</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>last_document_relation_short_id</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>last_constant_short_id</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td>last_type_short_ref_id</td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -8692,7 +8647,7 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>short_id</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -11626,6 +11581,53 @@ with history</p></td>
               <tr>
                 <td>R_REVIEWS</td>
                 <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_ref_type">proto_enum_ref_type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>REF_TYPE_NOT_SELECTED</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>REF_TYPE_CONSTANT</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>REF_TYPE_CATALOG</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>REF_TYPE_CATALOG_DETAIL</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>REF_TYPE_DOCUMENT</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>REF_TYPE_DOCUMENT_DETAIL</td>
+                <td>5</td>
                 <td><p></p></td>
               </tr>
             

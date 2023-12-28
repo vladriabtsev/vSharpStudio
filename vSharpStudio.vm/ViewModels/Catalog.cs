@@ -340,6 +340,8 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Catalog(this.Parent);
             this.ParentGroupListCatalogs.Add(node);
             this.GetUniqueName(Defaults.CatalogName, node, this.ParentGroupListCatalogs.ListCatalogs);
+            var model = this.ParentGroupListCatalogs.ParentModel;
+            node.ShortId = model.LastTypeShortRefIdForNode(node);
             this.SetSelected(node);
             return node;
         }

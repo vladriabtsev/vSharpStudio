@@ -717,7 +717,7 @@ namespace vSharpStudio.ViewModels
 #if DEBUG
         private void CheckShortIdUniqueness(Config cfg)
         {
-            var hash = new HashSet<int>();
+            var hash = new HashSet<uint>();
             // Constant groups
             foreach (var t in cfg.Model.GroupConstantGroups.ListConstantGroups)
             {

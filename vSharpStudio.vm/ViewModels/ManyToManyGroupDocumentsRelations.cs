@@ -57,8 +57,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.GetUniqueName(Defaults.CatalogMtmRelationName, node, this.ListDocumentsRelations);
             }
             var model = this.ParentGroupRelations.ParentModel;
-            node.ShortId = model.LastDocumentRelationShortId + 1;
-            model.LastDocumentRelationShortId = node.ShortId;
+            node.ShortId = model.LastTypeShortRefIdForNode(node);
             this.SetSelected(node);
             return node;
         }

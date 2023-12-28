@@ -502,6 +502,8 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Constant(this.ParentGroupListConstants);
             this.ParentGroupListConstants.Add(node);
             this.GetUniqueName(Defaults.ConstantName, node, this.ParentGroupListConstants.ListConstants);
+            var model = this.ParentGroupListConstants.ParentGroupConstantGroups.ParentModel;
+            node.ShortId = model.LastTypeShortRefIdForNode(node);
             this.SetSelected(node);
             return node;
         }

@@ -100,8 +100,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.GetUniqueName(Defaults.DocumentName, node, this.ListDocuments);
             }
             var cfg = (Config)this.Cfg;
-            node.ShortId = cfg.Model.LastDocumentShortId + 1;
-            cfg.Model.LastDocumentShortId = node.ShortId;
+            node.ShortId = cfg.Model.LastTypeShortRefIdForNode(node);
             this.SetSelected(node);
             return node;
         }
