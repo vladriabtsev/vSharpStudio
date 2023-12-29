@@ -70,7 +70,6 @@ namespace vSharpStudio.vm.ViewModels
                 this.GetUniqueName(Defaults.RegisterName, node, this.ListRegisters);
             }
             var model = this.ParentModel;
-            node.ShortId = model.LastTypeShortRefIdForNode(node);
             this.SetSelected(node);
             return node;
         }

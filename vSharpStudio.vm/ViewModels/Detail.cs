@@ -188,7 +188,8 @@ namespace vSharpStudio.vm.ViewModels
             node.Position = glp.GroupProperties.GetNextPosition();
             this.GetUniqueName(Defaults.DetailName, node, this.ParentGroupListDetails.ListDetails);
             var model = (Model)this.Cfg.Model;
-            node.ShortId = model.LastTypeShortRefIdForNode(node);
+            node.ShortId = model.LastTypeShortIdForNode();
+            node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
             return node;
         }

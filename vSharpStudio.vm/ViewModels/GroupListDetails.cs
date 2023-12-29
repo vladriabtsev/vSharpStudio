@@ -109,7 +109,8 @@ namespace vSharpStudio.vm.ViewModels
                 this.GetUniqueName(Defaults.DetailName, node, this.ListDetails);
             }
             var cfg = (Config)this.Cfg;
-            node.ShortId = cfg.Model.LastTypeShortRefIdForNode(node);
+            node.ShortId = cfg.Model.LastTypeShortIdForNode();
+            node.ShortRefId = cfg.Model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
             return node;
         }

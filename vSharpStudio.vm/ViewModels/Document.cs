@@ -198,7 +198,8 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentGroupListDocuments.Add(node);
             this.GetUniqueName(Defaults.DocumentName, node, this.ParentGroupListDocuments.ListDocuments);
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
-            node.ShortId = model.LastTypeShortRefIdForNode(node);
+            node.ShortId = model.LastTypeShortIdForNode();
+            node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
             return node;
         }

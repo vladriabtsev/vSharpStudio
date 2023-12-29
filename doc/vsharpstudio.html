@@ -1309,7 +1309,16 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td>short_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
+                  <td><p>Sequential unique number in configuration
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_ref_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Combination of short_id and type group in higher bits
+@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2195,7 +2204,16 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td>short_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
+                  <td><p>Sequential unique number in configuration
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_ref_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Combination of short_id and type group in higher bits
+@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2565,7 +2583,16 @@ Reserved positions: 1 - primary key
                   <td>short_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
+                  <td><p>Sequential unique number in configuration
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_ref_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Combination of short_id and type group in higher bits
+@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2869,7 +2896,16 @@ Reserved positions: 1 - primary key
                   <td>short_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
+                  <td><p>Sequential unique number in configuration
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_ref_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Combination of short_id and type group in higher bits
+@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -6874,7 +6910,16 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td>short_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
+                  <td><p>Sequential unique number in configuration
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_ref_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Combination of short_id and type group in higher bits
+@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -7029,7 +7074,16 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td>short_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
+                  <td><p>Sequential unique number in configuration
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_ref_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Combination of short_id and type group in higher bits
+@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -11608,26 +11662,56 @@ with history</p></td>
               </tr>
             
               <tr>
-                <td>REF_TYPE_CATALOG</td>
+                <td>REF_TYPE_CONSTANT_GROUP</td>
                 <td>2</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>REF_TYPE_CATALOG_DETAIL</td>
+                <td>REF_TYPE_CATALOG</td>
                 <td>3</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>REF_TYPE_DOCUMENT</td>
+                <td>REF_TYPE_CATALOG_DETAIL</td>
                 <td>4</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>REF_TYPE_DOCUMENT_DETAIL</td>
+                <td>REF_TYPE_DOCUMENT</td>
                 <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>REF_TYPE_DOCUMENT_DETAIL</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>REF_TYPE_CATALOG_FOLDER</td>
+                <td>7</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>REF_TYPE_CATALOG_FOLDER_DETAIL</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>REF_TYPE_MANY_TO_MANY_CATALOGS</td>
+                <td>9</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>REF_TYPE_MANY_TO_MANY_DOCUMENTS</td>
+                <td>10</td>
                 <td><p></p></td>
               </tr>
             

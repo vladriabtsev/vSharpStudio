@@ -1105,6 +1105,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string GetUniqueStringShortID(ITreeConfigNode node)
         {
+            if (node is IConstant cn)
+            {
+                return $"ct{cn.ShortId.ToString()}";
+            }
             if (node is ICatalog c)
             {
                 return $"c{c.ShortId.ToString()}";
@@ -1126,20 +1130,17 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return $"r{r.ShortId.ToString()}";
             }
-            //else if (node is IRegisterDimension rd)
-            //{
-            //    var grd = rd.ParentGroupListRegisterDimensionsI;
-            //    var rr = grd.ParentRegisterI;
-            //    var gr = rr.ParentGroupListRegistersI;
-            //    return $"r{gr.IndexOf(rr).ToString()}rd{grd.IndexOf(rd).ToString()}";
-            //}
+            else if (node is IManyToManyCatalogsRelation rlc)
+            {
+                return $"rc{rlc.ShortId.ToString()}";
+            }
+            else if (node is IManyToManyDocumentsRelation rld)
+            {
+                return $"rd{rld.ShortId.ToString()}";
+            }
             else if (node is IGroupListConstants cts)
             {
-                return $"cts{cts.ShortId.ToString()}";
-            }
-            else if (node is IConstant ct)
-            {
-                return $"cts{ct.ShortId.ToString()}";
+                return $"cg{cts.ShortId.ToString()}";
             }
             ThrowHelper.ThrowInvalidOperationException();
             return "";
@@ -1372,27 +1373,24 @@ namespace vSharpStudio.vm.ViewModels
             }
             return sb.ToString();
         }
-        public uint LastTypeShortRefIdForNode(ITreeConfigNode n)
+        public uint LastTypeShortIdForNode()
         {
             uint res = ++this.LastTypeShortRefId;
-            const int nbits = 27; // bits for short ID
-            uint imax = (0x1 << (nbits + 1)) - 1;
-            uint id = 0; // 32 - nbits = 5 bits, up to 32 different reference types
-            if (res > imax)
-            {
-                ThrowHelper.ThrowNotSupportedException($"Amount of types with short reference ID exceeded {imax}.");
-            }
+            return res;
+        }
+        public EnumRefType RefTypeForNode(ITreeConfigNode n)
+        {
             if (n is Catalog)
             {
-                id = 1u;
+                return EnumRefType.REF_TYPE_CATALOG;
             }
             else if (n is CatalogFolder)
             {
-                id = 2u;
+                return EnumRefType.REF_TYPE_CATALOG_FOLDER;
             }
             else if (n is Document)
             {
-                id = 3u;
+                return EnumRefType.REF_TYPE_DOCUMENT;
             }
             else if (n is Detail)
             {
@@ -1400,57 +1398,86 @@ namespace vSharpStudio.vm.ViewModels
                 var p = n.Parent.Parent;
                 while (p is Detail)
                 {
-                    p = n.Parent;
+                    Debug.Assert(p.Parent != null);
+                    p = p.Parent.Parent;
                 }
                 if (p is Catalog)
                 {
-                    id = 4u;
+                    return EnumRefType.REF_TYPE_CATALOG_DETAIL;
                 }
                 else if (p is Document)
                 {
-                    id = 5u;
+                    return EnumRefType.REF_TYPE_DOCUMENT_DETAIL;
                 }
                 else if (p is CatalogFolder)
                 {
-                    id = 6u;
+                    return EnumRefType.REF_TYPE_CATALOG_FOLDER_DETAIL;
                 }
                 else
-                    Debug.Assert(false);
+                    ThrowHelper.ThrowNotSupportedException();
             }
             else if (n is Constant)
             {
-                id = 7u;
+                return EnumRefType.REF_TYPE_CONSTANT;
             }
             else if (n is ManyToManyCatalogsRelation)
             {
-                id = 8u;
+                return EnumRefType.REF_TYPE_MANY_TO_MANY_CATALOGS;
             }
             else if (n is ManyToManyDocumentsRelation)
             {
-                id = 9u;
+                return EnumRefType.REF_TYPE_MANY_TO_MANY_DOCUMENTS;
             }
             else if (n is GroupListConstants)
             {
-                id = 10u;
+                return EnumRefType.REF_TYPE_CONSTANT_GROUP;
             }
-            else if (n is Register)
+            return EnumRefType.REF_TYPE_NOT_SELECTED;
+        }
+        public uint LastTypeShortRefIdForNode(ITreeConfigNode n, uint shortId)
+        {
+            uint res = shortId;
+            const int nbits = 26; // bits for short ID
+            uint imax = (0x1 << (nbits + 1)) - 1;
+            uint id = 0; // 32 - nbits = 6 bits, up to 32 different reference types
+            if (res > imax)
             {
-                id = 11u;
+                ThrowHelper.ThrowNotSupportedException($"Amount of types with short reference ID exceeded {imax}.");
             }
-            //else if (n is GroupConstantGroups)
-            //{
-            //    id = 8u;
-            //}
-            //else if (n is ManyToManyGroupCatalogsRelations)
-            //{
-            //    id = 9u;
-            //}
-            //else if (n is ManyToManyGroupDocumentsRelations)
-            //{
-            //    id = 11u;
-            //}
-            else
-                Debug.Assert(false);
+            switch(this.RefTypeForNode(n))
+            {
+                case EnumRefType.REF_TYPE_CONSTANT:
+                    id = 1u;
+                    break;
+                case EnumRefType.REF_TYPE_CATALOG:
+                    id = 2u;
+                    break;
+                case EnumRefType.REF_TYPE_CATALOG_DETAIL:
+                    id = 3u;
+                    break;
+                case EnumRefType.REF_TYPE_MANY_TO_MANY_CATALOGS:
+                    id = 4u;
+                    break;
+                case EnumRefType.REF_TYPE_CATALOG_FOLDER:
+                    id = 5u;
+                    break;
+                case EnumRefType.REF_TYPE_CATALOG_FOLDER_DETAIL:
+                    id = 6u;
+                    break;
+                case EnumRefType.REF_TYPE_DOCUMENT:
+                    id = 7u;
+                    break;
+                case EnumRefType.REF_TYPE_DOCUMENT_DETAIL:
+                    id = 8u;
+                    break;
+                case EnumRefType.REF_TYPE_MANY_TO_MANY_DOCUMENTS:
+                    id = 9u;
+                    break;
+                default:
+                    ThrowHelper.ThrowNotSupportedException();
+                    break;
+            }
+            Debug.Assert(id < (0x1 << (32 - nbits)));
             res = res + (id << nbits);
             return res;
         }

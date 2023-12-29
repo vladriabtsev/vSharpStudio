@@ -1589,23 +1589,48 @@
               "description": ""
             },
             {
-              "name": "REF_TYPE_CATALOG",
+              "name": "REF_TYPE_CONSTANT_GROUP",
               "number": "2",
               "description": ""
             },
             {
-              "name": "REF_TYPE_CATALOG_DETAIL",
+              "name": "REF_TYPE_CATALOG",
               "number": "3",
               "description": ""
             },
             {
-              "name": "REF_TYPE_DOCUMENT",
+              "name": "REF_TYPE_CATALOG_DETAIL",
               "number": "4",
               "description": ""
             },
             {
-              "name": "REF_TYPE_DOCUMENT_DETAIL",
+              "name": "REF_TYPE_DOCUMENT",
               "number": "5",
+              "description": ""
+            },
+            {
+              "name": "REF_TYPE_DOCUMENT_DETAIL",
+              "number": "6",
+              "description": ""
+            },
+            {
+              "name": "REF_TYPE_CATALOG_FOLDER",
+              "number": "7",
+              "description": ""
+            },
+            {
+              "name": "REF_TYPE_CATALOG_FOLDER_DETAIL",
+              "number": "8",
+              "description": ""
+            },
+            {
+              "name": "REF_TYPE_MANY_TO_MANY_CATALOGS",
+              "number": "9",
+              "description": ""
+            },
+            {
+              "name": "REF_TYPE_MANY_TO_MANY_DOCUMENTS",
+              "number": "10",
               "description": ""
             }
           ]
@@ -2834,7 +2859,19 @@
             },
             {
               "name": "short_id",
-              "description": "@attr [Browsable(false)]",
+              "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "short_ref_id",
+              "description": "Combination of short_id and type group in higher bits\n@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -4106,7 +4143,19 @@
             },
             {
               "name": "short_id",
-              "description": "@attr [Browsable(false)]",
+              "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "short_ref_id",
+              "description": "Combination of short_id and type group in higher bits\n@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -4586,7 +4635,19 @@
             },
             {
               "name": "short_id",
-              "description": "@attr [Browsable(false)]",
+              "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "short_ref_id",
+              "description": "Combination of short_id and type group in higher bits\n@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -5018,7 +5079,19 @@
             },
             {
               "name": "short_id",
-              "description": "@attr [Browsable(false)]",
+              "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "short_ref_id",
+              "description": "Combination of short_id and type group in higher bits\n@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -10346,7 +10419,19 @@
             },
             {
               "name": "short_id",
-              "description": "@attr [Browsable(false)]",
+              "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "short_ref_id",
+              "description": "Combination of short_id and type group in higher bits\n@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -10562,7 +10647,19 @@
             },
             {
               "name": "short_id",
-              "description": "@attr [Browsable(false)]",
+              "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "short_ref_id",
+              "description": "Combination of short_id and type group in higher bits\n@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",

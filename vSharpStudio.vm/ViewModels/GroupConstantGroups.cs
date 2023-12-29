@@ -60,7 +60,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ListConstantGroups);
             }
             var model = this.ParentModel;
-            node.ShortId = model.LastTypeShortRefIdForNode(node);
+            node.ShortId = model.LastTypeShortIdForNode();
             this.SetSelected(node);
             return node;
         }

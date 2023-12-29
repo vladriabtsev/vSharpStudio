@@ -605,10 +605,15 @@ enum proto_enum_code_type {
 enum proto_enum_ref_type {
     REF_TYPE_NOT_SELECTED = 0;
     REF_TYPE_CONSTANT = 1;
-    REF_TYPE_CATALOG = 2;
-    REF_TYPE_CATALOG_DETAIL = 3;
-    REF_TYPE_DOCUMENT = 4;
-    REF_TYPE_DOCUMENT_DETAIL = 5;
+    REF_TYPE_CONSTANT_GROUP = 2;
+    REF_TYPE_CATALOG = 3;
+    REF_TYPE_CATALOG_DETAIL = 4;
+    REF_TYPE_DOCUMENT = 5;
+    REF_TYPE_DOCUMENT_DETAIL = 6;
+    REF_TYPE_CATALOG_FOLDER = 7;
+    REF_TYPE_CATALOG_FOLDER_DETAIL = 8;
+    REF_TYPE_MANY_TO_MANY_CATALOGS = 9;
+    REF_TYPE_MANY_TO_MANY_DOCUMENTS = 10;
 }
 // Configuration model
 // @attr [Description("Model for application generation in 'User Applications' group")]
@@ -1635,8 +1640,12 @@ message proto_detail {
     // @attr [ReadOnly(true)]
     uint32 position = 15;
 
+    // Sequential unique number in configuration
     // @attr [Browsable(false)]
     uint32 short_id = 19;
+    // Combination of short_id and type group in higher bits
+    // @attr [Browsable(false)]
+    uint32 short_ref_id = 20;
 
     // @attr [PropertyOrderAttribute(22)]
     // @attr [Category("Auto Layout")]
@@ -1823,8 +1832,12 @@ message proto_constant {
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
+    // Sequential unique number in configuration
     // @attr [Browsable(false)]
-    uint32 short_id = 19;
+    uint32 short_id = 13;
+    // Combination of short_id and type group in higher bits
+    // @attr [Browsable(false)]
+    uint32 short_ref_id = 14;
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(32)]
@@ -2184,8 +2197,12 @@ message proto_catalog {
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
+    // Sequential unique number in configuration
     // @attr [Browsable(false)]
     uint32 short_id = 19;
+    // Combination of short_id and type group in higher bits
+    // @attr [Browsable(false)]
+    uint32 short_ref_id = 20;
     // @attr [PropertyOrderAttribute(20)]
     // @attr [DisplayName("Use Tree")]
     // @attr [Description("Use tree catalog structure")]
@@ -2599,7 +2616,6 @@ message proto_register {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
-
     // @attr [Browsable(false)]
     uint32 short_id = 14;
     // @attr [PropertyOrderAttribute(15)]
@@ -2866,8 +2882,12 @@ message proto_document {
     // @attr [Browsable(false)]
     proto_group_list_reports group_reports = 18;
 
+    // Sequential unique number in configuration
     // @attr [Browsable(false)]
     uint32 short_id = 19;
+    // Combination of short_id and type group in higher bits
+    // @attr [Browsable(false)]
+    uint32 short_ref_id = 20;
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Doc Number")]
     // @attr [Description("Use document number property for documents")]
@@ -3049,8 +3069,12 @@ message proto_many_to_many_catalogs_relation {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
+    // Sequential unique number in configuration
     // @attr [Browsable(false)]
     uint32 short_id = 19;
+    // Combination of short_id and type group in higher bits
+    // @attr [Browsable(false)]
+    uint32 short_ref_id = 20;
 
     // @attr [Browsable(false)]
     string property_id_guid = 61;
@@ -3144,8 +3168,12 @@ message proto_many_to_many_documents_relation {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
+    // Sequential unique number in configuration
     // @attr [Browsable(false)]
     uint32 short_id = 19;
+    // Combination of short_id and type group in higher bits
+    // @attr [Browsable(false)]
+    uint32 short_ref_id = 20;
 
     // @attr [Browsable(false)]
     string property_id_guid = 61;

@@ -104,5 +104,6 @@ namespace vSharpStudio.common
         string GetUniqueStringShortID(ITreeConfigNode node);
         string GetUniquePropertyFullShortID(IProperty p);
         string GetUniquePropertyShortID(IProperty p);
+        EnumRefType RefTypeForNode(ITreeConfigNode n);
     }
 }

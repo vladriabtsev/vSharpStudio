@@ -295,7 +295,8 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
-| short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
+| short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
 | use_separate_tree_for_folders | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Separate Tree&#34;)] @attr [Description(&#34;Separate tree object for folders&#34;)] |
 | max_tree_levels | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Max Tree Levels&#34;)] @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] |
@@ -468,7 +469,8 @@ Constant application wise value
 | default_value | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Default&#34;)] @attr [Description(&#34;Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
-| short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
+| short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | range_values_requirement_str | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Expected&#34;)] @attr [Description(&#34;Expected values or ranges of values. Use &#39;#&#39; to create range, and &#39;;&#39; to separate values or ranges&#34;)] |
 | min_length_requirement | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(34)] @attr [DisplayName(&#34;Min Length&#34;)] @attr [Description(&#34;Minimum length of string&#34;)] |
 | max_length_requirement | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(35)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum length of string&#34;)] |
@@ -535,7 +537,8 @@ Constant application wise value
 | group_properties | [proto_group_list_properties](#proto_config-proto_group_list_properties) |  | @attr [Browsable(false)] |
 | group_details | [proto_group_list_details](#proto_config-proto_group_list_details) |  | @attr [Browsable(false)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
-| short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
+| short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | is_try_attach | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;UI attach&#34;)] @attr [Description(&#34;UI engine will try put this detail block on same line as previous detail block or block of header fields&#34;)] |
 | is_start_new_row | [bool](#bool) |  | @attr [PropertyOrderAttribute(23)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Start UI row&#34;)] @attr [Description(&#34;Start new UI row for this detaail block&#34;)] |
 | is_start_new_tab | [bool](#bool) |  | @attr [PropertyOrderAttribute(24)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Start New Tab&#34;)] @attr [Description(&#34;Start tab in current tab control (create new tab control if current not created yet or start new tab control is specified). Tab name is taken from details name if not specified explicitly&#34;)] |
@@ -598,7 +601,8 @@ Constant application wise value
 | group_details | [proto_group_list_details](#proto_config-proto_group_list_details) |  | @attr [Browsable(false)] |
 | group_forms | [proto_group_list_forms](#proto_config-proto_group_list_forms) |  | @attr [Browsable(false)] |
 | group_reports | [proto_group_list_reports](#proto_config-proto_group_list_reports) |  | @attr [Browsable(false)] |
-| short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
+| short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | use_doc_number_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Doc Number&#34;)] @attr [Description(&#34;Use document number property for documents&#34;)] |
 | doc_number_property_settings | [proto_document_number_property_settings](#proto_config-proto_document_number_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ReadOnly(true)] @attr [DisplayName(&#34;Sequence&#34;)] @attr [Description(&#34;Document number property sequence settings&#34;)] @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] |
 | use_doc_date_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Doc Date&#34;)] @attr [Description(&#34;Use document date property for documents&#34;)] |
@@ -1585,7 +1589,8 @@ R E P O R T S
 | is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
-| short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
+| short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -1617,7 +1622,8 @@ R E P O R T S
 | is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
-| short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
+| short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -2893,10 +2899,15 @@ with history |
 | ---- | ------ | ----------- |
 | REF_TYPE_NOT_SELECTED | 0 |  |
 | REF_TYPE_CONSTANT | 1 |  |
-| REF_TYPE_CATALOG | 2 |  |
-| REF_TYPE_CATALOG_DETAIL | 3 |  |
-| REF_TYPE_DOCUMENT | 4 |  |
-| REF_TYPE_DOCUMENT_DETAIL | 5 |  |
+| REF_TYPE_CONSTANT_GROUP | 2 |  |
+| REF_TYPE_CATALOG | 3 |  |
+| REF_TYPE_CATALOG_DETAIL | 4 |  |
+| REF_TYPE_DOCUMENT | 5 |  |
+| REF_TYPE_DOCUMENT_DETAIL | 6 |  |
+| REF_TYPE_CATALOG_FOLDER | 7 |  |
+| REF_TYPE_CATALOG_FOLDER_DETAIL | 8 |  |
+| REF_TYPE_MANY_TO_MANY_CATALOGS | 9 |  |
+| REF_TYPE_MANY_TO_MANY_DOCUMENTS | 10 |  |
 
 
 

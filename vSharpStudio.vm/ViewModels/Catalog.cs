@@ -12,6 +12,7 @@ using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using static vSharpStudio.common.ModelVisitorNodeReferencesBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -341,7 +342,8 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentGroupListCatalogs.Add(node);
             this.GetUniqueName(Defaults.CatalogName, node, this.ParentGroupListCatalogs.ListCatalogs);
             var model = this.ParentGroupListCatalogs.ParentModel;
-            node.ShortId = model.LastTypeShortRefIdForNode(node);
+            node.ShortId = model.LastTypeShortIdForNode();
+            node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
             return node;
         }

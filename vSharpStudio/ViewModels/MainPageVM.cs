@@ -719,14 +719,14 @@ namespace vSharpStudio.ViewModels
         {
             var hash = new HashSet<uint>();
             // Constant groups
-            foreach (var t in cfg.Model.GroupConstantGroups.ListConstantGroups)
-            {
-                if (hash.Contains(t.ShortId))
-                    throw new NotSupportedException();
-                if (t.ShortId == 0)
-                    throw new NotSupportedException();
-                hash.Add(t.ShortId);
-            }
+            //foreach (var t in cfg.Model.GroupConstantGroups.ListConstantGroups)
+            //{
+            //    if (hash.Contains(t.ShortId))
+            //        throw new NotSupportedException();
+            //    if (t.ShortId == 0)
+            //        throw new NotSupportedException();
+            //    hash.Add(t.ShortId);
+            //}
             // Constants
             hash.Clear();
             foreach (var tt in cfg.Model.GroupConstantGroups.ListConstantGroups)
@@ -761,15 +761,15 @@ namespace vSharpStudio.ViewModels
                 hash.Add(t.ShortId);
             }
             // Registers
-            hash.Clear();
-            foreach (var t in cfg.Model.GroupRegisters.ListRegisters)
-            {
-                if (hash.Contains(t.ShortId))
-                    throw new NotSupportedException();
-                if (t.ShortId == 0)
-                    throw new NotSupportedException();
-                hash.Add(t.ShortId);
-            }
+            //hash.Clear();
+            //foreach (var t in cfg.Model.GroupRegisters.ListRegisters)
+            //{
+            //    if (hash.Contains(t.ShortId))
+            //        throw new NotSupportedException();
+            //    if (t.ShortId == 0)
+            //        throw new NotSupportedException();
+            //    hash.Add(t.ShortId);
+            //}
             // Details
             hash.Clear();
             foreach (var tt in cfg.Model.GroupCatalogs.ListCatalogs)
