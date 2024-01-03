@@ -1186,6 +1186,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             row.ListToMap.Add(p);
         }
+
         #region Documents
         [Browsable(false)]
         public SortedObservableCollection<ISortingValue> ListNotSelectedDocuments
@@ -1273,6 +1274,20 @@ namespace vSharpStudio.vm.ViewModels
             get => _SelectedDoc;
             set
             {
+                if (value == null)
+                {
+                    if (_SelectedDoc != null)
+                    {
+                        var guid = ((IGuid)_SelectedDoc).Guid;
+                        foreach (var t in this.ListSelectedDocuments)
+                        {
+                            if (((IGuid)t).Guid == guid)
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
                 if (SetProperty(ref _SelectedDoc, value))
                 {
                     if (_SelectedDoc == null)

@@ -199,6 +199,19 @@ namespace vSharpStudio.vm.ViewModels
             get { return selectedIncludedDocument; }
             set
             {
+                if (value == null)
+                {
+                    if (selectedIncludedDocument != null)
+                    {
+                        foreach (var t in this.listIncludedDocuments)
+                        {
+                            if (((IDocument)t).Guid == selectedIncludedDocument.Guid)
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
                 SetProperty(ref this.selectedIncludedDocument, value);
                 this.GetNotIncludedProperties();
                 this.GetIncludedProperties();
