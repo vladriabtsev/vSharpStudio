@@ -45,7 +45,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsEditable = false;
-            this._JournalAllDocumentsName = "General";
+            //this._AllDocumentsTimelineName = "DocJournalTimeline";
             Init();
         }
         protected override void OnInitFromDto()
@@ -85,11 +85,26 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public void AddJournal(Journal node)
+        public Journal AddJournal()
         {
+            var node = new Journal(this);
             this.NodeAddNewSubNode(node);
+            return node;
         }
-
+        public Journal AddJournal(string name, string? guid = null)
+        {
+            var node = new Journal(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
             Journal node = null!;

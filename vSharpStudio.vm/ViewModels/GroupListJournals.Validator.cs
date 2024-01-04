@@ -13,9 +13,9 @@ namespace vSharpStudio.vm.ViewModels
     {
         public GroupListJournalsValidator()
         {
-            this.RuleFor(x => x.JournalAllDocumentsName).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
-            this.RuleFor(x => x.JournalAllDocumentsName).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
-            this.RuleFor(x => x.JournalAllDocumentsName).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
+            //this.RuleFor(x => x.AllDocumentsTimelineName).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
+            //this.RuleFor(x => x.AllDocumentsTimelineName).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
+            //this.RuleFor(x => x.AllDocumentsTimelineName).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
         }
     }
 }

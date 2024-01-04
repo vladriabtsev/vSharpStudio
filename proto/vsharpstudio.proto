@@ -3246,9 +3246,9 @@ message proto_group_list_journals {
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(8)]
-    // @attr [DisplayName("All journal")]
-    // @attr [Description("Name of journal for all documents")]
-    string journal_all_documents_name = 9;
+    // @attr [DisplayName("Timeline")]
+    // @attr [Description("Name of Timeline for all documents")]
+    //string all_documents_timeline_name = 9;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -3286,15 +3286,11 @@ message proto_journal {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    //repeated proto_group_properties list_properties = 6;
-    // @attr [Browsable(false)]
-    repeated proto_document list_documents = 7;
     // @attr [Browsable(false)]
     bool is_new = 9;
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
-
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -3316,6 +3312,7 @@ message proto_journal {
 }
 // @base VmValidatableWithSeverity
 message proto_doc_in_journal {
+    // doc guid
     string guid = 1;
     repeated string list_property_guids = 2;
 }

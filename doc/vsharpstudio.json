@@ -4911,7 +4911,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "",
+              "description": "doc guid",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -9086,18 +9086,6 @@
               "defaultValue": ""
             },
             {
-              "name": "journal_all_documents_name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"All journal\")]\n@attr [Description(\"Name of journal for all documents\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "is_grid_sortable",
               "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
               "label": "",
@@ -10040,18 +10028,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "list_documents",
-              "description": "repeated proto_group_properties list_properties = 6;\n@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_document",
-              "longType": "proto_document",
-              "fullType": "proto_config.proto_document",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

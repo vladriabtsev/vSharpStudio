@@ -135,6 +135,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentGroupListJournals.ListJournals.Remove(this);
         }
         #endregion Tree operations
+
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>
