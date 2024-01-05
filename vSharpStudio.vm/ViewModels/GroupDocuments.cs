@@ -59,6 +59,8 @@ namespace vSharpStudio.vm.ViewModels
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             children.Add(this.GroupSharedProperties, 2);
             children.Add(this.GroupListDocuments, 3);
+            children.Add(this.GroupJournals, 4);
+            children.Add(this.GroupRegisters, 5);
 
             //this.ListRoles.OnAddingAction = (t) =>
             //{
@@ -77,6 +79,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
             this._Name = Defaults.DocumentsGroupName;
+            this._TimelineName = "Timeline";
         }
         public Document AddDocument(string name, string? guid = null)
         {

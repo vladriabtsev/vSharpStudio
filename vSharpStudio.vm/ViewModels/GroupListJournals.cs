@@ -27,9 +27,9 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
-        public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }
+        public GroupDocuments ParentGroupDocuments { get { Debug.Assert(this.Parent != null); return (GroupDocuments)this.Parent; } }
         [Browsable(false)]
-        public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
+        public IGroupDocuments ParentGroupDocumentsI { get { Debug.Assert(this.Parent != null); return (IGroupDocuments)this.Parent; } }
         #region ITree
         public override IChildrenCollection GetListChildren()
         {
@@ -37,7 +37,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IChildrenCollection GetListSiblings()
         {
-            return this.ParentModel.Children;
+            return this.ParentGroupDocuments.ParentModel.Children;
         }
         #endregion ITree
 
@@ -45,7 +45,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsEditable = false;
-            //this._AllDocumentsTimelineName = "DocJournalTimeline";
             Init();
         }
         protected override void OnInitFromDto()
@@ -144,7 +143,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridSortable == EnumUseType.No)
                 return false;
-            return this.ParentModel.IsGridSortable;
+            return this.ParentGroupDocuments.ParentModel.IsGridSortable;
         }
         public bool GetIsGridFilterable()
         {
@@ -152,7 +151,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridFilterable == EnumUseType.No)
                 return false;
-            return this.ParentModel.IsGridFilterable;
+            return this.ParentGroupDocuments.ParentModel.IsGridFilterable;
         }
         public bool GetIsGridSortableCustom()
         {
@@ -160,7 +159,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridSortableCustom == EnumUseType.No)
                 return false;
-            return this.ParentModel.IsGridSortableCustom;
+            return this.ParentGroupDocuments.ParentModel.IsGridSortableCustom;
         }
     }
 }

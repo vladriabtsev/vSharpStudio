@@ -1073,6 +1073,9 @@ C O N S T A N T
 | prefix_for_db_tables | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for document db table names. Used if set to use in config model&#34;)] |
 | group_shared_properties | [proto_group_list_properties](#proto_config-proto_group_list_properties) |  | @attr [Browsable(false)] @attr [Description(&#34;Properties for all documents&#34;)] |
 | group_list_documents | [proto_group_list_documents](#proto_config-proto_group_list_documents) |  | @attr [Browsable(false)] |
+| timeline_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Timeline&#34;)] @attr [Description(&#34;Name of Timeline for documents&#34;)] |
+| group_registers | [proto_group_list_registers](#proto_config-proto_group_list_registers) |  | @attr [Browsable(false)] @attr [Description(&#34;Registers for documents&#34;)] |
+| group_journals | [proto_group_list_journals](#proto_config-proto_group_list_journals) |  | @attr [Browsable(false)] |
 | use_doc_code_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document by default&#34;)] |
 | monday_before_first_doc_date | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Monday Date&#34;)] @attr [Description(&#34;Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions &#34;)] @attr [ReadOnly(true)] |
 | use_doc_date_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Doc Date&#34;)] @attr [Description(&#34;Use Date property for documents&#34;)] |
@@ -1456,7 +1459,6 @@ P R O P E R T Y
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| accuracy_for_document_time_line | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Timeline accuracy&#34;)] @attr [Description(&#34;Document time line accuracy. Only one document can posted at any point of time line.&#34;)] |
 | list_registers | [proto_register](#proto_config-proto_register) | repeated | @attr [Browsable(false)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | prefix_for_db_tables | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for register db table names&#34;)] |
@@ -1747,8 +1749,6 @@ Configuration model
 | group_enumerations | [proto_group_list_enumerations](#proto_config-proto_group_list_enumerations) |  | @attr [Browsable(false)] |
 | group_catalogs | [proto_group_list_catalogs](#proto_config-proto_group_list_catalogs) |  | @attr [Browsable(false)] |
 | group_documents | [proto_group_documents](#proto_config-proto_group_documents) |  | @attr [Browsable(false)] |
-| group_registers | [proto_group_list_registers](#proto_config-proto_group_list_registers) |  | @attr [Browsable(false)] @attr [Description(&#34;Registers for documents&#34;)] |
-| group_journals | [proto_group_list_journals](#proto_config-proto_group_list_journals) |  | @attr [Browsable(false)] |
 | group_relations | [proto_many_to_many_group_relations](#proto_config-proto_many_to_many_group_relations) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 | list_plugin_groups_model_extentions | [proto_plugin_group_model_extentions](#proto_config-proto_plugin_group_model_extentions) | repeated | @attr [Browsable(false)] Plugin group Guid and string to store extentions |

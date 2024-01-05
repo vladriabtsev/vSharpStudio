@@ -4865,6 +4865,31 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
+                  <td>timeline_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(8)]
+@attr [DisplayName(&#34;Timeline&#34;)]
+@attr [Description(&#34;Name of Timeline for documents&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_registers</td>
+                  <td><a href="#proto_config.proto_group_list_registers">proto_group_list_registers</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)]
+@attr [Description(&#34;Registers for documents&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_journals</td>
+                  <td><a href="#proto_config.proto_group_list_journals">proto_group_list_journals</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>use_doc_code_property</td>
                   <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
@@ -6338,16 +6363,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>accuracy_for_document_time_line</td>
-                  <td><a href="#proto_config.proto_enum_time_accuracy_type">proto_enum_time_accuracy_type</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(6)]
-@attr [DisplayName(&#34;Timeline accuracy&#34;)]
-@attr [Description(&#34;Document time line accuracy. Only one document can posted at any point of time line.&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>list_registers</td>
                   <td><a href="#proto_config.proto_register">proto_register</a></td>
                   <td>repeated</td>
@@ -7695,21 +7710,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 <tr>
                   <td>group_documents</td>
                   <td><a href="#proto_config.proto_group_documents">proto_group_documents</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_registers</td>
-                  <td><a href="#proto_config.proto_group_list_registers">proto_group_list_registers</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)]
-@attr [Description(&#34;Registers for documents&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_journals</td>
-                  <td><a href="#proto_config.proto_group_list_journals">proto_group_list_journals</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>

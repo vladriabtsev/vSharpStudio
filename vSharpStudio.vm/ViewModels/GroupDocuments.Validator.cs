@@ -27,6 +27,9 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 return false;
             }).WithMessage("Selected day has to be Monday");
+            this.RuleFor(x => x.TimelineName).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
+            this.RuleFor(x => x.TimelineName).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
+            this.RuleFor(x => x.TimelineName).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
         }
     }
 }

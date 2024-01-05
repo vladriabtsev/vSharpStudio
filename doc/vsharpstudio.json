@@ -7706,6 +7706,42 @@
               "defaultValue": ""
             },
             {
+              "name": "timeline_name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Timeline\")]\n@attr [Description(\"Name of Timeline for documents\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "group_registers",
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"Registers for documents\")]",
+              "label": "",
+              "type": "proto_group_list_registers",
+              "longType": "proto_group_list_registers",
+              "fullType": "proto_config.proto_group_list_registers",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "group_journals",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_group_list_journals",
+              "longType": "proto_group_list_journals",
+              "fullType": "proto_config.proto_group_list_journals",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "use_doc_code_property",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for document by default\")]",
               "label": "",
@@ -9650,18 +9686,6 @@
               "defaultValue": ""
             },
             {
-              "name": "accuracy_for_document_time_line",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Timeline accuracy\")]\n@attr [Description(\"Document time line accuracy. Only one document can posted at any point of time line.\")]",
-              "label": "",
-              "type": "proto_enum_time_accuracy_type",
-              "longType": "proto_enum_time_accuracy_type",
-              "fullType": "proto_config.proto_enum_time_accuracy_type",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "list_registers",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -11480,30 +11504,6 @@
               "type": "proto_group_documents",
               "longType": "proto_group_documents",
               "fullType": "proto_config.proto_group_documents",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "group_registers",
-              "description": "@attr [Browsable(false)]\n@attr [Description(\"Registers for documents\")]",
-              "label": "",
-              "type": "proto_group_list_registers",
-              "longType": "proto_group_list_registers",
-              "fullType": "proto_config.proto_group_list_registers",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "group_journals",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "proto_group_list_journals",
-              "longType": "proto_group_list_journals",
-              "fullType": "proto_config.proto_group_list_journals",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

@@ -223,17 +223,13 @@ namespace vSharpStudio.common
             this.EndVisit(currModel.GroupDocuments.GroupListDocuments.ListDocuments);
             if (!isActFromRootToBottom)
                 this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListDocuments);
-            this.EndVisit(currModel.GroupDocuments.GroupListDocuments);
-            if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupDocuments);
-            this.EndVisit(currModel.GroupDocuments);
-            #endregion Documents
+
 
             #region Registers
-            this.BeginVisit(currModel.GroupRegisters);
+            this.BeginVisit(currModel.GroupDocuments.GroupRegisters);
             if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRegisters);
-            foreach (var tr in currModel.GroupRegisters.ListRegisters)
+                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupRegisters);
+            foreach (var tr in currModel.GroupDocuments.GroupRegisters.ListRegisters)
             {
                 this.currReg = tr;
                 this.BeginVisit(tr);
@@ -258,15 +254,15 @@ namespace vSharpStudio.common
                 this.currReg = null;
             }
             if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRegisters);
-            this.EndVisit(currModel.GroupRegisters);
+                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupRegisters);
+            this.EndVisit(currModel.GroupDocuments.GroupRegisters);
             #endregion Registers
 
             #region Journals
-            this.BeginVisit(currModel.GroupJournals);
+            this.BeginVisit(currModel.GroupDocuments.GroupJournals);
             if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupJournals);
-            foreach (var tt in currModel.GroupJournals.ListJournals)
+                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupJournals);
+            foreach (var tt in currModel.GroupDocuments.GroupJournals.ListJournals)
             {
                 this.BeginVisit(tt);
                 this._act?.Invoke(this, tt);
@@ -281,9 +277,15 @@ namespace vSharpStudio.common
                 this.EndVisit(tt);
             }
             if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupJournals);
-            this.EndVisit(currModel.GroupJournals);
+                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupJournals);
+            this.EndVisit(currModel.GroupDocuments.GroupJournals);
             #endregion Journals
+
+            this.EndVisit(currModel.GroupDocuments.GroupListDocuments);
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments);
+            this.EndVisit(currModel.GroupDocuments);
+            #endregion Documents
 
             if (!isActFromRootToBottom)
                 this._act?.Invoke(this, this.currModel);

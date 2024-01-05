@@ -23,13 +23,6 @@ namespace vSharpStudio.vm.ViewModels
                 var p = (Journal)cntx.InstanceToValidate;
                 Debug.Assert(p.Parent != null);
                 var pg = p.ParentGroupListJournals;
-                //if (name == pg.AllDocumentsTimelineName)
-                //{
-                //    var vf = new ValidationFailure(nameof(p.Name),
-                //        $"Model is is configured to use '{pg.AllDocumentsTimelineName}' name as a journal name for all documents. This reserved name is set Journals group settings.");
-                //    vf.Severity = Severity.Error;
-                //    cntx.AddFailure(vf);
-                //}
                 foreach (var t in pg.ListJournals)
                 {
                     if ((p.Guid != t.Guid) && (name == t.Name))

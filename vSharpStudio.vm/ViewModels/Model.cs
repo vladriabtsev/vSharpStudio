@@ -112,8 +112,6 @@ namespace vSharpStudio.vm.ViewModels
             children.Add(this.GroupCatalogs, 9);
             children.Add(this.GroupRelations, 10);
             children.Add(this.GroupDocuments, 11);
-            children.Add(this.GroupRegisters, 12);
-            children.Add(this.GroupJournals, 13);
             //this.ListMainViewForms.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;
@@ -256,116 +254,116 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITreeNode
 
         #region Objects
-        public IEnumerable<ITreeConfigNode> GetAllNodes()
-        {
-            yield return this.GroupEnumerations;
-            foreach (var t in this.GroupEnumerations.ListEnumerations)
-            {
-                yield return t;
-            }
+        //public IEnumerable<ITreeConfigNode> GetAllNodes()
+        //{
+        //    yield return this.GroupEnumerations;
+        //    foreach (var t in this.GroupEnumerations.ListEnumerations)
+        //    {
+        //        yield return t;
+        //    }
 
-            yield return this.GroupConstantGroups;
-            foreach (var t in this.GroupConstantGroups.ListConstantGroups)
-            {
-                yield return t;
-                foreach (var tt in t.ListConstants)
-                {
-                    yield return tt;
-                }
-            }
+        //    yield return this.GroupConstantGroups;
+        //    foreach (var t in this.GroupConstantGroups.ListConstantGroups)
+        //    {
+        //        yield return t;
+        //        foreach (var tt in t.ListConstants)
+        //        {
+        //            yield return tt;
+        //        }
+        //    }
 
-            yield return this.GroupCatalogs;
-            foreach (var t in this.GroupCatalogs.ListCatalogs)
-            {
-                yield return t;
-                yield return t.GroupProperties;
-                foreach (var tt in t.GroupProperties.ListProperties)
-                {
-                    yield return tt;
-                }
+        //    yield return this.GroupCatalogs;
+        //    foreach (var t in this.GroupCatalogs.ListCatalogs)
+        //    {
+        //        yield return t;
+        //        yield return t.GroupProperties;
+        //        foreach (var tt in t.GroupProperties.ListProperties)
+        //        {
+        //            yield return tt;
+        //        }
 
-                yield return t.GroupDetails;
-                foreach (var tt in t.GroupDetails.ListDetails)
-                {
-                    yield return tt;
-                    yield return tt.GroupProperties;
-                    foreach (var ttt in tt.GroupProperties.ListProperties)
-                    {
-                        yield return ttt;
-                    }
-                }
-                yield return t.GroupForms;
-                foreach (var tt in t.GroupForms.ListForms)
-                {
-                    yield return tt;
-                }
+        //        yield return t.GroupDetails;
+        //        foreach (var tt in t.GroupDetails.ListDetails)
+        //        {
+        //            yield return tt;
+        //            yield return tt.GroupProperties;
+        //            foreach (var ttt in tt.GroupProperties.ListProperties)
+        //            {
+        //                yield return ttt;
+        //            }
+        //        }
+        //        yield return t.GroupForms;
+        //        foreach (var tt in t.GroupForms.ListForms)
+        //        {
+        //            yield return tt;
+        //        }
 
-                yield return t.GroupReports;
-                foreach (var tt in t.GroupReports.ListReports)
-                {
-                    yield return tt;
-                }
-            }
-            yield return this.GroupDocuments;
-            yield return this.GroupDocuments.GroupSharedProperties;
-            foreach (var t in this.GroupDocuments.GroupSharedProperties.ListProperties)
-            {
-                yield return t;
-            }
+        //        yield return t.GroupReports;
+        //        foreach (var tt in t.GroupReports.ListReports)
+        //        {
+        //            yield return tt;
+        //        }
+        //    }
+        //    yield return this.GroupDocuments;
+        //    yield return this.GroupDocuments.GroupSharedProperties;
+        //    foreach (var t in this.GroupDocuments.GroupSharedProperties.ListProperties)
+        //    {
+        //        yield return t;
+        //    }
 
-            yield return this.GroupDocuments.GroupListDocuments;
-            foreach (var t in this.GroupDocuments.GroupListDocuments.ListDocuments)
-            {
-                yield return t;
-                yield return t.GroupProperties;
-                foreach (var tt in t.GroupProperties.ListProperties)
-                {
-                    yield return tt;
-                }
+        //    yield return this.GroupDocuments.GroupListDocuments;
+        //    foreach (var t in this.GroupDocuments.GroupListDocuments.ListDocuments)
+        //    {
+        //        yield return t;
+        //        yield return t.GroupProperties;
+        //        foreach (var tt in t.GroupProperties.ListProperties)
+        //        {
+        //            yield return tt;
+        //        }
 
-                yield return t.GroupDetails;
-                foreach (var tt in this.GetTabNodes(t.GroupDetails as GroupListDetails))
-                {
-                    yield return tt;
-                }
+        //        yield return t.GroupDetails;
+        //        foreach (var tt in this.GetTabNodes(t.GroupDetails as GroupListDetails))
+        //        {
+        //            yield return tt;
+        //        }
 
-                yield return t.GroupForms;
-                foreach (var tt in t.GroupForms.ListForms)
-                {
-                    yield return tt;
-                }
+        //        yield return t.GroupForms;
+        //        foreach (var tt in t.GroupForms.ListForms)
+        //        {
+        //            yield return tt;
+        //        }
 
-                yield return t.GroupReports;
-                foreach (var tt in t.GroupReports.ListReports)
-                {
-                    yield return tt;
-                }
-            }
-            yield return this.GroupJournals;
-            foreach (var t in this.GroupJournals.ListJournals)
-            {
-                yield return t;
-            }
-        }
+        //        yield return t.GroupReports;
+        //        foreach (var tt in t.GroupReports.ListReports)
+        //        {
+        //            yield return tt;
+        //        }
+        //    }
+        //    yield return this.GroupJournals;
+        //    foreach (var t in this.GroupJournals.ListJournals)
+        //    {
+        //        yield return t;
+        //    }
+        //}
 
-        private IEnumerable<ITreeConfigNode> GetTabNodes(GroupListDetails tab)
-        {
-            foreach (var tt in tab.ListDetails)
-            {
-                yield return tt;
-                yield return tt.GroupProperties;
-                foreach (var ttt in tt.GroupProperties.ListProperties)
-                {
-                    yield return ttt;
-                }
+        //private IEnumerable<ITreeConfigNode> GetTabNodes(GroupListDetails tab)
+        //{
+        //    foreach (var tt in tab.ListDetails)
+        //    {
+        //        yield return tt;
+        //        yield return tt.GroupProperties;
+        //        foreach (var ttt in tt.GroupProperties.ListProperties)
+        //        {
+        //            yield return ttt;
+        //        }
 
-                yield return tt.GroupDetails;
-                foreach (var ttt in this.GetTabNodes(tt.GroupDetails as GroupListDetails))
-                {
-                    yield return tt;
-                }
-            }
-        }
+        //        yield return tt.GroupDetails;
+        //        foreach (var ttt in this.GetTabNodes(tt.GroupDetails as GroupListDetails))
+        //        {
+        //            yield return tt;
+        //        }
+        //    }
+        //}
         #endregion Objects
 
         //[PropertyOrderAttribute(12)]
@@ -1082,7 +1080,21 @@ namespace vSharpStudio.vm.ViewModels
             var lst = new List<IRegister>();
             var cfg = this.ParentConfig;
             var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
-            foreach (var tt in cfg.Model.GroupRegisters.ListRegisters)
+            foreach (var tt in cfg.Model.GroupDocuments.GroupRegisters.ListRegisters)
+            {
+                if (tt.IsIncluded(guidAppPrjGen))
+                {
+                    lst.Add(tt);
+                }
+            }
+            return lst;
+        }
+        public IReadOnlyList<IJournal> GetListJournals(string guidAppPrjGen)
+        {
+            var lst = new List<IJournal>();
+            var cfg = this.ParentConfig;
+            var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
+            foreach (var tt in cfg.Model.GroupDocuments.GroupJournals.ListJournals)
             {
                 if (tt.IsIncluded(guidAppPrjGen))
                 {

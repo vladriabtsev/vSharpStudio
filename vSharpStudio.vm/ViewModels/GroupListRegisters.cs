@@ -24,9 +24,9 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
-        public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }
+        public GroupDocuments ParentGroupDocuments { get { Debug.Assert(this.Parent != null); return (GroupDocuments)this.Parent; } }
         [Browsable(false)]
-        public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
+        public IGroupDocuments ParentGroupDocumentsI { get { Debug.Assert(this.Parent != null); return (IGroupDocuments)this.Parent; } }
 
         [PropertyOrder(100)]
         [ReadOnly(true)]
@@ -47,7 +47,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IChildrenCollection GetListSiblings()
         {
-            return this.ParentModel.Children;
+            return this.ParentGroupDocuments.ParentModel.Children;
         }
         #endregion ITree
 
@@ -69,7 +69,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.GetUniqueName(Defaults.RegisterName, node, this.ListRegisters);
             }
-            var model = this.ParentModel;
+            var model = this.ParentGroupDocuments.ParentModel;
             this.SetSelected(node);
             return node;
         }
@@ -200,7 +200,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(!isExcludeSpecial, "not implemented yet");
 
             var lst = new List<IProperty>();
-            var m = this.ParentModel;
+            var m = this.ParentGroupDocuments.ParentModel;
 
             // Field PK
             var pId = m.GetPropertyPkId(this, this.Guid);

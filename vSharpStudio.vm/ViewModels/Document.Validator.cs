@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using FluentValidation;
+using FluentValidation.Results;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -12,38 +16,32 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
-            this.RuleFor(x => x.Name).Must((o, name) => { return this.IsUnique(o); }).WithMessage(Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
-            // RuleFor(x => x.MinValueString).NotEmpty().WithMessage("Please provide minimum value").WithSeverity(Severity.Warning);
-            // RuleFor(x => x.MaxValueString).NotEmpty().WithMessage("Please provide maximum value").WithSeverity(Severity.Warning);
-            // RuleFor(x => x.MinValueString).Must(ParsableToBigInteger).WithMessage("Can't parse to integer");
-            // RuleFor(x => x.MaxValueString).Must(ParsableToBigInteger).WithMessage("Can't parse to integer");
-            // RuleFor(x => x.Length).GreaterThan(0u);
-            // RuleFor(x => x.Accuracy).LessThan(x => x.Length);
-            // RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Catalog).WithMessage("Please select catalog name");
-            // RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Document).WithMessage("Please select document name");
-        }
-
-        private bool IsUnique(Document val)
-        {
-            if (val.Parent == null)
+            this.RuleFor(x => x.Name).Custom((name, cntx) =>
             {
-                return true;
-            }
-
-            if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
-            {
-                return true;
-            }
-
-            GroupListDocuments p = (GroupListDocuments)val.Parent;
-            foreach (var t in p.ListDocuments)
-            {
-                if ((val.Guid != t.Guid) && (val.Name == t.Name))
+                if (string.IsNullOrEmpty(name))
+                    return;
+                var p = (Document)cntx.InstanceToValidate;
+                if (p.Parent == null)
+                    return;
+                var pg = p.ParentGroupListDocuments;
+                if (name == pg.ParentGroupDocuments.TimelineName)
                 {
-                    return false;
+                    var vf = new ValidationFailure(nameof(p.Name),
+                        $"Group documents parameter 'Timeline name' is set to '{pg.ParentGroupDocuments.TimelineName}'. This name is reverved for documents timeline.");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
                 }
-            }
-            return true;
+                foreach (var t in pg.ListDocuments)
+                {
+                    if ((p.Guid != t.Guid) && (name == t.Name))
+                    {
+                        var vf = new ValidationFailure(nameof(p.Name),
+                            $"Not unique document name '{name}'");
+                        vf.Severity = Severity.Error;
+                        cntx.AddFailure(vf);
+                    }
+                }
+            });
         }
     }
 }

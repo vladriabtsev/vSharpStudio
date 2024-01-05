@@ -774,11 +774,6 @@ message proto_model {
     // @attr [Browsable(false)]
     proto_group_documents group_documents = 104;
     // @attr [Browsable(false)]
-    // @attr [Description("Registers for documents")]
-    proto_group_list_registers group_registers = 107;
-    // @attr [Browsable(false)]
-    proto_group_list_journals group_journals = 105;
-    // @attr [Browsable(false)]
     proto_many_to_many_group_relations group_relations = 108;
 
     // @attr [Browsable(false)]
@@ -2428,11 +2423,6 @@ message proto_group_list_registers {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(6)]
-    // @attr [DisplayName("Timeline accuracy")]
-    // @attr [Description("Document time line accuracy. Only one document can posted at any point of time line.")]
-    proto_enum_time_accuracy_type accuracy_for_document_time_line = 6;
     // @attr [Browsable(false)]
     repeated proto_register list_registers = 7;
     // @attr [Browsable(false)]
@@ -2781,6 +2771,24 @@ message proto_group_documents {
     proto_group_list_properties group_shared_properties = 7;
     // @attr [Browsable(false)]
     proto_group_list_documents group_list_documents = 8;
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [DisplayName("Timeline")]
+    // @attr [Description("Name of Timeline for documents")]
+    string timeline_name = 9;
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [DisplayName("Timeline accuracy")]
+    // @attr [Description("Document time line accuracy. Only one document can posted at any point of time line.")]
+    //proto_enum_time_accuracy_type accuracy_for_document_time_line = 6;
+
+    // @attr [Browsable(false)]
+    // @attr [Description("Registers for documents")]
+    proto_group_list_registers group_registers = 10;
+    // @attr [Browsable(false)]
+    proto_group_list_journals group_journals = 11;
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(22)]
@@ -3243,12 +3251,6 @@ message proto_group_list_journals {
     repeated proto_journal list_journals = 7;
     // @attr [Browsable(false)]
     uint64 sorting_value = 8;
-
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(8)]
-    // @attr [DisplayName("Timeline")]
-    // @attr [Description("Name of Timeline for all documents")]
-    //string all_documents_timeline_name = 9;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]

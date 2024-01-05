@@ -85,7 +85,7 @@ namespace vSharpStudio.Views
                     hashDoc.Add(tt.Guid);
                 }
                 var listNotIncludedDocuments = new ObservableCollection<ISortingValue>();
-                foreach (var t in journal.ParentGroupListJournals.ParentModel.GroupDocuments.GroupListDocuments.ListDocuments)
+                foreach (var t in journal.ParentGroupListJournals.ParentGroupDocuments.ParentModel.GroupDocuments.GroupListDocuments.ListDocuments)
                 {
                     if (hashDoc.Contains(t.Guid))
                         continue;
@@ -94,7 +94,7 @@ namespace vSharpStudio.Views
                 journal.ListNotIncludedDocuments = listNotIncludedDocuments;
 
                 var listIncludedDocuments = new SortedObservableCollection<ISortingValue>();
-                foreach (var t in journal.ParentGroupListJournals.ParentModel.GroupDocuments.GroupListDocuments.ListDocuments)
+                foreach (var t in journal.ParentGroupListJournals.ParentGroupDocuments.ParentModel.GroupDocuments.GroupListDocuments.ListDocuments)
                 {
                     if (!hashDoc.Contains(t.Guid))
                         continue;

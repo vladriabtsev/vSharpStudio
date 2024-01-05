@@ -55,14 +55,14 @@ namespace vSharpStudio.vm.ViewModels
                 if (name == model.PKeyName)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Model is is configured to use {model.PKeyName} as primary key name. Property name {model.PKeyName} is reserved for primary key property");
+                        $"Model is configured to use {model.PKeyName} as primary key name. Property name {model.PKeyName} is reserved for primary key property");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
                 if (name == model.RecordVersionFieldName)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Model is is configured to use {model.RecordVersionFieldName} as record version name. Property name {model.RecordVersionFieldName} is reserved for record version property");
+                        $"Model is configured to use {model.RecordVersionFieldName} as record version name. Property name {model.RecordVersionFieldName} is reserved for record version property");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
@@ -1153,7 +1153,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, Register r)
         {
-            var model = r.ParentGroupListRegisters.ParentModel;
+            var model = r.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
 
             if (model.PropertyDocNumberName == name)
             {

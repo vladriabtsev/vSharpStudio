@@ -40,16 +40,16 @@ namespace vSharpStudio.vm.ViewModels
             sb.Append("REG ");
             sb.Append(this.Name);
             sb.Append(", ");
-            sb.Append(this.ParentGroupListRegisters.ParentModel.PKeyName);
+            sb.Append(this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel.PKeyName);
             sb.Append(":{");
-            sb.Append(this.ParentGroupListRegisters.ParentModel.PKeyName);
+            sb.Append(this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel.PKeyName);
             sb.Append(",nq}");
             sb.Append(", Doc:{DocDescr,nq}");
             sb.Append(", Turnovers:{ListTurnovers.Count}");
             if (isOptimistic)
             {
                 sb.Append(" RecVer:{");
-                sb.Append(this.ParentGroupListRegisters.ParentModel.RecordVersionFieldName);
+                sb.Append(this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel.RecordVersionFieldName);
                 sb.Append(",nq}");
             }
             return sb.ToString();
@@ -60,9 +60,9 @@ namespace vSharpStudio.vm.ViewModels
             sb.Append("POST ");
             sb.Append(this.Name);
             sb.Append(", ");
-            sb.Append(this.ParentGroupListRegisters.ParentModel.PKeyName);
+            sb.Append(this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel.PKeyName);
             sb.Append(":{");
-            sb.Append(this.ParentGroupListRegisters.ParentModel.PKeyName);
+            sb.Append(this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel.PKeyName);
             sb.Append(",nq}");
             foreach (var t in this.GroupRegisterDimensions.ListDimensions)
             {
@@ -79,7 +79,7 @@ namespace vSharpStudio.vm.ViewModels
             if (isOptimistic)
             {
                 sb.Append(" RecVer:{");
-                sb.Append(this.ParentGroupListRegisters.ParentModel.RecordVersionFieldName);
+                sb.Append(this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel.RecordVersionFieldName);
                 sb.Append(",nq}");
             }
             return sb.ToString();
@@ -285,7 +285,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Register(this.Parent);
             this.ParentGroupListRegisters.Add(node);
             this.GetUniqueName(Defaults.RegisterName, node, this.ParentGroupListRegisters.ListRegisters);
-            var model = this.ParentGroupListRegisters.ParentModel;
+            var model = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();
             this.SetSelected(node);
             return node;
@@ -500,7 +500,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
         {
             var lst = new List<IProperty>();
-            var m = this.ParentGroupListRegisters.ParentModel;
+            var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
 
             if (!isExcludeSpecial)
             {
@@ -561,7 +561,7 @@ namespace vSharpStudio.vm.ViewModels
             // Document timeline
             var pDocDate = new Property(this, this.PropertyDocDateGuid, this.Cfg.Model.PropertyDocDateName, true);
             pDocDate.Name = "DocTimeline";
-            pDocDate.DataType = (DataType)this.Cfg.Model.GetDataTypeDateTimeUtc(pDocDate, this.Cfg.Model.GroupRegisters.AccuracyForDocumentTimeLine, false, false);
+            pDocDate.DataType = (DataType)this.Cfg.Model.GetDataTypeDateTimeUtc(pDocDate, EnumTimeAccuracyType.MAX_TIME_ACC, false, false);
             pDocDate.Position = 8;
             pDocDate.IsCsNullable = true;
             //var pDocDate = m.GetPropertyDocumentDate(this, this.PropertyDocDateGuid); // position 8
@@ -589,7 +589,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(!isExcludeSpecial, "not implemented yet");
 
             var lst = new List<IProperty>();
-            var m = this.ParentGroupListRegisters.ParentModel;
+            var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
 
             // Id
             var pId = m.GetPropertyPkId(this, this.PropertyIdGuid); // position 6
@@ -671,7 +671,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(!isExcludeSpecial, "not implemented yet");
 
             var lst = new List<IProperty>();
-            var m = this.ParentGroupListRegisters.ParentModel;
+            var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
 
             // Id
             var pId = m.GetPropertyPkId(this, this.PropertyIdGuid); // position 6

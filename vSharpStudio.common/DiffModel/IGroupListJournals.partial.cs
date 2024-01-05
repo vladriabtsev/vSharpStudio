@@ -8,7 +8,7 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListJournals : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName
     {
-        IModel ParentModelI { get; }
+        IGroupDocuments ParentGroupDocumentsI { get; }
         string GetDebuggerDisplay(bool isOptimistic);
     }
 }
