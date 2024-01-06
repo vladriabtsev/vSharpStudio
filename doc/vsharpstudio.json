@@ -7718,6 +7718,18 @@
               "defaultValue": ""
             },
             {
+              "name": "time_line_time_accuracy",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Timeline accuracy\")]\n@attr [Description(\"Document time line accuracy. Only one document can posted at any point of time line.\")]",
+              "label": "",
+              "type": "proto_enum_time_accuracy_type",
+              "longType": "proto_enum_time_accuracy_type",
+              "fullType": "proto_config.proto_enum_time_accuracy_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "group_registers",
               "description": "@attr [Browsable(false)]\n@attr [Description(\"Registers for documents\")]",
               "label": "",

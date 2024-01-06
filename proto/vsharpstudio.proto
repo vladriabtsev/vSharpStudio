@@ -2782,13 +2782,13 @@ message proto_group_documents {
     // @attr [PropertyOrderAttribute(6)]
     // @attr [DisplayName("Timeline accuracy")]
     // @attr [Description("Document time line accuracy. Only one document can posted at any point of time line.")]
-    //proto_enum_time_accuracy_type accuracy_for_document_time_line = 6;
+    proto_enum_time_accuracy_type time_line_time_accuracy = 10;
 
     // @attr [Browsable(false)]
     // @attr [Description("Registers for documents")]
-    proto_group_list_registers group_registers = 10;
+    proto_group_list_registers group_registers = 20;
     // @attr [Browsable(false)]
-    proto_group_list_journals group_journals = 11;
+    proto_group_list_journals group_journals = 21;
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(22)]

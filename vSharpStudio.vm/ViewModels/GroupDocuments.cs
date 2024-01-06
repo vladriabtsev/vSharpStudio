@@ -79,7 +79,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
             this._Name = Defaults.DocumentsGroupName;
-            this._TimelineName = "Timeline";
+            this._TimelineName = "JournalTimeline";
         }
         public Document AddDocument(string name, string? guid = null)
         {
