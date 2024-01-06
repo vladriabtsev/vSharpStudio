@@ -847,7 +847,7 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._BtnConfigSaveAs ??= new vButtonVM<string>(
-                    (o) => { Debug.Assert(o != null); this.SaveAs(o); },
+                    (o) => { this.SaveAs(o); },
                     (o) => { return this.Config != null; });
             }
         }

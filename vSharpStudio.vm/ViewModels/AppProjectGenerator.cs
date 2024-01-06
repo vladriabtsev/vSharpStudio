@@ -120,26 +120,29 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                this.plugin = cfg.DicPlugins[this.PluginGuid];
-                if (this.PluginGeneratorGuid == string.Empty)
+                if (cfg.DicPlugins.ContainsKey(this.PluginGuid))
                 {
-                }
-                else
-                {
-                    UpdateListGenerators();
-                    Debug.Assert(this.ListGenerators != null);
-                    foreach (var t in this.ListGenerators)
+                    this.plugin = cfg.DicPlugins[this.PluginGuid];
+                    if (this.PluginGeneratorGuid == string.Empty)
                     {
-                        if (t.Guid == this.PluginGeneratorGuid)
-                        {
-                            Debug.Assert(t.Generator != null);
-                            cfg._DicActiveAppProjectGenerators[this.Guid] = t.Generator;
-                            this.PluginGenerator = t.Generator;
-                            break;
-                        }
                     }
-                    OnConnStrChanged();
-                    this._DynamicModelNodeSettings = this.cfg.Model.GetSettings(this.Guid);
+                    else
+                    {
+                        UpdateListGenerators();
+                        Debug.Assert(this.ListGenerators != null);
+                        foreach (var t in this.ListGenerators)
+                        {
+                            if (t.Guid == this.PluginGeneratorGuid)
+                            {
+                                Debug.Assert(t.Generator != null);
+                                cfg._DicActiveAppProjectGenerators[this.Guid] = t.Generator;
+                                this.PluginGenerator = t.Generator;
+                                break;
+                            }
+                        }
+                        OnConnStrChanged();
+                        this._DynamicModelNodeSettings = this.cfg.Model.GetSettings(this.Guid);
+                    }
                 }
             }
         }

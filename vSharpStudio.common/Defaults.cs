@@ -79,7 +79,7 @@
         public const string RegisterDimensionsGroupName = "Dimensions";
         public const string RegisterGroupName = "Registers";
 
-        public const string ApplicationGroupName = "User Applications";
+        public const string ApplicationGroupName = "Applications";
 
         public const string GroupReportsName = "Reports";
         public const string ReportName = "Report";
