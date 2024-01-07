@@ -643,15 +643,10 @@ message proto_model {
     // @attr [Category("Composite Names Generation")]
     uint32 composite_name_max_length = 8;
     // @attr [PropertyOrderAttribute(9)]
-    // @attr [DisplayName("Use Composite")]
-    // @attr [Description("Use parent-child composite names.")]
+    // @attr [DisplayName("Use Composition")]
+    // @attr [Description("If selected, then configuration objects will use group prefixes and parent-child name composition as composite names. If not, then all configuration objects will use their names as composite names")]
     // @attr [Category("Composite Names Generation")]
-    bool is_use_composite_names = 9;
-    // @attr [PropertyOrderAttribute(10)]
-    // @attr [DisplayName("Use Prefix")]
-    // @attr [Description("Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.")]
-    // @attr [Category("Composite Names Generation")]
-    bool is_use_group_prefix = 10;
+    bool is_use_name_composition = 9;
 
     // @attr [Browsable(false)]
     string p_key_guid = 13;
@@ -1075,9 +1070,9 @@ message proto_group_list_enumerator_sequences {
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Db prefix")]
-    // @attr [Description("Prefix for document db table names. Used if set to use in config model")]
-    //string prefix_for_db_tables = 6;
+    // @attr [DisplayName("Composition prefix")]
+    // @attr [Description("Prefix for enumerator sequences composition names. Used if set to use in config model")]
+    //string prefix_for_composition_names = 6;
 
 
     // @attr [Browsable(false)]
@@ -1740,9 +1735,9 @@ message proto_group_constant_groups {
     string description = 5;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Db prefix")]
-    // @attr [Description("Prefix for constants db table names. Used if set to use in config model")]
-    string prefix_for_db_tables = 6;
+    // @attr [DisplayName("Composition prefix")]
+    // @attr [Description("Prefix for constants composition names. Used if set to use in config model")]
+    string prefix_for_composition_names = 6;
     // @attr [Browsable(false)]
     repeated proto_group_list_constants list_constant_groups = 8;
     // @attr [Browsable(false)]
@@ -2334,9 +2329,9 @@ message proto_group_list_catalogs {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Db prefix")]
-    // @attr [Description("Prefix for catalog db table names. Used if set to use in config model")]
-    string prefix_for_db_tables = 6;
+    // @attr [DisplayName("Composition prefix")]
+    // @attr [Description("Prefix for catalogs composition names. Used if set to use in config model")]
+    string prefix_for_composition_names = 6;
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Short ID")]
     // @attr [Description("Short catalog type ID for cache key generator")]
@@ -2429,9 +2424,9 @@ message proto_group_list_registers {
     uint64 sorting_value = 8;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(9)]
-    // @attr [DisplayName("Db prefix")]
-    // @attr [Description("Prefix for register db table names")]
-    string prefix_for_db_tables = 9;
+    // @attr [DisplayName("Composition prefix")]
+    // @attr [Description("Prefix for registers composition names")]
+    string prefix_for_composition_names = 9;
     // @attr [PropertyOrderAttribute(15)]
     // @attr [DisplayName("Short ID")]
     // @attr [Description("Short register type ID for cache key generator")]
@@ -2763,9 +2758,9 @@ message proto_group_documents {
     string description = 5;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Db prefix")]
-    // @attr [Description("Prefix for document db table names. Used if set to use in config model")]
-    string prefix_for_db_tables = 6;
+    // @attr [DisplayName("Composition prefix")]
+    // @attr [Description("Prefix for documents composition names. Used if set to use in config model")]
+    string prefix_for_composition_names = 6;
     // @attr [Browsable(false)]
     // @attr [Description("Properties for all documents")]
     proto_group_list_properties group_shared_properties = 7;
@@ -3112,9 +3107,9 @@ message proto_many_to_many_group_catalogs_relations {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Db prefix")]
-    // @attr [Description("Prefix for catalog db table names. Used if set to use in config model")]
-    string prefix_for_db_tables = 6;
+    // @attr [DisplayName("Composition prefix")]
+    // @attr [Description("Prefix for many-to-many relations composition names. Used if set to use in config model")]
+    string prefix_for_composition_names = 6;
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Short ID")]
     // @attr [Description("Short catalog type ID for cache key generator")]
@@ -3211,9 +3206,9 @@ message proto_many_to_many_group_documents_relations {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Db prefix")]
-    // @attr [Description("Prefix for catalog db table names. Used if set to use in config model")]
-    string prefix_for_db_tables = 6;
+    // @attr [DisplayName("Composition prefix")]
+    // @attr [Description("Prefix for many-to-many relations composition names. Used if set to use in config model")]
+    string prefix_for_composition_names = 6;
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Short ID")]
     // @attr [Description("Short catalog type ID for cache key generator")]

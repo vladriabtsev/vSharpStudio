@@ -472,8 +472,21 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (string.IsNullOrWhiteSpace(x))
                     return;
-                var val = x.Trim();
                 var p = (Property)cntx.InstanceToValidate;
+                //if (p.IsNullable)
+                //{
+                //    if (string.IsNullOrWhiteSpace(x))
+                //        return;
+                //}
+                //else
+                //{
+                //    var vf = new ValidationFailure(nameof(p.DefaultValue),
+                //        $"Property is not nullable, but default value is not provided");
+                //    vf.Severity = Severity.Error;
+                //    cntx.AddFailure(vf);
+                //    return;
+                //}
+                var val = x.Trim();
                 switch (p.DataType.DataTypeEnum)
                 {
                     case EnumDataType.BOOL:

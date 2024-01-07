@@ -43,7 +43,7 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
-            this._PrefixForDbTables = "Doc";
+            this._PrefixForCompositionNames = "Doc";
             this._MondayBeforeFirstDocDate = Timestamp.FromDateTime(new DateTime(1000, 1, 6, 0, 0, 0, DateTimeKind.Utc));
             this.IsEditable = false;
             Init();

@@ -68,7 +68,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._PrefixForDbTables = "Ctlg";
+            this._PrefixForCompositionNames = "Ctlg";
             this.IsEditable = false;
             this._UseCodeProperty = EnumUseType.Default;
             this._UseNameProperty = EnumUseType.Default;

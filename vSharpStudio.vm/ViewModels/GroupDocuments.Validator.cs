@@ -9,14 +9,14 @@ namespace vSharpStudio.vm.ViewModels
     {
         public GroupDocumentsValidator()
         {
-            this.RuleFor(x => x.PrefixForDbTables).Must((o, prefix) =>
+            this.RuleFor(x => x.PrefixForCompositionNames).Must((o, prefix) =>
             {
+                if (!o.ParentModel.IsUseNameComposition)
+                    return true;
                 if (!string.IsNullOrWhiteSpace(prefix))
                     return true;
-                if (o.ParentModel.IsUseGroupPrefix)
-                    return false;
-                return true;
-            }).WithMessage("Prefix can't be empty if prefix usage is chosen for DB table names in the model");
+                return false;
+            }).WithMessage("Prefix can't be empty if name composition usage is chosen for composite names in the model");
             this.RuleFor(x => x.MondayBeforeFirstDocDate).Must((o, monday) =>
             {
                 if (monday != null)

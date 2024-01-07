@@ -297,7 +297,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (this.GuidCat1 != null)
             {
-                if (model.IsUseCompositeNames)
+                if (model.IsUseNameComposition)
                     prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefCat1Guid, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidCat1]).CompositeName, 1, false);
                 else
                     prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefCat1Guid, "Ref" + this.Cfg.DicNodes[this.GuidCat1].Name, 1, false);
@@ -305,7 +305,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (this.GuidCat2 != null)
             {
-                if (model.IsUseCompositeNames)
+                if (model.IsUseNameComposition)
                     prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefCat2Guid, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidCat2]).CompositeName, 2, false);
                 else
                     prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefCat2Guid, "Ref" + this.Cfg.DicNodes[this.GuidCat2].Name, 2, false);

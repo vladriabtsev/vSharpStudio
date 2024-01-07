@@ -71,7 +71,7 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
-            this._PrefixForDbTables = "Cnst";
+            this._PrefixForCompositionNames = "Cnst";
             this.IsEditable = false;
             Init();
         }

@@ -4757,13 +4757,13 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>prefix_for_db_tables</td>
+                  <td>prefix_for_composition_names</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(4)]
-@attr [DisplayName(&#34;Db prefix&#34;)]
-@attr [Description(&#34;Prefix for constants db table names. Used if set to use in config model&#34;)] </p></td>
+@attr [DisplayName(&#34;Composition prefix&#34;)]
+@attr [Description(&#34;Prefix for constants composition names. Used if set to use in config model&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4840,13 +4840,13 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>prefix_for_db_tables</td>
+                  <td>prefix_for_composition_names</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(4)]
-@attr [DisplayName(&#34;Db prefix&#34;)]
-@attr [Description(&#34;Prefix for document db table names. Used if set to use in config model&#34;)] </p></td>
+@attr [DisplayName(&#34;Composition prefix&#34;)]
+@attr [Description(&#34;Prefix for documents composition names. Used if set to use in config model&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5139,12 +5139,12 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>prefix_for_db_tables</td>
+                  <td>prefix_for_composition_names</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [DisplayName(&#34;Db prefix&#34;)]
-@attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] </p></td>
+@attr [DisplayName(&#34;Composition prefix&#34;)]
+@attr [Description(&#34;Prefix for catalogs composition names. Used if set to use in config model&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -6387,13 +6387,13 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>prefix_for_db_tables</td>
+                  <td>prefix_for_composition_names</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(9)]
-@attr [DisplayName(&#34;Db prefix&#34;)]
-@attr [Description(&#34;Prefix for register db table names&#34;)] </p></td>
+@attr [DisplayName(&#34;Composition prefix&#34;)]
+@attr [Description(&#34;Prefix for registers composition names&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -7174,12 +7174,12 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>prefix_for_db_tables</td>
+                  <td>prefix_for_composition_names</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [DisplayName(&#34;Db prefix&#34;)]
-@attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] </p></td>
+@attr [DisplayName(&#34;Composition prefix&#34;)]
+@attr [Description(&#34;Prefix for many-to-many relations composition names. Used if set to use in config model&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -7265,12 +7265,12 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>prefix_for_db_tables</td>
+                  <td>prefix_for_composition_names</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [DisplayName(&#34;Db prefix&#34;)]
-@attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] </p></td>
+@attr [DisplayName(&#34;Composition prefix&#34;)]
+@attr [Description(&#34;Prefix for many-to-many relations composition names. Used if set to use in config model&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -7462,22 +7462,12 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>is_use_composite_names</td>
+                  <td>is_use_name_composition</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(9)]
-@attr [DisplayName(&#34;Use Composite&#34;)]
-@attr [Description(&#34;Use parent-child composite names.&#34;)]
-@attr [Category(&#34;Composite Names Generation&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_use_group_prefix</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(10)]
-@attr [DisplayName(&#34;Use Prefix&#34;)]
-@attr [Description(&#34;Composite names use their parent name as prefix. In a case of simple names all object&#39;s name will have only group name as a prefix.&#34;)]
+@attr [DisplayName(&#34;Use Composition&#34;)]
+@attr [Description(&#34;If selected, then configuration objects will use group prefixes and parent-child name composition as composite names. If not, then all configuration objects will use their names as composite names&#34;)]
 @attr [Category(&#34;Composite Names Generation&#34;)] </p></td>
                 </tr>
               

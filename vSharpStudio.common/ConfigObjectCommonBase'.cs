@@ -403,83 +403,90 @@
         }
         protected string GetCompositeName()
         {
-            List<ITreeConfigNode> lst = new List<ITreeConfigNode>();
-            ITreeConfigNode? p = this.Parent;
-            while (p != null)
+            if (this.Cfg.Model.IsUseNameComposition)
             {
-                lst.Insert(0, p);
-                p = p.Parent;
-            }
-            var sb = new StringBuilder();
-            sb.Append("");
-            string prefix = "";
-            if (this is IGroupListRegisters gr1)
-            {
-                prefix = gr1.PrefixForDbTables;
+                List<ITreeConfigNode> lst = new List<ITreeConfigNode>();
+                ITreeConfigNode? p = this.Parent;
+                var sb = new StringBuilder();
+                if (this is IGroupListRegisters gr1)
+                {
+                    sb.Append(gr1.PrefixForCompositionNames);
+                }
+                else
+                {
+                    while (p != null)
+                    {
+                        lst.Insert(0, p);
+                        p = p.Parent;
+                    }
+                    foreach (var t in lst)
+                    {
+                        if (t is IDetail)
+                        {
+                            sb.Append(t.Name);
+                        }
+                        else if (t is IGroupListConstants)
+                        {
+                            sb.Append(t.Name);
+                        }
+                        else if (t is IGroupConstantGroups gcg)
+                        {
+                            sb.Append(gcg.PrefixForCompositionNames);
+                        }
+                        else if (t is ICatalog)
+                        {
+                            sb.Append(t.Name);
+                        }
+                        else if (t is IGroupListCatalogs glc)
+                        {
+                            sb.Append(glc.PrefixForCompositionNames);
+                        }
+                        else if (t is IDocument)
+                        {
+                            sb.Append(t.Name);
+                        }
+                        else if (t is IGroupDocuments gd)
+                        {
+                            sb.Append(gd.PrefixForCompositionNames);
+                        }
+                        else if (t is IGroupListRegisters gr)
+                        {
+                            sb.Append(gr.PrefixForCompositionNames);
+                        }
+                        else if (t is IManyToManyGroupCatalogsRelations gcr)
+                        {
+                            sb.Append(gcr.PrefixForCompositionNames);
+                        }
+                        else if (t is IManyToManyGroupDocumentsRelations gdr)
+                        {
+                            sb.Append(gdr.PrefixForCompositionNames);
+                        }
+                    }
+                }
+                sb.Append(this._Name);
+                return sb.ToString();
             }
             else
             {
-                foreach (var t in lst)
-                {
-                    if (t is IDetail)
-                    {
-                        sb.Append(t.Name);
-                    }
-                    else if (t is IGroupListConstants)
-                    {
-                        sb.Append(t.Name);
-                    }
-                    else if (t is IGroupConstantGroups gcg)
-                    {
-                        prefix = gcg.PrefixForDbTables;
-                    }
-                    else if (t is ICatalog)
-                    {
-                        sb.Append(t.Name);
-                    }
-                    else if (t is IGroupListCatalogs glc)
-                    {
-                        prefix = glc.PrefixForDbTables;
-                    }
-                    else if (t is IDocument)
-                    {
-                        sb.Append(t.Name);
-                    }
-                    else if (t is IGroupDocuments gd)
-                    {
-                        prefix = gd.PrefixForDbTables;
-                    }
-                    else if (t is IGroupListRegisters gr)
-                    {
-                        prefix = gr.PrefixForDbTables;
-                    }
-                }
+                return this._Name;
             }
-            string composit = sb.ToString();
-            sb = new StringBuilder();
-            if (this.Cfg.Model.IsUseGroupPrefix)
-                sb.Append(prefix);
-            if (this.Cfg.Model.IsUseCompositeNames)
-                sb.Append(composit);
-            sb.Append(this._Name);
-            return sb.ToString();
         }
 
 
-        //public bool CheckIsCompositeNameUnique()
-        //{
-        //    var cfg = this.GetConfig();
+            //public bool CheckIsCompositeNameUnique()
+            //{
+            //    var cfg = this.GetConfig();
 
-        //    //foreach (var t in cfg.gr.ListCatalogs)
-        //    //{
-        //    //    if ((val.Guid != t.Guid) && (val.Name == t.Name))
-        //    //    {
-        //    //        return false;
-        //    //    }
-        //    //}
-        //    return true;
-        //}
-        protected void SetSelected(ITreeConfigNode node)
+            //    //foreach (var t in cfg.gr.ListCatalogs)
+            //    //{
+            //    //    if ((val.Guid != t.Guid) && (val.Name == t.Name))
+            //    //    {
+            //    //        return false;
+            //    //    }
+            //    //}
+            //    return true;
+            //}
+            protected void SetSelected(ITreeConfigNode node)
         {
             if (this.Parent != null)
             {

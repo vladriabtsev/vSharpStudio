@@ -63,9 +63,7 @@ namespace vSharpStudio.vm.ViewModels
             // TODO validate, Id generator table, use in db names
             this._CompositeNameMaxLength = 100;
             // TODO validate
-            this._IsUseCompositeNames = true;
-            // TODO validate
-            this._IsUseGroupPrefix = true;
+            this._IsUseNameComposition = true;
 
             //this.DbSettings.DbSchema = "dbo";
             //this.DbSettings.IdGenerator = DbIdGeneratorMethod.HiLo;

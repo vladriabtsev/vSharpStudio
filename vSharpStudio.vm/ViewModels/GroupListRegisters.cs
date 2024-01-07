@@ -79,7 +79,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._PrefixForDbTables = "Reg";
+            this._PrefixForCompositionNames = "Reg";
             this.IsEditable = false;
             this._ShortIdTypeForCacheKey = "rg";
             this._PropertyRegGuidGuid = System.Guid.NewGuid().ToString();

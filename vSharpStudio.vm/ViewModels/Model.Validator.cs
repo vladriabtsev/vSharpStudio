@@ -13,15 +13,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         public ModelValidator()
         {
-            this.RuleFor(x => x.IsUseGroupPrefix).Custom((val, cntx) =>
-            {
-                if (val)
-                    return;
-                var recom = " Conside change object name or enable group prefixes.";
-                var m = (Model)cntx.InstanceToValidate;
-                CheckObjectsWithDbTables(cntx, recom, m, false);
-            });
-            this.RuleFor(x => x.IsUseCompositeNames).Custom((val, cntx) =>
+            this.RuleFor(x => x.IsUseNameComposition).Custom((val, cntx) =>
             {
                 if (val)
                     return;

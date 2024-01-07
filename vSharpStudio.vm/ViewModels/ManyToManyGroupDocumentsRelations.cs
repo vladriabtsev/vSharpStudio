@@ -68,7 +68,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._PrefixForDbTables = "DocManyToMany";
+            this._PrefixForCompositionNames = "DocManyToMany";
             this.IsEditable = false;
 
             this._ShortIdTypeForCacheKey = "m";
