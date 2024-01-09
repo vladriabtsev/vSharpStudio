@@ -4117,8 +4117,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         IReadOnlyList<IAppProject> IAppSolution.ListAppProjects { get { return (this as AppSolution).ListAppProjects; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
         
         
-        // 
-        // repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
         [Browsable(false)]
         public ObservableCollectionWithActions<PluginGeneratorSolutionSettings> ListGeneratorsSolutionSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 

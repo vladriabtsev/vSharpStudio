@@ -2643,7 +2643,7 @@
             },
             {
               "name": "list_generators_solution_settings",
-              "description": "@attr [Browsable(false)]\n\nrepeated proto_plugin_group_generators_settings list_group_generators_settings = 18;",
+              "description": "@attr [Browsable(false)]",
               "label": "repeated",
               "type": "proto_plugin_generator_solution_settings",
               "longType": "proto_plugin_generator_solution_settings",

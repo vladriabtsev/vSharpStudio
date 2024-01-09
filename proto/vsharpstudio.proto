@@ -296,15 +296,6 @@ message proto_group_list_app_solutions {
     // List NET solutions
     // @attr [Browsable(false)]
     repeated proto_app_solution list_app_solutions = 9;
-
-    // @attr [Browsable(false)]
-    //repeated proto_plugin_generator_solution_settings list_group_generators_default_settings = 17;
-    //repeated proto_plugin_group_generators_default_settings list_group_generators_default_settings = 17;
-
-    // @attr [PropertyOrderAttribute(3)]
-    // @attr [ExpandableObjectAttribute()]
-    // @attr [DisplayName("Default DB")]
-    //proto_app_db_settings default_db = 6;
 }
 // @interface ICanAddNode
 // @interface ISortingValue
@@ -348,33 +339,6 @@ message proto_app_solution {
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_solution_settings list_generators_solution_settings = 18;
-    //repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
-
-    // @attr [PropertyOrderAttribute(8)]
-    // @attr [ExpandableObjectAttribute()]
-    // @attr [DisplayName("Default DB")]
-    // @attr [Description("Database connection. If empty, all solutions settings are used")]
-    //proto_app_db_settings default_db = 8;
-
-    /*
-    // @attr [PropertyOrderAttribute(11)]
-    // @attr [DisplayName("Group 1")]
-    // @attr [Description("Group compatible plugins of one vendor")]
-    // @attr [ExpandableObjectAttribute()]
-    proto_plugins_group plugins_group1 = 11;
-
-    // @attr [PropertyOrderAttribute(12)]
-    // @attr [DisplayName("Group 2")]
-    // @attr [Description("Group compatible plugins of one vendor")]
-    // @attr [ExpandableObjectAttribute()]
-    proto_plugins_group plugins_group2 = 12;
-
-    // @attr [PropertyOrderAttribute(13)]
-    // @attr [DisplayName("Group 3")]
-    // @attr [Description("Group compatible plugins of one vendor")]
-    // @attr [ExpandableObjectAttribute()]
-    proto_plugins_group plugins_group3 = 13;
-    */
 }
 // @interface ICanAddNode
 // @interface ISortingValue

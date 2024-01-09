@@ -247,9 +247,7 @@ Application project generator
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
 | list_app_projects | [proto_app_project](#proto_config-proto_app_project) | repeated | @attr [Browsable(false)] |
-| list_generators_solution_settings | [proto_plugin_generator_solution_settings](#proto_config-proto_plugin_generator_solution_settings) | repeated | @attr [Browsable(false)]
-
-repeated proto_plugin_group_generators_settings list_group_generators_settings = 18; |
+| list_generators_solution_settings | [proto_plugin_generator_solution_settings](#proto_config-proto_plugin_generator_solution_settings) | repeated | @attr [Browsable(false)] |
 
 
 
