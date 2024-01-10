@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using FluentValidation;
+using Google.Protobuf;
+using Proto.Config;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -59,8 +61,22 @@ namespace vSharpStudio.vm.ViewModels
             Init();
             //this.InitRoles();
         }
+        [Browsable(false)]
+        public bool IsComputed { get; set; }
         protected override void OnInitFromDto()
         {
+            switch (this.DataType.DataTypeEnum)
+            {
+                case EnumDataType.ANY:
+                case EnumDataType.CATALOG:
+                case EnumDataType.CATALOGS:
+                case EnumDataType.DOCUMENT:
+                case EnumDataType.DOCUMENTS:
+                    this.IsComputed = true;
+                    break;
+                default:
+                    break;
+            }
             Init();
         }
         private void Init()
@@ -608,5 +624,73 @@ namespace vSharpStudio.vm.ViewModels
             return roles;
         }
         #endregion Roles
+
+        #region Plugin group model
+        public IConstant CreateConstantFromJson(string settings, string subName, IDataType dt)
+        {
+            var proto = CommonUtils.ParseJson<proto_constant>(settings, true);
+            var p = Constant.ConvertToVM(proto, new Constant(this));
+            p.DataType = (DataType)dt;
+            p.Name = this.Name + subName;
+            return p;
+        }
+        public string ConvertToJson()
+        {
+            var proto = Constant.ConvertToProto(this);
+            return JsonFormatter.Default.Format(proto);
+        }
+        /// <summary>
+        /// Parent property if extended property is created
+        /// </summary>
+        public IConstant? ParentConstant { get; set; }
+        public string NameWithExtention { get { if (this.ParentConstant == null) return this.Name; return this.ParentConstant.Name + this.Name; } }
+        public IConstant AddExtensionConstantRefId(string subName, string guid)
+        {
+            var node = new Constant(this) { Name = subName, ParentConstant = this };
+            node.Guid = guid;
+            node.DataType = (DataType)this.Cfg.Model.GetIdRefDataType(node, true);
+            node.DataType.IsPKey = false;
+            node.IsNullable = true;
+            node.IsComplexRefId = true;
+            return node;
+        }
+        public bool IsComplexRefId { get; private set; }
+        public bool IsComplexRefGuid { get; private set; }
+        public bool IsComplexDesc { get; private set; }
+        public IConstant AddExtensionConstantGd(string subName, string guid)
+        {
+            var node = new Constant(this) { Name = subName };
+            node.Guid = guid;
+            node.DataType = (DataType)this.Cfg.Model.GetDataTypeInt(node, false, true);
+            node.IsNullable = true;
+            node.ParentConstant = this;
+            node.IsComplexRefGuid = true;
+            return node;
+        }
+        public IConstant AddExtensionConstantDesc(string subName, string guid)
+        {
+            var node = new Constant(this) { Name = subName };
+            node.Guid = guid;
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = this.Cfg.Model.ComplexPropertyRefDescrLength };
+            node.IsNullable = true;
+            node.ParentConstant = this;
+            node.IsComplexDesc = true;
+            return node;
+        }
+        public IConstant AddExtensionConstantString(string subName, uint length, string guid)
+        {
+            var node = new Constant(this) { Name = this.Name + subName };
+            node.Guid = guid;
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
+            return node;
+        }
+        public IConstant AddExtensionConstantNumerical(string subName, uint length, uint accuracy, string guid)
+        {
+            var node = new Constant(this) { Name = this.Name + subName };
+            node.Guid = guid;
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
+            return node;
+        }
+        #endregion Plugin group model
     }
 }

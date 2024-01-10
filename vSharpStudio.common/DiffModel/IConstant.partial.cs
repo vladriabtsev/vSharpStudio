@@ -11,6 +11,13 @@ namespace vSharpStudio.common
     {
         IGroupListConstants ParentGroupListConstantsI { get; }
         //string DefaultValue { get; }
+        /// <summary>
+        /// Mark property as computed if it will be not stored in DB
+        /// </summary>
+        bool IsComputed { get; set; }
+        bool IsComplexRefId { get; }
+        bool IsComplexRefGuid { get; }
+        bool IsComplexDesc { get; }
         object? Tag { get; set; }
         //static IConfig Config { get; set; }
         EnumConstantAccess GetRoleConstantAccess(IRole role);
@@ -23,9 +30,14 @@ namespace vSharpStudio.common
         IPropertyRangeValuesRequirements? RangeValuesRequirementsI { get; }
         string ComplexObjectNameWithDot();
 
-        //#region Plugin group model
-        //static virtual IConstant CreatePropertyFromJson(ITreeConfigNode parent, string settings) { throw new NotImplementedException(); }
-        //string ConvertToJson();
-        //#endregion Plugin group model
+        #region Plugin group model
+        IConstant CreateConstantFromJson(string settings, string subName, IDataType dt);
+        string ConvertToJson();
+        IConstant? ParentConstant { get; set; }
+        string NameWithExtention { get; }
+        IConstant AddExtensionConstantRefId(string subName, string guid);
+        IConstant AddExtensionConstantGd(string subName, string guid);
+        IConstant AddExtensionConstantDesc(string subName, string guid);
+        #endregion Plugin group model
     }
 }
