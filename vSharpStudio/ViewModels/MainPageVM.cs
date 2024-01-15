@@ -65,6 +65,21 @@ namespace vSharpStudio.ViewModels
         private readonly ILogger? _logger;
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyGrid? propertyGrid;
         public ValidationListForSelectedNode? validationListForSelectedNode;
+        private void DialogShow(Xceed.Wpf.Toolkit.ChildWindow dialogChildWindow, object? dataContext = null, string? caption = null)
+        {
+            Debug.Assert(MainPageVM._mainPage != null);
+            var maxMargin = 10;
+            var ctnr = MainPageVM._mainPage._windowContainer;
+            dialogChildWindow.Top = maxMargin;
+            dialogChildWindow.Height = ctnr.ActualHeight - 2 * maxMargin;
+            dialogChildWindow.Width = Math.Min(ctnr.ActualWidth - 2 * maxMargin, 400);
+            dialogChildWindow.Left = (ctnr.ActualWidth - MainPageVM._mainPage._modalBaseSettingsEditWindow.Width) / 2;
+            if (caption != null)
+                dialogChildWindow.Caption = caption;
+            if (dataContext != null)
+                dialogChildWindow.DataContext = dataContext;
+            dialogChildWindow.WindowState = WindowState.Open;
+        }
         public MainPageVM() : base(MainPageVMValidator.Validator)
         {
             VmBindable.IsChangedNotificationDelay = 200;
@@ -88,16 +103,9 @@ namespace vSharpStudio.ViewModels
             EditorPropertyGridDialog.PropertyGridDialogAction = (val) =>
             {
                 Debug.Assert(MainPageVM._mainPage != null);
-                var maxMargin = 10;
-                var ctnr = MainPageVM._mainPage._windowContainer;
-                MainPageVM._mainPage._modalBaseSettingsEditWindow.Top = maxMargin;
-                MainPageVM._mainPage._modalBaseSettingsEditWindow.Height = ctnr.ActualHeight - 2 * maxMargin;
-                MainPageVM._mainPage._modalBaseSettingsEditWindow.Width = Math.Min(ctnr.ActualWidth - 2 * maxMargin, 400);
-                MainPageVM._mainPage._modalBaseSettingsEditWindow.Left = (ctnr.ActualWidth - MainPageVM._mainPage._modalBaseSettingsEditWindow.Width) / 2;
                 //MainPageVM._mainPage._modalNodeSettingsWindow.Caption = $"Node settings for '{node.Name}' by generator '{this.Config.DicNodes[guid].Name}'";
                 //MainPageVM._mainPage._modalBaseSettingsEditWindow.Caption = $"Settings";
-                MainPageVM._mainPage._modalBaseSettingsEditWindow.DataContext = val;
-                MainPageVM._mainPage._modalBaseSettingsEditWindow.WindowState = WindowState.Open;
+                this.DialogShow(_mainPage._modalBaseSettingsEditWindow, val);
             };
 
             //_Config = new Config();
@@ -605,6 +613,7 @@ namespace vSharpStudio.ViewModels
                     this.BtnSelectionUp.Command.NotifyCanExecuteChanged();
                     this.BtnConfigValidateAsync.Command.NotifyCanExecuteChanged();
                     this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
+                    this.BtnConfigCurrentUpdateSqlAsync.Command.NotifyCanExecuteChanged();
                     this.BtnConfigCreateStableVersionAsync.Command.NotifyCanExecuteChanged();
                 };
             }
@@ -1201,6 +1210,49 @@ namespace vSharpStudio.ViewModels
                 });
             }
         }
+        private async Task ValidateConfigAsync(TestTransformation? o)
+        {
+            await this.BtnConfigValidateAsync.ExecuteAsync(o);
+            if (this._Config.CountErrors > 0)
+            {
+#if DEBUG
+                if (!VmBindable.isUnitTests)
+                {
+#endif
+                    var res = Xceed.Wpf.Toolkit.MessageBox.Show($"There are {this._Config.CountErrors} errors in configuration. First error is\n\n{this._Config.FindValidationMessage()?.Message}\n\nFix errors and try again.",
+                        "Error", System.Windows.MessageBoxButton.OK);
+                    this.cancellationTokenSource = null;
+                    this.ProgressVM.ProgressClose();
+                    return;
+#if DEBUG
+                }
+                else
+                {
+                    var sb = new StringBuilder();
+                    sb.AppendLine();
+                    foreach (var t in this._Config.ValidationCollection)
+                    {
+                        if (t.Severity == FluentValidation.Severity.Error)
+                            sb.AppendLine(t.Message);
+                    }
+                    throw new Exception($"There are {this._Config.CountErrors} config errors.{sb}");
+                }
+#endif
+            }
+#if DEBUG
+            if (!VmBindable.isUnitTests)
+            {
+#endif
+                if (this._Config.CountWarnings > 0)
+                {
+                    var res = Xceed.Wpf.Toolkit.MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                    if (res != System.Windows.MessageBoxResult.OK)
+                        return;
+                }
+#if DEBUG
+            }
+#endif
+        }
         public vButtonVmAsync<TestTransformation?> BtnConfigCurrentUpdateAsync
         {
             get
@@ -1211,60 +1263,18 @@ namespace vSharpStudio.ViewModels
                             Debug.Assert(this.ProgressVM != null);
                             try
                             {
-                                await this.BtnConfigValidateAsync.ExecuteAsync(o);
-                                if (this._Config.CountErrors > 0)
-                                {
-#if DEBUG
-                                    if (!VmBindable.isUnitTests)
-                                    {
-#endif
-                                        var res = Xceed.Wpf.Toolkit.MessageBox.Show($"There are {this._Config.CountErrors} errors in configuration. First error is\n\n{this._Config.FindValidationMessage()?.Message}\n\nFix errors and try again.",
-                                            "Error", System.Windows.MessageBoxButton.OK);
-                                        this.cancellationTokenSource = null;
-                                        this.ProgressVM.ProgressClose();
-                                        return;
-#if DEBUG
-                                    }
-                                    else
-                                    {
-                                        var sb = new StringBuilder();
-                                        sb.AppendLine();
-                                        foreach (var t in this._Config.ValidationCollection)
-                                        {
-                                            if (t.Severity == FluentValidation.Severity.Error)
-                                                sb.AppendLine(t.Message);
-                                        }
-                                        throw new Exception($"There are {this._Config.CountErrors} config errors.{sb}");
-                                    }
-#endif
-                                }
-                                #region
-#if DEBUG
-                                if (!VmBindable.isUnitTests)
-                                {
-#endif
-                                    if (this._Config.CountWarnings > 0)
-                                    {
-                                        var res = Xceed.Wpf.Toolkit.MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
-                                        if (res != System.Windows.MessageBoxResult.OK)
-                                            return;
-                                    }
-#if DEBUG
-                                }
-#endif
-                                #endregion
-
+                                await ValidateConfigAsync(o);
 
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
 
                                 this.ProgressVM.ProgressStart("Updating Code/DB to Current Version of Configuration", 0, emptyStr, 0, cancellationToken);
                                 if (VmBindable.isUnitTests)
-                                    await this.UpdateCurrentVersionAsync(cancellationToken, o);
+                                    await this.UpdateCurrentVersionAsync(false, cancellationToken, o);
                                 else
                                     await Task.Run(() =>
                                     {
-                                        return this.UpdateCurrentVersionAsync(cancellationToken, o);
+                                        return this.UpdateCurrentVersionAsync(false, cancellationToken, o);
                                     });
                                 this.ResetIsChangedBeforeSave();
                             }
@@ -1316,10 +1326,94 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vButtonVmAsync<TestTransformation?>? _BtnConfigCurrentUpdate;
+        /// <summary>
+        /// Result of SQL text generation by connection string names.
+        /// </summary>
+        public Dictionary<string, string>? BtnConfigCurrentUpdateSqlResultByConnStr;
+        public vButtonVmAsync<TestTransformation?> BtnConfigCurrentUpdateSqlAsync
+        {
+            get
+            {
+                this._BtnConfigCurrentUpdateSql ??= new vButtonVmAsync<TestTransformation?>(
+                        async (o) =>
+                        {
+                            Debug.Assert(this.ProgressVM != null);
+                            try
+                            {
+                                await ValidateConfigAsync(o);
+
+                                this.cancellationTokenSource = new CancellationTokenSource();
+                                CancellationToken cancellationToken = this.cancellationTokenSource.Token;
+
+                                this.ProgressVM.ProgressStart("Updating Code/DB to Current Version of Configuration", 0, emptyStr, 0, cancellationToken);
+                                this.BtnConfigCurrentUpdateSqlResultByConnStr = new Dictionary<string, string>();
+                                if (VmBindable.isUnitTests)
+                                {
+                                    await this.UpdateCurrentVersionAsync(true, cancellationToken, o);
+                                }
+                                else
+                                {
+                                    await Task.Run(() =>
+                                    {
+                                        return this.UpdateCurrentVersionAsync(true, cancellationToken, o);
+                                    });
+                                    Debug.Assert(MainPageVM._mainPage != null);
+                                    var dvm = new SqlText.ViewModel(this.BtnConfigCurrentUpdateSqlResultByConnStr);
+                                    this.DialogShow(MainPageVM._mainPage._modalSqlUpdateResults, dvm, "Sql text for current version update");
+                                }
+                            }
+                            catch (CancellationException)
+                            {
+                            }
+                            catch (Exception ex)
+                            {
+                                this.ProgressVM.Exception = ex;
+#if DEBUG
+                                if (VmBindable.isUnitTests)
+                                    throw;
+                                else
+#endif
+                                    Xceed.Wpf.Toolkit.MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
+                            }
+                            finally
+                            {
+                                //if (!isException)
+                                //{
+                                //    //await this.CommandConfigSave.ExecuteAsync(null);
+                                //    this.BtnConfigSave.Command.Execute(null);
+                                //}
+                                this.cancellationTokenSource = null;
+                                this.ProgressVM.ProgressClose();
+                            }
+                        }, (o) =>
+                        {
+                            if (this.cancellationTokenSource != null)
+                            {
+                                return false;
+                            }
+                            if (this.Config == null)
+                            {
+                                return false;
+                            }
+                            //if (!this.Config.IsNeedCurrentUpdate)
+                            //{
+                            //    return false;
+                            //}
+                            if (string.IsNullOrWhiteSpace(this.CurrentCfgFilePath))
+                            {
+                                return false;
+                            }
+                            return true;
+                        }
+                    );
+                return this._BtnConfigCurrentUpdateSql;
+            }
+        }
+        private vButtonVmAsync<TestTransformation?>? _BtnConfigCurrentUpdateSql;
 #if PARRALEL
-        public async Task GenerateCodeAsync(CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
+        public async Task GenerateCodeAsync(bool isOnlySqlTextUpdate, CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
 #else
-        public void GenerateCode(CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
+        public void GenerateCode(bool isOnlySqlTextUpdate, CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
 #endif
         {
             var nGens = 0;
@@ -1371,7 +1465,7 @@ namespace vSharpStudio.ViewModels
                             if (tg.Guid != tpg.PluginGeneratorGuid)
                                 continue;
 #if PARRALEL
-                                await Task.Run(() =>
+                            await Task.Run(() =>
 #endif
                             {
                                 if (tg.Generator != null)
@@ -1384,72 +1478,82 @@ namespace vSharpStudio.ViewModels
                                         case vPluginLayerTypeEnum.DbDesign:
                                             if (tg.Generator is not IvPluginDbGenerator)
                                                 throw new Exception("Generator type vPluginLayerTypeEnum.DbDesign has to have interface: " + typeof(IvPluginDbGenerator).Name);
-                                            Debug.Assert(this.Config.CurrentCfgFolderPath != null);
-                                            string outFileConn = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
-                                            bool first = false;
-                                            StringBuilder? sb = null;
-                                            if (!dicAppSettings.ContainsKey(outFileConn))
+                                            if (isOnlySqlTextUpdate)
                                             {
-                                                first = true;
-                                                sb = new StringBuilder();
-                                                dicAppSettings[outFileConn] = sb;
-                                                sb.AppendLine("{");
-                                                sb.AppendLine("\t\"db_conns\": {");
+                                                Debug.Assert(this.BtnConfigCurrentUpdateSqlResultByConnStr != null);
+                                                var sql = tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, ts, tp, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true);
+                                                if (sql != null)
+                                                    this.BtnConfigCurrentUpdateSqlResultByConnStr[tpg.Name] = sql;
                                             }
                                             else
-                                                sb = dicAppSettings[outFileConn];
-                                            if (!first)
-                                                sb.AppendLine(",");
-                                            sb.Append("\t\t\"");
-                                            sb.Append(tpg.Name);
-                                            sb.AppendLine("\": {");
-                                            sb.Append("\t\t\t\"provider\": \"");
-                                            Debug.Assert(tpg.PluginDbGenerator != null);
-                                            sb.Append(tpg.PluginDbGenerator.ProviderName);
-                                            sb.AppendLine("\",");
-                                            sb.Append("\t\t\t\"connection_string\": \"");
-                                            Debug.Assert(tpg.DynamicMainConnStrSettings != null);
-                                            var cnstr = tpg.DynamicMainConnStrSettings.GenerateCode(this.Config, ts, tp, tpg);
-                                            sb.Append(cnstr);
-                                            sb.AppendLine("\"");
-                                            sb.Append("\t\t}");
-                                            code = sb.ToString();
-                                            if (isDeleteDb)
                                             {
-                                                tpg.PluginDbGenerator.EnsureDbDeleted(tpg.ConnStr);
-                                            }
-                                            tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, ts, tp, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, false);
-                                            if (isCurrentUpdate)
-                                            {
-                                                if (tpg.IsGenerateSqlSqriptToUpdatePrevStable)
+                                                Debug.Assert(this.Config.CurrentCfgFolderPath != null);
+                                                string outFileConn = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
+                                                bool first = false;
+                                                StringBuilder? sb = null;
+                                                if (!dicAppSettings.ContainsKey(outFileConn))
                                                 {
-                                                    //TODO generate Stable DB update SQL script
-                                                    var sql = tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, ts, tp, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true);
-                                                    string outSqlFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenScriptFileName);
-                                                    // tg.GetRelativeToConfigDiskPath()
-                                                    //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
-                                                    byte[] sqlBytes = Encoding.UTF8.GetBytes(code);
-                                                    File.WriteAllBytes(outSqlFile, sqlBytes);
+                                                    first = true;
+                                                    sb = new StringBuilder();
+                                                    dicAppSettings[outFileConn] = sb;
+                                                    sb.AppendLine("{");
+                                                    sb.AppendLine("\t\"db_conns\": {");
                                                 }
-                                            }
-                                            else
-                                            {
-                                                //TODO create copy of DEV DB into Stable DB. Same name with version suffix
-                                                //genConn.DbGenerator
+                                                else
+                                                    sb = dicAppSettings[outFileConn];
+                                                if (!first)
+                                                    sb.AppendLine(",");
+                                                sb.Append("\t\t\"");
+                                                sb.Append(tpg.Name);
+                                                sb.AppendLine("\": {");
+                                                sb.Append("\t\t\t\"provider\": \"");
+                                                Debug.Assert(tpg.PluginDbGenerator != null);
+                                                sb.Append(tpg.PluginDbGenerator.ProviderName);
+                                                sb.AppendLine("\",");
+                                                sb.Append("\t\t\t\"connection_string\": \"");
+                                                Debug.Assert(tpg.DynamicMainConnStrSettings != null);
+                                                var cnstr = tpg.DynamicMainConnStrSettings.GenerateCode(this.Config, ts, tp, tpg);
+                                                sb.Append(cnstr);
+                                                sb.AppendLine("\"");
+                                                sb.Append("\t\t}");
+                                                code = sb.ToString();
+                                                if (isDeleteDb)
+                                                {
+                                                    tpg.PluginDbGenerator.EnsureDbDeleted(tpg.ConnStr);
+                                                }
+                                                tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, ts, tp, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, false);
+                                                if (isCurrentUpdate)
+                                                {
+                                                    if (tpg.IsGenerateSqlSqriptToUpdatePrevStable)
+                                                    {
+                                                        //TODO generate Stable DB update SQL script
+                                                        var sql = tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, ts, tp, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true);
+                                                        string outSqlFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenScriptFileName);
+                                                        // tg.GetRelativeToConfigDiskPath()
+                                                        //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
+                                                        byte[] sqlBytes = Encoding.UTF8.GetBytes(code);
+                                                        File.WriteAllBytes(outSqlFile, sqlBytes);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    //TODO create copy of DEV DB into Stable DB. Same name with version suffix
+                                                    //genConn.DbGenerator
+                                                }
                                             }
                                             break;
                                         default:
                                             if (!isCurrentUpdate)
 #if PARRALEL
-                                                    return;
+                                                return;
 #else
                                                 continue;
 #endif
                                             if (tg.Generator is not IvPluginGenerator)
                                                 throw new Exception("Default generator has to have interface: " + typeof(IvPluginGenerator).Name);
                                             Debug.Assert(tpg.DynamicGeneratorSettings != null);
-                                            code = tpg.DynamicGeneratorSettings.GenerateCode(this.Config, ts, tp, tpg);
-                                            //code = (tg.Generator as IvPluginGenerator) .GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
+                                            if (!isOnlySqlTextUpdate)
+                                                code = tpg.DynamicGeneratorSettings.GenerateCode(this.Config, ts, tp, tpg);
                                             break;
                                     }
                                     if (!string.IsNullOrWhiteSpace(code))
@@ -1484,7 +1588,10 @@ namespace vSharpStudio.ViewModels
             }
         }
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
-        private async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken, object? parm = null, bool askWarning = true)
+        /// <summary>
+        /// if 'sqlUpdate' is not null then only SQL updates are accumulated there. No any real updates.
+        /// </summary>
+        private async Task UpdateCurrentVersionAsync(bool isOnlySqlTextUpdate, CancellationToken cancellationToken, object? parm = null, bool askWarning = true)
         {
             TestTransformation? tst = parm as TestTransformation;
             try
@@ -1529,108 +1636,115 @@ namespace vSharpStudio.ViewModels
 
                 using (Transaction.Create(am))
                 {
-                    // II. Rename analysis
-                    #region
-                    this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Finding objects for renaming", iProgressStep * 100 / iProgressSteps);
-                    iProgressStep++;
-                    bool isNeedRenames = false;
-                    foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                    if (!isOnlySqlTextUpdate)
                     {
-                        foreach (var tp in ts.ListAppProjects)
+                        // II. Rename analysis
+                        #region
+                        this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Finding objects for renaming", iProgressStep * 100 / iProgressSteps);
+                        iProgressStep++;
+                        bool isNeedRenames = false;
+                        foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                         {
-                            foreach (var tg in tp.ListAppProjectGenerators)
+                            foreach (var tp in ts.ListAppProjects)
                             {
-                                if (cancellationToken.IsCancellationRequested)
-                                    throw new CancellationException();
-                                Debug.Assert(this._Config.DicGenerators != null);
-                                var gg = this._Config.DicGenerators[tg.PluginGeneratorGuid];
-                                if (gg is not IvPluginCodeGenerator)
-                                    continue;
-                                var generator = (IvPluginCodeGenerator)gg;
-                                List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
-                                if (lstRenames.Count == 0)
-                                    continue;
-                                isNeedRenames = true;
-                                break;
+                                foreach (var tg in tp.ListAppProjectGenerators)
+                                {
+                                    if (cancellationToken.IsCancellationRequested)
+                                        throw new CancellationException();
+                                    Debug.Assert(this._Config.DicGenerators != null);
+                                    var gg = this._Config.DicGenerators[tg.PluginGeneratorGuid];
+                                    if (gg is not IvPluginCodeGenerator)
+                                        continue;
+                                    var generator = (IvPluginCodeGenerator)gg;
+                                    List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
+                                    if (lstRenames.Count == 0)
+                                        continue;
+                                    isNeedRenames = true;
+                                    break;
+                                }
+                                if (isNeedRenames)
+                                    break;
                             }
                             if (isNeedRenames)
                                 break;
                         }
+                        #endregion
+
+                        // III. Build all solutions. Exception if not compilible (no need for UNDO)
+                        #region
                         if (isNeedRenames)
-                            break;
-                    }
-                    #endregion
-
-                    // III. Build all solutions. Exception if not compilible (no need for UNDO)
-                    #region
-                    if (isNeedRenames)
-                    {
-                        this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Compiling current code", iProgressStep * 100 / iProgressSteps);
-                        iProgressStep++;
-
-                        int ii = 0;
-                        foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                         {
-                            if (cancellationToken.IsCancellationRequested)
-                                throw new CancellationException();
-                            this.ProgressVM?.ProgressUpdateSubTask($"Compiling solution '{ts.Name}'", 100 * ii / this.Config.GroupAppSolutions.ListAppSolutions.Count);
-                            ii++;
+                            this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Compiling current code", iProgressStep * 100 / iProgressSteps);
+                            iProgressStep++;
 
-                            await CompileUtils.CompileAsync(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
-                            //CompileUtils.Compile(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
-
-                            //TODO result of compilation
-                        }
-                    }
-                    else
-                    {
-                        iProgressStep++;
-                    }
-                    // unit test
-                    if (tst != null && tst.IsThrowExceptionOnBuildValidated)
-                        throw new Exception(nameof(tst.IsThrowExceptionOnBuildValidated));
-                    #endregion
-
-                    // IV. Rename objects and properties by solution (code can be not compilible after that) (need UNDO from zip code backup)
-                    #region
-                    this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Renaming objects in code", iProgressStep * 100 / iProgressSteps);
-                    iProgressStep++;
-                    var nProjects = 0;
-                    foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
-                    {
-                        foreach (var tp in ts.ListAppProjects)
-                        {
-                            nProjects++;
-                        }
-                    }
-                    int i = 0;
-                    foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
-                    {
-                        foreach (var tp in ts.ListAppProjects)
-                        {
-                            this.ProgressVM?.ProgressUpdateSubTask($"Project '{ts.Name}'-'{tp.Name}'", 100 * i / nProjects);
-                            i++;
-                            foreach (var tg in tp.ListAppProjectGenerators)
+                            int ii = 0;
+                            foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                             {
                                 if (cancellationToken.IsCancellationRequested)
                                     throw new CancellationException();
-                                Debug.Assert(this._Config.DicGenerators != null);
-                                var gg = this._Config.DicGenerators[tg.PluginGeneratorGuid];
-                                if (gg is not IvPluginCodeGenerator)
-                                    continue;
-                                var generator = (IvPluginCodeGenerator)gg;
-                                List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
-                                if (lstRenames.Count == 0)
-                                    continue;
-                                await CompileUtils.RenameAsync(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath),
-                                    ts.GetCombinedPath(tp.RelativeAppProjectPath), lstRenames, cancellationToken);
+                                this.ProgressVM?.ProgressUpdateSubTask($"Compiling solution '{ts.Name}'", 100 * ii / this.Config.GroupAppSolutions.ListAppSolutions.Count);
+                                ii++;
+
+                                await CompileUtils.CompileAsync(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
+                                //CompileUtils.Compile(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
+
+                                //TODO result of compilation
                             }
                         }
+                        else
+                        {
+                            iProgressStep++;
+                        }
+                        // unit test
+                        if (tst != null && tst.IsThrowExceptionOnBuildValidated)
+                            throw new Exception(nameof(tst.IsThrowExceptionOnBuildValidated));
+                        #endregion
+
+                        // IV. Rename objects and properties by solution (code can be not compilible after that) (need UNDO from zip code backup)
+                        #region
+                        this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Renaming objects in code", iProgressStep * 100 / iProgressSteps);
+                        iProgressStep++;
+                        var nProjects = 0;
+                        foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                        {
+                            foreach (var tp in ts.ListAppProjects)
+                            {
+                                nProjects++;
+                            }
+                        }
+                        int i = 0;
+                        foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                        {
+                            foreach (var tp in ts.ListAppProjects)
+                            {
+                                this.ProgressVM?.ProgressUpdateSubTask($"Project '{ts.Name}'-'{tp.Name}'", 100 * i / nProjects);
+                                i++;
+                                foreach (var tg in tp.ListAppProjectGenerators)
+                                {
+                                    if (cancellationToken.IsCancellationRequested)
+                                        throw new CancellationException();
+                                    Debug.Assert(this._Config.DicGenerators != null);
+                                    var gg = this._Config.DicGenerators[tg.PluginGeneratorGuid];
+                                    if (gg is not IvPluginCodeGenerator)
+                                        continue;
+                                    var generator = (IvPluginCodeGenerator)gg;
+                                    List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
+                                    if (lstRenames.Count == 0)
+                                        continue;
+                                    await CompileUtils.RenameAsync(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath),
+                                        ts.GetCombinedPath(tp.RelativeAppProjectPath), lstRenames, cancellationToken);
+                                }
+                            }
+                        }
+                        // unit test
+                        if (tst != null && tst.IsThrowExceptionOnRenamed)
+                            throw new Exception(nameof(tst.IsThrowExceptionOnRenamed));
+                        #endregion
                     }
-                    // unit test
-                    if (tst != null && tst.IsThrowExceptionOnRenamed)
-                        throw new Exception(nameof(tst.IsThrowExceptionOnRenamed));
-                    #endregion
+                    else
+                    {
+                        iProgressStep += 3;
+                    }
 
                     // V. Generate code (no need for UNDO)
                     #region
@@ -1639,7 +1753,7 @@ namespace vSharpStudio.ViewModels
 #if PARRALEL
                     await this.GenerateCodeAsync(cancellationToken, this.Config, true);
 #else
-                    this.GenerateCode(cancellationToken, this.Config, true);
+                    this.GenerateCode(isOnlySqlTextUpdate, cancellationToken, this.Config, true);
 #endif
                     var vis = new ModelVisitorRemoveMarkedIfNewObjects(this.Config);
                     vis.DeleteNewMarkedForDeletion();
@@ -1650,12 +1764,14 @@ namespace vSharpStudio.ViewModels
                         throw new Exception();
                     #endregion
 
-                    // VI. Update history CurrentConfig (need UNDO)
-                    #region
+                    if (!isOnlySqlTextUpdate)
+                    {
+                        // VI. Update history CurrentConfig (need UNDO)
+                        #region
 #if Async
 #else
 #endif
-                    var update_history = new CallMethodAction(
+                        var update_history = new CallMethodAction(
                       () =>
                       {
                           //this.Save();
@@ -1672,14 +1788,18 @@ namespace vSharpStudio.ViewModels
 #if Async
 #else
 #endif
-                    am.Execute(update_history);
-                    #endregion
+                        am.Execute(update_history);
+                        #endregion
 
-                    // VII. Generate Update SQL for previous stable DB
-                    //TODO Generate Update SQL for previous stable DB
+                        // VII. Generate Update SQL for previous stable DB
+                        //TODO Generate Update SQL for previous stable DB
 
-                    this.Save();
-                    this.Config.SetIsNeedCurrentUpdate(false);
+                        this.Save();
+                        this.Config.SetIsNeedCurrentUpdate(false);
+                    }
+                    else
+                    {
+                    }
                 }
             }
             //catch (Exception ex)

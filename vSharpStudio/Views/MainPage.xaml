@@ -126,6 +126,8 @@
                                     <ContentControl Template="{StaticResource iconRun}"/>
                                 </MenuItem.Icon>
                             </MenuItem>
+                            <MenuItem Header="SQL text to update development version" Command="{Binding BtnConfigCurrentUpdateSqlAsync.Command}" InputGestureText="Ctrl+J"/>
+                            <MenuItem Header="SQL text to update stable version" Command="{Binding BtnConfigCreateStableVersionAsync.Command}" InputGestureText="Ctrl+G"/>
                         </MenuItem>
                     </Menu>
                 </Grid>
@@ -303,6 +305,9 @@
                                 PropertyDefinitions="{Binding Value.PropertyDefinitions}" 
                                 ShowDescriptionByTooltip="True" ShowSearchBox="True" NameColumnWidth="120" />
                         </Grid>
+                    </xctk:ChildWindow>
+                    <xctk:ChildWindow x:Name="_modalSqlUpdateResults">
+                        <local:SqlText />
                     </xctk:ChildWindow>
                 </xctk:WindowContainer>
             </Grid>
