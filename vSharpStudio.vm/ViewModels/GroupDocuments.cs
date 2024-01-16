@@ -46,9 +46,9 @@ namespace vSharpStudio.vm.ViewModels
             this._PrefixForCompositionNames = "Doc";
             this._MondayBeforeFirstDocDate = Timestamp.FromDateTime(new DateTime(1000, 1, 6, 0, 0, 0, DateTimeKind.Utc));
             this._TimeLinePropertyGuid = System.Guid.NewGuid().ToString();
-            this._TimelineName = "DocTimeline";
+            this._TimeLinePropertyName = "TimelineDocDateTime";
             this._DocShortTypeIdPropertyGuid = System.Guid.NewGuid().ToString();
-            this._DocShortTypeIdPropertyName = "DocTimelineShortTypeId";
+            this._DocShortTypeIdPropertyName = "TimelineDocShortTypeId";
             this.IsEditable = false;
             Init();
         }
