@@ -1142,6 +1142,20 @@ namespace vSharpStudio.vm.ViewModels
         }
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, GroupDocuments gd)
         {
+            if (name == gd.TimeLinePropertyName)
+            {
+                var vf = new ValidationFailure(nameof(p.Name),
+                    $"Group documents is configured to use {gd.TimeLinePropertyName} as timeline property name. Property name {gd.TimeLinePropertyName} is reserved for timeline property.");
+                vf.Severity = Severity.Error;
+                cntx.AddFailure(vf);
+            }
+            if (name == gd.DocShortTypeIdPropertyName)
+            {
+                var vf = new ValidationFailure(nameof(p.Name),
+                    $"Group documents is configured to use {gd.DocShortTypeIdPropertyName} as document short type property name. Property name {gd.DocShortTypeIdPropertyName} is reserved for document short type property.");
+                vf.Severity = Severity.Error;
+                cntx.AddFailure(vf);
+            }
             var model = gd.ParentModel;
             if (gd.GetUseDocCodeProperty())
             {

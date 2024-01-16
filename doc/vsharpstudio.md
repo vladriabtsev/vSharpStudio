@@ -1073,6 +1073,10 @@ C O N S T A N T
 | group_list_documents | [proto_group_list_documents](#proto_config-proto_group_list_documents) |  | @attr [Browsable(false)] |
 | timeline_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Timeline&#34;)] @attr [Description(&#34;Name of Timeline for documents&#34;)] |
 | time_line_time_accuracy | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Timeline accuracy&#34;)] @attr [Description(&#34;Document time line accuracy. Only one document can posted at any point of time line.&#34;)] |
+| time_line_property_guid | [string](#string) |  | @attr [Browsable(false)] |
+| time_line_property_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Timeline property&#34;)] @attr [Description(&#34;Timeline property name in document timeline&#34;)] |
+| doc_short_type_id_property_guid | [string](#string) |  | @attr [Browsable(false)] |
+| doc_short_type_id_property_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Doc short type&#34;)] @attr [Description(&#34;Doc short type property name in document timeline&#34;)] |
 | group_registers | [proto_group_list_registers](#proto_config-proto_group_list_registers) |  | @attr [Browsable(false)] @attr [Description(&#34;Registers for documents&#34;)] |
 | group_journals | [proto_group_list_journals](#proto_config-proto_group_list_journals) |  | @attr [Browsable(false)] |
 | use_doc_code_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document by default&#34;)] |
@@ -2978,7 +2982,6 @@ with history |
 | TEN_MS_TIME_ACC | 75 | @attr [Description(&#34;Ten Milliseconds&#34;)] |
 | MS_TIME_ACC | 80 | @attr [Description(&#34;Millisecond&#34;)] |
 | MKS_TIME_ACC | 90 | @attr [Description(&#34;Microsecond&#34;)] |
-| NS_TIME_ACC | 100 | @attr [Description(&#34;Nanosecond&#34;)] |
 
 
 
