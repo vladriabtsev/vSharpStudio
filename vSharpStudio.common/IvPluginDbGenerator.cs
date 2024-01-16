@@ -64,6 +64,19 @@ namespace vSharpStudio.common
         /// <param name="target_model"></param>
         /// <param name="onNeedDbCreate"></param>
         string? UpdateToModel(string connectionString, IConfig config, IAppSolution sln, IAppProject prj, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool>? onNeedDbCreate = null);
+        /// <summary>
+        /// True if DB data structure is changed after last UpdateToModel call.
+        /// Data structure changes can include: 
+        ///   - DB schema changed;
+        ///   - table deleted;
+        ///   - table created;
+        ///   - table renamed;
+        ///   - field data type changed;
+        ///   - field deleted;
+        ///   - field created;
+        ///   - field renamed;
+        /// </summary>
+        bool IsDbDataStructureChanged { get; }
         // void UpdateToModel2(string connectionString, MigrationOperation[] operations, IConfig config, Func<bool> onNeedDbCreate, Action<Exception> onError);
         // void Backup(string filePath);
         // void Restore(string filePath);

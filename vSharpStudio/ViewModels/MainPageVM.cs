@@ -1269,6 +1269,7 @@ namespace vSharpStudio.ViewModels
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
 
                                 this.ProgressVM.ProgressStart("Updating Code/DB to Current Version of Configuration", 0, emptyStr, 0, cancellationToken);
+                                this.IsDbDataStructureChanged = false;
                                 if (VmBindable.isUnitTests)
                                     await this.UpdateCurrentVersionAsync(false, cancellationToken, o);
                                 else
@@ -1330,6 +1331,7 @@ namespace vSharpStudio.ViewModels
         /// Result of SQL text generation by connection string names.
         /// </summary>
         public Dictionary<string, string>? BtnConfigCurrentUpdateSqlResultByConnStr;
+        public bool IsDbDataStructureChanged { get; private set; }
         public vButtonVmAsync<TestTransformation?> BtnConfigCurrentUpdateSqlAsync
         {
             get
@@ -1347,6 +1349,7 @@ namespace vSharpStudio.ViewModels
 
                                 this.ProgressVM.ProgressStart("Updating Code/DB to Current Version of Configuration", 0, emptyStr, 0, cancellationToken);
                                 this.BtnConfigCurrentUpdateSqlResultByConnStr = new Dictionary<string, string>();
+                                this.IsDbDataStructureChanged = false;
                                 if (VmBindable.isUnitTests)
                                 {
                                     await this.UpdateCurrentVersionAsync(true, cancellationToken, o);
@@ -1541,6 +1544,8 @@ namespace vSharpStudio.ViewModels
                                                     //genConn.DbGenerator
                                                 }
                                             }
+                                            if (tpg.PluginDbGenerator.IsDbDataStructureChanged)
+                                                this.IsDbDataStructureChanged = true;
                                             break;
                                         default:
                                             if (!isCurrentUpdate)

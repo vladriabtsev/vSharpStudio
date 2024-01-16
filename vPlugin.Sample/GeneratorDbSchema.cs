@@ -24,6 +24,7 @@ namespace vPlugin.Sample
             this.Parent = parent;
         }
         public ILoggerFactory LoggerFactory { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsDbDataStructureChanged { get; private set; }
         public bool IsStableDbConnection { get; set; }
         public string ProviderName { get; set; } = String.Empty;
         public string Guid => "08744482-BE03-464B-81AB-DD482AB66103";
