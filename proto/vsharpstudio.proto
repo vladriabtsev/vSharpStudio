@@ -1741,6 +1741,12 @@ message proto_group_list_constants {
     bool is_marked_for_deletion = 11;
     // @attr [Browsable(false)]
     uint32 short_id = 19;
+
+    // @attr [Browsable(false)]
+    string property_id_guid = 61;
+    // @attr [Browsable(false)]
+    string property_version_guid = 70;
+
     // @attr [Browsable(false)]
     repeated proto_role_constant_access list_role_constant_access_settings = 101;
     // @attr [Browsable(false)]

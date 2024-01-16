@@ -29,6 +29,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsEditable = true;
             this._ShortIdTypeForCacheKey = "t";
+            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
+            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()
@@ -337,14 +339,28 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Tree operations
 
-        public IReadOnlyList<IConstant> GetIncludedConstants(string guidAppPrjGen)
+        public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var res = new List<IConstant>();
+            var model = this.ParentGroupConstantGroups.ParentModel;
+            var prp = model.GetPropertyPkId(this, this.PropertyIdGuid);
+            res.Add(prp);
+            if (isOptimistic)
+            {
+                prp = model.GetPropertyVersion(this, this.PropertyVersionGuid);
+                //prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
+                res.Add(prp);
+            }
+        }
+        public IReadOnlyList<IProperty> GetIncludedConstantsAsProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false)
+        {
+            var res = new List<IProperty>();
+            this.GetSpecialProperties(res, isOptimistic);
             foreach (var t in this.ListConstants)
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {
-                    res.Add(t);
+                    var p = new Property(this, t.Guid, t.Name, false) { DataType = t.DataType, IsCsNullable = true, IsNullable = true };
+                    res.Add(p);
                 }
             }
             return res;
