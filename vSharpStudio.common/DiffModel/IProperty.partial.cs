@@ -51,6 +51,7 @@ namespace vSharpStudio.common
         string ConvertToJson();
         IProperty? ParentProperty { get; set; }
         string NameWithExtention { get; }
+        //List<IProperty> ListExtensionProperties { get; }
         IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable, bool isCsNullable);
         IProperty AddExtensionPropertyGd(string subName, string guid, bool isNullable, bool isCsNullable);
         IProperty AddExtensionPropertyDesc(string subName, string guid, bool isNullable, bool isCsNullable);

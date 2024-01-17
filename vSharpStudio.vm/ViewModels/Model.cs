@@ -1159,6 +1159,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return $"cg{cts.ShortId.ToString()}";
             }
+            else if (node is IGroupDocuments gd)
+            {
+                return $"gr_docs";
+            }
             ThrowHelper.ThrowInvalidOperationException();
             return "";
             string GetTypeCacheIdWithParents(IItemWithDetails node, string res)
