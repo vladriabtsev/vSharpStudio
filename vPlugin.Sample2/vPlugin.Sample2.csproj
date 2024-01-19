@@ -14,17 +14,20 @@
     <ResultFiles Include="$(TargetDir)*.*" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\vSharpStudio.proto\obj\Debug\net6.0\PluginSample2.cs" Link="PluginSample2.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\proto\plugin_sample2.proto" Link="plugin_sample2.proto" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.28" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+    <PackageReference Include="Google.Protobuf" Version="3.25.2" />
+    <PackageReference Include="Grpc.Tools" Version="2.60.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="proto\" />
+    <Protobuf Include="..\proto\plugin_sample2.proto" GrpcServices="None" Link="proto\plugin_sample2.proto" />
   </ItemGroup>
   <ItemGroup>
     <None Update="RuntimeTextTemplate1.tt">

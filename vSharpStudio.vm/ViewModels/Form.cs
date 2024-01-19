@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Documents;
 using FluentValidation;
-using Proto.Doc;
 using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit;

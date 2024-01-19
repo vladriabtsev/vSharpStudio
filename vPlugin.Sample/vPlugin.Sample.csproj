@@ -11,29 +11,32 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <ResultFiles Include="$(TargetDir)*.*" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\vSharpStudio.proto\obj\Debug\net6.0\PluginSample.cs" Link="PluginSample.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\proto\plugin_sample.proto" Link="plugin_sample.proto" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.28" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+    <PackageReference Include="Google.Protobuf" Version="3.25.2" />
+    <PackageReference Include="Grpc.Tools" Version="2.60.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResultFiles Include="$(TargetDir)*.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="proto\" />
+    <Protobuf Include="..\proto\plugin_sample.proto" GrpcServices="None" Link="proto\plugin_sample.proto" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
   <ItemGroup>
     <None Update="RuntimeTextTemplate1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RuntimeTextTemplate1.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="RuntimeTextTemplate1.cs">

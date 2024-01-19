@@ -1,55 +1,62 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFrameworks>net7.0</TargetFrameworks>
   </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <DebugType>none</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <ItemGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
     <Compile Include="..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.25.1" />
+    <PackageReference Include="Google.Protobuf" Version="3.25.2" />
     <PackageReference Include="Grpc" Version="2.46.6" />
     <PackageReference Include="Grpc.Tools" Version="2.60.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+  <!--https://chromium.googlesource.com/external/github.com/grpc/grpc/+/HEAD/src/csharp/BUILD-INTEGRATION.md#compiler-->
   <ItemGroup>
-    <Protobuf Include="..\proto\nullable.proto">
-      <Link>nullable.proto</Link>
-    </Protobuf>
-    <Protobuf Include="..\proto\plugin_sample.proto">
-      <Link>plugin_sample.proto</Link>
-    </Protobuf>
-      <Protobuf Include="..\proto\plugin_sample2.proto">
-          <Link>plugin_sample2.proto</Link>
-      </Protobuf>
-      <Protobuf Include="..\proto\proto_doc.proto" GrpcServices="Client">
-      <Link>proto\proto_doc.proto</Link>
-    </Protobuf>
-    <Protobuf Include="..\proto\vsharpstudio.proto">
-      <Link>vsharpstudio.proto</Link>
-    </Protobuf>
-    <Protobuf Include="..\proto\vsharpstudioshared.proto">
-      <Link>vsharpstudioshared.proto</Link>
-    </Protobuf>
+    <Folder Include="proto\" />
+    <ProjectReference Include="..\generators\GenFromProto\GenFromProto.csproj" />
+    <Protobuf Include="..\proto\nullable.proto" GrpcServices="None" Link="proto\nullable.proto" />
+    <Protobuf Include="..\proto\vsharpstudio.proto" GrpcServices="None" Link="proto\vsharpstudio.proto" />
+    <Protobuf Include="..\proto\vsharpstudioshared.proto" GrpcServices="None" Link="proto\vsharpstudioshared.proto" />
   </ItemGroup>
+  <!--<PropertyGroup>
+    <PostBuildEvent>
+      $(SolutionDir)generators\GenFromProto\gen_doc.bat $(SolutionDir) $(TargetDir)GenFromProto.exe $(Protobuf_ProtocFullPath)
+    </PostBuildEvent>
+  </PropertyGroup>-->
+  <Target Name="GenerateVmFromProtoDocs" AfterTargets="PostBuildEvent">
+    <!--<Message Text="***** Copy Sample Plugin" Importance="high" />-->
+    
+    <!--<Message Text="**********" Importance="high" />
+    <Message Text="@(ResultFiles)" Importance="high" />
+    <Message Text="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample\" Importance="high" />
+    <Message Text="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" Importance="high" />
+    <Message Text="**********" Importance="high" />-->
+    
+    <!--<RemoveDir Directories="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample\" />
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample\" />
+    <RemoveDir Directories="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" />
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" />-->
+  </Target>
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>

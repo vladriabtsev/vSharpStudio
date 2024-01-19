@@ -111,9 +111,12 @@ namespace GenFromProto
                         var bytes = Encoding.UTF8.GetBytes(res);
                         fs.Write(bytes, 0, bytes.Count());
                     }
+                    System.Diagnostics.Trace.WriteLine("#### FINISHED ####");
+                    System.Diagnostics.Debug.WriteLine("#### FINISHED #### DEBUG");
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    System.Diagnostics.Trace.WriteLine(ex);
                     throw;
                 }
                 finally

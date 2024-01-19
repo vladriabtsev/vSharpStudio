@@ -12,6 +12,9 @@
     <Copyright>Copyright ©  2019</Copyright>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputPath>bin\$(Configuration)\</OutputPath>
+    <!--<PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>
+    <PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>
+    <PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>-->
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -19,8 +22,17 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+      $(SolutionDir)generators\GenFromProto\gen_doc.bat $(SolutionDir) $(TargetDir)GenFromProto.exe
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>rem $(SolutionDir)generators\GetLatestAttr\bin\Debug\GetLatestAttr.exe</PreBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="Google.Protobuf" Version="3.25.1" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
     <PackageReference Include="Serilog" Version="3.1.1" />
@@ -29,11 +41,6 @@
     <PackageReference Include="System.CodeDom" Version="8.0.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="Google.Protobuf" Version="3.25.2" />
-    <PackageReference Include="Grpc.Tools" Version="2.60.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="AcceptValidator.cs">
@@ -98,6 +105,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="gen_doc.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="proto.json" />
   </ItemGroup>
   <ItemGroup>
@@ -147,17 +157,30 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="..\..\vSharpStudio.common\LogerExt.cs" Link="LogerExt.cs" />
     <Compile Include="..\..\vSharpStudio.common\Logger.cs" Link="Logger.cs" />
     <Compile Include="..\..\vSharpStudio.common\t4.cs" Link="t4.cs" />
     <Compile Include="..\..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="proto\" />
-    <Protobuf Include="..\..\proto\proto_doc.proto" GrpcServices="None" Link="proto\proto_doc.proto" />
-    <!--<Protobuf Include="..\..\proto\vsharpstudio.proto" Link="proto\vsharpstudio.proto" />>-->
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="AcceptValidator.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AcceptValidator.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <!-- Add support for Layer validation 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="0.10.0" />
+    Include the layer model as an additional file that will be passed to the analyzer
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)Architecture\DependencyValidation.layerdiagram">
+      <Link>DependencyValidation1.layerdiagram</Link>
+      <Visible>False</Visible>
+    </AdditionalFiles>
+  </ItemGroup> -->
 </Project>

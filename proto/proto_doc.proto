@@ -4,10 +4,10 @@ package proto_doc;
 option csharp_namespace = "Proto.Doc";
 
 message json_doc {
-	repeated file files = 1;
+	repeated file_doc files = 1;
 	repeated scalarValueType scalarValueTypes = 2;
 }
-message file {
+message file_doc {
 	string name = 1;
 	string description = 2;
 	string package = 3;

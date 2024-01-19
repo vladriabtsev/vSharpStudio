@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using FluentValidation.Results;
 using Google.Protobuf;
-using Proto.Plugin;
 using vSharpStudio.common;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 

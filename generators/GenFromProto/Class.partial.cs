@@ -1,6 +1,5 @@
 ﻿using Google.Protobuf.Reflection;
 using Microsoft.Extensions.Logging;
-using Proto.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;

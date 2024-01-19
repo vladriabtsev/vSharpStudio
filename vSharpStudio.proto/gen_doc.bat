@@ -2,12 +2,15 @@
 SET solpath=%1
 echo **** solution directory %solpath%
 rem %1 - solution directory
+rem %2 - GenFromProto.exe path
+rem %3 - protoc.exe path
 rem https://www.tutorialspoint.com/batch_script/batch_script_variables.htm
 rem https://github.com/pseudomuto/protoc-gen-doc
 
 SET protoc=%1protoc\protoc.exe
 SET protdoc=%1protoc\protoc-gen-doc.exe
 
+EXIT
 
 SET prname=vsharpstudio
 echo **** vsharpstudio html

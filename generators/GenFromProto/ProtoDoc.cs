@@ -55,7 +55,7 @@ namespace GenFromProto
     public class FileDoc
     {
         public FileDoc() { }
-        public FileDoc(Proto.Doc.file file)
+        public FileDoc(Proto.Doc.file_doc file)
         {
             this.file = file;
             foreach (var t in file.Enums)
@@ -67,7 +67,7 @@ namespace GenFromProto
                 Messages[t.Name] = new MessageDoc(t);
             }
         }
-        public Proto.Doc.file file;
+        public Proto.Doc.file_doc file;
         public MyDictionary<string, EnumDoc> Enums = new MyDictionary<string, EnumDoc>();
         public MyDictionary<string, MessageDoc> Messages = new MyDictionary<string, MessageDoc>();
     }

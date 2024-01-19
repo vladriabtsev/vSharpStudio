@@ -1,5 +1,4 @@
 ﻿using Google.Protobuf.Reflection;
-using Proto.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
