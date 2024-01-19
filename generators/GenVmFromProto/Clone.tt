@@ -1,0 +1,274 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="vSharpStudio.common" #>
+<# if (this.Doc.IsConfigObjectBase) { #>
+
+public override void Sort(Type type) // <#=t4.FilePos() #>
+{
+<#    int isort=0;
+      foreach (var field in message.Fields.InDeclarationOrder()) {
+        if (field.IsRepeated) { 
+          isort++; #>
+<# if (!field.IsAny() && field.IsMessage() && JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { #>
+    if (type == typeof(<#= field.ToTypeCs() #>)) // <#=t4.FilePos() #>
+    {
+        this.<#= field.Name.ToNameCs() #>.Sort();
+    }
+<# } #>
+<#      }
+      }
+      if (isort==0) { #>
+    // throw new Exception();
+<#    } #>
+}
+<# } #>
+<# if (this.Doc.IsWithParent /*message.IsDefaultBase()*/) { #>
+public static <#= message.Name.ToNameCs() #> Clone(<#=this.Doc.ParentTypeName#>? parent, I<#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (message.IsDefaultBase()) { #>, bool isNewGuid = false<# } #>) // <#=t4.FilePos() #>
+<# } else { #>
+public static <#= message.Name.ToNameCs() #> Clone(I<#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (message.IsDefaultBase()) { #>, bool isNewGuid = false<# } #>) // <#=t4.FilePos() #>
+<# } #>
+{
+    Debug.Assert(from != null);
+<# if (this.Doc.IsWithParent) { #>
+    <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>(parent); // <#=t4.FilePos() #>
+<# } else { #>
+    <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>(); // <#=t4.FilePos() #>
+<# } #>
+<#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
+<#      if (field.IsRepeated) { #>
+<# if (field.IsAny()) { #>
+    vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<Google.Protobuf.WellKnownTypes.Any>(); // <#=t4.FilePos() #>
+    foreach (var t in from.<#= field.Name.ToNameCs() #>) 
+        vm.<#= field.Name.ToNameCs() #>.Add(t.Clone());
+<# } else if (!field.IsMessage()) { #>
+    foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
+        vm.<#= field.Name.ToNameCs() #>.Add(t);
+<# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { var isFieldWithParent=JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsWithParent; #>
+    vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=t4.FilePos() #>
+    foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
+        vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (isFieldWithParent) { #>parent, <# } #><# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
+<# } else { #>
+    vm._<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=t4.FilePos() #>
+    foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
+        vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
+<# } #>
+<#      } else if (field.IsMessage() && field.MessageType.Name.EndsWith("_nullable")) { #>
+    vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.HasValue ? from.<#= field.Name.ToNameCs() #>.Value : (<#= field.ToTypeCs() #>)null; // <#=t4.FilePos() #>
+<#      } else if (field.IsMessage() && field.IsAny()) { #>
+    vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.Clone(); // <#=t4.FilePos() #>
+<#      } else if (!field.IsCsSimple() && field.GetMessageDoc().IsWithParent) { #>
+    if (isDeep) // <#=t4.FilePos() #> IsDefaultBase=<#=field.IsDefaultBase()#>
+        vm.<#= field.Name.ToNameCs() #> = <#=nameSpace#>.<#= field.ToTypeCs() #>.Clone(vm, from.<#= field.Name.ToNameCs() #>, isDeep);
+<#      } else { #>
+    vm._<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; // <#=t4.FilePos() #>
+<#      } 
+     } 
+if (this.Doc.IsDefaultBase) {
+#>
+    if (isNewGuid) // <#=t4.FilePos() #>
+        vm.SetNewGuid();
+<# } #>
+    return vm;
+}
+public static void Update(<#= message.Name.ToNameCs() #> to, I<#= message.Name.ToNameCs() #> from, bool isDeep = true) // <#=t4.FilePos() #>
+{
+    Debug.Assert(to != null);
+    Debug.Assert(from != null);
+<#    foreach (var field in message.Fields.InDeclarationOrder()) { 
+        if (field.IsAny())
+            continue;
+        if (field.IsRepeated) { #>
+<# if (field.IsMessage()) { #>
+    if (isDeep) // <#=t4.FilePos() #>
+    {
+        foreach (var t in to.<#= field.Name.ToNameCs() #>.ToList())
+        {
+            bool isfound = false;
+            foreach (var tt in from.<#= field.Name.ToNameCs() #>)
+            {
+                if (t.Guid == tt.Guid)
+                {
+                    isfound = true;
+                    <#= field.ToTypeCs() #>.Update((<#= field.ToTypeCs() #>)t, (<#= field.ToTypeCs() #>)tt, isDeep);
+                    break;
+                }
+            }
+            if (!isfound)
+                to.<#= field.Name.ToNameCs() #>.Remove(t);
+        }
+        foreach (var tt in from.<#= field.Name.ToNameCs() #>)
+        {
+            bool isfound = false;
+            foreach (var t in to.<#= field.Name.ToNameCs() #>.ToList())
+            {
+                if (t.Guid == tt.Guid)
+                {
+                    isfound = true;
+                    break;
+                }
+            }
+            if (!isfound)
+            {
+<# if (field.IsMessage() && field.GetMessageDoc().IsWithParent) { #>
+                var p = new <#= field.ToTypeCs() #>(to); // <#=t4.FilePos() #>
+<# } else { #>
+                var p = new <#= field.ToTypeCs() #>(); // <#=t4.FilePos() #>
+<# } #>
+                <#= field.ToTypeCs() #>.Update(p, (<#= field.ToTypeCs() #>)tt, isDeep);
+                to.<#= field.Name.ToNameCs() #>.Add(p);
+            }
+        }
+    }
+<# } else { #>
+        to.<#= field.Name.ToNameCs() #>.Clear(); // <#=t4.FilePos() #>
+        foreach (var tt in from.<#= field.Name.ToNameCs() #>)
+        {
+            to.<#= field.Name.ToNameCs() #>.Add(tt);
+        }
+<# } #>
+<#      } else if (field.IsMessage() && field.MessageType.Name == "string_nullable") { #>
+    to.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; // <#=t4.FilePos() #>
+<#      } else if (field.IsMessage() && field.MessageType.Name.EndsWith("_nullable")) { #>
+    to.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.HasValue ? from.<#= field.Name.ToNameCs() #>.Value : (<#= field.ToTypeCs() #>)null; // <#=t4.FilePos() #>
+<#      } else if (!field.IsCsSimple() && field.IsMessage()) { #>
+    if (isDeep) // <#=t4.FilePos() #>
+        <#=nameSpace#>.<#= field.ToTypeCs() #>.Update((<#= field.ToTypeCs() #>)to.<#= field.Name.ToNameCs() #>, from.<#= field.Name.ToNameCs() #>, isDeep);
+<#      } else { #>
+    to._<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; // <#=t4.FilePos() #>
+<#      } 
+     } 
+     #>
+}
+<# if (this.Doc.IsEditableBase) { #>
+// <#=t4.FilePos() #>
+#region IEditable
+public override <#= message.Name.ToNameCs() #> Backup()
+{
+    bool isDeep = true;
+    this.OnBackupObjectStarting(ref isDeep);
+<# if (this.Doc.IsWithParent) { #>
+    Debug.Assert(this is IConfig || this.Parent != null);
+    return <#= message.Name.ToNameCs() #>.Clone(this.Parent, this); // <#=t4.FilePos() #>
+<# } else { #>
+    return <#= message.Name.ToNameCs() #>.Clone(<# if (message.IsDefaultBase()) { #>null, <# } #>this); // <#=t4.FilePos() #>
+<# } #>
+}
+partial void OnBackupObjectStarting(ref bool isDeep);
+public override void Restore(<#= message.Name.ToNameCs() #> from)
+{
+    bool isDeep = true;
+    this.OnRestoreObjectStarting(ref isDeep);
+    <#= message.Name.ToNameCs() #>.Update(this, from, isDeep);
+}
+partial void OnRestoreObjectStarting(ref bool isDeep);
+#endregion IEditable
+<# } #>
+// Conversion from '<#= message.Name #>' to '<#= message.Name.ToNameCs() #>'
+public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace #>.<#= message.Name #> m, <#= message.Name.ToNameCs() #> vm) // <#=t4.FilePos() #>
+{
+    Debug.Assert(vm != null);
+    if (m == null)
+    {
+        return vm;
+    }
+<#    foreach (var field in message.Fields.InDeclarationOrder()) { 
+        if (field.IsAny())
+            continue;
+        if (field.IsRepeated) { #>
+<#        if (field.IsCsSimple()) { #>
+    vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=t4.FilePos() #>
+    foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
+    {
+        vm.<#= field.Name.ToNameCs() #>.Add(t);
+    }
+<#        } else if (field.GetMessageDoc().IsWithParent) { #>
+<#          if (field.GetMessageDoc().IsConfigObjectBase) { #>
+    vm._<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=t4.FilePos() #>
+<#          } else { #>
+    vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=t4.FilePos() #>
+<#          } #>
+    foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
+    {
+        var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t, new <#= field.ToTypeCs() #>(vm)); // <#=t4.FilePos() #>
+        vm.<#= field.Name.ToNameCs() #>.Add(tvm);
+    }
+<#        } else { #>
+    vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=t4.FilePos() #>
+    foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
+    {
+        var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t, new <#= field.ToTypeCs() #>()); // <#=t4.FilePos() #>
+        vm.<#= field.Name.ToNameCs() #>.Add(tvm);
+    }
+<#        } #>
+<#      } else { #>
+<#        if (!field.IsCsSimple() && field.IsMessage() && !field.IsNullable()) { #>
+    if (vm.<#= field.Name.ToNameCs() #> == null) // <#=t4.FilePos() #>
+<#          if (field.GetMessageDoc().IsWithParent) { #>
+        vm.<#= field.Name.ToNameCs() #> = new <#= field.ToTypeCs() #>(vm); // <#=t4.FilePos() #>
+<#          } else { #>
+        vm.<#= field.Name.ToNameCs() #> = new <#= field.ToTypeCs() #>(); // <#=t4.FilePos() #>
+<#          } #>
+    <#=nameSpace#>.<#= field.ToTypeCs() #>.ConvertToVM(m.<#= field.Name.ToNameCs() #>, (<#= field.ToTypeCs() #>)vm.<#= field.Name.ToNameCs() #>); // <#=t4.FilePos() #>
+<#        } else { #>
+    vm._<#= field.Name.ToNameCs() #> = <#= field.ConvertToVm("m") #>; // <#=t4.FilePos() #>
+<#        } 
+        } 
+     } 
+     #>
+<# if (this.Doc.IsConfigObjectBase || this.Doc.IsGenSettings) { #>
+    vm.OnInitFromDto(); // <#=t4.FilePos() #>
+    vm.IsChanged = false;
+    vm.IsHasChanged = false;
+<# } #>
+    return vm;
+}
+// Conversion from '<#= message.Name.ToNameCs() #>' to '<#= message.Name #>'
+public static <#= this.protoNameSpace #>.<#= message.Name #> ConvertToProto(<#= message.Name.ToNameCs() #> vm) // <#=t4.FilePos() #>
+{
+    Debug.Assert(vm != null);
+    <#= this.protoNameSpace #>.<#= message.Name #> m = new <#= this.protoNameSpace #>.<#= message.Name #>(); // <#=t4.FilePos() #>
+<#    foreach (var field in message.Fields.InDeclarationOrder()) { 
+        if (field.IsRepeated) { #>
+    foreach (var t in vm.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
+<#        if (field.IsCsSimple()) { #>
+        m.<#= field.Name.ToNameCs() #>.Add(t); // <#=t4.FilePos() #>
+<#        } else { #>
+        m.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.ConvertToProto((<#= field.ToTypeCs() #>)t)); // <#=t4.FilePos() #>
+<#        } #>
+<#      } else if (field.IsMessage() && field.MessageType.Name == "string_nullable") { #>
+    m.<#= field.Name.ToNameCs() #> = new <#= this.protoNameSpace #>.<#= field.MessageType.Name #>(); // <#=t4.FilePos() #>
+    m.<#= field.Name.ToNameCs() #>.Value = string.IsNullOrEmpty(vm.<#= field.Name.ToNameCs() #>) ? "" : vm.<#= field.Name.ToNameCs() #>;
+    m.<#= field.Name.ToNameCs() #>.HasValue = !string.IsNullOrEmpty(vm.<#= field.Name.ToNameCs() #>);
+<#      } else if (field.IsMessage() && field.MessageType.Name.EndsWith("_nullable")) { #>
+    m.<#= field.Name.ToNameCs() #> = new <#= this.protoNameSpace #>.<#= field.MessageType.Name #>(); // <#=t4.FilePos() #>
+    m.<#= field.Name.ToNameCs() #>.HasValue = vm.<#= field.Name.ToNameCs() #>.HasValue;
+    if (vm.<#= field.Name.ToNameCs() #>.HasValue)
+<#        string mn = field.MessageType.Name.Replace("_nullable", "");
+          if (mn == "time_span") { #>
+        m.<#= field.Name.ToNameCs() #>.Value = Google.Protobuf.WellKnownTypes.Duration.FromTimeSpan(vm.<#= field.Name.ToNameCs() #>.Value);
+<#        } else if (mn == "date_time") { #>
+        m.<#= field.Name.ToNameCs() #>.Value = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(vm.<#= field.Name.ToNameCs() #>.Value);
+<#        } else { #>
+        m.<#= field.Name.ToNameCs() #>.Value = vm.<#= field.Name.ToNameCs() #>.Value;
+<#        } #>
+<#      } else if (field.IsMessage() && field.MessageType.Name.EndsWith("_nullable_enum")) { #>
+    m.<#= field.Name.ToNameCs() #> = new <#= this.protoNameSpace #>.<#= field.MessageType.Name #>(); // <#=t4.FilePos() #>
+    m.<#= field.Name.ToNameCs() #>.HasValue = vm.<#= field.Name.ToNameCs() #>.HasValue;
+    if (vm.<#= field.Name.ToNameCs() #>.HasValue)
+        m.<#= field.Name.ToNameCs() #>.Value = (<#= this.protoNameSpace #>.<#= field.MessageType.Name.Replace("_nullable_enum", "").ToNameCs() #>)vm.<#= field.Name.ToNameCs() #>; // <#=t4.FilePos() #>
+<#      } else if (!field.IsCsSimple() && field.IsMessage() && !field.IsAny()) { #>
+    m.<#= field.Name.ToNameCs() #> = <#=nameSpace#>.<#= field.ToTypeCs() #>.ConvertToProto((<#= field.ToTypeCs() #>)vm.<#= field.Name.ToNameCs() #>); // <#=t4.FilePos() #>
+<#      } else if (field.IsBytes()) { #>
+    m.<#= field.Name.ToNameCs() #> = ByteString.CopyFrom(vm.<#= field.Name.ToNameCs() #>); // <#=t4.FilePos() #>
+<#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) {#>
+    m.<#= field.Name.ToNameCs() #> = (<#= this.protoNameSpace #>.<#= field.EnumType.Name #>)vm.<#= field.Name.ToNameCs() #>; // <#=t4.FilePos() #>
+<#      } else { #>
+    m.<#= field.Name.ToNameCs() #> = vm.<#= field.Name.ToNameCs() #>; // <#=t4.FilePos() #>
+<#      } 
+     } 
+     #>
+    return m;
+}

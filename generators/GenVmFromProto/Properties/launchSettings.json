@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "GenFromProto": {
+      "commandName": "Project",
+      "commandLineArgs": "-r -m -p plugin_sample -o D:\\dev\\vSharpStudio.pro\\submodules\\vSharpStudio\\vPlugin.Sample\\Generated\\Protoplugin_sampleViewModels.cs -n vSharpStudio.vm.ViewModels -d D:\\dev\\vSharpStudio.pro\\submodules\\vSharpStudio\\doc\\ -b ConfigObjectVmGenSettings",
+      "commandLineArgsBack": "-i -p vsharpstudio -o ..\\..\\..\\..\\..\\vSharpStudio.common\\ModelInterfaces.cs -n vSharpStudio.common -d ..\\..\\..\\..\\..\\doc\\"
+    }
+  }
+}

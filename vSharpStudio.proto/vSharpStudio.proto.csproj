@@ -33,7 +33,6 @@
   <!--https://chromium.googlesource.com/external/github.com/grpc/grpc/+/HEAD/src/csharp/BUILD-INTEGRATION.md#compiler-->
   <ItemGroup>
     <Folder Include="proto\" />
-    <ProjectReference Include="..\generators\GenFromProto\GenFromProto.csproj" />
     <Protobuf Include="..\proto\nullable.proto" GrpcServices="None" Link="proto\nullable.proto" />
     <Protobuf Include="..\proto\vsharpstudio.proto" GrpcServices="None" Link="proto\vsharpstudio.proto" />
     <Protobuf Include="..\proto\vsharpstudioshared.proto" GrpcServices="None" Link="proto\vsharpstudioshared.proto" />

@@ -57,12 +57,12 @@ echo **** interface vsharpstudio
 %gen% -r -i -p vsharpstudioshared -o %1vSharpStudio.common\ModelInterfacesShared.cs -n vSharpStudio.common -d %1doc\
 
 echo **** model plugin_sample
-%gen% -m -p plugin_sample -o %1vPlugin.Sample\SettingsViewModels.cs -n vPlugin.Sample -d %1doc\ 
+echo %gen% -m -p plugin_sample -o %1vPlugin.Sample\SettingsViewModels.cs -n vPlugin.Sample -d %1doc\ 
 echo **** interface plugin_sample
-%gen% -i -p plugin_sample -o %1vPlugin.Sample\SettingsInterfaces.cs -n vPlugin.Sample -d %1doc\
+echo %gen% -i -p plugin_sample -o %1vPlugin.Sample\SettingsInterfaces.cs -n vPlugin.Sample -d %1doc\
 
 echo **** model plugin_sample2
-%gen% -m -p plugin_sample2 -o %1vPlugin.Sample2\SettingsViewModels.cs -n vPlugin.Sample2 -d %1doc\ 
+echo %gen% -m -p plugin_sample2 -o %1vPlugin.Sample2\SettingsViewModels.cs -n vPlugin.Sample2 -d %1doc\ 
 echo **** interface plugin_sample
-%gen% -i -p plugin_sample2 -o %1vPlugin.Sample2\SettingsInterfaces.cs -n vPlugin.Sample2 -d %1doc\
+echo %gen% -i -p plugin_sample2 -o %1vPlugin.Sample2\SettingsInterfaces.cs -n vPlugin.Sample2 -d %1doc\
 
