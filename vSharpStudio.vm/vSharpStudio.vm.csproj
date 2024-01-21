@@ -70,8 +70,8 @@
       <VmNamespace>vSharpStudio.vm.ViewModels</VmNamespace>
       <VmInterfacesNamespace>vSharpStudio.common</VmInterfacesNamespace>
       <OutDirGenVm>bin\Debug\net7.0</OutDirGenVm>
-      <ProtoDocGenCommandVm>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -m -p $(ProtoName) -o $(ProjectDir)Generated\Proto$(ProtoName)ViewModels.cs -n $(VmNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVm>
-      <ProtoDocGenCommandVmInterface>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -i -p $(ProtoName) -o $(ProjectDir)Generated\Proto$(ProtoName)ViewModelInterfaces.cs -n $(VmInterfacesNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVmInterface>
+      <ProtoDocGenCommandVm>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -m -p $(ProtoName) -o $(ProjectDir)Generated\$(ProtoName)ProtoViewModels.cs -n $(VmNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVm>
+      <ProtoDocGenCommandVmInterface>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -i -p $(ProtoName) -o $(ProjectDir)Generated\$(ProtoName)ProtoViewModelInterfaces.cs -n $(VmInterfacesNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVmInterface>
     </PropertyGroup>
     <Message Importance="high" Text="$(ProjectName)****************** Start Proto To VM Generation ********************" />
     <Message Importance="high" Text="$(ProjectName)**              ProtoName: $(ProtoName)" />
