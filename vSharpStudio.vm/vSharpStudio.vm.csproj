@@ -40,7 +40,6 @@
     <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />
     <ProjectReference Include="..\common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj" />
     <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
-    <!--<ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />-->
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.25.2" />
@@ -54,45 +53,4 @@
     <Folder Include="proto\" />
     <Protobuf Include="..\proto\vsharpstudio.proto" GrpcServices="None" Link="proto\vsharpstudio.proto" />
   </ItemGroup>
-
-  <!--***** VM generation from proto files start *****-->
-  <Target Name="ProtoToVmGen" AfterTargets="Protobuf_AfterCompile" Condition=" '@(Protobuf_Compile)' != '' " Outputs="%(Protobuf_Compile.Fullpath)">
-    <!--https://github.com/grpc/grpc/blob/master/src/csharp/Grpc.Tools/build/_protobuf/Google.Protobuf.Tools.targets-->
-    <PropertyGroup>
-      <SharpStudioRelativePath></SharpStudioRelativePath>
-      <ProtoName>@(Protobuf_Compile->'%(Filename)')</ProtoName>
-      <ProtoFileDir>$(SolutionDir)proto</ProtoFileDir>
-      <SharpStudioRelativePath></SharpStudioRelativePath>
-      <ProtoFile>$(ProtoName).proto</ProtoFile>
-      <ProtoDocGenPath>$(SolutionDir)$(SharpStudioRelativePath)protoc\protoc-gen-doc.exe</ProtoDocGenPath>
-      <DocGenOutPath>$(SolutionDir)doc</DocGenOutPath>
-      
-      <VmNamespace>vSharpStudio.vm.ViewModels</VmNamespace>
-      <VmInterfacesNamespace>vSharpStudio.common</VmInterfacesNamespace>
-      <OutDirGenVm>bin\Debug\net7.0</OutDirGenVm>
-      <ProtoDocGenCommandVm>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -m -p $(ProtoName) -o $(ProjectDir)Generated\$(ProtoName)ProtoViewModels.cs -n $(VmNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVm>
-      <ProtoDocGenCommandVmInterface>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -i -p $(ProtoName) -o $(ProjectDir)Generated\$(ProtoName)ProtoViewModelInterfaces.cs -n $(VmInterfacesNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVmInterface>
-    </PropertyGroup>
-    <Message Importance="high" Text="$(ProjectName)****************** Start Proto To VM Generation ********************" />
-    <Message Importance="high" Text="$(ProjectName)**              ProtoName: $(ProtoName)" />
-    <!--<Message Importance="high" Text="$(ProjectName)**        Protobuf_Rooted: @(Protobuf_Rooted)" />
-    <Message Importance="high" Text="$(ProjectName)**               Protobuf: @(Protobuf)" />
-    <Message Importance="high" Text="$(ProjectName)**       Protobuf_Compile: @(Protobuf_Compile)" />-->
-    
-    <!--<Message Importance="high" Text="$(ProjectName)**           ProtoFileDir: $(ProtoFileDir)" />-->
-    <Message Importance="high" Text="$(ProjectName)**            OutDirGenVm: $(OutDirGenVm)" />
-    <Message Importance="high" Text="$(ProjectName)**SharpStudioRelativePath: $(SharpStudioRelativePath)" />
-    <Message Importance="high" Text="$(ProjectName)**          DocGenOutPath: $(DocGenOutPath)" />
-    <!--<Message Importance="high" Text="$(ProjectName)**                 protoc: $(Protobuf_ProtocFullPath)" />
-    <Message Importance="high" Text="$(ProjectName)**         protoc-gen-doc: $(ProtoDocGenPath)" />
-    <Message Importance="high" Text="$(ProjectName)** ProtoDocGenCommandJson: $(ProtoDocGenCommandJson)" />-->
-    <Message Importance="high" Text="$(ProjectName)**   ProtoDocGenCommandVm: $(ProtoDocGenCommandVm)" />
-    <Message Importance="high" Text="$(ProjectName)** ...nCommandVmInterface: $(ProtoDocGenCommandVmInterface)" />
-    <Message Importance="high" Text="$(ProjectName)** Generating proto VM ..." />
-    <Exec Command="$(ProtoDocGenCommandVm)" />
-    <Message Importance="high" Text="$(ProjectName)** Generating proto VM Interfaces ..." />
-    <Exec Command="$(ProtoDocGenCommandVmInterface)" />
-    <Message Importance="high" Text="$(ProjectName)****************** End Proto To VM Generation **********************" />
-  </Target>
-  <!--***** VM generation from proto files end *****-->
 </Project>
