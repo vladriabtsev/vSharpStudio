@@ -67,7 +67,6 @@
     <ProjectReference Include="..\common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj" />
     <ProjectReference Include="..\vPlugin.Sample2\vPlugin.Sample2.csproj" />
     <ProjectReference Include="..\vPlugin.Sample\vPlugin.Sample.csproj" />
-    <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
     <ProjectReference Include="..\vSharpStudio\vSharpStudio.csproj" />
   </ItemGroup>
