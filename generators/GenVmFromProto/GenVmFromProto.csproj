@@ -160,6 +160,107 @@
     <Protobuf Include="..\..\proto\plugin_sample2.proto" GrpcServices="None" Link="proto\plugin_sample2.proto" />
     <Protobuf Include="..\..\proto\vsharpstudio.proto" Link="proto\vsharpstudio.proto" />
   </ItemGroup>
+
+
+  <!--***** protoc-gen-doc start *****-->
+  <!--<UsingTask TaskName="ProtocGenDocExe" AssemblyFile="$(MSBuildProjectDirectory)\..\GenTask\bin\Debug\net48\GenTask.dll" />-->
+  <!-- protoc-gen-doc generation for modified proto files -->
+  <Target Name="ProtocGenDoc" AfterTargets="Protobuf_AfterCompile" Condition=" '@(Protobuf_Compile)' != '' " Outputs="%(Protobuf_Compile.Fullpath)">
+  <!--<Target Name="ProtocGenDoc" AfterTargets="PrepareForProtocGenDoc" Outputs="%(Protobuf_Rooted.Fullpath)">-->
+    <!--https://github.com/grpc/grpc/blob/master/src/csharp/Grpc.Tools/build/_protobuf/Google.Protobuf.Tools.targets-->
+    <PropertyGroup>
+      <SharpStudioRelativePath></SharpStudioRelativePath>
+      <ProtoName>@(Protobuf_Compile->'%(Filename)')</ProtoName>
+      <ProtoFileDir>$(SolutionDir)proto</ProtoFileDir>
+      <SharpStudioRelativePath></SharpStudioRelativePath>
+      <ProtoFile>$(ProtoName).proto</ProtoFile>
+      <ProtoDocGenPath>$(SolutionDir)$(SharpStudioRelativePath)protoc\protoc-gen-doc.exe</ProtoDocGenPath>
+      <DocGenOutPath>$(SolutionDir)doc</DocGenOutPath>
+      <ProtoDocGenCommandHtml>$(Protobuf_ProtocFullPath) --plugin=protoc-gen-doc=$(ProtoDocGenPath) --doc_out=$(DocGenOutPath) --doc_opt=html,$(ProtoName).html -I $(ProtoFileDir);$(Protobuf_StandardImportsPath) $(ProtoFile)</ProtoDocGenCommandHtml>
+      <ProtoDocGenCommandMd>$(Protobuf_ProtocFullPath) --plugin=protoc-gen-doc=$(ProtoDocGenPath) --doc_out=$(DocGenOutPath) --doc_opt=markdown,$(ProtoName).md -I $(ProtoFileDir);$(Protobuf_StandardImportsPath) $(ProtoFile)</ProtoDocGenCommandMd>
+      <ProtoDocGenCommandJson>$(Protobuf_ProtocFullPath) --plugin=protoc-gen-doc=$(ProtoDocGenPath) --doc_out=$(DocGenOutPath) --doc_opt=json,$(ProtoName).json -I $(ProtoFileDir);$(Protobuf_StandardImportsPath) $(ProtoFile)</ProtoDocGenCommandJson>
+      <!--<VmNamespace>vSharpStudio.vm.ViewModels</VmNamespace>
+      <VmInterfacesNamespace>vSharpStudio.common</VmInterfacesNamespace>
+      <OutDirGenVm>bin\Debug\net7.0</OutDirGenVm>-->
+      <!--<ProtoDocGenCommandVm>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -m -p $(ProtoName) -o $(ProjectDir)Generated\Proto$(ProtoName)ViewModels.cs -n $(VmNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVm>
+      <ProtoDocGenCommandVmInterface>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -i -p $(ProtoName) -o $(ProjectDir)Generated\Proto$(ProtoName)ViewModelInterfaces.cs -n $(VmInterfacesNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVmInterface>-->
+    </PropertyGroup>
+    <Message Importance="high" Text="$(ProjectName)****************** Start Proto Doc Generation ********************" />
+    <Message Importance="high" Text="$(ProjectName)**              ProtoName: $(ProtoName)" />
+    <!--<Message Importance="high" Text="$(ProjectName)**        Protobuf_Rooted: @(Protobuf_Rooted)" />
+    <Message Importance="high" Text="$(ProjectName)**               Protobuf: @(Protobuf)" />
+    <Message Importance="high" Text="$(ProjectName)**       Protobuf_Compile: @(Protobuf_Compile)" />-->
+    <Message Importance="high" Text="$(ProjectName)**           ProtoFileDir: $(ProtoFileDir)" />
+    <!--<Message Importance="high" Text="$(ProjectName)**            OutDirGenVm: $(OutDirGenVm)" />-->
+    <Message Importance="high" Text="$(ProjectName)**                 protoc: $(Protobuf_ProtocFullPath)" />
+    <Message Importance="high" Text="$(ProjectName)**SharpStudioRelativePath: $(SharpStudioRelativePath)" />
+    <Message Importance="high" Text="$(ProjectName)**         protoc-gen-doc: $(ProtoDocGenPath)" />
+    <Message Importance="high" Text="$(ProjectName)**          DocGenOutPath: $(DocGenOutPath)" />
+    <Message Importance="high" Text="$(ProjectName)** ProtoDocGenCommandJson: $(ProtoDocGenCommandJson)" />
+    <!--<Message Importance="high" Text="$(ProjectName)**   ProtoDocGenCommandVm: $(ProtoDocGenCommandVm)" />
+    <Message Importance="high" Text="$(ProjectName)** ...nCommandVmInterface: $(ProtoDocGenCommandVmInterface)" />-->
+    <Message Importance="high" Text="$(ProjectName)** Generating HTML ..." />
+    <Exec Command="$(ProtoDocGenCommandHtml)" />
+    <Message Importance="high" Text="$(ProjectName)** Generating MD ..." />
+    <Exec Command="$(ProtoDocGenCommandMd)" />
+    <Message Importance="high" Text="$(ProjectName)** Generating JSON ..." />
+    <Exec Command="$(ProtoDocGenCommandJson)" />
+    <Message Importance="high" Text="$(ProjectName)****************** End Proto Doc Generation **********************" />
+    <!--<ProtocGenDocExe ProtocFullPath="$(Protobuf_ProtocFullPath)"
+                     Protobuf_StandardImportsPath="$(Protobuf_StandardImportsPath)"
+                     ProtocGenDocFullPath="$(ProtoDocGenPath)"
+                     ProtoFile="%(Protobuf_Compile.FullPath)"
+                     ProtocGenDocOutputDir="$(DocGenOutPath)"
+                     GenDocType="json">
+    </ProtocGenDocExe>-->
+  </Target>
+  <!--***** protoc-gen-doc end *****-->
+
+
+
+  <!--<Target Name="GenProtoDoc" AfterTargets="Protobuf_AfterCompile" Condition=" '@(Protobuf_Compile)' != '' ">-->
+    <Target Name="GenProtoDoc" Condition=" '@(Protobuf_Compile)' != '' ">
+    <!--https://github.com/grpc/grpc/blob/master/src/csharp/Grpc.Tools/build/_protobuf/Google.Protobuf.Tools.targets-->
+    <PropertyGroup>
+      <ProtoName>plugin_sample</ProtoName>
+      <!--<VmNamespace>vPlugin.Sample</VmNamespace>-->
+      <!--<VmInterfacesNamespace>vPlugin.Sample</VmInterfacesNamespace>-->
+      <!--<OutDirGenVm>bin\Debug\net7.0</OutDirGenVm>-->
+      <ProtoFileDir>$(SolutionDir)proto</ProtoFileDir>
+      <SharpStudioRelativePath></SharpStudioRelativePath>
+      <ProtoFile>$(ProtoName).proto</ProtoFile>
+      <ProtoDocGen>$(SolutionDir)$(SharpStudioRelativePath)protoc\protoc-gen-doc.exe</ProtoDocGen>
+      <DocGenOutPath>$(SolutionDir)doc</DocGenOutPath>
+      <ProtoDocGenCommandHtml>$(Protobuf_ProtocFullPath) --plugin=protoc-gen-doc=$(ProtoDocGen) --doc_out=$(DocGenOutPath) --doc_opt=html,$(ProtoName).html -I $(ProtoFileDir);$(Protobuf_StandardImportsPath) $(ProtoFile)</ProtoDocGenCommandHtml>
+      <ProtoDocGenCommandMd>$(Protobuf_ProtocFullPath) --plugin=protoc-gen-doc=$(ProtoDocGen) --doc_out=$(DocGenOutPath) --doc_opt=markdown,$(ProtoName).md -I $(ProtoFileDir);$(Protobuf_StandardImportsPath) $(ProtoFile)</ProtoDocGenCommandMd>
+      <ProtoDocGenCommandJson>$(Protobuf_ProtocFullPath) --plugin=protoc-gen-doc=$(ProtoDocGen) --doc_out=$(DocGenOutPath) --doc_opt=json,$(ProtoName).json -I $(ProtoFileDir);$(Protobuf_StandardImportsPath) $(ProtoFile)</ProtoDocGenCommandJson>
+      <!--<ProtoDocGenCommandVm>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -m -p $(ProtoName) -o $(ProjectDir)Generated\Proto$(ProtoName)ViewModels.cs -n $(VmNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVm>
+      <ProtoDocGenCommandVmInterface>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -i -p $(ProtoName) -o $(ProjectDir)Generated\Proto$(ProtoName)ViewModelInterfaces.cs -n $(VmInterfacesNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVmInterface>-->
+    </PropertyGroup>
+    <Message Importance="high" Text="$(ProjectName)****************** Start Proto Doc Generation ********************" />
+    <Message Importance="high" Text="$(ProjectName)**               Protobuf: @(Protobuf)" />
+    <Message Importance="high" Text="$(ProjectName)**       Protobuf_Compile: @(Protobuf_Compile)" />
+    <Message Importance="high" Text="$(ProjectName)**              ProtoFile: $(ProtoFile)" />
+    <Message Importance="high" Text="$(ProjectName)**           ProtoFileDir: $(ProtoFileDir)" />
+    <Message Importance="high" Text="$(ProjectName)**            OutDirGenVm: $(OutDirGenVm)" />
+    <Message Importance="high" Text="$(ProjectName)**                 protoc: $(Protobuf_ProtocFullPath)" />
+    <Message Importance="high" Text="$(ProjectName)**         protoc-gen-doc: $(ProtoDocGen)" />
+    <Message Importance="high" Text="$(ProjectName)**          DocGenOutPath: $(DocGenOutPath)" />
+    <Message Importance="high" Text="$(ProjectName)** ProtoDocGenCommandJson: $(ProtoDocGenCommandJson)" />
+    <Message Importance="high" Text="$(ProjectName)**   ProtoDocGenCommandVm: $(ProtoDocGenCommandVm)" />
+    <Message Importance="high" Text="$(ProjectName)** ...nCommandVmInterface: $(ProtoDocGenCommandVmInterface)" />
+    <!--<Message Importance="high" Text="$(ProjectName)** Generating HTML ..." />
+    <Exec Command="$(ProtoDocGenCommandHtml)" />
+    <Message Importance="high" Text="$(ProjectName)** Generating MD ..." />
+    <Exec Command="$(ProtoDocGenCommandMd)" />
+    <Message Importance="high" Text="$(ProjectName)** Generating JSON ..." />
+    <Exec Command="$(ProtoDocGenCommandJson)" />
+    <Message Importance="high" Text="$(ProjectName)** Generating proto VM ..." />
+    <Exec Command="$(ProtoDocGenCommandVm)" />
+    <Message Importance="high" Text="$(ProjectName)** Generating proto VM Interfaces ..." />
+    <Exec Command="$(ProtoDocGenCommandVmInterface)" />-->
+    <Message Importance="high" Text="$(ProjectName)****************** End Proto Doc Generation **********************" />
+  </Target>
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>

@@ -7,7 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio", "vSharpStudi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{373A132D-A5B7-4D32-988D-DC59E038958F}"
 	ProjectSection(SolutionItems) = preProject
-		proto\attr.proto = proto\attr.proto
 		proto\nullable.proto = proto\nullable.proto
 		proto\plugin_sample.proto = proto\plugin_sample.proto
 		proto\plugin_sample2.proto = proto\plugin_sample2.proto
@@ -40,6 +39,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.std", "common\wpf\vSharpStudio.std\vSharpStudio.std.csproj", "{A02BB4D5-5EA9-4A90-8D0A-C1AF3D919C30}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.vm", "vSharpStudio.vm\vSharpStudio.vm.csproj", "{5AA0481E-9ED7-43CF-AF56-BF294FE7C13F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E} = {EEAF63A0-C59F-468B-AA1B-58865E84E44E}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.Unit", "vSharpStudio.Unit\vSharpStudio.Unit.csproj", "{93615E76-0E83-4FCE-A6E0-554F4BB108D3}"
 EndProject
@@ -64,6 +66,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{EFD4B2B2-67A3-4230-A967-C49A6695ACB1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenVmFromProto", "generators\GenVmFromProto\GenVmFromProto.csproj", "{EEAF63A0-C59F-468B-AA1B-58865E84E44E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9E97361E-C840-45F9-9086-1C55AD1E70CF} = {9E97361E-C840-45F9-9086-1C55AD1E70CF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

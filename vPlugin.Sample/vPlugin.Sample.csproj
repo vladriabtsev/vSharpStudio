@@ -46,45 +46,8 @@
       <DependentUpon>RuntimeTextTemplate1.tt</DependentUpon>
     </Compile>
   </ItemGroup>
-  <Target Name="GenProtoDoc" AfterTargets="Protobuf_AfterCompile">
-    <!--https://github.com/grpc/grpc/blob/master/src/csharp/Grpc.Tools/build/_protobuf/Google.Protobuf.Tools.targets-->
-    <PropertyGroup>
-      <ProtoName>plugin_sample</ProtoName>
-      <VmNamespace>vSharpStudio.vm.ViewModels</VmNamespace>
-      <VmInterfacesNamespace>vSharpStudio.common</VmInterfacesNamespace>
-      <OutDirGenVm>bin\Debug\net7.0</OutDirGenVm>
-      <ProtoFileDir>$(SolutionDir)proto</ProtoFileDir>
-      <SharpStudioRelativePath></SharpStudioRelativePath>
-      <ProtoFile>$(ProtoName).proto</ProtoFile>
-      <ProtoDocGen>$(SolutionDir)$(SharpStudioRelativePath)protoc\protoc-gen-doc.exe</ProtoDocGen>
-      <DocGenOutPath>$(SolutionDir)doc</DocGenOutPath>
-      <ProtoDocGenCommandHtml>$(Protobuf_ProtocFullPath) --plugin=protoc-gen-doc=$(ProtoDocGen) --doc_out=$(DocGenOutPath) --doc_opt=html,$(ProtoName).html -I $(ProtoFileDir);$(Protobuf_StandardImportsPath) $(ProtoFile)</ProtoDocGenCommandHtml>
-      <ProtoDocGenCommandMd>$(Protobuf_ProtocFullPath) --plugin=protoc-gen-doc=$(ProtoDocGen) --doc_out=$(DocGenOutPath) --doc_opt=markdown,$(ProtoName).md -I $(ProtoFileDir);$(Protobuf_StandardImportsPath) $(ProtoFile)</ProtoDocGenCommandMd>
-      <ProtoDocGenCommandJson>$(Protobuf_ProtocFullPath) --plugin=protoc-gen-doc=$(ProtoDocGen) --doc_out=$(DocGenOutPath) --doc_opt=json,$(ProtoName).json -I $(ProtoFileDir);$(Protobuf_StandardImportsPath) $(ProtoFile)</ProtoDocGenCommandJson>
-      <ProtoDocGenCommandVm>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -m -p $(ProtoName) -o $(ProjectDir)Generated\Proto$(ProtoName)ViewModels.cs -n $(VmNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVm>
-      <ProtoDocGenCommandVmInterface>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -i -p $(ProtoName) -o $(ProjectDir)Generated\Proto$(ProtoName)ViewModelInterfaces.cs -n $(VmInterfacesNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVmInterface>
-    </PropertyGroup>
-    <Message Importance="high" Text="****************** Start Proto Doc Generation ********************" />
-    <Message Importance="high" Text="**              ProtoFile: $(ProtoFile)" />
-    <Message Importance="high" Text="**           ProtoFileDir: $(ProtoFileDir)" />
-    <Message Importance="high" Text="**            OutDirGenVm: $(OutDirGenVm)" />
-    <Message Importance="high" Text="**                 protoc: $(Protobuf_ProtocFullPath)" />
-    <Message Importance="high" Text="**         protoc-gen-doc: $(ProtoDocGen)" />
-    <Message Importance="high" Text="**          DocGenOutPath: $(DocGenOutPath)" />
-    <Message Importance="high" Text="** ProtoDocGenCommandJson: $(ProtoDocGenCommandJson)" />
-    <Message Importance="high" Text="**   ProtoDocGenCommandVm: $(ProtoDocGenCommandVm)" />
-    <Message Importance="high" Text="** ...nCommandVmInterface: $(ProtoDocGenCommandVmInterface)" />
-    <Message Importance="high" Text="** Generating HTML ..." />
-    <Exec Command="$(ProtoDocGenCommandHtml)" />
-    <Message Importance="high" Text="** Generating MD ..." />
-    <Exec Command="$(ProtoDocGenCommandMd)" />
-    <Message Importance="high" Text="** Generating JSON ..." />
-    <Exec Command="$(ProtoDocGenCommandJson)" />
-    <Message Importance="high" Text="** Generating proto VM ..." />
-    <Exec Command="$(ProtoDocGenCommandVm)" />
-    <Message Importance="high" Text="** Generating proto VM Interfaces ..." />
-    <Exec Command="$(ProtoDocGenCommandVmInterface)" />
-    <Message Importance="high" Text="****************** End Proto Doc Generation **********************" />
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Message Importance="high" Text="PreBuildEvent" />
   </Target>
   <Target Name="CopyPlugin" AfterTargets="PostBuildEvent">
     <Message Text="***** Copy Sample Plugin" Importance="high" />

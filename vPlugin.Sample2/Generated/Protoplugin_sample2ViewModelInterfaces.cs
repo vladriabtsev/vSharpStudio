@@ -5,7 +5,7 @@ using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
 using vSharpStudio.common.ViewModels;
 
-namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:14
+namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:14
 {
     
     public partial interface IDbConnectionStringSettings2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34

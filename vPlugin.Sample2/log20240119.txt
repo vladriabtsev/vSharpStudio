@@ -29,3 +29,111 @@
 2024-01-19 16:02:36.875 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
 2024-01-19 16:02:36.875 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
 2024-01-19 16:02:37.131 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 16:15:57.299 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 16:15:57.459 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 16:15:57.459 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 16:15:57.480 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 16:15:57.480 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 16:15:57.725 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 16:19:21.341 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 16:19:21.481 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 16:19:21.481 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 16:19:21.502 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 16:19:21.503 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 16:19:21.742 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 16:29:26.660 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 16:29:26.807 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 16:29:26.807 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 16:29:26.828 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 16:29:26.828 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 16:29:27.095 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 17:47:54.584 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 17:47:54.734 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 17:47:54.735 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 17:47:54.756 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 17:47:54.756 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 17:47:55.011 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 17:51:07.271 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 17:51:07.442 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 17:51:07.443 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 17:51:07.467 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 17:51:07.467 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 17:51:07.740 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 18:00:41.518 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 18:00:41.669 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 18:00:41.669 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:00:41.688 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 18:00:41.688 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:00:41.936 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 18:00:43.274 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 18:00:43.415 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 18:00:43.416 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:00:43.434 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 18:00:43.434 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:00:43.665 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 18:01:32.396 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 18:01:32.545 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 18:01:32.545 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:01:32.565 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 18:01:32.565 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:01:32.810 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 18:01:44.656 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 18:01:44.807 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 18:01:44.808 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:01:44.827 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 18:01:44.827 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:01:45.071 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 18:01:50.038 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 18:01:50.194 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 18:01:50.194 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:01:50.214 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 18:01:50.214 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:01:50.451 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 18:01:56.847 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 18:01:56.997 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 18:01:56.998 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:01:57.019 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 18:01:57.020 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:01:57.256 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 18:02:02.198 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 18:02:02.338 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 18:02:02.339 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:02:02.359 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 18:02:02.359 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:02:02.600 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 18:06:59.556 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 18:06:59.745 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 18:06:59.745 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:06:59.767 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 18:06:59.767 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:07:00.028 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 18:07:00.864 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 18:07:01.020 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 18:07:01.020 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:07:01.041 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 18:07:01.041 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:07:01.414 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 18:08:28.986 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 18:08:29.178 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 18:08:29.179 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:08:29.200 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 18:08:29.201 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:08:29.452 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 18:08:30.330 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 18:08:30.487 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 18:08:30.487 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:08:30.566 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 18:08:30.566 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:08:30.848 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 18:09:57.954 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 18:09:58.118 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 18:09:58.118 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:09:58.139 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 18:09:58.139 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:09:58.558 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
+2024-01-19 18:10:07.785 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=true
+2024-01-19 18:10:07.928 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_db_connection_string_settings2
+2024-01-19 18:10:07.928 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:10:07.948 -05:00 [INF] Class.partial.cs 31 [.ctor] Message proto_generator_db_access_settings2
+2024-01-19 18:10:07.948 -05:00 [INF] Class.partial.cs 39 [.ctor] Base class from doc 'BaseSettings'
+2024-01-19 18:10:08.190 -05:00 [INF] Program.cs 59 [Main] ***  App Starting IsModel=false
