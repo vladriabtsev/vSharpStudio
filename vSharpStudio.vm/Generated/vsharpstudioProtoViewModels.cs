@@ -7368,12 +7368,12 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         //partial void OnAccuracyChanging(ref uint to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnAccuracyChanged();
         
-        // <summary>
-        // / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
-        // / Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
-        // / If Guid of group types is assigned, then any type of such group of types is acceptable as type
-        // / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
-        // / </summary>
+        ///<summary>
+        /// Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
+        /// Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
+        /// If Guid of group types is assigned, then any type of such group of types is acceptable as type
+        /// If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
+        /// </summary>
         [PropertyOrderAttribute(6)]
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
         public string ObjectGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -7414,9 +7414,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         //partial void OnAccuracyForTimeChanging(ref EnumTimeAccuracyType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnAccuracyForTimeChanged();
         
-        // <summary>
-        // / Guids of selected complex types for data type CATALOGS or DOCUMENTS
-        // / </summary>
+        ///<summary>
+        /// Guids of selected complex types for data type CATALOGS or DOCUMENTS
+        /// </summary>
         [PropertyOrderAttribute(8)]
         public ObservableCollectionWithActions<string> ListObjectGuids // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
@@ -21859,9 +21859,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         //partial void OnIsMarkedForDeletionChanging(ref bool to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnIsMarkedForDeletionChanged();
         
-        // <summary>
-        // / Guid of Catalog type.
-        // / </summary>
+        ///<summary>
+        /// Guid of Catalog type.
+        /// </summary>
         [Category("")]
         [PropertyOrderAttribute(4)]
         [DisplayName("Dimension catalog")]
@@ -23468,9 +23468,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         //partial void OnPropertyDocRefNameChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnPropertyDocRefNameChanged();
         
-        // <summary>
-        // / Guids of selected types of DOCUMENTS which can POST or UNPOST for this register
-        // / </summary>
+        ///<summary>
+        /// Guids of selected types of DOCUMENTS which can POST or UNPOST for this register
+        /// </summary>
         [Browsable(false)]
         public ObservableCollectionWithActions<string> ListDocGuids // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 

@@ -7,9 +7,14 @@ using vSharpStudio.common.ViewModels;
 
 namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:14
 {
+    ///<summary>
+    ///     Represents the caching modes that can be used when creating a new <see cref="SqliteConnection" />.
+    /// </summary>
+    /// <seealso href="http://sqlite.org/sharedcache.html">SQLite Shared-Cache Mode</seealso>
     
     public partial interface IDbConnectionStringSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
+    	// Represents the caching modes that can be used when creating a new <see cref="SqliteConnection" />.
     	string StringSettings { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     

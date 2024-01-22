@@ -2,7 +2,7 @@
   "profiles": {
     "GenFromProto": {
       "commandName": "Project",
-      "commandLineArgs": "-r -m -p vsharpstudio -o D:\\dev\\vSharpStudio.pro\\submodules\\vSharpStudio\\generators\\GenVmFromProto\\..\\..\\vSharpStudio.vm\\Generated\\vsharpstudioProtoViewModels.cs -n vSharpStudio.vm.ViewModels -d D:\\dev\\vSharpStudio.pro\\submodules\\vSharpStudio\\doc\\ -l logs\\log.txt",
+      "commandLineArgs": "-r -m -p plugin_sample -o D:\\dev\\vSharpStudio.pro\\submodules\\vSharpStudio\\generators\\GenVmFromProto\\..\\..\\vPlugin.Sample\\Generated\\plugin_sampleProtoViewModels.cs -n vPlugin.Sample -d D:\\dev\\vSharpStudio.pro\\submodules\\vSharpStudio\\doc\\ -b ConfigObjectVmGenSettings",
       "commandLineArgsBack": "-i -p vsharpstudio -o ..\\..\\..\\..\\..\\vSharpStudio.common\\ModelInterfaces.cs -n vSharpStudio.common -d ..\\..\\..\\..\\..\\doc\\"
     }
   }

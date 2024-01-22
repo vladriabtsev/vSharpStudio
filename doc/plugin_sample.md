@@ -27,12 +27,16 @@
 <a name="proto_plugin_sample-proto_db_connection_string_settings"></a>
 
 ### proto_db_connection_string_settings
+&lt;summary&gt;
+/     Represents the caching modes that can be used when creating a new &lt;see cref=&#34;SqliteConnection&#34; /&gt;.
+/ &lt;/summary&gt;
+/ &lt;seealso href=&#34;http://sqlite.org/sharedcache.html&#34;&gt;SQLite Shared-Cache Mode&lt;/seealso&gt;
 @base BaseSettings
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| string_settings | [string](#string) |  |  |
+| string_settings | [string](#string) |  | Represents the caching modes that can be used when creating a new &lt;see cref=&#34;SqliteConnection&#34; /&gt;. |
 
 
 

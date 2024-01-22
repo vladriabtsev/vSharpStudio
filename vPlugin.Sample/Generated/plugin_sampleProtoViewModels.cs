@@ -34,6 +34,10 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class DbConnectionStringSettingsValidator : ValidatorBase<DbConnectionStringSettings, DbConnectionStringSettingsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
+    ///<summary>
+    ///     Represents the caching modes that can be used when creating a new <see cref="SqliteConnection" />.
+    /// </summary>
+    /// <seealso href="http://sqlite.org/sharedcache.html">SQLite Shared-Cache Mode</seealso>
     public partial class DbConnectionStringSettings : BaseSettings<DbConnectionStringSettings, DbConnectionStringSettingsValidator>, IDbConnectionStringSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
         public override string ToDebugString()
@@ -125,6 +129,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         #endregion Procedures
         #region Properties
         
+        // Represents the caching modes that can be used when creating a new <see cref="SqliteConnection" />.
         public string StringSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._StringSettings; }

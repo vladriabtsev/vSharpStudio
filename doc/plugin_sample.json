@@ -15,7 +15,7 @@
           "name": "proto_db_connection_string_settings",
           "longName": "proto_db_connection_string_settings",
           "fullName": "proto_plugin_sample.proto_db_connection_string_settings",
-          "description": "@base BaseSettings",
+          "description": "\u003csummary\u003e\n/     Represents the caching modes that can be used when creating a new \u003csee cref=\"SqliteConnection\" /\u003e.\n/ \u003c/summary\u003e\n/ \u003cseealso href=\"http://sqlite.org/sharedcache.html\"\u003eSQLite Shared-Cache Mode\u003c/seealso\u003e\n@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -23,7 +23,7 @@
           "fields": [
             {
               "name": "string_settings",
-              "description": "",
+              "description": "Represents the caching modes that can be used when creating a new \u003csee cref=\"SqliteConnection\" /\u003e.",
               "label": "",
               "type": "string",
               "longType": "string",

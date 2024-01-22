@@ -531,20 +531,20 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumRegisterType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
-		// <summary>
-		// / Balance data for selected register dimentions. Balance always contains latest accumulated data. One record per period.
-		// / </summary>
+		///<summary>
+		/// Balance data for selected register dimentions. Balance always contains latest accumulated data. One record per period.
+		/// </summary>
 		[Description("Balance")]
 		BALANCE = 0,
-		// <summary>
-		// / Only turnovers data for selected register periodicity and dimentions. Many records per period.
-		// / </summary>
+		///<summary>
+		/// Only turnovers data for selected register periodicity and dimentions. Many records per period.
+		/// </summary>
 		[Description("Turnover")]
 		TURNOVER = 11,
-		// <summary>
-		// / Balance and turnovers data for selected register periodicity and dimentions. 
-		// / Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period.
-		// / </summary>
+		///<summary>
+		/// Balance and turnovers data for selected register periodicity and dimentions. 
+		/// Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period.
+		/// </summary>
 		[Description("Balance and Turnover")]
 		BALANCE_AND_TURNOVER = 21,
 	}
@@ -922,17 +922,17 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	uint Length { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	bool IsPositive { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	uint Accuracy { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	// <summary>
-    	// / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
-    	// / Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
-    	// / If Guid of group types is assigned, then any type of such group of types is acceptable as type
-    	// / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
-    	// / </summary>
+    	///<summary>
+    	/// Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
+    	/// Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
+    	/// If Guid of group types is assigned, then any type of such group of types is acceptable as type
+    	/// If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
+    	/// </summary>
     	string ObjectGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	EnumTimeAccuracyType AccuracyForTime { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	// <summary>
-    	// / Guids of selected complex types for data type CATALOGS or DOCUMENTS
-    	// / </summary>
+    	///<summary>
+    	/// Guids of selected complex types for data type CATALOGS or DOCUMENTS
+    	/// </summary>
     	IReadOnlyList<string> ListObjectGuids { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:47
     	bool IsNullable { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	EnumOneToRelationType RelationType { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
@@ -1476,9 +1476,9 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	string Description { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	bool IsNew { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	bool IsMarkedForDeletion { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	// <summary>
-    	// / Guid of Catalog type.
-    	// / </summary>
+    	///<summary>
+    	/// Guid of Catalog type.
+    	/// </summary>
     	string DimensionCatalogGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// Protobuf field position
     	// Reserved positions: 1-15
@@ -1530,9 +1530,9 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	string PropertyVersionGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	string PropertyDocRefGuidName { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	string PropertyDocRefName { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	// <summary>
-    	// / Guids of selected types of DOCUMENTS which can POST or UNPOST for this register
-    	// / </summary>
+    	///<summary>
+    	/// Guids of selected types of DOCUMENTS which can POST or UNPOST for this register
+    	/// </summary>
     	IReadOnlyList<string> ListDocGuids { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:47
     	// Guid for document reference property. Auto generated.
     	string PropertyDocRefGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56

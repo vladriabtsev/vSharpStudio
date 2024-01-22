@@ -24,7 +24,6 @@ namespace GenVmFromProto
         }
 
     }
-
     public class ProtoDoc
     {
         public static void CreateDoc(string path)
@@ -226,6 +225,13 @@ namespace GenVmFromProto
                 string s = description;
                 var lines = s.Split('\n');
                 string sepAttr = "";
+                bool isDocComments = false;
+                bool isFirstLine = true;
+                if (lines.Count()>0)
+                {
+                    if (lines[0].Contains("<summary>"))
+                        isDocComments = true;
+                }
                 foreach (var t in lines)
                 {
                     if (t.StartsWith("@attr"))
@@ -272,9 +278,17 @@ namespace GenVmFromProto
                         //    comments.AppendLine("///////////////////////////////////////////////////");
                         //}
                         //comments.Append("/// ");
-                        comments.Append("// ");
+                        comments.Append("//");
+                        if (isDocComments)
+                        {
+                            if (isFirstLine)
+                                comments.Append("/");
+                        }
+                        else
+                            comments.Append(" ");
                         comments.AppendLine(t);
                     }
+                    isFirstLine = false;
                 }
                 //if (comments.Length > 0)
                 //{
