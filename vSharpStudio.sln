@@ -57,6 +57,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UndoFramework", "ext\UndoFramework\UndoFramework.csproj", "{211753FC-8C4D-4F05-AB4B-130FABECF30E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.common", "vSharpStudio.common\vSharpStudio.common.csproj", "{788D7499-BC1E-40F7-9FAA-E05ACC86E227}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E} = {EEAF63A0-C59F-468B-AA1B-58865E84E44E}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xceed.Wpf.Toolkit", "submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj", "{83B37A5C-2FEC-4488-AC57-0CDCE58DB9DF}"
 EndProject

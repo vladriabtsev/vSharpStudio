@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +10,8 @@ namespace GenVmFromProto
 {
     public partial class ModelInterfaces
     {
-        MessageDoc MessageDoc;
-        FieldDoc FieldDoc;
+        MessageDoc? MessageDoc;
+        FieldDoc? FieldDoc;
         readonly FileDescriptor root;
         readonly string nameSpace;
         readonly string protoNameSpace;
@@ -27,6 +28,7 @@ namespace GenVmFromProto
             this.protoNameSpace = protoNS;
             this.messages = messages;
             this.dicParents = dicParents;
+            Debug.Assert(Program.RunOptions != null);
             if (!Program.RunOptions.IsReadonly)
                 Setter = "set; ";
             //var files = JsonDoc.Files;
@@ -49,6 +51,7 @@ namespace GenVmFromProto
         }
         bool IsSkip(FieldDescriptor field)
         {
+            Debug.Assert(MessageDoc != null);
             if (MessageDoc.IsConfigObjectBase)
             {
                 if (field.Name == "guid")

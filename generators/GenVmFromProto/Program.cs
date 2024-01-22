@@ -31,23 +31,24 @@ namespace GenVmFromProto
             [Option('r', "readonly", Required = false, HelpText = "Readonly model interface")]
             public bool IsReadonly { get; set; }
             [Option('o', "output", Required = true, HelpText = "Output file path for generated code")]
-            public string OutputFile { get; set; }
+            public string? OutputFile { get; set; }
             [Option('p', "proto", Required = true, HelpText = "Proto file name")]
-            public string ProtoFileName { get; set; }
+            public string? ProtoFileName { get; set; }
             [Option('n', "namespace", Required = true, HelpText = "Namespace for generated code")]
-            public string Namespace { get; set; }
+            public string? Namespace { get; set; }
             [Option('b', "baseclass", Required = false, HelpText = "Default base class for models (can be overriden by specifying base class in proto file)")]
-            public string BaseclassDefault { get; set; }
+            public string? BaseclassDefault { get; set; }
             [Option('d', "docfolder", Required = true, HelpText = "Json doc folder")]
-            public string JsonDocFolder { get; set; }
+            public string? JsonDocFolder { get; set; }
         }
-        public static Options RunOptions { get; private set; }
+        public static Options? RunOptions { get; private set; }
 
         static void Main(string[] args)
         {
             //    Console.WriteLine($"Hello {subject}!");
             LoggerInit.Init();
             var _logger = Logger.CreateLogger<Program>();
+            Debug.Assert(_logger != null);
 
             Parser.Default.ParseArguments<Options>(args)
             .WithParsed<Options>(o =>
@@ -61,11 +62,12 @@ namespace GenVmFromProto
                     //{
                     //    return s1 + " " + s2;
                     //}));
+                    Debug.Assert(o.ProtoFileName != null);
                     var ncs = o.ProtoFileName.ToNameCs();
                     string reflectionClass = ncs + "Reflection";
                     //Type reflection = typeof(Proto.Config.Connection.ConnMssqlReflection).Assembly.GetType(destNS + "." + reflectionClass);
                     var types = typeof(Proto.Doc.ProtoDocReflection).Assembly.GetTypes();
-                    Type reflection = null;
+                    Type? reflection = null;
                     foreach (var t in types)
                     {
                         if (t.Name == reflectionClass)
@@ -74,11 +76,15 @@ namespace GenVmFromProto
                             break;
                         }
                     }
+                    Debug.Assert(reflection != null);
+                    Debug.Assert(reflection.FullName != null);
                     var protoNS = reflection.FullName.Substring(0, reflection.FullName.LastIndexOf('.'));
                     //Type reflection = typeof(Proto.Config.Connection.ConnMssqlReflection).Assembly.GetType(reflectionClass);
                     var descr = reflection.GetProperty("Descriptor", BindingFlags.Public | BindingFlags.Static);
-                    object value = descr.GetValue(null, null);
-                    FileDescriptor typedValue = (FileDescriptor)value;
+                    Debug.Assert(descr != null);
+                    object? value = descr.GetValue(null, null);
+                    FileDescriptor? typedValue = (FileDescriptor?)value;
+                    Debug.Assert(typedValue != null);
 
                     Dictionary<string, List<MessageDescriptor>> dicParents = new Dictionary<string, List<MessageDescriptor>>();
                     List<MessageDescriptor> messages = CollectMessages(typedValue, dicParents);
@@ -87,9 +93,11 @@ namespace GenVmFromProto
                     string path = o.JsonDocFolder + o.ProtoFileName + ".json";
                     ProtoDoc.CreateDoc(path);
 
-                    string res = null;
+                    Debug.Assert(o.Namespace != null);
+                    string? res = null;
                     if (o.IsModel)
                     {
+                        //Debug.Assert(o.BaseclassDefault != null);
                         NameSpace ns = new NameSpace(typedValue, messages, dicParents, o.Namespace, protoNS, o.BaseclassDefault);
                         res = ns.TransformText();
                     }
@@ -101,16 +109,20 @@ namespace GenVmFromProto
                     else
                         throw new ArgumentException("Expected 'model' or 'interface'");
 
-                    string filedest = o.OutputFile;
-                    if (!File.Exists(filedest))
-                    {
-                        File.CreateText(filedest);
-                    }
-                    using (var fs = File.Open(filedest, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write, FileShare.Write))
-                    {
-                        var bytes = Encoding.UTF8.GetBytes(res);
-                        fs.Write(bytes, 0, bytes.Count());
-                    }
+                    Debug.Assert(o.OutputFile != null);
+
+                    FileUtils.WriteToFile(res, o.OutputFile);
+
+                    //string filedest = o.OutputFile;
+                    //if (!File.Exists(filedest))
+                    //{
+                    //    File.CreateText(filedest);
+                    //}
+                    //using (var fs = File.Open(filedest, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write, FileShare.Write))
+                    //{
+                    //    var bytes = Encoding.UTF8.GetBytes(res);
+                    //    fs.Write(bytes, 0, bytes.Count());
+                    //}
                     System.Diagnostics.Trace.WriteLine("#### FINISHED ####");
                     System.Diagnostics.Debug.WriteLine("#### FINISHED #### DEBUG");
                 }

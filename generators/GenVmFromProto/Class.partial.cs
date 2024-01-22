@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace GenVmFromProto
             string destNS, string protoNS, string defaultBaseClass)
         {
             var _logger = Logger.CreateLogger(this);
+            Debug.Assert(_logger != null);
             this.root = root;
             this.message = message;
             this.dicParents = dicParents;
@@ -110,7 +112,7 @@ namespace GenVmFromProto
         private IReadOnlyList<FieldDescriptor> GetFields()
         {
             var lst = new List<FieldDescriptor>();
-            foreach(var t in message.Fields.InDeclarationOrder())
+            foreach (var t in message.Fields.InDeclarationOrder())
             {
                 //if (this.Doc.IsDefaultBase || this.Doc.IsBaseWithParent || this.Doc.IsGenSettings)
                 //{

@@ -1,0 +1,384 @@
+2024-01-22 09:02:59.661 -05:00 [INF] Program.cs 60 [Main] ***  App Starting IsModel=true
+2024-01-22 09:02:59.812 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_db_connection_string_settings
+2024-01-22 09:02:59.813 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:02:59.832 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugins_group_solution_sub_settings
+2024-01-22 09:02:59.832 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSubSettings'
+2024-01-22 09:02:59.834 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugins_group_solution_settings
+2024-01-22 09:02:59.834 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:02:59.835 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugins_group_project_settings
+2024-01-22 09:02:59.835 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:02:59.836 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_generator_db_schema_settings
+2024-01-22 09:02:59.836 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:02:59.837 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_generator_db_schema_node_settings
+2024-01-22 09:02:59.837 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:02:59.838 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_generator_db_access_settings
+2024-01-22 09:02:59.838 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:02:59.839 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_generator_db_access_node_settings
+2024-01-22 09:02:59.839 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:03:00.193 -05:00 [INF] Program.cs 60 [Main] ***  App Starting IsModel=false
+2024-01-22 09:03:00.593 -05:00 [INF] Program.cs 60 [Main] ***  App Starting IsModel=true
+2024-01-22 09:03:00.749 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_db_connection_string_settings2
+2024-01-22 09:03:00.750 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:03:00.771 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_generator_db_access_settings2
+2024-01-22 09:03:00.771 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:03:01.043 -05:00 [INF] Program.cs 60 [Main] ***  App Starting IsModel=false
+2024-01-22 09:03:01.486 -05:00 [INF] Program.cs 60 [Main] ***  App Starting IsModel=true
+2024-01-22 09:03:01.793 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_user_settings
+2024-01-22 09:03:01.794 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:03:01.814 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_user_settings_opened_config
+2024-01-22 09:03:01.814 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:03:01.817 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_plugins
+2024-01-22 09:03:01.817 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:03:01.818 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin
+2024-01-22 09:03:01.818 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:03:01.820 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_generator
+2024-01-22 09:03:01.820 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:03:01.821 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_settings_config
+2024-01-22 09:03:01.821 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmEditable'
+2024-01-22 09:03:01.822 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_config_short_history
+2024-01-22 09:03:01.822 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmEditable'
+2024-01-22 09:03:01.823 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_base_config_links
+2024-01-22 09:03:01.823 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:03:01.824 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_base_config_link
+2024-01-22 09:03:01.825 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:03:01.826 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_config
+2024-01-22 09:03:01.826 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.829 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_app_db_settings
+2024-01-22 09:03:01.829 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatable'
+2024-01-22 09:03:01.831 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_generator_solution_settings
+2024-01-22 09:03:01.831 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:03:01.831 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_generator_project_settings
+2024-01-22 09:03:01.831 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:03:01.834 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_app_solutions
+2024-01-22 09:03:01.834 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:03:01.835 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_app_solution
+2024-01-22 09:03:01.836 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:03:01.838 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_app_project
+2024-01-22 09:03:01.838 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:03:01.840 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_generator_node_settings
+2024-01-22 09:03:01.840 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectCommonBase'
+2024-01-22 09:03:01.841 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_group_model_extentions
+2024-01-22 09:03:01.841 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:03:01.841 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_generator_settings
+2024-01-22 09:03:01.842 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:03:01.843 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_app_project_generator
+2024-01-22 09:03:01.843 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:03:01.846 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_generator_node_default_settings
+2024-01-22 09:03:01.846 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:03:01.847 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_model
+2024-01-22 09:03:01.847 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.855 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_data_type
+2024-01-22 09:03:01.855 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:03:01.857 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_common
+2024-01-22 09:03:01.857 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.860 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_enumerator_sequence
+2024-01-22 09:03:01.860 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.863 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_enumerator_sequences
+2024-01-22 09:03:01.863 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.864 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_role
+2024-01-22 09:03:01.864 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.867 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_role_constant_access
+2024-01-22 09:03:01.867 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:03:01.868 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_role_property_access
+2024-01-22 09:03:01.868 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:03:01.869 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_role_catalog_access
+2024-01-22 09:03:01.869 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:03:01.869 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_role_detail_access
+2024-01-22 09:03:01.869 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:03:01.870 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_role_document_access
+2024-01-22 09:03:01.870 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:03:01.871 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_roles
+2024-01-22 09:03:01.871 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.873 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_main_view_form
+2024-01-22 09:03:01.873 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.874 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_main_view_forms
+2024-01-22 09:03:01.874 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.876 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_properties
+2024-01-22 09:03:01.876 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.879 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_property
+2024-01-22 09:03:01.879 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.885 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_details
+2024-01-22 09:03:01.885 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.888 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_detail
+2024-01-22 09:03:01.888 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.894 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_constant_groups
+2024-01-22 09:03:01.894 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.896 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_constants
+2024-01-22 09:03:01.896 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.899 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_constant
+2024-01-22 09:03:01.899 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.909 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_enumerations
+2024-01-22 09:03:01.909 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.912 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_enumeration
+2024-01-22 09:03:01.912 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.915 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_enumeration_pair
+2024-01-22 09:03:01.915 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.917 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_catalog_folder
+2024-01-22 09:03:01.917 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.923 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_catalog_code_property_settings
+2024-01-22 09:03:01.923 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:03:01.925 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_catalog
+2024-01-22 09:03:01.925 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.933 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_catalogs
+2024-01-22 09:03:01.933 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.937 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_registers
+2024-01-22 09:03:01.937 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.941 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_register_dimension
+2024-01-22 09:03:01.942 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.944 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_register_dimensions
+2024-01-22 09:03:01.944 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.946 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_register
+2024-01-22 09:03:01.946 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.954 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_register_doc_to_reg
+2024-01-22 09:03:01.954 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'Object'
+2024-01-22 09:03:01.955 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_register_reg_prop_to_doc_prop
+2024-01-22 09:03:01.955 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'Object'
+2024-01-22 09:03:01.955 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_documents
+2024-01-22 09:03:01.955 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.960 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_document_number_property_settings
+2024-01-22 09:03:01.960 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:03:01.961 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_document
+2024-01-22 09:03:01.961 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.969 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_documents
+2024-01-22 09:03:01.969 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.971 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_many_to_many_group_relations
+2024-01-22 09:03:01.972 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.973 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_many_to_many_catalogs_relation
+2024-01-22 09:03:01.973 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.980 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_many_to_many_group_catalogs_relations
+2024-01-22 09:03:01.980 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.982 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_many_to_many_documents_relation
+2024-01-22 09:03:01.982 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.986 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_many_to_many_group_documents_relations
+2024-01-22 09:03:01.986 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.988 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_journals
+2024-01-22 09:03:01.988 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.991 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_journal
+2024-01-22 09:03:01.991 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.994 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_doc_in_journal
+2024-01-22 09:03:01.994 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:03:01.995 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_forms
+2024-01-22 09:03:01.995 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:01.997 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form
+2024-01-22 09:03:01.997 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:02.000 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_grid_system
+2024-01-22 09:03:02.000 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:02.003 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_grid_system_row
+2024-01-22 09:03:02.003 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:02.005 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_grid_system_column
+2024-01-22 09:03:02.005 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:02.008 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_auto_layout_block
+2024-01-22 09:03:02.008 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:02.010 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_auto_layout_sub_block
+2024-01-22 09:03:02.010 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:02.014 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_field
+2024-01-22 09:03:02.014 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:02.015 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_tab_control_tab
+2024-01-22 09:03:02.015 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:02.017 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_tab_control
+2024-01-22 09:03:02.018 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:02.021 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_data_grid
+2024-01-22 09:03:02.021 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:02.023 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_tree
+2024-01-22 09:03:02.023 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:02.024 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_reports
+2024-01-22 09:03:02.025 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:02.026 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_report
+2024-01-22 09:03:02.026 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:03:02.028 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_model_row
+2024-01-22 09:03:02.028 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmBindable'
+2024-01-22 09:03:02.029 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_property_data_generator
+2024-01-22 09:03:02.029 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:03:02.324 -05:00 [INF] Program.cs 60 [Main] ***  App Starting IsModel=false
+2024-01-22 09:10:33.830 -05:00 [INF] Program.cs 60 [Main] ***  App Starting IsModel=true
+2024-01-22 09:10:34.070 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_db_connection_string_settings
+2024-01-22 09:10:34.070 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:34.098 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugins_group_solution_sub_settings
+2024-01-22 09:10:34.098 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSubSettings'
+2024-01-22 09:10:34.099 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugins_group_solution_settings
+2024-01-22 09:10:34.099 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:34.100 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugins_group_project_settings
+2024-01-22 09:10:34.100 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:34.101 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_generator_db_schema_settings
+2024-01-22 09:10:34.101 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:34.102 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_generator_db_schema_node_settings
+2024-01-22 09:10:34.102 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:34.103 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_generator_db_access_settings
+2024-01-22 09:10:34.103 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:34.104 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_generator_db_access_node_settings
+2024-01-22 09:10:34.104 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:34.782 -05:00 [INF] Program.cs 60 [Main] ***  App Starting IsModel=false
+2024-01-22 09:10:35.496 -05:00 [INF] Program.cs 60 [Main] ***  App Starting IsModel=true
+2024-01-22 09:10:35.706 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_db_connection_string_settings2
+2024-01-22 09:10:35.707 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:35.731 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_generator_db_access_settings2
+2024-01-22 09:10:35.731 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:36.184 -05:00 [INF] Program.cs 60 [Main] ***  App Starting IsModel=false
+2024-01-22 09:10:36.784 -05:00 [INF] Program.cs 60 [Main] ***  App Starting IsModel=true
+2024-01-22 09:10:37.191 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_user_settings
+2024-01-22 09:10:37.191 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:10:37.238 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_user_settings_opened_config
+2024-01-22 09:10:37.239 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:10:37.241 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_plugins
+2024-01-22 09:10:37.241 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:10:37.242 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin
+2024-01-22 09:10:37.242 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:10:37.243 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_generator
+2024-01-22 09:10:37.243 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:10:37.244 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_settings_config
+2024-01-22 09:10:37.244 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmEditable'
+2024-01-22 09:10:37.248 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_config_short_history
+2024-01-22 09:10:37.248 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmEditable'
+2024-01-22 09:10:37.250 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_base_config_links
+2024-01-22 09:10:37.250 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:10:37.253 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_base_config_link
+2024-01-22 09:10:37.253 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:10:37.254 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_config
+2024-01-22 09:10:37.254 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.269 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_app_db_settings
+2024-01-22 09:10:37.269 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatable'
+2024-01-22 09:10:37.271 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_generator_solution_settings
+2024-01-22 09:10:37.271 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:37.271 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_generator_project_settings
+2024-01-22 09:10:37.271 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:37.274 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_app_solutions
+2024-01-22 09:10:37.274 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:10:37.276 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_app_solution
+2024-01-22 09:10:37.276 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:10:37.280 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_app_project
+2024-01-22 09:10:37.280 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:10:37.282 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_generator_node_settings
+2024-01-22 09:10:37.283 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectCommonBase'
+2024-01-22 09:10:37.284 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_group_model_extentions
+2024-01-22 09:10:37.284 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:37.284 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_generator_settings
+2024-01-22 09:10:37.284 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:37.285 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_app_project_generator
+2024-01-22 09:10:37.285 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'ConfigObjectVmBase'
+2024-01-22 09:10:37.288 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_plugin_generator_node_default_settings
+2024-01-22 09:10:37.288 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:37.289 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_model
+2024-01-22 09:10:37.289 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.298 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_data_type
+2024-01-22 09:10:37.298 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:37.300 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_common
+2024-01-22 09:10:37.300 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.308 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_enumerator_sequence
+2024-01-22 09:10:37.308 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.310 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_enumerator_sequences
+2024-01-22 09:10:37.310 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.312 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_role
+2024-01-22 09:10:37.312 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.315 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_role_constant_access
+2024-01-22 09:10:37.315 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:10:37.317 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_role_property_access
+2024-01-22 09:10:37.317 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:10:37.318 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_role_catalog_access
+2024-01-22 09:10:37.318 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:10:37.319 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_role_detail_access
+2024-01-22 09:10:37.319 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:10:37.320 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_role_document_access
+2024-01-22 09:10:37.320 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:10:37.321 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_roles
+2024-01-22 09:10:37.321 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.324 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_main_view_form
+2024-01-22 09:10:37.324 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.326 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_main_view_forms
+2024-01-22 09:10:37.326 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.327 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_properties
+2024-01-22 09:10:37.327 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.331 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_property
+2024-01-22 09:10:37.331 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.337 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_details
+2024-01-22 09:10:37.337 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.339 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_detail
+2024-01-22 09:10:37.339 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.347 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_constant_groups
+2024-01-22 09:10:37.347 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.349 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_constants
+2024-01-22 09:10:37.349 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.352 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_constant
+2024-01-22 09:10:37.352 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.367 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_enumerations
+2024-01-22 09:10:37.367 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.371 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_enumeration
+2024-01-22 09:10:37.371 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.373 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_enumeration_pair
+2024-01-22 09:10:37.373 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.375 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_catalog_folder
+2024-01-22 09:10:37.375 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.383 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_catalog_code_property_settings
+2024-01-22 09:10:37.383 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:37.384 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_catalog
+2024-01-22 09:10:37.384 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.393 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_catalogs
+2024-01-22 09:10:37.393 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.397 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_registers
+2024-01-22 09:10:37.397 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.401 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_register_dimension
+2024-01-22 09:10:37.401 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.403 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_register_dimensions
+2024-01-22 09:10:37.403 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.405 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_register
+2024-01-22 09:10:37.405 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.413 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_register_doc_to_reg
+2024-01-22 09:10:37.413 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'Object'
+2024-01-22 09:10:37.431 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_register_reg_prop_to_doc_prop
+2024-01-22 09:10:37.431 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'Object'
+2024-01-22 09:10:37.432 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_documents
+2024-01-22 09:10:37.432 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.436 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_document_number_property_settings
+2024-01-22 09:10:37.436 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:37.438 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_document
+2024-01-22 09:10:37.438 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.445 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_documents
+2024-01-22 09:10:37.445 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.448 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_many_to_many_group_relations
+2024-01-22 09:10:37.448 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.450 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_many_to_many_catalogs_relation
+2024-01-22 09:10:37.450 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.453 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_many_to_many_group_catalogs_relations
+2024-01-22 09:10:37.453 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.455 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_many_to_many_documents_relation
+2024-01-22 09:10:37.455 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.458 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_many_to_many_group_documents_relations
+2024-01-22 09:10:37.458 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.460 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_journals
+2024-01-22 09:10:37.460 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.462 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_journal
+2024-01-22 09:10:37.462 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.470 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_doc_in_journal
+2024-01-22 09:10:37.470 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmValidatableWithSeverity'
+2024-01-22 09:10:37.471 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_forms
+2024-01-22 09:10:37.471 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.473 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form
+2024-01-22 09:10:37.473 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.476 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_grid_system
+2024-01-22 09:10:37.476 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.487 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_grid_system_row
+2024-01-22 09:10:37.488 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.489 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_grid_system_column
+2024-01-22 09:10:37.490 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.503 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_auto_layout_block
+2024-01-22 09:10:37.503 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.506 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_auto_layout_sub_block
+2024-01-22 09:10:37.506 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.516 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_field
+2024-01-22 09:10:37.516 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.518 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_tab_control_tab
+2024-01-22 09:10:37.518 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.520 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_tab_control
+2024-01-22 09:10:37.520 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.524 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_data_grid
+2024-01-22 09:10:37.524 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.525 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_form_tree
+2024-01-22 09:10:37.526 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.534 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_group_list_reports
+2024-01-22 09:10:37.534 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.535 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_report
+2024-01-22 09:10:37.535 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc ''
+2024-01-22 09:10:37.537 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_model_row
+2024-01-22 09:10:37.537 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'VmBindable'
+2024-01-22 09:10:37.538 -05:00 [INF] Class.partial.cs 33 [.ctor] Message proto_property_data_generator
+2024-01-22 09:10:37.538 -05:00 [INF] Class.partial.cs 41 [.ctor] Base class from doc 'BaseSettings'
+2024-01-22 09:10:37.962 -05:00 [INF] Program.cs 60 [Main] ***  App Starting IsModel=false

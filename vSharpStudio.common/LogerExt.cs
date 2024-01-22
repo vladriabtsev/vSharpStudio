@@ -160,7 +160,7 @@ namespace vSharpStudio.common
         }
         internal static StringBuilder GetDebugText(string? text, string file, string member, int line, int maxStackDeep = -1)
         {
-            int stackLength = 3;
+            //int stackLength = 3;
             int memberLength = 30;
             int lineLength = 4; // 4
             var ext = "...";

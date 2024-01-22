@@ -9,7 +9,7 @@ using Proto.Doc;
 
 namespace GenVmFromProto
 {
-    public class MyDictionary<TKey, TValue> : Dictionary<TKey, TValue>
+    public class MyDictionary<TKey, TValue> : Dictionary<TKey, TValue> where TKey : notnull
     {
         public new TValue this[TKey key]
         {
@@ -67,7 +67,7 @@ namespace GenVmFromProto
                 Messages[t.Name] = new MessageDoc(t);
             }
         }
-        public Proto.Doc.file_doc file;
+        public Proto.Doc.file_doc? file;
         public MyDictionary<string, EnumDoc> Enums = new MyDictionary<string, EnumDoc>();
         public MyDictionary<string, MessageDoc> Messages = new MyDictionary<string, MessageDoc>();
     }
@@ -87,8 +87,8 @@ namespace GenVmFromProto
 
         }
         public Proto.Doc.enums enums;
-        public string Attributes = null;
-        public string Comments = null;
+        public string? Attributes = null;
+        public string? Comments = null;
         public MyDictionary<string, ValueDoc> Values = new MyDictionary<string, ValueDoc>();
     }
     public class ValueDoc
@@ -100,8 +100,8 @@ namespace GenVmFromProto
             this.Comments = MessageDoc.GetComments(value.Name, value.Description, out this.Attributes, out base0, out interfaces);
         }
         public Proto.Doc.value value;
-        public string Attributes = null;
-        public string Comments = null;
+        public string? Attributes = null;
+        public string? Comments = null;
     }
     public class MessageDoc
     {
@@ -299,10 +299,10 @@ namespace GenVmFromProto
         public bool IsISortingValue = false;
         public bool IsICanAddNode = false;
         public bool IsValidatableBase = false;
-        public string BaseClass = null;
-        public string Interfaces = null;
-        public string Attributes = null;
-        public string Comments = null;
+        public string? BaseClass = null;
+        public string? Interfaces = null;
+        public string? Attributes = null;
+        public string? Comments = null;
         public MyDictionary<string, FieldDoc> Fields = new MyDictionary<string, FieldDoc>();
     }
     public class FieldDoc
@@ -316,7 +316,7 @@ namespace GenVmFromProto
                 throw new Exception("Base class name is unexpected for field:" + field.Name);
         }
         public Proto.Doc.field field;
-        public string Attributes = null;
-        public string Comments = null;
+        public string? Attributes = null;
+        public string? Comments = null;
     }
 }
