@@ -8,6 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
+using CommunityToolkit.Diagnostics;
 using Google.Protobuf.Reflection;
 using Microsoft.Extensions.Logging;
 using Proto.Doc;
@@ -36,20 +37,18 @@ namespace GenVmFromProto
             public string? ProtoFileName { get; set; }
             [Option('n', "namespace", Required = true, HelpText = "Namespace for generated code")]
             public string? Namespace { get; set; }
-            [Option('b', "baseclass", Required = false, HelpText = "Default base class for models (can be overriden by specifying base class in proto file)")]
+            [Option('b', "baseclass", HelpText = "Default base class for models (can be overriden by specifying base class in proto file)")]
             public string? BaseclassDefault { get; set; }
             [Option('d', "docfolder", Required = true, HelpText = "Json doc folder")]
             public string? JsonDocFolder { get; set; }
+            [Option('l', "log file", HelpText = "Log file name with or without path")]
+            public string? LogFilePath { get; set; }
         }
         public static Options? RunOptions { get; private set; }
 
         static void Main(string[] args)
         {
             //    Console.WriteLine($"Hello {subject}!");
-            LoggerInit.Init();
-            var _logger = Logger.CreateLogger<Program>();
-            Debug.Assert(_logger != null);
-
             Parser.Default.ParseArguments<Options>(args)
             .WithParsed<Options>(o =>
             {
@@ -57,6 +56,26 @@ namespace GenVmFromProto
                 try
                 {
                     RunOptions = o;
+                    string? logFilePath = null;
+                    if (o.LogFilePath != null)
+                    {
+                        var rootPath = Path.GetPathRoot(o.LogFilePath);
+                        var dir = Path.GetDirectoryName(o.LogFilePath);
+                        if (rootPath != "" && dir != "" && !Directory.Exists(dir))
+                        {
+                            Console.WriteLine($"ERROR: Log directory '{o.LogFilePath}' is not exists.");
+                            return;
+                        }
+                        var fileName = Path.GetFileNameWithoutExtension(o.LogFilePath);
+                        if (string.IsNullOrWhiteSpace(fileName)) fileName = "log";
+                        var fileExt = Path.GetExtension(o.LogFilePath);
+                        if (string.IsNullOrWhiteSpace(fileExt)) fileExt = ".txt";
+                        logFilePath = Path.Combine(new string[] { rootPath ?? "", dir, fileName + fileExt });
+                    }
+                    LoggerInit.Init(logFilePath);
+                    var _logger = Logger.CreateLogger<Program>();
+                    Debug.Assert(_logger != null);
+
                     _logger.LogInformation("***  App Starting IsModel={1}".CallerInfo(), o.IsModel);
                     //_logger.LogInformation("***  App Starting {@Args}".CallerInfo(), args.Aggregate((s1, s2) =>
                     //{

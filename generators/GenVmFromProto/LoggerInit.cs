@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Extensions.Logging;
+using CommunityToolkit.Diagnostics;
 
 namespace GenVmFromProto
 {
     public static class LoggerInit
     {
-        public static void Init()
+        public static void Init(string? logFilePath)
         {
             if (Logger.LogerProvider != null)
                 return;
@@ -20,11 +22,20 @@ namespace GenVmFromProto
             //var providers = new LoggerProviderCollection();
             Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
 
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Verbose()
-                .WriteTo.File("log.txt", rollingInterval: Serilog.RollingInterval.Day)
-                // .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
-                .CreateLogger();
+            if (logFilePath != null)
+            {
+                Log.Logger = new LoggerConfiguration()
+                    .WriteTo.File(logFilePath, Serilog.Events.LogEventLevel.Verbose, rollingInterval: Serilog.RollingInterval.Day)
+                    .WriteTo.Debug(Serilog.Events.LogEventLevel.Warning)
+                    .CreateLogger();
+            }
+            else
+            {
+                Log.Logger = new LoggerConfiguration()
+                    .MinimumLevel.Warning()
+                    .WriteTo.Debug()
+                    .CreateLogger();
+            }
             //var services = new ServiceCollection();
             //services.AddSingleton(providers);
             //services.AddSingleton<ILoggerFactory>(sc =>

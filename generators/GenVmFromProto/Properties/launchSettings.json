@@ -2,7 +2,7 @@
   "profiles": {
     "GenFromProto": {
       "commandName": "Project",
-      "commandLineArgs": "-r -m -p vsharpstudio -o D:\\dev\\vSharpStudio.pro\\submodules\\vSharpStudio\\generators\\GenVmFromProto\\..\\..\\vSharpStudio.vm\\Generated\\vsharpstudioProtoViewModels.cs -n vSharpStudio.vm.ViewModels -d D:\\dev\\vSharpStudio.pro\\submodules\\vSharpStudio\\doc\\",
+      "commandLineArgs": "-r -m -p vsharpstudio -o D:\\dev\\vSharpStudio.pro\\submodules\\vSharpStudio\\generators\\GenVmFromProto\\..\\..\\vSharpStudio.vm\\Generated\\vsharpstudioProtoViewModels.cs -n vSharpStudio.vm.ViewModels -d D:\\dev\\vSharpStudio.pro\\submodules\\vSharpStudio\\doc\\ -l logs\\log.txt",
       "commandLineArgsBack": "-i -p vsharpstudio -o ..\\..\\..\\..\\..\\vSharpStudio.common\\ModelInterfaces.cs -n vSharpStudio.common -d ..\\..\\..\\..\\..\\doc\\"
     }
   }
