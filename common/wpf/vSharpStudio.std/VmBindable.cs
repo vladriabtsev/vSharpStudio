@@ -250,24 +250,24 @@ namespace ViewModelBase
 
         #endregion
 
-        public void CopyDiffToObject(object destination, string[]? exclProps = null, Type? interfaceSourceType = null)
+        public static void CopyDiff(object source, object destination, string[]? exclProps = null, Type? interfaceSourceType = null)
         {
-            PropertyInfo[] pdlst;
-            pdlst = destination.GetType().GetProperties();
-            Dictionary<string, PropertyInfo> ddic = new Dictionary<string, PropertyInfo>();
-            foreach (PropertyInfo p in pdlst)
-                ddic[p.Name] = p;
-
-            PropertyInfo[] plst;
+            PropertyInfo[] destinationlst;
+            destinationlst = destination.GetType().GetProperties();
+            PropertyInfo[] sourcelst;
             if (interfaceSourceType == null)
             {
-                plst = this.GetType().GetProperties();
+                sourcelst = source.GetType().GetProperties();
             }
             else
             {
-                plst = interfaceSourceType.GetProperties();
+                sourcelst = interfaceSourceType.GetProperties();
             }
-            foreach (PropertyInfo p in plst)
+
+            Dictionary<string, PropertyInfo> ddic = new Dictionary<string, PropertyInfo>();
+            foreach (PropertyInfo p in destinationlst)
+                ddic[p.Name] = p;
+            foreach (PropertyInfo p in sourcelst)
             {
                 if (exclProps != null)
                 {
@@ -288,7 +288,7 @@ namespace ViewModelBase
                 var dp = ddic[p.Name];
                 object? to = dp.GetValue(destination, null);
                 var toType = dp.PropertyType;
-                object? from = p.GetValue(this, null);
+                object? from = p.GetValue(source, null);
                 var fromType = p.PropertyType;
                 switch (fromType.Name)
                 {
@@ -357,6 +357,7 @@ namespace ViewModelBase
                 }
             }
         }
+
         // Copy all properties except entity Id
         //public virtual void Clone(RowSelectAbstract from)
         //{
