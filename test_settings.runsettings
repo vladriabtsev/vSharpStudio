@@ -3,7 +3,6 @@
   <!-- MSTest adapter -->
   <MSTest>
     <Parallelize>
-      <!-- 0 was working, but not working now, why ?? -->
       <Workers>1</Workers>
       <Scope>ClassLevel</Scope>
     </Parallelize>
