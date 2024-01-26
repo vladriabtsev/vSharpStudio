@@ -1173,17 +1173,17 @@ namespace vSharpStudio.vm.ViewModels
                 if (node is IDetail t)
                 {
                     var gt = t.ParentGroupListDetailsI;
-                    return $"t{gt.IndexOf(t).ToString()}{res}";
+                    return $"t{t.ShortId.ToString()}{res}";
                 }
                 else if (node is ICatalog c)
                 {
                     var gc = c.ParentGroupListCatalogsI;
-                    return $"c{gc.IndexOf(c).ToString()}{res}";
+                    return $"c{c.ShortId.ToString()}{res}";
                 }
                 else if (node is IDocument d)
                 {
                     var gd = d.ParentGroupListDocumentsI;
-                    return $"d{gd.IndexOf(d).ToString()}{res}";
+                    return $"d{d.ShortId.ToString()}{res}";
                 }
                 return res;
             }
