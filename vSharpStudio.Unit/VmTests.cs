@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using ApplicationLogging;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Debug;
@@ -44,7 +45,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Editable011CanCancelDifferentLevelSimpleProperty()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             cfg.Name = "test1";
             cfg.GroupAppSolutions.Name = "kuku1";
@@ -76,7 +77,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Editable013CanCancelSecondLevelSimpleProperty()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             Catalog cat_vm = cfg.Model.GroupCatalogs.AddCatalog("test1");
             cat_vm.BeginEdit();
@@ -88,7 +89,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Editable014CanCancelSecondLevelCollection()
         {
-            var mvm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             mvm.BtnNewConfig.Execute();
             mvm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
@@ -110,7 +111,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Editable021CanCancelCatalogPropertiy()
         {
-            var mvm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
             mvm.BtnNewConfig.Execute();
 
@@ -139,7 +140,7 @@ namespace vSharpStudio.Unit
         public void Validation001_ValidationCollectionEmptyAfterInit()
         {
             ConfigValidator.Reset();
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             Assert.IsTrue(cfg.ValidationCollection != null);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
@@ -153,7 +154,7 @@ namespace vSharpStudio.Unit
 
             ConfigValidator.Reset();
             CatalogValidator.Reset();
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             //cfg.SolutionPath = @"..\..\..\..\";
 
@@ -172,7 +173,7 @@ namespace vSharpStudio.Unit
 
             cfg.Validate();
 
-            await cfg.ValidateSubTreeFromNodeAsync(c, null, token, _logger);
+            await cfg.ValidateSubTreeFromNodeAsync(c, null, token);
 
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
             Assert.IsTrue(c.ValidationCollection.Count == 4);
@@ -219,7 +220,7 @@ namespace vSharpStudio.Unit
 
             ConfigValidator.Reset();
             CatalogValidator.Reset();
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             cfg.CurrentCfgFolderPath = @".\";
             //cfg.SolutionPath = @"..\..\..\..\";
@@ -282,7 +283,7 @@ namespace vSharpStudio.Unit
             var token = cancellation.Token;
 
             ConfigValidator.Reset();
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             //cfg.SolutionPath = @"..\..\..\..\";
 
@@ -329,7 +330,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Property001_Position()
         {
-            var mvm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
             mvm.BtnNewConfig.Execute();
 
@@ -354,7 +355,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Register001_Property_Position()
         {
-            var mvm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
             mvm.BtnNewConfig.Execute();
 
@@ -402,7 +403,7 @@ namespace vSharpStudio.Unit
             var cancellation = new CancellationTokenSource();
             var token = cancellation.Token;
 
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
 
             var cfg = vm.Config;

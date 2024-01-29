@@ -12,20 +12,24 @@ using Microsoft.Extensions.Logging;
 using vSharpStudio.common.DiffModel;
 using System.Diagnostics;
 using vSharpStudio.common;
+using vSharpStudio.ViewModels;
+using ApplicationLogging;
 
 namespace Renamer
 {
     public class CodeAnalysisCSharp
     {
-        public static async Task RenameAsync(ILogger _logger, Solution solution, Document document, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
+        private static ILogger _logger { get { if (__logger == null) __logger = Logger.CreateLogger<CodeAnalysisCSharp>(); return __logger; } }
+        private static ILogger? __logger = null;
+        public static async Task RenameAsync(Solution solution, Document document, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("List renames:".FilePos());
+            _logger.Information("List renames:");
             foreach (var tr in lstRenames)
             {
-                _logger.LogInformation("   Class: {0}".FilePos(), tr.ClassName);
+                _logger.Information("   Class: {0}", new object?[] { tr.ClassName });
                 foreach (var tp in tr.ListRenamedProperties)
                 {
-                    _logger.LogInformation("      Property: {0} -> {1}".FilePos(), tp.PropName, tp.PropNameNew);
+                    _logger.Information("      Property: {PropName} -> {PropNameNew}", new object?[] { tp.PropName, tp.PropNameNew });
                 }
             }
 #if DEBUG
@@ -89,7 +93,7 @@ namespace Renamer
                                 {
                                     if (tp.PropName == p.Identifier.Text)
                                     {
-                                        _logger.LogInformation("Rename Property: {0} -> {1} Class: {2}".FilePos(), tp.PropName, tp.PropNameNew, tr.ClassName);
+                                        _logger.Information("Rename Property: {PropName} -> {PropNameNew} Class: {ClassName}", new object?[] { tp.PropName, tp.PropNameNew, tr.ClassName });
                                         var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
                                         Debug.Assert(semanticModel != null);
                                         var propSymbolOpt = semanticModel.GetDeclaredSymbol(c) as IPropertySymbol;
@@ -100,7 +104,7 @@ namespace Renamer
                                 // rename classes
                                 if (tr.ClassName != tr.ClassNameNew)
                                 {
-                                    _logger.LogInformation("Rename Class: {0} -> {1}".FilePos(), tr.ClassName, tr.ClassNameNew);
+                                    _logger.Information("Rename Class: {ClassName} -> {ClassNameNew}", new object?[] { tr.ClassName, tr.ClassNameNew });
                                     var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
                                     Debug.Assert(semanticModel != null);
                                     var propSymbolOpt = semanticModel.GetDeclaredSymbol(c) as INamedTypeSymbol;

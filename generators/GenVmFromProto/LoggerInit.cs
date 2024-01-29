@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Extensions.Logging;
 using CommunityToolkit.Diagnostics;
+using ApplicationLogging;
 
 namespace GenVmFromProto
 {
@@ -15,7 +16,7 @@ namespace GenVmFromProto
     {
         public static void Init(string? logFilePath)
         {
-            if (Logger.LogerProvider != null)
+            if (Logger.LoggerProvider != null)
                 return;
             //if (Logger.ServiceProvider != null)
             //    return;
@@ -53,7 +54,7 @@ namespace GenVmFromProto
             ////var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
             //Logger.ServiceProvider = serviceProvider;
 
-            Logger.LogerProvider = new SerilogLoggerProvider(Log.Logger);
+            Logger.LoggerProvider = new SerilogLoggerProvider(Log.Logger);
         }
     }
 }

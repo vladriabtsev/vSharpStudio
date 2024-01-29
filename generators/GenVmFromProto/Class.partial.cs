@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.Reflection;
+﻿using ApplicationLogging;
+using Google.Protobuf.Reflection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;

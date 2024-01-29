@@ -10,12 +10,15 @@ using Renamer;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using Microsoft.CodeAnalysis;
+using ApplicationLogging;
 
 namespace vSharpStudio.ViewModels
 {
     public class CompileUtils
     {
-        public static async Task CompileAsync(ILogger? _logger, string solutionPath, CancellationToken cancellationToken)
+        private static ILogger _logger { get { if (__logger == null) __logger = Logger.CreateLogger<CompileUtils>(); return __logger; } }
+        private static ILogger? __logger = null;
+        public static async Task CompileAsync(string solutionPath, CancellationToken cancellationToken)
         {
             //var lstBuilds = Microsoft.Build.Locator.MSBuildLocator.QueryVisualStudioInstances().ToList();
             //var build = lstBuilds[0];
@@ -32,7 +35,7 @@ namespace vSharpStudio.ViewModels
             //https://gist.github.com/DustinCampbell/32cd69d04ea1c08a16ae5c4cd21dd3a3
             //using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
             {
-                _logger?.LogInformation("Compiling solution {0}".FilePos(), solutionPath);
+                _logger.Information("Compiling solution {0}", new object?[] { solutionPath });
                 Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync(solutionPath);
                 if (workspace.Diagnostics.Count > 0)
                 {
@@ -53,7 +56,7 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
-        public static async Task RenameAsync(ILogger _logger, string solutionPath, string projectPath, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
+        public static async Task RenameAsync(string solutionPath, string projectPath, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
         {
             using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
             {
@@ -84,7 +87,7 @@ namespace vSharpStudio.ViewModels
                             {
                                 if (Path.GetExtension(document.FilePath) == "cs")
                                 {
-                                    await CodeAnalysisCSharp.RenameAsync(_logger, solution, document, lstRenames, cancellationToken);
+                                    await CodeAnalysisCSharp.RenameAsync(solution, document, lstRenames, cancellationToken);
                                 }
                                 else if (Path.GetExtension(document.FilePath) == "vb")
                                 {

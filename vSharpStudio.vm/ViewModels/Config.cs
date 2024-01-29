@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ApplicationLogging;
 using FluentValidation;
 using Google.Protobuf;
 using JetBrains.Annotations;
@@ -28,6 +29,7 @@ namespace vSharpStudio.vm.ViewModels
         //public Config() : this((ITreeConfigNode?)null)
         //{
         //}
+        private readonly ILogger _logger = Logger.CreateLogger<Config>();
         public Config(bool isNew) : this((ITreeConfigNode?)null)
         {
             this.IsNew = isNew;
@@ -82,26 +84,19 @@ namespace vSharpStudio.vm.ViewModels
         protected IMigration? _migration { get; set; }
         public string? ConnectionString { get; set; }
         public string? DebugTag;
-        partial void OnCreating()
-        {
-            _logger?.Trace();
-        }
         [Browsable(false)]
         public new string IconName { get { return "icon3DScene"; } }
         //protected override string GetNodeIconName() { return "icon3DScene"; }
         partial void OnCreated()
         {
-            _logger?.Trace();
             if (string.IsNullOrWhiteSpace(this._Name))
             {
                 this._Name = Defaults.ConfigName;
             }
-            _logger?.Trace();
             Init();
         }
         protected override void OnInitFromDto()
         {
-            _logger?.Trace();
             Init();
         }
         private void Init()
@@ -132,7 +127,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string ExportToJson()
         {
-            _logger?.Trace();
             var pconfig = Config.ConvertToProto(this);
             var res = JsonFormatter.Default.Format(pconfig);
             return res;
@@ -160,17 +154,16 @@ namespace vSharpStudio.vm.ViewModels
         //    this.ValidateSubTreeFromNode(this, logger);
         //}
         public bool IsValidatingSubTreeFromNode = false;
-        public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node, ProgressVM? progressVM, CancellationToken cancellationToken, ILogger? logger = null)
+        public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node, ProgressVM? progressVM, CancellationToken cancellationToken)
         {
             try
             {
-                _logger?.Trace();
                 int i = 0;
                 while (this.IsValidatingSubTreeFromNode)
                 {
                     i++;
                     int delayTime = 300;
-                    _logger?.Trace("Another validation in progress. Wait {delayTime} mc.");
+                    _logger.Trace("Another validation in progress. Wait {delayTime} mc.");
                     await Task.Delay(delayTime);
 #if DEBUG
                     if (i >= 10)
@@ -185,7 +178,7 @@ namespace vSharpStudio.vm.ViewModels
                 // Count nodes
                 if (progressVM != null)
                     progressVM.Title = "Counting nodes for validation";
-                var visitor = new ValidationConfigVisitor(cancellationToken, progressVM, logger);
+                var visitor = new ValidationConfigVisitor(cancellationToken, progressVM);
                 (node as IConfigAcceptVisitor)!.AcceptConfigNodeVisitor(visitor);
 
                 // prepare visitor for validation
@@ -218,7 +211,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else
                 {
-                    logger?.LogInformation("=== Cancelled ===");
+                    _logger.Information("=== Cancelled ===");
                 }
             }
             catch (TaskCanceledException)
@@ -387,10 +380,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RefillDicGenerators()
         {
-            //_logger.LogTrace("".StackInfo());
-            _logger?.Trace();
             this._DicActiveAppProjectGenerators.Clear();
-            _logger?.LogTrace("{DicAppGenerators}", this.DicActiveAppProjectGenerators);
             foreach (var t in this.GroupAppSolutions.ListAppSolutions)
             {
                 foreach (var tt in t.ListAppProjects)
@@ -406,6 +396,7 @@ namespace vSharpStudio.vm.ViewModels
                                     if (ttp.Generator?.Guid == ttt.PluginGeneratorGuid)
                                     {
                                         this._DicActiveAppProjectGenerators[ttt.Guid] = ttp.Generator;
+                                        _logger.Trace("Solution:{sol}, Project:{prj}, AppGen:{apg}, Plugin:{plg}, Gen:{gen}", new object?[] { t.Name, tt.Name, ttt.Name, tp.Name, ttp.Name });
                                     }
                                 }
                             }
@@ -413,7 +404,6 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
             }
-            _logger?.LogTrace("{DicAppGenerators}", this.DicActiveAppProjectGenerators);
         }
         public void PluginSettingsToModel()
         {

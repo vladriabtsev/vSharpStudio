@@ -24,6 +24,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Xml.Linq;
+using ApplicationLogging;
 using AsyncAwaitBestPractices;
 using CommunityToolkit.Diagnostics;
 using Google.Protobuf;
@@ -48,21 +49,17 @@ namespace vSharpStudio.ViewModels
     // https://github.com/GitTools/GitVersion
     public class MainPageVM : VmValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
+        private readonly ILogger _logger = Logger.CreateLogger<MainPageVM>();
         public static bool NotSaveUserSettings = false;
-        public static MainPageVM Create(bool isLoadConfig, string? pluginsFolderPath = null, string? configFile = null)
+        public static MainPageVM Create(string? pluginsFolderPath = null, string? configFile = null)
         {
             // IsChanged in all classes is changed only if configuration objects properties are changed. Auto generated in code.
             VmBindable.IsModifyIsChangedExplicitly = true;
-            MainPageVM vm = new MainPageVM(isLoadConfig, configFile);
+            MainPageVM vm = new MainPageVM(null, configFile);
             vm.Compose(pluginsFolderPath);
             vm.OnFormLoaded();
-            if (!isLoadConfig)
-            {
-                vm._Config = new Config(true);
-            }
             return vm;
         }
-        private readonly ILogger? _logger;
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyGrid? propertyGrid;
         public ValidationListForSelectedNode? validationListForSelectedNode;
         private void DialogShow(Xceed.Wpf.Toolkit.ChildWindow dialogChildWindow, object? dataContext = null, string? caption = null)
@@ -83,7 +80,6 @@ namespace vSharpStudio.ViewModels
         public MainPageVM() : base(MainPageVMValidator.Validator)
         {
             VmBindable.IsChangedNotificationDelay = 200;
-            _logger = Logger.CreateLogger<MainPageVM>();
             EditorGenSettingsDialog.GenSettingsDialogAction = (node, guid) =>
             {
                 Debug.Assert(MainPageVM._mainPage != null);
@@ -114,18 +110,17 @@ namespace vSharpStudio.ViewModels
         //{
         //    _logger = logger;
         //}
-        private readonly bool isLoadConfig;
         private readonly string? configFile;
         //public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
         internal static MainPage? _mainPage = null;
-        public MainPageVM(bool isLoadConfig, string? configFile = null, MainPage? mainPage = null) : this()
+        public MainPageVM(MainPage? mainPage, string? explicitConfigurationPathForTests = null) : this()
         {
-            _logger?.LogDebug("Created with isLoadConfig={isLoadConfig}, configFile='{configFile}'".CallerInfo(),
-                isLoadConfig, configFile);
+            //_logger.CouldNotOpenSocket("kuku");
+            _logger.Debug("Created with configFile='{configFile}'",
+                new object?[] { explicitConfigurationPathForTests });
             MainPageVM._mainPage = mainPage;
             //this.onImportsSatisfied = onImportsSatisfied;
-            this.isLoadConfig = isLoadConfig;
-            this.configFile = configFile;
+            this.configFile = explicitConfigurationPathForTests;
             //this.Config = new Config();
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
             {
@@ -158,21 +153,29 @@ namespace vSharpStudio.ViewModels
         {
             Debug.Assert(this.ProgressVM != null);
             this.ProgressVM.ProgressStart("Configuration Loading");
-            _logger?.LogDebug("*** Application is starting. ***".CallerInfo());
+            _logger.Debug("*** Application is starting. ***");
             if (File.Exists(USER_SETTINGS_FILE_PATH))
             {
+                _logger.Trace("User settings file exists.");
                 var user_settings = File.ReadAllBytes(USER_SETTINGS_FILE_PATH);
                 var us = Proto.Config.proto_user_settings.Parser.WithDiscardUnknownFields(true).ParseFrom(user_settings);
                 this.UserSettings = UserSettings.ConvertToVM(us, new UserSettings());
                 if (this.UserSettings.ListOpenConfigHistory.Count > 0 &&
                     !string.IsNullOrWhiteSpace(this.UserSettings.ListOpenConfigHistory[0].ConfigPath) &&
                     File.Exists(this.UserSettings.ListOpenConfigHistory[0].ConfigPath))
+                {
+                    _logger.Trace("Last opened configuration exists: '{}'.", new object?[] { this.UserSettings.ListOpenConfigHistory[0].ConfigPath });
                     this.CurrentCfgFilePath = this.UserSettings.ListOpenConfigHistory[0].ConfigPath;
-                else
-                    this.UserSettings = new UserSettings();
+                }
+                //else
+                //{
+                //    _logger.Trace("There is no configuration to open from user settings. Create empty user settings???");
+                //    this.UserSettings = new UserSettings();
+                //}
             }
             else
             {
+                _logger.Trace("There is no user settings. Creating empty user settings.");
                 this.UserSettings = new UserSettings();
             }
             this.UserSettings.OnOpenRecentConfig = p =>
@@ -193,26 +196,20 @@ namespace vSharpStudio.ViewModels
                 }
                 this.LoadConfig(p.ConfigPath, string.Empty, true);
             };
-            if (isLoadConfig)
+            if (configFile != null)
             {
-                if (configFile != null)
-                {
-                    _logger?.LogDebug("Load Configuration from file {ConfigFile}".CallerInfo(), configFile);
-                    this.LoadConfig(configFile, string.Empty, true);
-                }
-                else if (!string.IsNullOrEmpty(this.CurrentCfgFilePath) && File.Exists(this.CurrentCfgFilePath))
-                {
-                    _logger?.LogDebug("Load Configuration from standard file {ConfigFile}".CallerInfo(), this.CurrentCfgFilePath);
-                    this.LoadConfig(this.CurrentCfgFilePath, string.Empty, true);
-                }
-                else
-                {
-                    _logger?.LogDebug("Using empty Configuration".CallerInfo());
-                }
+                _logger.Debug<string>("Load Configuration from file {ConfigFile}", configFile);
+                this.LoadConfig(configFile, string.Empty, true);
+            }
+            else if (!string.IsNullOrEmpty(this.CurrentCfgFilePath) && File.Exists(this.CurrentCfgFilePath))
+            {
+                _logger.Debug<string>("Load Configuration from standard file {ConfigFile}", this.CurrentCfgFilePath);
+                this.LoadConfig(this.CurrentCfgFilePath, string.Empty, true);
             }
             else
             {
-                _logger?.LogDebug("Using empty Configuration".CallerInfo());
+                _logger.Debug("Using empty Configuration");
+                this._Config = new Config(true);
             }
             this.ProgressVM.ProgressClose();
         }
@@ -221,14 +218,14 @@ namespace vSharpStudio.ViewModels
         {
             if (!File.Exists(file_path) || Path.GetExtension(file_path) != ".vcfg")
             {
-                var ex = new ArgumentException("Configuration data are not found in the file: " + file_path);
-                _logger?.LogCritical(ex, emptyStr.CallerInfo());
+                _logger.Debug("Configuration data are not found in the file: {file_path}", new object?[] { file_path });
                 return null;
             }
             var protoarr = File.ReadAllBytes(file_path);
             this.pconfig_history = Proto.Config.proto_config_short_history.Parser.WithDiscardUnknownFields(true).ParseFrom(protoarr);
-            _logger?.LogDebug("ConvertToVM Main Config".CallerInfo());
+            _logger.Debug("Configuration is loaded from file: {file_path}", new object?[] { file_path });
             var config = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config(false));
+            _logger.Trace("Config VM is created");
             var currFolder = Path.GetDirectoryName(this.CurrentCfgFilePath);
             config.CurrentCfgFolderPath = currFolder ?? String.Empty;
             config.PrevCurrentConfig = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config(false));
@@ -236,15 +233,15 @@ namespace vSharpStudio.ViewModels
             {
                 if (this.pconfig_history.PrevStableConfig != null)
                 {
-                    _logger?.LogDebug("ConvertToVM Prev Config".CallerInfo());
                     config.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.PrevStableConfig, new Config(false));
+                    _logger.Trace("Previous Stable Config VM is created");
                 }
                 this.CurrentCfgFilePath = file_path;
             }
             string ind2 = indent + "   ";
             foreach (var t in config.GroupConfigLinks.ListBaseConfigLinks.ToList())
             {
-                _logger?.LogDebug("Load Base Config {Name} from {Path}".CallerInfo(), t.Name, t.RelativeConfigFilePath);
+                _logger.Trace("Load Linked Config {Name} from {Path}", new object?[] { t.Name, t.RelativeConfigFilePath });
                 t.ConfigBase = this.LoadConfig(Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
                 Debug.Assert(t.ConfigBase != null);
                 t.Name = t.ConfigBase.Name;
@@ -314,7 +311,7 @@ namespace vSharpStudio.ViewModels
         public void OnImportsSatisfied()
         {
             Debug.Assert(this._plugins != null);
-            _logger?.LogDebug("Loaded {Count} plugins".CallerInfo(), this._plugins.Count());
+            _logger.Trace("Loaded {Count} plugins", new object?[] { this._plugins.Count() });
             this.onPluginsLoaded?.Invoke();
         }
         public void InitConfig(Config? cfg)
@@ -469,7 +466,7 @@ namespace vSharpStudio.ViewModels
             }
             catch (Exception ex)
             {
-                _logger?.LogCritical(ex, emptyStr.CallerInfo());
+                _logger.Critical(ex);
                 throw;
             }
 #if DEBUG
@@ -556,7 +553,7 @@ namespace vSharpStudio.ViewModels
             try
             {
                 string folder = (pluginsFolderPath ?? Directory.GetCurrentDirectory()) + "\\Plugins";
-                _logger?.LogDebug("Loading plugins from folder: {folder}".CallerInfo(), folder);
+                _logger.Trace("Loading plugins from folder: {folder}", new object?[] { folder });
                 AggregateCatalog catalog = new AggregateCatalog();
                 this.AgregateCatalogs(folder, "vPlugin*.dll", catalog, true);
                 CompositionContainer container = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
@@ -574,7 +571,7 @@ namespace vSharpStudio.ViewModels
             }
             catch (Exception ex)
             {
-                _logger?.LogCritical(ex, emptyStr.CallerInfo());
+                _logger.Critical(ex);
                 throw;
             }
         }
@@ -1147,13 +1144,12 @@ namespace vSharpStudio.ViewModels
                                 // https://learn.microsoft.com/en-us/archive/msdn-magazine/2014/april/mvvm-multithreading-and-dispatching-in-mvvm-applications
                                 // https://softwareengineering.stackexchange.com/questions/347970/multithreaded-c-mvvm-application-architecture
                                 if (VmBindable.isUnitTests)
-                                    await this._Config.ValidateSubTreeFromNodeAsync(this._Config, null, cancellationToken, this._logger);
+                                    await this._Config.ValidateSubTreeFromNodeAsync(this._Config, null, cancellationToken);
                                 else
                                     await Task.Run(() =>
                                     {
-                                        return this._Config.ValidateSubTreeFromNodeAsync(this._Config, this.ProgressVM, cancellationToken, this._logger);
+                                        return this._Config.ValidateSubTreeFromNodeAsync(this._Config, this.ProgressVM, cancellationToken);
                                     });
-                                //this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken, this._logger).SafeFireAndForget(onException: ex => Trace.WriteLine(ex));
                             }
                             catch (CancellationException)
                             {
@@ -1200,13 +1196,13 @@ namespace vSharpStudio.ViewModels
                 if (this.cancellationSourceForValidatingSubTreeFromNode != null)
                 {
                     this.cancellationSourceForValidatingSubTreeFromNode.Cancel();
-                    this._logger?.LogInformation("=== Cancellation request ===");
+                    this._logger.Information("=== Cancellation request ===");
                 }
                 this.cancellationSourceForValidatingSubTreeFromNode = new CancellationTokenSource();
                 var token = this.cancellationSourceForValidatingSubTreeFromNode.Token;
                 await Task.Run(() =>
                 {
-                    return this.Config.ValidateSubTreeFromNodeAsync(this.Config.SelectedNode, null, token, this._logger);
+                    return this.Config.ValidateSubTreeFromNodeAsync(this.Config.SelectedNode, null, token);
                 });
             }
         }
@@ -1690,7 +1686,7 @@ namespace vSharpStudio.ViewModels
                                 this.ProgressVM?.ProgressUpdateSubTask($"Compiling solution '{ts.Name}'", 100 * ii / this.Config.GroupAppSolutions.ListAppSolutions.Count);
                                 ii++;
 
-                                await CompileUtils.CompileAsync(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
+                                await CompileUtils.CompileAsync(ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
                                 //CompileUtils.Compile(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
 
                                 //TODO result of compilation
@@ -1736,7 +1732,7 @@ namespace vSharpStudio.ViewModels
                                     List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
                                     if (lstRenames.Count == 0)
                                         continue;
-                                    await CompileUtils.RenameAsync(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath),
+                                    await CompileUtils.RenameAsync(ts.GetCombinedPath(ts.RelativeAppSolutionPath),
                                         ts.GetCombinedPath(tp.RelativeAppProjectPath), lstRenames, cancellationToken);
                                 }
                             }
@@ -1867,21 +1863,21 @@ namespace vSharpStudio.ViewModels
             if (this.pconfig_history == null)
             {
                 var ex = new NotSupportedException();
-                _logger?.LogCritical(ex, emptyStr.CallerInfo());
+                _logger.Critical(ex);
                 throw ex;
             }
             if (this.Config.IsHasChanged)
             {
                 string mes = "Can't create stable version when Config has changes";
                 var ex = new NotSupportedException(mes);
-                _logger?.LogCritical(ex, mes.CallerInfo());
+                _logger.Critical(ex);
                 throw ex;
             }
             if (this.Config.IsNeedCurrentUpdate)
             {
                 string mes = "Can't create stable version without CURRENT UPDATE";
                 var ex = new NotSupportedException(mes);
-                _logger?.LogCritical(ex, mes.CallerInfo());
+                _logger.Critical(ex);
                 throw ex;
             }
 

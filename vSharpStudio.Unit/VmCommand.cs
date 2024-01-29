@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using ApplicationLogging;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Debug;

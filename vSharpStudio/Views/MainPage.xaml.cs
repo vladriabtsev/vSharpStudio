@@ -40,7 +40,7 @@ namespace vSharpStudio.Views
             {
                 return;
             }
-            this._model = new MainPageVM(true, null, this);
+            this._model = new MainPageVM(this);
             MainPage.MainPageVM = this._model;
             this.DataContext = this._model;
             //this._modalBaseSettingsEditWindow.DataContext = this._model;

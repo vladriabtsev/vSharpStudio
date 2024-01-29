@@ -15,6 +15,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows;
+    using ApplicationLogging;
     using CommunityToolkit.Diagnostics;
     using FluentValidation;
     using FluentValidation.Results;

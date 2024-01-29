@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using ApplicationLogging;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.Extensions.Logging;
@@ -61,7 +62,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public void AddNodeAppGenSettings(string appProjectGeneratorGuid)
         {
-            _logger?.Trace();
+            _logger?.Trace("");
             Debug.Assert(!this._DicGenNodeSettings.ContainsKey(appProjectGeneratorGuid));
             var ngs = (INodeGenSettings)this;
             var appgen = (AppProjectGenerator)this.Cfg.DicNodes[appProjectGeneratorGuid];
@@ -126,7 +127,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void OnValidated(ValidationResult res)
         {
-            _logger?.Trace();
+            _logger?.Trace("");
             if (this is INodeGenSettings)
             {
                 foreach (var t in this.DicGenNodeSettings)
@@ -144,7 +145,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RestoreNodeAppGenSettingsVm()
         {
-            _logger?.Trace();
+            _logger?.Trace("");
             var ngs = (INodeGenSettings)this;
             foreach (var tt in ngs.ListNodeGeneratorsSettings)
             {
@@ -178,7 +179,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             //if (this is ConfigModel)
             //    return;
-            _logger?.Trace();
+            _logger?.Trace("");
             var ngs = (INodeGenSettings)this;
             foreach (var t in ngs.ListNodeGeneratorsSettings.ToList())
             {
@@ -193,7 +194,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RemoveNodeAppGenSettings(string appGenGuid)
         {
-            _logger?.Trace();
+            _logger?.Trace("");
             var ngs = (INodeGenSettings)this;
             for (int i = ngs.ListNodeGeneratorsSettings.Count - 1; i > -1; i--)
             {

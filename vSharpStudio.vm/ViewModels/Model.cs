@@ -12,6 +12,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ApplicationLogging;
 using CommunityToolkit.Diagnostics;
 using Google.Protobuf;
 using Microsoft.Extensions.DependencyInjection;
@@ -1205,7 +1206,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void SavePluginGroupsModels()
         {
-            _logger?.Trace();
+            _logger?.Trace("");
             this.ListPluginGroupsModelExtentions.Clear();
             var hash = new HashSet<string>();
             foreach (var t in this.ParentConfig.GroupAppSolutions.ListAppSolutions)
@@ -1233,7 +1234,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RestorePluginGroupsModels()
         {
-            _logger?.Trace();
+            _logger?.Trace("");
             var dic = new Dictionary<string, PluginGroupModelExtentions>();
             foreach (var t in this.ListPluginGroupsModelExtentions)
             {

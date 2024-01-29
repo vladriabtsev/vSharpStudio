@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ApplicationLogging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -125,7 +126,7 @@ namespace vSharpStudio.Unit
         public void Plugin001AppGeneratorModelTests()
         {
             _logger.LogTrace("Start test".CallerInfo());
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
@@ -165,7 +166,7 @@ namespace vSharpStudio.Unit
             Assert.IsNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
-            var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg2 = vm2.Config;
             Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
             var sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
@@ -212,7 +213,7 @@ namespace vSharpStudio.Unit
             Assert.IsNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
-            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             cfg2 = vm2.Config;
             Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
             sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
@@ -259,7 +260,7 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
-            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             cfg2 = vm2.Config;
             Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
             sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
@@ -307,7 +308,7 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
-            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             cfg2 = vm2.Config;
             Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
             sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
@@ -354,7 +355,7 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
-            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             cfg2 = vm2.Config;
             Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
             sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
@@ -402,7 +403,7 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
-            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             cfg2 = vm2.Config;
             Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
             sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
@@ -450,7 +451,7 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
-            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             cfg2 = vm2.Config;
             Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
             sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
@@ -501,7 +502,7 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             // restore
             vm.BtnConfigSave.Execute();
-            vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             cfg2 = vm2.Config;
             Assert.AreEqual(1, cfg2.GroupAppSolutions.ListAppSolutions.Count);
             sln2 = cfg2.GroupAppSolutions.ListAppSolutions[0];
@@ -534,7 +535,7 @@ namespace vSharpStudio.Unit
         public void Plugin002WorkWithAppGeneratorNames()
         {
             _logger.LogTrace("Start test".CallerInfo());
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
@@ -576,7 +577,7 @@ namespace vSharpStudio.Unit
         public void Plugin003CanLoadPlugin()
         {
             _logger.LogTrace("Start test".CallerInfo());
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
@@ -594,7 +595,7 @@ namespace vSharpStudio.Unit
         async public Task Plugin004WorkWithAppGeneratorSettings()
         {
             _logger.LogTrace("Start test".CallerInfo());
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
@@ -637,7 +638,7 @@ namespace vSharpStudio.Unit
             await vm.BtnConfigValidateAsync.ExecuteAsync();
             Assert.IsTrue(vm.Config.CountErrors == 0);
 
-            var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.AreEqual(1, vm2.Config.GroupAppSolutions.Count());
             Assert.AreEqual(sln.RelativeAppSolutionPath, vm2.Config.GroupAppSolutions[0].RelativeAppSolutionPath);
             Assert.AreEqual(1, vm2.Config.GroupAppSolutions[0].ListAppProjects.Count());
@@ -768,7 +769,7 @@ namespace vSharpStudio.Unit
             //     and new generator settings has to be added for all model nodes
             // 4. When saving Config: convert all model nodes generators settings to string representations
             _logger.LogTrace("Start test".CallerInfo());
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
@@ -885,7 +886,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
 
             // 1. When Config is loaded: init all generators settings VMs on all model nodes
-            var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
 
             Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
@@ -945,7 +946,7 @@ namespace vSharpStudio.Unit
             // 3. When new generator is added and it is new group plugin, than appropriate solution and project settings has to be added in solution
             // 4. When saving Config: convert all solutions and project groups settings to string representations
             _logger.LogInformation("".CallerInfo());
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
@@ -987,14 +988,14 @@ namespace vSharpStudio.Unit
             prj.Validate();
             Assert.IsTrue(prj.ValidationCollection.Count == 0);
             //await vm.BtnConfigValidateAsync.ExecuteAsync();
-            await cfg.ValidateSubTreeFromNodeAsync(prj, null, token, _logger);
+            await cfg.ValidateSubTreeFromNodeAsync(prj, null, token);
             Assert.IsTrue(prj.ValidationCollection.Count == 1);
 
             prjSet.IsGroupProjectParam1 = true;
             prj.Validate();
             Assert.IsTrue(prj.ValidationCollection.Count == 1);
 
-            await cfg.ValidateSubTreeFromNodeAsync(prj, null, token, _logger);
+            await cfg.ValidateSubTreeFromNodeAsync(prj, null, token);
             //await vm.BtnConfigValidateAsync.ExecuteAsync();
             //cfg.ValidateSubTreeFromNode(prj, _logger);
             Assert.IsTrue(prj.ValidationCollection.Count == 2);
@@ -1076,7 +1077,7 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
 
             // LOAD
-            var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm2.Config.DicPlugins.ContainsKey(pluginNode.Guid));
             plgn = vm2.Config.DicPlugins[pluginNode.Guid];
             Assert.IsNotNull(plgn);
@@ -1107,7 +1108,7 @@ namespace vSharpStudio.Unit
             //     and new generator settings has to be added for all model nodes
             // 4. When saving Config: convert all model nodes generators settings to string representations
             _logger.LogTrace("Start test".CallerInfo());
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
@@ -1159,7 +1160,7 @@ namespace vSharpStudio.Unit
             vm.BtnConfigSave.Execute();
 
             // 1. When Config is loaded: init all generators settings VMs on all model nodes
-            var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
 
             sln = vm2.Config.GroupAppSolutions.ListAppSolutions[0];
             prj = sln.ListAppProjects[0];
@@ -1183,7 +1184,7 @@ namespace vSharpStudio.Unit
         public void Plugin008WorkWithConnStringSettings()
         {
             _logger.LogTrace("Start test".CallerInfo());
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
@@ -1216,7 +1217,7 @@ namespace vSharpStudio.Unit
 
             vm.BtnConfigSave.Execute();
 
-            var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var gen2 = vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
             var connSettings2 = (vPlugin.Sample.DbConnectionStringSettings)gen2.DynamicMainConnStrSettings;
             Assert.IsNotNull(connSettings2);
@@ -1227,7 +1228,7 @@ namespace vSharpStudio.Unit
         //[DataRow(@"SdkProject\")]
         public async Task Plugin012CanProduceCodeFileCompileTargetProjectsAndUnitTestThem(string prType)
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 

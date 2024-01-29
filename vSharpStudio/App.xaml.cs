@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using ApplicationLogging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -34,9 +35,9 @@ namespace vSharpStudio
                 .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
                 // .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
                 .CreateLogger();
-            if (Logger.LogerProvider != null)
+            if (Logger.LoggerProvider != null)
                 return;
-            Logger.LogerProvider = new SerilogLoggerProvider(Serilog.Log.Logger);
+            Logger.LoggerProvider = new SerilogLoggerProvider(Serilog.Log.Logger);
 
             //ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
             //this.logger = loggerFactory.CreateLogger<App>();

@@ -15,6 +15,7 @@ using System.Threading;
 using vPlugin.Sample;
 using System.Threading.Tasks;
 using System.Configuration;
+using ApplicationLogging;
 
 namespace vSharpStudio.Unit
 {
@@ -61,9 +62,9 @@ namespace vSharpStudio.Unit
         public void Main001StartWithEmptyConfig()
         {
             this.remove_config();
-            var vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.pconfig_history == null);
-            Assert.IsTrue(vm.Config == null);
+            Assert.IsTrue(vm.Config.IsNew);
             Assert.IsTrue(vm.VisibilityConfig == Visibility.Hidden);
             Assert.IsFalse(vm.BtnAddClone.CanExecute());
             Assert.IsFalse(vm.BtnAddNew.CanExecute());
@@ -71,16 +72,16 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.BtnConfigCreateStableVersionAsync.CanExecute());
             Assert.IsFalse(vm.BtnConfigCurrentUpdateAsync.CanExecute());
             Assert.IsFalse(vm.BtnConfigSave.CanExecute());
-            Assert.IsFalse(vm.BtnConfigSaveAs.CanExecute(null));
+            Assert.IsTrue(vm.BtnConfigSaveAs.CanExecute(null));
             Assert.IsFalse(vm.BtnDelete.CanExecute());
-            Assert.IsFalse(vm.CommandFromErrorToSelection.CanExecute(null));
+            Assert.IsTrue(vm.CommandFromErrorToSelection.CanExecute(null));
             Assert.IsFalse(vm.BtnMoveDown.CanExecute());
             Assert.IsFalse(vm.BtnMoveUp.CanExecute());
             Assert.IsFalse(vm.BtnSelectionDown.CanExecute());
             Assert.IsFalse(vm.BtnSelectionLeft.CanExecute());
             Assert.IsFalse(vm.BtnSelectionRight.CanExecute());
             Assert.IsFalse(vm.BtnSelectionUp.CanExecute());
-            Assert.IsTrue(vm.BtnNewConfig.CanExecute());
+            Assert.IsFalse(vm.BtnNewConfig.CanExecute());
             Assert.IsTrue(vm.BtnOpenConfig.CanExecute(null));
 
             vm.BtnNewConfig.Execute(); // not saved yet
@@ -159,8 +160,8 @@ namespace vSharpStudio.Unit
         {
             // empty config
             this.remove_config();
-            var vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.IsTrue(vm.Config == null);
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            Assert.IsTrue(vm.Config.IsNew);
             Assert.IsTrue(vm.pconfig_history == null);
 
             vm.BtnNewConfig.Execute();
@@ -202,7 +203,7 @@ namespace vSharpStudio.Unit
             //Assert.IsFalse(vm.BtnSelectionUp.CanExecute());
 
             // reload
-            vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
@@ -221,7 +222,7 @@ namespace vSharpStudio.Unit
             // create stable version
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
-            vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
@@ -238,7 +239,7 @@ namespace vSharpStudio.Unit
             // create next stable version
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
-            vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
@@ -255,7 +256,7 @@ namespace vSharpStudio.Unit
         public void Main003CanSaveConfigInSelectedSolutionFolderAndReloadFromThisFolderByDefault()
         {
             this.remove_config();
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
 
             vm.BtnNewConfig.Execute();
@@ -265,14 +266,14 @@ namespace vSharpStudio.Unit
             vm.BtnConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
             Assert.AreEqual(1, vm.UserSettings.ListOpenConfigHistory.Count);
 
-            vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             // Load from previous save
             Assert.AreEqual(1, vm.UserSettings.ListOpenConfigHistory.Count);
             Assert.AreEqual("test1", vm.Config.Name);
             vm.Config.Name = "test2";
             vm.BtnConfigSaveAs.Execute(@"..\..\..\TestApps\config2.vcfg");
 
-            vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             // Load from previous save
             Assert.AreEqual(2, vm.UserSettings.ListOpenConfigHistory.Count);
             Assert.AreEqual("test2", vm.Config.Name);
@@ -281,14 +282,14 @@ namespace vSharpStudio.Unit
         public void Main004CanSaveConfigAndReload()
         {
             this.remove_config();
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             vm.Config.Name = "test1";
             var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
             var c1 = gr.AddConstant("c1");
             vm.BtnConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
 
-            vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             gr = vm.Config.Model.GroupConstantGroups.ListConstantGroups[0];
             // Load from previous save
             Assert.AreEqual(1, vm.UserSettings.ListOpenConfigHistory.Count);
@@ -301,7 +302,7 @@ namespace vSharpStudio.Unit
         public async Task Main005IsChangedAndIsTreeChanged()
         {
             this.remove_config();
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             Assert.IsTrue(vm.Config.IsNew);
             Assert.IsTrue(vm.Config.IsHasNew); // all plugins are new for new configuration
@@ -422,7 +423,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].IsChanged);
             Assert.IsFalse(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].IsHasChanged);
 
-            vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsFalse(vm.Config.IsChanged);
             Assert.IsFalse(vm.Config.IsHasChanged);
             Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChanged);
@@ -546,7 +547,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Main006CatalogSpecialFields()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             vm.Config.Name = "test1";
             var gr = vm.Config.Model.GroupCatalogs;
@@ -605,8 +606,8 @@ namespace vSharpStudio.Unit
         {
             //// empty config
             //this.remove_config();
-            //var vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
-            //Assert.IsTrue(vm.Config == null);
+            //var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            //Assert.IsTrue(vm.Config.IsNew);
             //Assert.IsTrue(vm.pconfig_history == null);
 
             //vm.BtnNewConfig.Execute(@".\kuku.vcfg");
@@ -632,7 +633,7 @@ namespace vSharpStudio.Unit
             //var vmPrev = vm;
 
             //// can restore config and DB backups, folder ? and DB bases names ?
-            //vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            //vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //vm.BtnOpenConfig.Execute(@".\kuku.vbak");
 
             //Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
@@ -650,7 +651,7 @@ namespace vSharpStudio.Unit
         {
             // new config, not saved yet
             this.remove_config();
-            var vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             vm.Config.Name = "main";
             var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
@@ -741,7 +742,7 @@ namespace vSharpStudio.Unit
         {
             // empty config
             this.remove_config();
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             var cfg = vm.Config;
             var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
@@ -885,7 +886,7 @@ namespace vSharpStudio.Unit
         {
             // empty config
             this.remove_config();
-            var vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             var cfg = vm.Config;
             Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasNew);
@@ -976,7 +977,7 @@ namespace vSharpStudio.Unit
         //public void Main014_HasMarkedAndNewPropagation()
         //{
         //    // initial
-        //    var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+        //    var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
         //    vm.CommandNewConfig.Execute(@".\kuku.vcfg");
         //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
         //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
@@ -1262,7 +1263,7 @@ namespace vSharpStudio.Unit
         {
             // empty config
             this.remove_config();
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg");
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
@@ -1349,7 +1350,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Main013_Diff_WorkWithAppGeneratorSettings()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
@@ -1393,7 +1394,7 @@ namespace vSharpStudio.Unit
 
             vm.BtnConfigSave.Execute();
 
-            var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.AreEqual(1, vm2.Config.GroupAppSolutions.Count());
             Assert.AreEqual(sln.RelativeAppSolutionPath, vm2.Config.GroupAppSolutions[0].RelativeAppSolutionPath);
             Assert.AreEqual(1, vm2.Config.GroupAppSolutions[0].ListAppProjects.Count());
@@ -1423,7 +1424,7 @@ namespace vSharpStudio.Unit
             //     and new generator settings has to be added for all model nodes
             // 4. When saving Config: convert all model nodes generators settings to string representations
             _logger.LogTrace("Start test".CallerInfo());
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //vm.BtnNewConfig.Execute(@".\kuku.vcfg");
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg");
@@ -1533,7 +1534,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
 
             // 1. When Config is loaded: init all generators settings VMs on all model nodes
-            var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
@@ -1599,7 +1600,7 @@ namespace vSharpStudio.Unit
             // 3. When new generator is added and it is having new project/solution settings, than appropriate project/solution settings has to be added in project/solution
             // 4. When saving Config: Only for active generators projects/solutions settings will be converted to string representations and saved.
             _logger.LogTrace("Start test".CallerInfo());
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //vm.BtnNewConfig.Execute(@".\kuku.vcfg");
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg");
@@ -1665,7 +1666,7 @@ namespace vSharpStudio.Unit
 
 
             // 1. When Config is loaded: init plugin generators settings on all solution and project nodes
-            var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm2.Config.DicPlugins.ContainsKey(pluginNode.Guid));
             plgn = vm2.Config.DicPlugins[pluginNode.Guid];
             Assert.IsNotNull(plgn);
@@ -1683,7 +1684,7 @@ namespace vSharpStudio.Unit
         {
             // empty config
             this.remove_config();
-            var vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //vm.BtnNewConfig. Execute(@".\kuku.vcfg");
             vm.BtnNewConfig.Execute();
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
@@ -1692,7 +1693,7 @@ namespace vSharpStudio.Unit
 
 
             // base config
-            var vmb = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vmb = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //vmb.BtnNewConfig.Execute(pathExt + "kuku.vcfg");
             vmb.BtnNewConfig.Execute();
             vmb.Config.Name = "ext";
@@ -1705,7 +1706,7 @@ namespace vSharpStudio.Unit
             var c1 = gr.AddConstant("c1");
             vm.BtnConfigSave.Execute();
 
-            vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             gr = vm.Config.Model.GroupConstantGroups.ListConstantGroups[0];
             Assert.AreEqual(1, gr.ListConstants.Count);
             Assert.IsTrue(gr.Count() == 1);
@@ -1722,7 +1723,7 @@ namespace vSharpStudio.Unit
         {
             // empty config
             this.remove_config();
-            var vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //vm.BtnNewConfig.Execute(@".\kuku.vcfg");
             vm.BtnNewConfig.Execute();
             vm.Config.Name = "main";
@@ -1731,7 +1732,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
 
             // base config
-            var vmb = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vmb = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //vmb.BtnNewConfig.Execute(pathExt + "kuku.vcfg");
             vmb.BtnNewConfig.Execute();
             vmb.Config.Name = "ext";
@@ -1751,7 +1752,7 @@ namespace vSharpStudio.Unit
             var c1 = vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].AddConstant("c1");
             vm.BtnConfigSave.Execute();
 
-            vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //TODO diff test implementation
             // var diffc = vm.GetDiffListConfigs();
             // Assert.IsTrue(diffc.Config.Name == "main");
@@ -1766,7 +1767,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Main091_ValidationRequirements()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //vm.BtnNewConfig.Execute(@".\kuku.vcfg");
             vm.BtnNewConfig.Execute();
             var m = vm.Config.Model;
@@ -2059,7 +2060,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Main101_RolesTests()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //vm.BtnNewConfig.Execute(@".\kuku.vcfg");
             vm.BtnNewConfig.Execute();
             var m = vm.Config.Model;

@@ -20,6 +20,7 @@ using Microsoft.Build.Utilities;
 using Newtonsoft.Json.Linq;
 using vSharpStudio.ViewModels;
 using Polly.Caching;
+using ApplicationLogging;
 
 namespace vSharpStudio.Unit
 {
@@ -36,36 +37,36 @@ namespace vSharpStudio.Unit
             VmBindable.isUnitTests = true;
             if (_logger == null)
                 //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
-                _logger = Microsoft.Extensions.Logging.Logger.CreateLogger<PluginTests>();
+                _logger = ApplicationLogging.Logger.CreateLogger<PluginTests>();
         }
 
-        internal static void InitLogging(object type)
-        {
-            if (ApplicationLogging.LogerProvider == null)
-            {
-                // Log.Logger = new LoggerConfiguration()
-                //    .MinimumLevel.Debug()
-                //    .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
-                //    //.WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
-                //    .CreateLogger().ForContext(type.GetType());
-                // var serviceCollection = new ServiceCollection();
-                // var lp = serviceCollection.AddLogging(loggingBuilder =>
-                // {
-                //    //loggingBuilder.AddFilter((p) => { return p >= LogLevel.Trace; });
-                //    //loggingBuilder.AddConsole((o) => { o.IncludeScopes = true; });
-                //    loggingBuilder.AddSerilog();
-                //    //loggingBuilder.AddConfiguration(new )
-                //    //loggingBuilder.AddDebug();
-                // }).BuildServiceProvider().GetRequiredService<ILoggerProvider>();
-                // ApplicationLogging.LogerProvider = lp;
-                Log.Logger = new LoggerConfiguration()
-                    .MinimumLevel.Verbose()
-                    .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
-                    // .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
-                    .CreateLogger();
-                ApplicationLogging.LogerProvider = new SerilogLoggerProvider(Log.Logger);
-            }
-        }
+        //internal static void InitLogging(object type)
+        //{
+        //    if (ApplicationLogging.LogerProvider == null)
+        //    {
+        //        // Log.Logger = new LoggerConfiguration()
+        //        //    .MinimumLevel.Debug()
+        //        //    .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+        //        //    //.WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
+        //        //    .CreateLogger().ForContext(type.GetType());
+        //        // var serviceCollection = new ServiceCollection();
+        //        // var lp = serviceCollection.AddLogging(loggingBuilder =>
+        //        // {
+        //        //    //loggingBuilder.AddFilter((p) => { return p >= LogLevel.Trace; });
+        //        //    //loggingBuilder.AddConsole((o) => { o.IncludeScopes = true; });
+        //        //    loggingBuilder.AddSerilog();
+        //        //    //loggingBuilder.AddConfiguration(new )
+        //        //    //loggingBuilder.AddDebug();
+        //        // }).BuildServiceProvider().GetRequiredService<ILoggerProvider>();
+        //        // ApplicationLogging.LogerProvider = lp;
+        //        Log.Logger = new LoggerConfiguration()
+        //            .MinimumLevel.Verbose()
+        //            .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+        //            // .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
+        //            .CreateLogger();
+        //        ApplicationLogging.LogerProvider = new SerilogLoggerProvider(Log.Logger);
+        //    }
+        //}
 
         #region SortedCollection
         public partial class TestValidator : ValidatorBase<TestSortable, TestValidator> { }
@@ -155,7 +156,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Config001GuidInit()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             Assert.IsTrue(cfg.Guid.Length > 0);
         }
@@ -163,7 +164,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Config002CanSaveAndRestore()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
@@ -178,7 +179,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Config003CanSaveAndRestoreSortingValue()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
@@ -209,7 +210,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Constant001GuidInit()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             var c = cfg.Model.GroupConstantGroups.NodeAddNewSubNode();
             Assert.IsTrue(c.Guid.Length > 0);
@@ -218,7 +219,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Constant002AddedParent()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
@@ -230,7 +231,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Constant003AddedDefaultName()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
@@ -244,7 +245,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Enum001GuidInit()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             var en = cfg.Model.GroupEnumerations.NodeAddNewSubNode();
             Assert.IsTrue(en.Guid.Length > 0);
@@ -253,7 +254,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Enum002AddedParent()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             cfg.Model.GroupEnumerations.NodeAddNewSubNode();
             Assert.AreEqual(cfg.Model.GroupEnumerations[0].Parent.Guid, cfg.Model.GroupEnumerations.Guid);
@@ -266,7 +267,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Catalog001GuidInit()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             var c = cfg.Model.GroupCatalogs.AddCatalog();
             Assert.IsTrue(c.Guid.Length > 0);
@@ -293,7 +294,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void ITreeConfigNode001_UpdateSortingValueWhenNameIsChanged()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             VmBindable.isNotValidateForUnitTests = true;
             var gc = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
@@ -365,7 +366,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void ITreeConfigNode002_RestoreSortingValueWhenObjectRestoredFromFile()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             var gc = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             var cnst = new Constant(gc);
@@ -383,7 +384,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void ITreeConfigNode003_ReSortedWhenSortingValueIsChanged()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             var gc = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             var cnst = new Constant(gc);
@@ -410,7 +411,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void ITreeConfigNode003_CanConfigTreeCommands()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
 
             #region Constants
@@ -576,7 +577,7 @@ namespace vSharpStudio.Unit
         #region Compare Tree
         private MainPageVM CreateVM()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
 
             cfg.Model.GroupEnumerations.NodeAddNewSubNode();
@@ -596,7 +597,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Rules001_DataType()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             var c = cfg.Model.GroupCatalogs.AddCatalog("Test1");
             var p = c.AddProperty("tp");
@@ -908,7 +909,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void DbName001_Catalog()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
 
             cfg.Model.IsUseNameComposition = false;
@@ -931,7 +932,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void DbName002_Document()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
 
             cfg.Model.IsUseNameComposition = false;
@@ -953,7 +954,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void DbName003_UniqueDbNamesValidation()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
 
             cfg.Model.IsUseNameComposition = false;
@@ -980,7 +981,7 @@ namespace vSharpStudio.Unit
         public void ShortId()
         {
             const int nbits = 26; // bits for short ID
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             Assert.AreEqual(0u, cfg.Model.LastTypeShortRefId);
 
@@ -1029,7 +1030,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void HistoryPropertyTests()
         {
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
             // Use History is saved and restored simple data
             // Use History is saved and restored complex OneToOne data

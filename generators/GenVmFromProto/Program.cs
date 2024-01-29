@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using ApplicationLogging;
 using CommandLine;
 using CommunityToolkit.Diagnostics;
 using Google.Protobuf.Reflection;
