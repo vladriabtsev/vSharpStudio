@@ -19,17 +19,16 @@ namespace Renamer
 {
     public class CodeAnalysisCSharp
     {
-        private static ILogger _logger { get { if (__logger == null) __logger = Logger.CreateLogger<CodeAnalysisCSharp>(); return __logger; } }
-        private static ILogger? __logger = null;
         public static async Task RenameAsync(Solution solution, Document document, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
         {
-            _logger.Information("List renames:");
+            var _logger = Logger.CreateLogger<CodeAnalysisCSharp>();
+            _logger?.Information("List renames:");
             foreach (var tr in lstRenames)
             {
-                _logger.Information("   Class: {0}", new object?[] { tr.ClassName });
+                _logger?.Information("   Class: {ClassName}", tr.ClassName);
                 foreach (var tp in tr.ListRenamedProperties)
                 {
-                    _logger.Information("      Property: {PropName} -> {PropNameNew}", new object?[] { tp.PropName, tp.PropNameNew });
+                    _logger?.Information("      Property: {PropName} -> {PropNameNew}", tp.PropName, tp.PropNameNew);
                 }
             }
 #if DEBUG
@@ -93,7 +92,7 @@ namespace Renamer
                                 {
                                     if (tp.PropName == p.Identifier.Text)
                                     {
-                                        _logger.Information("Rename Property: {PropName} -> {PropNameNew} Class: {ClassName}", new object?[] { tp.PropName, tp.PropNameNew, tr.ClassName });
+                                        _logger?.Information("Rename Property: {PropName} -> {PropNameNew} Class: {ClassName}", tp.PropName, tp.PropNameNew, tr.ClassName);
                                         var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
                                         Debug.Assert(semanticModel != null);
                                         var propSymbolOpt = semanticModel.GetDeclaredSymbol(c) as IPropertySymbol;
@@ -104,7 +103,7 @@ namespace Renamer
                                 // rename classes
                                 if (tr.ClassName != tr.ClassNameNew)
                                 {
-                                    _logger.Information("Rename Class: {ClassName} -> {ClassNameNew}", new object?[] { tr.ClassName, tr.ClassNameNew });
+                                    _logger?.Information("Rename Class: {ClassName} -> {ClassNameNew}", tr.ClassName, tr.ClassNameNew);
                                     var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
                                     Debug.Assert(semanticModel != null);
                                     var propSymbolOpt = semanticModel.GetDeclaredSymbol(c) as INamedTypeSymbol;

@@ -1206,7 +1206,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void SavePluginGroupsModels()
         {
-            _logger?.Trace("");
             this.ListPluginGroupsModelExtentions.Clear();
             var hash = new HashSet<string>();
             foreach (var t in this.ParentConfig.GroupAppSolutions.ListAppSolutions)
@@ -1234,7 +1233,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RestorePluginGroupsModels()
         {
-            _logger?.Trace("");
             var dic = new Dictionary<string, PluginGroupModelExtentions>();
             foreach (var t in this.ListPluginGroupsModelExtentions)
             {

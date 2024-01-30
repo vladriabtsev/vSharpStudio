@@ -26,10 +26,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class Config : ITreeModel, IMigration, ICanGoLeft, IEditableNodeGroup
     {
-        //public Config() : this((ITreeConfigNode?)null)
-        //{
-        //}
-        private readonly ILogger _logger = Logger.CreateLogger<Config>();
+        private readonly ILogger? _logger = Logger.CreateLogger<Config>();
         public Config(bool isNew) : this((ITreeConfigNode?)null)
         {
             this.IsNew = isNew;
@@ -163,11 +160,15 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     i++;
                     int delayTime = 300;
-                    _logger.Trace("Another validation in progress. Wait {delayTime} mc.");
+                    _logger?.Trace("Another validation in progress. Wait {DelayTime} mc.", delayTime);
                     await Task.Delay(delayTime);
 #if DEBUG
                     if (i >= 10)
-                        throw new Exception($"Waiting period to start validation exceeded {i * delayTime}mc. Need optimization.");
+                    {
+                        var ex = new Exception($"Waiting period to start validation exceeded {i * delayTime}mc. Need optimization.");
+                        _logger?.Critical(ex);
+                        throw ex;
+                    }
 #else
                     if (i >= 100)
                         break;
@@ -211,7 +212,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else
                 {
-                    _logger.Information("=== Cancelled ===");
+                    _logger?.Information("=== Cancelled ===");
                 }
             }
             catch (TaskCanceledException)
@@ -319,7 +320,7 @@ namespace vSharpStudio.vm.ViewModels
                     string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
                     if (ts > TimeSpan.FromSeconds(1))
                     {
-                        Debug.WriteLine($"Long Selected Node Changed. Time {elapsedTime} {LogerExt.FilePos()}");
+                        Debug.WriteLine($"Long Selected Node Changed. Time {elapsedTime} {LoggerExt.FilePos()}");
                         Debug.Assert(false);
                     }
 #endif
@@ -396,7 +397,7 @@ namespace vSharpStudio.vm.ViewModels
                                     if (ttp.Generator?.Guid == ttt.PluginGeneratorGuid)
                                     {
                                         this._DicActiveAppProjectGenerators[ttt.Guid] = ttp.Generator;
-                                        _logger.Trace("Solution:{sol}, Project:{prj}, AppGen:{apg}, Plugin:{plg}, Gen:{gen}", new object?[] { t.Name, tt.Name, ttt.Name, tp.Name, ttp.Name });
+                                        _logger?.Trace("Solution:{sol}, Project:{prj}, AppGen:{apg}, Plugin:{plg}, Gen:{gen}", t.Name, tt.Name, ttt.Name, tp.Name, ttp.Name);
                                     }
                                 }
                             }

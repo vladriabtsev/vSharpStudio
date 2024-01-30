@@ -75,13 +75,8 @@ namespace GenVmFromProto
                     }
                     LoggerInit.Init(logFilePath);
                     var _logger = Logger.CreateLogger<Program>();
-                    Debug.Assert(_logger != null);
+                    _logger?.Information("***  App Starting IsModel={IsModel}", o.IsModel);
 
-                    _logger.LogInformation("***  App Starting IsModel={1}".CallerInfo(), o.IsModel);
-                    //_logger.LogInformation("***  App Starting {@Args}".CallerInfo(), args.Aggregate((s1, s2) =>
-                    //{
-                    //    return s1 + " " + s2;
-                    //}));
                     Debug.Assert(o.ProtoFileName != null);
                     var ncs = o.ProtoFileName.ToNameCs();
                     string reflectionClass = ncs + "Reflection";

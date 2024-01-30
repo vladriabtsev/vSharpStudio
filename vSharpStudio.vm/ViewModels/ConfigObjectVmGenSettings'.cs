@@ -40,7 +40,7 @@ namespace vSharpStudio.vm.ViewModels
             var cfg = (Config)this.Cfg;
             //if (cfg == null || cfg.GroupAppSolutions == null)
             //    return;
-            _logger?.LogTrace("Try Add Node Settings. {Count}".CallerInfo(), cfg.DicActiveAppProjectGenerators.Count);
+            //_logger?.LogTrace("Try Add Node Settings. {Count}".CallerInfo(), cfg.DicActiveAppProjectGenerators.Count);
             foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
             {
                 foreach (var tt in t.ListAppProjects)
@@ -62,7 +62,6 @@ namespace vSharpStudio.vm.ViewModels
 
         public void AddNodeAppGenSettings(string appProjectGeneratorGuid)
         {
-            _logger?.Trace("");
             Debug.Assert(!this._DicGenNodeSettings.ContainsKey(appProjectGeneratorGuid));
             var ngs = (INodeGenSettings)this;
             var appgen = (AppProjectGenerator)this.Cfg.DicNodes[appProjectGeneratorGuid];
@@ -127,7 +126,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void OnValidated(ValidationResult res)
         {
-            _logger?.Trace("");
             if (this is INodeGenSettings)
             {
                 foreach (var t in this.DicGenNodeSettings)
@@ -145,7 +143,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RestoreNodeAppGenSettingsVm()
         {
-            _logger?.Trace("");
             var ngs = (INodeGenSettings)this;
             foreach (var tt in ngs.ListNodeGeneratorsSettings)
             {
@@ -179,7 +176,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             //if (this is ConfigModel)
             //    return;
-            _logger?.Trace("");
             var ngs = (INodeGenSettings)this;
             foreach (var t in ngs.ListNodeGeneratorsSettings.ToList())
             {
@@ -194,7 +190,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RemoveNodeAppGenSettings(string appGenGuid)
         {
-            _logger?.Trace("");
             var ngs = (INodeGenSettings)this;
             for (int i = ngs.ListNodeGeneratorsSettings.Count - 1; i > -1; i--)
             {

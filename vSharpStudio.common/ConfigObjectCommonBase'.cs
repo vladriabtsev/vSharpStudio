@@ -29,12 +29,9 @@
         where TValidator : AbstractValidator<T>
         where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>, IEquatable<T>//, ISortingValue //, IGuid // , ITreeConfigNode
     {
-        protected static ILogger? _logger;
         public ConfigObjectCommonBase(ITreeConfigNode? parent, TValidator? validator)
             : base(validator)
         {
-            if (_logger == null)
-                _logger = Logger.CreateLogger<T>();
             this._Parent = parent;
             this.ListInModels = new List<IModelRow>();
             this.PropertyChanged += ConfigObjectCommonBase_PropertyChanged;
@@ -474,20 +471,20 @@
         }
 
 
-            //public bool CheckIsCompositeNameUnique()
-            //{
-            //    var cfg = this.GetConfig();
+        //public bool CheckIsCompositeNameUnique()
+        //{
+        //    var cfg = this.GetConfig();
 
-            //    //foreach (var t in cfg.gr.ListCatalogs)
-            //    //{
-            //    //    if ((val.Guid != t.Guid) && (val.Name == t.Name))
-            //    //    {
-            //    //        return false;
-            //    //    }
-            //    //}
-            //    return true;
-            //}
-            protected void SetSelected(ITreeConfigNode node)
+        //    //foreach (var t in cfg.gr.ListCatalogs)
+        //    //{
+        //    //    if ((val.Guid != t.Guid) && (val.Name == t.Name))
+        //    //    {
+        //    //        return false;
+        //    //    }
+        //    //}
+        //    return true;
+        //}
+        protected void SetSelected(ITreeConfigNode node)
         {
             if (this.Parent != null)
             {

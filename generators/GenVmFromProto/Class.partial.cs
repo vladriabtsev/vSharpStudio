@@ -24,14 +24,12 @@ namespace GenVmFromProto
             string destNS, string protoNS, string defaultBaseClass)
         {
             var _logger = Logger.CreateLogger(this);
-            Debug.Assert(_logger != null);
             this.root = root;
             this.message = message;
             this.dicParents = dicParents;
             this.nameSpace = destNS;
             this.protoNameSpace = protoNS;
-            //_logger.LogInformation("Message {Name}".CallerInfo(), message.Name);
-            _logger.LogInformation("Message {0}".CallerInfo(), message.Name);
+            _logger?.Information("Message {0}", message.Name);
             if (!JsonDoc.Files.ContainsKey(root.Name))
             {
             }
@@ -39,7 +37,7 @@ namespace GenVmFromProto
             {
             }
             this.Doc = JsonDoc.Files[root.Name].Messages[message.Name];
-            _logger.LogInformation("Base class from doc '{Name}'".CallerInfo(), this.Doc.BaseClass);
+            _logger?.Information("Base class from doc '{Name}'", this.Doc.BaseClass);
             if (this.Doc.BaseClass == "")
             {
                 this.Doc.BaseClass = " : " + defaultBaseClass + "<" + message.Name.ToNameCs() + ", " +

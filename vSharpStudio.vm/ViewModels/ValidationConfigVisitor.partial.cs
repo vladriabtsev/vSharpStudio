@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Threading;
+using ApplicationLogging;
 using Microsoft.Extensions.Logging;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -20,14 +21,13 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsCountOnly { get; set; } = true;
 
         private int _level = -1;
-        private readonly ILogger? _logger = null;
+        private readonly ILogger? _logger = Logger.CreateLogger<ValidationConfigVisitor>();
 
-        public ValidationConfigVisitor(CancellationToken cancellationToken, ProgressVM? progressVM, ILogger? logger = null)
+        public ValidationConfigVisitor(CancellationToken cancellationToken, ProgressVM? progressVM)
         {
             this._cancellationToken = cancellationToken;
             this.progressVM = progressVM;
             this.CountCurrentValidatableNode = 0;
-            this._logger = logger;
             this.Result = new SortedObservableCollection<ValidationMessage>();
             this.Result.SortDirection = SortDirection.Descending;
         }
@@ -136,10 +136,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._level++;
                 }
                 this.parent = p;
-                if (this._logger != null)
-                {
-                    this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + p.GetType().Name + ": " + pp.Name);
-                }
+                this._logger?.Information(string.Empty.PadRight(this._level, ' ') + p.GetType().Name + ": " + pp.Name);
                 UIDispatcher.Invoke(() =>
                 {
                     p.ValidationCollection.Clear();
@@ -170,10 +167,7 @@ namespace vSharpStudio.vm.ViewModels
             this.progressVM?.ProgressUpdate(this.CountCurrentValidatableNode * 100 / this.CountTotalValidatableNodes);
             if (p is ITreeConfigNode pp)
             {
-                if (this._logger != null)
-                {
-                    this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + pp.GetType().Name + ": " + pp.Name);
-                }
+                this._logger?.Information(string.Empty.PadRight(this._level, ' ') + pp.GetType().Name + ": " + pp.Name);
                 this._level--;
             }
         }

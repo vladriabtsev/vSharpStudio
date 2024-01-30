@@ -16,10 +16,9 @@ namespace vSharpStudio.ViewModels
 {
     public class CompileUtils
     {
-        private static ILogger _logger { get { if (__logger == null) __logger = Logger.CreateLogger<CompileUtils>(); return __logger; } }
-        private static ILogger? __logger = null;
         public static async Task CompileAsync(string solutionPath, CancellationToken cancellationToken)
         {
+            var _logger = Logger.CreateLogger<CompileUtils>();
             //var lstBuilds = Microsoft.Build.Locator.MSBuildLocator.QueryVisualStudioInstances().ToList();
             //var build = lstBuilds[0];
             //Microsoft.Build.Locator.MSBuildLocator.RegisterInstance(build);
@@ -35,7 +34,7 @@ namespace vSharpStudio.ViewModels
             //https://gist.github.com/DustinCampbell/32cd69d04ea1c08a16ae5c4cd21dd3a3
             //using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
             {
-                _logger.Information("Compiling solution {0}", new object?[] { solutionPath });
+                _logger?.Information("Compiling solution {SolutionPath}", solutionPath );
                 Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync(solutionPath);
                 if (workspace.Diagnostics.Count > 0)
                 {
