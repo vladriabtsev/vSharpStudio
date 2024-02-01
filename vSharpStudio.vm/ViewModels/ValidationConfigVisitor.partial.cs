@@ -14,6 +14,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class ValidationConfigVisitor
     {
+        private ILogger? _logger;
         public SortedObservableCollection<ValidationMessage> Result { get; private set; }
         public int CountTotalValidatableNodes;
         public int CountCurrentValidatableNode { get; set; }
@@ -21,10 +22,10 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsCountOnly { get; set; } = true;
 
         private int _level = -1;
-        private readonly ILogger? _logger = Logger.CreateLogger<ValidationConfigVisitor>();
 
         public ValidationConfigVisitor(CancellationToken cancellationToken, ProgressVM? progressVM)
         {
+            this._logger = Logger.CreateLogger<ValidationConfigVisitor>();
             this._cancellationToken = cancellationToken;
             this.progressVM = progressVM;
             this.CountCurrentValidatableNode = 0;

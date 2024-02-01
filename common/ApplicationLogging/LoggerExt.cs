@@ -111,21 +111,20 @@ namespace ApplicationLogging
         //        }
         //    };
         //}
-        private static int indentShift = -1;
         private static string GetMsg(string message, string memberName, string sourceFilePath, int sourceLineNumber)
         {
             var fileName = Path.GetFileName(sourceFilePath);
             var methodName = memberName;
             var line = sourceLineNumber;
             int n = Environment.StackTrace.Split(Environment.NewLine).Count();
-            if (indentShift == -1) indentShift = n;
-            var indent = new String(' ', n - indentShift);
-            var msg = $"{indent}{message} - {fileName} {line} [{methodName}]";
-            //string msg = "";
-            //if (message != null)
-            //    msg = $"{indent}{message} - {fileName} {line} [{methodName}]";
-            //else
-            //    msg = $"{indent}{fileName} {line} [{methodName}]";
+            System.Diagnostics.Debug.Assert(n >= Logger.IndentShift);
+            var indent = new String(' ', n - Logger.IndentShift);
+            //var msg = $"{indent}{message} - {fileName} {line} [{methodName}]";
+            string msg = "";
+            if (message != null)
+                msg = $"{indent}{message} - [{methodName}] {fileName} {line}";
+            else
+                msg = $"{indent}[{methodName}] {fileName} {line}";
             return msg;
         }
         public class Dummy { }

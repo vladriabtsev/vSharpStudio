@@ -49,7 +49,7 @@ namespace vSharpStudio.ViewModels
     // https://github.com/GitTools/GitVersion
     public class MainPageVM : VmValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
-        private readonly ILogger? _logger = Logger.CreateLogger<MainPageVM>();
+        private ILogger? _logger;
         public static bool NotSaveUserSettings = false;
         public static MainPageVM Create(string? pluginsFolderPath = null, string? configFile = null)
         {
@@ -111,6 +111,7 @@ namespace vSharpStudio.ViewModels
         internal static MainPage? _mainPage = null;
         public MainPageVM(MainPage? mainPage, string? explicitConfigurationPathForTests = null) : this()
         {
+            _logger = Logger.CreateLogger<MainPageVM>();
             _logger?.Debug("Created with configFile='{ExplicitConfigurationPathForTests}'", explicitConfigurationPathForTests);
             MainPageVM._mainPage = mainPage;
             //this.onImportsSatisfied = onImportsSatisfied;
