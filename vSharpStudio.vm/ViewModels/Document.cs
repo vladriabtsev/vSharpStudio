@@ -81,14 +81,7 @@ namespace vSharpStudio.vm.ViewModels
             this._IndexDayDocNumberGuid = System.Guid.NewGuid().ToString();
             this._IndexNotUniqueDocNumberGuid = System.Guid.NewGuid().ToString();
 
-            this._DocNumberPropertySettings.SequenceType = EnumCodeType.Text;
-            this._DocNumberPropertySettings.MaxSequenceLength = 9;
-            this._DocNumberPropertySettings.Prefix = "";
-            this._DocNumberPropertySettings.SequenceGuid = "";
-            this._DocNumberPropertySettings.ScopeOfUnique = common.EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR;
-            this._DocNumberPropertySettings.ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
-            this._DocNumberPropertySettings.ScopePeriodStartMonthDay = 1;
-
+            this._SequenceGuid = "";
             Init();
         }
         protected override void OnInitFromDto()
@@ -438,46 +431,50 @@ namespace vSharpStudio.vm.ViewModels
             }
             prp = model.GetPropertyDocumentDate(this.GroupProperties, this.PropertyDocDateGuid);
             res.Add(prp);
-            switch (this.DocNumberPropertySettings.SequenceType)
+            if (!string.IsNullOrWhiteSpace(this.SequenceGuid))
             {
-                case EnumCodeType.Number:
-                    prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.PropertyDocNumberGuid,
-                        this.DocNumberPropertySettings.MaxSequenceLength);
-                    break;
-                case EnumCodeType.Text:
-                    prp = model.GetPropertyDocNumberString(this.GroupProperties, this.PropertyDocNumberGuid,
-                        this.DocNumberPropertySettings.MaxSequenceLength + (uint)this.DocNumberPropertySettings.Prefix.Length);
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
-            res.Add(prp);
-            switch (this.DocNumberPropertySettings.ScopeOfUnique)
-            {
-                case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
-                    prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexYearDocNumberGuid);
-                    res.Add(prp);
-                    break;
-                case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
-                    prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexQuaterDocNumberGuid);
-                    res.Add(prp);
-                    break;
-                case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
-                    prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexMonthDocNumberGuid);
-                    res.Add(prp);
-                    break;
-                case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
-                    prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexWeekDocNumberGuid);
-                    res.Add(prp);
-                    break;
-                case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
-                    prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexDayDocNumberGuid);
-                    res.Add(prp);
-                    break;
-                case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
-                    break;
-                default:
-                    throw new NotImplementedException();
+                var seq = (EnumeratorDocumentSequence)this.Cfg.DicNodes[this.SequenceGuid];
+                switch (seq.SequenceType)
+                {
+                    case EnumCodeType.Number:
+                        prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.PropertyDocNumberGuid,
+                            seq.MaxSequenceLength);
+                        break;
+                    case EnumCodeType.Text:
+                        prp = model.GetPropertyDocNumberString(this.GroupProperties, this.PropertyDocNumberGuid,
+                            seq.MaxSequenceLength + (uint)seq.Prefix.Length);
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+                res.Add(prp);
+                switch (seq.ScopeOfUnique)
+                {
+                    case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
+                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexYearDocNumberGuid);
+                        res.Add(prp);
+                        break;
+                    case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
+                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexQuaterDocNumberGuid);
+                        res.Add(prp);
+                        break;
+                    case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
+                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexMonthDocNumberGuid);
+                        res.Add(prp);
+                        break;
+                    case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
+                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexWeekDocNumberGuid);
+                        res.Add(prp);
+                        break;
+                    case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
+                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexDayDocNumberGuid);
+                        res.Add(prp);
+                        break;
+                    case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
             }
             prp = model.GetPropertyBool(this.GroupProperties, this.PropertyIsPostedGuid, "IsPosted", 10, true);
             res.Add(prp);
@@ -644,12 +641,12 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        [Browsable(false)]
-        public string CodePropertySettingsText { get { return this.DocNumberPropertySettings.ToString(); } }
-        public void NotifyCodePropertySettingsChanged()
-        {
-            this.OnPropertyChanged(nameof(this.CodePropertySettingsText));
-        }
+        //[Browsable(false)]
+        //public string CodePropertySettingsText { get { return this.DocNumberPropertySettings.ToString(); } }
+        //public void NotifyCodePropertySettingsChanged()
+        //{
+        //    this.OnPropertyChanged(nameof(this.CodePropertySettingsText));
+        //}
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>

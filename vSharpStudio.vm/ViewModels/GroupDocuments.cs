@@ -62,9 +62,10 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             children.Add(this.GroupSharedProperties, 2);
-            children.Add(this.GroupListDocuments, 3);
-            children.Add(this.GroupJournals, 4);
-            children.Add(this.GroupRegisters, 5);
+            children.Add(this.GroupListSequences, 3);
+            children.Add(this.GroupListDocuments, 4);
+            children.Add(this.GroupJournals, 5);
+            children.Add(this.GroupRegisters, 6);
 
             //this.ListRoles.OnAddingAction = (t) =>
             //{

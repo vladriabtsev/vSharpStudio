@@ -15,7 +15,7 @@ namespace ApplicationLogging
 {
     public static class Logger
     {
-        public static int IndentShift { get; private set; } = -1;
+        public static int IndentShift { get; internal set; } = -1;
         public static ILoggerProvider? LoggerProvider
         {
             get { return _LoggerProvider; }

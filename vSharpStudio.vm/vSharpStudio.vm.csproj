@@ -21,6 +21,8 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="ViewModels\DocumentNumberPropertySettings.cs" />
+    <Compile Remove="ViewModels\DocumentNumberPropertySettings.Validator.cs" />
     <Compile Remove="ViewModels\Generated\ProtoViewModelsShared.cs" />
   </ItemGroup>
   <ItemGroup>

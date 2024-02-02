@@ -37,7 +37,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public new ConfigNodesCollection<EnumeratorSequence> Children { get { return this.ListEnumeratorSequences; } }
+        public new ConfigNodesCollection<EnumeratorDocumentSequence> Children { get { return this.ListEnumeratorSequences; } }
         public IGroupListCommon IParent { get { return this.ParentGroupListCommonI; } }
 
         partial void OnCreated()
@@ -69,9 +69,9 @@ namespace vSharpStudio.vm.ViewModels
             };
             this._Name = Defaults.GroupSequenceName;
         }
-        public EnumeratorSequence AddSequence(string name, string? guid = null)
+        public EnumeratorDocumentSequence AddSequence(string name, string? guid = null)
         {
-            var node = new EnumeratorSequence(this) { Name = name };
+            var node = new EnumeratorDocumentSequence(this) { Name = name };
 #if DEBUG
             if (guid != null) // for test model generation
             {
@@ -83,22 +83,22 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public int IndexOf(IEnumeratorSequence docSequence)
+        public int IndexOf(IEnumeratorDocumentSequence docSequence)
         {
-            return this.ListEnumeratorSequences.IndexOf((docSequence as EnumeratorSequence)!);
+            return this.ListEnumeratorSequences.IndexOf((docSequence as EnumeratorDocumentSequence)!);
         }
         #region Tree operations
         public bool CanAddSubNode() { return true; }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            EnumeratorSequence node = null!;
+            EnumeratorDocumentSequence node = null!;
             if (node_impl == null)
             {
-                node = new EnumeratorSequence(this);
+                node = new EnumeratorDocumentSequence(this);
             }
             else
             {
-                node = (EnumeratorSequence)node_impl;
+                node = (EnumeratorDocumentSequence)node_impl;
             }
             this.Add(node);
             if (node_impl == null)

@@ -239,10 +239,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_document_number_property_settings"><span class="badge">M</span>proto_document_number_property_settings</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_enumeration"><span class="badge">M</span>proto_enumeration</a>
                 </li>
               
@@ -251,7 +247,7 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_enumerator_sequence"><span class="badge">M</span>proto_enumerator_sequence</a>
+                  <a href="#proto_config.proto_enumerator_document_sequence"><span class="badge">M</span>proto_enumerator_document_sequence</a>
                 </li>
               
                 <li>
@@ -2848,6 +2844,16 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>sequence_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(0)]
+@attr [DisplayName(&#34;Shared Sequence&#34;)]
+@attr [Description(&#34;Shared DocNumber Sequence for auto generation. Same sequence can be used for different documents&#34;)]
+@attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -2904,17 +2910,6 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>Combination of short_id and type group in higher bits
 @attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>doc_number_property_settings</td>
-                  <td><a href="#proto_config.proto_document_number_property_settings">proto_document_number_property_settings</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(22)]
-@attr [ReadOnly(true)]
-@attr [DisplayName(&#34;Sequence&#34;)]
-@attr [Description(&#34;Document number property sequence settings&#34;)]
-@attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] </p></td>
                 </tr>
               
                 <tr>
@@ -3050,87 +3045,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
                   <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_document_number_property_settings">proto_document_number_property_settings</h3>
-        <p>@base BaseSettings</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>sequence_type</td>
-                  <td><a href="#proto_config.proto_enum_code_type">proto_enum_code_type</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(1)]
-@attr [DisplayName(&#34;Sequence type&#34;)]
-@attr [Description(&#34;Sequence type general settings&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>max_sequence_length</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Max Sequence&#34;)]
-@attr [Description(&#34;Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number &#39;9&#39; is limited by this parameter&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>prefix</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;Prefix&#34;)]
-@attr [Description(&#34;Prefix for text code sequence&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sequence_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(0)]
-@attr [DisplayName(&#34;Shared Sequence&#34;)]
-@attr [Description(&#34;Shared DocNumber Sequence for auto generation. Same sequence can be used for different documents&#34;)]
-@attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>scope_of_unique</td>
-                  <td><a href="#proto_config.proto_enum_doc_number_unique_scope">proto_enum_doc_number_unique_scope</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(7)]
-@attr [DisplayName(&#34;Unique Scope&#34;)]
-@attr [Description(&#34;Code has to be unique in selected scope&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>scope_period_start_month</td>
-                  <td><a href="#proto_config.proto_enum_months">proto_enum_months</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(9)]
-@attr [DisplayName(&#34;Start Month&#34;)]
-@attr [Description(&#34;Start month of scope period&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>scope_period_start_month_day</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(10)]
-@attr [DisplayName(&#34;Start Day&#34;)]
-@attr [Description(&#34;Start month day of scope period&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -3362,7 +3276,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
 
         
       
-        <h3 id="proto_config.proto_enumerator_sequence">proto_enumerator_sequence</h3>
+        <h3 id="proto_config.proto_enumerator_document_sequence">proto_enumerator_document_sequence</h3>
         <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
 
         
@@ -3457,6 +3371,33 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
 @attr [PropertyOrderAttribute(13)]
 @attr [DisplayName(&#34;Prefix&#34;)]
 @attr [Description(&#34;Prefix for text code sequence&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scope_of_unique</td>
+                  <td><a href="#proto_config.proto_enum_doc_number_unique_scope">proto_enum_doc_number_unique_scope</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(14)]
+@attr [DisplayName(&#34;Unique Scope&#34;)]
+@attr [Description(&#34;Code has to be unique in selected scope&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scope_period_start_month</td>
+                  <td><a href="#proto_config.proto_enum_months">proto_enum_months</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(15)]
+@attr [DisplayName(&#34;Start Month&#34;)]
+@attr [Description(&#34;Start month of scope period&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scope_period_start_month_day</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(16)]
+@attr [DisplayName(&#34;Start Day&#34;)]
+@attr [Description(&#34;Start month day of scope period&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4914,6 +4855,13 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
+                  <td>group_list_sequences</td>
+                  <td><a href="#proto_config.proto_group_list_enumerator_sequences">proto_group_list_enumerator_sequences</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>monday_before_first_doc_date</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
@@ -5320,13 +5268,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 <tr>
                   <td>group_view_forms</td>
                   <td><a href="#proto_config.proto_group_list_main_view_forms">proto_group_list_main_view_forms</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_list_sequences</td>
-                  <td><a href="#proto_config.proto_group_list_enumerator_sequences">proto_group_list_enumerator_sequences</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -5794,7 +5735,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
               
                 <tr>
                   <td>list_enumerator_sequences</td>
-                  <td><a href="#proto_config.proto_enumerator_sequence">proto_enumerator_sequence</a></td>
+                  <td><a href="#proto_config.proto_enumerator_document_sequence">proto_enumerator_document_sequence</a></td>
                   <td>repeated</td>
                   <td><p>@attr [Browsable(false)]
 @attr [Description(&#34;Document number sequences&#34;)] </p></td>

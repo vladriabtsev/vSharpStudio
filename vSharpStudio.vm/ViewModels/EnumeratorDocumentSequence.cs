@@ -6,13 +6,47 @@ using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.common.ViewModels;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class EnumeratorSequence : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
+    public partial class EnumeratorDocumentSequence : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
+        partial void OnDebugStringExtend(ref string mes)
+        {
+            mes = mes + $" {this.ToString()}";
+        }
+        public override string ToString()
+        {
+            string unique = "";
+            var conv = new EnumDescriptionTypeConverter(typeof(EnumMonths));
+            switch (this.ScopeOfUnique)
+            {
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
+                    unique = "Unique";
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
+                    unique = $"Year: {conv.ConvertTo(null, null, this.ScopePeriodStartMonth, typeof(string))} {this.ScopePeriodStartMonthDay}";
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
+                    unique = $"Quater: {conv.ConvertTo(null, null, this.ScopePeriodStartMonth, typeof(string))} {this.ScopePeriodStartMonthDay}";
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
+                    unique = "Month";
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
+                    unique = "Week";
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
+                    unique = "Day";
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+            return $"{this.Name}-{unique}";
+        }
         public string Text { get { return this.Name; } }
         public string Value { get { return this.Guid; } }
         [Browsable(false)]
@@ -37,6 +71,15 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
+            this._ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
+            this._ScopePeriodStartMonthDay = 1;
+            this._SequenceType = EnumCodeType.Text;
+            this._MaxSequenceLength = 9;
+            this._Prefix = "";
+            this._ScopeOfUnique = common.EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR;
+            this._ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
+            this._ScopePeriodStartMonthDay = 1;
+
             Init();
         }
         protected override void OnInitFromDto()
@@ -85,7 +128,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (EnumeratorSequence?)this.ParentGroupListSequences.ListEnumeratorSequences.GetPrev(this);
+            var prev = (EnumeratorDocumentSequence?)this.ParentGroupListSequences.ListEnumeratorSequences.GetPrev(this);
             if (prev == null)
                 return;
             this.SetSelected(prev);
@@ -111,7 +154,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (EnumeratorSequence?)this.ParentGroupListSequences.ListEnumeratorSequences.GetNext(this);
+            var next = (EnumeratorDocumentSequence?)this.ParentGroupListSequences.ListEnumeratorSequences.GetNext(this);
             if (next == null)
                 return;
             this.SetSelected(next);
@@ -125,7 +168,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddClone()
         {
             Debug.Assert(this.Parent != null);
-            var node = EnumeratorSequence.Clone(this.Parent, this, true, true);
+            var node = EnumeratorDocumentSequence.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupListSequences.Add(node);
             this._Name = this._Name + "2";
@@ -135,7 +178,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new EnumeratorSequence(this.Parent);
+            var node = new EnumeratorDocumentSequence(this.Parent);
             this.ParentGroupListSequences.Add(node);
             this.GetUniqueName(Defaults.SequenceName, node, this.ParentGroupListSequences.ListEnumeratorSequences);
             this.SetSelected(node);
@@ -153,6 +196,16 @@ namespace vSharpStudio.vm.ViewModels
                 nameof(this.Parent),
                 nameof(this.Children)
             };
+            switch (this.ScopeOfUnique)
+            {
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
+                    break;
+                default:
+                    lst.Add(nameof(this.ScopePeriodStartMonth));
+                    lst.Add(nameof(this.ScopePeriodStartMonthDay));
+                    break;
+            }
             return lst.ToArray();
         }
     }

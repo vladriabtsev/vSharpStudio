@@ -57,18 +57,6 @@ namespace vSharpStudio.common
             if (!isActFromRootToBottom)
                 this._act?.Invoke(this, this.currModel.GroupCommon.GroupViewForms);
             this.EndVisit(currModel.GroupCommon.GroupViewForms);
-            this.BeginVisit(currModel.GroupCommon.GroupListSequences);
-            if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupCommon.GroupListSequences);
-            foreach (var tt in currModel.GroupCommon.GroupListSequences.ListEnumeratorSequences)
-            {
-                this.BeginVisit(tt);
-                this._act?.Invoke(this, tt);
-                this.EndVisit(tt);
-            }
-            if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupCommon.GroupListSequences);
-            this.EndVisit(currModel.GroupCommon.GroupListSequences);
             if (!isActFromRootToBottom)
                 this._act?.Invoke(this, this.currModel.GroupCommon);
             this.EndVisit(currModel.GroupCommon);
@@ -224,6 +212,20 @@ namespace vSharpStudio.common
             if (!isActFromRootToBottom)
                 this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListDocuments);
 
+            #region Sequences
+            this.BeginVisit(currModel.GroupDocuments.GroupListSequences);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListSequences);
+            foreach (var tt in currModel.GroupDocuments.GroupListSequences.ListEnumeratorSequences)
+            {
+                this.BeginVisit(tt);
+                this._act?.Invoke(this, tt);
+                this.EndVisit(tt);
+            }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListSequences);
+            this.EndVisit(currModel.GroupDocuments.GroupListSequences);
+            #endregion Sequences
 
             #region Registers
             this.BeginVisit(currModel.GroupDocuments.GroupRegisters);
@@ -544,8 +546,8 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IEnumerable<IEnumeration> lst) { }
         protected virtual void BeginVisit(IGroupListEnumeratorSequences cn) { }
         protected virtual void EndVisit(IGroupListEnumeratorSequences cn) { }
-        protected virtual void BeginVisit(IEnumeratorSequence p) { }
-        protected virtual void EndVisit(IEnumeratorSequence p) { }
+        protected virtual void BeginVisit(IEnumeratorDocumentSequence p) { }
+        protected virtual void EndVisit(IEnumeratorDocumentSequence p) { }
         #endregion Enumeration
 
         #region Constant

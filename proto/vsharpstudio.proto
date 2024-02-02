@@ -957,89 +957,7 @@ message proto_group_list_common {
     proto_group_list_roles group_roles = 7;
     // @attr [Browsable(false)]
     proto_group_list_main_view_forms group_view_forms = 8;
-    // @attr [Browsable(false)]
-    proto_group_list_enumerator_sequences group_list_sequences = 9;
 
-    // @attr [Browsable(false)]
-    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
-}
-/** C O M M O N   S E Q U E N C E S
- * @exclude
- * ####################################### C O M M O N    E Q U E N C E S #######################
- */
-// @interface ICanAddNode
-// @interface ISortingValue
-message proto_enumerator_sequence {
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(-2)]
-    // @attr [ReadOnly(true)]
-    string guid = 1;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(1)]
-    string name = 2;
-    // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("UI name")]
-    // @attr [Description("Used as label/name for UI")]
-    string name_ui = 4;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(3)]
-    string description = 5;
-    // @attr [Browsable(false)]
-    bool is_new = 9;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 10;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(11)]
-    // @attr [DisplayName("Sequence type")]
-    // @attr [Description("Sequence type for code")]
-    proto_enum_code_type sequence_type = 11;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(12)]
-    // @attr [DisplayName("Max Sequence")]
-    // @attr [Description("Maximum number of character places for generated sequence numbers")]
-    uint32 max_sequence_length = 12;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(13)]
-    // @attr [DisplayName("Prefix")]
-    // @attr [Description("Prefix for text code sequence")]
-    string prefix = 13;
-
-    // @attr [Browsable(false)]
-    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
-}
-message proto_group_list_enumerator_sequences {
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(-2)]
-    // @attr [ReadOnly(true)]
-    string guid = 1;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(1)]
-    string name = 2;
-    // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("UI name")]
-    // @attr [Description("Used as label/name for UI")]
-    string name_ui = 4;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(3)]
-    string description = 5;
-
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Composition prefix")]
-    // @attr [Description("Prefix for enumerator sequences composition names. Used if set to use in config model")]
-    //string prefix_for_composition_names = 6;
-
-
-    // @attr [Browsable(false)]
-    // @attr [Description("Document number sequences")]
-    repeated proto_enumerator_sequence list_enumerator_sequences = 21;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -2705,6 +2623,95 @@ message proto_register_reg_prop_to_doc_prop
     // Document property GUID
     string doc_prop_guid = 3;
 }
+// @interface ICanAddNode
+// @interface ISortingValue
+message proto_enumerator_document_sequence {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 3;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [Browsable(false)]
+    bool is_new = 9;
+    // @attr [DisplayName("For deletion")]
+    // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
+    bool is_marked_for_deletion = 10;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(11)]
+    // @attr [DisplayName("Sequence type")]
+    // @attr [Description("Sequence type for code")]
+    proto_enum_code_type sequence_type = 11;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(12)]
+    // @attr [DisplayName("Max Sequence")]
+    // @attr [Description("Maximum number of character places for generated sequence numbers")]
+    uint32 max_sequence_length = 12;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(13)]
+    // @attr [DisplayName("Prefix")]
+    // @attr [Description("Prefix for text code sequence")]
+    string prefix = 13;
+
+    // @attr [PropertyOrderAttribute(14)]
+    // @attr [DisplayName("Unique Scope")]
+    // @attr [Description("Code has to be unique in selected scope")]
+    proto_enum_doc_number_unique_scope scope_of_unique = 14;
+    // @attr [PropertyOrderAttribute(15)]
+    // @attr [DisplayName("Start Month")]
+    // @attr [Description("Start month of scope period")]
+    proto_enum_months scope_period_start_month = 15;
+    // @attr [PropertyOrderAttribute(16)]
+    // @attr [DisplayName("Start Day")]
+    // @attr [Description("Start month day of scope period")]
+    uint32 scope_period_start_month_day = 16;
+
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+message proto_group_list_enumerator_sequences {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 3;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Composition prefix")]
+    // @attr [Description("Prefix for enumerator sequences composition names. Used if set to use in config model")]
+    //string prefix_for_composition_names = 6;
+
+
+    // @attr [Browsable(false)]
+    // @attr [Description("Document number sequences")]
+    repeated proto_enumerator_document_sequence list_enumerator_sequences = 21;
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
 message proto_group_documents {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -2767,6 +2774,8 @@ message proto_group_documents {
     proto_group_list_registers group_registers = 20;
     // @attr [Browsable(false)]
     proto_group_list_journals group_journals = 21;
+    // @attr [Browsable(false)]
+    proto_group_list_enumerator_sequences group_list_sequences = 22;
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(23)]
@@ -2791,38 +2800,6 @@ message proto_group_documents {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-// @base BaseSettings
-message proto_document_number_property_settings {
-    // @attr [PropertyOrderAttribute(1)]
-    // @attr [DisplayName("Sequence type")]
-    // @attr [Description("Sequence type general settings")]
-    proto_enum_code_type sequence_type = 1;
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Max Sequence")]
-    // @attr [Description("Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number '9' is limited by this parameter")]
-    uint32 max_sequence_length = 2;
-    // @attr [PropertyOrderAttribute(3)]
-    // @attr [DisplayName("Prefix")]
-    // @attr [Description("Prefix for text code sequence")]
-    string prefix = 3;
-    // @attr [PropertyOrderAttribute(0)]
-    // @attr [DisplayName("Shared Sequence")]
-    // @attr [Description("Shared DocNumber Sequence for auto generation. Same sequence can be used for different documents")]
-    // @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]
-    string sequence_guid = 5;
-    // @attr [PropertyOrderAttribute(7)]
-    // @attr [DisplayName("Unique Scope")]
-    // @attr [Description("Code has to be unique in selected scope")]
-    proto_enum_doc_number_unique_scope scope_of_unique = 7;
-    // @attr [PropertyOrderAttribute(9)]
-    // @attr [DisplayName("Start Month")]
-    // @attr [Description("Start month of scope period")]
-    proto_enum_months scope_period_start_month = 9;
-    // @attr [PropertyOrderAttribute(10)]
-    // @attr [DisplayName("Start Day")]
-    // @attr [Description("Start month day of scope period")]
-    uint32 scope_period_start_month_day = 10;
-}
 // @interface ICanAddNode
 // @interface ISortingValue
 message proto_document {
@@ -2843,6 +2820,11 @@ message proto_document {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // @attr [PropertyOrderAttribute(0)]
+    // @attr [DisplayName("Shared Sequence")]
+    // @attr [Description("Shared DocNumber Sequence for auto generation. Same sequence can be used for different documents")]
+    // @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]
+    string sequence_guid = 6;
     // @attr [Browsable(false)]
     bool is_new = 9;
     // @attr [DisplayName("For deletion")]
@@ -2864,12 +2846,6 @@ message proto_document {
     // Combination of short_id and type group in higher bits
     // @attr [Browsable(false)]
     uint32 short_ref_id = 20;
-    // @attr [PropertyOrderAttribute(22)]
-    // @attr [ReadOnly(true)]
-    // @attr [DisplayName("Sequence")]
-    // @attr [Description("Document number property sequence settings")]
-    // @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]
-    proto_document_number_property_settings doc_number_property_settings = 22;
 
     // unique index of special field YEAR and DocNumber
     // YEAR = DocDate.Year
