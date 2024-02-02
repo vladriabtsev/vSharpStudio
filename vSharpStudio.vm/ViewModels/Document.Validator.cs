@@ -23,6 +23,13 @@ namespace vSharpStudio.vm.ViewModels
                 var p = (Document)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
+                if (string.IsNullOrWhiteSpace(p.SequenceGuid))
+                {
+                    var vf = new ValidationFailure(nameof(p.SequenceGuid),
+                        $"Document enumerator sequence is not selected.");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
                 var pg = p.ParentGroupListDocuments;
                 if (name == pg.ParentGroupDocuments.TimelineName)
                 {
