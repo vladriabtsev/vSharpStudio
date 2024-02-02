@@ -42,9 +42,9 @@ namespace vSharpStudio.Unit
             ////var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
             //Logger.ServiceProvider = serviceProvider;
 
-            if (Logger.LogerProvider != null)
+            if (Logger.LoggerProvider != null)
                 return;
-            Logger.LogerProvider = new SerilogLoggerProvider(Log.Logger);
+            Logger.LoggerProvider = new SerilogLoggerProvider(Log.Logger);
         }
     }
 }

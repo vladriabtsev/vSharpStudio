@@ -153,13 +153,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\vSharpStudio.common\FileUtils.cs" Link="FileUtils.cs" />
-    <Compile Include="..\..\vSharpStudio.common\LogerExt.cs" Link="LogerExt.cs" />
-    <Compile Include="..\..\vSharpStudio.common\Logger.cs" Link="Logger.cs" />
     <Compile Include="..\..\vSharpStudio.common\t4.cs" Link="t4.cs" />
     <Compile Include="..\..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="proto\" />
+    <ProjectReference Include="..\..\common\ApplicationLogging\ApplicationLogging.csproj" />
     <Protobuf Include="..\..\proto\proto_doc.proto" GrpcServices="None" Link="proto\proto_doc.proto" />
     <Protobuf Include="..\..\proto\plugin_sample.proto" GrpcServices="None" Link="proto\plugin_sample.proto" />
     <Protobuf Include="..\..\proto\plugin_sample2.proto" GrpcServices="None" Link="proto\plugin_sample2.proto" />

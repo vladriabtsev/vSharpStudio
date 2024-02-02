@@ -54,7 +54,7 @@ namespace vSharpStudio.Unit
             //    options.TimestampFormat = "hh:mm:ss ";
             //})
             //);
-            Logger.LogerProvider = new DebugLoggerProvider();
+            Logger.LoggerProvider = new DebugLoggerProvider();
         }
         [AssemblyCleanup]
         public static void TearDownTests()

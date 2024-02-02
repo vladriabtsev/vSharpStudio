@@ -24,7 +24,7 @@ namespace ApplicationLogging
                 if (_LoggerProvider == null)
                 {
                     int n = Environment.StackTrace.Split(Environment.NewLine).Count();
-                    if (IndentShift == -1 || IndentShift > n) IndentShift = n - 2;
+                    if (IndentShift == -1 || IndentShift > n) IndentShift = n;
                 }
                 _LoggerProvider = value;
             }

@@ -5097,36 +5097,12 @@
               "defaultValue": ""
             },
             {
-              "name": "use_doc_number_property",
-              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Doc Number\")]\n@attr [Description(\"Use document number property for documents\")]",
-              "label": "",
-              "type": "proto_enum_use_type",
-              "longType": "proto_enum_use_type",
-              "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "doc_number_property_settings",
               "description": "@attr [PropertyOrderAttribute(22)]\n@attr [ReadOnly(true)]\n@attr [DisplayName(\"Sequence\")]\n@attr [Description(\"Document number property sequence settings\")]\n@attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]",
               "label": "",
               "type": "proto_document_number_property_settings",
               "longType": "proto_document_number_property_settings",
               "fullType": "proto_config.proto_document_number_property_settings",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "use_doc_date_property",
-              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Doc Date\")]\n@attr [Description(\"Use document date property for documents\")]",
-              "label": "",
-              "type": "proto_enum_use_type",
-              "longType": "proto_enum_use_type",
-              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -7797,36 +7773,12 @@
               "defaultValue": ""
             },
             {
-              "name": "use_doc_code_property",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for document by default\")]",
-              "label": "",
-              "type": "proto_enum_use_type",
-              "longType": "proto_enum_use_type",
-              "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "monday_before_first_doc_date",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Monday Date\")]\n@attr [Description(\"Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions \")]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "Timestamp",
               "longType": "google.protobuf.Timestamp",
               "fullType": "google.protobuf.Timestamp",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "use_doc_date_property",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Doc Date\")]\n@attr [Description(\"Use Date property for documents\")]",
-              "label": "",
-              "type": "proto_enum_use_type",
-              "longType": "proto_enum_use_type",
-              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

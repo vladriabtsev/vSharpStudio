@@ -58,6 +58,8 @@ namespace vSharpStudio.common
         IProperty AddExtensionPropertyString(string subName, uint length, string guid);
         IProperty AddExtensionPropertyNumerical(string subName, uint length, uint accuracy, string guid);
         #endregion Plugin group model
+
+        string GetShortDescription(StringBuilder sb);
     }
     public interface IPropertyRangeValuesRequirements
     {

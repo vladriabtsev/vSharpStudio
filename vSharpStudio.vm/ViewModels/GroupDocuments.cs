@@ -226,22 +226,6 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentModel.IsGridSortableCustom;
         }
-        public bool GetUseDocCodeProperty()
-        {
-            if (this.UseDocCodeProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseDocCodeProperty == EnumUseType.No)
-                return false;
-            return this.ParentModel.UseDocNumberProperty;
-        }
-        public bool GetUseDocDateProperty()
-        {
-            if (this.UseDocDateProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseDocDateProperty == EnumUseType.No)
-                return false;
-            return this.ParentModel.UseDocDateProperty;
-        }
 
         #region Roles
         public EnumPropertyAccess GetRolePropertyAccess(IRole role)

@@ -436,54 +436,48 @@ namespace vSharpStudio.vm.ViewModels
                 prp = model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
                 res.Add(prp);
             }
-            if (this.GetUseDocDateProperty())
+            prp = model.GetPropertyDocumentDate(this.GroupProperties, this.PropertyDocDateGuid);
+            res.Add(prp);
+            switch (this.DocNumberPropertySettings.SequenceType)
             {
-                prp = model.GetPropertyDocumentDate(this.GroupProperties, this.PropertyDocDateGuid);
-                res.Add(prp);
+                case EnumCodeType.Number:
+                    prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.PropertyDocNumberGuid,
+                        this.DocNumberPropertySettings.MaxSequenceLength);
+                    break;
+                case EnumCodeType.Text:
+                    prp = model.GetPropertyDocNumberString(this.GroupProperties, this.PropertyDocNumberGuid,
+                        this.DocNumberPropertySettings.MaxSequenceLength + (uint)this.DocNumberPropertySettings.Prefix.Length);
+                    break;
+                default:
+                    throw new NotImplementedException();
             }
-            if (this.GetUseDocNumberProperty())
+            res.Add(prp);
+            switch (this.DocNumberPropertySettings.ScopeOfUnique)
             {
-                switch (this.DocNumberPropertySettings.SequenceType)
-                {
-                    case EnumCodeType.Number:
-                        prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.PropertyDocNumberGuid,
-                            this.DocNumberPropertySettings.MaxSequenceLength);
-                        break;
-                    case EnumCodeType.Text:
-                        prp = model.GetPropertyDocNumberString(this.GroupProperties, this.PropertyDocNumberGuid,
-                            this.DocNumberPropertySettings.MaxSequenceLength + (uint)this.DocNumberPropertySettings.Prefix.Length);
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-                res.Add(prp);
-                switch (this.DocNumberPropertySettings.ScopeOfUnique)
-                {
-                    case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
-                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexYearDocNumberGuid);
-                        res.Add(prp);
-                        break;
-                    case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
-                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexQuaterDocNumberGuid);
-                        res.Add(prp);
-                        break;
-                    case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
-                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexMonthDocNumberGuid);
-                        res.Add(prp);
-                        break;
-                    case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
-                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexWeekDocNumberGuid);
-                        res.Add(prp);
-                        break;
-                    case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
-                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexDayDocNumberGuid);
-                        res.Add(prp);
-                        break;
-                    case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
+                    prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexYearDocNumberGuid);
+                    res.Add(prp);
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
+                    prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexQuaterDocNumberGuid);
+                    res.Add(prp);
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
+                    prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexMonthDocNumberGuid);
+                    res.Add(prp);
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
+                    prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexWeekDocNumberGuid);
+                    res.Add(prp);
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
+                    prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexDayDocNumberGuid);
+                    res.Add(prp);
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
+                    break;
+                default:
+                    throw new NotImplementedException();
             }
             prp = model.GetPropertyBool(this.GroupProperties, this.PropertyIsPostedGuid, "IsPosted", 10, true);
             res.Add(prp);
@@ -688,22 +682,6 @@ namespace vSharpStudio.vm.ViewModels
             if (this.IsGridSortableCustom == EnumUseType.No)
                 return false;
             return this.ParentGroupListDocuments.ParentGroupDocuments.IsGridSortableCustomGet();
-        }
-        public bool GetUseDocNumberProperty()
-        {
-            if (this.UseDocNumberProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseDocNumberProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListDocuments.ParentGroupDocuments.GetUseDocCodeProperty();
-        }
-        public bool GetUseDocDateProperty()
-        {
-            if (this.UseDocDateProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseDocDateProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListDocuments.ParentGroupDocuments.GetUseDocDateProperty();
         }
 
         #region Roles

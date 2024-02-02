@@ -235,10 +235,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Enumeration
 
-        public static string? GetTypeDesc(DataType p)
+        public static string? GetTypeDesc(DataType p, StringBuilder sb = null)
         {
             Debug.Assert(p != null);
-            var sb = new StringBuilder();
+            if (sb == null)
+                sb = new StringBuilder();
             sb.Append(Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum)!);
             Debug.Assert(p.Parent != null);
             ITreeConfigNode par = p.Parent;

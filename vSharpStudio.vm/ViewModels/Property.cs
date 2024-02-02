@@ -1072,5 +1072,17 @@ namespace vSharpStudio.vm.ViewModels
         //        return "Destination length is shorter than source length";
         //    return string.Empty;
         //}
+        public string GetShortDescription(StringBuilder sb)
+        {
+            sb.Append(this.Name);
+            sb.Append('[');
+            sb.Append(this.Guid);
+            sb.Append(']');
+            if (this.IsNullable)
+                sb.Append(" Nullable");
+            sb.Append(" ");
+            DataType.GetTypeDesc(this.DataType, sb);
+            return sb.ToString();
+        }
     }
 }

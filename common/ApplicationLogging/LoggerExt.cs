@@ -119,10 +119,9 @@ namespace ApplicationLogging
             int n = Environment.StackTrace.Split(Environment.NewLine).Count();
             System.Diagnostics.Debug.Assert(n >= Logger.IndentShift);
             var indent = new String(' ', n - Logger.IndentShift);
-            //var msg = $"{indent}{message} - {fileName} {line} [{methodName}]";
             string msg = "";
             if (message != null)
-                msg = $"{indent}{message} - [{methodName}] {fileName} {line}";
+                msg = $"{indent}{message} [{methodName}] {fileName} {line}";
             else
                 msg = $"{indent}[{methodName}] {fileName} {line}";
             return msg;
@@ -168,6 +167,20 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg);
+        }
+        public static void Trace(this Microsoft.Extensions.Logging.ILogger logger, string? message, Action<StringBuilder> messageBuilder,
+            LoggerExt.Dummy? dummy = null,
+            [CallerMemberName] string memberName = "",
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            if (!logger.IsEnabled(LogLevel.Trace))
+                return;
+            var sb = new StringBuilder();
+            sb.AppendLine(message);
+            messageBuilder(sb);
+            var msg = GetMsg(sb.ToString(), memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg);
         }
         ////[MethodImpl(MethodImplOptions.AggressiveInlining)]

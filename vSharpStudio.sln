@@ -35,6 +35,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.std", "common\wpf\vSharpStudio.std\vSharpStudio.std.csproj", "{A02BB4D5-5EA9-4A90-8D0A-C1AF3D919C30}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.vm", "vSharpStudio.vm\vSharpStudio.vm.csproj", "{5AA0481E-9ED7-43CF-AF56-BF294FE7C13F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E} = {EEAF63A0-C59F-468B-AA1B-58865E84E44E}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.Unit", "vSharpStudio.Unit\vSharpStudio.Unit.csproj", "{93615E76-0E83-4FCE-A6E0-554F4BB108D3}"
 EndProject
@@ -43,6 +46,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.core", "common\vSharpStudio.core\vSharpStudio.core.csproj", "{7A0BD212-E3D4-4419-B947-82B78E07ADAC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vPlugin.Sample", "vPlugin.Sample\vPlugin.Sample.csproj", "{002F7BAC-8937-409C-BED2-6A41D6D392FC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E} = {EEAF63A0-C59F-468B-AA1B-58865E84E44E}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ext", "ext", "{2308E25C-68C9-4F24-A3BC-3678253E77A0}"
 EndProject
@@ -53,8 +59,13 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xceed.Wpf.Toolkit", "submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj", "{83B37A5C-2FEC-4488-AC57-0CDCE58DB9DF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vPlugin.Sample2", "vPlugin.Sample2\vPlugin.Sample2.csproj", "{E9C45505-E874-45A0-A3D3-A7693423BED4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E} = {EEAF63A0-C59F-468B-AA1B-58865E84E44E}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{EFD4B2B2-67A3-4230-A967-C49A6695ACB1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenVmFromProto", "generators\GenVmFromProto\GenVmFromProto.csproj", "{EEAF63A0-C59F-468B-AA1B-58865E84E44E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +146,12 @@ Global
 		{E9C45505-E874-45A0-A3D3-A7693423BED4}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{E9C45505-E874-45A0-A3D3-A7693423BED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9C45505-E874-45A0-A3D3-A7693423BED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -147,6 +164,7 @@ Global
 		{7A0BD212-E3D4-4419-B947-82B78E07ADAC} = {8AF928D9-39F9-4787-8806-A24BE9DA252F}
 		{211753FC-8C4D-4F05-AB4B-130FABECF30E} = {2308E25C-68C9-4F24-A3BC-3678253E77A0}
 		{83B37A5C-2FEC-4488-AC57-0CDCE58DB9DF} = {E0EBA1FB-4B08-4546-BDD5-093C533713FE}
+		{EEAF63A0-C59F-468B-AA1B-58865E84E44E} = {373A132D-A5B7-4D32-988D-DC59E038958F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A7BE2D74-A2C5-46DF-B175-814908FA7DAD}

@@ -2769,21 +2769,11 @@ message proto_group_documents {
     proto_group_list_journals group_journals = 21;
 
     // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(22)]
-    // @attr [DisplayName("Use Code")]
-    // @attr [Description("Use Code property for document by default")]
-    proto_enum_use_type use_doc_code_property = 22;
-    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(23)]
     // @attr [DisplayName("Monday Date")]
     // @attr [Description("Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions ")]
     // @attr [ReadOnly(true)]
     google.protobuf.Timestamp monday_before_first_doc_date = 23;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(24)]
-    // @attr [DisplayName("Use Doc Date")]
-    // @attr [Description("Use Date property for documents")]
-    proto_enum_use_type use_doc_date_property = 24;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -2874,20 +2864,12 @@ message proto_document {
     // Combination of short_id and type group in higher bits
     // @attr [Browsable(false)]
     uint32 short_ref_id = 20;
-    // @attr [PropertyOrderAttribute(21)]
-    // @attr [DisplayName("Use Doc Number")]
-    // @attr [Description("Use document number property for documents")]
-    proto_enum_use_type use_doc_number_property = 21;
     // @attr [PropertyOrderAttribute(22)]
     // @attr [ReadOnly(true)]
     // @attr [DisplayName("Sequence")]
     // @attr [Description("Document number property sequence settings")]
     // @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]
     proto_document_number_property_settings doc_number_property_settings = 22;
-    // @attr [PropertyOrderAttribute(24)]
-    // @attr [DisplayName("Use Doc Date")]
-    // @attr [Description("Use document date property for documents")]
-    proto_enum_use_type use_doc_date_property = 24;
 
     // unique index of special field YEAR and DocNumber
     // YEAR = DocDate.Year
