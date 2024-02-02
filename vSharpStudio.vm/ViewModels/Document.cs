@@ -433,7 +433,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(prp);
             if (!string.IsNullOrWhiteSpace(this.SequenceGuid))
             {
-                var seq = (DocumentEnumeratorSequence)this.Cfg.DicNodes[this.SequenceGuid];
+                var seq = this.Sequence;
                 switch (seq.SequenceType)
                 {
                     case EnumCodeType.Number:
@@ -801,5 +801,7 @@ namespace vSharpStudio.vm.ViewModels
             return roles;
         }
         #endregion Roles
+
+        public IDocumentEnumeratorSequence Sequence { get { return (IDocumentEnumeratorSequence)this.Cfg.DicNodes[this.SequenceGuid]; } }
     }
 }

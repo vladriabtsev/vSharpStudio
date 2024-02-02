@@ -29,5 +29,6 @@ namespace vSharpStudio.common
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
         string FullName { get; } // name with config name
         string GetDebuggerDisplay(bool isOptimistic);
+        IDocumentEnumeratorSequence Sequence { get; }
     }
 }
