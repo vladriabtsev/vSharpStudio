@@ -12,7 +12,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class EnumeratorDocumentSequence : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
+    public partial class DocumentEnumeratorSequence : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -128,7 +128,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (EnumeratorDocumentSequence?)this.ParentGroupListSequences.ListEnumeratorSequences.GetPrev(this);
+            var prev = (DocumentEnumeratorSequence?)this.ParentGroupListSequences.ListEnumeratorSequences.GetPrev(this);
             if (prev == null)
                 return;
             this.SetSelected(prev);
@@ -154,7 +154,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (EnumeratorDocumentSequence?)this.ParentGroupListSequences.ListEnumeratorSequences.GetNext(this);
+            var next = (DocumentEnumeratorSequence?)this.ParentGroupListSequences.ListEnumeratorSequences.GetNext(this);
             if (next == null)
                 return;
             this.SetSelected(next);
@@ -168,7 +168,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddClone()
         {
             Debug.Assert(this.Parent != null);
-            var node = EnumeratorDocumentSequence.Clone(this.Parent, this, true, true);
+            var node = DocumentEnumeratorSequence.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupListSequences.Add(node);
             this._Name = this._Name + "2";
@@ -178,7 +178,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new EnumeratorDocumentSequence(this.Parent);
+            var node = new DocumentEnumeratorSequence(this.Parent);
             this.ParentGroupListSequences.Add(node);
             this.GetUniqueName(Defaults.SequenceName, node, this.ParentGroupListSequences.ListEnumeratorSequences);
             this.SetSelected(node);

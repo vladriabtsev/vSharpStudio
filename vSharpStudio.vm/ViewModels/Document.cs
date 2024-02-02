@@ -433,7 +433,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(prp);
             if (!string.IsNullOrWhiteSpace(this.SequenceGuid))
             {
-                var seq = (EnumeratorDocumentSequence)this.Cfg.DicNodes[this.SequenceGuid];
+                var seq = (DocumentEnumeratorSequence)this.Cfg.DicNodes[this.SequenceGuid];
                 switch (seq.SequenceType)
                 {
                     case EnumCodeType.Number:

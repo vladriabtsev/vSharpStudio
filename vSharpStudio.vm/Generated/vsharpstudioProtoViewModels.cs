@@ -23237,8 +23237,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
-    public partial class EnumeratorDocumentSequenceValidator : ValidatorBase<EnumeratorDocumentSequence, EnumeratorDocumentSequenceValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
-    public partial class EnumeratorDocumentSequence : ConfigObjectVmGenSettings<EnumeratorDocumentSequence, EnumeratorDocumentSequenceValidator>, IComparable<EnumeratorDocumentSequence>, IConfigAcceptVisitor, IEnumeratorDocumentSequence // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
+    public partial class DocumentEnumeratorSequenceValidator : ValidatorBase<DocumentEnumeratorSequence, DocumentEnumeratorSequenceValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:16
+    public partial class DocumentEnumeratorSequence : ConfigObjectVmGenSettings<DocumentEnumeratorSequence, DocumentEnumeratorSequenceValidator>, IComparable<DocumentEnumeratorSequence>, IConfigAcceptVisitor, IDocumentEnumeratorSequence // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:17
     {
         public override string ToDebugString()
         {
@@ -23260,8 +23260,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        public EnumeratorDocumentSequence(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:50
-            : base(parent, EnumeratorDocumentSequenceValidator.Validator)
+        public DocumentEnumeratorSequence(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:50
+            : base(parent, DocumentEnumeratorSequenceValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
@@ -23282,10 +23282,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static EnumeratorDocumentSequence Clone(ITreeConfigNode? parent, IEnumeratorDocumentSequence from, bool isDeep = true, bool isNewGuid = false) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:29
+        public static DocumentEnumeratorSequence Clone(ITreeConfigNode? parent, IDocumentEnumeratorSequence from, bool isDeep = true, bool isNewGuid = false) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:29
         {
             Debug.Assert(from != null);
-            EnumeratorDocumentSequence vm = new EnumeratorDocumentSequence(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:36
+            DocumentEnumeratorSequence vm = new DocumentEnumeratorSequence(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:36
             vm._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
@@ -23306,7 +23306,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vm.SetNewGuid();
             return vm;
         }
-        public static void Update(EnumeratorDocumentSequence to, IEnumeratorDocumentSequence from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:76
+        public static void Update(DocumentEnumeratorSequence to, IDocumentEnumeratorSequence from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:76
         {
             Debug.Assert(to != null);
             Debug.Assert(from != null);
@@ -23362,24 +23362,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:146
         #region IEditable
-        public override EnumeratorDocumentSequence Backup()
+        public override DocumentEnumeratorSequence Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
             Debug.Assert(this is IConfig || this.Parent != null);
-            return EnumeratorDocumentSequence.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:154
+            return DocumentEnumeratorSequence.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:154
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(EnumeratorDocumentSequence from)
+        public override void Restore(DocumentEnumeratorSequence from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            EnumeratorDocumentSequence.Update(this, from, isDeep);
+            DocumentEnumeratorSequence.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_enumerator_document_sequence' to 'EnumeratorDocumentSequence'
-        public static EnumeratorDocumentSequence ConvertToVM(Proto.Config.proto_enumerator_document_sequence m, EnumeratorDocumentSequence vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:170
+        // Conversion from 'proto_document_enumerator_sequence' to 'DocumentEnumeratorSequence'
+        public static DocumentEnumeratorSequence ConvertToVM(Proto.Config.proto_document_enumerator_sequence m, DocumentEnumeratorSequence vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:170
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -23410,11 +23410,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm.IsHasChanged = false;
             return vm;
         }
-        // Conversion from 'EnumeratorDocumentSequence' to 'proto_enumerator_document_sequence'
-        public static Proto.Config.proto_enumerator_document_sequence ConvertToProto(EnumeratorDocumentSequence vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:229
+        // Conversion from 'DocumentEnumeratorSequence' to 'proto_document_enumerator_sequence'
+        public static Proto.Config.proto_document_enumerator_sequence ConvertToProto(DocumentEnumeratorSequence vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:229
         {
             Debug.Assert(vm != null);
-            Proto.Config.proto_enumerator_document_sequence m = new Proto.Config.proto_enumerator_document_sequence(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:232
+            Proto.Config.proto_document_enumerator_sequence m = new Proto.Config.proto_document_enumerator_sequence(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:232
             m.Guid = vm.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.Name = vm.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
@@ -23735,10 +23735,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
         //partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnListNodeGeneratorsSettingsChanged();
-        IReadOnlyList<IPluginGeneratorNodeSettings> IEnumeratorDocumentSequence.ListNodeGeneratorsSettings { get { return (this as EnumeratorDocumentSequence).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
+        IReadOnlyList<IPluginGeneratorNodeSettings> IDocumentEnumeratorSequence.ListNodeGeneratorsSettings { get { return (this as DocumentEnumeratorSequence).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:130
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134 proto_enumerator_document_sequence
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:134 proto_document_enumerator_sequence
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -23779,7 +23779,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListEnumeratorSequences = new ConfigNodesCollection<EnumeratorDocumentSequence>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:60
+            this._ListEnumeratorSequences = new ConfigNodesCollection<DocumentEnumeratorSequence>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:60
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Class.tt Line:60
             this.OnCreated();
         }
@@ -23792,7 +23792,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         
         public override void Sort(Type type) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:9
         {
-            if (type == typeof(EnumeratorDocumentSequence)) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:16
+            if (type == typeof(DocumentEnumeratorSequence)) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:16
             {
                 this.ListEnumeratorSequences.Sort();
             }
@@ -23810,9 +23810,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._NameUi = from.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
-            vm._ListEnumeratorSequences = new ConfigNodesCollection<EnumeratorDocumentSequence>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:54
+            vm._ListEnumeratorSequences = new ConfigNodesCollection<DocumentEnumeratorSequence>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:54
             foreach (var t in from.ListEnumeratorSequences) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:55
-                vm.ListEnumeratorSequences.Add(EnumeratorDocumentSequence.Clone(vm, (EnumeratorDocumentSequence)t, isDeep));
+                vm.ListEnumeratorSequences.Add(DocumentEnumeratorSequence.Clone(vm, (DocumentEnumeratorSequence)t, isDeep));
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:54
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:55
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -23839,7 +23839,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                         if (t.Guid == tt.Guid)
                         {
                             isfound = true;
-                            EnumeratorDocumentSequence.Update((EnumeratorDocumentSequence)t, (EnumeratorDocumentSequence)tt, isDeep);
+                            DocumentEnumeratorSequence.Update((DocumentEnumeratorSequence)t, (DocumentEnumeratorSequence)tt, isDeep);
                             break;
                         }
                     }
@@ -23859,8 +23859,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                     }
                     if (!isfound)
                     {
-                        var p = new EnumeratorDocumentSequence(to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:116
-                        EnumeratorDocumentSequence.Update(p, (EnumeratorDocumentSequence)tt, isDeep);
+                        var p = new DocumentEnumeratorSequence(to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:116
+                        DocumentEnumeratorSequence.Update(p, (DocumentEnumeratorSequence)tt, isDeep);
                         to.ListEnumeratorSequences.Add(p);
                     }
                 }
@@ -23933,10 +23933,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._SortingValue = m.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._NameUi = m.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._Description = m.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
-            vm._ListEnumeratorSequences = new ConfigNodesCollection<EnumeratorDocumentSequence>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:189
+            vm._ListEnumeratorSequences = new ConfigNodesCollection<DocumentEnumeratorSequence>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:189
             foreach (var t in m.ListEnumeratorSequences) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:193
             {
-                var tvm = EnumeratorDocumentSequence.ConvertToVM(t, new EnumeratorDocumentSequence(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:195
+                var tvm = DocumentEnumeratorSequence.ConvertToVM(t, new DocumentEnumeratorSequence(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:195
                 vm.ListEnumeratorSequences.Add(tvm);
             }
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:189
@@ -23961,7 +23961,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.NameUi = vm.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.Description = vm.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             foreach (var t in vm.ListEnumeratorSequences) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:235
-                m.ListEnumeratorSequences.Add(EnumeratorDocumentSequence.ConvertToProto((EnumeratorDocumentSequence)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:239
+                m.ListEnumeratorSequences.Add(DocumentEnumeratorSequence.ConvertToProto((DocumentEnumeratorSequence)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:239
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:235
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:239
             return m;
@@ -24099,7 +24099,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         
         [Browsable(false)]
         [Description("Document number sequences")]
-        public ConfigNodesCollection<EnumeratorDocumentSequence> ListEnumeratorSequences // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public ConfigNodesCollection<DocumentEnumeratorSequence> ListEnumeratorSequences // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._ListEnumeratorSequences; }
             set
@@ -24111,20 +24111,20 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        private ConfigNodesCollection<EnumeratorDocumentSequence> _ListEnumeratorSequences; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnListEnumeratorSequencesChanging(ConfigNodesCollection<EnumeratorDocumentSequence> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        private ConfigNodesCollection<DocumentEnumeratorSequence> _ListEnumeratorSequences; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnListEnumeratorSequencesChanging(ConfigNodesCollection<DocumentEnumeratorSequence> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnListEnumeratorSequencesChanged();
-        IReadOnlyList<IEnumeratorDocumentSequence> IGroupListEnumeratorSequences.ListEnumeratorSequences { get { return (this as GroupListEnumeratorSequences).ListEnumeratorSequences; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
+        IReadOnlyList<IDocumentEnumeratorSequence> IGroupListEnumeratorSequences.ListEnumeratorSequences { get { return (this as GroupListEnumeratorSequences).ListEnumeratorSequences; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
         
-        public EnumeratorDocumentSequence this[int index] { get { return (EnumeratorDocumentSequence)this.ListEnumeratorSequences[index]; } }
-        IEnumeratorDocumentSequence IGroupListEnumeratorSequences.this[int index] { get { return (EnumeratorDocumentSequence)this.ListEnumeratorSequences[index]; } }
-        public void Add(EnumeratorDocumentSequence item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:51
+        public DocumentEnumeratorSequence this[int index] { get { return (DocumentEnumeratorSequence)this.ListEnumeratorSequences[index]; } }
+        IDocumentEnumeratorSequence IGroupListEnumeratorSequences.this[int index] { get { return (DocumentEnumeratorSequence)this.ListEnumeratorSequences[index]; } }
+        public void Add(DocumentEnumeratorSequence item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:51
         { 
             Debug.Assert(item != null);
             this.ListEnumeratorSequences.Add(item); 
             item.Parent = this;
         }
-        public void AddRange(IEnumerable<EnumeratorDocumentSequence> items) 
+        public void AddRange(IEnumerable<DocumentEnumeratorSequence> items) 
         { 
             Debug.Assert(items != null);
             this.ListEnumeratorSequences.AddRange(items); 
@@ -24133,7 +24133,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         public int Count() { return this.ListEnumeratorSequences.Count; }
         int IGroupListEnumeratorSequences.Count() { return this.Count(); }
-        public void Remove(EnumeratorDocumentSequence item) 
+        public void Remove(DocumentEnumeratorSequence item) 
         {
             Debug.Assert(item != null);
             this.ListEnumeratorSequences.Remove(item); 
@@ -37163,7 +37163,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void Visit(Proto.Config.proto_register p);
         void Visit(Proto.Config.proto_register_doc_to_reg p);
         void Visit(Proto.Config.proto_register_reg_prop_to_doc_prop p);
-        void Visit(Proto.Config.proto_enumerator_document_sequence p);
+        void Visit(Proto.Config.proto_document_enumerator_sequence p);
         void Visit(Proto.Config.proto_group_list_enumerator_sequences p);
         void Visit(Proto.Config.proto_group_documents p);
         void Visit(Proto.Config.proto_document p);
@@ -37654,11 +37654,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(EnumeratorDocumentSequence p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(DocumentEnumeratorSequence p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(EnumeratorDocumentSequence p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(DocumentEnumeratorSequence p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
@@ -38429,16 +38429,16 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         protected virtual void OnVisit(RegisterRegPropToDocProp p) { }
         protected virtual void OnVisitEnd(RegisterRegPropToDocProp p) { }
-        public void Visit(EnumeratorDocumentSequence p)
+        public void Visit(DocumentEnumeratorSequence p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(EnumeratorDocumentSequence p)
+        public void VisitEnd(DocumentEnumeratorSequence p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(EnumeratorDocumentSequence p) { }
-        protected virtual void OnVisitEnd(EnumeratorDocumentSequence p) { }
+        protected virtual void OnVisit(DocumentEnumeratorSequence p) { }
+        protected virtual void OnVisitEnd(DocumentEnumeratorSequence p) { }
         public void Visit(GroupListEnumeratorSequences p)
         {
             this.OnVisit(p);
@@ -38772,8 +38772,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void VisitEnd(GroupListRegisterDimensions p);
         void Visit(Register p);
         void VisitEnd(Register p);
-        void Visit(EnumeratorDocumentSequence p);
-        void VisitEnd(EnumeratorDocumentSequence p);
+        void Visit(DocumentEnumeratorSequence p);
+        void VisitEnd(DocumentEnumeratorSequence p);
         void Visit(GroupListEnumeratorSequences p);
         void VisitEnd(GroupListEnumeratorSequences p);
         void Visit(GroupDocuments p);

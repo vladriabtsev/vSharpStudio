@@ -6,16 +6,16 @@ using FluentValidation.Results;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class EnumeratorDocumentSequenceValidator
+    public partial class DocumentEnumeratorSequenceValidator
     {
-        public EnumeratorDocumentSequenceValidator()
+        public DocumentEnumeratorSequenceValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
             this.RuleFor(x => x.Name).Custom((name, cntx) =>
             {
-                var p = (EnumeratorDocumentSequence)cntx.InstanceToValidate;
+                var p = (DocumentEnumeratorSequence)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
                 var gs = (GroupListEnumeratorSequences)p.Parent;
@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.MaxSequenceLength).LessThan(20u);
             this.RuleFor(x => x.Prefix).Custom((prefix, cntx) =>
             {
-                var p = (EnumeratorDocumentSequence)cntx.InstanceToValidate;
+                var p = (DocumentEnumeratorSequence)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
                 if (string.IsNullOrWhiteSpace(p.Prefix))

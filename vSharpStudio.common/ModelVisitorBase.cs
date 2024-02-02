@@ -546,8 +546,8 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IEnumerable<IEnumeration> lst) { }
         protected virtual void BeginVisit(IGroupListEnumeratorSequences cn) { }
         protected virtual void EndVisit(IGroupListEnumeratorSequences cn) { }
-        protected virtual void BeginVisit(IEnumeratorDocumentSequence p) { }
-        protected virtual void EndVisit(IEnumeratorDocumentSequence p) { }
+        protected virtual void BeginVisit(IDocumentEnumeratorSequence p) { }
+        protected virtual void EndVisit(IDocumentEnumeratorSequence p) { }
         #endregion Enumeration
 
         #region Constant
