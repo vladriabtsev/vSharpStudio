@@ -273,6 +273,42 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public Constant AddConstantRefAnyCatalogOrDocument(string name, Catalog cat, string? guid = null)
+        {
+            var node = new Constant(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.DataType.DataTypeEnum = EnumDataType.ANY;
+            node.DataType.ListObjectGuids.Add(cat.Guid);
+            node.IsNullable = true;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Constant AddConstantRefAnyCatalogOrDocument(string name, Document d, string? guid = null)
+        {
+            var node = new Constant(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.DataType.DataTypeEnum = EnumDataType.ANY;
+            node.DataType.ListObjectGuids.Add(d.Guid);
+            node.IsNullable = true;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public Constant AddConstantTypeRefCatalogs(string name, Catalog cat, Catalog? cat2 = null, string? guid = null)
         {
             var node = new Constant(this) { Name = name };
