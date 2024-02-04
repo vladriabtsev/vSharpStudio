@@ -6,6 +6,6 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListEnumeratorSequences : ITreeConfigNodeSortable
     {
-        IGroupListCommon ParentGroupListCommonI { get; }
+        IGroupDocuments ParentGroupDocumentsI { get; }
     }
 }

@@ -23,9 +23,9 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
-        public GroupListCommon ParentGroupListCommon { get { Debug.Assert(this.Parent != null); return (GroupListCommon)this.Parent; } }
+        public GroupDocuments ParentGroupDocuments { get { Debug.Assert(this.Parent != null); return (GroupDocuments)this.Parent; } }
         [Browsable(false)]
-        public IGroupListCommon ParentGroupListCommonI { get { Debug.Assert(this.Parent != null); return (IGroupListCommon)this.Parent; } }
+        public IGroupDocuments ParentGroupDocumentsI { get { Debug.Assert(this.Parent != null); return (IGroupDocuments)this.Parent; } }
         #region ITree
         public override IChildrenCollection GetListChildren()
         {
@@ -33,12 +33,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IChildrenCollection GetListSiblings()
         {
-            return this.ParentGroupListCommon.Children;
+            return this.ParentGroupDocuments.Children;
         }
         #endregion ITree
 
         public new ConfigNodesCollection<DocumentEnumeratorSequence> Children { get { return this.ListEnumeratorSequences; } }
-        public IGroupListCommon IParent { get { return this.ParentGroupListCommonI; } }
+        public IGroupDocuments IParent { get { return this.ParentGroupDocumentsI; } }
 
         partial void OnCreated()
         {
