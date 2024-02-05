@@ -133,12 +133,8 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyPostDateGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocRefGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocGuidGuid = System.Guid.NewGuid().ToString();
-            this._PropertyDocDateGuid = System.Guid.NewGuid().ToString();
             this._IndexDocDateGuid = System.Guid.NewGuid().ToString();
-            this._PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
             this._IndexDocIdTypeGuid = System.Guid.NewGuid().ToString();
-            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
             this._TableTurnoverGuid = System.Guid.NewGuid().ToString();
             this._TableTurnoverPropertyIdGuid = System.Guid.NewGuid().ToString();
             this._TableTurnoverPropertyVersionGuid = System.Guid.NewGuid().ToString();
@@ -512,7 +508,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (isOptimistic)
                 {
                     // Version
-                    var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid); // position 7
+                    var pVer = m.GetPropertyVersion(this, this.Cfg.Model.PropertyVersionGuid); // position 7
                     pVer.TagInList = "vr";
                     lst.Add(pVer);
                 }
@@ -559,7 +555,7 @@ namespace vSharpStudio.vm.ViewModels
             //lst.Add(pDocGuid);
 
             // Document timeline
-            var pDocDate = new Property(this, this.PropertyDocDateGuid, this.Cfg.Model.PropertyDocDateName, true);
+            var pDocDate = new Property(this, this.Cfg.Model.PropertyDocDateGuid, this.Cfg.Model.PropertyDocDateName, true);
             pDocDate.Name = "DocTimeline";
             pDocDate.DataType = (DataType)this.Cfg.Model.GetDataTypeDateTimeUtc(pDocDate, EnumTimeAccuracyType.MAX_TIME_ACC, false, false);
             pDocDate.Position = 8;
@@ -572,7 +568,7 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(pDocDate);
 
             // Document number
-            var pDocNumber = (Property)m.GetPropertyDocNumberString(this, this.PropertyDocNumberGuid, 50);
+            var pDocNumber = (Property)m.GetPropertyDocNumberString(this, this.Cfg.Model.PropertyDocNumberGuid, 50);
             pDocNumber.Position = 15;
             pDocNumber.TagInList = "dn";
             lst.Add(pDocNumber);
@@ -592,14 +588,14 @@ namespace vSharpStudio.vm.ViewModels
             var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
 
             // Id
-            var pId = m.GetPropertyPkId(this, this.PropertyIdGuid); // position 6
+            var pId = m.GetPropertyPkId(this, this.Cfg.Model.PropertyIdGuid); // position 6
             pId.TagInList = "id";
             lst.Add(pId);
 
             if (isOptimistic)
             {
                 // Version
-                var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid); // position 7
+                var pVer = m.GetPropertyVersion(this, this.Cfg.Model.PropertyVersionGuid); // position 7
                 pVer.TagInList = "vr";
                 lst.Add(pVer);
             }
@@ -674,14 +670,14 @@ namespace vSharpStudio.vm.ViewModels
             var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
 
             // Id
-            var pId = m.GetPropertyPkId(this, this.PropertyIdGuid); // position 6
+            var pId = m.GetPropertyPkId(this, this.Cfg.Model.PropertyIdGuid); // position 6
             pId.TagInList = "id";
             lst.Add(pId);
 
             if (isOptimistic)
             {
                 // Version
-                var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid); // position 7
+                var pVer = m.GetPropertyVersion(this, this.Cfg.Model.PropertyVersionGuid); // position 7
                 pVer.TagInList = "vr";
                 lst.Add(pVer);
             }

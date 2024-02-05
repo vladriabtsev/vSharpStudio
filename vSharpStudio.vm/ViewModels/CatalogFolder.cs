@@ -65,13 +65,6 @@ namespace vSharpStudio.vm.ViewModels
             this._Description = "Catalog items groups";
             this.IsIncludableInModels = true;
 
-            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this._PropertyCodeGuid = System.Guid.NewGuid().ToString();
-            this._PropertyNameGuid = System.Guid.NewGuid().ToString();
-            this._PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
-            this._PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
-            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this._PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
             this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();
             this._ViewListComboBoxGuid = System.Guid.NewGuid().ToString();
 
@@ -281,18 +274,18 @@ namespace vSharpStudio.vm.ViewModels
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
-            var prp = model.GetPropertyPkId(this.GroupProperties, this.PropertyIdGuid);
+            var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             res.Add(prp);
-            prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
+            prp = model.GetPropertyRefParent(this.GroupProperties, this.Cfg.Model.PropertyCtlgRefSelfGuid, "RefTreeParent", true);
             res.Add(prp);
             if (this.ParentCatalog.UseTree && !this.ParentCatalog.UseSeparateTreeForFolders)
             {
-                prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid, false);
+                prp = model.GetPropertyIsFolder(this.GroupProperties, this.Cfg.Model.PropertyCtlgIsFolderGuid, false);
                 res.Add(prp);
             }
             if (isOptimistic)
             {
-                prp = model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
+                prp = model.GetPropertyVersion(this.GroupProperties, this.Cfg.Model.PropertyVersionGuid);
                 res.Add(prp);
             }
         }
@@ -307,12 +300,12 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (this.GetUseNameProperty())
             {
-                prp = model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength, false);
+                prp = model.GetPropertyCatalogName(this.GroupProperties, this.Cfg.Model.PropertyCtlgNameGuid, this.MaxNameLength, false);
                 res.Add(prp);
             }
             if (this.GetUseDescriptionProperty())
             {
-                prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength, true);
+                prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.Cfg.Model.PropertyCtlgDescriptionGuid, this.MaxDescriptionLength, true);
                 res.Add(prp);
             }
             foreach (var t in this.GroupProperties.ListProperties)
@@ -328,11 +321,11 @@ namespace vSharpStudio.vm.ViewModels
                 switch (this.CodePropertySettings.SequenceType)
                 {
                     case EnumCodeType.Number:
-                        prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid,
+                        prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
                             this.CodePropertySettings.MaxSequenceLength, false);
                         break;
                     case EnumCodeType.Text:
-                        prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid,
+                        prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
                             this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false);
                         break;
                     default:
@@ -347,7 +340,7 @@ namespace vSharpStudio.vm.ViewModels
             IProperty prp = null!;
             if (this.GetUseNameProperty())
             {
-                prp = this.Cfg.Model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength, false);
+                prp = this.Cfg.Model.GetPropertyCatalogName(this.GroupProperties, this.Cfg.Model.PropertyCtlgNameGuid, this.MaxNameLength, false);
                 lst.Add(prp);
             }
             return prp;
@@ -357,7 +350,7 @@ namespace vSharpStudio.vm.ViewModels
             IProperty prp = null!;
             if (this.GetUseDescriptionProperty())
             {
-                prp = this.Cfg.Model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength, true);
+                prp = this.Cfg.Model.GetPropertyCatalogDescription(this.GroupProperties, this.Cfg.Model.PropertyCtlgDescriptionGuid, this.MaxDescriptionLength, true);
                 lst.Add(prp);
             }
             return prp;
@@ -442,11 +435,11 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.CodePropertySettings.SequenceType)
             {
                 case EnumCodeType.Number:
-                    prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid,
+                    prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
                         this.CodePropertySettings.MaxSequenceLength, false);
                     break;
                 case EnumCodeType.Text:
-                    prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid,
+                    prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
                         this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false);
                     break;
                 default:

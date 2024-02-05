@@ -612,8 +612,6 @@ message proto_model {
     // @attr [Category("Composite Names Generation")]
     bool is_use_name_composition = 9;
 
-    // @attr [Browsable(false)]
-    string p_key_guid = 13;
     // @attr [PropertyOrderAttribute(14)]
     // @attr [DisplayName("Id name")]
     // @attr [Description("Primary key field name")]
@@ -625,8 +623,6 @@ message proto_model {
     // @attr [Category("Property settings")]
     proto_enum_primary_key_type p_key_type = 15;
 
-    // @attr [Browsable(false)]
-    string record_version_field_guid = 17;
     // @attr [PropertyOrderAttribute(18)]
     // @attr [DisplayName("Version field")]
     // @attr [Description("Record version field name")]
@@ -709,18 +705,51 @@ message proto_model {
     // @attr [Browsable(false)]
     uint32 last_type_short_ref_id = 31;
 
+    // @attr [Browsable(false)]
+    string property_id_guid = 51;
+    // @attr [Browsable(false)]
+    string property_version_guid = 52;
+
+    // @attr [Browsable(false)]
+    string property_ctlg_code_guid = 55;
+    // @attr [Browsable(false)]
+    string property_ctlg_name_guid = 56;
+    // @attr [Browsable(false)]
+    string property_ctlg_description_guid = 57;
+    // @attr [Browsable(false)]
+    string property_ctlg_is_folder_guid = 58;
+    // @attr [Browsable(false)]
+    string property_ctlg_ref_self_guid = 59;
+    // @attr [Browsable(false)]
+    string property_ctlg_ref_folder_guid = 60;
+
+    // @attr [Browsable(false)]
+    string property_ref_parent_guid = 65;
+
+    // @attr [Browsable(false)]
+    string property_doc_number_guid = 70;
+    // @attr [Browsable(false)]
+    string property_doc_date_guid = 71;
+    // @attr [Browsable(false)]
+    string property_doc_time_line_guid = 72;
+    // @attr [Browsable(false)]
+    string property_doc_short_type_id_guid = 73;
+    // @attr [Browsable(false)]
+    string property_doc_is_posted_guid = 74;
+
+
     // @attr [Category("DataGrid settings")]
     // @attr [DisplayName("Sortable")]
     // @attr [Description("Sortable in data grid")]
-    bool is_grid_sortable = 71;
+    bool is_grid_sortable = 91;
     // @attr [Category("DataGrid settings")]
     // @attr [DisplayName("Custom Sortable")]
     // @attr [Description("Custom sortable in data grid by using custom function")]
-    bool is_grid_sortable_custom = 72;
+    bool is_grid_sortable_custom = 92;
     // @attr [Category("DataGrid settings")]
     // @attr [DisplayName("Filterable")]
     // @attr [Description("Filterable in data grid")]
-    bool is_grid_filterable = 73;
+    bool is_grid_filterable = 93;
 
     // @attr [Browsable(false)]
     proto_group_list_common group_common = 106;
@@ -1555,19 +1584,6 @@ message proto_detail {
     // @attr [Browsable(false)]
     string view_list_combo_box_guid = 55;
 
-    // @attr [Browsable(false)]
-    string property_id_guid = 61;
-    // @attr [Browsable(false)]
-    string property_code_guid = 62;
-    // @attr [Browsable(false)]
-    string property_name_guid = 63;
-    // @attr [Browsable(false)]
-    string property_description_guid = 64;
-    // @attr [Browsable(false)]
-    string property_ref_parent_guid = 65;
-    // @attr [Browsable(false)]
-    string property_version_guid = 70;
-
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
     // @attr [Description("Sortable in data grid")]
@@ -1659,11 +1675,6 @@ message proto_group_list_constants {
     bool is_marked_for_deletion = 11;
     // @attr [Browsable(false)]
     uint32 short_id = 19;
-
-    // @attr [Browsable(false)]
-    string property_id_guid = 61;
-    // @attr [Browsable(false)]
-    string property_version_guid = 70;
 
     // @attr [Browsable(false)]
     repeated proto_role_constant_access list_role_constant_access_settings = 101;
@@ -1937,8 +1948,6 @@ message proto_catalog_folder {
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
-    // @attr [Browsable(false)]
-    string property_id_guid = 20;
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Code")]
     // @attr [Description("Use Code property for catalog item")]
@@ -1948,10 +1957,6 @@ message proto_catalog_folder {
     // @attr [Description("Code property settings for catalog folder")]
     // @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]
     proto_catalog_code_property_settings code_property_settings = 22;
-    // @attr [Browsable(false)]
-    string property_code_guid = 23;
-    // @attr [Browsable(false)]
-    string property_version_guid = 24;
 
     // @attr [Browsable(false)]
     string index_unique_code_guid = 25;
@@ -1968,8 +1973,6 @@ message proto_catalog_folder {
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum catalog item name length. If zero, than unlimited length")]
     uint32 max_name_length = 42;
-    // @attr [Browsable(false)]
-    string property_name_guid = 43;
     // @attr [PropertyOrderAttribute(51)]
     // @attr [DisplayName("Use Description")]
     // @attr [Description("Use Description property for catalog item")]
@@ -1979,16 +1982,9 @@ message proto_catalog_folder {
     // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
     uint32 max_description_length = 52;
     // @attr [Browsable(false)]
-    string property_description_guid = 53;
-    // @attr [Browsable(false)]
     string view_list_datagrid_guid = 54;
     // @attr [Browsable(false)]
     string view_list_combo_box_guid = 55;
-
-    // @attr [Browsable(false)]
-    string property_is_folder_guid = 63;
-    // @attr [Browsable(false)]
-    string property_ref_self_guid = 65;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -2141,23 +2137,6 @@ message proto_catalog {
     string view_list_datagrid_guid = 54;
     // @attr [Browsable(false)]
     string view_list_combo_box_guid = 55;
-
-    // @attr [Browsable(false)]
-    string property_id_guid = 61;
-    // @attr [Browsable(false)]
-    string property_code_guid = 62;
-    // @attr [Browsable(false)]
-    string property_name_guid = 63;
-    // @attr [Browsable(false)]
-    string property_description_guid = 64;
-    // @attr [Browsable(false)]
-    string property_is_folder_guid = 65;
-    // @attr [Browsable(false)]
-    string property_ref_self_guid = 67;
-    // @attr [Browsable(false)]
-    string property_ref_folder_guid = 68;
-    // @attr [Browsable(false)]
-    string property_version_guid = 69;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -2322,14 +2301,9 @@ message proto_group_list_registers {
     // Guid for document guid property. Auto generated.
     // @attr [Browsable(false)]
     string property_reg_guid_guid = 43; 
-    // Guid for document date guid property. Auto generated.
-    // @attr [Browsable(false)]
-    string property_doc_date_guid = 44; 
     // Guid for document date secuence guid property. Auto generated.
     // @attr [Browsable(false)]
     string property_doc_date_sequence_guid = 45; 
-    // @attr [Browsable(false)]
-    string property_version_guid = 46;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -2539,10 +2513,6 @@ message proto_register {
     // Guid for posting date guid property. Auto generated.
     // @attr [Browsable(false)]
     string property_post_date_guid = 36; 
-    // @attr [Browsable(false)]
-    string property_id_guid = 37;
-    // @attr [Browsable(false)]
-    string property_version_guid = 38;
 
     // @attr [DisplayName("Doc Guid property")]
     // @attr [Description("Document guid property name")]
@@ -2561,15 +2531,9 @@ message proto_register {
     // Guid for document guid property. Auto generated.
     // @attr [Browsable(false)]
     string property_doc_guid_guid = 43; 
-    // Guid for document date guid property. Auto generated.
-    // @attr [Browsable(false)]
-    string property_doc_date_guid = 44; 
     // Guid for index of document date, dimensions. Auto generated.
     // @attr [Browsable(false)]
     string index_doc_date_guid = 45; 
-    // Guid for document number guid property. Auto generated.
-    // @attr [Browsable(false)]
-    string property_doc_number_guid = 46; 
     // Guid for index of document Id and type. Auto generated.
     // @attr [Browsable(false)]
     string index_doc_id_type_guid = 47; 
@@ -2756,15 +2720,11 @@ message proto_group_documents {
     // @attr [Description("Document time line accuracy. Only one document can posted at any point of time line.")]
     proto_enum_time_accuracy_type time_line_time_accuracy = 10;
 
-    // @attr [Browsable(false)]
-    string time_line_property_guid = 11;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(12)]
     // @attr [DisplayName("Timeline property")]
     // @attr [Description("Timeline property name in document timeline")]
     string time_line_property_name = 12;
-    // @attr [Browsable(false)]
-    string doc_short_type_id_property_guid = 13;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(14)]
     // @attr [DisplayName("Doc short type")]
@@ -2874,15 +2834,6 @@ message proto_document {
     // @attr [Browsable(false)]
     string index_not_unique_doc_number_guid = 38;
 
-    // @attr [Browsable(false)]
-    string property_id_guid = 61;
-    // @attr [Browsable(false)]
-    string property_doc_number_guid = 62;
-    // @attr [Browsable(false)]
-    string property_doc_date_guid = 63;
-    // @attr [Browsable(false)]
-    string property_version_guid = 70;
-
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
     // @attr [Description("Sortable in data grid")]
@@ -2896,9 +2847,6 @@ message proto_document {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
     
-    // @attr [Browsable(false)]
-    string property_is_posted_guid = 75;
-
     // @attr [Browsable(false)]
     repeated proto_role_document_access list_role_document_access_settings = 101;
     // @attr [Browsable(false)]
@@ -3023,11 +2971,7 @@ message proto_many_to_many_catalogs_relation {
     uint32 short_ref_id = 20;
 
     // @attr [Browsable(false)]
-    string property_id_guid = 61;
-    // @attr [Browsable(false)]
     string property_data_time_guid = 62;
-    // @attr [Browsable(false)]
-    string property_version_guid = 69;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -3122,11 +3066,7 @@ message proto_many_to_many_documents_relation {
     uint32 short_ref_id = 20;
 
     // @attr [Browsable(false)]
-    string property_id_guid = 61;
-    // @attr [Browsable(false)]
     string property_data_time_guid = 62;
-    // @attr [Browsable(false)]
-    string property_version_guid = 69;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;

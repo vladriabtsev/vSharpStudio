@@ -94,9 +94,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this._Guid = System.Guid.NewGuid().ToString();
-            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
             this._PropertyDataTimeGuid = System.Guid.NewGuid().ToString();
-            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
             this._RefCat1Guid = System.Guid.NewGuid().ToString();
             this._RefCat2Guid = System.Guid.NewGuid().ToString();
             Init();
@@ -288,11 +286,11 @@ namespace vSharpStudio.vm.ViewModels
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentManyToManyGroupCatalogRelations.ParentGroupRelations.ParentModel;
-            var prp = model.GetPropertyPkId(this.ParentManyToManyGroupCatalogRelations, this.PropertyIdGuid); // position 6
+            var prp = model.GetPropertyPkId(this.ParentManyToManyGroupCatalogRelations, this.Cfg.Model.PropertyIdGuid); // position 6
             res.Add(prp);
             if (isOptimistic)
             {
-                prp = model.GetPropertyVersion(this.ParentManyToManyGroupCatalogRelations, this.PropertyVersionGuid); // position 7
+                prp = model.GetPropertyVersion(this.ParentManyToManyGroupCatalogRelations, this.Cfg.Model.PropertyVersionGuid); // position 7
                 res.Add(prp);
             }
             if (this.GuidCat1 != null)

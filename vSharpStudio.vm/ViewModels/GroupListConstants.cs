@@ -29,8 +29,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsEditable = true;
             this._ShortIdTypeForCacheKey = "t";
-            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()
@@ -378,11 +376,11 @@ namespace vSharpStudio.vm.ViewModels
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentGroupConstantGroups.ParentModel;
-            var prp = model.GetPropertyPkId(this, this.PropertyIdGuid);
+            var prp = model.GetPropertyPkId(this, this.ParentGroupConstantGroups.ParentModel.PropertyIdGuid);
             res.Add(prp);
             if (isOptimistic)
             {
-                prp = model.GetPropertyVersion(this, this.PropertyVersionGuid);
+                prp = model.GetPropertyVersion(this, this.ParentGroupConstantGroups.ParentModel.PropertyVersionGuid);
                 //prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
                 res.Add(prp);
             }

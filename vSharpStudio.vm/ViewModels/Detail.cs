@@ -68,12 +68,6 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this._IsIndexFk = true;
 
-            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this._PropertyRefParentGuid = System.Guid.NewGuid().ToString();
-            this._PropertyCodeGuid = System.Guid.NewGuid().ToString();
-            this._PropertyNameGuid = System.Guid.NewGuid().ToString();
-            this._PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
-            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
             this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();
             this._ViewListComboBoxGuid = System.Guid.NewGuid().ToString();
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
@@ -394,13 +388,13 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
                 throw new NotImplementedException();
-            var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.PropertyIdGuid);
+            var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             res.Add(prp);
-            prp = this.Cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parentTable, false);
+            prp = this.Cfg.Model.GetPropertyRefParent(this.GroupProperties, this.Cfg.Model.PropertyRefParentGuid, "Ref" + parentTable, false);
             res.Add(prp);
             if (isOptimistic)
             {
-                prp = this.Cfg.Model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
+                prp = this.Cfg.Model.GetPropertyVersion(this.GroupProperties, this.Cfg.Model.PropertyVersionGuid);
                 res.Add(prp);
             }
         }
@@ -428,7 +422,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             ViewListData? viewListData = null;
             Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
-            var pId = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.PropertyIdGuid);
+            var pId = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             viewListData = new ViewListData(pId);
             var lst = this.SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
             viewListData.ListViewProperties.AddRange(lst);

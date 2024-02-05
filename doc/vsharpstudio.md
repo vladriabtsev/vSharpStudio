@@ -311,14 +311,6 @@ Application project generator
 | group_icon_type | [proto_enum_catalog_tree_icon](#proto_config-proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Group Icon&#34;)] @attr [Description(&#34;Catalog group icon type&#34;)] |
 | view_list_datagrid_guid | [string](#string) |  | @attr [Browsable(false)] |
 | view_list_combo_box_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_code_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_name_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_description_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_is_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_ref_self_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_ref_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -369,24 +361,17 @@ Application project generator
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
-| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | use_code_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
 | code_property_settings | [proto_catalog_code_property_settings](#proto_config-proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog folder&#34;)] @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] |
-| property_code_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_ref_tree_parent_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_not_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | use_name_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
-| property_name_guid | [string](#string) |  | @attr [Browsable(false)] |
 | use_description_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
 | max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(52)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
-| property_description_guid | [string](#string) |  | @attr [Browsable(false)] |
 | view_list_datagrid_guid | [string](#string) |  | @attr [Browsable(false)] |
 | view_list_combo_box_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_is_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_ref_self_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -544,12 +529,6 @@ Constant application wise value
 | is_stop_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(27)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
 | view_list_datagrid_guid | [string](#string) |  | @attr [Browsable(false)] |
 | view_list_combo_box_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_code_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_name_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_description_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_ref_parent_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -608,14 +587,9 @@ Constant application wise value
 | index_day_doc_number_guid | [string](#string) |  | unique index of special field Day and DocNumber DAY = DocDate.Year * 365?? &#43; DocDate.Day @attr [Browsable(false)] |
 | index_unique_doc_number_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_not_unique_doc_number_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_doc_number_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_doc_date_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| property_is_posted_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_role_document_access_settings | [proto_role_document_access](#proto_config-proto_role_document_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
@@ -1052,9 +1026,7 @@ C O N S T A N T
 | group_list_documents | [proto_group_list_documents](#proto_config-proto_group_list_documents) |  | @attr [Browsable(false)] |
 | timeline_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Timeline&#34;)] @attr [Description(&#34;Name of Timeline for documents&#34;)] |
 | time_line_time_accuracy | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Timeline accuracy&#34;)] @attr [Description(&#34;Document time line accuracy. Only one document can posted at any point of time line.&#34;)] |
-| time_line_property_guid | [string](#string) |  | @attr [Browsable(false)] |
 | time_line_property_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Timeline property&#34;)] @attr [Description(&#34;Timeline property name in document timeline&#34;)] |
-| doc_short_type_id_property_guid | [string](#string) |  | @attr [Browsable(false)] |
 | doc_short_type_id_property_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Doc short type&#34;)] @attr [Description(&#34;Doc short type property name in document timeline&#34;)] |
 | group_registers | [proto_group_list_registers](#proto_config-proto_group_list_registers) |  | @attr [Browsable(false)] @attr [Description(&#34;Registers for documents&#34;)] |
 | group_journals | [proto_group_list_journals](#proto_config-proto_group_list_journals) |  | @attr [Browsable(false)] |
@@ -1183,8 +1155,6 @@ Common parameters section
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
-| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_role_constant_access_settings | [proto_role_constant_access](#proto_config-proto_role_constant_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
@@ -1446,9 +1416,7 @@ P R O P E R T Y
 | prefix_for_composition_names | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Composition prefix&#34;)] @attr [Description(&#34;Prefix for registers composition names&#34;)] |
 | short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short register type ID for cache key generator&#34;)] |
 | property_reg_guid_guid | [string](#string) |  | Guid for document guid property. Auto generated. @attr [Browsable(false)] |
-| property_doc_date_guid | [string](#string) |  | Guid for document date guid property. Auto generated. @attr [Browsable(false)] |
 | property_doc_date_sequence_guid | [string](#string) |  | Guid for document date secuence guid property. Auto generated. @attr [Browsable(false)] |
-| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1573,9 +1541,7 @@ R E P O R T S
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
-| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1606,9 +1572,7 @@ R E P O R T S
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
-| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1703,10 +1667,8 @@ Configuration model
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | composite_name_max_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Max length&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] |
 | is_use_name_composition | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Use Composition&#34;)] @attr [Description(&#34;If selected, then configuration objects will use group prefixes and parent-child name composition as composite names. If not, then all configuration objects will use their names as composite names&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] |
-| p_key_guid | [string](#string) |  | @attr [Browsable(false)] |
 | p_key_name | [string](#string) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Id name&#34;)] @attr [Description(&#34;Primary key field name&#34;)] @attr [Category(&#34;Property settings&#34;)] |
 | p_key_type | [proto_enum_primary_key_type](#proto_config-proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Id type&#34;)] @attr [Description(&#34;Primary key field type&#34;)] @attr [Category(&#34;Property settings&#34;)] |
-| record_version_field_guid | [string](#string) |  | @attr [Browsable(false)] |
 | record_version_field_name | [string](#string) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Version field&#34;)] @attr [Description(&#34;Record version field name&#34;)] @attr [Category(&#34;Property settings&#34;)] |
 | record_version_field_type | [proto_enum_version_field_type](#proto_config-proto_enum_version_field_type) |  | @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Version type&#34;)] @attr [Description(&#34;Record version field type&#34;)] @attr [Category(&#34;Property settings&#34;)] |
 | property_code_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Code property&#34;)] @attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] |
@@ -1722,6 +1684,20 @@ Configuration model
 | use_doc_number_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Doc Number&#34;)] @attr [Description(&#34;Use document number property for documents&#34;)] |
 | complex_property_ref_descr_length | [uint32](#uint32) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Descr Max&#34;)] @attr [Description(&#34;Complex property description maximum length. Unlimited if zero&#34;)] |
 | last_type_short_ref_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ctlg_code_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ctlg_name_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ctlg_description_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ctlg_is_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ctlg_ref_self_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ctlg_ref_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ref_parent_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_doc_number_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_doc_date_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_doc_time_line_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_doc_short_type_id_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_doc_is_posted_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -2010,16 +1986,12 @@ Configuration model
 | group_register_dimensions | [proto_group_list_register_dimensions](#proto_config-proto_group_list_register_dimensions) |  | @attr [Browsable(false)] |
 | group_properties | [proto_group_list_properties](#proto_config-proto_group_list_properties) |  | @attr [Browsable(false)] |
 | property_post_date_guid | [string](#string) |  | Guid for posting date guid property. Auto generated. @attr [Browsable(false)] |
-| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_doc_ref_guid_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Guid property&#34;)] @attr [Description(&#34;Document guid property name&#34;)] |
 | property_doc_ref_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Ref property&#34;)] @attr [Description(&#34;Document reference property name&#34;)] |
 | list_doc_guids | [string](#string) | repeated | &lt;summary&gt; / Guids of selected types of DOCUMENTS which can POST or UNPOST for this register / &lt;/summary&gt; @attr [Browsable(false)] |
 | property_doc_ref_guid | [string](#string) |  | Guid for document reference property. Auto generated. @attr [Browsable(false)] |
 | property_doc_guid_guid | [string](#string) |  | Guid for document guid property. Auto generated. @attr [Browsable(false)] |
-| property_doc_date_guid | [string](#string) |  | Guid for document date guid property. Auto generated. @attr [Browsable(false)] |
 | index_doc_date_guid | [string](#string) |  | Guid for index of document date, dimensions. Auto generated. @attr [Browsable(false)] |
-| property_doc_number_guid | [string](#string) |  | Guid for document number guid property. Auto generated. @attr [Browsable(false)] |
 | index_doc_id_type_guid | [string](#string) |  | Guid for index of document Id and type. Auto generated. @attr [Browsable(false)] |
 | table_turnover_property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | table_turnover_property_version_guid | [string](#string) |  | @attr [Browsable(false)] |

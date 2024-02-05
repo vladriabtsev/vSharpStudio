@@ -119,17 +119,17 @@ namespace vSharpStudio.vm.ViewModels
                         ablock = (FormAutoLayoutBlock)col.AddAutoLayoutBlock();
                         var tree = (FormTree)ablock.AddTree();
                         if (c.Folder.GetUseCodeProperty())
-                            tree.ListGuidProperties.Add(c.PropertyCodeGuid);
+                            tree.ListGuidProperties.Add(c.Cfg.Model.PropertyCtlgCodeGuid);
                         if (c.Folder.GetUseNameProperty())
-                            tree.ListGuidProperties.Add(c.PropertyNameGuid);
+                            tree.ListGuidProperties.Add(c.Cfg.Model.PropertyCtlgNameGuid);
                     }
                     col = (FormGridSystemColumn)row.AddGridSystemColumn();
                     ablock = (FormAutoLayoutBlock)col.AddAutoLayoutBlock();
                     var dg = (FormDataGrid)ablock.AddDataGrid();
                     if (c.GetUseCodeProperty())
-                        dg.ListGuidProperties.Add(c.PropertyCodeGuid);
+                        dg.ListGuidProperties.Add(c.Cfg.Model.PropertyCtlgCodeGuid);
                     if (c.GetUseNameProperty())
-                        dg.ListGuidProperties.Add(c.PropertyNameGuid);
+                        dg.ListGuidProperties.Add(c.Cfg.Model.PropertyCtlgNameGuid);
                     break;
                 case FormType.ListDataGrid:
                     form.Name = "ViewListCustom";
@@ -139,21 +139,21 @@ namespace vSharpStudio.vm.ViewModels
                         ablock = (FormAutoLayoutBlock)col.AddAutoLayoutBlock();
                         var tree = (FormTree)ablock.AddTree();
                         if (c.Folder.GetUseCodeProperty())
-                            tree.ListGuidProperties.Add(c.PropertyCodeGuid);
+                            tree.ListGuidProperties.Add(c.Cfg.Model.PropertyCtlgCodeGuid);
                         if (c.Folder.GetUseNameProperty())
-                            tree.ListGuidProperties.Add(c.PropertyNameGuid);
+                            tree.ListGuidProperties.Add(c.Cfg.Model.PropertyCtlgNameGuid);
                         if (c.Folder.GetUseDescriptionProperty())
-                            tree.ListGuidProperties.Add(c.PropertyDescriptionGuid);
+                            tree.ListGuidProperties.Add(c.Cfg.Model.PropertyCtlgDescriptionGuid);
                     }
                     col = (FormGridSystemColumn)row.AddGridSystemColumn();
                     ablock = (FormAutoLayoutBlock)col.AddAutoLayoutBlock();
                     dg = (FormDataGrid)ablock.AddDataGrid();
                     if (c.GetUseCodeProperty())
-                        dg.ListGuidProperties.Add(c.PropertyCodeGuid);
+                        dg.ListGuidProperties.Add(c.Cfg.Model.PropertyCtlgCodeGuid);
                     if (c.GetUseNameProperty())
-                        dg.ListGuidProperties.Add(c.PropertyNameGuid);
+                        dg.ListGuidProperties.Add(c.Cfg.Model.PropertyCtlgNameGuid);
                     if (c.GetUseDescriptionProperty())
-                        dg.ListGuidProperties.Add(c.PropertyDescriptionGuid);
+                        dg.ListGuidProperties.Add(c.Cfg.Model.PropertyCtlgDescriptionGuid);
                     break;
                 default:
                     throw new NotImplementedException();

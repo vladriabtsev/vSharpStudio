@@ -73,11 +73,24 @@ namespace vSharpStudio.vm.ViewModels
             //this.DbSettings.PKeyType = EnumPrimaryKeyType.INT;
             //this.DbSettings.VersionFieldGuid = System.Guid.NewGuid().ToString();
             //this.DbSettings.VersionFieldName = "Version";
+            this._PropertyCtlgCodeGuid= System.Guid.NewGuid().ToString();
+            this._PropertyCtlgDescriptionGuid = System.Guid.NewGuid().ToString();
+            this._PropertyCtlgIsFolderGuid = System.Guid.NewGuid().ToString();
+            this._PropertyCtlgNameGuid = System.Guid.NewGuid().ToString();
+            this._PropertyCtlgRefFolderGuid = System.Guid.NewGuid().ToString();
+            this._PropertyCtlgRefSelfGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDocDateGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDocIsPostedGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDocShortTypeIdGuid = System.Guid.NewGuid().ToString();
+            this._PropertyDocTimeLineGuid = System.Guid.NewGuid().ToString();
+            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
+            this._PropertyRefParentGuid = System.Guid.NewGuid().ToString();
+            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
+
             this._PKeyName = "Id";
-            this._PKeyGuid = System.Guid.NewGuid().ToString();
             this._PKeyType = EnumPrimaryKeyType.INT;
             this._RecordVersionFieldName = "ReCoRdVeRsIoN";
-            this._RecordVersionFieldGuid = System.Guid.NewGuid().ToString();
             this._RecordVersionFieldType = EnumVersionFieldType.VER_INT;
 
             this._PropertyCodeName = "Code";
@@ -712,9 +725,9 @@ namespace vSharpStudio.vm.ViewModels
             {
                 fieldName = dbGen.PKeyName;
             }
-            if (string.IsNullOrWhiteSpace(this.PKeyGuid))
-                this.PKeyGuid = System.Guid.NewGuid().ToString();
-            var res = new Property(parent, this.PKeyGuid, fieldName, true);
+            if (string.IsNullOrWhiteSpace(this.PropertyIdGuid))
+                this.PropertyIdGuid = System.Guid.NewGuid().ToString();
+            var res = new Property(parent, this.PropertyIdGuid, fieldName, true);
             res.DataType = (DataType)this.GetIdDataType(res, false);
             res.DataType.IsPKey = true;
             return res;

@@ -83,9 +83,7 @@ namespace vSharpStudio.vm.ViewModels
             this.IsEditable = false;
             this._ShortIdTypeForCacheKey = "rg";
             this._PropertyRegGuidGuid = System.Guid.NewGuid().ToString();
-            this._PropertyDocDateGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocDateSequenceGuid = System.Guid.NewGuid().ToString();
-            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()
@@ -210,7 +208,7 @@ namespace vSharpStudio.vm.ViewModels
             // Field record version
             if (isOptimistic)
             {
-                var pVer = m.GetPropertyVersion(this, this.PropertyVersionGuid);
+                var pVer = m.GetPropertyVersion(this, this.ParentGroupDocuments.ParentModel.PropertyVersionGuid);
                 pVer.TagInList = "vr";
                 lst.Add(pVer);
             }
@@ -222,7 +220,7 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(pDocGuid);
 
             // Field timeline value
-            var pDocDatePost = (Property)m.GetPropertyDateTimeUtc(this, this.PropertyDocDateGuid, "DocDatePost", 10, false);
+            var pDocDatePost = (Property)m.GetPropertyDateTimeUtc(this, this.ParentGroupDocuments.ParentModel.PropertyDocDateGuid, "DocDatePost", 10, false);
             pDocDatePost.TagInList = "pd";
             lst.Add(pDocDatePost);
 

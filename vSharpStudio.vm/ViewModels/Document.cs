@@ -66,13 +66,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this._PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this._PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
-            this._PropertyDocDateGuid = System.Guid.NewGuid().ToString();
-            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this._PropertyIsPostedGuid = System.Guid.NewGuid().ToString();
-
             this._IndexUniqueDocNumberGuid = System.Guid.NewGuid().ToString();
             this._IndexYearDocNumberGuid = System.Guid.NewGuid().ToString();
             this._IndexQuaterDocNumberGuid = System.Guid.NewGuid().ToString();
@@ -422,14 +415,14 @@ namespace vSharpStudio.vm.ViewModels
         {
 
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
-            var prp = model.GetPropertyPkId(this.GroupProperties, this.PropertyIdGuid);
+            var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             res.Add(prp);
             if (isOptimistic)
             {
-                prp = model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
+                prp = model.GetPropertyVersion(this.GroupProperties, this.Cfg.Model.PropertyVersionGuid);
                 res.Add(prp);
             }
-            prp = model.GetPropertyDocumentDate(this.GroupProperties, this.PropertyDocDateGuid);
+            prp = model.GetPropertyDocumentDate(this.GroupProperties, this.Cfg.Model.PropertyDocDateGuid);
             res.Add(prp);
             if (!string.IsNullOrWhiteSpace(this.SequenceGuid))
             {
@@ -437,11 +430,11 @@ namespace vSharpStudio.vm.ViewModels
                 switch (seq.SequenceType)
                 {
                     case EnumCodeType.Number:
-                        prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.PropertyDocNumberGuid,
+                        prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
                             seq.MaxSequenceLength);
                         break;
                     case EnumCodeType.Text:
-                        prp = model.GetPropertyDocNumberString(this.GroupProperties, this.PropertyDocNumberGuid,
+                        prp = model.GetPropertyDocNumberString(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
                             seq.MaxSequenceLength + (uint)seq.Prefix.Length);
                         break;
                     default:
@@ -476,7 +469,7 @@ namespace vSharpStudio.vm.ViewModels
                         throw new NotImplementedException();
                 }
             }
-            prp = model.GetPropertyBool(this.GroupProperties, this.PropertyIsPostedGuid, "IsPosted", 10, true);
+            prp = model.GetPropertyBool(this.GroupProperties, this.Cfg.Model.PropertyDocIsPostedGuid, "IsPosted", 10, true);
             res.Add(prp);
         }
         public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
@@ -558,7 +551,7 @@ namespace vSharpStudio.vm.ViewModels
             ViewListData? viewListData = null;
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
             Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
-            var pId = model.GetPropertyPkId(this.GroupProperties, this.PropertyIdGuid);
+            var pId = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             viewListData = new ViewListData(pId);
             var lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
             viewListData.ListViewProperties.AddRange(lst);
