@@ -11195,6 +11195,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:63 IsDefaultBase=False
                 vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(vm, from.DataType, isDeep);
+            vm._GuidComplexRefTable = from.GuidComplexRefTable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._DefaultValue = from.DefaultValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
             vm._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:66
@@ -11234,6 +11235,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:137
                 vSharpStudio.vm.ViewModels.DataType.Update((DataType)to.DataType, from.DataType, isDeep);
+            to._GuidComplexRefTable = from.GuidComplexRefTable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._DefaultValue = from.DefaultValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
             to._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:140
@@ -11359,6 +11361,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             if (vm.DataType == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:208
                 vm.DataType = new DataType(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:210
             vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, (DataType)vm.DataType); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:214
+            vm._GuidComplexRefTable = m.GuidComplexRefTable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._DefaultValue = m.DefaultValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsNew = m.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
             vm._IsMarkedForDeletion = m.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:216
@@ -11406,6 +11409,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.NameUi = vm.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.Description = vm.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:263
+            m.GuidComplexRefTable = vm.GuidComplexRefTable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.DefaultValue = vm.DefaultValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Clone.tt Line:269
@@ -11584,6 +11588,25 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         //partial void OnDataTypeChanging(ref DataType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnDataTypeChanged();
         IDataType IProperty.DataType { get { return (this as Property).DataType; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:75
+        
+        // Can be used to create ref table for complex types (CATALOGS, DOCUMENTS, ANY)
+        [Browsable(false)]
+        public string GuidComplexRefTable // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._GuidComplexRefTable; }
+            set
+            {
+                // Use 'OnGuidComplexRefTableChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._GuidComplexRefTable, value, (t) => { /*this.OnGuidComplexRefTableChanging(ref value);*/ this._GuidComplexRefTable = value; this.OnGuidComplexRefTableChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _GuidComplexRefTable = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnGuidComplexRefTableChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnGuidComplexRefTableChanged();
         
         [Category("")]
         [PropertyOrderAttribute(8)]

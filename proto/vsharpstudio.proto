@@ -1277,6 +1277,9 @@ message proto_property {
     string description = 5;
     // @attr [Browsable(false)]
     proto_data_type data_type = 6;
+    // Can be used to create ref table for complex types (CATALOGS, DOCUMENTS, ANY)
+    // @attr [Browsable(false)]
+    string guid_complex_ref_table = 7;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(8)]
     // @attr [DisplayName("Default")]
@@ -1287,7 +1290,6 @@ message proto_property {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 11;
-
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(32)]

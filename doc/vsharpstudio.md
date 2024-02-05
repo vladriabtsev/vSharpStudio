@@ -1917,6 +1917,7 @@ Configuration model
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Typically used as UI field label&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Description&#34;)] @attr [Description(&#34;Description of property&#34;)] |
 | data_type | [proto_data_type](#proto_config-proto_data_type) |  | @attr [Browsable(false)] |
+| guid_complex_ref_table | [string](#string) |  | Can be used to create ref table for complex types (CATALOGS, DOCUMENTS, ANY) @attr [Browsable(false)] |
 | default_value | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Default&#34;)] @attr [Description(&#34;Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |

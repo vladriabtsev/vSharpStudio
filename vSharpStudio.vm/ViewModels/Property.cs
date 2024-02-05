@@ -1084,5 +1084,21 @@ namespace vSharpStudio.vm.ViewModels
             DataType.GetTypeDesc(this.DataType, sb);
             return sb.ToString();
         }
+        public IReadOnlyList<IProperty> GetToAnyProperties(ITreeConfigNode parent, string propertyVersionGuid, bool isOptimistic)
+        {
+            throw new NotImplementedException();
+            var parentTable = ((ICompositeName)parent).CompositeName;
+            var res = new List<IProperty>();
+            var prp = this.Cfg.Model.GetPropertyPkId(this, this.Guid);
+            res.Add(prp);
+            //prp = this.Cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parentTable, false);
+            res.Add(prp);
+            if (isOptimistic)
+            {
+                prp = this.Cfg.Model.GetPropertyVersion(this, propertyVersionGuid);
+                res.Add(prp);
+            }
+            return res;
+        }
     }
 }

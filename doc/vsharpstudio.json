@@ -12105,6 +12105,18 @@
               "defaultValue": ""
             },
             {
+              "name": "guid_complex_ref_table",
+              "description": "Can be used to create ref table for complex types (CATALOGS, DOCUMENTS, ANY)\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "default_value",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Default\")]\n@attr [Description(\"Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)\")]",
               "label": "",

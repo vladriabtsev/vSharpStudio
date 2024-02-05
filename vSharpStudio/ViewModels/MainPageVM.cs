@@ -626,7 +626,7 @@ namespace vSharpStudio.ViewModels
                         this.BtnConfigSaveAs.Command.NotifyCanExecuteChanged();
                         this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
                     },
-                    () => { return this.Config == null || !string.IsNullOrEmpty(this.Config.CurrentCfgFolderPath); });
+                    () => { return true; });
             }
         }
         private vButtonVM? _BtnNewConfig;
@@ -711,7 +711,7 @@ namespace vSharpStudio.ViewModels
             {
                 return this._BtnConfigSave ??= new vButtonVM(
                     () => { this.Save(); },
-                    () => { return this.Config != null && this.CurrentCfgFilePath != null; });
+                    () => { return this.CurrentCfgFilePath != null; });
             }
         }
         private vButtonVM? _BtnConfigSave;
