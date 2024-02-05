@@ -65,6 +65,8 @@ namespace vSharpStudio.vm.ViewModels
             this._Description = "Catalog items groups";
             this.IsIncludableInModels = true;
 
+            this._PropertyCtlgRefSelfGuid = System.Guid.NewGuid().ToString();
+
             this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();
             this._ViewListComboBoxGuid = System.Guid.NewGuid().ToString();
 
@@ -213,7 +215,15 @@ namespace vSharpStudio.vm.ViewModels
                 node.Guid = guid;
             }
 #endif
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
+            node.DataType = new DataType(node)
+            {
+                DataTypeEnum = EnumDataType.ENUMERATION,
+                ObjectRef = new FkComplexRef()
+                {
+                    ConfigObjectGuid = en.Guid,
+                    FkIndexTableGuid = System.Guid.NewGuid().ToString()
+                }
+            };
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;
@@ -276,7 +286,7 @@ namespace vSharpStudio.vm.ViewModels
             var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
             var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             res.Add(prp);
-            prp = model.GetPropertyRefParent(this.GroupProperties, this.Cfg.Model.PropertyCtlgRefSelfGuid, "RefTreeParent", true);
+            prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyCtlgRefSelfGuid, "RefTreeParent", true);
             res.Add(prp);
             if (this.ParentCatalog.UseTree && !this.ParentCatalog.UseSeparateTreeForFolders)
             {

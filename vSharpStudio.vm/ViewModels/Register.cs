@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnDebugStringExtend(ref string mes)
         {
-            mes = mes + $" Docs:{this.ListDocGuids.Count} Dims:{this.GroupRegisterDimensions.ListDimensions.Count} Atchs:{this.GroupProperties.ListProperties.Count} Maps:{this.ListDocMappings.Count}";
+            mes = mes + $" Docs:{this.ListObjectDocRefs.Count} Dims:{this.GroupRegisterDimensions.ListDimensions.Count} Atchs:{this.GroupProperties.ListProperties.Count} Maps:{this.ListDocMappings.Count}";
         }
         public string GetDebuggerDisplay(bool isOptimistic)
         {
@@ -538,7 +538,7 @@ namespace vSharpStudio.vm.ViewModels
             //pPostDate.TagInList = "pd";
             //lst.Add(pPostDate);
 
-            var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "Doc", this.ListDocGuids, 10, false);
+            var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "Doc", this.ListObjectDocRefs, 10, false);
             pDoc.IsCsNullable = true;
             lst.Add(pDoc);
 
@@ -811,9 +811,9 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
             {
                 bool found = false;
-                foreach (var tt in this.ListDocGuids)
+                foreach (var tt in this.ListObjectDocRefs)
                 {
-                    if (t.Guid == tt)
+                    if (t.Guid == tt.ConfigObjectGuid)
                     {
                         found = true;
                         break;
@@ -830,9 +830,9 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
             {
                 bool found = false;
-                foreach (var tt in this.ListDocGuids)
+                foreach (var tt in this.ListObjectDocRefs)
                 {
-                    if (t.Guid == tt)
+                    if (t.Guid == tt.ConfigObjectGuid)
                     {
                         found = true;
                         break;
@@ -1075,7 +1075,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (string.IsNullOrEmpty(row.Dimension.DimensionCatalogGuid))
                         return;
                     var cat = this.Cfg.DicNodes[row.Dimension.DimensionCatalogGuid];
-                    if (p.DataType.DataTypeEnum != EnumDataType.CATALOG || cat.Guid != p.DataType.ObjectGuid)
+                    if (p.DataType.DataTypeEnum != EnumDataType.CATALOG || cat.Guid != p.DataType.ObjectRef.ConfigObjectGuid)
                         return;
                 }
                 else if (row.AttachedProperty != null)
@@ -1087,7 +1087,7 @@ namespace vSharpStudio.vm.ViewModels
                         case EnumDataType.CATALOG:
                             if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
                                 return;
-                            if (p.DataType.ObjectGuid != row.AttachedProperty.DataType.ObjectGuid)
+                            if (p.DataType.ObjectRef.ConfigObjectGuid != row.AttachedProperty.DataType.ObjectRef.ConfigObjectGuid)
                                 return;
                             break;
                         case EnumDataType.CATALOGS:
@@ -1212,9 +1212,9 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             var guid = ((IGuid)t).Guid;
                             var j = -1;
-                            for (int i = 0; i < this.ListDocGuids.Count; i++)
+                            for (int i = 0; i < this.ListObjectDocRefs.Count; i++)
                             {
-                                if (this.ListDocGuids[i] == guid)
+                                if (this.ListObjectDocRefs[i].ConfigObjectGuid == guid)
                                 {
                                     j = i;
                                     break;
@@ -1225,7 +1225,7 @@ namespace vSharpStudio.vm.ViewModels
 #endif
                         foreach (var t in e.NewItems)
                         {
-                            this.ListDocGuids.Add(((IGuid)t).Guid);
+                            this.ListObjectDocRefs.Add((FkComplexRef)t);
                         }
                     }
                     break;
@@ -1236,16 +1236,16 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             var guid = ((IGuid)t).Guid;
                             var j = -1;
-                            for (int i = 0; i < this.ListDocGuids.Count; i++)
+                            for (int i = 0; i < this.ListObjectDocRefs.Count; i++)
                             {
-                                if (this.ListDocGuids[i] == guid)
+                                if (this.ListObjectDocRefs[i].ConfigObjectGuid == guid)
                                 {
                                     j = i;
                                     break;
                                 }
                             }
                             Debug.Assert(j >= 0);
-                            this.ListDocGuids.RemoveAt(j);
+                            this.ListObjectDocRefs.RemoveAt(j);
                         }
                     }
                     break;

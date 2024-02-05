@@ -68,6 +68,8 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this._IsIndexFk = true;
 
+            this._PropertyRefParentGuid = System.Guid.NewGuid().ToString();
+
             this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();
             this._ViewListComboBoxGuid = System.Guid.NewGuid().ToString();
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
@@ -287,7 +289,16 @@ namespace vSharpStudio.vm.ViewModels
                 node.Guid = guidProperty;
             }
 #endif
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = catGuid, IsNullable = isNullable };
+            node.DataType = new DataType(node)
+            {
+                DataTypeEnum = EnumDataType.CATALOG,
+                IsNullable = isNullable,
+                ObjectRef = new FkComplexRef()
+                {
+                    ConfigObjectGuid = catGuid,
+                    FkIndexTableGuid = System.Guid.NewGuid().ToString()
+                }
+            };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
@@ -390,7 +401,7 @@ namespace vSharpStudio.vm.ViewModels
                 throw new NotImplementedException();
             var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             res.Add(prp);
-            prp = this.Cfg.Model.GetPropertyRefParent(this.GroupProperties, this.Cfg.Model.PropertyRefParentGuid, "Ref" + parentTable, false);
+            prp = this.Cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parentTable, false);
             res.Add(prp);
             if (isOptimistic)
             {

@@ -4,6 +4,7 @@
 ## Table of Contents
 
 - [vsharpstudio.proto](#vsharpstudio-proto)
+    - [fk_complex_ref](#proto_config-fk_complex_ref)
     - [proto_app_db_settings](#proto_config-proto_app_db_settings)
     - [proto_app_project](#proto_config-proto_app_project)
     - [proto_app_project_generator](#proto_config-proto_app_project_generator)
@@ -138,6 +139,25 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## vsharpstudio.proto
+
+
+
+<a name="proto_config-fk_complex_ref"></a>
+
+### fk_complex_ref
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| config_object_guid | [string](#string) |  |  |
+| fk_index_table_guid | [string](#string) |  |  |
+
+
+
 
 
 
@@ -307,6 +327,8 @@ Application project generator
 | index_ref_folder_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_ref_tree_parent_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_not_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ctlg_ref_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ctlg_ref_self_guid | [string](#string) |  | @attr [Browsable(false)] |
 | item_icon_type | [proto_enum_catalog_tree_icon](#proto_config-proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Item Icon&#34;)] @attr [Description(&#34;Catalog item icon type&#34;)] |
 | group_icon_type | [proto_enum_catalog_tree_icon](#proto_config-proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Group Icon&#34;)] @attr [Description(&#34;Catalog group icon type&#34;)] |
 | view_list_datagrid_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -366,6 +388,7 @@ Application project generator
 | index_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_ref_tree_parent_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_not_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ctlg_ref_self_guid | [string](#string) |  | @attr [Browsable(false)] |
 | use_name_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
 | use_description_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
@@ -483,9 +506,9 @@ Constant application wise value
 | length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Maximum length of data (characters in string, or decimal digits for numeric data)&#34;)] |
 | is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Positive&#34;)] @attr [Description(&#34;Expected numerical value always &gt;= 0&#34;)] |
 | accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for numeric data&#34;)] |
-| object_guid | [string](#string) |  | &lt;summary&gt; / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. / Numerical, string, bool, date and similar are simple types. For simple types this property is empty. / If Guid of group types is assigned, then any type of such group of types is acceptable as type / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type / &lt;/summary&gt; @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| object_ref | [fk_complex_ref](#proto_config-fk_complex_ref) |  | &lt;summary&gt; / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. / Numerical, string, bool, date and similar are simple types. For simple types this property is empty. / If Guid of group types is assigned, then any type of such group of types is acceptable as type / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type / &lt;/summary&gt; @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | accuracy_for_time | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Time accuracy&#34;)] @attr [Description(&#34;Time accuracy for TimeOnly type. Business model is expecting selected accuracy&#34;)] |
-| list_object_guids | [string](#string) | repeated | &lt;summary&gt; / Guids of selected complex types for data type CATALOGS or DOCUMENTS / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
+| list_object_refs | [fk_complex_ref](#proto_config-fk_complex_ref) | repeated | &lt;summary&gt; / Guids of selected complex types for data type CATALOGS or DOCUMENTS / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
 | is_nullable | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
 | relation_type | [proto_enum_one_to_relation_type](#proto_config-proto_enum_one_to_relation_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Relation&#34;)] @attr [Description(&#34;Relation type with selected type of complex object/objects&#34;)] |
 | timespan_accuracy | [proto_enum_timespan_boundary_type](#proto_config-proto_enum_timespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;TimeSpan accuracy&#34;)] @attr [Description(&#34;TimeSpan accuracy&#34;)] |
@@ -529,6 +552,7 @@ Constant application wise value
 | is_stop_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(27)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
 | view_list_datagrid_guid | [string](#string) |  | @attr [Browsable(false)] |
 | view_list_combo_box_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ref_parent_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -1690,9 +1714,6 @@ Configuration model
 | property_ctlg_name_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_ctlg_description_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_ctlg_is_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_ctlg_ref_self_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_ctlg_ref_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_ref_parent_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_doc_number_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_doc_date_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_doc_time_line_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -1893,7 +1914,6 @@ Configuration model
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Typically used as UI field label&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Description&#34;)] @attr [Description(&#34;Description of property&#34;)] |
 | data_type | [proto_data_type](#proto_config-proto_data_type) |  | @attr [Browsable(false)] |
-| guid_complex_ref_table | [string](#string) |  | Can be used to create ref table for complex types (CATALOGS, DOCUMENTS, ANY) @attr [Browsable(false)] |
 | default_value | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Default&#34;)] @attr [Description(&#34;Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
@@ -1988,7 +2008,7 @@ Configuration model
 | property_post_date_guid | [string](#string) |  | Guid for posting date guid property. Auto generated. @attr [Browsable(false)] |
 | property_doc_ref_guid_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Guid property&#34;)] @attr [Description(&#34;Document guid property name&#34;)] |
 | property_doc_ref_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Ref property&#34;)] @attr [Description(&#34;Document reference property name&#34;)] |
-| list_doc_guids | [string](#string) | repeated | &lt;summary&gt; / Guids of selected types of DOCUMENTS which can POST or UNPOST for this register / &lt;/summary&gt; @attr [Browsable(false)] |
+| list_object_doc_refs | [fk_complex_ref](#proto_config-fk_complex_ref) | repeated | &lt;summary&gt; / Guids of selected types of DOCUMENTS which can POST or UNPOST for this register / &lt;/summary&gt; @attr [Browsable(false)] |
 | property_doc_ref_guid | [string](#string) |  | Guid for document reference property. Auto generated. @attr [Browsable(false)] |
 | property_doc_guid_guid | [string](#string) |  | Guid for document guid property. Auto generated. @attr [Browsable(false)] |
 | index_doc_date_guid | [string](#string) |  | Guid for index of document date, dimensions. Auto generated. @attr [Browsable(false)] |

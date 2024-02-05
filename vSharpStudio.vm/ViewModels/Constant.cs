@@ -147,15 +147,15 @@ namespace vSharpStudio.vm.ViewModels
                     this.Length = 0;
                     this.Accuracy = 0;
                     this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
+                    this.ConfigObjectGuid = string.Empty;
+                    this.ListObjectRefs.Clear();
                     break;
                 case EnumDataType.DATE:
                     this.Length = 0;
                     this.Accuracy = 0;
                     this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
+                    this.ConfigObjectGuid = string.Empty;
+                    this.ListObjectRefs.Clear();
                     break;
                 case EnumDataType.DATETIMELOCAL:
                 case EnumDataType.DATETIMEUTC:
@@ -166,8 +166,8 @@ namespace vSharpStudio.vm.ViewModels
                     this.Length = 0;
                     this.Accuracy = 0;
                     this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
+                    this.ConfigObjectGuid = string.Empty;
+                    this.ListObjectRefs.Clear();
                     break;
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
@@ -175,8 +175,8 @@ namespace vSharpStudio.vm.ViewModels
                     this.Length = 0;
                     this.Accuracy = 0;
                     this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
+                    this.ConfigObjectGuid = string.Empty;
+                    this.ListObjectRefs.Clear();
                     break;
                 case EnumDataType.CATALOG:
                 case EnumDataType.DOCUMENT:
@@ -184,22 +184,22 @@ namespace vSharpStudio.vm.ViewModels
                     this.Length = 0;
                     this.Accuracy = 0;
                     this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
+                    this.ConfigObjectGuid = string.Empty;
+                    this.ListObjectRefs.Clear();
                     break;
                 case EnumDataType.NUMERICAL:
                     this.Length = 6;
                     this.Accuracy = 0;
                     this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
+                    this.ConfigObjectGuid = string.Empty;
+                    this.ListObjectRefs.Clear();
                     break;
                 case EnumDataType.STRING:
                     this.Length = 25;
                     this.Accuracy = 0;
                     this.IsPositive = false;
-                    this.ObjectGuid = string.Empty;
-                    this.ListObjectGuids.Clear();
+                    this.ConfigObjectGuid = string.Empty;
+                    this.ListObjectRefs.Clear();
                     break;
                 default:
                     throw new NotSupportedException();
@@ -235,7 +235,7 @@ namespace vSharpStudio.vm.ViewModels
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
             {
-                lst.Add(nameof(this.ListObjectGuids));
+                lst.Add(nameof(this.ListObjectRefs));
                 lst.Add(nameof(this.DefaultValue));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
@@ -243,7 +243,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.DataType.DataTypeEnum != EnumDataType.ENUMERATION &&
                 this.DataType.DataTypeEnum != EnumDataType.ANY)
             {
-                lst.Add(nameof(this.ObjectGuid));
+                lst.Add(nameof(this.ConfigObjectGuid));
                 lst.Add(nameof(this.DefaultValue));
             }
             if (this.Accuracy != 0)
@@ -332,12 +332,12 @@ namespace vSharpStudio.vm.ViewModels
         [Category("")]
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
         [PropertyOrderAttribute(15)]
-        public string ObjectGuid
+        public string ConfigObjectGuid
         {
-            get { return this.DataType.ObjectGuid; }
+            get { return this.DataType.ObjectRef.ConfigObjectGuid; }
             set
             {
-                this.DataType.ObjectGuid = value;
+                this.DataType.ObjectRef.ConfigObjectGuid = value;
                 this.OnPropertyChanged();
                 this.OnPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
@@ -362,9 +362,9 @@ namespace vSharpStudio.vm.ViewModels
         //[Description("Expected always >= 0")]
         [Category("")]
         [PropertyOrderAttribute(16)]
-        public ObservableCollection<string> ListObjectGuids
+        public ObservableCollection<FkComplexRef> ListObjectRefs
         {
-            get { return this.DataType.ListObjectGuids; }
+            get { return this.DataType.ListObjectRefs; }
         }
         #endregion Editing logic
 
@@ -400,7 +400,7 @@ namespace vSharpStudio.vm.ViewModels
                     //case EnumDataType.TIMEZ:
                     //    return "TimeZ" + sn;
                     case EnumDataType.ENUMERATION:
-                        var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
+                        var en = (Enumeration)this.Cfg.DicNodes[this.ConfigObjectGuid];
                         return en.DefaultValue;
                     case EnumDataType.BOOL:
                         return ".Value";

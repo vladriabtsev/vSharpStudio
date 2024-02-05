@@ -6,6 +6,7 @@ using Serilog.Events;
 using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using System.Reflection.Metadata;
 
 namespace vSharpStudio.common
 {
@@ -88,11 +89,7 @@ namespace vSharpStudio.common
                 foreach (var tt in t.ListConstants)
                 {
                     var md = new ModelNode(tt);
-                    this.DicNodesWithReferences[tt.Guid] = md;
-                    if (!string.IsNullOrWhiteSpace(tt.DataType.ObjectGuid))
-                    {
-                        AddReferenceToNode(md, tt, tt.DataType);
-                    }
+                    AddReferenceToNode(md, tt, tt.DataType);
                 }
             }
             foreach (var t in currModel.GroupCatalogs.ListCatalogs)
@@ -136,31 +133,28 @@ namespace vSharpStudio.common
         {
             foreach (var t in lst)
             {
-                if (!string.IsNullOrWhiteSpace(t.DataType.ObjectGuid))
-                {
-                    AddReferenceToNode(md, t, t.DataType);
-                }
+                AddReferenceToNode(md, t, t.DataType);
             }
         }
-        private void AddReferenceToNode(ModelNode md, IConstant constant, IDataType d)
+        private void AddReferenceToNode(ModelNode md, IGuid obj, IDataType d)
         {
-            if (!md.DicReferenceToNodes.ContainsKey(d.ObjectGuid))
+            Debug.Assert(this.currCfg != null);
+            if (!string.IsNullOrWhiteSpace(d.ObjectRef.ConfigObjectGuid))
             {
-                Debug.Assert(this.currCfg != null);
-                md.DicReferenceToNodes[d.ObjectGuid] = new ReferenceTo(this.currCfg.DicNodes[d.ObjectGuid]);
+                Debug.Assert(!md.DicReferenceToNodes.ContainsKey(d.ObjectRef.ConfigObjectGuid));
+                md.DicReferenceToNodes[d.ObjectRef.ConfigObjectGuid] = new ReferenceTo(this.currCfg.DicNodes[d.ObjectRef.ConfigObjectGuid]);
+                Debug.Assert(d.ListObjectRefs.Count == 0);
+                var tn = md.DicReferenceToNodes[d.ObjectRef.ConfigObjectGuid];
+                tn.DicByFields[obj.Guid] = obj;
             }
-            var tn = md.DicReferenceToNodes[d.ObjectGuid];
-            tn.DicByFields[constant.Guid] = constant;
-        }
-        private void AddReferenceToNode(ModelNode md, IProperty property, IDataType d)
-        {
-            if (!md.DicReferenceToNodes.ContainsKey(d.ObjectGuid))
+            foreach (var ttt in d.ListObjectRefs)
             {
-                Debug.Assert(this.currCfg != null);
-                md.DicReferenceToNodes[d.ObjectGuid] = new ReferenceTo(this.currCfg.DicNodes[d.ObjectGuid]);
+                Debug.Assert(!string.IsNullOrWhiteSpace(ttt.ConfigObjectGuid));
+                Debug.Assert(!md.DicReferenceToNodes.ContainsKey(ttt.ConfigObjectGuid));
+                md.DicReferenceToNodes[ttt.ConfigObjectGuid] = new ReferenceTo(this.currCfg.DicNodes[ttt.ConfigObjectGuid]);
+                var tn = md.DicReferenceToNodes[ttt.ConfigObjectGuid];
+                tn.DicByFields[obj.Guid] = obj;
             }
-            var tn = md.DicReferenceToNodes[d.ObjectGuid];
-            tn.DicByFields[property.Guid] = property;
         }
         private static void AddReferenceFromNode(ModelNode md, IGuid property, IGuid from)
         {

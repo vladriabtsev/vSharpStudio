@@ -2039,6 +2039,78 @@
       "extensions": [],
       "messages": [
         {
+          "name": "fk_complex_ref",
+          "longName": "fk_complex_ref",
+          "fullName": "proto_config.fk_complex_ref",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "config_object_guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "fk_index_table_guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_app_db_settings",
           "longName": "proto_app_db_settings",
           "fullName": "proto_config.proto_app_db_settings",
@@ -3033,6 +3105,30 @@
               "defaultValue": ""
             },
             {
+              "name": "property_ctlg_ref_folder_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "property_ctlg_ref_self_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "item_icon_type",
               "description": "@attr [PropertyOrderAttribute(41)]\n@attr [DisplayName(\"Item Icon\")]\n@attr [Description(\"Catalog item icon type\")]",
               "label": "",
@@ -3418,6 +3514,18 @@
             },
             {
               "name": "index_not_unique_code_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "property_ctlg_ref_self_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -4185,12 +4293,12 @@
               "defaultValue": ""
             },
             {
-              "name": "object_guid",
+              "name": "object_ref",
               "description": "\u003csummary\u003e\n/ Guid of complex type. It can be Guid of Enumeration, Catalog, Document. \n/ Numerical, string, bool, date and similar are simple types. For simple types this property is empty.\n/ If Guid of group types is assigned, then any type of such group of types is acceptable as type\n/ If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type\n/ \u003c/summary\u003e\n@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "fk_complex_ref",
+              "longType": "fk_complex_ref",
+              "fullType": "proto_config.fk_complex_ref",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -4209,12 +4317,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_object_guids",
+              "name": "list_object_refs",
               "description": "\u003csummary\u003e\n/ Guids of selected complex types for data type CATALOGS or DOCUMENTS\n/ \u003c/summary\u003e\n@attr [PropertyOrderAttribute(8)]",
               "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "fk_complex_ref",
+              "longType": "fk_complex_ref",
+              "fullType": "proto_config.fk_complex_ref",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -4558,6 +4666,18 @@
             },
             {
               "name": "view_list_combo_box_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "property_ref_parent_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -10989,42 +11109,6 @@
               "defaultValue": ""
             },
             {
-              "name": "property_ctlg_ref_self_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "property_ctlg_ref_folder_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "property_ref_parent_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "property_doc_number_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
@@ -11817,18 +11901,6 @@
               "defaultValue": ""
             },
             {
-              "name": "guid_complex_ref_table",
-              "description": "Can be used to create ref table for complex types (CATALOGS, DOCUMENTS, ANY)\n@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "default_value",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Default\")]\n@attr [Description(\"Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)\")]",
               "label": "",
@@ -12609,12 +12681,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_doc_guids",
+              "name": "list_object_doc_refs",
               "description": "\u003csummary\u003e\n/ Guids of selected types of DOCUMENTS which can POST or UNPOST for this register\n/ \u003c/summary\u003e\n@attr [Browsable(false)]",
               "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "fk_complex_ref",
+              "longType": "fk_complex_ref",
+              "fullType": "proto_config.fk_complex_ref",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

@@ -137,7 +137,7 @@ namespace vSharpStudio.vm.ViewModels
             //        cntx.AddFailure(vf);
             //    }
             //});
-            this.RuleFor(x => x.ListDocGuids).Custom((lst, cntx) =>
+            this.RuleFor(x => x.ListObjectDocRefs).Custom((lst, cntx) =>
             {
                 if (lst.Count == 0)
                 {
@@ -148,12 +148,12 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.ListDocGuids).Custom((lst, cntx) =>
+            this.RuleFor(x => x.ListObjectDocRefs).Custom((lst, cntx) =>
             {
                 var r = (Register)cntx.InstanceToValidate;
                 foreach (var t in lst)
                 {
-                    var doc = (Document)r.Cfg.DicNodes[t];
+                    var doc = (Document)r.Cfg.DicNodes[t.ConfigObjectGuid];
                     //this.foundDic.Clear();
 
                     // not mapped
@@ -178,9 +178,9 @@ namespace vSharpStudio.vm.ViewModels
                                             vf.Severity = Severity.Error;
                                             cntx.AddFailure(vf);
                                         }
-                                        if (p.DataType.ObjectGuid != rd.DimensionCatalogGuid)
+                                        if (p.DataType.ObjectRef.ConfigObjectGuid != rd.DimensionCatalogGuid)
                                         {
-                                            var cp = (Catalog)r.Cfg.DicNodes[p.DataType.ObjectGuid];
+                                            var cp = (Catalog)r.Cfg.DicNodes[p.DataType.ObjectRef.ConfigObjectGuid];
                                             var crd = (Catalog)r.Cfg.DicNodes[rd.DimensionCatalogGuid];
                                             var vf = new ValidationFailure(cntx.PropertyPath,
                                                 $"Register '{r.Name}'. Dimesion can mapped to catalog property of type '{crd.Name}', but property '{p.Name}' of '{doc.Name}' document has catalog type '{cp.Name}'.");

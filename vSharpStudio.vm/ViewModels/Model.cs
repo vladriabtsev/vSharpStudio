@@ -77,15 +77,12 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyCtlgDescriptionGuid = System.Guid.NewGuid().ToString();
             this._PropertyCtlgIsFolderGuid = System.Guid.NewGuid().ToString();
             this._PropertyCtlgNameGuid = System.Guid.NewGuid().ToString();
-            this._PropertyCtlgRefFolderGuid = System.Guid.NewGuid().ToString();
-            this._PropertyCtlgRefSelfGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocDateGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocIsPostedGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocShortTypeIdGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocTimeLineGuid = System.Guid.NewGuid().ToString();
             this._PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this._PropertyRefParentGuid = System.Guid.NewGuid().ToString();
             this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
 
             this._PKeyName = "Id";
@@ -447,7 +444,7 @@ namespace vSharpStudio.vm.ViewModels
             dt.Length = length;
             dt.Accuracy = accuracy;
             dt.IsPositive = isPositive;
-            dt.ObjectGuid = objectGuid;
+            dt.ObjectRef.ConfigObjectGuid = objectGuid;
             dt.IsNullable = isNullable;
             return dt;
         }
@@ -527,40 +524,16 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataTypeCatalog(ITreeConfigNode? parent, string catGuid, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectGuid = catGuid;
+            dt.ObjectRef.ConfigObjectGuid = catGuid;
             dt.DataTypeEnum = EnumDataType.CATALOG;
-            dt.IsNullable = isNullable;
-            return dt;
-        }
-        public IDataType GetDataTypeCatalogs(ITreeConfigNode? parent, IEnumerable<string> lstCatGuids, bool isNullable)
-        {
-            DataType dt = new DataType(parent);
-            dt.ListObjectGuids.AddRange(lstCatGuids);
-            dt.DataTypeEnum = EnumDataType.CATALOGS;
             dt.IsNullable = isNullable;
             return dt;
         }
         public IDataType GetDataTypeDocument(ITreeConfigNode? parent, string docGuid, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectGuid = docGuid;
+            dt.ObjectRef.ConfigObjectGuid = docGuid;
             dt.DataTypeEnum = EnumDataType.DOCUMENT;
-            dt.IsNullable = isNullable;
-            return dt;
-        }
-        public IDataType GetDataTypeDocuments(ITreeConfigNode? parent, IEnumerable<string> lstDocGuids, bool isNullable)
-        {
-            DataType dt = new DataType(parent);
-            dt.ListObjectGuids.AddRange(lstDocGuids);
-            dt.DataTypeEnum = EnumDataType.DOCUMENTS;
-            dt.IsNullable = isNullable;
-            return dt;
-        }
-        public IDataType GetDataTypeCatalogsDocuments(ITreeConfigNode? parent, IEnumerable<string> lstCatDocGuids, bool isNullable)
-        {
-            DataType dt = new DataType(parent);
-            dt.ListObjectGuids.AddRange(lstCatDocGuids);
-            dt.DataTypeEnum = EnumDataType.ANY;
             dt.IsNullable = isNullable;
             return dt;
         }
@@ -575,7 +548,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataType(ITreeConfigNode? parent, ICatalog obj, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectGuid = obj.Guid;
+            dt.ObjectRef.ConfigObjectGuid = obj.Guid;
             dt.IsNullable = isNullable;
             dt.DataTypeEnum = EnumDataType.CATALOG;
             return dt;
@@ -584,7 +557,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataType(ITreeConfigNode? parent, IDocument obj, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectGuid = obj.Guid;
+            dt.ObjectRef.ConfigObjectGuid = obj.Guid;
             dt.IsNullable = isNullable;
             dt.DataTypeEnum = EnumDataType.DOCUMENT;
             return dt;
@@ -948,14 +921,6 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetDataTypeCatalog(parent, catGuid, isNullable);
             return res;
         }
-        public IProperty GetPropertyCatalogs(ITreeConfigNode parent, string guid, string name, IEnumerable<string> lstCatGuids, uint position, bool isNullable)
-        {
-            var res = new Property(parent, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = (DataType)this.GetDataTypeCatalogs(parent, lstCatGuids, isNullable);
-            return res;
-        }
         public IProperty GetPropertyDocument(ITreeConfigNode parent, string guid, string name, string docGuid, uint position, bool isNullable)
         {
             var res = new Property(parent, guid, name, true);
@@ -964,7 +929,39 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetDataTypeDocument(parent, docGuid, isNullable);
             return res;
         }
-        public IProperty GetPropertyDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<string> lstDocGuids, uint position, bool isNullable)
+        public IDataType GetDataTypeCatalogs(ITreeConfigNode? parent, IEnumerable<FkComplexRef> lstCatGuids, bool isNullable)
+        {
+            DataType dt = new DataType(parent);
+            dt.ListObjectRefs.AddRange(lstCatGuids);
+            dt.DataTypeEnum = EnumDataType.CATALOGS;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataTypeDocuments(ITreeConfigNode? parent, IEnumerable<FkComplexRef> lstDocGuids, bool isNullable)
+        {
+            DataType dt = new DataType(parent);
+            dt.ListObjectRefs.AddRange(lstDocGuids);
+            dt.DataTypeEnum = EnumDataType.DOCUMENTS;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataTypeCatalogsDocuments(ITreeConfigNode? parent, IEnumerable<FkComplexRef> lstCatDocGuids, bool isNullable)
+        {
+            DataType dt = new DataType(parent);
+            dt.ListObjectRefs.AddRange(lstCatDocGuids);
+            dt.DataTypeEnum = EnumDataType.ANY;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IProperty GetPropertyCatalogs(ITreeConfigNode parent, string guid, string name, IEnumerable<FkComplexRef> lstCatGuids, uint position, bool isNullable)
+        {
+            var res = new Property(parent, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = (DataType)this.GetDataTypeCatalogs(parent, lstCatGuids, isNullable);
+            return res;
+        }
+        public IProperty GetPropertyDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<FkComplexRef> lstDocGuids, uint position, bool isNullable)
         {
             var res = new Property(parent, guid, name, true);
             res.Position = position;
@@ -972,7 +969,7 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetDataTypeDocuments(parent, lstDocGuids, isNullable);
             return res;
         }
-        public IProperty GetPropertyCatalogsDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<string> lstCatOrDocGuids, uint position, bool isNullable)
+        public IProperty GetPropertyCatalogsDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<FkComplexRef> lstCatOrDocGuids, uint position, bool isNullable)
         {
             var res = new Property(parent, guid, name, true);
             res.Position = position;
@@ -1296,13 +1293,13 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.TIME:
                     throw new ArgumentException("Unexpected EnumDataType type");
                 case EnumDataType.CATALOGS:
-                    if (dt.ListObjectGuids.Count > 0)
+                    if (dt.ListObjectRefs.Count > 0)
                     {
-                        foreach (var t in dt.ListObjectGuids)
+                        foreach (var t in dt.ListObjectRefs)
                         {
-                            Debug.Assert(!string.IsNullOrWhiteSpace(t));
-                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t));
-                            var node = this.ParentConfig.DicNodes[t];
+                            Debug.Assert(!string.IsNullOrWhiteSpace(t.ConfigObjectGuid));
+                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.ConfigObjectGuid));
+                            var node = this.ParentConfig.DicNodes[t.ConfigObjectGuid];
                             if (node is ICatalog c)
                             {
                                 res[c.Guid] = new Tuple<string, string>($"Catalogs.{c.Name}", c.CompositeName);
@@ -1326,13 +1323,13 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     break;
                 case EnumDataType.DOCUMENTS:
-                    if (dt.ListObjectGuids.Count > 0)
+                    if (dt.ListObjectRefs.Count > 0)
                     {
-                        foreach (var t in dt.ListObjectGuids)
+                        foreach (var t in dt.ListObjectRefs)
                         {
-                            Debug.Assert(!string.IsNullOrWhiteSpace(t));
-                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t));
-                            var node = this.ParentConfig.DicNodes[t];
+                            Debug.Assert(!string.IsNullOrWhiteSpace(t.ConfigObjectGuid));
+                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.ConfigObjectGuid));
+                            var node = this.ParentConfig.DicNodes[t.ConfigObjectGuid];
                             if (node is ICatalog c)
                             {
                                 throw new ArgumentException("EnumDataType.DOCUMENTS can't reference Catalog");
@@ -1356,13 +1353,13 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     break;
                 case EnumDataType.ANY:
-                    if (dt.ListObjectGuids.Count > 0)
+                    if (dt.ListObjectRefs.Count > 0)
                     {
-                        foreach (var t in dt.ListObjectGuids)
+                        foreach (var t in dt.ListObjectRefs)
                         {
-                            Debug.Assert(!string.IsNullOrWhiteSpace(t));
-                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t));
-                            var node = this.ParentConfig.DicNodes[t];
+                            Debug.Assert(!string.IsNullOrWhiteSpace(t.ConfigObjectGuid));
+                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.ConfigObjectGuid));
+                            var node = this.ParentConfig.DicNodes[t.ConfigObjectGuid];
                             if (node is ICatalog c)
                             {
                                 res[c.Guid] = new Tuple<string, string>($"Catalogs.{c.Name}", c.CompositeName);

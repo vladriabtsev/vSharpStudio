@@ -27,10 +27,7 @@ namespace vSharpStudio.common
         IDataType GetDataTypeStringGuid(ITreeConfigNode? parent, bool isNullable);
 
         IDataType GetDataTypeCatalog(ITreeConfigNode? parent, string catGuid, bool isNullable);
-        IDataType GetDataTypeCatalogs(ITreeConfigNode? parent, IEnumerable<string> lstCatGuids, bool isNullable);
         IDataType GetDataTypeDocument(ITreeConfigNode? parent, string docGuid, bool isNullable);
-        IDataType GetDataTypeDocuments(ITreeConfigNode? parent, IEnumerable<string> lstDocGuids, bool isNullable);
-        IDataType GetDataTypeCatalogsDocuments(ITreeConfigNode? parent, IEnumerable<string> lstCatDocGuids, bool isNullable);
         IDataType GetDataTypeAny(ITreeConfigNode? parent, bool isNullable);
 
         IDataType GetDataType(ITreeConfigNode? parent, ICatalog obj, bool isNullable);
@@ -71,10 +68,7 @@ namespace vSharpStudio.common
         IProperty GetPropertyDocNumberUniqueScopeHelper(ITreeConfigNode parent, string guid);
 
         IProperty GetPropertyCatalog(ITreeConfigNode parent, string guid, string name, string catGuid, uint position, bool isNullable);
-        IProperty GetPropertyCatalogs(ITreeConfigNode parent, string guid, string name, IEnumerable<string> lstCatGuids, uint position, bool isNullable);
         IProperty GetPropertyDocument(ITreeConfigNode parent, string guid, string name, string docGuid, uint position, bool isNullable);
-        IProperty GetPropertyDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<string> lstDocGuids, uint position, bool isNullable);
-        IProperty GetPropertyCatalogsDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<string> lstCatOrDocGuids, uint position, bool isNullable);
         IProperty GetPropertyAny(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable);
 
 

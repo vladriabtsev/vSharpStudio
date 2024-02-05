@@ -243,7 +243,16 @@ namespace vSharpStudio.vm.ViewModels
                 node.Guid = guidProperty;
             }
 #endif
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = catGuid, IsNullable = isNullable };
+            node.DataType = new DataType(node)
+            {
+                DataTypeEnum = EnumDataType.CATALOG,
+                IsNullable = isNullable,
+                ObjectRef = new FkComplexRef()
+                {
+                    ConfigObjectGuid = catGuid,
+                    FkIndexTableGuid = System.Guid.NewGuid().ToString()
+                }
+            };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }

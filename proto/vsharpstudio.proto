@@ -718,13 +718,6 @@ message proto_model {
     string property_ctlg_description_guid = 57;
     // @attr [Browsable(false)]
     string property_ctlg_is_folder_guid = 58;
-    // @attr [Browsable(false)]
-    string property_ctlg_ref_self_guid = 59;
-    // @attr [Browsable(false)]
-    string property_ctlg_ref_folder_guid = 60;
-
-    // @attr [Browsable(false)]
-    string property_ref_parent_guid = 65;
 
     // @attr [Browsable(false)]
     string property_doc_number_guid = 70;
@@ -893,6 +886,21 @@ enum proto_enum_one_to_relation_type {
     // @attr [Description("One to Many")]
     ONE_TO_MANY = 1;
 }
+// @base VmValidatableWithSeverity
+message fk_complex_ref
+{
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 3;
+    string config_object_guid = 11;
+    string fk_index_table_guid = 12;
+}
 // @base BaseSettings
 message proto_data_type {
     // @attr [PropertyOrderAttribute(1)]
@@ -918,7 +926,7 @@ message proto_data_type {
     /// </summary>
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
-    string object_guid = 6;
+    fk_complex_ref object_ref = 6;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Time accuracy")]
@@ -928,7 +936,7 @@ message proto_data_type {
     /// Guids of selected complex types for data type CATALOGS or DOCUMENTS
     /// </summary>
     // @attr [PropertyOrderAttribute(8)]
-    repeated string list_object_guids = 8;
+    repeated fk_complex_ref list_object_refs = 8;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(9)]
     // @attr [DisplayName("Can be NULL")]
@@ -1306,9 +1314,6 @@ message proto_property {
     string description = 5;
     // @attr [Browsable(false)]
     proto_data_type data_type = 6;
-    // Can be used to create ref table for complex types (CATALOGS, DOCUMENTS, ANY)
-    // @attr [Browsable(false)]
-    string guid_complex_ref_table = 7;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(8)]
     // @attr [DisplayName("Default")]
@@ -1583,6 +1588,9 @@ message proto_detail {
     string view_list_datagrid_guid = 54;
     // @attr [Browsable(false)]
     string view_list_combo_box_guid = 55;
+
+    // @attr [Browsable(false)]
+    string property_ref_parent_guid = 65;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -1965,6 +1973,9 @@ message proto_catalog_folder {
     // @attr [Browsable(false)]
     string index_not_unique_code_guid = 27;
 
+    // @attr [Browsable(false)]
+    string property_ctlg_ref_self_guid = 31;
+
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Use Name")]
     // @attr [Description("Use Name property for catalog item")]
@@ -2123,6 +2134,11 @@ message proto_catalog {
     string index_ref_tree_parent_code_guid = 33;
     // @attr [Browsable(false)]
     string index_not_unique_code_guid = 34;
+
+    // @attr [Browsable(false)]
+    string property_ctlg_ref_folder_guid = 37;
+    // @attr [Browsable(false)]
+    string property_ctlg_ref_self_guid = 38;
 
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Item Icon")]
@@ -2524,7 +2540,7 @@ message proto_register {
     /// Guids of selected types of DOCUMENTS which can POST or UNPOST for this register
     /// </summary>
     // @attr [Browsable(false)]
-    repeated string list_doc_guids = 41;
+    repeated fk_complex_ref list_object_doc_refs = 41;
     // Guid for document reference property. Auto generated.
     // @attr [Browsable(false)]
     string property_doc_ref_guid = 42; 

@@ -101,6 +101,9 @@ namespace vSharpStudio.vm.ViewModels
             this._IndexRefTreeParentCodeGuid = System.Guid.NewGuid().ToString();
             this._IndexNotUniqueCodeGuid = System.Guid.NewGuid().ToString();
 
+            this._PropertyCtlgRefFolderGuid = System.Guid.NewGuid().ToString();
+            this._PropertyCtlgRefSelfGuid = System.Guid.NewGuid().ToString();
+
             this._MaxNameLength = 20;
             this._MaxDescriptionLength = 100;
             this._UseTree = false;
@@ -500,12 +503,12 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.UseSeparateTreeForFolders)
                 {
-                    prp = model.GetPropertyRefParent(this.GroupProperties, this.Cfg.Model.PropertyCtlgRefFolderGuid, "Ref" + this.Folder.CompositeName, false);
+                    prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyCtlgRefFolderGuid, "Ref" + this.Folder.CompositeName, false);
                     res.Add(prp);
                 }
                 else
                 {
-                    prp = model.GetPropertyRefParent(this.GroupProperties, this.Cfg.Model.PropertyCtlgRefSelfGuid, "RefTreeParent", true);
+                    prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyCtlgRefSelfGuid, "RefTreeParent", true);
                     res.Add(prp);
                     prp = model.GetPropertyIsFolder(this.GroupProperties, this.Cfg.Model.PropertyCtlgIsFolderGuid, false);
                     res.Add(prp);
@@ -663,7 +666,7 @@ namespace vSharpStudio.vm.ViewModels
             IProperty? pRefParent = null;
             if (this.UseTree)
             {
-                pRefTreeParent = model.GetPropertyRefParent(this.GroupProperties, this.Folder.Cfg.Model.PropertyCtlgRefSelfGuid, "RefTreeParent", true);
+                pRefTreeParent = model.GetPropertyRefParent(this.GroupProperties, this.PropertyCtlgRefSelfGuid, "RefTreeParent", true);
                 if (this.UseSeparateTreeForFolders) // self tree and separate data grid for children
                 {
                     viewTreeData = new ViewTreeData(pId, pRefTreeParent, null);

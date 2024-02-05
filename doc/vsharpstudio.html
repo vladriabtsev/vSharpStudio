@@ -179,6 +179,10 @@
             <ul>
               
                 <li>
+                  <a href="#proto_config.fk_complex_ref"><span class="badge">M</span>fk_complex_ref</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_app_db_settings"><span class="badge">M</span>proto_app_db_settings</a>
                 </li>
               
@@ -691,6 +695,61 @@
       </div>
       <p></p>
 
+      
+        <h3 id="proto_config.fk_complex_ref">fk_complex_ref</h3>
+        <p>@base VmValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>config_object_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fk_index_table_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="proto_config.proto_app_db_settings">proto_app_db_settings</h3>
         <p>@base VmValidatable</p>
@@ -1426,6 +1485,20 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
+                  <td>property_ctlg_ref_folder_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_ctlg_ref_self_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>item_icon_type</td>
                   <td><a href="#proto_config.proto_enum_catalog_tree_icon">proto_enum_catalog_tree_icon</a></td>
                   <td></td>
@@ -1704,6 +1777,13 @@ Generator output file name </p></td>
               
                 <tr>
                   <td>index_not_unique_code_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_ctlg_ref_self_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -2266,8 +2346,8 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>object_guid</td>
-                  <td><a href="#string">string</a></td>
+                  <td>object_ref</td>
+                  <td><a href="#proto_config.fk_complex_ref">fk_complex_ref</a></td>
                   <td></td>
                   <td><p>&lt;summary&gt;
 / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
@@ -2290,8 +2370,8 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_object_guids</td>
-                  <td><a href="#string">string</a></td>
+                  <td>list_object_refs</td>
+                  <td><a href="#proto_config.fk_complex_ref">fk_complex_ref</a></td>
                   <td>repeated</td>
                   <td><p>&lt;summary&gt;
 / Guids of selected complex types for data type CATALOGS or DOCUMENTS
@@ -2553,6 +2633,13 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>view_list_combo_box_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_ref_parent_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -7377,27 +7464,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>property_ctlg_ref_self_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_ctlg_ref_folder_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_ref_parent_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>property_doc_number_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -7985,14 +8051,6 @@ Plugin group Guid and string to store extentions </p></td>
                   <td><a href="#proto_config.proto_data_type">proto_data_type</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>guid_complex_ref_table</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Can be used to create ref table for complex types (CATALOGS, DOCUMENTS, ANY)
-@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -8608,8 +8666,8 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>list_doc_guids</td>
-                  <td><a href="#string">string</a></td>
+                  <td>list_object_doc_refs</td>
+                  <td><a href="#proto_config.fk_complex_ref">fk_complex_ref</a></td>
                   <td>repeated</td>
                   <td><p>&lt;summary&gt;
 / Guids of selected types of DOCUMENTS which can POST or UNPOST for this register

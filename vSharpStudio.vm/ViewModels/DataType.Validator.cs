@@ -108,34 +108,34 @@ namespace vSharpStudio.vm.ViewModels
             #endregion Accuracy
 
             #region ObjectGuid
-            this.RuleFor(p => p.ObjectGuid).Must((p, y) =>
+            this.RuleFor(p => p.ObjectRef.ConfigObjectGuid).Must((p, y) =>
             {
-                if (p.DataTypeEnum == EnumDataType.ENUMERATION && string.IsNullOrWhiteSpace(p.ObjectGuid))
+                if (p.DataTypeEnum == EnumDataType.ENUMERATION && string.IsNullOrWhiteSpace(p.ObjectRef.ConfigObjectGuid))
                 {
                     return false;
                 }
 
                 return true;
             }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_ENUMERATION);
-            this.RuleFor(p => p.ObjectGuid).Must((p, y) =>
+            this.RuleFor(p => p.ObjectRef.ConfigObjectGuid).Must((p, y) =>
             {
-                if (p.DataTypeEnum == EnumDataType.CATALOG && string.IsNullOrWhiteSpace(p.ObjectGuid))
+                if (p.DataTypeEnum == EnumDataType.CATALOG && string.IsNullOrWhiteSpace(p.ObjectRef.ConfigObjectGuid))
                 {
                     return false;
                 }
 
                 return true;
             }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_CATALOG);
-            this.RuleFor(p => p.ObjectGuid).Must((p, y) =>
+            this.RuleFor(p => p.ObjectRef.ConfigObjectGuid).Must((p, y) =>
             {
-                if (p.DataTypeEnum == EnumDataType.DOCUMENT && string.IsNullOrWhiteSpace(p.ObjectGuid))
+                if (p.DataTypeEnum == EnumDataType.DOCUMENT && string.IsNullOrWhiteSpace(p.ObjectRef.ConfigObjectGuid))
                 {
                     return false;
                 }
 
                 return true;
             }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_DOCUMENT);
-            this.RuleFor(p => p.ObjectGuid).Must((p, y) =>
+            this.RuleFor(p => p.ObjectRef.ConfigObjectGuid).Must((p, y) =>
             {
                 if (p.DataTypeEnum != EnumDataType.ENUMERATION)
                 {
@@ -152,7 +152,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 return false;
             }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
-            this.RuleFor(p => p.ObjectGuid).Must((p, y) =>
+            this.RuleFor(p => p.ObjectRef.ConfigObjectGuid).Must((p, y) =>
             {
                 if (p.DataTypeEnum != EnumDataType.CATALOG)
                 {
@@ -169,7 +169,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 return false;
             }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
-            this.RuleFor(p => p.ObjectGuid).Must((p, y) =>
+            this.RuleFor(p => p.ObjectRef.ConfigObjectGuid).Must((p, y) =>
             {
                 if (p.DataTypeEnum != EnumDataType.DOCUMENT)
                 {

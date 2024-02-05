@@ -601,34 +601,34 @@ namespace vSharpStudio.vm.ViewModels
             });
 
             #region ObjectGuid
-            this.RuleFor(p => p.ObjectGuid).Must((p, y) =>
+            this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
-                if (p.DataTypeEnum == EnumDataType.ENUMERATION && string.IsNullOrWhiteSpace(p.ObjectGuid))
+                if (p.DataTypeEnum == EnumDataType.ENUMERATION && string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
                 {
                     return false;
                 }
 
                 return true;
             }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_ENUMERATION);
-            this.RuleFor(p => p.ObjectGuid).Must((p, y) =>
+            this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
-                if (p.DataTypeEnum == EnumDataType.CATALOG && string.IsNullOrWhiteSpace(p.ObjectGuid))
+                if (p.DataTypeEnum == EnumDataType.CATALOG && string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
                 {
                     return false;
                 }
 
                 return true;
             }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_CATALOG);
-            this.RuleFor(p => p.ObjectGuid).Must((p, y) =>
+            this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
-                if (p.DataTypeEnum == EnumDataType.DOCUMENT && string.IsNullOrWhiteSpace(p.ObjectGuid))
+                if (p.DataTypeEnum == EnumDataType.DOCUMENT && string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
                 {
                     return false;
                 }
 
                 return true;
             }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_DOCUMENT);
-            this.RuleFor(p => p.ObjectGuid).Must((p, y) =>
+            this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
                 if (p.DataTypeEnum != EnumDataType.ENUMERATION)
                 {
@@ -659,7 +659,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 return false;
             }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
-            this.RuleFor(p => p.ObjectGuid).Must((p, y) =>
+            this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
                 if (p.DataTypeEnum != EnumDataType.CATALOG)
                 {
@@ -690,7 +690,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 return false;
             }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
-            this.RuleFor(p => p.ObjectGuid).Must((p, y) =>
+            this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
                 if (p.DataTypeEnum != EnumDataType.DOCUMENT)
                 {
@@ -984,17 +984,17 @@ namespace vSharpStudio.vm.ViewModels
                     return;
                 if (p.DataTypeEnum == EnumDataType.CATALOG || p.DataTypeEnum == EnumDataType.ENUMERATION || p.DataTypeEnum == EnumDataType.DOCUMENT)
                 {
-                    if (string.IsNullOrWhiteSpace(p.ObjectGuid))
+                    if (string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
                     {
-                        var vf = new ValidationFailure(nameof(p.ObjectGuid),
+                        var vf = new ValidationFailure(nameof(p.ConfigObjectGuid),
                             $"Property general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtype is not selected");
                         vf.Severity = Severity.Error;
                         cntx.AddFailure(vf);
                         return;
                     }
                     var cfg = p.Cfg;
-                    Debug.Assert(cfg.DicNodes.ContainsKey(p.ObjectGuid));
-                    var refObj = cfg.DicNodes[p.ObjectGuid];
+                    Debug.Assert(cfg.DicNodes.ContainsKey(p.ConfigObjectGuid));
+                    var refObj = cfg.DicNodes[p.ConfigObjectGuid];
                     Debug.Assert(refObj != null);
                     var refObjEditable = refObj as IEditableNode;
                     Debug.Assert(refObjEditable != null);
@@ -1014,19 +1014,19 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else if (p.DataTypeEnum == EnumDataType.CATALOGS || p.DataTypeEnum == EnumDataType.DOCUMENTS)
                 {
-                    if (p.ListObjectGuids.Count == 0)
+                    if (p.ListObjectRefs.Count == 0)
                     {
-                        var vf = new ValidationFailure(nameof(p.ObjectGuid),
+                        var vf = new ValidationFailure(nameof(p.ConfigObjectGuid),
                             $"Property general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtypes are not selected");
                         vf.Severity = Severity.Error;
                         cntx.AddFailure(vf);
                         return;
                     }
                     var cfg = p.Cfg;
-                    foreach (var t in p.ListObjectGuids)
+                    foreach (var t in p.ListObjectRefs)
                     {
-                        Debug.Assert(cfg.DicNodes.ContainsKey(t));
-                        var refObj = cfg.DicNodes[t];
+                        Debug.Assert(cfg.DicNodes.ContainsKey(t.ConfigObjectGuid));
+                        var refObj = cfg.DicNodes[t.ConfigObjectGuid];
                         Debug.Assert(refObj != null);
                         var refObjEditable = refObj as IEditableNode;
                         Debug.Assert(refObjEditable != null);
