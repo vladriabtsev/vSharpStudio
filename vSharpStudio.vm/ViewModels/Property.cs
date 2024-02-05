@@ -91,6 +91,7 @@ namespace vSharpStudio.vm.ViewModels
         public string ComplexObjectNameWithDot() { if (!string.IsNullOrEmpty(this.ComplexObjectName)) return $"{this.ComplexObjectName}."; return ""; }
         partial void OnCreated()
         {
+            this._GuidComplexRefTable = System.Guid.NewGuid().ToString();
             this.IsNullable = false;
             this.IsUseHistory = false;
             this._MinLengthRequirement = "";
@@ -1084,7 +1085,7 @@ namespace vSharpStudio.vm.ViewModels
             DataType.GetTypeDesc(this.DataType, sb);
             return sb.ToString();
         }
-        public IReadOnlyList<IProperty> GetToAnyProperties(ITreeConfigNode parent, string propertyVersionGuid, bool isOptimistic)
+        public IReadOnlyList<IProperty> GetPropertiesForRefTable(ITreeConfigNode parent, string propertyVersionGuid, bool isOptimistic)
         {
             throw new NotImplementedException();
             var parentTable = ((ICompositeName)parent).CompositeName;

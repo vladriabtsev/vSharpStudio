@@ -76,7 +76,6 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
             this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();
             this._ViewListComboBoxGuid = System.Guid.NewGuid().ToString();
-            this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             Debug.Assert(glp != null);
             this._Position = glp.GroupProperties.GetNextPosition();
