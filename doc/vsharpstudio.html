@@ -387,23 +387,11 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_many_to_many_catalogs_relation"><span class="badge">M</span>proto_many_to_many_catalogs_relation</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_many_to_many_documents_relation"><span class="badge">M</span>proto_many_to_many_documents_relation</a>
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_many_to_many_group_catalogs_relations"><span class="badge">M</span>proto_many_to_many_group_catalogs_relations</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_many_to_many_group_documents_relations"><span class="badge">M</span>proto_many_to_many_group_documents_relations</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_many_to_many_group_relations"><span class="badge">M</span>proto_many_to_many_group_relations</a>
                 </li>
               
                 <li>
@@ -468,6 +456,18 @@
               
                 <li>
                   <a href="#proto_config.proto_register_reg_prop_to_doc_prop"><span class="badge">M</span>proto_register_reg_prop_to_doc_prop</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_relation_many_to_many"><span class="badge">M</span>proto_relation_many_to_many</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_relations_group"><span class="badge">M</span>proto_relations_group</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_relations_many_to_many_group"><span class="badge">M</span>proto_relations_many_to_many_group</a>
                 </li>
               
                 <li>
@@ -6601,156 +6601,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
 
         
       
-        <h3 id="proto_config.proto_many_to_many_catalogs_relation">proto_many_to_many_catalogs_relation</h3>
-        <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(-2)]
-@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(1)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name_ui</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)]
-@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(3)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>guid_cat1</td>
-                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(6)]
-@attr [DisplayName(&#34;Catalog 1&#34;)]
-@attr [Description(&#34;Catalog of Many To Many relation&#34;)]
-@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ref_cat1_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>guid_cat2</td>
-                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(8)]
-@attr [DisplayName(&#34;Catalog 2&#34;)]
-@attr [Description(&#34;Catalog of Many To Many relation&#34;)]
-@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ref_cat2_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_use_history</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(10)]
-@attr [DisplayName(&#34;Use History&#34;)]
-@attr [Description(&#34;Use history for relation&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_new</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_marked_for_deletion</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>short_id</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>Sequential unique number in configuration
-@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>short_ref_id</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>Combination of short_id and type group in higher bits
-@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_data_time_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_node_generators_settings</td>
-                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="proto_config.proto_many_to_many_documents_relation">proto_many_to_many_documents_relation</h3>
         <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
 
@@ -6901,97 +6751,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
 
         
       
-        <h3 id="proto_config.proto_many_to_many_group_catalogs_relations">proto_many_to_many_group_catalogs_relations</h3>
-        <p>@interface ISortingValue</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(-2)]
-@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(1)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name_ui</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)]
-@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(3)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>prefix_for_composition_names</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [DisplayName(&#34;Composition prefix&#34;)]
-@attr [Description(&#34;Prefix for many-to-many relations composition names. Used if set to use in config model&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>short_id_type_for_cache_key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(7)]
-@attr [DisplayName(&#34;Short ID&#34;)]
-@attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_catalogs_relations</td>
-                  <td><a href="#proto_config.proto_many_to_many_catalogs_relation">proto_many_to_many_catalogs_relation</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_node_generators_settings</td>
-                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="proto_config.proto_many_to_many_group_documents_relations">proto_many_to_many_group_documents_relations</h3>
         <p>@interface ISortingValue</p>
 
@@ -7067,88 +6826,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#proto_config.proto_many_to_many_documents_relation">proto_many_to_many_documents_relation</a></td>
                   <td>repeated</td>
                   <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_node_generators_settings</td>
-                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_many_to_many_group_relations">proto_many_to_many_group_relations</h3>
-        <p>M A N Y   T O   M A N Y   R E L A T I O N</p><p>@exclude</p><p>######################### M A N Y   T O   M A N Y   R E L A T I O N ############################</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(-2)]
-@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(1)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name_ui</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)]
-@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(3)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_list_catalogs_relations</td>
-                  <td><a href="#proto_config.proto_many_to_many_group_catalogs_relations">proto_many_to_many_group_catalogs_relations</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)]
-@attr [Description(&#34;Many to many setting for catalogs&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_list_documents_relations</td>
-                  <td><a href="#proto_config.proto_many_to_many_group_documents_relations">proto_many_to_many_group_documents_relations</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)]
-@attr [Description(&#34;Many to many setting for documents&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -7552,7 +7229,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
               
                 <tr>
                   <td>group_relations</td>
-                  <td><a href="#proto_config.proto_many_to_many_group_relations">proto_many_to_many_group_relations</a></td>
+                  <td><a href="#proto_config.proto_relations_group">proto_relations_group</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -8957,6 +8634,329 @@ Reserved positions: 1-15
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Document property GUID </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_relation_many_to_many">proto_relation_many_to_many</h3>
+        <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>guid_cat1</td>
+                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(6)]
+@attr [DisplayName(&#34;Catalog 1&#34;)]
+@attr [Description(&#34;Catalog of Many To Many relation&#34;)]
+@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref_cat1_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>guid_cat2</td>
+                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(8)]
+@attr [DisplayName(&#34;Catalog 2&#34;)]
+@attr [Description(&#34;Catalog of Many To Many relation&#34;)]
+@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref_cat2_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_history</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(10)]
+@attr [DisplayName(&#34;Use History&#34;)]
+@attr [Description(&#34;Use history for relation&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+@attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Sequential unique number in configuration
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_ref_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Combination of short_id and type group in higher bits
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_data_time_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_relations_group">proto_relations_group</h3>
+        <p>M A N Y   T O   M A N Y   R E L A T I O N</p><p>@exclude</p><p>######################### M A N Y   T O   M A N Y   R E L A T I O N ############################</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_list_catalogs_relations</td>
+                  <td><a href="#proto_config.proto_relations_many_to_many_group">proto_relations_many_to_many_group</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)]
+@attr [Description(&#34;Many to many setting for catalogs&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_list_documents_relations</td>
+                  <td><a href="#proto_config.proto_many_to_many_group_documents_relations">proto_many_to_many_group_documents_relations</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)]
+@attr [Description(&#34;Many to many setting for documents&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_relations_many_to_many_group">proto_relations_many_to_many_group</h3>
+        <p>@interface ISortingValue</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prefix_for_composition_names</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Composition prefix&#34;)]
+@attr [Description(&#34;Prefix for many-to-many relations composition names. Used if set to use in config model&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id_type_for_cache_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)]
+@attr [DisplayName(&#34;Short ID&#34;)]
+@attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_catalogs_relations</td>
+                  <td><a href="#proto_config.proto_relation_many_to_many">proto_relation_many_to_many</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
             </tbody>

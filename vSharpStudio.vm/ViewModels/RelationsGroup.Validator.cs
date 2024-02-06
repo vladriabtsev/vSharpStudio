@@ -5,9 +5,9 @@ using FluentValidation;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ManyToManyGroupRelationsValidator
+    public partial class RelationsGroupValidator
     {
-        public ManyToManyGroupRelationsValidator()
+        public RelationsGroupValidator()
         {
             //this.RuleFor(x => x.PrefixForDbTables).Must((o, prefix) =>
             //{

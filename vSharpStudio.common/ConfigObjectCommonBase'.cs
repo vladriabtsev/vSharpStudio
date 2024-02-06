@@ -451,7 +451,7 @@
                         {
                             sb.Append(gr.PrefixForCompositionNames);
                         }
-                        else if (t is IManyToManyGroupCatalogsRelations gcr)
+                        else if (t is IRelationsManyToManyGroup gcr)
                         {
                             sb.Append(gcr.PrefixForCompositionNames);
                         }

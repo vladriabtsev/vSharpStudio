@@ -27,7 +27,7 @@ namespace vSharpStudio.vm.ViewModels
                 _binding_lst.Source = ((Property)propertyItem.Instance).DataType;
             else if (propertyItem.Instance is Constant)
                 _binding_lst.Source = ((Constant)propertyItem.Instance).DataType;
-            else if (propertyItem.Instance is ManyToManyCatalogsRelation)
+            else if (propertyItem.Instance is RelationManyToMany)
                 _binding_lst.Source = propertyItem.Instance;
             else if (propertyItem.Instance is ManyToManyDocumentsRelation)
                 _binding_lst.Source = propertyItem.Instance;

@@ -438,7 +438,7 @@ namespace vSharpStudio.common
         protected IRegister? currReg = null;
         protected IDocument? currDoc = null;
         protected vSharpStudio.common.IProperty? currProp = null;
-        protected IManyToManyCatalogsRelation? currCatRelation = null;
+        protected IRelationManyToMany? currCatRelation = null;
         protected IManyToManyDocumentsRelation? currDocRelation = null;
 
 
@@ -580,12 +580,12 @@ namespace vSharpStudio.common
         #endregion Detail
 
         #region ManyToMany
-        protected virtual void BeginVisit(IManyToManyGroupRelations d) { }
-        protected virtual void EndVisit(IManyToManyGroupRelations d) { }
-        protected virtual void BeginVisit(IManyToManyGroupCatalogsRelations d) { }
-        protected virtual void EndVisit(IManyToManyGroupCatalogsRelations d) { }
-        protected virtual void BeginVisit(IManyToManyCatalogsRelation d) { }
-        protected virtual void EndVisit(IManyToManyCatalogsRelation d) { }
+        protected virtual void BeginVisit(IRelationsGroup d) { }
+        protected virtual void EndVisit(IRelationsGroup d) { }
+        protected virtual void BeginVisit(IRelationsManyToManyGroup d) { }
+        protected virtual void EndVisit(IRelationsManyToManyGroup d) { }
+        protected virtual void BeginVisit(IRelationManyToMany d) { }
+        protected virtual void EndVisit(IRelationManyToMany d) { }
         protected virtual void BeginVisit(IManyToManyGroupDocumentsRelations d) { }
         protected virtual void EndVisit(IManyToManyGroupDocumentsRelations d) { }
         protected virtual void BeginVisit(IManyToManyDocumentsRelation d) { }

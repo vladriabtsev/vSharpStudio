@@ -1158,7 +1158,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return $"r{r.ShortId.ToString()}";
             }
-            else if (node is IManyToManyCatalogsRelation rlc)
+            else if (node is IRelationManyToMany rlc)
             {
                 return $"rc{rlc.ShortId.ToString()}";
             }
@@ -1450,7 +1450,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return EnumRefType.REF_TYPE_CONSTANT;
             }
-            else if (n is ManyToManyCatalogsRelation)
+            else if (n is RelationManyToMany)
             {
                 return EnumRefType.REF_TYPE_MANY_TO_MANY_CATALOGS;
             }

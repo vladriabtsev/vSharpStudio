@@ -755,7 +755,7 @@ message proto_model {
     // @attr [Browsable(false)]
     proto_group_documents group_documents = 104;
     // @attr [Browsable(false)]
-    proto_many_to_many_group_relations group_relations = 108;
+    proto_relations_group group_relations = 108;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -2907,7 +2907,7 @@ message proto_group_list_documents {
  * @exclude
  * ######################### M A N Y   T O   M A N Y   R E L A T I O N ############################
  */
-message proto_many_to_many_group_relations {
+message proto_relations_group {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
@@ -2928,7 +2928,7 @@ message proto_many_to_many_group_relations {
     string description = 5;
     // @attr [Browsable(false)]
     // @attr [Description("Many to many setting for catalogs")]
-    proto_many_to_many_group_catalogs_relations group_list_catalogs_relations = 7;
+    proto_relations_many_to_many_group group_list_catalogs_relations = 7;
     // @attr [Browsable(false)]
     // @attr [Description("Many to many setting for documents")]
     proto_many_to_many_group_documents_relations group_list_documents_relations = 8;
@@ -2938,7 +2938,7 @@ message proto_many_to_many_group_relations {
 }
 // @interface ICanAddNode
 // @interface ISortingValue
-message proto_many_to_many_catalogs_relation {
+message proto_relation_many_to_many {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
@@ -2999,7 +2999,7 @@ message proto_many_to_many_catalogs_relation {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ISortingValue
-message proto_many_to_many_group_catalogs_relations {
+message proto_relations_many_to_many_group {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
@@ -3027,7 +3027,7 @@ message proto_many_to_many_group_catalogs_relations {
     uint64 sorting_value = 9;
 
     // @attr [Browsable(false)]
-    repeated proto_many_to_many_catalogs_relation list_catalogs_relations = 21;
+    repeated proto_relation_many_to_many list_catalogs_relations = 21;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class ManyToManyGroupCatalogsRelations : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
+    public partial class RelationsManyToManyGroup : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -23,9 +23,9 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
-        public ManyToManyGroupRelations ParentGroupRelations { get { Debug.Assert(this.Parent != null); return (ManyToManyGroupRelations)this.Parent; } }
+        public RelationsGroup ParentGroupRelations { get { Debug.Assert(this.Parent != null); return (RelationsGroup)this.Parent; } }
         [Browsable(false)]
-        public IGroupRelations ParentGroupRelationsI { get { Debug.Assert(this.Parent != null); return (IGroupRelations)this.Parent; } }
+        public IRelationsGroup ParentGroupRelationsI { get { Debug.Assert(this.Parent != null); return (IRelationsGroup)this.Parent; } }
 
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -42,14 +42,14 @@ namespace vSharpStudio.vm.ViewModels
         public bool CanAddSubNode() { return true; }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            ManyToManyCatalogsRelation node = null!;
+            RelationManyToMany node = null!;
             if (node_impl == null)
             {
-                node = new ManyToManyCatalogsRelation(this);
+                node = new RelationManyToMany(this);
             }
             else
             {
-                node = (ManyToManyCatalogsRelation)node_impl;
+                node = (RelationManyToMany)node_impl;
             }
             this.Add(node);
             if (node_impl == null)
@@ -64,7 +64,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Tree operations
 
-        public new ConfigNodesCollection<ManyToManyCatalogsRelation> Children { get { return this.ListCatalogsRelations; } }
+        public new ConfigNodesCollection<RelationManyToMany> Children { get { return this.ListCatalogsRelations; } }
 
         partial void OnCreated()
         {
@@ -104,9 +104,9 @@ namespace vSharpStudio.vm.ViewModels
             };
             this._Name = Defaults.CatalogMtmRelationsGroupName;
         }
-        public int IndexOf(IManyToManyCatalogsRelation cat)
+        public int IndexOf(IRelationManyToMany cat)
         {
-            return this.ListCatalogsRelations.IndexOf((cat as ManyToManyCatalogsRelation)!);
+            return this.ListCatalogsRelations.IndexOf((cat as RelationManyToMany)!);
         }
         //protected override string[]? OnGetWhatHideOnPropertyGrid()
         //{
@@ -124,21 +124,21 @@ namespace vSharpStudio.vm.ViewModels
         //    //    lst.Add(nameof(this.PropertyNameName));
         //    return lst.ToArray();
         //}
-        public void Add(ManyToManyCatalogsRelation item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:51
+        public void Add(RelationManyToMany item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:51
         {
             Debug.Assert(item != null);
             this.ListCatalogsRelations.Add(item);
             item.Parent = this;
         }
-        public ManyToManyCatalogsRelation AddRelation()
+        public RelationManyToMany AddRelation()
         {
-            var node = new ManyToManyCatalogsRelation(this);
+            var node = new RelationManyToMany(this);
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public ManyToManyCatalogsRelation AddRelation(string name, ICatalog cat1, ICatalog cat2, bool isUseHistory, string? guid = null)
+        public RelationManyToMany AddRelation(string name, ICatalog cat1, ICatalog cat2, bool isUseHistory, string? guid = null)
         {
-            var node = new ManyToManyCatalogsRelation(this) { Name = name };
+            var node = new RelationManyToMany(this) { Name = name };
             node.GuidCat1 = cat1.Guid;
             node.GuidCat2 = cat2.Guid;
             node.IsUseHistory = isUseHistory;

@@ -23,9 +23,9 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
-        public ManyToManyGroupRelations ParentGroupRelations { get { Debug.Assert(this.Parent != null); return (ManyToManyGroupRelations)this.Parent; } }
+        public RelationsGroup ParentGroupRelations { get { Debug.Assert(this.Parent != null); return (RelationsGroup)this.Parent; } }
         [Browsable(false)]
-        public IGroupRelations ParentGroupRelationsI { get { Debug.Assert(this.Parent != null); return (IGroupRelations)this.Parent; } }
+        public IRelationsGroup ParentGroupRelationsI { get { Debug.Assert(this.Parent != null); return (IRelationsGroup)this.Parent; } }
 
         #region ITree
         public override IChildrenCollection GetListChildren()

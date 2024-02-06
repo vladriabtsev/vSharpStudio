@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.common
 {
-    public partial interface IGroupRelations : ITreeConfigNodeSortable
+    public partial interface IRelationsGroup : ITreeConfigNodeSortable
     {
         IModel ParentModelI { get; }
         //IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen);

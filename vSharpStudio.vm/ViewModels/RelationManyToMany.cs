@@ -17,7 +17,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class ManyToManyCatalogsRelation : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
+    public partial class RelationManyToMany : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
         ITreeConfigNodeSortable
     {
         partial void OnDebugStringExtend(ref string mes)
@@ -72,9 +72,9 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         [Browsable(false)]
-        public ManyToManyGroupCatalogsRelations ParentManyToManyGroupCatalogRelations { get { Debug.Assert(this.Parent != null); return (ManyToManyGroupCatalogsRelations)this.Parent; } }
+        public RelationsManyToManyGroup ParentManyToManyGroupCatalogRelations { get { Debug.Assert(this.Parent != null); return (RelationsManyToManyGroup)this.Parent; } }
         [Browsable(false)]
-        public IManyToManyGroupCatalogsRelations ParentManyToManyGroupCatalogRelationsI { get { Debug.Assert(this.Parent != null); return (IManyToManyGroupCatalogsRelations)this.Parent; } }
+        public IRelationsManyToManyGroup ParentManyToManyGroupCatalogRelationsI { get { Debug.Assert(this.Parent != null); return (IRelationsManyToManyGroup)this.Parent; } }
 
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -178,7 +178,7 @@ namespace vSharpStudio.vm.ViewModels
         //    this.GroupReports.AddAllAppGenSettingsVmsToNode();
         //}
 
-        public ManyToManyCatalogsRelation(ITreeConfigNode parent, string name)
+        public RelationManyToMany(ITreeConfigNode parent, string name)
             : this(parent)
         {
             this._Name = name;
@@ -225,7 +225,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (ManyToManyCatalogsRelation?)this.ParentManyToManyGroupCatalogRelations.ListCatalogsRelations.GetNext(this);
+            var next = (RelationManyToMany?)this.ParentManyToManyGroupCatalogRelations.ListCatalogsRelations.GetNext(this);
             if (next == null)
                 return;
             this.SetSelected(next);
@@ -238,7 +238,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = ManyToManyCatalogsRelation.Clone(this.ParentManyToManyGroupCatalogRelations, this, true, true);
+            var node = RelationManyToMany.Clone(this.ParentManyToManyGroupCatalogRelations, this, true, true);
             node.Parent = this.Parent;
             this.ParentManyToManyGroupCatalogRelations.ListCatalogsRelations.Add(node);
             this._Name = this._Name + "2";
@@ -248,7 +248,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new ManyToManyCatalogsRelation(this.Parent);
+            var node = new RelationManyToMany(this.Parent);
             this.ParentManyToManyGroupCatalogRelations.Add(node);
             this.GetUniqueName(Defaults.CatalogMtmRelationName, node, this.ParentManyToManyGroupCatalogRelations.ListCatalogsRelations);
             var model = this.ParentManyToManyGroupCatalogRelations.ParentGroupRelations.ParentModel;
