@@ -805,10 +805,13 @@ enum proto_enum_data_type {
     CATALOG = 91;
     // @attr [Description("Catalogs")]
     CATALOGS = 101;
+    // @attr [Browsable(false)]
     // @attr [Description("Document")]
     DOCUMENT = 111;
+    // @attr [Browsable(false)]
     // @attr [Description("Documents")]
     DOCUMENTS = 121;
+    // @attr [Browsable(false)]
     // @attr [Description("Any")]
     ANY = 131;
 }
@@ -881,10 +884,12 @@ enum proto_enum_timespan_boundary_type {
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_one_to_relation_type {
+    // @attr [Description("Many to One")]
+    MANY_TO_ONE = 0;
     // @attr [Description("One to One")]
-    ONE_TO_ONE = 0;
+    ONE_TO_ONE = 1;
     // @attr [Description("One to Many")]
-    ONE_TO_MANY = 1;
+    ONE_TO_MANY = 2;
 }
 // @base VmValidatableWithSeverity
 message fk_complex_ref
@@ -943,11 +948,6 @@ message proto_data_type {
     // @attr [Description("If unchecked always expected data")]
     bool is_nullable = 9;
     // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(7)]
-    // @attr [DisplayName("Relation")]
-    // @attr [Description("Relation type with selected type of complex object/objects")]
-    proto_enum_one_to_relation_type relation_type = 10;
-    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(11)]
     // @attr [DisplayName("TimeSpan accuracy")]
     // @attr [Description("TimeSpan accuracy")]
@@ -966,6 +966,12 @@ message proto_data_type {
     bool is_p_key = 21;
     // @attr [Browsable(false)]
     bool is_ref_parent = 22;
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(7)]
+    // @attr [DisplayName("Relation")]
+    // @attr [Description("Relation type with selected type of complex object/objects")]
+    //proto_enum_one_to_relation_type relation_type = 10;
 }
 /** C O M M O N
  * @exclude

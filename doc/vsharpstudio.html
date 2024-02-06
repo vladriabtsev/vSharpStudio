@@ -2390,16 +2390,6 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>relation_type</td>
-                  <td><a href="#proto_config.proto_enum_one_to_relation_type">proto_enum_one_to_relation_type</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(7)]
-@attr [DisplayName(&#34;Relation&#34;)]
-@attr [Description(&#34;Relation type with selected type of complex object/objects&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>timespan_accuracy</td>
                   <td><a href="#proto_config.proto_enum_timespan_boundary_type">proto_enum_timespan_boundary_type</a></td>
                   <td></td>
@@ -10076,19 +10066,22 @@ which DB type to use for whole TimeSpan ???</p></td>
               <tr>
                 <td>DOCUMENT</td>
                 <td>111</td>
-                <td><p>@attr [Description(&#34;Document&#34;)]</p></td>
+                <td><p>@attr [Browsable(false)]
+@attr [Description(&#34;Document&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DOCUMENTS</td>
                 <td>121</td>
-                <td><p>@attr [Description(&#34;Documents&#34;)]</p></td>
+                <td><p>@attr [Browsable(false)]
+@attr [Description(&#34;Documents&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ANY</td>
                 <td>131</td>
-                <td><p>@attr [Description(&#34;Any&#34;)]</p></td>
+                <td><p>@attr [Browsable(false)]
+@attr [Description(&#34;Any&#34;)]</p></td>
               </tr>
             
           </tbody>
@@ -11110,14 +11103,20 @@ which DB type to use for whole TimeSpan ???</p></td>
           <tbody>
             
               <tr>
-                <td>ONE_TO_ONE</td>
+                <td>MANY_TO_ONE</td>
                 <td>0</td>
+                <td><p>@attr [Description(&#34;Many to One&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>ONE_TO_ONE</td>
+                <td>1</td>
                 <td><p>@attr [Description(&#34;One to One&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ONE_TO_MANY</td>
-                <td>1</td>
+                <td>2</td>
                 <td><p>@attr [Description(&#34;One to Many&#34;)]</p></td>
               </tr>
             

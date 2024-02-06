@@ -405,11 +405,11 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(nameof(this.ConfigObjectGuid));
                 lst.Add(nameof(this.DefaultValue));
             }
-            if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
-                this.DataType.DataTypeEnum != EnumDataType.CATALOGS)
-            {
-                lst.Add(nameof(this.RelationType));
-            }
+            //if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
+            //    this.DataType.DataTypeEnum != EnumDataType.CATALOGS)
+            //{
+            //    lst.Add(nameof(this.RelationType));
+            //}
             if (this.Accuracy != 0)
             {
                 lst.Add(nameof(this.IsPositive));
@@ -556,22 +556,22 @@ namespace vSharpStudio.vm.ViewModels
                 this.Tag = null;
             }
         }
-        [Category("")]
-        [DisplayName("Relation")]
-        [Description("Relation type with selected complex object/objects")]
-        [PropertyOrderAttribute(16)]
-        public EnumOneToRelationType RelationType
-        {
-            get { return this.DataType.RelationType; }
-            set
-            {
-                this.DataType.RelationType = value;
-                this.OnPropertyChanged();
-                this.OnPropertyChanged(nameof(this.ClrType));
-                this.ValidateProperty();
-                this.Tag = null;
-            }
-        }
+        //[Category("")]
+        //[DisplayName("Relation")]
+        //[Description("Relation type with selected complex object/objects")]
+        //[PropertyOrderAttribute(16)]
+        //public EnumOneToRelationType RelationType
+        //{
+        //    get { return this.DataType.RelationType; }
+        //    set
+        //    {
+        //        this.DataType.RelationType = value;
+        //        this.OnPropertyChanged();
+        //        this.OnPropertyChanged(nameof(this.ClrType));
+        //        this.ValidateProperty();
+        //        this.Tag = null;
+        //    }
+        //}
         [Category("")]
         [DisplayName("Can be NULL")]
         [Description("If unchecked always expected data")]

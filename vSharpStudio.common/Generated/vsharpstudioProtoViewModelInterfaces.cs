@@ -165,10 +165,13 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		CATALOG = 91,
 		[Description("Catalogs")]
 		CATALOGS = 101,
+		[Browsable(false)]
 		[Description("Document")]
 		DOCUMENT = 111,
+		[Browsable(false)]
 		[Description("Documents")]
 		DOCUMENTS = 121,
+		[Browsable(false)]
 		[Description("Any")]
 		ANY = 131,
 	}
@@ -413,10 +416,12 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumOneToRelationType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
+		[Description("Many to One")]
+		MANY_TO_ONE = 0,
 		[Description("One to One")]
-		ONE_TO_ONE = 0,
+		ONE_TO_ONE = 1,
 		[Description("One to Many")]
-		ONE_TO_MANY = 1,
+		ONE_TO_MANY = 2,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumPhoneDataType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
@@ -953,7 +958,6 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	/// </summary>
     	IReadOnlyList<IFkComplexRef> ListObjectRefs { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	bool IsNullable { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
-    	EnumOneToRelationType RelationType { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	EnumTimespanBoundaryType TimespanAccuracy { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	EnumTimespanBoundaryType TimespanMaxValue { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	bool IsUseHistory { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56

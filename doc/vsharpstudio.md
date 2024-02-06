@@ -510,7 +510,6 @@ Constant application wise value
 | accuracy_for_time | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Time accuracy&#34;)] @attr [Description(&#34;Time accuracy for TimeOnly type. Business model is expecting selected accuracy&#34;)] |
 | list_object_refs | [fk_complex_ref](#proto_config-fk_complex_ref) | repeated | &lt;summary&gt; / Guids of selected complex types for data type CATALOGS or DOCUMENTS / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
 | is_nullable | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
-| relation_type | [proto_enum_one_to_relation_type](#proto_config-proto_enum_one_to_relation_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Relation&#34;)] @attr [Description(&#34;Relation type with selected type of complex object/objects&#34;)] |
 | timespan_accuracy | [proto_enum_timespan_boundary_type](#proto_config-proto_enum_timespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;TimeSpan accuracy&#34;)] @attr [Description(&#34;TimeSpan accuracy&#34;)] |
 | timespan_max_value | [proto_enum_timespan_boundary_type](#proto_config-proto_enum_timespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;TimeSpan Max&#34;)] @attr [Description(&#34;TimeSpan maximum value&#34;)] |
 | is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for property value&#34;)] |
@@ -2457,9 +2456,9 @@ with history |
 | ENUMERATION | 81 | @attr [Description(&#34;Enumeration&#34;)] |
 | CATALOG | 91 | @attr [Description(&#34;Catalog&#34;)] |
 | CATALOGS | 101 | @attr [Description(&#34;Catalogs&#34;)] |
-| DOCUMENT | 111 | @attr [Description(&#34;Document&#34;)] |
-| DOCUMENTS | 121 | @attr [Description(&#34;Documents&#34;)] |
-| ANY | 131 | @attr [Description(&#34;Any&#34;)] |
+| DOCUMENT | 111 | @attr [Browsable(false)] @attr [Description(&#34;Document&#34;)] |
+| DOCUMENTS | 121 | @attr [Browsable(false)] @attr [Description(&#34;Documents&#34;)] |
+| ANY | 131 | @attr [Browsable(false)] @attr [Description(&#34;Any&#34;)] |
 
 
 
@@ -2744,8 +2743,9 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ONE_TO_ONE | 0 | @attr [Description(&#34;One to One&#34;)] |
-| ONE_TO_MANY | 1 | @attr [Description(&#34;One to Many&#34;)] |
+| MANY_TO_ONE | 0 | @attr [Description(&#34;Many to One&#34;)] |
+| ONE_TO_ONE | 1 | @attr [Description(&#34;One to One&#34;)] |
+| ONE_TO_MANY | 2 | @attr [Description(&#34;One to Many&#34;)] |
 
 
 

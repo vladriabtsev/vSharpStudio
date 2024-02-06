@@ -465,17 +465,17 @@
             {
               "name": "DOCUMENT",
               "number": "111",
-              "description": "@attr [Description(\"Document\")]"
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"Document\")]"
             },
             {
               "name": "DOCUMENTS",
               "number": "121",
-              "description": "@attr [Description(\"Documents\")]"
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"Documents\")]"
             },
             {
               "name": "ANY",
               "number": "131",
-              "description": "@attr [Description(\"Any\")]"
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"Any\")]"
             }
           ]
         },
@@ -1310,13 +1310,18 @@
           "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
-              "name": "ONE_TO_ONE",
+              "name": "MANY_TO_ONE",
               "number": "0",
+              "description": "@attr [Description(\"Many to One\")]"
+            },
+            {
+              "name": "ONE_TO_ONE",
+              "number": "1",
               "description": "@attr [Description(\"One to One\")]"
             },
             {
               "name": "ONE_TO_MANY",
-              "number": "1",
+              "number": "2",
               "description": "@attr [Description(\"One to Many\")]"
             }
           ]
@@ -4335,18 +4340,6 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "relation_type",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Relation\")]\n@attr [Description(\"Relation type with selected type of complex object/objects\")]",
-              "label": "",
-              "type": "proto_enum_one_to_relation_type",
-              "longType": "proto_enum_one_to_relation_type",
-              "fullType": "proto_config.proto_enum_one_to_relation_type",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

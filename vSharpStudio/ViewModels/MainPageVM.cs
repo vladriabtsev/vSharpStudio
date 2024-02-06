@@ -289,7 +289,7 @@ namespace vSharpStudio.ViewModels
             {
                 if (string.IsNullOrWhiteSpace(this._CurrentCfgFilePath))
                 {
-                    return "Configuration file is not selected yet. Create new one or open existing";
+                    return "New empty Configuration is not saved yet. Save it or open another one.";
                 }
                 return this._CurrentCfgFilePath;
             }
@@ -626,7 +626,7 @@ namespace vSharpStudio.ViewModels
                         this.BtnConfigSaveAs.Command.NotifyCanExecuteChanged();
                         this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
                     },
-                    () => { return true; });
+                    () => { return !this.Config.IsNew; });
             }
         }
         private vButtonVM? _BtnNewConfig;
@@ -1942,10 +1942,9 @@ namespace vSharpStudio.ViewModels
         #region ConfigTree
         private void VisibilityAndMessageInstructions()
         {
-            this.VisibilityConfig = System.Windows.Visibility.Visible;
             if (string.IsNullOrEmpty(this.Config.CurrentCfgFolderPath))
             {
-                this.MessageInstructions = "Before start editing config, empty config has to be saved";
+                this.MessageInstructions = "New empty config is not saved yet.";
             }
             else
             {
@@ -1961,15 +1960,6 @@ namespace vSharpStudio.ViewModels
             get { return _MessageInstructions; }
         }
         private string? _MessageInstructions;
-        public System.Windows.Visibility VisibilityConfig
-        {
-            set
-            {
-                SetProperty(ref this._VisibilityConfig, value);
-            }
-            get { return _VisibilityConfig; }
-        }
-        private System.Windows.Visibility _VisibilityConfig = System.Windows.Visibility.Hidden;
         public vButtonVM BtnAddNew
         {
             get

@@ -65,7 +65,7 @@ namespace vSharpStudio.Unit
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.pconfig_history == null);
             Assert.IsTrue(vm.Config.IsNew);
-            Assert.IsTrue(vm.VisibilityConfig == Visibility.Hidden);
+            Assert.IsFalse(vm.Config.IsHasChanged);
             Assert.IsFalse(vm.BtnAddClone.CanExecute());
             Assert.IsFalse(vm.BtnAddNew.CanExecute());
             //Assert.IsFalse(vm.BtnAddNewChild.CanExecute());
@@ -87,7 +87,6 @@ namespace vSharpStudio.Unit
             vm.BtnNewConfig.Execute(); // not saved yet
             Assert.IsTrue(vm.Config != null);
             Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
-            Assert.IsTrue(vm.VisibilityConfig == Visibility.Visible);
             Assert.IsTrue(vm.Config.IsNew);
             Assert.IsTrue(vm.Config.IsHasNew);
             foreach (var t in vm.Config.GroupPlugins.ListPlugins)
@@ -117,7 +116,6 @@ namespace vSharpStudio.Unit
             vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg"); // saved
             Assert.IsTrue(vm.Config != null);
             Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
-            Assert.IsTrue(vm.VisibilityConfig == Visibility.Visible);
             Assert.IsFalse(vm.Config.IsNew);
             Assert.IsTrue(vm.Config.IsHasNew);
             foreach (var t in vm.Config.GroupPlugins.ListPlugins)

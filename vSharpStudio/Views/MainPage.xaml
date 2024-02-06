@@ -231,7 +231,7 @@
                     <!--</ToolBar>
                     </ToolBarPanel>-->
                 </Grid>
-                <Grid Grid.Row="2" Visibility="{Binding VisibilityConfig}">
+                <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="264" MinWidth="20" />
                         <ColumnDefinition Width="Auto" />

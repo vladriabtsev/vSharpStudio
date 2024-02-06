@@ -58,7 +58,7 @@
         public const string DocumentsGroupName = "Documents";
         public const string Documents = "Documents";
 
-        public const string GroupMtmRelationsName = "Many To Many";
+        public const string GroupMtmRelationsName = "Relations";
         public const string CatalogMtmRelationsGroupName = "Catalogs";
         public const string CatalogMtmRelationName = "Relation";
         public const string DocumentMtmRelationsGroupName = "Documents";
