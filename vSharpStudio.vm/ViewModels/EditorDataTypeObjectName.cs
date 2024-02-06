@@ -29,7 +29,7 @@ namespace vSharpStudio.vm.ViewModels
                 _binding_lst.Source = ((Constant)propertyItem.Instance).DataType;
             else if (propertyItem.Instance is RelationManyToMany)
                 _binding_lst.Source = propertyItem.Instance;
-            else if (propertyItem.Instance is ManyToManyDocumentsRelation)
+            else if (propertyItem.Instance is RelationOneToOne)
                 _binding_lst.Source = propertyItem.Instance;
             else
                 throw new Exception();

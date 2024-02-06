@@ -455,7 +455,7 @@
                         {
                             sb.Append(gcr.PrefixForCompositionNames);
                         }
-                        else if (t is IManyToManyGroupDocumentsRelations gdr)
+                        else if (t is IRelationsOneToOneGroup gdr)
                         {
                             sb.Append(gdr.PrefixForCompositionNames);
                         }

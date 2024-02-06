@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class ManyToManyGroupDocumentsRelations : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
+    public partial class RelationsOneToOneGroup : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -42,14 +42,14 @@ namespace vSharpStudio.vm.ViewModels
         public bool CanAddSubNode() { return true; }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            ManyToManyDocumentsRelation node = null!;
+            RelationOneToOne node = null!;
             if (node_impl == null)
             {
-                node = new ManyToManyDocumentsRelation(this);
+                node = new RelationOneToOne(this);
             }
             else
             {
-                node = (ManyToManyDocumentsRelation)node_impl;
+                node = (RelationOneToOne)node_impl;
             }
             this.Add(node);
             if (node_impl == null)
@@ -64,7 +64,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Tree operations
 
-        public new ConfigNodesCollection<ManyToManyDocumentsRelation> Children { get { return this.ListDocumentsRelations; } }
+        public new ConfigNodesCollection<RelationOneToOne> Children { get { return this.ListDocumentsRelations; } }
 
         partial void OnCreated()
         {
@@ -104,9 +104,9 @@ namespace vSharpStudio.vm.ViewModels
             };
             this._Name = Defaults.DocumentMtmRelationsGroupName;
         }
-        public int IndexOf(IManyToManyDocumentsRelation doc)
+        public int IndexOf(IRelationOneToOne relOneToOne)
         {
-            return this.ListDocumentsRelations.IndexOf((doc as ManyToManyDocumentsRelation)!);
+            return this.ListDocumentsRelations.IndexOf((relOneToOne as RelationOneToOne)!);
         }
         //protected override string[]? OnGetWhatHideOnPropertyGrid()
         //{
@@ -124,21 +124,21 @@ namespace vSharpStudio.vm.ViewModels
         //    //    lst.Add(nameof(this.PropertyNameName));
         //    return lst.ToArray();
         //}
-        public void Add(ManyToManyDocumentsRelation item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:51
+        public void Add(RelationOneToOne item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:51
         {
             Debug.Assert(item != null);
             this.ListDocumentsRelations.Add(item);
             item.Parent = this;
         }
-        public ManyToManyDocumentsRelation AddRelation()
+        public RelationOneToOne AddRelation()
         {
-            var node = new ManyToManyDocumentsRelation(this);
+            var node = new RelationOneToOne(this);
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public ManyToManyDocumentsRelation AddRelation(string name, IDocument doc1, IDocument doc2, bool isUseHistory, string? guid = null)
+        public RelationOneToOne AddRelation(string name, IDocument doc1, IDocument doc2, bool isUseHistory, string? guid = null)
         {
-            var node = new ManyToManyDocumentsRelation(this) { Name = name };
+            var node = new RelationOneToOne(this) { Name = name };
             node.GuidDoc1 = doc1.Guid;
             node.GuidDoc2 = doc2.Guid;
 #if DEBUG

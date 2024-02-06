@@ -26189,7 +26189,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
             this._GroupListCatalogsRelations = new RelationsManyToManyGroup(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-            this._GroupListDocumentsRelations = new ManyToManyGroupDocumentsRelations(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
+            this._GroupListDocumentsRelations = new RelationsOneToOneGroup(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:60
             this.OnCreated();
         }
@@ -26219,7 +26219,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:63 IsDefaultBase=True
                 vm.GroupListCatalogsRelations = vSharpStudio.vm.ViewModels.RelationsManyToManyGroup.Clone(vm, from.GroupListCatalogsRelations, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:63 IsDefaultBase=True
-                vm.GroupListDocumentsRelations = vSharpStudio.vm.ViewModels.ManyToManyGroupDocumentsRelations.Clone(vm, from.GroupListDocumentsRelations, isDeep);
+                vm.GroupListDocumentsRelations = vSharpStudio.vm.ViewModels.RelationsOneToOneGroup.Clone(vm, from.GroupListDocumentsRelations, isDeep);
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:54
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:55
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -26239,7 +26239,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:140
                 vSharpStudio.vm.ViewModels.RelationsManyToManyGroup.Update((RelationsManyToManyGroup)to.GroupListCatalogsRelations, from.GroupListCatalogsRelations, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:140
-                vSharpStudio.vm.ViewModels.ManyToManyGroupDocumentsRelations.Update((ManyToManyGroupDocumentsRelations)to.GroupListDocumentsRelations, from.GroupListDocumentsRelations, isDeep);
+                vSharpStudio.vm.ViewModels.RelationsOneToOneGroup.Update((RelationsOneToOneGroup)to.GroupListDocumentsRelations, from.GroupListDocumentsRelations, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:88
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -26312,8 +26312,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vm.GroupListCatalogsRelations = new RelationsManyToManyGroup(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:213
             vSharpStudio.vm.ViewModels.RelationsManyToManyGroup.ConvertToVM(m.GroupListCatalogsRelations, (RelationsManyToManyGroup)vm.GroupListCatalogsRelations); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
             if (vm.GroupListDocumentsRelations == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:211
-                vm.GroupListDocumentsRelations = new ManyToManyGroupDocumentsRelations(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:213
-            vSharpStudio.vm.ViewModels.ManyToManyGroupDocumentsRelations.ConvertToVM(m.GroupListDocumentsRelations, (ManyToManyGroupDocumentsRelations)vm.GroupListDocumentsRelations); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
+                vm.GroupListDocumentsRelations = new RelationsOneToOneGroup(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:213
+            vSharpStudio.vm.ViewModels.RelationsOneToOneGroup.ConvertToVM(m.GroupListDocumentsRelations, (RelationsOneToOneGroup)vm.GroupListDocumentsRelations); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:192
             foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:196
             {
@@ -26336,7 +26336,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.NameUi = vm.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.Description = vm.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.GroupListCatalogsRelations = vSharpStudio.vm.ViewModels.RelationsManyToManyGroup.ConvertToProto((RelationsManyToManyGroup)vm.GroupListCatalogsRelations); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
-            m.GroupListDocumentsRelations = vSharpStudio.vm.ViewModels.ManyToManyGroupDocumentsRelations.ConvertToProto((ManyToManyGroupDocumentsRelations)vm.GroupListDocumentsRelations); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
+            m.GroupListDocumentsRelations = vSharpStudio.vm.ViewModels.RelationsOneToOneGroup.ConvertToProto((RelationsOneToOneGroup)vm.GroupListDocumentsRelations); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
             return m;
@@ -26493,7 +26493,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         
         [Browsable(false)]
         [Description("Many to many setting for documents")]
-        public ManyToManyGroupDocumentsRelations GroupListDocumentsRelations // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public RelationsOneToOneGroup GroupListDocumentsRelations // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._GroupListDocumentsRelations; }
             set
@@ -26505,10 +26505,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        private ManyToManyGroupDocumentsRelations _GroupListDocumentsRelations; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnGroupListDocumentsRelationsChanging(ref ManyToManyGroupDocumentsRelations to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        private RelationsOneToOneGroup _GroupListDocumentsRelations; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnGroupListDocumentsRelationsChanging(ref RelationsOneToOneGroup to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnGroupListDocumentsRelationsChanged();
-        IManyToManyGroupDocumentsRelations IRelationsGroup.GroupListDocumentsRelations { get { return (this as RelationsGroup).GroupListDocumentsRelations; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:75
+        IRelationsOneToOneGroup IRelationsGroup.GroupListDocumentsRelations { get { return (this as RelationsGroup).GroupListDocumentsRelations; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:75
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -27539,8 +27539,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
-    public partial class ManyToManyDocumentsRelationValidator : ValidatorBase<ManyToManyDocumentsRelation, ManyToManyDocumentsRelationValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:16
-    public partial class ManyToManyDocumentsRelation : ConfigObjectVmGenSettings<ManyToManyDocumentsRelation, ManyToManyDocumentsRelationValidator>, IComparable<ManyToManyDocumentsRelation>, IConfigAcceptVisitor, IManyToManyDocumentsRelation // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:17
+    public partial class RelationOneToOneValidator : ValidatorBase<RelationOneToOne, RelationOneToOneValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:16
+    public partial class RelationOneToOne : ConfigObjectVmGenSettings<RelationOneToOne, RelationOneToOneValidator>, IComparable<RelationOneToOne>, IConfigAcceptVisitor, IRelationOneToOne // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:17
     {
         public override string ToDebugString()
         {
@@ -27562,8 +27562,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        public ManyToManyDocumentsRelation(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
-            : base(parent, ManyToManyDocumentsRelationValidator.Validator)
+        public RelationOneToOne(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            : base(parent, RelationOneToOneValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
@@ -27584,10 +27584,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static ManyToManyDocumentsRelation Clone(ITreeConfigNode? parent, IManyToManyDocumentsRelation from, bool isDeep = true, bool isNewGuid = false) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:29
+        public static RelationOneToOne Clone(ITreeConfigNode? parent, IRelationOneToOne from, bool isDeep = true, bool isNewGuid = false) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:29
         {
             Debug.Assert(from != null);
-            ManyToManyDocumentsRelation vm = new ManyToManyDocumentsRelation(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:36
+            RelationOneToOne vm = new RelationOneToOne(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:36
             vm._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
@@ -27610,7 +27610,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vm.SetNewGuid();
             return vm;
         }
-        public static void Update(ManyToManyDocumentsRelation to, IManyToManyDocumentsRelation from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:79
+        public static void Update(RelationOneToOne to, IRelationOneToOne from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:79
         {
             Debug.Assert(to != null);
             Debug.Assert(from != null);
@@ -27668,24 +27668,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:149
         #region IEditable
-        public override ManyToManyDocumentsRelation Backup()
+        public override RelationOneToOne Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
             Debug.Assert(this is IConfig || this.Parent != null);
-            return ManyToManyDocumentsRelation.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:157
+            return RelationOneToOne.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(ManyToManyDocumentsRelation from)
+        public override void Restore(RelationOneToOne from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            ManyToManyDocumentsRelation.Update(this, from, isDeep);
+            RelationOneToOne.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_many_to_many_documents_relation' to 'ManyToManyDocumentsRelation'
-        public static ManyToManyDocumentsRelation ConvertToVM(Proto.Config.proto_many_to_many_documents_relation m, ManyToManyDocumentsRelation vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:173
+        // Conversion from 'proto_relation_one_to_one' to 'RelationOneToOne'
+        public static RelationOneToOne ConvertToVM(Proto.Config.proto_relation_one_to_one m, RelationOneToOne vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -27718,11 +27718,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm.IsHasChanged = false;
             return vm;
         }
-        // Conversion from 'ManyToManyDocumentsRelation' to 'proto_many_to_many_documents_relation'
-        public static Proto.Config.proto_many_to_many_documents_relation ConvertToProto(ManyToManyDocumentsRelation vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:232
+        // Conversion from 'RelationOneToOne' to 'proto_relation_one_to_one'
+        public static Proto.Config.proto_relation_one_to_one ConvertToProto(RelationOneToOne vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:232
         {
             Debug.Assert(vm != null);
-            Proto.Config.proto_many_to_many_documents_relation m = new Proto.Config.proto_many_to_many_documents_relation(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:235
+            Proto.Config.proto_relation_one_to_one m = new Proto.Config.proto_relation_one_to_one(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:235
             m.Guid = vm.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.Name = vm.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -28079,10 +28079,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
         //partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnListNodeGeneratorsSettingsChanged();
-        IReadOnlyList<IPluginGeneratorNodeSettings> IManyToManyDocumentsRelation.ListNodeGeneratorsSettings { get { return (this as ManyToManyDocumentsRelation).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
+        IReadOnlyList<IPluginGeneratorNodeSettings> IRelationOneToOne.ListNodeGeneratorsSettings { get { return (this as RelationOneToOne).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:134
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138 proto_many_to_many_documents_relation
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138 proto_relation_one_to_one
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -28095,8 +28095,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
-    public partial class ManyToManyGroupDocumentsRelationsValidator : ValidatorBase<ManyToManyGroupDocumentsRelations, ManyToManyGroupDocumentsRelationsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:16
-    public partial class ManyToManyGroupDocumentsRelations : ConfigObjectVmGenSettings<ManyToManyGroupDocumentsRelations, ManyToManyGroupDocumentsRelationsValidator>, IComparable<ManyToManyGroupDocumentsRelations>, IConfigAcceptVisitor, IManyToManyGroupDocumentsRelations // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:17
+    public partial class RelationsOneToOneGroupValidator : ValidatorBase<RelationsOneToOneGroup, RelationsOneToOneGroupValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:16
+    public partial class RelationsOneToOneGroup : ConfigObjectVmGenSettings<RelationsOneToOneGroup, RelationsOneToOneGroupValidator>, IComparable<RelationsOneToOneGroup>, IConfigAcceptVisitor, IRelationsOneToOneGroup // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:17
     {
         public override string ToDebugString()
         {
@@ -28118,12 +28118,12 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        public ManyToManyGroupDocumentsRelations(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
-            : base(parent, ManyToManyGroupDocumentsRelationsValidator.Validator)
+        public RelationsOneToOneGroup(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            : base(parent, RelationsOneToOneGroupValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListDocumentsRelations = new ConfigNodesCollection<ManyToManyDocumentsRelation>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:60
+            this._ListDocumentsRelations = new ConfigNodesCollection<RelationOneToOne>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:60
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:60
             this.OnCreated();
         }
@@ -28136,7 +28136,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         
         public override void Sort(Type type) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:9
         {
-            if (type == typeof(ManyToManyDocumentsRelation)) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:16
+            if (type == typeof(RelationOneToOne)) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:16
             {
                 this.ListDocumentsRelations.Sort();
             }
@@ -28145,10 +28145,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static ManyToManyGroupDocumentsRelations Clone(ITreeConfigNode? parent, IManyToManyGroupDocumentsRelations from, bool isDeep = true, bool isNewGuid = false) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:29
+        public static RelationsOneToOneGroup Clone(ITreeConfigNode? parent, IRelationsOneToOneGroup from, bool isDeep = true, bool isNewGuid = false) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:29
         {
             Debug.Assert(from != null);
-            ManyToManyGroupDocumentsRelations vm = new ManyToManyGroupDocumentsRelations(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:36
+            RelationsOneToOneGroup vm = new RelationsOneToOneGroup(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:36
             vm._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._NameUi = from.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
@@ -28156,9 +28156,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._PrefixForCompositionNames = from.PrefixForCompositionNames; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._ListDocumentsRelations = new ConfigNodesCollection<ManyToManyDocumentsRelation>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:54
+            vm._ListDocumentsRelations = new ConfigNodesCollection<RelationOneToOne>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:54
             foreach (var t in from.ListDocumentsRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:55
-                vm.ListDocumentsRelations.Add(ManyToManyDocumentsRelation.Clone(vm, (ManyToManyDocumentsRelation)t, isDeep));
+                vm.ListDocumentsRelations.Add(RelationOneToOne.Clone(vm, (RelationOneToOne)t, isDeep));
                       vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:54
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:55
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -28166,7 +28166,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vm.SetNewGuid();
             return vm;
         }
-        public static void Update(ManyToManyGroupDocumentsRelations to, IManyToManyGroupDocumentsRelations from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:79
+        public static void Update(RelationsOneToOneGroup to, IRelationsOneToOneGroup from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:79
         {
             Debug.Assert(to != null);
             Debug.Assert(from != null);
@@ -28187,7 +28187,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                         if (t.Guid == tt.Guid)
                         {
                             isfound = true;
-                            ManyToManyDocumentsRelation.Update((ManyToManyDocumentsRelation)t, (ManyToManyDocumentsRelation)tt, isDeep);
+                            RelationOneToOne.Update((RelationOneToOne)t, (RelationOneToOne)tt, isDeep);
                             break;
                         }
                     }
@@ -28207,8 +28207,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                     }
                     if (!isfound)
                     {
-                        var p = new ManyToManyDocumentsRelation(to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:119
-                        ManyToManyDocumentsRelation.Update(p, (ManyToManyDocumentsRelation)tt, isDeep);
+                        var p = new RelationOneToOne(to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:119
+                        RelationOneToOne.Update(p, (RelationOneToOne)tt, isDeep);
                         to.ListDocumentsRelations.Add(p);
                     }
                 }
@@ -28252,24 +28252,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:149
         #region IEditable
-        public override ManyToManyGroupDocumentsRelations Backup()
+        public override RelationsOneToOneGroup Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
             Debug.Assert(this is IConfig || this.Parent != null);
-            return ManyToManyGroupDocumentsRelations.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:157
+            return RelationsOneToOneGroup.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(ManyToManyGroupDocumentsRelations from)
+        public override void Restore(RelationsOneToOneGroup from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            ManyToManyGroupDocumentsRelations.Update(this, from, isDeep);
+            RelationsOneToOneGroup.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_many_to_many_group_documents_relations' to 'ManyToManyGroupDocumentsRelations'
-        public static ManyToManyGroupDocumentsRelations ConvertToVM(Proto.Config.proto_many_to_many_group_documents_relations m, ManyToManyGroupDocumentsRelations vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:173
+        // Conversion from 'proto_relations_one_to_one_group' to 'RelationsOneToOneGroup'
+        public static RelationsOneToOneGroup ConvertToVM(Proto.Config.proto_relations_one_to_one_group m, RelationsOneToOneGroup vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -28283,10 +28283,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._PrefixForCompositionNames = m.PrefixForCompositionNames; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._ShortIdTypeForCacheKey = m.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._SortingValue = m.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._ListDocumentsRelations = new ConfigNodesCollection<ManyToManyDocumentsRelation>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:192
+            vm._ListDocumentsRelations = new ConfigNodesCollection<RelationOneToOne>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:192
             foreach (var t in m.ListDocumentsRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:196
             {
-                var tvm = ManyToManyDocumentsRelation.ConvertToVM(t, new ManyToManyDocumentsRelation(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:198
+                var tvm = RelationOneToOne.ConvertToVM(t, new RelationOneToOne(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:198
                 vm.ListDocumentsRelations.Add(tvm);
             }
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:192
@@ -28300,11 +28300,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm.IsHasChanged = false;
             return vm;
         }
-        // Conversion from 'ManyToManyGroupDocumentsRelations' to 'proto_many_to_many_group_documents_relations'
-        public static Proto.Config.proto_many_to_many_group_documents_relations ConvertToProto(ManyToManyGroupDocumentsRelations vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:232
+        // Conversion from 'RelationsOneToOneGroup' to 'proto_relations_one_to_one_group'
+        public static Proto.Config.proto_relations_one_to_one_group ConvertToProto(RelationsOneToOneGroup vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:232
         {
             Debug.Assert(vm != null);
-            Proto.Config.proto_many_to_many_group_documents_relations m = new Proto.Config.proto_many_to_many_group_documents_relations(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:235
+            Proto.Config.proto_relations_one_to_one_group m = new Proto.Config.proto_relations_one_to_one_group(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:235
             m.Guid = vm.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.Name = vm.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.NameUi = vm.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -28313,7 +28313,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.ShortIdTypeForCacheKey = vm.ShortIdTypeForCacheKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             foreach (var t in vm.ListDocumentsRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
-                m.ListDocumentsRelations.Add(ManyToManyDocumentsRelation.ConvertToProto((ManyToManyDocumentsRelation)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
+                m.ListDocumentsRelations.Add(RelationOneToOne.ConvertToProto((RelationOneToOne)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
             return m;
@@ -28490,7 +28490,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         
         [Browsable(false)]
-        public ConfigNodesCollection<ManyToManyDocumentsRelation> ListDocumentsRelations // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public ConfigNodesCollection<RelationOneToOne> ListDocumentsRelations // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
             get { return this._ListDocumentsRelations; }
             set
@@ -28502,10 +28502,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        private ConfigNodesCollection<ManyToManyDocumentsRelation> _ListDocumentsRelations; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnListDocumentsRelationsChanging(ConfigNodesCollection<ManyToManyDocumentsRelation> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        private ConfigNodesCollection<RelationOneToOne> _ListDocumentsRelations; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnListDocumentsRelationsChanging(ConfigNodesCollection<RelationOneToOne> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnListDocumentsRelationsChanged();
-        IReadOnlyList<IManyToManyDocumentsRelation> IManyToManyGroupDocumentsRelations.ListDocumentsRelations { get { return (this as ManyToManyGroupDocumentsRelations).ListDocumentsRelations; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
+        IReadOnlyList<IRelationOneToOne> IRelationsOneToOneGroup.ListDocumentsRelations { get { return (this as RelationsOneToOneGroup).ListDocumentsRelations; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
         
         
         [Browsable(false)]
@@ -28524,7 +28524,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
         //partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
         partial void OnListNodeGeneratorsSettingsChanged();
-        IReadOnlyList<IPluginGeneratorNodeSettings> IManyToManyGroupDocumentsRelations.ListNodeGeneratorsSettings { get { return (this as ManyToManyGroupDocumentsRelations).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
+        IReadOnlyList<IPluginGeneratorNodeSettings> IRelationsOneToOneGroup.ListNodeGeneratorsSettings { get { return (this as RelationsOneToOneGroup).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:46
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:134
         #endregion Properties
@@ -36853,8 +36853,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void Visit(Proto.Config.proto_relations_group p);
         void Visit(Proto.Config.proto_relation_many_to_many p);
         void Visit(Proto.Config.proto_relations_many_to_many_group p);
-        void Visit(Proto.Config.proto_many_to_many_documents_relation p);
-        void Visit(Proto.Config.proto_many_to_many_group_documents_relations p);
+        void Visit(Proto.Config.proto_relation_one_to_one p);
+        void Visit(Proto.Config.proto_relations_one_to_one_group p);
         void Visit(Proto.Config.proto_group_list_journals p);
         void Visit(Proto.Config.proto_journal p);
         void Visit(Proto.Config.proto_doc_in_journal p);
@@ -37417,19 +37417,19 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(ManyToManyDocumentsRelation p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RelationOneToOne p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(ManyToManyDocumentsRelation p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RelationOneToOne p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(ManyToManyGroupDocumentsRelations p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RelationsOneToOneGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(ManyToManyGroupDocumentsRelations p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RelationsOneToOneGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
@@ -38214,26 +38214,26 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         protected virtual void OnVisit(RelationsManyToManyGroup p) { }
         protected virtual void OnVisitEnd(RelationsManyToManyGroup p) { }
-        public void Visit(ManyToManyDocumentsRelation p)
+        public void Visit(RelationOneToOne p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(ManyToManyDocumentsRelation p)
+        public void VisitEnd(RelationOneToOne p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(ManyToManyDocumentsRelation p) { }
-        protected virtual void OnVisitEnd(ManyToManyDocumentsRelation p) { }
-        public void Visit(ManyToManyGroupDocumentsRelations p)
+        protected virtual void OnVisit(RelationOneToOne p) { }
+        protected virtual void OnVisitEnd(RelationOneToOne p) { }
+        public void Visit(RelationsOneToOneGroup p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(ManyToManyGroupDocumentsRelations p)
+        public void VisitEnd(RelationsOneToOneGroup p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(ManyToManyGroupDocumentsRelations p) { }
-        protected virtual void OnVisitEnd(ManyToManyGroupDocumentsRelations p) { }
+        protected virtual void OnVisit(RelationsOneToOneGroup p) { }
+        protected virtual void OnVisitEnd(RelationsOneToOneGroup p) { }
         public void Visit(GroupListJournals p)
         {
             this.OnVisit(p);
@@ -38493,10 +38493,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void VisitEnd(RelationManyToMany p);
         void Visit(RelationsManyToManyGroup p);
         void VisitEnd(RelationsManyToManyGroup p);
-        void Visit(ManyToManyDocumentsRelation p);
-        void VisitEnd(ManyToManyDocumentsRelation p);
-        void Visit(ManyToManyGroupDocumentsRelations p);
-        void VisitEnd(ManyToManyGroupDocumentsRelations p);
+        void Visit(RelationOneToOne p);
+        void VisitEnd(RelationOneToOne p);
+        void Visit(RelationsOneToOneGroup p);
+        void VisitEnd(RelationsOneToOneGroup p);
         void Visit(GroupListJournals p);
         void VisitEnd(GroupListJournals p);
         void Visit(Journal p);

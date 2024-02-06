@@ -5,9 +5,9 @@ using FluentValidation;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ManyToManyDocumentsRelationValidator
+    public partial class RelationOneToOneValidator
     {
-        public ManyToManyDocumentsRelationValidator()
+        public RelationOneToOneValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.GuidDoc2).NotEmpty().WithMessage("Document type is not selected");
             this.RuleFor(x => x.GuidDoc2).Must((o, refcat) => { return string.IsNullOrWhiteSpace(refcat) || o.Cfg.DicNodes.ContainsKey(refcat); }).WithMessage("Selected document is not exists in configuration");
         }
-        private bool IsUnique(ManyToManyDocumentsRelation val)
+        private bool IsUnique(RelationOneToOne val)
         {
             if (val.Parent == null)
             {
@@ -28,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return true;
             }
-            ManyToManyGroupDocumentsRelations p = (ManyToManyGroupDocumentsRelations)val.Parent;
+            RelationsOneToOneGroup p = (RelationsOneToOneGroup)val.Parent;
             foreach (var t in p.ListDocumentsRelations)
             {
                 if ((val.Guid != t.Guid) && (val.Name == t.Name))

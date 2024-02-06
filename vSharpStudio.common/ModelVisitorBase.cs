@@ -153,7 +153,7 @@ namespace vSharpStudio.common
                 this._act?.Invoke(this, this.currModel.GroupRelations.GroupListCatalogsRelations);
             foreach (var tr in currModel.GroupRelations.GroupListCatalogsRelations.ListCatalogsRelations)
             {
-                this.currCatRelation = tr;
+                this.currManyToManyRelation = tr;
                 this.BeginVisit(tr);
                 if (isActFromRootToBottom)
                     this._act?.Invoke(this, tr);
@@ -169,7 +169,7 @@ namespace vSharpStudio.common
                 this._act?.Invoke(this, this.currModel.GroupRelations.GroupListDocumentsRelations);
             foreach (var tr in currModel.GroupRelations.GroupListDocumentsRelations.ListDocumentsRelations)
             {
-                this.currDocRelation = tr;
+                this.currOneToOneRelation = tr;
                 this.BeginVisit(tr);
                 if (isActFromRootToBottom)
                     this._act?.Invoke(this, tr);
@@ -438,8 +438,8 @@ namespace vSharpStudio.common
         protected IRegister? currReg = null;
         protected IDocument? currDoc = null;
         protected vSharpStudio.common.IProperty? currProp = null;
-        protected IRelationManyToMany? currCatRelation = null;
-        protected IManyToManyDocumentsRelation? currDocRelation = null;
+        protected IRelationManyToMany? currManyToManyRelation = null;
+        protected IRelationOneToOne? currOneToOneRelation = null;
 
 
         protected Stack<IDetail> currPropTabStack = new Stack<IDetail>();
@@ -586,10 +586,10 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IRelationsManyToManyGroup d) { }
         protected virtual void BeginVisit(IRelationManyToMany d) { }
         protected virtual void EndVisit(IRelationManyToMany d) { }
-        protected virtual void BeginVisit(IManyToManyGroupDocumentsRelations d) { }
-        protected virtual void EndVisit(IManyToManyGroupDocumentsRelations d) { }
-        protected virtual void BeginVisit(IManyToManyDocumentsRelation d) { }
-        protected virtual void EndVisit(IManyToManyDocumentsRelation d) { }
+        protected virtual void BeginVisit(IRelationsOneToOneGroup d) { }
+        protected virtual void EndVisit(IRelationsOneToOneGroup d) { }
+        protected virtual void BeginVisit(IRelationOneToOne d) { }
+        protected virtual void EndVisit(IRelationOneToOne d) { }
         #endregion ManyToMany
 
         #region Document

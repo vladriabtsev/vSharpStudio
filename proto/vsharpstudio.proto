@@ -2931,7 +2931,7 @@ message proto_relations_group {
     proto_relations_many_to_many_group group_list_catalogs_relations = 7;
     // @attr [Browsable(false)]
     // @attr [Description("Many to many setting for documents")]
-    proto_many_to_many_group_documents_relations group_list_documents_relations = 8;
+    proto_relations_one_to_one_group group_list_documents_relations = 8;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -3033,7 +3033,7 @@ message proto_relations_many_to_many_group {
 }
 // @interface ICanAddNode
 // @interface ISortingValue
-message proto_many_to_many_documents_relation {
+message proto_relation_one_to_one {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
@@ -3094,7 +3094,7 @@ message proto_many_to_many_documents_relation {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ISortingValue
-message proto_many_to_many_group_documents_relations {
+message proto_relations_one_to_one_group {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
@@ -3122,7 +3122,7 @@ message proto_many_to_many_group_documents_relations {
     uint64 sorting_value = 9;
 
     // @attr [Browsable(false)]
-    repeated proto_many_to_many_documents_relation list_documents_relations = 21;
+    repeated proto_relation_one_to_one list_documents_relations = 21;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
