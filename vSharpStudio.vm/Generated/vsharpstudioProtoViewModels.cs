@@ -26158,9 +26158,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class RelationsGroupValidator : ValidatorBase<RelationsGroup, RelationsGroupValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:16
-    // M A N Y   T O   M A N Y   R E L A T I O N
-    // @exclude
-    // ######################### M A N Y   T O   M A N Y   R E L A T I O N ############################
     public partial class RelationsGroup : ConfigObjectVmGenSettings<RelationsGroup, RelationsGroupValidator>, IComparable<RelationsGroup>, IConfigAcceptVisitor, IRelationsGroup // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:17
     {
         public override string ToDebugString()
@@ -26594,10 +26591,12 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._NameUi = from.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._GuidCat1 = from.GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._RefCat1Guid = from.RefCat1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._GuidCat2 = from.GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._RefCat2Guid = from.RefCat2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            vm._RefObj1Type = from.RefObj1Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            vm._GuidObj1 = from.GuidObj1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            vm._RefObj1Guid = from.RefObj1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            vm._RefObj2Type = from.RefObj2Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            vm._GuidObj2 = from.GuidObj2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            vm._RefObj2Guid = from.RefObj2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._IsUseHistory = from.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
@@ -26620,10 +26619,12 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._NameUi = from.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._GuidCat1 = from.GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._RefCat1Guid = from.RefCat1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._GuidCat2 = from.GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._RefCat2Guid = from.RefCat2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            to._RefObj1Type = from.RefObj1Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            to._GuidObj1 = from.GuidObj1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            to._RefObj1Guid = from.RefObj1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            to._RefObj2Type = from.RefObj2Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            to._GuidObj2 = from.GuidObj2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            to._RefObj2Guid = from.RefObj2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._IsUseHistory = from.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
@@ -26698,10 +26699,12 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._SortingValue = m.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._NameUi = m.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._Description = m.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._GuidCat1 = m.GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._RefCat1Guid = m.RefCat1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._GuidCat2 = m.GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._RefCat2Guid = m.RefCat2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            vm._RefObj1Type = (EnumRelationConfigType)m.RefObj1Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            vm._GuidObj1 = m.GuidObj1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            vm._RefObj1Guid = m.RefObj1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            vm._RefObj2Type = (EnumRelationConfigType)m.RefObj2Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            vm._GuidObj2 = m.GuidObj2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            vm._RefObj2Guid = m.RefObj2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._IsUseHistory = m.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._IsNew = m.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._IsMarkedForDeletion = m.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
@@ -26729,10 +26732,12 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.NameUi = vm.NameUi; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.Description = vm.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.GuidCat1 = vm.GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.RefCat1Guid = vm.RefCat1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.GuidCat2 = vm.GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.RefCat2Guid = vm.RefCat2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.RefObj1Type = (Proto.Config.proto_enum_relation_config_type)vm.RefObj1Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:270
+            m.GuidObj1 = vm.GuidObj1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.RefObj1Guid = vm.RefObj1Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.RefObj2Type = (Proto.Config.proto_enum_relation_config_type)vm.RefObj2Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:270
+            m.GuidObj2 = vm.GuidObj2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.RefObj2Guid = vm.RefObj2Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsUseHistory = vm.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -26871,87 +26876,131 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnDescriptionChanged();
         
         [Category("")]
-        [PropertyOrderAttribute(6)]
-        [DisplayName("Catalog 1")]
-        [Description("Catalog of Many To Many relation")]
+        [PropertyOrderAttribute(11)]
+        [DisplayName("Type 1")]
+        [Description("Type of first configuration object for Many To Many relation")]
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
-        public string? GuidCat1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public EnumRelationConfigType RefObj1Type // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._GuidCat1; }
+            get { return this._RefObj1Type; }
             set
             {
-                // Use 'OnGuidCat1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._GuidCat1, value, (t) => { /*this.OnGuidCat1Changing(ref value);*/ this._GuidCat1 = value; this.OnGuidCat1Changed(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnRefObj1TypeChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._RefObj1Type, value, (t) => { /*this.OnRefObj1TypeChanging(ref value);*/ this._RefObj1Type = value; this.OnRefObj1TypeChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string? _GuidCat1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnGuidCat1Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnGuidCat1Changed();
-        
-        [Browsable(false)]
-        public string RefCat1Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
-        { 
-            get { return this._RefCat1Guid; }
-            set
-            {
-                // Use 'OnRefCat1GuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._RefCat1Guid, value, (t) => { /*this.OnRefCat1GuidChanging(ref value);*/ this._RefCat1Guid = value; this.OnRefCat1GuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
-                }
-            }
-        }
-        private string _RefCat1Guid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnRefCat1GuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnRefCat1GuidChanged();
+        private EnumRelationConfigType _RefObj1Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnRefObj1TypeChanging(ref EnumRelationConfigType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnRefObj1TypeChanged();
         
         [Category("")]
-        [PropertyOrderAttribute(8)]
-        [DisplayName("Catalog 2")]
-        [Description("Catalog of Many To Many relation")]
+        [PropertyOrderAttribute(12)]
+        [DisplayName("Object 1")]
+        [Description("First configuration object for Many To Many relation")]
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
-        public string? GuidCat2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public string? GuidObj1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._GuidCat2; }
+            get { return this._GuidObj1; }
             set
             {
-                // Use 'OnGuidCat2Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._GuidCat2, value, (t) => { /*this.OnGuidCat2Changing(ref value);*/ this._GuidCat2 = value; this.OnGuidCat2Changed(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnGuidObj1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._GuidObj1, value, (t) => { /*this.OnGuidObj1Changing(ref value);*/ this._GuidObj1 = value; this.OnGuidObj1Changed(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string? _GuidCat2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnGuidCat2Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnGuidCat2Changed();
+        private string? _GuidObj1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnGuidObj1Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnGuidObj1Changed();
         
         [Browsable(false)]
-        public string RefCat2Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        public string RefObj1Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
-            get { return this._RefCat2Guid; }
+            get { return this._RefObj1Guid; }
             set
             {
-                // Use 'OnRefCat2GuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._RefCat2Guid, value, (t) => { /*this.OnRefCat2GuidChanging(ref value);*/ this._RefCat2Guid = value; this.OnRefCat2GuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                // Use 'OnRefObj1GuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._RefObj1Guid, value, (t) => { /*this.OnRefObj1GuidChanging(ref value);*/ this._RefObj1Guid = value; this.OnRefObj1GuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _RefCat2Guid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
-        //partial void OnRefCat2GuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
-        partial void OnRefCat2GuidChanged();
+        private string _RefObj1Guid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnRefObj1GuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnRefObj1GuidChanged();
         
         [Category("")]
-        [PropertyOrderAttribute(10)]
+        [PropertyOrderAttribute(15)]
+        [DisplayName("Type 2")]
+        [Description("Type of second configuration object for Many To Many relation")]
+        [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
+        public EnumRelationConfigType RefObj2Type // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._RefObj2Type; }
+            set
+            {
+                // Use 'OnRefObj2TypeChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._RefObj2Type, value, (t) => { /*this.OnRefObj2TypeChanging(ref value);*/ this._RefObj2Type = value; this.OnRefObj2TypeChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private EnumRelationConfigType _RefObj2Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnRefObj2TypeChanging(ref EnumRelationConfigType to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnRefObj2TypeChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(16)]
+        [DisplayName("Object 2")]
+        [Description("Second configuration object for Many To Many relation")]
+        [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
+        public string? GuidObj2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._GuidObj2; }
+            set
+            {
+                // Use 'OnGuidObj2Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._GuidObj2, value, (t) => { /*this.OnGuidObj2Changing(ref value);*/ this._GuidObj2 = value; this.OnGuidObj2Changed(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string? _GuidObj2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnGuidObj2Changing(ref string? to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnGuidObj2Changed();
+        
+        [Browsable(false)]
+        public string RefObj2Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
+        { 
+            get { return this._RefObj2Guid; }
+            set
+            {
+                // Use 'OnRefObj2GuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._RefObj2Guid, value, (t) => { /*this.OnRefObj2GuidChanging(ref value);*/ this._RefObj2Guid = value; this.OnRefObj2GuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _RefObj2Guid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:41
+        //partial void OnRefObj2GuidChanging(ref string to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:43
+        partial void OnRefObj2GuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(21)]
         [DisplayName("Use History")]
         [Description("Use history for relation")]
         public bool IsUseHistory // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
@@ -27872,7 +27921,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         [Category("")]
         [PropertyOrderAttribute(6)]
         [DisplayName("Document 1")]
-        [Description("Document of Many To Many relation")]
+        [Description("Document for Many To Many relation")]
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
         public string? GuidDoc1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 
@@ -27912,7 +27961,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         [Category("")]
         [PropertyOrderAttribute(8)]
         [DisplayName("Document 2")]
-        [Description("Document of Many To Many relation")]
+        [Description("Document for Many To Many relation")]
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
         public string? GuidDoc2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:8
         { 

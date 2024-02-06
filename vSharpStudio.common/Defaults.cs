@@ -59,10 +59,10 @@
         public const string Documents = "Documents";
 
         public const string GroupMtmRelationsName = "Relations";
-        public const string CatalogMtmRelationsGroupName = "Catalogs";
-        public const string CatalogMtmRelationName = "Relation";
-        public const string DocumentMtmRelationsGroupName = "Documents";
-        public const string DocumentMtmRelationName = "Relation";
+        public const string ManyToManyRelationsGroupName = "ManyToMany";
+        public const string ManyToManyRelationName = "ManyToManyRelation";
+        public const string OneToOneRelationsGroupName = "OneToOne";
+        public const string OneToOneRelationName = "OneToOneRelation";
 
         public const string GroupJournalsName = "Journals";
         public const string JournalName = "Journal";

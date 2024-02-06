@@ -2903,10 +2903,18 @@ message proto_group_list_documents {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-/** M A N Y   T O   M A N Y   R E L A T I O N
+/**                            R E L A T I O N S
  * @exclude
- * ######################### M A N Y   T O   M A N Y   R E L A T I O N ############################
+ * #########################   R E L A T I O N S   ############################
  */
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+enum proto_enum_relation_config_type {
+    // @attr [Description("Catalog")]
+    RelConfigTypeCatalogs = 0;
+    // @attr [Browsable(false)]
+    // @attr [Description("Document")]
+    RelConfigTypeDocuments = 1;
+}
 message proto_relations_group {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -2957,40 +2965,53 @@ message proto_relation_many_to_many {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
 
+     
     // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(6)]
-    // @attr [DisplayName("Catalog 1")]
-    // @attr [Description("Catalog of Many To Many relation")]
+    // @attr [PropertyOrderAttribute(11)]
+    // @attr [DisplayName("Type 1")]
+    // @attr [Description("Type of first configuration object for Many To Many relation")]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
-    google.protobuf.StringValue guid_cat1 = 6;
-    // @attr [Browsable(false)]
-    string ref_cat1_guid = 7;
+    proto_enum_relation_config_type ref_obj1_type = 11;
     // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(8)]
-    // @attr [DisplayName("Catalog 2")]
-    // @attr [Description("Catalog of Many To Many relation")]
+    // @attr [PropertyOrderAttribute(12)]
+    // @attr [DisplayName("Object 1")]
+    // @attr [Description("First configuration object for Many To Many relation")]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
-    google.protobuf.StringValue guid_cat2 = 8;
+    google.protobuf.StringValue guid_obj1 = 12;
     // @attr [Browsable(false)]
-    string ref_cat2_guid = 9;
+    string ref_obj1_guid = 13;
     // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(10)]
+    // @attr [PropertyOrderAttribute(15)]
+    // @attr [DisplayName("Type 2")]
+    // @attr [Description("Type of second configuration object for Many To Many relation")]
+    // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
+    proto_enum_relation_config_type ref_obj2_type = 15;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(16)]
+    // @attr [DisplayName("Object 2")]
+    // @attr [Description("Second configuration object for Many To Many relation")]
+    // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
+    google.protobuf.StringValue guid_obj2 = 16;
+    // @attr [Browsable(false)]
+    string ref_obj2_guid = 17;
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use History")]
     // @attr [Description("Use history for relation")]
-    bool is_use_history = 10;
-
+    bool is_use_history = 21;
 
     // @attr [Browsable(false)]
-    bool is_new = 11;
+    bool is_new = 22;
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 12;
+    bool is_marked_for_deletion = 23;
     // Sequential unique number in configuration
     // @attr [Browsable(false)]
-    uint32 short_id = 19;
+    uint32 short_id = 24;
     // Combination of short_id and type group in higher bits
     // @attr [Browsable(false)]
-    uint32 short_ref_id = 20;
+    uint32 short_ref_id = 25;
 
     // @attr [Browsable(false)]
     string property_data_time_guid = 62;
@@ -3055,7 +3076,7 @@ message proto_relation_one_to_one {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(6)]
     // @attr [DisplayName("Document 1")]
-    // @attr [Description("Document of Many To Many relation")]
+    // @attr [Description("Document for Many To Many relation")]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     google.protobuf.StringValue guid_doc1 = 6;
     // @attr [Browsable(false)]
@@ -3063,7 +3084,7 @@ message proto_relation_one_to_one {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(8)]
     // @attr [DisplayName("Document 2")]
-    // @attr [Description("Document of Many To Many relation")]
+    // @attr [Description("Document for Many To Many relation")]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     google.protobuf.StringValue guid_doc2 = 8;
     // @attr [Browsable(false)]

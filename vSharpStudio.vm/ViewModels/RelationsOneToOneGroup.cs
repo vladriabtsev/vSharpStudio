@@ -54,7 +54,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Defaults.CatalogMtmRelationName, node, this.ListDocumentsRelations);
+                this.GetUniqueName(Defaults.ManyToManyRelationName, node, this.ListDocumentsRelations);
             }
             var model = this.ParentGroupRelations.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();
@@ -102,7 +102,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.DocumentMtmRelationsGroupName;
+            this._Name = Defaults.OneToOneRelationsGroupName;
         }
         public int IndexOf(IRelationOneToOne relOneToOne)
         {

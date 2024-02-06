@@ -648,6 +648,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_enum_relation_config_type"><span class="badge">E</span>proto_enum_relation_config_type</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_enum_system_data_type"><span class="badge">E</span>proto_enum_system_data_type</a>
                 </li>
               
@@ -8455,36 +8459,58 @@ Reserved positions: 1-15
                 </tr>
               
                 <tr>
-                  <td>guid_cat1</td>
-                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td>ref_obj1_type</td>
+                  <td><a href="#proto_config.proto_enum_relation_config_type">proto_enum_relation_config_type</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(6)]
-@attr [DisplayName(&#34;Catalog 1&#34;)]
-@attr [Description(&#34;Catalog of Many To Many relation&#34;)]
+@attr [PropertyOrderAttribute(11)]
+@attr [DisplayName(&#34;Type 1&#34;)]
+@attr [Description(&#34;Type of first configuration object for Many To Many relation&#34;)]
 @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref_cat1_guid</td>
+                  <td>guid_obj1</td>
+                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(12)]
+@attr [DisplayName(&#34;Object 1&#34;)]
+@attr [Description(&#34;First configuration object for Many To Many relation&#34;)]
+@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref_obj1_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>guid_cat2</td>
-                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td>ref_obj2_type</td>
+                  <td><a href="#proto_config.proto_enum_relation_config_type">proto_enum_relation_config_type</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(8)]
-@attr [DisplayName(&#34;Catalog 2&#34;)]
-@attr [Description(&#34;Catalog of Many To Many relation&#34;)]
+@attr [PropertyOrderAttribute(15)]
+@attr [DisplayName(&#34;Type 2&#34;)]
+@attr [Description(&#34;Type of second configuration object for Many To Many relation&#34;)]
 @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref_cat2_guid</td>
+                  <td>guid_obj2</td>
+                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(16)]
+@attr [DisplayName(&#34;Object 2&#34;)]
+@attr [Description(&#34;Second configuration object for Many To Many relation&#34;)]
+@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref_obj2_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -8495,7 +8521,7 @@ Reserved positions: 1-15
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(10)]
+@attr [PropertyOrderAttribute(21)]
 @attr [DisplayName(&#34;Use History&#34;)]
 @attr [Description(&#34;Use history for relation&#34;)] </p></td>
                 </tr>
@@ -8611,7 +8637,7 @@ Reserved positions: 1-15
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(6)]
 @attr [DisplayName(&#34;Document 1&#34;)]
-@attr [Description(&#34;Document of Many To Many relation&#34;)]
+@attr [Description(&#34;Document for Many To Many relation&#34;)]
 @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
                 </tr>
               
@@ -8629,7 +8655,7 @@ Reserved positions: 1-15
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(8)]
 @attr [DisplayName(&#34;Document 2&#34;)]
-@attr [Description(&#34;Document of Many To Many relation&#34;)]
+@attr [Description(&#34;Document for Many To Many relation&#34;)]
 @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
                 </tr>
               
@@ -8703,7 +8729,7 @@ Reserved positions: 1-15
         
       
         <h3 id="proto_config.proto_relations_group">proto_relations_group</h3>
-        <p>M A N Y   T O   M A N Y   R E L A T I O N</p><p>@exclude</p><p>######################### M A N Y   T O   M A N Y   R E L A T I O N ############################</p>
+        <p></p>
 
         
           <table class="field-table">
@@ -11596,6 +11622,30 @@ with history</p></td>
 / Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period.
 / &lt;/summary&gt;
 @attr [Description(&#34;Balance and Turnover&#34;)]</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_relation_config_type">proto_enum_relation_config_type</h3>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>RelConfigTypeCatalogs</td>
+                <td>0</td>
+                <td><p>@attr [Description(&#34;Catalog&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>RelConfigTypeDocuments</td>
+                <td>1</td>
+                <td><p>@attr [Browsable(false)]
+@attr [Description(&#34;Document&#34;)]</p></td>
               </tr>
             
           </tbody>

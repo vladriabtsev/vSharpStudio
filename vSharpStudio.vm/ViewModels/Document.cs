@@ -800,6 +800,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Roles
 
-        public IDocumentEnumeratorSequence Sequence { get { return (IDocumentEnumeratorSequence)this.Cfg.DicNodes[this.SequenceGuid]; } }
+        public IDocumentEnumeratorSequence? Sequence { get { if (!this.Cfg.DicNodes.ContainsKey(this.SequenceGuid)) return null; return (IDocumentEnumeratorSequence)this.Cfg.DicNodes[this.SequenceGuid]; } }
     }
 }

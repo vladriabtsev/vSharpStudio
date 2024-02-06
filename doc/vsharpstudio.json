@@ -1702,6 +1702,24 @@
           ]
         },
         {
+          "name": "proto_enum_relation_config_type",
+          "longName": "proto_enum_relation_config_type",
+          "fullName": "proto_config.proto_enum_relation_config_type",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
+          "values": [
+            {
+              "name": "RelConfigTypeCatalogs",
+              "number": "0",
+              "description": "@attr [Description(\"Catalog\")]"
+            },
+            {
+              "name": "RelConfigTypeDocuments",
+              "number": "1",
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"Document\")]"
+            }
+          ]
+        },
+        {
           "name": "proto_enum_system_data_type",
           "longName": "proto_enum_system_data_type",
           "fullName": "proto_config.proto_enum_system_data_type",
@@ -12410,8 +12428,20 @@
               "defaultValue": ""
             },
             {
-              "name": "guid_cat1",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Catalog 1\")]\n@attr [Description(\"Catalog of Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "name": "ref_obj1_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Type 1\")]\n@attr [Description(\"Type of first configuration object for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "label": "",
+              "type": "proto_enum_relation_config_type",
+              "longType": "proto_enum_relation_config_type",
+              "fullType": "proto_config.proto_enum_relation_config_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "guid_obj1",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Object 1\")]\n@attr [Description(\"First configuration object for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
@@ -12422,7 +12452,7 @@
               "defaultValue": ""
             },
             {
-              "name": "ref_cat1_guid",
+              "name": "ref_obj1_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -12434,8 +12464,20 @@
               "defaultValue": ""
             },
             {
-              "name": "guid_cat2",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Catalog 2\")]\n@attr [Description(\"Catalog of Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "name": "ref_obj2_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Type 2\")]\n@attr [Description(\"Type of second configuration object for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "label": "",
+              "type": "proto_enum_relation_config_type",
+              "longType": "proto_enum_relation_config_type",
+              "fullType": "proto_config.proto_enum_relation_config_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "guid_obj2",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(16)]\n@attr [DisplayName(\"Object 2\")]\n@attr [Description(\"Second configuration object for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
@@ -12446,7 +12488,7 @@
               "defaultValue": ""
             },
             {
-              "name": "ref_cat2_guid",
+              "name": "ref_obj2_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -12459,7 +12501,7 @@
             },
             {
               "name": "is_use_history",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(10)]\n@attr [DisplayName(\"Use History\")]\n@attr [Description(\"Use history for relation\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use History\")]\n@attr [Description(\"Use history for relation\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -12615,7 +12657,7 @@
             },
             {
               "name": "guid_doc1",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Document 1\")]\n@attr [Description(\"Document of Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Document 1\")]\n@attr [Description(\"Document for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
@@ -12639,7 +12681,7 @@
             },
             {
               "name": "guid_doc2",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Document 2\")]\n@attr [Description(\"Document of Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Document 2\")]\n@attr [Description(\"Document for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
@@ -12751,7 +12793,7 @@
           "name": "proto_relations_group",
           "longName": "proto_relations_group",
           "fullName": "proto_config.proto_relations_group",
-          "description": "M A N Y   T O   M A N Y   R E L A T I O N\n@exclude\n######################### M A N Y   T O   M A N Y   R E L A T I O N ############################",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,

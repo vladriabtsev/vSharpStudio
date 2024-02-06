@@ -23,15 +23,15 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnDebugStringExtend(ref string mes)
         {
             string cat1 = "<empty>", cat2 = "<empty>";
-            if (this.GuidCat1 != null)
+            if (this.GuidObj1 != null)
             {
-                Debug.Assert(this.Cfg.DicNodes.ContainsKey(this.GuidCat1));
-                cat1 = this.Cfg.DicNodes[this.GuidCat1].Name;
+                Debug.Assert(this.Cfg.DicNodes.ContainsKey(this.GuidObj1));
+                cat1 = this.Cfg.DicNodes[this.GuidObj1].Name;
             }
-            if (this.GuidCat2 != null)
+            if (this.GuidObj2 != null)
             {
-                Debug.Assert(this.Cfg.DicNodes.ContainsKey(this.GuidCat2));
-                cat2 = this.Cfg.DicNodes[this.GuidCat2].Name;
+                Debug.Assert(this.Cfg.DicNodes.ContainsKey(this.GuidObj2));
+                cat2 = this.Cfg.DicNodes[this.GuidObj2].Name;
             }
             mes = mes + $" {cat1}<->{cat2} History:{this.IsUseHistory}";
         }
@@ -95,8 +95,8 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this._Guid = System.Guid.NewGuid().ToString();
             this._PropertyDataTimeGuid = System.Guid.NewGuid().ToString();
-            this._RefCat1Guid = System.Guid.NewGuid().ToString();
-            this._RefCat2Guid = System.Guid.NewGuid().ToString();
+            this._RefObj1Guid = System.Guid.NewGuid().ToString();
+            this._RefObj2Guid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()
@@ -124,9 +124,9 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        partial void OnRefCat1GuidChanged()
+        partial void OnRefObj1GuidChanged()
         {
-            if (this._RefCat2Guid != null)
+            if (this._RefObj2Guid != null)
             {
                 this._Name = this.GetName();
             }
@@ -135,19 +135,19 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(this.Parent != null);
             var cfg = this.ParentManyToManyGroupCatalogRelations.ParentGroupRelations.ParentModel.Cfg;
-            Debug.Assert(cfg.DicNodes.ContainsKey(this._RefCat1Guid));
-            string name1 = ((Catalog)cfg.DicNodes[this._RefCat1Guid]).Name;
-            Debug.Assert(cfg.DicNodes.ContainsKey(this._RefCat2Guid));
-            string name2 = ((Catalog)cfg.DicNodes[this._RefCat2Guid]).Name;
+            Debug.Assert(cfg.DicNodes.ContainsKey(this._RefObj1Guid));
+            string name1 = ((Catalog)cfg.DicNodes[this._RefObj1Guid]).Name;
+            Debug.Assert(cfg.DicNodes.ContainsKey(this._RefObj2Guid));
+            string name2 = ((Catalog)cfg.DicNodes[this._RefObj2Guid]).Name;
             Debug.Assert(name1.CompareTo(name2) != 0);
             if (name1.CompareTo(name2) < 0)
                 return $"Many_to_many_{name1}_{name2}";
             else
                 return $"Many_to_many_{name2}_{name1}";
         }
-        partial void OnRefCat2GuidChanged()
+        partial void OnRefObj2GuidChanged()
         {
-            if (this._RefCat1Guid != null)
+            if (this._RefObj1Guid != null)
             {
                 this._Name = this.GetName();
             }
@@ -250,7 +250,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new RelationManyToMany(this.Parent);
             this.ParentManyToManyGroupCatalogRelations.Add(node);
-            this.GetUniqueName(Defaults.CatalogMtmRelationName, node, this.ParentManyToManyGroupCatalogRelations.ListCatalogsRelations);
+            this.GetUniqueName(Defaults.ManyToManyRelationName, node, this.ParentManyToManyGroupCatalogRelations.ListCatalogsRelations);
             var model = this.ParentManyToManyGroupCatalogRelations.ParentGroupRelations.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
@@ -293,20 +293,20 @@ namespace vSharpStudio.vm.ViewModels
                 prp = model.GetPropertyVersion(this.ParentManyToManyGroupCatalogRelations, this.Cfg.Model.PropertyVersionGuid); // position 7
                 res.Add(prp);
             }
-            if (this.GuidCat1 != null)
+            if (this.GuidObj1 != null)
             {
                 if (model.IsUseNameComposition)
-                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefCat1Guid, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidCat1]).CompositeName, 1, false);
+                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefObj1Guid, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.RefObj1Guid]).CompositeName, 1, false);
                 else
-                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefCat1Guid, "Ref" + this.Cfg.DicNodes[this.GuidCat1].Name, 1, false);
+                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefObj1Guid, "Ref" + this.Cfg.DicNodes[this.RefObj1Guid].Name, 1, false);
                 res.Add(prp);
             }
-            if (this.GuidCat2 != null)
+            if (this.GuidObj2 != null)
             {
                 if (model.IsUseNameComposition)
-                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefCat2Guid, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidCat2]).CompositeName, 2, false);
+                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefObj2Guid, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.RefObj2Guid]).CompositeName, 2, false);
                 else
-                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefCat2Guid, "Ref" + this.Cfg.DicNodes[this.GuidCat2].Name, 2, false);
+                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefObj2Guid, "Ref" + this.Cfg.DicNodes[this.RefObj2Guid].Name, 2, false);
                 res.Add(prp);
             }
             if (this.IsUseHistory)

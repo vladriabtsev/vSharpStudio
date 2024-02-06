@@ -122,6 +122,7 @@
     - [proto_enum_ref_type](#proto_config-proto_enum_ref_type)
     - [proto_enum_register_periodicity](#proto_config-proto_enum_register_periodicity)
     - [proto_enum_register_type](#proto_config-proto_enum_register_type)
+    - [proto_enum_relation_config_type](#proto_config-proto_enum_relation_config_type)
     - [proto_enum_system_data_type](#proto_config-proto_enum_system_data_type)
     - [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type)
     - [proto_enum_timespan_boundary_type](#proto_config-proto_enum_timespan_boundary_type)
@@ -1970,11 +1971,13 @@ Configuration model
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| guid_cat1 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Catalog 1&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
-| ref_cat1_guid | [string](#string) |  | @attr [Browsable(false)] |
-| guid_cat2 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Catalog 2&#34;)] @attr [Description(&#34;Catalog of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
-| ref_cat2_guid | [string](#string) |  | @attr [Browsable(false)] |
-| is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
+| ref_obj1_type | [proto_enum_relation_config_type](#proto_config-proto_enum_relation_config_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Type 1&#34;)] @attr [Description(&#34;Type of first configuration object for Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| guid_obj1 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Object 1&#34;)] @attr [Description(&#34;First configuration object for Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| ref_obj1_guid | [string](#string) |  | @attr [Browsable(false)] |
+| ref_obj2_type | [proto_enum_relation_config_type](#proto_config-proto_enum_relation_config_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Type 2&#34;)] @attr [Description(&#34;Type of second configuration object for Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| guid_obj2 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Object 2&#34;)] @attr [Description(&#34;Second configuration object for Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| ref_obj2_guid | [string](#string) |  | @attr [Browsable(false)] |
+| is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
@@ -2001,9 +2004,9 @@ Configuration model
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| guid_doc1 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Document 1&#34;)] @attr [Description(&#34;Document of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| guid_doc1 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Document 1&#34;)] @attr [Description(&#34;Document for Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | ref_doc1_guid | [string](#string) |  | @attr [Browsable(false)] |
-| guid_doc2 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Document 2&#34;)] @attr [Description(&#34;Document of Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| guid_doc2 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Document 2&#34;)] @attr [Description(&#34;Document for Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | ref_doc2_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
@@ -2021,9 +2024,7 @@ Configuration model
 <a name="proto_config-proto_relations_group"></a>
 
 ### proto_relations_group
-M A N Y   T O   M A N Y   R E L A T I O N
-@exclude
-######################### M A N Y   T O   M A N Y   R E L A T I O N ############################
+
 
 
 | Field | Type | Label | Description |
@@ -2909,6 +2910,18 @@ with history |
 | BALANCE | 0 | &lt;summary&gt; / Balance data for selected register dimentions. Balance always contains latest accumulated data. One record per period. / &lt;/summary&gt; @attr [Description(&#34;Balance&#34;)] |
 | TURNOVER | 11 | &lt;summary&gt; / Only turnovers data for selected register periodicity and dimentions. Many records per period. / &lt;/summary&gt; @attr [Description(&#34;Turnover&#34;)] |
 | BALANCE_AND_TURNOVER | 21 | &lt;summary&gt; / Balance and turnovers data for selected register periodicity and dimentions. / Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period. / &lt;/summary&gt; @attr [Description(&#34;Balance and Turnover&#34;)] |
+
+
+
+<a name="proto_config-proto_enum_relation_config_type"></a>
+
+### proto_enum_relation_config_type
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RelConfigTypeCatalogs | 0 | @attr [Description(&#34;Catalog&#34;)] |
+| RelConfigTypeDocuments | 1 | @attr [Browsable(false)] @attr [Description(&#34;Document&#34;)] |
 
 
 

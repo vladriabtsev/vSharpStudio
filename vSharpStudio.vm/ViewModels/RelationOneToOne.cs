@@ -249,7 +249,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new RelationOneToOne(this.Parent);
             this.ParentManyToManyGroupCatalogRelations.Add(node);
-            this.GetUniqueName(Defaults.DocumentMtmRelationName, node, this.ParentManyToManyGroupCatalogRelations.ListDocumentsRelations);
+            this.GetUniqueName(Defaults.OneToOneRelationName, node, this.ParentManyToManyGroupCatalogRelations.ListDocumentsRelations);
             var model = this.ParentManyToManyGroupCatalogRelations.ParentGroupRelations.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);

@@ -54,7 +54,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Defaults.CatalogMtmRelationName, node, this.ListCatalogsRelations);
+                this.GetUniqueName(Defaults.ManyToManyRelationName, node, this.ListCatalogsRelations);
             }
             var model = this.ParentGroupRelations.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();
@@ -102,7 +102,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.CatalogMtmRelationsGroupName;
+            this._Name = Defaults.ManyToManyRelationsGroupName;
         }
         public int IndexOf(IRelationManyToMany cat)
         {
@@ -139,8 +139,8 @@ namespace vSharpStudio.vm.ViewModels
         public RelationManyToMany AddRelation(string name, ICatalog cat1, ICatalog cat2, bool isUseHistory, string? guid = null)
         {
             var node = new RelationManyToMany(this) { Name = name };
-            node.GuidCat1 = cat1.Guid;
-            node.GuidCat2 = cat2.Guid;
+            node.GuidObj1 = cat1.Guid;
+            node.GuidObj2 = cat2.Guid;
             node.IsUseHistory = isUseHistory;
 #if DEBUG
             if (guid != null) // for test model generation
