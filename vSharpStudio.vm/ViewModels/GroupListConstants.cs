@@ -285,11 +285,7 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             node.DataType = new DataType(node);
             node.DataType.DataTypeEnum = EnumDataType.ANY;
-            node.DataType.ListObjectRefs.Add(new FkComplexRef()
-            {
-                ConfigObjectGuid = cat.Guid,
-                FkIndexTableGuid = System.Guid.NewGuid().ToString()
-            });
+            node.DataType.ListObjectRefs.Add(new FkComplexRef(cat.Guid));
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
@@ -307,11 +303,7 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             node.DataType = new DataType(node);
             node.DataType.DataTypeEnum = EnumDataType.ANY;
-            node.DataType.ListObjectRefs.Add(new FkComplexRef()
-            {
-                ConfigObjectGuid = d.Guid,
-                FkIndexTableGuid = System.Guid.NewGuid().ToString()
-            });
+            node.DataType.ListObjectRefs.Add(new FkComplexRef(d.Guid));
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
@@ -328,17 +320,9 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ListObjectRefs.Add(new FkComplexRef()
-            {
-                ConfigObjectGuid = cat.Guid,
-                FkIndexTableGuid = System.Guid.NewGuid().ToString()
-            });
+            node.DataType.ListObjectRefs.Add(new FkComplexRef(cat.Guid));
             if (cat2 != null)
-                node.DataType.ListObjectRefs.Add(new FkComplexRef()
-                {
-                    ConfigObjectGuid = cat2.Guid,
-                    FkIndexTableGuid = System.Guid.NewGuid().ToString()
-                });
+                node.DataType.ListObjectRefs.Add(new FkComplexRef(cat2.Guid));
             node.DataType.DataTypeEnum = EnumDataType.CATALOGS;
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
@@ -357,17 +341,9 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             node.DataType = new DataType(node);
             Debug.Assert(node.DataType.ObjectRef.ConfigObjectGuid == string.Empty);
-            node.DataType.ListObjectRefs.Add(new FkComplexRef()
-            {
-                ConfigObjectGuid = d.Guid,
-                FkIndexTableGuid = System.Guid.NewGuid().ToString()
-            });
+            node.DataType.ListObjectRefs.Add(new FkComplexRef(d.Guid));
             if (d2 != null)
-                node.DataType.ListObjectRefs.Add(new FkComplexRef()
-                {
-                    ConfigObjectGuid = d2.Guid,
-                    FkIndexTableGuid = System.Guid.NewGuid().ToString()
-                });
+                node.DataType.ListObjectRefs.Add(new FkComplexRef(d2.Guid));
             node.DataType.DataTypeEnum = EnumDataType.DOCUMENTS;
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);

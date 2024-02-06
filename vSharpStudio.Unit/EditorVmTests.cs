@@ -589,7 +589,7 @@ namespace vSharpStudio.Unit
             cnst1.DataType.DataTypeEnum = EnumDataType.BOOL;
             var cnst2 = (Constant)gr.NodeAddNewSubNode();
             cnst2.DataType.DataTypeEnum = EnumDataType.ENUMERATION;
-            cnst2.DataType.ObjectGuid = cfg.Model.GroupEnumerations[0].Guid;
+            cnst2.DataType.ObjectRef.ConfigObjectGuid = cfg.Model.GroupEnumerations[0].Guid;
 
             return vm;
         }

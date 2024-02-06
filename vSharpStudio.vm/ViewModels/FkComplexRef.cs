@@ -8,16 +8,12 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class FkComplexRef //: ITreeConfigNode
+    public partial class FkComplexRef
     {
-        public FkComplexRef(DataType dt) : this()
+        public FkComplexRef(string configObjectGuid) : this()
         {
-
+            this.ConfigObjectGuid = configObjectGuid;
+            this.FkIndexTableGuid= System.Guid.NewGuid().ToString();
         }
-        //partial void OnCreated()
-        //{
-        //    this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();
-        //    this._ViewListComboBoxGuid = System.Guid.NewGuid().ToString();
-        //}
     }
 }

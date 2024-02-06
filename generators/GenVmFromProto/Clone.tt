@@ -39,22 +39,22 @@ public static <#= message.Name.ToNameCs() #> Clone(I<#= message.Name.ToNameCs() 
 <# } #>
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
 <#      if (field.IsRepeated) { #>
-<# if (field.IsAny()) { #>
+<#        if (field.IsAny()) { #>
     vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<Google.Protobuf.WellKnownTypes.Any>(); // <#=t4.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) 
         vm.<#= field.Name.ToNameCs() #>.Add(t.Clone());
-<# } else if (!field.IsMessage()) { #>
+          <# } else if (!field.IsMessage()) { #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(t);
-<# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { var isFieldWithParent=JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsWithParent; #>
+          <# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { var isFieldWithParent=JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsWithParent; #>
     vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=t4.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (isFieldWithParent) { #>parent, <# } #><# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
-<# } else { #>
+          <# } else { #>
     vm._<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=t4.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=t4.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
-<# } #>
+          <# } #>
 <#      } else if (field.IsMessage() && field.MessageType.Name.EndsWith("_nullable")) { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.HasValue ? from.<#= field.Name.ToNameCs() #>.Value : (<#= field.ToTypeCs() #>)null; // <#=t4.FilePos() #>
 <#      } else if (field.IsMessage() && field.IsAny()) { #>
@@ -62,6 +62,9 @@ public static <#= message.Name.ToNameCs() #> Clone(I<#= message.Name.ToNameCs() 
 <#      } else if (!field.IsCsSimple() && field.GetMessageDoc().IsWithParent) { #>
     if (isDeep) // <#=t4.FilePos() #> IsDefaultBase=<#=field.IsDefaultBase()#>
         vm.<#= field.Name.ToNameCs() #> = <#=nameSpace#>.<#= field.ToTypeCs() #>.Clone(vm, from.<#= field.Name.ToNameCs() #>, isDeep);
+<#      } else if (!field.IsCsSimple() && !field.GetMessageDoc().IsWithParent) { #>
+    if (isDeep) // <#=t4.FilePos() #> IsDefaultBase=<#=field.IsDefaultBase()#>
+        vm.<#= field.Name.ToNameCs() #> = <#=nameSpace#>.<#= field.ToTypeCs() #>.Clone(from.<#= field.Name.ToNameCs() #>, isDeep);
 <#      } else { #>
     vm._<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; // <#=t4.FilePos() #>
 <#      } 

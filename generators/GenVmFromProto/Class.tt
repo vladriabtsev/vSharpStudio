@@ -60,7 +60,11 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
         this._<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=t4.FilePos() #>
 <# } #>
 <#       } else if (t.IsMessage()) { if (t.IsCsSimple()) continue; #>
+<#         if (t.GetMessageDoc().IsWithParent) { #>
         this._<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=t4.FilePos() #>
+<#		   } else { #>
+        this._<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=t4.FilePos() #>
+<#		   } #>
 <#		 } else if (t.IsMap) { #>
 		map??? // <#=t4.FilePos() #>
 <#		 } #>

@@ -247,11 +247,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 DataTypeEnum = EnumDataType.CATALOG,
                 IsNullable = isNullable,
-                ObjectRef = new FkComplexRef()
-                {
-                    ConfigObjectGuid = catGuid,
-                    FkIndexTableGuid = System.Guid.NewGuid().ToString()
-                }
+                ObjectRef = new FkComplexRef(catGuid)
             };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;

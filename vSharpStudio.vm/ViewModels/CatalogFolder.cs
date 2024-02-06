@@ -218,11 +218,7 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType = new DataType(node)
             {
                 DataTypeEnum = EnumDataType.ENUMERATION,
-                ObjectRef = new FkComplexRef()
-                {
-                    ConfigObjectGuid = en.Guid,
-                    FkIndexTableGuid = System.Guid.NewGuid().ToString()
-                }
+                ObjectRef = new FkComplexRef(en.Guid)
             };
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
