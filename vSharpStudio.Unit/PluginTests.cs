@@ -849,7 +849,9 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
             vm.Config.Model.GroupCatalogs[0].GroupForms.NodeAddNewSubNode();
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
-            vm.Config.Model.GroupDocuments.GroupListDocuments.NodeAddNewSubNode();
+            var d = (Document)vm.Config.Model.GroupDocuments.GroupListDocuments.NodeAddNewSubNode();
+            var seq = vm.Config.Model.GroupDocuments.GroupListSequences.NodeAddNewSubNode();
+            d.SequenceGuid = seq.Guid;
             Assert.AreEqual(1, vm.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
             vm.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties.NodeAddNewSubNode();
             Assert.AreEqual(1, vm.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);

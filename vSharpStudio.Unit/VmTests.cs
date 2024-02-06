@@ -426,6 +426,8 @@ namespace vSharpStudio.Unit
 
             // Remove one error by adding document for register
             var doc1 = cfg.Model.GroupDocuments.AddDocument("doc1");
+            var seq = cfg.Model.GroupDocuments.GroupListSequences.NodeAddNewSubNode();
+            doc1.SequenceGuid = seq.Guid;
             reg1.SelectedDoc = doc1;
             reg1.ListObjectDocRefs.Add(new FkComplexRef(doc1.Guid));
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
