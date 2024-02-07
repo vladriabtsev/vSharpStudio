@@ -54,7 +54,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Defaults.ManyToManyRelationName, node, this.ListDocumentsRelations);
+                this.GetUniqueName(Defaults.OneToOneRelationName, node, this.ListDocumentsRelations);
             }
             var model = this.ParentGroupRelations.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();
@@ -136,11 +136,52 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public RelationOneToOne AddRelation(string name, IDocument doc1, IDocument doc2, bool isUseHistory, string? guid = null)
+        public RelationManyToMany AddRelation(string name, ICatalog cat1, ICatalog cat2, bool isUseHistory, string? guid = null)
         {
-            var node = new RelationOneToOne(this) { Name = name };
-            node.GuidDoc1 = doc1.Guid;
-            node.GuidDoc2 = doc2.Guid;
+            var node = new RelationManyToMany(this) { Name = name };
+            node.RefObj1Type = EnumRelationConfigType.RelConfigTypeCatalogs;
+            node.GuidObj1 = cat1.Guid;
+            node.RefObj2Type = EnumRelationConfigType.RelConfigTypeCatalogs;
+            node.GuidObj2 = cat2.Guid;
+            node.IsUseHistory = isUseHistory;
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public RelationManyToMany AddRelation(string name, IDocument doc1, ICatalog cat2, bool isUseHistory, string? guid = null)
+        {
+            var node = new RelationManyToMany(this) { Name = name };
+            node.RefObj1Type = EnumRelationConfigType.RelConfigTypeDocuments;
+            node.GuidObj1 = doc1.Guid;
+            node.RefObj2Type = EnumRelationConfigType.RelConfigTypeCatalogs;
+            node.GuidObj2 = cat2.Guid;
+            node.IsUseHistory = isUseHistory;
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public RelationManyToMany AddRelation(string name, IDocument doc1, IDocument doc2, bool isUseHistory, string? guid = null)
+        {
+            var node = new RelationManyToMany(this) { Name = name };
+            node.RefObj1Type = EnumRelationConfigType.RelConfigTypeDocuments;
+            node.GuidObj1 = doc1.Guid;
+            node.RefObj2Type = EnumRelationConfigType.RelConfigTypeDocuments;
+            node.GuidObj2 = doc2.Guid;
+            node.IsUseHistory = isUseHistory;
 #if DEBUG
             if (guid != null) // for test model generation
             {

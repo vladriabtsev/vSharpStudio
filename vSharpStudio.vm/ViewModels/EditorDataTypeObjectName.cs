@@ -28,8 +28,19 @@ namespace vSharpStudio.vm.ViewModels
             else if (propertyItem.Instance is Constant)
                 _binding_lst.Source = ((Constant)propertyItem.Instance).DataType;
             else if (propertyItem.Instance is RelationManyToMany)
+            {
+                if (propertyItem.PropertyName == "GuidObj1")
+                    _binding_lst = new Binding("ListObjectsNode1"); // bind to the Value property of the PropertyItem
+                else
+                    _binding_lst = new Binding("ListObjectsNode2"); // bind to the Value property of the PropertyItem
+                _binding_lst.ValidatesOnExceptions = false;
+                _binding_lst.ValidatesOnDataErrors = false;
+                _binding_lst.Mode = BindingMode.OneWay;
                 _binding_lst.Source = propertyItem.Instance;
+            }
             else if (propertyItem.Instance is RelationOneToOne)
+                _binding_lst.Source = propertyItem.Instance;
+            else if (propertyItem.Instance is RelationNode)
                 _binding_lst.Source = propertyItem.Instance;
             else
                 throw new Exception();

@@ -33,10 +33,10 @@ namespace GenVmFromProto
             this.FieldName = field.Name.ToNameCs();
             this.FieldType = field.ToTypeCs();
             this.PropType = this.FieldType;
-            if (FieldName == "Guid" || FieldName == "SortingValue" || FieldName == "Name" || FieldName == "NameUi")
-            {
-                this.isSetPropertyByRef = false;
-            }
+            //if (FieldName == "Guid" || FieldName == "SortingValue" || FieldName == "Name" || FieldName == "NameUi")
+            //{
+            //    this.isSetPropertyByRef = false;
+            //}
             if (this.IsCollection)
             {
                 this.refstr = "";

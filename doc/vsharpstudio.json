@@ -1715,7 +1715,7 @@
             {
               "name": "RelConfigTypeDocuments",
               "number": "1",
-              "description": "@attr [Browsable(false)]\n@attr [Description(\"Document\")]"
+              "description": "@attr [Description(\"Document\")]\n@attr [Browsable(false)]"
             }
           ]
         },
@@ -12429,7 +12429,7 @@
             },
             {
               "name": "ref_obj1_type",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Type 1\")]\n@attr [Description(\"Type of first configuration object for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Type 1\")]\n@attr [Description(\"Type of first configuration object for Many To Many relation\")]",
               "label": "",
               "type": "proto_enum_relation_config_type",
               "longType": "proto_enum_relation_config_type",
@@ -12452,20 +12452,8 @@
               "defaultValue": ""
             },
             {
-              "name": "ref_obj1_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "ref_obj2_type",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Type 2\")]\n@attr [Description(\"Type of second configuration object for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Type 2\")]\n@attr [Description(\"Type of second configuration object for Many To Many relation\")]",
               "label": "",
               "type": "proto_enum_relation_config_type",
               "longType": "proto_enum_relation_config_type",
@@ -12482,18 +12470,6 @@
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
               "fullType": "google.protobuf.StringValue",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "ref_obj2_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -12586,6 +12562,42 @@
           ]
         },
         {
+          "name": "proto_relation_node",
+          "longName": "proto_relation_node",
+          "fullName": "proto_config.proto_relation_node",
+          "description": "@base BaseSettings",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "ref_obj_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Type\")]\n@attr [Description(\"Type of first configuration object for Many To Many relation\")]",
+              "label": "",
+              "type": "proto_enum_relation_config_type",
+              "longType": "proto_enum_relation_config_type",
+              "fullType": "proto_config.proto_enum_relation_config_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "guid_obj",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Object\")]\n@attr [Description(\"First configuration object for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "label": "",
+              "type": "StringValue",
+              "longType": "google.protobuf.StringValue",
+              "fullType": "google.protobuf.StringValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_relation_one_to_one",
           "longName": "proto_relation_one_to_one",
           "fullName": "proto_config.proto_relation_one_to_one",
@@ -12656,8 +12668,20 @@
               "defaultValue": ""
             },
             {
-              "name": "guid_doc1",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Document 1\")]\n@attr [Description(\"Document for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "name": "ref_obj1_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Type 1\")]\n@attr [Description(\"Type of first configuration object for Many To Many relation\")]",
+              "label": "",
+              "type": "proto_enum_relation_config_type",
+              "longType": "proto_enum_relation_config_type",
+              "fullType": "proto_config.proto_enum_relation_config_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "guid_obj1",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Object 1\")]\n@attr [Description(\"First configuration object for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
@@ -12668,36 +12692,24 @@
               "defaultValue": ""
             },
             {
-              "name": "ref_doc1_guid",
-              "description": "@attr [Browsable(false)]",
+              "name": "ref_obj2_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Type 2\")]\n@attr [Description(\"Type of second configuration object for Many To Many relation\")]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "proto_enum_relation_config_type",
+              "longType": "proto_enum_relation_config_type",
+              "fullType": "proto_config.proto_enum_relation_config_type",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "guid_doc2",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Document 2\")]\n@attr [Description(\"Document for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "name": "guid_obj2",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(16)]\n@attr [DisplayName(\"Object 2\")]\n@attr [Description(\"Second configuration object for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
               "fullType": "google.protobuf.StringValue",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "ref_doc2_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -12705,7 +12717,7 @@
             },
             {
               "name": "is_use_history",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(10)]\n@attr [DisplayName(\"Use History\")]\n@attr [Description(\"Use history for relation\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use History\")]\n@attr [Description(\"Use history for relation\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",

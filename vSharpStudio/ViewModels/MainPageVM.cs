@@ -217,44 +217,60 @@ namespace vSharpStudio.ViewModels
                 return null;
             }
             var protoarr = File.ReadAllBytes(file_path);
-            this.pconfig_history = Proto.Config.proto_config_short_history.Parser.WithDiscardUnknownFields(true).ParseFrom(protoarr);
-            _logger?.Debug("Configuration is loaded from file: {FilePath}", file_path);
-            var config = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config(false));
-            _logger?.Trace("Config VM is created");
-            var currFolder = Path.GetDirectoryName(this.CurrentCfgFilePath);
-            config.CurrentCfgFolderPath = currFolder ?? String.Empty;
-            config.PrevCurrentConfig = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config(false));
-            if (isRoot)
+            try
             {
-                if (this.pconfig_history.PrevStableConfig != null)
+                this.pconfig_history = Proto.Config.proto_config_short_history.Parser.WithDiscardUnknownFields(true).ParseFrom(protoarr);
+                _logger?.Debug("Configuration is loaded from file: {FilePath}", file_path);
+                var config = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config(false));
+                _logger?.Trace("Config VM is created");
+                var currFolder = Path.GetDirectoryName(this.CurrentCfgFilePath);
+                config.CurrentCfgFolderPath = currFolder ?? String.Empty;
+                config.PrevCurrentConfig = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config(false));
+                if (isRoot)
                 {
-                    config.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.PrevStableConfig, new Config(false));
-                    _logger?.Trace("Previous Stable Config VM is created");
+                    if (this.pconfig_history.PrevStableConfig != null)
+                    {
+                        config.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.PrevStableConfig, new Config(false));
+                        _logger?.Trace("Previous Stable Config VM is created");
+                    }
+                    this.CurrentCfgFilePath = file_path;
                 }
-                this.CurrentCfgFilePath = file_path;
-            }
-            string ind2 = indent + "   ";
-            foreach (var t in config.GroupConfigLinks.ListBaseConfigLinks.ToList())
-            {
-                _logger?.Trace("Load Linked Config {Name} from {Path}", t.Name, t.RelativeConfigFilePath);
-                t.ConfigBase = this.LoadConfig(Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
-                Debug.Assert(t.ConfigBase != null);
-                t.Name = t.ConfigBase.Name;
-            }
-            config.IsInitialized = false;
+                string ind2 = indent + "   ";
+                foreach (var t in config.GroupConfigLinks.ListBaseConfigLinks.ToList())
+                {
+                    _logger?.Trace("Load Linked Config {Name} from {Path}", t.Name, t.RelativeConfigFilePath);
+                    t.ConfigBase = this.LoadConfig(Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
+                    Debug.Assert(t.ConfigBase != null);
+                    t.Name = t.ConfigBase.Name;
+                }
+                config.IsInitialized = false;
 
-            InitConfig(config);
-            if (isRoot)
-            {
-                this.Config = config;
-                this.VisibilityAndMessageInstructions();
-                this.Config.RestoreIsHas();
+                InitConfig(config);
+                if (isRoot)
+                {
+                    this.Config = config;
+                    this.VisibilityAndMessageInstructions();
+                    this.Config.RestoreIsHas();
+                }
+                if (config.PrevStableConfig != null)
+                    InitConfig((Config)config.PrevStableConfig);
+                if (config.PrevCurrentConfig != null)
+                    InitConfig((Config)config.PrevCurrentConfig);
+                return config;
             }
-            if (config.PrevStableConfig != null)
-                InitConfig((Config)config.PrevStableConfig);
-            if (config.PrevCurrentConfig != null)
-                InitConfig((Config)config.PrevCurrentConfig);
-            return config;
+            catch (Exception ex)
+            {
+                if (VmBindable.isUnitTests)
+                    throw;
+                if (isRoot)
+                {
+                    var res = Xceed.Wpf.Toolkit.MessageBox.Show($"Can't load Configuration from file:\n{file_path}\nError:{ex.Message}\n     New EMPTY CONFIGURATION will be created.", "Error", System.Windows.MessageBoxButton.OK);
+                    this.Config = new Config(true);
+                    return this.Config;
+                }
+                else
+                    return null;
+            }
         }
         public Proto.Config.proto_config_short_history? pconfig_history { get; private set; }
         public UserSettings? UserSettings { get; private set; }

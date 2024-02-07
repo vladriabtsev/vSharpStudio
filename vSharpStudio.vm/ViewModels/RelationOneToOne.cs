@@ -21,52 +21,14 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnDebugStringExtend(ref string mes)
         {
-            string cat1 = "<empty>", cat2 = "<empty>";
-            if (this.GuidDoc1 != null)
-            {
-                Debug.Assert(this.Cfg.DicNodes.ContainsKey(this.GuidDoc1));
-                cat1 = this.Cfg.DicNodes[this.GuidDoc1].Name;
-            }
-            if (this.GuidDoc2 != null)
-            {
-                Debug.Assert(this.Cfg.DicNodes.ContainsKey(this.GuidDoc2));
-                cat2 = this.Cfg.DicNodes[this.GuidDoc2].Name;
-            }
-            mes = mes + $" {cat1}<->{cat2} History:{this.IsUseHistory}";
+            mes = mes + $" {this.GetName(false)} History:{this.IsUseHistory}";
         }
         public string GetDebuggerDisplay(bool isOptimistic)
         {
             var sb = new StringBuilder();
-            //sb.Append("CAT ");
-            //sb.Append(this.Name);
-            //sb.Append(", ");
-            //sb.Append(this.ParentGroupListCatalogs.ParentModel.PKeyName);
-            //sb.Append(":{");
-            //sb.Append(this.ParentGroupListCatalogs.ParentModel.PKeyName);
-            //sb.Append(",nq}");
-            //if (this.UseTree)
-            //{
-            //    if (this.UseSeparateTreeForFolders)
-            //    {
-            //        sb.Append(" Ref");
-            //        sb.Append(this.Folder.CompositeName);
-            //        sb.Append(":{Ref");
-            //        sb.Append(this.Folder.CompositeName);
-            //        sb.Append(",nq}");
-            //    }
-            //    else
-            //    {
-            //        sb.Append(" RefTreeParent:{RefTreeParent,nq}");
-            //        //prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
-            //        //res.Add(prp);
-            //    }
-            //}
-            //if (isOptimistic)
-            //{
-            //    sb.Append(" RecVer:{");
-            //    sb.Append(this.ParentGroupListCatalogs.ParentModel.RecordVersionFieldName);
-            //    sb.Append(",nq}");
-            //}
+            sb.Append("OneToOne ");
+            sb.Append(this.Name);
+            sb.Append(", ");
             return sb.ToString();
         }
 
@@ -94,8 +56,6 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this._Guid = System.Guid.NewGuid().ToString();
             this._PropertyDataTimeGuid = System.Guid.NewGuid().ToString();
-            this._RefDoc1Guid = System.Guid.NewGuid().ToString();
-            this._RefDoc2Guid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()
@@ -123,33 +83,40 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        partial void OnRefDoc1GuidChanged()
+        partial void OnRefObj1TypeChanged()
         {
-            if (this._RefDoc2Guid != null)
-            {
-                this._Name = this.GetName();
-            }
+            this.GuidObj1 = null;
+            this.OnPropertyChanged(nameof(this.ListObjectsNode1));
         }
-        private string GetName()
+        partial void OnRefObj2TypeChanged()
+        {
+            this.GuidObj2 = null;
+            this.OnPropertyChanged(nameof(this.ListObjectsNode2));
+        }
+        private string GetName(bool isComposite)
         {
             Debug.Assert(this.Parent != null);
             var cfg = this.ParentManyToManyGroupCatalogRelations.ParentGroupRelations.ParentModel.Cfg;
-            Debug.Assert(cfg.DicNodes.ContainsKey(this._RefDoc1Guid));
-            string name1 = ((Document)cfg.DicNodes[this._RefDoc1Guid]).Name;
-            Debug.Assert(cfg.DicNodes.ContainsKey(this._RefDoc2Guid));
-            string name2 = ((Document)cfg.DicNodes[this._RefDoc2Guid]).Name;
-            Debug.Assert(name1.CompareTo(name2) != 0);
-            if (name1.CompareTo(name2) < 0)
-                return $"Many_to_many_{name1}_{name2}";
-            else
-                return $"Many_to_many_{name2}_{name1}";
-        }
-        partial void OnRefDoc2GuidChanged()
-        {
-            if (this._RefDoc1Guid != null)
+            string name1 = "<empty>";
+            if (this.GuidObj1 != null)
             {
-                this._Name = this.GetName();
+                if (isComposite)
+                    name1 = ((ICompositeName)cfg.DicNodes[this.GuidObj1]).CompositeName;
+                else
+                    name1 = cfg.DicNodes[this.GuidObj1].Name;
             }
+            string name2 = "<empty>";
+            if (this.GuidObj2 != null)
+            {
+                if (isComposite)
+                    name2 = ((ICompositeName)cfg.DicNodes[this.GuidObj2]).CompositeName;
+                else
+                    name2 = cfg.DicNodes[this.GuidObj2].Name;
+            }
+            if (name1.CompareTo(name2) < 1)
+                return $"{name1}<->{name2}";
+            else
+                return $"{name2}<->{name1}";
         }
         public void RefillChildren()
         {
@@ -265,18 +232,6 @@ namespace vSharpStudio.vm.ViewModels
         [ExpandableObjectAttribute()]
         public dynamic? Setting { get; set; }
 
-        [PropertyOrder(100)]
-        [ReadOnly(true)]
-        [DisplayName("Composite")]
-        [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]
-        public string CompositeName
-        {
-            get
-            {
-                return GetCompositeName();
-            }
-        }
-
         #region Get Properties and Details
 
         #region OnChanged
@@ -292,20 +247,20 @@ namespace vSharpStudio.vm.ViewModels
                 prp = model.GetPropertyVersion(this.ParentManyToManyGroupCatalogRelations, this.Cfg.Model.PropertyVersionGuid); // position 7
                 res.Add(prp);
             }
-            if (this.GuidDoc1 != null)
+            if (this.GuidObj1 != null)
             {
                 if (model.IsUseNameComposition)
-                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefDoc1Guid, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidDoc1]).CompositeName, 1, false);
+                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.GuidObj1, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj1]).CompositeName, 1, false);
                 else
-                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefDoc1Guid, "Ref" + this.Cfg.DicNodes[this.GuidDoc1].Name, 1, false);
+                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.GuidObj1, "Ref" + this.Cfg.DicNodes[this.GuidObj1].Name, 1, false);
                 res.Add(prp);
             }
-            if (this.GuidDoc2 != null)
+            if (this.GuidObj2 != null)
             {
                 if (model.IsUseNameComposition)
-                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefDoc2Guid, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidDoc2]).CompositeName, 2, false);
+                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.GuidObj2, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj2]).CompositeName, 2, false);
                 else
-                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.RefDoc2Guid, "Ref" + this.Cfg.DicNodes[this.GuidDoc2].Name, 2, false);
+                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.GuidObj2, "Ref" + this.Cfg.DicNodes[this.GuidObj2].Name, 2, false);
                 res.Add(prp);
             }
             if (this.IsUseHistory)
@@ -341,12 +296,29 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Get Properties and Details
         [Browsable(false)]
-        public SortedObservableCollection<ITreeConfigNodeSortable>? ListObjects
+        public SortedObservableCollection<ITreeConfigNodeSortable>? ListObjectsNode1
         {
             get
             {
-                Debug.Assert(this.Cfg != null);
-                return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
+                Debug.Assert(this.Parent != null);
+                if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
+                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupCatalogs.ListCatalogs);
+                else if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
+                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
+                else throw new NotImplementedException();
+            }
+        }
+        [Browsable(false)]
+        public SortedObservableCollection<ITreeConfigNodeSortable>? ListObjectsNode2
+        {
+            get
+            {
+                Debug.Assert(this.Parent != null);
+                if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
+                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupCatalogs.ListCatalogs);
+                else if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
+                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
+                else throw new NotImplementedException();
             }
         }
     }
