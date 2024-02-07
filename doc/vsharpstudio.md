@@ -112,7 +112,6 @@
     - [proto_enum_lorem_data_type](#proto_config-proto_enum_lorem_data_type)
     - [proto_enum_months](#proto_config-proto_enum_months)
     - [proto_enum_name_data_type](#proto_config-proto_enum_name_data_type)
-    - [proto_enum_one_to_relation_type](#proto_config-proto_enum_one_to_relation_type)
     - [proto_enum_phone_data_type](#proto_config-proto_enum_phone_data_type)
     - [proto_enum_primary_key_type](#proto_config-proto_enum_primary_key_type)
     - [proto_enum_print_access](#proto_config-proto_enum_print_access)
@@ -2749,19 +2748,6 @@ with history |
 | M_JOB_DESCRIPTOR | 8 |  |
 | M_JOB_AREA | 9 |  |
 | M_JOB_TYPE | 10 |  |
-
-
-
-<a name="proto_config-proto_enum_one_to_relation_type"></a>
-
-### proto_enum_one_to_relation_type
-@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| MANY_TO_ONE | 0 | @attr [Description(&#34;Many to One&#34;)] |
-| ONE_TO_ONE | 1 | @attr [Description(&#34;One to One&#34;)] |
-| ONE_TO_MANY | 2 | @attr [Description(&#34;One to Many&#34;)] |
 
 
 

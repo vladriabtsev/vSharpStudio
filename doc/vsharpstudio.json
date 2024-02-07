@@ -1304,29 +1304,6 @@
           ]
         },
         {
-          "name": "proto_enum_one_to_relation_type",
-          "longName": "proto_enum_one_to_relation_type",
-          "fullName": "proto_config.proto_enum_one_to_relation_type",
-          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
-          "values": [
-            {
-              "name": "MANY_TO_ONE",
-              "number": "0",
-              "description": "@attr [Description(\"Many to One\")]"
-            },
-            {
-              "name": "ONE_TO_ONE",
-              "number": "1",
-              "description": "@attr [Description(\"One to One\")]"
-            },
-            {
-              "name": "ONE_TO_MANY",
-              "number": "2",
-              "description": "@attr [Description(\"One to Many\")]"
-            }
-          ]
-        },
-        {
           "name": "proto_enum_phone_data_type",
           "longName": "proto_enum_phone_data_type",
           "fullName": "proto_config.proto_enum_phone_data_type",

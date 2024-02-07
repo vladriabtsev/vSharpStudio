@@ -414,16 +414,6 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		M_JOB_TYPE = 10,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumOneToRelationType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
-	{
-		[Description("Many to One")]
-		MANY_TO_ONE = 0,
-		[Description("One to One")]
-		ONE_TO_ONE = 1,
-		[Description("One to Many")]
-		ONE_TO_MANY = 2,
-	}
-	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumPhoneDataType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		PH_NONE = 0,
