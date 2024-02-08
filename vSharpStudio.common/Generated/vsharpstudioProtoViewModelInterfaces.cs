@@ -174,6 +174,20 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		[Browsable(false)]
 		[Description("Any")]
 		ANY = 131,
+		[Browsable(false)]
+		REF_DETAIL_TO_PARENT_DETAIL = 141,
+		[Browsable(false)]
+		REF_DETAIL_TO_PARENT_CATALOG = 142,
+		[Browsable(false)]
+		REF_DETAIL_TO_PARENT_CATALOG_FOLDER = 143,
+		[Browsable(false)]
+		REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER = 144,
+		[Browsable(false)]
+		REF_TO_SELF_TREE_CATALOG_PARENT = 145,
+		[Browsable(false)]
+		REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT = 146,
+		[Browsable(false)]
+		REF_DETAIL_TO_PARENT_DOCUMENT = 147,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumDatabaseDataType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18

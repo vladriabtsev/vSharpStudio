@@ -476,6 +476,41 @@
               "name": "ANY",
               "number": "131",
               "description": "@attr [Browsable(false)]\n@attr [Description(\"Any\")]"
+            },
+            {
+              "name": "REF_DETAIL_TO_PARENT_DETAIL",
+              "number": "141",
+              "description": "@attr [Browsable(false)]"
+            },
+            {
+              "name": "REF_DETAIL_TO_PARENT_CATALOG",
+              "number": "142",
+              "description": "@attr [Browsable(false)]"
+            },
+            {
+              "name": "REF_DETAIL_TO_PARENT_CATALOG_FOLDER",
+              "number": "143",
+              "description": "@attr [Browsable(false)]"
+            },
+            {
+              "name": "REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER",
+              "number": "144",
+              "description": "@attr [Browsable(false)]"
+            },
+            {
+              "name": "REF_TO_SELF_TREE_CATALOG_PARENT",
+              "number": "145",
+              "description": "@attr [Browsable(false)]"
+            },
+            {
+              "name": "REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT",
+              "number": "146",
+              "description": "@attr [Browsable(false)]"
+            },
+            {
+              "name": "REF_DETAIL_TO_PARENT_DOCUMENT",
+              "number": "147",
+              "description": "@attr [Browsable(false)]"
             }
           ]
         },

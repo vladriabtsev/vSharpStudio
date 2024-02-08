@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,7 +53,7 @@ namespace vSharpStudio.common
         IProperty GetPropertyBool(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable);
         IProperty GetPropertyNumber(ITreeConfigNode parent, string guid, string name, uint length, uint accuracy, bool isNullable);
         IProperty GetPropertyInt(ITreeConfigNode parent, string guid, string name, bool isPositive, bool isNullable);
-        IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable);
+        //IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable);
         IProperty GetPropertyRefDimension(IRegister parent, string guid, string name, uint position, bool isNullable);
         IProperty GetPropertyRefCatalog(ITreeConfigNode parent, string guid, ICatalog c, uint position, bool isNullable);
         IProperty GetPropertyCatalogCode(ITreeConfigNode parent, string guid, uint length, bool isNullable);
@@ -71,6 +72,13 @@ namespace vSharpStudio.common
         IProperty GetPropertyDocument(ITreeConfigNode parent, string guid, string name, string docGuid, uint position, bool isNullable);
         IProperty GetPropertyAny(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable);
 
+        IProperty GetPropertyRef(IDetail fromObject, IDetail toObject, string guid, string name, uint position, bool isNullable);
+        IProperty GetPropertyRef(IDetail fromObject, ICatalog toObject, string guid, string name, uint position, bool isNullable);
+        IProperty GetPropertyRef(IDetail fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable);
+        IProperty GetPropertyRef(IDetail fromObject, IDocument toObject, string guid, string name, uint position, bool isNullable);
+        IProperty GetPropertyRef(ICatalog fromObject, ICatalog toObject, string guid, string name, uint position, bool isNullable);
+        IProperty GetPropertyRef(ICatalog fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable);
+        IProperty GetPropertyRef(ICatalogFolder fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable);
 
         //IProperty GetPropertyBool(string guid, string name, bool isNullable);
         //IProperty GetPropertyInt(string guid, uint length, string name);

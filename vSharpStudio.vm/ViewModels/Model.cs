@@ -796,24 +796,6 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = 7;
             return res;
         }
-        public IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable = false)
-        {
-            var res = new Property(parent, guid, name, true);
-            res.DataType = (DataType)this.GetIdRefDataType(res, isNullable);
-            res.DataType.IsRefParent = true;
-            res.IsHidden = true;
-            res.Position = position;
-            return res;
-        }
-        public IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable = false)
-        {
-            var res = new Property(parent, guid, name, true);
-            res.DataType = (DataType)this.GetIdRefDataType(res, isNullable);
-            res.DataType.IsRefParent = true;
-            res.IsHidden = true;
-            res.Position = 8;
-            return res;
-        }
         public IProperty GetPropertyRefDimension(IRegister parent, string guid, string name, uint position, bool isNullable = false)
         {
             var res = new Property(parent, guid, name, true);
@@ -912,6 +894,101 @@ namespace vSharpStudio.vm.ViewModels
             return res;
         }
 
+        //public IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable = false)
+        //{
+        //    var res = new Property(parent, guid, name, true);
+        //    res.DataType = (DataType)this.GetIdRefDataType(res, isNullable);
+        //    res.DataType.IsRefParent = true;
+        //    res.IsHidden = true;
+        //    res.Position = 8;
+        //    return res;
+        //}
+        public IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable = false)
+        {
+            var res = new Property(parent, guid, name, true);
+            res.DataType = (DataType)this.GetIdRefDataType(res, isNullable);
+            res.DataType.IsRefParent = true;
+            res.IsHidden = true;
+            res.Position = position;
+            return res;
+        }
+        public IProperty GetPropertyRef(IDetail fromObject, IDetail toObject, string guid, string name, uint position, bool isNullable)
+        {
+            var res = new Property(fromObject, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = new DataType(fromObject);
+            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_DETAIL;
+            res.DataType.IsNullable = isNullable;
+            return res;
+        }
+        public IProperty GetPropertyRef(IDetail fromObject, ICatalog toObject, string guid, string name, uint position, bool isNullable)
+        {
+            var res = new Property(fromObject, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = new DataType(fromObject);
+            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_CATALOG;
+            res.DataType.IsNullable = isNullable;
+            return res;
+        }
+        public IProperty GetPropertyRef(IDetail fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable)
+        {
+            var res = new Property(fromObject, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = new DataType(fromObject);
+            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER;
+            res.DataType.IsNullable = isNullable;
+            return res;
+        }
+        public IProperty GetPropertyRef(IDetail fromObject, IDocument toObject, string guid, string name, uint position, bool isNullable)
+        {
+            var res = new Property(fromObject, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = new DataType(fromObject);
+            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT;
+            res.DataType.IsNullable = isNullable;
+            return res;
+        }
+        public IProperty GetPropertyRef(ICatalog fromObject, ICatalog toObject, string guid, string name, uint position, bool isNullable)
+        {
+            var res = new Property(fromObject, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = new DataType(fromObject);
+            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.DataTypeEnum = EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT;
+            res.DataType.IsNullable = isNullable;
+            return res;
+        }
+        public IProperty GetPropertyRef(ICatalog fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable)
+        {
+            var res = new Property(fromObject, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = new DataType(fromObject);
+            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.DataTypeEnum = EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER;
+            res.DataType.IsNullable = isNullable;
+            return res;
+        }
+        public IProperty GetPropertyRef(ICatalogFolder fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable)
+        {
+            var res = new Property(fromObject, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = new DataType(fromObject);
+            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.DataTypeEnum = EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT;
+            res.DataType.IsNullable = isNullable;
+            return res;
+        }
 
         public IProperty GetPropertyCatalog(ITreeConfigNode parent, string guid, string name, string catGuid, uint position, bool isNullable)
         {

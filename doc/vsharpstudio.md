@@ -2474,6 +2474,13 @@ with history |
 | DOCUMENT | 111 | @attr [Browsable(false)] @attr [Description(&#34;Document&#34;)] |
 | DOCUMENTS | 121 | @attr [Browsable(false)] @attr [Description(&#34;Documents&#34;)] |
 | ANY | 131 | @attr [Browsable(false)] @attr [Description(&#34;Any&#34;)] |
+| REF_DETAIL_TO_PARENT_DETAIL | 141 | @attr [Browsable(false)] |
+| REF_DETAIL_TO_PARENT_CATALOG | 142 | @attr [Browsable(false)] |
+| REF_DETAIL_TO_PARENT_CATALOG_FOLDER | 143 | @attr [Browsable(false)] |
+| REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER | 144 | @attr [Browsable(false)] |
+| REF_TO_SELF_TREE_CATALOG_PARENT | 145 | @attr [Browsable(false)] |
+| REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT | 146 | @attr [Browsable(false)] |
+| REF_DETAIL_TO_PARENT_DOCUMENT | 147 | @attr [Browsable(false)] |
 
 
 
