@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IItemWithDetails, INodeWithProperties, IRoleAccess, IDocumentAccessRoles
+    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, INodeWithProperties, IRoleAccess, IDocumentAccessRoles
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -312,6 +312,82 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
+        public bool IsDocWithSharedProperties
+        {
+            get
+            {
+                return this.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties.Count > 0;
+            }
+        }
+        public void GetNormalProperties(List<IProperty> res)
+        {
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                res.Add(t);
+            }
+        }
+        public IReadOnlyList<IProperty> GetProperties()
+        {
+            List<IProperty> res = new List<IProperty>();
+            foreach (var t in this.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties)
+            {
+                res.Add(t);
+            }
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                res.Add(t);
+            }
+            return res;
+        }
+        //public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
+        //{
+        //    var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
+        //    var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
+        //    res.Add(prp);
+        //    if (isOptimistic)
+        //    {
+        //        prp = model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
+        //        res.Add(prp);
+        //    }
+        //    //var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
+        //    //var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
+        //    //res.Add(prp);
+        //    //prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
+        //    //res.Add(prp);
+        //    //prp = model.GetPropertyIsOpen(this.GroupProperties, this.PropertyIsOpenGuid);
+        //    //res.Add(prp);
+        //    //if (this.ParentCatalog.UseFolderTypeExplicitly)
+        //    //{
+        //    //    prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
+        //    //    res.Add(prp);
+        //    //}
+        //    ////if (isOptimistic)
+        //    ////{
+        //    ////    prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
+        //    ////    res.Add(prp);
+        //    ////}
+        //    //if (this.GetUseCodeProperty())
+        //    //{
+        //    //    prp = this.GetCodeProperty(model.ParentConfig);
+        //    //    res.Add(prp);
+        //    //}
+        //    //if (this.GetUseNameProperty())
+        //    //{
+        //    //    prp = model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
+        //    //    res.Add(prp);
+        //    //}
+        //    //if (this.GetUseDescriptionProperty())
+        //    //{
+        //    //    prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
+        //    //    res.Add(prp);
+        //    //}
+        //}
+        //[Browsable(false)]
+        //public string CodePropertySettingsText { get { return this.DocNumberPropertySettings.ToString(); } }
+        //public void NotifyCodePropertySettingsChanged()
+        //{
+        //    this.OnPropertyChanged(nameof(this.CodePropertySettingsText));
+        //}
         /// <summary>
         /// All included properties (shared and normal)
         /// Shared included first
@@ -365,13 +441,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public bool IsDocWithSharedProperties
-        {
-            get
-            {
-                return this.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties.Count > 0;
-            }
-        }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
@@ -390,26 +459,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IProperty>();
             GetSpecialProperties(res, isOptimistic);
-            foreach (var t in this.GroupProperties.ListProperties)
-            {
-                res.Add(t);
-            }
-            return res;
-        }
-        public void GetNormalProperties(List<IProperty> res)
-        {
-            foreach (var t in this.GroupProperties.ListProperties)
-            {
-                res.Add(t);
-            }
-        }
-        public IReadOnlyList<IProperty> GetProperties()
-        {
-            List<IProperty> res = new List<IProperty>();
-            foreach (var t in this.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties)
-            {
-                res.Add(t);
-            }
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 res.Add(t);
@@ -508,49 +557,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        //public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
-        //{
-        //    var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
-        //    var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
-        //    res.Add(prp);
-        //    if (isOptimistic)
-        //    {
-        //        prp = model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
-        //        res.Add(prp);
-        //    }
-        //    //var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
-        //    //var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
-        //    //res.Add(prp);
-        //    //prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
-        //    //res.Add(prp);
-        //    //prp = model.GetPropertyIsOpen(this.GroupProperties, this.PropertyIsOpenGuid);
-        //    //res.Add(prp);
-        //    //if (this.ParentCatalog.UseFolderTypeExplicitly)
-        //    //{
-        //    //    prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
-        //    //    res.Add(prp);
-        //    //}
-        //    ////if (isOptimistic)
-        //    ////{
-        //    ////    prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
-        //    ////    res.Add(prp);
-        //    ////}
-        //    //if (this.GetUseCodeProperty())
-        //    //{
-        //    //    prp = this.GetCodeProperty(model.ParentConfig);
-        //    //    res.Add(prp);
-        //    //}
-        //    //if (this.GetUseNameProperty())
-        //    //{
-        //    //    prp = model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
-        //    //    res.Add(prp);
-        //    //}
-        //    //if (this.GetUseDescriptionProperty())
-        //    //{
-        //    //    prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
-        //    //    res.Add(prp);
-        //    //}
-        //}
         public ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen)
         {
             ViewListData? viewListData = null;
@@ -639,12 +645,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        //[Browsable(false)]
-        //public string CodePropertySettingsText { get { return this.DocNumberPropertySettings.ToString(); } }
-        //public void NotifyCodePropertySettingsChanged()
-        //{
-        //    this.OnPropertyChanged(nameof(this.CodePropertySettingsText));
-        //}
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>

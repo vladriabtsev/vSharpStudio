@@ -8,11 +8,10 @@ using vSharpStudio.common.DiffModel;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IItemWithDetails
+    public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, ICompositeName
     {
+        string GetDebuggerDisplay(bool isOptimistic);
         IGroupListCatalogs ParentGroupListCatalogsI { get; }
-        void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
-        ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen);
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();
@@ -27,6 +26,14 @@ namespace vSharpStudio.common
         IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access);
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
         string FullName { get; } // name with config name
-        string GetDebuggerDisplay(bool isOptimistic);
+        //string GetDebuggerDisplay(bool isOptimistic);
+        IProperty GetCodeProperty(List<IProperty> lst);
+        IProperty GetNameProperty(List<IProperty> lst);
+        IProperty GetDescriptionProperty(List<IProperty> lst);
+
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false);
+        void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
+        IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjDbGen);
+        IReadOnlyList<IForm> GetListForms(string guidAppPrjGen);
     }
 }

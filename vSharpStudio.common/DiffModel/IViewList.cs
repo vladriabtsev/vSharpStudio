@@ -42,8 +42,8 @@ namespace vSharpStudio.common
         public IProperty? PropertyRefParent { get; private set; }
         public IProperty? PropertyIsFolder { get; private set; }
     }
-    public interface IViewList
-    {
-        ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen);
-    }
+    //public interface IViewList
+    //{
+    //    ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen);
+    //}
 }

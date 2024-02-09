@@ -15,7 +15,7 @@ using vSharpStudio.common.DiffModel;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IItemWithDetails, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles
+    public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -319,7 +319,7 @@ namespace vSharpStudio.vm.ViewModels
                 res.Add(t);
             }
         }
-        private IProperty GetCodeProperty(List<IProperty> lst)
+        public IProperty GetCodeProperty(List<IProperty> lst)
         {
             IProperty prp = null!;
             if (this.GetUseCodeProperty())
@@ -341,7 +341,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return prp;
         }
-        private IProperty GetNameProperty(List<IProperty> lst)
+        public IProperty GetNameProperty(List<IProperty> lst)
         {
             IProperty prp = null!;
             if (this.GetUseNameProperty())
@@ -351,7 +351,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return prp;
         }
-        private IProperty GetDescriptionProperty(List<IProperty> lst)
+        public IProperty GetDescriptionProperty(List<IProperty> lst)
         {
             IProperty prp = null!;
             if (this.GetUseDescriptionProperty())
@@ -434,7 +434,6 @@ namespace vSharpStudio.vm.ViewModels
             };
             return res;
         }
-
         private IProperty GetCodeProperty(IConfig cfg)
         {
             IProperty prp = null!;

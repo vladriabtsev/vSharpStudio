@@ -8,16 +8,11 @@ using vSharpStudio.common.DiffModel;
 
 namespace vSharpStudio.common
 {
-    public partial interface IDocument : ITreeConfigNodeSortable, IGetNodeSetting, IItemWithDetails
+    public partial interface IDocument : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName
     {
         IGroupListDocuments ParentGroupListDocumentsI { get; }
         IReadOnlyList<IProperty> GetProperties();
-        IReadOnlyList<IProperty> GetAllProperties(bool isOptimistic);
-        IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
-        IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen);
         bool IsDocWithSharedProperties { get; }
-        void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
-        ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen);
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();
@@ -30,5 +25,15 @@ namespace vSharpStudio.common
         string FullName { get; } // name with config name
         string GetDebuggerDisplay(bool isOptimistic);
         IDocumentEnumeratorSequence? Sequence { get; }
+
+        IForm GetForm(FormType ftype, string guidAppPrjGen);
+        IReadOnlyList<IForm> GetListForms(string guidAppPrjGen);
+        IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen);
+        IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
+        IReadOnlyList<IProperty> GetPropertiesWithShared(bool isOptimistic, bool isExcludeSpecial = false);
+        
+        void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
+        IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
     }
 }

@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class Detail : ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, IItemWithDetails, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles, ILayoutParameters
+    public partial class Detail : ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles, ILayoutParameters
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -319,47 +319,6 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
-        public IForm GetForm(FormType ftype, string guidAppPrjGen)
-        {
-            var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
-            if (f == null)
-            {
-                var lstp = new List<IProperty>();
-                int i = 0;
-                foreach (var t in this.GroupProperties.ListProperties)
-                {
-                    if (t.IsIncluded(guidAppPrjGen))
-                    {
-                        i++;
-                        if (i > 1)
-                            break;
-                        lstp.Add(t);
-                    }
-                }
-                this.GetSpecialProperties(lstp, false);
-                f = new Form(this.GroupForms, ftype, lstp);
-            }
-            else
-            {
-                var lstp = new List<IProperty>();
-                foreach (var t in f.ListAllNotSpecialProperties)
-                {
-                    lstp.Add((IProperty)t);
-                }
-                this.GetSpecialProperties(lstp, false);
-                f = new Form(this.GroupForms, ftype, lstp);
-            }
-            return f;
-        }
-        public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
-        {
-            var res = new List<IForm>
-            {
-                this.GetForm(FormType.ListComboBox, guidAppPrjGen),
-                this.GetForm(FormType.ListDataGrid, guidAppPrjGen)
-            };
-            return res;
-        }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
@@ -472,6 +431,47 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                 }
             }
+            return res;
+        }
+        public IForm GetForm(FormType ftype, string guidAppPrjGen)
+        {
+            var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
+            if (f == null)
+            {
+                var lstp = new List<IProperty>();
+                int i = 0;
+                foreach (var t in this.GroupProperties.ListProperties)
+                {
+                    if (t.IsIncluded(guidAppPrjGen))
+                    {
+                        i++;
+                        if (i > 1)
+                            break;
+                        lstp.Add(t);
+                    }
+                }
+                this.GetSpecialProperties(lstp, false);
+                f = new Form(this.GroupForms, ftype, lstp);
+            }
+            else
+            {
+                var lstp = new List<IProperty>();
+                foreach (var t in f.ListAllNotSpecialProperties)
+                {
+                    lstp.Add((IProperty)t);
+                }
+                this.GetSpecialProperties(lstp, false);
+                f = new Form(this.GroupForms, ftype, lstp);
+            }
+            return f;
+        }
+        public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
+        {
+            var res = new List<IForm>
+            {
+                this.GetForm(FormType.ListComboBox, guidAppPrjGen),
+                this.GetForm(FormType.ListDataGrid, guidAppPrjGen)
+            };
             return res;
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()

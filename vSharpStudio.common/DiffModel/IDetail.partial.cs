@@ -8,11 +8,9 @@ using vSharpStudio.common.DiffModel;
 
 namespace vSharpStudio.common
 {
-    public partial interface IDetail : ITreeConfigNodeSortable, IGetNodeSetting, IItemWithDetails
+    public partial interface IDetail : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName
     {
-        //IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);
-        void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
-        ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen);
+        string GetDebuggerDisplay(bool isOptimistic);
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();
@@ -25,6 +23,11 @@ namespace vSharpStudio.common
         IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access);
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
         string FullName { get; } // name with config name
-        string GetDebuggerDisplay(bool isOptimistic);
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
+        void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
+        IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
+
+        IForm GetForm(FormType ftype, string guidAppPrjGen);
+        IReadOnlyList<IForm> GetListForms(string guidAppPrjGen);
     }
 }

@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
-        IItemWithDetails, INodeWithProperties, IViewList, ITreeConfigNodeSortable, IRoleAccess, ICatalogDetailAccessRoles
+        INodeWithProperties, ITreeConfigNodeSortable, IRoleAccess, ICatalogDetailAccessRoles
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -531,7 +531,7 @@ namespace vSharpStudio.vm.ViewModels
                 res.Add(t);
             }
         }
-        private IProperty GetCodeProperty(List<IProperty> lst)
+        public IProperty GetCodeProperty(List<IProperty> lst)
         {
             IProperty prp = null!;
             if (this.GetUseCodeProperty())
@@ -553,7 +553,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return prp;
         }
-        private IProperty GetNameProperty(List<IProperty> lst)
+        public IProperty GetNameProperty(List<IProperty> lst)
         {
             IProperty prp = null!;
             if (this.GetUseNameProperty())
@@ -563,7 +563,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return prp;
         }
-        private IProperty GetDescriptionProperty(List<IProperty> lst)
+        public IProperty GetDescriptionProperty(List<IProperty> lst)
         {
             IProperty prp = null!;
             if (this.GetUseDescriptionProperty())

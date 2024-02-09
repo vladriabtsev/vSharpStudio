@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalogFolder : ITreeConfigNodeSortable, IGetNodeSetting, IItemWithDetails
+    public partial interface ICatalogFolder : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName
     {
         ICatalog ParentCatalogI { get; }
+        string GetDebuggerDisplay(bool isOptimistic);
+
         void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
@@ -23,6 +25,14 @@ namespace vSharpStudio.common
         EnumPrintAccess GetRoleCatalogPrint(IRole role);
         IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access);
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
-        string GetDebuggerDisplay(bool isOptimistic);
+        //string GetDebuggerDisplay(bool isOptimistic);
+        IProperty GetCodeProperty(List<IProperty> lst);
+        IProperty GetNameProperty(List<IProperty> lst);
+        IProperty GetDescriptionProperty(List<IProperty> lst);
+
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false);
+        IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
+        IForm GetForm(FormType ftype, string guidAppPrjGen);
+        IReadOnlyList<IForm> GetListForms(string guidAppPrjGen);
     }
 }

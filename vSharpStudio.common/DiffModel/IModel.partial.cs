@@ -108,5 +108,7 @@ namespace vSharpStudio.common
         string GetUniquePropertyFullShortID(IProperty p);
         string GetUniquePropertyShortID(IProperty p);
         EnumRefType RefTypeForNode(ITreeConfigNode n);
+
+        IForm CreateForm(IGroupListForms groupForms, FormType formType, List<IProperty> lst);
     }
 }

@@ -368,9 +368,9 @@ namespace vSharpStudio.vm.ViewModels
                 return new SortedObservableCollection<ITreeConfigNodeSortable>(lst);
             }
         }
-        public IReadOnlyList<IItemWithDetails> GetIncludedSubItems(string guidAppPrjDbGen)
+        public IReadOnlyList<IDetail> GetIncludedSubItems(string guidAppPrjDbGen)
         {
-            return new List<IItemWithDetails>();
+            return new List<IDetail>();
         }
         public IReadOnlyList<IForm> GetListForms(string guidAppPrjDbGen)
         {

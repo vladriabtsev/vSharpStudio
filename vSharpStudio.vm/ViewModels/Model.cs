@@ -73,7 +73,7 @@ namespace vSharpStudio.vm.ViewModels
             //this.DbSettings.PKeyType = EnumPrimaryKeyType.INT;
             //this.DbSettings.VersionFieldGuid = System.Guid.NewGuid().ToString();
             //this.DbSettings.VersionFieldName = "Version";
-            this._PropertyCtlgCodeGuid= System.Guid.NewGuid().ToString();
+            this._PropertyCtlgCodeGuid = System.Guid.NewGuid().ToString();
             this._PropertyCtlgDescriptionGuid = System.Guid.NewGuid().ToString();
             this._PropertyCtlgIsFolderGuid = System.Guid.NewGuid().ToString();
             this._PropertyCtlgNameGuid = System.Guid.NewGuid().ToString();
@@ -1228,8 +1228,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else if (node is IDetail t)
             {
-                return GetTypeCacheIdWithParents((IItemWithDetails)t.ParentGroupListDetailsI.Parent!,
-                    $"t{t.ShortId.ToString()}");
+                return GetTypeCacheIdWithParents(t, $"t{t.ShortId.ToString()}");
             }
             else if (node is IRegister r)
             {
@@ -1253,22 +1252,21 @@ namespace vSharpStudio.vm.ViewModels
             }
             ThrowHelper.ThrowInvalidOperationException();
             return "";
-            string GetTypeCacheIdWithParents(IItemWithDetails node, string res)
+            string GetTypeCacheIdWithParents(IDetail node, string res)
             {
                 if (node is IModel)
                     return res;
                 Debug.Assert(node.Parent != null);
-                if (node is IDetail t)
+                if (node.Parent is IDetail t)
                 {
-                    var gt = t.ParentGroupListDetailsI;
-                    return $"t{t.ShortId.ToString()}{res}";
+                    return GetTypeCacheIdWithParents(t, $"t{t.ShortId.ToString()}{res}");
                 }
-                else if (node is ICatalog c)
+                else if (node.Parent is ICatalog c)
                 {
                     var gc = c.ParentGroupListCatalogsI;
                     return $"c{c.ShortId.ToString()}{res}";
                 }
-                else if (node is IDocument d)
+                else if (node.Parent is IDocument d)
                 {
                     var gd = d.ParentGroupListDocumentsI;
                     return $"d{d.ShortId.ToString()}{res}";
@@ -1551,7 +1549,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 ThrowHelper.ThrowNotSupportedException($"Amount of types with short reference ID exceeded {imax}.");
             }
-            switch(this.RefTypeForNode(n))
+            switch (this.RefTypeForNode(n))
             {
                 case EnumRefType.REF_TYPE_CONSTANT:
                     id = 1u;
@@ -1587,6 +1585,10 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(id < (0x1 << (32 - nbits)));
             res = res + (id << nbits);
             return res;
+        }
+        public IForm CreateForm(IGroupListForms groupForms, FormType formType, List<IProperty> lst)
+        {
+            return new Form(groupForms, formType, lst);
         }
     }
 

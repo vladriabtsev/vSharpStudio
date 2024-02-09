@@ -11,5 +11,6 @@ namespace vSharpStudio.common
     {
         IGroupListForms ParentGroupListFormsI { get; }
         IReadOnlyList<IProperty> ListProperties { get; }
+        SortedObservableCollection<ISortingValue> ListAllNotSpecialProperties { get; }
     }
 }
