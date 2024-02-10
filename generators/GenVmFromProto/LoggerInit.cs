@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Serilog;
-using Serilog.Extensions.Logging;
 using CommunityToolkit.Diagnostics;
 using ApplicationLogging;
+using Serilog.Extensions.Logging;
 
 namespace GenVmFromProto
 {
