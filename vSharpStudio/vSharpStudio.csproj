@@ -52,8 +52,10 @@
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
     <!--<PackageReference Include="System.IO.FileSystem.Primitives" Version="4.1.0" />-->
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-windows'">
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="[7.0.0,8)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="[7.0.0,8)" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="[7.0.0,8)" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="7.0.0" />
@@ -71,7 +73,6 @@
     <PackageReference Include="Microsoft.Build.Framework" Version="17.8.3" />
     <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.8.3" />
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.8.3" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.9.28">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -81,14 +82,12 @@
     <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
     <PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
     <PackageReference Include="Microsoft.CodeAnalysis" Version="4.8.0" />
-    <!--<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />-->
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.8.0" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\SettingsFile_16x.png" />

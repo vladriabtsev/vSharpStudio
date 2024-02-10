@@ -13,12 +13,17 @@
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
   </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-windows'">
+    <!--<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="[7.0.0,8)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="[7.0.0,8)" />-->
+    <PackageReference Include="Serilog.Extensions.Logging" Version="[7.0.0,8)" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="[7.0.0,8)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[7.0.1,8)" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="FluentValidation" Version="11.9.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj" />
