@@ -508,7 +508,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else
                 {
-                    prp = model.GetPropertyRef(this, this, this.PropertyCtlgRefSelfGuid, "RefTreeParent", 1, true);
+                    prp = model.GetPropertyRef(this, this, this.PropertyCtlgRefSelfGuid, "Ref" + this.CompositeName, 1, true);
                     res.Add(prp);
                     prp = model.GetPropertyIsFolder(this.GroupProperties, this.Cfg.Model.PropertyCtlgIsFolderGuid, false);
                     res.Add(prp);

@@ -33,36 +33,90 @@ namespace vSharpStudio.vm.ViewModels
             this._Length = 10;
             this._DataTypeEnum = EnumDataType.STRING;
             //Init();
-            this.PropertyChanging += DataType_PropertyChanging;
+            //this.PropertyChanging += DataType_PropertyChanging;
             //this.PropertyChanged += DataType_PropertyChanged;
         }
-        private void DataType_PropertyChanging(object? sender, PropertyChangingEventArgs e)
+        partial void OnDataTypeEnumChanging(ref EnumDataType to, ref bool isCancel)
         {
-            switch (e.PropertyName)
+            switch (this.DataTypeEnum)
             {
-                case nameof(this.DataTypeEnum):
-                    switch (this.DataTypeEnum)
+                case EnumDataType.CATALOG:
+                    this.ListObjectRefs.Clear();
+                    if (to == EnumDataType.CATALOGS && !string.IsNullOrWhiteSpace(this.ObjectRef.ConfigObjectGuid))
                     {
-                        case EnumDataType.CATALOG:
-                            this.ListObjectRefs.Clear();
-                            break;
-                        case EnumDataType.CATALOGS:
-                            this.ObjectRef.ConfigObjectGuid = string.Empty;
-                            break;
-                        case EnumDataType.DOCUMENT:
-                            this.ListObjectRefs.Clear();
-                            break;
-                        case EnumDataType.DOCUMENTS:
-                            this._ObjectRef.ConfigObjectGuid = string.Empty;
-                            break;
-                        case EnumDataType.ENUMERATION:
-                            break;
+                        this.ListObjectRefs.Add(this.ObjectRef);
+                        this.ObjectRef.ConfigObjectGuid = string.Empty;
                     }
                     break;
-                default:
+                case EnumDataType.DOCUMENT:
+                    this.ListObjectRefs.Clear();
+                    if (to == EnumDataType.DOCUMENTS && !string.IsNullOrWhiteSpace(this.ObjectRef.ConfigObjectGuid))
+                    {
+                        this.ListObjectRefs.Add(this.ObjectRef);
+                        this.ObjectRef.ConfigObjectGuid = string.Empty;
+                    }
+                    break;
+                case EnumDataType.CATALOGS:
+                    if (this.ListObjectRefs.Count > 1)
+                    {
+                        var mes = "Can't change data type CATALOGS to CATALOG when list selected types for CATALOGS contains more than one type.";
+                        if (VmBindable.isUnitTests)
+                            throw new Exception(mes);
+                        var res = Xceed.Wpf.Toolkit.MessageBox.Show(mes, "Error", System.Windows.MessageBoxButton.OK);
+                        isCancel = true;
+                    }
+                    else if (this.ListObjectRefs.Count == 1)
+                    {
+                        this.ObjectRef.ConfigObjectGuid = this.ListObjectRefs[0].ConfigObjectGuid;
+                    }
+                    this.ListObjectRefs.Clear();
+                    break;
+                case EnumDataType.DOCUMENTS:
+                    if (this.ListObjectRefs.Count > 1)
+                    {
+                        var mes = "Can't change data type DOCUMENTS to DOCUMENT when list selected types for DOCUMENTS contains more than one type.";
+                        if (VmBindable.isUnitTests)
+                            throw new Exception(mes);
+                        var res = Xceed.Wpf.Toolkit.MessageBox.Show(mes, "Error", System.Windows.MessageBoxButton.OK);
+                        isCancel = true;
+                    }
+                    else if (this.ListObjectRefs.Count == 1)
+                    {
+                        this.ObjectRef.ConfigObjectGuid = this.ListObjectRefs[0].ConfigObjectGuid;
+                    }
+                    this.ListObjectRefs.Clear();
+                    break;
+                case EnumDataType.ENUMERATION:
                     break;
             }
         }
+        //private void DataType_PropertyChanging(object? sender, PropertyChangingEventArgs e)
+        //{
+        //    switch (e.PropertyName)
+        //    {
+        //        case nameof(this.DataTypeEnum):
+        //            switch (this.DataTypeEnum)
+        //            {
+        //                case EnumDataType.CATALOG:
+        //                    this.ListObjectRefs.Clear();
+        //                    break;
+        //                case EnumDataType.CATALOGS:
+        //                    this.ObjectRef.ConfigObjectGuid = string.Empty;
+        //                    break;
+        //                case EnumDataType.DOCUMENT:
+        //                    this.ListObjectRefs.Clear();
+        //                    break;
+        //                case EnumDataType.DOCUMENTS:
+        //                    this._ObjectRef.ConfigObjectGuid = string.Empty;
+        //                    break;
+        //                case EnumDataType.ENUMERATION:
+        //                    break;
+        //            }
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
         //private void DataType_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         //{
         //    switch (e.PropertyName)
