@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnDebugStringExtend(ref string mes)
         {
-            mes = mes + $" Cats:{this.GroupListCatalogsRelations.ListCatalogsRelations.Count} Docs:{this.GroupListDocumentsRelations.ListDocumentsRelations.Count}";
+            mes = mes + $" ManyToMany:{this.GroupListManyToManyRelations.ListRelations.Count} OneToOne:{this.GroupListOneToOneRelations.ListRelations.Count}";
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -55,8 +55,8 @@ namespace vSharpStudio.vm.ViewModels
             if (this.Children.Count > 0)
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
-            children.Add(this.GroupListCatalogsRelations, 2);
-            children.Add(this.GroupListDocumentsRelations, 3);
+            children.Add(this.GroupListOneToOneRelations, 2);
+            children.Add(this.GroupListManyToManyRelations, 3);
 
             //this.ListRoles.OnAddingAction = (t) =>
             //{

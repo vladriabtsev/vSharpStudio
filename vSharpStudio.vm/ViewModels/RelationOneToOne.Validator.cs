@@ -50,6 +50,17 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             });
+            this.RuleFor(x => x.RefType).Custom((ref_type, cntx) =>
+            {
+                var rel = (RelationOneToOne)cntx.InstanceToValidate;
+                if (ref_type== common.EnumOneToOneRefType.ONE_TO_ONE_NOT_SELECTED)
+                {
+                    var vf = new ValidationFailure(nameof(rel.RefType), "Relation implementation type is not selected.");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                    return;
+                }
+            });
         }
         private bool IsUnique(RelationOneToOne val)
         {
@@ -62,7 +73,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             }
             RelationsOneToOneGroup p = (RelationsOneToOneGroup)val.Parent;
-            foreach (var t in p.ListDocumentsRelations)
+            foreach (var t in p.ListRelations)
             {
                 if ((val.Guid != t.Guid) && (val.Name == t.Name))
                 {

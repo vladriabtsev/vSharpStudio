@@ -579,6 +579,39 @@ namespace vSharpStudio.vm.ViewModels
             if (!isExcludeSpecial)
                 this.GetSpecialProperties(res, isOptimistic);
             //var model = this.ParentGroupListCatalogs.ParentModel;
+            foreach (var t in this.Cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations)
+            {
+                if (t.GuidObj1 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY))
+                {
+                    Debug.Assert(this.Cfg.DicNodes.ContainsKey(t.GuidObj1));
+                    var nam = "Ref" + ((ICompositeName)this.Cfg.DicNodes[t.GuidObj2]).CompositeName;
+                    if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
+                    {
+                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, nam, t.GuidObj2, (uint)res.Count, true));
+                    }
+                    else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
+                    {
+                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, nam, t.GuidObj2, (uint)res.Count, true));
+                    }
+                    else
+                        throw new NotImplementedException();
+                }
+                if (t.GuidObj2 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY))
+                {
+                    Debug.Assert(this.Cfg.DicNodes.ContainsKey(t.GuidObj1));
+                    var nam = "Ref" + ((ICompositeName)this.Cfg.DicNodes[t.GuidObj1]).CompositeName;
+                    if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
+                    {
+                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, nam, t.GuidObj1, (uint)res.Count, true));
+                    }
+                    else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
+                    {
+                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, nam, t.GuidObj1, (uint)res.Count, true));
+                    }
+                    else
+                        throw new NotImplementedException();
+                }
+            }
             this.GetCodeProperty(res);
             this.GetNameProperty(res);
             this.GetDescriptionProperty(res);

@@ -16,11 +16,11 @@ using Microsoft.CodeAnalysis.Operations;
 using NSubstitute;
 using Xceed.Wpf.Toolkit;
 using System.Threading;
-using Microsoft.Build.Utilities;
 using Newtonsoft.Json.Linq;
 using vSharpStudio.ViewModels;
 using Polly.Caching;
 using ApplicationLogging;
+using System.Threading.Tasks;
 
 namespace vSharpStudio.Unit
 {
@@ -1028,7 +1028,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(6u, cfg2.Model.LastTypeShortRefId);
         }
         [TestMethod]
-        public void HistoryPropertyTests()
+        async public Task RelationTests()
         {
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
@@ -1036,45 +1036,92 @@ namespace vSharpStudio.Unit
             // Use History is saved and restored complex OneToOne data
             // Use History is saved and restored complex OneToMany data
             // Use History is saved and restored complex ManyToMany data
-            Assert.AreEqual(0, cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsRelations.Count);
-            var c1 = cfg.Model.GroupCatalogs.AddCatalog();
-            var c2 = cfg.Model.GroupCatalogs.AddCatalog();
 
+
+            #region One To One
+            Assert.AreEqual(0, cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations.Count);
+            var c1 = cfg.Model.GroupCatalogs.AddCatalog("cat");
+            var d2 = cfg.Model.GroupDocuments.AddDocument("test_doc");
+            var seq = cfg.Model.GroupDocuments.GroupListSequences.AddSequence("seq");
+            d2.SequenceGuid = seq.Guid;
+
+            // 1. EnumOneToOneRefType.ONE_TO_ONE_NOT_SELECTED
             // without history, not optimistic
-            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsRelations.Clear();
-            var rel = cfg.Model.GroupRelations.GroupListCatalogsRelations.AddRelation("test_rel", c1, c2, false);
-            var lst = rel.GetIncludedProperties(null, false, false);
-            // Id, RefCat1, RefCat2
-            Assert.AreEqual(3, lst.Count);
-            cfg.Model.Validate();
-            Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
+            var rel = cfg.Model.GroupRelations.GroupListOneToOneRelations.AddRelation("test_one_to_one_rel", c1, d2, false);
+            var lst = rel.GetIncludedProperties(null, false, true);
+            Assert.AreEqual(0, lst.Count);
+            await vm.BtnConfigValidateAsync.ExecuteAsync();
+            // reference implementation type is not selected
+            Assert.AreEqual(1, vm.Config.CountErrors);
+            Assert.AreEqual("Relation implementation type is not selected.", vm.Config.ValidationCollection[0].Message);
 
-            // without history, optimistic
-            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsRelations.Clear();
-            rel = cfg.Model.GroupRelations.GroupListCatalogsRelations.AddRelation("test_rel", c1, c2, false);
-            lst = rel.GetIncludedProperties(null, true, false);
-            // Id, RefCat1, RefCat2, version
-            Assert.AreEqual(4, lst.Count);
-            cfg.Model.Validate();
-            Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
-
-            // history, optimistic
-            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsRelations.Clear();
-            rel = cfg.Model.GroupRelations.GroupListCatalogsRelations.AddRelation("test_rel", c1, c2, true);
-            lst = rel.GetIncludedProperties(null, true, false);
-            // Id, RefCat1, RefCat2, date_time_utc, version
-            Assert.AreEqual(5, lst.Count);
-            cfg.Model.Validate();
-            Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
-
-            // history, not optimistic
-            cfg.Model.GroupRelations.GroupListCatalogsRelations.ListCatalogsRelations.Clear();
-            rel = cfg.Model.GroupRelations.GroupListCatalogsRelations.AddRelation("test_rel", c1, c2, true);
+            // 2.
+            rel.RefType = EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS;
+            await vm.BtnConfigValidateAsync.ExecuteAsync();
+            Assert.AreEqual(0, vm.Config.CountErrors);
             lst = rel.GetIncludedProperties(null, false, false);
-            // Id, RefCat1, RefCat2, date_time_utc
-            Assert.AreEqual(4, lst.Count);
-            cfg.Model.Validate();
-            Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
+            Assert.AreEqual(0, lst.Count);
+            // RefCat2
+            lst = c1.GetIncludedProperties(null, false, true);
+            Assert.AreEqual(3, lst.Count);
+            Assert.AreEqual("Ref" + d2.CompositeName, lst[0].Name);
+            // RefCat1
+            lst = d2.GetIncludedProperties(null, false, true);
+            Assert.AreEqual(1, lst.Count);
+            Assert.AreEqual("Ref" + c1.CompositeName, lst[0].Name);
+
+            // 3.
+            rel.RefType = EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY;
+            await vm.BtnConfigValidateAsync.ExecuteAsync();
+            Assert.AreEqual(0, vm.Config.CountErrors);
+            lst = rel.GetIncludedProperties(null, false, false);
+            Assert.AreEqual(0, lst.Count);
+            // RefCat2
+            lst = c1.GetIncludedProperties(null, false, true);
+            Assert.AreEqual(3, lst.Count);
+            Assert.AreEqual("Ref" + d2.CompositeName, lst[0].Name);
+            // nothing
+            lst = d2.GetIncludedProperties(null, false, true);
+            Assert.AreEqual(0, lst.Count);
+
+            // 4.
+            rel.RefType = EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY;
+            await vm.BtnConfigValidateAsync.ExecuteAsync();
+            Assert.AreEqual(0, vm.Config.CountErrors);
+            lst = rel.GetIncludedProperties(null, false, false);
+            Assert.AreEqual(0, lst.Count);
+            // nothing
+            lst = c1.GetIncludedProperties(null, false, true);
+            Assert.AreEqual(2, lst.Count);
+            // RefCat1
+            lst = d2.GetIncludedProperties(null, false, true);
+            Assert.AreEqual(1, lst.Count);
+            Assert.AreEqual("Ref" + c1.CompositeName, lst[0].Name);
+            #endregion One To One
+
+            #region Many To Many
+            Assert.AreEqual(0, cfg.Model.GroupRelations.GroupListManyToManyRelations.ListRelations.Count);
+            c1 = cfg.Model.GroupCatalogs.AddCatalog("cat2");
+            d2 = cfg.Model.GroupDocuments.AddDocument("test_doc2");
+            var seq2 = cfg.Model.GroupDocuments.GroupListSequences.AddSequence("seq2");
+            d2.SequenceGuid = seq2.Guid;
+
+            // 1. EnumOneToOneRefType.ONE_TO_ONE_NOT_SELECTED
+            // without history, not optimistic
+            var rel2 = cfg.Model.GroupRelations.GroupListManyToManyRelations.AddRelation("test_many_to_many_rel", c1, d2, false);
+            await vm.BtnConfigValidateAsync.ExecuteAsync();
+            Assert.AreEqual(0, vm.Config.CountErrors);
+
+            lst = c1.GetIncludedProperties(null, false, true);
+            Assert.AreEqual(2, lst.Count);
+            lst = d2.GetIncludedProperties(null, false, true);
+            Assert.AreEqual(0, lst.Count);
+
+            lst = rel2.GetIncludedProperties(null, false, true);
+            Assert.AreEqual(2, lst.Count);
+            lst.Single(n => n.Name == "Ref" + c1.CompositeName);
+            lst.Single(n => n.Name == "Ref" + d2.CompositeName);
+            #endregion Many To Many
         }
     }
 }

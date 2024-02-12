@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnDebugStringExtend(ref string mes)
         {
-            mes = mes + $" Count:{ListCatalogsRelations.Count}";
+            mes = mes + $" Count:{this.ListRelations.Count}";
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -54,7 +54,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Defaults.ManyToManyRelationName, node, this.ListCatalogsRelations);
+                this.GetUniqueName(Defaults.ManyToManyRelationName, node, this.ListRelations);
             }
             var model = this.ParentGroupRelations.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();
@@ -64,7 +64,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Tree operations
 
-        public new ConfigNodesCollection<RelationManyToMany> Children { get { return this.ListCatalogsRelations; } }
+        public new ConfigNodesCollection<RelationManyToMany> Children { get { return this.ListRelations; } }
 
         partial void OnCreated()
         {
@@ -85,7 +85,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.NameUi = "Sub Catalogs";
             //}
-            this.ListCatalogsRelations.OnAddingAction = (t) =>
+            this.ListRelations.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
             };
@@ -94,11 +94,11 @@ namespace vSharpStudio.vm.ViewModels
             //    t.OnAdded();
             //    t.InitRoles();
             //};
-            this.ListCatalogsRelations.OnRemovedAction = (t) =>
+            this.ListRelations.OnRemovedAction = (t) =>
             {
                 this.OnRemoveChild();
             };
-            this.ListCatalogsRelations.OnClearedAction = () =>
+            this.ListRelations.OnClearedAction = () =>
             {
                 this.OnRemoveChild();
             };
@@ -106,7 +106,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public int IndexOf(IRelationManyToMany cat)
         {
-            return this.ListCatalogsRelations.IndexOf((cat as RelationManyToMany)!);
+            return this.ListRelations.IndexOf((cat as RelationManyToMany)!);
         }
         //protected override string[]? OnGetWhatHideOnPropertyGrid()
         //{
@@ -127,7 +127,7 @@ namespace vSharpStudio.vm.ViewModels
         public void Add(RelationManyToMany item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:51
         {
             Debug.Assert(item != null);
-            this.ListCatalogsRelations.Add(item);
+            this.ListRelations.Add(item);
             item.Parent = this;
         }
         public RelationManyToMany AddRelation()
@@ -179,6 +179,25 @@ namespace vSharpStudio.vm.ViewModels
             var node = new RelationManyToMany(this) { Name = name };
             node.RefObj1Type = EnumRelationConfigType.RelConfigTypeDocuments;
             node.GuidObj1 = doc1.Guid;
+            node.RefObj2Type = EnumRelationConfigType.RelConfigTypeDocuments;
+            node.GuidObj2 = doc2.Guid;
+            node.IsUseHistory = isUseHistory;
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public RelationManyToMany AddRelation(string name, ICatalog cat1, IDocument doc2, bool isUseHistory, string? guid = null)
+        {
+            var node = new RelationManyToMany(this) { Name = name };
+            node.RefObj1Type = EnumRelationConfigType.RelConfigTypeCatalogs;
+            node.GuidObj1 = cat1.Guid;
             node.RefObj2Type = EnumRelationConfigType.RelConfigTypeDocuments;
             node.GuidObj2 = doc2.Guid;
             node.IsUseHistory = isUseHistory;

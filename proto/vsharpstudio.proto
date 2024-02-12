@@ -805,10 +805,8 @@ enum proto_enum_data_type {
     CATALOG = 91;
     // @attr [Description("Catalogs")]
     CATALOGS = 101;
-    // @attr [Browsable(false)]
     // @attr [Description("Document")]
     DOCUMENT = 111;
-    // @attr [Browsable(false)]
     // @attr [Description("Documents")]
     DOCUMENTS = 121;
     // @attr [Browsable(false)]
@@ -2935,10 +2933,10 @@ message proto_relations_group {
     string description = 5;
     // @attr [Browsable(false)]
     // @attr [Description("Many to many setting for catalogs")]
-    proto_relations_many_to_many_group group_list_catalogs_relations = 7;
+    proto_relations_many_to_many_group group_list_many_to_many_relations = 7;
     // @attr [Browsable(false)]
     // @attr [Description("Many to many setting for documents")]
-    proto_relations_one_to_one_group group_list_documents_relations = 8;
+    proto_relations_one_to_one_group group_list_one_to_one_relations = 8;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -3018,6 +3016,11 @@ message proto_relation_many_to_many {
     uint32 short_ref_id = 25;
 
     // @attr [Browsable(false)]
+    string ref_obj1_prop_guid = 31;
+    // @attr [Browsable(false)]
+    string ref_obj2_prop_guid = 32;
+
+    // @attr [Browsable(false)]
     string property_data_time_guid = 62;
 
     // @attr [Browsable(false)]
@@ -3052,9 +3055,23 @@ message proto_relations_many_to_many_group {
     uint64 sorting_value = 9;
 
     // @attr [Browsable(false)]
-    repeated proto_relation_many_to_many list_catalogs_relations = 21;
+    repeated proto_relation_many_to_many list_relations = 21;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+enum proto_enum_one_to_one_ref_type {
+    // @attr [Description("Not Selected")]
+    ONE_TO_ONE_NOT_SELECTED = 0;
+    // @attr [Description("Ref in both directions")]
+    ONE_TO_ONE_REF_BOTH_DIRECTIONS = 1;
+    // @attr [Description("From first to second only")]
+    ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY = 2;
+    // @attr [Description("From second to first only")]
+    ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY = 3;
+    // @attr [Browsable(false)]
+    // @attr [Description("Same ID for both tables")]
+    ONE_TO_ONE_BY_SAME_ID = 4;
 }
 // @interface ICanAddNode
 // @interface ISortingValue
@@ -3080,23 +3097,28 @@ message proto_relation_one_to_one {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(11)]
     // @attr [DisplayName("Type 1")]
-    // @attr [Description("Type of first configuration object for Many To Many relation")]
+    // @attr [Description("Type of first configuration object for One To One relation")]
     proto_enum_relation_config_type ref_obj1_type = 11;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(12)]
     // @attr [DisplayName("Object 1")]
-    // @attr [Description("First configuration object for Many To Many relation")]
+    // @attr [Description("First configuration object for One To One relation")]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     google.protobuf.StringValue guid_obj1 = 12;
     // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(14)]
+    // @attr [DisplayName("Ref Type")]
+    // @attr [Description("Reference implementation type")]
+    proto_enum_one_to_one_ref_type ref_type = 14;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(15)]
     // @attr [DisplayName("Type 2")]
-    // @attr [Description("Type of second configuration object for Many To Many relation")]
+    // @attr [Description("Type of second configuration object for One To One relation")]
     proto_enum_relation_config_type ref_obj2_type = 15;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(16)]
     // @attr [DisplayName("Object 2")]
-    // @attr [Description("Second configuration object for Many To Many relation")]
+    // @attr [Description("Second configuration object for One To One relation")]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     google.protobuf.StringValue guid_obj2 = 16;
     // @attr [Category("")]
@@ -3116,6 +3138,11 @@ message proto_relation_one_to_one {
     // Combination of short_id and type group in higher bits
     // @attr [Browsable(false)]
     uint32 short_ref_id = 25;
+
+    // @attr [Browsable(false)]
+    string ref_obj1_prop_guid = 31;
+    // @attr [Browsable(false)]
+    string ref_obj2_prop_guid = 32;
 
     // @attr [Browsable(false)]
     string property_data_time_guid = 62;
@@ -3152,7 +3179,7 @@ message proto_relations_one_to_one_group {
     uint64 sorting_value = 9;
 
     // @attr [Browsable(false)]
-    repeated proto_relation_one_to_one list_documents_relations = 21;
+    repeated proto_relation_one_to_one list_relations = 21;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

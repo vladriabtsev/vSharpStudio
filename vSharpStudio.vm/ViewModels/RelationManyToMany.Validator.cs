@@ -62,7 +62,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             }
             RelationsManyToManyGroup p = (RelationsManyToManyGroup)val.Parent;
-            foreach (var t in p.ListCatalogsRelations)
+            foreach (var t in p.ListRelations)
             {
                 if ((val.Guid != t.Guid) && (val.Name == t.Name))
                 {

@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnDebugStringExtend(ref string mes)
         {
-            mes = mes + $" Count:{ListDocumentsRelations.Count}";
+            mes = mes + $" Count:{this.ListRelations.Count}";
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -54,7 +54,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Defaults.OneToOneRelationName, node, this.ListDocumentsRelations);
+                this.GetUniqueName(Defaults.OneToOneRelationName, node, this.ListRelations);
             }
             var model = this.ParentGroupRelations.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();
@@ -64,7 +64,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Tree operations
 
-        public new ConfigNodesCollection<RelationOneToOne> Children { get { return this.ListDocumentsRelations; } }
+        public new ConfigNodesCollection<RelationOneToOne> Children { get { return this.ListRelations; } }
 
         partial void OnCreated()
         {
@@ -85,7 +85,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.NameUi = "Sub Catalogs";
             //}
-            this.ListDocumentsRelations.OnAddingAction = (t) =>
+            this.ListRelations.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
             };
@@ -94,11 +94,11 @@ namespace vSharpStudio.vm.ViewModels
             //    t.OnAdded();
             //    t.InitRoles();
             //};
-            this.ListDocumentsRelations.OnRemovedAction = (t) =>
+            this.ListRelations.OnRemovedAction = (t) =>
             {
                 this.OnRemoveChild();
             };
-            this.ListDocumentsRelations.OnClearedAction = () =>
+            this.ListRelations.OnClearedAction = () =>
             {
                 this.OnRemoveChild();
             };
@@ -106,7 +106,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public int IndexOf(IRelationOneToOne relOneToOne)
         {
-            return this.ListDocumentsRelations.IndexOf((relOneToOne as RelationOneToOne)!);
+            return this.ListRelations.IndexOf((relOneToOne as RelationOneToOne)!);
         }
         //protected override string[]? OnGetWhatHideOnPropertyGrid()
         //{
@@ -127,7 +127,7 @@ namespace vSharpStudio.vm.ViewModels
         public void Add(RelationOneToOne item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:51
         {
             Debug.Assert(item != null);
-            this.ListDocumentsRelations.Add(item);
+            this.ListRelations.Add(item);
             item.Parent = this;
         }
         public RelationOneToOne AddRelation()
@@ -136,9 +136,9 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public RelationManyToMany AddRelation(string name, ICatalog cat1, ICatalog cat2, bool isUseHistory, string? guid = null)
+        public RelationOneToOne AddRelation(string name, ICatalog cat1, ICatalog cat2, bool isUseHistory, string? guid = null)
         {
-            var node = new RelationManyToMany(this) { Name = name };
+            var node = new RelationOneToOne(this) { Name = name };
             node.RefObj1Type = EnumRelationConfigType.RelConfigTypeCatalogs;
             node.GuidObj1 = cat1.Guid;
             node.RefObj2Type = EnumRelationConfigType.RelConfigTypeCatalogs;
@@ -155,9 +155,9 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public RelationManyToMany AddRelation(string name, IDocument doc1, ICatalog cat2, bool isUseHistory, string? guid = null)
+        public RelationOneToOne AddRelation(string name, IDocument doc1, ICatalog cat2, bool isUseHistory, string? guid = null)
         {
-            var node = new RelationManyToMany(this) { Name = name };
+            var node = new RelationOneToOne(this) { Name = name };
             node.RefObj1Type = EnumRelationConfigType.RelConfigTypeDocuments;
             node.GuidObj1 = doc1.Guid;
             node.RefObj2Type = EnumRelationConfigType.RelConfigTypeCatalogs;
@@ -174,11 +174,30 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public RelationManyToMany AddRelation(string name, IDocument doc1, IDocument doc2, bool isUseHistory, string? guid = null)
+        public RelationOneToOne AddRelation(string name, IDocument doc1, IDocument doc2, bool isUseHistory, string? guid = null)
         {
-            var node = new RelationManyToMany(this) { Name = name };
+            var node = new RelationOneToOne(this) { Name = name };
             node.RefObj1Type = EnumRelationConfigType.RelConfigTypeDocuments;
             node.GuidObj1 = doc1.Guid;
+            node.RefObj2Type = EnumRelationConfigType.RelConfigTypeDocuments;
+            node.GuidObj2 = doc2.Guid;
+            node.IsUseHistory = isUseHistory;
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public RelationOneToOne AddRelation(string name, ICatalog cat1, IDocument doc2, bool isUseHistory, string? guid = null)
+        {
+            var node = new RelationOneToOne(this) { Name = name };
+            node.RefObj1Type = EnumRelationConfigType.RelConfigTypeCatalogs;
+            node.GuidObj1 = cat1.Guid;
             node.RefObj2Type = EnumRelationConfigType.RelConfigTypeDocuments;
             node.GuidObj2 = doc2.Guid;
             node.IsUseHistory = isUseHistory;

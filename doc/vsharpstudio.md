@@ -112,6 +112,7 @@
     - [proto_enum_lorem_data_type](#proto_config-proto_enum_lorem_data_type)
     - [proto_enum_months](#proto_config-proto_enum_months)
     - [proto_enum_name_data_type](#proto_config-proto_enum_name_data_type)
+    - [proto_enum_one_to_one_ref_type](#proto_config-proto_enum_one_to_one_ref_type)
     - [proto_enum_phone_data_type](#proto_config-proto_enum_phone_data_type)
     - [proto_enum_primary_key_type](#proto_config-proto_enum_primary_key_type)
     - [proto_enum_print_access](#proto_config-proto_enum_print_access)
@@ -1980,6 +1981,8 @@ Configuration model
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
+| ref_obj1_prop_guid | [string](#string) |  | @attr [Browsable(false)] |
+| ref_obj2_prop_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
@@ -2018,15 +2021,18 @@ Configuration model
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| ref_obj1_type | [proto_enum_relation_config_type](#proto_config-proto_enum_relation_config_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Type 1&#34;)] @attr [Description(&#34;Type of first configuration object for Many To Many relation&#34;)] |
-| guid_obj1 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Object 1&#34;)] @attr [Description(&#34;First configuration object for Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
-| ref_obj2_type | [proto_enum_relation_config_type](#proto_config-proto_enum_relation_config_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Type 2&#34;)] @attr [Description(&#34;Type of second configuration object for Many To Many relation&#34;)] |
-| guid_obj2 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Object 2&#34;)] @attr [Description(&#34;Second configuration object for Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| ref_obj1_type | [proto_enum_relation_config_type](#proto_config-proto_enum_relation_config_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Type 1&#34;)] @attr [Description(&#34;Type of first configuration object for One To One relation&#34;)] |
+| guid_obj1 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Object 1&#34;)] @attr [Description(&#34;First configuration object for One To One relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| ref_type | [proto_enum_one_to_one_ref_type](#proto_config-proto_enum_one_to_one_ref_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Ref Type&#34;)] @attr [Description(&#34;Reference implementation type&#34;)] |
+| ref_obj2_type | [proto_enum_relation_config_type](#proto_config-proto_enum_relation_config_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Type 2&#34;)] @attr [Description(&#34;Type of second configuration object for One To One relation&#34;)] |
+| guid_obj2 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Object 2&#34;)] @attr [Description(&#34;Second configuration object for One To One relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
+| ref_obj1_prop_guid | [string](#string) |  | @attr [Browsable(false)] |
+| ref_obj2_prop_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
@@ -2048,8 +2054,8 @@ Configuration model
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| group_list_catalogs_relations | [proto_relations_many_to_many_group](#proto_config-proto_relations_many_to_many_group) |  | @attr [Browsable(false)] @attr [Description(&#34;Many to many setting for catalogs&#34;)] |
-| group_list_documents_relations | [proto_relations_one_to_one_group](#proto_config-proto_relations_one_to_one_group) |  | @attr [Browsable(false)] @attr [Description(&#34;Many to many setting for documents&#34;)] |
+| group_list_many_to_many_relations | [proto_relations_many_to_many_group](#proto_config-proto_relations_many_to_many_group) |  | @attr [Browsable(false)] @attr [Description(&#34;Many to many setting for catalogs&#34;)] |
+| group_list_one_to_one_relations | [proto_relations_one_to_one_group](#proto_config-proto_relations_one_to_one_group) |  | @attr [Browsable(false)] @attr [Description(&#34;Many to many setting for documents&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -2072,7 +2078,7 @@ Configuration model
 | prefix_for_composition_names | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Composition prefix&#34;)] @attr [Description(&#34;Prefix for many-to-many relations composition names. Used if set to use in config model&#34;)] |
 | short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
-| list_catalogs_relations | [proto_relation_many_to_many](#proto_config-proto_relation_many_to_many) | repeated | @attr [Browsable(false)] |
+| list_relations | [proto_relation_many_to_many](#proto_config-proto_relation_many_to_many) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -2095,7 +2101,7 @@ Configuration model
 | prefix_for_composition_names | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Composition prefix&#34;)] @attr [Description(&#34;Prefix for many-to-many relations composition names. Used if set to use in config model&#34;)] |
 | short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
-| list_documents_relations | [proto_relation_one_to_one](#proto_config-proto_relation_one_to_one) | repeated | @attr [Browsable(false)] |
+| list_relations | [proto_relation_one_to_one](#proto_config-proto_relation_one_to_one) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -2471,8 +2477,8 @@ with history |
 | ENUMERATION | 81 | @attr [Description(&#34;Enumeration&#34;)] |
 | CATALOG | 91 | @attr [Description(&#34;Catalog&#34;)] |
 | CATALOGS | 101 | @attr [Description(&#34;Catalogs&#34;)] |
-| DOCUMENT | 111 | @attr [Browsable(false)] @attr [Description(&#34;Document&#34;)] |
-| DOCUMENTS | 121 | @attr [Browsable(false)] @attr [Description(&#34;Documents&#34;)] |
+| DOCUMENT | 111 | @attr [Description(&#34;Document&#34;)] |
+| DOCUMENTS | 121 | @attr [Description(&#34;Documents&#34;)] |
 | ANY | 131 | @attr [Browsable(false)] @attr [Description(&#34;Any&#34;)] |
 | REF_DETAIL_TO_PARENT_DETAIL | 141 | @attr [Browsable(false)] |
 | REF_DETAIL_TO_PARENT_CATALOG | 142 | @attr [Browsable(false)] |
@@ -2755,6 +2761,21 @@ with history |
 | M_JOB_DESCRIPTOR | 8 |  |
 | M_JOB_AREA | 9 |  |
 | M_JOB_TYPE | 10 |  |
+
+
+
+<a name="proto_config-proto_enum_one_to_one_ref_type"></a>
+
+### proto_enum_one_to_one_ref_type
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ONE_TO_ONE_NOT_SELECTED | 0 | @attr [Description(&#34;Not Selected&#34;)] |
+| ONE_TO_ONE_REF_BOTH_DIRECTIONS | 1 | @attr [Description(&#34;Ref in both directions&#34;)] |
+| ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY | 2 | @attr [Description(&#34;From first to second only&#34;)] |
+| ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY | 3 | @attr [Description(&#34;From second to first only&#34;)] |
+| ONE_TO_ONE_BY_SAME_ID | 4 | @attr [Browsable(false)] @attr [Description(&#34;Same ID for both tables&#34;)] |
 
 
 

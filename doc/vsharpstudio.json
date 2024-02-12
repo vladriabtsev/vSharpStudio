@@ -465,12 +465,12 @@
             {
               "name": "DOCUMENT",
               "number": "111",
-              "description": "@attr [Browsable(false)]\n@attr [Description(\"Document\")]"
+              "description": "@attr [Description(\"Document\")]"
             },
             {
               "name": "DOCUMENTS",
               "number": "121",
-              "description": "@attr [Browsable(false)]\n@attr [Description(\"Documents\")]"
+              "description": "@attr [Description(\"Documents\")]"
             },
             {
               "name": "ANY",
@@ -1335,6 +1335,39 @@
               "name": "M_JOB_TYPE",
               "number": "10",
               "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_one_to_one_ref_type",
+          "longName": "proto_enum_one_to_one_ref_type",
+          "fullName": "proto_config.proto_enum_one_to_one_ref_type",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
+          "values": [
+            {
+              "name": "ONE_TO_ONE_NOT_SELECTED",
+              "number": "0",
+              "description": "@attr [Description(\"Not Selected\")]"
+            },
+            {
+              "name": "ONE_TO_ONE_REF_BOTH_DIRECTIONS",
+              "number": "1",
+              "description": "@attr [Description(\"Ref in both directions\")]"
+            },
+            {
+              "name": "ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY",
+              "number": "2",
+              "description": "@attr [Description(\"From first to second only\")]"
+            },
+            {
+              "name": "ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY",
+              "number": "3",
+              "description": "@attr [Description(\"From second to first only\")]"
+            },
+            {
+              "name": "ONE_TO_ONE_BY_SAME_ID",
+              "number": "4",
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"Same ID for both tables\")]"
             }
           ]
         },
@@ -12548,6 +12581,30 @@
               "defaultValue": ""
             },
             {
+              "name": "ref_obj1_prop_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ref_obj2_prop_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "property_data_time_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
@@ -12681,7 +12738,7 @@
             },
             {
               "name": "ref_obj1_type",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Type 1\")]\n@attr [Description(\"Type of first configuration object for Many To Many relation\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Type 1\")]\n@attr [Description(\"Type of first configuration object for One To One relation\")]",
               "label": "",
               "type": "proto_enum_relation_config_type",
               "longType": "proto_enum_relation_config_type",
@@ -12693,7 +12750,7 @@
             },
             {
               "name": "guid_obj1",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Object 1\")]\n@attr [Description(\"First configuration object for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Object 1\")]\n@attr [Description(\"First configuration object for One To One relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
@@ -12704,8 +12761,20 @@
               "defaultValue": ""
             },
             {
+              "name": "ref_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(14)]\n@attr [DisplayName(\"Ref Type\")]\n@attr [Description(\"Reference implementation type\")]",
+              "label": "",
+              "type": "proto_enum_one_to_one_ref_type",
+              "longType": "proto_enum_one_to_one_ref_type",
+              "fullType": "proto_config.proto_enum_one_to_one_ref_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "ref_obj2_type",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Type 2\")]\n@attr [Description(\"Type of second configuration object for Many To Many relation\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Type 2\")]\n@attr [Description(\"Type of second configuration object for One To One relation\")]",
               "label": "",
               "type": "proto_enum_relation_config_type",
               "longType": "proto_enum_relation_config_type",
@@ -12717,7 +12786,7 @@
             },
             {
               "name": "guid_obj2",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(16)]\n@attr [DisplayName(\"Object 2\")]\n@attr [Description(\"Second configuration object for Many To Many relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(16)]\n@attr [DisplayName(\"Object 2\")]\n@attr [Description(\"Second configuration object for One To One relation\")]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
@@ -12782,6 +12851,30 @@
               "type": "uint32",
               "longType": "uint32",
               "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ref_obj1_prop_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ref_obj2_prop_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -12884,7 +12977,7 @@
               "defaultValue": ""
             },
             {
-              "name": "group_list_catalogs_relations",
+              "name": "group_list_many_to_many_relations",
               "description": "@attr [Browsable(false)]\n@attr [Description(\"Many to many setting for catalogs\")]",
               "label": "",
               "type": "proto_relations_many_to_many_group",
@@ -12896,7 +12989,7 @@
               "defaultValue": ""
             },
             {
-              "name": "group_list_documents_relations",
+              "name": "group_list_one_to_one_relations",
               "description": "@attr [Browsable(false)]\n@attr [Description(\"Many to many setting for documents\")]",
               "label": "",
               "type": "proto_relations_one_to_one_group",
@@ -13016,7 +13109,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_catalogs_relations",
+              "name": "list_relations",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
               "type": "proto_relation_many_to_many",
@@ -13136,7 +13229,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_documents_relations",
+              "name": "list_relations",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
               "type": "proto_relation_one_to_one",

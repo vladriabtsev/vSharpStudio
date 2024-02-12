@@ -33,9 +33,9 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         [Browsable(false)]
-        public RelationsOneToOneGroup ParentManyToManyGroupCatalogRelations { get { Debug.Assert(this.Parent != null); return (RelationsOneToOneGroup)this.Parent; } }
+        public RelationsOneToOneGroup ParentOneToOneGroupRelations { get { Debug.Assert(this.Parent != null); return (RelationsOneToOneGroup)this.Parent; } }
         [Browsable(false)]
-        public IRelationsOneToOneGroup ParentManyToManyGroupCatalogRelationsI { get { Debug.Assert(this.Parent != null); return (IRelationsOneToOneGroup)this.Parent; } }
+        public IRelationsOneToOneGroup ParentOneToOneGroupRelationsI { get { Debug.Assert(this.Parent != null); return (IRelationsOneToOneGroup)this.Parent; } }
 
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -44,7 +44,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IChildrenCollection GetListSiblings()
         {
-            return this.ParentManyToManyGroupCatalogRelations.Children;
+            return this.ParentOneToOneGroupRelations.Children;
         }
         #endregion ITree
 
@@ -55,6 +55,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this._Guid = System.Guid.NewGuid().ToString();
+            this._RefObj1PropGuid = System.Guid.NewGuid().ToString();
+            this._RefObj2PropGuid = System.Guid.NewGuid().ToString();
             this._PropertyDataTimeGuid = System.Guid.NewGuid().ToString();
             Init();
         }
@@ -96,7 +98,7 @@ namespace vSharpStudio.vm.ViewModels
         private string GetName(bool isComposite)
         {
             Debug.Assert(this.Parent != null);
-            var cfg = this.ParentManyToManyGroupCatalogRelations.ParentGroupRelations.ParentModel.Cfg;
+            var cfg = this.ParentOneToOneGroupRelations.ParentGroupRelations.ParentModel.Cfg;
             string name1 = "<empty>";
             if (this.GuidObj1 != null)
             {
@@ -155,7 +157,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentManyToManyGroupCatalogRelations.ListDocumentsRelations.CanUp(this))
+                if (this.ParentOneToOneGroupRelations.ListRelations.CanUp(this))
                 {
                     return true;
                 }
@@ -165,7 +167,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Catalog?)this.ParentManyToManyGroupCatalogRelations.ListDocumentsRelations.GetPrev(this);
+            var prev = (Catalog?)this.ParentOneToOneGroupRelations.ListRelations.GetPrev(this);
             if (prev == null)
                 return;
             this.SetSelected(prev);
@@ -173,7 +175,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            this.ParentManyToManyGroupCatalogRelations.ListDocumentsRelations.MoveUp(this);
+            this.ParentOneToOneGroupRelations.ListRelations.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -181,7 +183,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentManyToManyGroupCatalogRelations.ListDocumentsRelations.CanDown(this))
+                if (this.ParentOneToOneGroupRelations.ListRelations.CanDown(this))
                 {
                     return true;
                 }
@@ -191,7 +193,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (RelationOneToOne?)this.ParentManyToManyGroupCatalogRelations.ListDocumentsRelations.GetNext(this);
+            var next = (RelationOneToOne?)this.ParentOneToOneGroupRelations.ListRelations.GetNext(this);
             if (next == null)
                 return;
             this.SetSelected(next);
@@ -199,14 +201,14 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            this.ParentManyToManyGroupCatalogRelations.ListDocumentsRelations.MoveDown(this);
+            this.ParentOneToOneGroupRelations.ListRelations.MoveDown(this);
             this.SetSelected(this);
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = RelationOneToOne.Clone(this.ParentManyToManyGroupCatalogRelations, this, true, true);
+            var node = RelationOneToOne.Clone(this.ParentOneToOneGroupRelations, this, true, true);
             node.Parent = this.Parent;
-            this.ParentManyToManyGroupCatalogRelations.ListDocumentsRelations.Add(node);
+            this.ParentOneToOneGroupRelations.ListRelations.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -215,9 +217,9 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new RelationOneToOne(this.Parent);
-            this.ParentManyToManyGroupCatalogRelations.Add(node);
-            this.GetUniqueName(Defaults.OneToOneRelationName, node, this.ParentManyToManyGroupCatalogRelations.ListDocumentsRelations);
-            var model = this.ParentManyToManyGroupCatalogRelations.ParentGroupRelations.ParentModel;
+            this.ParentOneToOneGroupRelations.Add(node);
+            this.GetUniqueName(Defaults.OneToOneRelationName, node, this.ParentOneToOneGroupRelations.ListRelations);
+            var model = this.ParentOneToOneGroupRelations.ParentGroupRelations.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
@@ -225,7 +227,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void Remove()
         {
-            this.ParentManyToManyGroupCatalogRelations.ListDocumentsRelations.Remove(this);
+            this.ParentOneToOneGroupRelations.ListRelations.Remove(this);
         }
         #endregion Tree operations
 
@@ -239,33 +241,33 @@ namespace vSharpStudio.vm.ViewModels
 
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var model = this.ParentManyToManyGroupCatalogRelations.ParentGroupRelations.ParentModel;
-            var prp = model.GetPropertyPkId(this.ParentManyToManyGroupCatalogRelations, this.Cfg.Model.PropertyIdGuid); // position 6
+            var model = this.ParentOneToOneGroupRelations.ParentGroupRelations.ParentModel;
+            var prp = model.GetPropertyPkId(this.ParentOneToOneGroupRelations, this.Cfg.Model.PropertyIdGuid); // position 6
             res.Add(prp);
             if (isOptimistic)
             {
-                prp = model.GetPropertyVersion(this.ParentManyToManyGroupCatalogRelations, this.Cfg.Model.PropertyVersionGuid); // position 7
+                prp = model.GetPropertyVersion(this.ParentOneToOneGroupRelations, this.Cfg.Model.PropertyVersionGuid); // position 7
                 res.Add(prp);
             }
             if (this.GuidObj1 != null)
             {
                 if (model.IsUseNameComposition)
-                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.GuidObj1, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj1]).CompositeName, 1, false);
+                    prp = model.GetPropertyRef(this.ParentOneToOneGroupRelations, this.GuidObj1, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj1]).CompositeName, 1, false);
                 else
-                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.GuidObj1, "Ref" + this.Cfg.DicNodes[this.GuidObj1].Name, 1, false);
+                    prp = model.GetPropertyRef(this.ParentOneToOneGroupRelations, this.GuidObj1, "Ref" + this.Cfg.DicNodes[this.GuidObj1].Name, 1, false);
                 res.Add(prp);
             }
             if (this.GuidObj2 != null)
             {
                 if (model.IsUseNameComposition)
-                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.GuidObj2, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj2]).CompositeName, 2, false);
+                    prp = model.GetPropertyRef(this.ParentOneToOneGroupRelations, this.GuidObj2, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj2]).CompositeName, 2, false);
                 else
-                    prp = model.GetPropertyRef(this.ParentManyToManyGroupCatalogRelations, this.GuidObj2, "Ref" + this.Cfg.DicNodes[this.GuidObj2].Name, 2, false);
+                    prp = model.GetPropertyRef(this.ParentOneToOneGroupRelations, this.GuidObj2, "Ref" + this.Cfg.DicNodes[this.GuidObj2].Name, 2, false);
                 res.Add(prp);
             }
             if (this.IsUseHistory)
             {
-                prp = model.GetPropertyDateTimeUtc(this.ParentManyToManyGroupCatalogRelations, this.PropertyDataTimeGuid, "DataTimeUtc", 3, false);
+                prp = model.GetPropertyDateTimeUtc(this.ParentOneToOneGroupRelations, this.PropertyDataTimeGuid, "DataTimeUtc", 3, false);
                 res.Add(prp);
             }
         }
@@ -282,8 +284,6 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
-            if (!isExcludeSpecial)
-                this.GetSpecialProperties(res, isOptimistic);
             return res;
         }
         public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
