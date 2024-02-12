@@ -1345,28 +1345,23 @@
           "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
-              "name": "ONE_TO_ONE_NOT_SELECTED",
-              "number": "0",
-              "description": "@attr [Description(\"Not Selected\")]"
-            },
-            {
               "name": "ONE_TO_ONE_REF_BOTH_DIRECTIONS",
-              "number": "1",
+              "number": "0",
               "description": "@attr [Description(\"Ref in both directions\")]"
             },
             {
               "name": "ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY",
-              "number": "2",
+              "number": "1",
               "description": "@attr [Description(\"From first to second only\")]"
             },
             {
               "name": "ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY",
-              "number": "3",
+              "number": "2",
               "description": "@attr [Description(\"From second to first only\")]"
             },
             {
               "name": "ONE_TO_ONE_BY_SAME_ID",
-              "number": "4",
+              "number": "5",
               "description": "@attr [Browsable(false)]\n@attr [Description(\"Same ID for both tables\")]"
             }
           ]
@@ -12755,6 +12750,18 @@
               "type": "StringValue",
               "longType": "google.protobuf.StringValue",
               "fullType": "google.protobuf.StringValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "is_relation_reference_nullable",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Nullable\")]\n@attr [Description(\"Relation reference is nullable\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

@@ -58,6 +58,7 @@ namespace vSharpStudio.vm.ViewModels
             this._RefObj1PropGuid = System.Guid.NewGuid().ToString();
             this._RefObj2PropGuid = System.Guid.NewGuid().ToString();
             this._PropertyDataTimeGuid = System.Guid.NewGuid().ToString();
+            this._IsRelationReferenceNullable = true;
             Init();
         }
         protected override void OnInitFromDto()

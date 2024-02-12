@@ -8692,6 +8692,16 @@ Reserved positions: 1-15
                 </tr>
               
                 <tr>
+                  <td>is_relation_reference_nullable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(13)]
+@attr [DisplayName(&#34;Nullable&#34;)]
+@attr [Description(&#34;Relation reference is nullable&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>ref_type</td>
                   <td><a href="#proto_config.proto_enum_one_to_one_ref_type">proto_enum_one_to_one_ref_type</a></td>
                   <td></td>
@@ -11239,32 +11249,26 @@ which DB type to use for whole TimeSpan ???</p></td>
           <tbody>
             
               <tr>
-                <td>ONE_TO_ONE_NOT_SELECTED</td>
-                <td>0</td>
-                <td><p>@attr [Description(&#34;Not Selected&#34;)]</p></td>
-              </tr>
-            
-              <tr>
                 <td>ONE_TO_ONE_REF_BOTH_DIRECTIONS</td>
-                <td>1</td>
+                <td>0</td>
                 <td><p>@attr [Description(&#34;Ref in both directions&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY</td>
-                <td>2</td>
+                <td>1</td>
                 <td><p>@attr [Description(&#34;From first to second only&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY</td>
-                <td>3</td>
+                <td>2</td>
                 <td><p>@attr [Description(&#34;From second to first only&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ONE_TO_ONE_BY_SAME_ID</td>
-                <td>4</td>
+                <td>5</td>
                 <td><p>@attr [Browsable(false)]
 @attr [Description(&#34;Same ID for both tables&#34;)]</p></td>
               </tr>

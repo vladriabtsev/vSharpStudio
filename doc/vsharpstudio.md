@@ -2023,6 +2023,7 @@ Configuration model
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | ref_obj1_type | [proto_enum_relation_config_type](#proto_config-proto_enum_relation_config_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Type 1&#34;)] @attr [Description(&#34;Type of first configuration object for One To One relation&#34;)] |
 | guid_obj1 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Object 1&#34;)] @attr [Description(&#34;First configuration object for One To One relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| is_relation_reference_nullable | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Nullable&#34;)] @attr [Description(&#34;Relation reference is nullable&#34;)] |
 | ref_type | [proto_enum_one_to_one_ref_type](#proto_config-proto_enum_one_to_one_ref_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Ref Type&#34;)] @attr [Description(&#34;Reference implementation type&#34;)] |
 | ref_obj2_type | [proto_enum_relation_config_type](#proto_config-proto_enum_relation_config_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Type 2&#34;)] @attr [Description(&#34;Type of second configuration object for One To One relation&#34;)] |
 | guid_obj2 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Object 2&#34;)] @attr [Description(&#34;Second configuration object for One To One relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
@@ -2771,11 +2772,10 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ONE_TO_ONE_NOT_SELECTED | 0 | @attr [Description(&#34;Not Selected&#34;)] |
-| ONE_TO_ONE_REF_BOTH_DIRECTIONS | 1 | @attr [Description(&#34;Ref in both directions&#34;)] |
-| ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY | 2 | @attr [Description(&#34;From first to second only&#34;)] |
-| ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY | 3 | @attr [Description(&#34;From second to first only&#34;)] |
-| ONE_TO_ONE_BY_SAME_ID | 4 | @attr [Browsable(false)] @attr [Description(&#34;Same ID for both tables&#34;)] |
+| ONE_TO_ONE_REF_BOTH_DIRECTIONS | 0 | @attr [Description(&#34;Ref in both directions&#34;)] |
+| ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY | 1 | @attr [Description(&#34;From first to second only&#34;)] |
+| ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY | 2 | @attr [Description(&#34;From second to first only&#34;)] |
+| ONE_TO_ONE_BY_SAME_ID | 5 | @attr [Browsable(false)] @attr [Description(&#34;Same ID for both tables&#34;)] |
 
 
 

@@ -428,17 +428,15 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumOneToOneRefType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
-		[Description("Not Selected")]
-		ONE_TO_ONE_NOT_SELECTED = 0,
 		[Description("Ref in both directions")]
-		ONE_TO_ONE_REF_BOTH_DIRECTIONS = 1,
+		ONE_TO_ONE_REF_BOTH_DIRECTIONS = 0,
 		[Description("From first to second only")]
-		ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY = 2,
+		ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY = 1,
 		[Description("From second to first only")]
-		ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY = 3,
+		ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY = 2,
 		[Browsable(false)]
 		[Description("Same ID for both tables")]
-		ONE_TO_ONE_BY_SAME_ID = 4,
+		ONE_TO_ONE_BY_SAME_ID = 5,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumPhoneDataType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
@@ -1731,6 +1729,7 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	string Description { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	EnumRelationConfigType RefObj1Type { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	string? GuidObj1 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsRelationReferenceNullable { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	EnumOneToOneRefType RefType { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	EnumRelationConfigType RefObj2Type { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	string? GuidObj2 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56

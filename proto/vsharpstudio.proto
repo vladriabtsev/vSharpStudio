@@ -3061,17 +3061,15 @@ message proto_relations_many_to_many_group {
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_one_to_one_ref_type {
-    // @attr [Description("Not Selected")]
-    ONE_TO_ONE_NOT_SELECTED = 0;
     // @attr [Description("Ref in both directions")]
-    ONE_TO_ONE_REF_BOTH_DIRECTIONS = 1;
+    ONE_TO_ONE_REF_BOTH_DIRECTIONS = 0;
     // @attr [Description("From first to second only")]
-    ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY = 2;
+    ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY = 1;
     // @attr [Description("From second to first only")]
-    ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY = 3;
+    ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY = 2;
     // @attr [Browsable(false)]
     // @attr [Description("Same ID for both tables")]
-    ONE_TO_ONE_BY_SAME_ID = 4;
+    ONE_TO_ONE_BY_SAME_ID = 5;
 }
 // @interface ICanAddNode
 // @interface ISortingValue
@@ -3105,6 +3103,11 @@ message proto_relation_one_to_one {
     // @attr [Description("First configuration object for One To One relation")]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     google.protobuf.StringValue guid_obj1 = 12;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(13)]
+    // @attr [DisplayName("Nullable")]
+    // @attr [Description("Relation reference is nullable")]
+    bool is_relation_reference_nullable = 13;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(14)]
     // @attr [DisplayName("Ref Type")]

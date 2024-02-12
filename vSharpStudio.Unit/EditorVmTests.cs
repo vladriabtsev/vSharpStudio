@@ -1045,21 +1045,12 @@ namespace vSharpStudio.Unit
             var seq = cfg.Model.GroupDocuments.GroupListSequences.AddSequence("seq");
             d2.SequenceGuid = seq.Guid;
 
-            // 1. EnumOneToOneRefType.ONE_TO_ONE_NOT_SELECTED
+            // 1. EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS
             // without history, not optimistic
             var rel = cfg.Model.GroupRelations.GroupListOneToOneRelations.AddRelation("test_one_to_one_rel", c1, d2, false);
-            var lst = rel.GetIncludedProperties(null, false, true);
-            Assert.AreEqual(0, lst.Count);
-            await vm.BtnConfigValidateAsync.ExecuteAsync();
-            // reference implementation type is not selected
-            Assert.AreEqual(1, vm.Config.CountErrors);
-            Assert.AreEqual("Relation implementation type is not selected.", vm.Config.ValidationCollection[0].Message);
-
-            // 2.
-            rel.RefType = EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS;
             await vm.BtnConfigValidateAsync.ExecuteAsync();
             Assert.AreEqual(0, vm.Config.CountErrors);
-            lst = rel.GetIncludedProperties(null, false, false);
+            var lst = rel.GetIncludedProperties(null, false, false);
             Assert.AreEqual(0, lst.Count);
             // RefCat2
             lst = c1.GetIncludedProperties(null, false, true);
@@ -1070,7 +1061,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, lst.Count);
             Assert.AreEqual("Ref" + c1.CompositeName, lst[0].Name);
 
-            // 3.
+            // 2.
             rel.RefType = EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY;
             await vm.BtnConfigValidateAsync.ExecuteAsync();
             Assert.AreEqual(0, vm.Config.CountErrors);
@@ -1084,7 +1075,7 @@ namespace vSharpStudio.Unit
             lst = d2.GetIncludedProperties(null, false, true);
             Assert.AreEqual(0, lst.Count);
 
-            // 4.
+            // 3.
             rel.RefType = EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY;
             await vm.BtnConfigValidateAsync.ExecuteAsync();
             Assert.AreEqual(0, vm.Config.CountErrors);
