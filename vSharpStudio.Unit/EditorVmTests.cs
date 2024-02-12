@@ -1055,11 +1055,13 @@ namespace vSharpStudio.Unit
             // RefCat2
             lst = c1.GetIncludedProperties(null, false, true);
             Assert.AreEqual(3, lst.Count);
-            Assert.AreEqual("Ref" + d2.CompositeName, lst[0].Name);
+            Assert.AreEqual(EnumDataType.DOCUMENT, lst[0].DataType.DataTypeEnum);
+            Assert.AreEqual("test_one_to_one_rel", lst[0].Name);
             // RefCat1
             lst = d2.GetIncludedProperties(null, false, true);
             Assert.AreEqual(1, lst.Count);
-            Assert.AreEqual("Ref" + c1.CompositeName, lst[0].Name);
+            Assert.AreEqual(EnumDataType.CATALOG, lst[0].DataType.DataTypeEnum);
+            Assert.AreEqual("test_one_to_one_rel", lst[0].Name);
 
             // 2.
             rel.RefType = EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY;
@@ -1070,7 +1072,8 @@ namespace vSharpStudio.Unit
             // RefCat2
             lst = c1.GetIncludedProperties(null, false, true);
             Assert.AreEqual(3, lst.Count);
-            Assert.AreEqual("Ref" + d2.CompositeName, lst[0].Name);
+            Assert.AreEqual(EnumDataType.DOCUMENT, lst[0].DataType.DataTypeEnum);
+            Assert.AreEqual("test_one_to_one_rel", lst[0].Name);
             // nothing
             lst = d2.GetIncludedProperties(null, false, true);
             Assert.AreEqual(0, lst.Count);
@@ -1087,7 +1090,8 @@ namespace vSharpStudio.Unit
             // RefCat1
             lst = d2.GetIncludedProperties(null, false, true);
             Assert.AreEqual(1, lst.Count);
-            Assert.AreEqual("Ref" + c1.CompositeName, lst[0].Name);
+            Assert.AreEqual(EnumDataType.CATALOG, lst[0].DataType.DataTypeEnum);
+            Assert.AreEqual("test_one_to_one_rel", lst[0].Name);
             #endregion One To One
 
             #region Many To Many
@@ -1110,8 +1114,8 @@ namespace vSharpStudio.Unit
 
             lst = rel2.GetIncludedProperties(null, false, true);
             Assert.AreEqual(2, lst.Count);
-            lst.Single(n => n.Name == "Ref" + c1.CompositeName);
-            lst.Single(n => n.Name == "Ref" + d2.CompositeName);
+            lst.Single(n => n.Name == "test_many_to_many_rel" && n.DataType.DataTypeEnum == EnumDataType.CATALOG);
+            lst.Single(n => n.Name == "test_many_to_many_rel" && n.DataType.DataTypeEnum == EnumDataType.DOCUMENT);
             #endregion Many To Many
         }
     }

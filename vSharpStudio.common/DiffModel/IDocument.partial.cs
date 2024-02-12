@@ -11,7 +11,6 @@ namespace vSharpStudio.common
     public partial interface IDocument : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName
     {
         IGroupListDocuments ParentGroupListDocumentsI { get; }
-        IReadOnlyList<IProperty> GetProperties();
         bool IsDocWithSharedProperties { get; }
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
@@ -29,11 +28,8 @@ namespace vSharpStudio.common
         IForm GetForm(FormType ftype, string guidAppPrjGen);
         IReadOnlyList<IForm> GetListForms(string guidAppPrjGen);
         IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen);
-        IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
-        IReadOnlyList<IProperty> GetPropertiesWithShared(bool isOptimistic, bool isExcludeSpecial = false);
         
-        void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
     }
 }

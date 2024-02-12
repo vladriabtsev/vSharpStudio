@@ -269,7 +269,7 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                     }
                 }
-                foreach (var tt in ((IDocument)this.Cfg.DicNodes[this.SelectedIncludedDocument.Guid]).GetPropertiesWithShared(false, true))
+                foreach (var tt in ((Document)this.Cfg.DicNodes[this.SelectedIncludedDocument.Guid]).GetPropertiesForUI(false, true))
                 {
                     if (hashProps.Contains(tt.Guid))
                         continue;
@@ -302,7 +302,7 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             hashProps.Add(tt);
                         }
-                        foreach (var tt in ((Document)this.Cfg.DicNodes[t.Guid]).GetPropertiesWithShared(false, true))
+                        foreach (var tt in ((Document)this.Cfg.DicNodes[t.Guid]).GetPropertiesForUI(false, true))
                         {
                             if (!hashProps.Contains(tt.Guid))
                                 continue;

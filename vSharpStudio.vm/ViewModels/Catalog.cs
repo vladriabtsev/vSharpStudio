@@ -578,35 +578,32 @@ namespace vSharpStudio.vm.ViewModels
             var res = new List<IProperty>();
             if (!isExcludeSpecial)
                 this.GetSpecialProperties(res, isOptimistic);
-            //var model = this.ParentGroupListCatalogs.ParentModel;
             foreach (var t in this.Cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations)
             {
                 if (t.GuidObj1 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY))
                 {
-                    Debug.Assert(this.Cfg.DicNodes.ContainsKey(t.GuidObj1));
-                    var nam = "Ref" + ((ICompositeName)this.Cfg.DicNodes[t.GuidObj2]).CompositeName;
+                    Debug.Assert(t.GuidObj2 != null);
                     if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, nam, t.GuidObj2, (uint)res.Count, true));
+                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable));
                     }
                     else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, nam, t.GuidObj2, (uint)res.Count, true));
+                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable));
                     }
                     else
                         throw new NotImplementedException();
                 }
                 if (t.GuidObj2 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY))
                 {
-                    Debug.Assert(this.Cfg.DicNodes.ContainsKey(t.GuidObj1));
-                    var nam = "Ref" + ((ICompositeName)this.Cfg.DicNodes[t.GuidObj1]).CompositeName;
+                    Debug.Assert(t.GuidObj1 != null);
                     if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, nam, t.GuidObj1, (uint)res.Count, true));
+                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable));
                     }
                     else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, nam, t.GuidObj1, (uint)res.Count, true));
+                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable));
                     }
                     else
                         throw new NotImplementedException();

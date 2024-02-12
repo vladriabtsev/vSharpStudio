@@ -336,19 +336,19 @@ namespace vSharpStudio.vm.ViewModels
                 if (this._ListProperties == null)
                 {
                     this._ListProperties = new List<IProperty>();
-                    if (this.ParentGroupListForms.Parent is IDetail dt)
+                    if (this.ParentGroupListForms.Parent is Detail dt)
                     {
                         dt.GetSpecialProperties(this._ListProperties, false);
                     }
-                    else if (this.ParentGroupListForms.Parent is ICatalog c)
+                    else if (this.ParentGroupListForms.Parent is Catalog c)
                     {
                         c.GetSpecialProperties(this._ListProperties, false);
                     }
-                    else if (this.ParentGroupListForms.Parent is IDocument d)
+                    else if (this.ParentGroupListForms.Parent is Document d)
                     {
                         d.GetSpecialProperties(this._ListProperties, false);
                     }
-                    else if (this.ParentGroupListForms.Parent is ICatalogFolder cf)
+                    else if (this.ParentGroupListForms.Parent is CatalogFolder cf)
                     {
                         cf.GetSpecialProperties(this._ListProperties, false);
                     }

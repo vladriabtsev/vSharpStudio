@@ -24,7 +24,6 @@ namespace vSharpStudio.common
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
         string FullName { get; } // name with config name
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
-        void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
 
         IForm GetForm(FormType ftype, string guidAppPrjGen);

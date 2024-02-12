@@ -11,7 +11,6 @@ namespace vSharpStudio.common
         ICatalog ParentCatalogI { get; }
         string GetDebuggerDisplay(bool isOptimistic);
 
-        void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();

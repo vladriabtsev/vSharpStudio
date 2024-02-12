@@ -250,22 +250,6 @@ namespace vSharpStudio.vm.ViewModels
                 prp = model.GetPropertyVersion(this.ParentManyToManyGroupRelations, this.Cfg.Model.PropertyVersionGuid); // position 7
                 res.Add(prp);
             }
-            //if (this.GuidObj1 != null)
-            //{
-            //    if (model.IsUseNameComposition)
-            //        prp = model.GetPropertyRef(this.ParentManyToManyGroupRelations, this.GuidObj1, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj1]).CompositeName, 1, false);
-            //    else
-            //        prp = model.GetPropertyRef(this.ParentManyToManyGroupRelations, this.GuidObj1, "Ref" + this.Cfg.DicNodes[this.GuidObj1].Name, 1, false);
-            //    res.Add(prp);
-            //}
-            //if (this.GuidObj2 != null)
-            //{
-            //    if (model.IsUseNameComposition)
-            //        prp = model.GetPropertyRef(this.ParentManyToManyGroupRelations, this.GuidObj2, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj2]).CompositeName, 2, false);
-            //    else
-            //        prp = model.GetPropertyRef(this.ParentManyToManyGroupRelations, this.GuidObj2, "Ref" + this.Cfg.DicNodes[this.GuidObj2].Name, 2, false);
-            //    res.Add(prp);
-            //}
             if (this.IsUseHistory)
             {
                 prp = model.GetPropertyDateTimeUtc(this.ParentManyToManyGroupRelations, this.PropertyDataTimeGuid, "DataTimeUtc", 3, false);
@@ -291,30 +275,26 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (!string.IsNullOrWhiteSpace(t.GuidObj1))
                 {
-                    Debug.Assert(this.Cfg.DicNodes.ContainsKey(t.GuidObj1));
-                    var nam = "Ref" + ((ICompositeName)this.Cfg.DicNodes[t.GuidObj1]).CompositeName;
                     if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, nam, t.GuidObj1, (uint)res.Count, true));
+                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
                     }
                     else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, nam, t.GuidObj1, (uint)res.Count, true));
+                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
                     }
                     else
                         throw new NotImplementedException();
                 }
                 if (!string.IsNullOrWhiteSpace(t.GuidObj2))
                 {
-                    Debug.Assert(this.Cfg.DicNodes.ContainsKey(t.GuidObj2));
-                    var nam = "Ref" + ((ICompositeName)this.Cfg.DicNodes[t.GuidObj2]).CompositeName;
                     if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, nam, t.GuidObj2, (uint)res.Count, true));
+                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));
                     }
                     else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, nam, t.GuidObj2, (uint)res.Count, true));
+                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));
                     }
                     else
                         throw new NotImplementedException();

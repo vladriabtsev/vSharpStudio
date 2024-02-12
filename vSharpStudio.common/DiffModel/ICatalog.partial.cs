@@ -32,7 +32,6 @@ namespace vSharpStudio.common
         IProperty GetDescriptionProperty(List<IProperty> lst);
 
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false);
-        void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjDbGen);
         IReadOnlyList<IForm> GetListForms(string guidAppPrjGen);
     }
