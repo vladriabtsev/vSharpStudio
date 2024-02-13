@@ -51,6 +51,17 @@ namespace vSharpStudio.vm.ViewModels
 
         [Browsable(false)]
         public new string IconName { get { return "iconCatalogProperty"; } }
+        [PropertyOrder(100)]
+        [ReadOnly(true)]
+        [DisplayName("Composite")]
+        [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]
+        public string CompositeName
+        {
+            get
+            {
+                return GetCompositeName();
+            }
+        }
         //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
         partial void OnCreated()
         {

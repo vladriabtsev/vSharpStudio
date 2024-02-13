@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
 using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -381,6 +382,14 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     else
                         throw new NotImplementedException();
+                }
+            }
+            foreach (var t in this.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjGen))
+                {
+                    t.ComplexObjectName = "SharedDocProperties";
+                    res.Add(t);
                 }
             }
             foreach (var t in this.GroupProperties.ListProperties)
