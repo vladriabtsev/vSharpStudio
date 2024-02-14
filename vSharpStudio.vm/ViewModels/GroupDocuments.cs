@@ -45,8 +45,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._PrefixForCompositionNames = "Doc";
             this._MondayBeforeFirstDocDate = Timestamp.FromDateTime(new DateTime(1000, 1, 6, 0, 0, 0, DateTimeKind.Utc));
-            this._TimeLinePropertyName = "TimelineDocDateTime";
-            this._DocShortTypeIdPropertyName = "TimelineDocShortTypeId";
+            this._TimeLinePropertyName = "DocDateTime";
+            this._DocShortTypeIdPropertyName = "DocShortTypeId";
             this.IsEditable = false;
             Init();
         }
@@ -261,5 +261,15 @@ namespace vSharpStudio.vm.ViewModels
             return role.DefaultDocumentPrintAccessSettings;
         }
         #endregion Roles
+
+        public string GetTimelineCompositeName()
+        {
+            string name = this.TimelineName;
+            if (this.ParentModel.IsUseNameComposition)
+            {
+                name = this.PrefixForCompositionNames + name;
+            }
+            return name;
+        }
     }
 }

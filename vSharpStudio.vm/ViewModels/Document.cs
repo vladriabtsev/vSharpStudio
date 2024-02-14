@@ -401,19 +401,66 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        public IReadOnlyList<IProperty> GetIncludedPropertiesWithoutShared(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false)
+        {
+            var res = new List<IProperty>();
+            if (!isExcludeSpecial)
+                GetSpecialProperties(res, isOptimistic);
+            foreach (var t in this.Cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations)
+            {
+                if (t.GuidObj1 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY))
+                {
+                    Debug.Assert(t.GuidObj2 != null);
+                    if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
+                    {
+                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable));
+                    }
+                    else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
+                    {
+                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable));
+                    }
+                    else
+                        throw new NotImplementedException();
+                }
+                if (t.GuidObj2 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY))
+                {
+                    Debug.Assert(t.GuidObj1 != null);
+                    if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
+                    {
+                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable));
+                    }
+                    else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
+                    {
+                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable));
+                    }
+                    else
+                        throw new NotImplementedException();
+                }
+            }
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
 
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
-            var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+            //var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+            string name = this.ParentGroupListDocuments.ParentGroupDocuments.GetTimelineCompositeName();
+            var prp = model.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, "Ref" + name, 0, false, true);
             res.Add(prp);
             if (isOptimistic)
             {
                 prp = model.GetPropertyVersion(this.GroupProperties, this.Cfg.Model.PropertyVersionGuid);
                 res.Add(prp);
             }
-            prp = model.GetPropertyDocumentDate(this.GroupProperties, this.Cfg.Model.PropertyDocDateGuid);
-            res.Add(prp);
+            //prp = model.GetPropertyDocumentDate(this.GroupProperties, this.Cfg.Model.PropertyDocDateGuid);
+            //res.Add(prp);
             if (!string.IsNullOrWhiteSpace(this.SequenceGuid))
             {
                 var seq = this.Sequence;
@@ -459,8 +506,8 @@ namespace vSharpStudio.vm.ViewModels
                         throw new NotImplementedException();
                 }
             }
-            prp = model.GetPropertyBool(this.GroupProperties, this.Cfg.Model.PropertyDocIsPostedGuid, "IsPosted", 10, true);
-            res.Add(prp);
+            //prp = model.GetPropertyBool(this.GroupProperties, this.Cfg.Model.PropertyDocIsPostedGuid, "IsPosted", 10, true);
+            //res.Add(prp);
         }
         public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
         {
