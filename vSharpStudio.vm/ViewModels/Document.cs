@@ -448,11 +448,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
             //var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
-            string name = this.ParentGroupListDocuments.ParentGroupDocuments.GetTimelineCompositeName();
-            var prp = model.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, "Ref" + name, 0, false, true);
+            //string name = this.ParentGroupListDocuments.ParentGroupDocuments.GetTimelineCompositeName();
+            //var prp = model.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, "Ref" + name, 0, false, true);
+            var prp = model.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, this.Cfg.Model.PKeyName, 0, false, true);
             res.Add(prp);
             if (isOptimistic)
             {

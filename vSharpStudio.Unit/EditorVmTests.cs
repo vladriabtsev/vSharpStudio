@@ -21,6 +21,7 @@ using vSharpStudio.ViewModels;
 using Polly.Caching;
 using ApplicationLogging;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis.Rename;
 
 namespace vSharpStudio.Unit
 {
@@ -877,13 +878,33 @@ namespace vSharpStudio.Unit
         [Ignore]
         async public System.Threading.Tasks.Task Register_Turnover_Mapping()
         {
+            string regName = "reg1";
+            string cat1Name = "cat1";
+            string cat2Name = "cat2";
+            string docName = "doc1";
+
             var cancellation = new CancellationTokenSource();
             var token = cancellation.Token;
 
             var vm = this.CreateVM();
             var cfg = vm.Config;
 
-            //var s_qty5_2 = cfg.Model.GroupDocuments.AddSharedPropertyNumerical("qty", 5, 2);
+            var c1 = vm.Config.Model.GroupCatalogs.AddCatalog(cat1Name);
+            var c2 = vm.Config.Model.GroupCatalogs.AddCatalog(cat2Name);
+
+            cfg.Model.GroupDocuments.AddSharedPropertyCatalog("shared_cat1", c1.Guid);
+
+            var d = vm.Config.Model.GroupDocuments.AddDocument(docName);
+            var seq = vm.Config.Model.GroupDocuments.GroupListSequences.AddSequence("Seq");
+            d.SequenceGuid = seq.Guid;
+            var pMoney = d.AddPropertyNumerical("Money", 19, 2);
+            var pQty = d.AddPropertyNumerical("Qty", 19, 4);
+
+            var r = vm.Config.Model.GroupDocuments.GroupRegisters.AddRegister(regName);
+            r.RegisterType = EnumRegisterType.TURNOVER;
+            r.RegisterPeriodicity = EnumRegisterPeriodicity.REGISTER_PERIOD_DAY;
+
+            var s_qty5_2 = cfg.Model.GroupDocuments.AddSharedPropertyNumerical("qty", 5, 2);
 
             // 1. Can find doc shared property to map register dimention 
 

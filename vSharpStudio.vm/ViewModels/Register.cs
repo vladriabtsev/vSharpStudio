@@ -1225,7 +1225,7 @@ namespace vSharpStudio.vm.ViewModels
 #endif
                         foreach (var t in e.NewItems)
                         {
-                            this.ListObjectDocRefs.Add((FkComplexRef)t);
+                            this.ListObjectDocRefs.Add(new FkComplexRef(((Document)t).Guid));
                         }
                     }
                     break;

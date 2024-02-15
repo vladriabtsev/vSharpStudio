@@ -168,8 +168,10 @@
                                 <DataGridTemplateColumn Header="Mapped To" Width="*" >
                                     <DataGridTemplateColumn.CellTemplate>
                                         <HierarchicalDataTemplate>
-                                            <xctk:WatermarkComboBox DisplayMemberPath="PathInObject" Watermark="Select doc property for mapping ..."
-                                                ItemsSource="{Binding ListToMap}" SelectedItem="{Binding Selected, Mode=TwoWay}" />
+                                            <xctk:WatermarkComboBox DisplayMemberPath="PathInObject" 
+                                                                    Watermark="Select doc property for mapping ..."
+                                                ItemsSource="{Binding ListToMap}" 
+                                                SelectedItem="{Binding Selected, UpdateSourceTrigger=PropertyChanged}" />
                                             <!--<ComboBox ItemsSource="{Binding ListToMap}" SelectedItem="{Binding Selected, Mode=TwoWay}" 
                                                       DisplayMemberPath="PathInObject" SelectionChanged="ComboBox_SelectionChanged" />-->
                                         </HierarchicalDataTemplate>

@@ -101,6 +101,12 @@ namespace vSharpStudio.vm.ViewModels
             this.DataType.Parent = this;
             Init();
         }
+        // for new properties
+        partial void OnNameChanged()
+        {
+            var sb = ToRoot(this);
+            this.PathInObject = sb.ToString();
+        }
         protected override void OnInitFromDto()
         {
             switch (this.DataType.DataTypeEnum)

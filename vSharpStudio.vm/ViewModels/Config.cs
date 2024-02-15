@@ -302,7 +302,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this._SelectedNode != value)
                 {
-#if DEBUG
+#if nDEBUG
                     var stopWatch = new Stopwatch();
                     stopWatch.Start();
 #endif
@@ -313,13 +313,13 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         this.OnSelectedNodeChanged?.Invoke();
                     }
-#if DEBUG
+#if nDEBUG
                     stopWatch.Stop();
                     TimeSpan ts = stopWatch.Elapsed;
                     //string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
                     //Console.WriteLine("RunTime " + elapsedTime);
                     string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
-                    if (ts > TimeSpan.FromSeconds(1))
+                    if (ts > TimeSpan.FromSeconds(10))
                     {
                         Debug.WriteLine($"Long Selected Node Changed. Time {elapsedTime} {LoggerExt.FilePos()}");
                         Debug.Assert(false);

@@ -112,6 +112,26 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupSharedProperties.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddSharedPropertyCatalog(string name, string catGuid, bool isNullable = false, bool isCsNullable = true, string? guidProperty = null)
+        {
+            var node = new Property(this.GroupSharedProperties) { Name = name, IsNullable = isNullable, IsCsNullable = isCsNullable };
+#if DEBUG
+            if (guidProperty != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guidProperty))
+                    return node;
+                node.Guid = guidProperty;
+            }
+#endif
+            node.DataType = new DataType(node)
+            {
+                DataTypeEnum = EnumDataType.CATALOG,
+                IsNullable = isNullable,
+                ObjectRef = new FkComplexRef(catGuid)
+            };
+            this.GroupSharedProperties.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddSharedProperty(string name, DataType type, string? guid = null)
         {
             var node = new Property(this.GroupSharedProperties) { Name = name, DataType = type };
