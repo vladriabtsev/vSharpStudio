@@ -174,7 +174,7 @@ namespace vSharpStudio.vm.ViewModels
                                         if (p.DataType.DataTypeEnum != EnumDataType.CATALOG)
                                         {
                                             var vf = new ValidationFailure(cntx.PropertyPath,
-                                                $"Register '{r.Name}'. Dimesion can mapped to catalog property only, but property '{p.Name}' of '{doc.Name}' document has type '{System.Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.");
+                                                $"Register '{r.Name}'. Dimension can mapped to catalog property only, but property '{p.Name}' of '{doc.Name}' document has type '{System.Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.");
                                             vf.Severity = Severity.Error;
                                             cntx.AddFailure(vf);
                                         }
@@ -183,7 +183,7 @@ namespace vSharpStudio.vm.ViewModels
                                             var cp = (Catalog)r.Cfg.DicNodes[p.DataType.ObjectRef.ConfigObjectGuid];
                                             var crd = (Catalog)r.Cfg.DicNodes[rd.DimensionCatalogGuid];
                                             var vf = new ValidationFailure(cntx.PropertyPath,
-                                                $"Register '{r.Name}'. Dimesion can mapped to catalog property of type '{crd.Name}', but property '{p.Name}' of '{doc.Name}' document has catalog type '{cp.Name}'.");
+                                                $"Register '{r.Name}'. Dimension can mapped to catalog property of type '{crd.Name}', but property '{p.Name}' of '{doc.Name}' document has catalog type '{cp.Name}'.");
                                             vf.Severity = Severity.Error;
                                             cntx.AddFailure(vf);
                                         }
@@ -193,7 +193,7 @@ namespace vSharpStudio.vm.ViewModels
                                 if (!found)
                                 {
                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                        $"Register '{r.Name}'. Dimesion '{rd.Name}' is not mapped to '{doc.Name}' document property.");
+                                        $"Register '{r.Name}'. Dimension '{rd.Name}' is not mapped to '{doc.Name}' document property.");
                                     vf.Severity = Severity.Error;
                                     cntx.AddFailure(vf);
                                 }
@@ -333,6 +333,7 @@ namespace vSharpStudio.vm.ViewModels
 
                     // existing mappings
                     var propMappings = new List<MappingBranchPath>();
+                    var hashPropGuid = new HashSet<string>();
                     foreach (var dtr in r.ListDocMappings)
                     {
                         if (dtr.DocGuid != doc.Guid)
@@ -354,6 +355,14 @@ namespace vSharpStudio.vm.ViewModels
                                 var prop = (Property)r.Cfg.DicNodes[dpm.DocPropGuid];
                                 var path = this.MappingPath(prop).ToString();
                                 propMappings.Add(new MappingBranchPath() { BranchPath = path, RegPropGuid = dpm.RegPropGuid });
+                                if (hashPropGuid.Contains(dpm.DocPropGuid))
+                                {
+                                    var vf = new ValidationFailure(cntx.PropertyPath, //property '{propr.Name}' 
+                                        $"Register '{r.Name}' is mapped to property '{prop.Name}' of document '{doc.Name}'. This document property is used for mapping more than ones.");
+                                    vf.Severity = Severity.Error;
+                                    cntx.AddFailure(vf);
+                                }
+                                hashPropGuid.Add(dpm.DocPropGuid);
                             }
                         }
                     }

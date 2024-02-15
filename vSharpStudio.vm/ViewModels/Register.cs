@@ -501,7 +501,8 @@ namespace vSharpStudio.vm.ViewModels
             if (!isExcludeSpecial)
             {
                 // Id
-                var pId = m.GetPropertyPkId(this, this.Guid); // position 6
+                var pId = m.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, this.Cfg.Model.PKeyName, 0, false, true);
+                //var pId = m.GetPropertyPkId(this, this.Guid); // position 6
                 pId.TagInList = "id";
                 lst.Add(pId);
 
@@ -513,66 +514,6 @@ namespace vSharpStudio.vm.ViewModels
                     lst.Add(pVer);
                 }
             }
-
-            //if (this.ListDocGuids.Count > 0)
-            //{
-            //    //if (this.ListDocGuids.Count == 1)
-            //    //{
-            //    //    var pDoc = (Property)m.GetPropertyDocument(this, this.PropertyDocRefGuid, "DocRef", this.ListDocGuids[0], 9, false);
-            //    //    lst.Add(pDoc);
-            //    //    // Guid of document
-            //    //    var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyDocGuidGuid, this.PropertyDocRefGuidName, false);
-            //    //    pDocGuid.Position = 13;
-            //    //    pDocGuid.TagInList = "dg";
-            //    //    lst.Add(pDocGuid);
-            //    //}
-            //    //else
-            //    //{
-            //    var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "Doc", this.ListDocGuids, 10, true);
-            //    lst.Add(pDoc);
-            //    //}
-            //}
-
-            //// Post date
-            //var pPostDate = m.GetPropertyDateTimeUtc(this, this.PropertyPostDateGuid, "PostDate", 9, false); // position 9
-            //pPostDate.TagInList = "pd";
-            //lst.Add(pPostDate);
-
-            var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, "Doc", this.ListObjectDocRefs, 10, false);
-            pDoc.IsCsNullable = true;
-            lst.Add(pDoc);
-
-            //// Reference to document
-            //var pDocRef = (Property)m.GetPropertyId(this, this.PropertyDocRefGuid, this.PropertyDocRefName, false);
-            //pDocRef.Position = 11;
-            //pDocRef.TagInList = "dr";
-            //lst.Add(pDocRef);
-
-            //// Guid of document
-            //var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyDocGuidGuid, this.PropertyDocRefGuidName, false);
-            //pDocGuid.Position = 13;
-            //pDocGuid.TagInList = "dg";
-            //lst.Add(pDocGuid);
-
-            // Document timeline
-            var pDocDate = new Property(this, this.Cfg.Model.PropertyDocDateGuid, this.Cfg.Model.PropertyDocDateName, true);
-            pDocDate.Name = "DocTimeline";
-            pDocDate.DataType = (DataType)this.Cfg.Model.GetDataTypeDateTimeUtc(pDocDate, EnumTimeAccuracyType.MAX_TIME_ACC, false, false);
-            pDocDate.Position = 8;
-            pDocDate.IsCsNullable = true;
-            //var pDocDate = m.GetPropertyDocumentDate(this, this.PropertyDocDateGuid); // position 8
-            //pDocDate.Name = "DocTimeline";
-            //pDocDate.DataType.AccuracyForTime = this.Cfg.Model.GroupListRegisters.AccuracyForDocumentTimeLine;
-            //var pDocDate = m.GetPropertyDocumentDate(this, this.PropertyDocDateGuid, true);
-            pDocDate.TagInList = "dd";
-            lst.Add(pDocDate);
-
-            // Document number
-            var pDocNumber = (Property)m.GetPropertyDocNumberString(this, this.Cfg.Model.PropertyDocNumberGuid, 50);
-            pDocNumber.Position = 15;
-            pDocNumber.TagInList = "dn";
-            lst.Add(pDocNumber);
-
             // For all attached properties.
             foreach (var t in this.GroupProperties.ListProperties)
             {
@@ -985,22 +926,22 @@ namespace vSharpStudio.vm.ViewModels
                 var doc = (Document)this.SelectedDoc;
                 foreach (var t in this.GroupRegisterDimensions.ListDimensions)
                 {
-                    var row = new MappingRow(doc, this, t);
+                    var row = new RegisterMappingRow(doc, this, t);
                     this.ListMappings.Add(row);
                 }
                 if (this.UseQtyAccumulator)
                 {
-                    var row = new MappingRow(doc, this, this.TableTurnoverPropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName);
+                    var row = new RegisterMappingRow(doc, this, this.TableTurnoverPropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName);
                     this.ListMappings.Add(row);
                 }
                 if (this.UseMoneyAccumulator)
                 {
-                    var row = new MappingRow(doc, this, this.TableTurnoverPropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName);
+                    var row = new RegisterMappingRow(doc, this, this.TableTurnoverPropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName);
                     this.ListMappings.Add(row);
                 }
                 foreach (var t in this.GroupProperties.ListProperties)
                 {
-                    var row = new MappingRow(doc, this, t.Guid, t.Name);
+                    var row = new RegisterMappingRow(doc, this, t.Guid, t.Name);
                     this.ListMappings.Add(row);
                 }
                 foreach (var t in doc.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties)
@@ -1066,7 +1007,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.AddDetailProperties(tt);
             }
         }
-        private void AddCompatibleProperty(MappingRow row, Property p)
+        private void AddCompatibleProperty(RegisterMappingRow row, Property p)
         {
             if (this.IsShowCompatible)
             {
@@ -1325,59 +1266,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         private Visibility _VisibilityTextDocSelected = Visibility.Hidden;
         [Browsable(false)]
-        public ObservableCollection<MappingRow> ListMappings
+        public ObservableCollection<RegisterMappingRow> ListMappings
         {
             get => _ListMappings;
             set => SetProperty(ref _ListMappings, value);
         }
-        private ObservableCollection<MappingRow> _ListMappings = new ObservableCollection<MappingRow>();
+        private ObservableCollection<RegisterMappingRow> _ListMappings = new ObservableCollection<RegisterMappingRow>();
         #endregion Mapping
 
         #endregion Editor
-    }
-    public class MappingRow : ObservableObject
-    {
-        public Document Doc { get; private set; }
-        public Register Reg { get; private set; }
-        public RegisterDimension? Dimension { get; private set; }
-        public Property? AttachedProperty { get; private set; }
-        public string RegPropertyGuid { get; private set; }
-        public MappingRow(Document doc, Register reg, RegisterDimension dim)
-        {
-            this.Doc = doc;
-            this.Reg = reg;
-            this.Dimension = dim;
-            this.RegPropertyGuid = dim.Guid;
-            this.Name = dim.Name;
-        }
-        public MappingRow(Document doc, Register reg, string regPropertyGuid, string accumulatorName)
-        {
-            this.Doc = doc;
-            this.Reg = reg;
-            this.RegPropertyGuid = regPropertyGuid;
-            this.Name = accumulatorName;
-        }
-        public string Name { get; private set; }
-        public Property? Selected
-        {
-            get => _Selected;
-            set
-            {
-                if (SetProperty(ref _Selected, value))
-                {
-                    if (_Selected != null)
-                        this.Reg.MappingRegPropertyAdd(this.Doc.Guid, this.RegPropertyGuid, _Selected.Guid);
-                    else
-                        this.Reg.MappingRegPropertyRemove(this.Doc.Guid, this.RegPropertyGuid);
-                }
-            }
-        }
-        private Property? _Selected;
-        public ObservableCollection<Property> ListToMap
-        {
-            get => _ListToMap;
-            set => SetProperty(ref _ListToMap, value);
-        }
-        private ObservableCollection<Property> _ListToMap = new ObservableCollection<Property>();
     }
 }
