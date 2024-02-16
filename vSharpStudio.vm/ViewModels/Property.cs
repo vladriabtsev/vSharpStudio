@@ -137,6 +137,10 @@ namespace vSharpStudio.vm.ViewModels
                 return sb;
             if (n is GroupListRegisters)
                 return sb;
+            if (n is GroupListConstants)
+                return sb;
+            if (n is RelationManyToMany)
+                return sb;
             Debug.Assert(n.Parent != null);
             ToRoot(n.Parent, sb);
             if (n is Property p)
