@@ -51,13 +51,13 @@ namespace vSharpStudio.ViewModels
     {
         private ILogger? _logger;
         public static bool NotSaveUserSettings = false;
-        public static MainPageVM Create(string? pluginsFolderPath = null, string? configFile = null)
+        public static MainPageVM Create(string? pluginsFolderPath = null, string? configFile = null, bool isCreateNewEmptyConfig = false)
         {
             // IsChanged in all classes is changed only if configuration objects properties are changed. Auto generated in code.
             VmBindable.IsModifyIsChangedExplicitly = true;
             MainPageVM vm = new MainPageVM(null, configFile);
             vm.Compose(pluginsFolderPath);
-            vm.OnFormLoaded();
+            vm.OnFormLoaded(isCreateNewEmptyConfig);
             return vm;
         }
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyGrid? propertyGrid;
@@ -144,7 +144,7 @@ namespace vSharpStudio.ViewModels
             //}
             #endregion Git Version
         }
-        public void OnFormLoaded()
+        public void OnFormLoaded(bool isCreateEmptyConfig = false)
         {
             Debug.Assert(this.ProgressVM != null);
             this.ProgressVM.ProgressStart("Configuration Loading");
@@ -196,7 +196,7 @@ namespace vSharpStudio.ViewModels
                 _logger?.Debug("Load Configuration from file {ConfigFile}", configFile);
                 this.LoadConfig(configFile, string.Empty, true);
             }
-            else if (!string.IsNullOrEmpty(this.CurrentCfgFilePath) && File.Exists(this.CurrentCfgFilePath))
+            else if (!isCreateEmptyConfig && !string.IsNullOrEmpty(this.CurrentCfgFilePath) && File.Exists(this.CurrentCfgFilePath))
             {
                 _logger?.Debug("Load Configuration from standard file {ConfigFile}", this.CurrentCfgFilePath);
                 this.LoadConfig(this.CurrentCfgFilePath, string.Empty, true);

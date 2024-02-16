@@ -12,8 +12,12 @@ namespace vSharpStudio.vm.ViewModels
     {
         public FkComplexRef(string configObjectGuid) : this()
         {
-            this.ConfigObjectGuid = configObjectGuid;
-            this.FkIndexTableGuid= System.Guid.NewGuid().ToString();
+            this._ConfigObjectGuid = configObjectGuid;
+        }
+        partial void OnCreated()
+        {
+            this._Guid = System.Guid.NewGuid().ToString();
+            this._FkIndexTableGuid = System.Guid.NewGuid().ToString();
         }
     }
 }
