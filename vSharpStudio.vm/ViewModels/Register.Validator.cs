@@ -342,11 +342,43 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             if (string.IsNullOrWhiteSpace(dpm.DocPropGuid))
                                 continue;
+                            var regPropName = "";
+                            foreach (var td in r.GroupRegisterDimensions.ListDimensions)
+                            {
+                                if (td.Guid == dpm.RegPropGuid)
+                                {
+                                    regPropName = td.Name;
+                                    break;
+                                }
+                            }
+                            if (string.IsNullOrEmpty(regPropName))
+                            {
+                                foreach (var rp in r.GroupProperties.ListProperties)
+                                {
+                                    if (rp.Guid == dpm.RegPropGuid)
+                                    {
+                                        regPropName = rp.Name;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (string.IsNullOrEmpty(regPropName))
+                            {
+                                if (r.TableTurnoverPropertyMoneyAccumulatorGuid == dpm.RegPropGuid)
+                                {
+                                    regPropName = r.TableTurnoverPropertyMoneyAccumulatorName;
+                                }
+                                else if (r.TableTurnoverPropertyQtyAccumulatorGuid == dpm.RegPropGuid)
+                                {
+                                    regPropName = r.TableTurnoverPropertyQtyAccumulatorName;
+                                }
+                                else
+                                    Debug.Assert(false);
+                            }
                             if (!r.Cfg.DicNodes.ContainsKey(dpm.DocPropGuid))
                             {
-                                var propr = (Property)r.Cfg.DicNodes[dpm.RegPropGuid];
                                 var vf = new ValidationFailure(cntx.PropertyPath,
-                                    $"Register '{r.Name}'. It's property '{propr.Name}' mapped to not existing property of '{doc.Name}' document.");
+                                    $"Register '{r.Name}'. It's property '{regPropName}' mapped to not existing property of '{doc.Name}' document.");
                                 vf.Severity = Severity.Error;
                                 cntx.AddFailure(vf);
                             }
@@ -357,8 +389,8 @@ namespace vSharpStudio.vm.ViewModels
                                 propMappings.Add(new MappingBranchPath() { BranchPath = path, RegPropGuid = dpm.RegPropGuid });
                                 if (hashPropGuid.Contains(dpm.DocPropGuid))
                                 {
-                                    var vf = new ValidationFailure(cntx.PropertyPath, //property '{propr.Name}' 
-                                        $"Register '{r.Name}' is mapped to property '{prop.Name}' of document '{doc.Name}'. This document property is used for mapping more than ones.");
+                                    var vf = new ValidationFailure(cntx.PropertyPath,
+                                        $"Property '{regPropName}' of register '{r.Name}' is mapped to property '{prop.Name}' of document '{doc.Name}'. This document property is used for mapping more than ones.");
                                     vf.Severity = Severity.Error;
                                     cntx.AddFailure(vf);
                                 }

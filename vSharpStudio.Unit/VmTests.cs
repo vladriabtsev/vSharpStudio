@@ -462,7 +462,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.CountWarnings == 0);
             Assert.IsTrue(cfg.CountInfos == 2);
             Assert.IsTrue(cfg.CountErrors == 2);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimesion 'cat_dimension1' is not mapped to 'doc1' document property."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension1' is not mapped to 'doc1' document property."));
             cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
             cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' has length less than length 'num28_5' property of 'doc1' document."));
             cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' has accuracy less than accuracy 'num28_5' property of 'doc1' document."));
@@ -475,7 +475,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
             Assert.IsTrue(cfg.CountErrors == 2);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimesion 'cat_dimension1' is not mapped to 'doc1' document property."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension1' is not mapped to 'doc1' document property."));
             cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
 
             // Map dimension
@@ -514,7 +514,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
             Assert.IsTrue(cfg.CountErrors == 2);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimesion 'cat_dimension2' is not mapped to 'doc1' document property."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension2' is not mapped to 'doc1' document property."));
             cfg.ValidationCollection.Single(err => err.Message.StartsWith("Catalog type is not selected for register dimension."));
 
             // Change dimension type to same as first dimension type
@@ -523,7 +523,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
             Assert.IsTrue(cfg.CountErrors == 3);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimesion 'cat_dimension2' is not mapped to 'doc1' document property."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension2' is not mapped to 'doc1' document property."));
             cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover' dimension 'cat_dimension1'. Selected catalog type for register dimension is already used for 'cat_dimension2' dimension."));
             cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover' dimension 'cat_dimension2'. Selected catalog type for register dimension is already used for 'cat_dimension1' dimension."));
 
@@ -534,7 +534,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
             Assert.IsTrue(cfg.CountErrors == 1);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimesion 'cat_dimension2' is not mapped to 'doc1' document property."));
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension2' is not mapped to 'doc1' document property."));
 
             // Map dimension 2
             var p_doc1_cat2 = doc1.AddPropertyCatalog("cat2", cat2.Guid, true);
