@@ -346,7 +346,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     else if (this.ParentGroupListForms.Parent is Document d)
                     {
-                        d.GetSpecialProperties(this._ListProperties, false);
+                        d.GetSpecialProperties(this._ListProperties, false, true);
                     }
                     else if (this.ParentGroupListForms.Parent is CatalogFolder cf)
                     {

@@ -139,20 +139,20 @@ namespace vSharpStudio.common
         private void AddReferenceToNode(ModelNode md, IGuid obj, IDataType d)
         {
             Debug.Assert(this.currCfg != null);
-            if (!string.IsNullOrWhiteSpace(d.ObjectRef.ConfigObjectGuid))
+            if (!string.IsNullOrWhiteSpace(d.ObjectRef.RefConfigObjectGuid))
             {
-                Debug.Assert(!md.DicReferenceToNodes.ContainsKey(d.ObjectRef.ConfigObjectGuid));
-                md.DicReferenceToNodes[d.ObjectRef.ConfigObjectGuid] = new ReferenceTo(this.currCfg.DicNodes[d.ObjectRef.ConfigObjectGuid]);
+                Debug.Assert(!md.DicReferenceToNodes.ContainsKey(d.ObjectRef.RefConfigObjectGuid));
+                md.DicReferenceToNodes[d.ObjectRef.RefConfigObjectGuid] = new ReferenceTo(this.currCfg.DicNodes[d.ObjectRef.RefConfigObjectGuid]);
                 Debug.Assert(d.ListObjectRefs.Count == 0);
-                var tn = md.DicReferenceToNodes[d.ObjectRef.ConfigObjectGuid];
+                var tn = md.DicReferenceToNodes[d.ObjectRef.RefConfigObjectGuid];
                 tn.DicByFields[obj.Guid] = obj;
             }
             foreach (var ttt in d.ListObjectRefs)
             {
-                Debug.Assert(!string.IsNullOrWhiteSpace(ttt.ConfigObjectGuid));
-                Debug.Assert(!md.DicReferenceToNodes.ContainsKey(ttt.ConfigObjectGuid));
-                md.DicReferenceToNodes[ttt.ConfigObjectGuid] = new ReferenceTo(this.currCfg.DicNodes[ttt.ConfigObjectGuid]);
-                var tn = md.DicReferenceToNodes[ttt.ConfigObjectGuid];
+                Debug.Assert(!string.IsNullOrWhiteSpace(ttt.RefConfigObjectGuid));
+                Debug.Assert(!md.DicReferenceToNodes.ContainsKey(ttt.RefConfigObjectGuid));
+                md.DicReferenceToNodes[ttt.RefConfigObjectGuid] = new ReferenceTo(this.currCfg.DicNodes[ttt.RefConfigObjectGuid]);
+                var tn = md.DicReferenceToNodes[ttt.RefConfigObjectGuid];
                 tn.DicByFields[obj.Guid] = obj;
             }
         }

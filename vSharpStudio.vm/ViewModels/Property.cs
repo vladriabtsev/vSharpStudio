@@ -26,6 +26,10 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnDebugStringExtend(ref string mes)
         {
+            if (this.ParentProperty != null)
+            {
+                mes = mes + " Complex:" + this.ParentProperty.Name;
+            }
             mes = mes + $" Type:{DataType.GetTypeDesc(this.DataType)}";
             if (this.TagInList != null)
             {
@@ -65,6 +69,9 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         // Can be used by a generator to keep calculated property data
         public object? Tag { get; set; }
+        [Browsable(false)]
+        // Calculated position in list of properties
+        public int PositionInConfigObject { get; set; }
         //[Browsable(false)]
         //public static IConfig? Config { get; set; }
 
@@ -556,10 +563,10 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(15)]
         public string ConfigObjectGuid
         {
-            get { return this.DataType.ObjectRef.ConfigObjectGuid; }
+            get { return this.DataType.ObjectRef.RefConfigObjectGuid; }
             set
             {
-                this.DataType.ObjectRef.ConfigObjectGuid = value;
+                this.DataType.ObjectRef.RefConfigObjectGuid = value;
                 this.OnPropertyChanged();
                 this.ValidateProperty();
                 this.OnPropertyChanged(nameof(this.ClrType));
@@ -632,7 +639,7 @@ namespace vSharpStudio.vm.ViewModels
         //[Description("Expected always >= 0")]
         [Category("")]
         [PropertyOrderAttribute(17)]
-        public ObservableCollection<FkComplexRef> ListObjectRefs
+        public ObservableCollection<ComplexRef> ListObjectRefs
         {
             get { return this.DataType.ListObjectRefs; }
         }
@@ -853,7 +860,7 @@ namespace vSharpStudio.vm.ViewModels
         //            return false;
         //    }
         //}
-        public IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable, bool isCsNullable)
+        public IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable, bool isCsNullable, int positionInObject, string foreignObjectGuid, string propRefIdGuid)
         {
             //Debug.Assert(this.CanAddExtentionPropertyRefId());
             var node = new Property(this) { Name = subName, ParentProperty = this };
@@ -863,6 +870,9 @@ namespace vSharpStudio.vm.ViewModels
             node.IsNullable = isNullable;
             node.IsCsNullable = isCsNullable;
             node.IsComplexRefId = true;
+            node.PositionInConfigObject = positionInObject;
+            node.DataType.ObjectRef.RefConfigObjectGuid = foreignObjectGuid;
+            node.DataType.ObjectRef.PropertyRefIdGuid = propRefIdGuid;
             return node;
         }
         public bool IsComplexRefId { get; private set; }
@@ -969,18 +979,18 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.TIMEZ:
                     break;
                 case EnumDataType.CATALOG:
-                    if (this.DataType.ObjectRef.ConfigObjectGuid != from.DataType.ObjectRef.ConfigObjectGuid)
+                    if (this.DataType.ObjectRef.RefConfigObjectGuid != from.DataType.ObjectRef.RefConfigObjectGuid)
                     {
-                        var cf = (Catalog)this.Cfg.DicNodes[from.DataType.ObjectRef.ConfigObjectGuid];
-                        var cd = (Catalog)this.Cfg.DicNodes[this.DataType.ObjectRef.ConfigObjectGuid];
+                        var cf = (Catalog)this.Cfg.DicNodes[from.DataType.ObjectRef.RefConfigObjectGuid];
+                        var cd = (Catalog)this.Cfg.DicNodes[this.DataType.ObjectRef.RefConfigObjectGuid];
                         return $"Destination catalog type '{cd.Name}' not equal source catalog type '{cf.Name}'.";
                     }
                     break;
                 case EnumDataType.DOCUMENT:
-                    if (this.DataType.ObjectRef.ConfigObjectGuid != from.DataType.ObjectRef.ConfigObjectGuid)
+                    if (this.DataType.ObjectRef.RefConfigObjectGuid != from.DataType.ObjectRef.RefConfigObjectGuid)
                     {
-                        var cf = (Document)this.Cfg.DicNodes[from.DataType.ObjectRef.ConfigObjectGuid];
-                        var cd = (Document)this.Cfg.DicNodes[this.DataType.ObjectRef.ConfigObjectGuid];
+                        var cf = (Document)this.Cfg.DicNodes[from.DataType.ObjectRef.RefConfigObjectGuid];
+                        var cd = (Document)this.Cfg.DicNodes[this.DataType.ObjectRef.RefConfigObjectGuid];
                         return $"Destination document type '{cd.Name}' not equal source document type '{cf.Name}'.";
                     }
                     break;
@@ -990,12 +1000,12 @@ namespace vSharpStudio.vm.ViewModels
                         bool found = false;
                         foreach (var t in this.DataType.ListObjectRefs)
                         {
-                            if (t.ConfigObjectGuid == from.DataType.ObjectRef.ConfigObjectGuid)
+                            if (t.RefConfigObjectGuid == from.DataType.ObjectRef.RefConfigObjectGuid)
                             { found = true; break; }
                         }
                         if (!found)
                         {
-                            var cf = (Catalog)this.Cfg.DicNodes[from.DataType.ObjectRef.ConfigObjectGuid];
+                            var cf = (Catalog)this.Cfg.DicNodes[from.DataType.ObjectRef.RefConfigObjectGuid];
                             return $"Destination catalogs type '{this.Name}' property is not supporting source catalog type '{cf.Name}'.";
                         }
                     }
@@ -1011,12 +1021,12 @@ namespace vSharpStudio.vm.ViewModels
                         bool found = false;
                         foreach (var t in this.DataType.ListObjectRefs)
                         {
-                            if (t.ConfigObjectGuid == from.DataType.ObjectRef.ConfigObjectGuid)
+                            if (t.RefConfigObjectGuid == from.DataType.ObjectRef.RefConfigObjectGuid)
                             { found = true; break; }
                         }
                         if (!found)
                         {
-                            var cf = (Document)this.Cfg.DicNodes[from.DataType.ObjectRef.ConfigObjectGuid];
+                            var cf = (Document)this.Cfg.DicNodes[from.DataType.ObjectRef.RefConfigObjectGuid];
                             return $"Destination documents type '{this.Name}' property is not supporting source document type '{cf.Name}'.";
                         }
                     }

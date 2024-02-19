@@ -153,7 +153,7 @@ namespace vSharpStudio.vm.ViewModels
                 var r = (Register)cntx.InstanceToValidate;
                 foreach (var t in lst)
                 {
-                    var doc = (Document)r.Cfg.DicNodes[t.ConfigObjectGuid];
+                    var doc = (Document)r.Cfg.DicNodes[t.RefConfigObjectGuid];
                     //this.foundDic.Clear();
 
                     // not mapped
@@ -178,9 +178,9 @@ namespace vSharpStudio.vm.ViewModels
                                             vf.Severity = Severity.Error;
                                             cntx.AddFailure(vf);
                                         }
-                                        if (p.DataType.ObjectRef.ConfigObjectGuid != rd.DimensionCatalogGuid)
+                                        if (p.DataType.ObjectRef.RefConfigObjectGuid != rd.DimensionCatalogGuid)
                                         {
-                                            var cp = (Catalog)r.Cfg.DicNodes[p.DataType.ObjectRef.ConfigObjectGuid];
+                                            var cp = (Catalog)r.Cfg.DicNodes[p.DataType.ObjectRef.RefConfigObjectGuid];
                                             var crd = (Catalog)r.Cfg.DicNodes[rd.DimensionCatalogGuid];
                                             var vf = new ValidationFailure(cntx.PropertyPath,
                                                 $"Register '{r.Name}'. Dimension can mapped to catalog property of type '{crd.Name}', but property '{p.Name}' of '{doc.Name}' document has catalog type '{cp.Name}'.");

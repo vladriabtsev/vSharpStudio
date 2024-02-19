@@ -7173,8 +7173,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
-    public partial class FkComplexRefValidator : ValidatorBase<FkComplexRef, FkComplexRefValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:16
-    public partial class FkComplexRef : VmValidatableWithSeverity<FkComplexRef, FkComplexRefValidator>, IFkComplexRef // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:17
+    public partial class ComplexRefValidator : ValidatorBase<ComplexRef, ComplexRefValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:16
+    public partial class ComplexRef : VmValidatableWithSeverity<ComplexRef, ComplexRefValidator>, IComplexRef // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:17
     {
         public override string ToDebugString()
         {
@@ -7188,12 +7188,12 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        /*public FkComplexRef() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:44
+        /*public ComplexRef() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:44
         {
             this.OnCreating();
         }*/
-        public FkComplexRef() 
-            : base(FkComplexRefValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
+        public ComplexRef() 
+            : base(ComplexRefValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
         {
             this.OnCreating();
             this.OnCreated();
@@ -7204,46 +7204,46 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static FkComplexRef Clone(IFkComplexRef from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:31
+        public static ComplexRef Clone(IComplexRef from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:31
         {
             Debug.Assert(from != null);
-            FkComplexRef vm = new FkComplexRef(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:38
+            ComplexRef vm = new ComplexRef(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:38
             vm._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._ConfigObjectGuid = from.ConfigObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._FkIndexTableGuid = from.FkIndexTableGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            vm._RefConfigObjectGuid = from.RefConfigObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            vm._PropertyRefIdGuid = from.PropertyRefIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             return vm;
         }
-        public static void Update(FkComplexRef to, IFkComplexRef from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:79
+        public static void Update(ComplexRef to, IComplexRef from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:79
         {
             Debug.Assert(to != null);
             Debug.Assert(from != null);
             to._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._ConfigObjectGuid = from.ConfigObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._FkIndexTableGuid = from.FkIndexTableGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            to._RefConfigObjectGuid = from.RefConfigObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            to._PropertyRefIdGuid = from.PropertyRefIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
         }
         // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:149
         #region IEditable
-        public override FkComplexRef Backup()
+        public override ComplexRef Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return FkComplexRef.Clone(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:159
+            return ComplexRef.Clone(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:159
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(FkComplexRef from)
+        public override void Restore(ComplexRef from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            FkComplexRef.Update(this, from, isDeep);
+            ComplexRef.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'fk_complex_ref' to 'FkComplexRef'
-        public static FkComplexRef ConvertToVM(Proto.Config.fk_complex_ref m, FkComplexRef vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:173
+        // Conversion from 'complex_ref' to 'ComplexRef'
+        public static ComplexRef ConvertToVM(Proto.Config.complex_ref m, ComplexRef vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -7253,20 +7253,20 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._Guid = m.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._Name = m.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._SortingValue = m.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._ConfigObjectGuid = m.ConfigObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._FkIndexTableGuid = m.FkIndexTableGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            vm._RefConfigObjectGuid = m.RefConfigObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            vm._PropertyRefIdGuid = m.PropertyRefIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             return vm;
         }
-        // Conversion from 'FkComplexRef' to 'fk_complex_ref'
-        public static Proto.Config.fk_complex_ref ConvertToProto(FkComplexRef vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:232
+        // Conversion from 'ComplexRef' to 'complex_ref'
+        public static Proto.Config.complex_ref ConvertToProto(ComplexRef vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:232
         {
             Debug.Assert(vm != null);
-            Proto.Config.fk_complex_ref m = new Proto.Config.fk_complex_ref(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:235
+            Proto.Config.complex_ref m = new Proto.Config.complex_ref(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:235
             m.Guid = vm.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.Name = vm.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.ConfigObjectGuid = vm.ConfigObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.FkIndexTableGuid = vm.FkIndexTableGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.RefConfigObjectGuid = vm.RefConfigObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.PropertyRefIdGuid = vm.PropertyRefIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             return m;
         }
         
@@ -7283,7 +7283,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         #endregion Procedures
         #region Properties
         
-        [Category("")]
+        // Property guid. Empty for register doc
         [PropertyOrderAttribute(-2)]
         [ReadOnly(true)]
         public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
@@ -7344,39 +7344,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this._SortingValue = sortValue;
         }
         
-        public string ConfigObjectGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        [Browsable(false)]
+        public string RefConfigObjectGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
-            get { return this._ConfigObjectGuid; }
+            get { return this._RefConfigObjectGuid; }
             set
             {
-                // Use 'OnConfigObjectGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._ConfigObjectGuid, value, (t) => { bool isCancel = false; this.OnConfigObjectGuidChanging(ref value, ref isCancel); if (isCancel) return; this._ConfigObjectGuid = value; this.OnConfigObjectGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
+                // Use 'OnRefConfigObjectGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._RefConfigObjectGuid, value, (t) => { bool isCancel = false; this.OnRefConfigObjectGuidChanging(ref value, ref isCancel); if (isCancel) return; this._RefConfigObjectGuid = value; this.OnRefConfigObjectGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _ConfigObjectGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnConfigObjectGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
-        partial void OnConfigObjectGuidChanged();
+        private string _RefConfigObjectGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnRefConfigObjectGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnRefConfigObjectGuidChanged();
         
-        public string FkIndexTableGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        [Browsable(false)]
+        public string PropertyRefIdGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
-            get { return this._FkIndexTableGuid; }
+            get { return this._PropertyRefIdGuid; }
             set
             {
-                // Use 'OnFkIndexTableGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._FkIndexTableGuid, value, (t) => { bool isCancel = false; this.OnFkIndexTableGuidChanging(ref value, ref isCancel); if (isCancel) return; this._FkIndexTableGuid = value; this.OnFkIndexTableGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
+                // Use 'OnPropertyRefIdGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._PropertyRefIdGuid, value, (t) => { bool isCancel = false; this.OnPropertyRefIdGuidChanging(ref value, ref isCancel); if (isCancel) return; this._PropertyRefIdGuid = value; this.OnPropertyRefIdGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _FkIndexTableGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnFkIndexTableGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
-        partial void OnFkIndexTableGuidChanged();
+        private string _PropertyRefIdGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnPropertyRefIdGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnPropertyRefIdGuidChanged();
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:7
@@ -7408,8 +7410,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ObjectRef = new FkComplexRef(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
-            this._ListObjectRefs = new ObservableCollectionWithActions<FkComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:58
+            this._ObjectRef = new ComplexRef(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+            this._ListObjectRefs = new ObservableCollectionWithActions<ComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:58
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
@@ -7427,11 +7429,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsPositive = from.IsPositive; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._Accuracy = from.Accuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:66 IsDefaultBase=False
-                vm.ObjectRef = vSharpStudio.vm.ViewModels.FkComplexRef.Clone(from.ObjectRef, isDeep);
+                vm.ObjectRef = vSharpStudio.vm.ViewModels.ComplexRef.Clone(from.ObjectRef, isDeep);
             vm._AccuracyForTime = from.AccuracyForTime; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._ListObjectRefs = new ObservableCollectionWithActions<FkComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:50
+            vm._ListObjectRefs = new ObservableCollectionWithActions<ComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:50
             foreach (var t in from.ListObjectRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:51
-                vm.ListObjectRefs.Add(FkComplexRef.Clone((FkComplexRef)t, isDeep));
+                vm.ListObjectRefs.Add(ComplexRef.Clone((ComplexRef)t, isDeep));
                       vm._IsNullable = from.IsNullable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._TimespanAccuracy = from.TimespanAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._TimespanMaxValue = from.TimespanMaxValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
@@ -7449,7 +7451,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._IsPositive = from.IsPositive; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._Accuracy = from.Accuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:140
-                vSharpStudio.vm.ViewModels.FkComplexRef.Update((FkComplexRef)to.ObjectRef, from.ObjectRef, isDeep);
+                vSharpStudio.vm.ViewModels.ComplexRef.Update((ComplexRef)to.ObjectRef, from.ObjectRef, isDeep);
             to._AccuracyForTime = from.AccuracyForTime; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:88
             {
@@ -7461,7 +7463,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                         if (t.Guid == tt.Guid)
                         {
                             isfound = true;
-                            FkComplexRef.Update((FkComplexRef)t, (FkComplexRef)tt, isDeep);
+                            ComplexRef.Update((ComplexRef)t, (ComplexRef)tt, isDeep);
                             break;
                         }
                     }
@@ -7481,8 +7483,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                     }
                     if (!isfound)
                     {
-                        var p = new FkComplexRef(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:121
-                        FkComplexRef.Update(p, (FkComplexRef)tt, isDeep);
+                        var p = new ComplexRef(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:121
+                        ComplexRef.Update(p, (ComplexRef)tt, isDeep);
                         to.ListObjectRefs.Add(p);
                     }
                 }
@@ -7525,13 +7527,13 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsPositive = m.IsPositive; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._Accuracy = m.Accuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             if (vm.ObjectRef == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:211
-                vm.ObjectRef = new FkComplexRef(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:215
-            vSharpStudio.vm.ViewModels.FkComplexRef.ConvertToVM(m.ObjectRef, (FkComplexRef)vm.ObjectRef); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
+                vm.ObjectRef = new ComplexRef(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:215
+            vSharpStudio.vm.ViewModels.ComplexRef.ConvertToVM(m.ObjectRef, (ComplexRef)vm.ObjectRef); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
             vm._AccuracyForTime = (EnumTimeAccuracyType)m.AccuracyForTime; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._ListObjectRefs = new ObservableCollectionWithActions<FkComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:202
+            vm._ListObjectRefs = new ObservableCollectionWithActions<ComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:202
             foreach (var t in m.ListObjectRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:203
             {
-                var tvm = FkComplexRef.ConvertToVM(t, new FkComplexRef()); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:205
+                var tvm = ComplexRef.ConvertToVM(t, new ComplexRef()); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:205
                 vm.ListObjectRefs.Add(tvm);
             }
             vm._IsNullable = m.IsNullable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
@@ -7551,10 +7553,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.Length = vm.Length; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsPositive = vm.IsPositive; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.Accuracy = vm.Accuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.ObjectRef = vSharpStudio.vm.ViewModels.FkComplexRef.ConvertToProto((FkComplexRef)vm.ObjectRef); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
+            m.ObjectRef = vSharpStudio.vm.ViewModels.ComplexRef.ConvertToProto((ComplexRef)vm.ObjectRef); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
             m.AccuracyForTime = (Proto.Config.proto_enum_time_accuracy_type)vm.AccuracyForTime; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:270
             foreach (var t in vm.ListObjectRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
-                m.ListObjectRefs.Add(FkComplexRef.ConvertToProto((FkComplexRef)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
+                m.ListObjectRefs.Add(ComplexRef.ConvertToProto((ComplexRef)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
             m.IsNullable = vm.IsNullable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.TimespanAccuracy = (Proto.Config.proto_enum_timespan_boundary_type)vm.TimespanAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:270
             m.TimespanMaxValue = (Proto.Config.proto_enum_timespan_boundary_type)vm.TimespanMaxValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:270
@@ -7670,7 +7672,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         /// </summary>
         [PropertyOrderAttribute(6)]
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
-        public FkComplexRef ObjectRef // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        public ComplexRef ObjectRef // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
             get { return this._ObjectRef; }
             set
@@ -7682,10 +7684,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        private FkComplexRef _ObjectRef; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnObjectRefChanging(ref FkComplexRef to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        private ComplexRef _ObjectRef; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnObjectRefChanging(ref ComplexRef to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
         partial void OnObjectRefChanged();
-        IFkComplexRef IDataType.ObjectRef { get { return (this as DataType).ObjectRef; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:77
+        IComplexRef IDataType.ObjectRef { get { return (this as DataType).ObjectRef; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:77
         
         [Category("")]
         [PropertyOrderAttribute(7)]
@@ -7712,7 +7714,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         /// Guids of selected complex types for data type CATALOGS or DOCUMENTS
         /// </summary>
         [PropertyOrderAttribute(8)]
-        public ObservableCollectionWithActions<FkComplexRef> ListObjectRefs // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        public ObservableCollectionWithActions<ComplexRef> ListObjectRefs // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
             get { return this._ListObjectRefs; }
             set
@@ -7724,10 +7726,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        private ObservableCollectionWithActions<FkComplexRef> _ListObjectRefs; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnListObjectRefsChanging(ObservableCollectionWithActions<FkComplexRef> to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        private ObservableCollectionWithActions<ComplexRef> _ListObjectRefs; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnListObjectRefsChanging(ObservableCollectionWithActions<ComplexRef> to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
         partial void OnListObjectRefsChanged();
-        IReadOnlyList<IFkComplexRef> IDataType.ListObjectRefs { get { return (this as DataType).ListObjectRefs; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:48
+        IReadOnlyList<IComplexRef> IDataType.ListObjectRefs { get { return (this as DataType).ListObjectRefs; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:48
         
         
         [Category("")]
@@ -21156,7 +21158,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreating();
             this._GroupRegisterDimensions = new GroupListRegisterDimensions(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
             this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-            this._ListObjectDocRefs = new ObservableCollectionWithActions<FkComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:58
+            this._ListObjectDocRefs = new ObservableCollectionWithActions<ComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:58
             this._ListDocMappings = new ObservableCollectionWithActions<RegisterDocToReg>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:58
             this._GroupForms = new GroupListForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
             this._GroupReports = new GroupListReports(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
@@ -21210,9 +21212,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._PropertyPostDateGuid = from.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._PropertyDocRefGuidName = from.PropertyDocRefGuidName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._PropertyDocRefName = from.PropertyDocRefName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._ListObjectDocRefs = new ObservableCollectionWithActions<FkComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:50
+            vm._ListObjectDocRefs = new ObservableCollectionWithActions<ComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:50
             foreach (var t in from.ListObjectDocRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:51
-                vm.ListObjectDocRefs.Add(FkComplexRef.Clone((FkComplexRef)t, isDeep));
+                vm.ListObjectDocRefs.Add(ComplexRef.Clone((ComplexRef)t, isDeep));
                       vm._PropertyDocRefGuid = from.PropertyDocRefGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._PropertyDocGuidGuid = from.PropertyDocGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._IndexDocDateGuid = from.IndexDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
@@ -21281,7 +21283,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                         if (t.Guid == tt.Guid)
                         {
                             isfound = true;
-                            FkComplexRef.Update((FkComplexRef)t, (FkComplexRef)tt, isDeep);
+                            ComplexRef.Update((ComplexRef)t, (ComplexRef)tt, isDeep);
                             break;
                         }
                     }
@@ -21301,8 +21303,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                     }
                     if (!isfound)
                     {
-                        var p = new FkComplexRef(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:121
-                        FkComplexRef.Update(p, (FkComplexRef)tt, isDeep);
+                        var p = new ComplexRef(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:121
+                        ComplexRef.Update(p, (ComplexRef)tt, isDeep);
                         to.ListObjectDocRefs.Add(p);
                     }
                 }
@@ -21452,10 +21454,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._PropertyPostDateGuid = m.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._PropertyDocRefGuidName = m.PropertyDocRefGuidName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._PropertyDocRefName = m.PropertyDocRefName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._ListObjectDocRefs = new ObservableCollectionWithActions<FkComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:202
+            vm._ListObjectDocRefs = new ObservableCollectionWithActions<ComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:202
             foreach (var t in m.ListObjectDocRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:203
             {
-                var tvm = FkComplexRef.ConvertToVM(t, new FkComplexRef()); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:205
+                var tvm = ComplexRef.ConvertToVM(t, new ComplexRef()); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:205
                 vm.ListObjectDocRefs.Add(tvm);
             }
             vm._PropertyDocRefGuid = m.PropertyDocRefGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
@@ -21525,7 +21527,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.PropertyDocRefGuidName = vm.PropertyDocRefGuidName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.PropertyDocRefName = vm.PropertyDocRefName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             foreach (var t in vm.ListObjectDocRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
-                m.ListObjectDocRefs.Add(FkComplexRef.ConvertToProto((FkComplexRef)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
+                m.ListObjectDocRefs.Add(ComplexRef.ConvertToProto((ComplexRef)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
             m.PropertyDocRefGuid = vm.PropertyDocRefGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.PropertyDocGuidGuid = vm.PropertyDocGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IndexDocDateGuid = vm.IndexDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -22097,7 +22099,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         /// Guids of selected types of DOCUMENTS which can POST or UNPOST for this register
         /// </summary>
         [Browsable(false)]
-        public ObservableCollectionWithActions<FkComplexRef> ListObjectDocRefs // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        public ObservableCollectionWithActions<ComplexRef> ListObjectDocRefs // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
             get { return this._ListObjectDocRefs; }
             set
@@ -22109,10 +22111,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
             }
         }
-        private ObservableCollectionWithActions<FkComplexRef> _ListObjectDocRefs; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnListObjectDocRefsChanging(ObservableCollectionWithActions<FkComplexRef> to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        private ObservableCollectionWithActions<ComplexRef> _ListObjectDocRefs; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnListObjectDocRefsChanging(ObservableCollectionWithActions<ComplexRef> to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
         partial void OnListObjectDocRefsChanged();
-        IReadOnlyList<IFkComplexRef> IRegister.ListObjectDocRefs { get { return (this as Register).ListObjectDocRefs; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:48
+        IReadOnlyList<IComplexRef> IRegister.ListObjectDocRefs { get { return (this as Register).ListObjectDocRefs; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:48
         
         
         // Guid for document reference property. Auto generated.
@@ -36350,7 +36352,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void Visit(Proto.Config.proto_app_project_generator p);
         void Visit(Proto.Config.proto_plugin_generator_node_default_settings p);
         void Visit(Proto.Config.proto_model p);
-        void Visit(Proto.Config.fk_complex_ref p);
+        void Visit(Proto.Config.complex_ref p);
         void Visit(Proto.Config.proto_data_type p);
         void Visit(Proto.Config.proto_group_list_common p);
         void Visit(Proto.Config.proto_role p);
@@ -36603,11 +36605,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(FkComplexRef p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(ComplexRef p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(FkComplexRef p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(ComplexRef p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
@@ -37360,16 +37362,16 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         protected virtual void OnVisit(Model p) { }
         protected virtual void OnVisitEnd(Model p) { }
-        public void Visit(FkComplexRef p)
+        public void Visit(ComplexRef p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(FkComplexRef p)
+        public void VisitEnd(ComplexRef p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(FkComplexRef p) { }
-        protected virtual void OnVisitEnd(FkComplexRef p) { }
+        protected virtual void OnVisit(ComplexRef p) { }
+        protected virtual void OnVisitEnd(ComplexRef p) { }
         public void Visit(DataType p)
         {
             this.OnVisit(p);

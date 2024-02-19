@@ -590,7 +590,7 @@ namespace vSharpStudio.Unit
             cnst1.DataType.DataTypeEnum = EnumDataType.BOOL;
             var cnst2 = (Constant)gr.NodeAddNewSubNode();
             cnst2.DataType.DataTypeEnum = EnumDataType.ENUMERATION;
-            cnst2.DataType.ObjectRef.ConfigObjectGuid = cfg.Model.GroupEnumerations[0].Guid;
+            cnst2.DataType.ObjectRef.RefConfigObjectGuid = cfg.Model.GroupEnumerations[0].Guid;
 
             return vm;
         }
@@ -875,7 +875,6 @@ namespace vSharpStudio.Unit
 
         #region Register
         [TestMethod]
-        [Ignore]
         async public System.Threading.Tasks.Task Register_Turnover_Mapping()
         {
             string regName = "reg1";
@@ -892,29 +891,116 @@ namespace vSharpStudio.Unit
             var c1 = vm.Config.Model.GroupCatalogs.AddCatalog(cat1Name);
             var c2 = vm.Config.Model.GroupCatalogs.AddCatalog(cat2Name);
 
-            cfg.Model.GroupDocuments.AddSharedPropertyCatalog("shared_cat1", c1.Guid);
-
             var d = vm.Config.Model.GroupDocuments.AddDocument(docName);
             var seq = vm.Config.Model.GroupDocuments.GroupListSequences.AddSequence("Seq");
             d.SequenceGuid = seq.Guid;
             var pMoney = d.AddPropertyNumerical("Money", 19, 2);
-            var pQty = d.AddPropertyNumerical("Qty", 19, 4);
+            var pQty = d.AddPropertyNumerical("Qty", 17, 3);
 
-            var r = vm.Config.Model.GroupDocuments.GroupRegisters.AddRegister(regName);
+            var gr = vm.Config.Model.GroupDocuments.GroupRegisters;
+            var r = gr.AddRegister(regName);
             r.RegisterType = EnumRegisterType.TURNOVER;
             r.RegisterPeriodicity = EnumRegisterPeriodicity.REGISTER_PERIOD_DAY;
+            r.ListSelectedDocuments.Add(d);
+            Assert.AreEqual(1, r.ListObjectDocRefs.Count);
+            r.SelectedDoc = d;
 
-            var s_qty5_2 = cfg.Model.GroupDocuments.AddSharedPropertyNumerical("qty", 5, 2);
+            // 1. Can find doc numerical property to map register property.
+            r.TableTurnoverPropertyQtyAccumulatorLength = 28;
+            r.TableTurnoverPropertyQtyAccumulatorAccuracy = 4;
+            r.TableTurnoverPropertyMoneyAccumulatorLength = 28;
+            r.TableTurnoverPropertyMoneyAccumulatorAccuracy = 4;
+            r.UpdateListMappings();
+            Assert.AreEqual(2, r.ListMappings.Count);
+            var mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
+            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyMoneyAccumulatorName);
+            mrec.ListToMap.Single(m => m.Name == pMoney.Name);
+            mrec.ListToMap.Single(m => m.Name == pQty.Name);
 
-            // 1. Can find doc shared property to map register dimention 
+            var s_qty5_2 = cfg.Model.GroupDocuments.AddSharedPropertyNumerical("qty", 15, 1);
+            r.UpdateListMappings();
+            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
+            Assert.AreEqual(3, mrec.ListToMap.Count);
+            mrec.ListToMap.Single(m => m.Name == pMoney.Name);
+            mrec.ListToMap.Single(m => m.Name == pQty.Name);
+            mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
 
-            // 2. Can find doc property to map register dimention 
-
-            // 3. Can find doc numerical property to map register property.
             // Length of doc property has to be less or equal than numerical register property length.
+            r.TableTurnoverPropertyQtyAccumulatorLength = 16;
+            r.TableTurnoverPropertyMoneyAccumulatorLength = 16;
+            r.UpdateListMappings();
+            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
+            mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
+            Assert.AreEqual(1, mrec.ListToMap.Count);
+            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyMoneyAccumulatorName);
+            mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
+            Assert.AreEqual(1, mrec.ListToMap.Count);
+
+            r.TableTurnoverPropertyQtyAccumulatorLength = 17;
+            r.TableTurnoverPropertyMoneyAccumulatorLength = 17;
+            r.UpdateListMappings();
+            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
+            Assert.AreEqual(2, mrec.ListToMap.Count);
+            mrec.ListToMap.Single(m => m.Name == pQty.Name);
+            mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
+            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyMoneyAccumulatorName);
+            Assert.AreEqual(2, mrec.ListToMap.Count);
+            mrec.ListToMap.Single(m => m.Name == pQty.Name);
+            mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
+
+            r.TableTurnoverPropertyQtyAccumulatorLength = 28;
+            r.TableTurnoverPropertyQtyAccumulatorAccuracy = 4;
+            r.TableTurnoverPropertyMoneyAccumulatorLength = 28;
+            r.TableTurnoverPropertyMoneyAccumulatorAccuracy = 4;
             // Accuracy of doc property has to be less or equal than numerical register property accuracy.
+            r.TableTurnoverPropertyQtyAccumulatorAccuracy = 1;
+            r.TableTurnoverPropertyMoneyAccumulatorAccuracy = 1;
+            r.UpdateListMappings();
+            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
+            Assert.AreEqual(1, mrec.ListToMap.Count);
+            mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
+            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyMoneyAccumulatorName);
+            Assert.AreEqual(1, mrec.ListToMap.Count);
+            mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
+
+            r.TableTurnoverPropertyQtyAccumulatorAccuracy = 2;
+            r.TableTurnoverPropertyMoneyAccumulatorAccuracy = 2;
+            r.UpdateListMappings();
+            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
+            Assert.AreEqual(2, mrec.ListToMap.Count);
+            mrec.ListToMap.Single(m => m.Name == pMoney.Name);
+            mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
+            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyMoneyAccumulatorName);
+            Assert.AreEqual(2, mrec.ListToMap.Count);
+            mrec.ListToMap.Single(m => m.Name == pMoney.Name);
+            mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
+
+            // 2. Can find doc shared property to map register dimension 
+            var pSharedC1 = d.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.AddPropertyCatalog("pSharedC1", c1);
+            r.AddDimension(pSharedC1.Name, c1);
+            r.UpdateListMappings();
+            Assert.AreEqual(3, r.ListMappings.Count);
+            mrec = r.ListMappings.Single(m => m.Name == pSharedC1.Name);
+            Assert.AreEqual(1, mrec.ListToMap.Count);
+            mrec.ListToMap.Single(m => m.Name == pSharedC1.Name);
+
+            // 3. Can find doc property to map register dimension 
+            var pSharedC2 = d.AddPropertyCatalog("pSharedC2", c2.Guid);
+            r.AddDimension(pSharedC2.Name, c2);
+            r.UpdateListMappings();
+            Assert.AreEqual(4, r.ListMappings.Count);
+            mrec = r.ListMappings.Single(m => m.Name == pSharedC2.Name);
+            Assert.AreEqual(1, mrec.ListToMap.Count);
+            mrec.ListToMap.Single(m => m.Name == pSharedC2.Name);
 
             // 4. Can find doc string property to map register property.
+
+            //r.GroupProperties.AddProperty("str5", EnumDataType.STRING, 5, 0);
+            //r.GroupProperties.AddProperty("str6", EnumDataType.STRING, 6, 0);
+            //r.GroupProperties.AddProperty("str7", EnumDataType.STRING, 7, 0);
+            //r.UpdateListMappings();
+            //Assert.AreEqual(7, r.ListMappings.Count);
+
             // Length of doc property has to be less or equal than register property length.
 
             // 5. Can find doc string property to map register attached property.

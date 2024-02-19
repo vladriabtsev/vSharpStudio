@@ -27,9 +27,7 @@ namespace vSharpStudio.common
 
         IForm GetForm(FormType ftype, string guidAppPrjGen);
         IReadOnlyList<IForm> GetListForms(string guidAppPrjGen);
-        IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen);
-        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
-        IReadOnlyList<IProperty> GetIncludedPropertiesWithoutShared(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false, bool isOnlyShared = false, bool isOnlyNotShared = false);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
     }
 }

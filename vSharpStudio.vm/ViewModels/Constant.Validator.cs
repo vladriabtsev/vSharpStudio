@@ -72,8 +72,8 @@ namespace vSharpStudio.vm.ViewModels
                     var cfg = p.Cfg;
                     foreach(var t in p.ListObjectRefs)
                     {
-                        Debug.Assert(cfg.DicNodes.ContainsKey(t.ConfigObjectGuid));
-                        var refObj = cfg.DicNodes[t.ConfigObjectGuid];
+                        Debug.Assert(cfg.DicNodes.ContainsKey(t.RefConfigObjectGuid));
+                        var refObj = cfg.DicNodes[t.RefConfigObjectGuid];
                         Debug.Assert(refObj != null);
                         var refObjEditable = refObj as IEditableNode;
                         Debug.Assert(refObjEditable != null);

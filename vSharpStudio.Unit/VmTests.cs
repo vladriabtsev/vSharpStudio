@@ -429,7 +429,7 @@ namespace vSharpStudio.Unit
             var seq = cfg.Model.GroupDocuments.GroupListSequences.NodeAddNewSubNode();
             doc1.SequenceGuid = seq.Guid;
             reg1.SelectedDoc = doc1;
-            reg1.ListObjectDocRefs.Add(new FkComplexRef(doc1.Guid));
+            reg1.ListObjectDocRefs.Add(new ComplexRef("", doc1.Guid));
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);

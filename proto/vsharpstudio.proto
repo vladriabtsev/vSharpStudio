@@ -895,19 +895,21 @@ enum proto_enum_timespan_boundary_type {
     MKS_BNDR_ACC = 110;
 }
 // @base VmValidatableWithSeverity
-message fk_complex_ref
+message complex_ref
 {
-    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
+    // Property guid. Empty for register doc
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
     uint64 sorting_value = 3;
-    string config_object_guid = 11;
-    string fk_index_table_guid = 12;
+    // @attr [Browsable(false)]
+    string ref_config_object_guid = 11;
+    // @attr [Browsable(false)]
+    string property_ref_id_guid = 12;
 }
 // @base BaseSettings
 message proto_data_type {
@@ -934,7 +936,7 @@ message proto_data_type {
     /// </summary>
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
-    fk_complex_ref object_ref = 6;
+    complex_ref object_ref = 6;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Time accuracy")]
@@ -944,7 +946,7 @@ message proto_data_type {
     /// Guids of selected complex types for data type CATALOGS or DOCUMENTS
     /// </summary>
     // @attr [PropertyOrderAttribute(8)]
-    repeated fk_complex_ref list_object_refs = 8;
+    repeated complex_ref list_object_refs = 8;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(9)]
     // @attr [DisplayName("Can be NULL")]
@@ -2543,7 +2545,7 @@ message proto_register {
     /// Guids of selected types of DOCUMENTS which can POST or UNPOST for this register
     /// </summary>
     // @attr [Browsable(false)]
-    repeated fk_complex_ref list_object_doc_refs = 41;
+    repeated complex_ref list_object_doc_refs = 41;
     // Guid for document reference property. Auto generated.
     // @attr [Browsable(false)]
     string property_doc_ref_guid = 42; 

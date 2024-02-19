@@ -4,7 +4,7 @@
 ## Table of Contents
 
 - [vsharpstudio.proto](#vsharpstudio-proto)
-    - [fk_complex_ref](#proto_config-fk_complex_ref)
+    - [complex_ref](#proto_config-complex_ref)
     - [proto_app_db_settings](#proto_config-proto_app_db_settings)
     - [proto_app_project](#proto_config-proto_app_project)
     - [proto_app_project_generator](#proto_config-proto_app_project_generator)
@@ -144,19 +144,19 @@
 
 
 
-<a name="proto_config-fk_complex_ref"></a>
+<a name="proto_config-complex_ref"></a>
 
-### fk_complex_ref
+### complex_ref
 @base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| guid | [string](#string) |  | @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] Property guid. Empty for register doc |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
-| config_object_guid | [string](#string) |  |  |
-| fk_index_table_guid | [string](#string) |  |  |
+| ref_config_object_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ref_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 
 
 
@@ -508,9 +508,9 @@ Constant application wise value
 | length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Maximum length of data (characters in string, or decimal digits for numeric data)&#34;)] |
 | is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Positive&#34;)] @attr [Description(&#34;Expected numerical value always &gt;= 0&#34;)] |
 | accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for numeric data&#34;)] |
-| object_ref | [fk_complex_ref](#proto_config-fk_complex_ref) |  | &lt;summary&gt; / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. / Numerical, string, bool, date and similar are simple types. For simple types this property is empty. / If Guid of group types is assigned, then any type of such group of types is acceptable as type / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type / &lt;/summary&gt; @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| object_ref | [complex_ref](#proto_config-complex_ref) |  | &lt;summary&gt; / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. / Numerical, string, bool, date and similar are simple types. For simple types this property is empty. / If Guid of group types is assigned, then any type of such group of types is acceptable as type / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type / &lt;/summary&gt; @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | accuracy_for_time | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Time accuracy&#34;)] @attr [Description(&#34;Time accuracy for TimeOnly type. Business model is expecting selected accuracy&#34;)] |
-| list_object_refs | [fk_complex_ref](#proto_config-fk_complex_ref) | repeated | &lt;summary&gt; / Guids of selected complex types for data type CATALOGS or DOCUMENTS / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
+| list_object_refs | [complex_ref](#proto_config-complex_ref) | repeated | &lt;summary&gt; / Guids of selected complex types for data type CATALOGS or DOCUMENTS / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
 | is_nullable | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
 | timespan_accuracy | [proto_enum_timespan_boundary_type](#proto_config-proto_enum_timespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;TimeSpan accuracy&#34;)] @attr [Description(&#34;TimeSpan accuracy&#34;)] |
 | timespan_max_value | [proto_enum_timespan_boundary_type](#proto_config-proto_enum_timespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;TimeSpan Max&#34;)] @attr [Description(&#34;TimeSpan maximum value&#34;)] |
@@ -1877,7 +1877,7 @@ Configuration model
 | property_post_date_guid | [string](#string) |  | Guid for posting date guid property. Auto generated. @attr [Browsable(false)] |
 | property_doc_ref_guid_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Guid property&#34;)] @attr [Description(&#34;Document guid property name&#34;)] |
 | property_doc_ref_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Ref property&#34;)] @attr [Description(&#34;Document reference property name&#34;)] |
-| list_object_doc_refs | [fk_complex_ref](#proto_config-fk_complex_ref) | repeated | &lt;summary&gt; / Guids of selected types of DOCUMENTS which can POST or UNPOST for this register / &lt;/summary&gt; @attr [Browsable(false)] |
+| list_object_doc_refs | [complex_ref](#proto_config-complex_ref) | repeated | &lt;summary&gt; / Guids of selected types of DOCUMENTS which can POST or UNPOST for this register / &lt;/summary&gt; @attr [Browsable(false)] |
 | property_doc_ref_guid | [string](#string) |  | Guid for document reference property. Auto generated. @attr [Browsable(false)] |
 | property_doc_guid_guid | [string](#string) |  | Guid for document guid property. Auto generated. @attr [Browsable(false)] |
 | index_doc_date_guid | [string](#string) |  | Guid for index of document date, dimensions. Auto generated. @attr [Browsable(false)] |

@@ -179,7 +179,7 @@
             <ul>
               
                 <li>
-                  <a href="#proto_config.fk_complex_ref"><span class="badge">M</span>fk_complex_ref</a>
+                  <a href="#proto_config.complex_ref"><span class="badge">M</span>complex_ref</a>
                 </li>
               
                 <li>
@@ -704,7 +704,7 @@
       <p></p>
 
       
-        <h3 id="proto_config.fk_complex_ref">fk_complex_ref</h3>
+        <h3 id="proto_config.complex_ref">complex_ref</h3>
         <p>@base VmValidatableWithSeverity</p>
 
         
@@ -718,9 +718,9 @@
                   <td>guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(-2)]
-@attr [ReadOnly(true)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)]
+Property guid. Empty for register doc </p></td>
                 </tr>
               
                 <tr>
@@ -739,17 +739,17 @@
                 </tr>
               
                 <tr>
-                  <td>config_object_guid</td>
+                  <td>ref_config_object_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>fk_index_table_guid</td>
+                  <td>property_ref_id_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2355,7 +2355,7 @@ Generator output file name </p></td>
               
                 <tr>
                   <td>object_ref</td>
-                  <td><a href="#proto_config.fk_complex_ref">fk_complex_ref</a></td>
+                  <td><a href="#proto_config.complex_ref">complex_ref</a></td>
                   <td></td>
                   <td><p>&lt;summary&gt;
 / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
@@ -2379,7 +2379,7 @@ Generator output file name </p></td>
               
                 <tr>
                   <td>list_object_refs</td>
-                  <td><a href="#proto_config.fk_complex_ref">fk_complex_ref</a></td>
+                  <td><a href="#proto_config.complex_ref">complex_ref</a></td>
                   <td>repeated</td>
                   <td><p>&lt;summary&gt;
 / Guids of selected complex types for data type CATALOGS or DOCUMENTS
@@ -8101,7 +8101,7 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>list_object_doc_refs</td>
-                  <td><a href="#proto_config.fk_complex_ref">fk_complex_ref</a></td>
+                  <td><a href="#proto_config.complex_ref">complex_ref</a></td>
                   <td>repeated</td>
                   <td><p>&lt;summary&gt;
 / Guids of selected types of DOCUMENTS which can POST or UNPOST for this register

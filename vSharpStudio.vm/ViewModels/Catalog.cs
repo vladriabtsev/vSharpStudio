@@ -585,11 +585,13 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(t.GuidObj2 != null);
                     if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable));
+                        var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
+                        res.Add(prp);
                     }
                     else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable));
+                        var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
+                        res.Add(prp);
                     }
                     else
                         throw new NotImplementedException();
@@ -599,11 +601,13 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(t.GuidObj1 != null);
                     if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable));
+                        var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
+                        res.Add(prp);
                     }
                     else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable));
+                        var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
+                        res.Add(prp);
                     }
                     else
                         throw new NotImplementedException();

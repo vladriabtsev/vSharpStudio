@@ -127,7 +127,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 DataTypeEnum = EnumDataType.CATALOG,
                 IsNullable = isNullable,
-                ObjectRef = new FkComplexRef(catGuid)
+                ObjectRef = new ComplexRef(node.Guid, catGuid)
             };
             this.GroupSharedProperties.NodeAddNewSubNode(node);
             return node;

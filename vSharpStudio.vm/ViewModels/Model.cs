@@ -444,7 +444,7 @@ namespace vSharpStudio.vm.ViewModels
             dt.Length = length;
             dt.Accuracy = accuracy;
             dt.IsPositive = isPositive;
-            dt.ObjectRef.ConfigObjectGuid = objectGuid;
+            dt.ObjectRef.RefConfigObjectGuid = objectGuid;
             dt.IsNullable = isNullable;
             return dt;
         }
@@ -524,7 +524,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataTypeCatalog(ITreeConfigNode? parent, string catGuid, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectRef.ConfigObjectGuid = catGuid;
+            dt.ObjectRef.RefConfigObjectGuid = catGuid;
             dt.DataTypeEnum = EnumDataType.CATALOG;
             dt.IsNullable = isNullable;
             return dt;
@@ -532,7 +532,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataTypeDocument(ITreeConfigNode? parent, string docGuid, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectRef.ConfigObjectGuid = docGuid;
+            dt.ObjectRef.RefConfigObjectGuid = docGuid;
             dt.DataTypeEnum = EnumDataType.DOCUMENT;
             dt.IsNullable = isNullable;
             return dt;
@@ -548,7 +548,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataType(ITreeConfigNode? parent, ICatalog obj, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectRef.ConfigObjectGuid = obj.Guid;
+            dt.ObjectRef.RefConfigObjectGuid = obj.Guid;
             dt.IsNullable = isNullable;
             dt.DataTypeEnum = EnumDataType.CATALOG;
             return dt;
@@ -557,7 +557,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataType(ITreeConfigNode? parent, IDocument obj, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectRef.ConfigObjectGuid = obj.Guid;
+            dt.ObjectRef.RefConfigObjectGuid = obj.Guid;
             dt.IsNullable = isNullable;
             dt.DataTypeEnum = EnumDataType.DOCUMENT;
             return dt;
@@ -919,7 +919,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_DETAIL;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -930,7 +930,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_CATALOG;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -941,7 +941,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -952,7 +952,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -963,7 +963,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -974,7 +974,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -985,7 +985,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -1007,7 +1007,7 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetDataTypeDocument(parent, docGuid, isNullable);
             return res;
         }
-        public IDataType GetDataTypeCatalogs(ITreeConfigNode? parent, IEnumerable<FkComplexRef> lstCatGuids, bool isNullable)
+        public IDataType GetDataTypeCatalogs(ITreeConfigNode? parent, IEnumerable<ComplexRef> lstCatGuids, bool isNullable)
         {
             DataType dt = new DataType(parent);
             dt.ListObjectRefs.AddRange(lstCatGuids);
@@ -1015,7 +1015,7 @@ namespace vSharpStudio.vm.ViewModels
             dt.IsNullable = isNullable;
             return dt;
         }
-        public IDataType GetDataTypeDocuments(ITreeConfigNode? parent, IEnumerable<FkComplexRef> lstDocGuids, bool isNullable)
+        public IDataType GetDataTypeDocuments(ITreeConfigNode? parent, IEnumerable<ComplexRef> lstDocGuids, bool isNullable)
         {
             DataType dt = new DataType(parent);
             dt.ListObjectRefs.AddRange(lstDocGuids);
@@ -1023,7 +1023,7 @@ namespace vSharpStudio.vm.ViewModels
             dt.IsNullable = isNullable;
             return dt;
         }
-        public IDataType GetDataTypeCatalogsDocuments(ITreeConfigNode? parent, IEnumerable<FkComplexRef> lstCatDocGuids, bool isNullable)
+        public IDataType GetDataTypeCatalogsDocuments(ITreeConfigNode? parent, IEnumerable<ComplexRef> lstCatDocGuids, bool isNullable)
         {
             DataType dt = new DataType(parent);
             dt.ListObjectRefs.AddRange(lstCatDocGuids);
@@ -1031,7 +1031,7 @@ namespace vSharpStudio.vm.ViewModels
             dt.IsNullable = isNullable;
             return dt;
         }
-        public IProperty GetPropertyCatalogs(ITreeConfigNode parent, string guid, string name, IEnumerable<FkComplexRef> lstCatGuids, uint position, bool isNullable)
+        public IProperty GetPropertyCatalogs(ITreeConfigNode parent, string guid, string name, IEnumerable<ComplexRef> lstCatGuids, uint position, bool isNullable)
         {
             var res = new Property(parent, guid, name, true);
             res.Position = position;
@@ -1039,7 +1039,7 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetDataTypeCatalogs(parent, lstCatGuids, isNullable);
             return res;
         }
-        public IProperty GetPropertyDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<FkComplexRef> lstDocGuids, uint position, bool isNullable)
+        public IProperty GetPropertyDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<ComplexRef> lstDocGuids, uint position, bool isNullable)
         {
             var res = new Property(parent, guid, name, true);
             res.Position = position;
@@ -1047,7 +1047,7 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetDataTypeDocuments(parent, lstDocGuids, isNullable);
             return res;
         }
-        public IProperty GetPropertyCatalogsDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<FkComplexRef> lstCatOrDocGuids, uint position, bool isNullable)
+        public IProperty GetPropertyCatalogsDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<ComplexRef> lstCatOrDocGuids, uint position, bool isNullable)
         {
             var res = new Property(parent, guid, name, true);
             res.Position = position;
@@ -1373,11 +1373,12 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in dt.ListObjectRefs)
                         {
-                            Debug.Assert(!string.IsNullOrWhiteSpace(t.ConfigObjectGuid));
-                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.ConfigObjectGuid));
-                            var node = this.ParentConfig.DicNodes[t.ConfigObjectGuid];
+                            Debug.Assert(!string.IsNullOrWhiteSpace(t.RefConfigObjectGuid));
+                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.RefConfigObjectGuid));
+                            var node = this.ParentConfig.DicNodes[t.RefConfigObjectGuid];
                             if (node is ICatalog c)
                             {
+                                Debug.Assert(!res.ContainsKey(c.Guid));
                                 res[c.Guid] = new Tuple<string, string>($"Catalogs.{c.Name}", c.CompositeName);
                             }
                             else if (node is IDocument d)
@@ -1394,6 +1395,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in Cfg.Model.GroupCatalogs.ListCatalogs)
                         {
+                            Debug.Assert(!res.ContainsKey(t.Guid));
                             res[t.Guid] = new Tuple<string, string>($"Catalogs.{t.Name}", t.CompositeName);
                         }
                     }
@@ -1403,15 +1405,16 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in dt.ListObjectRefs)
                         {
-                            Debug.Assert(!string.IsNullOrWhiteSpace(t.ConfigObjectGuid));
-                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.ConfigObjectGuid));
-                            var node = this.ParentConfig.DicNodes[t.ConfigObjectGuid];
+                            Debug.Assert(!string.IsNullOrWhiteSpace(t.RefConfigObjectGuid));
+                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.RefConfigObjectGuid));
+                            var node = this.ParentConfig.DicNodes[t.RefConfigObjectGuid];
                             if (node is ICatalog c)
                             {
                                 throw new ArgumentException("EnumDataType.DOCUMENTS can't reference Catalog");
                             }
                             else if (node is IDocument d)
                             {
+                                Debug.Assert(!res.ContainsKey(d.Guid));
                                 res[d.Guid] = new Tuple<string, string>($"Documents.{d.Name}", d.CompositeName);
                             }
                             else
@@ -1424,6 +1427,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
                         {
+                            Debug.Assert(!res.ContainsKey(t.Guid));
                             res[t.Guid] = new Tuple<string, string>($"Documents.{t.Name}", t.CompositeName);
                         }
                     }
@@ -1433,15 +1437,17 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in dt.ListObjectRefs)
                         {
-                            Debug.Assert(!string.IsNullOrWhiteSpace(t.ConfigObjectGuid));
-                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.ConfigObjectGuid));
-                            var node = this.ParentConfig.DicNodes[t.ConfigObjectGuid];
+                            Debug.Assert(!string.IsNullOrWhiteSpace(t.RefConfigObjectGuid));
+                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.RefConfigObjectGuid));
+                            var node = this.ParentConfig.DicNodes[t.RefConfigObjectGuid];
                             if (node is ICatalog c)
                             {
+                                Debug.Assert(!res.ContainsKey(c.Guid));
                                 res[c.Guid] = new Tuple<string, string>($"Catalogs.{c.Name}", c.CompositeName);
                             }
                             else if (node is IDocument d)
                             {
+                                Debug.Assert(!res.ContainsKey(d.Guid));
                                 res[d.Guid] = new Tuple<string, string>($"Documents.{d.Name}", d.CompositeName);
                             }
                             else
@@ -1454,10 +1460,12 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in Cfg.Model.GroupCatalogs.ListCatalogs)
                         {
+                            Debug.Assert(!res.ContainsKey(t.Guid));
                             res[t.Guid] = new Tuple<string, string>($"Catalogs.{t.Name}", t.CompositeName);
                         }
                         foreach (var t in Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
                         {
+                            Debug.Assert(!res.ContainsKey(t.Guid));
                             res[t.Guid] = new Tuple<string, string>($"Documents.{t.Name}", t.CompositeName);
                         }
                     }

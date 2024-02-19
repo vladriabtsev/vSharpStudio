@@ -248,7 +248,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 DataTypeEnum = EnumDataType.CATALOG,
                 IsNullable = isNullable,
-                ObjectRef = new FkComplexRef(catGuid)
+                ObjectRef = new ComplexRef(node.Guid, catGuid)
             };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
@@ -336,8 +336,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IProperty>();
             var grd = this.ParentGroupListDocuments.ParentGroupDocuments;
-            if (!isExcludeSpecial)
-                GetSpecialProperties(res, isOptimistic);
+            int i = 0;
+            GetSpecialProperties(res, isOptimistic, isExcludeSpecial);
             foreach (var t in grd.GroupSharedProperties.ListProperties)
             {
                 res.Add(t);
@@ -348,11 +348,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false)
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false, bool isOnlyShared = false, bool isOnlyNotShared = false)
         {
             var res = new List<IProperty>();
-            if (!isExcludeSpecial)
-                GetSpecialProperties(res, isOptimistic);
+            GetSpecialProperties(res, isOptimistic, isExcludeSpecial || isOnlyShared);
             foreach (var t in this.Cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations)
             {
                 if (t.GuidObj1 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY))
@@ -360,11 +359,15 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(t.GuidObj2 != null);
                     if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable));
+                        var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
+                        if (!isOnlyShared)
+                            res.Add(prp);
                     }
                     else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable));
+                        var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
+                        if (!isOnlyShared)
+                            res.Add(prp);
                     }
                     else
                         throw new NotImplementedException();
@@ -374,11 +377,15 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(t.GuidObj1 != null);
                     if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable));
+                        var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
+                        if (!isOnlyShared)
+                            res.Add(prp);
                     }
                     else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable));
+                        var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
+                        if (!isOnlyShared)
+                            res.Add(prp);
                     }
                     else
                         throw new NotImplementedException();
@@ -389,72 +396,33 @@ namespace vSharpStudio.vm.ViewModels
                 if (t.IsIncluded(guidAppPrjGen))
                 {
                     t.ComplexObjectName = "SharedDocProperties";
-                    res.Add(t);
+                    if (isOnlyShared && !isOnlyNotShared)
+                        res.Add(t);
                 }
             }
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {
-                    res.Add(t);
+                    if (!isOnlyShared)
+                        res.Add(t);
                 }
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedPropertiesWithoutShared(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false)
-        {
-            var res = new List<IProperty>();
-            if (!isExcludeSpecial)
-                GetSpecialProperties(res, isOptimistic);
-            foreach (var t in this.Cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations)
-            {
-                if (t.GuidObj1 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY))
-                {
-                    Debug.Assert(t.GuidObj2 != null);
-                    if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
-                    {
-                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable));
-                    }
-                    else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
-                    {
-                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable));
-                    }
-                    else
-                        throw new NotImplementedException();
-                }
-                if (t.GuidObj2 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY))
-                {
-                    Debug.Assert(t.GuidObj1 != null);
-                    if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
-                    {
-                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable));
-                    }
-                    else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
-                    {
-                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable));
-                    }
-                    else
-                        throw new NotImplementedException();
-                }
-            }
-            foreach (var t in this.GroupProperties.ListProperties)
-            {
-                if (t.IsIncluded(guidAppPrjGen))
-                {
-                    res.Add(t);
-                }
-            }
-            return res;
-        }
-        public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
+        public void GetSpecialProperties(List<IProperty> res, bool isOptimistic, bool isExcludeSpecial)
         {
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
             //var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             //string name = this.ParentGroupListDocuments.ParentGroupDocuments.GetTimelineCompositeName();
             //var prp = model.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, "Ref" + name, 0, false, true);
-            var prp = model.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, this.Cfg.Model.PKeyName, 0, false, true);
-            res.Add(prp);
-            if (isOptimistic)
+            IProperty prp;
+            if (!isExcludeSpecial)
+            {
+                prp = model.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, this.Cfg.Model.PKeyName, 0, false, true);
+                res.Add(prp);
+            }
+            if (isOptimistic && !isExcludeSpecial)
             {
                 prp = model.GetPropertyVersion(this.GroupProperties, this.Cfg.Model.PropertyVersionGuid);
                 res.Add(prp);
@@ -464,41 +432,59 @@ namespace vSharpStudio.vm.ViewModels
             if (!string.IsNullOrWhiteSpace(this.SequenceGuid))
             {
                 var seq = this.Sequence;
-                switch (seq.SequenceType)
+                if (!isExcludeSpecial)
                 {
-                    case EnumCodeType.Number:
-                        prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
-                            seq.MaxSequenceLength);
-                        break;
-                    case EnumCodeType.Text:
-                        prp = model.GetPropertyDocNumberString(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
-                            seq.MaxSequenceLength + (uint)seq.Prefix.Length);
-                        break;
-                    default:
-                        throw new NotImplementedException();
+                    switch (seq.SequenceType)
+                    {
+                        case EnumCodeType.Number:
+                            prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
+                                seq.MaxSequenceLength);
+                            break;
+                        case EnumCodeType.Text:
+                            prp = model.GetPropertyDocNumberString(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
+                                seq.MaxSequenceLength + (uint)seq.Prefix.Length);
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                    }
+                    res.Add(prp);
                 }
-                res.Add(prp);
                 switch (seq.ScopeOfUnique)
                 {
                     case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
-                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexYearDocNumberGuid);
-                        res.Add(prp);
+                        if (!isExcludeSpecial)
+                        {
+                            prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexYearDocNumberGuid);
+                            res.Add(prp);
+                        }
                         break;
                     case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
-                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexQuaterDocNumberGuid);
-                        res.Add(prp);
+                        if (!isExcludeSpecial)
+                        {
+                            prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexQuaterDocNumberGuid);
+                            res.Add(prp);
+                        }
                         break;
                     case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
-                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexMonthDocNumberGuid);
-                        res.Add(prp);
+                        if (!isExcludeSpecial)
+                        {
+                            prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexMonthDocNumberGuid);
+                            res.Add(prp);
+                        }
                         break;
                     case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
-                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexWeekDocNumberGuid);
-                        res.Add(prp);
+                        if (!isExcludeSpecial)
+                        {
+                            prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexWeekDocNumberGuid);
+                            res.Add(prp);
+                        }
                         break;
                     case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
-                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexDayDocNumberGuid);
-                        res.Add(prp);
+                        if (!isExcludeSpecial)
+                        {
+                            prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexDayDocNumberGuid);
+                            res.Add(prp);
+                        }
                         break;
                     case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
                         break;
@@ -516,25 +502,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {
-                    res.Add(t);
-                }
-            }
-            return res;
-        }
-        /// <summary>
-        /// Only shared properties
-        /// </summary>
-        /// <param name="guidAppPrjGen"></param>
-        /// <returns></returns>
-        public IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen)
-        {
-            var res = new List<IProperty>();
-            var grd = this.ParentGroupListDocuments.ParentGroupDocuments;
-            foreach (var t in grd.GroupSharedProperties.ListProperties)
-            {
-                if (t.IsIncluded(guidAppPrjGen))
-                {
-                    t.ComplexObjectName = "SharedDocProperties";
                     res.Add(t);
                 }
             }
@@ -568,7 +535,7 @@ namespace vSharpStudio.vm.ViewModels
                         lstp.Add(t);
                     }
                 }
-                this.GetSpecialProperties(lstp, false);
+                this.GetSpecialProperties(lstp, false, true);
                 f = new Form(this.GroupForms, ftype, lstp);
             }
             else
@@ -578,7 +545,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     lstp.Add((IProperty)t);
                 }
-                this.GetSpecialProperties(lstp, false);
+                this.GetSpecialProperties(lstp, false, true);
                 f = new Form(this.GroupForms, ftype, lstp);
             }
             return f;

@@ -39,6 +39,7 @@ namespace vSharpStudio.common
         string ComplexObjectNameWithDot();
         object? Tag { get; set; }
         string? TagInList { get; set; }
+        int PositionInConfigObject { get; set; }
         //static IConfig Config { get; set; }
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
@@ -52,7 +53,7 @@ namespace vSharpStudio.common
         IProperty? ParentProperty { get; set; }
         string NameWithExtention { get; }
         //List<IProperty> ListExtensionProperties { get; }
-        IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable, bool isCsNullable);
+        IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable, bool isCsNullable, int positionInObject, string foreignObjectGuid, string foreignIndexGuid);
         IProperty AddExtensionPropertyGd(string subName, string guid, bool isNullable, bool isCsNullable);
         IProperty AddExtensionPropertyDesc(string subName, string guid, bool isNullable, bool isCsNullable);
         IProperty AddExtensionPropertyString(string subName, uint length, string guid);

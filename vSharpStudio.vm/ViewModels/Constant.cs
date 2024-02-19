@@ -334,10 +334,10 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(15)]
         public string ConfigObjectGuid
         {
-            get { return this.DataType.ObjectRef.ConfigObjectGuid; }
+            get { return this.DataType.ObjectRef.RefConfigObjectGuid; }
             set
             {
-                this.DataType.ObjectRef.ConfigObjectGuid = value;
+                this.DataType.ObjectRef.RefConfigObjectGuid = value;
                 this.OnPropertyChanged();
                 this.OnPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();
@@ -362,7 +362,7 @@ namespace vSharpStudio.vm.ViewModels
         //[Description("Expected always >= 0")]
         [Category("")]
         [PropertyOrderAttribute(16)]
-        public ObservableCollection<FkComplexRef> ListObjectRefs
+        public ObservableCollection<ComplexRef> ListObjectRefs
         {
             get { return this.DataType.ListObjectRefs; }
         }

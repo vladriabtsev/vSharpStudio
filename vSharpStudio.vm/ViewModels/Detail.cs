@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -293,7 +294,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 DataTypeEnum = EnumDataType.CATALOG,
                 IsNullable = isNullable,
-                ObjectRef = new FkComplexRef(catGuid)
+                ObjectRef = new ComplexRef(node.Guid, catGuid)
             };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;

@@ -570,7 +570,8 @@ namespace vSharpStudio.vm.ViewModels
                 pRegRef.TagInList = "ib";
                 lst.Add(pRegRef);
             }
-
+            var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, this.PropertyDocRefName, this.ListObjectDocRefs, 15, false);
+            lst.Add(pDoc);
             // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
             // For all dimensions (catalogs).
             foreach (var t in this.GroupRegisterDimensions.ListDimensions)
@@ -754,7 +755,7 @@ namespace vSharpStudio.vm.ViewModels
                 bool found = false;
                 foreach (var tt in this.ListObjectDocRefs)
                 {
-                    if (t.Guid == tt.ConfigObjectGuid)
+                    if (t.Guid == tt.RefConfigObjectGuid)
                     {
                         found = true;
                         break;
@@ -773,7 +774,7 @@ namespace vSharpStudio.vm.ViewModels
                 bool found = false;
                 foreach (var tt in this.ListObjectDocRefs)
                 {
-                    if (t.Guid == tt.ConfigObjectGuid)
+                    if (t.Guid == tt.RefConfigObjectGuid)
                     {
                         found = true;
                         break;
@@ -1016,7 +1017,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (string.IsNullOrEmpty(row.Dimension.DimensionCatalogGuid))
                         return;
                     var cat = this.Cfg.DicNodes[row.Dimension.DimensionCatalogGuid];
-                    if (p.DataType.DataTypeEnum != EnumDataType.CATALOG || cat.Guid != p.DataType.ObjectRef.ConfigObjectGuid)
+                    if (p.DataType.DataTypeEnum != EnumDataType.CATALOG || cat.Guid != p.DataType.ObjectRef.RefConfigObjectGuid)
                         return;
                 }
                 else if (row.AttachedProperty != null)
@@ -1028,7 +1029,7 @@ namespace vSharpStudio.vm.ViewModels
                         case EnumDataType.CATALOG:
                             if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
                                 return;
-                            if (p.DataType.ObjectRef.ConfigObjectGuid != row.AttachedProperty.DataType.ObjectRef.ConfigObjectGuid)
+                            if (p.DataType.ObjectRef.RefConfigObjectGuid != row.AttachedProperty.DataType.ObjectRef.RefConfigObjectGuid)
                                 return;
                             break;
                         case EnumDataType.CATALOGS:
@@ -1155,7 +1156,7 @@ namespace vSharpStudio.vm.ViewModels
                             var j = -1;
                             for (int i = 0; i < this.ListObjectDocRefs.Count; i++)
                             {
-                                if (this.ListObjectDocRefs[i].ConfigObjectGuid == guid)
+                                if (this.ListObjectDocRefs[i].RefConfigObjectGuid == guid)
                                 {
                                     j = i;
                                     break;
@@ -1166,7 +1167,7 @@ namespace vSharpStudio.vm.ViewModels
 #endif
                         foreach (var t in e.NewItems)
                         {
-                            this.ListObjectDocRefs.Add(new FkComplexRef(((Document)t).Guid));
+                            this.ListObjectDocRefs.Add(new ComplexRef("", ((Document)t).Guid));
                         }
                     }
                     break;
@@ -1179,7 +1180,7 @@ namespace vSharpStudio.vm.ViewModels
                             var j = -1;
                             for (int i = 0; i < this.ListObjectDocRefs.Count; i++)
                             {
-                                if (this.ListObjectDocRefs[i].ConfigObjectGuid == guid)
+                                if (this.ListObjectDocRefs[i].RefConfigObjectGuid == guid)
                                 {
                                     j = i;
                                     break;

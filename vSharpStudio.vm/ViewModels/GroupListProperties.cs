@@ -371,13 +371,13 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ObjectRef.ConfigObjectGuid = en.Guid;
+            node.DataType.ObjectRef.RefConfigObjectGuid = en.Guid;
             node.DataType.DataTypeEnum = EnumDataType.ENUMERATION;
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyTypeRefCatalog(string name, Catalog cat, string? guid = null)
+        public Property AddPropertyCatalog(string name, Catalog cat, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -389,13 +389,13 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ObjectRef.ConfigObjectGuid = cat.Guid;
+            node.DataType.ObjectRef.RefConfigObjectGuid = cat.Guid;
             node.DataType.DataTypeEnum = EnumDataType.CATALOG;
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyTypeRefCatalogs(string name, Catalog cat, Catalog? cat2 = null, string? guid = null)
+        public Property AddPropertyCatalogs(string name, Catalog cat, Catalog? cat2 = null, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -407,15 +407,15 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ListObjectRefs.Add(new FkComplexRef(cat.Guid));
+            node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat.Guid));
             if (cat2 != null)
-                node.DataType.ListObjectRefs.Add(new FkComplexRef(cat2.Guid));
+                node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat2.Guid));
             node.DataType.DataTypeEnum = EnumDataType.CATALOGS;
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyTypeRefDocument(string name, Document d, string? guid = null)
+        public Property AddPropertyDocument(string name, Document d, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -427,13 +427,13 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ObjectRef.ConfigObjectGuid = d.Guid;
+            node.DataType.ObjectRef.RefConfigObjectGuid = d.Guid;
             node.DataType.DataTypeEnum = EnumDataType.DOCUMENT;
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyTypeRefDocuments(string name, Document d, Document? d2 = null, string? guid = null)
+        public Property AddPropertyDocuments(string name, Document d, Document? d2 = null, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -445,15 +445,15 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ListObjectRefs.Add(new FkComplexRef(d.Guid));
+            node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, d.Guid));
             if (d2 != null)
-                node.DataType.ListObjectRefs.Add(new FkComplexRef(d2.Guid));
+                node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, d2.Guid));
             node.DataType.DataTypeEnum = EnumDataType.DOCUMENTS;
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyTypeRefAnyCatalogOrDocument(string name, string? guid = null)
+        public Property AddPropertyAnyCatalogOrDocument(string name, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
