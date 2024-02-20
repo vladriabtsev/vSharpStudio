@@ -145,7 +145,7 @@ namespace vSharpStudio.vm.ViewModels
             this._TableTurnoverPropertyPostDateGuid = System.Guid.NewGuid().ToString();
             this._LastGenPosition = 20;
             this._PropertyDocRefGuidName = "DocGuid";
-            this._PropertyDocRefName = "DocRef";
+            this._PropertyDocRefName = "Doc";
             this._RegisterType = EnumRegisterType.TURNOVER;
             this._RegisterPeriodicity = EnumRegisterPeriodicity.REGISTER_PERIOD_MONTH;
             //this._ListNotSelectedDocuments.CollectionChanged += _ListNotSelectedDocuments_CollectionChanged;
