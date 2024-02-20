@@ -636,7 +636,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnNewConfig ??= new vButtonVM(
                     () =>
                     {
-
+                        this._logger?.Debug("**********************************************************************");
                         this.NewConfig();
                         this.BtnConfigSave.Command.NotifyCanExecuteChanged();
                         this.BtnConfigSaveAs.Command.NotifyCanExecuteChanged();
@@ -673,6 +673,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnOpenConfig ??= new vButtonVM<string>(
                     (o) =>
                     {
+                        this._logger?.Debug("**********************************************************************");
                         this.OpenConfig(o);
                         this.BtnConfigSave.Command.NotifyCanExecuteChanged();
                         this.BtnConfigSaveAs.Command.NotifyCanExecuteChanged();
@@ -726,7 +727,11 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._BtnConfigSave ??= new vButtonVM(
-                    () => { this.Save(); },
+                    () =>
+                    {
+                        this._logger?.Debug("**********************************************************************");
+                        this.Save();
+                    },
                     () => { return this.CurrentCfgFilePath != null; });
             }
         }
@@ -864,7 +869,11 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._BtnConfigSaveAs ??= new vButtonVM<string>(
-                    (o) => { this.SaveAs(o); },
+                    (o) =>
+                    {
+                        this._logger?.Debug("**********************************************************************");
+                        this.SaveAs(o);
+                    },
                     (o) => { return this.Config != null; });
             }
         }
@@ -1044,7 +1053,10 @@ namespace vSharpStudio.ViewModels
         //            get
         //            {
         //                return this._BtnRestore ??= new vButtonVM<string>(
-        //                    (o) => { this.Restore(o); },
+        //                    (o) => {
+        //this._logger?.Debug("**********************************************************************");
+        //                    this.Restore(o);
+        //                    },
         //                    (o) => { return this.Config != null; });
         //            }
         //        }
@@ -1058,7 +1070,10 @@ namespace vSharpStudio.ViewModels
         //            get
         //            {
         //                return this._BtnBackupAs ??= new vButtonVM<string>(
-        //                    (o) => { this.BackupAs(o); },
+        //                    (o) => {
+        //this._logger?.Debug("**********************************************************************");
+        //                    this.BackupAs(o);
+        //                    },
         //                    (o) => { return this.Config != null; });
         //            }
         //        }
@@ -1146,6 +1161,7 @@ namespace vSharpStudio.ViewModels
                 this._BtnConfigValidateAsync ??= new vButtonVmAsync<TestTransformation?>(
                         async (o) =>
                         {
+                            this._logger?.Debug("**********************************************************************");
                             Debug.Assert(this.ProgressVM != null);
                             try
                             {
@@ -1267,6 +1283,7 @@ namespace vSharpStudio.ViewModels
                 this._BtnConfigCurrentUpdate ??= new vButtonVmAsync<TestTransformation?>(
                         async (o) =>
                         {
+                            this._logger?.Debug("**********************************************************************");
                             Debug.Assert(this.ProgressVM != null);
                             try
                             {
@@ -1346,6 +1363,7 @@ namespace vSharpStudio.ViewModels
                 this._BtnConfigCurrentUpdateSql ??= new vButtonVmAsync<TestTransformation?>(
                         async (o) =>
                         {
+                            this._logger?.Debug("**********************************************************************");
                             Debug.Assert(this.ProgressVM != null);
                             try
                             {
@@ -1829,6 +1847,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnConfigCreateStableVersionAsync ??= new vButtonVmAsync<TestTransformation?>(
                     (t) =>
                     {
+                        this._logger?.Debug("**********************************************************************");
                         this.ProgressVM?.ProgressStart("Creating Version for Deployment");
                         try
                         {
@@ -1985,6 +2004,7 @@ namespace vSharpStudio.ViewModels
                 {
                     Utils.TryCall(() =>
                     {
+                        this._logger?.Debug("**********************************************************************");
                         Debug.Assert(this.Config.SelectedNode != null);
                         if (this.Config.SelectedNode.NodeCanAddNewSubNode())
                         {
@@ -2016,7 +2036,11 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._BtnAddClone ??= new vButtonVM(
-                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddClone(); },
+                () =>
+                {
+                    this._logger?.Debug("**********************************************************************");
+                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddClone();
+                },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddClone(); });
             }
         }
@@ -2026,7 +2050,11 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._BtnMoveDown ??= new vButtonVM(
-                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveDown(); },
+                () =>
+                {
+                    this._logger?.Debug("**********************************************************************");
+                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveDown();
+                },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveDown(); });
             }
         }
@@ -2036,7 +2064,11 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._BtnMoveUp ??= new vButtonVM(
-                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveUp(); },
+                () =>
+                {
+                    this._logger?.Debug("**********************************************************************");
+                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveUp();
+                },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveUp(); });
             }
         }
@@ -2046,7 +2078,11 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._BtnDelete ??= new vButtonVM(
-                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMarkForDeletion(); },
+                () =>
+                {
+                    this._logger?.Debug("**********************************************************************");
+                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMarkForDeletion();
+                },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMarkForDeletion(); });
             }
         }
@@ -2056,7 +2092,11 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._BtnSelectionLeft ??= new vButtonVM(
-                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeLeft(); },
+                () =>
+                {
+                    this._logger?.Debug("**********************************************************************");
+                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeLeft();
+                },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanLeft(); });
             }
         }
@@ -2066,7 +2106,11 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._BtnSelectionRight ??= new vButtonVM(
-                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeRight(); },
+                () =>
+                {
+                    this._logger?.Debug("**********************************************************************");
+                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeRight();
+                },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanRight(); });
             }
         }
@@ -2076,7 +2120,11 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._BtnSelectionDown ??= new vButtonVM(
-                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeDown(); },
+                () =>
+                {
+                    this._logger?.Debug("**********************************************************************");
+                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeDown();
+                },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanDown(); });
             }
         }
@@ -2086,7 +2134,11 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._BtnSelectionUp ??= new vButtonVM(
-                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeUp(); },
+                () =>
+                {
+                    this._logger?.Debug("**********************************************************************");
+                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeUp();
+                },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanUp(); });
             }
         }

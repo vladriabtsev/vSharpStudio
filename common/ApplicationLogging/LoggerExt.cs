@@ -169,7 +169,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg);
         }
         public static void Trace(this Microsoft.Extensions.Logging.ILogger logger, string? message, Action<StringBuilder> messageBuilder,
             LoggerExt.Dummy? dummy = null,
@@ -183,7 +183,7 @@ namespace ApplicationLogging
             sb.AppendLine(message);
             messageBuilder(sb);
             var msg = GetMsg(sb.ToString(), memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg);
         }
         ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
         //public static void Trace(this Microsoft.Extensions.Logging.ILogger logger, string message, object?[] prms,
@@ -194,7 +194,7 @@ namespace ApplicationLogging
         //    if (!logger.IsEnabled(LogLevel.Trace))
         //        return;
         //    var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-        //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg, prms);
+        //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, prms);
         //}
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Trace<T0>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0,
@@ -206,7 +206,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg, arg0);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Trace<T0, T1>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1,
@@ -218,7 +218,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg, arg0, arg1);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0, arg1);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Trace<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2,
@@ -230,7 +230,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg, arg0, arg1, arg2);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0, arg1, arg2);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Trace<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
@@ -242,7 +242,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg, arg0, arg1, arg2, arg3);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0, arg1, arg2, arg3);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Trace<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
@@ -254,7 +254,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg, arg0, arg1, arg2, arg3, arg4);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0, arg1, arg2, arg3, arg4);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Trace<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
@@ -266,7 +266,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg, arg0, arg1, arg2, arg3, arg4, arg5);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0, arg1, arg2, arg3, arg4, arg5);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Trace<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
@@ -278,7 +278,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
         }
         #endregion Trace
 
@@ -294,7 +294,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, null, msg);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg);
         }
         ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
         //public static void Debug(this Microsoft.Extensions.Logging.ILogger logger, string message, object?[] prms,
@@ -305,7 +305,7 @@ namespace ApplicationLogging
         //    if (!logger.IsEnabled(LogLevel.Debug))
         //        return;
         //    var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-        //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, null, msg, prms);
+        //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, prms);
         //}
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Debug<T0>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0,
@@ -317,7 +317,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, null, msg, arg0);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Debug<T0, T1>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1,
@@ -329,7 +329,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, null, msg, arg0, arg1);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Debug<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2,
@@ -341,7 +341,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, null, msg, arg0, arg1, arg2);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1, arg2);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Debug<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
@@ -353,7 +353,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, null, msg, arg0, arg1, arg2, arg3);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1, arg2, arg3);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Debug<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
@@ -365,7 +365,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, null, msg, arg0, arg1, arg2, arg3, arg4);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1, arg2, arg3, arg4);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Debug<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
@@ -377,7 +377,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, null, msg, arg0, arg1, arg2, arg3, arg4, arg5);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1, arg2, arg3, arg4, arg5);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Debug<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
@@ -389,7 +389,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, null, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
         }
         #endregion Debug
 
@@ -415,7 +415,7 @@ namespace ApplicationLogging
         //    if (!logger.IsEnabled(LogLevel.Information))
         //        return;
         //    var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-        //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, null, msg, prms);
+        //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, prms);
         //}
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Information<T0>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0,
@@ -427,7 +427,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, null, msg, arg0);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Information<T0, T1>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1,
@@ -439,7 +439,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, null, msg, arg0, arg1);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0, arg1);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Information<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2,
@@ -451,7 +451,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, null, msg, arg0, arg1, arg2);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0, arg1, arg2);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Information<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
@@ -463,7 +463,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, null, msg, arg0, arg1, arg2, arg3);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0, arg1, arg2, arg3);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Information<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
@@ -475,7 +475,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, null, msg, arg0, arg1, arg2, arg3, arg4);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0, arg1, arg2, arg3, arg4);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Information<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
@@ -487,7 +487,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, null, msg, arg0, arg1, arg2, arg3, arg4, arg5);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0, arg1, arg2, arg3, arg4, arg5);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Information<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
@@ -499,7 +499,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, null, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
         }
         #endregion Information
 
@@ -525,7 +525,7 @@ namespace ApplicationLogging
         //    if (!logger.IsEnabled(LogLevel.Warning))
         //        return;
         //    var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-        //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, null, msg, prms);
+        //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, prms);
         //}
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Warning<T0>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0,
@@ -537,7 +537,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, null, msg, arg0);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Warning<T0, T1>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1,
@@ -549,7 +549,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, null, msg, arg0, arg1);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0, arg1);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Warning<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2,
@@ -561,7 +561,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, null, msg, arg0, arg1, arg2);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0, arg1, arg2);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Warning<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
@@ -573,7 +573,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, null, msg, arg0, arg1, arg2, arg3);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0, arg1, arg2, arg3);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Warning<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
@@ -585,7 +585,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, null, msg, arg0, arg1, arg2, arg3, arg4);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0, arg1, arg2, arg3, arg4);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Warning<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
@@ -597,7 +597,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, null, msg, arg0, arg1, arg2, arg3, arg4, arg5);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0, arg1, arg2, arg3, arg4, arg5);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Warning<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
@@ -609,7 +609,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, null, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
         }
         #endregion Warning
 
@@ -635,7 +635,7 @@ namespace ApplicationLogging
         //    if (!logger.IsEnabled(LogLevel.Error))
         //        return;
         //    var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-        //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, null, msg, prms);
+        //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, prms);
         //}
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Error<T0>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0,
@@ -647,7 +647,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, null, msg, arg0);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Error<T0, T1>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1,
@@ -659,7 +659,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, null, msg, arg0, arg1);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0, arg1);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Error<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2,
@@ -671,7 +671,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, null, msg, arg0, arg1, arg2);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0, arg1, arg2);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Error<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
@@ -683,7 +683,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, null, msg, arg0, arg1, arg2, arg3);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0, arg1, arg2, arg3);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Error<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
@@ -695,7 +695,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, null, msg, arg0, arg1, arg2, arg3, arg4);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0, arg1, arg2, arg3, arg4);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Error<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
@@ -707,7 +707,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, null, msg, arg0, arg1, arg2, arg3, arg4, arg5);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0, arg1, arg2, arg3, arg4, arg5);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Error<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
@@ -719,7 +719,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, null, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
         }
         #endregion Error
 
@@ -757,7 +757,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, null, msg, arg0);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Critical<T0, T1>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1,
@@ -769,7 +769,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, null, msg, arg0, arg1);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0, arg1);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Critical<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2,
@@ -781,7 +781,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, null, msg, arg0, arg1, arg2);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0, arg1, arg2);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Critical<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
@@ -793,7 +793,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, null, msg, arg0, arg1, arg2, arg3);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0, arg1, arg2, arg3);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Critical<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
@@ -805,7 +805,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, null, msg, arg0, arg1, arg2, arg3, arg4);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0, arg1, arg2, arg3, arg4);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Critical<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
@@ -817,7 +817,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, null, msg, arg0, arg1, arg2, arg3, arg4, arg5);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0, arg1, arg2, arg3, arg4, arg5);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Critical<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
@@ -829,7 +829,7 @@ namespace ApplicationLogging
             if (!logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
-            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, null, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
         }
         #endregion Critical
 
