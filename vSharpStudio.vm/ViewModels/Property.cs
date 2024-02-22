@@ -563,10 +563,10 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(15)]
         public string ConfigObjectGuid
         {
-            get { return this.DataType.ObjectRef.RefConfigObjectGuid; }
+            get { return this.DataType.ObjectRef.ForeignObjectGuid; }
             set
             {
-                this.DataType.ObjectRef.RefConfigObjectGuid = value;
+                this.DataType.ObjectRef.ForeignObjectGuid = value;
                 this.OnPropertyChanged();
                 this.ValidateProperty();
                 this.OnPropertyChanged(nameof(this.ClrType));
@@ -860,7 +860,7 @@ namespace vSharpStudio.vm.ViewModels
         //            return false;
         //    }
         //}
-        public IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable, bool isCsNullable, int positionInObject, string foreignObjectGuid, string propRefIdGuid)
+        public IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable, bool isCsNullable, int positionInObject, string foreignObjectGuid, string foreignIdPropertyGuid)
         {
             //Debug.Assert(this.CanAddExtentionPropertyRefId());
             var node = new Property(this) { Name = subName, ParentProperty = this };
@@ -871,8 +871,8 @@ namespace vSharpStudio.vm.ViewModels
             node.IsCsNullable = isCsNullable;
             node.IsComplexRefId = true;
             node.PositionInConfigObject = positionInObject;
-            node.DataType.ObjectRef.RefConfigObjectGuid = foreignObjectGuid;
-            node.DataType.ObjectRef.PropertyRefIdGuid = propRefIdGuid;
+            node.DataType.ObjectRef.ForeignObjectGuid = foreignObjectGuid;
+            node.DataType.ObjectRef.ForeignIdPropertyGuid = foreignIdPropertyGuid;
             return node;
         }
         public bool IsComplexRefId { get; private set; }
@@ -979,18 +979,18 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.TIMEZ:
                     break;
                 case EnumDataType.CATALOG:
-                    if (this.DataType.ObjectRef.RefConfigObjectGuid != from.DataType.ObjectRef.RefConfigObjectGuid)
+                    if (this.DataType.ObjectRef.ForeignObjectGuid != from.DataType.ObjectRef.ForeignObjectGuid)
                     {
-                        var cf = (Catalog)this.Cfg.DicNodes[from.DataType.ObjectRef.RefConfigObjectGuid];
-                        var cd = (Catalog)this.Cfg.DicNodes[this.DataType.ObjectRef.RefConfigObjectGuid];
+                        var cf = (Catalog)this.Cfg.DicNodes[from.DataType.ObjectRef.ForeignObjectGuid];
+                        var cd = (Catalog)this.Cfg.DicNodes[this.DataType.ObjectRef.ForeignObjectGuid];
                         return $"Destination catalog type '{cd.Name}' not equal source catalog type '{cf.Name}'.";
                     }
                     break;
                 case EnumDataType.DOCUMENT:
-                    if (this.DataType.ObjectRef.RefConfigObjectGuid != from.DataType.ObjectRef.RefConfigObjectGuid)
+                    if (this.DataType.ObjectRef.ForeignObjectGuid != from.DataType.ObjectRef.ForeignObjectGuid)
                     {
-                        var cf = (Document)this.Cfg.DicNodes[from.DataType.ObjectRef.RefConfigObjectGuid];
-                        var cd = (Document)this.Cfg.DicNodes[this.DataType.ObjectRef.RefConfigObjectGuid];
+                        var cf = (Document)this.Cfg.DicNodes[from.DataType.ObjectRef.ForeignObjectGuid];
+                        var cd = (Document)this.Cfg.DicNodes[this.DataType.ObjectRef.ForeignObjectGuid];
                         return $"Destination document type '{cd.Name}' not equal source document type '{cf.Name}'.";
                     }
                     break;
@@ -1000,12 +1000,12 @@ namespace vSharpStudio.vm.ViewModels
                         bool found = false;
                         foreach (var t in this.DataType.ListObjectRefs)
                         {
-                            if (t.RefConfigObjectGuid == from.DataType.ObjectRef.RefConfigObjectGuid)
+                            if (t.ForeignObjectGuid == from.DataType.ObjectRef.ForeignObjectGuid)
                             { found = true; break; }
                         }
                         if (!found)
                         {
-                            var cf = (Catalog)this.Cfg.DicNodes[from.DataType.ObjectRef.RefConfigObjectGuid];
+                            var cf = (Catalog)this.Cfg.DicNodes[from.DataType.ObjectRef.ForeignObjectGuid];
                             return $"Destination catalogs type '{this.Name}' property is not supporting source catalog type '{cf.Name}'.";
                         }
                     }
@@ -1021,12 +1021,12 @@ namespace vSharpStudio.vm.ViewModels
                         bool found = false;
                         foreach (var t in this.DataType.ListObjectRefs)
                         {
-                            if (t.RefConfigObjectGuid == from.DataType.ObjectRef.RefConfigObjectGuid)
+                            if (t.ForeignObjectGuid == from.DataType.ObjectRef.ForeignObjectGuid)
                             { found = true; break; }
                         }
                         if (!found)
                         {
-                            var cf = (Document)this.Cfg.DicNodes[from.DataType.ObjectRef.RefConfigObjectGuid];
+                            var cf = (Document)this.Cfg.DicNodes[from.DataType.ObjectRef.ForeignObjectGuid];
                             return $"Destination documents type '{this.Name}' property is not supporting source document type '{cf.Name}'.";
                         }
                     }

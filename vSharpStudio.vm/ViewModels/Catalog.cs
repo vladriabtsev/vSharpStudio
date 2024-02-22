@@ -101,6 +101,7 @@ namespace vSharpStudio.vm.ViewModels
             this._IndexRefTreeParentCodeGuid = System.Guid.NewGuid().ToString();
             this._IndexNotUniqueCodeGuid = System.Guid.NewGuid().ToString();
 
+            this._PropertyCtlgRefFolderGuid = System.Guid.NewGuid().ToString();
             this._PropertyCtlgRefSelfGuid = System.Guid.NewGuid().ToString();
 
             this._MaxNameLength = 20;
@@ -502,7 +503,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.UseSeparateTreeForFolders)
                 {
-                    prp = model.GetPropertyRef(this, this.Folder, this.Folder.Guid, "Ref" + this.Folder.CompositeName, 1, false);
+                    prp = model.GetPropertyRef(this, this.Folder, this.PropertyCtlgRefFolderGuid, "Ref" + this.Folder.CompositeName, 1, false);
                     res.Add(prp);
                 }
                 else

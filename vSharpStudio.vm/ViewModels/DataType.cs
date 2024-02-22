@@ -42,18 +42,18 @@ namespace vSharpStudio.vm.ViewModels
             {
                 case EnumDataType.CATALOG:
                     this.ListObjectRefs.Clear();
-                    if (to == EnumDataType.CATALOGS && !string.IsNullOrWhiteSpace(this.ObjectRef.RefConfigObjectGuid))
+                    if (to == EnumDataType.CATALOGS && !string.IsNullOrWhiteSpace(this.ObjectRef.ForeignObjectGuid))
                     {
                         this.ListObjectRefs.Add(this.ObjectRef);
-                        this.ObjectRef.RefConfigObjectGuid = string.Empty;
+                        this.ObjectRef.ForeignObjectGuid = string.Empty;
                     }
                     break;
                 case EnumDataType.DOCUMENT:
                     this.ListObjectRefs.Clear();
-                    if (to == EnumDataType.DOCUMENTS && !string.IsNullOrWhiteSpace(this.ObjectRef.RefConfigObjectGuid))
+                    if (to == EnumDataType.DOCUMENTS && !string.IsNullOrWhiteSpace(this.ObjectRef.ForeignObjectGuid))
                     {
                         this.ListObjectRefs.Add(this.ObjectRef);
-                        this.ObjectRef.RefConfigObjectGuid = string.Empty;
+                        this.ObjectRef.ForeignObjectGuid = string.Empty;
                     }
                     break;
                 case EnumDataType.CATALOGS:
@@ -67,7 +67,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     else if (this.ListObjectRefs.Count == 1)
                     {
-                        this.ObjectRef.RefConfigObjectGuid = this.ListObjectRefs[0].RefConfigObjectGuid;
+                        this.ObjectRef.ForeignObjectGuid = this.ListObjectRefs[0].ForeignObjectGuid;
                     }
                     this.ListObjectRefs.Clear();
                     break;
@@ -82,7 +82,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     else if (this.ListObjectRefs.Count == 1)
                     {
-                        this.ObjectRef.RefConfigObjectGuid = this.ListObjectRefs[0].RefConfigObjectGuid;
+                        this.ObjectRef.ForeignObjectGuid = this.ListObjectRefs[0].ForeignObjectGuid;
                     }
                     this.ListObjectRefs.Clear();
                     break;
@@ -101,13 +101,13 @@ namespace vSharpStudio.vm.ViewModels
         //                    this.ListObjectRefs.Clear();
         //                    break;
         //                case EnumDataType.CATALOGS:
-        //                    this.ObjectRef.RefConfigObjectGuid = string.Empty;
+        //                    this.ObjectRef.ForeignObjectGuid = string.Empty;
         //                    break;
         //                case EnumDataType.DOCUMENT:
         //                    this.ListObjectRefs.Clear();
         //                    break;
         //                case EnumDataType.DOCUMENTS:
-        //                    this._ObjectRef.RefConfigObjectGuid = string.Empty;
+        //                    this._ObjectRef.ForeignObjectGuid = string.Empty;
         //                    break;
         //                case EnumDataType.ENUMERATION:
         //                    break;
@@ -201,7 +201,7 @@ namespace vSharpStudio.vm.ViewModels
         public DataType(ITreeConfigNode parent, EnumDataType type, string guidOfType) : this(parent)
         {
             this._DataTypeEnum = type;
-            this._ObjectRef.RefConfigObjectGuid = guidOfType;
+            this._ObjectRef.ForeignObjectGuid = guidOfType;
             this._ListObjectRefs = new ObservableCollectionWithActions<ComplexRef>();
         }
         public override string ToString()
@@ -215,10 +215,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.DataTypeEnum != EnumDataType.ENUMERATION)
                 return false;
-            if (string.IsNullOrWhiteSpace(this.ObjectRef.RefConfigObjectGuid))
+            if (string.IsNullOrWhiteSpace(this.ObjectRef.ForeignObjectGuid))
                 return false;
             Debug.Assert(this.Cfg != null);
-            var en = (Enumeration)this.Cfg.DicNodes[this.ObjectRef.RefConfigObjectGuid];
+            var en = (Enumeration)this.Cfg.DicNodes[this.ObjectRef.ForeignObjectGuid];
             if (en.DataTypeEnum == EnumEnumerationType.STRING_VALUE)
                 return true;
             return false;
@@ -230,10 +230,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.DataTypeEnum != EnumDataType.ENUMERATION)
                     throw new NotImplementedException();
-                if (string.IsNullOrWhiteSpace(this.ObjectRef.RefConfigObjectGuid))
+                if (string.IsNullOrWhiteSpace(this.ObjectRef.ForeignObjectGuid))
                     throw new NotImplementedException();
                 Debug.Assert(this.Cfg != null);
-                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectRef.RefConfigObjectGuid];
+                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectRef.ForeignObjectGuid];
                 return en.ListEnumerationPairs[0].Value;
             }
         }
@@ -244,10 +244,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.DataTypeEnum != EnumDataType.ENUMERATION)
                     return null;
-                if (string.IsNullOrWhiteSpace(this.ObjectRef.RefConfigObjectGuid))
+                if (string.IsNullOrWhiteSpace(this.ObjectRef.ForeignObjectGuid))
                     throw new NotImplementedException();
                 Debug.Assert(this.Cfg != null);
-                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectRef.RefConfigObjectGuid];
+                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectRef.ForeignObjectGuid];
                 return en.DataTypeEnum;
             }
         }
@@ -258,10 +258,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.DataTypeEnum != EnumDataType.ENUMERATION)
                     return 0;
-                if (string.IsNullOrWhiteSpace(this.ObjectRef.RefConfigObjectGuid))
+                if (string.IsNullOrWhiteSpace(this.ObjectRef.ForeignObjectGuid))
                     throw new NotImplementedException();
                 Debug.Assert(this.Cfg != null);
-                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectRef.RefConfigObjectGuid];
+                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectRef.ForeignObjectGuid];
                 int len = 0;
                 if (en.DataTypeEnum == EnumEnumerationType.STRING_VALUE)
                 {
@@ -280,10 +280,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.DataTypeEnum != EnumDataType.ENUMERATION)
                     throw new NotImplementedException();
-                if (string.IsNullOrWhiteSpace(this.ObjectRef.RefConfigObjectGuid))
+                if (string.IsNullOrWhiteSpace(this.ObjectRef.ForeignObjectGuid))
                     return "";
                 Debug.Assert(this.Cfg != null);
-                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectRef.RefConfigObjectGuid];
+                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectRef.ForeignObjectGuid];
                 return "Enum" + en.Name;
             }
         }
@@ -308,7 +308,7 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append(": ");
                     foreach (var t in config.Model.GroupCatalogs.ListCatalogs)
                     {
-                        if (p.ObjectRef.RefConfigObjectGuid == t.Guid)
+                        if (p.ObjectRef.ForeignObjectGuid == t.Guid)
                         {
                             sb.Append(t.Name);
                         }
@@ -318,7 +318,7 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append(": ");
                     foreach (var t in config.Model.GroupDocuments.GroupListDocuments.ListDocuments)
                     {
-                        if (p.ObjectRef.RefConfigObjectGuid == t.Guid)
+                        if (p.ObjectRef.ForeignObjectGuid == t.Guid)
                         {
                             sb.Append(t.Name);
                         }
@@ -334,7 +334,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in config.Model.GroupCatalogs.ListCatalogs)
                         {
-                            if (tt.RefConfigObjectGuid == t.Guid)
+                            if (tt.ForeignObjectGuid == t.Guid)
                             {
                                 sb.Append(", ");
                                 sb.Append(t.Name);
@@ -350,7 +350,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in config.Model.GroupDocuments.GroupListDocuments.ListDocuments)
                         {
-                            if (tt.RefConfigObjectGuid == t.Guid)
+                            if (tt.ForeignObjectGuid == t.Guid)
                             {
                                 sb.Append(", ");
                                 sb.Append(t.Name);
@@ -362,7 +362,7 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append(": ");
                     foreach (var t in config.Model.GroupEnumerations.ListEnumerations)
                     {
-                        if (p.ObjectRef.RefConfigObjectGuid == t.Guid)
+                        if (p.ObjectRef.ForeignObjectGuid == t.Guid)
                         {
                             sb.Append(t.Name);
                         }
@@ -599,9 +599,9 @@ namespace vSharpStudio.vm.ViewModels
                     return;
                 case EnumDataType.CATALOG:
                     Debug.Assert(this.Cfg != null);
-                    if (!string.IsNullOrEmpty(this.ObjectRef.RefConfigObjectGuid))
+                    if (!string.IsNullOrEmpty(this.ObjectRef.ForeignObjectGuid))
                     {
-                        var en = (Catalog?)this.Cfg.DicNodes[this.ObjectRef.RefConfigObjectGuid];
+                        var en = (Catalog?)this.Cfg.DicNodes[this.ObjectRef.ForeignObjectGuid];
                         Debug.Assert(en != null);
                         this.ClrTypeName = en.Name;
                     }
@@ -610,9 +610,9 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumDataType.DOCUMENT:
                     Debug.Assert(this.Cfg != null);
-                    if (!string.IsNullOrEmpty(this.ObjectRef.RefConfigObjectGuid))
+                    if (!string.IsNullOrEmpty(this.ObjectRef.ForeignObjectGuid))
                     {
-                        var en = (Document?)this.Cfg.DicNodes[this.ObjectRef.RefConfigObjectGuid];
+                        var en = (Document?)this.Cfg.DicNodes[this.ObjectRef.ForeignObjectGuid];
                         Debug.Assert(en != null);
                         this.ClrTypeName = en.Name;
                     }
@@ -874,7 +874,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 6;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    this._ObjectRef.RefConfigObjectGuid = string.Empty;
+                    this._ObjectRef.ForeignObjectGuid = string.Empty;
                     this.ListObjectRefs.Clear();
                     break;
                 case EnumDataType.NUMERICAL:
@@ -892,7 +892,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 6;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    this._ObjectRef.RefConfigObjectGuid = string.Empty;
+                    this._ObjectRef.ForeignObjectGuid = string.Empty;
                     this.ListObjectRefs.Clear();
                     break;
                 case EnumDataType.STRING:
@@ -903,7 +903,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 25;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    this._ObjectRef.RefConfigObjectGuid = string.Empty;
+                    this._ObjectRef.ForeignObjectGuid = string.Empty;
                     this.ListObjectRefs.Clear();
                     break;
                 default:

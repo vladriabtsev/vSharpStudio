@@ -68,6 +68,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this._IsIndexFk = true;
+            this._PropertyRefParentGuid = System.Guid.NewGuid().ToString();
             this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();
             this._ViewListComboBoxGuid = System.Guid.NewGuid().ToString();
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
@@ -339,22 +340,22 @@ namespace vSharpStudio.vm.ViewModels
             if (this.ParentGroupListDetails.Parent is Detail dt)
             {
                 parentTable = dt.CompositeName;
-                prp = this.Cfg.Model.GetPropertyRef(this, dt, dt.Guid, "Ref" + parentTable, 1, false);
+                prp = this.Cfg.Model.GetPropertyRef(this, dt, this.PropertyRefParentGuid, "Ref" + parentTable, 1, false);
             }
             else if (this.ParentGroupListDetails.Parent is Catalog c)
             {
                 parentTable = c.CompositeName;
-                prp = this.Cfg.Model.GetPropertyRef(this, c, c.Guid, "Ref" + parentTable, 1, false);
+                prp = this.Cfg.Model.GetPropertyRef(this, c, this.PropertyRefParentGuid, "Ref" + parentTable, 1, false);
             }
             else if (this.ParentGroupListDetails.Parent is CatalogFolder cf)
             {
                 parentTable = cf.CompositeName;
-                prp = this.Cfg.Model.GetPropertyRef(this, cf, cf.Guid, "Ref" + parentTable, 1, false);
+                prp = this.Cfg.Model.GetPropertyRef(this, cf, this.PropertyRefParentGuid, "Ref" + parentTable, 1, false);
             }
             else if (this.ParentGroupListDetails.Parent is Document d)
             {
                 parentTable = d.CompositeName;
-                prp = this.Cfg.Model.GetPropertyRef(this, d, d.Guid, "Ref" + parentTable, 1, false);
+                prp = this.Cfg.Model.GetPropertyRef(this, d, this.PropertyRefParentGuid, "Ref" + parentTable, 1, false);
             }
             else
                 throw new NotImplementedException();

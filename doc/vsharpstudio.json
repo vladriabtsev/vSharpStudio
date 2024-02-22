@@ -2148,7 +2148,7 @@
               "defaultValue": ""
             },
             {
-              "name": "ref_config_object_guid",
+              "name": "foreign_object_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -2160,7 +2160,7 @@
               "defaultValue": ""
             },
             {
-              "name": "property_ref_id_guid",
+              "name": "foreign_id_property_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -3157,6 +3157,18 @@
             },
             {
               "name": "index_not_unique_code_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "property_ctlg_ref_folder_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -4705,6 +4717,18 @@
             },
             {
               "name": "view_list_combo_box_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "property_ref_parent_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",

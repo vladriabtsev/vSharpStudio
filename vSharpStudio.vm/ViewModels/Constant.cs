@@ -334,10 +334,10 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(15)]
         public string ConfigObjectGuid
         {
-            get { return this.DataType.ObjectRef.RefConfigObjectGuid; }
+            get { return this.DataType.ObjectRef.ForeignObjectGuid; }
             set
             {
-                this.DataType.ObjectRef.RefConfigObjectGuid = value;
+                this.DataType.ObjectRef.ForeignObjectGuid = value;
                 this.OnPropertyChanged();
                 this.OnPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();

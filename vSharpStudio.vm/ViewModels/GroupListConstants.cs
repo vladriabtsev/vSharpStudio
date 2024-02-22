@@ -214,7 +214,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ObjectRef.RefConfigObjectGuid = en.Guid;
+            node.DataType.ObjectRef.ForeignObjectGuid = en.Guid;
             node.DataType.DataTypeEnum = EnumDataType.ENUMERATION;
             this.NodeAddNewSubNode(node);
             return node;
@@ -231,7 +231,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ObjectRef.RefConfigObjectGuid = cat.Guid;
+            node.DataType.ObjectRef.ForeignObjectGuid = cat.Guid;
             node.DataType.DataTypeEnum = EnumDataType.CATALOG;
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
@@ -249,7 +249,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ObjectRef.RefConfigObjectGuid = d.Guid;
+            node.DataType.ObjectRef.ForeignObjectGuid = d.Guid;
             node.DataType.DataTypeEnum = EnumDataType.DOCUMENT;
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
@@ -340,7 +340,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            Debug.Assert(node.DataType.ObjectRef.RefConfigObjectGuid == string.Empty);
+            Debug.Assert(node.DataType.ObjectRef.ForeignObjectGuid == string.Empty);
             node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, d.Guid));
             if (d2 != null)
                 node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, d2.Guid));

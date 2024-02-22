@@ -907,9 +907,9 @@ message complex_ref
     // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Browsable(false)]
-    string ref_config_object_guid = 11;
+    string foreign_object_guid = 11;
     // @attr [Browsable(false)]
-    string property_ref_id_guid = 12;
+    string foreign_id_property_guid = 12;
 }
 // @base BaseSettings
 message proto_data_type {
@@ -1595,7 +1595,7 @@ message proto_detail {
     string view_list_combo_box_guid = 55;
 
     // @attr [Browsable(false)]
-    //string property_ref_parent_guid = 65;
+    string property_ref_parent_guid = 65;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -2140,6 +2140,8 @@ message proto_catalog {
     // @attr [Browsable(false)]
     string index_not_unique_code_guid = 34;
 
+    // @attr [Browsable(false)]
+    string property_ctlg_ref_folder_guid = 37;
     // @attr [Browsable(false)]
     string property_ctlg_ref_self_guid = 38;
 

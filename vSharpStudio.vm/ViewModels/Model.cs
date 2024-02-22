@@ -444,7 +444,7 @@ namespace vSharpStudio.vm.ViewModels
             dt.Length = length;
             dt.Accuracy = accuracy;
             dt.IsPositive = isPositive;
-            dt.ObjectRef.RefConfigObjectGuid = objectGuid;
+            dt.ObjectRef.ForeignObjectGuid = objectGuid;
             dt.IsNullable = isNullable;
             return dt;
         }
@@ -524,7 +524,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataTypeCatalog(ITreeConfigNode? parent, string catGuid, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectRef.RefConfigObjectGuid = catGuid;
+            dt.ObjectRef.ForeignObjectGuid = catGuid;
             dt.DataTypeEnum = EnumDataType.CATALOG;
             dt.IsNullable = isNullable;
             return dt;
@@ -532,7 +532,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataTypeDocument(ITreeConfigNode? parent, string docGuid, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectRef.RefConfigObjectGuid = docGuid;
+            dt.ObjectRef.ForeignObjectGuid = docGuid;
             dt.DataTypeEnum = EnumDataType.DOCUMENT;
             dt.IsNullable = isNullable;
             return dt;
@@ -548,7 +548,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataType(ITreeConfigNode? parent, ICatalog obj, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectRef.RefConfigObjectGuid = obj.Guid;
+            dt.ObjectRef.ForeignObjectGuid = obj.Guid;
             dt.IsNullable = isNullable;
             dt.DataTypeEnum = EnumDataType.CATALOG;
             return dt;
@@ -557,7 +557,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataType(ITreeConfigNode? parent, IDocument obj, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectRef.RefConfigObjectGuid = obj.Guid;
+            dt.ObjectRef.ForeignObjectGuid = obj.Guid;
             dt.IsNullable = isNullable;
             dt.DataTypeEnum = EnumDataType.DOCUMENT;
             return dt;
@@ -919,7 +919,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_DETAIL;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -930,7 +930,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_CATALOG;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -941,7 +941,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -952,7 +952,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -963,7 +963,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -974,7 +974,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -985,7 +985,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.RefConfigObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT;
             res.DataType.IsNullable = isNullable;
             return res;
@@ -1373,9 +1373,9 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in dt.ListObjectRefs)
                         {
-                            Debug.Assert(!string.IsNullOrWhiteSpace(t.RefConfigObjectGuid));
-                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.RefConfigObjectGuid));
-                            var node = this.ParentConfig.DicNodes[t.RefConfigObjectGuid];
+                            Debug.Assert(!string.IsNullOrWhiteSpace(t.ForeignObjectGuid));
+                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.ForeignObjectGuid));
+                            var node = this.ParentConfig.DicNodes[t.ForeignObjectGuid];
                             if (node is ICatalog c)
                             {
                                 Debug.Assert(!res.ContainsKey(c.Guid));
@@ -1405,9 +1405,9 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in dt.ListObjectRefs)
                         {
-                            Debug.Assert(!string.IsNullOrWhiteSpace(t.RefConfigObjectGuid));
-                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.RefConfigObjectGuid));
-                            var node = this.ParentConfig.DicNodes[t.RefConfigObjectGuid];
+                            Debug.Assert(!string.IsNullOrWhiteSpace(t.ForeignObjectGuid));
+                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.ForeignObjectGuid));
+                            var node = this.ParentConfig.DicNodes[t.ForeignObjectGuid];
                             if (node is ICatalog c)
                             {
                                 throw new ArgumentException("EnumDataType.DOCUMENTS can't reference Catalog");
@@ -1437,9 +1437,9 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         foreach (var t in dt.ListObjectRefs)
                         {
-                            Debug.Assert(!string.IsNullOrWhiteSpace(t.RefConfigObjectGuid));
-                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.RefConfigObjectGuid));
-                            var node = this.ParentConfig.DicNodes[t.RefConfigObjectGuid];
+                            Debug.Assert(!string.IsNullOrWhiteSpace(t.ForeignObjectGuid));
+                            Debug.Assert(this.ParentConfig.DicNodes.ContainsKey(t.ForeignObjectGuid));
+                            var node = this.ParentConfig.DicNodes[t.ForeignObjectGuid];
                             if (node is ICatalog c)
                             {
                                 Debug.Assert(!res.ContainsKey(c.Guid));

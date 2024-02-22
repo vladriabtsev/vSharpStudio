@@ -755,7 +755,7 @@ namespace vSharpStudio.vm.ViewModels
                 bool found = false;
                 foreach (var tt in this.ListObjectDocRefs)
                 {
-                    if (t.Guid == tt.RefConfigObjectGuid)
+                    if (t.Guid == tt.ForeignObjectGuid)
                     {
                         found = true;
                         break;
@@ -774,7 +774,7 @@ namespace vSharpStudio.vm.ViewModels
                 bool found = false;
                 foreach (var tt in this.ListObjectDocRefs)
                 {
-                    if (t.Guid == tt.RefConfigObjectGuid)
+                    if (t.Guid == tt.ForeignObjectGuid)
                     {
                         found = true;
                         break;
@@ -1017,7 +1017,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (string.IsNullOrEmpty(row.Dimension.DimensionCatalogGuid))
                         return;
                     var cat = this.Cfg.DicNodes[row.Dimension.DimensionCatalogGuid];
-                    if (p.DataType.DataTypeEnum != EnumDataType.CATALOG || cat.Guid != p.DataType.ObjectRef.RefConfigObjectGuid)
+                    if (p.DataType.DataTypeEnum != EnumDataType.CATALOG || cat.Guid != p.DataType.ObjectRef.ForeignObjectGuid)
                         return;
                 }
                 else if (row.AttachedProperty != null)
@@ -1029,7 +1029,7 @@ namespace vSharpStudio.vm.ViewModels
                         case EnumDataType.CATALOG:
                             if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
                                 return;
-                            if (p.DataType.ObjectRef.RefConfigObjectGuid != row.AttachedProperty.DataType.ObjectRef.RefConfigObjectGuid)
+                            if (p.DataType.ObjectRef.ForeignObjectGuid != row.AttachedProperty.DataType.ObjectRef.ForeignObjectGuid)
                                 return;
                             break;
                         case EnumDataType.CATALOGS:
@@ -1156,7 +1156,7 @@ namespace vSharpStudio.vm.ViewModels
                             var j = -1;
                             for (int i = 0; i < this.ListObjectDocRefs.Count; i++)
                             {
-                                if (this.ListObjectDocRefs[i].RefConfigObjectGuid == guid)
+                                if (this.ListObjectDocRefs[i].ForeignObjectGuid == guid)
                                 {
                                     j = i;
                                     break;
@@ -1180,7 +1180,7 @@ namespace vSharpStudio.vm.ViewModels
                             var j = -1;
                             for (int i = 0; i < this.ListObjectDocRefs.Count; i++)
                             {
-                                if (this.ListObjectDocRefs[i].RefConfigObjectGuid == guid)
+                                if (this.ListObjectDocRefs[i].ForeignObjectGuid == guid)
                                 {
                                     j = i;
                                     break;
