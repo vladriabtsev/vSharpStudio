@@ -909,7 +909,7 @@ message complex_ref
     // @attr [Browsable(false)]
     string foreign_object_guid = 11;
     // @attr [Browsable(false)]
-    string foreign_id_property_guid = 12;
+    string ref_property_guid = 12;
 }
 // @base BaseSettings
 message proto_data_type {

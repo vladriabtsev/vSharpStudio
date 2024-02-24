@@ -2160,7 +2160,7 @@
               "defaultValue": ""
             },
             {
-              "name": "foreign_id_property_guid",
+              "name": "ref_property_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",

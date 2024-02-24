@@ -860,7 +860,7 @@ namespace vSharpStudio.vm.ViewModels
         //            return false;
         //    }
         //}
-        public IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable, bool isCsNullable, int positionInObject, string foreignObjectGuid, string foreignIdPropertyGuid)
+        public IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable, bool isCsNullable, int positionInObject, string foreignObjectGuid)
         {
             //Debug.Assert(this.CanAddExtentionPropertyRefId());
             var node = new Property(this) { Name = subName, ParentProperty = this };
@@ -872,7 +872,7 @@ namespace vSharpStudio.vm.ViewModels
             node.IsComplexRefId = true;
             node.PositionInConfigObject = positionInObject;
             node.DataType.ObjectRef.ForeignObjectGuid = foreignObjectGuid;
-            node.DataType.ObjectRef.ForeignIdPropertyGuid = foreignIdPropertyGuid;
+            node.DataType.ObjectRef.RefPropertyGuid = guid;
             return node;
         }
         public bool IsComplexRefId { get; private set; }

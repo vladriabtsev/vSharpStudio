@@ -156,7 +156,7 @@
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | foreign_object_guid | [string](#string) |  | @attr [Browsable(false)] |
-| foreign_id_property_guid | [string](#string) |  | @attr [Browsable(false)] |
+| ref_property_guid | [string](#string) |  | @attr [Browsable(false)] |
 
 
 
