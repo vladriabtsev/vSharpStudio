@@ -24,6 +24,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode, IRoleAccess, IPropertyAccessRoles, ILayoutFieldParameters
     {
+        public const string SpecialPropertyNameRefParent = "RefParent";
+        public const string SpecialPropertyNameRefTreeParent = "RefTreeParent";
         partial void OnDebugStringExtend(ref string mes)
         {
             if (this.ParentProperty != null)

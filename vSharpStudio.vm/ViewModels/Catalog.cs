@@ -503,12 +503,12 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.UseSeparateTreeForFolders)
                 {
-                    prp = model.GetPropertyRef(this, this.Folder, this.PropertyCtlgRefFolderGuid, "Ref" + this.Folder.CompositeName, 1, false);
+                    prp = model.GetPropertyRef(this, this.Folder, this.PropertyCtlgRefFolderGuid, Property.SpecialPropertyNameRefParent, 1, false);
                     res.Add(prp);
                 }
                 else
                 {
-                    prp = model.GetPropertyRef(this, this, this.PropertyCtlgRefSelfGuid, "Ref" + this.CompositeName, 1, true);
+                    prp = model.GetPropertyRef(this, this, this.PropertyCtlgRefSelfGuid, Property.SpecialPropertyNameRefTreeParent, 1, true);
                     res.Add(prp);
                     prp = model.GetPropertyIsFolder(this.GroupProperties, this.Cfg.Model.PropertyCtlgIsFolderGuid, false);
                     res.Add(prp);

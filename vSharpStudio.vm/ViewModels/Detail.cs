@@ -336,26 +336,21 @@ namespace vSharpStudio.vm.ViewModels
         {
             var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             res.Add(prp);
-            string parentTable = "";
             if (this.ParentGroupListDetails.Parent is Detail dt)
             {
-                parentTable = dt.CompositeName;
-                prp = this.Cfg.Model.GetPropertyRef(this, dt, this.PropertyRefParentGuid, "Ref" + parentTable, 1, false);
+                prp = this.Cfg.Model.GetPropertyRef(this, dt, this.PropertyRefParentGuid, Property.SpecialPropertyNameRefParent, 1, false);
             }
             else if (this.ParentGroupListDetails.Parent is Catalog c)
             {
-                parentTable = c.CompositeName;
-                prp = this.Cfg.Model.GetPropertyRef(this, c, this.PropertyRefParentGuid, "Ref" + parentTable, 1, false);
+                prp = this.Cfg.Model.GetPropertyRef(this, c, this.PropertyRefParentGuid, Property.SpecialPropertyNameRefParent, 1, false);
             }
             else if (this.ParentGroupListDetails.Parent is CatalogFolder cf)
             {
-                parentTable = cf.CompositeName;
-                prp = this.Cfg.Model.GetPropertyRef(this, cf, this.PropertyRefParentGuid, "Ref" + parentTable, 1, false);
+                prp = this.Cfg.Model.GetPropertyRef(this, cf, this.PropertyRefParentGuid, Property.SpecialPropertyNameRefParent, 1, false);
             }
             else if (this.ParentGroupListDetails.Parent is Document d)
             {
-                parentTable = d.CompositeName;
-                prp = this.Cfg.Model.GetPropertyRef(this, d, this.PropertyRefParentGuid, "Ref" + parentTable, 1, false);
+                prp = this.Cfg.Model.GetPropertyRef(this, d, this.PropertyRefParentGuid, Property.SpecialPropertyNameRefParent, 1, false);
             }
             else
                 throw new NotImplementedException();

@@ -282,7 +282,7 @@ namespace vSharpStudio.vm.ViewModels
             var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
             var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             res.Add(prp);
-            prp = model.GetPropertyRef(this, this, this.PropertyCtlgRefSelfGuid, "RefTreeParent", 1, true);
+            prp = model.GetPropertyRef(this, this, this.PropertyCtlgRefSelfGuid, Property.SpecialPropertyNameRefTreeParent, 1, true);
             res.Add(prp);
             if (this.ParentCatalog.UseTree && !this.ParentCatalog.UseSeparateTreeForFolders)
             {
