@@ -559,22 +559,22 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(vm.Config.Model.PropertyCodeName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.PropertyNameName, lst[3].Name);
 
-            // Tree catalog
-            c.UseTree = true;
-            lst = c.GetAllProperties(true);
-            Assert.AreEqual(6, lst.Count);
-            Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
-            Assert.AreEqual("RefCtlgtest", lst[1].Name);
-            Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[3].Name);
-            Assert.AreEqual(vm.Config.Model.PropertyCodeName, lst[4].Name);
-            Assert.AreEqual(vm.Config.Model.PropertyNameName, lst[5].Name);
+            //// Tree catalog
+            //c.UseTree = true;
+            //lst = c.GetAllProperties(true);
+            //Assert.AreEqual(6, lst.Count);
+            //Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
+            //Assert.AreEqual("RefTreeParent", lst[1].Name);
+            //Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[3].Name);
+            //Assert.AreEqual(vm.Config.Model.PropertyCodeName, lst[4].Name);
+            //Assert.AreEqual(vm.Config.Model.PropertyNameName, lst[5].Name);
 
             // Tree catalog
             c.UseTree = true;
             lst = c.GetAllProperties(true);
             Assert.AreEqual(6, lst.Count);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
-            Assert.AreEqual("RefCtlgtest", lst[1].Name);
+            Assert.AreEqual("RefTreeParent", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.PropertyIsFolderName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[3].Name);
             Assert.AreEqual(vm.Config.Model.PropertyCodeName, lst[4].Name);
@@ -586,7 +586,7 @@ namespace vSharpStudio.Unit
             lst = c.GetAllProperties(true);
             Assert.AreEqual(5, lst.Count);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
-            Assert.AreEqual("RefCtlgtestFolder", lst[1].Name);
+            Assert.AreEqual("RefParent", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.PropertyCodeName, lst[3].Name);
             Assert.AreEqual(vm.Config.Model.PropertyNameName, lst[4].Name);
