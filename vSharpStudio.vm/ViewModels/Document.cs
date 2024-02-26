@@ -337,7 +337,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new List<IProperty>();
             var grd = this.ParentGroupListDocuments.ParentGroupDocuments;
             int i = 0;
-            GetSpecialProperties(res, isOptimistic, isExcludeSpecial);
+            GetSpecialProperties(res, isOptimistic, isExcludeSpecial, false);
             foreach (var t in grd.GroupSharedProperties.ListProperties)
             {
                 res.Add(t);
@@ -351,7 +351,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false, bool isOnlyShared = false, bool isOnlyNotShared = false)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, isOptimistic, isExcludeSpecial || isOnlyShared);
+            GetSpecialProperties(res, isOptimistic, isExcludeSpecial, false);
             foreach (var t in this.Cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations)
             {
                 if (t.GuidObj1 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY))
@@ -391,109 +391,116 @@ namespace vSharpStudio.vm.ViewModels
                         throw new NotImplementedException();
                 }
             }
-            foreach (var t in this.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties)
+            if (!isOnlyNotShared)
             {
-                if (t.IsIncluded(guidAppPrjGen))
+                foreach (var t in this.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties)
                 {
-                    t.ComplexObjectName = "SharedDocProperties";
-                    if (isOnlyShared && !isOnlyNotShared)
+                    if (t.IsIncluded(guidAppPrjGen))
+                    {
+                        t.ComplexObjectName = "SharedDocProperties";
                         res.Add(t);
+                    }
                 }
             }
-            foreach (var t in this.GroupProperties.ListProperties)
+            if (!isOnlyShared)
             {
-                if (t.IsIncluded(guidAppPrjGen))
+                foreach (var t in this.GroupProperties.ListProperties)
                 {
-                    if (!isOnlyShared)
+                    if (t.IsIncluded(guidAppPrjGen))
+                    {
                         res.Add(t);
+                    }
                 }
             }
             return res;
         }
-        public void GetSpecialProperties(List<IProperty> res, bool isOptimistic, bool isExcludeSpecial)
+        public void GetSpecialProperties(List<IProperty> res, bool isOptimistic, bool isExcludeSuperSpecial, bool isExcludeSpecial)
         {
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
             //var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             //string name = this.ParentGroupListDocuments.ParentGroupDocuments.GetTimelineCompositeName();
             //var prp = model.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, "Ref" + name, 0, false, true);
             IProperty prp;
-            if (!isExcludeSpecial)
+            if (!isExcludeSuperSpecial)
             {
                 prp = model.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, this.Cfg.Model.PKeyName, 0, false, true);
                 res.Add(prp);
             }
-            if (isOptimistic && !isExcludeSpecial)
+            if (isOptimistic && !isExcludeSuperSpecial)
             {
                 prp = model.GetPropertyVersion(this.GroupProperties, this.Cfg.Model.PropertyVersionGuid);
                 res.Add(prp);
             }
-            //prp = model.GetPropertyDocumentDate(this.GroupProperties, this.Cfg.Model.PropertyDocDateGuid);
-            //res.Add(prp);
-            if (!string.IsNullOrWhiteSpace(this.SequenceGuid))
+            if (!isExcludeSpecial)
             {
-                var seq = this.Sequence;
-                if (!isExcludeSpecial)
+                //prp = model.GetPropertyDocumentDate(this.GroupProperties, this.Cfg.Model.PropertyDocDateGuid);
+                //res.Add(prp);
+                if (!string.IsNullOrWhiteSpace(this.SequenceGuid))
                 {
-                    switch (seq.SequenceType)
+                    var seq = this.Sequence;
+                    if (!isExcludeSuperSpecial)
                     {
-                        case EnumCodeType.Number:
-                            prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
-                                seq.MaxSequenceLength);
+                        switch (seq.SequenceType)
+                        {
+                            case EnumCodeType.Number:
+                                prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
+                                    seq.MaxSequenceLength);
+                                break;
+                            case EnumCodeType.Text:
+                                prp = model.GetPropertyDocNumberString(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
+                                    seq.MaxSequenceLength + (uint)seq.Prefix.Length);
+                                break;
+                            default:
+                                throw new NotImplementedException();
+                        }
+                        res.Add(prp);
+                    }
+                    switch (seq.ScopeOfUnique)
+                    {
+                        case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
+                            if (!isExcludeSuperSpecial)
+                            {
+                                prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexYearDocNumberGuid);
+                                res.Add(prp);
+                            }
                             break;
-                        case EnumCodeType.Text:
-                            prp = model.GetPropertyDocNumberString(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
-                                seq.MaxSequenceLength + (uint)seq.Prefix.Length);
+                        case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
+                            if (!isExcludeSuperSpecial)
+                            {
+                                prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexQuaterDocNumberGuid);
+                                res.Add(prp);
+                            }
+                            break;
+                        case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
+                            if (!isExcludeSuperSpecial)
+                            {
+                                prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexMonthDocNumberGuid);
+                                res.Add(prp);
+                            }
+                            break;
+                        case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
+                            if (!isExcludeSuperSpecial)
+                            {
+                                prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexWeekDocNumberGuid);
+                                res.Add(prp);
+                            }
+                            break;
+                        case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
+                            if (!isExcludeSuperSpecial)
+                            {
+                                prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexDayDocNumberGuid);
+                                res.Add(prp);
+                            }
+                            break;
+                        case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
                             break;
                         default:
                             throw new NotImplementedException();
                     }
-                    res.Add(prp);
                 }
-                switch (seq.ScopeOfUnique)
-                {
-                    case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
-                        if (!isExcludeSpecial)
-                        {
-                            prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexYearDocNumberGuid);
-                            res.Add(prp);
-                        }
-                        break;
-                    case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
-                        if (!isExcludeSpecial)
-                        {
-                            prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexQuaterDocNumberGuid);
-                            res.Add(prp);
-                        }
-                        break;
-                    case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
-                        if (!isExcludeSpecial)
-                        {
-                            prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexMonthDocNumberGuid);
-                            res.Add(prp);
-                        }
-                        break;
-                    case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
-                        if (!isExcludeSpecial)
-                        {
-                            prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexWeekDocNumberGuid);
-                            res.Add(prp);
-                        }
-                        break;
-                    case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
-                        if (!isExcludeSpecial)
-                        {
-                            prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexDayDocNumberGuid);
-                            res.Add(prp);
-                        }
-                        break;
-                    case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
+                //prp = model.GetPropertyBool(this.GroupProperties, this.Cfg.Model.PropertyDocIsPostedGuid, "IsPosted", 10, true);
+                //res.Add(prp);
             }
-            //prp = model.GetPropertyBool(this.GroupProperties, this.Cfg.Model.PropertyDocIsPostedGuid, "IsPosted", 10, true);
-            //res.Add(prp);
         }
         public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
         {
@@ -524,18 +531,19 @@ namespace vSharpStudio.vm.ViewModels
             if (f == null)
             {
                 var lstp = new List<IProperty>();
-                int i = 0;
-                foreach (var t in this.GroupProperties.ListProperties)
-                {
-                    if (t.IsIncluded(guidAppPrjGen))
-                    {
-                        i++;
-                        if (i > 1)
-                            break;
-                        lstp.Add(t);
-                    }
-                }
-                this.GetSpecialProperties(lstp, false, true);
+                this.GetSpecialProperties(lstp, false, true, false);
+                //int i = 0;
+                //foreach (var t in this.GetIncludedProperties(guidAppPrjGen, false))
+                //{
+                //    if (t.IsIncluded(guidAppPrjGen))
+                //    {
+                //        i++;
+                //        if (i > 1)
+                //            break;
+                //        lstp.Add(t);
+                //    }
+                //}
+                this.GetSpecialProperties(lstp, false, false, true);
                 f = new Form(this.GroupForms, ftype, lstp);
             }
             else
@@ -545,7 +553,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     lstp.Add((IProperty)t);
                 }
-                this.GetSpecialProperties(lstp, false, true);
+                this.GetSpecialProperties(lstp, false, false, true);
                 f = new Form(this.GroupForms, ftype, lstp);
             }
             return f;

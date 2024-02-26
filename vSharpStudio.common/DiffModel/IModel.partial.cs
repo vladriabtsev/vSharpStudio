@@ -56,17 +56,17 @@ namespace vSharpStudio.common
         //IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable);
         IProperty GetPropertyRefDimension(IRegister parent, string guid, string name, uint position, bool isNullable);
         IProperty GetPropertyRefCatalog(ITreeConfigNode parent, string guid, ICatalog c, uint position, bool isNullable);
-        IProperty GetPropertyCatalogCode(ITreeConfigNode parent, string guid, uint length, bool isNullable);
-        IProperty GetPropertyCatalogCodeInt(ITreeConfigNode parent, string guid, uint length, bool isNullable);
-        IProperty GetPropertyCatalogName(ITreeConfigNode parent, string guid, uint length, bool isNullable);
-        IProperty GetPropertyCatalogDescription(ITreeConfigNode parent, string guid, uint length, bool isNullable);
-        IProperty GetPropertyIsFolder(ITreeConfigNode parent, string guid, bool isNullable);
+        IProperty GetPropertyCatalogCode(IGroupListProperties parent, string guid, uint length, bool isNullable);
+        IProperty GetPropertyCatalogCodeInt(IGroupListProperties parent, string guid, uint length, bool isNullable);
+        IProperty GetPropertyCatalogName(IGroupListProperties parent, string guid, uint length, bool isNullable);
+        IProperty GetPropertyCatalogDescription(IGroupListProperties parent, string guid, uint length, bool isNullable);
+        IProperty GetPropertyIsFolder(IGroupListProperties parent, string guid, bool isNullable);
         IProperty GetPropertyVersion(ITreeConfigNode parent, string guid);
-        IProperty GetPropertyRefDocument(ITreeConfigNode parent, string guid, IDocument d, uint position, bool isNullable);
-        IProperty GetPropertyDocumentDate(ITreeConfigNode parent, string guid, bool isPKey = false);
-        IProperty GetPropertyDocNumberString(ITreeConfigNode parent, string guid, uint length);
-        IProperty GetPropertyDocNumberInt(ITreeConfigNode parent, string guid, uint length);
-        IProperty GetPropertyDocNumberUniqueScopeHelper(ITreeConfigNode parent, string guid);
+        IProperty GetPropertyRefDocument(IGroupListProperties parent, string guid, IDocument d, uint position, bool isNullable);
+        IProperty GetPropertyDocumentDate(IGroupListProperties parent, string guid, bool isPKey = false);
+        IProperty GetPropertyDocNumberString(IGroupListProperties parent, string guid, uint length);
+        IProperty GetPropertyDocNumberInt(IGroupListProperties parent, string guid, uint length);
+        IProperty GetPropertyDocNumberUniqueScopeHelper(IGroupListProperties parent, string guid);
 
         IProperty GetPropertyCatalog(ITreeConfigNode parent, string guid, string name, string catGuid, uint position, bool isNullable);
         IProperty GetPropertyDocument(ITreeConfigNode parent, string guid, string name, string docGuid, uint position, bool isNullable);

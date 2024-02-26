@@ -117,7 +117,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.GroupProperties.ListProperties.Add(t);
             }
         }
-        public Detail AddPropertiesTab(string name, string? guid = null)
+        public Detail AddDetails(string name, string? guid = null)
         {
             var node = new Detail(this.GroupDetails) { Name = name };
 #if DEBUG

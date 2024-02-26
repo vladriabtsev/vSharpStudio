@@ -130,6 +130,23 @@ namespace vSharpStudio.vm.ViewModels
                 default:
                     break;
             }
+            switch (this.DataType.DataTypeEnum)
+            {
+                case EnumDataType.CATALOGS:
+                case EnumDataType.DOCUMENTS:
+                case EnumDataType.ANY:
+                case EnumDataType.CATALOG:
+                case EnumDataType.DOCUMENT:
+                case EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER:
+                case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG:
+                case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER:
+                case EnumDataType.REF_DETAIL_TO_PARENT_DETAIL:
+                case EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT:
+                case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
+                case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
+                    this.IsComplex = true;
+                    break;
+            }
             Init();
             var sb = ToRoot(this);
             this.PathInObject = sb.ToString();
@@ -330,6 +347,7 @@ namespace vSharpStudio.vm.ViewModels
         //}
         private void OnDataTypeEnumChanged()
         {
+            this.IsComplex = false;
             switch (this.DataType.DataTypeEnum)
             {
                 case EnumDataType.CHAR:
@@ -352,9 +370,13 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DOCUMENTS:
                 case EnumDataType.ANY:
                     this.Length = 0;
+                    this.IsComplex = true;
                     break;
                 case EnumDataType.CATALOG:
                 case EnumDataType.DOCUMENT:
+                    this.Length = 0;
+                    this.IsComplex = true;
+                    break;
                 case EnumDataType.ENUMERATION:
                     this.Length = 0;
                     break;
@@ -366,6 +388,15 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumDataType.STRING:
                     this.Length = 25;
+                    break;
+                case EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER:
+                case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG:
+                case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER:
+                case EnumDataType.REF_DETAIL_TO_PARENT_DETAIL:
+                case EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT:
+                case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
+                case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
+                    this.IsComplex = true;
                     break;
                 default:
                     throw new NotSupportedException();
@@ -877,6 +908,7 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType.ObjectRef.RefPropertyGuid = guid;
             return node;
         }
+        public bool IsComplex { get; internal set; }
         public bool IsComplexRefId { get; private set; }
         public bool IsComplexRefGuid { get; private set; }
         public bool IsComplexDesc { get; private set; }
@@ -1106,21 +1138,21 @@ namespace vSharpStudio.vm.ViewModels
             DataType.GetTypeDesc(this.DataType, sb);
             return sb.ToString();
         }
-        public IReadOnlyList<IProperty> GetPropertiesForRefTable(ITreeConfigNode parent, string propertyVersionGuid, bool isOptimistic)
-        {
-            throw new NotImplementedException();
-            var parentTable = ((ICompositeName)parent).CompositeName;
-            var res = new List<IProperty>();
-            var prp = this.Cfg.Model.GetPropertyPkId(this, this.Guid);
-            res.Add(prp);
-            //prp = this.Cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parentTable, false);
-            res.Add(prp);
-            if (isOptimistic)
-            {
-                prp = this.Cfg.Model.GetPropertyVersion(this, propertyVersionGuid);
-                res.Add(prp);
-            }
-            return res;
-        }
+        //public IReadOnlyList<IProperty> GetPropertiesForRefTable(ITreeConfigNode parent, string propertyVersionGuid, bool isOptimistic)
+        //{
+        //    throw new NotImplementedException();
+        //    var parentTable = ((ICompositeName)parent).CompositeName;
+        //    var res = new List<IProperty>();
+        //    var prp = this.Cfg.Model.GetPropertyPkId(this, this.Guid);
+        //    res.Add(prp);
+        //    //prp = this.Cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parentTable, false);
+        //    res.Add(prp);
+        //    if (isOptimistic)
+        //    {
+        //        prp = this.Cfg.Model.GetPropertyVersion(this, propertyVersionGuid);
+        //        res.Add(prp);
+        //    }
+        //    return res;
+        //}
     }
 }
