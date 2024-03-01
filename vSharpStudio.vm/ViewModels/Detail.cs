@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using CommunityToolkit.Diagnostics;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -68,12 +69,23 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this._IsIndexFk = true;
-            this._PropertyRefParentGuid = System.Guid.NewGuid().ToString();
             this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();
             this._ViewListComboBoxGuid = System.Guid.NewGuid().ToString();
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             Debug.Assert(glp != null);
             this._Position = glp.GroupProperties.GetNextPosition();
+            var m = this.Cfg.Model;
+            string guid = System.Guid.NewGuid().ToString();
+            if (this.ParentGroupListDetails.Parent is Catalog c)
+                this._PropertyRefParent = (Property)m.GetPropertyRef(this, c, guid, Property.SpecialPropertyNameRefParent, 0, false);
+            else if (this.ParentGroupListDetails.Parent is Detail dt)
+                this._PropertyRefParent = (Property)m.GetPropertyRef(this, dt, guid, Property.SpecialPropertyNameRefParent, 0, false);
+            else if (this.ParentGroupListDetails.Parent is Document d)
+                this._PropertyRefParent = (Property)m.GetPropertyRef(this, d, guid, Property.SpecialPropertyNameRefParent, 0, false);
+            else if (this.ParentGroupListDetails.Parent is CatalogFolder cf)
+                this._PropertyRefParent = (Property)m.GetPropertyRef(this, cf, guid, Property.SpecialPropertyNameRefParent, 0, false);
+            else
+                ThrowHelper.ThrowNotSupportedException();
             Init();
         }
         protected override void OnInitFromDto()
@@ -336,25 +348,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             res.Add(prp);
-            if (this.ParentGroupListDetails.Parent is Detail dt)
-            {
-                prp = this.Cfg.Model.GetPropertyRef(this, dt, this.PropertyRefParentGuid, Property.SpecialPropertyNameRefParent, 1, false);
-            }
-            else if (this.ParentGroupListDetails.Parent is Catalog c)
-            {
-                prp = this.Cfg.Model.GetPropertyRef(this, c, this.PropertyRefParentGuid, Property.SpecialPropertyNameRefParent, 1, false);
-            }
-            else if (this.ParentGroupListDetails.Parent is CatalogFolder cf)
-            {
-                prp = this.Cfg.Model.GetPropertyRef(this, cf, this.PropertyRefParentGuid, Property.SpecialPropertyNameRefParent, 1, false);
-            }
-            else if (this.ParentGroupListDetails.Parent is Document d)
-            {
-                prp = this.Cfg.Model.GetPropertyRef(this, d, this.PropertyRefParentGuid, Property.SpecialPropertyNameRefParent, 1, false);
-            }
-            else
-                throw new NotImplementedException();
+
+            prp = this.PropertyRefParent;
+            ((Property)prp).Position = 1;
             res.Add(prp);
+
             if (isOptimistic)
             {
                 prp = this.Cfg.Model.GetPropertyVersion(this.GroupProperties, this.Cfg.Model.PropertyVersionGuid);

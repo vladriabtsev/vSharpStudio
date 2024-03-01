@@ -720,7 +720,7 @@
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(-2)]
 @attr [ReadOnly(true)]
-Property guid. Empty for register doc </p></td>
+Complex property guid. Empty for register doc ??? </p></td>
                 </tr>
               
                 <tr>
@@ -746,10 +746,19 @@ Property guid. Empty for register doc </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref_property_guid</td>
+                  <td>ref_foreign_object_property_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
+                  <td><p>@attr [Browsable(false)]
+complex extended property guid </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref_foreign_object_id_property_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)]
+extended property guid for foreign object id </p></td>
                 </tr>
               
             </tbody>
@@ -1367,6 +1376,22 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
+                  <td>property_ref_self</td>
+                  <td><a href="#proto_config.proto_property">proto_property</a></td>
+                  <td></td>
+                  <td><p>special RefParent property    
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_ref_folder</td>
+                  <td><a href="#proto_config.proto_property">proto_property</a></td>
+                  <td></td>
+                  <td><p>special RefTreeParent property    
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>short_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
@@ -1487,20 +1512,6 @@ Generator output file name </p></td>
               
                 <tr>
                   <td>index_not_unique_code_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_ctlg_ref_folder_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_ctlg_ref_self_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -1751,6 +1762,14 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
+                  <td>property_ref_self</td>
+                  <td><a href="#proto_config.proto_property">proto_property</a></td>
+                  <td></td>
+                  <td><p>special RefTreeParent property    
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>use_code_property</td>
                   <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
@@ -1785,13 +1804,6 @@ Generator output file name </p></td>
               
                 <tr>
                   <td>index_not_unique_code_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_ctlg_ref_self_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -2441,6 +2453,22 @@ Generator output file name </p></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
+                <tr>
+                  <td>ref_foreign_object_desc_property_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)]
+extended property guid for foreign object desc </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref_foreign_object_short_type_id_property_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)]
+extended property guid for foreign object desc </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2547,6 +2575,14 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>property_ref_parent</td>
+                  <td><a href="#proto_config.proto_property">proto_property</a></td>
+                  <td></td>
+                  <td><p>special RefTreeParent property    
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>short_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
@@ -2631,13 +2667,6 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>view_list_combo_box_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_ref_parent_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>

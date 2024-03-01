@@ -54,9 +54,9 @@ namespace vSharpStudio.common
         IProperty? ParentProperty { get; set; }
         string NameWithExtention { get; }
         //List<IProperty> ListExtensionProperties { get; }
-        IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable, bool isCsNullable, int positionInObject, string foreignObjectGuid);
-        IProperty AddExtensionPropertyGd(string subName, string guid, bool isNullable, bool isCsNullable);
-        IProperty AddExtensionPropertyDesc(string subName, string guid, bool isNullable, bool isCsNullable);
+        IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInObject);
+        IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable);
+        IProperty AddExtensionPropertyDesc(string subName, bool isNullable, bool isCsNullable);
         IProperty AddExtensionPropertyString(string subName, uint length, string guid);
         IProperty AddExtensionPropertyNumerical(string subName, uint length, uint accuracy, string guid);
         #endregion Plugin group model

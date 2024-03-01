@@ -152,11 +152,12 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] Property guid. Empty for register doc |
+| guid | [string](#string) |  | @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] Complex property guid. Empty for register doc ??? |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | foreign_object_guid | [string](#string) |  | @attr [Browsable(false)] |
-| ref_property_guid | [string](#string) |  | @attr [Browsable(false)] |
+| ref_foreign_object_property_guid | [string](#string) |  | @attr [Browsable(false)] complex extended property guid |
+| ref_foreign_object_id_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for foreign object id |
 
 
 
@@ -314,6 +315,8 @@ Application project generator
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
+| property_ref_self | [proto_property](#proto_config-proto_property) |  | special RefParent property @attr [Browsable(false)] |
+| property_ref_folder | [proto_property](#proto_config-proto_property) |  | special RefTreeParent property @attr [Browsable(false)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
@@ -329,8 +332,6 @@ Application project generator
 | index_ref_folder_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_ref_tree_parent_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_not_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_ctlg_ref_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_ctlg_ref_self_guid | [string](#string) |  | @attr [Browsable(false)] |
 | item_icon_type | [proto_enum_catalog_tree_icon](#proto_config-proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Item Icon&#34;)] @attr [Description(&#34;Catalog item icon type&#34;)] |
 | group_icon_type | [proto_enum_catalog_tree_icon](#proto_config-proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Group Icon&#34;)] @attr [Description(&#34;Catalog group icon type&#34;)] |
 | view_list_datagrid_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -385,12 +386,12 @@ Application project generator
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
+| property_ref_self | [proto_property](#proto_config-proto_property) |  | special RefTreeParent property @attr [Browsable(false)] |
 | use_code_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
 | code_property_settings | [proto_catalog_code_property_settings](#proto_config-proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog folder&#34;)] @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] |
 | index_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_ref_tree_parent_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_not_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_ctlg_ref_self_guid | [string](#string) |  | @attr [Browsable(false)] |
 | use_name_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
 | use_description_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
@@ -517,6 +518,8 @@ Constant application wise value
 | is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for property value&#34;)] |
 | is_p_key | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_ref_parent | [bool](#bool) |  | @attr [Browsable(false)] |
+| ref_foreign_object_desc_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for foreign object desc |
+| ref_foreign_object_short_type_id_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for foreign object desc |
 
 
 
@@ -543,6 +546,7 @@ Constant application wise value
 | group_properties | [proto_group_list_properties](#proto_config-proto_group_list_properties) |  | @attr [Browsable(false)] |
 | group_details | [proto_group_list_details](#proto_config-proto_group_list_details) |  | @attr [Browsable(false)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
+| property_ref_parent | [proto_property](#proto_config-proto_property) |  | special RefTreeParent property @attr [Browsable(false)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | is_try_attach | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;UI attach&#34;)] @attr [Description(&#34;UI engine will try put this detail block on same line as previous detail block or block of header fields&#34;)] |
@@ -553,7 +557,6 @@ Constant application wise value
 | is_stop_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(27)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
 | view_list_datagrid_guid | [string](#string) |  | @attr [Browsable(false)] |
 | view_list_combo_box_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_ref_parent_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |

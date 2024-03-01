@@ -65,8 +65,6 @@ namespace vSharpStudio.vm.ViewModels
             this._Description = "Catalog items groups";
             this.IsIncludableInModels = true;
 
-            this._PropertyCtlgRefSelfGuid = System.Guid.NewGuid().ToString();
-
             this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();
             this._ViewListComboBoxGuid = System.Guid.NewGuid().ToString();
 
@@ -78,6 +76,10 @@ namespace vSharpStudio.vm.ViewModels
             this._MaxDescriptionLength = 100;
 
             //this.CodePropertySettings.Parent = this;
+            var m = this.Cfg.Model;
+            string guid = System.Guid.NewGuid().ToString();
+            this._PropertyRefSelf = (Property)m.GetPropertyRef(this, this, guid, Property.SpecialPropertyNameRefTreeParent, 0, true);
+
             Init();
         }
         protected override void OnInitFromDto()
@@ -282,8 +284,10 @@ namespace vSharpStudio.vm.ViewModels
             var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
             var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             res.Add(prp);
-            prp = model.GetPropertyRef(this, this, this.PropertyCtlgRefSelfGuid, Property.SpecialPropertyNameRefTreeParent, 1, true);
+
+            prp = this.PropertyRefSelf;
             res.Add(prp);
+
             if (this.ParentCatalog.UseTree && !this.ParentCatalog.UseSeparateTreeForFolders)
             {
                 prp = model.GetPropertyIsFolder(this.GroupProperties, this.Cfg.Model.PropertyCtlgIsFolderGuid, false);

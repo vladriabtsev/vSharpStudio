@@ -2113,7 +2113,7 @@
           "fields": [
             {
               "name": "guid",
-              "description": "@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]\nProperty guid. Empty for register doc",
+              "description": "@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]\nComplex property guid. Empty for register doc ???",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2160,8 +2160,20 @@
               "defaultValue": ""
             },
             {
-              "name": "ref_property_guid",
-              "description": "@attr [Browsable(false)]",
+              "name": "ref_foreign_object_property_guid",
+              "description": "@attr [Browsable(false)]\ncomplex extended property guid",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ref_foreign_object_id_property_guid",
+              "description": "@attr [Browsable(false)]\nextended property guid for foreign object id",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2988,6 +3000,30 @@
               "defaultValue": ""
             },
             {
+              "name": "property_ref_self",
+              "description": "special RefParent property    \n@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_property",
+              "longType": "proto_property",
+              "fullType": "proto_config.proto_property",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "property_ref_folder",
+              "description": "special RefTreeParent property    \n@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_property",
+              "longType": "proto_property",
+              "fullType": "proto_config.proto_property",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "short_id",
               "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
               "label": "",
@@ -3157,30 +3193,6 @@
             },
             {
               "name": "index_not_unique_code_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "property_ctlg_ref_folder_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "property_ctlg_ref_self_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -3528,6 +3540,18 @@
               "defaultValue": ""
             },
             {
+              "name": "property_ref_self",
+              "description": "special RefTreeParent property    \n@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_property",
+              "longType": "proto_property",
+              "fullType": "proto_config.proto_property",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "use_code_property",
               "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item\")]",
               "label": "",
@@ -3577,18 +3601,6 @@
             },
             {
               "name": "index_not_unique_code_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "property_ctlg_ref_self_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -4462,6 +4474,30 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "ref_foreign_object_desc_property_guid",
+              "description": "@attr [Browsable(false)]\nextended property guid for foreign object desc",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ref_foreign_object_short_type_id_property_guid",
+              "description": "@attr [Browsable(false)]\nextended property guid for foreign object desc",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -4608,6 +4644,18 @@
               "defaultValue": ""
             },
             {
+              "name": "property_ref_parent",
+              "description": "special RefTreeParent property    \n@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_property",
+              "longType": "proto_property",
+              "fullType": "proto_config.proto_property",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "short_id",
               "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
               "label": "",
@@ -4717,18 +4765,6 @@
             },
             {
               "name": "view_list_combo_box_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "property_ref_parent_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",

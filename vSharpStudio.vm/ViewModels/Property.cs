@@ -877,61 +877,29 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         public IProperty? ParentProperty { get; set; }
         public string NameWithExtention { get { if (this.ParentProperty == null) return this.Name; return this.ParentProperty.Name + this.Name; } }
-        //public List<IProperty> ListExtensionProperties { get; private set; } = new List<IProperty>();
-        //private bool CanAddExtentionPropertyRefId()
-        //{
-        //    switch (this.DataType.DataTypeEnum)
-        //    {
-        //        case EnumDataType.CATALOG:
-        //        case EnumDataType.DOCUMENT:
-        //        case EnumDataType.CATALOGS:
-        //        case EnumDataType.DOCUMENTS:
-        //        case EnumDataType.ANY:
-        //            foreach (var t in this.ListExtensionProperties) { if (t.IsComplexRefId) { return false; } }
-        //            return true;
-        //        default:
-        //            return false;
-        //    }
-        //}
-        public IProperty AddExtensionPropertyRefId(string subName, string guid, bool isNullable, bool isCsNullable, int positionInObject, string foreignObjectGuid)
+        public IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInObject)
         {
-            //Debug.Assert(this.CanAddExtentionPropertyRefId());
             var node = new Property(this) { Name = subName, ParentProperty = this };
-            node.Guid = guid;
+            node.Guid = complexRef.RefForeignObjectIdPropertyGuid;
             node.DataType = (DataType)this.Cfg.Model.GetIdRefDataType(node, true);
             node.DataType.IsPKey = false;
             node.IsNullable = isNullable;
             node.IsCsNullable = isCsNullable;
             node.IsComplexRefId = true;
             node.PositionInConfigObject = positionInObject;
-            node.DataType.ObjectRef.ForeignObjectGuid = foreignObjectGuid;
-            node.DataType.ObjectRef.RefPropertyGuid = guid;
+            node.DataType.ObjectRef.ForeignObjectGuid = complexRef.ForeignObjectGuid;
+            node.DataType.ObjectRef.RefForeignObjectIdPropertyGuid = complexRef.RefForeignObjectIdPropertyGuid;
             return node;
         }
         public bool IsComplex { get; internal set; }
         public bool IsComplexRefId { get; private set; }
         public bool IsComplexRefGuid { get; private set; }
         public bool IsComplexDesc { get; private set; }
-        //private bool CanAddExtentionPropertyGd()
-        //{
-        //    switch (this.DataType.DataTypeEnum)
-        //    {
-        //        //case EnumDataType.CATALOG:
-        //        //case EnumDataType.DOCUMENT:
-        //        case EnumDataType.CATALOGS:
-        //        case EnumDataType.DOCUMENTS:
-        //        case EnumDataType.ANY:
-        //            foreach (var t in this.ListExtensionProperties) { if (t.IsComplexRefGuid) { return false; } }
-        //            return true;
-        //        default:
-        //            return false;
-        //    }
-        //}
-        public IProperty AddExtensionPropertyGd(string subName, string guid, bool isNullable, bool isCsNullable)
+        public IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable)
         {
             //Debug.Assert(this.CanAddExtentionPropertyGd());
             var node = new Property(this) { Name = subName };
-            node.Guid = guid;
+            node.Guid = this.DataType.RefForeignObjectShortTypeIdPropertyGuid;
             node.DataType = (DataType)this.Cfg.Model.GetDataTypeInt(node, false, isNullable);
             node.IsNullable = isNullable;
             node.IsCsNullable = isCsNullable;
@@ -939,26 +907,11 @@ namespace vSharpStudio.vm.ViewModels
             node.IsComplexRefGuid = true;
             return node;
         }
-        //private bool CanAddExtentionPropertyDesc()
-        //{
-        //    switch (this.DataType.DataTypeEnum)
-        //    {
-        //        case EnumDataType.CATALOG:
-        //        case EnumDataType.DOCUMENT:
-        //        case EnumDataType.CATALOGS:
-        //        case EnumDataType.DOCUMENTS:
-        //        case EnumDataType.ANY:
-        //            foreach (var t in this.ListExtensionProperties) { if (t.IsComplexRefGuid) { return false; } }
-        //            return true;
-        //        default:
-        //            return false;
-        //    }
-        //}
-        public IProperty AddExtensionPropertyDesc(string subName, string guid, bool isNullable, bool isCsNullable)
+        public IProperty AddExtensionPropertyDesc(string subName, bool isNullable, bool isCsNullable)
         {
             //Debug.Assert(this.CanAddExtentionPropertyDesc());
             var node = new Property(this) { Name = subName };
-            node.Guid = guid;
+            node.Guid = this.DataType.RefForeignObjectDescPropertyGuid;
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = this.Cfg.Model.ComplexPropertyRefDescrLength };
             node.IsNullable = isNullable;
             node.IsCsNullable = isCsNullable;

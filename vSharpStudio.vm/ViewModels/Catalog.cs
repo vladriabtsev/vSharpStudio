@@ -7,6 +7,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Windows.Documents;
+using CommunityToolkit.Diagnostics;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -101,9 +102,6 @@ namespace vSharpStudio.vm.ViewModels
             this._IndexRefTreeParentCodeGuid = System.Guid.NewGuid().ToString();
             this._IndexNotUniqueCodeGuid = System.Guid.NewGuid().ToString();
 
-            this._PropertyCtlgRefFolderGuid = System.Guid.NewGuid().ToString();
-            this._PropertyCtlgRefSelfGuid = System.Guid.NewGuid().ToString();
-
             this._MaxNameLength = 20;
             this._MaxDescriptionLength = 100;
             this._UseTree = false;
@@ -113,6 +111,11 @@ namespace vSharpStudio.vm.ViewModels
             this._UseCodeProperty = EnumUseType.Default;
             this._UseNameProperty = EnumUseType.Default;
             this._UseDescriptionProperty = EnumUseType.Default;
+            var m = this.Cfg.Model;
+            string guid = System.Guid.NewGuid().ToString();
+            this._PropertyRefFolder = (Property)m.GetPropertyRef(this, this.Folder, guid, Property.SpecialPropertyNameRefParent, 0, false);
+            guid = System.Guid.NewGuid().ToString();
+            this._PropertyRefSelf = (Property)m.GetPropertyRef(this, this, guid, Property.SpecialPropertyNameRefTreeParent, 0, true);
             Init();
         }
         protected override void OnInitFromDto()
@@ -503,12 +506,14 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.UseSeparateTreeForFolders)
                 {
-                    prp = model.GetPropertyRef(this, this.Folder, this.PropertyCtlgRefFolderGuid, Property.SpecialPropertyNameRefParent, 1, false);
+                    prp = this.PropertyRefFolder;
+                    ((Property)prp).Position = 1;
                     res.Add(prp);
                 }
                 else
                 {
-                    prp = model.GetPropertyRef(this, this, this.PropertyCtlgRefSelfGuid, Property.SpecialPropertyNameRefTreeParent, 1, true);
+                    prp = this.PropertyRefSelf;
+                    ((Property)prp).Position = 1;
                     res.Add(prp);
                     prp = model.GetPropertyIsFolder(this.GroupProperties, this.Cfg.Model.PropertyCtlgIsFolderGuid, false);
                     res.Add(prp);
@@ -700,7 +705,8 @@ namespace vSharpStudio.vm.ViewModels
             IProperty? pRefParent = null;
             if (this.UseTree)
             {
-                pRefTreeParent = model.GetPropertyRef(this, this.Folder, this.PropertyCtlgRefSelfGuid, "RefTreeParent", 1, true);
+                pRefTreeParent = this.PropertyRefSelf;
+                ((Property)pRefTreeParent).Position = 1;
                 if (this.UseSeparateTreeForFolders) // self tree and separate data grid for children
                 {
                     viewTreeData = new ViewTreeData(pId, pRefTreeParent, null);

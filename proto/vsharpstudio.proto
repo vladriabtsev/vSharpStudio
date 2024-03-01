@@ -899,7 +899,7 @@ message complex_ref
 {
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
-    // Property guid. Empty for register doc
+    // Complex property guid. Empty for register doc ???
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
@@ -909,7 +909,11 @@ message complex_ref
     // @attr [Browsable(false)]
     string foreign_object_guid = 11;
     // @attr [Browsable(false)]
-    string ref_property_guid = 12;
+    // complex extended property guid
+    string ref_foreign_object_property_guid = 12;
+    // @attr [Browsable(false)]
+    // extended property guid for foreign object id
+    string ref_foreign_object_id_property_guid = 13;
 }
 // @base BaseSettings
 message proto_data_type {
@@ -971,6 +975,12 @@ message proto_data_type {
     bool is_p_key = 21;
     // @attr [Browsable(false)]
     bool is_ref_parent = 22;
+    // @attr [Browsable(false)]
+    // extended property guid for foreign object desc
+    string ref_foreign_object_desc_property_guid = 25;
+    // @attr [Browsable(false)]
+    // extended property guid for foreign object desc
+    string ref_foreign_object_short_type_id_property_guid = 26;
 }
 /** C O M M O N
  * @exclude
@@ -1551,6 +1561,10 @@ message proto_detail {
     // @attr [ReadOnly(true)]
     uint32 position = 15;
 
+    // special RefTreeParent property    
+    // @attr [Browsable(false)]
+    proto_property property_ref_parent = 16;
+
     // Sequential unique number in configuration
     // @attr [Browsable(false)]
     uint32 short_id = 19;
@@ -1593,9 +1607,6 @@ message proto_detail {
     string view_list_datagrid_guid = 54;
     // @attr [Browsable(false)]
     string view_list_combo_box_guid = 55;
-
-    // @attr [Browsable(false)]
-    string property_ref_parent_guid = 65;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -1961,6 +1972,10 @@ message proto_catalog_folder {
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
+    // special RefTreeParent property    
+    // @attr [Browsable(false)]
+    proto_property property_ref_self = 16;
+
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Code")]
     // @attr [Description("Use Code property for catalog item")]
@@ -1977,9 +1992,6 @@ message proto_catalog_folder {
     string index_ref_tree_parent_code_guid = 26;
     // @attr [Browsable(false)]
     string index_not_unique_code_guid = 27;
-
-    // @attr [Browsable(false)]
-    string property_ctlg_ref_self_guid = 31;
 
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Use Name")]
@@ -2087,6 +2099,13 @@ message proto_catalog {
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
+    // special RefParent property    
+    // @attr [Browsable(false)]
+    proto_property property_ref_self = 16;
+    // special RefTreeParent property    
+    // @attr [Browsable(false)]
+    proto_property property_ref_folder = 17;
+
     // Sequential unique number in configuration
     // @attr [Browsable(false)]
     uint32 short_id = 19;
@@ -2139,11 +2158,6 @@ message proto_catalog {
     string index_ref_tree_parent_code_guid = 33;
     // @attr [Browsable(false)]
     string index_not_unique_code_guid = 34;
-
-    // @attr [Browsable(false)]
-    string property_ctlg_ref_folder_guid = 37;
-    // @attr [Browsable(false)]
-    string property_ctlg_ref_self_guid = 38;
 
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Item Icon")]

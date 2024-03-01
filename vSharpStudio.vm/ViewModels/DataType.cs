@@ -35,6 +35,8 @@ namespace vSharpStudio.vm.ViewModels
             //Init();
             //this.PropertyChanging += DataType_PropertyChanging;
             //this.PropertyChanged += DataType_PropertyChanged;
+            this._RefForeignObjectDescPropertyGuid = System.Guid.NewGuid().ToString();
+            this._RefForeignObjectShortTypeIdPropertyGuid = System.Guid.NewGuid().ToString();
         }
         partial void OnDataTypeEnumChanging(ref EnumDataType to, ref bool isCancel)
         {
