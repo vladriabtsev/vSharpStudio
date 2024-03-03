@@ -301,23 +301,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void GetNormalProperties(List<IProperty> res)
         {
-            var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
-            IProperty prp = null!;
-            if (this.GetUseCodeProperty())
-            {
-                prp = this.GetCodeProperty(model.ParentConfig);
-                res.Add(prp);
-            }
-            if (this.GetUseNameProperty())
-            {
-                prp = model.GetPropertyCatalogName(this.GroupProperties, this.Cfg.Model.PropertyCtlgNameGuid, this.MaxNameLength, false);
-                res.Add(prp);
-            }
-            if (this.GetUseDescriptionProperty())
-            {
-                prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.Cfg.Model.PropertyCtlgDescriptionGuid, this.MaxDescriptionLength, true);
-                res.Add(prp);
-            }
+            this.GetCodeProperty(res);
+            this.GetNameProperty(res);
+            this.GetDescriptionProperty(res);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 res.Add(t);

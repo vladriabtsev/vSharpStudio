@@ -62,30 +62,6 @@ namespace vSharpStudio.common
             this.EndVisit(currModel.GroupCommon);
             #endregion Common
 
-            #region Constants
-            this.BeginVisit(currModel.GroupConstantGroups);
-            if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupConstantGroups);
-            foreach (var t in currModel.GroupConstantGroups.ListConstantGroups)
-            {
-                this.BeginVisit(t);
-                if (isActFromRootToBottom)
-                    this._act?.Invoke(this, t);
-                foreach (var tt in t.ListConstants)
-                {
-                    this.BeginVisit(tt);
-                    this._act?.Invoke(this, tt);
-                    this.EndVisit(tt);
-                }
-                if (!isActFromRootToBottom)
-                    this._act?.Invoke(this, t);
-                this.EndVisit(t);
-            }
-            if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupConstantGroups);
-            this.EndVisit(currModel.GroupConstantGroups);
-            #endregion Constants
-
             #region Enumerations
             this.BeginVisit(currModel.GroupEnumerations);
             if (isActFromRootToBottom)
@@ -143,54 +119,6 @@ namespace vSharpStudio.common
                 this._act?.Invoke(this, this.currModel.GroupCatalogs);
             this.EndVisit(currModel.GroupCatalogs);
             #endregion Catalogs
-
-            #region Relations
-            this.BeginVisit(currModel.GroupRelations);
-            if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRelations);
-
-            #region OneToOne
-            this.BeginVisit(currModel.GroupRelations.GroupListOneToOneRelations);
-            if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListOneToOneRelations);
-            foreach (var tr in currModel.GroupRelations.GroupListOneToOneRelations.ListRelations)
-            {
-                this.currOneToOneRelation = tr;
-                this.BeginVisit(tr);
-                if (isActFromRootToBottom)
-                    this._act?.Invoke(this, tr);
-                if (!isActFromRootToBottom)
-                    this._act?.Invoke(this, tr);
-                this.EndVisit(tr);
-            }
-            if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListOneToOneRelations);
-            this.EndVisit(currModel.GroupRelations.GroupListOneToOneRelations);
-            #endregion OneToOne
-
-            #region ManyToMany
-            this.BeginVisit(currModel.GroupRelations.GroupListManyToManyRelations);
-            if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListManyToManyRelations);
-            foreach (var tr in currModel.GroupRelations.GroupListManyToManyRelations.ListRelations)
-            {
-                this.currManyToManyRelation = tr;
-                this.BeginVisit(tr);
-                if (isActFromRootToBottom)
-                    this._act?.Invoke(this, tr);
-                if (!isActFromRootToBottom)
-                    this._act?.Invoke(this, tr);
-                this.EndVisit(tr);
-            }
-            if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListManyToManyRelations);
-            this.EndVisit(currModel.GroupRelations.GroupListManyToManyRelations);
-            #endregion ManyToMany
-
-            if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRelations);
-            this.EndVisit(currModel.GroupRelations);
-            #endregion Relations
 
             #region Documents
             this.BeginVisit(currModel.GroupDocuments);
@@ -295,6 +223,79 @@ namespace vSharpStudio.common
                 this._act?.Invoke(this, this.currModel.GroupDocuments);
             this.EndVisit(currModel.GroupDocuments);
             #endregion Documents
+
+            #region Relations
+            this.BeginVisit(currModel.GroupRelations);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupRelations);
+
+            #region OneToOne
+            this.BeginVisit(currModel.GroupRelations.GroupListOneToOneRelations);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListOneToOneRelations);
+            foreach (var tr in currModel.GroupRelations.GroupListOneToOneRelations.ListRelations)
+            {
+                this.currOneToOneRelation = tr;
+                this.BeginVisit(tr);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, tr);
+                if (!isActFromRootToBottom)
+                    this._act?.Invoke(this, tr);
+                this.EndVisit(tr);
+            }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListOneToOneRelations);
+            this.EndVisit(currModel.GroupRelations.GroupListOneToOneRelations);
+            #endregion OneToOne
+
+            #region ManyToMany
+            this.BeginVisit(currModel.GroupRelations.GroupListManyToManyRelations);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListManyToManyRelations);
+            foreach (var tr in currModel.GroupRelations.GroupListManyToManyRelations.ListRelations)
+            {
+                this.currManyToManyRelation = tr;
+                this.BeginVisit(tr);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, tr);
+                if (!isActFromRootToBottom)
+                    this._act?.Invoke(this, tr);
+                this.EndVisit(tr);
+            }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListManyToManyRelations);
+            this.EndVisit(currModel.GroupRelations.GroupListManyToManyRelations);
+            #endregion ManyToMany
+
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupRelations);
+            this.EndVisit(currModel.GroupRelations);
+            #endregion Relations
+
+            #region Constants
+            this.BeginVisit(currModel.GroupConstantGroups);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupConstantGroups);
+            foreach (var t in currModel.GroupConstantGroups.ListConstantGroups)
+            {
+                this.BeginVisit(t);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, t);
+                foreach (var tt in t.ListConstants)
+                {
+                    this.BeginVisit(tt);
+                    this._act?.Invoke(this, tt);
+                    this.EndVisit(tt);
+                }
+                if (!isActFromRootToBottom)
+                    this._act?.Invoke(this, t);
+                this.EndVisit(t);
+            }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupConstantGroups);
+            this.EndVisit(currModel.GroupConstantGroups);
+            #endregion Constants
+
 
             if (!isActFromRootToBottom)
                 this._act?.Invoke(this, this.currModel);
