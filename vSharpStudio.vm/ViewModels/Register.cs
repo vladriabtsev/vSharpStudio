@@ -582,7 +582,8 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (node is Catalog c)
                         {
-                            var pCat = (Property)m.GetPropertyCatalog(this, t.Guid, t.Name, c.Guid, t.Position, false);
+                            var pCat = t.PropertyRefDimensionCatalog;
+                            pCat.Position = t.Position;
                             lst.Add(pCat);
                         }
                         else
@@ -659,7 +660,8 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (node is Catalog c)
                         {
-                            var pCat = (Property)m.GetPropertyCatalog(this, t.Guid, t.Name, c.Guid, t.Position, false);
+                            var pCat = t.PropertyRefDimensionCatalog;
+                            pCat.Position = t.Position;
                             lst.Add(pCat);
                         }
                         else

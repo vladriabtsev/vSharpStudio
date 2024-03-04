@@ -2377,9 +2377,9 @@ message proto_register_dimension {
     // @attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]
     string dimension_catalog_guid = 21; 
 
-    // Guid for dimension property. Auto generated.
+    // Dimension property. Auto generated.
     // @attr [Browsable(false)]
-    //string property_dimension_guid = 22; 
+    proto_property property_ref_dimension_catalog = 22;
 
     // Protobuf field position
     // Reserved positions: 1-15

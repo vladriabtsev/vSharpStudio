@@ -1919,6 +1919,7 @@ Configuration model
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | dimension_catalog_guid | [string](#string) |  | &lt;summary&gt; / Guid of Catalog type. / &lt;/summary&gt; @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Dimension catalog&#34;)] @attr [Description(&#34;Catalog for register dimension&#34;)] @attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))] |
+| property_ref_dimension_catalog | [proto_property](#proto_config-proto_property) |  | Dimension property. Auto generated. @attr [Browsable(false)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1-15 @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 

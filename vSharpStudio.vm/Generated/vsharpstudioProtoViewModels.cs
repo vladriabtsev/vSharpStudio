@@ -20324,6 +20324,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
+            this._PropertyRefDimensionCatalog = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:60
             this.OnCreated();
         }
@@ -20353,6 +20354,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._DimensionCatalogGuid = from.DimensionCatalogGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:63 IsDefaultBase=True
+                vm.PropertyRefDimensionCatalog = vSharpStudio.vm.ViewModels.Property.Clone(vm, from.PropertyRefDimensionCatalog, isDeep);
             vm._Position = from.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:54
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:55
@@ -20373,6 +20376,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._DimensionCatalogGuid = from.DimensionCatalogGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:140
+                vSharpStudio.vm.ViewModels.Property.Update((Property)to.PropertyRefDimensionCatalog, from.PropertyRefDimensionCatalog, isDeep);
             to._Position = from.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:88
             {
@@ -20445,6 +20450,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsNew = m.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._IsMarkedForDeletion = m.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._DimensionCatalogGuid = m.DimensionCatalogGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            if (vm.PropertyRefDimensionCatalog == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:211
+                vm.PropertyRefDimensionCatalog = new Property(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:213
+            vSharpStudio.vm.ViewModels.Property.ConvertToVM(m.PropertyRefDimensionCatalog, (Property)vm.PropertyRefDimensionCatalog); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
             vm._Position = m.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:192
             foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:196
@@ -20470,6 +20478,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.DimensionCatalogGuid = vm.DimensionCatalogGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.PropertyRefDimensionCatalog = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefDimensionCatalog); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
             m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
@@ -20484,6 +20493,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 return;
             }
             visitor.Visit(this);
+            this.PropertyRefDimensionCatalog.AcceptConfigNodeVisitor(visitor); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:31
+        
             foreach (var t in this.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:23
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -20651,6 +20662,25 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private string _DimensionCatalogGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
         partial void OnDimensionCatalogGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
         partial void OnDimensionCatalogGuidChanged();
+        
+        // Dimension property. Auto generated.
+        [Browsable(false)]
+        public Property PropertyRefDimensionCatalog // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        { 
+            get { return this._PropertyRefDimensionCatalog; }
+            set
+            {
+                // Use 'OnPropertyRefDimensionCatalogChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._PropertyRefDimensionCatalog, value, (t) => { bool isCancel = false; this.OnPropertyRefDimensionCatalogChanging(ref value, ref isCancel); if (isCancel) return; this._PropertyRefDimensionCatalog = value; this.OnPropertyRefDimensionCatalogChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
+                }
+            }
+        }
+        private Property _PropertyRefDimensionCatalog; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnPropertyRefDimensionCatalogChanging(ref Property to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnPropertyRefDimensionCatalogChanged();
+        IProperty IRegisterDimension.PropertyRefDimensionCatalog { get { return (this as RegisterDimension).PropertyRefDimensionCatalog; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:77
         
         // Protobuf field position
         // Reserved positions: 1-15

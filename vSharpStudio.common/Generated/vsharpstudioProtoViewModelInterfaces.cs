@@ -1491,6 +1491,8 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	/// Guid of Catalog type.
     	/// </summary>
     	string DimensionCatalogGuid { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	// Dimension property. Auto generated.
+    	IProperty PropertyRefDimensionCatalog { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
     	// Protobuf field position
     	// Reserved positions: 1-15
     	uint Position { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56

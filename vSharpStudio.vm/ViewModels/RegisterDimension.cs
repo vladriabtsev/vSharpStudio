@@ -63,7 +63,10 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            this.DimensionCatalogGuid = string.Empty;
+            this._DimensionCatalogGuid = string.Empty;
+            var m = (Model)this.Cfg.Model;
+            this._PropertyRefDimensionCatalog = (Property)m.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref2", 0, false);
+            this._PropertyRefDimensionCatalog.DataTypeEnum = EnumDataType.CATALOG;
             Init();
         }
         protected override void OnInitFromDto()
@@ -89,6 +92,20 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+
+        #region OnChanged
+        partial void OnNameChanged()
+        {
+            this.OnDimensionCatalogGuidChanged();
+        }
+        partial void OnDimensionCatalogGuidChanged()
+        {
+            this.PropertyRefDimensionCatalog.DataType.ObjectRef.ForeignObjectGuid = this.DimensionCatalogGuid ?? "";
+            this.PropertyRefDimensionCatalog.Name = this.Name;
+            //this.OnPropertyChanged(nameof(this.ListCatalogs));
+        }
+        #endregion OnChanged
+
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();

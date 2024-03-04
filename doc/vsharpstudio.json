@@ -12312,6 +12312,18 @@
               "defaultValue": ""
             },
             {
+              "name": "property_ref_dimension_catalog",
+              "description": "Dimension property. Auto generated.\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_property",
+              "longType": "proto_property",
+              "fullType": "proto_config.proto_property",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "position",
               "description": "Protobuf field position\nReserved positions: 1-15\n@attr [ReadOnly(true)]",
               "label": "",
