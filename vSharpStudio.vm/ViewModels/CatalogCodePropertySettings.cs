@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
             string unique = "";
             switch (this.UniqueScope)
             {
-                case EnumCatalogCodeUniqueScope.code_uniqueness_by_folder_settings:
+                case EnumCatalogCodeUniqueScope.code_uniqueness_in_catalog_folder:
                     unique = "Unique Folder";
                     break;
                 case EnumCatalogCodeUniqueScope.code_unique_in_whole_catalog:

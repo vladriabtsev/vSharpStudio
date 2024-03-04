@@ -162,7 +162,7 @@
               "description": "@attr [Description(\"Whole Catalog\")]"
             },
             {
-              "name": "code_uniqueness_by_folder_settings",
+              "name": "code_uniqueness_in_catalog_folder",
               "number": "11",
               "description": "@attr [Description(\"Catalog Folder\")]"
             }

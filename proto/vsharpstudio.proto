@@ -1946,7 +1946,7 @@ enum proto_enum_catalog_code_unique_scope {
     // @attr [Description("Whole Catalog")]
     code_unique_in_whole_catalog = 0;
     // @attr [Description("Catalog Folder")]
-    code_uniqueness_by_folder_settings = 11;
+    code_uniqueness_in_catalog_folder = 11;
 }
 message proto_catalog_folder {
     // @attr [Category("")]

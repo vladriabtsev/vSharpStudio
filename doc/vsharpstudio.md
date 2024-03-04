@@ -2359,7 +2359,7 @@ https://github.com/bchavez/Bogus
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | code_unique_in_whole_catalog | 0 | @attr [Description(&#34;Whole Catalog&#34;)] |
-| code_uniqueness_by_folder_settings | 11 | @attr [Description(&#34;Catalog Folder&#34;)] |
+| code_uniqueness_in_catalog_folder | 11 | @attr [Description(&#34;Catalog Folder&#34;)] |
 
 
 

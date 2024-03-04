@@ -52,7 +52,7 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		[Description("Whole Catalog")]
 		code_unique_in_whole_catalog = 0,
 		[Description("Catalog Folder")]
-		code_uniqueness_by_folder_settings = 11,
+		code_uniqueness_in_catalog_folder = 11,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumCatalogDetailAccess // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
