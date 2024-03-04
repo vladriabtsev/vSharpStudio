@@ -259,8 +259,6 @@ namespace vSharpStudio.vm.ViewModels
                 if (isNullable)
                     return;
                 var p = (Property)cntx.InstanceToValidate;
-                if (p.Parent is IRegisterDimension)
-                    return;
                 switch (p.DataTypeEnum)
                 {
                     case EnumDataType.ANY:
@@ -268,6 +266,12 @@ namespace vSharpStudio.vm.ViewModels
                     case EnumDataType.CATALOGS:
                     case EnumDataType.DOCUMENT:
                     case EnumDataType.DOCUMENTS:
+                        if (p.Parent is IRegisterDimension)
+                            return;
+                        if (p.Parent is IRelationManyToMany)
+                            return;
+                        if (p.Parent is IRelationOneToOne)
+                            return;
                         var vf = new ValidationFailure(nameof(p.IsNullable),
                             $"Reference property to complex type expected to be nullable. For example, when object is created.");
                         vf.Severity = Severity.Error;

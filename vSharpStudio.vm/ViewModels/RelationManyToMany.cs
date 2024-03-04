@@ -69,6 +69,11 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this._Guid = System.Guid.NewGuid().ToString();
             this._PropertyDataTimeGuid = System.Guid.NewGuid().ToString();
+            var m = (Model)this.Cfg.Model;
+            this._PropertyRefObj1 = (Property)m.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref1", 0, false);
+            this._PropertyRefObj1.DataTypeEnum = EnumDataType.CATALOG;
+            this._PropertyRefObj2 = (Property)m.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref2", 0, false);
+            this._PropertyRefObj2.DataTypeEnum = EnumDataType.CATALOG;
             Init();
         }
         protected override void OnInitFromDto()
@@ -107,6 +112,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.GuidObj1 = null;
             this.OnPropertyChanged(nameof(this.ListObjectsNode1));
+        }
+        partial void OnGuidObj1Changed()
+        {
             if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
             {
                 this.PropertyRefObj1.DataTypeEnum = EnumDataType.CATALOG;
@@ -117,19 +125,17 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
                 ThrowHelper.ThrowInvalidOperationException();
-        }
-        partial void OnGuidObj1Changed()
-        {
             this.PropertyRefObj1.DataType.ObjectRef.ForeignObjectGuid = this.GuidObj1 ?? "";
-            if (this.GuidObj1 != null)
-                this.PropertyRefObj1.Name = this.Name + "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj1]).CompositeName;
-            else
-                this.PropertyRefObj1.Name = this.Name;
+            this.PropertyRefObj1.Name = this.Name;
+            this.PropertyRefObj1.IsNullable = false;
         }
         partial void OnRefObj2TypeChanged()
         {
             this.GuidObj2 = null;
             this.OnPropertyChanged(nameof(this.ListObjectsNode2));
+        }
+        partial void OnGuidObj2Changed()
+        {
             if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
             {
                 this.PropertyRefObj2.DataTypeEnum = EnumDataType.CATALOG;
@@ -140,14 +146,9 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
                 ThrowHelper.ThrowInvalidOperationException();
-        }
-        partial void OnGuidObj2Changed()
-        {
             this.PropertyRefObj2.DataType.ObjectRef.ForeignObjectGuid = this.GuidObj2 ?? "";
-            if (this.GuidObj2 != null)
-                this.PropertyRefObj2.Name = this.Name + "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj2]).CompositeName;
-            else
-                this.PropertyRefObj2.Name = this.Name;
+            this.PropertyRefObj2.Name = this.Name;
+            this.PropertyRefObj1.IsNullable = false;
         }
         #endregion OnChanged
 
