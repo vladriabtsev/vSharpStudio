@@ -3032,9 +3032,9 @@ message proto_relation_many_to_many {
     uint32 short_ref_id = 25;
 
     // @attr [Browsable(false)]
-    string ref_obj1_prop_guid = 31;
+    proto_property property_ref_obj1 = 33;
     // @attr [Browsable(false)]
-    string ref_obj2_prop_guid = 32;
+    proto_property property_ref_obj2 = 34;
 
     // @attr [Browsable(false)]
     string property_data_time_guid = 62;
@@ -3159,9 +3159,9 @@ message proto_relation_one_to_one {
     uint32 short_ref_id = 25;
 
     // @attr [Browsable(false)]
-    string ref_obj1_prop_guid = 31;
+    proto_property property_ref_obj1 = 33;
     // @attr [Browsable(false)]
-    string ref_obj2_prop_guid = 32;
+    proto_property property_ref_obj2 = 34;
 
     // @attr [Browsable(false)]
     string property_data_time_guid = 62;

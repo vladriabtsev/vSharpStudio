@@ -167,6 +167,8 @@ namespace vSharpStudio.vm.ViewModels
                 return sb;
             if (n is RelationManyToMany)
                 return sb;
+            if (n is RelationOneToOne)
+                return sb;
             Debug.Assert(n.Parent != null);
             ToRoot(n.Parent, sb);
             if (n is Property p)

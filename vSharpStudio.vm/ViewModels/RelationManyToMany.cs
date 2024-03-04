@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Documents;
 using System.Xml.Linq;
+using CommunityToolkit.Diagnostics;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -67,8 +68,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this._Guid = System.Guid.NewGuid().ToString();
-            this._RefObj1PropGuid = System.Guid.NewGuid().ToString();
-            this._RefObj2PropGuid = System.Guid.NewGuid().ToString();
             this._PropertyDataTimeGuid = System.Guid.NewGuid().ToString();
             Init();
         }
@@ -97,16 +96,61 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+
+        #region OnChanged
+        partial void OnNameChanged()
+        {
+            this.OnGuidObj1Changed();
+            this.OnGuidObj2Changed();
+        }
         partial void OnRefObj1TypeChanged()
         {
             this.GuidObj1 = null;
             this.OnPropertyChanged(nameof(this.ListObjectsNode1));
+            if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
+            {
+                this.PropertyRefObj1.DataTypeEnum = EnumDataType.CATALOG;
+            }
+            else if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
+            {
+                this.PropertyRefObj1.DataTypeEnum = EnumDataType.DOCUMENT;
+            }
+            else
+                ThrowHelper.ThrowInvalidOperationException();
+        }
+        partial void OnGuidObj1Changed()
+        {
+            this.PropertyRefObj1.DataType.ObjectRef.ForeignObjectGuid = this.GuidObj1 ?? "";
+            if (this.GuidObj1 != null)
+                this.PropertyRefObj1.Name = this.Name + "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj1]).CompositeName;
+            else
+                this.PropertyRefObj1.Name = this.Name;
         }
         partial void OnRefObj2TypeChanged()
         {
             this.GuidObj2 = null;
             this.OnPropertyChanged(nameof(this.ListObjectsNode2));
+            if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
+            {
+                this.PropertyRefObj2.DataTypeEnum = EnumDataType.CATALOG;
+            }
+            else if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
+            {
+                this.PropertyRefObj2.DataTypeEnum = EnumDataType.DOCUMENT;
+            }
+            else
+                ThrowHelper.ThrowInvalidOperationException();
         }
+        partial void OnGuidObj2Changed()
+        {
+            this.PropertyRefObj2.DataType.ObjectRef.ForeignObjectGuid = this.GuidObj2 ?? "";
+            if (this.GuidObj2 != null)
+                this.PropertyRefObj2.Name = this.Name + "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj2]).CompositeName;
+            else
+                this.PropertyRefObj2.Name = this.Name;
+        }
+        #endregion OnChanged
+
         private string GetName(bool isComposite)
         {
             Debug.Assert(this.Parent != null);
@@ -248,9 +292,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Get Properties and Details
 
-        #region OnChanged
-        #endregion OnChanged
-
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentManyToManyGroupRelations.ParentGroupRelations.ParentModel;
@@ -288,11 +329,17 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
+                        var prp = t.PropertyRefObj1 as Property;
+                        prp.Position = (uint)res.Count;
+                        res.Add(prp);
+                        //res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
                     }
                     else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
+                        var prp = t.PropertyRefObj1 as Property;
+                        prp.Position = (uint)res.Count;
+                        res.Add(prp);
+                        //res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
                     }
                     else
                         throw new NotImplementedException();
@@ -301,11 +348,17 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));
+                        var prp = t.PropertyRefObj2 as Property;
+                        prp.Position = (uint)res.Count;
+                        res.Add(prp);
+                        //res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));
                     }
                     else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));
+                        var prp = t.PropertyRefObj2 as Property;
+                        prp.Position = (uint)res.Count;
+                        res.Add(prp);
+                        //res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));
                     }
                     else
                         throw new NotImplementedException();

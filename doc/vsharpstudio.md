@@ -1984,8 +1984,8 @@ Configuration model
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
-| ref_obj1_prop_guid | [string](#string) |  | @attr [Browsable(false)] |
-| ref_obj2_prop_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ref_obj1 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
+| property_ref_obj2 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
 | property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
@@ -2035,8 +2035,8 @@ Configuration model
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
-| ref_obj1_prop_guid | [string](#string) |  | @attr [Browsable(false)] |
-| ref_obj2_prop_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_ref_obj1 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
+| property_ref_obj2 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
 | property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 

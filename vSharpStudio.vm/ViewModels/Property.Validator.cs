@@ -33,14 +33,22 @@ namespace vSharpStudio.vm.ViewModels
         }
         public PropertyValidator()
         {
-            this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
+            //this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
             this.RuleFor(x => x.Name).Custom((name, cntx) =>
             {
-                if (string.IsNullOrEmpty(name))
-                    return;
                 var p = (Property)cntx.InstanceToValidate;
+                if (p.Parent is not GroupListProperties)
+                    return;
+                if (string.IsNullOrEmpty(p.Name))
+                {
+                    var vf = new ValidationFailure(nameof(p.Name),
+                        $"Enter property 'Name' for config object {p.ParentGroupListProperties.Parent?.Name}. 'Name' of property can't be empty");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                    return;
+                }
                 //if (p.isSpecialItself) 
                 //    return;
                 if (p.Parent == null)

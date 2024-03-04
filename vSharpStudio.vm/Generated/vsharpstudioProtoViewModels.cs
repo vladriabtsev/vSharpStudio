@@ -26311,6 +26311,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
+            this._PropertyRefObj1 = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
+            this._PropertyRefObj2 = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:60
             this.OnCreated();
         }
@@ -26346,8 +26348,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._ShortId = from.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._ShortRefId = from.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._RefObj1PropGuid = from.RefObj1PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._RefObj2PropGuid = from.RefObj2PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:63 IsDefaultBase=True
+                vm.PropertyRefObj1 = vSharpStudio.vm.ViewModels.Property.Clone(vm, from.PropertyRefObj1, isDeep);
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:63 IsDefaultBase=True
+                vm.PropertyRefObj2 = vSharpStudio.vm.ViewModels.Property.Clone(vm, from.PropertyRefObj2, isDeep);
             vm._PropertyDataTimeGuid = from.PropertyDataTimeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:54
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:55
@@ -26374,8 +26378,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._ShortId = from.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._ShortRefId = from.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._RefObj1PropGuid = from.RefObj1PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._RefObj2PropGuid = from.RefObj2PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:140
+                vSharpStudio.vm.ViewModels.Property.Update((Property)to.PropertyRefObj1, from.PropertyRefObj1, isDeep);
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:140
+                vSharpStudio.vm.ViewModels.Property.Update((Property)to.PropertyRefObj2, from.PropertyRefObj2, isDeep);
             to._PropertyDataTimeGuid = from.PropertyDataTimeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:88
             {
@@ -26454,8 +26460,12 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsMarkedForDeletion = m.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._ShortId = m.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._ShortRefId = m.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._RefObj1PropGuid = m.RefObj1PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._RefObj2PropGuid = m.RefObj2PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            if (vm.PropertyRefObj1 == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:211
+                vm.PropertyRefObj1 = new Property(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:213
+            vSharpStudio.vm.ViewModels.Property.ConvertToVM(m.PropertyRefObj1, (Property)vm.PropertyRefObj1); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
+            if (vm.PropertyRefObj2 == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:211
+                vm.PropertyRefObj2 = new Property(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:213
+            vSharpStudio.vm.ViewModels.Property.ConvertToVM(m.PropertyRefObj2, (Property)vm.PropertyRefObj2); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
             vm._PropertyDataTimeGuid = m.PropertyDataTimeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:192
             foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:196
@@ -26487,8 +26497,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.RefObj1PropGuid = vm.RefObj1PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.RefObj2PropGuid = vm.RefObj2PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.PropertyRefObj1 = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefObj1); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
+            m.PropertyRefObj2 = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefObj2); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
             m.PropertyDataTimeGuid = vm.PropertyDataTimeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
@@ -26503,6 +26513,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 return;
             }
             visitor.Visit(this);
+            this.PropertyRefObj1.AcceptConfigNodeVisitor(visitor); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:31
+        
+            this.PropertyRefObj2.AcceptConfigNodeVisitor(visitor); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:31
+        
             foreach (var t in this.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:23
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -26792,40 +26806,40 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnShortRefIdChanged();
         
         [Browsable(false)]
-        public string RefObj1PropGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        public Property PropertyRefObj1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
-            get { return this._RefObj1PropGuid; }
+            get { return this._PropertyRefObj1; }
             set
             {
-                // Use 'OnRefObj1PropGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._RefObj1PropGuid, value, (t) => { bool isCancel = false; this.OnRefObj1PropGuidChanging(ref value, ref isCancel); if (isCancel) return; this._RefObj1PropGuid = value; this.OnRefObj1PropGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
+                // Use 'OnPropertyRefObj1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._PropertyRefObj1, value, (t) => { bool isCancel = false; this.OnPropertyRefObj1Changing(ref value, ref isCancel); if (isCancel) return; this._PropertyRefObj1 = value; this.OnPropertyRefObj1Changed(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _RefObj1PropGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnRefObj1PropGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
-        partial void OnRefObj1PropGuidChanged();
+        private Property _PropertyRefObj1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnPropertyRefObj1Changing(ref Property to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnPropertyRefObj1Changed();
+        IProperty IRelationManyToMany.PropertyRefObj1 { get { return (this as RelationManyToMany).PropertyRefObj1; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:77
         
         [Browsable(false)]
-        public string RefObj2PropGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        public Property PropertyRefObj2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
-            get { return this._RefObj2PropGuid; }
+            get { return this._PropertyRefObj2; }
             set
             {
-                // Use 'OnRefObj2PropGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._RefObj2PropGuid, value, (t) => { bool isCancel = false; this.OnRefObj2PropGuidChanging(ref value, ref isCancel); if (isCancel) return; this._RefObj2PropGuid = value; this.OnRefObj2PropGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
+                // Use 'OnPropertyRefObj2Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._PropertyRefObj2, value, (t) => { bool isCancel = false; this.OnPropertyRefObj2Changing(ref value, ref isCancel); if (isCancel) return; this._PropertyRefObj2 = value; this.OnPropertyRefObj2Changed(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _RefObj2PropGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnRefObj2PropGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
-        partial void OnRefObj2PropGuidChanged();
+        private Property _PropertyRefObj2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnPropertyRefObj2Changing(ref Property to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnPropertyRefObj2Changed();
+        IProperty IRelationManyToMany.PropertyRefObj2 { get { return (this as RelationManyToMany).PropertyRefObj2; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public string PropertyDataTimeGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
@@ -27336,6 +27350,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
+            this._PropertyRefObj1 = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
+            this._PropertyRefObj2 = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:60
             this.OnCreated();
         }
@@ -27373,8 +27389,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._ShortId = from.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._ShortRefId = from.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._RefObj1PropGuid = from.RefObj1PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._RefObj2PropGuid = from.RefObj2PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:63 IsDefaultBase=True
+                vm.PropertyRefObj1 = vSharpStudio.vm.ViewModels.Property.Clone(vm, from.PropertyRefObj1, isDeep);
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:63 IsDefaultBase=True
+                vm.PropertyRefObj2 = vSharpStudio.vm.ViewModels.Property.Clone(vm, from.PropertyRefObj2, isDeep);
             vm._PropertyDataTimeGuid = from.PropertyDataTimeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:54
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:55
@@ -27403,8 +27421,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._ShortId = from.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._ShortRefId = from.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._RefObj1PropGuid = from.RefObj1PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._RefObj2PropGuid = from.RefObj2PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:140
+                vSharpStudio.vm.ViewModels.Property.Update((Property)to.PropertyRefObj1, from.PropertyRefObj1, isDeep);
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:140
+                vSharpStudio.vm.ViewModels.Property.Update((Property)to.PropertyRefObj2, from.PropertyRefObj2, isDeep);
             to._PropertyDataTimeGuid = from.PropertyDataTimeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:88
             {
@@ -27485,8 +27505,12 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsMarkedForDeletion = m.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._ShortId = m.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._ShortRefId = m.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._RefObj1PropGuid = m.RefObj1PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._RefObj2PropGuid = m.RefObj2PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            if (vm.PropertyRefObj1 == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:211
+                vm.PropertyRefObj1 = new Property(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:213
+            vSharpStudio.vm.ViewModels.Property.ConvertToVM(m.PropertyRefObj1, (Property)vm.PropertyRefObj1); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
+            if (vm.PropertyRefObj2 == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:211
+                vm.PropertyRefObj2 = new Property(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:213
+            vSharpStudio.vm.ViewModels.Property.ConvertToVM(m.PropertyRefObj2, (Property)vm.PropertyRefObj2); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
             vm._PropertyDataTimeGuid = m.PropertyDataTimeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:192
             foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:196
@@ -27520,8 +27544,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.RefObj1PropGuid = vm.RefObj1PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.RefObj2PropGuid = vm.RefObj2PropGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.PropertyRefObj1 = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefObj1); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
+            m.PropertyRefObj2 = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefObj2); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
             m.PropertyDataTimeGuid = vm.PropertyDataTimeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
@@ -27536,6 +27560,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 return;
             }
             visitor.Visit(this);
+            this.PropertyRefObj1.AcceptConfigNodeVisitor(visitor); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:31
+        
+            this.PropertyRefObj2.AcceptConfigNodeVisitor(visitor); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:31
+        
             foreach (var t in this.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:23
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -27867,40 +27895,40 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnShortRefIdChanged();
         
         [Browsable(false)]
-        public string RefObj1PropGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        public Property PropertyRefObj1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
-            get { return this._RefObj1PropGuid; }
+            get { return this._PropertyRefObj1; }
             set
             {
-                // Use 'OnRefObj1PropGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._RefObj1PropGuid, value, (t) => { bool isCancel = false; this.OnRefObj1PropGuidChanging(ref value, ref isCancel); if (isCancel) return; this._RefObj1PropGuid = value; this.OnRefObj1PropGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
+                // Use 'OnPropertyRefObj1Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._PropertyRefObj1, value, (t) => { bool isCancel = false; this.OnPropertyRefObj1Changing(ref value, ref isCancel); if (isCancel) return; this._PropertyRefObj1 = value; this.OnPropertyRefObj1Changed(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _RefObj1PropGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnRefObj1PropGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
-        partial void OnRefObj1PropGuidChanged();
+        private Property _PropertyRefObj1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnPropertyRefObj1Changing(ref Property to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnPropertyRefObj1Changed();
+        IProperty IRelationOneToOne.PropertyRefObj1 { get { return (this as RelationOneToOne).PropertyRefObj1; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:77
         
         [Browsable(false)]
-        public string RefObj2PropGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        public Property PropertyRefObj2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
-            get { return this._RefObj2PropGuid; }
+            get { return this._PropertyRefObj2; }
             set
             {
-                // Use 'OnRefObj2PropGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._RefObj2PropGuid, value, (t) => { bool isCancel = false; this.OnRefObj2PropGuidChanging(ref value, ref isCancel); if (isCancel) return; this._RefObj2PropGuid = value; this.OnRefObj2PropGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
+                // Use 'OnPropertyRefObj2Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._PropertyRefObj2, value, (t) => { bool isCancel = false; this.OnPropertyRefObj2Changing(ref value, ref isCancel); if (isCancel) return; this._PropertyRefObj2 = value; this.OnPropertyRefObj2Changed(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _RefObj2PropGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnRefObj2PropGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
-        partial void OnRefObj2PropGuidChanged();
+        private Property _PropertyRefObj2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnPropertyRefObj2Changing(ref Property to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnPropertyRefObj2Changed();
+        IProperty IRelationOneToOne.PropertyRefObj2 { get { return (this as RelationOneToOne).PropertyRefObj2; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public string PropertyDataTimeGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
