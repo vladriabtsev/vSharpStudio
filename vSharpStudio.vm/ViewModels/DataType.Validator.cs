@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Numerics;
 using System.Text;
 using FluentValidation;
@@ -118,6 +119,9 @@ namespace vSharpStudio.vm.ViewModels
             }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_ENUMERATION);
             this.RuleFor(p => p.ObjectRef.ForeignObjectGuid).Must((p, y) =>
             {
+                Debug.Assert(p.Parent != null);
+                if (p.Parent.Parent is not IGroupListProperties)
+                    return true;
                 if (p.DataTypeEnum == EnumDataType.CATALOG && string.IsNullOrWhiteSpace(p.ObjectRef.ForeignObjectGuid))
                 {
                     return false;
@@ -126,6 +130,9 @@ namespace vSharpStudio.vm.ViewModels
             }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_CATALOG);
             this.RuleFor(p => p.ObjectRef.ForeignObjectGuid).Must((p, y) =>
             {
+                Debug.Assert(p.Parent != null);
+                if (p.Parent.Parent is not IGroupListProperties)
+                    return true;
                 if (p.DataTypeEnum == EnumDataType.DOCUMENT && string.IsNullOrWhiteSpace(p.ObjectRef.ForeignObjectGuid))
                 {
                     return false;
@@ -157,6 +164,9 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 if (p.Cfg == null)
                     return true;
+                Debug.Assert(p.Parent != null);
+                if (p.Parent.Parent is not IGroupListProperties)
+                    return true;
                 foreach (var t in p.Cfg.Model.GroupCatalogs.ListCatalogs)
                 {
                     if (t.Guid == y)
@@ -173,6 +183,9 @@ namespace vSharpStudio.vm.ViewModels
                     return true;
                 }
                 if (p.Cfg == null)
+                    return true;
+                Debug.Assert(p.Parent != null);
+                if (p.Parent.Parent is not IGroupListProperties)
                     return true;
                 foreach (var t in p.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
                 {

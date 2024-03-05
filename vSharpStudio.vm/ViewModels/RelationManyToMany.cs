@@ -140,7 +140,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.PropertyRefObj2.DataTypeEnum = EnumDataType.CATALOG;
             }
-            else if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
+            else if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
             {
                 this.PropertyRefObj2.DataTypeEnum = EnumDataType.DOCUMENT;
             }

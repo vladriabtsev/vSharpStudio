@@ -77,10 +77,14 @@ namespace vSharpStudio.vm.ViewModels
 
             //this.CodePropertySettings.Parent = this;
             var m = this.Cfg.Model;
-            string guid = System.Guid.NewGuid().ToString();
-            this._PropertyRefSelf = (Property)m.GetPropertyRef(this, this, guid, Property.SpecialPropertyNameRefTreeParent, 0, true);
+            this._PropertyRefSelf = (Property)m.GetPropertyRef(this, this, System.Guid.NewGuid().ToString(), Property.SpecialPropertyNameRefTreeParent, 0, true);
 
             Init();
+        }
+        partial void OnGuidChanged()
+        {
+            this._PropertyRefSelf.DataType.ObjectRef.ForeignObjectGuid = this.Guid;
+            this.ParentCatalog.PropertyRefFolder.DataType.ObjectRef.ForeignObjectGuid = this.Guid;
         }
         protected override void OnInitFromDto()
         {

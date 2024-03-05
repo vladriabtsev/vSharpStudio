@@ -538,6 +538,8 @@ namespace vSharpStudio.vm.ViewModels
             }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_ENUMERATION);
             this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
+                if (p.Parent is not IGroupListProperties)
+                    return true;
                 if (p.DataTypeEnum == EnumDataType.CATALOG && string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
                 {
                     return false;
@@ -547,6 +549,8 @@ namespace vSharpStudio.vm.ViewModels
             }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_CATALOG);
             this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
+                if (p.Parent is not IGroupListProperties)
+                    return true;
                 if (p.DataTypeEnum == EnumDataType.DOCUMENT && string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
                 {
                     return false;
@@ -587,6 +591,8 @@ namespace vSharpStudio.vm.ViewModels
             }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
             this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
+                if (p.Parent is not IGroupListProperties)
+                    return true;
                 if (p.DataTypeEnum != EnumDataType.CATALOG)
                 {
                     return true;
@@ -618,6 +624,8 @@ namespace vSharpStudio.vm.ViewModels
             }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
             this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
+                if (p.Parent is not IGroupListProperties)
+                    return true;
                 if (p.DataTypeEnum != EnumDataType.DOCUMENT)
                 {
                     return true;
@@ -906,6 +914,8 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.IsMarkedForDeletion).Custom((name, cntx) =>
             {
                 var p = (Property)cntx.InstanceToValidate;
+                if (p.Parent is not IGroupListProperties)
+                    return;
                 if (p.IsMarkedForDeletion)
                     return;
                 if (p.DataTypeEnum == EnumDataType.CATALOG || p.DataTypeEnum == EnumDataType.ENUMERATION || p.DataTypeEnum == EnumDataType.DOCUMENT)

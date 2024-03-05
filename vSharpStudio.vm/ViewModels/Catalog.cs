@@ -112,11 +112,13 @@ namespace vSharpStudio.vm.ViewModels
             this._UseNameProperty = EnumUseType.Default;
             this._UseDescriptionProperty = EnumUseType.Default;
             var m = this.Cfg.Model;
-            string guid = System.Guid.NewGuid().ToString();
-            this._PropertyRefFolder = (Property)m.GetPropertyRef(this, this.Folder, guid, Property.SpecialPropertyNameRefParent, 0, false);
-            guid = System.Guid.NewGuid().ToString();
-            this._PropertyRefSelf = (Property)m.GetPropertyRef(this, this, guid, Property.SpecialPropertyNameRefTreeParent, 0, true);
+            this._PropertyRefFolder = (Property)m.GetPropertyRef(this, this.Folder, System.Guid.NewGuid().ToString(), Property.SpecialPropertyNameRefParent, 0, false);
+            this._PropertyRefSelf = (Property)m.GetPropertyRef(this, this, System.Guid.NewGuid().ToString(), Property.SpecialPropertyNameRefTreeParent, 0, true);
             Init();
+        }
+        partial void OnGuidChanged()
+        {
+            this._PropertyRefSelf.DataType.ObjectRef.ForeignObjectGuid = this.Guid;
         }
         protected override void OnInitFromDto()
         {
