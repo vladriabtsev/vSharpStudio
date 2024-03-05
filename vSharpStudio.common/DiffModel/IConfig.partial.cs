@@ -20,5 +20,6 @@ namespace vSharpStudio.common
         string? CurrentCfgFolderPath { get; }
         void SetIsNeedCurrentUpdate(bool val);
         void SetIsNew(bool isNew);
+        bool IsCanHaveChangesInTest();
     }
 }
