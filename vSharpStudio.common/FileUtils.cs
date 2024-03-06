@@ -35,7 +35,7 @@ namespace vSharpStudio.common
             {
                 var encod = new UTF8Encoding(true);
                 byte[] bytes = encod.GetBytes(code);
-                FileUtils.WritesAllBytesWithRetry(outFile, bytes);
+                FileUtils.WritesAllBytesWithRetryIfTextIsChanged(outFile, bytes);
             }
         }
         public static void WriteToFile(string code, string path, string fileRelativePath, string fileName)
@@ -48,13 +48,13 @@ namespace vSharpStudio.common
                 outFile = $"{outFolder}{fileName}";
             else
                 outFile = $"{outFolder}\\{fileName}";
-            FileUtils.WritesAllBytesWithRetry(outFile, bytes);
+            FileUtils.WritesAllBytesWithRetryIfTextIsChanged(outFile, bytes);
         }
         public static void WriteToFile(string code, string outFilePath)
         {
             var encod = new UTF8Encoding(true);
             byte[] bytes = encod.GetBytes(code);
-            FileUtils.WritesAllBytesWithRetry(outFilePath, bytes);
+            FileUtils.WritesAllBytesWithRetryIfTextIsChanged(outFilePath, bytes);
         }
         public static void WriteToFile(byte[] bytes, string path, string fileRelativePath, string fileName)
         {
@@ -64,9 +64,9 @@ namespace vSharpStudio.common
                 outFile = $"{outFolder}{fileName}";
             else
                 outFile = $"{outFolder}\\{fileName}";
-            FileUtils.WritesAllBytesWithRetry(outFile, bytes);
+            FileUtils.WritesAllBytesWithRetryIfTextIsChanged(outFile, bytes);
         }
-        public static void WritesAllBytesWithRetry(string outFile, byte[] bytes)
+        public static void WritesAllBytesWithRetryIfTextIsChanged(string outFile, byte[] bytes)
         {
             bool isRewrite = false;
             var bytesCurrent = new byte[0];
