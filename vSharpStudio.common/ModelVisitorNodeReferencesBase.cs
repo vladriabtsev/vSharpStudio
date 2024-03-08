@@ -12,6 +12,8 @@ namespace vSharpStudio.common
 {
     public class ModelVisitorNodeReferencesBase : ModelVisitorBase
     {
+        public ModelVisitorNodeReferencesBase(string appDbGenGuid) { this.appDbGenGuid = appDbGenGuid; }
+        private string appDbGenGuid;
         /// <summary>
         /// Model object references
         /// </summary>
@@ -96,18 +98,41 @@ namespace vSharpStudio.common
             {
                 var md = new ModelNode(t);
                 this.DicNodesWithReferences[t.Guid] = md;
-                ScanProperties(md, t.GroupProperties.ListProperties);
-                ScanDetails(md, t.GroupDetails);
+                ScanProperties(md, t.GetIncludedProperties(this.appDbGenGuid, false, false));
+                ScanDetails(md, t.GetIncludedDetails(this.appDbGenGuid));
+            }
+            foreach (var t in currModel.GroupRelations.GroupListManyToManyRelations.ListRelations)
+            {
+                var md = new ModelNode(t);
+                this.DicNodesWithReferences[t.Guid] = md;
+                ScanProperties(md, t.GetIncludedProperties(this.appDbGenGuid, false, false));
             }
             foreach (var t in currModel.GroupDocuments.GroupListDocuments.ListDocuments)
             {
                 var md = new ModelNode(t);
                 this.DicNodesWithReferences[t.Guid] = md;
-                ScanProperties(md, currModel.GroupDocuments.GroupSharedProperties.ListProperties);
-                ScanProperties(md, t.GroupProperties.ListProperties);
-                ScanDetails(md, t.GroupDetails);
+                ScanProperties(md, t.GetIncludedProperties(this.appDbGenGuid, false, true));
+                ScanDetails(md, t.GetIncludedDetails(this.appDbGenGuid));
             }
-
+            foreach (var t in currModel.GroupDocuments.GroupRegisters.ListRegisters)
+            {
+                var md = new ModelNode(t);
+                this.DicNodesWithReferences[t.Guid] = md;
+                ScanProperties(md, t.GetIncludedProperties(this.appDbGenGuid, false, true));
+                switch (t.RegisterType)
+                {
+                    case EnumRegisterType.BALANCE:
+                        ScanProperties(md, t.GetIncludedBalanceProperties(this.appDbGenGuid, false, true));
+                        break;
+                    case EnumRegisterType.BALANCE_AND_TURNOVER:
+                        ScanProperties(md, t.GetIncludedBalanceProperties(this.appDbGenGuid, false, true));
+                        ScanProperties(md, t.GetIncludedTurnoverProperties(this.appDbGenGuid, false, true));
+                        break;
+                    case EnumRegisterType.TURNOVER:
+                        ScanProperties(md, t.GetIncludedTurnoverProperties(this.appDbGenGuid, false, true));
+                        break;
+                }
+            }
             foreach (var t in this.DicNodesWithReferences)
             {
                 var md = t.Value;
@@ -121,12 +146,12 @@ namespace vSharpStudio.common
                 }
             }
         }
-        private void ScanDetails(ModelNode md, IGroupListDetails t)
+        private void ScanDetails(ModelNode md, IEnumerable<IDetail> lst)
         {
-            foreach (var tt in t.ListDetails)
+            foreach (var tt in lst)
             {
                 ScanProperties(md, tt.GroupProperties.ListProperties);
-                ScanDetails(md, tt.GroupDetails);
+                ScanDetails(md, tt.GetIncludedDetails(this.appDbGenGuid));
             }
         }
         private void ScanProperties(ModelNode md, IEnumerable<IProperty> lst)
