@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Threading;
 using ApplicationLogging;
 using FluentValidation;
@@ -225,7 +227,7 @@ namespace vSharpStudio.Unit
             cfg.CurrentCfgFolderPath = @".\";
             //cfg.SolutionPath = @"..\..\..\..\";
 
-            var sol1 = cfg.GroupAppSolutions.AddAppSolution("sol1","./");
+            var sol1 = cfg.GroupAppSolutions.AddAppSolution("sol1", "./");
             var prj1 = sol1.AddAppProject("prj1", "./");
             var gen1 = prj1.AddGenerator("gen1", string.Empty, string.Empty, "");
 
@@ -591,6 +593,115 @@ namespace vSharpStudio.Unit
             UIDispatcher.Invoke(() =>
             {
             });
+        }
+        [Ignore]
+        [TestMethod]
+        public void PropertyUniqueGuidForCatalogs()
+        {
+            var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            //mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
+            mvm.BtnNewConfig.Execute();
+            var cfg = mvm.Config;
+
+            // Catalogs
+            cfg.Model.UseCodeProperty = true;
+            var c1 = (Catalog)cfg.Model.GroupCatalogs.NodeAddNewSubNode();
+            var c2 = (Catalog)cfg.Model.GroupCatalogs.NodeAddNewSubNode();
+            var lst = new List<IProperty>();
+            var p1 = cfg.Model.GroupCatalogs[0].GetCodeProperty(lst);
+            var p2 = cfg.Model.GroupCatalogs[1].GetCodeProperty(lst);
+            Assert.AreNotEqual(p1.Guid, p2.Guid);
+
+            // Self tree catalogs
+            c1.UseTree = true;
+            c2.UseTree = true;
+            lst = c1.GetAllProperties(false).ToList();
+            p1 = lst.Single(t => t.Name == cfg.Model.PropertyCodeName);
+            var p1h = lst.Single(t => t.Name == c1.PropertyRefSelf.Name);
+            lst = c2.GetAllProperties(false).ToList();
+            p2 = lst.Single(t => t.Name == cfg.Model.PropertyCodeName);
+            var p2h = lst.Single(t => t.Name == c2.PropertyRefSelf.Name);
+            Assert.AreNotEqual(p1.Guid, p2.Guid);
+            Assert.AreNotEqual(p1h.Guid, p2h.Guid);
+
+            // Separate tree folder catalogs
+            c1.UseSeparateTreeForFolders = true;
+            c2.UseSeparateTreeForFolders = true;
+            lst = c1.GetAllFolderProperties(false).ToList();
+            p1 = lst.Single(t => t.Name == cfg.Model.PropertyCodeName);
+            p1h = lst.Single(t => t.Name == c1.PropertyRefSelf.Name);
+            lst = c2.GetAllFolderProperties(false).ToList();
+            p2 = lst.Single(t => t.Name == cfg.Model.PropertyCodeName);
+            p2h = lst.Single(t => t.Name == c2.PropertyRefSelf.Name);
+            Assert.AreNotEqual(p1.Guid, p2.Guid);
+            Assert.AreNotEqual(p1h.Guid, p2h.Guid);
+
+            lst = c1.GetAllProperties(false).ToList();
+            p1 = lst.Single(t => t.Name == cfg.Model.PropertyCodeName);
+            p1h = lst.Single(t => t.Name == c1.PropertyRefFolder.Name);
+            lst = c2.GetAllProperties(false).ToList();
+            p2 = lst.Single(t => t.Name == cfg.Model.PropertyCodeName);
+            p2h = lst.Single(t => t.Name == c2.PropertyRefFolder.Name);
+            Assert.AreNotEqual(p1.Guid, p2.Guid);
+            Assert.AreNotEqual(p1h.Guid, p2h.Guid);
+
+            // Catalog tabs
+            var t1 = (Detail)c1.GroupDetails.NodeAddNewSubNode();
+            lst.Clear();
+            t1.GetSpecialProperties(lst, false);
+            p1h = lst.Single(t => t.Name == t1.PropertyRefParent.Name);
+            var t2 = (Detail)c2.GroupDetails.NodeAddNewSubNode();
+            lst.Clear();
+            t2.GetSpecialProperties(lst, false);
+            p2h = lst.Single(t => t.Name == t2.PropertyRefParent.Name);
+            Assert.AreNotEqual(p1h.Guid, p2h.Guid);
+
+            // Catalog folder tabs
+            t1 = (Detail)c1.Folder.GroupDetails.NodeAddNewSubNode();
+            lst.Clear();
+            t1.GetSpecialProperties(lst, false);
+            p1h = lst.Single(t => t.Name == t1.PropertyRefParent.Name);
+            t2 = (Detail)c2.Folder.GroupDetails.NodeAddNewSubNode();
+            lst.Clear();
+            t2.GetSpecialProperties(lst, false);
+            p2h = lst.Single(t => t.Name == t2.PropertyRefParent.Name);
+            Assert.AreNotEqual(p1h.Guid, p2h.Guid);
+        }
+        [Ignore]
+        [TestMethod]
+        public void PropertyUniqueGuidForDocuments()
+        {
+            var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            //mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
+            mvm.BtnNewConfig.Execute();
+            var cfg = mvm.Config;
+
+            // Documents
+            var s1 = (DocumentEnumeratorSequence)cfg.Model.GroupDocuments.GroupListSequences.NodeAddNewSubNode();
+            var d1 = (Document)cfg.Model.GroupDocuments.GroupListDocuments.NodeAddNewSubNode();
+            d1.SequenceGuid = s1.Guid;
+            var s2 = (DocumentEnumeratorSequence)cfg.Model.GroupDocuments.GroupListSequences.NodeAddNewSubNode();
+            var d2 = (Document)cfg.Model.GroupDocuments.GroupListDocuments.NodeAddNewSubNode();
+            d2.SequenceGuid = s2.Guid;
+            var lst =cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GetPropertiesForUI(false).ToList();
+            var p1 = lst.Single(t => t.Name == cfg.Model.PropertyDocNumberName);
+            var p1h = lst.Single(t => t.Name == cfg.Model.PropertyDocNumberName + "UniqueScopeHelper");
+            lst = cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[1].GetPropertiesForUI(false).ToList();
+            var p2 = lst.Single(t => t.Name == cfg.Model.PropertyDocNumberName);
+            var p2h = lst.Single(t => t.Name == cfg.Model.PropertyDocNumberName + "UniqueScopeHelper");
+            Assert.AreNotEqual(p1.Guid, p2.Guid);
+            Assert.AreNotEqual(p1h.Guid, p2h.Guid);
+
+            // Document tabs
+            var t1 = (Detail)d1.GroupDetails.NodeAddNewSubNode();
+            lst.Clear();
+            t1.GetSpecialProperties(lst, false);
+            p1h = lst.Single(t => t.Name == t1.PropertyRefParent.Name);
+            var t2 = (Detail)d2.GroupDetails.NodeAddNewSubNode();
+            lst.Clear();
+            t2.GetSpecialProperties(lst, false);
+            p2h = lst.Single(t => t.Name == t2.PropertyRefParent.Name);
+            Assert.AreNotEqual(p1h.Guid, p2h.Guid);
         }
     }
 }
