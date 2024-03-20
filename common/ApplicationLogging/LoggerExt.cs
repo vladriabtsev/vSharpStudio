@@ -132,13 +132,13 @@ namespace ApplicationLogging
 
         #region Trace
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void TraceMethodStart<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
+        //public static void TraceMethodStart<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
         //    LoggerExt.Dummy? dummy = null,
         //    [CallerMemberName] string memberName = "",
         //    [CallerFilePath] string sourceFilePath = "",
         //    [CallerLineNumber] int sourceLineNumber = 0)
         //{
-        //    if (!logger.IsEnabled(LogLevel.Trace))
+        //    if (logger == null || !logger.IsEnabled(LogLevel.Trace))
         //        return;
         //    var sb = new StringBuilder();
         //    var method = new StackTrace().GetFrame(2).GetMethod();
@@ -160,24 +160,24 @@ namespace ApplicationLogging
         //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg);
         //}
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Trace(this Microsoft.Extensions.Logging.ILogger logger, string? message = null,
+        public static void Trace(this Microsoft.Extensions.Logging.ILogger? logger, string? message = null,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Trace))
+            if (logger == null || !logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg);
         }
-        public static void Trace(this Microsoft.Extensions.Logging.ILogger logger, string? message, Action<StringBuilder> messageBuilder,
+        public static void Trace(this Microsoft.Extensions.Logging.ILogger? logger, string? message, Action<StringBuilder> messageBuilder,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Trace))
+            if (logger == null || !logger.IsEnabled(LogLevel.Trace))
                 return;
             var sb = new StringBuilder();
             sb.AppendLine(message);
@@ -186,96 +186,96 @@ namespace ApplicationLogging
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg);
         }
         ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Trace(this Microsoft.Extensions.Logging.ILogger logger, string message, object?[] prms,
+        //public static void Trace(this Microsoft.Extensions.Logging.ILogger? logger, string message, object?[] prms,
         //    [CallerMemberName] string memberName = "",
         //    [CallerFilePath] string sourceFilePath = "",
         //    [CallerLineNumber] int sourceLineNumber = 0)
         //{
-        //    if (!logger.IsEnabled(LogLevel.Trace))
+        //    if (logger == null || !logger.IsEnabled(LogLevel.Trace))
         //        return;
         //    var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
         //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, prms);
         //}
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Trace<T0>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0,
+        public static void Trace<T0>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Trace))
+            if (logger == null || !logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Trace<T0, T1>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1,
+        public static void Trace<T0, T1>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Trace))
+            if (logger == null || !logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0, arg1);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Trace<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2,
+        public static void Trace<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Trace))
+            if (logger == null || !logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0, arg1, arg2);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Trace<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
+        public static void Trace<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Trace))
+            if (logger == null || !logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0, arg1, arg2, arg3);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Trace<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
+        public static void Trace<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Trace))
+            if (logger == null || !logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0, arg1, arg2, arg3, arg4);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Trace<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
+        public static void Trace<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Trace))
+            if (logger == null || !logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0, arg1, arg2, arg3, arg4, arg5);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Trace<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
+        public static void Trace<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Trace))
+            if (logger == null || !logger.IsEnabled(LogLevel.Trace))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
@@ -285,108 +285,108 @@ namespace ApplicationLogging
         #region Debug
 
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Debug(this Microsoft.Extensions.Logging.ILogger logger, string? message = null,
+        public static void Debug(this Microsoft.Extensions.Logging.ILogger? logger, string? message = null,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Debug))
+            if (logger == null || !logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg);
         }
         ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Debug(this Microsoft.Extensions.Logging.ILogger logger, string message, object?[] prms,
+        //public static void Debug(this Microsoft.Extensions.Logging.ILogger? logger, string message, object?[] prms,
         //    [CallerMemberName] string memberName = "",
         //    [CallerFilePath] string sourceFilePath = "",
         //    [CallerLineNumber] int sourceLineNumber = 0)
         //{
-        //    if (!logger.IsEnabled(LogLevel.Debug))
+        //    if (logger == null || !logger.IsEnabled(LogLevel.Debug))
         //        return;
         //    var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
         //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, prms);
         //}
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Debug<T0>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0,
+        public static void Debug<T0>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Debug))
+            if (logger == null || !logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Debug<T0, T1>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1,
+        public static void Debug<T0, T1>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Debug))
+            if (logger == null || !logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Debug<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2,
+        public static void Debug<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Debug))
+            if (logger == null || !logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1, arg2);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Debug<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
+        public static void Debug<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Debug))
+            if (logger == null || !logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1, arg2, arg3);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Debug<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
+        public static void Debug<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Debug))
+            if (logger == null || !logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1, arg2, arg3, arg4);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Debug<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
+        public static void Debug<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Debug))
+            if (logger == null || !logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1, arg2, arg3, arg4, arg5);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Debug<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
+        public static void Debug<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Debug))
+            if (logger == null || !logger.IsEnabled(LogLevel.Debug))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
@@ -395,108 +395,108 @@ namespace ApplicationLogging
 
         #region Information
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Information(this Microsoft.Extensions.Logging.ILogger logger, string? message = null,
+        public static void Information(this Microsoft.Extensions.Logging.ILogger? logger, string? message = null,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Information))
+            if (logger == null || !logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, null, msg);
         }
         ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Information(this Microsoft.Extensions.Logging.ILogger logger, string message, object?[] prms,
+        //public static void Information(this Microsoft.Extensions.Logging.ILogger? logger, string message, object?[] prms,
         //    [CallerMemberName] string memberName = "",
         //    [CallerFilePath] string sourceFilePath = "",
         //    [CallerLineNumber] int sourceLineNumber = 0)
         //{
-        //    if (!logger.IsEnabled(LogLevel.Information))
+        //    if (logger == null || !logger.IsEnabled(LogLevel.Information))
         //        return;
         //    var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
         //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, prms);
         //}
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Information<T0>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0,
+        public static void Information<T0>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Information))
+            if (logger == null || !logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Information<T0, T1>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1,
+        public static void Information<T0, T1>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Information))
+            if (logger == null || !logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0, arg1);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Information<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2,
+        public static void Information<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Information))
+            if (logger == null || !logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0, arg1, arg2);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Information<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
+        public static void Information<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Information))
+            if (logger == null || !logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0, arg1, arg2, arg3);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Information<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
+        public static void Information<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Information))
+            if (logger == null || !logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0, arg1, arg2, arg3, arg4);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Information<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
+        public static void Information<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Information))
+            if (logger == null || !logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0, arg1, arg2, arg3, arg4, arg5);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Information<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
+        public static void Information<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Information))
+            if (logger == null || !logger.IsEnabled(LogLevel.Information))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
@@ -505,108 +505,108 @@ namespace ApplicationLogging
 
         #region Warning
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Warning(this Microsoft.Extensions.Logging.ILogger logger, string? message = null,
+        public static void Warning(this Microsoft.Extensions.Logging.ILogger? logger, string? message = null,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Warning))
+            if (logger == null || !logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, null, msg);
         }
         ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Warning(this Microsoft.Extensions.Logging.ILogger logger, string message, object?[] prms,
+        //public static void Warning(this Microsoft.Extensions.Logging.ILogger? logger, string message, object?[] prms,
         //    [CallerMemberName] string memberName = "",
         //    [CallerFilePath] string sourceFilePath = "",
         //    [CallerLineNumber] int sourceLineNumber = 0)
         //{
-        //    if (!logger.IsEnabled(LogLevel.Warning))
+        //    if (logger == null || !logger.IsEnabled(LogLevel.Warning))
         //        return;
         //    var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
         //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, prms);
         //}
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Warning<T0>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0,
+        public static void Warning<T0>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Warning))
+            if (logger == null || !logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Warning<T0, T1>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1,
+        public static void Warning<T0, T1>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Warning))
+            if (logger == null || !logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0, arg1);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Warning<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2,
+        public static void Warning<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Warning))
+            if (logger == null || !logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0, arg1, arg2);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Warning<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
+        public static void Warning<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Warning))
+            if (logger == null || !logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0, arg1, arg2, arg3);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Warning<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
+        public static void Warning<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Warning))
+            if (logger == null || !logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0, arg1, arg2, arg3, arg4);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Warning<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
+        public static void Warning<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Warning))
+            if (logger == null || !logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0, arg1, arg2, arg3, arg4, arg5);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Warning<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
+        public static void Warning<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Warning))
+            if (logger == null || !logger.IsEnabled(LogLevel.Warning))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
@@ -615,108 +615,108 @@ namespace ApplicationLogging
 
         #region Error
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Error(this Microsoft.Extensions.Logging.ILogger logger, string? message = null,
+        public static void Error(this Microsoft.Extensions.Logging.ILogger? logger, string? message = null,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Error))
+            if (logger == null || !logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, null, msg);
         }
         ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Error(this Microsoft.Extensions.Logging.ILogger logger, string message, object?[] prms,
+        //public static void Error(this Microsoft.Extensions.Logging.ILogger? logger, string message, object?[] prms,
         //    [CallerMemberName] string memberName = "",
         //    [CallerFilePath] string sourceFilePath = "",
         //    [CallerLineNumber] int sourceLineNumber = 0)
         //{
-        //    if (!logger.IsEnabled(LogLevel.Error))
+        //    if (logger == null || !logger.IsEnabled(LogLevel.Error))
         //        return;
         //    var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
         //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, prms);
         //}
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Error<T0>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0,
+        public static void Error<T0>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Error))
+            if (logger == null || !logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Error<T0, T1>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1,
+        public static void Error<T0, T1>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Error))
+            if (logger == null || !logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0, arg1);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Error<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2,
+        public static void Error<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Error))
+            if (logger == null || !logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0, arg1, arg2);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Error<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
+        public static void Error<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Error))
+            if (logger == null || !logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0, arg1, arg2, arg3);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Error<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
+        public static void Error<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Error))
+            if (logger == null || !logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0, arg1, arg2, arg3, arg4);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Error<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
+        public static void Error<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Error))
+            if (logger == null || !logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0, arg1, arg2, arg3, arg4, arg5);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Error<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
+        public static void Error<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Error))
+            if (logger == null || !logger.IsEnabled(LogLevel.Error))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
@@ -725,108 +725,108 @@ namespace ApplicationLogging
 
         #region Critical
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Critical(this Microsoft.Extensions.Logging.ILogger logger, Exception ex, string? message = null,
+        public static void Critical(this Microsoft.Extensions.Logging.ILogger? logger, Exception ex, string? message = null,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Critical))
+            if (logger == null || !logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, ex, msg);
         }
         ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //public static void Critical(this Microsoft.Extensions.Logging.ILogger logger, Exception ex, string message, object?[] prms,
+        //public static void Critical(this Microsoft.Extensions.Logging.ILogger? logger, Exception ex, string message, object?[] prms,
         //    [CallerMemberName] string memberName = "",
         //    [CallerFilePath] string sourceFilePath = "",
         //    [CallerLineNumber] int sourceLineNumber = 0)
         //{
-        //    if (!logger.IsEnabled(LogLevel.Critical))
+        //    if (logger == null || !logger.IsEnabled(LogLevel.Critical))
         //        return;
         //    var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
         //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, ex, msg, prms);
         //}
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Critical<T0>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0,
+        public static void Critical<T0>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Critical))
+            if (logger == null || !logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Critical<T0, T1>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1,
+        public static void Critical<T0, T1>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Critical))
+            if (logger == null || !logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0, arg1);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Critical<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2,
+        public static void Critical<T0, T1, T2>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Critical))
+            if (logger == null || !logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0, arg1, arg2);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Critical<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
+        public static void Critical<T0, T1, T2, T3>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Critical))
+            if (logger == null || !logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0, arg1, arg2, arg3);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Critical<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
+        public static void Critical<T0, T1, T2, T3, T4>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Critical))
+            if (logger == null || !logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0, arg1, arg2, arg3, arg4);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Critical<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
+        public static void Critical<T0, T1, T2, T3, T4, T5>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Critical))
+            if (logger == null || !logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0, arg1, arg2, arg3, arg4, arg5);
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Critical<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
+        public static void Critical<T0, T1, T2, T3, T4, T5, T6>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6,
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
-            if (!logger.IsEnabled(LogLevel.Critical))
+            if (logger == null || !logger.IsEnabled(LogLevel.Critical))
                 return;
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Critical, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
@@ -992,7 +992,7 @@ namespace ApplicationLogging
 //            return $"{fileName} {line} [{methodName}] {message}\n   StackTrace:\n{Environment.StackTrace}";
 //        }
 //        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-//        public static void Trace(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+//        public static void Trace(this Microsoft.Extensions.Logging.ILogger? logger, string message = "",
 //            [CallerMemberName] string memberName = "",
 //            [CallerFilePath] string sourceFilePath = "",
 //            [CallerLineNumber] int sourceLineNumber = 0)
@@ -1003,7 +1003,7 @@ namespace ApplicationLogging
 //            var msg = $"{fileName} {line} [{methodName}] {message}";
 //            logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg);
 //        }
-//        public static void Debug(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+//        public static void Debug(this Microsoft.Extensions.Logging.ILogger? logger, string message = "",
 //            [CallerMemberName] string memberName = "",
 //            [CallerFilePath] string sourceFilePath = "",
 //            [CallerLineNumber] int sourceLineNumber = 0)
@@ -1014,7 +1014,7 @@ namespace ApplicationLogging
 //            var msg = $"{fileName} {line} [{methodName}] {message}";
 //            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, null, msg);
 //        }
-//        public static void Information(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+//        public static void Information(this Microsoft.Extensions.Logging.ILogger? logger, string message = "",
 //            [CallerMemberName] string memberName = "",
 //            [CallerFilePath] string sourceFilePath = "",
 //            [CallerLineNumber] int sourceLineNumber = 0)
@@ -1025,7 +1025,7 @@ namespace ApplicationLogging
 //            var msg = $"{fileName} {line} [{methodName}] {message}";
 //            logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, null, msg);
 //        }
-//        public static void Warning(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+//        public static void Warning(this Microsoft.Extensions.Logging.ILogger? logger, string message = "",
 //            [CallerMemberName] string memberName = "",
 //            [CallerFilePath] string sourceFilePath = "",
 //            [CallerLineNumber] int sourceLineNumber = 0)
@@ -1036,7 +1036,7 @@ namespace ApplicationLogging
 //            var msg = $"{fileName} {line} [{methodName}] {message}";
 //            logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, null, msg);
 //        }
-//        public static void LoggerError(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+//        public static void LoggerError(this Microsoft.Extensions.Logging.ILogger? logger, string message = "",
 //            [CallerMemberName] string memberName = "",
 //            [CallerFilePath] string sourceFilePath = "",
 //            [CallerLineNumber] int sourceLineNumber = 0)
@@ -1047,7 +1047,7 @@ namespace ApplicationLogging
 //            var msg = $"{fileName} {line} [{methodName}] {message}";
 //            logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, null, msg);
 //        }
-//        public static void Critical(this Microsoft.Extensions.Logging.ILogger logger, string message = "",
+//        public static void Critical(this Microsoft.Extensions.Logging.ILogger? logger, string message = "",
 //            [CallerMemberName] string memberName = "",
 //            [CallerFilePath] string sourceFilePath = "",
 //            [CallerLineNumber] int sourceLineNumber = 0)
