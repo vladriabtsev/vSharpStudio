@@ -1309,7 +1309,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void SavePluginGroupsModels()
         {
-            this.ListPluginGroupsModelExtentions.Clear();
+            this.ListPluginGroupsModelExtensions.Clear();
             var hash = new HashSet<string>();
             foreach (var t in this.ParentConfig.GroupAppSolutions.ListAppSolutions)
             {
@@ -1323,12 +1323,12 @@ namespace vSharpStudio.vm.ViewModels
                                 continue;
                             hash.Add(ttt.Plugin.PluginGroupGuid);
                             var settings = ttt.Plugin.PluginGroupModelToJson();
-                            var p = new PluginGroupModelExtentions(this)
+                            var p = new PluginGroupModelExtensions(this)
                             {
                                 Guid = ttt.Plugin.PluginGroupGuid,
                                 Settings = settings,
                             };
-                            this.ListPluginGroupsModelExtentions.Add(p);
+                            this.ListPluginGroupsModelExtensions.Add(p);
                         }
                     }
                 }
@@ -1336,8 +1336,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RestorePluginGroupsModels()
         {
-            var dic = new Dictionary<string, PluginGroupModelExtentions>();
-            foreach (var t in this.ListPluginGroupsModelExtentions)
+            var dic = new Dictionary<string, PluginGroupModelExtensions>();
+            foreach (var t in this.ListPluginGroupsModelExtensions)
             {
                 dic[t.Guid] = t;
             }

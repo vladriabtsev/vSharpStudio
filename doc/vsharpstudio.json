@@ -10620,12 +10620,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_plugin_groups_model_extentions",
-              "description": "@attr [Browsable(false)]\nPlugin group Guid and string to store extentions",
+              "name": "list_plugin_groups_model_extensions",
+              "description": "@attr [Browsable(false)]\nPlugin group Guid and string to store extensions",
               "label": "repeated",
-              "type": "proto_plugin_group_model_extentions",
-              "longType": "proto_plugin_group_model_extentions",
-              "fullType": "proto_config.proto_plugin_group_model_extentions",
+              "type": "proto_plugin_group_model_extensions",
+              "longType": "proto_plugin_group_model_extensions",
+              "fullType": "proto_config.proto_plugin_group_model_extensions",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -11114,9 +11114,9 @@
           ]
         },
         {
-          "name": "proto_plugin_group_model_extentions",
-          "longName": "proto_plugin_group_model_extentions",
-          "fullName": "proto_config.proto_plugin_group_model_extentions",
+          "name": "proto_plugin_group_model_extensions",
+          "longName": "proto_plugin_group_model_extensions",
+          "fullName": "proto_config.proto_plugin_group_model_extensions",
           "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
@@ -11137,7 +11137,7 @@
             },
             {
               "name": "settings",
-              "description": "model extentions of plugin group",
+              "description": "model extensions of plugin group",
               "label": "",
               "type": "string",
               "longType": "string",

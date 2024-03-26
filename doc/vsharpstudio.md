@@ -65,7 +65,7 @@
     - [proto_plugin_generator_project_settings](#proto_config-proto_plugin_generator_project_settings)
     - [proto_plugin_generator_settings](#proto_config-proto_plugin_generator_settings)
     - [proto_plugin_generator_solution_settings](#proto_config-proto_plugin_generator_solution_settings)
-    - [proto_plugin_group_model_extentions](#proto_config-proto_plugin_group_model_extentions)
+    - [proto_plugin_group_model_extensions](#proto_config-proto_plugin_group_model_extensions)
     - [proto_property](#proto_config-proto_property)
     - [proto_property_data_generator](#proto_config-proto_property_data_generator)
     - [proto_register](#proto_config-proto_register)
@@ -1601,7 +1601,7 @@ Configuration model
 | group_documents | [proto_group_documents](#proto_config-proto_group_documents) |  | @attr [Browsable(false)] |
 | group_relations | [proto_relations_group](#proto_config-proto_relations_group) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
-| list_plugin_groups_model_extentions | [proto_plugin_group_model_extentions](#proto_config-proto_plugin_group_model_extentions) | repeated | @attr [Browsable(false)] Plugin group Guid and string to store extentions |
+| list_plugin_groups_model_extensions | [proto_plugin_group_model_extensions](#proto_config-proto_plugin_group_model_extensions) | repeated | @attr [Browsable(false)] Plugin group Guid and string to store extensions |
 
 
 
@@ -1755,16 +1755,16 @@ Configuration model
 
 
 
-<a name="proto_config-proto_plugin_group_model_extentions"></a>
+<a name="proto_config-proto_plugin_group_model_extensions"></a>
 
-### proto_plugin_group_model_extentions
+### proto_plugin_group_model_extensions
 @base BaseSettings
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | plugin group Guid @attr [ReadOnly(true)] |
-| settings | [string](#string) |  | model extentions of plugin group |
+| settings | [string](#string) |  | model extensions of plugin group |
 
 
 

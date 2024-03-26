@@ -4744,8 +4744,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
-    public partial class PluginGroupModelExtentionsValidator : ValidatorBase<PluginGroupModelExtentions, PluginGroupModelExtentionsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:16
-    public partial class PluginGroupModelExtentions : BaseSettings<PluginGroupModelExtentions, PluginGroupModelExtentionsValidator>, IPluginGroupModelExtentions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:17
+    public partial class PluginGroupModelExtensionsValidator : ValidatorBase<PluginGroupModelExtensions, PluginGroupModelExtensionsValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:16
+    public partial class PluginGroupModelExtensions : BaseSettings<PluginGroupModelExtensions, PluginGroupModelExtensionsValidator>, IPluginGroupModelExtensions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:17
     {
         public override string ToDebugString()
         {
@@ -4759,8 +4759,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         partial void OnDebugStringExtend(ref string mes);
         #region CTOR
-        public PluginGroupModelExtentions(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
-            : base(parent, PluginGroupModelExtentionsValidator.Validator)
+        public PluginGroupModelExtensions(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            : base(parent, PluginGroupModelExtensionsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
@@ -4772,15 +4772,15 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static PluginGroupModelExtentions Clone(ITreeConfigNode? parent, IPluginGroupModelExtentions from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:29
+        public static PluginGroupModelExtensions Clone(ITreeConfigNode? parent, IPluginGroupModelExtensions from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:29
         {
             Debug.Assert(from != null);
-            PluginGroupModelExtentions vm = new PluginGroupModelExtentions(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:36
+            PluginGroupModelExtensions vm = new PluginGroupModelExtensions(parent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:36
             vm._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._Settings = from.Settings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             return vm;
         }
-        public static void Update(PluginGroupModelExtentions to, IPluginGroupModelExtentions from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:79
+        public static void Update(PluginGroupModelExtensions to, IPluginGroupModelExtensions from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:79
         {
             Debug.Assert(to != null);
             Debug.Assert(from != null);
@@ -4789,24 +4789,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:149
         #region IEditable
-        public override PluginGroupModelExtentions Backup()
+        public override PluginGroupModelExtensions Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
             Debug.Assert(this is IConfig || this.Parent != null);
-            return PluginGroupModelExtentions.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:157
+            return PluginGroupModelExtensions.Clone(this.Parent, this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(PluginGroupModelExtentions from)
+        public override void Restore(PluginGroupModelExtensions from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            PluginGroupModelExtentions.Update(this, from, isDeep);
+            PluginGroupModelExtensions.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_plugin_group_model_extentions' to 'PluginGroupModelExtentions'
-        public static PluginGroupModelExtentions ConvertToVM(Proto.Config.proto_plugin_group_model_extentions m, PluginGroupModelExtentions vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:173
+        // Conversion from 'proto_plugin_group_model_extensions' to 'PluginGroupModelExtensions'
+        public static PluginGroupModelExtensions ConvertToVM(Proto.Config.proto_plugin_group_model_extensions m, PluginGroupModelExtensions vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -4817,11 +4817,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._Settings = m.Settings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             return vm;
         }
-        // Conversion from 'PluginGroupModelExtentions' to 'proto_plugin_group_model_extentions'
-        public static Proto.Config.proto_plugin_group_model_extentions ConvertToProto(PluginGroupModelExtentions vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:232
+        // Conversion from 'PluginGroupModelExtensions' to 'proto_plugin_group_model_extensions'
+        public static Proto.Config.proto_plugin_group_model_extensions ConvertToProto(PluginGroupModelExtensions vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:232
         {
             Debug.Assert(vm != null);
-            Proto.Config.proto_plugin_group_model_extentions m = new Proto.Config.proto_plugin_group_model_extentions(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:235
+            Proto.Config.proto_plugin_group_model_extensions m = new Proto.Config.proto_plugin_group_model_extensions(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:235
             m.Guid = vm.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.Settings = vm.Settings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             return m;
@@ -4859,7 +4859,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
         partial void OnGuidChanged();
         
-        // model extentions of plugin group
+        // model extensions of plugin group
         public string Settings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
             get { return this._Settings; }
@@ -5846,7 +5846,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this._GroupDocuments = new GroupDocuments(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
             this._GroupRelations = new RelationsGroup(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:60
-            this._ListPluginGroupsModelExtentions = new ObservableCollectionWithActions<PluginGroupModelExtentions>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:58
+            this._ListPluginGroupsModelExtensions = new ObservableCollectionWithActions<PluginGroupModelExtensions>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:58
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
@@ -5921,9 +5921,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:54
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:55
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
-                      vm._ListPluginGroupsModelExtentions = new ObservableCollectionWithActions<PluginGroupModelExtentions>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:50
-            foreach (var t in from.ListPluginGroupsModelExtentions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:51
-                vm.ListPluginGroupsModelExtentions.Add(PluginGroupModelExtentions.Clone(parent, (PluginGroupModelExtentions)t, isDeep));
+                      vm._ListPluginGroupsModelExtensions = new ObservableCollectionWithActions<PluginGroupModelExtensions>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:50
+            foreach (var t in from.ListPluginGroupsModelExtensions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:51
+                vm.ListPluginGroupsModelExtensions.Add(PluginGroupModelExtensions.Clone(parent, (PluginGroupModelExtensions)t, isDeep));
                       if (isNewGuid) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
                 vm.SetNewGuid();
             return vm;
@@ -6021,25 +6021,25 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:88
             {
-                foreach (var t in to.ListPluginGroupsModelExtentions.ToList())
+                foreach (var t in to.ListPluginGroupsModelExtensions.ToList())
                 {
                     bool isfound = false;
-                    foreach (var tt in from.ListPluginGroupsModelExtentions)
+                    foreach (var tt in from.ListPluginGroupsModelExtensions)
                     {
                         if (t.Guid == tt.Guid)
                         {
                             isfound = true;
-                            PluginGroupModelExtentions.Update((PluginGroupModelExtentions)t, (PluginGroupModelExtentions)tt, isDeep);
+                            PluginGroupModelExtensions.Update((PluginGroupModelExtensions)t, (PluginGroupModelExtensions)tt, isDeep);
                             break;
                         }
                     }
                     if (!isfound)
-                        to.ListPluginGroupsModelExtentions.Remove(t);
+                        to.ListPluginGroupsModelExtensions.Remove(t);
                 }
-                foreach (var tt in from.ListPluginGroupsModelExtentions)
+                foreach (var tt in from.ListPluginGroupsModelExtensions)
                 {
                     bool isfound = false;
-                    foreach (var t in to.ListPluginGroupsModelExtentions.ToList())
+                    foreach (var t in to.ListPluginGroupsModelExtensions.ToList())
                     {
                         if (t.Guid == tt.Guid)
                         {
@@ -6049,9 +6049,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                     }
                     if (!isfound)
                     {
-                        var p = new PluginGroupModelExtentions(to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:119
-                        PluginGroupModelExtentions.Update(p, (PluginGroupModelExtentions)tt, isDeep);
-                        to.ListPluginGroupsModelExtentions.Add(p);
+                        var p = new PluginGroupModelExtensions(to); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:119
+                        PluginGroupModelExtensions.Update(p, (PluginGroupModelExtensions)tt, isDeep);
+                        to.ListPluginGroupsModelExtensions.Add(p);
                     }
                 }
             }
@@ -6145,11 +6145,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:198
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
-            vm._ListPluginGroupsModelExtentions = new ObservableCollectionWithActions<PluginGroupModelExtentions>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:194
-            foreach (var t in m.ListPluginGroupsModelExtentions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:196
+            vm._ListPluginGroupsModelExtensions = new ObservableCollectionWithActions<PluginGroupModelExtensions>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:194
+            foreach (var t in m.ListPluginGroupsModelExtensions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:196
             {
-                var tvm = PluginGroupModelExtentions.ConvertToVM(t, new PluginGroupModelExtentions(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:198
-                vm.ListPluginGroupsModelExtentions.Add(tvm);
+                var tvm = PluginGroupModelExtensions.ConvertToVM(t, new PluginGroupModelExtensions(vm)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:198
+                vm.ListPluginGroupsModelExtensions.Add(tvm);
             }
             vm.OnInitFromDto(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:225
             vm.IsChanged = false;
@@ -6208,8 +6208,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.GroupRelations = vSharpStudio.vm.ViewModels.RelationsGroup.ConvertToProto((RelationsGroup)vm.GroupRelations); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
-            foreach (var t in vm.ListPluginGroupsModelExtentions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
-                m.ListPluginGroupsModelExtentions.Add(PluginGroupModelExtentions.ConvertToProto((PluginGroupModelExtentions)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
+            foreach (var t in vm.ListPluginGroupsModelExtensions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
+                m.ListPluginGroupsModelExtensions.Add(PluginGroupModelExtensions.ConvertToProto((PluginGroupModelExtensions)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
             return m;
         }
         
@@ -6237,7 +6237,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             {
                 t.AcceptConfigNodeVisitor(visitor);
             }
-            foreach (var t in this.ListPluginGroupsModelExtentions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:23
+            foreach (var t in this.ListPluginGroupsModelExtensions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:23
             {
                 t.AcceptConfigNodeVisitor(visitor);
             }
@@ -7142,24 +7142,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         IReadOnlyList<IPluginGeneratorNodeSettings> IModel.ListNodeGeneratorsSettings { get { return (this as Model).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:48
         
         
-        // Plugin group Guid and string to store extentions
+        // Plugin group Guid and string to store extensions
         [Browsable(false)]
-        public ObservableCollectionWithActions<PluginGroupModelExtentions> ListPluginGroupsModelExtentions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        public ObservableCollectionWithActions<PluginGroupModelExtensions> ListPluginGroupsModelExtensions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
-            get { return this._ListPluginGroupsModelExtentions; }
+            get { return this._ListPluginGroupsModelExtensions; }
             set
             {
-                // Use 'OnListPluginGroupsModelExtentionsChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._ListPluginGroupsModelExtentions, value, (t) => { bool isCancel = false; this.OnListPluginGroupsModelExtentionsChanging(value, ref isCancel); if (isCancel) return; this._ListPluginGroupsModelExtentions = value; this.OnListPluginGroupsModelExtentionsChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
+                // Use 'OnListPluginGroupsModelExtensionsChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._ListPluginGroupsModelExtensions, value, (t) => { bool isCancel = false; this.OnListPluginGroupsModelExtensionsChanging(value, ref isCancel); if (isCancel) return; this._ListPluginGroupsModelExtensions = value; this.OnListPluginGroupsModelExtensionsChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
                 }
             }
         }
-        private ObservableCollectionWithActions<PluginGroupModelExtentions> _ListPluginGroupsModelExtentions; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnListPluginGroupsModelExtentionsChanging(ObservableCollectionWithActions<PluginGroupModelExtentions> to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
-        partial void OnListPluginGroupsModelExtentionsChanged();
-        IReadOnlyList<IPluginGroupModelExtentions> IModel.ListPluginGroupsModelExtentions { get { return (this as Model).ListPluginGroupsModelExtentions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:48
+        private ObservableCollectionWithActions<PluginGroupModelExtensions> _ListPluginGroupsModelExtensions; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnListPluginGroupsModelExtensionsChanging(ObservableCollectionWithActions<PluginGroupModelExtensions> to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnListPluginGroupsModelExtensionsChanged();
+        IReadOnlyList<IPluginGroupModelExtensions> IModel.ListPluginGroupsModelExtensions { get { return (this as Model).ListPluginGroupsModelExtensions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:48
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:134
         #endregion Properties
@@ -36507,7 +36507,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void Visit(Proto.Config.proto_app_solution p);
         void Visit(Proto.Config.proto_app_project p);
         void Visit(Proto.Config.proto_plugin_generator_node_settings p);
-        void Visit(Proto.Config.proto_plugin_group_model_extentions p);
+        void Visit(Proto.Config.proto_plugin_group_model_extensions p);
         void Visit(Proto.Config.proto_plugin_generator_settings p);
         void Visit(Proto.Config.proto_app_project_generator p);
         void Visit(Proto.Config.proto_plugin_generator_node_default_settings p);
@@ -36722,11 +36722,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(PluginGroupModelExtentions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(PluginGroupModelExtensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(PluginGroupModelExtentions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(PluginGroupModelExtensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
@@ -36758,7 +36758,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         protected override void OnVisit(Model p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListPluginGroupsModelExtentions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListPluginGroupsModelExtensions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
         protected override void OnVisitEnd(Model p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
@@ -37472,16 +37472,16 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         protected virtual void OnVisit(PluginGeneratorNodeSettings p) { }
         protected virtual void OnVisitEnd(PluginGeneratorNodeSettings p) { }
-        public void Visit(PluginGroupModelExtentions p)
+        public void Visit(PluginGroupModelExtensions p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(PluginGroupModelExtentions p)
+        public void VisitEnd(PluginGroupModelExtensions p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(PluginGroupModelExtentions p) { }
-        protected virtual void OnVisitEnd(PluginGroupModelExtentions p) { }
+        protected virtual void OnVisit(PluginGroupModelExtensions p) { }
+        protected virtual void OnVisitEnd(PluginGroupModelExtensions p) { }
         public void Visit(PluginGeneratorSettings p)
         {
             this.OnVisit(p);
