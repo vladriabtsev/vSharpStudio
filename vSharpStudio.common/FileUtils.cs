@@ -50,6 +50,17 @@ namespace vSharpStudio.common
                 outFile = $"{outFolder}\\{fileName}";
             FileUtils.WritesAllBytesWithRetryIfTextIsChanged(outFile, bytes);
         }
+        public static void WriteToFile(string code, string path, string fileName)
+        {
+            var encod = new UTF8Encoding(true);
+            byte[] bytes = encod.GetBytes(code);
+            string outFile = path;
+            if (Path.EndsInDirectorySeparator(path))
+                outFile = $"{path}{fileName}";
+            else
+                outFile = $"{path}\\{fileName}";
+            FileUtils.WritesAllBytesWithRetryIfTextIsChanged(outFile, bytes);
+        }
         public static void WriteToFile(string code, string outFilePath)
         {
             var encod = new UTF8Encoding(true);
