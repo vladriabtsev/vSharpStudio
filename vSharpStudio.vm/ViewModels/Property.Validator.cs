@@ -1072,10 +1072,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, GroupDocuments gd)
         {
-            if (name == gd.DocumentTimeline.TimeLinePropertyName)
+            if (name == gd.DocumentTimeline.TimeLineDocDateTimePropertyName)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Document timeline is configured to use {gd.DocumentTimeline.TimeLinePropertyName} as timeline property name in documents. Property name {gd.DocumentTimeline.TimeLinePropertyName} is reserved for timeline property.");
+                    $"Document timeline is configured to use {gd.DocumentTimeline.TimeLineDocDateTimePropertyName} as document date and time property name in documents. Property name {gd.DocumentTimeline.TimeLineDocDateTimePropertyName} is reserved.");
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }

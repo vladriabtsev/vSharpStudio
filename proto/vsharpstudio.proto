@@ -724,7 +724,7 @@ message proto_model {
     // @attr [Browsable(false)]
     string property_doc_date_guid = 71;
     // @attr [Browsable(false)]
-    string property_doc_time_line_guid = 72;
+    string property_timeline_doc_date_time_guid = 72;
     // @attr [Browsable(false)]
     string property_doc_short_type_id_guid = 73;
     // @attr [Browsable(false)]
@@ -2813,7 +2813,7 @@ message proto_document_timeline {
     // @attr [PropertyOrderAttribute(12)]
     // @attr [DisplayName("Timeline property")]
     // @attr [Description("Timeline property name in document timeline")]
-    string time_line_property_name = 12;
+    string time_line_doc_date_time_property_name = 12;
     // @attr [PropertyOrderAttribute(15)]
     // @attr [DisplayName("Short ID")]
     // @attr [Description("Short register type ID for cache key generator")]

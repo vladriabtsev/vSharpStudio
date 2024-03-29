@@ -81,7 +81,7 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyDocIsPostedGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
             this._PropertyDocShortTypeIdGuid = System.Guid.NewGuid().ToString();
-            this._PropertyDocTimeLineGuid = System.Guid.NewGuid().ToString();
+            this._PropertyTimelineDocDateTimeGuid = System.Guid.NewGuid().ToString();
             this._PropertyIdGuid = System.Guid.NewGuid().ToString();
             this._PropertyVersionGuid = System.Guid.NewGuid().ToString();
 

@@ -81,7 +81,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this._Name = Defaults.DocumentsTimelineName;
-            this._TimeLinePropertyName = "DocumentTimeline";
+            this._TimeLineDocDateTimePropertyName = "DocDateTime";
             this.IsEditable = false;
             this._ShortIdTypeForCacheKey = "tl";
             Init();
@@ -227,6 +227,26 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddPropertyCatalogs(string name, Catalog cat, Catalog? cat2 = null, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat.Guid));
+            if (cat2 != null)
+                node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat2.Guid));
+            node.DataType.DataTypeEnum = EnumDataType.CATALOGS;
+            node.IsNullable = true;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddPropertyString(string name, uint length, string? guid = null)
         {
             var node = new Property(this) { Name = name };
@@ -281,7 +301,7 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(p);
             }
             // Field document date and time value
-            p = m.GetPropertyDateTimeUtc(this, m.PropertyDocTimeLineGuid, this.TimeLinePropertyName, 1, false, this.TimeLineTimeAccuracy);
+            p = m.GetPropertyDateTimeUtc(this, m.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, false, this.TimeLineTimeAccuracy);
             (p as Property).Position = 8;
             lst.Add(p);
             p = m.GetPropertyInt(this, m.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.DocShortTypeIdPropertyName, false, false);

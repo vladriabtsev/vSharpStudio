@@ -5494,7 +5494,7 @@
               "defaultValue": ""
             },
             {
-              "name": "time_line_property_name",
+              "name": "time_line_doc_date_time_property_name",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Timeline property\")]\n@attr [Description(\"Timeline property name in document timeline\")]",
               "label": "",
               "type": "string",
@@ -10630,7 +10630,7 @@
               "defaultValue": ""
             },
             {
-              "name": "property_doc_time_line_guid",
+              "name": "property_timeline_doc_date_time_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",

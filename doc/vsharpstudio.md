@@ -671,7 +671,7 @@ Constant application wise value
 | list_properties | [proto_property](#proto_config-proto_property) | repeated | @attr [Browsable(false)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | time_line_time_accuracy | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Timeline accuracy&#34;)] @attr [Description(&#34;Document time line accuracy. Only one document can posted at any point of time line.&#34;)] |
-| time_line_property_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Timeline property&#34;)] @attr [Description(&#34;Timeline property name in document timeline&#34;)] |
+| time_line_doc_date_time_property_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Timeline property&#34;)] @attr [Description(&#34;Timeline property name in document timeline&#34;)] |
 | short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short register type ID for cache key generator&#34;)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
@@ -1615,7 +1615,7 @@ Configuration model
 | property_ctlg_is_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_doc_number_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_doc_date_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_doc_time_line_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_timeline_doc_date_time_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_doc_short_type_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_doc_is_posted_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
