@@ -34,7 +34,7 @@
         public const string SequenceName = "Sequence";
 
         public const string GroupPropertiesName = "Properties";
-        public const string GroupSharedPropertiesName = "Default Properties";
+        public const string GroupSharedPropertiesName = "Timeline";
         public const string PropertyName = "Property";
 
         public const string GroupFormsName = "Forms";
@@ -57,6 +57,7 @@
         public const string DocumentName = "Document";
         public const string DocumentsGroupName = "Documents";
         public const string Documents = "Documents";
+        public const string DocumentsTimelineName = "Timeline";
 
         public const string GroupMtmRelationsName = "Relations";
         public const string ManyToManyRelationsGroupName = "ManyToMany";

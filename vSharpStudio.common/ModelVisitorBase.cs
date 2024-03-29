@@ -124,7 +124,7 @@ namespace vSharpStudio.common
             this.BeginVisit(currModel.GroupDocuments);
             if (isActFromRootToBottom)
                 this._act?.Invoke(this, this.currModel.GroupDocuments);
-            this.VisitProperties(currModel.GroupDocuments.GroupSharedProperties, currModel.GroupDocuments.GroupSharedProperties.ListProperties, isActFromRootToBottom);
+            this.VisitProperties(currModel.GroupDocuments.DocumentTimeline, currModel.GroupDocuments.DocumentTimeline.ListProperties, isActFromRootToBottom);
             this.BeginVisit(currModel.GroupDocuments.GroupListDocuments);
             if (isActFromRootToBottom)
                 this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListDocuments);
@@ -146,6 +146,21 @@ namespace vSharpStudio.common
             this.EndVisit(currModel.GroupDocuments.GroupListDocuments.ListDocuments);
             if (!isActFromRootToBottom)
                 this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListDocuments);
+
+            #region Timeline
+            this.BeginVisit(currModel.GroupDocuments.DocumentTimeline);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments.DocumentTimeline);
+            foreach (var tt in currModel.GroupDocuments.DocumentTimeline.ListProperties)
+            {
+                this.BeginVisit(tt);
+                this._act?.Invoke(this, tt);
+                this.EndVisit(tt);
+            }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments.DocumentTimeline);
+            this.EndVisit(currModel.GroupDocuments.DocumentTimeline);
+            #endregion Timeline
 
             #region Sequences
             this.BeginVisit(currModel.GroupDocuments.GroupListSequences);
@@ -463,6 +478,23 @@ namespace vSharpStudio.common
         protected IDetail currPropTab => this.currPropTabStack.Peek();
 
         #region Private Visits
+        private void VisitProperties(IDocumentTimeline parent, IEnumerable<IProperty> lst, bool isActFromRootToBottom)
+        {
+            this.BeginVisit(parent);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, parent);
+            foreach (var t in lst)
+            {
+                this.currProp = t;
+                this.BeginVisit(t);
+                this._act?.Invoke(this, t);
+                this.EndVisit(t);
+                this.currProp = null;
+            }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, parent);
+            this.EndVisit(parent);
+        }
         private void VisitProperties(IGroupListProperties parent, IEnumerable<IProperty> lst, bool isActFromRootToBottom)
         {
             this.BeginVisit(parent);
@@ -609,6 +641,8 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IGroupListDocuments cn) { }
         protected virtual void BeginVisit(IDocument d) { }
         protected virtual void EndVisit(IDocument d) { }
+        protected virtual void BeginVisit(IDocumentTimeline cn) { }
+        protected virtual void EndVisit(IDocumentTimeline cn) { }
         #endregion Document
 
         #region Register

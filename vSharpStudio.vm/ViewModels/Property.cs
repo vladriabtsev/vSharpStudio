@@ -57,6 +57,8 @@ namespace vSharpStudio.vm.ViewModels
                     case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
                     case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
                         return this.Name + "Ref" + fname;
+                    case EnumDataType.REF_TIMELINE:
+                        return this.Name + "Ref" + fname;
                     case EnumDataType.CATALOG:
                     case EnumDataType.DOCUMENT:
                         return this.Name + "Ref" + fname;
@@ -92,6 +94,8 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public IGroupListProperties ParentGroupListPropertiesI { get { Debug.Assert(this.Parent != null); return (IGroupListProperties)this.Parent; } }
         [Browsable(false)]
+        public IListProperties ParentListPropertiesI { get { Debug.Assert(this.Parent != null); return (IListProperties)this.Parent; } }
+        [Browsable(false)]
         // Can be used by a generator to keep calculated property data
         public object? Tag { get; set; }
         [Browsable(false)]
@@ -107,7 +111,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IChildrenCollection GetListSiblings()
         {
-            return this.ParentGroupListProperties.Children;
+            return this.ParentListPropertiesI.Children;
         }
         public override bool HasChildren()
         {
@@ -167,6 +171,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT:
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
+                case EnumDataType.REF_TIMELINE:
                     this.IsComplex = true;
                     break;
             }
@@ -281,7 +286,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentGroupListProperties.ListProperties.CanUp(this))
+                if (this.ParentListPropertiesI.ListProperties.CanUp(this))
                 {
                     return true;
                 }
@@ -291,7 +296,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Property?)this.ParentGroupListProperties.ListProperties.GetPrev(this);
+            var prev = (Property?)this.ParentListPropertiesI.ListProperties.GetPrev(this);
             if (prev == null)
                 return;
             this.SetSelected(prev);
@@ -299,7 +304,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            this.ParentGroupListProperties.ListProperties.MoveUp(this);
+            this.ParentListPropertiesI.ListProperties.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -307,7 +312,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentGroupListProperties.ListProperties.CanDown(this))
+                if (this.ParentListPropertiesI.ListProperties.CanDown(this))
                 {
                     return true;
                 }
@@ -317,7 +322,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Property?)this.ParentGroupListProperties.ListProperties.GetNext(this);
+            var next = (Property?)this.ParentListPropertiesI.ListProperties.GetNext(this);
             if (next == null)
                 return;
             this.SetSelected(next);
@@ -325,20 +330,20 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            this.ParentGroupListProperties.ListProperties.MoveDown(this);
+            this.ParentListPropertiesI.ListProperties.MoveDown(this);
             this.SetSelected(this);
         }
 
         public void NodeRemove(bool ask = true)
         {
-            this.ParentGroupListProperties.Remove(this);
+            this.ParentListPropertiesI.ListProperties.Remove(this);
             this.Parent = null;
         }
         public override ITreeConfigNode NodeAddClone()
         {
             Debug.Assert(this.Parent != null);
             var node = Property.Clone(this.Parent, this, true, true);
-            this.ParentGroupListProperties.Add(node);
+            this.ParentListPropertiesI.ListProperties.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -352,15 +357,15 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             var node = new Property(this.Parent);
-            this.ParentGroupListProperties.Add(node);
-            node.Position = this.ParentGroupListProperties.GetNextPosition();
-            this.GetUniqueName(Defaults.PropertyName, node, this.ParentGroupListProperties.ListProperties);
+            this.ParentListPropertiesI.ListProperties.Add(node);
+            node.Position = this.ParentListPropertiesI.GetNextPosition();
+            this.GetUniqueName(Defaults.PropertyName, node, this.ParentListPropertiesI.ListProperties);
             this.SetSelected(node);
             return node;
         }
         public void Remove()
         {
-            this.ParentGroupListProperties.ListProperties.Remove(this);
+            this.ParentListPropertiesI.ListProperties.Remove(this);
         }
         #endregion Tree operations
 
@@ -421,6 +426,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT:
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
+                case EnumDataType.REF_TIMELINE:
                     this.IsComplex = true;
                     break;
                 default:
@@ -433,7 +439,7 @@ namespace vSharpStudio.vm.ViewModels
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
-            if (!(this.ParentGroupListProperties.Parent is Catalog))
+            if (!(this.Parent.Parent is Catalog))
             {
                 lst.Add(nameof(this.IsUseHistory));
             }
@@ -776,7 +782,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridSortable == EnumUseType.No)
                 return false;
-            return this.ParentGroupListProperties.GetIsGridSortable();
+            return this.ParentListPropertiesI.GetIsGridSortable();
         }
         public bool IsGridFilterableGet()
         {
@@ -784,7 +790,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridFilterable == EnumUseType.No)
                 return false;
-            return this.ParentGroupListProperties.GetIsGridFilterable();
+            return this.ParentListPropertiesI.GetIsGridFilterable();
         }
         public bool IsGridSortableCustomGet()
         {
@@ -792,7 +798,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridSortableCustom == EnumUseType.No)
                 return false;
-            return this.ParentGroupListProperties.GetIsGridSortableCustom();
+            return this.ParentListPropertiesI.GetIsGridSortableCustom();
         }
 
         #region Roles
@@ -853,13 +859,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.dicPropertyAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumPropertyAccess.P_BY_PARENT)
                 return r.EditAccess;
-            return this.ParentGroupListProperties.GetRolePropertyAccess(role);
+            return this.ParentListPropertiesI.GetRolePropertyAccess(role);
         }
         public EnumPrintAccess GetRolePropertyPrint(IRole role)
         {
             if (this.dicPropertyAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
                 return r.PrintAccess;
-            return this.ParentGroupListProperties.GetRolePropertyPrint(role);
+            return this.ParentListPropertiesI.GetRolePropertyPrint(role);
         }
         public IReadOnlyList<string> GetRolesByAccess(EnumPropertyAccess access)
         {

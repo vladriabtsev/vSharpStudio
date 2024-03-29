@@ -247,6 +247,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_document_timeline"><span class="badge">M</span>proto_document_timeline</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_enumeration"><span class="badge">M</span>proto_enumeration</a>
                 </li>
               
@@ -3124,6 +3128,150 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
 
         
       
+        <h3 id="proto_config.proto_document_timeline">proto_document_timeline</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_properties</td>
+                  <td><a href="#proto_config.proto_property">proto_property</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_line_time_accuracy</td>
+                  <td><a href="#proto_config.proto_enum_time_accuracy_type">proto_enum_time_accuracy_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(6)]
+@attr [DisplayName(&#34;Timeline accuracy&#34;)]
+@attr [Description(&#34;Document time line accuracy. Only one document can posted at any point of time line.&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_line_property_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(12)]
+@attr [DisplayName(&#34;Timeline property&#34;)]
+@attr [Description(&#34;Timeline property name in document timeline&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id_type_for_cache_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(15)]
+@attr [DisplayName(&#34;Short ID&#34;)]
+@attr [Description(&#34;Short register type ID for cache key generator&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Sortable&#34;)]
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Custom Sortable&#34;)]
+@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Filterable&#34;)]
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_gen_position</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Last generated Protobuf field position
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_role_property_access_settings</td>
+                  <td><a href="#proto_config.proto_role_property_access">proto_role_property_access</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_enumeration">proto_enumeration</h3>
         <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
 
@@ -4703,8 +4851,8 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>group_shared_properties</td>
-                  <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
+                  <td>document_timeline</td>
+                  <td><a href="#proto_config.proto_document_timeline">proto_document_timeline</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)]
 @attr [Description(&#34;Properties for all documents&#34;)] </p></td>
@@ -4715,36 +4863,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#proto_config.proto_group_list_documents">proto_group_list_documents</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>timeline_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(8)]
-@attr [DisplayName(&#34;Timeline&#34;)]
-@attr [Description(&#34;Name of Timeline for documents&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time_line_time_accuracy</td>
-                  <td><a href="#proto_config.proto_enum_time_accuracy_type">proto_enum_time_accuracy_type</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(6)]
-@attr [DisplayName(&#34;Timeline accuracy&#34;)]
-@attr [Description(&#34;Document time line accuracy. Only one document can posted at any point of time line.&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time_line_property_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(12)]
-@attr [DisplayName(&#34;Timeline property&#34;)]
-@attr [Description(&#34;Timeline property name in document timeline&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -10267,6 +10385,12 @@ which DB type to use for whole TimeSpan ???</p></td>
                 <td><p>@attr [Browsable(false)]</p></td>
               </tr>
             
+              <tr>
+                <td>REF_TIMELINE</td>
+                <td>148</td>
+                <td><p>@attr [Browsable(false)]</p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -10560,6 +10684,12 @@ which DB type to use for whole TimeSpan ???</p></td>
                 <td>D_POST</td>
                 <td>41</td>
                 <td><p>@attr [Description(&#34;Post&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>D_VIEW_POST_DATA</td>
+                <td>45</td>
+                <td><p>@attr [Description(&#34;Post data&#34;)]</p></td>
               </tr>
             
               <tr>

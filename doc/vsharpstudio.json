@@ -511,6 +511,11 @@
               "name": "REF_DETAIL_TO_PARENT_DOCUMENT",
               "number": "147",
               "description": "@attr [Browsable(false)]"
+            },
+            {
+              "name": "REF_TIMELINE",
+              "number": "148",
+              "description": "@attr [Browsable(false)]"
             }
           ]
         },
@@ -751,6 +756,11 @@
               "name": "D_POST",
               "number": "41",
               "description": "@attr [Description(\"Post\")]"
+            },
+            {
+              "name": "D_VIEW_POST_DATA",
+              "number": "45",
+              "description": "@attr [Description(\"Post data\")]"
             },
             {
               "name": "D_UNPOST",
@@ -5390,6 +5400,198 @@
           ]
         },
         {
+          "name": "proto_document_timeline",
+          "longName": "proto_document_timeline",
+          "fullName": "proto_config.proto_document_timeline",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "list_properties",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_property",
+              "longType": "proto_property",
+              "fullType": "proto_config.proto_property",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "time_line_time_accuracy",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Timeline accuracy\")]\n@attr [Description(\"Document time line accuracy. Only one document can posted at any point of time line.\")]",
+              "label": "",
+              "type": "proto_enum_time_accuracy_type",
+              "longType": "proto_enum_time_accuracy_type",
+              "fullType": "proto_config.proto_enum_time_accuracy_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "time_line_property_name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Timeline property\")]\n@attr [Description(\"Timeline property name in document timeline\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "short_id_type_for_cache_key",
+              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Short ID\")]\n@attr [Description(\"Short register type ID for cache key generator\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_gen_position",
+              "description": "Last generated Protobuf field position\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "list_role_property_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_property_access",
+              "longType": "proto_role_property_access",
+              "fullType": "proto_config.proto_role_property_access",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_enumeration",
           "longName": "proto_enumeration",
           "fullName": "proto_config.proto_enumeration",
@@ -7488,12 +7690,12 @@
               "defaultValue": ""
             },
             {
-              "name": "group_shared_properties",
+              "name": "document_timeline",
               "description": "@attr [Browsable(false)]\n@attr [Description(\"Properties for all documents\")]",
               "label": "",
-              "type": "proto_group_list_properties",
-              "longType": "proto_group_list_properties",
-              "fullType": "proto_config.proto_group_list_properties",
+              "type": "proto_document_timeline",
+              "longType": "proto_document_timeline",
+              "fullType": "proto_config.proto_document_timeline",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -7506,42 +7708,6 @@
               "type": "proto_group_list_documents",
               "longType": "proto_group_list_documents",
               "fullType": "proto_config.proto_group_list_documents",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "timeline_name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Timeline\")]\n@attr [Description(\"Name of Timeline for documents\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "time_line_time_accuracy",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Timeline accuracy\")]\n@attr [Description(\"Document time line accuracy. Only one document can posted at any point of time line.\")]",
-              "label": "",
-              "type": "proto_enum_time_accuracy_type",
-              "longType": "proto_enum_time_accuracy_type",
-              "fullType": "proto_config.proto_enum_time_accuracy_type",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "time_line_property_name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Timeline property\")]\n@attr [Description(\"Timeline property name in document timeline\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

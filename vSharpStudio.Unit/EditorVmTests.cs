@@ -917,7 +917,7 @@ namespace vSharpStudio.Unit
             mrec.ListToMap.Single(m => m.Name == pMoney.Name);
             mrec.ListToMap.Single(m => m.Name == pQty.Name);
 
-            var s_qty5_2 = cfg.Model.GroupDocuments.AddSharedPropertyNumerical("qty", 15, 1);
+            var s_qty5_2 = cfg.Model.GroupDocuments.DocumentTimeline.AddPropertyNumerical("qty", 15, 1);
             r.UpdateListMappings();
             mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
             Assert.AreEqual(3, mrec.ListToMap.Count);
@@ -976,7 +976,7 @@ namespace vSharpStudio.Unit
             mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
 
             // 2. Can find doc shared property to map register dimension 
-            var pSharedC1 = d.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.AddPropertyCatalog("pSharedC1", c1);
+            var pSharedC1 = d.ParentGroupListDocuments.ParentGroupDocuments.DocumentTimeline.AddPropertyCatalog("pSharedC1", c1);
             r.AddDimension(pSharedC1.Name, c1);
             r.UpdateListMappings();
             Assert.AreEqual(3, r.ListMappings.Count);

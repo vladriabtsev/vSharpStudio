@@ -31,10 +31,10 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
                 var pg = p.ParentGroupListDocuments;
-                if (name == pg.ParentGroupDocuments.TimelineName)
+                if (name == pg.ParentGroupDocuments.DocumentTimeline.TimeLinePropertyName)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Group documents parameter 'Timeline name' is set to '{pg.ParentGroupDocuments.TimelineName}'. This name is reverved for documents timeline.");
+                        $"Document timeline property name is set to '{pg.ParentGroupDocuments.DocumentTimeline.TimeLinePropertyName}'. This name is reserved for document timeline property.");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }

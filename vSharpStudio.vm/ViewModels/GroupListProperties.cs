@@ -15,8 +15,20 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
+    public interface IListProperties
+    {
+        ConfigNodesCollection<Property> ListProperties { get; }
+        ConfigNodesCollection<Property> Children { get; }
+        uint GetNextPosition();
+        bool GetIsGridSortable();
+        bool GetIsGridFilterable();
+        bool GetIsGridSortableCustom();
+        EnumPropertyAccess GetRolePropertyAccess(IRole role);
+        EnumPrintAccess GetRolePropertyPrint(IRole role);
+        void SetRoleAccess(IRole role, EnumPropertyAccess? edit, EnumPrintAccess? print);
+    }
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup, IRoleAccess
+    public partial class GroupListProperties : IListProperties, ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup, IRoleAccess
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -622,16 +634,16 @@ namespace vSharpStudio.vm.ViewModels
                 this.ListRolePropertyAccessSettings.Add(rca);
                 this.dicPropertyAccess[role.Guid] = rca;
             }
-            return dicPropertyAccess[role.Guid];
+            return this.dicPropertyAccess[role.Guid];
         }
         public void SetRoleAccess(IRole role, EnumPropertyAccess? edit, EnumPrintAccess? print)
         {
             Debug.Assert(role != null);
-            Debug.Assert(dicPropertyAccess.ContainsKey(role.Guid));
+            Debug.Assert(this.dicPropertyAccess.ContainsKey(role.Guid));
             if (edit.HasValue)
-                dicPropertyAccess[role.Guid].EditAccess = edit.Value;
+                this.dicPropertyAccess[role.Guid].EditAccess = edit.Value;
             if (print.HasValue)
-                dicPropertyAccess[role.Guid].PrintAccess = print.Value;
+                this.dicPropertyAccess[role.Guid].PrintAccess = print.Value;
         }
         internal Dictionary<string, RolePropertyAccess> dicPropertyAccess = new();
         public void InitRoles()

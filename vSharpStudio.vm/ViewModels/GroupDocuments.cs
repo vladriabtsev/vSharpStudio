@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnDebugStringExtend(ref string mes)
         {
-            mes = mes + $" Shared:{this.GroupSharedProperties.ListProperties.Count} Docs:{this.GroupListDocuments.ListDocuments.Count}";
+            mes = mes + $" Shared:{this.DocumentTimeline.ListProperties.Count} Docs:{this.GroupListDocuments.ListDocuments.Count}";
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -45,7 +45,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._PrefixForCompositionNames = "Doc";
             this._MondayBeforeFirstDocDate = Timestamp.FromDateTime(new DateTime(1000, 1, 6, 0, 0, 0, DateTimeKind.Utc));
-            this._TimeLinePropertyName = "DocDateTime";
             this._DocShortTypeIdPropertyName = "DocShortTypeId";
             this.IsEditable = false;
             Init();
@@ -59,11 +58,11 @@ namespace vSharpStudio.vm.ViewModels
             if (this.Children.Count > 0)
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
-            children.Add(this.GroupSharedProperties, 2);
+            children.Add(this.DocumentTimeline, 2);
             children.Add(this.GroupListSequences, 3);
             children.Add(this.GroupListDocuments, 4);
-            children.Add(this.GroupJournals, 5);
-            children.Add(this.GroupRegisters, 6);
+            children.Add(this.GroupRegisters, 5);
+            children.Add(this.GroupJournals, 6);
 
             //this.ListRoles.OnAddingAction = (t) =>
             //{
@@ -82,7 +81,6 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
             this._Name = Defaults.DocumentsGroupName;
-            this._TimelineName = "JournalTimeline";
         }
         public Document AddDocument(string name, string? guid = null)
         {
@@ -97,117 +95,6 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             this.GroupListDocuments.NodeAddNewSubNode(node);
             return node;
-        }
-        public Property AddSharedProperty(string name, string? guid = null)
-        {
-            var node = new Property(this.GroupSharedProperties) { Name = name };
-#if DEBUG
-            if (guid != null) // for test model generation
-            {
-                if (this.Cfg.DicNodes.ContainsKey(guid))
-                    return node;
-                node.Guid = guid;
-            }
-#endif
-            this.GroupSharedProperties.NodeAddNewSubNode(node);
-            return node;
-        }
-        public Property AddSharedPropertyCatalog(string name, string catGuid, bool isNullable = false, bool isCsNullable = true, string? guidProperty = null)
-        {
-            var node = new Property(this.GroupSharedProperties) { Name = name, IsNullable = isNullable, IsCsNullable = isCsNullable };
-#if DEBUG
-            if (guidProperty != null) // for test model generation
-            {
-                if (this.Cfg.DicNodes.ContainsKey(guidProperty))
-                    return node;
-                node.Guid = guidProperty;
-            }
-#endif
-            node.DataType = new DataType(node)
-            {
-                DataTypeEnum = EnumDataType.CATALOG,
-                IsNullable = isNullable,
-                ObjectRef = new ComplexRef(node.Guid, catGuid)
-            };
-            this.GroupSharedProperties.NodeAddNewSubNode(node);
-            return node;
-        }
-        public Property AddSharedProperty(string name, DataType type, string? guid = null)
-        {
-            var node = new Property(this.GroupSharedProperties) { Name = name, DataType = type };
-#if DEBUG
-            if (guid != null) // for test model generation
-            {
-                if (this.Cfg.DicNodes.ContainsKey(guid))
-                    return node;
-                node.Guid = guid;
-            }
-#endif
-            this.GroupSharedProperties.NodeAddNewSubNode(node);
-            return node;
-        }
-        public Property AddSharedProperty(string name, EnumDataType type, uint length, uint accuracy, string? guid = null)
-        {
-            var node = new Property(this.GroupSharedProperties) { Name = name };
-#if DEBUG
-            if (guid != null) // for test model generation
-            {
-                if (this.Cfg.DicNodes.ContainsKey(guid))
-                    return node;
-                node.Guid = guid;
-            }
-#endif
-            node.DataType = new DataType(node) { DataTypeEnum = type, Length = length, Accuracy = accuracy };
-            this.GroupSharedProperties.NodeAddNewSubNode(node);
-            return node;
-        }
-        public Property AddSharedPropertyString(string name, uint length, string? guid = null)
-        {
-            var node = new Property(this.GroupSharedProperties) { Name = name };
-#if DEBUG
-            if (guid != null) // for test model generation
-            {
-                if (this.Cfg.DicNodes.ContainsKey(guid))
-                    return node;
-                node.Guid = guid;
-            }
-#endif
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
-            this.GroupSharedProperties.NodeAddNewSubNode(node);
-            return node;
-        }
-        public Property AddSharedPropertyNumerical(string name, uint length, uint accuracy, string? guid = null)
-        {
-            var node = new Property(this.GroupSharedProperties) { Name = name };
-#if DEBUG
-            if (guid != null) // for test model generation
-            {
-                if (this.Cfg.DicNodes.ContainsKey(guid))
-                    return node;
-                node.Guid = guid;
-            }
-#endif
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
-            this.GroupSharedProperties.NodeAddNewSubNode(node);
-            return node;
-        }
-        /// <summary>
-        /// Only shared properties
-        /// </summary>
-        /// <param name="guidAppPrjGen"></param>
-        /// <returns></returns>
-        public IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen)
-        {
-            var res = new List<IProperty>();
-            foreach (var t in this.GroupSharedProperties.ListProperties)
-            {
-                if (t.IsIncluded(guidAppPrjGen))
-                {
-                    t.IsDocShared = true;
-                    res.Add(t);
-                }
-            }
-            return res;
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
@@ -282,14 +169,5 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Roles
 
-        public string GetTimelineCompositeName()
-        {
-            string name = this.TimelineName;
-            if (this.ParentModel.IsUseNameComposition)
-            {
-                name = this.PrefixForCompositionNames + name;
-            }
-            return name;
-        }
     }
 }

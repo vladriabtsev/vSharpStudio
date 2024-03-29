@@ -2098,7 +2098,6 @@ namespace vSharpStudio.Unit
 
             // Document
             var gd = m.GroupDocuments;
-            var pds = gd.AddSharedPropertyString("shared", 5);
             var d = gd.AddDocument("Doc1");
             var gld = d.ParentGroupListDocuments;
             Assert.IsTrue(d.dicDocumentAccess.Count == 1);
@@ -2107,6 +2106,9 @@ namespace vSharpStudio.Unit
             var pd = d.GroupProperties.AddPropertyChar("char_notnullable");
             Assert.IsTrue(pd.dicPropertyAccess.Count == 1);
             Assert.AreEqual(EnumPropertyAccess.P_EDIT, pd.GetRolePropertyAccess(role));
+
+            // Timeline
+            var pTimeline = gd.DocumentTimeline.AddPropertyString("shared", 5);
 
             // Constant
             foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
@@ -2223,24 +2225,24 @@ namespace vSharpStudio.Unit
                 }
             }
 
-            // Document shared property
+            // Timeline property
             foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
             {
                 var enPrint = (EnumPrintAccess)tpr;
                 foreach (var tpa in Enum.GetValues(typeof(EnumPropertyAccess)))
                 {
                     var enPropAccess = (EnumPropertyAccess)tpa;
-                    pds.SetRoleAccess(role, enPropAccess, enPrint);
+                    pTimeline.SetRoleAccess(role, enPropAccess, enPrint);
                     switch (enPropAccess)
                     {
                         case EnumPropertyAccess.P_BY_PARENT:
                             // List properties
-                            TestGroupListProperties(role, gd, pds, enPrint);
+                            TestGroupListProperties(role, gd, pTimeline, enPrint);
                             break;
                         default:
                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                Assert.AreEqual(enPrint, pds.GetRolePropertyPrint(role));
-                            Assert.AreEqual(enPropAccess, pds.GetRolePropertyAccess(role));
+                                Assert.AreEqual(enPrint, pTimeline.GetRolePropertyPrint(role));
+                            Assert.AreEqual(enPropAccess, pTimeline.GetRolePropertyAccess(role));
                             break;
                     }
                 }
@@ -2416,7 +2418,7 @@ namespace vSharpStudio.Unit
         }
         private static void TestGroupListProperties(Role role, GroupDocuments gd, Property p, EnumPrintAccess enPrint)
         {
-            var glp = p.ParentGroupListProperties;
+            var glp = p.ParentListPropertiesI;
             foreach (var tca in Enum.GetValues(typeof(EnumPropertyAccess)))
             {
                 var enPropAccess = (EnumPropertyAccess)tca;
@@ -2717,6 +2719,8 @@ namespace vSharpStudio.Unit
                 case EnumDocumentAccess.D_MARK_DEL:
                     Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role));
                     break;
+                case EnumDocumentAccess.D_VIEW_POST_DATA:
+                    break;
                 default:
                     throw new NotImplementedException();
             }
@@ -2749,7 +2753,7 @@ namespace vSharpStudio.Unit
                 }
             }
         }
-        private static void TestGroupDocumentsShared(Role role, GroupDocuments gd, GroupListProperties glp, Property p, EnumPrintAccess enPrint)
+        private static void TestGroupDocumentsShared(Role role, GroupDocuments gd, IListProperties glp, Property p, EnumPrintAccess enPrint)
         {
             foreach (var tca in Enum.GetValues(typeof(EnumPropertyAccess)))
             {

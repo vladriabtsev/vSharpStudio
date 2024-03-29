@@ -500,11 +500,12 @@ namespace vSharpStudio.vm.ViewModels
 
             if (!isExcludeSpecial)
             {
-                // Id
-                var pId = m.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, this.Cfg.Model.PKeyName, 0, false, true);
+                // RefTimeline
+                var timelineName = "Ref" + this.ParentGroupListRegisters.ParentGroupDocuments.DocumentTimeline.CompositeName;
+                var pRefTimeline = m.GetPropertyTimeline(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, timelineName, 0, false, true);
                 //var pId = m.GetPropertyPkId(this, this.Guid); // position 6
-                pId.TagInList = "id";
-                lst.Add(pId);
+                pRefTimeline.TagInList = "id";
+                lst.Add(pRefTimeline);
 
                 if (isOptimistic)
                 {
@@ -947,7 +948,7 @@ namespace vSharpStudio.vm.ViewModels
                     var row = new RegisterMappingRow(doc, this, t.Guid, t.Name);
                     this.ListMappings.Add(row);
                 }
-                foreach (var t in doc.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties)
+                foreach (var t in doc.ParentGroupListDocuments.ParentGroupDocuments.DocumentTimeline.ListProperties)
                 {
                     this.fulListToMap.Add(t);
                 }

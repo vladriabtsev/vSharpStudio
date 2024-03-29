@@ -214,12 +214,12 @@ namespace vSharpStudio.vm.ViewModels
                         p.GroupListDocuments.ListDocuments.Remove(t as Document);
                     }
                 }
-                var lst2 = p.GroupSharedProperties.ListProperties.ToList();
+                var lst2 = p.DocumentTimeline.ListProperties.ToList();
                 foreach (var t in lst2)
                 {
                     if (t.IsMarkedForDeletion && t.IsNew)
                     {
-                        p.GroupSharedProperties.ListProperties.Remove(t as Property);
+                        p.DocumentTimeline.ListProperties.Remove(t as Property);
                     }
                 }
             }

@@ -598,6 +598,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT:
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
+                case EnumDataType.REF_TIMELINE:
                     return;
                 case EnumDataType.CATALOG:
                     Debug.Assert(this.Cfg != null);
@@ -826,6 +827,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT:
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
+                case EnumDataType.REF_TIMELINE:
                     return;
                 case EnumDataType.CHAR:
                 case EnumDataType.BOOL:

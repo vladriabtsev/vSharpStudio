@@ -21,6 +21,7 @@
     - [proto_doc_in_journal](#proto_config-proto_doc_in_journal)
     - [proto_document](#proto_config-proto_document)
     - [proto_document_enumerator_sequence](#proto_config-proto_document_enumerator_sequence)
+    - [proto_document_timeline](#proto_config-proto_document_timeline)
     - [proto_enumeration](#proto_config-proto_enumeration)
     - [proto_enumeration_pair](#proto_config-proto_enumeration_pair)
     - [proto_form](#proto_config-proto_form)
@@ -655,6 +656,35 @@ Constant application wise value
 
 
 
+<a name="proto_config-proto_document_timeline"></a>
+
+### proto_document_timeline
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| list_properties | [proto_property](#proto_config-proto_property) | repeated | @attr [Browsable(false)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| time_line_time_accuracy | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Timeline accuracy&#34;)] @attr [Description(&#34;Document time line accuracy. Only one document can posted at any point of time line.&#34;)] |
+| time_line_property_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Timeline property&#34;)] @attr [Description(&#34;Timeline property name in document timeline&#34;)] |
+| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short register type ID for cache key generator&#34;)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
+| last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
+| list_role_property_access_settings | [proto_role_property_access](#proto_config-proto_role_property_access) | repeated | @attr [Browsable(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
 <a name="proto_config-proto_enumeration"></a>
 
 ### proto_enumeration
@@ -1050,11 +1080,8 @@ C O N S T A N T
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | prefix_for_composition_names | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Composition prefix&#34;)] @attr [Description(&#34;Prefix for documents composition names. Used if set to use in config model&#34;)] |
-| group_shared_properties | [proto_group_list_properties](#proto_config-proto_group_list_properties) |  | @attr [Browsable(false)] @attr [Description(&#34;Properties for all documents&#34;)] |
+| document_timeline | [proto_document_timeline](#proto_config-proto_document_timeline) |  | @attr [Browsable(false)] @attr [Description(&#34;Properties for all documents&#34;)] |
 | group_list_documents | [proto_group_list_documents](#proto_config-proto_group_list_documents) |  | @attr [Browsable(false)] |
-| timeline_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Timeline&#34;)] @attr [Description(&#34;Name of Timeline for documents&#34;)] |
-| time_line_time_accuracy | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Timeline accuracy&#34;)] @attr [Description(&#34;Document time line accuracy. Only one document can posted at any point of time line.&#34;)] |
-| time_line_property_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Timeline property&#34;)] @attr [Description(&#34;Timeline property name in document timeline&#34;)] |
 | doc_short_type_id_property_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Doc short type&#34;)] @attr [Description(&#34;Doc short type property name in document timeline&#34;)] |
 | group_registers | [proto_group_list_registers](#proto_config-proto_group_list_registers) |  | @attr [Browsable(false)] @attr [Description(&#34;Registers for documents&#34;)] |
 | group_journals | [proto_group_list_journals](#proto_config-proto_group_list_journals) |  | @attr [Browsable(false)] |
@@ -2492,6 +2519,7 @@ with history |
 | REF_TO_SELF_TREE_CATALOG_PARENT | 145 | @attr [Browsable(false)] |
 | REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT | 146 | @attr [Browsable(false)] |
 | REF_DETAIL_TO_PARENT_DOCUMENT | 147 | @attr [Browsable(false)] |
+| REF_TIMELINE | 148 | @attr [Browsable(false)] |
 
 
 
@@ -2582,6 +2610,7 @@ with history |
 | D_VIEW | 21 | @attr [Description(&#34;View&#34;)] |
 | D_EDIT | 31 | @attr [Description(&#34;Edit&#34;)] |
 | D_POST | 41 | @attr [Description(&#34;Post&#34;)] |
+| D_VIEW_POST_DATA | 45 | @attr [Description(&#34;Post data&#34;)] |
 | D_UNPOST | 51 | @attr [Description(&#34;Unpost&#34;)] |
 | D_MARK_DEL | 61 | @attr [Description(&#34;Del&#34;)] |
 

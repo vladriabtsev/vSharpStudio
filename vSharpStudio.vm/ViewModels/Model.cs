@@ -537,6 +537,15 @@ namespace vSharpStudio.vm.ViewModels
             dt.IsNullable = isNullable;
             return dt;
         }
+        public IDataType GetDataTypeTimeline(ITreeConfigNode? parent, string timelineTableGuid, bool isNullable, bool isPKey)
+        {
+            DataType dt = new DataType(parent);
+            dt.ObjectRef.ForeignObjectGuid = timelineTableGuid;
+            dt.DataTypeEnum = EnumDataType.REF_TIMELINE;
+            dt.IsNullable = isNullable;
+            dt.IsPKey = isPKey;
+            return dt;
+        }
         public IDataType GetDataTypeAny(ITreeConfigNode? parent, bool isNullable)
         {
             DataType dt = new DataType(parent);
@@ -1017,6 +1026,15 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = (DataType)this.GetDataTypeDocument(parent, docGuid, isNullable);
+            res.IsComplex = true;
+            return res;
+        }
+        public IProperty GetPropertyTimeline(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, bool isPKey)
+        {
+            var res = new Property(parent, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = (DataType)this.GetDataTypeTimeline(parent, this.GroupDocuments.Guid, isNullable, isPKey);
             res.IsComplex = true;
             return res;
         }

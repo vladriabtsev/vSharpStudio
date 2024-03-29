@@ -186,7 +186,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             if (nerr >= nerrMax) return;
-            foreach (var t in model.GroupDocuments.GroupSharedProperties.ListProperties)
+            foreach (var t in model.GroupDocuments.DocumentTimeline.ListProperties)
             {
                 if (nerr >= nerrMax) return;
                 if (model.RecordVersionFieldName == t.Name)

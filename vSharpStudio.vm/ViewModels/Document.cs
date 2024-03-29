@@ -317,7 +317,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                return this.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties.Count > 0;
+                return this.ParentGroupListDocuments.ParentGroupDocuments.DocumentTimeline.ListProperties.Count > 0;
             }
         }
         public void GetNormalProperties(List<IProperty> res)
@@ -338,7 +338,7 @@ namespace vSharpStudio.vm.ViewModels
             var grd = this.ParentGroupListDocuments.ParentGroupDocuments;
             int i = 0;
             GetSpecialProperties(res, isOptimistic, isExcludeSpecial, false);
-            foreach (var t in grd.GroupSharedProperties.ListProperties)
+            foreach (var t in grd.DocumentTimeline.ListProperties)
             {
                 res.Add(t);
             }
@@ -401,7 +401,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (!isOnlyNotShared)
             {
-                foreach (var t in this.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties.ListProperties)
+                foreach (var t in this.ParentGroupListDocuments.ParentGroupDocuments.DocumentTimeline.ListProperties)
                 {
                     if (t.IsIncluded(guidAppPrjGen))
                     {

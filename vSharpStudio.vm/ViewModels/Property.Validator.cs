@@ -58,7 +58,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (!(p.Parent is GroupListProperties)) // no need validate
                     return;
                 var pg = p.ParentGroupListProperties;
-                GroupListProperties? pgs = null;
+                List<Property>? pList = null;
                 var model = pg.Cfg.Model;
                 if (name == model.PKeyName)
                 {
@@ -146,7 +146,7 @@ namespace vSharpStudio.vm.ViewModels
                 else if (pg.Parent is Document d)
                 {
                     ValidateSpecialProperties(name, cntx, p, d);
-                    pgs = d.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties;
+                    pList = d.ParentGroupListDocuments.ParentGroupDocuments.DocumentTimeline.ListProperties.ToList();
                 }
                 else if (pg.Parent is GroupDocuments gd)
                 {
@@ -161,9 +161,9 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(false);
                     throw new NotImplementedException();
                 }
-                if (pgs != null)
+                if (pList != null)
                 {
-                    foreach (var t in pgs.ListProperties.ToList())
+                    foreach (var t in pList)
                     {
                         if ((p.Guid != t.Guid) && (name == t.Name))
                         {
@@ -1072,10 +1072,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, GroupDocuments gd)
         {
-            if (name == gd.TimeLinePropertyName)
+            if (name == gd.DocumentTimeline.TimeLinePropertyName)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Group documents is configured to use {gd.TimeLinePropertyName} as timeline property name. Property name {gd.TimeLinePropertyName} is reserved for timeline property.");
+                    $"Document timeline is configured to use {gd.DocumentTimeline.TimeLinePropertyName} as timeline property name in documents. Property name {gd.DocumentTimeline.TimeLinePropertyName} is reserved for timeline property.");
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
