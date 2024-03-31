@@ -121,31 +121,6 @@ namespace vSharpStudio.common
             #endregion Catalogs
 
             #region Documents
-            this.BeginVisit(currModel.GroupDocuments);
-            if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupDocuments);
-            this.VisitProperties(currModel.GroupDocuments.DocumentTimeline, currModel.GroupDocuments.DocumentTimeline.ListProperties, isActFromRootToBottom);
-            this.BeginVisit(currModel.GroupDocuments.GroupListDocuments);
-            if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListDocuments);
-            this.BeginVisit(currModel.GroupDocuments.GroupListDocuments.ListDocuments);
-            foreach (var tt in currModel.GroupDocuments.GroupListDocuments.ListDocuments)
-            {
-                this.BeginVisit(tt);
-                this.currDoc = tt;
-                this._act?.Invoke(this, tt);
-                //if (tt.IsDeleted())
-                //    continue;
-                this.VisitProperties(tt.GroupProperties, tt.GroupProperties.ListProperties, isActFromRootToBottom);
-                this.VisitDetails(tt.GroupDetails, tt.GroupDetails.ListDetails, isActFromRootToBottom);
-                this.VisitForms(tt.GroupForms, tt.GroupForms.ListForms, isActFromRootToBottom);
-                this.VisitReports(tt.GroupReports, tt.GroupReports.ListReports, isActFromRootToBottom);
-                this.EndVisit(tt);
-                this.currDoc = null;
-            }
-            this.EndVisit(currModel.GroupDocuments.GroupListDocuments.ListDocuments);
-            if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListDocuments);
 
             #region Timeline
             this.BeginVisit(currModel.GroupDocuments.DocumentTimeline);
@@ -176,6 +151,33 @@ namespace vSharpStudio.common
                 this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListSequences);
             this.EndVisit(currModel.GroupDocuments.GroupListSequences);
             #endregion Sequences
+
+            #region Document
+            this.BeginVisit(currModel.GroupDocuments);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments);
+            this.BeginVisit(currModel.GroupDocuments.GroupListDocuments);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListDocuments);
+            this.BeginVisit(currModel.GroupDocuments.GroupListDocuments.ListDocuments);
+            foreach (var tt in currModel.GroupDocuments.GroupListDocuments.ListDocuments)
+            {
+                this.BeginVisit(tt);
+                this.currDoc = tt;
+                this._act?.Invoke(this, tt);
+                //if (tt.IsDeleted())
+                //    continue;
+                this.VisitProperties(tt.GroupProperties, tt.GroupProperties.ListProperties, isActFromRootToBottom);
+                this.VisitDetails(tt.GroupDetails, tt.GroupDetails.ListDetails, isActFromRootToBottom);
+                this.VisitForms(tt.GroupForms, tt.GroupForms.ListForms, isActFromRootToBottom);
+                this.VisitReports(tt.GroupReports, tt.GroupReports.ListReports, isActFromRootToBottom);
+                this.EndVisit(tt);
+                this.currDoc = null;
+            }
+            this.EndVisit(currModel.GroupDocuments.GroupListDocuments.ListDocuments);
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupDocuments.GroupListDocuments);
+            #endregion Document
 
             #region Registers
             this.BeginVisit(currModel.GroupDocuments.GroupRegisters);
@@ -478,23 +480,6 @@ namespace vSharpStudio.common
         protected IDetail currPropTab => this.currPropTabStack.Peek();
 
         #region Private Visits
-        private void VisitProperties(IDocumentTimeline parent, IEnumerable<IProperty> lst, bool isActFromRootToBottom)
-        {
-            this.BeginVisit(parent);
-            if (isActFromRootToBottom)
-                this._act?.Invoke(this, parent);
-            foreach (var t in lst)
-            {
-                this.currProp = t;
-                this.BeginVisit(t);
-                this._act?.Invoke(this, t);
-                this.EndVisit(t);
-                this.currProp = null;
-            }
-            if (!isActFromRootToBottom)
-                this._act?.Invoke(this, parent);
-            this.EndVisit(parent);
-        }
         private void VisitProperties(IGroupListProperties parent, IEnumerable<IProperty> lst, bool isActFromRootToBottom)
         {
             this.BeginVisit(parent);

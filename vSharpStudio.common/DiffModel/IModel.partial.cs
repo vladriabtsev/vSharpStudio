@@ -79,6 +79,7 @@ namespace vSharpStudio.common
         IProperty GetPropertyRef(ICatalog fromObject, ICatalog toObject, string guid, string name, uint position, bool isNullable);
         IProperty GetPropertyRef(ICatalog fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable);
         IProperty GetPropertyRef(ICatalogFolder fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable);
+        IProperty GetPropertyRef(IRegister fromObject, IDocumentTimeline toObject, string guid, string name, uint position, bool isNullable);
 
         //IProperty GetPropertyBool(string guid, string name, bool isNullable);
         //IProperty GetPropertyInt(string guid, uint length, string name);

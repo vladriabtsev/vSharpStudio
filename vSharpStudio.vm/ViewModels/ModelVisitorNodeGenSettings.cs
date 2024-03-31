@@ -86,6 +86,16 @@ namespace vSharpStudio.vm.ViewModels
             if (cn is INodeGenSettings ns)
                 _act2(ns);
         }
+        protected override void BeginVisit(IDocumentTimeline d)
+        {
+            if (d is INodeGenSettings ns)
+                _act2(ns);
+        }
+        protected override void BeginVisit(IDocumentEnumeratorSequence d)
+        {
+            if (d is INodeGenSettings ns)
+                _act2(ns);
+        }
         protected override void BeginVisit(IDocument d)
         {
             if (d is INodeGenSettings ns)

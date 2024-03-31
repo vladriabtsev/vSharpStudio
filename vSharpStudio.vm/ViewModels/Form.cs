@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Documents;
+using CommunityToolkit.Diagnostics;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -515,7 +516,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this._ListAllNotSpecialProperties.Clear();
                 var res = new List<IProperty>();
-                r4.GetNormalProperties(res);
+                //r4.GetNormalProperties(res);
                 var lst = new List<ISortingValue>();
                 foreach (var t in res)
                 {
@@ -601,7 +602,16 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this._ListSelectedNotSpecialProperties.Clear();
                 var res = new List<IProperty>();
-                r5.GetNormalProperties(res);
+                if (r5.RegisterType == EnumRegisterType.BALANCE)
+                {
+                    r5.GetNormalBalanceProperties(res);
+                }
+                else if (r5.RegisterType == EnumRegisterType.TURNOVER)
+                {
+                    r5.GetNormalTurnoverProperties(res);
+                }
+                else
+                    ThrowHelper.ThrowInvalidOperationException();
                 var lst = new List<ISortingValue>();
                 foreach (var t in res)
                 {

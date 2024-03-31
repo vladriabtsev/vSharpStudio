@@ -1010,6 +1010,18 @@ namespace vSharpStudio.vm.ViewModels
             res.IsComplex = true;
             return res;
         }
+        public IProperty GetPropertyRef(IRegister fromObject, IDocumentTimeline toObject, string guid, string name, uint position, bool isNullable)
+        {
+            var res = new Property(fromObject.GroupProperties, guid, name, true);
+            res.Position = position;
+            res.IsCsNullable = isNullable;
+            res.DataType = new DataType(fromObject);
+            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
+            res.DataType.DataTypeEnum = EnumDataType.REF_TIMELINE;
+            res.DataType.IsNullable = isNullable;
+            res.IsComplex = true;
+            return res;
+        }
 
         public IProperty GetPropertyCatalog(ITreeConfigNode parent, string guid, string name, string catGuid, uint position, bool isNullable)
         {
@@ -1034,7 +1046,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(parent, guid, name, true);
             res.Position = position;
             res.IsCsNullable = isNullable;
-            res.DataType = (DataType)this.GetDataTypeTimeline(parent, this.GroupDocuments.Guid, isNullable, isPKey);
+            res.DataType = (DataType)this.GetDataTypeTimeline(parent, this.GroupDocuments.DocumentTimeline.Guid, isNullable, isPKey);
             res.IsComplex = true;
             return res;
         }
@@ -1282,9 +1294,13 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return $"cg{cts.ShortId.ToString()}";
             }
+            else if (node is IDocumentTimeline tl)
+            {
+                return "tl"; // only one timeline
+            }
             else if (node is IGroupDocuments gd)
             {
-                return $"gr_docs";
+                return $"gr_docs"; // only one
             }
             ThrowHelper.ThrowInvalidOperationException();
             return "";

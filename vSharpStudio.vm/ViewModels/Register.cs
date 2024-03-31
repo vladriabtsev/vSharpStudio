@@ -130,9 +130,7 @@ namespace vSharpStudio.vm.ViewModels
             this._TableTurnoverPropertyQtyAccumulatorLength = 28;
             this._TableTurnoverPropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
             this._TableTurnoverPropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
-            this._PropertyPostDateGuid = System.Guid.NewGuid().ToString();
-            this._PropertyDocRefGuid = System.Guid.NewGuid().ToString();
-            this._PropertyDocGuidGuid = System.Guid.NewGuid().ToString();
+            this._PropertyRefTimeline = (Property)this.Cfg.Model.GetPropertyRef(this, this.Cfg.Model.GroupDocuments.DocumentTimeline, System.Guid.NewGuid().ToString(), "Ref", 0, false);
             this._IndexDocDateGuid = System.Guid.NewGuid().ToString();
             this._IndexDocIdTypeGuid = System.Guid.NewGuid().ToString();
             this._TableTurnoverGuid = System.Guid.NewGuid().ToString();
@@ -485,43 +483,59 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
-        public void GetNormalProperties(List<IProperty> res)
+        public void GetNormalBalanceProperties(List<IProperty> res)
         {
-            var lst = this.GetIncludedProperties("", false, true);
+            var lst = this.GetIncludedBalanceProperties("", false, true);
             foreach (var t in lst)
             {
                 res.Add(t);
             }
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
+        public void GetNormalTurnoverProperties(List<IProperty> res)
         {
-            var lst = new List<IProperty>();
-            var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
-
-            if (!isExcludeSpecial)
+            var lst = this.GetIncludedTurnoverProperties("", false, true);
+            foreach (var t in lst)
             {
-                // RefTimeline
-                var timelineName = "Ref" + this.ParentGroupListRegisters.ParentGroupDocuments.DocumentTimeline.CompositeName;
-                var pRefTimeline = m.GetPropertyTimeline(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, timelineName, 0, false, true);
-                //var pId = m.GetPropertyPkId(this, this.Guid); // position 6
-                pRefTimeline.TagInList = "id";
-                lst.Add(pRefTimeline);
-
-                if (isOptimistic)
-                {
-                    // Version
-                    var pVer = m.GetPropertyVersion(this, this.Cfg.Model.PropertyVersionGuid); // position 7
-                    pVer.TagInList = "vr";
-                    lst.Add(pVer);
-                }
+                res.Add(t);
             }
-            // For all attached properties.
-            foreach (var t in this.GroupProperties.ListProperties)
-            {
-                lst.Add(t);
-            }
-            return lst;
         }
+        //public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
+        //{
+        //    var lst = new List<IProperty>();
+        //    var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
+
+        //    if (!isExcludeSpecial)
+        //    {
+        //        // Id
+        //        var pId = m.GetPropertyPkId(this, this.Cfg.Model.PropertyIdGuid); // position 6
+        //        pId.TagInList = "id";
+        //        lst.Add(pId);
+
+        //        //// RefTimeline
+        //        //var timelineName = "Ref" + this.ParentGroupListRegisters.ParentGroupDocuments.DocumentTimeline.CompositeName;
+        //        //var pRefTimeline = m.GetPropertyTimeline(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, timelineName, 0, false, true);
+        //        ////var pId = m.GetPropertyPkId(this, this.Guid); // position 6
+        //        //pRefTimeline.TagInList = "id";
+        //        //lst.Add(pRefTimeline);
+
+        //        if (isOptimistic)
+        //        {
+        //            // Version
+        //            var pVer = m.GetPropertyVersion(this, this.Cfg.Model.PropertyVersionGuid); // position 7
+        //            pVer.TagInList = "vr";
+        //            lst.Add(pVer);
+        //        }
+        //        //var pRegRef = (Property)m.GetPropertyRef(this, this.Guid, "Ref" + this.CompositeName, 11); // position 11
+        //        //pRegRef.TagInList = "rr";
+        //        //lst.Add(pRegRef);
+        //    }
+        //    // For all attached properties.
+        //    foreach (var t in this.GroupProperties.ListProperties)
+        //    {
+        //        lst.Add(t);
+        //    }
+        //    return lst;
+        //}
         public IReadOnlyList<IProperty> GetIncludedTurnoverProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
         {
             Debug.Assert(!isExcludeSpecial, "not implemented yet");
@@ -533,6 +547,13 @@ namespace vSharpStudio.vm.ViewModels
             var pId = m.GetPropertyPkId(this, this.Cfg.Model.PropertyIdGuid); // position 6
             pId.TagInList = "id";
             lst.Add(pId);
+
+            //var timelineName = "Ref" + this.ParentGroupListRegisters.ParentGroupDocuments.DocumentTimeline.CompositeName;
+            //var pRefTimeline = m.GetPropertyTimeline(this.GroupProperties, this._PropertyRefTimelineGuid, timelineName, 0, false, false);
+            //lst.Add(pRefTimeline);
+            var pRefTimeline = this.PropertyRefTimeline;
+            //pRefTimeline.TagInList = "id";
+            lst.Add(pRefTimeline);
 
             if (isOptimistic)
             {
@@ -560,19 +581,21 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(pQty);
 
             // Reference to register header
-            var pRegRef = (Property)m.GetPropertyRef(this, this.Guid, "Ref" + this.CompositeName, 13);
-            pRegRef.TagInList = "rr";
-            lst.Add(pRegRef);
+            //var pRegRef = (Property)m.GetPropertyRef(this, this.Guid, "Ref" + this.CompositeName, 13);
+            //pRegRef.TagInList = "rr";
+            //lst.Add(pRegRef);
 
             if (this.RegisterType != EnumRegisterType.TURNOVER)
             {
-                // Register starting balances on period
-                var pIsStartBalance = (Property)m.GetPropertyBool(this, this.TableTurnoverPropertyIsStartingBalanceGuid, "IsStartingBalance", 14, true);
-                pRegRef.TagInList = "ib";
-                lst.Add(pRegRef);
+                //// Register starting balances on period
+                //var pIsStartBalance = (Property)m.GetPropertyBool(this, this.TableTurnoverPropertyIsStartingBalanceGuid, "IsStartingBalance", 14, true);
+                //pRegRef.TagInList = "ib";
+                //lst.Add(pRegRef);
             }
-            var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, this.PropertyDocRefName, this.ListObjectDocRefs, 15, false);
-            lst.Add(pDoc);
+
+            //var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, this.PropertyDocRefName, this.ListObjectDocRefs, 15, false);
+            //lst.Add(pDoc);
+
             // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
             // For all dimensions (catalogs).
             foreach (var t in this.GroupRegisterDimensions.ListDimensions)
@@ -708,8 +731,8 @@ namespace vSharpStudio.vm.ViewModels
                 var lstp = new List<IProperty>();
                 if (this.RegisterType == EnumRegisterType.TURNOVER)
                 {
-                    lstp.AddRange(this.GetIncludedProperties(guidAppPrjGen, false, false));
-                    //lstp.AddRange(this.GetIncludedTurnoverProperties(guidAppPrjGen, false, false));
+                    //lstp.AddRange(this.GetIncludedProperties(guidAppPrjGen, false, false));
+                    lstp.AddRange(this.GetIncludedTurnoverProperties(guidAppPrjGen, false, false));
                 }
                 else
                     ThrowHelper.ThrowPlatformNotSupportedException();

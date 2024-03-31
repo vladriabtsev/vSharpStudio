@@ -3581,6 +3581,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class AppSolutionValidator : ValidatorBase<AppSolution, AppSolutionValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:16
+    [Description("User settings for Solution")]
     public partial class AppSolution : ConfigObjectVmBase<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:17
     {
         public override string ToDebugString()
@@ -4051,6 +4052,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class AppProjectValidator : ValidatorBase<AppProject, AppProjectValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:16
+    [Description("User settings for Project in the Solution")]
     public partial class AppProject : ConfigObjectVmBase<AppProject, AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:17
     {
         public override string ToDebugString()
@@ -5096,6 +5098,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //    IsISortingValue: True 
     public partial class AppProjectGeneratorValidator : ValidatorBase<AppProjectGenerator, AppProjectGeneratorValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:16
     // Application project generator
+    [Description("User settings for plugin generator in the Project")]
     public partial class AppProjectGenerator : ConfigObjectVmBase<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:17
     {
         public override string ToDebugString()
@@ -5811,7 +5814,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //    IsISortingValue: False 
     public partial class ModelValidator : ValidatorBase<Model, ModelValidator> { } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:16
     // Configuration model
-    [Description("Model for application generation in 'User Applications' group")]
+    [Description("Model of application for generation in the 'Applications' group")]
     public partial class Model : ConfigObjectVmGenSettings<Model, ModelValidator>, IComparable<Model>, IConfigAcceptVisitor, IModel // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:17
     {
         public override string ToDebugString()
@@ -21291,6 +21294,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this._GroupRegisterDimensions = new GroupListRegisterDimensions(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
             this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
             this._ListObjectDocRefs = new ObservableCollectionWithActions<ComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:58
+            this._PropertyRefTimeline = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
             this._ListDocMappings = new ObservableCollectionWithActions<RegisterDocToReg>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:58
             this._GroupForms = new GroupListForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
             this._GroupReports = new GroupListReports(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
@@ -21341,16 +21345,15 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vm.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Clone(vm, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:63 IsDefaultBase=True
                 vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
-            vm._PropertyPostDateGuid = from.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._PropertyDocRefGuidName = from.PropertyDocRefGuidName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._PropertyDocRefName = from.PropertyDocRefName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._ListObjectDocRefs = new ObservableCollectionWithActions<ComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:50
             foreach (var t in from.ListObjectDocRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:51
                 vm.ListObjectDocRefs.Add(ComplexRef.Clone((ComplexRef)t, isDeep));
-                      vm._PropertyDocRefGuid = from.PropertyDocRefGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._PropertyDocGuidGuid = from.PropertyDocGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._IndexDocDateGuid = from.IndexDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+                      vm._IndexDocDateGuid = from.IndexDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._IndexDocIdTypeGuid = from.IndexDocIdTypeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:63 IsDefaultBase=True
+                vm.PropertyRefTimeline = vSharpStudio.vm.ViewModels.Property.Clone(vm, from.PropertyRefTimeline, isDeep);
             vm._TableTurnoverPropertyIdGuid = from.TableTurnoverPropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._TableTurnoverPropertyVersionGuid = from.TableTurnoverPropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._TableTurnoverGuid = from.TableTurnoverGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
@@ -21402,7 +21405,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Update((GroupListRegisterDimensions)to.GroupRegisterDimensions, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:140
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupProperties, from.GroupProperties, isDeep);
-            to._PropertyPostDateGuid = from.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._PropertyDocRefGuidName = from.PropertyDocRefGuidName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._PropertyDocRefName = from.PropertyDocRefName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:88
@@ -21441,10 +21443,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                     }
                 }
             }
-            to._PropertyDocRefGuid = from.PropertyDocRefGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._PropertyDocGuidGuid = from.PropertyDocGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._IndexDocDateGuid = from.IndexDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._IndexDocIdTypeGuid = from.IndexDocIdTypeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:140
+                vSharpStudio.vm.ViewModels.Property.Update((Property)to.PropertyRefTimeline, from.PropertyRefTimeline, isDeep);
             to._TableTurnoverPropertyIdGuid = from.TableTurnoverPropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._TableTurnoverPropertyVersionGuid = from.TableTurnoverPropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._TableTurnoverGuid = from.TableTurnoverGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
@@ -21583,7 +21585,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             if (vm.GroupProperties == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:211
                 vm.GroupProperties = new GroupListProperties(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:213
             vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, (GroupListProperties)vm.GroupProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
-            vm._PropertyPostDateGuid = m.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._PropertyDocRefGuidName = m.PropertyDocRefGuidName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._PropertyDocRefName = m.PropertyDocRefName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._ListObjectDocRefs = new ObservableCollectionWithActions<ComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:202
@@ -21592,10 +21593,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 var tvm = ComplexRef.ConvertToVM(t, new ComplexRef()); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:205
                 vm.ListObjectDocRefs.Add(tvm);
             }
-            vm._PropertyDocRefGuid = m.PropertyDocRefGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._PropertyDocGuidGuid = m.PropertyDocGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._IndexDocDateGuid = m.IndexDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._IndexDocIdTypeGuid = m.IndexDocIdTypeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            if (vm.PropertyRefTimeline == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:211
+                vm.PropertyRefTimeline = new Property(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:213
+            vSharpStudio.vm.ViewModels.Property.ConvertToVM(m.PropertyRefTimeline, (Property)vm.PropertyRefTimeline); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
             vm._TableTurnoverPropertyIdGuid = m.TableTurnoverPropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._TableTurnoverPropertyVersionGuid = m.TableTurnoverPropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._TableTurnoverGuid = m.TableTurnoverGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
@@ -21655,15 +21657,13 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.TableTurnoverPropertyIsStartingBalanceGuid = vm.TableTurnoverPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.ConvertToProto((GroupListRegisterDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
-            m.PropertyPostDateGuid = vm.PropertyPostDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.PropertyDocRefGuidName = vm.PropertyDocRefGuidName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.PropertyDocRefName = vm.PropertyDocRefName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             foreach (var t in vm.ListObjectDocRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
                 m.ListObjectDocRefs.Add(ComplexRef.ConvertToProto((ComplexRef)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
-            m.PropertyDocRefGuid = vm.PropertyDocRefGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.PropertyDocGuidGuid = vm.PropertyDocGuidGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IndexDocDateGuid = vm.IndexDocDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IndexDocIdTypeGuid = vm.IndexDocIdTypeGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.PropertyRefTimeline = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefTimeline); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
             m.TableTurnoverPropertyIdGuid = vm.TableTurnoverPropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.TableTurnoverPropertyVersionGuid = vm.TableTurnoverPropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.TableTurnoverGuid = vm.TableTurnoverGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -21696,6 +21696,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             {
                 t.AcceptConfigNodeVisitor(visitor);
             }
+            this.PropertyRefTimeline.AcceptConfigNodeVisitor(visitor); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:31
+        
             this.GroupForms.AcceptConfigNodeVisitor(visitor); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:31
         
             this.GroupReports.AcceptConfigNodeVisitor(visitor); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:31
@@ -22170,25 +22172,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnGroupPropertiesChanged();
         IGroupListProperties IRegister.GroupProperties { get { return (this as Register).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:77
         
-        // Guid for posting date guid property. Auto generated.
-        [Browsable(false)]
-        public string PropertyPostDateGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
-        { 
-            get { return this._PropertyPostDateGuid; }
-            set
-            {
-                // Use 'OnPropertyPostDateGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._PropertyPostDateGuid, value, (t) => { bool isCancel = false; this.OnPropertyPostDateGuidChanging(ref value, ref isCancel); if (isCancel) return; this._PropertyPostDateGuid = value; this.OnPropertyPostDateGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
-                }
-            }
-        }
-        private string _PropertyPostDateGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnPropertyPostDateGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
-        partial void OnPropertyPostDateGuidChanged();
-        
         [DisplayName("Doc Guid property")]
         [Description("Document guid property name")]
         public string PropertyDocRefGuidName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
@@ -22249,44 +22232,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         IReadOnlyList<IComplexRef> IRegister.ListObjectDocRefs { get { return (this as Register).ListObjectDocRefs; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:48
         
         
-        // Guid for document reference property. Auto generated.
-        [Browsable(false)]
-        public string PropertyDocRefGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
-        { 
-            get { return this._PropertyDocRefGuid; }
-            set
-            {
-                // Use 'OnPropertyDocRefGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._PropertyDocRefGuid, value, (t) => { bool isCancel = false; this.OnPropertyDocRefGuidChanging(ref value, ref isCancel); if (isCancel) return; this._PropertyDocRefGuid = value; this.OnPropertyDocRefGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
-                }
-            }
-        }
-        private string _PropertyDocRefGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnPropertyDocRefGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
-        partial void OnPropertyDocRefGuidChanged();
-        
-        // Guid for document guid property. Auto generated.
-        [Browsable(false)]
-        public string PropertyDocGuidGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
-        { 
-            get { return this._PropertyDocGuidGuid; }
-            set
-            {
-                // Use 'OnPropertyDocGuidGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._PropertyDocGuidGuid, value, (t) => { bool isCancel = false; this.OnPropertyDocGuidGuidChanging(ref value, ref isCancel); if (isCancel) return; this._PropertyDocGuidGuid = value; this.OnPropertyDocGuidGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
-                }
-            }
-        }
-        private string _PropertyDocGuidGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnPropertyDocGuidGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
-        partial void OnPropertyDocGuidGuidChanged();
-        
         // Guid for index of document date, dimensions. Auto generated.
         [Browsable(false)]
         public string IndexDocDateGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
@@ -22324,6 +22269,25 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private string _IndexDocIdTypeGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
         partial void OnIndexDocIdTypeGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
         partial void OnIndexDocIdTypeGuidChanged();
+        
+        // special RefTimeline property    
+        [Browsable(false)]
+        public Property PropertyRefTimeline // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        { 
+            get { return this._PropertyRefTimeline; }
+            set
+            {
+                // Use 'OnPropertyRefTimelineChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._PropertyRefTimeline, value, (t) => { bool isCancel = false; this.OnPropertyRefTimelineChanging(ref value, ref isCancel); if (isCancel) return; this._PropertyRefTimeline = value; this.OnPropertyRefTimelineChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
+                }
+            }
+        }
+        private Property _PropertyRefTimeline; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnPropertyRefTimelineChanging(ref Property to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnPropertyRefTimelineChanged();
+        IProperty IRegister.PropertyRefTimeline { get { return (this as Register).PropertyRefTimeline; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:77
         
         [Browsable(false)]
         public string TableTurnoverPropertyIdGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8

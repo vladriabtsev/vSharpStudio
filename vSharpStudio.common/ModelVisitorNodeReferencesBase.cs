@@ -118,7 +118,7 @@ namespace vSharpStudio.common
             {
                 var md = new ModelNode(t);
                 this.DicNodesWithReferences[t.Guid] = md;
-                ScanProperties(md, t.GetIncludedProperties(this.appDbGenGuid, false, true));
+                //ScanProperties(md, t.GetIncludedProperties(this.appDbGenGuid, false, true));
                 switch (t.RegisterType)
                 {
                     case EnumRegisterType.BALANCE:

@@ -192,6 +192,7 @@
 @interface ICanAddNode
 @interface ISortingValue
 @base ConfigObjectVmBase
+@attr [Description(&#34;User settings for Project in the Solution&#34;)]
 
 
 | Field | Type | Label | Description |
@@ -221,6 +222,7 @@ Application project generator
 @interface ICanAddNode
 @interface ISortingValue
 @base ConfigObjectVmBase
+@attr [Description(&#34;User settings for plugin generator in the Project&#34;)]
 
 
 | Field | Type | Label | Description |
@@ -256,6 +258,7 @@ Application project generator
 @interface ICanAddNode
 @interface ISortingValue
 @base ConfigObjectVmBase
+@attr [Description(&#34;User settings for Solution&#34;)]
 
 
 | Field | Type | Label | Description |
@@ -1577,7 +1580,7 @@ R E P O R T S
 
 ### proto_model
 Configuration model
-@attr [Description(&#34;Model for application generation in &#39;User Applications&#39; group&#34;)]
+@attr [Description(&#34;Model of application for generation in the &#39;Applications&#39; group&#34;)]
 
 
 | Field | Type | Label | Description |
@@ -1904,14 +1907,12 @@ Configuration model
 | table_turnover_property_is_starting_balance_guid | [string](#string) |  | @attr [Browsable(false)] |
 | group_register_dimensions | [proto_group_list_register_dimensions](#proto_config-proto_group_list_register_dimensions) |  | @attr [Browsable(false)] |
 | group_properties | [proto_group_list_properties](#proto_config-proto_group_list_properties) |  | @attr [Browsable(false)] |
-| property_post_date_guid | [string](#string) |  | Guid for posting date guid property. Auto generated. @attr [Browsable(false)] |
 | property_doc_ref_guid_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Guid property&#34;)] @attr [Description(&#34;Document guid property name&#34;)] |
 | property_doc_ref_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Ref property&#34;)] @attr [Description(&#34;Document reference property name&#34;)] |
 | list_object_doc_refs | [complex_ref](#proto_config-complex_ref) | repeated | &lt;summary&gt; / Guids of selected types of DOCUMENTS which can POST or UNPOST for this register / &lt;/summary&gt; @attr [Browsable(false)] |
-| property_doc_ref_guid | [string](#string) |  | Guid for document reference property. Auto generated. @attr [Browsable(false)] |
-| property_doc_guid_guid | [string](#string) |  | Guid for document guid property. Auto generated. @attr [Browsable(false)] |
 | index_doc_date_guid | [string](#string) |  | Guid for index of document date, dimensions. Auto generated. @attr [Browsable(false)] |
 | index_doc_id_type_guid | [string](#string) |  | Guid for index of document Id and type. Auto generated. @attr [Browsable(false)] |
+| property_ref_timeline | [proto_property](#proto_config-proto_property) |  | special RefTimeline property @attr [Browsable(false)] |
 | table_turnover_property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | table_turnover_property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | table_turnover_guid | [string](#string) |  | @attr [Browsable(false)] |
