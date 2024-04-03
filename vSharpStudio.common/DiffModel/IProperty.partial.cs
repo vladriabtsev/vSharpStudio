@@ -15,7 +15,6 @@ namespace vSharpStudio.common
         /// Mark property as computed if it will be not stored in DB
         /// </summary>
         bool IsComplex { get; }
-        bool IsComputed { get; set; }
         bool IsPKey { get; }
         bool IsDocShared { get; set; }
         bool IsRecordVersion { get; }

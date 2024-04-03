@@ -152,18 +152,6 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENT:
                 case EnumDataType.DOCUMENTS:
-                    this.IsComputed = true;
-                    break;
-                default:
-                    break;
-            }
-            switch (this.DataType.DataTypeEnum)
-            {
-                case EnumDataType.CATALOGS:
-                case EnumDataType.DOCUMENTS:
-                case EnumDataType.ANY:
-                case EnumDataType.CATALOG:
-                case EnumDataType.DOCUMENT:
                 case EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER:
                 case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG:
                 case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER:
@@ -253,14 +241,6 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = name;
             this._DataType = new DataType(this, type, length, accuracy);
         }
-        [Browsable(false)]
-        public bool IsPKey { get { return this.DataType.IsPKey; } }
-        [Browsable(false)]
-        public bool IsRefParent { get { return this.DataType.IsRefParent; } }
-        [Browsable(false)]
-        public bool IsComputed { get; set; }
-        [Browsable(false)]
-        public bool IsDocShared { get; set; }
 
         [Category("")]
         [PropertyOrderAttribute(10)]
@@ -922,10 +902,20 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType.ObjectRef.RefForeignObjectIdPropertyGuid = complexRef.RefForeignObjectIdPropertyGuid;
             return node;
         }
+        [Browsable(false)]
         public bool IsComplex { get; internal set; }
+        [Browsable(false)]
         public bool IsComplexRefId { get; private set; }
+        [Browsable(false)]
         public bool IsComplexRefGuid { get; private set; }
+        [Browsable(false)]
         public bool IsComplexDesc { get; private set; }
+        [Browsable(false)]
+        public bool IsPKey { get { return this.DataType.IsPKey; } }
+        [Browsable(false)]
+        public bool IsRefParent { get { return this.DataType.IsRefParent; } }
+        [Browsable(false)]
+        public bool IsDocShared { get; set; }
         public IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable)
         {
             //Debug.Assert(this.CanAddExtentionPropertyGd());
