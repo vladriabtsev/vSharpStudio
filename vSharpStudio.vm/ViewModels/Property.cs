@@ -891,7 +891,7 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsComplex { get; internal set; }
         [Browsable(false)]
-        public bool IsComplexRefId { get; private set; }
+        public bool IsComplexRefId { get; set; }
         [Browsable(false)]
         public bool IsComplexRefGuid { get; private set; }
         [Browsable(false)]

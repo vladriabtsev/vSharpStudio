@@ -905,16 +905,6 @@ namespace vSharpStudio.vm.ViewModels
             res.IsNullable = true;
             return res;
         }
-
-        //public IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable = false)
-        //{
-        //    var res = new Property(parent, guid, name, true);
-        //    res.DataType = (DataType)this.GetIdRefDataType(res, isNullable);
-        //    res.DataType.IsRefParent = true;
-        //    res.IsHidden = true;
-        //    res.Position = 8;
-        //    return res;
-        //}
         public IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable = false, bool is_pkey = false)
         {
             var res = new Property(parent, guid, name, true);
