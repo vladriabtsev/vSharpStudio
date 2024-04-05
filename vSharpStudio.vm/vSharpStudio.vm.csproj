@@ -55,4 +55,21 @@
     <Folder Include="proto\" />
     <Protobuf Include="..\proto\vsharpstudio.proto" GrpcServices="None" Link="proto\vsharpstudio.proto" />
   </ItemGroup>
+  <UsingTask TaskName="UpdateFileLastWriteTime" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <InputFilename ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+File.SetLastWriteTime(InputFilename, DateTime.Now);
+                ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <UpdateFileLastWriteTime InputFilename="$(ProjectDir)..\..\..\Tests\TestModelGenerator\DummyClassToForceBuild.cs" />
+  </Target>
 </Project>
