@@ -431,7 +431,8 @@ namespace vSharpStudio.vm.ViewModels
             IProperty prp;
             if (!isExcludeSuperSpecial)
             {
-                prp = model.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, this.Cfg.Model.PKeyName, 0, false, true);
+                prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+                //prp = model.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, this.Cfg.Model.PKeyName, 0, false, true);
                 res.Add(prp);
             }
             if (isOptimistic && !isExcludeSuperSpecial)

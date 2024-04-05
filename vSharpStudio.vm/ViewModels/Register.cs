@@ -130,7 +130,8 @@ namespace vSharpStudio.vm.ViewModels
             this._TableTurnoverPropertyQtyAccumulatorLength = 28;
             this._TableTurnoverPropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
             this._TableTurnoverPropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
-            this._PropertyRefTimeline = (Property)this.Cfg.Model.GetPropertyRef(this, this.Cfg.Model.GroupDocuments.DocumentTimeline, System.Guid.NewGuid().ToString(), "Ref", 0, false);
+            this._PropertyRefTimeline = (Property)this.Cfg.Model.GetPropertyRef(this, this.Cfg.Model.GroupDocuments.DocumentTimeline, System.Guid.NewGuid().ToString(),
+                                            "Ref" + this.Cfg.Model.GroupDocuments.DocumentTimeline.CompositeName, 0, false);
             this._IndexDocDateGuid = System.Guid.NewGuid().ToString();
             this._IndexDocIdTypeGuid = System.Guid.NewGuid().ToString();
             this._TableTurnoverGuid = System.Guid.NewGuid().ToString();
@@ -548,10 +549,12 @@ namespace vSharpStudio.vm.ViewModels
             pId.TagInList = "id";
             lst.Add(pId);
 
-            var timelineName = "Ref" + this.ParentGroupListRegisters.ParentGroupDocuments.DocumentTimeline.CompositeName;
-            var pRefTimeline = m.GetPropertyRef(this.GroupProperties, this.PropertyRefTimeline.Guid, timelineName, 6, false, false);
+            //var timelineName = "Ref" + this.ParentGroupListRegisters.ParentGroupDocuments.DocumentTimeline.CompositeName;
             //var pRefTimeline = m.GetPropertyTimeline(this.GroupProperties, this.PropertyRefTimeline.Guid, timelineName, 0, false, false);
-            //var pRefTimeline = this.PropertyRefTimeline;
+            //var pRefTimeline = m.GetPropertyRef(this.GroupProperties, this.PropertyRefTimeline.Guid, timelineName, 6, false, false);
+            //                this._PropertyRefParent = (Property)m.GetPropertyRef(this, c, guid, Property.SpecialPropertyNameRefParent, 0, false);
+            //var pRefTimeline = m.GetPropertyTimeline(this.GroupProperties, this.PropertyRefTimeline.Guid, timelineName, 0, false, false);
+            var pRefTimeline = this.PropertyRefTimeline;
             lst.Add(pRefTimeline);
 
             if (isOptimistic)
