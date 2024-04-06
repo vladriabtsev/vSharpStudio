@@ -38,10 +38,10 @@ namespace vSharpStudio.vm.ViewModels
                 sb.Append(",nq}");
             }
             sb.Append(" Number:{");
-            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PropertyDocNumberName);
+            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.PropertyDocNumberName);
             sb.Append(",nq}");
             sb.Append(" Date:{");
-            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PropertyDocDateName);
+            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.PropertyDocDateName);
             sb.Append(",nq}");
             return sb.ToString();
         }

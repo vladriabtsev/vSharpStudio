@@ -103,10 +103,10 @@ namespace vSharpStudio.vm.ViewModels
                             }
                             if (c.UseTree && !c.UseSeparateTreeForFolders)
                             {
-                                if (model.PropertyIsFolderName == name)
+                                if (model.GroupCatalogs.PropertyIsFolderName == name)
                                 {
                                     var vf = new ValidationFailure(nameof(p.Name),
-                                        $"Catalog parameter 'Explicit Folders' is set to 'true'. Property name '{model.PropertyIsFolderName}' is reserved for auto generated property");
+                                        $"Catalog parameter 'Explicit Folders' is set to 'true'. Property name '{model.GroupCatalogs.PropertyIsFolderName}' is reserved for auto generated property");
                                     vf.Severity = Severity.Error;
                                     cntx.AddFailure(vf);
                                 }
@@ -989,30 +989,30 @@ namespace vSharpStudio.vm.ViewModels
             var model = c.ParentGroupListCatalogs.ParentModel;
             if (c.GetUseCodeProperty())
             {
-                if (model.PropertyCodeName == name)
+                if (model.GroupCatalogs.PropertyCodeName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Catalog parameter 'UseCodeProperty' is set to 'true'. Property name '{model.PropertyCodeName}' is reserved for auto generated property");
+                        $"Catalog parameter 'UseCodeProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyCodeName}' is reserved for auto generated property");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
             }
             if (c.GetUseNameProperty())
             {
-                if (model.PropertyNameName == name)
+                if (model.GroupCatalogs.PropertyNameName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Catalog parameter 'UseNameProperty' is set to 'true'. Property name '{model.PropertyNameName}' is reserved for auto generated property");
+                        $"Catalog parameter 'UseNameProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyNameName}' is reserved for auto generated property");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
             }
             if (c.GetUseDescriptionProperty())
             {
-                if (model.PropertyDescriptionName == name)
+                if (model.GroupCatalogs.PropertyDescriptionName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Catalog parameter 'UseDescriptionProperty' is set to 'true'. Property name '{model.PropertyDescriptionName}' is reserved for auto generated property");
+                        $"Catalog parameter 'UseDescriptionProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyDescriptionName}' is reserved for auto generated property");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
@@ -1023,30 +1023,30 @@ namespace vSharpStudio.vm.ViewModels
             var model = cf.ParentCatalog.ParentGroupListCatalogs.ParentModel;
             if (cf.GetUseCodeProperty())
             {
-                if (model.PropertyCodeName == name)
+                if (model.GroupCatalogs.PropertyCodeName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Catalog folder parameter 'UseCodeProperty' is set to 'true'. Property name '{model.PropertyCodeName}' is reserved for auto generated property");
+                        $"Catalog folder parameter 'UseCodeProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyCodeName}' is reserved for auto generated property");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
             }
             if (cf.GetUseNameProperty())
             {
-                if (model.PropertyNameName == name)
+                if (model.GroupCatalogs.PropertyNameName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Catalog folder parameter 'UseNameProperty' is set to 'true'. Property name '{model.PropertyNameName}' is reserved for auto generated property");
+                        $"Catalog folder parameter 'UseNameProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyNameName}' is reserved for auto generated property");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
             }
             if (cf.GetUseDescriptionProperty())
             {
-                if (model.PropertyDescriptionName == name)
+                if (model.GroupCatalogs.PropertyDescriptionName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Catalog folder parameter 'UseDescriptionProperty' is set to 'true'. Property name '{model.PropertyDescriptionName}' is reserved for auto generated property");
+                        $"Catalog folder parameter 'UseDescriptionProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyDescriptionName}' is reserved for auto generated property");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
@@ -1055,17 +1055,17 @@ namespace vSharpStudio.vm.ViewModels
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, Document d)
         {
             var model = d.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
-            if (model.PropertyDocNumberName == name)
+            if (model.GroupDocuments.PropertyDocNumberName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Document parameter 'UseDocCodeProperty' is set to 'true'. Property name '{model.PropertyDocNumberName}' is reserved for auto generated property");
+                    $"Document parameter 'UseDocCodeProperty' is set to 'true'. Property name '{model.GroupDocuments.PropertyDocNumberName}' is reserved for auto generated property");
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
-            if (model.PropertyDocDateName == name)
+            if (model.GroupDocuments.PropertyDocDateName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Document parameter 'UseDocDateProperty' is set to 'true'. Property name '{model.PropertyDocDateName}' is reserved for auto generated property");
+                    $"Document parameter 'UseDocDateProperty' is set to 'true'. Property name '{model.GroupDocuments.PropertyDocDateName}' is reserved for auto generated property");
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
@@ -1087,17 +1087,17 @@ namespace vSharpStudio.vm.ViewModels
                 cntx.AddFailure(vf);
             }
             var model = gd.ParentModel;
-            if (model.PropertyDocNumberName == name)
+            if (model.GroupDocuments.PropertyDocNumberName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Document parameter 'UseDocCodeProperty' is set to 'true'. Property name '{model.PropertyDocNumberName}' is reserved for auto generated property");
+                    $"Document parameter 'UseDocCodeProperty' is set to 'true'. Property name '{model.GroupDocuments.PropertyDocNumberName}' is reserved for auto generated property");
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
-            if (model.PropertyDocDateName == name)
+            if (model.GroupDocuments.PropertyDocDateName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Document parameter 'UseDocDateProperty' is set to 'true'. Property name '{model.PropertyDocDateName}' is reserved for auto generated property");
+                    $"Document parameter 'UseDocDateProperty' is set to 'true'. Property name '{model.GroupDocuments.PropertyDocDateName}' is reserved for auto generated property");
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
@@ -1106,14 +1106,14 @@ namespace vSharpStudio.vm.ViewModels
         {
             var model = r.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
 
-            if (model.PropertyDocNumberName == name)
+            if (model.GroupDocuments.PropertyDocNumberName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
                     $"Property name '{name}' is reserved for auto generated document number property");
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
-            if (model.PropertyDocDateName == name)
+            if (model.GroupDocuments.PropertyDocDateName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
                     $"Property name '{name}' is reserved for auto generated document date property");

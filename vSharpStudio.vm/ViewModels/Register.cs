@@ -549,11 +549,6 @@ namespace vSharpStudio.vm.ViewModels
             pId.TagInList = "id";
             lst.Add(pId);
 
-            //var timelineName = "Ref" + this.ParentGroupListRegisters.ParentGroupDocuments.DocumentTimeline.CompositeName;
-            //var pRefTimeline = m.GetPropertyTimeline(this.GroupProperties, this.PropertyRefTimeline.Guid, timelineName, 0, false, false);
-            //var pRefTimeline = m.GetPropertyRef(this.GroupProperties, this.PropertyRefTimeline.Guid, timelineName, 6, false, false);
-            //                this._PropertyRefParent = (Property)m.GetPropertyRef(this, c, guid, Property.SpecialPropertyNameRefParent, 0, false);
-            //var pRefTimeline = m.GetPropertyTimeline(this.GroupProperties, this.PropertyRefTimeline.Guid, timelineName, 0, false, false);
             this.PropertyRefTimeline.Name = "Ref" + this.Cfg.Model.GroupDocuments.DocumentTimeline.CompositeName;
             var pRefTimeline = this.PropertyRefTimeline;
             lst.Add(pRefTimeline);

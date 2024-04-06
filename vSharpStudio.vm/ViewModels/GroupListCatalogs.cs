@@ -70,9 +70,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._PrefixForCompositionNames = "Ctlg";
             this.IsEditable = false;
-            this._UseCodeProperty = EnumUseType.Default;
-            this._UseNameProperty = EnumUseType.Default;
-            this._UseDescriptionProperty = EnumUseType.Default;
+            this._UseCodeProperty = true;
+            this._PropertyCodeName = "Code";
+            this._UseNameProperty = true;
+            this._PropertyNameName = "Name";
+            this._UseDescriptionProperty = false;
+            this._PropertyDescriptionName = "Description";
+            this._PropertyIsFolderName = "IsFolder";
             this._UseCodePropertyInSeparateTree = true;
             this._UseNamePropertyInSeparateTree = true;
 

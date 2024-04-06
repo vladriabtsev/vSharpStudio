@@ -454,11 +454,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.UseCodeProperty == EnumUseType.No)
                 return false;
-            if (this.ParentGroupListCatalogs.UseCodeProperty == EnumUseType.Yes)
-                return true;
-            if (this.ParentGroupListCatalogs.UseCodeProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListCatalogs.ParentModel.UseCodeProperty;
+            return this.ParentGroupListCatalogs.UseCodeProperty;
         }
         public bool GetUseNameProperty()
         {
@@ -466,11 +462,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.UseNameProperty == EnumUseType.No)
                 return false;
-            if (this.ParentGroupListCatalogs.UseNameProperty == EnumUseType.Yes)
-                return true;
-            if (this.ParentGroupListCatalogs.UseNameProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListCatalogs.ParentModel.UseNameProperty;
+            return this.ParentGroupListCatalogs.UseNameProperty;
         }
         public bool GetUseDescriptionProperty()
         {
@@ -478,11 +470,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.UseDescriptionProperty == EnumUseType.No)
                 return false;
-            if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.Yes)
-                return true;
-            if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListCatalogs.ParentModel.UseDescriptionProperty;
+            return this.ParentGroupListCatalogs.UseDescriptionProperty;
         }
 
         public IReadOnlyList<IProperty> GetAllProperties(bool isUseRecordVersionField)

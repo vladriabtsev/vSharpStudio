@@ -81,6 +81,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this._Name = Defaults.DocumentsTimelineName;
+            this._PropertyTimelineDocDateTimeGuid = System.Guid.NewGuid().ToString();
             this._TimeLineDocDateTimePropertyName = "DocDateTime";
             this.IsEditable = false;
             this._ShortIdTypeForCacheKey = "tl";
@@ -301,7 +302,7 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(p);
             }
             // Field document date and time value
-            p = m.GetPropertyDateTimeUtc(this, m.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, false, this.TimeLineTimeAccuracy);
+            p = m.GetPropertyDateTimeUtc(this, this.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, false, this.TimeLineTimeAccuracy);
             (p as Property).Position = 8;
             lst.Add(p);
             p = m.GetPropertyInt(this, m.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.DocShortTypeIdPropertyName, false, false);

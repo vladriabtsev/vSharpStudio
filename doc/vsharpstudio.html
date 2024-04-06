@@ -3208,6 +3208,13 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
+                  <td>property_timeline_doc_date_time_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>short_id_type_for_cache_key</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -4909,6 +4916,46 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
+                  <td>property_doc_date_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(30)]
+@attr [DisplayName(&#34;Doc Date property&#34;)]
+@attr [Description(&#34;Name of document date auto generated property if it is used in documents&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_doc_date_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(29)]
+@attr [DisplayName(&#34;Use Doc Date&#34;)]
+@attr [Description(&#34;Use document date property for documents&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_doc_number_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(42)]
+@attr [DisplayName(&#34;Doc Number property&#34;)]
+@attr [Description(&#34;Name of document number auto generated property&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_doc_number_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(41)]
+@attr [DisplayName(&#34;Use Doc Number&#34;)]
+@attr [Description(&#34;Use document number property for documents&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_grid_sortable</td>
                   <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
@@ -5150,36 +5197,70 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
               
                 <tr>
                   <td>use_code_property</td>
-                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(22)]
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(22)]
 @attr [DisplayName(&#34;Use Code&#34;)]
 @attr [Description(&#34;Use Code property for catalog item by default&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>use_name_property</td>
-                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td>property_code_name</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(24)]
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(22)]
+@attr [DisplayName(&#34;Code property&#34;)]
+@attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_name_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(23)]
 @attr [DisplayName(&#34;Use Name&#34;)]
 @attr [Description(&#34;Use Name property for catalog item by default&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>use_description_property</td>
-                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td>property_name_name</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(26)]
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(25)]
+@attr [DisplayName(&#34;Name property&#34;)]
+@attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_description_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(26)]
 @attr [DisplayName(&#34;Use Description&#34;)]
 @attr [Description(&#34;Use Description property for catalog item by default&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_description_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(27)]
+@attr [DisplayName(&#34;Description property&#34;)]
+@attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>use_code_property_in_separate_tree</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(32)]
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(32)]
 @attr [DisplayName(&#34;Tree Use Code&#34;)]
 @attr [Description(&#34;Use Code property in separate tree for catalog folder by default&#34;)] </p></td>
                 </tr>
@@ -5188,7 +5269,8 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td>use_name_property_in_separate_tree</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(34)]
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(34)]
 @attr [DisplayName(&#34;Tree Use Name&#34;)]
 @attr [Description(&#34;Use Name property in separate tree for catalog item by default&#34;)] </p></td>
                 </tr>
@@ -5197,9 +5279,20 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td>use_description_property_in_separate_tree</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(36)]
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(36)]
 @attr [DisplayName(&#34;Tree Use Description&#34;)]
 @attr [Description(&#34;Use Description property in separate tree for catalog item by default&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_is_folder_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(40)]
+@attr [DisplayName(&#34;IsFolder property&#34;)]
+@attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -6876,116 +6969,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>property_code_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(22)]
-@attr [DisplayName(&#34;Code property&#34;)]
-@attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_code_property</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(21)]
-@attr [DisplayName(&#34;Use Code&#34;)]
-@attr [Description(&#34;Use Code property for catalog item by default&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_name_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(24)]
-@attr [DisplayName(&#34;Name property&#34;)]
-@attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_name_property</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(23)]
-@attr [DisplayName(&#34;Use Name&#34;)]
-@attr [Description(&#34;Use Name property for catalog item by default&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_description_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(26)]
-@attr [DisplayName(&#34;Description property&#34;)]
-@attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_description_property</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(25)]
-@attr [DisplayName(&#34;Use Description&#34;)]
-@attr [Description(&#34;Use Description property for catalog item by default&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_is_folder_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(45)]
-@attr [DisplayName(&#34;IsFolder property&#34;)]
-@attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_doc_date_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(30)]
-@attr [DisplayName(&#34;Doc Date property&#34;)]
-@attr [Description(&#34;Name of document date auto generated property if it is used in documents&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_doc_date_property</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(29)]
-@attr [DisplayName(&#34;Use Doc Date&#34;)]
-@attr [Description(&#34;Use document date property for documents&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_doc_number_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(42)]
-@attr [DisplayName(&#34;Doc Number property&#34;)]
-@attr [Description(&#34;Name of document number auto generated property&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_doc_number_property</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Property settings&#34;)]
-@attr [PropertyOrderAttribute(41)]
-@attr [DisplayName(&#34;Use Doc Number&#34;)]
-@attr [Description(&#34;Use document number property for documents&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>complex_property_ref_descr_length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
@@ -7053,13 +7036,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
               
                 <tr>
                   <td>property_doc_date_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_timeline_doc_date_time_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>

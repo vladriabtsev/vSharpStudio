@@ -636,69 +636,6 @@ message proto_model {
     // @attr [Description("Record version field type")]
     // @attr [Category("Property settings")]
     proto_enum_version_field_type record_version_field_type = 19;
-
-    // @attr [PropertyOrderAttribute(5)]
-    // @attr [DisplayName("Version field")]
-    // @attr [Description("Version/timestamp field name")]
-    //string version_field_name = 5;
-    // @attr [Browsable(false)]
-    //string version_field_guid = 7;
-
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(22)]
-    // @attr [DisplayName("Code property")]
-    // @attr [Description("Name of code auto generated property if it is used in catalog")]
-    string property_code_name = 21;
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(21)]
-    // @attr [DisplayName("Use Code")]
-    // @attr [Description("Use Code property for catalog item by default")]
-    bool use_code_property = 22;
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(24)]
-    // @attr [DisplayName("Name property")]
-    // @attr [Description("Name of name auto generated property if it is used in catalog")]
-    string property_name_name = 23;
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(23)]
-    // @attr [DisplayName("Use Name")]
-    // @attr [Description("Use Name property for catalog item by default")]
-    bool use_name_property = 24;
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(26)]
-    // @attr [DisplayName("Description property")]
-    // @attr [Description("Name of description auto generated property if it is used in catalog")]
-    string property_description_name = 25;
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(25)]
-    // @attr [DisplayName("Use Description")]
-    // @attr [Description("Use Description property for catalog item by default")]
-    bool use_description_property = 26;
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(45)]
-    // @attr [DisplayName("IsFolder property")]
-    // @attr [Description("Name of is folder auto generated property if it is used in catalog")]
-    string property_is_folder_name = 27;
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(30)]
-    // @attr [DisplayName("Doc Date property")]
-    // @attr [Description("Name of document date auto generated property if it is used in documents")]
-    string property_doc_date_name = 29;
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(29)]
-    // @attr [DisplayName("Use Doc Date")]
-    // @attr [Description("Use document date property for documents")]
-    bool use_doc_date_property = 30;
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(42)]
-    // @attr [DisplayName("Doc Number property")]
-    // @attr [Description("Name of document number auto generated property")]
-    string property_doc_number_name = 41;
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(41)]
-    // @attr [DisplayName("Use Doc Number")]
-    // @attr [Description("Use document number property for documents")]
-    bool use_doc_number_property = 42;
     // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(20)]
     // @attr [DisplayName("Descr Max")]
@@ -726,8 +663,6 @@ message proto_model {
     string property_doc_number_guid = 70;
     // @attr [Browsable(false)]
     string property_doc_date_guid = 71;
-    // @attr [Browsable(false)]
-    string property_timeline_doc_date_time_guid = 72;
     // @attr [Browsable(false)]
     string property_doc_short_type_id_guid = 73;
     // @attr [Browsable(false)]
@@ -2250,31 +2185,56 @@ message proto_group_list_catalogs {
     // @attr [Browsable(false)]
     uint64 sorting_value = 9;
 
+    // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(22)]
     // @attr [DisplayName("Use Code")]
     // @attr [Description("Use Code property for catalog item by default")]
-    proto_enum_use_type use_code_property = 22;
-    // @attr [PropertyOrderAttribute(24)]
+    bool use_code_property = 22;
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(22)]
+    // @attr [DisplayName("Code property")]
+    // @attr [Description("Name of code auto generated property if it is used in catalog")]
+    string property_code_name = 23;
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(23)]
     // @attr [DisplayName("Use Name")]
     // @attr [Description("Use Name property for catalog item by default")]
-    proto_enum_use_type use_name_property = 24;
+    bool use_name_property = 24;
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(25)]
+    // @attr [DisplayName("Name property")]
+    // @attr [Description("Name of name auto generated property if it is used in catalog")]
+    string property_name_name = 25;
+    // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(26)]
     // @attr [DisplayName("Use Description")]
     // @attr [Description("Use Description property for catalog item by default")]
-    proto_enum_use_type use_description_property = 26;
-
+    bool use_description_property = 26;
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(27)]
+    // @attr [DisplayName("Description property")]
+    // @attr [Description("Name of description auto generated property if it is used in catalog")]
+    string property_description_name = 27;
+    // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(32)]
     // @attr [DisplayName("Tree Use Code")]
     // @attr [Description("Use Code property in separate tree for catalog folder by default")]
     bool use_code_property_in_separate_tree = 32;
+    // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(34)]
     // @attr [DisplayName("Tree Use Name")]
     // @attr [Description("Use Name property in separate tree for catalog item by default")]
     bool use_name_property_in_separate_tree = 34;
+    // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(36)]
     // @attr [DisplayName("Tree Use Description")]
     // @attr [Description("Use Description property in separate tree for catalog item by default")]
     bool use_description_property_in_separate_tree = 36;
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(40)]
+    // @attr [DisplayName("IsFolder property")]
+    // @attr [Description("Name of is folder auto generated property if it is used in catalog")]
+    string property_is_folder_name = 40;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -2782,6 +2742,28 @@ message proto_group_documents {
     // @attr [ReadOnly(true)]
     google.protobuf.Timestamp monday_before_first_doc_date = 23;
 
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(30)]
+    // @attr [DisplayName("Doc Date property")]
+    // @attr [Description("Name of document date auto generated property if it is used in documents")]
+    string property_doc_date_name = 29;
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(29)]
+    // @attr [DisplayName("Use Doc Date")]
+    // @attr [Description("Use document date property for documents")]
+    bool use_doc_date_property = 30;
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(42)]
+    // @attr [DisplayName("Doc Number property")]
+    // @attr [Description("Name of document number auto generated property")]
+    string property_doc_number_name = 41;
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(41)]
+    // @attr [DisplayName("Use Doc Number")]
+    // @attr [Description("Use document number property for documents")]
+    bool use_doc_number_property = 42;
+
+
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
     // @attr [Description("Sortable in data grid")]
@@ -2828,6 +2810,8 @@ message proto_document_timeline {
     // @attr [DisplayName("Timeline property")]
     // @attr [Description("Timeline property name in document timeline")]
     string time_line_doc_date_time_property_name = 12;
+    // @attr [Browsable(false)]
+    string property_timeline_doc_date_time_guid = 13;
     // @attr [PropertyOrderAttribute(15)]
     // @attr [DisplayName("Short ID")]
     // @attr [Description("Short register type ID for cache key generator")]

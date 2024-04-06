@@ -604,7 +604,7 @@ namespace vSharpStudio.Unit
             var cfg = mvm.Config;
 
             // Catalogs
-            cfg.Model.UseCodeProperty = true;
+            cfg.Model.GroupCatalogs.UseCodeProperty = true;
             var c1 = (Catalog)cfg.Model.GroupCatalogs.NodeAddNewSubNode();
             var c2 = (Catalog)cfg.Model.GroupCatalogs.NodeAddNewSubNode();
             var lst = new List<IProperty>();
@@ -616,10 +616,10 @@ namespace vSharpStudio.Unit
             c1.UseTree = true;
             c2.UseTree = true;
             lst = c1.GetAllProperties(false).ToList();
-            p1 = lst.Single(t => t.Name == cfg.Model.PropertyCodeName);
+            p1 = lst.Single(t => t.Name == cfg.Model.GroupCatalogs.PropertyCodeName);
             var p1h = lst.Single(t => t.Name == c1.PropertyRefSelf.Name);
             lst = c2.GetAllProperties(false).ToList();
-            p2 = lst.Single(t => t.Name == cfg.Model.PropertyCodeName);
+            p2 = lst.Single(t => t.Name == cfg.Model.GroupCatalogs.PropertyCodeName);
             var p2h = lst.Single(t => t.Name == c2.PropertyRefSelf.Name);
             Assert.AreNotEqual(p1.Guid, p2.Guid);
             Assert.AreNotEqual(p1h.Guid, p2h.Guid);
@@ -628,19 +628,19 @@ namespace vSharpStudio.Unit
             c1.UseSeparateTreeForFolders = true;
             c2.UseSeparateTreeForFolders = true;
             lst = c1.GetAllFolderProperties(false).ToList();
-            p1 = lst.Single(t => t.Name == cfg.Model.PropertyCodeName);
+            p1 = lst.Single(t => t.Name == cfg.Model.GroupCatalogs.PropertyCodeName);
             p1h = lst.Single(t => t.Name == c1.PropertyRefSelf.Name);
             lst = c2.GetAllFolderProperties(false).ToList();
-            p2 = lst.Single(t => t.Name == cfg.Model.PropertyCodeName);
+            p2 = lst.Single(t => t.Name == cfg.Model.GroupCatalogs.PropertyCodeName);
             p2h = lst.Single(t => t.Name == c2.PropertyRefSelf.Name);
             Assert.AreNotEqual(p1.Guid, p2.Guid);
             Assert.AreNotEqual(p1h.Guid, p2h.Guid);
 
             lst = c1.GetAllProperties(false).ToList();
-            p1 = lst.Single(t => t.Name == cfg.Model.PropertyCodeName);
+            p1 = lst.Single(t => t.Name == cfg.Model.GroupCatalogs.PropertyCodeName);
             p1h = lst.Single(t => t.Name == c1.PropertyRefFolder.Name);
             lst = c2.GetAllProperties(false).ToList();
-            p2 = lst.Single(t => t.Name == cfg.Model.PropertyCodeName);
+            p2 = lst.Single(t => t.Name == cfg.Model.GroupCatalogs.PropertyCodeName);
             p2h = lst.Single(t => t.Name == c2.PropertyRefFolder.Name);
             Assert.AreNotEqual(p1.Guid, p2.Guid);
             Assert.AreNotEqual(p1h.Guid, p2h.Guid);
@@ -684,11 +684,11 @@ namespace vSharpStudio.Unit
             var d2 = (Document)cfg.Model.GroupDocuments.GroupListDocuments.NodeAddNewSubNode();
             d2.SequenceGuid = s2.Guid;
             var lst =cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GetPropertiesForUI(false).ToList();
-            var p1 = lst.Single(t => t.Name == cfg.Model.PropertyDocNumberName);
-            var p1h = lst.Single(t => t.Name == cfg.Model.PropertyDocNumberName + "UniqueScopeHelper");
+            var p1 = lst.Single(t => t.Name == cfg.Model.GroupDocuments.PropertyDocNumberName);
+            var p1h = lst.Single(t => t.Name == cfg.Model.GroupDocuments.PropertyDocNumberName + "UniqueScopeHelper");
             lst = cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[1].GetPropertiesForUI(false).ToList();
-            var p2 = lst.Single(t => t.Name == cfg.Model.PropertyDocNumberName);
-            var p2h = lst.Single(t => t.Name == cfg.Model.PropertyDocNumberName + "UniqueScopeHelper");
+            var p2 = lst.Single(t => t.Name == cfg.Model.GroupDocuments.PropertyDocNumberName);
+            var p2h = lst.Single(t => t.Name == cfg.Model.GroupDocuments.PropertyDocNumberName + "UniqueScopeHelper");
             Assert.AreNotEqual(p1.Guid, p2.Guid);
             Assert.AreNotEqual(p1h.Guid, p2h.Guid);
 
