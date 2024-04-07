@@ -7786,30 +7786,6 @@
               "defaultValue": ""
             },
             {
-              "name": "property_doc_date_name",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(30)]\n@attr [DisplayName(\"Doc Date property\")]\n@attr [Description(\"Name of document date auto generated property if it is used in documents\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "use_doc_date_property",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(29)]\n@attr [DisplayName(\"Use Doc Date\")]\n@attr [Description(\"Use document date property for documents\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "property_doc_number_name",
               "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(42)]\n@attr [DisplayName(\"Doc Number property\")]\n@attr [Description(\"Name of document number auto generated property\")]",
               "label": "",

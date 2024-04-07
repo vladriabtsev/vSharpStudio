@@ -23613,8 +23613,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:63 IsDefaultBase=True
                 vm.GroupListSequences = vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.Clone(vm, from.GroupListSequences, isDeep);
             vm._MondayBeforeFirstDocDate = from.MondayBeforeFirstDocDate; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._PropertyDocDateName = from.PropertyDocDateName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._UseDocDateProperty = from.UseDocDateProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._PropertyDocNumberName = from.PropertyDocNumberName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._UseDocNumberProperty = from.UseDocNumberProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
@@ -23649,8 +23647,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:140
                 vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.Update((GroupListEnumeratorSequences)to.GroupListSequences, from.GroupListSequences, isDeep);
             to._MondayBeforeFirstDocDate = from.MondayBeforeFirstDocDate; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._PropertyDocDateName = from.PropertyDocDateName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._UseDocDateProperty = from.UseDocDateProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._PropertyDocNumberName = from.PropertyDocNumberName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._UseDocNumberProperty = from.UseDocNumberProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
@@ -23742,8 +23738,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 vm.GroupListSequences = new GroupListEnumeratorSequences(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:213
             vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.ConvertToVM(m.GroupListSequences, (GroupListEnumeratorSequences)vm.GroupListSequences); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
             vm._MondayBeforeFirstDocDate = m.MondayBeforeFirstDocDate; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._PropertyDocDateName = m.PropertyDocDateName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._UseDocDateProperty = m.UseDocDateProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._PropertyDocNumberName = m.PropertyDocNumberName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._UseDocNumberProperty = m.UseDocNumberProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._IsGridSortable = (EnumUseType)m.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
@@ -23778,8 +23772,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.ConvertToProto((GroupListJournals)vm.GroupJournals); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
             m.GroupListSequences = vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.ConvertToProto((GroupListEnumeratorSequences)vm.GroupListSequences); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
             m.MondayBeforeFirstDocDate = vm.MondayBeforeFirstDocDate; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.PropertyDocDateName = vm.PropertyDocDateName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.UseDocDateProperty = vm.UseDocDateProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.PropertyDocNumberName = vm.PropertyDocNumberName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.UseDocNumberProperty = vm.UseDocNumberProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:270
@@ -24069,48 +24061,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private Google.Protobuf.WellKnownTypes.Timestamp _MondayBeforeFirstDocDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.MinValue.AddDays(1).ToUniversalTime()); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
         partial void OnMondayBeforeFirstDocDateChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
         partial void OnMondayBeforeFirstDocDateChanged();
-        
-        [Category("Property settings")]
-        [PropertyOrderAttribute(30)]
-        [DisplayName("Doc Date property")]
-        [Description("Name of document date auto generated property if it is used in documents")]
-        public string PropertyDocDateName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
-        { 
-            get { return this._PropertyDocDateName; }
-            set
-            {
-                // Use 'OnPropertyDocDateNameChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._PropertyDocDateName, value, (t) => { bool isCancel = false; this.OnPropertyDocDateNameChanging(ref value, ref isCancel); if (isCancel) return; this._PropertyDocDateName = value; this.OnPropertyDocDateNameChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
-                }
-            }
-        }
-        private string _PropertyDocDateName = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnPropertyDocDateNameChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
-        partial void OnPropertyDocDateNameChanged();
-        
-        [Category("Property settings")]
-        [PropertyOrderAttribute(29)]
-        [DisplayName("Use Doc Date")]
-        [Description("Use document date property for documents")]
-        public bool UseDocDateProperty // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
-        { 
-            get { return this._UseDocDateProperty; }
-            set
-            {
-                // Use 'OnUseDocDatePropertyChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._UseDocDateProperty, value, (t) => { bool isCancel = false; this.OnUseDocDatePropertyChanging(ref value, ref isCancel); if (isCancel) return; this._UseDocDateProperty = value; this.OnUseDocDatePropertyChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
-                }
-            }
-        }
-        private bool _UseDocDateProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnUseDocDatePropertyChanging(ref bool to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
-        partial void OnUseDocDatePropertyChanged();
         
         [Category("Property settings")]
         [PropertyOrderAttribute(42)]

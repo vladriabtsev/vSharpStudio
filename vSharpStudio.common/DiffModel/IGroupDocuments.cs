@@ -12,5 +12,7 @@ namespace vSharpStudio.common
         bool IsGridSortableCustomGet();
         EnumDocumentAccess GetRoleDocumentAccess(IRole role);
         EnumPrintAccess GetRoleDocumentPrint(IRole role);
+        string DocumentTimelineName { get; }
+        string DocumentDocDateTimePropertyName { get; }
     }
 }

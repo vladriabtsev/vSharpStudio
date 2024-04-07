@@ -47,10 +47,8 @@ namespace vSharpStudio.vm.ViewModels
             this._MondayBeforeFirstDocDate = Timestamp.FromDateTime(new DateTime(1000, 1, 6, 0, 0, 0, DateTimeKind.Utc));
             this._DocShortTypeIdPropertyName = "DocShortTypeId";
             this._PropertyDocNumberName = "DocNumber";
-            this._PropertyDocDateName = "DocDate";
 
             this._UseDocNumberProperty = true;
-            this._UseDocDateProperty = true;
 
             this.IsEditable = false;
             Init();
@@ -175,5 +173,33 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Roles
 
+        [Browsable(false)]
+        public string DocumentTimelineName
+        {
+            get
+            {
+                if (this._DocumentTimelineName == null)
+                {
+                    this._DocumentTimelineName = this.DocumentTimeline.Name;
+                }
+                Debug.Assert(this._DocumentTimelineName != null);
+                return this._DocumentTimelineName;
+            }
+        }
+        private string? _DocumentTimelineName = null;
+        [Browsable(false)]
+        public string DocumentDocDateTimePropertyName
+        {
+            get
+            {
+                if (this._DocumentDocDateTimePropertyName == null)
+                {
+                    this._DocumentDocDateTimePropertyName = this.DocumentTimeline.TimeLineDocDateTimePropertyName;
+                }
+                Debug.Assert(this._DocumentDocDateTimePropertyName != null);
+                return this._DocumentDocDateTimePropertyName;
+            }
+        }
+        private string? _DocumentDocDateTimePropertyName = null;
     }
 }

@@ -861,7 +861,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocumentDate(IGroupListProperties parent, string guid, bool isPKey = false)
         {
-            var res = new Property(parent, guid, this.GroupDocuments.PropertyDocDateName, true);
+            var res = new Property(parent, guid, this.GroupDocuments.DocumentDocDateTimePropertyName, true);
             res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res, EnumTimeAccuracyType.MAX_TIME_ACC, false, isPKey);
             res.Position = 8;
             res.IsCsNullable = true;

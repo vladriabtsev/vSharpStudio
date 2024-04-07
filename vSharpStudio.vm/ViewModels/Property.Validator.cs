@@ -1062,20 +1062,20 @@ namespace vSharpStudio.vm.ViewModels
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
-            if (model.GroupDocuments.PropertyDocDateName == name)
+            if (model.GroupDocuments.DocumentDocDateTimePropertyName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Document parameter 'UseDocDateProperty' is set to 'true'. Property name '{model.GroupDocuments.PropertyDocDateName}' is reserved for auto generated property");
+                    $"Document parameter 'UseDocDateProperty' is set to 'true'. Property name '{model.GroupDocuments.DocumentDocDateTimePropertyName}' is reserved for auto generated property");
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
         }
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, GroupDocuments gd)
         {
-            if (name == gd.DocumentTimeline.TimeLineDocDateTimePropertyName)
+            if (name == gd.DocumentDocDateTimePropertyName)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Document timeline is configured to use {gd.DocumentTimeline.TimeLineDocDateTimePropertyName} as document date and time property name in documents. Property name {gd.DocumentTimeline.TimeLineDocDateTimePropertyName} is reserved.");
+                    $"Document timeline is configured to use {gd.DocumentDocDateTimePropertyName} as document date and time property name in documents. Property name {gd.DocumentTimeline.TimeLineDocDateTimePropertyName} is reserved.");
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
@@ -1094,10 +1094,10 @@ namespace vSharpStudio.vm.ViewModels
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
-            if (model.GroupDocuments.PropertyDocDateName == name)
+            if (model.GroupDocuments.DocumentDocDateTimePropertyName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Document parameter 'UseDocDateProperty' is set to 'true'. Property name '{model.GroupDocuments.PropertyDocDateName}' is reserved for auto generated property");
+                    $"Document parameter 'UseDocDateProperty' is set to 'true'. Property name '{model.GroupDocuments.DocumentDocDateTimePropertyName}' is reserved for auto generated property");
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
@@ -1113,7 +1113,7 @@ namespace vSharpStudio.vm.ViewModels
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
-            if (model.GroupDocuments.PropertyDocDateName == name)
+            if (model.GroupDocuments.DocumentDocDateTimePropertyName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
                     $"Property name '{name}' is reserved for auto generated document date property");

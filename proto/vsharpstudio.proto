@@ -2743,16 +2743,6 @@ message proto_group_documents {
     google.protobuf.Timestamp monday_before_first_doc_date = 23;
 
     // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(30)]
-    // @attr [DisplayName("Doc Date property")]
-    // @attr [Description("Name of document date auto generated property if it is used in documents")]
-    string property_doc_date_name = 29;
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(29)]
-    // @attr [DisplayName("Use Doc Date")]
-    // @attr [Description("Use document date property for documents")]
-    bool use_doc_date_property = 30;
-    // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(42)]
     // @attr [DisplayName("Doc Number property")]
     // @attr [Description("Name of document number auto generated property")]
