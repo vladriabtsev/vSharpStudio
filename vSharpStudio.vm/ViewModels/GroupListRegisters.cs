@@ -83,7 +83,6 @@ namespace vSharpStudio.vm.ViewModels
             this.IsEditable = false;
             this._ShortIdTypeForCacheKey = "rg";
             this._PropertyRegGuidGuid = System.Guid.NewGuid().ToString();
-            this._PropertyDocDateSequenceGuid = System.Guid.NewGuid().ToString();
             Init();
         }
         protected override void OnInitFromDto()
@@ -193,42 +192,42 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
-        {
-            Debug.Assert(!isExcludeSpecial, "not implemented yet");
+        //public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
+        //{
+        //    Debug.Assert(!isExcludeSpecial, "not implemented yet");
 
-            var lst = new List<IProperty>();
-            var m = this.ParentGroupDocuments.ParentModel;
+        //    var lst = new List<IProperty>();
+        //    var m = this.ParentGroupDocuments.ParentModel;
 
-            // Field PK
-            var pId = m.GetPropertyPkId(this, this.Guid);
-            pId.TagInList = "id";
-            lst.Add(pId);
+        //    // Field PK
+        //    var pId = m.GetPropertyPkId(this, this.Guid);
+        //    pId.TagInList = "id";
+        //    lst.Add(pId);
 
-            // Field record version
-            if (isOptimistic)
-            {
-                var pVer = m.GetPropertyVersion(this, this.ParentGroupDocuments.ParentModel.PropertyVersionGuid);
-                pVer.TagInList = "vr";
-                lst.Add(pVer);
-            }
+        //    // Field record version
+        //    if (isOptimistic)
+        //    {
+        //        var pVer = m.GetPropertyVersion(this, this.ParentGroupDocuments.ParentModel.PropertyVersionGuid);
+        //        pVer.TagInList = "vr";
+        //        lst.Add(pVer);
+        //    }
 
-            // Field register Guid
-            var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyRegGuidGuid, "RegGuid", false);
-            pDocGuid.Position = 9;
-            pDocGuid.TagInList = "rg";
-            lst.Add(pDocGuid);
+        //    // Field register Guid
+        //    var pDocGuid = (Property)m.GetPropertyGuid(this, this.PropertyRegGuidGuid, "RegGuid", false);
+        //    pDocGuid.Position = 9;
+        //    pDocGuid.TagInList = "rg";
+        //    lst.Add(pDocGuid);
 
-            // Field timeline value
-            var pDocDatePost = (Property)m.GetPropertyDateTimeUtc(this, this.ParentGroupDocuments.ParentModel.PropertyDocDateGuid, "DocDatePost", 10, false);
-            pDocDatePost.TagInList = "pd";
-            lst.Add(pDocDatePost);
+        //    // Field timeline value
+        //    var pDocDatePost = (Property)m.GetPropertyDateTimeUtc(this, this.ParentGroupDocuments.ParentModel.PropertyDocDateGuid, "DocDatePost", 10, false);
+        //    pDocDatePost.TagInList = "pd";
+        //    lst.Add(pDocDatePost);
 
-            // Field timeline end
-            var pDocDatePostSequenceEnd = (Property)m.GetPropertyDateTimeUtc(this, this.PropertyDocDateSequenceGuid, "DocDatePostSequenceEnd", 11, false);
-            pDocDatePostSequenceEnd.TagInList = "se";
-            lst.Add(pDocDatePostSequenceEnd);
-            return lst;
-        }
+        //    // Field timeline end
+        //    var pDocDatePostSequenceEnd = (Property)m.GetPropertyDateTimeUtc(this, this.PropertyDocDateSequenceGuid, "DocDatePostSequenceEnd", 11, false);
+        //    pDocDatePostSequenceEnd.TagInList = "se";
+        //    lst.Add(pDocDatePostSequenceEnd);
+        //    return lst;
+        //}
     }
 }

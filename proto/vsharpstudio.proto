@@ -2303,9 +2303,6 @@ message proto_group_list_registers {
     // Guid for document guid property. Auto generated.
     // @attr [Browsable(false)]
     string property_reg_guid_guid = 43; 
-    // Guid for document date secuence guid property. Auto generated.
-    // @attr [Browsable(false)]
-    string property_doc_date_sequence_guid = 45; 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

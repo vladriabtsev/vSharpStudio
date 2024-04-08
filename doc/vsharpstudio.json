@@ -9814,18 +9814,6 @@
               "defaultValue": ""
             },
             {
-              "name": "property_doc_date_sequence_guid",
-              "description": "Guid for document date secuence guid property. Auto generated.\n@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
