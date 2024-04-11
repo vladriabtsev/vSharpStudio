@@ -2873,31 +2873,6 @@ message proto_document {
     // @attr [Browsable(false)]
     uint32 short_ref_id = 20;
 
-    // unique index of special field YEAR and DocNumber
-    // YEAR = DocDate.Year
-    // @attr [Browsable(false)]
-    string index_year_doc_number_guid = 31;
-    // unique index of special field QUATER and DocNumber
-    // QUATER = DocDate.Year * 4 + DocDate.Month / 3
-    // @attr [Browsable(false)]
-    string index_quater_doc_number_guid = 32;
-    // unique index of special field MONTH and DocNumber
-    // MONTH = DocDate.Year * 12 + DocDate.Month
-    // @attr [Browsable(false)]
-    string index_month_doc_number_guid = 34;
-    // unique index of special field WEEK and DocNumber
-    // WEEK = DocDate.Year * (365???) + DocDate.Month / 3
-    // @attr [Browsable(false)]
-    string index_week_doc_number_guid = 35;
-    // unique index of special field Day and DocNumber
-    // DAY = DocDate.Year * 365?? + DocDate.Day
-    // @attr [Browsable(false)]
-    string index_day_doc_number_guid = 36;
-    // @attr [Browsable(false)]
-    string index_unique_doc_number_guid = 37;
-    // @attr [Browsable(false)]
-    string index_not_unique_doc_number_guid = 38;
-
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
     // @attr [Description("Sortable in data grid")]

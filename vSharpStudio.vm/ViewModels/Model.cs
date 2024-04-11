@@ -884,14 +884,6 @@ namespace vSharpStudio.vm.ViewModels
             res.IsCsNullable = true;
             return res;
         }
-        public IProperty GetPropertyDocNumberUniqueScopeHelper(IGroupListProperties parent, string guid)
-        {
-            var res = new Property(parent, guid, this.GroupDocuments.PropertyDocNumberName + "UniqueScopeHelper", true);
-            res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, false, false);
-            res.Position = 10;
-            res.IsNullable = true;
-            return res;
-        }
         public IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable = false, bool is_pkey = false)
         {
             var res = new Property(parent, guid, name, true);

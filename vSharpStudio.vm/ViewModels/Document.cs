@@ -63,17 +63,9 @@ namespace vSharpStudio.vm.ViewModels
 
         [Browsable(false)]
         public new string IconName { get { return "iconDiagnosticesFile"; } }
-        //protected override string GetNodeIconName() { return "iconDiagnosticesFile"; }
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            this._IndexUniqueDocNumberGuid = System.Guid.NewGuid().ToString();
-            this._IndexYearDocNumberGuid = System.Guid.NewGuid().ToString();
-            this._IndexQuaterDocNumberGuid = System.Guid.NewGuid().ToString();
-            this._IndexMonthDocNumberGuid = System.Guid.NewGuid().ToString();
-            this._IndexWeekDocNumberGuid = System.Guid.NewGuid().ToString();
-            this._IndexDayDocNumberGuid = System.Guid.NewGuid().ToString();
-            this._IndexNotUniqueDocNumberGuid = System.Guid.NewGuid().ToString();
 
             this._SequenceGuid = "";
             Init();
@@ -463,48 +455,6 @@ namespace vSharpStudio.vm.ViewModels
                                 throw new NotImplementedException();
                         }
                         res.Add(prp);
-                    }
-                    switch (seq.ScopeOfUnique)
-                    {
-                        case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
-                            if (!isExcludeSuperSpecial)
-                            {
-                                prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexYearDocNumberGuid);
-                                res.Add(prp);
-                            }
-                            break;
-                        case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
-                            if (!isExcludeSuperSpecial)
-                            {
-                                prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexQuaterDocNumberGuid);
-                                res.Add(prp);
-                            }
-                            break;
-                        case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
-                            if (!isExcludeSuperSpecial)
-                            {
-                                prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexMonthDocNumberGuid);
-                                res.Add(prp);
-                            }
-                            break;
-                        case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
-                            if (!isExcludeSuperSpecial)
-                            {
-                                prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexWeekDocNumberGuid);
-                                res.Add(prp);
-                            }
-                            break;
-                        case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
-                            if (!isExcludeSuperSpecial)
-                            {
-                                prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexDayDocNumberGuid);
-                                res.Add(prp);
-                            }
-                            break;
-                        case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
-                            break;
-                        default:
-                            throw new NotImplementedException();
                     }
                 }
                 //prp = model.GetPropertyBool(this.GroupProperties, this.Cfg.Model.PropertyDocIsPostedGuid, "IsPosted", 10, true);

@@ -612,13 +612,6 @@ Constant application wise value
 | group_reports | [proto_group_list_reports](#proto_config-proto_group_list_reports) |  | @attr [Browsable(false)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
-| index_year_doc_number_guid | [string](#string) |  | unique index of special field YEAR and DocNumber YEAR = DocDate.Year @attr [Browsable(false)] |
-| index_quater_doc_number_guid | [string](#string) |  | unique index of special field QUATER and DocNumber QUATER = DocDate.Year * 4 &#43; DocDate.Month / 3 @attr [Browsable(false)] |
-| index_month_doc_number_guid | [string](#string) |  | unique index of special field MONTH and DocNumber MONTH = DocDate.Year * 12 &#43; DocDate.Month @attr [Browsable(false)] |
-| index_week_doc_number_guid | [string](#string) |  | unique index of special field WEEK and DocNumber WEEK = DocDate.Year * (365???) &#43; DocDate.Month / 3 @attr [Browsable(false)] |
-| index_day_doc_number_guid | [string](#string) |  | unique index of special field Day and DocNumber DAY = DocDate.Year * 365?? &#43; DocDate.Day @attr [Browsable(false)] |
-| index_unique_doc_number_guid | [string](#string) |  | @attr [Browsable(false)] |
-| index_not_unique_doc_number_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |

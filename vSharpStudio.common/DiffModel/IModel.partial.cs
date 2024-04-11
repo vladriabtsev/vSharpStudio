@@ -66,7 +66,6 @@ namespace vSharpStudio.common
         IProperty GetPropertyDocumentDate(IGroupListProperties parent, string guid, bool isPKey = false);
         IProperty GetPropertyDocNumberString(IGroupListProperties parent, string guid, uint length);
         IProperty GetPropertyDocNumberInt(IGroupListProperties parent, string guid, uint length);
-        IProperty GetPropertyDocNumberUniqueScopeHelper(IGroupListProperties parent, string guid);
 
         IProperty GetPropertyCatalog(ITreeConfigNode parent, string guid, string name, string catGuid, uint position, bool isNullable);
         IProperty GetPropertyDocument(ITreeConfigNode parent, string guid, string name, string docGuid, uint position, bool isNullable);
