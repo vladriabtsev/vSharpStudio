@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net7.0-windows</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows</TargetFrameworks>
     <AssemblyTitle>vSharpStudio.vm</AssemblyTitle>
     <Product>vSharpStudio.vm</Product>
     <Copyright>Copyright ©  2019</Copyright>
@@ -30,9 +30,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
-    <PackageReference Include="System.Runtime" Version="4.3.1" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <!--https://learn.microsoft.com/en-us/dotnet/core/rid-catalog-->
     <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
-    <TargetFrameworks>net7.0-windows</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows</TargetFrameworks>
     <OutputType>WinExe</OutputType>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -85,8 +85,9 @@
     <PackageReference Include="Microsoft.CodeAnalysis" Version="[4.9.2,5)" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.9.2" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="4.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="4.9.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.9.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.9.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.9.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.9.2" />
   </ItemGroup>

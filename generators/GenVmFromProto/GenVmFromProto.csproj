@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>{EEAF63A0-C59F-468B-AA1B-58865E84E44E}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net7.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <!--<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>GenVmFromProto</AssemblyTitle>
@@ -20,6 +20,10 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
     <PackageReference Include="Serilog.Extensions.Logging" Version="[7.0.0,8)" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="[7.0.0,8)" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+    <PackageReference Include="Serilog.Extensions.Logging" Version="[8.0.0,9)" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="[8.0.0,9)" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.CodeDom" Version="8.0.0" />
@@ -216,29 +220,29 @@
       <ProtoFile>$(ProtoName).proto</ProtoFile>
       <ProtoDocGenPath>$(SolutionDir)$(SharpStudioRelativePath)protoc\protoc-gen-doc.exe</ProtoDocGenPath>
       <DocGenOutPath>$(SolutionDir)doc</DocGenOutPath>
-      <OutDirGenVm>bin\Debug\net7.0</OutDirGenVm>
+      <OutDirGenVm>bin\Debug\net8.0\</OutDirGenVm>
       <IsGen></IsGen>
     </PropertyGroup>
     <PropertyGroup Condition="$(ProtoName)=='vsharpstudio'">
       <IsGen>true</IsGen>
       <VmNamespace>vSharpStudio.vm.ViewModels</VmNamespace>
       <VmInterfacesNamespace>vSharpStudio.common</VmInterfacesNamespace>
-      <ProtoDocGenCommandVm>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -m -p $(ProtoName) -o $(ProjectDir)..\..\vSharpStudio.vm\Generated\$(ProtoName)ProtoViewModels.cs -n $(VmNamespace) -d $(DocGenOutPath)\</ProtoDocGenCommandVm>
-      <ProtoDocGenCommandVmInterface>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -i -p $(ProtoName) -o $(ProjectDir)..\..\vSharpStudio.common\Generated\$(ProtoName)ProtoViewModelInterfaces.cs -n $(VmInterfacesNamespace) -d $(DocGenOutPath)\</ProtoDocGenCommandVmInterface>
+      <ProtoDocGenCommandVm>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)GenVmFromProto.exe -r -m -p $(ProtoName) -o $(ProjectDir)..\..\vSharpStudio.vm\Generated\$(ProtoName)ProtoViewModels.cs -n $(VmNamespace) -d $(DocGenOutPath)\</ProtoDocGenCommandVm>
+      <ProtoDocGenCommandVmInterface>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)GenVmFromProto.exe -r -i -p $(ProtoName) -o $(ProjectDir)..\..\vSharpStudio.common\Generated\$(ProtoName)ProtoViewModelInterfaces.cs -n $(VmInterfacesNamespace) -d $(DocGenOutPath)\</ProtoDocGenCommandVmInterface>
     </PropertyGroup>
     <PropertyGroup Condition="$(ProtoName)=='plugin_sample'">
       <IsGen>true</IsGen>
       <VmNamespace>vPlugin.Sample</VmNamespace>
       <VmInterfacesNamespace>vPlugin.Sample</VmInterfacesNamespace>
-      <ProtoDocGenCommandVm>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -m -p $(ProtoName) -o $(ProjectDir)..\..\vPlugin.Sample\Generated\$(ProtoName)ProtoViewModels.cs -n $(VmNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVm>
-      <ProtoDocGenCommandVmInterface>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -i -p $(ProtoName) -o $(ProjectDir)..\..\vPlugin.Sample\Generated\$(ProtoName)ProtoViewModelInterfaces.cs -n $(VmInterfacesNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVmInterface>
+      <ProtoDocGenCommandVm>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)GenVmFromProto.exe -r -m -p $(ProtoName) -o $(ProjectDir)..\..\vPlugin.Sample\Generated\$(ProtoName)ProtoViewModels.cs -n $(VmNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVm>
+      <ProtoDocGenCommandVmInterface>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)GenVmFromProto.exe -r -i -p $(ProtoName) -o $(ProjectDir)..\..\vPlugin.Sample\Generated\$(ProtoName)ProtoViewModelInterfaces.cs -n $(VmInterfacesNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVmInterface>
     </PropertyGroup>
     <PropertyGroup Condition="$(ProtoName)=='plugin_sample2'">
       <IsGen>true</IsGen>
       <VmNamespace>vPlugin.Sample2</VmNamespace>
       <VmInterfacesNamespace>vPlugin.Sample2</VmInterfacesNamespace>
-      <ProtoDocGenCommandVm>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -m -p $(ProtoName) -o $(ProjectDir)..\..\vPlugin.Sample2\Generated\$(ProtoName)ProtoViewModels.cs -n $(VmNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVm>
-      <ProtoDocGenCommandVmInterface>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)\GenVmFromProto.exe -r -i -p $(ProtoName) -o $(ProjectDir)..\..\vPlugin.Sample2\Generated\$(ProtoName)ProtoViewModelInterfaces.cs -n $(VmInterfacesNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVmInterface>
+      <ProtoDocGenCommandVm>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)GenVmFromProto.exe -r -m -p $(ProtoName) -o $(ProjectDir)..\..\vPlugin.Sample2\Generated\$(ProtoName)ProtoViewModels.cs -n $(VmNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVm>
+      <ProtoDocGenCommandVmInterface>$(SolutionDir)$(SharpStudioRelativePath)generators\GenVmFromProto\$(OutDirGenVm)GenVmFromProto.exe -r -i -p $(ProtoName) -o $(ProjectDir)..\..\vPlugin.Sample2\Generated\$(ProtoName)ProtoViewModelInterfaces.cs -n $(VmInterfacesNamespace) -d $(DocGenOutPath)\ -b ConfigObjectVmGenSettings</ProtoDocGenCommandVmInterface>
     </PropertyGroup>
     <Message Importance="high" Condition="$(IsGen)=='true'" Text="$(ProjectName)****************** Start Proto To VM Generation ********************" />
     <Message Importance="high" Condition="$(IsGen)=='true'" Text="$(ProjectName)**              ProtoName: $(ProtoName)" />

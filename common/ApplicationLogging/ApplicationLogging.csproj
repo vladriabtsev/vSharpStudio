@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net7.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -12,6 +12,9 @@
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[7.0.1,8)" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[8.0.1,9)" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
