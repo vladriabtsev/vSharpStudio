@@ -220,39 +220,49 @@ namespace vSharpStudio.common
         private static readonly string commentBegSummary = "/// <summary>";
         private static readonly string commentEndSummary = "/// </summary>";
         private static readonly string comment = "/// ";
-        public static string Comment(ITreeConfigNode t, string indent = "")
+        public static string Comment(ITreeConfigNode t, string doc_comment, string indent = "")
         {
             if (t is IProperty p)
             {
-                return Comment(p);
+                return Comment(p, doc_comment, indent);
             }
             else if (t is ICatalog c)
             {
-                return Comment(c);
+                return Comment(c, doc_comment, indent);
             }
             else if (t is IDocument d)
             {
-                return Comment(d);
+                return Comment(d, doc_comment, indent);
             }
             else if (t is IDetail dt)
             {
-                return Comment(dt);
+                return Comment(dt, doc_comment, indent);
             }
             else if (t is ICatalogFolder cf)
             {
-                return Comment(cf);
+                return Comment(cf, doc_comment, indent);
             }
             else if (t is IRegister r)
             {
-                return Comment(r);
+                return Comment(r, doc_comment, indent);
             }
             else if (t is IRegisterDimension rd)
             {
-                return Comment(rd);
+                return Comment(rd, doc_comment, indent);
             }
             throw new NotImplementedException();
         }
-        public static string Comment(IGroupListConstants t, string indent = "")
+        /// <summary>
+        /// Comments for code.
+        /// Comments are created from 'doc_comment' parameter or from configuration doc description.
+        /// Configuration doc description exists if node Name not equal NameUi or node Description is not empty.
+        /// Configuration doc description has higher priority.
+        /// </summary>
+        /// <param name="t">Configuration node</param>
+        /// <param name="doc_comment">Default comment for node</param>
+        /// <param name="indent"></param>
+        /// <returns>Comment text</returns>
+        public static string Comment(IGroupListConstants t, string doc_comment, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
@@ -284,9 +294,24 @@ namespace vSharpStudio.common
                 sb.Append(commentEndSummary);
                 //sb.AppendLine();
             }
+            else if (!string.IsNullOrWhiteSpace(doc_comment))
+            {
+                sb.Append(indent);
+                sb.Append(doc_comment);
+            }
             return sb.ToString();
         }
-        public static string Comment(IEnumeration t, string indent = "")
+        /// <summary>
+        /// Comments for code.
+        /// Comments are created from 'doc_comment' parameter or from configuration doc description.
+        /// Configuration doc description exists if node Name not equal NameUi or node Description is not empty.
+        /// Configuration doc description has higher priority.
+        /// </summary>
+        /// <param name="t">Configuration node</param>
+        /// <param name="doc_comment">Default comment for node</param>
+        /// <param name="indent"></param>
+        /// <returns>Comment text</returns>
+        public static string Comment(IEnumeration t, string doc_comment, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
@@ -318,9 +343,24 @@ namespace vSharpStudio.common
                 sb.Append(commentEndSummary);
                 //sb.AppendLine();
             }
+            else if (!string.IsNullOrWhiteSpace(doc_comment))
+            {
+                sb.Append(indent);
+                sb.Append(doc_comment);
+            }
             return sb.ToString();
         }
-        public static string Comment(IEnumerationPair t, string indent = "")
+        /// <summary>
+        /// Comments for code.
+        /// Comments are created from 'doc_comment' parameter or from configuration doc description.
+        /// Configuration doc description exists if node Name not equal NameUi or node Description is not empty.
+        /// Configuration doc description has higher priority.
+        /// </summary>
+        /// <param name="t">Configuration node</param>
+        /// <param name="doc_comment">Default comment for node</param>
+        /// <param name="indent"></param>
+        /// <returns>Comment text</returns>
+        public static string Comment(IEnumerationPair t, string doc_comment, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
@@ -352,9 +392,24 @@ namespace vSharpStudio.common
                 sb.Append(commentEndSummary);
                 //sb.AppendLine();
             }
+            else if (!string.IsNullOrWhiteSpace(doc_comment))
+            {
+                sb.Append(indent);
+                sb.Append(doc_comment);
+            }
             return sb.ToString();
         }
-        public static string Comment(IConstant t, string indent = "")
+        /// <summary>
+        /// Comments for code.
+        /// Comments are created from 'doc_comment' parameter or from configuration doc description.
+        /// Configuration doc description exists if node Name not equal NameUi or node Description is not empty.
+        /// Configuration doc description has higher priority.
+        /// </summary>
+        /// <param name="t">Configuration node</param>
+        /// <param name="doc_comment">Default comment for node</param>
+        /// <param name="indent"></param>
+        /// <returns>Comment text</returns>
+        public static string Comment(IConstant t, string doc_comment, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
@@ -386,9 +441,24 @@ namespace vSharpStudio.common
                 sb.Append(commentEndSummary);
                 //sb.AppendLine();
             }
+            else if (!string.IsNullOrWhiteSpace(doc_comment))
+            {
+                sb.Append(indent);
+                sb.Append(doc_comment);
+            }
             return sb.ToString();
         }
-        public static string Comment(ICatalog t, string indent = "")
+        /// <summary>
+        /// Comments for code.
+        /// Comments are created from 'doc_comment' parameter or from configuration doc description.
+        /// Configuration doc description exists if node Name not equal NameUi or node Description is not empty.
+        /// Configuration doc description has higher priority.
+        /// </summary>
+        /// <param name="t">Configuration node</param>
+        /// <param name="doc_comment">Default comment for node</param>
+        /// <param name="indent"></param>
+        /// <returns>Comment text</returns>
+        public static string Comment(ICatalog t, string doc_comment, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
@@ -420,9 +490,24 @@ namespace vSharpStudio.common
                 sb.Append(commentEndSummary);
                 //sb.AppendLine();
             }
+            else if (!string.IsNullOrWhiteSpace(doc_comment))
+            {
+                sb.Append(indent);
+                sb.Append(doc_comment);
+            }
             return sb.ToString();
         }
-        public static string Comment(ICatalogFolder t, string indent = "")
+        /// <summary>
+        /// Comments for code.
+        /// Comments are created from 'doc_comment' parameter or from configuration doc description.
+        /// Configuration doc description exists if node Name not equal NameUi or node Description is not empty.
+        /// Configuration doc description has higher priority.
+        /// </summary>
+        /// <param name="t">Configuration node</param>
+        /// <param name="doc_comment">Default comment for node</param>
+        /// <param name="indent"></param>
+        /// <returns>Comment text</returns>
+        public static string Comment(ICatalogFolder t, string doc_comment, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
@@ -454,9 +539,24 @@ namespace vSharpStudio.common
                 sb.Append(commentEndSummary);
                 //sb.AppendLine();
             }
+            else if (!string.IsNullOrWhiteSpace(doc_comment))
+            {
+                sb.Append(indent);
+                sb.Append(doc_comment);
+            }
             return sb.ToString();
         }
-        public static string Comment(IDocument t, string indent = "")
+        /// <summary>
+        /// Comments for code.
+        /// Comments are created from 'doc_comment' parameter or from configuration doc description.
+        /// Configuration doc description exists if node Name not equal NameUi or node Description is not empty.
+        /// Configuration doc description has higher priority.
+        /// </summary>
+        /// <param name="t">Configuration node</param>
+        /// <param name="doc_comment">Default comment for node</param>
+        /// <param name="indent"></param>
+        /// <returns>Comment text</returns>
+        public static string Comment(IDocument t, string doc_comment, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
@@ -488,9 +588,24 @@ namespace vSharpStudio.common
                 sb.Append(commentEndSummary);
                 //sb.AppendLine();
             }
+            else if (!string.IsNullOrWhiteSpace(doc_comment))
+            {
+                sb.Append(indent);
+                sb.Append(doc_comment);
+            }
             return sb.ToString();
         }
-        public static string Comment(IGroupListRegisters t, string indent = "")
+        /// <summary>
+        /// Comments for code.
+        /// Comments are created from 'doc_comment' parameter or from configuration doc description.
+        /// Configuration doc description exists if node Name not equal NameUi or node Description is not empty.
+        /// Configuration doc description has higher priority.
+        /// </summary>
+        /// <param name="t">Configuration node</param>
+        /// <param name="doc_comment">Default comment for node</param>
+        /// <param name="indent"></param>
+        /// <returns>Comment text</returns>
+        public static string Comment(IGroupListRegisters t, string doc_comment, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
@@ -522,9 +637,24 @@ namespace vSharpStudio.common
                 sb.Append(commentEndSummary);
                 //sb.AppendLine();
             }
+            else if (!string.IsNullOrWhiteSpace(doc_comment))
+            {
+                sb.Append(indent);
+                sb.Append(doc_comment);
+            }
             return sb.ToString();
         }
-        public static string Comment(IRegister t, string indent = "")
+        /// <summary>
+        /// Comments for code.
+        /// Comments are created from 'doc_comment' parameter or from configuration doc description.
+        /// Configuration doc description exists if node Name not equal NameUi or node Description is not empty.
+        /// Configuration doc description has higher priority.
+        /// </summary>
+        /// <param name="t">Configuration node</param>
+        /// <param name="doc_comment">Default comment for node</param>
+        /// <param name="indent"></param>
+        /// <returns>Comment text</returns>
+        public static string Comment(IRegister t, string doc_comment, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
@@ -556,9 +686,24 @@ namespace vSharpStudio.common
                 sb.Append(commentEndSummary);
                 //sb.AppendLine();
             }
+            else if (!string.IsNullOrWhiteSpace(doc_comment))
+            {
+                sb.Append(indent);
+                sb.Append(doc_comment);
+            }
             return sb.ToString();
         }
-        public static string Comment(IRegisterDimension t, string indent = "")
+        /// <summary>
+        /// Comments for code.
+        /// Comments are created from 'doc_comment' parameter or from configuration doc description.
+        /// Configuration doc description exists if node Name not equal NameUi or node Description is not empty.
+        /// Configuration doc description has higher priority.
+        /// </summary>
+        /// <param name="t">Configuration node</param>
+        /// <param name="doc_comment">Default comment for node</param>
+        /// <param name="indent"></param>
+        /// <returns>Comment text</returns>
+        public static string Comment(IRegisterDimension t, string doc_comment, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
@@ -590,9 +735,24 @@ namespace vSharpStudio.common
                 sb.Append(commentEndSummary);
                 //sb.AppendLine();
             }
+            else if (!string.IsNullOrWhiteSpace(doc_comment))
+            {
+                sb.Append(indent);
+                sb.Append(doc_comment);
+            }
             return sb.ToString();
         }
-        public static string Comment(IDetail t, string indent = "")
+        /// <summary>
+        /// Comments for code.
+        /// Comments are created from 'doc_comment' parameter or from configuration doc description.
+        /// Configuration doc description exists if node Name not equal NameUi or node Description is not empty.
+        /// Configuration doc description has higher priority.
+        /// </summary>
+        /// <param name="t">Configuration node</param>
+        /// <param name="doc_comment">Default comment for node</param>
+        /// <param name="indent"></param>
+        /// <returns>Comment text</returns>
+        public static string Comment(IDetail t, string doc_comment, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
@@ -624,9 +784,24 @@ namespace vSharpStudio.common
                 sb.Append(commentEndSummary);
                 //sb.AppendLine();
             }
+            else if (!string.IsNullOrWhiteSpace(doc_comment))
+            {
+                sb.Append(indent);
+                sb.Append(doc_comment);
+            }
             return sb.ToString();
         }
-        public static string Comment(IProperty t, string indent = "")
+        /// <summary>
+        /// Comments for code.
+        /// Comments are created from 'doc_comment' parameter or from configuration doc description.
+        /// Configuration doc description exists if node Name not equal NameUi or node Description is not empty.
+        /// Configuration doc description has higher priority.
+        /// </summary>
+        /// <param name="t">Configuration node</param>
+        /// <param name="doc_comment">Default comment for node</param>
+        /// <param name="indent"></param>
+        /// <returns>Comment text</returns>
+        public static string Comment(IProperty t, string doc_comment, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
@@ -657,6 +832,11 @@ namespace vSharpStudio.common
                 sb.Append(indent);
                 sb.Append(commentEndSummary);
                 //sb.AppendLine();
+            }
+            else if (!string.IsNullOrWhiteSpace(doc_comment))
+            {
+                sb.Append(indent);
+                sb.Append(doc_comment);
             }
             return sb.ToString();
         }
