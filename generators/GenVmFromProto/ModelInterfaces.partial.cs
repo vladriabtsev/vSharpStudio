@@ -30,6 +30,8 @@ namespace GenVmFromProto
             this.dicParents = dicParents;
             Debug.Assert(Program.RunOptions != null);
             if (!Program.RunOptions.IsReadonly)
+            //    Setter = "internal set; ";
+            //else
                 Setter = "set; ";
             //var files = JsonDoc.Files;
 
