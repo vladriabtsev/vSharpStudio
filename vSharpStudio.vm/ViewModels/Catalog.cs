@@ -497,13 +497,13 @@ namespace vSharpStudio.vm.ViewModels
                 if (this.UseSeparateTreeForFolders)
                 {
                     prp = this.PropertyRefFolder;
-                    ((Property)prp).Position = 1;
+                    ((Property)prp).Position = IProperty.PropertyRefParentPosition;
                     res.Add(prp);
                 }
                 else
                 {
                     prp = this.PropertyRefSelf;
-                    ((Property)prp).Position = 1;
+                    ((Property)prp).Position = IProperty.PropertyRefSelfParentPosition;
                     res.Add(prp);
                     prp = model.GetPropertyIsFolder(this.GroupProperties, this.Cfg.Model.PropertyCtlgIsFolderGuid, false);
                     res.Add(prp);
@@ -704,7 +704,7 @@ namespace vSharpStudio.vm.ViewModels
             if (this.UseTree)
             {
                 pRefTreeParent = this.PropertyRefSelf;
-                ((Property)pRefTreeParent).Position = 1;
+                ((Property)pRefTreeParent).Position = IProperty.PropertyRefSelfParentPosition;
                 if (this.UseSeparateTreeForFolders) // self tree and separate data grid for children
                 {
                     viewTreeData = new ViewTreeData(pId, pRefTreeParent, null);

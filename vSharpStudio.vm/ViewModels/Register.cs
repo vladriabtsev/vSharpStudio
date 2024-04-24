@@ -568,13 +568,13 @@ namespace vSharpStudio.vm.ViewModels
 
             // Money accumulator
             var pMoney = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName, this.TableTurnoverPropertyMoneyAccumulatorLength, this.TableTurnoverPropertyMoneyAccumulatorAccuracy, false);
-            pMoney.Position = 11;
+            pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
             pMoney.TagInList = "ma";
             lst.Add(pMoney);
 
             // Qty accumulator
             var pQty = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName, this.TableTurnoverPropertyQtyAccumulatorLength, this.TableTurnoverPropertyQtyAccumulatorAccuracy, false);
-            pQty.Position = 12;
+            pQty.Position = IProperty.PropertyQtyAccumulatorPosition;
             pQty.TagInList = "qa";
             lst.Add(pQty);
 
@@ -649,13 +649,13 @@ namespace vSharpStudio.vm.ViewModels
 
             // Money accumulator
             var pMoney = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName, this.TableTurnoverPropertyMoneyAccumulatorLength, this.TableTurnoverPropertyMoneyAccumulatorAccuracy, false);
-            pMoney.Position = 11;
+            pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
             pMoney.TagInList = "ma";
             lst.Add(pMoney);
 
             // Qty accumulator
             var pQty = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName, this.TableTurnoverPropertyQtyAccumulatorLength, this.TableTurnoverPropertyQtyAccumulatorAccuracy, false);
-            pQty.Position = 12;
+            pQty.Position = IProperty.PropertyQtyAccumulatorPosition;
             pQty.TagInList = "qa";
             lst.Add(pQty);
 

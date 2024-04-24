@@ -291,25 +291,23 @@ namespace vSharpStudio.vm.ViewModels
 
             // Field PK
             var p = m.GetPropertyPkId(this, this.Guid);
-            (p as Property).Position = 6;
             lst.Add(p);
 
             // Field record version
             if (isOptimistic)
             {
                 p = m.GetPropertyVersion(this, this.ParentGroupDocuments.ParentModel.PropertyVersionGuid);
-                (p as Property).Position = 7;
                 lst.Add(p);
             }
             // Field document date and time value
             p = m.GetPropertyDateTimeUtc(this, this.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, false, this.TimeLineTimeAccuracy);
-            (p as Property).Position = 8;
+            (p as Property).Position = IProperty.PropertyDocumentDatePosition;
             lst.Add(p);
             p = m.GetPropertyInt(this, m.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.DocShortTypeIdPropertyName, false, false);
-            (p as Property).Position = 9;
+            (p as Property).Position = IProperty.PropertyShortTypeIdPosition;
             lst.Add(p);
             p = m.GetPropertyBool(this, m.PropertyDocIsPostedGuid, "IsPosted", (uint)lst.Count, true);
-            (p as Property).Position = 10;
+            (p as Property).Position = IProperty.PropertyIsPostedPosition;
             lst.Add(p);
 
             // shared properties

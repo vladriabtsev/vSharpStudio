@@ -902,7 +902,7 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsRefParent { get { return this.DataType.IsRefParent; } }
         [Browsable(false)]
         public bool IsDocShared { get; set; }
-        public IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInObject)
+        public IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInObject, uint position)
         {
             var node = new Property(this) { Name = subName, ParentProperty = this };
             node.Guid = complexRef.RefForeignObjectIdPropertyGuid;
@@ -912,6 +912,7 @@ namespace vSharpStudio.vm.ViewModels
             node.IsCsNullable = isCsNullable;
             node.IsComplexRefId = true;
             node.PositionInConfigObject = positionInObject;
+            node.Position = position;
             node.DataType.ObjectRef.ForeignObjectGuid = complexRef.ForeignObjectGuid;
             node.DataType.ObjectRef.RefForeignObjectIdPropertyGuid = complexRef.RefForeignObjectIdPropertyGuid;
             return node;

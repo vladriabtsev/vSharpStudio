@@ -80,12 +80,14 @@ namespace vSharpStudio.vm.ViewModels
                 this._PropertyRefParent = (Property)m.GetPropertyRef(this, c, guid, Property.SpecialPropertyNameRefParent, 0, false);
             else if (this.ParentGroupListDetails.Parent is Detail dt)
                 this._PropertyRefParent = (Property)m.GetPropertyRef(this, dt, guid, Property.SpecialPropertyNameRefParent, 0, false);
-            else if (this.ParentGroupListDetails.Parent is Document d)
+            else if (this.ParentGroupListDetails.Parent is Document d) // Timeline is parent record
                 this._PropertyRefParent = (Property)m.GetPropertyRef(this, d, guid, Property.SpecialPropertyNameRefParent, 0, false);
             else if (this.ParentGroupListDetails.Parent is CatalogFolder cf)
                 this._PropertyRefParent = (Property)m.GetPropertyRef(this, cf, guid, Property.SpecialPropertyNameRefParent, 0, false);
             else
                 ThrowHelper.ThrowNotSupportedException();
+            this._PropertyRefParent.Position = IProperty.PropertyRefParentPosition;
+
             Init();
         }
         protected override void OnInitFromDto()
@@ -350,7 +352,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(prp);
 
             prp = this.PropertyRefParent;
-            ((Property)prp).Position = 1;
+            ((Property)prp).Position = IProperty.PropertyRefParentPosition;
             res.Add(prp);
 
             if (isOptimistic)

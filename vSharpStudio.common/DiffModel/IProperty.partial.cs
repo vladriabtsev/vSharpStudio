@@ -9,6 +9,45 @@ namespace vSharpStudio.common
 {
     public partial interface IProperty : IParent, ITreeConfigNodeSortable, IGetNodeSetting
     {
+        #region Standard Property Positions
+        #region DB record
+        static uint PropertyIdPosition { get; } = 1;
+        static uint PropertyVersionPosition { get; } = 2;
+        static uint PropertyShortTypeIdPosition { get; } = 3;
+        static uint Property__is_need_insertPosition { get; } = 4;
+        static uint Property__is_need_updatePosition { get; } = 5;
+        #endregion DB record
+
+        #region Catalog or Folder
+        static uint PropertyCodePosition { get; } = 6;
+        static uint PropertyNamePosition { get; } = 7;
+        static uint PropertyDescriptionPosition { get; } = 8;
+        static uint PropertyIsFolderPosition { get; } = 9;
+        static uint PropertyIsOpenPosition { get; } = 10;
+        static uint PropertyRefSelfParentPosition { get; } = 11;
+        #endregion Catalog or Folder
+
+        #region Document
+        static uint PropertyDocumentDatePosition { get; } = 6;
+        static uint PropertyDocumentNumberPosition { get; } = 7;
+        static uint PropertyIsPostedPosition { get; } = 9;
+        #endregion Document
+
+        #region Register
+        static uint PropertyMoneyAccumulatorPosition { get; } = 6;
+        static uint PropertyQtyAccumulatorPosition { get; } = 7;
+        #endregion Register
+
+        #region Detail, or Catalog, or Document, or Register
+        static uint PropertyRefParentPosition { get; } = 12;
+        #endregion Detail, or Catalog, or Document, or Register
+
+        // reserved positions: 15-20
+
+        // configured properties: starting from 21
+
+        #endregion Standard Property Positions
+
         IGroupListProperties ParentGroupListPropertiesI { get; }
         //string DefaultValue { get; }
         /// <summary>
@@ -54,7 +93,7 @@ namespace vSharpStudio.common
         IProperty? ParentProperty { get; set; }
         string NameWithExtention { get; }
         //List<IProperty> ListExtensionProperties { get; }
-        IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInObject);
+        IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInObject, uint position);
         IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable);
         IProperty AddExtensionPropertyDesc(string subName, bool isNullable, bool isCsNullable);
         IProperty AddExtensionPropertyString(string subName, uint length, string guid);

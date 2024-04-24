@@ -6917,6 +6917,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            vm._Position = from.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._ForeignObjectGuid = from.ForeignObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._RefForeignObjectPropertyGuid = from.RefForeignObjectPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._RefForeignObjectIdPropertyGuid = from.RefForeignObjectIdPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
@@ -6929,6 +6930,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._SortingValue = from.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            to._Position = from.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._ForeignObjectGuid = from.ForeignObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._RefForeignObjectPropertyGuid = from.RefForeignObjectPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._RefForeignObjectIdPropertyGuid = from.RefForeignObjectIdPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
@@ -6961,6 +6963,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._Guid = m.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._Name = m.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._SortingValue = m.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            vm._Position = m.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._ForeignObjectGuid = m.ForeignObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._RefForeignObjectPropertyGuid = m.RefForeignObjectPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._RefForeignObjectIdPropertyGuid = m.RefForeignObjectIdPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
@@ -6974,6 +6977,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.Guid = vm.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.Name = vm.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.ForeignObjectGuid = vm.ForeignObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.RefForeignObjectPropertyGuid = vm.RefForeignObjectPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.RefForeignObjectIdPropertyGuid = vm.RefForeignObjectIdPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -7053,6 +7057,25 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             this._SortingValue = sortValue;
         }
+        
+        // unique in object (can be used as Protobuf field position)
+        [Browsable(false)]
+        public uint Position // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        { 
+            get { return this._Position; }
+            set
+            {
+                // Use 'OnPositionChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._Position, value, (t) => { bool isCancel = false; this.OnPositionChanging(ref value, ref isCancel); if (isCancel) return; this._Position = value; this.OnPositionChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private uint _Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnPositionChanging(ref uint to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnPositionChanged();
         
         [Browsable(false)]
         public string ForeignObjectGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
@@ -11944,8 +11967,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnIsGridFilterableChanging(ref EnumUseType to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
         partial void OnIsGridFilterableChanged();
         
-        // Protobuf field position
-        // Reserved positions: 1 - primary key
+        // unique in object (can be used as Protobuf field position)
         [ReadOnly(true)]
         public uint Position // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
@@ -13082,8 +13104,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnGroupDetailsChanged();
         IGroupListDetails IDetail.GroupDetails { get { return (this as Detail).GroupDetails; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:77
         
-        // Protobuf field position
-        // Reserved positions: 1 - primary key
+        // unique in object (can be used as Protobuf field position)
         [ReadOnly(true)]
         public uint Position // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
@@ -20471,8 +20492,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnPropertyRefDimensionCatalogChanged();
         IProperty IRegisterDimension.PropertyRefDimensionCatalog { get { return (this as RegisterDimension).PropertyRefDimensionCatalog; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:77
         
-        // Protobuf field position
-        // Reserved positions: 1-15
+        // unique in object (can be used as Protobuf field position)
         [ReadOnly(true)]
         public uint Position // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 

@@ -2158,6 +2158,18 @@
               "defaultValue": ""
             },
             {
+              "name": "position",
+              "description": "@attr [Browsable(false)]\nunique in object (can be used as Protobuf field position)",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "foreign_object_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
@@ -4643,7 +4655,7 @@
             },
             {
               "name": "position",
-              "description": "Protobuf field position\nReserved positions: 1 - primary key\n@attr [ReadOnly(true)]",
+              "description": "unique in object (can be used as Protobuf field position)\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -11447,7 +11459,7 @@
             },
             {
               "name": "position",
-              "description": "Protobuf field position\nReserved positions: 1 - primary key\n@attr [ReadOnly(true)]",
+              "description": "unique in object (can be used as Protobuf field position)\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -12311,7 +12323,7 @@
             },
             {
               "name": "position",
-              "description": "Protobuf field position\nReserved positions: 1-15\n@attr [ReadOnly(true)]",
+              "description": "unique in object (can be used as Protobuf field position)\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",

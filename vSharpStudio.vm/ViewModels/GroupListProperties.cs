@@ -484,49 +484,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         public uint GetNextPosition()
         {
-            // Reserved positions
-            // 1  not used
-            // 2  not used
-            // 3  not used
-            // 4  __is_need_insert
-            // 5  __is_need_update
-            // 6  PropertyId
-            // 7  PropertyObjectVersion
-            // 8  PropertyRefParent, PropertyDocumentDate
-            // 9  PropertyCatalogCode, PropertyCatalogCodeInt, PropertyDocumentCodeString, PropertyDocumentCodeInt
-            // 10 PropertyCatalogName, IsPosted(document only)
-            // 11 PropertyCatalogDescription
-            // 12 PropertyIsFolder
-            // 13 PropertyIsOpen
+            // For reserved positions see IProperty static members
             if (this.LastGenPosition == 0)
             {
-                if (this.Parent is Catalog)
-                {
-                    this.LastGenPosition = 13;
-
-                }
-                else if (this.Parent is Detail)
-                {
-                    this.LastGenPosition = 8;
-                }
-                else if (this.Parent is CatalogFolder)
-                {
-                    this.LastGenPosition = 13;
-                }
-                else if (this.Parent is Document)
-                {
-                    this.LastGenPosition = 10;
-                }
-                else if (this.Parent is GroupDocuments)
-                {
-                    //this.LastGenPosition = 0;
-                }
-                else if (this.Parent is Register r)
-                {
-                    return r.GetNextPosition();
-                }
-                else
-                    throw new NotImplementedException();
+                this.LastGenPosition = 20;
             }
             this.LastGenPosition++;
             return this.LastGenPosition;

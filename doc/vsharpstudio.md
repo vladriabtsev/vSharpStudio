@@ -156,6 +156,7 @@
 | guid | [string](#string) |  | @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] Complex property guid. Empty for register doc ??? |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| position | [uint32](#uint32) |  | @attr [Browsable(false)] unique in object (can be used as Protobuf field position) |
 | foreign_object_guid | [string](#string) |  | @attr [Browsable(false)] |
 | ref_foreign_object_property_guid | [string](#string) |  | @attr [Browsable(false)] complex extended property guid |
 | ref_foreign_object_id_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for foreign object id |
@@ -549,7 +550,7 @@ Constant application wise value
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | group_properties | [proto_group_list_properties](#proto_config-proto_group_list_properties) |  | @attr [Browsable(false)] |
 | group_details | [proto_group_list_details](#proto_config-proto_group_list_details) |  | @attr [Browsable(false)] |
-| position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
+| position | [uint32](#uint32) |  | unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
 | property_ref_parent | [proto_property](#proto_config-proto_property) |  | special RefTreeParent property @attr [Browsable(false)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
@@ -1822,7 +1823,7 @@ Configuration model
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
+| position | [uint32](#uint32) |  | unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1935,7 +1936,7 @@ Configuration model
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | dimension_catalog_guid | [string](#string) |  | &lt;summary&gt; / Guid of Catalog type. / &lt;/summary&gt; @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Dimension catalog&#34;)] @attr [Description(&#34;Catalog for register dimension&#34;)] @attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))] |
 | property_ref_dimension_catalog | [proto_property](#proto_config-proto_property) |  | Dimension property. Auto generated. @attr [Browsable(false)] |
-| position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1-15 @attr [ReadOnly(true)] |
+| position | [uint32](#uint32) |  | unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 

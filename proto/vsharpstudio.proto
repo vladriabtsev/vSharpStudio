@@ -847,6 +847,9 @@ message complex_ref
     // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Browsable(false)]
+    // unique in object (can be used as Protobuf field position)
+    uint32 position = 10;
+    // @attr [Browsable(false)]
     string foreign_object_guid = 11;
     // @attr [Browsable(false)]
     // complex extended property guid
@@ -1414,8 +1417,7 @@ message proto_property {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
-    // Protobuf field position
-    // Reserved positions: 1 - primary key
+    // unique in object (can be used as Protobuf field position)
     // @attr [ReadOnly(true)]
     uint32 position = 110;
     // @attr [Browsable(false)]
@@ -1498,8 +1500,7 @@ message proto_detail {
     // @attr [Browsable(false)]
     proto_group_list_details group_details = 14;
 
-    // Protobuf field position
-    // Reserved positions: 1 - primary key
+    // unique in object (can be used as Protobuf field position)
     // @attr [ReadOnly(true)]
     uint32 position = 15;
 
@@ -2345,8 +2346,7 @@ message proto_register_dimension {
     // @attr [Browsable(false)]
     proto_property property_ref_dimension_catalog = 22;
 
-    // Protobuf field position
-    // Reserved positions: 1-15
+    // unique in object (can be used as Protobuf field position)
     // @attr [ReadOnly(true)]
     uint32 position = 110;
     // @attr [Browsable(false)]
