@@ -164,7 +164,7 @@ namespace vSharpStudio.common
         private void AddReferenceToNode(ModelNode md, IGuid obj, IDataType d)
         {
             Debug.Assert(this.currCfg != null);
-            if (!string.IsNullOrWhiteSpace(d.ObjectRef.ForeignObjectGuid))
+            if (!string.IsNullOrWhiteSpace(d.ObjectRef?.ForeignObjectGuid))
             {
                 Debug.Assert(!md.DicReferenceToNodes.ContainsKey(d.ObjectRef.ForeignObjectGuid));
                 md.DicReferenceToNodes[d.ObjectRef.ForeignObjectGuid] = new ReferenceTo(this.currCfg.DicNodes[d.ObjectRef.ForeignObjectGuid]);

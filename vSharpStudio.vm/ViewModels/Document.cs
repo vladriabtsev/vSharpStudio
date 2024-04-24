@@ -240,8 +240,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 DataTypeEnum = EnumDataType.CATALOG,
                 IsNullable = isNullable,
-                ObjectRef = new ComplexRef(node.Guid, catGuid)
             };
+            node.ConfigObjectGuid = catGuid;
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }

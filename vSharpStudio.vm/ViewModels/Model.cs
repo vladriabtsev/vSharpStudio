@@ -431,7 +431,7 @@ namespace vSharpStudio.vm.ViewModels
             dt.Length = length;
             dt.Accuracy = accuracy;
             dt.IsPositive = isPositive;
-            dt.ObjectRef.ForeignObjectGuid = objectGuid;
+            dt.ObjectRef0.ForeignObjectGuid = objectGuid;
             dt.IsNullable = isNullable;
             return dt;
         }
@@ -511,7 +511,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataTypeCatalog(ITreeConfigNode? parent, string catGuid, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectRef.ForeignObjectGuid = catGuid;
+            dt.ObjectRef0.ForeignObjectGuid = catGuid;
             dt.DataTypeEnum = EnumDataType.CATALOG;
             dt.IsNullable = isNullable;
             return dt;
@@ -519,7 +519,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataTypeDocument(ITreeConfigNode? parent, string docGuid, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectRef.ForeignObjectGuid = docGuid;
+            dt.ObjectRef0.ForeignObjectGuid = docGuid;
             dt.DataTypeEnum = EnumDataType.DOCUMENT;
             dt.IsNullable = isNullable;
             return dt;
@@ -527,7 +527,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataTypeTimeline(ITreeConfigNode? parent, string timelineTableGuid, bool isNullable, bool isPKey)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectRef.ForeignObjectGuid = timelineTableGuid;
+            dt.ObjectRef0.ForeignObjectGuid = timelineTableGuid;
             dt.DataTypeEnum = EnumDataType.REF_TIMELINE;
             dt.IsNullable = isNullable;
             dt.IsPKey = isPKey;
@@ -544,7 +544,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataType(ITreeConfigNode? parent, ICatalog obj, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectRef.ForeignObjectGuid = obj.Guid;
+            dt.ObjectRef0.ForeignObjectGuid = obj.Guid;
             dt.IsNullable = isNullable;
             dt.DataTypeEnum = EnumDataType.CATALOG;
             return dt;
@@ -553,7 +553,7 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataType(ITreeConfigNode? parent, IDocument obj, bool isNullable)
         {
             DataType dt = new DataType(parent);
-            dt.ObjectRef.ForeignObjectGuid = obj.Guid;
+            dt.ObjectRef0.ForeignObjectGuid = obj.Guid;
             dt.IsNullable = isNullable;
             dt.DataTypeEnum = EnumDataType.DOCUMENT;
             return dt;
@@ -901,7 +901,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_DETAIL;
             res.DataType.IsNullable = isNullable;
             res.IsComplex = true;
@@ -913,7 +913,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_CATALOG;
             res.DataType.IsNullable = isNullable;
             res.IsComplex = true;
@@ -925,7 +925,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER;
             res.DataType.IsNullable = isNullable;
             res.IsComplex = true;
@@ -937,7 +937,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT;
             res.DataType.IsNullable = isNullable;
             res.IsComplex = true;
@@ -949,7 +949,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT;
             res.DataType.IsNullable = isNullable;
             res.IsComplex = true;
@@ -961,7 +961,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER;
             res.DataType.IsNullable = isNullable;
             res.IsComplex = true;
@@ -973,7 +973,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT;
             res.DataType.IsNullable = isNullable;
             res.IsComplex = true;
@@ -985,7 +985,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = new DataType(fromObject);
-            res.DataType.ObjectRef.ForeignObjectGuid = toObject.Guid;
+            res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_TIMELINE;
             res.DataType.IsNullable = isNullable;
             res.IsComplex = true;

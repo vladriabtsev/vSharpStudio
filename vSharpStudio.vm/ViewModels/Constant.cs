@@ -337,7 +337,7 @@ namespace vSharpStudio.vm.ViewModels
             get { return this.DataType.ObjectRef.ForeignObjectGuid; }
             set
             {
-                this.DataType.ObjectRef.ForeignObjectGuid = value;
+                this.DataType.ObjectRef0.ForeignObjectGuid = value;
                 this.OnPropertyChanged();
                 this.OnPropertyChanged(nameof(this.ClrType));
                 this.ValidateProperty();

@@ -30,5 +30,6 @@ namespace vSharpStudio.common
         bool IsComplex { get; }
         bool IsComplexOne { get; }
         bool IsComplexMany { get; }
+        IComplexRef? ObjectRef { get; }
     }
 }

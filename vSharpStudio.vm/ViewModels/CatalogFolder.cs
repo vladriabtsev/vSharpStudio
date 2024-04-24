@@ -83,8 +83,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnGuidChanged()
         {
-            this._PropertyRefSelf.DataType.ObjectRef.ForeignObjectGuid = this.Guid;
-            this.ParentCatalog.PropertyRefFolder.DataType.ObjectRef.ForeignObjectGuid = this.Guid;
+            this._PropertyRefSelf.DataType.ObjectRef0.ForeignObjectGuid = this.Guid;
+            this.ParentCatalog.PropertyRefFolder.DataType.ObjectRef0.ForeignObjectGuid = this.Guid;
         }
         protected override void OnInitFromDto()
         {
@@ -210,26 +210,26 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable, string? guid = null)
-        {
-            var node = new Property(this) { Name = name };
-#if DEBUG
-            if (guid != null) // for test model generation
-            {
-                if (this.Cfg.DicNodes.ContainsKey(guid))
-                    return node;
-                node.Guid = guid;
-            }
-#endif
-            node.DataType = new DataType(node)
-            {
-                DataTypeEnum = EnumDataType.ENUMERATION,
-                ObjectRef = new ComplexRef(node.Guid, en.Guid)
-            };
-            node.IsNullable = isNullable;
-            this.NodeAddNewSubNode(node);
-            return node;
-        }
+//        public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable, string? guid = null)
+//        {
+//            var node = new Property(this) { Name = name };
+//#if DEBUG
+//            if (guid != null) // for test model generation
+//            {
+//                if (this.Cfg.DicNodes.ContainsKey(guid))
+//                    return node;
+//                node.Guid = guid;
+//            }
+//#endif
+//            node.DataType = new DataType(node)
+//            {
+//                DataTypeEnum = EnumDataType.ENUMERATION,
+//            };
+//            node.ListObjectRefs.Add(new ComplexRef(node.Guid, en.Guid));
+//            node.IsNullable = isNullable;
+//            this.NodeAddNewSubNode(node);
+//            return node;
+//        }
 
         #region Tree operations
         #endregion Tree operations

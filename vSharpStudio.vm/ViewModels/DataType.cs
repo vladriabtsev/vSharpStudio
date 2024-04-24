@@ -38,25 +38,45 @@ namespace vSharpStudio.vm.ViewModels
             this._RefForeignObjectDescPropertyGuid = System.Guid.NewGuid().ToString();
             this._RefForeignObjectShortTypeIdPropertyGuid = System.Guid.NewGuid().ToString();
         }
+        ///<summary>
+        /// Guid of complex type. It can be Guid of Catalog or Document. 
+        /// Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
+        /// If Guid of group types is assigned, then any type of such group of types is acceptable as type
+        /// If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
+        /// </summary>
+        [PropertyOrderAttribute(6)]
+        [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
+        public ComplexRef ObjectRef0
+        {
+            get
+            {
+                if (this.ListObjectRefs.Count==0)
+                {
+                    this.ListObjectRefs.Add(new ComplexRef());
+                }
+                return this.ListObjectRefs[0];
+            }
+        }
+        public IComplexRef ObjectRef { get { return this.ObjectRef0; } }
         partial void OnDataTypeEnumChanging(ref EnumDataType to, ref bool isCancel)
         {
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.CATALOG:
-                    this.ListObjectRefs.Clear();
-                    if (to == EnumDataType.CATALOGS && !string.IsNullOrWhiteSpace(this.ObjectRef.ForeignObjectGuid))
-                    {
-                        this.ListObjectRefs.Add(this.ObjectRef);
-                        this.ObjectRef.ForeignObjectGuid = string.Empty;
-                    }
+                    //this.ListObjectRefs.Clear();
+                    //if (to == EnumDataType.CATALOGS && !string.IsNullOrWhiteSpace(this.ObjectRef0?.ForeignObjectGuid))
+                    //{
+                    //    this.ListObjectRefs.Add(this.ObjectRef);
+                    //    this.ObjectRef.ForeignObjectGuid = string.Empty;
+                    //}
                     break;
                 case EnumDataType.DOCUMENT:
-                    this.ListObjectRefs.Clear();
-                    if (to == EnumDataType.DOCUMENTS && !string.IsNullOrWhiteSpace(this.ObjectRef.ForeignObjectGuid))
-                    {
-                        this.ListObjectRefs.Add(this.ObjectRef);
-                        this.ObjectRef.ForeignObjectGuid = string.Empty;
-                    }
+                    //this.ListObjectRefs.Clear();
+                    //if (to == EnumDataType.DOCUMENTS && !string.IsNullOrWhiteSpace(this.ObjectRef.ForeignObjectGuid))
+                    //{
+                    //    this.ListObjectRefs.Add(this.ObjectRef);
+                    //    this.ObjectRef.ForeignObjectGuid = string.Empty;
+                    //}
                     break;
                 case EnumDataType.CATALOGS:
                     if (this.ListObjectRefs.Count > 1)
@@ -67,11 +87,6 @@ namespace vSharpStudio.vm.ViewModels
                         var res = Xceed.Wpf.Toolkit.MessageBox.Show(mes, "Error", System.Windows.MessageBoxButton.OK);
                         isCancel = true;
                     }
-                    else if (this.ListObjectRefs.Count == 1)
-                    {
-                        this.ObjectRef.ForeignObjectGuid = this.ListObjectRefs[0].ForeignObjectGuid;
-                    }
-                    this.ListObjectRefs.Clear();
                     break;
                 case EnumDataType.DOCUMENTS:
                     if (this.ListObjectRefs.Count > 1)
@@ -82,11 +97,6 @@ namespace vSharpStudio.vm.ViewModels
                         var res = Xceed.Wpf.Toolkit.MessageBox.Show(mes, "Error", System.Windows.MessageBoxButton.OK);
                         isCancel = true;
                     }
-                    else if (this.ListObjectRefs.Count == 1)
-                    {
-                        this.ObjectRef.ForeignObjectGuid = this.ListObjectRefs[0].ForeignObjectGuid;
-                    }
-                    this.ListObjectRefs.Clear();
                     break;
                 case EnumDataType.ENUMERATION:
                     break;
@@ -138,8 +148,8 @@ namespace vSharpStudio.vm.ViewModels
         public DataType(ITreeConfigNode parent, EnumDataType type, string guidOfType) : this(parent)
         {
             this._DataTypeEnum = type;
-            this._ObjectRef.ForeignObjectGuid = guidOfType;
             this._ListObjectRefs = new ObservableCollectionWithActions<ComplexRef>();
+            this._ListObjectRefs.Add(new ComplexRef() { ForeignObjectGuid = guidOfType });
         }
         public override string ToString()
         {
@@ -813,8 +823,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 6;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    this._ObjectRef.ForeignObjectGuid = string.Empty;
-                    this.ListObjectRefs.Clear();
+                    this.ObjectRef0.ForeignObjectGuid = string.Empty;
                     break;
                 case EnumDataType.NUMERICAL:
                     if (this.Accuracy == 0)
@@ -831,8 +840,6 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 6;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    this._ObjectRef.ForeignObjectGuid = string.Empty;
-                    this.ListObjectRefs.Clear();
                     break;
                 case EnumDataType.STRING:
                     this.VisibilityIsPositive = Visibility.Collapsed;
@@ -842,8 +849,6 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 25;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    this._ObjectRef.ForeignObjectGuid = string.Empty;
-                    this.ListObjectRefs.Clear();
                     break;
                 default:
                     throw new NotSupportedException();

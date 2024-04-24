@@ -205,8 +205,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 DataTypeEnum = EnumDataType.CATALOG,
                 IsNullable = isNullable,
-                ObjectRef = new ComplexRef(node.Guid, catGuid)
             };
+            node.ConfigObjectGuid = catGuid;
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -222,7 +222,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ObjectRef.ForeignObjectGuid = cat.Guid;
+            node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
             node.DataType.DataTypeEnum = EnumDataType.CATALOG;
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
@@ -240,9 +240,11 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat.Guid));
+            node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
             if (cat2 != null)
+            {
                 node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat2.Guid));
+            }
             node.DataType.DataTypeEnum = EnumDataType.CATALOGS;
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);

@@ -337,7 +337,7 @@ namespace vSharpStudio.Unit
             mvm.BtnNewConfig.Execute();
 
             var cfg = mvm.Config;
-            int catPos = 14;
+            int catPos = 21;
             cfg.Model.GroupCatalogs.NodeAddNewSubNode();
             cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].Position == catPos);
@@ -364,37 +364,36 @@ namespace vSharpStudio.Unit
             var cfg = mvm.Config;
             uint pos = 20;
             var reg = (Register)cfg.Model.GroupDocuments.GroupRegisters.NodeAddNewSubNode();
-            Assert.AreEqual(pos, reg.LastGenPosition);
 
             var dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
             pos++;
-            Assert.AreEqual(pos, reg.LastGenPosition);
+            Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);
 
             var cat = cfg.Model.GroupCatalogs.AddCatalog("test_cat");
             dim = reg.AddDimension("test_dim", cat);
             pos++;
-            Assert.AreEqual(pos, reg.LastGenPosition);
+            Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);
 
             dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
             pos++;
-            Assert.AreEqual(pos, reg.LastGenPosition);
+            Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);
 
             var prop = (IProperty)reg.GroupProperties.NodeAddNewSubNode();
             pos++;
-            Assert.AreEqual(pos, reg.LastGenPosition);
+            Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, prop.Position);
 
             dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
             pos++;
-            Assert.AreEqual(pos, reg.LastGenPosition);
+            Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);
 
             prop = (IProperty)reg.AddAttachedProperty("test_prop");
             pos++;
-            Assert.AreEqual(pos, reg.LastGenPosition);
+            Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, prop.Position);
         }
         #endregion Unique position for Protobuf

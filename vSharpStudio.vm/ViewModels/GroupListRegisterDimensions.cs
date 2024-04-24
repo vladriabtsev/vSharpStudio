@@ -55,7 +55,7 @@ namespace vSharpStudio.vm.ViewModels
         public bool CanAddSubNode() { return true; }
         public uint GetNextPosition()
         {
-            return this.ParentRegister.GetNextPosition();
+            return this.ParentRegister.GroupProperties.GetNextPosition();
         }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {

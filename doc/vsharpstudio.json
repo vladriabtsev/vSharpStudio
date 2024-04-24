@@ -4390,18 +4390,6 @@
               "defaultValue": ""
             },
             {
-              "name": "object_ref",
-              "description": "\u003csummary\u003e\n/ Guid of complex type. It can be Guid of Enumeration, Catalog, Document. \n/ Numerical, string, bool, date and similar are simple types. For simple types this property is empty.\n/ If Guid of group types is assigned, then any type of such group of types is acceptable as type\n/ If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type\n/ \u003c/summary\u003e\n@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
-              "label": "",
-              "type": "complex_ref",
-              "longType": "complex_ref",
-              "fullType": "proto_config.complex_ref",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "accuracy_for_time",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Time accuracy\")]\n@attr [Description(\"Time accuracy for TimeOnly type. Business model is expecting selected accuracy\")]",
               "label": "",
@@ -11788,18 +11776,6 @@
               "type": "proto_enum_register_periodicity",
               "longType": "proto_enum_register_periodicity",
               "fullType": "proto_config.proto_enum_register_periodicity",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "last_gen_position",
-              "description": "Last generated Protobuf field position\n@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "uint32",
-              "longType": "uint32",
-              "fullType": "uint32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

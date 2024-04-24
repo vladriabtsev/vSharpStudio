@@ -500,7 +500,6 @@ namespace vSharpStudio.vm.ViewModels
                 this.Accuracy = 0;
                 this.IsPositive = false;
                 this.ConfigObjectGuid = string.Empty;
-                this.ListObjectRefs.Clear();
 
                 this.DataType.DataTypeEnum = value;
                 this.OnDataTypeEnumChanged();
@@ -610,7 +609,7 @@ namespace vSharpStudio.vm.ViewModels
             get { return this.DataType.ObjectRef.ForeignObjectGuid; }
             set
             {
-                this.DataType.ObjectRef.ForeignObjectGuid = value;
+                this.DataType.ObjectRef0.ForeignObjectGuid = value;
                 this.OnPropertyChanged();
                 this.ValidateProperty();
                 this.OnPropertyChanged(nameof(this.ClrType));
@@ -913,8 +912,8 @@ namespace vSharpStudio.vm.ViewModels
             node.IsComplexRefId = true;
             node.PositionInConfigObject = positionInObject;
             node.Position = position;
-            node.DataType.ObjectRef.ForeignObjectGuid = complexRef.ForeignObjectGuid;
-            node.DataType.ObjectRef.RefForeignObjectIdPropertyGuid = complexRef.RefForeignObjectIdPropertyGuid;
+            node.DataType.ObjectRef0.ForeignObjectGuid = complexRef.ForeignObjectGuid;
+            node.DataType.ObjectRef0.RefForeignObjectIdPropertyGuid = complexRef.RefForeignObjectIdPropertyGuid;
             return node;
         }
         public IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable)

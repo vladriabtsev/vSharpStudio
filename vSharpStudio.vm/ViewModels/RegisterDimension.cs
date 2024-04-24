@@ -100,7 +100,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnDimensionCatalogGuidChanged()
         {
-            this.PropertyRefDimensionCatalog.DataType.ObjectRef.ForeignObjectGuid = this.DimensionCatalogGuid ?? "";
+            this.PropertyRefDimensionCatalog.DataType.ObjectRef0.ForeignObjectGuid = this.DimensionCatalogGuid ?? "";
             this.PropertyRefDimensionCatalog.Name = this.Name;
             //this.OnPropertyChanged(nameof(this.ListCatalogs));
         }

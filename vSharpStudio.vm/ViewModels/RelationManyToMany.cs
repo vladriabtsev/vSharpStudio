@@ -125,7 +125,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
                 ThrowHelper.ThrowInvalidOperationException();
-            this.PropertyRefObj1.DataType.ObjectRef.ForeignObjectGuid = this.GuidObj1 ?? "";
+            this.PropertyRefObj1.DataType.ObjectRef0.ForeignObjectGuid = this.GuidObj1 ?? "";
             this.PropertyRefObj1.Name = this.Name;
             this.PropertyRefObj1.IsNullable = false;
         }
@@ -146,7 +146,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
                 ThrowHelper.ThrowInvalidOperationException();
-            this.PropertyRefObj2.DataType.ObjectRef.ForeignObjectGuid = this.GuidObj2 ?? "";
+            this.PropertyRefObj2.DataType.ObjectRef0.ForeignObjectGuid = this.GuidObj2 ?? "";
             this.PropertyRefObj2.Name = this.Name;
             this.PropertyRefObj1.IsNullable = false;
         }

@@ -514,7 +514,6 @@ Constant application wise value
 | length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Maximum length of data (characters in string, or decimal digits for numeric data)&#34;)] |
 | is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Positive&#34;)] @attr [Description(&#34;Expected numerical value always &gt;= 0&#34;)] |
 | accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for numeric data&#34;)] |
-| object_ref | [complex_ref](#proto_config-complex_ref) |  | &lt;summary&gt; / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. / Numerical, string, bool, date and similar are simple types. For simple types this property is empty. / If Guid of group types is assigned, then any type of such group of types is acceptable as type / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type / &lt;/summary&gt; @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | accuracy_for_time | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Time accuracy&#34;)] @attr [Description(&#34;Time accuracy for TimeOnly type. Business model is expecting selected accuracy&#34;)] |
 | list_object_refs | [complex_ref](#proto_config-complex_ref) | repeated | &lt;summary&gt; / Guids of selected complex types for data type CATALOGS or DOCUMENTS / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
 | is_nullable | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
@@ -1878,7 +1877,6 @@ Configuration model
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | register_type | [proto_enum_register_type](#proto_config-proto_enum_register_type) |  | @attr [Category(&#34;&#34;)] @attr [DisplayName(&#34;Register Type&#34;)] @attr [PropertyOrderAttribute(7)] |
 | register_periodicity | [proto_enum_register_periodicity](#proto_config-proto_enum_register_periodicity) |  | @attr [Category(&#34;&#34;)] @attr [DisplayName(&#34;Periodicity&#34;)] @attr [PropertyOrderAttribute(9)] |
-| last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |

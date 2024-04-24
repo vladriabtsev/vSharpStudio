@@ -178,7 +178,7 @@ namespace vSharpStudio.vm.ViewModels
                                             vf.Severity = Severity.Error;
                                             cntx.AddFailure(vf);
                                         }
-                                        if (p.DataType.ObjectRef.ForeignObjectGuid != rd.DimensionCatalogGuid)
+                                        if (!string.IsNullOrWhiteSpace(p.DataType.ObjectRef.ForeignObjectGuid) && p.DataType.ObjectRef.ForeignObjectGuid != rd.DimensionCatalogGuid)
                                         {
                                             var cp = (Catalog)r.Cfg.DicNodes[p.DataType.ObjectRef.ForeignObjectGuid];
                                             var crd = (Catalog)r.Cfg.DicNodes[rd.DimensionCatalogGuid];

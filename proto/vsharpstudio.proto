@@ -875,15 +875,6 @@ message proto_data_type {
     // @attr [DisplayName("Accuracy")]
     // @attr [Description("Number of decimal places in fractional part for numeric data")]
     uint32 accuracy = 5;
-    /// <summary>
-    /// Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
-    /// Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
-    /// If Guid of group types is assigned, then any type of such group of types is acceptable as type
-    /// If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
-    /// </summary>
-    // @attr [PropertyOrderAttribute(6)]
-    // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
-    complex_ref object_ref = 6;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Time accuracy")]
@@ -2454,9 +2445,6 @@ message proto_register {
     // @attr [DisplayName("Periodicity")]
     // @attr [PropertyOrderAttribute(9)]
     proto_enum_register_periodicity register_periodicity = 11;
-    // Last generated Protobuf field position
-    // @attr [ReadOnly(true)]
-    uint32 last_gen_position = 7;
     // @attr [Browsable(false)]
     bool is_new = 9;
     // @attr [DisplayName("For deletion")]

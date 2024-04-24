@@ -142,7 +142,6 @@ namespace vSharpStudio.vm.ViewModels
             this._TableBalancePropertyVersionGuid = System.Guid.NewGuid().ToString();
             this._TableTurnoverPropertyIsStartingBalanceGuid = System.Guid.NewGuid().ToString();
             this._TableTurnoverPropertyPostDateGuid = System.Guid.NewGuid().ToString();
-            this._LastGenPosition = 20;
             this._PropertyDocRefGuidName = "DocGuid";
             this._PropertyDocRefName = "Doc";
             this._RegisterType = EnumRegisterType.TURNOVER;
@@ -209,12 +208,6 @@ namespace vSharpStudio.vm.ViewModels
         internal bool isSpecialItself;
 
         #region Tree operations
-        public uint GetNextPosition()
-        {
-            if (this.LastGenPosition < 20)
-                this.LastGenPosition = 20;
-            return ++this.LastGenPosition;
-        }
         public override bool NodeCanUp()
         {
             if (this.NodeCanAddClone())
@@ -456,16 +449,14 @@ namespace vSharpStudio.vm.ViewModels
         public RegisterDimension AddDimension(string name)
         {
             var d = new RegisterDimension(this.GroupRegisterDimensions) { Name = name };
-            this.LastGenPosition++;
-            d.Position = this.LastGenPosition;
+            d.Position = this.GroupProperties.GetNextPosition();
             this.GroupRegisterDimensions.ListDimensions.Add(d);
             return d;
         }
         public RegisterDimension AddDimension(string name, ICatalog c)
         {
             var d = new RegisterDimension(this.GroupRegisterDimensions) { Name = name, DimensionCatalogGuid = c.Guid };
-            this.LastGenPosition++;
-            d.Position = this.LastGenPosition;
+            d.Position = this.GroupProperties.GetNextPosition();
             this.GroupRegisterDimensions.ListDimensions.Add(d);
             return d;
         }

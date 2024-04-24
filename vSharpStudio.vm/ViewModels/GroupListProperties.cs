@@ -383,7 +383,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ObjectRef.ForeignObjectGuid = en.Guid;
+            node.DataType.ObjectRef0.ForeignObjectGuid = en.Guid;
             node.DataType.DataTypeEnum = EnumDataType.ENUMERATION;
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
@@ -401,7 +401,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ObjectRef.ForeignObjectGuid = cat.Guid;
+            node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
             node.DataType.DataTypeEnum = EnumDataType.CATALOG;
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
@@ -419,7 +419,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat.Guid));
+            node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
             if (cat2 != null)
                 node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat2.Guid));
             node.DataType.DataTypeEnum = EnumDataType.CATALOGS;
@@ -439,7 +439,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ObjectRef.ForeignObjectGuid = d.Guid;
+            node.DataType.ObjectRef0.ForeignObjectGuid = d.Guid;
             node.DataType.DataTypeEnum = EnumDataType.DOCUMENT;
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
@@ -457,7 +457,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, d.Guid));
+            node.DataType.ObjectRef0.ForeignObjectGuid = d.Guid;
             if (d2 != null)
                 node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, d2.Guid));
             node.DataType.DataTypeEnum = EnumDataType.DOCUMENTS;

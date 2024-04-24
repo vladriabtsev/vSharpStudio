@@ -118,7 +118,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnGuidChanged()
         {
-            this._PropertyRefSelf.DataType.ObjectRef.ForeignObjectGuid = this.Guid;
+            this._PropertyRefSelf.DataType.ObjectRef0.ForeignObjectGuid = this.Guid;
         }
         protected override void OnInitFromDto()
         {

@@ -2378,20 +2378,6 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>object_ref</td>
-                  <td><a href="#proto_config.complex_ref">complex_ref</a></td>
-                  <td></td>
-                  <td><p>&lt;summary&gt;
-/ Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
-/ Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
-/ If Guid of group types is assigned, then any type of such group of types is acceptable as type
-/ If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
-/ &lt;/summary&gt;
-@attr [PropertyOrderAttribute(6)]
-@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
-                </tr>
-              
-                <tr>
                   <td>accuracy_for_time</td>
                   <td><a href="#proto_config.proto_enum_time_accuracy_type">proto_enum_time_accuracy_type</a></td>
                   <td></td>
@@ -7978,14 +7964,6 @@ google.protobuf.UInt32Value width_xx = 39; </p></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [DisplayName(&#34;Periodicity&#34;)]
 @attr [PropertyOrderAttribute(9)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>last_gen_position</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>Last generated Protobuf field position
-@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
