@@ -266,11 +266,17 @@ namespace vSharpStudio.vm.ViewModels
                     case EnumDataType.CATALOGS:
                     case EnumDataType.DOCUMENT:
                     case EnumDataType.DOCUMENTS:
-                        if (p.Parent is IRegisterDimension)
+                        Debug.Assert(p.Parent != null);
+                        if (p.Parent is IRegister)
+                            return;
+                        if (p.Parent is IDocumentTimeline)
                             return;
                         if (p.Parent is IRelationManyToMany)
                             return;
                         if (p.Parent is IRelationOneToOne)
+                            return;
+                        Debug.Assert(p.Parent.Parent != null);
+                        if (p.Parent.Parent is IRegister)
                             return;
                         var vf = new ValidationFailure(nameof(p.IsNullable),
                             $"Reference property to complex type expected to be nullable. For example, when object is created.");
@@ -533,29 +539,36 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     return false;
                 }
-
                 return true;
             }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_ENUMERATION);
             this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
-                if (p.Parent is not IGroupListProperties)
+                Debug.Assert(p.Parent != null);
+                if (p.Parent.Parent is IRegister)
+                    return true;
+                if (p.Parent.Parent is IRelationManyToMany)
+                    return true;
+                if (p.Parent.Parent is IRelationOneToOne)
                     return true;
                 if (p.DataTypeEnum == EnumDataType.CATALOG && string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
                 {
                     return false;
                 }
-
                 return true;
             }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_CATALOG);
             this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
-                if (p.Parent is not IGroupListProperties)
+                Debug.Assert(p.Parent != null);
+                if (p.Parent.Parent is IRegister)
+                    return true;
+                if (p.Parent.Parent is IRelationManyToMany)
+                    return true;
+                if (p.Parent.Parent is IRelationOneToOne)
                     return true;
                 if (p.DataTypeEnum == EnumDataType.DOCUMENT && string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
                 {
                     return false;
                 }
-
                 return true;
             }).WithMessage(Config.ValidationMessages.TYPE_EMPTY_DOCUMENT);
             this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
@@ -591,7 +604,12 @@ namespace vSharpStudio.vm.ViewModels
             }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
             this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
-                if (p.Parent is not IGroupListProperties)
+                Debug.Assert(p.Parent != null);
+                if (p.Parent.Parent is IRegister)
+                    return true;
+                if (p.Parent.Parent is IRelationManyToMany)
+                    return true;
+                if (p.Parent.Parent is IRelationOneToOne)
                     return true;
                 if (p.DataTypeEnum != EnumDataType.CATALOG)
                 {
@@ -624,7 +642,12 @@ namespace vSharpStudio.vm.ViewModels
             }).WithMessage(Config.ValidationMessages.TYPE_OBJECT_IS_NOT_FOUND);
             this.RuleFor(p => p.ConfigObjectGuid).Must((p, y) =>
             {
-                if (p.Parent is not IGroupListProperties)
+                Debug.Assert(p.Parent != null);
+                if (p.Parent.Parent is IRegister)
+                    return true;
+                if (p.Parent.Parent is IRelationManyToMany)
+                    return true;
+                if (p.Parent.Parent is IRelationOneToOne)
                     return true;
                 if (p.DataTypeEnum != EnumDataType.DOCUMENT)
                 {
@@ -914,7 +937,12 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.IsMarkedForDeletion).Custom((name, cntx) =>
             {
                 var p = (Property)cntx.InstanceToValidate;
-                if (p.Parent is not IGroupListProperties)
+                Debug.Assert(p.Parent != null);
+                if (p.Parent.Parent is IRegister)
+                    return;
+                if (p.Parent.Parent is IRelationManyToMany)
+                    return;
+                if (p.Parent.Parent is IRelationOneToOne)
                     return;
                 if (p.IsMarkedForDeletion)
                     return;
@@ -1150,10 +1178,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             foreach (var t in r.GroupRegisterDimensions.ListDimensions)
             {
-                if (t.Name == name)
+                if (t.Guid != p.Guid && t.Name == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Property name '{name}' is already used as register dimention name");
+                        $"Property name '{name}' is already used as register dimension name");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }

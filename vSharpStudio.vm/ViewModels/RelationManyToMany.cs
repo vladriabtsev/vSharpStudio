@@ -128,6 +128,9 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyRefObj1.DataType.ObjectRef0.ForeignObjectGuid = this.GuidObj1 ?? "";
             this.PropertyRefObj1.Name = this.Name;
             this.PropertyRefObj1.IsNullable = false;
+            this.PropertyRefObj1.Position = 0;
+            this.PropertyRefObj1.PositionOfDescr = 0;
+            this.PropertyRefObj1.PositionOfGd = 0;
         }
         partial void OnRefObj2TypeChanged()
         {
@@ -148,7 +151,10 @@ namespace vSharpStudio.vm.ViewModels
                 ThrowHelper.ThrowInvalidOperationException();
             this.PropertyRefObj2.DataType.ObjectRef0.ForeignObjectGuid = this.GuidObj2 ?? "";
             this.PropertyRefObj2.Name = this.Name;
-            this.PropertyRefObj1.IsNullable = false;
+            this.PropertyRefObj2.IsNullable = false;
+            this.PropertyRefObj2.Position = 0;
+            this.PropertyRefObj2.PositionOfDescr = 0;
+            this.PropertyRefObj2.PositionOfGd = 0;
         }
         #endregion OnChanged
 

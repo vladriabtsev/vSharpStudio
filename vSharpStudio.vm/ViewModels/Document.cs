@@ -238,8 +238,8 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             node.DataType = new DataType(node)
             {
-                DataTypeEnum = EnumDataType.CATALOG,
                 IsNullable = isNullable,
+                DataTypeEnum = EnumDataType.CATALOG,
             };
             node.ConfigObjectGuid = catGuid;
             this.GroupProperties.NodeAddNewSubNode(node);

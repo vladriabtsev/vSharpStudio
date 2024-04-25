@@ -71,7 +71,7 @@ namespace ViewModelBase
         {
             Debug.Assert(propertyName != null);
 #if DEBUG
-            if (isNotValidateForUnitTests)
+            if (IsNotValidate)
                 return true;
 #endif
             var res = this._validator.Validate((T)this);

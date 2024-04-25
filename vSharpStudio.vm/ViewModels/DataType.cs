@@ -9,6 +9,7 @@ using System.Numerics;
 using System.Text;
 using System.Windows;
 using System.Windows.Shapes;
+using CommunityToolkit.Diagnostics;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -35,8 +36,6 @@ namespace vSharpStudio.vm.ViewModels
             //Init();
             //this.PropertyChanging += DataType_PropertyChanging;
             //this.PropertyChanged += DataType_PropertyChanged;
-            this._RefForeignObjectDescPropertyGuid = System.Guid.NewGuid().ToString();
-            this._RefForeignObjectShortTypeIdPropertyGuid = System.Guid.NewGuid().ToString();
         }
         ///<summary>
         /// Guid of complex type. It can be Guid of Catalog or Document. 
@@ -50,7 +49,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                if (this.ListObjectRefs.Count==0)
+                if (this.ListObjectRefs.Count == 0)
                 {
                     this.ListObjectRefs.Add(new ComplexRef());
                 }
@@ -777,9 +776,6 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.CHAR:
                 case EnumDataType.BOOL:
                 case EnumDataType.DATE:
-                case EnumDataType.CATALOGS:
-                case EnumDataType.DOCUMENTS:
-                case EnumDataType.ANY:
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;
@@ -805,6 +801,27 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumDataType.CATALOG:
                 case EnumDataType.DOCUMENT:
+                    this.VisibilityIsPositive = Visibility.Collapsed;
+                    this.VisibilityAccuracy = Visibility.Collapsed;
+                    this.VisibilityLength = Visibility.Collapsed;
+                    this.VisibilityObjectName = Visibility.Visible;
+                    this._Length = 0;
+                    this._Accuracy = 0;
+                    this._IsPositive = false;
+                    GetPosition();
+                    break;
+                case EnumDataType.CATALOGS:
+                case EnumDataType.DOCUMENTS:
+                case EnumDataType.ANY:
+                    this.VisibilityAccuracy = Visibility.Collapsed;
+                    this.VisibilityLength = Visibility.Collapsed;
+                    this.VisibilityObjectName = Visibility.Collapsed;
+                    this.VisibilityIsPositive = Visibility.Collapsed;
+                    this._Length = 0;
+                    this._Accuracy = 0;
+                    this._IsPositive = false;
+                    GetPosition();
+                    break;
                 case EnumDataType.ENUMERATION:
                     this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Collapsed;
@@ -862,6 +879,44 @@ namespace vSharpStudio.vm.ViewModels
             this.OnPropertyChanged(nameof(this.ObjectRef));
             this.OnPropertyChanged(nameof(this.ListObjects));
         }
+
+        private void GetPosition()
+        {
+            if (this.Parent is Property tp)
+            {
+                if (tp.PositionOfDescr == 0)
+                {
+                    if (tp.Parent is GroupListProperties)
+                    {
+                        tp.PositionOfDescr = tp.ParentGroupListProperties.GetNextPosition();
+                    }
+                    else if (tp.Parent is DocumentTimeline dt)
+                    {
+                        tp.PositionOfDescr = dt.GetNextPosition();
+                    }
+                    else if (tp.Parent is RelationManyToMany rm)
+                    {
+                        //tp.PositionOfDescr = rm.PropertyRefObj1. dt.GetNextPosition();
+                    }
+                    else if (tp.Parent is RelationOneToOne ro)
+                    {
+                        //tp.PositionOfDescr = dt.GetNextPosition();
+                    }
+                    else
+                        ThrowHelper.ThrowInvalidOperationException();
+                }
+            }
+            else if (this.Parent is Constant tc)
+            {
+                //if (tc.PositionOfDescr == 0)
+                //{
+                //    tc.PositionOfDescr = tc.ParentGroupListProperties.GetNextPosition();
+                //}
+            }
+            else
+                ThrowHelper.ThrowInvalidOperationException();
+        }
+
         partial void OnLengthChanged()
         {
             if (this.Cfg == null)

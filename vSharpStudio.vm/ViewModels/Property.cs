@@ -100,6 +100,7 @@ namespace vSharpStudio.vm.ViewModels
         public object? Tag { get; set; }
         [Browsable(false)]
         // Calculated position in list of properties
+        // Useful for short names in indexes
         public int PositionInConfigObject { get; set; }
         //[Browsable(false)]
         //public static IConfig? Config { get; set; }
@@ -127,6 +128,7 @@ namespace vSharpStudio.vm.ViewModels
         public string ComplexObjectNameWithDot() { if (!string.IsNullOrEmpty(this.ComplexObjectName)) return $"{this.ComplexObjectName}."; return ""; }
         partial void OnCreated()
         {
+            this.DataType.Parent = this;
             this.IsNullable = false;
             this.IsUseHistory = false;
             this._MinLengthRequirement = "";
@@ -134,7 +136,6 @@ namespace vSharpStudio.vm.ViewModels
             this._RangeValuesRequirementStr = "";
             this._LinesOnScreen = 1;
             this.IsIncludableInModels = true;
-            this.DataType.Parent = this;
             Init();
         }
         // for new properties
@@ -901,43 +902,47 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsRefParent { get { return this.DataType.IsRefParent; } }
         [Browsable(false)]
         public bool IsDocShared { get; set; }
-        public IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInObject, uint position)
+        public IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInConfigObject, uint position)
         {
             var node = new Property(this) { Name = subName, ParentProperty = this };
-            node.Guid = complexRef.RefForeignObjectIdPropertyGuid;
+            node.Guid = complexRef.RefComplexObjectIdPropertyGuid;
             node.DataType = (DataType)this.Cfg.Model.GetIdRefDataType(node, true);
             node.DataType.IsPKey = false;
             node.IsNullable = isNullable;
             node.IsCsNullable = isCsNullable;
             node.IsComplexRefId = true;
-            node.PositionInConfigObject = positionInObject;
-            node.Position = position;
             node.DataType.ObjectRef0.ForeignObjectGuid = complexRef.ForeignObjectGuid;
-            node.DataType.ObjectRef0.RefForeignObjectIdPropertyGuid = complexRef.RefForeignObjectIdPropertyGuid;
+            node.DataType.ObjectRef0.RefComplexObjectIdPropertyGuid = complexRef.RefComplexObjectIdPropertyGuid;
+            node.PositionInConfigObject = positionInConfigObject;
+            node.Position = position;
             return node;
         }
-        public IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable)
+        public IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable, uint position)
         {
-            //Debug.Assert(this.CanAddExtentionPropertyGd());
             var node = new Property(this) { Name = subName };
-            node.Guid = this.DataType.RefForeignObjectShortTypeIdPropertyGuid;
+            if (string.IsNullOrEmpty(this.RefComplexObjectGdPropertyGuid))
+                this.RefComplexObjectGdPropertyGuid= System.Guid.NewGuid().ToString();
+            node.Guid = this.RefComplexObjectGdPropertyGuid;
             node.DataType = (DataType)this.Cfg.Model.GetDataTypeInt(node, false, isNullable);
             node.IsNullable = isNullable;
             node.IsCsNullable = isCsNullable;
             node.ParentProperty = this;
             node.IsComplexRefGuid = true;
+            node.Position = position;
             return node;
         }
-        public IProperty AddExtensionPropertyDesc(string subName, bool isNullable, bool isCsNullable)
+        public IProperty AddExtensionPropertyDesc(string subName, bool isNullable, bool isCsNullable, uint position)
         {
-            //Debug.Assert(this.CanAddExtentionPropertyDesc());
             var node = new Property(this) { Name = subName };
-            node.Guid = this.DataType.RefForeignObjectDescPropertyGuid;
+            if (string.IsNullOrEmpty(this.RefComplexObjectDescrPropertyGuid))
+                this.RefComplexObjectDescrPropertyGuid = System.Guid.NewGuid().ToString();
+            node.Guid = this.RefComplexObjectDescrPropertyGuid;
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = this.Cfg.Model.ComplexPropertyRefDescrLength };
             node.IsNullable = isNullable;
             node.IsCsNullable = isCsNullable;
             node.ParentProperty = this;
             node.IsComplexDesc = true;
+            node.Position = position;
             return node;
         }
         public IProperty AddExtensionPropertyString(string subName, uint length, string guid)

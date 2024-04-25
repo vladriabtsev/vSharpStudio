@@ -65,7 +65,7 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this._DimensionCatalogGuid = string.Empty;
             var m = (Model)this.Cfg.Model;
-            this._PropertyRefDimensionCatalog = (Property)m.GetPropertyRef(this, this.Guid, "Ref2", 0, false);
+            this._PropertyRefDimensionCatalog = (Property)m.GetPropertyRef(this.ParentGroupListRegisterDimensions.ParentRegister.GroupProperties, this.Guid, "Ref2", 0, false);
             this._PropertyRefDimensionCatalog.DataTypeEnum = EnumDataType.CATALOG;
             Init();
         }

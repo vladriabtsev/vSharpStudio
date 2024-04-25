@@ -758,15 +758,7 @@ unique in object (can be used as Protobuf field position) </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref_foreign_object_property_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)]
-complex extended property guid </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ref_foreign_object_id_property_guid</td>
+                  <td>ref_complex_object_id_property_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)]
@@ -2449,22 +2441,6 @@ Generator output file name </p></td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ref_foreign_object_desc_property_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)]
-extended property guid for foreign object desc </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ref_foreign_object_short_type_id_property_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)]
-extended property guid for foreign object desc </p></td>
                 </tr>
               
             </tbody>
@@ -7737,10 +7713,45 @@ google.protobuf.UInt32Value width_xx = 39; </p></td>
                 </tr>
               
                 <tr>
+                  <td>ref_complex_object_gd_property_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)]
+extended property guid for reference complex object type guid </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref_complex_object_descr_property_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)]
+extended property guid for reference complex object short description guid </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position_of_gd</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Position of complex type GUID for CATALOGS, or DOCUMENTS, or ANY
+unique in object (can be used as Protobuf field position)
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position_of_descr</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Position of short description property for complex types
+unique in object (can be used as Protobuf field position)
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>position</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>unique in object (can be used as Protobuf field position)
+                  <td><p>Position of property
+unique in object (can be used as Protobuf field position)
 @attr [ReadOnly(true)] </p></td>
                 </tr>
               

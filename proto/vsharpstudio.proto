@@ -852,11 +852,8 @@ message complex_ref
     // @attr [Browsable(false)]
     string foreign_object_guid = 11;
     // @attr [Browsable(false)]
-    // complex extended property guid
-    string ref_foreign_object_property_guid = 12;
-    // @attr [Browsable(false)]
     // extended property guid for foreign object id
-    string ref_foreign_object_id_property_guid = 13;
+    string ref_complex_object_id_property_guid = 13;
 }
 // @base BaseSettings
 message proto_data_type {
@@ -909,12 +906,6 @@ message proto_data_type {
     bool is_p_key = 21;
     // @attr [Browsable(false)]
     bool is_ref_parent = 22;
-    // @attr [Browsable(false)]
-    // extended property guid for foreign object desc
-    string ref_foreign_object_desc_property_guid = 25;
-    // @attr [Browsable(false)]
-    // extended property guid for foreign object desc
-    string ref_foreign_object_short_type_id_property_guid = 26;
 }
 /** C O M M O N
  * @exclude
@@ -1408,6 +1399,21 @@ message proto_property {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
+    // @attr [Browsable(false)]
+    // extended property guid for reference complex object type guid
+    string ref_complex_object_gd_property_guid = 106;
+    // @attr [Browsable(false)]
+    // extended property guid for reference complex object short description guid
+    string ref_complex_object_descr_property_guid = 107;
+    // Position of complex type GUID for CATALOGS, or DOCUMENTS, or ANY
+    // unique in object (can be used as Protobuf field position)
+    // @attr [ReadOnly(true)]
+    uint32 position_of_gd = 108;
+    // Position of short description property for complex types
+    // unique in object (can be used as Protobuf field position)
+    // @attr [ReadOnly(true)]
+    uint32 position_of_descr = 109;
+    // Position of property
     // unique in object (can be used as Protobuf field position)
     // @attr [ReadOnly(true)]
     uint32 position = 110;

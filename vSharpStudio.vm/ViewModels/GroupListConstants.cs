@@ -231,9 +231,9 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
+            node.IsNullable = true;
             node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
             node.DataType.DataTypeEnum = EnumDataType.CATALOG;
-            node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -249,9 +249,9 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
+            node.IsNullable = true;
             node.DataType.ObjectRef0.ForeignObjectGuid = d.Guid;
             node.DataType.DataTypeEnum = EnumDataType.DOCUMENT;
-            node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -267,8 +267,8 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
-            node.DataType.DataTypeEnum = EnumDataType.ANY;
             node.IsNullable = true;
+            node.DataType.DataTypeEnum = EnumDataType.ANY;
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -284,9 +284,9 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
+            node.IsNullable = true;
             node.DataType.DataTypeEnum = EnumDataType.ANY;
             node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
-            node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -302,9 +302,9 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
+            node.IsNullable = true;
             node.DataType.DataTypeEnum = EnumDataType.ANY;
             node.DataType.ObjectRef0.ForeignObjectGuid = d.Guid;
-            node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -320,13 +320,13 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
+            node.IsNullable = true;
             node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
             if (cat2 != null)
             {
                 node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat2.Guid));
             }
             node.DataType.DataTypeEnum = EnumDataType.CATALOGS;
-            node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -342,12 +342,12 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node);
+            node.IsNullable = true;
             Debug.Assert(node.DataType.ObjectRef.ForeignObjectGuid == string.Empty);
             node.DataType.ObjectRef0.ForeignObjectGuid = d.Guid;
             if (d2 != null)
                 node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, d2.Guid));
             node.DataType.DataTypeEnum = EnumDataType.DOCUMENTS;
-            node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -393,6 +393,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IProperty>();
             this.GetSpecialProperties(res, isOptimistic);
+            VmBindable.IsNotValidate = true;
             foreach (var t in this.ListConstants)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -401,6 +402,7 @@ namespace vSharpStudio.vm.ViewModels
                     res.Add(p);
                 }
             }
+            VmBindable.IsNotValidate = false;
             return res;
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()

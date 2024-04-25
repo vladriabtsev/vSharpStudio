@@ -120,7 +120,12 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(p => p.ObjectRef.ForeignObjectGuid).Must((p, y) =>
             {
                 Debug.Assert(p.Parent != null);
-                if (p.Parent.Parent is not IGroupListProperties)
+                Debug.Assert(p.Parent.Parent != null);
+                if (p.Parent.Parent.Parent is IRegister)
+                    return true;
+                if (p.Parent.Parent.Parent is IRelationManyToMany)
+                    return true;
+                if (p.Parent.Parent.Parent is IRelationOneToOne)
                     return true;
                 if (p.DataTypeEnum == EnumDataType.CATALOG && string.IsNullOrWhiteSpace(p.ObjectRef.ForeignObjectGuid))
                 {
@@ -131,7 +136,12 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(p => p.ObjectRef.ForeignObjectGuid).Must((p, y) =>
             {
                 Debug.Assert(p.Parent != null);
-                if (p.Parent.Parent is not IGroupListProperties)
+                Debug.Assert(p.Parent.Parent != null);
+                if (p.Parent.Parent.Parent is IRegister)
+                    return true;
+                if (p.Parent.Parent.Parent is IRelationManyToMany)
+                    return true;
+                if (p.Parent.Parent.Parent is IRelationOneToOne)
                     return true;
                 if (p.DataTypeEnum == EnumDataType.DOCUMENT && string.IsNullOrWhiteSpace(p.ObjectRef.ForeignObjectGuid))
                 {
@@ -165,7 +175,12 @@ namespace vSharpStudio.vm.ViewModels
                 if (p.Cfg == null)
                     return true;
                 Debug.Assert(p.Parent != null);
-                if (p.Parent.Parent is not IGroupListProperties)
+                Debug.Assert(p.Parent.Parent != null);
+                if (p.Parent.Parent.Parent is IRegister)
+                    return true;
+                if (p.Parent.Parent.Parent is IRelationManyToMany)
+                    return true;
+                if (p.Parent.Parent.Parent is IRelationOneToOne)
                     return true;
                 foreach (var t in p.Cfg.Model.GroupCatalogs.ListCatalogs)
                 {
@@ -185,7 +200,12 @@ namespace vSharpStudio.vm.ViewModels
                 if (p.Cfg == null)
                     return true;
                 Debug.Assert(p.Parent != null);
-                if (p.Parent.Parent is not IGroupListProperties)
+                Debug.Assert(p.Parent.Parent != null);
+                if (p.Parent.Parent.Parent is IRegister)
+                    return true;
+                if (p.Parent.Parent.Parent is IRelationManyToMany)
+                    return true;
+                if (p.Parent.Parent.Parent is IRelationOneToOne)
                     return true;
                 foreach (var t in p.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
                 {

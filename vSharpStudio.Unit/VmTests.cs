@@ -364,8 +364,10 @@ namespace vSharpStudio.Unit
             var cfg = mvm.Config;
             uint pos = 20;
             var reg = (Register)cfg.Model.GroupDocuments.GroupRegisters.NodeAddNewSubNode();
+            Assert.AreEqual(0u, reg.GroupProperties.LastGenPosition);
 
             var dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
+            pos++;
             pos++;
             Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);
@@ -373,10 +375,12 @@ namespace vSharpStudio.Unit
             var cat = cfg.Model.GroupCatalogs.AddCatalog("test_cat");
             dim = reg.AddDimension("test_dim", cat);
             pos++;
+            pos++;
             Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);
 
             dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
+            pos++;
             pos++;
             Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);
@@ -387,6 +391,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(pos, prop.Position);
 
             dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
+            pos++;
             pos++;
             Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);

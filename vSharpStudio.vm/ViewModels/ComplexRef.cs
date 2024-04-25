@@ -22,8 +22,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnCreated()
         {
-            this._RefForeignObjectIdPropertyGuid = System.Guid.NewGuid().ToString();
-            this._RefForeignObjectPropertyGuid = System.Guid.NewGuid().ToString();
+            this._RefComplexObjectIdPropertyGuid = System.Guid.NewGuid().ToString();
         }
     }
 }

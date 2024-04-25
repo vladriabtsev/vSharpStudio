@@ -158,8 +158,7 @@
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | position | [uint32](#uint32) |  | @attr [Browsable(false)] unique in object (can be used as Protobuf field position) |
 | foreign_object_guid | [string](#string) |  | @attr [Browsable(false)] |
-| ref_foreign_object_property_guid | [string](#string) |  | @attr [Browsable(false)] complex extended property guid |
-| ref_foreign_object_id_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for foreign object id |
+| ref_complex_object_id_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for foreign object id |
 
 
 
@@ -522,8 +521,6 @@ Constant application wise value
 | is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for property value&#34;)] |
 | is_p_key | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_ref_parent | [bool](#bool) |  | @attr [Browsable(false)] |
-| ref_foreign_object_desc_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for foreign object desc |
-| ref_foreign_object_short_type_id_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for foreign object desc |
 
 
 
@@ -1822,7 +1819,11 @@ Configuration model
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| position | [uint32](#uint32) |  | unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
+| ref_complex_object_gd_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for reference complex object type guid |
+| ref_complex_object_descr_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for reference complex object short description guid |
+| position_of_gd | [uint32](#uint32) |  | Position of complex type GUID for CATALOGS, or DOCUMENTS, or ANY unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
+| position_of_descr | [uint32](#uint32) |  | Position of short description property for complex types unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
+| position | [uint32](#uint32) |  | Position of property unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 

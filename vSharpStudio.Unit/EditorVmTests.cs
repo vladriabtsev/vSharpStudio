@@ -297,7 +297,7 @@ namespace vSharpStudio.Unit
         {
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath(), null, true);
             var cfg = vm.Config;
-            VmBindable.isNotValidateForUnitTests = true;
+            VmBindable.IsNotValidate = true;
             var gc = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             var cnst = new Constant(gc);
             gc.Add(cnst);
