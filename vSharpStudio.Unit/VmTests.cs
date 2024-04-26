@@ -367,21 +367,18 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0u, reg.GroupProperties.LastGenPosition);
 
             var dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
-            pos++;
-            pos++;
+            pos += 4;
             Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);
 
             var cat = cfg.Model.GroupCatalogs.AddCatalog("test_cat");
             dim = reg.AddDimension("test_dim", cat);
-            pos++;
-            pos++;
+            pos += 4;
             Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);
 
             dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
-            pos++;
-            pos++;
+            pos += 4;
             Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);
 
@@ -391,8 +388,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(pos, prop.Position);
 
             dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
-            pos++;
-            pos++;
+            pos += 4;
             Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);
 
@@ -687,7 +683,7 @@ namespace vSharpStudio.Unit
             var s2 = (DocumentEnumeratorSequence)cfg.Model.GroupDocuments.GroupListSequences.NodeAddNewSubNode();
             var d2 = (Document)cfg.Model.GroupDocuments.GroupListDocuments.NodeAddNewSubNode();
             d2.SequenceGuid = s2.Guid;
-            var lst =cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GetPropertiesForUI(false).ToList();
+            var lst = cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GetPropertiesForUI(false).ToList();
             var p1 = lst.Single(t => t.Name == cfg.Model.GroupDocuments.PropertyDocNumberName);
             var p1h = lst.Single(t => t.Name == cfg.Model.GroupDocuments.PropertyDocNumberName + "UniqueScopeHelper");
             lst = cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[1].GetPropertiesForUI(false).ToList();

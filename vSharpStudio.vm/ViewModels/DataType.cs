@@ -73,7 +73,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
                 ThrowHelper.ThrowInvalidOperationException();
-            ThrowHelper.ThrowInvalidOperationException();
             return 0;
         }
         private void GetPositions(ComplexRef cr)

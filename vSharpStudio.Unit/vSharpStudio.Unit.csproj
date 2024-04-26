@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{93615E76-0E83-4FCE-A6E0-554F4BB108D3}</ProjectGuid>
-    <TargetFrameworks>net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net7.0-windows</TargetFrameworks>
     <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ValidateExecutableReferencesMatchSelfContained>false</ValidateExecutableReferencesMatchSelfContained>
