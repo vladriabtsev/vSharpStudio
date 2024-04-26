@@ -28,7 +28,75 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreating()
         {
             this._ListObjectRefs = new ObservableCollectionWithActions<ComplexRef>();
+            this._ListObjectRefs.CollectionChanged += ListObjectRefs_CollectionChanged;
         }
+        private void ListObjectRefs_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (var t in e.NewItems)
+                {
+                    var cr = (ComplexRef)t;
+                    this.GetPositions(cr);
+                }
+            }
+        }
+        private uint GetNextPosition()
+        {
+            if (this.Parent is Property tp)
+            {
+                if (tp.Parent is GroupListProperties)
+                {
+                    return tp.ParentGroupListProperties.GetNextPosition();
+                }
+                else if (tp.Parent is DocumentTimeline dt)
+                {
+                    return dt.GetNextPosition();
+                }
+                else if (tp.Parent is RelationManyToMany rm)
+                {
+                    //tp.PositionOfDescr = rm.PropertyRefObj1. dt.GetNextPosition();
+                }
+                else if (tp.Parent is RelationOneToOne ro)
+                {
+                    //tp.PositionOfDescr = dt.GetNextPosition();
+                }
+                else
+                    ThrowHelper.ThrowInvalidOperationException();
+            }
+            else if (this.Parent is Constant tc)
+            {
+                //if (tc.PositionOfDescr == 0)
+                //{
+                //    tc.PositionOfDescr = tc.ParentGroupListProperties.GetNextPosition();
+                //}
+            }
+            else
+                ThrowHelper.ThrowInvalidOperationException();
+            ThrowHelper.ThrowInvalidOperationException();
+            return 0;
+        }
+        private void GetPositions(ComplexRef cr)
+        {
+            if (cr.Position > 0)
+                return;
+            if (this.Parent is Property tp)
+            {
+                if (tp.PositionOfDescr == 0)
+                    tp.PositionOfDescr = this.GetNextPosition();
+                if (tp.PositionOfGd == 0)
+                    tp.PositionOfGd = this.GetNextPosition();
+                cr.Position = this.GetNextPosition();
+            }
+            else if (this.Parent is Constant tc)
+            {
+                //if (tc.PositionOfDescr == 0)
+                //    tc.PositionOfDescr = this.GetNextPosition();
+            }
+            else
+                ThrowHelper.ThrowInvalidOperationException();
+        }
+
         partial void OnCreated()
         {
             this._Length = 10;
@@ -808,7 +876,10 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    GetPosition();
+                    foreach (var t in this.ListObjectRefs)
+                    {
+                        GetPositions(t);
+                    }
                     break;
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
@@ -820,7 +891,10 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    GetPosition();
+                    foreach (var t in this.ListObjectRefs)
+                    {
+                        GetPositions(t);
+                    }
                     break;
                 case EnumDataType.ENUMERATION:
                     this.VisibilityIsPositive = Visibility.Collapsed;
@@ -879,44 +953,6 @@ namespace vSharpStudio.vm.ViewModels
             this.OnPropertyChanged(nameof(this.ObjectRef));
             this.OnPropertyChanged(nameof(this.ListObjects));
         }
-
-        private void GetPosition()
-        {
-            if (this.Parent is Property tp)
-            {
-                if (tp.PositionOfDescr == 0)
-                {
-                    if (tp.Parent is GroupListProperties)
-                    {
-                        tp.PositionOfDescr = tp.ParentGroupListProperties.GetNextPosition();
-                    }
-                    else if (tp.Parent is DocumentTimeline dt)
-                    {
-                        tp.PositionOfDescr = dt.GetNextPosition();
-                    }
-                    else if (tp.Parent is RelationManyToMany rm)
-                    {
-                        //tp.PositionOfDescr = rm.PropertyRefObj1. dt.GetNextPosition();
-                    }
-                    else if (tp.Parent is RelationOneToOne ro)
-                    {
-                        //tp.PositionOfDescr = dt.GetNextPosition();
-                    }
-                    else
-                        ThrowHelper.ThrowInvalidOperationException();
-                }
-            }
-            else if (this.Parent is Constant tc)
-            {
-                //if (tc.PositionOfDescr == 0)
-                //{
-                //    tc.PositionOfDescr = tc.ParentGroupListProperties.GetNextPosition();
-                //}
-            }
-            else
-                ThrowHelper.ThrowInvalidOperationException();
-        }
-
         partial void OnLengthChanged()
         {
             if (this.Cfg == null)

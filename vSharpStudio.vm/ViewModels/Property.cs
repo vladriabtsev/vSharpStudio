@@ -102,6 +102,10 @@ namespace vSharpStudio.vm.ViewModels
         // Calculated position in list of properties
         // Useful for short names in indexes
         public int PositionInConfigObject { get; set; }
+        public void SetPosition(uint position)
+        {
+            this.Position = position;
+        }
         //[Browsable(false)]
         //public static IConfig? Config { get; set; }
 
@@ -921,7 +925,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Property(this) { Name = subName };
             if (string.IsNullOrEmpty(this.RefComplexObjectGdPropertyGuid))
-                this.RefComplexObjectGdPropertyGuid= System.Guid.NewGuid().ToString();
+                this.RefComplexObjectGdPropertyGuid = System.Guid.NewGuid().ToString();
             node.Guid = this.RefComplexObjectGdPropertyGuid;
             node.DataType = (DataType)this.Cfg.Model.GetDataTypeInt(node, false, isNullable);
             node.IsNullable = isNullable;

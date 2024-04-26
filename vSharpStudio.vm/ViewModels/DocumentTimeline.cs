@@ -65,6 +65,7 @@ namespace vSharpStudio.vm.ViewModels
                 node = (Property)node_impl;
             }
             this.ListProperties.Add(node);
+            node.Position = this.GetNextPosition();
             //this.Add(node);
             if (node_impl == null)
             {
@@ -303,13 +304,13 @@ namespace vSharpStudio.vm.ViewModels
             }
             // Field document date and time value
             p = m.GetPropertyDateTimeUtc(this, this.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, false, this.TimeLineTimeAccuracy);
-            (p as Property).Position = IProperty.PropertyDocumentDatePosition;
+            p.SetPosition(IProperty.PropertyDocumentDatePosition);
             lst.Add(p);
             p = m.GetPropertyInt(this, m.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.DocShortTypeIdPropertyName, false, false);
-            (p as Property).Position = IProperty.PropertyShortTypeIdPosition;
+            p.SetPosition(IProperty.PropertyShortTypeIdPosition);
             lst.Add(p);
             p = m.GetPropertyBool(this, m.PropertyDocIsPostedGuid, "IsPosted", (uint)lst.Count, true);
-            (p as Property).Position = IProperty.PropertyIsPostedPosition;
+            p.SetPosition(IProperty.PropertyIsPostedPosition);
             lst.Add(p);
 
             // shared properties

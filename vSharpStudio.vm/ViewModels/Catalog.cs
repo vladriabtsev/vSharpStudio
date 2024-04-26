@@ -497,13 +497,13 @@ namespace vSharpStudio.vm.ViewModels
                 if (this.UseSeparateTreeForFolders)
                 {
                     prp = this.PropertyRefFolder;
-                    ((Property)prp).Position = IProperty.PropertyRefParentPosition;
+                    prp.SetPosition(IProperty.PropertyRefParentPosition);
                     res.Add(prp);
                 }
                 else
                 {
                     prp = this.PropertyRefSelf;
-                    ((Property)prp).Position = IProperty.PropertyRefSelfParentPosition;
+                    prp.SetPosition(IProperty.PropertyRefSelfParentPosition);
                     res.Add(prp);
                     prp = model.GetPropertyIsFolder(this.GroupProperties, this.Cfg.Model.PropertyCtlgIsFolderGuid, false);
                     res.Add(prp);
@@ -573,6 +573,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new List<IProperty>();
             if (!isExcludeSpecial)
                 this.GetSpecialProperties(res, isOptimistic);
+            uint pos = this.GroupProperties.LastGenPosition;
             foreach (var t in this.Cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations)
             {
                 if (t.GuidObj1 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY))
@@ -581,14 +582,14 @@ namespace vSharpStudio.vm.ViewModels
                     if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
                         var prp = t.PropertyRefObj2 as Property;
-                        prp.Position = (uint)res.Count;
+                        prp.Position = ++pos;
                         //var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
                     }
                     else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
                         var prp = t.PropertyRefObj2 as Property;
-                        prp.Position = (uint)res.Count;
+                        prp.Position = ++pos;
                         //var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
                     }
@@ -601,14 +602,14 @@ namespace vSharpStudio.vm.ViewModels
                     if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
                         var prp = t.PropertyRefObj1 as Property;
-                        prp.Position = (uint)res.Count;
+                        prp.Position = ++pos;
                         //var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
                     }
                     else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
                         var prp = t.PropertyRefObj1 as Property;
-                        prp.Position = (uint)res.Count;
+                        prp.Position = ++pos;
                         //var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
                     }
@@ -704,7 +705,7 @@ namespace vSharpStudio.vm.ViewModels
             if (this.UseTree)
             {
                 pRefTreeParent = this.PropertyRefSelf;
-                ((Property)pRefTreeParent).Position = IProperty.PropertyRefSelfParentPosition;
+                pRefTreeParent.SetPosition(IProperty.PropertyRefSelfParentPosition);
                 if (this.UseSeparateTreeForFolders) // self tree and separate data grid for children
                 {
                     viewTreeData = new ViewTreeData(pId, pRefTreeParent, null);

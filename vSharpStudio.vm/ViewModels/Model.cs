@@ -798,7 +798,6 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetIdRefDataType(res, isNullable);
             res.IsHidden = true;
             res.Position = position;
-            //res.Position = 10 + relPosition;
             res.IsComplex = true;
             return res;
         }
@@ -831,7 +830,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Property(parent, guid, this.GroupCatalogs.PropertyNameName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, isNullable);
-            res.Position = IProperty.PropertyCodePosition;
+            res.Position = IProperty.PropertyNamePosition;
             return res;
         }
         public IProperty GetPropertyCatalogDescription(IGroupListProperties parent, string guid, uint length, bool isNullable)

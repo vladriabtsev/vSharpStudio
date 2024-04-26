@@ -352,7 +352,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(prp);
 
             prp = this.PropertyRefParent;
-            ((Property)prp).Position = IProperty.PropertyRefParentPosition;
+            prp.SetPosition(IProperty.PropertyRefParentPosition);
             res.Add(prp);
 
             if (isOptimistic)

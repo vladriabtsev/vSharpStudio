@@ -80,6 +80,7 @@ namespace vSharpStudio.common
         object? Tag { get; set; }
         string? TagInList { get; set; }
         int PositionInConfigObject { get; set; }
+        void SetPosition(uint position);
         //static IConfig Config { get; set; }
         bool IsGridSortableGet();
         bool IsGridFilterableGet();

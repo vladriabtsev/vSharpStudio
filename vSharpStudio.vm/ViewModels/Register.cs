@@ -542,6 +542,7 @@ namespace vSharpStudio.vm.ViewModels
 
             this.PropertyRefTimeline.Name = "Ref" + this.Cfg.Model.GroupDocuments.DocumentTimeline.CompositeName;
             var pRefTimeline = this.PropertyRefTimeline;
+            pRefTimeline.Position = IProperty.PropertyRefParentPosition;
             lst.Add(pRefTimeline);
 
             if (isOptimistic)
@@ -629,6 +630,11 @@ namespace vSharpStudio.vm.ViewModels
             var pId = m.GetPropertyPkId(this, this.Cfg.Model.PropertyIdGuid); // position 6
             pId.TagInList = "id";
             lst.Add(pId);
+
+            this.PropertyRefTimeline.Name = "Ref" + this.Cfg.Model.GroupDocuments.DocumentTimeline.CompositeName;
+            var pRefTimeline = this.PropertyRefTimeline;
+            pRefTimeline.Position = IProperty.PropertyRefParentPosition;
+            lst.Add(pRefTimeline);
 
             if (isOptimistic)
             {

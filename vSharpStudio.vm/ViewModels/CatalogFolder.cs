@@ -290,7 +290,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(prp);
 
             prp = this.PropertyRefSelf;
-            ((Property)prp).Position = IProperty.PropertyRefSelfParentPosition;
+            prp.SetPosition(IProperty.PropertyRefSelfParentPosition);
             res.Add(prp);
 
             if (this.ParentCatalog.UseTree && !this.ParentCatalog.UseSeparateTreeForFolders)

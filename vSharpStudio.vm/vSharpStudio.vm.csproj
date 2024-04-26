@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net7.0-windows</TargetFrameworks>
     <AssemblyTitle>vSharpStudio.vm</AssemblyTitle>
     <Product>vSharpStudio.vm</Product>
     <Copyright>Copyright ©  2019</Copyright>
