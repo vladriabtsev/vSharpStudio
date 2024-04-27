@@ -41,10 +41,10 @@ namespace vSharpStudio.common
         #endregion Detail, or Catalog, or Document, or Register
 
         // reserved positions: 1-4
-        
+
         // reserved positions: 5-20 special properties
 
-        // configured properties: starting from 21
+        static uint PropertyStartingPosition { get; } = 20; // configured properties: starting from 21
 
         #endregion Standard Property Positions
 

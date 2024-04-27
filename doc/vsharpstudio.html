@@ -2311,6 +2311,49 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
+                  <td>ref_complex_object_gd_property_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)]
+extended property guid for reference complex object type guid </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref_complex_object_descr_property_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)]
+extended property guid for reference complex object short description guid </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position_of_gd</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Position of complex type GUID for CATALOGS, or DOCUMENTS, or ANY
+unique in object (can be used as Protobuf field position)
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position_of_descr</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Position of short description property for complex types
+unique in object (can be used as Protobuf field position)
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Position of property
+unique in object (can be used as Protobuf field position)
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
@@ -5372,6 +5415,14 @@ Generator output file name </p></td>
                   <td><p>@attr [PropertyOrderAttribute(7)]
 @attr [DisplayName(&#34;Short ID&#34;)]
 @attr [Description(&#34;Short constant type ID for cache key generator&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_gen_position</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Last generated Protobuf field position
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>

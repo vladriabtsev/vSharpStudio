@@ -1632,6 +1632,9 @@ message proto_group_list_constants {
     // @attr [DisplayName("Short ID")]
     // @attr [Description("Short constant type ID for cache key generator")]
     string short_id_type_for_cache_key = 7;
+    // Last generated Protobuf field position
+    // @attr [ReadOnly(true)]
+    uint32 last_gen_position = 8;
     // @attr [Browsable(false)]
     bool is_new = 9;
     // @attr [DisplayName("For deletion")]
@@ -1740,6 +1743,24 @@ message proto_constant {
 
     // @attr [Browsable(false)]
     repeated proto_role_constant_access list_role_constant_access_settings = 101;
+    // @attr [Browsable(false)]
+    // extended property guid for reference complex object type guid
+    string ref_complex_object_gd_property_guid = 106;
+    // @attr [Browsable(false)]
+    // extended property guid for reference complex object short description guid
+    string ref_complex_object_descr_property_guid = 107;
+    // Position of complex type GUID for CATALOGS, or DOCUMENTS, or ANY
+    // unique in object (can be used as Protobuf field position)
+    // @attr [ReadOnly(true)]
+    uint32 position_of_gd = 108;
+    // Position of short description property for complex types
+    // unique in object (can be used as Protobuf field position)
+    // @attr [ReadOnly(true)]
+    uint32 position_of_descr = 109;
+    // Position of property
+    // unique in object (can be used as Protobuf field position)
+    // @attr [ReadOnly(true)]
+    uint32 position = 110;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

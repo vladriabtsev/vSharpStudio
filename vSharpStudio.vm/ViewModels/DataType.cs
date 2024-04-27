@@ -89,8 +89,11 @@ namespace vSharpStudio.vm.ViewModels
             }
             else if (this.Parent is Constant tc)
             {
-                //if (tc.PositionOfDescr == 0)
-                //    tc.PositionOfDescr = this.GetNextPosition();
+                if (tc.PositionOfDescr == 0)
+                    tc.PositionOfDescr = tc.ParentGroupListConstants.GetNextPosition();
+                if (tc.PositionOfGd == 0)
+                    tc.PositionOfGd = tc.ParentGroupListConstants.GetNextPosition();
+                cr.Position = tc.ParentGroupListConstants.GetNextPosition();
             }
             else
                 ThrowHelper.ThrowInvalidOperationException();

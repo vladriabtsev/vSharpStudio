@@ -5,6 +5,7 @@ using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using CommunityToolkit.Diagnostics;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -351,6 +352,16 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public uint GetNextPosition()
+        {
+            // For reserved positions see IProperty static members
+            if (this.LastGenPosition == 0)
+            {
+                this.LastGenPosition = IProperty.PropertyStartingPosition;
+            }
+            this.LastGenPosition++;
+            return this.LastGenPosition;
+        }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
             Constant node = null!;
@@ -364,6 +375,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.Add(node);
             node.DataType.Parent = node;
+            node.Position = this.GetNextPosition();
             if (node_impl == null)
             {
                 this.GetUniqueName(Defaults.ConstantName, node, this.ListConstants);
@@ -399,6 +411,32 @@ namespace vSharpStudio.vm.ViewModels
                 if (t.IsIncluded(guidAppPrjGen))
                 {
                     var p = new Property(this, t.Guid, t.Name, false) { DataType = t.DataType, IsCsNullable = true, IsNullable = true };
+                    switch (t.DataType.DataTypeEnum)
+                    {
+                        case EnumDataType.CATALOG:
+                        case EnumDataType.DOCUMENT:
+                            if (string.IsNullOrWhiteSpace(t.RefComplexObjectDescrPropertyGuid))
+                                t.RefComplexObjectDescrPropertyGuid = System.Guid.NewGuid().ToString();
+                            p.RefComplexObjectDescrPropertyGuid = t.RefComplexObjectDescrPropertyGuid;
+                            p.PositionOfDescr = t.PositionOfDescr;
+                            break;
+                        case EnumDataType.CATALOGS:
+                        case EnumDataType.DOCUMENTS:
+                        case EnumDataType.ANY:
+                            if (string.IsNullOrWhiteSpace(t.RefComplexObjectDescrPropertyGuid))
+                                t.RefComplexObjectDescrPropertyGuid=System.Guid.NewGuid().ToString();
+                            p.RefComplexObjectDescrPropertyGuid = t.RefComplexObjectDescrPropertyGuid;
+                            p.PositionOfDescr = t.PositionOfDescr;
+                            if (string.IsNullOrWhiteSpace(t.RefComplexObjectGdPropertyGuid))
+                                t.RefComplexObjectGdPropertyGuid = System.Guid.NewGuid().ToString();
+                            p.RefComplexObjectGdPropertyGuid = t.RefComplexObjectGdPropertyGuid;
+                            p.PositionOfGd = t.PositionOfGd;
+                            break;
+                        default:
+                            break;
+                    }
+                    p.Guid = t.Guid;
+                    p.Position = t.Position;
                     res.Add(p);
                 }
             }

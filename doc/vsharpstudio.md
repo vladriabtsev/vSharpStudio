@@ -494,6 +494,11 @@ Constant application wise value
 | is_start_new_tab_control | [bool](#bool) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;New Tab Control&#34;)] @attr [Description(&#34;Start new tab control as current control&#34;)] |
 | is_stop_tab_control | [bool](#bool) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
 | list_role_constant_access_settings | [proto_role_constant_access](#proto_config-proto_role_constant_access) | repeated | @attr [Browsable(false)] |
+| ref_complex_object_gd_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for reference complex object type guid |
+| ref_complex_object_descr_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for reference complex object short description guid |
+| position_of_gd | [uint32](#uint32) |  | Position of complex type GUID for CATALOGS, or DOCUMENTS, or ANY unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
+| position_of_descr | [uint32](#uint32) |  | Position of short description property for complex types unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
+| position | [uint32](#uint32) |  | Position of property unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1207,6 +1212,7 @@ Common parameters section
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_constants | [proto_constant](#proto_config-proto_constant) | repeated | @attr [Browsable(false)] |
 | short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short constant type ID for cache key generator&#34;)] |
+| last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |

@@ -487,7 +487,7 @@ namespace vSharpStudio.vm.ViewModels
             // For reserved positions see IProperty static members
             if (this.LastGenPosition == 0)
             {
-                this.LastGenPosition = 20;
+                this.LastGenPosition = IProperty.PropertyStartingPosition;
             }
             this.LastGenPosition++;
             return this.LastGenPosition;

@@ -58,6 +58,8 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
+            //this._RefComplexObjectDescrPropertyGuid = System.Guid.NewGuid().ToString();
+            //this._RefComplexObjectGdPropertyGuid = System.Guid.NewGuid().ToString();
             Init();
             //this.InitRoles();
         }
@@ -518,6 +520,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Constant(this.ParentGroupListConstants);
             this.ParentGroupListConstants.Add(node);
+            node.Position = this.ParentGroupListConstants.GetNextPosition();
             this.GetUniqueName(Defaults.ConstantName, node, this.ParentGroupListConstants.ListConstants);
             var model = this.ParentGroupListConstants.ParentGroupConstantGroups.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();
