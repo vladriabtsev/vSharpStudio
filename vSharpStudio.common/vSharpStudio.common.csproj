@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net7.0-windows</TargetFrameworks>
+    <TargetFrameworkVariation>windows</TargetFrameworkVariation>
     <AssemblyTitle>vSharpStudio.common</AssemblyTitle>
     <Product>vSharpStudio.common</Product>
     <Copyright>Copyright ©  2019</Copyright>
@@ -12,6 +12,7 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
+  <Import Project="..\Solution.targets"/>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
   </PropertyGroup>

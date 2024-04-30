@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFrameworkVariation>windows</TargetFrameworkVariation>
     <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <Import Project="..\Solution.targets"/>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
   </PropertyGroup>

@@ -2,7 +2,6 @@
   <PropertyGroup>
     <ProjectGuid>{EEAF63A0-C59F-468B-AA1B-58865E84E44E}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net7.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <!--<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>GenVmFromProto</AssemblyTitle>
@@ -11,6 +10,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputPath>bin\$(Configuration)\</OutputPath>-->
   </PropertyGroup>
+  <Import Project="..\..\Solution.targets"/>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
   </PropertyGroup>

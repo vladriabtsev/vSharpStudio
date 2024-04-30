@@ -1,0 +1,13 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MyTargetFramework>net7.0</MyTargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(MyTargetFramework)'=='net7.0'">
+    <TargetFramework Condition="'$(TargetFrameworkVariation)'==''">net7.0</TargetFramework>
+    <TargetFramework Condition="'$(TargetFrameworkVariation)'=='windows'">net7.0-windows</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(MyTargetFramework)'=='net8.0'">
+    <TargetFramework Condition="'$(TargetFrameworkVariation)'==''">net8.0</TargetFramework>
+    <TargetFramework Condition="'$(TargetFrameworkVariation)'=='windows'">net8.0-windows</TargetFramework>
+  </PropertyGroup>
+</Project>

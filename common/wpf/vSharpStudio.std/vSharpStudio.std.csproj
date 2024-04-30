@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net7.0-windows</TargetFrameworks>
+    <TargetFrameworkVariation>windows</TargetFrameworkVariation>
     <RootNamespace>ViewModelBase</RootNamespace>
     <LangVersion>default</LangVersion>
     <UseWPF>true</UseWPF>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <Import Project="..\..\..\Solution.targets"/>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
   </PropertyGroup>
