@@ -17,7 +17,7 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <Import Project="..\Solution.targets"/>
+  <Import Project="..\Solution.targets" />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
   </PropertyGroup>
@@ -60,7 +60,7 @@
     <PackageReference Include="Microsoft.Build.Framework" Version="[17.8.3,17.9)" />
     <PackageReference Include="Microsoft.Build.Tasks.Core" Version="[17.8.3,17.9)" />
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="[17.8.3,17.9)" />
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.9.28">
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.10.48">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
