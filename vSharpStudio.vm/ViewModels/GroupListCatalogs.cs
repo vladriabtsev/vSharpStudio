@@ -68,15 +68,10 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._PrefixForCompositionNames = "Ctlg";
             this.IsEditable = false;
             this._UseCodeProperty = true;
-            this._PropertyCodeName = "Code";
             this._UseNameProperty = true;
-            this._PropertyNameName = "Name";
             this._UseDescriptionProperty = false;
-            this._PropertyDescriptionName = "Description";
-            this._PropertyIsFolderName = "IsFolder";
             this._UseCodePropertyInSeparateTree = true;
             this._UseNamePropertyInSeparateTree = true;
 
@@ -90,6 +85,11 @@ namespace vSharpStudio.vm.ViewModels
 
         private void Init()
         {
+            if (string.IsNullOrWhiteSpace(this._PrefixForCompositionNames)) this._PrefixForCompositionNames = "Ctlg";
+            if (string.IsNullOrWhiteSpace(this._PropertyCodeName)) this._PropertyCodeName = "Code";
+            if (string.IsNullOrWhiteSpace(this._PropertyNameName)) this._PropertyNameName = "Name";
+            if (string.IsNullOrWhiteSpace(this._PropertyDescriptionName)) this._PropertyDescriptionName = "Description";
+            if (string.IsNullOrWhiteSpace(this._PropertyIsFolderName)) this._PropertyIsFolderName = "IsFolder";
             //if (this.Parent is Catalog)
             //{
             //    this.NameUi = "Sub Catalogs";

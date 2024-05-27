@@ -17,7 +17,21 @@ namespace vSharpStudio.vm.ViewModels
         private ILogger? _logger;
         public SortedObservableCollection<ValidationMessage> Result { get; private set; }
         public int CountTotalValidatableNodes;
-        public int CountCurrentValidatableNode { get; set; }
+        public int _CountCurrentValidatableNode;
+        public int CountCurrentValidatableNode
+        {
+            get { return this._CountCurrentValidatableNode; }
+            set
+            {
+#if DEBUG
+                if (value == 0)
+                {
+                    hashValidatableNodeGuid.Clear();
+                }
+#endif
+                this._CountCurrentValidatableNode = value;
+            }
+        }
         private readonly ProgressVM? progressVM;
         public bool IsCountOnly { get; set; } = true;
 
@@ -115,9 +129,21 @@ namespace vSharpStudio.vm.ViewModels
         }
         // only for not ITreeConfigNode
         IValidatableWithSeverity? parent;
+#if DEBUG
+        private HashSet<string> hashValidatableNodeGuid = new HashSet<string>();
+#endif
         partial void OnVisit(IValidatableWithSeverity p)
         {
-            this.CountCurrentValidatableNode++;
+            if (p is IGuid pg)
+            {
+#if DEBUG
+                string guid = pg.Guid;
+                if (hashValidatableNodeGuid.Contains(guid))
+                    Debug.Assert(false);
+                hashValidatableNodeGuid.Add(guid);
+#endif
+                this.CountCurrentValidatableNode++;
+            }
             if (IsCountOnly)
                 return;
             if (p is ITreeConfigNode pp)

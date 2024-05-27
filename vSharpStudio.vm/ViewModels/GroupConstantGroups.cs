@@ -71,7 +71,6 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
-            this._PrefixForCompositionNames = "Cnst";
             this.IsEditable = false;
             Init();
         }
@@ -81,6 +80,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            if (string.IsNullOrWhiteSpace(this._PrefixForCompositionNames)) this._PrefixForCompositionNames = "Cnst";
             this.ListConstantGroups.OnAddingAction = (t) =>
             {
                 t.IsNew = true;

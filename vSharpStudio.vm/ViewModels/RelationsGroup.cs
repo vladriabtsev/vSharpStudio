@@ -55,7 +55,9 @@ namespace vSharpStudio.vm.ViewModels
             if (this.Children.Count > 0)
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
+#if DEBUG
             children.Add(this.GroupListOneToOneRelations, 2);
+#endif
             children.Add(this.GroupListManyToManyRelations, 3);
 
             //this.ListRoles.OnAddingAction = (t) =>

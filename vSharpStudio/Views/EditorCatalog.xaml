@@ -134,64 +134,6 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="***Registers" ToolTip="Wide list view form">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="{Binding UseSeparateTreeForFolders, ConverterParameter='*', Converter={StaticResource ConverterBoolToGridLength}}"/>
-                        <ColumnDefinition Width="{Binding UseSeparateTreeForFolders, ConverterParameter='3', Converter={StaticResource ConverterBoolToGridLength}}"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="View properties for separate folder" FontWeight="Bold" />
-                        <controls:CollectionFromCollection Grid.Row="1"
-                                                           ListLeft="{Binding ListAllFolderNotSpecialProperties}"
-                                                           ListRight="{Binding ListViewFolderNotSpecialProperties}">
-                            <controls:CollectionFromCollection.UpperRightContent>
-                                <Grid>
-                                    <StackPanel>
-                                        <TextBlock Text="Special:" FontWeight="Bold" />
-                                        <StackPanel Margin="8,0,0,0">
-                                            <TextBlock Text="Id"/>
-                                            <TextBlock Text="RefTreeParent"/>
-                                            <TextBlock Text="{Binding Parent.PropertyIsOpenName}"/>
-                                            <TextBlock Text="{Binding Parent.PropertyIsFolderName}" Visibility="{Binding UseFolderTypeExplicitly, Converter={StaticResource ConverterBoolToVisible}}"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </Grid>
-                            </controls:CollectionFromCollection.UpperRightContent>
-                        </controls:CollectionFromCollection>
-                    </Grid>
-                    <Grid Grid.Column="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="View properties for item" FontWeight="Bold" />
-                        <controls:CollectionFromCollection Grid.Row="1"
-                                                           ListLeft="{Binding ListAllNotSpecialProperties}"
-                                                           ListRight="{Binding ListViewNotSpecialProperties}">
-                            <controls:CollectionFromCollection.UpperRightContent>
-                                <Grid>
-                                    <StackPanel>
-                                        <TextBlock Text="Special:" FontWeight="Bold" />
-                                        <StackPanel Margin="8,0,0,0">
-                                            <TextBlock Text="Id"/>
-                                            <TextBlock Text="RefTreeParent" Visibility="{Binding IsShowRefSelfTree, Converter={StaticResource ConverterBoolToVisible}}"/>
-                                            <TextBlock Text="RefParent" Visibility="{Binding UseSeparateTreeForFolders, Converter={StaticResource ConverterBoolToVisible}}"/>
-                                            <TextBlock Text="{Binding Parent.PropertyIsOpenName}" Visibility="{Binding IsShowRefSelfTree, Converter={StaticResource ConverterBoolToVisible}}"/>
-                                            <TextBlock Text="{Binding Parent.PropertyIsFolderName}" Visibility="{Binding IsShowIsFolder, Converter={StaticResource ConverterBoolToVisible}}"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </Grid>
-                            </controls:CollectionFromCollection.UpperRightContent>
-                        </controls:CollectionFromCollection>
-                    </Grid>
-                </Grid>
-            </TabItem>
         </TabControl>
     </Grid>
 </UserControl>

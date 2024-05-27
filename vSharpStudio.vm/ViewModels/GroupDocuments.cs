@@ -43,10 +43,7 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
-            this._PrefixForCompositionNames = "Doc";
             this._MondayBeforeFirstDocDate = Timestamp.FromDateTime(new DateTime(1000, 1, 6, 0, 0, 0, DateTimeKind.Utc));
-            this._DocShortTypeIdPropertyName = "DocShortTypeId";
-            this._PropertyDocNumberName = "DocNumber";
 
             this._UseDocNumberProperty = true;
 
@@ -59,6 +56,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            if (string.IsNullOrWhiteSpace(this._PrefixForCompositionNames)) this._PrefixForCompositionNames = "Doc";
+            if (string.IsNullOrWhiteSpace(this._PropertyDocNumberName)) this._PropertyDocNumberName = "DocNumber";
+            if (string.IsNullOrWhiteSpace(this._DocShortTypeIdPropertyName)) this._DocShortTypeIdPropertyName = "DocShortTypeId";
             if (this.Children.Count > 0)
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;

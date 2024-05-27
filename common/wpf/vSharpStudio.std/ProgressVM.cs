@@ -133,11 +133,11 @@ namespace ViewModelBase
             get { return _Progress; }
             set
             {
+                Debug.Assert(value >= 0 && value <= 100);
                 if (_Progress != value)
                 {
                     UIDispatcher.Invoke(() =>
                     {
-                        Debug.Assert(value >= 0 && value <= 100);
                         SetProperty(ref this._Progress, value);
                         if (_Progress == 0)
                             ProgressVisibility = Visibility.Collapsed;
