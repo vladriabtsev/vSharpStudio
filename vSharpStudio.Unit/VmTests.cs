@@ -483,13 +483,12 @@ namespace vSharpStudio.Unit
             // Map dimension
             var det1 = doc1.AddDetails("det1");
             var p_det1_cat1 = det1.AddPropertyCatalog("cat1", cat1.Guid, true);
-            reg1.MappingRegPropertyAdd(doc1.Guid, dim1.Guid, p_det1_cat1.Guid);
+            reg1.MappingRegPropertyAdd(doc1.Guid, dim1.PropertyRefDimensionCatalog.Guid, p_det1_cat1.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 2);
+            Assert.IsTrue(cfg.CountErrors == 1);
             cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' not mapped on a same record as a deepest dimension 'cat_dimension1' of 'doc1' document."));
 
             // Map Money Accumulator on a same record as deepest dimension
             var pd_num10_2 = det1.AddPropertyNumerical("num10_2", 10, 2);
@@ -540,7 +539,7 @@ namespace vSharpStudio.Unit
 
             // Map dimension 2
             var p_doc1_cat2 = doc1.AddPropertyCatalog("cat2", cat2.Guid, true);
-            reg1.MappingRegPropertyAdd(doc1.Guid, dim2.Guid, p_doc1_cat2.Guid);
+            reg1.MappingRegPropertyAdd(doc1.Guid, dim2.PropertyRefDimensionCatalog.Guid, p_doc1_cat2.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);

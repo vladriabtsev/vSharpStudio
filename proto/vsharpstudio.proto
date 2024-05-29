@@ -64,6 +64,9 @@ message proto_group_list_plugins {
     // @attr [DisplayName("Plugins")]
     // @attr [Description("Contains all registered plugins as children")]
     string name = 2;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    string name_ui = 3;
     // @attr [Browsable(false)]
     repeated proto_plugin list_plugins = 4;
     // @attr [Browsable(false)]
@@ -84,6 +87,9 @@ message proto_plugin {
     // @attr [ReadOnly(true)]
     // @attr [Description("Name of plugin")]
     string name = 3;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    string name_ui = 7;
     // @attr [ReadOnly(true)]
     // @attr [Description("Description of plugin")]
     string description = 4;
@@ -103,6 +109,9 @@ message proto_plugin_generator {
     // @attr [ReadOnly(true)]
     // @attr [Description("Name of plugin")]
     string name = 2;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    string name_ui = 6;
     // @attr [ReadOnly(true)]
     // @attr [Description("Description of plugin")]
     string description = 3;
@@ -149,6 +158,9 @@ message proto_group_list_base_config_links {
     // @attr [ReadOnly(true)]
     string name = 2;
     // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    string name_ui = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     // @attr [ReadOnly(true)]
     string description = 5;
@@ -170,6 +182,9 @@ message proto_base_config_link {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
     string name = 2;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    string name_ui = 6;
     // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
@@ -287,6 +302,9 @@ message proto_group_list_app_solutions {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    string name_ui = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -2861,9 +2879,10 @@ message proto_document {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [PropertyOrderAttribute(0)]
-    // @attr [DisplayName("Shared Sequence")]
-    // @attr [Description("Shared DocNumber Sequence for auto generation. Same sequence can be used for different documents")]
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("DocNumber Sequence")]
+    // @attr [Description("DocNumber Sequence for auto generation. Same sequence can be used for different documents")]
     // @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]
     string sequence_guid = 6;
     // @attr [Browsable(false)]

@@ -104,6 +104,20 @@ namespace vSharpStudio.Unit
                     }
                 }
             }
+            public string NameUi
+            {
+                get { return this._NameUi; }
+                set
+                {
+                    if (this._NameUi != value)
+                    {
+                        this._NameUi = value;
+                        this.OnPropertyChanged();
+                        this.ValidateProperty();
+                        this.IsChanged = true;
+                    }
+                }
+            }
             public ulong SortingValue
             {
                 get { return this._SortingValue; }

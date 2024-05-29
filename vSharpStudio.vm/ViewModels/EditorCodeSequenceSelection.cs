@@ -24,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
             cbx.SelectedValuePath = "Value";
             var _binding_lst = new Binding(); // bind to the Value property of the PropertyItem
             ObservableCollectionExt<ITextValue> listSequences = new();
-            listSequences.Add(new TextValue() { Text="Local Sequence:" });
+            listSequences.Add(new TextValue() { Text="<Not selected>" });
             foreach (var t in instance.Cfg.Model.GroupDocuments.GroupListSequences.ListEnumeratorSequences)
             {
                 listSequences.Add(t);

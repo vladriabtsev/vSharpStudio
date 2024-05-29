@@ -386,11 +386,13 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.ANY:
                     this.Length = 0;
                     this.IsComplex = true;
+                    this.IsNullable = true;
                     break;
                 case EnumDataType.CATALOG:
                 case EnumDataType.DOCUMENT:
                     this.Length = 0;
                     this.IsComplex = true;
+                    this.IsNullable = true;
                     break;
                 case EnumDataType.ENUMERATION:
                     this.Length = 0;

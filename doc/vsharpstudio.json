@@ -2842,6 +2842,18 @@
               "defaultValue": ""
             },
             {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "sorting_value",
               "description": "@attr [Browsable(false)]",
               "label": "",
@@ -4991,7 +5003,7 @@
             },
             {
               "name": "sequence_guid",
-              "description": "@attr [PropertyOrderAttribute(0)]\n@attr [DisplayName(\"Shared Sequence\")]\n@attr [Description(\"Shared DocNumber Sequence for auto generation. Same sequence can be used for different documents\")]\n@attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"DocNumber Sequence\")]\n@attr [Description(\"DocNumber Sequence for auto generation. Same sequence can be used for different documents\")]\n@attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -7834,6 +7846,18 @@
               "defaultValue": ""
             },
             {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "description",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
               "label": "",
@@ -7896,6 +7920,18 @@
             {
               "name": "name",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -9312,6 +9348,18 @@
             {
               "name": "name",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]\n@attr [DisplayName(\"Plugins\")]\n@attr [Description(\"Contains all registered plugins as children\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -10786,6 +10834,18 @@
               "defaultValue": ""
             },
             {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "description",
               "description": "@attr [ReadOnly(true)]\n@attr [Description(\"Description of plugin\")]",
               "label": "",
@@ -10860,6 +10920,18 @@
             {
               "name": "name",
               "description": "@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]\n@attr [Description(\"Name of plugin\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",

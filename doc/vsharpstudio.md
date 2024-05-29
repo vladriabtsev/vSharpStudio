@@ -291,6 +291,7 @@ Application project generator
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [ReadOnly(true)] |
 | relative_config_file_path | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorBaseConfigFilePicker), typeof(ITypeEditor))] |
@@ -605,7 +606,7 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(0)] @attr [DisplayName(&#34;Shared Sequence&#34;)] @attr [Description(&#34;Shared DocNumber Sequence for auto generation. Same sequence can be used for different documents&#34;)] @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] |
+| sequence_guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;DocNumber Sequence&#34;)] @attr [Description(&#34;DocNumber Sequence for auto generation. Same sequence can be used for different documents&#34;)] @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | group_properties | [proto_group_list_properties](#proto_config-proto_group_list_properties) |  | @attr [Browsable(false)] |
@@ -1109,6 +1110,7 @@ C O N S T A N T
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | list_app_solutions | [proto_app_solution](#proto_config-proto_app_solution) | repeated | List NET solutions @attr [Browsable(false)] |
@@ -1128,6 +1130,7 @@ C O N S T A N T
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | list_base_config_links | [proto_base_config_link](#proto_config-proto_base_config_link) | repeated | @attr [Browsable(false)] |
@@ -1399,6 +1402,7 @@ main view forms hierarchy node with children
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] @attr [DisplayName(&#34;Plugins&#34;)] @attr [Description(&#34;Contains all registered plugins as children&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] |
 | list_plugins | [proto_plugin](#proto_config-proto_plugin) | repeated | @attr [Browsable(false)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 
@@ -1658,6 +1662,7 @@ Configuration model
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | version | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] @attr [Description(&#34;Name of plugin&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] |
 | description | [string](#string) |  | @attr [ReadOnly(true)] @attr [Description(&#34;Description of plugin&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | list_generators | [proto_plugin_generator](#proto_config-proto_plugin_generator) | repeated | @attr [Browsable(false)] |
@@ -1679,6 +1684,7 @@ Configuration model
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] @attr [Description(&#34;Name of plugin&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] |
 | description | [string](#string) |  | @attr [ReadOnly(true)] @attr [Description(&#34;Description of plugin&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 
