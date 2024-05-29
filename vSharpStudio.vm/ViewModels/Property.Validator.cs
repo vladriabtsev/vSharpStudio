@@ -1176,16 +1176,16 @@ namespace vSharpStudio.vm.ViewModels
                 vf.Severity = Severity.Error;
                 cntx.AddFailure(vf);
             }
-            foreach (var t in r.GroupRegisterDimensions.ListDimensions)
-            {
-                if (t.Guid != p.Guid && t.Name == name)
-                {
-                    var vf = new ValidationFailure(nameof(p.Name),
-                        $"Property name '{name}' is already used as register dimension name");
-                    vf.Severity = Severity.Error;
-                    cntx.AddFailure(vf);
-                }
-            }
+            //foreach (var t in r.GroupRegisterDimensions.ListDimensions)
+            //{
+            //    if (t.Guid != p.Guid && t.Name == name)
+            //    {
+            //        var vf = new ValidationFailure(nameof(p.Name),
+            //            $"Property name '{name}' is already used as register dimension name");
+            //        vf.Severity = Severity.Error;
+            //        cntx.AddFailure(vf);
+            //    }
+            //}
         }
         private bool ParsableToBigInteger(string val)
         {

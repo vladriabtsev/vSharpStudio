@@ -168,7 +168,7 @@ namespace vSharpStudio.vm.ViewModels
                                 found = false;
                                 foreach (var dpm in dtr.ListMappings)
                                 {
-                                    if (dpm.RegPropGuid == rd.Guid)
+                                    if (dpm.RegPropGuid == rd.PropertyRefDimensionCatalog.Guid)
                                     {
                                         var p = (Property)r.Cfg.DicNodes[dpm.DocPropGuid];
                                         if (p.DataType.DataTypeEnum != EnumDataType.CATALOG)
@@ -345,7 +345,7 @@ namespace vSharpStudio.vm.ViewModels
                             var regPropName = "";
                             foreach (var td in r.GroupRegisterDimensions.ListDimensions)
                             {
-                                if (td.Guid == dpm.RegPropGuid)
+                                if (td.PropertyRefDimensionCatalog.Guid == dpm.RegPropGuid)
                                 {
                                     regPropName = td.Name;
                                     break;
