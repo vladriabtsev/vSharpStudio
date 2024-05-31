@@ -1113,8 +1113,8 @@ namespace vSharpStudio.vm.ViewModels
                             if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
                                 return;
                             break;
-                        case EnumDataType.TIMEZ:
-                            break;
+                        //case EnumDataType.TIMEZ:
+                        //    break;
                         default:
                             if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
                                 return;

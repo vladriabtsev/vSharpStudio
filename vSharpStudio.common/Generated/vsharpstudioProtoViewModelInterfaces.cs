@@ -148,6 +148,7 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		TIMESPAN = 39,
 		[Description("Time")]
 		TIME = 41,
+		[Browsable(false)]
 		[Description("Time with Time Zone")]
 		TIMEZ = 45,
 		[Description("Date")]

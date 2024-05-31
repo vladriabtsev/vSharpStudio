@@ -425,7 +425,7 @@
             {
               "name": "TIMEZ",
               "number": "45",
-              "description": "@attr [Description(\"Time with Time Zone\")]"
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"Time with Time Zone\")]"
             },
             {
               "name": "DATE",

@@ -649,7 +649,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.ClrTypeName = this.EnumerationName;
                     break;
                 case EnumDataType.TIME:
-                case EnumDataType.TIMEZ:
+                //case EnumDataType.TIMEZ:
                     this.ClrTypeName = "TimeOnly";
                     break;
                 case EnumDataType.DATE:
@@ -860,7 +860,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMEZ:
                 case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.TIME:
-                case EnumDataType.TIMEZ:
+                //case EnumDataType.TIMEZ:
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;

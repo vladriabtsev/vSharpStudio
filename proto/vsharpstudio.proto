@@ -745,6 +745,7 @@ enum proto_enum_data_type {
     TIMESPAN = 39;
     // @attr [Description("Time")]
     TIME = 41;
+    // @attr [Browsable(false)]
     // @attr [Description("Time with Time Zone")]
     TIMEZ = 45;
     // @attr [Description("Date")]

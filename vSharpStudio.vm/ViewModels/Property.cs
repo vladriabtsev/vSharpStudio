@@ -377,7 +377,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMEZ:
                 case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.TIME:
-                case EnumDataType.TIMEZ:
+                //case EnumDataType.TIMEZ:
                 case EnumDataType.TIMESPAN_TIME_ONLY:
                     this.Length = 0;
                     break;
@@ -445,7 +445,7 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(nameof(this.Length));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
-                this.DataType.DataTypeEnum != EnumDataType.TIMEZ &&
+                //this.DataType.DataTypeEnum != EnumDataType.TIMEZ &&
                 this.DataType.DataTypeEnum != EnumDataType.TIMESPAN_TIME_ONLY &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMEOFFSET &&
@@ -995,7 +995,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.TIME:
                 case EnumDataType.TIMESPAN:
                 case EnumDataType.TIMESPAN_TIME_ONLY:
-                case EnumDataType.TIMEZ:
+                //case EnumDataType.TIMEZ:
                     break;
                 case EnumDataType.CATALOG:
                     if (this.DataType.ObjectRef.ForeignObjectGuid != from.DataType.ObjectRef.ForeignObjectGuid)

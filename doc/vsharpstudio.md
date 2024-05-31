@@ -2501,7 +2501,7 @@ with history |
 | TIMESPAN_TIME_ONLY | 37 | @attr [Description(&#34;TimeSpan with Time only&#34;)] |
 | TIMESPAN | 39 | @attr [Browsable(false)] @attr [Description(&#34;TimeSpan&#34;)] which DB type to use for whole TimeSpan ??? |
 | TIME | 41 | @attr [Description(&#34;Time&#34;)] |
-| TIMEZ | 45 | @attr [Description(&#34;Time with Time Zone&#34;)] |
+| TIMEZ | 45 | @attr [Browsable(false)] @attr [Description(&#34;Time with Time Zone&#34;)] |
 | DATE | 51 | @attr [Description(&#34;Date&#34;)] |
 | DATETIMELOCAL | 61 | @attr [Description(&#34;DateTime Local&#34;)] |
 | DATETIMEUTC | 71 | @attr [Description(&#34;DateTime UTC&#34;)] |
