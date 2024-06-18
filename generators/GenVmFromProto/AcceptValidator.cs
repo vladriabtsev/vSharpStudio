@@ -19,7 +19,7 @@ namespace GenVmFromProto
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+    #line 1 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class AcceptValidator : AcceptValidatorBase
     {
@@ -31,7 +31,7 @@ namespace GenVmFromProto
         {
             this.Write("\r\npublic void AcceptValidator(VisitorConfigNode visitor) // ");
             
-            #line 8 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 8 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
@@ -39,7 +39,7 @@ namespace GenVmFromProto
             this.Write("\r\n{\r\n    if (visitor.Token.IsCancellationRequested)\r\n        return;\r\n\tvisitor.Vi" +
                     "sit(this);\r\n");
             
-            #line 13 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 13 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
  foreach (var field in this.message.Fields.InDeclarationOrder()) { 
      if (field.FieldType== Google.Protobuf.Reflection.FieldType.Message && field.MessageType.Name.EndsWith("_nullable"))
        continue;
@@ -48,55 +48,55 @@ namespace GenVmFromProto
             #line default
             #line hidden
             
-            #line 17 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 17 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
  if (field.IsRepeated) { 
             
             #line default
             #line hidden
             this.Write("\tforeach (var t in this.");
             
-            #line 18 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 18 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(")\r\n\t\tt.AcceptConfigNode(visitor); // ");
             
-            #line 19 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 19 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 20 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 20 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
  } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "")) { 
             
             #line default
             #line hidden
             this.Write("\tthis.");
             
-            #line 21 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 21 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(".AcceptConfigNode(visitor); // ");
             
-            #line 21 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 21 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 22 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 22 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 23 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\AcceptValidator.tt"
+            #line 23 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
  } 
             
             #line default

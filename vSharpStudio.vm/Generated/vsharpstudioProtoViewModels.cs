@@ -14,13 +14,13 @@ using vSharpStudio.common.ViewModels;
 using Google.Protobuf;
 using System.Diagnostics;
 
-namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt Line:24
+namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:24
 {
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
 
-    public interface IConfigAcceptVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt Line:30
+    public interface IConfigAcceptVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:30
     {
         void AcceptConfigNodeVisitor(ConfigVisitor visitor);
     }
@@ -21403,12 +21403,13 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._TableTurnoverPropertyQtyAccumulatorLength = from.TableTurnoverPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._TableTurnoverPropertyQtyAccumulatorAccuracy = from.TableTurnoverPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._TableTurnoverPropertyQtyAccumulatorGuid = from.TableTurnoverPropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            vm._TableBalancePropertyQtyAccumulatorGuid = from.TableBalancePropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._UseMoneyAccumulator = from.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._TableTurnoverPropertyMoneyAccumulatorName = from.TableTurnoverPropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._TableTurnoverPropertyMoneyAccumulatorLength = from.TableTurnoverPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._TableTurnoverPropertyMoneyAccumulatorAccuracy = from.TableTurnoverPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._TableTurnoverPropertyMoneyAccumulatorGuid = from.TableTurnoverPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
-            vm._TableTurnoverPropertyIsStartingBalanceGuid = from.TableTurnoverPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            vm._TableBalancePropertyMoneyAccumulatorGuid = from.TableBalancePropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:63 IsDefaultBase=True
                 vm.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Clone(vm, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:63 IsDefaultBase=True
@@ -21429,6 +21430,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._TableBalancePropertyIdGuid = from.TableBalancePropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._TableBalancePropertyVersionGuid = from.TableBalancePropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._TableBalanceGuid = from.TableBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            vm._TableBalancePropertyDateGuid = from.TableBalancePropertyDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
             vm._ListDocMappings = new ObservableCollectionWithActions<RegisterDocToReg>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:50
             foreach (var t in from.ListDocMappings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:51
                 vm.ListDocMappings.Add(RegisterDocToReg.Clone((RegisterDocToReg)t, isDeep));
@@ -21462,12 +21464,13 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._TableTurnoverPropertyQtyAccumulatorLength = from.TableTurnoverPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._TableTurnoverPropertyQtyAccumulatorAccuracy = from.TableTurnoverPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._TableTurnoverPropertyQtyAccumulatorGuid = from.TableTurnoverPropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            to._TableBalancePropertyQtyAccumulatorGuid = from.TableBalancePropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._UseMoneyAccumulator = from.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._TableTurnoverPropertyMoneyAccumulatorName = from.TableTurnoverPropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._TableTurnoverPropertyMoneyAccumulatorLength = from.TableTurnoverPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._TableTurnoverPropertyMoneyAccumulatorAccuracy = from.TableTurnoverPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._TableTurnoverPropertyMoneyAccumulatorGuid = from.TableTurnoverPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
-            to._TableTurnoverPropertyIsStartingBalanceGuid = from.TableTurnoverPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            to._TableBalancePropertyMoneyAccumulatorGuid = from.TableBalancePropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:140
                 vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Update((GroupListRegisterDimensions)to.GroupRegisterDimensions, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:140
@@ -21521,6 +21524,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._TableBalancePropertyIdGuid = from.TableBalancePropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._TableBalancePropertyVersionGuid = from.TableBalancePropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             to._TableBalanceGuid = from.TableBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
+            to._TableBalancePropertyDateGuid = from.TableBalancePropertyDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:88
             {
                 foreach (var t in to.ListDocMappings.ToList())
@@ -21639,12 +21643,13 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._TableTurnoverPropertyQtyAccumulatorLength = m.TableTurnoverPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._TableTurnoverPropertyQtyAccumulatorAccuracy = m.TableTurnoverPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._TableTurnoverPropertyQtyAccumulatorGuid = m.TableTurnoverPropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            vm._TableBalancePropertyQtyAccumulatorGuid = m.TableBalancePropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._UseMoneyAccumulator = m.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._TableTurnoverPropertyMoneyAccumulatorName = m.TableTurnoverPropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._TableTurnoverPropertyMoneyAccumulatorLength = m.TableTurnoverPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._TableTurnoverPropertyMoneyAccumulatorAccuracy = m.TableTurnoverPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._TableTurnoverPropertyMoneyAccumulatorGuid = m.TableTurnoverPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
-            vm._TableTurnoverPropertyIsStartingBalanceGuid = m.TableTurnoverPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            vm._TableBalancePropertyMoneyAccumulatorGuid = m.TableBalancePropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             if (vm.GroupRegisterDimensions == null) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:211
                 vm.GroupRegisterDimensions = new GroupListRegisterDimensions(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:213
             vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.ConvertToVM(m.GroupRegisterDimensions, (GroupListRegisterDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
@@ -21671,6 +21676,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._TableBalancePropertyIdGuid = m.TableBalancePropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._TableBalancePropertyVersionGuid = m.TableBalancePropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._TableBalanceGuid = m.TableBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
+            vm._TableBalancePropertyDateGuid = m.TableBalancePropertyDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             vm._ListDocMappings = new ObservableCollectionWithActions<RegisterDocToReg>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:202
             foreach (var t in m.ListDocMappings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:203
             {
@@ -21714,12 +21720,13 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.TableTurnoverPropertyQtyAccumulatorLength = vm.TableTurnoverPropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.TableTurnoverPropertyQtyAccumulatorAccuracy = vm.TableTurnoverPropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.TableTurnoverPropertyQtyAccumulatorGuid = vm.TableTurnoverPropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.TableBalancePropertyQtyAccumulatorGuid = vm.TableBalancePropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.UseMoneyAccumulator = vm.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.TableTurnoverPropertyMoneyAccumulatorName = vm.TableTurnoverPropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.TableTurnoverPropertyMoneyAccumulatorLength = vm.TableTurnoverPropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.TableTurnoverPropertyMoneyAccumulatorAccuracy = vm.TableTurnoverPropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.TableTurnoverPropertyMoneyAccumulatorGuid = vm.TableTurnoverPropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.TableTurnoverPropertyIsStartingBalanceGuid = vm.TableTurnoverPropertyIsStartingBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.TableBalancePropertyMoneyAccumulatorGuid = vm.TableBalancePropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.ConvertToProto((GroupListRegisterDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
             m.PropertyDocRefGuidName = vm.PropertyDocRefGuidName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -21736,6 +21743,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.TableBalancePropertyIdGuid = vm.TableBalancePropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.TableBalancePropertyVersionGuid = vm.TableBalancePropertyVersionGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.TableBalanceGuid = vm.TableBalanceGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
+            m.TableBalancePropertyDateGuid = vm.TableBalancePropertyDateGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             foreach (var t in vm.ListDocMappings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
                 m.ListDocMappings.Add(RegisterDocToReg.ConvertToProto((RegisterDocToReg)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:266
@@ -22066,6 +22074,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnTableTurnoverPropertyQtyAccumulatorGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
         partial void OnTableTurnoverPropertyQtyAccumulatorGuidChanged();
         
+        [Browsable(false)]
+        public string TableBalancePropertyQtyAccumulatorGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        { 
+            get { return this._TableBalancePropertyQtyAccumulatorGuid; }
+            set
+            {
+                // Use 'OnTableBalancePropertyQtyAccumulatorGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._TableBalancePropertyQtyAccumulatorGuid, value, (t) => { bool isCancel = false; this.OnTableBalancePropertyQtyAccumulatorGuidChanging(ref value, ref isCancel); if (isCancel) return; this._TableBalancePropertyQtyAccumulatorGuid = value; this.OnTableBalancePropertyQtyAccumulatorGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _TableBalancePropertyQtyAccumulatorGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnTableBalancePropertyQtyAccumulatorGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnTableBalancePropertyQtyAccumulatorGuidChanged();
+        
         [PropertyOrderAttribute(21)]
         [DisplayName("Use Money")]
         [Description("Use money accumulator for register")]
@@ -22165,22 +22191,22 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnTableTurnoverPropertyMoneyAccumulatorGuidChanged();
         
         [Browsable(false)]
-        public string TableTurnoverPropertyIsStartingBalanceGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        public string TableBalancePropertyMoneyAccumulatorGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
-            get { return this._TableTurnoverPropertyIsStartingBalanceGuid; }
+            get { return this._TableBalancePropertyMoneyAccumulatorGuid; }
             set
             {
-                // Use 'OnTableTurnoverPropertyIsStartingBalanceGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
-                if (SetProperty(this._TableTurnoverPropertyIsStartingBalanceGuid, value, (t) => { bool isCancel = false; this.OnTableTurnoverPropertyIsStartingBalanceGuidChanging(ref value, ref isCancel); if (isCancel) return; this._TableTurnoverPropertyIsStartingBalanceGuid = value; this.OnTableTurnoverPropertyIsStartingBalanceGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
+                // Use 'OnTableBalancePropertyMoneyAccumulatorGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._TableBalancePropertyMoneyAccumulatorGuid, value, (t) => { bool isCancel = false; this.OnTableBalancePropertyMoneyAccumulatorGuidChanging(ref value, ref isCancel); if (isCancel) return; this._TableBalancePropertyMoneyAccumulatorGuid = value; this.OnTableBalancePropertyMoneyAccumulatorGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
                 }
             }
         }
-        private string _TableTurnoverPropertyIsStartingBalanceGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
-        partial void OnTableTurnoverPropertyIsStartingBalanceGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
-        partial void OnTableTurnoverPropertyIsStartingBalanceGuidChanged();
+        private string _TableBalancePropertyMoneyAccumulatorGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnTableBalancePropertyMoneyAccumulatorGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnTableBalancePropertyMoneyAccumulatorGuidChanged();
         
         [Browsable(false)]
         public GroupListRegisterDimensions GroupRegisterDimensions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
@@ -22460,6 +22486,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private string _TableBalanceGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
         partial void OnTableBalanceGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
         partial void OnTableBalanceGuidChanged();
+        
+        [Browsable(false)]
+        public string TableBalancePropertyDateGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        { 
+            get { return this._TableBalancePropertyDateGuid; }
+            set
+            {
+                // Use 'OnTableBalancePropertyDateGuidChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (SetProperty(this._TableBalancePropertyDateGuid, value, (t) => { bool isCancel = false; this.OnTableBalancePropertyDateGuidChanging(ref value, ref isCancel); if (isCancel) return; this._TableBalancePropertyDateGuid = value; this.OnTableBalancePropertyDateGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:15
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:18
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:21
+                }
+            }
+        }
+        private string _TableBalancePropertyDateGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnTableBalancePropertyDateGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnTableBalancePropertyDateGuidChanged();
         
         // Mapping register properties to document properties
         [Browsable(false)]
@@ -36955,7 +36999,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         #endregion Properties
     }
     
-    public interface IVisitorProto // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\IVisitorProto.tt Line:8
+    public interface IVisitorProto // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\IVisitorProto.tt Line:8
     {
         void Visit(Proto.Config.proto_user_settings p);
         void Visit(Proto.Config.proto_user_settings_opened_config p);
@@ -37044,737 +37088,737 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         void Visit(Proto.Config.proto_property_data_generator p);
     }
     
-    public partial class ValidationConfigVisitor : ConfigVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:8
+    public partial class ValidationConfigVisitor : ConfigVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:8
     {
         partial void OnVisit(IValidatableWithSeverity p);
         partial void OnVisitEnd(IValidatableWithSeverity p);
-        protected override void OnVisit(UserSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(UserSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListOpenConfigHistory) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:40
+            foreach (var t in p.ListOpenConfigHistory) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:40
                 p.ValidateSubAndCollectErrors(t);
         }
-        protected override void OnVisitEnd(UserSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(UserSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(UserSettingsOpenedConfig p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(UserSettingsOpenedConfig p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(UserSettingsOpenedConfig p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(UserSettingsOpenedConfig p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListPlugins p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListPlugins p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListPlugins p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListPlugins p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Plugin p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Plugin p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(Plugin p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Plugin p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(PluginGenerator p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(PluginGenerator p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(PluginGenerator p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(PluginGenerator p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(SettingsConfig p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(SettingsConfig p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(SettingsConfig p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(SettingsConfig p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(ConfigShortHistory p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(ConfigShortHistory p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(ConfigShortHistory p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(ConfigShortHistory p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListBaseConfigLinks p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListBaseConfigLinks p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListBaseConfigLinks p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListBaseConfigLinks p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(BaseConfigLink p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(BaseConfigLink p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(BaseConfigLink p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(BaseConfigLink p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Config p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Config p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(Config p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Config p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(AppDbSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(AppDbSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(AppDbSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(AppDbSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(PluginGeneratorSolutionSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(PluginGeneratorSolutionSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(PluginGeneratorSolutionSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(PluginGeneratorSolutionSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(PluginGeneratorProjectSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(PluginGeneratorProjectSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(PluginGeneratorProjectSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(PluginGeneratorProjectSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListAppSolutions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListAppSolutions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListAppSolutions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListAppSolutions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(AppSolution p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(AppSolution p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListGeneratorsSolutionSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListGeneratorsSolutionSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(AppSolution p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(AppSolution p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(AppProject p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(AppProject p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListGeneratorsProjectSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListGeneratorsProjectSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(AppProject p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(AppProject p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(PluginGeneratorNodeSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(PluginGeneratorNodeSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(PluginGeneratorNodeSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(PluginGeneratorNodeSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(PluginGroupModelExtensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(PluginGroupModelExtensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(PluginGroupModelExtensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(PluginGroupModelExtensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(PluginGeneratorSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(PluginGeneratorSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(PluginGeneratorSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(PluginGeneratorSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(AppProjectGenerator p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(AppProjectGenerator p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            ValidateSubAndCollectErrors(p, p.GeneratorSettingsVm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:33
+            ValidateSubAndCollectErrors(p, p.GeneratorSettingsVm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:33
         }
-        protected override void OnVisitEnd(AppProjectGenerator p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(AppProjectGenerator p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(PluginGeneratorNodeDefaultSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(PluginGeneratorNodeDefaultSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(PluginGeneratorNodeDefaultSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(PluginGeneratorNodeDefaultSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Model p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Model p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListPluginGroupsModelExtensions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListPluginGroupsModelExtensions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(Model p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Model p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(ComplexRef p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(ComplexRef p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(ComplexRef p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(ComplexRef p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(DataType p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(DataType p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListObjectRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:40
+            foreach (var t in p.ListObjectRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:40
                 p.ValidateSubAndCollectErrors(t);
         }
-        protected override void OnVisitEnd(DataType p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(DataType p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListCommon p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListCommon p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListCommon p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListCommon p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Role p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Role p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(Role p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Role p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RoleConstantAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RoleConstantAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RoleConstantAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RoleConstantAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RolePropertyAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RolePropertyAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RolePropertyAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RolePropertyAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RoleCatalogAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RoleCatalogAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RoleCatalogAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RoleCatalogAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RoleDetailAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RoleDetailAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RoleDetailAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RoleDetailAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RoleDocumentAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RoleDocumentAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RoleDocumentAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RoleDocumentAccess p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListRoles p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListRoles p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListRoles p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListRoles p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(MainViewForm p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(MainViewForm p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(MainViewForm p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(MainViewForm p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListMainViewForms p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListMainViewForms p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListMainViewForms p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListMainViewForms p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListProperties p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListProperties p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(GroupListProperties p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListProperties p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Property p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Property p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            ValidateSubAndCollectErrors(p, p.DataType); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:33
-            ValidateSubAndCollectErrors(p, p.DataGenerator); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:33
-            foreach (var t in p.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            ValidateSubAndCollectErrors(p, p.DataType); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:33
+            ValidateSubAndCollectErrors(p, p.DataGenerator); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:33
+            foreach (var t in p.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(Property p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Property p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListDetails p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListDetails p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListRoleDetailAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListRoleDetailAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(GroupListDetails p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListDetails p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Detail p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Detail p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListRoleDetailAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListRoleDetailAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(Detail p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Detail p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupConstantGroups p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupConstantGroups p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupConstantGroups p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupConstantGroups p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListConstants p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListConstants p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListRoleConstantAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListRoleConstantAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(GroupListConstants p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListConstants p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Constant p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Constant p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            ValidateSubAndCollectErrors(p, p.DataType); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:33
-            foreach (var t in p.ListRoleConstantAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            ValidateSubAndCollectErrors(p, p.DataType); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:33
+            foreach (var t in p.ListRoleConstantAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(Constant p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Constant p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListEnumerations p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListEnumerations p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListEnumerations p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListEnumerations p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Enumeration p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Enumeration p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(Enumeration p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Enumeration p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(EnumerationPair p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(EnumerationPair p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(EnumerationPair p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(EnumerationPair p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(CatalogFolder p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(CatalogFolder p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            ValidateSubAndCollectErrors(p, p.CodePropertySettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:33
-            foreach (var t in p.ListRoleCatalogAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            ValidateSubAndCollectErrors(p, p.CodePropertySettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:33
+            foreach (var t in p.ListRoleCatalogAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(CatalogFolder p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(CatalogFolder p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(CatalogCodePropertySettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(CatalogCodePropertySettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(CatalogCodePropertySettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(CatalogCodePropertySettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Catalog p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Catalog p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            ValidateSubAndCollectErrors(p, p.CodePropertySettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:33
-            foreach (var t in p.ListRoleCatalogAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            ValidateSubAndCollectErrors(p, p.CodePropertySettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:33
+            foreach (var t in p.ListRoleCatalogAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(Catalog p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Catalog p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListCatalogs p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListCatalogs p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListCatalogs p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListCatalogs p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListRegisters p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListRegisters p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListRegisters p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListRegisters p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RegisterDimension p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RegisterDimension p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RegisterDimension p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RegisterDimension p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListRegisterDimensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListRegisterDimensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(GroupListRegisterDimensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListRegisterDimensions p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Register p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Register p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListObjectDocRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListObjectDocRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(Register p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Register p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RegisterDocToReg p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RegisterDocToReg p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RegisterDocToReg p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RegisterDocToReg p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RegisterRegPropToDocProp p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RegisterRegPropToDocProp p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RegisterRegPropToDocProp p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RegisterRegPropToDocProp p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(DocumentEnumeratorSequence p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(DocumentEnumeratorSequence p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(DocumentEnumeratorSequence p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(DocumentEnumeratorSequence p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListEnumeratorSequences p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListEnumeratorSequences p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListEnumeratorSequences p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListEnumeratorSequences p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupDocuments p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupDocuments p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupDocuments p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupDocuments p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(DocumentTimeline p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(DocumentTimeline p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(DocumentTimeline p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(DocumentTimeline p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Document p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Document p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListRoleDocumentAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListRoleDocumentAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(Document p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Document p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListDocuments p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListDocuments p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListRoleDocumentAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListRoleDocumentAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(GroupListDocuments p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListDocuments p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RelationsGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RelationsGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RelationsGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RelationsGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RelationNode p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RelationNode p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RelationNode p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RelationNode p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RelationManyToMany p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RelationManyToMany p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RelationManyToMany p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RelationManyToMany p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RelationsManyToManyGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RelationsManyToManyGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RelationsManyToManyGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RelationsManyToManyGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RelationOneToOne p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RelationOneToOne p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RelationOneToOne p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RelationOneToOne p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(RelationsOneToOneGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(RelationsOneToOneGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(RelationsOneToOneGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(RelationsOneToOneGroup p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListJournals p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListJournals p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListJournals p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListJournals p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Journal p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Journal p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListSelectedDocsWithProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:30
+            foreach (var t in p.ListSelectedDocsWithProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:30
                 ValidateSubAndCollectErrors(p, t);
         }
-        protected override void OnVisitEnd(Journal p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Journal p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(DocInJournal p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(DocInJournal p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(DocInJournal p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(DocInJournal p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListForms p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListForms p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListForms p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListForms p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Form p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Form p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(Form p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Form p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(FormGridSystem p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(FormGridSystem p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(FormGridSystem p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(FormGridSystem p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(FormGridSystemRow p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(FormGridSystemRow p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(FormGridSystemRow p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(FormGridSystemRow p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(FormGridSystemColumn p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(FormGridSystemColumn p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(FormGridSystemColumn p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(FormGridSystemColumn p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(FormAutoLayoutBlock p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(FormAutoLayoutBlock p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(FormAutoLayoutBlock p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(FormAutoLayoutBlock p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(FormAutoLayoutSubBlock p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(FormAutoLayoutSubBlock p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(FormAutoLayoutSubBlock p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(FormAutoLayoutSubBlock p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(FormField p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(FormField p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(FormField p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(FormField p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(FormTabControlTab p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(FormTabControlTab p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(FormTabControlTab p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(FormTabControlTab p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(FormTabControl p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(FormTabControl p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(FormTabControl p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(FormTabControl p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(FormDataGrid p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(FormDataGrid p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(FormDataGrid p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(FormDataGrid p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(FormTree p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(FormTree p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(FormTree p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(FormTree p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListReports p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GroupListReports p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListReports p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GroupListReports p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(Report p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(Report p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(Report p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(Report p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(ModelRow p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(ModelRow p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(ModelRow p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(ModelRow p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(PropertyDataGenerator p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(PropertyDataGenerator p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(PropertyDataGenerator p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(PropertyDataGenerator p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
     }
     
-    public partial class ConfigVisitor : IVisitorConfigNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NodeVisitor.tt Line:8
+    public partial class ConfigVisitor : IVisitorConfigNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NodeVisitor.tt Line:8
     {
         public CancellationToken Token { get { return _cancellationToken; } }
         protected CancellationToken _cancellationToken;
@@ -38631,7 +38675,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         protected virtual void OnVisitEnd(PropertyDataGenerator p) { }
     }
     
-    public interface IVisitorConfigNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\IVisitorConfigNode.tt Line:8
+    public interface IVisitorConfigNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\IVisitorConfigNode.tt Line:8
     {
         System.Threading.CancellationToken Token { get; }
         void Visit(Config p);

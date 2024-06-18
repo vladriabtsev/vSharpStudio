@@ -14,13 +14,13 @@ using vSharpStudio.common.ViewModels;
 using Google.Protobuf;
 using System.Diagnostics;
 
-namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt Line:24
+namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:24
 {
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
 
-    public interface IPluginSampleAcceptVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt Line:30
+    public interface IPluginSampleAcceptVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:30
     {
         void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor);
     }
@@ -1290,7 +1290,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         #endregion Properties
     }
     
-    public interface IVisitorProto // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\IVisitorProto.tt Line:8
+    public interface IVisitorProto // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\IVisitorProto.tt Line:8
     {
         void Visit(Proto.Plugin.proto_db_connection_string_settings p);
         void Visit(Proto.Plugin.proto_plugins_group_solution_sub_settings p);
@@ -1302,78 +1302,78 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         void Visit(Proto.Plugin.proto_generator_db_access_node_settings p);
     }
     
-    public partial class ValidationPluginSampleVisitor : PluginSampleVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:8
+    public partial class ValidationPluginSampleVisitor : PluginSampleVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:8
     {
         partial void OnVisit(IValidatableWithSeverity p);
         partial void OnVisitEnd(IValidatableWithSeverity p);
-        protected override void OnVisit(DbConnectionStringSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(DbConnectionStringSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(DbConnectionStringSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(DbConnectionStringSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(PluginsGroupSolutionSubSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(PluginsGroupSolutionSubSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(PluginsGroupSolutionSubSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(PluginsGroupSolutionSubSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(PluginsGroupSolutionSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(PluginsGroupSolutionSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            p.ValidateSubAndCollectErrors(p.SubSettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:43
+            p.ValidateSubAndCollectErrors(p.SubSettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:43
         }
-        protected override void OnVisitEnd(PluginsGroupSolutionSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(PluginsGroupSolutionSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(PluginsGroupProjectSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(PluginsGroupProjectSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(PluginsGroupProjectSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(PluginsGroupProjectSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GeneratorDbSchemaSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GeneratorDbSchemaSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GeneratorDbSchemaSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GeneratorDbSchemaSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GeneratorDbSchemaNodeSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GeneratorDbSchemaNodeSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GeneratorDbSchemaNodeSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GeneratorDbSchemaNodeSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GeneratorDbAccessSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GeneratorDbAccessSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GeneratorDbAccessSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GeneratorDbAccessSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GeneratorDbAccessNodeSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:16
+        protected override void OnVisit(GeneratorDbAccessNodeSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:16
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GeneratorDbAccessNodeSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt Line:50
+        protected override void OnVisitEnd(GeneratorDbAccessNodeSettings p) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt Line:50
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
     }
     
-    public partial class PluginSampleVisitor : IVisitorPluginSampleNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NodeVisitor.tt Line:8
+    public partial class PluginSampleVisitor : IVisitorPluginSampleNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NodeVisitor.tt Line:8
     {
         public CancellationToken Token { get { return _cancellationToken; } }
         protected CancellationToken _cancellationToken;
@@ -1460,7 +1460,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         protected virtual void OnVisitEnd(GeneratorDbAccessNodeSettings p) { }
     }
     
-    public interface IVisitorPluginSampleNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\IVisitorConfigNode.tt Line:8
+    public interface IVisitorPluginSampleNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\IVisitorConfigNode.tt Line:8
     {
         System.Threading.CancellationToken Token { get; }
     }

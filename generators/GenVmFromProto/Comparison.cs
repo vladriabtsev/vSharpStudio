@@ -18,7 +18,7 @@ namespace GenVmFromProto
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Comparison.tt"
+    #line 1 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Comparison.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class Comparison : ComparisonBase
     {

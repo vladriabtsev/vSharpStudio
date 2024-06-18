@@ -20,7 +20,7 @@ namespace GenVmFromProto
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+    #line 1 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class NameSpace : NameSpaceBase
     {
@@ -48,14 +48,14 @@ using System.Diagnostics;
 
 namespace ");
             
-            #line 24 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 24 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
             
             #line default
             #line hidden
             this.Write(" // ");
             
-            #line 24 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 24 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
@@ -68,35 +68,35 @@ namespace ");
 
     public interface I");
             
-            #line 30 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 30 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("AcceptVisitor // ");
             
-            #line 30 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 30 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n    {\r\n        void Accept");
             
-            #line 32 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 32 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("NodeVisitor(");
             
-            #line 32 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 32 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("Visitor visitor);\r\n    }\r\n");
             
-            #line 34 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 34 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt"
 
 	this.PushIndent("    ");
 	foreach (var t in root.MessageTypes)

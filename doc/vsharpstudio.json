@@ -12034,6 +12034,18 @@
               "defaultValue": ""
             },
             {
+              "name": "table_balance_property_qty_accumulator_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "use_money_accumulator",
               "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Money\")]\n@attr [Description(\"Use money accumulator for register\")]",
               "label": "",
@@ -12094,7 +12106,7 @@
               "defaultValue": ""
             },
             {
-              "name": "table_turnover_property_is_starting_balance_guid",
+              "name": "table_balance_property_money_accumulator_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -12275,6 +12287,18 @@
             },
             {
               "name": "table_balance_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "table_balance_property_date_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",

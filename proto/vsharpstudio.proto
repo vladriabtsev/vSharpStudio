@@ -2516,6 +2516,8 @@ message proto_register {
     uint32 table_turnover_property_qty_accumulator_accuracy = 18; 
     // @attr [Browsable(false)]
     string table_turnover_property_qty_accumulator_guid = 19; 
+    // @attr [Browsable(false)]
+    string table_balance_property_qty_accumulator_guid = 20; 
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Money")]
     // @attr [Description("Use money accumulator for register")]
@@ -2535,7 +2537,7 @@ message proto_register {
     // @attr [Browsable(false)]
     string table_turnover_property_money_accumulator_guid = 25; 
     // @attr [Browsable(false)]
-    string table_turnover_property_is_starting_balance_guid = 26; 
+    string table_balance_property_money_accumulator_guid = 26; 
 
 
     // @attr [Browsable(false)]
@@ -2596,6 +2598,8 @@ message proto_register {
     string table_balance_property_version_guid = 56;
     // @attr [Browsable(false)]
     string table_balance_guid = 57;
+    // @attr [Browsable(false)]
+    string table_balance_property_date_guid = 58;
 
     // Mapping register properties to document properties
     // @attr [Browsable(false)]

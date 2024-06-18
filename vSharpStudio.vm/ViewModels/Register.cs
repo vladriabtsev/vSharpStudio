@@ -137,11 +137,14 @@ namespace vSharpStudio.vm.ViewModels
             this._TableTurnoverGuid = System.Guid.NewGuid().ToString();
             this._TableTurnoverPropertyIdGuid = System.Guid.NewGuid().ToString();
             this._TableTurnoverPropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this._TableTurnoverPropertyPostDateGuid = System.Guid.NewGuid().ToString();
             this._TableBalanceGuid = System.Guid.NewGuid().ToString();
             this._TableBalancePropertyIdGuid = System.Guid.NewGuid().ToString();
             this._TableBalancePropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this._TableTurnoverPropertyIsStartingBalanceGuid = System.Guid.NewGuid().ToString();
-            this._TableTurnoverPropertyPostDateGuid = System.Guid.NewGuid().ToString();
+            this._TableBalancePropertyDateGuid = System.Guid.NewGuid().ToString();
+            this._TableBalancePropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
+            this._TableBalancePropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
+
             this._PropertyDocRefGuidName = "DocGuid";
             this._PropertyDocRefName = "Doc";
             this._RegisterType = EnumRegisterType.TURNOVER;
@@ -559,29 +562,27 @@ namespace vSharpStudio.vm.ViewModels
             //lst.Add(pPostDate);
 
             // Money accumulator
-            var pMoney = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName, this.TableTurnoverPropertyMoneyAccumulatorLength, this.TableTurnoverPropertyMoneyAccumulatorAccuracy, false);
-            pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
-            pMoney.TagInList = "ma";
-            lst.Add(pMoney);
+            if (this.UseMoneyAccumulator)
+            {
+                var pMoney = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName, this.TableTurnoverPropertyMoneyAccumulatorLength, this.TableTurnoverPropertyMoneyAccumulatorAccuracy, false);
+                pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
+                pMoney.TagInList = "ma";
+                lst.Add(pMoney);
+            }
 
             // Qty accumulator
-            var pQty = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName, this.TableTurnoverPropertyQtyAccumulatorLength, this.TableTurnoverPropertyQtyAccumulatorAccuracy, false);
-            pQty.Position = IProperty.PropertyQtyAccumulatorPosition;
-            pQty.TagInList = "qa";
-            lst.Add(pQty);
+            if (this.UseQtyAccumulator)
+            {
+                var pQty = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName, this.TableTurnoverPropertyQtyAccumulatorLength, this.TableTurnoverPropertyQtyAccumulatorAccuracy, false);
+                pQty.Position = IProperty.PropertyQtyAccumulatorPosition;
+                pQty.TagInList = "qa";
+                lst.Add(pQty);
+            }
 
             // Reference to register header
             //var pRegRef = (Property)m.GetPropertyRef(this, this.Guid, "Ref" + this.CompositeName, 13);
             //pRegRef.TagInList = "rr";
             //lst.Add(pRegRef);
-
-            if (this.RegisterType != EnumRegisterType.TURNOVER)
-            {
-                //// Register starting balances on period
-                //var pIsStartBalance = (Property)m.GetPropertyBool(this, this.TableTurnoverPropertyIsStartingBalanceGuid, "IsStartingBalance", 14, true);
-                //pRegRef.TagInList = "ib";
-                //lst.Add(pRegRef);
-            }
 
             //var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, this.PropertyDocRefName, this.ListObjectDocRefs, 15, false);
             //lst.Add(pDoc);
@@ -619,54 +620,45 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IReadOnlyList<IProperty> GetIncludedBalanceProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
         {
-            throw new NotImplementedException();
-
             Debug.Assert(!isExcludeSpecial, "not implemented yet");
 
             var lst = new List<IProperty>();
             var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
 
             // Id
-            var pId = m.GetPropertyPkId(this, this.Cfg.Model.PropertyIdGuid); // position 6
+            var pId = m.GetPropertyPkId(this, this.TableBalancePropertyIdGuid); // position 6
             pId.TagInList = "id";
             lst.Add(pId);
 
-            this.PropertyRefTimeline.Name = "Ref" + this.Cfg.Model.GroupDocuments.DocumentTimeline.CompositeName;
-            var pRefTimeline = this.PropertyRefTimeline;
-            pRefTimeline.Position = IProperty.PropertyRefParentPosition;
-            lst.Add(pRefTimeline);
+            // Balance date
+            var pPostDate = m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateTime", 9, false); // position 9
+            pPostDate.TagInList = "pd";
+            lst.Add(pPostDate);
 
             if (isOptimistic)
             {
                 // Version
-                var pVer = m.GetPropertyVersion(this, this.Cfg.Model.PropertyVersionGuid); // position 7
+                var pVer = m.GetPropertyVersion(this, this.TableBalancePropertyVersionGuid); // position 7
                 pVer.TagInList = "vr";
                 lst.Add(pVer);
             }
 
             // Money accumulator
-            var pMoney = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName, this.TableTurnoverPropertyMoneyAccumulatorLength, this.TableTurnoverPropertyMoneyAccumulatorAccuracy, false);
-            pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
-            pMoney.TagInList = "ma";
-            lst.Add(pMoney);
+            if (this.UseMoneyAccumulator)
+            {
+                var pMoney = (Property)m.GetPropertyNumber(this, this.TableBalancePropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName, this.TableTurnoverPropertyMoneyAccumulatorLength, this.TableTurnoverPropertyMoneyAccumulatorAccuracy, false);
+                pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
+                pMoney.TagInList = "ma";
+                lst.Add(pMoney);
+            }
 
             // Qty accumulator
-            var pQty = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName, this.TableTurnoverPropertyQtyAccumulatorLength, this.TableTurnoverPropertyQtyAccumulatorAccuracy, false);
-            pQty.Position = IProperty.PropertyQtyAccumulatorPosition;
-            pQty.TagInList = "qa";
-            lst.Add(pQty);
-
-            // Reference to register header
-            var pRegRef = (Property)m.GetPropertyRef(this, this.Guid, "Ref" + this.CompositeName, 13);
-            pRegRef.TagInList = "rr";
-            lst.Add(pRegRef);
-
-            if (this.RegisterType != EnumRegisterType.TURNOVER)
+            if (this.UseQtyAccumulator)
             {
-                // Register starting balances on period
-                var pIsStartBalance = (Property)m.GetPropertyBool(this, this.TableTurnoverPropertyIsStartingBalanceGuid, "IsStartingBalance", 14, true);
-                pRegRef.TagInList = "ib";
-                lst.Add(pRegRef);
+                var pQty = (Property)m.GetPropertyNumber(this, this.TableBalancePropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName, this.TableTurnoverPropertyQtyAccumulatorLength, this.TableTurnoverPropertyQtyAccumulatorAccuracy, false);
+                pQty.Position = IProperty.PropertyQtyAccumulatorPosition;
+                pQty.TagInList = "qa";
+                lst.Add(pQty);
             }
 
             // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
@@ -691,12 +683,6 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else
                     ThrowHelper.ThrowNotSupportedException();
-            }
-
-            // For all attached properties.
-            foreach (var t in this.GroupProperties.ListProperties)
-            {
-                lst.Add(t);
             }
             return lst;
         }
@@ -890,8 +876,11 @@ namespace vSharpStudio.vm.ViewModels
         public void MappingRegPropertyAdd(string docGuid, string regPropertyGuid, string docPropertyGuid)
         {
             Guard.IsNotNullOrWhiteSpace(docGuid);
+            Guard.IsTrue(this.Cfg.DicNodes.ContainsKey(docGuid));
             Guard.IsNotNullOrWhiteSpace(regPropertyGuid);
+            //Guard.IsTrue(this.Cfg.DicNodes.ContainsKey(regPropertyGuid));
             Guard.IsNotNullOrWhiteSpace(docPropertyGuid);
+            Guard.IsTrue(this.Cfg.DicNodes.ContainsKey(docPropertyGuid));
             RegisterDocToReg? rec = null;
             foreach (var t in this.ListDocMappings)
             {
@@ -1140,7 +1129,7 @@ namespace vSharpStudio.vm.ViewModels
                             return;
                     }
                     else
-                        throw new NotImplementedException();
+                        return;
                 }
             }
             row.ListToMap.Add(p);

@@ -168,7 +168,7 @@ namespace vSharpStudio.vm.ViewModels
                                 found = false;
                                 foreach (var dpm in dtr.ListMappings)
                                 {
-                                    if (dpm.RegPropGuid == rd.PropertyRefDimensionCatalog.Guid)
+                                    if (dpm.RegPropGuid == rd.Guid)
                                     {
                                         var p = (Property)r.Cfg.DicNodes[dpm.DocPropGuid];
                                         if (p.DataType.DataTypeEnum != EnumDataType.CATALOG)
@@ -343,11 +343,11 @@ namespace vSharpStudio.vm.ViewModels
                             if (string.IsNullOrWhiteSpace(dpm.DocPropGuid))
                                 continue;
                             var regPropName = "";
-                            foreach (var td in r.GroupRegisterDimensions.ListDimensions)
+                            foreach (var rd in r.GroupRegisterDimensions.ListDimensions)
                             {
-                                if (td.PropertyRefDimensionCatalog.Guid == dpm.RegPropGuid)
+                                if (rd.Guid == dpm.RegPropGuid)
                                 {
-                                    regPropName = td.Name;
+                                    regPropName = rd.Name;
                                     break;
                                 }
                             }
@@ -373,7 +373,11 @@ namespace vSharpStudio.vm.ViewModels
                                     regPropName = r.TableTurnoverPropertyQtyAccumulatorName;
                                 }
                                 else
+                                {
+                                    var ndic = r.Cfg.DicNodes;
+                                    var doc_p = ndic[dpm.RegPropGuid];
                                     Debug.Assert(false);
+                                }
                             }
                             if (!r.Cfg.DicNodes.ContainsKey(dpm.DocPropGuid))
                             {
@@ -618,7 +622,14 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else if (node is Property p)
                 {
-                    MappingPath(p.ParentGroupListProperties.Parent, sb);
+                    if (p.Parent is DocumentTimeline dtl)
+                    {
+                        //MappingPath(dtl, sb);
+                    }
+                    else
+                    {
+                        MappingPath(p.ParentGroupListProperties.Parent, sb);
+                    }
                 }
             }
             return sb;
