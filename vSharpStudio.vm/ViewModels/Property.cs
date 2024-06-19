@@ -903,17 +903,17 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsComplexDesc { get; private set; }
         [Browsable(false)]
-        public bool IsPKey { get { return this.DataType.IsPKey; } }
+        public bool IsPKey { get { return this.DataType.IsPKey; } set { this.DataType.IsPKey = value; } }
         [Browsable(false)]
         public bool IsRefParent { get { return this.DataType.IsRefParent; } }
         [Browsable(false)]
         public bool IsDocShared { get; set; }
-        public IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInConfigObject, uint position)
+        public IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInConfigObject, uint position, bool isPKey)
         {
             var node = new Property(this) { Name = subName, ParentProperty = this };
             node.Guid = complexRef.RefComplexObjectIdPropertyGuid;
             node.DataType = (DataType)this.Cfg.Model.GetIdRefDataType(node, true);
-            node.DataType.IsPKey = false;
+            node.DataType.IsPKey = isPKey;
             node.IsNullable = isNullable;
             node.IsCsNullable = isCsNullable;
             node.IsComplexRefId = true;

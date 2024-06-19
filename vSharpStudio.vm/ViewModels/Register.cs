@@ -599,6 +599,7 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             var pCat = t.PropertyRefDimensionCatalog;
                             pCat.Position = t.Position;
+                            pCat.IsPKey = false;
                             lst.Add(pCat);
                         }
                         else
@@ -625,14 +626,15 @@ namespace vSharpStudio.vm.ViewModels
             var lst = new List<IProperty>();
             var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
 
-            // Id
-            var pId = m.GetPropertyPkId(this, this.TableBalancePropertyIdGuid); // position 6
-            pId.TagInList = "id";
-            lst.Add(pId);
+            //// Id
+            //var pId = m.GetPropertyPkId(this, this.TableBalancePropertyIdGuid); // position 6
+            //pId.TagInList = "id";
+            //lst.Add(pId);
 
             // Balance date
-            var pPostDate = m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateTime", 9, false); // position 9
+            var pPostDate = (Property)m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateTime", 9, false); // position 9
             pPostDate.TagInList = "pd";
+            pPostDate.DataType.IsPKey = true;
             lst.Add(pPostDate);
 
             if (isOptimistic)
@@ -673,6 +675,7 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             var pCat = t.PropertyRefDimensionCatalog;
                             pCat.Position = t.Position;
+                            pCat.IsPKey = true;
                             lst.Add(pCat);
                         }
                         else

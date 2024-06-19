@@ -67,6 +67,7 @@ namespace vSharpStudio.vm.ViewModels
             var m = (Model)this.Cfg.Model;
             this._PropertyRefDimensionCatalog = (Property)m.GetPropertyRef(this.ParentGroupListRegisterDimensions.ParentRegister.GroupProperties, this.Guid, "Ref2", 0, false);
             this._PropertyRefDimensionCatalog.DataTypeEnum = EnumDataType.CATALOG;
+            this._PropertyRefDimensionCatalog.IsNullable = false;
             Init();
         }
         protected override void OnInitFromDto()

@@ -54,7 +54,7 @@ namespace vSharpStudio.common
         /// Mark property as computed if it will be not stored in DB
         /// </summary>
         bool IsComplex { get; }
-        bool IsPKey { get; }
+        bool IsPKey { get; set; }
         bool IsDocShared { get; set; }
         bool IsRecordVersion { get; }
         bool IsComplexRefId { get; }
@@ -94,7 +94,7 @@ namespace vSharpStudio.common
         IProperty? ParentProperty { get; set; }
         string NameWithExtention { get; }
         //List<IProperty> ListExtensionProperties { get; }
-        IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInConfigObject, uint position);
+        IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInConfigObject, uint position, bool isPKey);
         IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable, uint position);
         IProperty AddExtensionPropertyDesc(string subName, bool isNullable, bool isCsNullable, uint position);
         IProperty AddExtensionPropertyString(string subName, uint length, string guid);
