@@ -597,9 +597,12 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (node is Catalog c)
                         {
-                            var pCat = t.PropertyRefDimensionCatalog;
+                            var pCat = Property.Clone(t, t.PropertyRefDimensionCatalog, true);
                             pCat.Position = t.Position;
                             pCat.IsPKey = false;
+                            pCat.IsComplex = true;
+                            pCat.IsNullable = false;
+                            pCat.IsCsNullable = true;
                             lst.Add(pCat);
                         }
                         else
@@ -673,9 +676,12 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (node is Catalog c)
                         {
-                            var pCat = t.PropertyRefDimensionCatalog;
+                            var pCat = Property.Clone(t, t.PropertyRefDimensionCatalog, true);
                             pCat.Position = t.Position;
                             pCat.IsPKey = true;
+                            pCat.IsComplex = true;
+                            pCat.IsNullable = false;
+                            pCat.IsCsNullable = true;
                             lst.Add(pCat);
                         }
                         else
