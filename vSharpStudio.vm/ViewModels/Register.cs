@@ -634,11 +634,15 @@ namespace vSharpStudio.vm.ViewModels
             //pId.TagInList = "id";
             //lst.Add(pId);
 
-            // Balance date
-            var pPostDate = (Property)m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateTime", 9, false); // position 9
-            pPostDate.TagInList = "pd";
-            pPostDate.DataType.IsPKey = true;
-            lst.Add(pPostDate);
+            if (this.RegisterType != EnumRegisterType.BALANCE)
+            {
+
+                // Balance date
+                var pPostDate = (Property)m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateTime", 9, false); // position 9
+                pPostDate.TagInList = "pd";
+                pPostDate.DataType.IsPKey = true;
+                lst.Add(pPostDate);
+            }
 
             if (isOptimistic)
             {
