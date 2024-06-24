@@ -1230,6 +1230,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         private bool _IsShowCompatible = true;
         [Browsable(false)]
+        public RegisterDocToReg? RegisterDocToReg
+        {
+            get => _RegisterDocToReg;
+            set => SetProperty(ref _RegisterDocToReg, value);
+        }
+        private RegisterDocToReg? _RegisterDocToReg;
+        [Browsable(false)]
         public ISortingValue? SelectedDoc
         {
             get => _SelectedDoc;
@@ -1255,12 +1262,23 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         this.VisibilityTextDocNotSelected = Visibility.Visible;
                         this.VisibilityTextDocSelected = Visibility.Hidden;
+                        this.RegisterDocToReg = null;
                     }
                     else
                     {
                         this.VisibilityTextDocNotSelected = Visibility.Hidden;
                         this.VisibilityTextDocSelected = Visibility.Visible;
                         this.TextDocSelected = $"Mapping register to '{((IName)_SelectedDoc).Name}' document properties";
+                        var dGuid = ((Document)_SelectedDoc).Guid;
+                        foreach (var t in this.ListDocMappings)
+                        {
+                            if (t.DocGuid== dGuid)
+                            {
+                                this.RegisterDocToReg = t;
+                                break;
+                            }
+                        }
+
                     }
                     UpdateListMappings();
                 }

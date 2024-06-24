@@ -22622,7 +22622,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._ListMappings = new ObservableCollectionWithActions<RegisterRegPropToDocProp>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:50
             foreach (var t in from.ListMappings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:51
                 vm.ListMappings.Add(RegisterRegPropToDocProp.Clone((RegisterRegPropToDocProp)t, isDeep));
-                      return vm;
+                      vm._IsManualPostCode = from.IsManualPostCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:69
+            return vm;
         }
         public static void Update(RegisterDocToReg to, IRegisterDocToReg from, bool isDeep = true) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:79
         {
@@ -22666,6 +22667,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                     }
                 }
             }
+            to._IsManualPostCode = from.IsManualPostCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:143
         }
         // Conversion from 'proto_register_doc_to_reg' to 'RegisterDocToReg'
         public static RegisterDocToReg ConvertToVM(Proto.Config.proto_register_doc_to_reg m, RegisterDocToReg vm) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:173
@@ -22683,6 +22685,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 var tvm = RegisterRegPropToDocProp.ConvertToVM(t, new RegisterRegPropToDocProp()); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:205
                 vm.ListMappings.Add(tvm);
             }
+            vm._IsManualPostCode = m.IsManualPostCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:219
             return vm;
         }
         // Conversion from 'RegisterDocToReg' to 'proto_register_doc_to_reg'
@@ -22694,6 +22697,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.DocGuid = vm.DocGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             foreach (var t in vm.ListMappings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
                 m.ListMappings.Add(RegisterRegPropToDocProp.ConvertToProto((RegisterRegPropToDocProp)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
+            m.IsManualPostCode = vm.IsManualPostCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             return m;
         }
         #endregion Procedures
@@ -22765,6 +22769,27 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListMappingsChanged();
         IReadOnlyList<IRegisterRegPropToDocProp> IRegisterDocToReg.ListMappings { get { return (this as RegisterDocToReg).ListMappings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:48
         
+        
+        // Use manually written code for POST and UNPOST data for document
+        public bool IsManualPostCode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
+        { 
+            get { return this._IsManualPostCode; }
+            set
+            {
+                // Use 'OnIsManualPostCodeChanging' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+                if (this._IsManualPostCode != value) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:25
+                {
+                    bool isCancel = false;
+                    this.OnIsManualPostCodeChanging(ref value, ref isCancel);
+                    if (isCancel) return;
+                    this._IsManualPostCode = value;
+                    this.OnIsManualPostCodeChanged();
+                }
+            }
+        }
+        private bool _IsManualPostCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:43
+        partial void OnIsManualPostCodeChanging(ref bool to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:45
+        partial void OnIsManualPostCodeChanged();
         #endregion Properties
     }
     // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:7

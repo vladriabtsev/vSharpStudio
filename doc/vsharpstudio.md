@@ -1968,6 +1968,7 @@ Configuration model
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | doc_guid | [string](#string) |  | Document GUID |
 | list_mappings | [proto_register_reg_prop_to_doc_prop](#proto_config-proto_register_reg_prop_to_doc_prop) | repeated | Mappings |
+| is_manual_post_code | [bool](#bool) |  | Use manually written code for POST and UNPOST data for document |
 
 
 

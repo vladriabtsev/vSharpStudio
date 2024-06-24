@@ -2624,6 +2624,8 @@ message proto_register_doc_to_reg
     string doc_guid = 2;
     // Mappings
     repeated proto_register_reg_prop_to_doc_prop list_mappings = 3;
+    // Use manually written code for POST and UNPOST data for document
+    bool is_manual_post_code = 4;
 }
 // @base Object
 message proto_register_reg_prop_to_doc_prop
