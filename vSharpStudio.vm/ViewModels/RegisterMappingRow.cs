@@ -75,9 +75,9 @@ namespace vSharpStudio.vm.ViewModels
                 if (SetProperty(ref _Selected, value))
                 {
                     if (_Selected != null)
-                        this.Reg.MappingRegPropertyAdd(this.Doc.Guid, this.RegPropertyGuid, _Selected.Guid);
+                        Register.MappingRegPropertyAdd(this.Reg, this.Doc.Guid, this.RegPropertyGuid, _Selected.Guid);
                     else
-                        this.Reg.MappingRegPropertyRemove(this.Doc.Guid, this.RegPropertyGuid);
+                        Register.MappingRegPropertyRemove(this.Reg, this.Doc.Guid, this.RegPropertyGuid);
                     this.ValidateProperty();
                 }
             }

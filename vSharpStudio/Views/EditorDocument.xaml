@@ -19,7 +19,58 @@
     </UserControl.Resources>
     <Grid>
         <TabControl>
-            <TabItem Header="Default View" ToolTip="Default list view form for selection from editing form">
+            <TabItem Header="Registers and mappings">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Select registers which can be used to POST for this document" FontWeight="Bold" />
+                        <controls:CollectionFromCollection Grid.Row="1"
+                                                           TitleLeft="Not selected"
+                                                           ListLeft="{Binding ListNotSelectedRegisters}"
+                                                           TitleRight="Selected"
+                                                           ListRight="{Binding ListSelectedRegisters}"
+                                                           SelectedRight="{Binding SelectedReg, Mode=TwoWay}">
+                        </controls:CollectionFromCollection>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Document for Mapping is not selected" FontWeight="Bold" Foreground="Red" Visibility="{Binding VisibilityTextRegNotSelected}"/>
+                        <TextBlock Text="{Binding TextRegSelected}" FontWeight="Bold" Visibility="{Binding VisibilityTextRegSelected}"/>
+                        <StackPanel Grid.Row="2" Visibility="{Binding VisibilityTextRegSelected}">
+                            <CheckBox Grid.Row="1" IsChecked="{Binding RegisterDocToReg.IsManualPostCode}" Content="Use manually written code for POST and UNPOST data for document"/>
+                            <StackPanel Visibility="{Binding RegisterDocToReg.IsManualPostCode, Converter={StaticResource ConverterBoolToNotVisible}}">
+                                <CheckBox IsChecked="{Binding IsShowCompatible}" Content="Show only compatible document properties" />
+                                <DataGrid ItemsSource="{Binding SelectedReg.ListMappings}" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFE1E1E1" VerticalGridLinesBrush="#FFE1E1E1">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                                        <DataGridTemplateColumn Header="Mapped To" Width="*" >
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <HierarchicalDataTemplate>
+                                                    <xctk:WatermarkComboBox DisplayMemberPath="PathInObject" 
+                                                                    Watermark="Select doc property for mapping ..."
+                                                                    ItemsSource="{Binding ListToMap}" 
+                                                                    SelectedItem="{Binding Selected, UpdateSourceTrigger=PropertyChanged}" />
+                                                </HierarchicalDataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <!--<TabItem Header="Default View" ToolTip="Default list view form for selection from editing form">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="{Binding UseSeparateTreeForFolders, ConverterParameter='*', Converter={StaticResource ConverterBoolToGridLength}}"/>
@@ -134,58 +185,7 @@
                         </controls:CollectionFromCollection>
                     </Grid>
                 </Grid>
-            </TabItem>
-            <TabItem Header="Registers and mappings">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="Select registers which can be used to POST for this document" FontWeight="Bold" />
-                        <controls:CollectionFromCollection Grid.Row="1"
-                                                           TitleLeft="Not selected"
-                                                           ListLeft="{Binding ListNotSelectedRegisters}"
-                                                           TitleRight="Selected"
-                                                           ListRight="{Binding ListSelectedRegisters}"
-                                                           SelectedRight="{Binding SelectedReg, Mode=TwoWay}">
-                        </controls:CollectionFromCollection>
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="Document for Mapping is not selected" FontWeight="Bold" Foreground="Red" Visibility="{Binding VisibilityTextRegNotSelected}"/>
-                        <TextBlock Text="{Binding TextRegSelected}" FontWeight="Bold" Visibility="{Binding VisibilityTextRegSelected}"/>
-                        <StackPanel Grid.Row="2" Visibility="{Binding VisibilityTextRegSelected}">
-                            <CheckBox Grid.Row="1" IsChecked="{Binding RegisterDocToReg.IsManualPostCode}" Content="Use manually written code for POST and UNPOST data for document"/>
-                            <StackPanel Visibility="{Binding RegisterDocToReg.IsManualPostCode, Converter={StaticResource ConverterBoolToNotVisible}}">
-                                <CheckBox IsChecked="{Binding IsShowCompatible}" Content="Show only compatible document properties" />
-                                <DataGrid ItemsSource="{Binding ListMappings}" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFE1E1E1" VerticalGridLinesBrush="#FFE1E1E1">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                                        <DataGridTemplateColumn Header="Mapped To" Width="*" >
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <HierarchicalDataTemplate>
-                                                    <xctk:WatermarkComboBox DisplayMemberPath="PathInObject" 
-                                                                    Watermark="Select doc property for mapping ..."
-                                                                    ItemsSource="{Binding ListToMap}" 
-                                                                    SelectedItem="{Binding Selected, UpdateSourceTrigger=PropertyChanged}" />
-                                                </HierarchicalDataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </StackPanel>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-            </TabItem>
+            </TabItem>-->
         </TabControl>
     </Grid>
 </UserControl>

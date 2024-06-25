@@ -459,7 +459,7 @@ namespace vSharpStudio.Unit
 
             // Map Money Accumulator to property with low accuracy
             var p_num28_5 = doc1.AddPropertyNumerical("num28_5", 28, 5);
-            reg1.MappingRegPropertyAdd(doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid, p_num28_5.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid, p_num28_5.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountWarnings == 0);
             Assert.IsTrue(cfg.CountInfos == 2);
@@ -470,9 +470,9 @@ namespace vSharpStudio.Unit
             cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' has accuracy less than accuracy 'num28_5' property of 'doc1' document."));
 
             // Map Money Accumulator
-            reg1.MappingRegPropertyRemove(doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid);
+            Register.MappingRegPropertyRemove(reg1, doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid);
             var p_num10_2 = doc1.AddPropertyNumerical("num10_2", 10, 2);
-            reg1.MappingRegPropertyAdd(doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid, p_num10_2.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid, p_num10_2.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
@@ -483,7 +483,7 @@ namespace vSharpStudio.Unit
             // Map dimension
             var det1 = doc1.AddDetails("det1");
             var p_det1_cat1 = det1.AddPropertyCatalog("cat1", cat1.Guid, true);
-            reg1.MappingRegPropertyAdd(doc1.Guid, dim1.PropertyRefDimensionCatalog.Guid, p_det1_cat1.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, dim1.PropertyRefDimensionCatalog.Guid, p_det1_cat1.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
@@ -492,8 +492,8 @@ namespace vSharpStudio.Unit
 
             // Map Money Accumulator on a same record as deepest dimension
             var pd_num10_2 = det1.AddPropertyNumerical("num10_2", 10, 2);
-            reg1.MappingRegPropertyRemove(doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid);
-            reg1.MappingRegPropertyAdd(doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid, pd_num10_2.Guid);
+            Register.MappingRegPropertyRemove(reg1, doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid, pd_num10_2.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
@@ -502,7 +502,7 @@ namespace vSharpStudio.Unit
 
             // Map Qty Accumulator on a same record as deepest dimension
             var pd_num10_4 = det1.AddPropertyNumerical("num10_4", 10, 4);
-            reg1.MappingRegPropertyAdd(doc1.Guid, reg1.TableTurnoverPropertyQtyAccumulatorGuid, pd_num10_4.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.TableTurnoverPropertyQtyAccumulatorGuid, pd_num10_4.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
@@ -510,7 +510,7 @@ namespace vSharpStudio.Unit
 
             // Add dimension
             var dim2 = (RegisterDimension)reg1.AddDimension("cat_dimension2");
-            reg1.MappingRegPropertyAdd(doc1.Guid, reg1.TableTurnoverPropertyQtyAccumulatorGuid, pd_num10_4.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.TableTurnoverPropertyQtyAccumulatorGuid, pd_num10_4.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
@@ -539,7 +539,7 @@ namespace vSharpStudio.Unit
 
             // Map dimension 2
             var p_doc1_cat2 = doc1.AddPropertyCatalog("cat2", cat2.Guid, true);
-            reg1.MappingRegPropertyAdd(doc1.Guid, dim2.PropertyRefDimensionCatalog.Guid, p_doc1_cat2.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, dim2.PropertyRefDimensionCatalog.Guid, p_doc1_cat2.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);

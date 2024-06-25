@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
+using CommunityToolkit.Diagnostics;
 using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -68,6 +70,8 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
 
             this._SequenceGuid = "";
+            this._ListSelectedRegisters = new SortedObservableCollection<ISortingValue>();
+            this._ListSelectedRegisters.CollectionChanged += _ListSelectedRegisters_CollectionChanged;
             Init();
         }
         protected override void OnInitFromDto()
@@ -720,5 +724,228 @@ namespace vSharpStudio.vm.ViewModels
 
         [Browsable(false)]
         public IDocumentEnumeratorSequence? Sequence { get { if (!this.Cfg.DicNodes.ContainsKey(this.SequenceGuid)) return null; return (IDocumentEnumeratorSequence)this.Cfg.DicNodes[this.SequenceGuid]; } }
+
+        #region Mapping Editor
+
+        private bool isOnOpeningEditor = false;
+        public override void OnOpeningEditor()
+        {
+            this.isOnOpeningEditor = true;
+
+            #region ListNotSelectedRegisters
+            this.ListNotSelectedRegisters.Clear();
+            foreach (var t in this.Cfg.Model.GroupDocuments.GroupRegisters.ListRegisters)
+            {
+                bool found = false;
+                foreach (var tt in t.ListObjectDocRefs)
+                {
+                    if (this.Guid == tt.ForeignObjectGuid)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found)
+                    continue;
+                this.ListNotSelectedRegisters.Add(t);
+            }
+            #endregion ListNotSelectedRegisters
+
+            #region ListSelectedRegisters
+            this.ListSelectedRegisters.Clear();
+            foreach (var t in this.Cfg.Model.GroupDocuments.GroupRegisters.ListRegisters)
+            {
+                bool found = false;
+                foreach (var tt in t.ListObjectDocRefs)
+                {
+                    if (this.Guid == tt.ForeignObjectGuid)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    continue;
+                this.ListSelectedRegisters.Add(t);
+            }
+            #endregion ListSelectedRegisters
+
+            #region ListMappings
+            Register.UpdateListMappings((Register?)this.SelectedReg, this);
+            #endregion ListMappings
+
+            this.isOnOpeningEditor = false;
+        }
+
+        #region Registers
+        [Browsable(false)]
+        public SortedObservableCollection<ISortingValue> ListNotSelectedRegisters
+        {
+            get => _ListNotSelectedRegisters;
+            set => SetProperty(ref _ListNotSelectedRegisters, value);
+        }
+        private SortedObservableCollection<ISortingValue> _ListNotSelectedRegisters = new SortedObservableCollection<ISortingValue>();
+        [Browsable(false)]
+        public SortedObservableCollection<ISortingValue> ListSelectedRegisters
+        {
+            get => _ListSelectedRegisters;
+            set => SetProperty(ref _ListSelectedRegisters, value);
+        }
+        private void _ListSelectedRegisters_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (this.isOnOpeningEditor)
+                return;
+            switch (e.Action)
+            {
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                    if (e.NewItems != null)
+                    {
+#if DEBUG
+                        // Chack new item is not added yet
+                        foreach (var t in e.NewItems)
+                        {
+                            var r = (Register)t;
+                            var guid = r.Guid;
+                            var j = -1;
+                            for (int i = 0; i < r.ListObjectDocRefs.Count; i++)
+                            {
+                                if (r.ListObjectDocRefs[i].ForeignObjectGuid == guid)
+                                {
+                                    j = i;
+                                    break;
+                                }
+                            }
+                            Debug.Assert(j == -1);
+                        }
+#endif
+                        foreach (var t in e.NewItems)
+                        {
+                            var r = (Register)t;
+                            r.ListObjectDocRefs.Add(new ComplexRef("", this.Guid));
+                        }
+                    }
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                    if (e.OldItems != null)
+                    {
+                        foreach (var t in e.OldItems)
+                        {
+                            var r = (Register)t;
+                            var j = -1;
+                            for (int i = 0; i < r.ListObjectDocRefs.Count; i++)
+                            {
+                                if (r.ListObjectDocRefs[i].ForeignObjectGuid == this.Guid)
+                                {
+                                    j = i;
+                                    break;
+                                }
+                            }
+                            Debug.Assert(j >= 0);
+                            r.ListObjectDocRefs.RemoveAt(j);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        private SortedObservableCollection<ISortingValue> _ListSelectedRegisters = new SortedObservableCollection<ISortingValue>();
+        #endregion Registers
+
+        #region Mapping
+        [Browsable(false)]
+        public bool IsShowCompatible
+        {
+            get => _IsShowCompatible;
+            set => SetProperty(ref _IsShowCompatible, value);
+        }
+        private bool _IsShowCompatible = true;
+        [Browsable(false)]
+        public RegisterDocToReg? RegisterDocToReg
+        {
+            get => _RegisterDocToReg;
+            set => SetProperty(ref _RegisterDocToReg, value);
+        }
+        private RegisterDocToReg? _RegisterDocToReg;
+        [Browsable(false)]
+        public ISortingValue? SelectedReg
+        {
+            get => _SelectedReg;
+            set
+            {
+                if (value == null)
+                {
+                    if (_SelectedReg != null)
+                    {
+                        var guid = ((IGuid)_SelectedReg).Guid;
+                        foreach (var t in this.ListSelectedRegisters)
+                        {
+                            if (((IGuid)t).Guid == guid)
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
+                if (SetProperty(ref _SelectedReg, value))
+                {
+                    if (_SelectedReg == null)
+                    {
+                        this.VisibilityTextRegNotSelected = Visibility.Visible;
+                        this.VisibilityTextRegSelected = Visibility.Hidden;
+                        this.RegisterDocToReg = null;
+                    }
+                    else
+                    {
+                        this.VisibilityTextRegNotSelected = Visibility.Hidden;
+                        this.VisibilityTextRegSelected = Visibility.Visible;
+                        this.TextRegSelected = $"Mapping register '{((IName)_SelectedReg).Name}' to '{this.Name}' document properties";
+                        var r = (Register)_SelectedReg;
+                        foreach (var t in r.ListDocMappings)
+                        {
+                            if (t.DocGuid == this.Guid)
+                            {
+                                this.RegisterDocToReg = t;
+                                break;
+                            }
+                        }
+                        Register.UpdateListMappings(r, this);
+                    }
+                }
+            }
+        }
+        private ISortingValue? _SelectedReg;
+        private ObservableCollection<Property> fulListToMap = new ObservableCollection<Property>();
+        [Browsable(false)]
+        public Visibility VisibilityTextRegNotSelected
+        {
+            get => _VisibilityTextRegNotSelected;
+            set => SetProperty(ref _VisibilityTextRegNotSelected, value);
+        }
+        private Visibility _VisibilityTextRegNotSelected = Visibility.Visible;
+        [Browsable(false)]
+        public string TextRegSelected
+        {
+            get => _TextRegSelected;
+            set => SetProperty(ref _TextRegSelected, value);
+        }
+        private string _TextRegSelected = string.Empty;
+        [Browsable(false)]
+        public Visibility VisibilityTextRegSelected
+        {
+            get => _VisibilityTextRegSelected;
+            set => SetProperty(ref _VisibilityTextRegSelected, value);
+        }
+        private Visibility _VisibilityTextRegSelected = Visibility.Hidden;
+        [Browsable(false)]
+        public ObservableCollection<RegisterMappingRow> ListMappings
+        {
+            get => _ListMappings;
+            set => SetProperty(ref _ListMappings, value);
+        }
+        private ObservableCollection<RegisterMappingRow> _ListMappings = new ObservableCollection<RegisterMappingRow>();
+        #endregion Mapping
+
+        #endregion Mapping Editor
     }
 }

@@ -924,7 +924,7 @@ namespace vSharpStudio.Unit
             r.TableTurnoverPropertyQtyAccumulatorAccuracy = 4;
             r.TableTurnoverPropertyMoneyAccumulatorLength = 28;
             r.TableTurnoverPropertyMoneyAccumulatorAccuracy = 4;
-            r.UpdateListMappings();
+            Register.UpdateListMappings(r, d);
             Assert.AreEqual(2, r.ListMappings.Count);
             var mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
             mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyMoneyAccumulatorName);
@@ -932,7 +932,7 @@ namespace vSharpStudio.Unit
             mrec.ListToMap.Single(m => m.Name == pQty.Name);
 
             var s_qty5_2 = cfg.Model.GroupDocuments.DocumentTimeline.AddPropertyNumerical("qty", 15, 1);
-            r.UpdateListMappings();
+            Register.UpdateListMappings(r, d);
             mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
             Assert.AreEqual(3, mrec.ListToMap.Count);
             mrec.ListToMap.Single(m => m.Name == pMoney.Name);
@@ -942,7 +942,7 @@ namespace vSharpStudio.Unit
             // Length of doc property has to be less or equal than numerical register property length.
             r.TableTurnoverPropertyQtyAccumulatorLength = 16;
             r.TableTurnoverPropertyMoneyAccumulatorLength = 16;
-            r.UpdateListMappings();
+            Register.UpdateListMappings(r, d);
             mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
             mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
             Assert.AreEqual(1, mrec.ListToMap.Count);
@@ -952,7 +952,7 @@ namespace vSharpStudio.Unit
 
             r.TableTurnoverPropertyQtyAccumulatorLength = 17;
             r.TableTurnoverPropertyMoneyAccumulatorLength = 17;
-            r.UpdateListMappings();
+            Register.UpdateListMappings(r, d);
             mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
             Assert.AreEqual(2, mrec.ListToMap.Count);
             mrec.ListToMap.Single(m => m.Name == pQty.Name);
@@ -969,7 +969,7 @@ namespace vSharpStudio.Unit
             // Accuracy of doc property has to be less or equal than numerical register property accuracy.
             r.TableTurnoverPropertyQtyAccumulatorAccuracy = 1;
             r.TableTurnoverPropertyMoneyAccumulatorAccuracy = 1;
-            r.UpdateListMappings();
+            Register.UpdateListMappings(r, d);
             mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
             Assert.AreEqual(1, mrec.ListToMap.Count);
             mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
@@ -979,7 +979,7 @@ namespace vSharpStudio.Unit
 
             r.TableTurnoverPropertyQtyAccumulatorAccuracy = 2;
             r.TableTurnoverPropertyMoneyAccumulatorAccuracy = 2;
-            r.UpdateListMappings();
+            Register.UpdateListMappings(r, d);
             mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
             Assert.AreEqual(2, mrec.ListToMap.Count);
             mrec.ListToMap.Single(m => m.Name == pMoney.Name);
@@ -992,7 +992,7 @@ namespace vSharpStudio.Unit
             // 2. Can find doc shared property to map register dimension 
             var pSharedC1 = d.ParentGroupListDocuments.ParentGroupDocuments.DocumentTimeline.AddPropertyCatalog("pSharedC1", c1);
             r.AddDimension(pSharedC1.Name, c1);
-            r.UpdateListMappings();
+            Register.UpdateListMappings(r, d);
             Assert.AreEqual(3, r.ListMappings.Count);
             mrec = r.ListMappings.Single(m => m.Name == pSharedC1.Name);
             Assert.AreEqual(1, mrec.ListToMap.Count);
@@ -1001,7 +1001,7 @@ namespace vSharpStudio.Unit
             // 3. Can find doc property to map register dimension 
             var pSharedC2 = d.AddPropertyCatalog("pSharedC2", c2.Guid);
             r.AddDimension(pSharedC2.Name, c2);
-            r.UpdateListMappings();
+            Register.UpdateListMappings(r, d);
             Assert.AreEqual(4, r.ListMappings.Count);
             mrec = r.ListMappings.Single(m => m.Name == pSharedC2.Name);
             Assert.AreEqual(1, mrec.ListToMap.Count);

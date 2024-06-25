@@ -24,6 +24,7 @@ using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using System.Text.RegularExpressions;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -761,7 +762,7 @@ namespace vSharpStudio.vm.ViewModels
             return f;
         }
 
-        #region Editor
+        #region Mapping Editor
 
         private bool isOnOpeningEditor = false;
         public override void OnOpeningEditor()
@@ -807,17 +808,17 @@ namespace vSharpStudio.vm.ViewModels
             #endregion ListSelectedDocuments
 
             #region ListMappings
-            UpdateListMappings();
+            Register.UpdateListMappings(this, this.SelectedDoc);
             #endregion ListMappings
 
             this.isOnOpeningEditor = false;
         }
-        public void MappingRegDocRemove(string docGuid)
+        public static void MappingRegDocRemove(Register reg, string docGuid)
         {
             Guard.IsNotNullOrWhiteSpace(docGuid);
             int iat = -1;
             bool found = false;
-            foreach (var t in this.ListDocMappings)
+            foreach (var t in reg.ListDocMappings)
             {
                 Debug.Assert(!string.IsNullOrWhiteSpace(t.DocGuid));
                 iat++;
@@ -828,17 +829,17 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             Debug.Assert(found);
-            this.ListDocMappings.RemoveAt(iat);
-            Debug.Assert(mappingDic.ContainsKey(docGuid));
-            this.mappingDic.Remove(docGuid);
-            this.IsChanged = true;
+            reg.ListDocMappings.RemoveAt(iat);
+            Debug.Assert(reg.mappingDic.ContainsKey(docGuid));
+            reg.mappingDic.Remove(docGuid);
+            reg.IsChanged = true;
         }
-        public void MappingRegDocAdd(string docGuid)
+        public static void MappingRegDocAdd(Register reg, string docGuid)
         {
             Guard.IsNotNullOrWhiteSpace(docGuid);
 #if DEBUG
             bool found = false;
-            foreach (var t in this.ListDocMappings)
+            foreach (var t in reg.ListDocMappings)
             {
                 Debug.Assert(!string.IsNullOrWhiteSpace(t.DocGuid));
                 if (t.DocGuid == docGuid)
@@ -849,15 +850,15 @@ namespace vSharpStudio.vm.ViewModels
             }
             Debug.Assert(!found);
 #endif
-            this.ListDocMappings.Add(new RegisterDocToReg() { DocGuid = docGuid });
-            this.IsChanged = true;
+            reg.ListDocMappings.Add(new RegisterDocToReg() { DocGuid = docGuid });
+            reg.IsChanged = true;
         }
-        public void MappingRegPropertyRemove(string docGuid, string regPropertyGuid)
+        public static void MappingRegPropertyRemove(Register reg, string docGuid, string regPropertyGuid)
         {
             Guard.IsNotNullOrWhiteSpace(docGuid);
             Guard.IsNotNullOrWhiteSpace(regPropertyGuid);
             RegisterDocToReg? rec = null;
-            foreach (var t in this.ListDocMappings)
+            foreach (var t in reg.ListDocMappings)
             {
                 Debug.Assert(!string.IsNullOrWhiteSpace(t.DocGuid));
                 if (t.DocGuid == docGuid)
@@ -880,22 +881,22 @@ namespace vSharpStudio.vm.ViewModels
             }
             Debug.Assert(found);
             rec.ListMappings.RemoveAt(iat);
-            Debug.Assert(mappingDic.ContainsKey(docGuid));
-            var dic = this.mappingDic[docGuid];
+            Debug.Assert(reg.mappingDic.ContainsKey(docGuid));
+            var dic = reg.mappingDic[docGuid];
             Debug.Assert(dic.ContainsKey(regPropertyGuid));
             dic.Remove(regPropertyGuid);
-            this.IsChanged = true;
+            reg.IsChanged = true;
         }
-        public void MappingRegPropertyAdd(string docGuid, string regPropertyGuid, string docPropertyGuid)
+        public static void MappingRegPropertyAdd(Register reg, string docGuid, string regPropertyGuid, string docPropertyGuid)
         {
             Guard.IsNotNullOrWhiteSpace(docGuid);
-            Guard.IsTrue(this.Cfg.DicNodes.ContainsKey(docGuid));
+            Guard.IsTrue(reg.Cfg.DicNodes.ContainsKey(docGuid));
             Guard.IsNotNullOrWhiteSpace(regPropertyGuid);
             //Guard.IsTrue(this.Cfg.DicNodes.ContainsKey(regPropertyGuid));
             Guard.IsNotNullOrWhiteSpace(docPropertyGuid);
-            Guard.IsTrue(this.Cfg.DicNodes.ContainsKey(docPropertyGuid));
+            Guard.IsTrue(reg.Cfg.DicNodes.ContainsKey(docPropertyGuid));
             RegisterDocToReg? rec = null;
-            foreach (var t in this.ListDocMappings)
+            foreach (var t in reg.ListDocMappings)
             {
                 Debug.Assert(!string.IsNullOrWhiteSpace(t.DocGuid));
                 if (t.DocGuid == docGuid)
@@ -907,7 +908,7 @@ namespace vSharpStudio.vm.ViewModels
             if (rec == null)
             {
                 rec = new RegisterDocToReg() { DocGuid = docGuid };
-                this.ListDocMappings.Add(rec);
+                reg.ListDocMappings.Add(rec);
             }
             RegisterRegPropToDocProp? mapToProp = null;
             foreach (var t in rec.ListMappings)
@@ -920,77 +921,79 @@ namespace vSharpStudio.vm.ViewModels
             if (mapToProp == null)
             {
                 rec.ListMappings.Add(new RegisterRegPropToDocProp() { DocPropGuid = docPropertyGuid, RegPropGuid = regPropertyGuid });
-                this.IsChanged = true;
+                reg.IsChanged = true;
             }
             else
             {
                 if (mapToProp.DocPropGuid != docPropertyGuid)
                 {
                     mapToProp.DocPropGuid = docPropertyGuid;
-                    this.IsChanged = true;
+                    reg.IsChanged = true;
                 }
             }
-            if (!mappingDic.ContainsKey(docGuid))
-                this.mappingDic[docGuid] = new Dictionary<string, string>();
-            var dic = this.mappingDic[docGuid];
+            if (!reg.mappingDic.ContainsKey(docGuid))
+                reg.mappingDic[docGuid] = new Dictionary<string, string>();
+            var dic = reg.mappingDic[docGuid];
             dic[regPropertyGuid] = docPropertyGuid;
         }
-        public string GetMappingToDocPropertyGuid(string docGuid, string regPropertyGuid)
+        public static string GetMappingToDocPropertyGuid(Register reg, string docGuid, string regPropertyGuid)
         {
             var res = string.Empty;
 
             return res;
         }
-        public void UpdateListMappings()
+        public static void UpdateListMappings(Register? reg, ISortingValue? selectedDoc)
         {
-            this.fulListToMap.Clear();
-            this.ListMappings.Clear();
-            if (this.SelectedDoc != null)
+            if (reg == null)
+                return;
+            reg.fulListToMap.Clear();
+            reg.ListMappings.Clear();
+            if (selectedDoc != null)
             {
-                var doc = (Document)this.SelectedDoc;
-                foreach (var t in this.GroupRegisterDimensions.ListDimensions)
+                var doc = (Document)selectedDoc;
+                foreach (var t in reg.GroupRegisterDimensions.ListDimensions)
                 {
-                    var row = new RegisterMappingRow(doc, this, t);
-                    this.ListMappings.Add(row);
+                    var row = new RegisterMappingRow(doc, reg, t);
+                    reg.ListMappings.Add(row);
                 }
-                if (this.UseQtyAccumulator)
+                if (reg.UseQtyAccumulator)
                 {
-                    var row = new RegisterMappingRow(doc, this, this.TableTurnoverPropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName);
-                    this.ListMappings.Add(row);
+                    var row = new RegisterMappingRow(doc, reg, reg.TableTurnoverPropertyQtyAccumulatorGuid, reg.TableTurnoverPropertyQtyAccumulatorName);
+                    reg.ListMappings.Add(row);
                 }
-                if (this.UseMoneyAccumulator)
+                if (reg.UseMoneyAccumulator)
                 {
-                    var row = new RegisterMappingRow(doc, this, this.TableTurnoverPropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName);
-                    this.ListMappings.Add(row);
+                    var row = new RegisterMappingRow(doc, reg, reg.TableTurnoverPropertyMoneyAccumulatorGuid, reg.TableTurnoverPropertyMoneyAccumulatorName);
+                    reg.ListMappings.Add(row);
                 }
-                foreach (var t in this.GroupProperties.ListProperties)
+                foreach (var t in reg.GroupProperties.ListProperties)
                 {
-                    var row = new RegisterMappingRow(doc, this, t.Guid, t.Name);
-                    this.ListMappings.Add(row);
+                    var row = new RegisterMappingRow(doc, reg, t.Guid, t.Name);
+                    reg.ListMappings.Add(row);
                 }
                 foreach (var t in doc.ParentGroupListDocuments.ParentGroupDocuments.DocumentTimeline.ListProperties)
                 {
-                    this.fulListToMap.Add(t);
+                    reg.fulListToMap.Add(t);
                 }
                 foreach (var t in doc.GroupProperties.ListProperties)
                 {
-                    this.fulListToMap.Add(t);
+                    reg.fulListToMap.Add(t);
                 }
                 foreach (var tt in doc.GroupDetails.ListDetails)
                 {
-                    this.AddDetailProperties(tt);
+                    Register.AddDetailProperties(reg, tt);
                 }
-                if (!this.mappingDic.ContainsKey(doc.Guid))
-                    this.mappingDic[doc.Guid] = new Dictionary<string, string>();
-                var dicRegPropToDocProp = this.mappingDic[doc.Guid];
+                if (!reg.mappingDic.ContainsKey(doc.Guid))
+                    reg.mappingDic[doc.Guid] = new Dictionary<string, string>();
+                var dicRegPropToDocProp = reg.mappingDic[doc.Guid];
                 // select properties for mapping
-                foreach (var t in this.ListMappings)
+                foreach (var t in reg.ListMappings)
                 {
                     Property? selected = null;
                     int cnt = 0;
-                    foreach (var tt in this.fulListToMap)
+                    foreach (var tt in reg.fulListToMap)
                     {
-                        this.AddCompatibleProperty(t, tt);
+                        Register.AddCompatibleProperty(reg, t, tt);
                         if (t.Dimension != null && dicRegPropToDocProp.ContainsKey(t.Dimension.Guid) && tt.Guid == dicRegPropToDocProp[t.Dimension.Guid])
                         {
                             selected = tt;
@@ -1003,12 +1006,12 @@ namespace vSharpStudio.vm.ViewModels
                         }
                         else if (!string.IsNullOrEmpty(t.RegPropertyGuid))
                         {
-                            if (this.TableTurnoverPropertyMoneyAccumulatorGuid == t.RegPropertyGuid && dicRegPropToDocProp.ContainsKey(t.RegPropertyGuid) && tt.Guid == dicRegPropToDocProp[t.RegPropertyGuid])
+                            if (reg.TableTurnoverPropertyMoneyAccumulatorGuid == t.RegPropertyGuid && dicRegPropToDocProp.ContainsKey(t.RegPropertyGuid) && tt.Guid == dicRegPropToDocProp[t.RegPropertyGuid])
                             {
                                 selected = tt;
                                 cnt++;
                             }
-                            else if (this.TableTurnoverPropertyQtyAccumulatorGuid == t.RegPropertyGuid && dicRegPropToDocProp.ContainsKey(t.RegPropertyGuid) && tt.Guid == dicRegPropToDocProp[t.RegPropertyGuid])
+                            else if (reg.TableTurnoverPropertyQtyAccumulatorGuid == t.RegPropertyGuid && dicRegPropToDocProp.ContainsKey(t.RegPropertyGuid) && tt.Guid == dicRegPropToDocProp[t.RegPropertyGuid])
                             {
                                 selected = tt;
                                 cnt++;
@@ -1020,26 +1023,26 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        private void AddDetailProperties(Detail d)
+        public static void AddDetailProperties(Register reg, Detail d)
         {
             foreach (var t in d.GroupProperties.ListProperties)
             {
-                this.fulListToMap.Add(t);
+                reg.fulListToMap.Add(t);
             }
             foreach (var tt in d.GroupDetails.ListDetails)
             {
-                this.AddDetailProperties(tt);
+                Register.AddDetailProperties(reg, tt);
             }
         }
-        private void AddCompatibleProperty(RegisterMappingRow row, Property p)
+        public static void AddCompatibleProperty(Register reg, RegisterMappingRow row, Property p)
         {
-            if (this.IsShowCompatible)
+            if (reg.IsShowCompatible)
             {
                 if (row.Dimension != null)
                 {
                     if (string.IsNullOrEmpty(row.Dimension.DimensionCatalogGuid))
                         return;
-                    var cat = this.Cfg.DicNodes[row.Dimension.DimensionCatalogGuid];
+                    var cat = reg.Cfg.DicNodes[row.Dimension.DimensionCatalogGuid];
                     if (p.DataType.DataTypeEnum != EnumDataType.CATALOG || cat.Guid != p.DataType.ObjectRef.ForeignObjectGuid)
                         return;
                 }
@@ -1127,18 +1130,18 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (p.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
                         return;
-                    if (row.RegPropertyGuid == this.TableTurnoverPropertyMoneyAccumulatorGuid)
+                    if (row.RegPropertyGuid == reg.TableTurnoverPropertyMoneyAccumulatorGuid)
                     {
-                        if (p.DataType.Accuracy > 0 && p.DataType.Accuracy > this.TableTurnoverPropertyMoneyAccumulatorAccuracy)
+                        if (p.DataType.Accuracy > 0 && p.DataType.Accuracy > reg.TableTurnoverPropertyMoneyAccumulatorAccuracy)
                             return;
-                        if (p.DataType.Length > this.TableTurnoverPropertyMoneyAccumulatorLength)
+                        if (p.DataType.Length > reg.TableTurnoverPropertyMoneyAccumulatorLength)
                             return;
                     }
-                    else if (row.RegPropertyGuid == this.TableTurnoverPropertyQtyAccumulatorGuid)
+                    else if (row.RegPropertyGuid == reg.TableTurnoverPropertyQtyAccumulatorGuid)
                     {
-                        if (p.DataType.Accuracy > 0 && p.DataType.Accuracy > this.TableTurnoverPropertyQtyAccumulatorAccuracy)
+                        if (p.DataType.Accuracy > 0 && p.DataType.Accuracy > reg.TableTurnoverPropertyQtyAccumulatorAccuracy)
                             return;
-                        if (p.DataType.Length > this.TableTurnoverPropertyQtyAccumulatorLength)
+                        if (p.DataType.Length > reg.TableTurnoverPropertyQtyAccumulatorLength)
                             return;
                     }
                     else
@@ -1268,7 +1271,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         this.VisibilityTextDocNotSelected = Visibility.Hidden;
                         this.VisibilityTextDocSelected = Visibility.Visible;
-                        this.TextDocSelected = $"Mapping register to '{((IName)_SelectedDoc).Name}' document properties";
+                        this.TextDocSelected = $"Mapping register '{this.Name}' to '{((IName)_SelectedDoc).Name}' document properties";
                         var dGuid = ((Document)_SelectedDoc).Guid;
                         foreach (var t in this.ListDocMappings)
                         {
@@ -1280,7 +1283,7 @@ namespace vSharpStudio.vm.ViewModels
                         }
 
                     }
-                    UpdateListMappings();
+                    Register.UpdateListMappings(this, this.SelectedDoc);
                 }
             }
         }
@@ -1316,6 +1319,6 @@ namespace vSharpStudio.vm.ViewModels
         private ObservableCollection<RegisterMappingRow> _ListMappings = new ObservableCollection<RegisterMappingRow>();
         #endregion Mapping
 
-        #endregion Editor
+        #endregion Mapping Editor
     }
 }
