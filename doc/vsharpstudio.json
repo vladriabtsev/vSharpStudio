@@ -1737,17 +1737,17 @@
             {
               "name": "BALANCE",
               "number": "0",
-              "description": "\u003csummary\u003e\n/ Balance data for selected register dimentions. Balance always contains latest accumulated data. One record per period.\n/ \u003c/summary\u003e\n@attr [Description(\"Balance\")]"
+              "description": "\u003csummary\u003e\n/ Balance data for register dimensions. Balance always contains latest accumulated data. One record per unique combination of DIMENTSIONS.\n/ \u003c/summary\u003e\n@attr [Description(\"Balance\")]"
             },
             {
               "name": "TURNOVER",
               "number": "11",
-              "description": "\u003csummary\u003e\n/ Only turnovers data for selected register periodicity and dimentions. Many records per period.\n/ \u003c/summary\u003e\n@attr [Description(\"Turnover\")]"
+              "description": "\u003csummary\u003e\n/ Only turnovers data for register dimensions.\n/ \u003c/summary\u003e\n@attr [Description(\"Turnover\")]"
             },
             {
               "name": "BALANCE_AND_TURNOVER",
               "number": "21",
-              "description": "\u003csummary\u003e\n/ Balance and turnovers data for selected register periodicity and dimentions. \n/ Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period.\n/ \u003c/summary\u003e\n@attr [Description(\"Balance and Turnover\")]"
+              "description": "\u003csummary\u003e\n/ Balance and turnovers data for selected register periodicity and dimensions. \n/ Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period.\n/ \u003c/summary\u003e\n@attr [Description(\"Balance and Turnover\")]"
             }
           ]
         },

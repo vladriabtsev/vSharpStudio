@@ -556,17 +556,17 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	public enum EnumRegisterType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:17
 	{
 		///<summary>
-		/// Balance data for selected register dimentions. Balance always contains latest accumulated data. One record per period.
+		/// Balance data for register dimensions. Balance always contains latest accumulated data. One record per unique combination of DIMENTSIONS.
 		/// </summary>
 		[Description("Balance")]
 		BALANCE = 0,
 		///<summary>
-		/// Only turnovers data for selected register periodicity and dimentions. Many records per period.
+		/// Only turnovers data for register dimensions.
 		/// </summary>
 		[Description("Turnover")]
 		TURNOVER = 11,
 		///<summary>
-		/// Balance and turnovers data for selected register periodicity and dimentions. 
+		/// Balance and turnovers data for selected register periodicity and dimensions. 
 		/// Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period.
 		/// </summary>
 		[Description("Balance and Turnover")]

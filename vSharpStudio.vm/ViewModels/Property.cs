@@ -86,6 +86,11 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         [Browsable(false)]
         public bool IsRecordVersion { get; set; }
+        /// <summary>
+        /// Is property reference to timeline
+        /// </summary>
+        [Browsable(false)]
+        public bool IsRefTimeline { get; set; }
         [Browsable(false)]
         public bool IsCsNullable { get; set; }
 

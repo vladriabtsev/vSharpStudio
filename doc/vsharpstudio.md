@@ -2972,9 +2972,9 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| BALANCE | 0 | &lt;summary&gt; / Balance data for selected register dimentions. Balance always contains latest accumulated data. One record per period. / &lt;/summary&gt; @attr [Description(&#34;Balance&#34;)] |
-| TURNOVER | 11 | &lt;summary&gt; / Only turnovers data for selected register periodicity and dimentions. Many records per period. / &lt;/summary&gt; @attr [Description(&#34;Turnover&#34;)] |
-| BALANCE_AND_TURNOVER | 21 | &lt;summary&gt; / Balance and turnovers data for selected register periodicity and dimentions. / Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period. / &lt;/summary&gt; @attr [Description(&#34;Balance and Turnover&#34;)] |
+| BALANCE | 0 | &lt;summary&gt; / Balance data for register dimensions. Balance always contains latest accumulated data. One record per unique combination of DIMENTSIONS. / &lt;/summary&gt; @attr [Description(&#34;Balance&#34;)] |
+| TURNOVER | 11 | &lt;summary&gt; / Only turnovers data for register dimensions. / &lt;/summary&gt; @attr [Description(&#34;Turnover&#34;)] |
+| BALANCE_AND_TURNOVER | 21 | &lt;summary&gt; / Balance and turnovers data for selected register periodicity and dimensions. / Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period. / &lt;/summary&gt; @attr [Description(&#34;Balance and Turnover&#34;)] |
 
 
 

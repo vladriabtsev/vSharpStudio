@@ -547,6 +547,7 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyRefTimeline.Name = "Ref" + this.Cfg.Model.GroupDocuments.DocumentTimeline.CompositeName;
             var pRefTimeline = this.PropertyRefTimeline;
             pRefTimeline.Position = IProperty.PropertyRefParentPosition;
+            pRefTimeline.IsRefTimeline = true;
             lst.Add(pRefTimeline);
 
             if (isOptimistic)
@@ -642,6 +643,7 @@ namespace vSharpStudio.vm.ViewModels
                 var pPostDate = (Property)m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateTime", 9, false); // position 9
                 pPostDate.TagInList = "pd";
                 pPostDate.DataType.IsPKey = true;
+                //pPostDate.IsBalanceDate = true;
                 lst.Add(pPostDate);
             }
 

@@ -57,6 +57,7 @@ namespace vSharpStudio.common
         bool IsPKey { get; set; }
         bool IsDocShared { get; set; }
         bool IsRecordVersion { get; }
+        bool IsRefTimeline { get; }
         bool IsComplexRefId { get; }
         bool IsComplexRefGuid { get; }
         bool IsComplexDesc { get; }

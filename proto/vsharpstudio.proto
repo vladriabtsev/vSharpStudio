@@ -2432,17 +2432,17 @@ message proto_group_list_register_dimensions {
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_register_type {
     /// <summary>
-    /// Balance data for selected register dimentions. Balance always contains latest accumulated data. One record per period.
+    /// Balance data for register dimensions. Balance always contains latest accumulated data. One record per unique combination of DIMENTSIONS.
     /// </summary>
     // @attr [Description("Balance")]
     BALANCE = 0;
     /// <summary>
-    /// Only turnovers data for selected register periodicity and dimentions. Many records per period.
+    /// Only turnovers data for register dimensions.
     /// </summary>
     // @attr [Description("Turnover")]
     TURNOVER = 11;
     /// <summary>
-    /// Balance and turnovers data for selected register periodicity and dimentions. 
+    /// Balance and turnovers data for selected register periodicity and dimensions. 
     /// Combination of Balance and Turnover functionality. Balance is calculated and stored for beggining of each period.
     /// </summary>
     // @attr [Description("Balance and Turnover")]
