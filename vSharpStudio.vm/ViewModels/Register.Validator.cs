@@ -463,7 +463,7 @@ namespace vSharpStudio.vm.ViewModels
                                         if (deepest.BranchPath != pm.BranchPath)
                                         {
                                             var vf = new ValidationFailure(cntx.PropertyPath,
-                                                $"Register '{r.Name}'. Accumulator property '{r.TableTurnoverPropertyMoneyAccumulatorName}' not mapped on a same record as a deepest dimension '{deepestDimension.Name}' of '{doc.Name}' document.");
+                                                $"Register '{r.Name}'. Accumulator property '{r.TableTurnoverPropertyQtyAccumulatorName}' not mapped on a same record as a deepest dimension '{deepestDimension.Name}' of '{doc.Name}' document.");
                                             vf.Severity = Severity.Error;
                                             cntx.AddFailure(vf);
                                         }
