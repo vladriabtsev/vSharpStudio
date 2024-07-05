@@ -1716,8 +1716,8 @@ message proto_constant {
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(32)]
-    // @attr [DisplayName("Expected")]
-    // @attr [Description("Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges")]
+    // @attr [DisplayName("Valid range")]
+    // @attr [Description("Valid values or ranges of values. Use '#' to create range, and ';' to separate values or ranges. Sample for numerical: 1#2 for range from 1 to 2.")]
     string range_values_requirement_str = 16;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(34)]

@@ -4187,7 +4187,7 @@
             },
             {
               "name": "range_values_requirement_str",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Expected\")]\n@attr [Description(\"Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Valid range\")]\n@attr [Description(\"Valid values or ranges of values. Use '#' to create range, and ';' to separate values or ranges. Sample for numerical: 1#2 for range from 1 to 2.\")]",
               "label": "",
               "type": "string",
               "longType": "string",

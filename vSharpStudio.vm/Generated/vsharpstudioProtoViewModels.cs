@@ -15167,8 +15167,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         
         [Category("")]
         [PropertyOrderAttribute(32)]
-        [DisplayName("Expected")]
-        [Description("Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges")]
+        [DisplayName("Valid range")]
+        [Description("Valid values or ranges of values. Use '#' to create range, and ';' to separate values or ranges. Sample for numerical: 1#2 for range from 1 to 2.")]
         public string RangeValuesRequirementStr // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:8
         { 
             get { return this._RangeValuesRequirementStr; }

@@ -187,7 +187,8 @@ namespace vSharpStudio.vm.ViewModels
                                             vf.Severity = Severity.Error;
                                             cntx.AddFailure(vf);
                                         }
-                                        found = true; break;
+                                        found = true; 
+                                        break;
                                     }
                                 }
                                 if (!found)
