@@ -3094,8 +3094,8 @@
               "defaultValue": ""
             },
             {
-              "name": "use_root_as_folder",
-              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Root as Folder\")]\n@attr [Description(\"Support tree root as folder when items can be created without folder\")]",
+              "name": "use_separate_tree_for_folders",
+              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Separate Tree\")]\n@attr [Description(\"Separate tree object for folders\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -3106,8 +3106,8 @@
               "defaultValue": ""
             },
             {
-              "name": "use_separate_tree_for_folders",
-              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Separate Tree\")]\n@attr [Description(\"Separate tree object for folders\")]",
+              "name": "use_items_without_folder_in_separate_tree_for_folders",
+              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Items at root\")]\n@attr [Description(\"Support items in the root of separate tree for folders\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",

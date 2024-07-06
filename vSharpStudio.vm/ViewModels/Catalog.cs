@@ -106,7 +106,7 @@ namespace vSharpStudio.vm.ViewModels
             this._MaxDescriptionLength = 100;
             this._UseTree = false;
             this._MaxTreeLevels = 2;
-            this._UseRootAsFolder = true;
+            this._UseItemsWithoutFolderInSeparateTreeForFolders = true;
             this._UseSeparateTreeForFolders = false;
             this._GroupIconType = EnumCatalogTreeIcon.Folder;
             this._UseCodeProperty = EnumUseType.Default;
@@ -385,16 +385,14 @@ namespace vSharpStudio.vm.ViewModels
             {
                 lst.Add(nameof(this.GroupIconType));
                 lst.Add(nameof(this.MaxTreeLevels));
-                lst.Add(nameof(this.UseRootAsFolder));
                 lst.Add(nameof(this.UseSeparateTreeForFolders));
+                lst.Add(nameof(this.UseItemsWithoutFolderInSeparateTreeForFolders));
             }
-            //else
-            //{
-            //    if (this.UseSeparateTreeForFolders)
-            //    {
-            //        lst.Add(this.GetPropertyName(() => this.UseFolderTypeExplicitly));
-            //    }
-            //}
+            else
+            {
+                if (!this.UseSeparateTreeForFolders)
+                    lst.Add(nameof(this.UseItemsWithoutFolderInSeparateTreeForFolders));
+            }
             if (!this.GetUseCodeProperty())
             {
                 lst.Add(nameof(this.CodePropertySettings));
@@ -429,12 +427,17 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.OnPropertyChanged(nameof(this.PropertyDefinitions));
         }
+        //partial void OnUseItemsWithoutFolderInSeparateTreeForFoldersChanged()
+        //{
+        //    this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+        //}
         partial void OnUseSeparateTreeForFoldersChanged()
         {
             this.RefillChildren();
             this.OnPropertyChanged(nameof(this.Children));
             this.OnPropertyChanged(nameof(this.IsShowRefSelfTree));
             this.OnPropertyChanged(nameof(this.IsShowIsFolder));
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
         }
         partial void OnUseTreeChanged()
         {
