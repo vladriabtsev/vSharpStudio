@@ -106,6 +106,7 @@ namespace vSharpStudio.vm.ViewModels
             this._MaxDescriptionLength = 100;
             this._UseTree = false;
             this._MaxTreeLevels = 2;
+            this._UseRootAsFolder = true;
             this._UseSeparateTreeForFolders = false;
             this._GroupIconType = EnumCatalogTreeIcon.Folder;
             this._UseCodeProperty = EnumUseType.Default;
@@ -384,6 +385,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 lst.Add(nameof(this.GroupIconType));
                 lst.Add(nameof(this.MaxTreeLevels));
+                lst.Add(nameof(this.UseRootAsFolder));
                 lst.Add(nameof(this.UseSeparateTreeForFolders));
             }
             //else

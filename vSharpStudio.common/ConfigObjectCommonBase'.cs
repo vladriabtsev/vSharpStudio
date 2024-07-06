@@ -445,7 +445,7 @@
                         {
                             sb.Append(t.Name);
                         }
-                        else if (t is IGroupDocuments gd)
+                        else if (t is IGroupDocuments gd && this is not IRegister)
                         {
                             sb.Append(gd.PrefixForCompositionNames);
                         }

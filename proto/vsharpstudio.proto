@@ -2092,18 +2092,22 @@ message proto_catalog {
     // Combination of short_id and type group in higher bits
     // @attr [Browsable(false)]
     uint32 short_ref_id = 20;
-    // @attr [PropertyOrderAttribute(20)]
+    // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Tree")]
     // @attr [Description("Use tree catalog structure")]
     bool use_tree = 21;
-    // @attr [PropertyOrderAttribute(21)]
-    // @attr [DisplayName("Separate Tree")]
-    // @attr [Description("Separate tree object for folders")]
-    bool use_separate_tree_for_folders = 22;
     // @attr [PropertyOrderAttribute(22)]
     // @attr [DisplayName("Max Tree Levels")]
     // @attr [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
-    uint32 max_tree_levels = 23;
+    uint32 max_tree_levels = 22;
+    // @attr [PropertyOrderAttribute(23)]
+    // @attr [DisplayName("Root as Folder")]
+    // @attr [Description("Support tree root as folder when items can be created without folder")]
+    bool use_root_as_folder = 23;
+    // @attr [PropertyOrderAttribute(24)]
+    // @attr [DisplayName("Separate Tree")]
+    // @attr [Description("Separate tree object for folders")]
+    bool use_separate_tree_for_folders = 24;
     // @attr [PropertyOrderAttribute(25)]
     // @attr [DisplayName("Use Code")]
     // @attr [Description("Use Code property for catalog item")]
