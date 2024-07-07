@@ -34,9 +34,23 @@ message timestamp_nullable {
  * ####################################### U S E R   S E T T I N G S ##################################
  */
 // @base VmValidatableWithSeverity
+message proto_rect_on_screen {
+    double x = 1;
+    double y = 2;
+    double width = 3;
+    double height = 4;
+}
+// @base VmValidatableWithSeverity
 message proto_user_settings {
     // @attr [Browsable(false)]
     repeated proto_user_settings_opened_config list_open_config_history = 11;
+
+    // @attr [Browsable(false)]
+    proto_rect_on_screen last_app_main_window_rect_on_virtual_screen = 21;
+    // @attr [Browsable(false)]
+    double last_virtual_screen_width = 22;
+    // @attr [Browsable(false)]
+    double last_virtual_screen_height = 23;
 }
 // @base VmValidatableWithSeverity
 message proto_user_settings_opened_config {

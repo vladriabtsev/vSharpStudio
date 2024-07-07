@@ -69,6 +69,7 @@
     - [proto_plugin_group_model_extensions](#proto_config-proto_plugin_group_model_extensions)
     - [proto_property](#proto_config-proto_property)
     - [proto_property_data_generator](#proto_config-proto_property_data_generator)
+    - [proto_rect_on_screen](#proto_config-proto_rect_on_screen)
     - [proto_register](#proto_config-proto_register)
     - [proto_register_dimension](#proto_config-proto_register_dimension)
     - [proto_register_doc_to_reg](#proto_config-proto_register_doc_to_reg)
@@ -1875,6 +1876,24 @@ Configuration model
 
 
 
+<a name="proto_config-proto_rect_on_screen"></a>
+
+### proto_rect_on_screen
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| x | [double](#double) |  |  |
+| y | [double](#double) |  |  |
+| width | [double](#double) |  |  |
+| height | [double](#double) |  |  |
+
+
+
+
+
+
 <a name="proto_config-proto_register"></a>
 
 ### proto_register
@@ -2310,6 +2329,9 @@ Configuration model
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | list_open_config_history | [proto_user_settings_opened_config](#proto_config-proto_user_settings_opened_config) | repeated | @attr [Browsable(false)] |
+| last_app_main_window_rect_on_virtual_screen | [proto_rect_on_screen](#proto_config-proto_rect_on_screen) |  | @attr [Browsable(false)] |
+| last_virtual_screen_width | [double](#double) |  | @attr [Browsable(false)] |
+| last_virtual_screen_height | [double](#double) |  | @attr [Browsable(false)] |
 
 
 

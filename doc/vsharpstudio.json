@@ -11856,6 +11856,66 @@
           ]
         },
         {
+          "name": "proto_rect_on_screen",
+          "longName": "proto_rect_on_screen",
+          "fullName": "proto_config.proto_rect_on_screen",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "x",
+              "description": "",
+              "label": "",
+              "type": "double",
+              "longType": "double",
+              "fullType": "double",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "y",
+              "description": "",
+              "label": "",
+              "type": "double",
+              "longType": "double",
+              "fullType": "double",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "width",
+              "description": "",
+              "label": "",
+              "type": "double",
+              "longType": "double",
+              "fullType": "double",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "height",
+              "description": "",
+              "label": "",
+              "type": "double",
+              "longType": "double",
+              "fullType": "double",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_register",
           "longName": "proto_register",
           "fullName": "proto_config.proto_register",
@@ -14104,6 +14164,42 @@
               "type": "proto_user_settings_opened_config",
               "longType": "proto_user_settings_opened_config",
               "fullType": "proto_config.proto_user_settings_opened_config",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_app_main_window_rect_on_virtual_screen",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_rect_on_screen",
+              "longType": "proto_rect_on_screen",
+              "fullType": "proto_config.proto_rect_on_screen",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_virtual_screen_width",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "double",
+              "longType": "double",
+              "fullType": "double",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_virtual_screen_height",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "double",
+              "longType": "double",
+              "fullType": "double",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

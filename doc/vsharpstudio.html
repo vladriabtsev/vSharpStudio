@@ -439,6 +439,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_rect_on_screen"><span class="badge">M</span>proto_rect_on_screen</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_register"><span class="badge">M</span>proto_register</a>
                 </li>
               
@@ -8016,6 +8020,51 @@ unique in object (can be used as Protobuf field position)
 
         
       
+        <h3 id="proto_config.proto_rect_on_screen">proto_rect_on_screen</h3>
+        <p>@base VmValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>x</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>y</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>width</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>height</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_register">proto_register</h3>
         <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
 
@@ -9706,6 +9755,27 @@ repeated proto_document list_documents = 7;
                   <td>list_open_config_history</td>
                   <td><a href="#proto_config.proto_user_settings_opened_config">proto_user_settings_opened_config</a></td>
                   <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_app_main_window_rect_on_virtual_screen</td>
+                  <td><a href="#proto_config.proto_rect_on_screen">proto_rect_on_screen</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_virtual_screen_width</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_virtual_screen_height</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               

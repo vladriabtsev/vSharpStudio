@@ -109,7 +109,7 @@
                                 </MenuItem.Icon>
                             </MenuItem>-->
                             <Separator />
-                            <MenuItem Header="_Exit" InputGestureText="Ctrl+X">
+                            <MenuItem Header="_Exit" Command="{Binding BtnExit.Command}" InputGestureText="Ctrl+X">
                                 <!--<MenuItem.Icon>
                                     <ContentControl Template="{StaticResource iconNewFile}"/>
                                 </MenuItem.Icon>-->

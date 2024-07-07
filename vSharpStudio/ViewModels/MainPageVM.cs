@@ -77,8 +77,10 @@ namespace vSharpStudio.ViewModels
                 dialogChildWindow.DataContext = dataContext;
             dialogChildWindow.WindowState = WindowState.Open;
         }
+        internal static MainPageVM Instance { get; private set; }
         public MainPageVM() : base(MainPageVMValidator.Validator)
         {
+            Instance = this;
             VmBindable.IsChangedNotificationDelay = 200;
             EditorGenSettingsDialog.GenSettingsDialogAction = (node, guid) =>
             {
@@ -143,6 +145,12 @@ namespace vSharpStudio.ViewModels
             //    Trace.WriteLine(string.Format("{0}: {1}", property.Name, property.GetGetMethod(true).Invoke(null, null)));
             //}
             #endregion Git Version
+        }
+        public static UserSettings UserSettingsRead()
+        {
+            var user_settings = File.ReadAllBytes(USER_SETTINGS_FILE_PATH);
+            var us = Proto.Config.proto_user_settings.Parser.WithDiscardUnknownFields(true).ParseFrom(user_settings);
+            return UserSettings.ConvertToVM(us, new UserSettings());
         }
         public void OnFormLoaded(bool isCreateEmptyConfig = false)
         {
@@ -299,6 +307,17 @@ namespace vSharpStudio.ViewModels
             }
         }
         private string? _CurrentCfgFilePath;
+        public string WindowPosition
+        {
+            get { return this._WindowPosition; }
+            set
+            {
+                this._WindowPosition = value;
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.CurrentCfgFilePathTitle));
+            }
+        }
+        private string _WindowPosition = "";
         public string CurrentCfgFilePathTitle
         {
             get
@@ -307,7 +326,7 @@ namespace vSharpStudio.ViewModels
                 {
                     return "New empty Configuration is not saved yet. Save it or open another one.";
                 }
-                return this._CurrentCfgFilePath;
+                return $"{this._WindowPosition} {this._CurrentCfgFilePath}";
             }
         }
         public static Config? ConfigInstance;
@@ -863,6 +882,11 @@ namespace vSharpStudio.ViewModels
             //TODO restore private ConnStr
             this.ConnectionStringSettingsSave();
             this.Config.SetIsNew(false);
+        }
+        public void UserSettingsSave()
+        {
+            Debug.Assert(this.UserSettings != null);
+            File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
         }
         public vButtonVM<string> BtnConfigSaveAs
         {
@@ -1995,6 +2019,19 @@ namespace vSharpStudio.ViewModels
             get { return _MessageInstructions; }
         }
         private string? _MessageInstructions;
+        public vButtonVM BtnExit
+        {
+            get
+            {
+                return this._BtnExit ??= new vButtonVM(
+                () =>
+                {
+                    System.Windows.Application.Current.Shutdown();
+                },
+                () => { return true; });
+            }
+        }
+        private vButtonVM? _BtnExit;
         public vButtonVM BtnAddNew
         {
             get
