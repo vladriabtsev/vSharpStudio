@@ -2026,7 +2026,17 @@ namespace vSharpStudio.ViewModels
                 return this._BtnExit ??= new vButtonVM(
                 () =>
                 {
-                    System.Windows.Application.Current.Shutdown();
+                    if (this.Config.IsHasChanged)
+                    {
+                        if (Xceed.Wpf.Toolkit.MessageBox.Show("There are not saved Configuration changes. Exit anyway?", "Warning", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+                        {
+                            System.Windows.Application.Current.Shutdown();
+                        }
+                    }
+                    else
+                    {
+                        System.Windows.Application.Current.Shutdown();
+                    }
                 },
                 () => { return true; });
             }

@@ -503,6 +503,14 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     prp = this.PropertyRefFolder;
                     prp.SetPosition(IProperty.PropertyRefParentPosition);
+                    if (this.UseItemsWithoutFolderInSeparateTreeForFolders)
+                    {
+                        ((Property)prp).IsNullable = true;
+                    }
+                    else
+                    {
+                        ((Property)prp).IsNullable = false;
+                    }
                     res.Add(prp);
                 }
                 else
