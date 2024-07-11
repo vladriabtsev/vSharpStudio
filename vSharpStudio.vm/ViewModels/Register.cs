@@ -149,7 +149,7 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyDocRefGuidName = "DocGuid";
             this._PropertyDocRefName = "Doc";
             this._RegisterType = EnumRegisterType.TURNOVER;
-            this._RegisterPeriodicity = EnumRegisterPeriodicity.REGISTER_PERIOD_MONTH;
+            this._RegisterBalancePeriodicity = EnumRegisterBalancePeriodicity.REGISTER_PERIOD_MONTH;
             //this._ListNotSelectedDocuments.CollectionChanged += _ListNotSelectedDocuments_CollectionChanged;
             this._ListSelectedDocuments = new SortedObservableCollection<ISortingValue>();
             this._ListSelectedDocuments.CollectionChanged += _ListSelectedDocuments_CollectionChanged;
@@ -304,60 +304,22 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Editing logic
+        partial void OnRegisterTypeChanged()
+        {
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+        }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
-            //if (this.DataType.DataTypeEnum != EnumDataType.STRING)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.MinLengthRequirement));
-            //    lst.Add(this.GetPropertyName(() => this.MaxLengthRequirement));
-            //}
-            //if (this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.Accuracy));
-            //    lst.Add(this.GetPropertyName(() => this.IsPositive));
-            //}
-            //if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.Length));
-            //}
-            //if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC) // &&
-            //                                                            //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
-            //                                                            //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.AccuracyForTime));
-            //}
-            //if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.ListObjectGuids));
-            //    lst.Add(this.GetPropertyName(() => this.DefaultValue));
-            //}
-            //if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DOCUMENT &&
-            //    this.DataType.DataTypeEnum != EnumDataType.ENUMERATION &&
-            //    this.DataType.DataTypeEnum != EnumDataType.ANY)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.ObjectGuid));
-            //    lst.Add(this.GetPropertyName(() => this.DefaultValue));
-            //}
-            //if (this.Accuracy != 0)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.IsPositive));
-            //}
-            //if (this.DataType.DataTypeEnum != EnumDataType.STRING &&
-            //    this.DataType.DataTypeEnum != EnumDataType.CHAR &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DATE &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
-            //    this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC &&
-            //    //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
-            //    //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
-            //    this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.RangeValuesRequirements));
-            //}
+            if (this.RegisterType != EnumRegisterType.BALANCE_AND_TURNOVER)
+            {
+                lst.Add(nameof(this.RegisterBalancePeriodicity));
+                lst.Add(nameof(this.RegisterBalanceWeeklyStartDay));
+            }
+            else if (this.RegisterBalancePeriodicity != EnumRegisterBalancePeriodicity.REGISTER_PERIOD_WEEK)
+            {
+                lst.Add(nameof(this.RegisterBalanceWeeklyStartDay));
+            }
             return lst.ToArray();
         }
         #endregion Editing logic
@@ -1277,7 +1239,7 @@ namespace vSharpStudio.vm.ViewModels
                         var dGuid = ((Document)_SelectedDoc).Guid;
                         foreach (var t in this.ListDocMappings)
                         {
-                            if (t.DocGuid== dGuid)
+                            if (t.DocGuid == dGuid)
                             {
                                 this.RegisterDocToReg = t;
                                 break;

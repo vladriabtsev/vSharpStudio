@@ -914,7 +914,7 @@ namespace vSharpStudio.Unit
             var gr = vm.Config.Model.GroupDocuments.GroupRegisters;
             var r = gr.AddRegister(regName);
             r.RegisterType = EnumRegisterType.TURNOVER;
-            r.RegisterPeriodicity = EnumRegisterPeriodicity.REGISTER_PERIOD_DAY;
+            r.RegisterBalancePeriodicity = EnumRegisterBalancePeriodicity.REGISTER_PERIOD_DAY;
             r.ListSelectedDocuments.Add(d);
             Assert.AreEqual(1, r.ListObjectDocRefs.Count);
             r.SelectedDoc = d;

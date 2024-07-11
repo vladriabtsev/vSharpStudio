@@ -652,7 +652,7 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_enum_register_periodicity"><span class="badge">E</span>proto_enum_register_periodicity</a>
+                  <a href="#proto_config.proto_enum_register_balance_periodicity"><span class="badge">E</span>proto_enum_register_balance_periodicity</a>
                 </li>
               
                 <li>
@@ -685,6 +685,10 @@
               
                 <li>
                   <a href="#proto_config.proto_enum_version_field_type"><span class="badge">E</span>proto_enum_version_field_type</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_enum_week_days"><span class="badge">E</span>proto_enum_week_days</a>
                 </li>
               
                 <li>
@@ -8127,12 +8131,23 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
-                  <td>register_periodicity</td>
-                  <td><a href="#proto_config.proto_enum_register_periodicity">proto_enum_register_periodicity</a></td>
+                  <td>register_balance_periodicity</td>
+                  <td><a href="#proto_config.proto_enum_register_balance_periodicity">proto_enum_register_balance_periodicity</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [DisplayName(&#34;Periodicity&#34;)]
-@attr [PropertyOrderAttribute(9)] </p></td>
+@attr [DisplayName(&#34;Balance Periodicity&#34;)]
+@attr [PropertyOrderAttribute(9)]
+@attr [Description(&#34;Prefered intermediate balance records periodicity. Can accelerate quering balance results.&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>register_balance_weekly_start_day</td>
+                  <td><a href="#proto_config.proto_enum_week_days">proto_enum_week_days</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [DisplayName(&#34;Week start on&#34;)]
+@attr [PropertyOrderAttribute(10)]
+@attr [Description(&#34;Weekly intermediate balance period start day.&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -11903,7 +11918,7 @@ with history</p></td>
           </tbody>
         </table>
       
-        <h3 id="proto_config.proto_enum_register_periodicity">proto_enum_register_periodicity</h3>
+        <h3 id="proto_config.proto_enum_register_balance_periodicity">proto_enum_register_balance_periodicity</h3>
         <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
@@ -11918,9 +11933,9 @@ with history</p></td>
               </tr>
             
               <tr>
-                <td>REGISTER_PERIOD_QUATER</td>
+                <td>REGISTER_PERIOD_QUARTER</td>
                 <td>11</td>
-                <td><p>@attr [Description(&#34;Quater&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Quarter&#34;)]</p></td>
               </tr>
             
               <tr>
@@ -11939,12 +11954,6 @@ with history</p></td>
                 <td>REGISTER_PERIOD_DAY</td>
                 <td>41</td>
                 <td><p>@attr [Description(&#34;Day&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>REGISTER_PERIOD_HOUR</td>
-                <td>51</td>
-                <td><p>@attr [Description(&#34;Hour&#34;)]</p></td>
               </tr>
             
           </tbody>
@@ -12362,6 +12371,59 @@ with history</p></td>
                 <td>VER_LONG</td>
                 <td>31</td>
                 <td><p>@attr [Description(&#34;Long&#34;)]</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_week_days">proto_enum_week_days</h3>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>WEEK_SUNDAY</td>
+                <td>0</td>
+                <td><p>@attr [Description(&#34;Sunday&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEEK_MONDAY</td>
+                <td>1</td>
+                <td><p>@attr [Description(&#34;Monday&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEEK_TUESDAY</td>
+                <td>2</td>
+                <td><p>@attr [Description(&#34;Tuesday&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEEK_WEDNESDAY</td>
+                <td>3</td>
+                <td><p>@attr [Description(&#34;Wednesday&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEEK_THURSDAY</td>
+                <td>4</td>
+                <td><p>@attr [Description(&#34;Thursday&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEEK_FRIDAY</td>
+                <td>5</td>
+                <td><p>@attr [Description(&#34;Friday&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEEK_SATURDAY</td>
+                <td>6</td>
+                <td><p>@attr [Description(&#34;Saturday&#34;)]</p></td>
               </tr>
             
           </tbody>

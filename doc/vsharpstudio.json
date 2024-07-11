@@ -1691,9 +1691,9 @@
           ]
         },
         {
-          "name": "proto_enum_register_periodicity",
-          "longName": "proto_enum_register_periodicity",
-          "fullName": "proto_config.proto_enum_register_periodicity",
+          "name": "proto_enum_register_balance_periodicity",
+          "longName": "proto_enum_register_balance_periodicity",
+          "fullName": "proto_config.proto_enum_register_balance_periodicity",
           "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
@@ -1702,9 +1702,9 @@
               "description": "@attr [Description(\"Year\")]"
             },
             {
-              "name": "REGISTER_PERIOD_QUATER",
+              "name": "REGISTER_PERIOD_QUARTER",
               "number": "11",
-              "description": "@attr [Description(\"Quater\")]"
+              "description": "@attr [Description(\"Quarter\")]"
             },
             {
               "name": "REGISTER_PERIOD_MONTH",
@@ -1720,11 +1720,6 @@
               "name": "REGISTER_PERIOD_DAY",
               "number": "41",
               "description": "@attr [Description(\"Day\")]"
-            },
-            {
-              "name": "REGISTER_PERIOD_HOUR",
-              "number": "51",
-              "description": "@attr [Description(\"Hour\")]"
             }
           ]
         },
@@ -2054,6 +2049,49 @@
               "name": "VER_LONG",
               "number": "31",
               "description": "@attr [Description(\"Long\")]"
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_week_days",
+          "longName": "proto_enum_week_days",
+          "fullName": "proto_config.proto_enum_week_days",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
+          "values": [
+            {
+              "name": "WEEK_SUNDAY",
+              "number": "0",
+              "description": "@attr [Description(\"Sunday\")]"
+            },
+            {
+              "name": "WEEK_MONDAY",
+              "number": "1",
+              "description": "@attr [Description(\"Monday\")]"
+            },
+            {
+              "name": "WEEK_TUESDAY",
+              "number": "2",
+              "description": "@attr [Description(\"Tuesday\")]"
+            },
+            {
+              "name": "WEEK_WEDNESDAY",
+              "number": "3",
+              "description": "@attr [Description(\"Wednesday\")]"
+            },
+            {
+              "name": "WEEK_THURSDAY",
+              "number": "4",
+              "description": "@attr [Description(\"Thursday\")]"
+            },
+            {
+              "name": "WEEK_FRIDAY",
+              "number": "5",
+              "description": "@attr [Description(\"Friday\")]"
+            },
+            {
+              "name": "WEEK_SATURDAY",
+              "number": "6",
+              "description": "@attr [Description(\"Saturday\")]"
             }
           ]
         },
@@ -11998,12 +12036,24 @@
               "defaultValue": ""
             },
             {
-              "name": "register_periodicity",
-              "description": "@attr [Category(\"\")]\n@attr [DisplayName(\"Periodicity\")]\n@attr [PropertyOrderAttribute(9)]",
+              "name": "register_balance_periodicity",
+              "description": "@attr [Category(\"\")]\n@attr [DisplayName(\"Balance Periodicity\")]\n@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"Prefered intermediate balance records periodicity. Can accelerate quering balance results.\")]",
               "label": "",
-              "type": "proto_enum_register_periodicity",
-              "longType": "proto_enum_register_periodicity",
-              "fullType": "proto_config.proto_enum_register_periodicity",
+              "type": "proto_enum_register_balance_periodicity",
+              "longType": "proto_enum_register_balance_periodicity",
+              "fullType": "proto_config.proto_enum_register_balance_periodicity",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "register_balance_weekly_start_day",
+              "description": "@attr [Category(\"\")]\n@attr [DisplayName(\"Week start on\")]\n@attr [PropertyOrderAttribute(10)]\n@attr [Description(\"Weekly intermediate balance period start day.\")]",
+              "label": "",
+              "type": "proto_enum_week_days",
+              "longType": "proto_enum_week_days",
+              "fullType": "proto_config.proto_enum_week_days",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

@@ -123,7 +123,7 @@
     - [proto_enum_random_data_type](#proto_config-proto_enum_random_data_type)
     - [proto_enum_rant_data_type](#proto_config-proto_enum_rant_data_type)
     - [proto_enum_ref_type](#proto_config-proto_enum_ref_type)
-    - [proto_enum_register_periodicity](#proto_config-proto_enum_register_periodicity)
+    - [proto_enum_register_balance_periodicity](#proto_config-proto_enum_register_balance_periodicity)
     - [proto_enum_register_type](#proto_config-proto_enum_register_type)
     - [proto_enum_relation_config_type](#proto_config-proto_enum_relation_config_type)
     - [proto_enum_system_data_type](#proto_config-proto_enum_system_data_type)
@@ -132,6 +132,7 @@
     - [proto_enum_use_type](#proto_config-proto_enum_use_type)
     - [proto_enum_vehicle_data_type](#proto_config-proto_enum_vehicle_data_type)
     - [proto_enum_version_field_type](#proto_config-proto_enum_version_field_type)
+    - [proto_enum_week_days](#proto_config-proto_enum_week_days)
     - [proto_form_orientation](#proto_config-proto_form_orientation)
     - [proto_form_type](#proto_config-proto_form_type)
   
@@ -1909,7 +1910,8 @@ Configuration model
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | register_type | [proto_enum_register_type](#proto_config-proto_enum_register_type) |  | @attr [Category(&#34;&#34;)] @attr [DisplayName(&#34;Register Type&#34;)] @attr [PropertyOrderAttribute(7)] |
-| register_periodicity | [proto_enum_register_periodicity](#proto_config-proto_enum_register_periodicity) |  | @attr [Category(&#34;&#34;)] @attr [DisplayName(&#34;Periodicity&#34;)] @attr [PropertyOrderAttribute(9)] |
+| register_balance_periodicity | [proto_enum_register_balance_periodicity](#proto_config-proto_enum_register_balance_periodicity) |  | @attr [Category(&#34;&#34;)] @attr [DisplayName(&#34;Balance Periodicity&#34;)] @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Prefered intermediate balance records periodicity. Can accelerate quering balance results.&#34;)] |
+| register_balance_weekly_start_day | [proto_enum_week_days](#proto_config-proto_enum_week_days) |  | @attr [Category(&#34;&#34;)] @attr [DisplayName(&#34;Week start on&#34;)] @attr [PropertyOrderAttribute(10)] @attr [Description(&#34;Weekly intermediate balance period start day.&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
@@ -2972,19 +2974,18 @@ with history |
 
 
 
-<a name="proto_config-proto_enum_register_periodicity"></a>
+<a name="proto_config-proto_enum_register_balance_periodicity"></a>
 
-### proto_enum_register_periodicity
+### proto_enum_register_balance_periodicity
 @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | REGISTER_PERIOD_YEAR | 0 | @attr [Description(&#34;Year&#34;)] |
-| REGISTER_PERIOD_QUATER | 11 | @attr [Description(&#34;Quater&#34;)] |
+| REGISTER_PERIOD_QUARTER | 11 | @attr [Description(&#34;Quarter&#34;)] |
 | REGISTER_PERIOD_MONTH | 21 | @attr [Description(&#34;Month&#34;)] |
 | REGISTER_PERIOD_WEEK | 31 | @attr [Description(&#34;Week&#34;)] |
 | REGISTER_PERIOD_DAY | 41 | @attr [Description(&#34;Day&#34;)] |
-| REGISTER_PERIOD_HOUR | 51 | @attr [Description(&#34;Hour&#34;)] |
 
 
 
@@ -3118,6 +3119,23 @@ with history |
 | VER_SHORT | 11 | @attr [Description(&#34;Short&#34;)] |
 | VER_INT | 21 | @attr [Description(&#34;Int&#34;)] |
 | VER_LONG | 31 | @attr [Description(&#34;Long&#34;)] |
+
+
+
+<a name="proto_config-proto_enum_week_days"></a>
+
+### proto_enum_week_days
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| WEEK_SUNDAY | 0 | @attr [Description(&#34;Sunday&#34;)] |
+| WEEK_MONDAY | 1 | @attr [Description(&#34;Monday&#34;)] |
+| WEEK_TUESDAY | 2 | @attr [Description(&#34;Tuesday&#34;)] |
+| WEEK_WEDNESDAY | 3 | @attr [Description(&#34;Wednesday&#34;)] |
+| WEEK_THURSDAY | 4 | @attr [Description(&#34;Thursday&#34;)] |
+| WEEK_FRIDAY | 5 | @attr [Description(&#34;Friday&#34;)] |
+| WEEK_SATURDAY | 6 | @attr [Description(&#34;Saturday&#34;)] |
 
 
 

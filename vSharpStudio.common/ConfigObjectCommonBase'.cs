@@ -252,7 +252,7 @@
             {
                 if (_ModelPath == String.Empty)
                 {
-                    _ModelPath = (this.Parent != null ? this.Parent.ModelPath + "." : "") + this.GetType().Name;
+                    _ModelPath = (this.Parent != null ? this.Parent.ModelPath + "." : "") + this._Name; // this.GetType().Name;
                 }
                 return _ModelPath;
             }

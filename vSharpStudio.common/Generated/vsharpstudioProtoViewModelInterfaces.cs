@@ -537,20 +537,18 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		REF_TYPE_MANY_TO_MANY_DOCUMENTS = 10,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumRegisterPeriodicity // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:17
+	public enum EnumRegisterBalancePeriodicity // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:17
 	{
 		[Description("Year")]
 		REGISTER_PERIOD_YEAR = 0,
-		[Description("Quater")]
-		REGISTER_PERIOD_QUATER = 11,
+		[Description("Quarter")]
+		REGISTER_PERIOD_QUARTER = 11,
 		[Description("Month")]
 		REGISTER_PERIOD_MONTH = 21,
 		[Description("Week")]
 		REGISTER_PERIOD_WEEK = 31,
 		[Description("Day")]
 		REGISTER_PERIOD_DAY = 41,
-		[Description("Hour")]
-		REGISTER_PERIOD_HOUR = 51,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumRegisterType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:17
@@ -678,6 +676,24 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		VER_INT = 21,
 		[Description("Long")]
 		VER_LONG = 31,
+	}
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
+	public enum EnumWeekDays // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:17
+	{
+		[Description("Sunday")]
+		WEEK_SUNDAY = 0,
+		[Description("Monday")]
+		WEEK_MONDAY = 1,
+		[Description("Tuesday")]
+		WEEK_TUESDAY = 2,
+		[Description("Wednesday")]
+		WEEK_WEDNESDAY = 3,
+		[Description("Thursday")]
+		WEEK_THURSDAY = 4,
+		[Description("Friday")]
+		WEEK_FRIDAY = 5,
+		[Description("Saturday")]
+		WEEK_SATURDAY = 6,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum FormOrientation // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:17
@@ -1542,7 +1558,8 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	string NameUi { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:55
     	string Description { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:55
     	EnumRegisterType RegisterType { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:55
-    	EnumRegisterPeriodicity RegisterPeriodicity { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:55
+    	EnumRegisterBalancePeriodicity RegisterBalancePeriodicity { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:55
+    	EnumWeekDays RegisterBalanceWeeklyStartDay { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:55
     	bool IsNew { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:55
     	bool IsMarkedForDeletion { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:55
     	uint ShortId { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:55

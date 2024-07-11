@@ -2327,6 +2327,23 @@ enum proto_enum_doc_number_unique_scope {
     // @attr [Description("Day")]
     DOC_UNIQUE_DAY = 37;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+enum proto_enum_week_days {
+    // @attr [Description("Sunday")]
+    WEEK_SUNDAY = 0;
+    // @attr [Description("Monday")]
+    WEEK_MONDAY = 1;
+    // @attr [Description("Tuesday")]
+    WEEK_TUESDAY = 2;
+    // @attr [Description("Wednesday")]
+    WEEK_WEDNESDAY = 3;
+    // @attr [Description("Thursday")]
+    WEEK_THURSDAY = 4;
+    // @attr [Description("Friday")]
+    WEEK_FRIDAY = 5;
+    // @attr [Description("Saturday")]
+    WEEK_SATURDAY = 6;
+}
 message proto_group_list_registers {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -2467,19 +2484,17 @@ enum proto_enum_register_type {
     BALANCE_AND_TURNOVER = 21;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-enum proto_enum_register_periodicity {
+enum proto_enum_register_balance_periodicity {
     // @attr [Description("Year")]
     REGISTER_PERIOD_YEAR = 0;
-    // @attr [Description("Quater")]
-    REGISTER_PERIOD_QUATER = 11;
+    // @attr [Description("Quarter")]
+    REGISTER_PERIOD_QUARTER = 11;
     // @attr [Description("Month")]
     REGISTER_PERIOD_MONTH = 21;
     // @attr [Description("Week")]
     REGISTER_PERIOD_WEEK = 31;
     // @attr [Description("Day")]
     REGISTER_PERIOD_DAY = 41;
-    // @attr [Description("Hour")]
-    REGISTER_PERIOD_HOUR = 51;
 }
 // @interface ICanAddNode
 // @interface ISortingValue
@@ -2506,9 +2521,15 @@ message proto_register {
     // @attr [PropertyOrderAttribute(7)]
     proto_enum_register_type register_type = 6;
     // @attr [Category("")]
-    // @attr [DisplayName("Periodicity")]
+    // @attr [DisplayName("Balance Periodicity")]
     // @attr [PropertyOrderAttribute(9)]
-    proto_enum_register_periodicity register_periodicity = 11;
+    // @attr [Description("Prefered intermediate balance records periodicity. Can accelerate quering balance results.")]
+    proto_enum_register_balance_periodicity register_balance_periodicity = 11;
+    // @attr [Category("")]
+    // @attr [DisplayName("Week start on")]
+    // @attr [PropertyOrderAttribute(10)]
+    // @attr [Description("Weekly intermediate balance period start day.")]
+    proto_enum_week_days register_balance_weekly_start_day = 12;
     // @attr [Browsable(false)]
     bool is_new = 9;
     // @attr [DisplayName("For deletion")]
