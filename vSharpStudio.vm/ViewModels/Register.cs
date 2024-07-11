@@ -512,13 +512,13 @@ namespace vSharpStudio.vm.ViewModels
             pRefTimeline.IsRefTimeline = true;
             lst.Add(pRefTimeline);
 
-            if (isOptimistic)
-            {
-                // Version
-                var pVer = m.GetPropertyVersion(this, this.Cfg.Model.PropertyVersionGuid); // position 7
-                pVer.TagInList = "vr";
-                lst.Add(pVer);
-            }
+            //if (isOptimistic) - not relevant for registers
+            //{
+            //    // Version
+            //    var pVer = m.GetPropertyVersion(this, this.Cfg.Model.PropertyVersionGuid); // position 7
+            //    pVer.TagInList = "vr";
+            //    lst.Add(pVer);
+            //}
 
             //// Post date
             //var pPostDate = m.GetPropertyDateTimeUtc(this, this.TableTurnoverPropertyPostDateGuid, "PostDate", 9, false); // position 9
@@ -609,13 +609,13 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(pPostDate);
             }
 
-            if (isOptimistic)
-            {
-                // Version
-                var pVer = m.GetPropertyVersion(this, this.TableBalancePropertyVersionGuid); // position 7
-                pVer.TagInList = "vr";
-                lst.Add(pVer);
-            }
+            //if (isOptimistic) -not relevant for registers
+            //{
+            //    // Version
+            //    var pVer = m.GetPropertyVersion(this, this.TableBalancePropertyVersionGuid); // position 7
+            //    pVer.TagInList = "vr";
+            //    lst.Add(pVer);
+            //}
 
             // Money accumulator
             if (this.UseMoneyAccumulator)
