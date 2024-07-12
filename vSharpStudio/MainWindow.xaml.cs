@@ -37,6 +37,7 @@ namespace vSharpStudio
             }
 #if DEBUG
             this.LocationChanged += MainWindow_LocationChanged;
+            this.SizeChanged += MainWindow_LocationChanged;
 #endif
 
             // vSharpStudio.std.ApplicationLogging.LoggerFactory.AddProvider(new Serilog.Sinks.File.PeriodicFlushToDiskSink()
