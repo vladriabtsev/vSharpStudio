@@ -12444,18 +12444,6 @@
               "defaultValue": ""
             },
             {
-              "name": "group_forms",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "proto_group_list_forms",
-              "longType": "proto_group_list_forms",
-              "fullType": "proto_config.proto_group_list_forms",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "group_reports",
               "description": "@attr [Browsable(false)]",
               "label": "",

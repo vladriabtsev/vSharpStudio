@@ -635,6 +635,10 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     r5.GetNormalTurnoverProperties(res);
                 }
+                else if (r5.RegisterType == EnumRegisterType.BALANCE_AND_TURNOVER)
+                {
+                    r5.GetNormalTurnoverProperties(res);
+                }
                 else
                     ThrowHelper.ThrowInvalidOperationException();
                 var lst = new List<ISortingValue>();

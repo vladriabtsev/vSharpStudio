@@ -92,7 +92,7 @@ namespace vSharpStudio
             var y = (int)Application.Current.MainWindow.Top;
             var width = (int)Application.Current.MainWindow.Width;
             var height = (int)Application.Current.MainWindow.Height;
-            MainPageVM.Instance.WindowPosition = $"X:{x} Y:{y} W:{width} h:{height}";
+            MainPageVM.Instance.WindowPosition = $"X:{x} Y:{y} W:{width} h:{height}   ";
         }
 #endif
     }

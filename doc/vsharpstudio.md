@@ -1944,7 +1944,6 @@ Configuration model
 | table_balance_guid | [string](#string) |  | @attr [Browsable(false)] |
 | table_balance_property_date_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_doc_mappings | [proto_register_doc_to_reg](#proto_config-proto_register_doc_to_reg) | repeated | Mapping register properties to document properties @attr [Browsable(false)] |
-| group_forms | [proto_group_list_forms](#proto_config-proto_group_list_forms) |  | @attr [Browsable(false)] |
 | group_reports | [proto_group_list_reports](#proto_config-proto_group_list_reports) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 

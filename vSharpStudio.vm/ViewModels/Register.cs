@@ -184,7 +184,7 @@ namespace vSharpStudio.vm.ViewModels
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             children.Add(this.GroupRegisterDimensions, 0);
             children.Add(this.GroupProperties, 1);
-            children.Add(this.GroupForms, 2);
+            children.Add(this.GroupReports, 2);
             //this.ListMainViewForms.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;
@@ -496,8 +496,6 @@ namespace vSharpStudio.vm.ViewModels
         //}
         public IReadOnlyList<IProperty> GetIncludedTurnoverProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
         {
-            Debug.Assert(!isExcludeSpecial, "not implemented yet");
-
             var lst = new List<IProperty>();
             var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
 
@@ -588,8 +586,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IReadOnlyList<IProperty> GetIncludedBalanceProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
         {
-            Debug.Assert(!isExcludeSpecial, "not implemented yet");
-
             var lst = new List<IProperty>();
             var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
 
@@ -673,58 +669,58 @@ namespace vSharpStudio.vm.ViewModels
         //    }
         //    return res;
         //}
-        public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
-        {
-            var res = new List<IForm>
-            {
-                this.GetForm(FormType.ListComboBox, guidAppPrjGen),
-                this.GetForm(FormType.ListDataGrid, guidAppPrjGen)
-            };
-            return res;
-        }
-        public IForm GetForm(FormType ftype, string guidAppPrjGen)
-        {
-            var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
-            if (f == null)
-            {
-                var lstp = new List<IProperty>();
-                if (this.RegisterType == EnumRegisterType.TURNOVER)
-                {
-                    //lstp.AddRange(this.GetIncludedProperties(guidAppPrjGen, false, false));
-                    lstp.AddRange(this.GetIncludedTurnoverProperties(guidAppPrjGen, false, false));
-                }
-                else
-                    ThrowHelper.ThrowPlatformNotSupportedException();
-                if (ftype == FormType.ListDataGrid)
-                {
-                }
-                if (lstp.Count == 0)
-                {
-                    int i = 0;
-                    foreach (var t in this.GroupProperties.ListProperties)
-                    {
-                        if (t.IsIncluded(guidAppPrjGen))
-                        {
-                            i++;
-                            if (i > 1)
-                                break;
-                            lstp.Add(t);
-                        }
-                    }
-                }
-                f = new Form(this.GroupForms, ftype, lstp);
-            }
-            else
-            {
-                var lstp = new List<IProperty>();
-                foreach (var t in f.ListAllNotSpecialProperties)
-                {
-                    lstp.Add((IProperty)t);
-                }
-                f = new Form(this.GroupForms, ftype, lstp);
-            }
-            return f;
-        }
+        //public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
+        //{
+        //    var res = new List<IForm>
+        //    {
+        //        this.GetForm(FormType.ListComboBox, guidAppPrjGen),
+        //        this.GetForm(FormType.ListDataGrid, guidAppPrjGen)
+        //    };
+        //    return res;
+        //}
+        //public IForm GetForm(FormType ftype, string guidAppPrjGen)
+        //{
+        //    var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
+        //    if (f == null)
+        //    {
+        //        var lstp = new List<IProperty>();
+        //        if (this.RegisterType == EnumRegisterType.TURNOVER)
+        //        {
+        //            //lstp.AddRange(this.GetIncludedProperties(guidAppPrjGen, false, false));
+        //            lstp.AddRange(this.GetIncludedTurnoverProperties(guidAppPrjGen, false, false));
+        //        }
+        //        else
+        //            ThrowHelper.ThrowPlatformNotSupportedException();
+        //        if (ftype == FormType.ListDataGrid)
+        //        {
+        //        }
+        //        if (lstp.Count == 0)
+        //        {
+        //            int i = 0;
+        //            foreach (var t in this.GroupProperties.ListProperties)
+        //            {
+        //                if (t.IsIncluded(guidAppPrjGen))
+        //                {
+        //                    i++;
+        //                    if (i > 1)
+        //                        break;
+        //                    lstp.Add(t);
+        //                }
+        //            }
+        //        }
+        //        f = new Form(this.GroupForms, ftype, lstp);
+        //    }
+        //    else
+        //    {
+        //        var lstp = new List<IProperty>();
+        //        foreach (var t in f.ListAllNotSpecialProperties)
+        //        {
+        //            lstp.Add((IProperty)t);
+        //        }
+        //        f = new Form(this.GroupForms, ftype, lstp);
+        //    }
+        //    return f;
+        //}
 
         #region Mapping Editor
 

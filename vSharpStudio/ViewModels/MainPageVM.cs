@@ -326,7 +326,7 @@ namespace vSharpStudio.ViewModels
                 {
                     return "New empty Configuration is not saved yet. Save it or open another one.";
                 }
-                return $"{this._WindowPosition} {this._CurrentCfgFilePath}";
+                return $"{this._WindowPosition}{this._CurrentCfgFilePath}";
             }
         }
         public static Config? ConfigInstance;

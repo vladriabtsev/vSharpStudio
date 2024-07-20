@@ -2645,8 +2645,6 @@ message proto_register {
     repeated proto_register_doc_to_reg list_doc_mappings = 71;
 
     // @attr [Browsable(false)]
-    proto_group_list_forms group_forms = 84;
-    // @attr [Browsable(false)]
     proto_group_list_reports group_reports = 85;
 
     // @attr [Browsable(false)]

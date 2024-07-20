@@ -16,7 +16,7 @@ namespace vSharpStudio.common
         //IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial);
         IReadOnlyList<IProperty> GetIncludedTurnoverProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial);
         IReadOnlyList<IProperty> GetIncludedBalanceProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial);
-        IForm GetForm(FormType ftype, string guidAppPrjGen);
+        //IForm GetForm(FormType ftype, string guidAppPrjGen);
         string GetDebuggerDisplay(bool isOptimistic);
     }
 }

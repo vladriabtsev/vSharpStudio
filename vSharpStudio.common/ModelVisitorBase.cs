@@ -202,7 +202,6 @@ namespace vSharpStudio.common
                     this._act?.Invoke(this, tr.GroupRegisterDimensions);
                 this.EndVisit(tr.GroupRegisterDimensions);
                 this.VisitProperties(tr.GroupProperties, tr.GroupProperties.ListProperties, isActFromRootToBottom);
-                this.VisitForms(tr.GroupForms, tr.GroupForms.ListForms, isActFromRootToBottom);
                 this.VisitReports(tr.GroupReports, tr.GroupReports.ListReports, isActFromRootToBottom);
                 this.EndVisit(tr);
                 this.currReg = null;
