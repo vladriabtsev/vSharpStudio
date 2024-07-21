@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RunSettings>
+  <!--https://learn.microsoft.com/en-us/visualstudio/test/configure-unit-tests-by-using-a-dot-runsettings-file?branch=release-16.4&view=vs-2019#example-runsettings-file-->
+  <!--<RunConfiguration>
+    <MaxCpuCount>0</MaxCpuCount>
+  </RunConfiguration>-->
+  <!--https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-mstest-configure-->
   <!-- MSTest adapter -->
   <MSTest>
     <Parallelize>

@@ -487,9 +487,9 @@ namespace vSharpStudio.Unit
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 1);
+            Assert.IsTrue(cfg.CountErrors == 2);
             cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
-
+            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' not mapped on a same record as a deepest dimension 'cat_dimension1' of 'doc1' document."));
             // Map Money Accumulator on a same record as deepest dimension
             var pd_num10_2 = det1.AddPropertyNumerical("num10_2", 10, 2);
             Register.MappingRegPropertyRemove(reg1, doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid);

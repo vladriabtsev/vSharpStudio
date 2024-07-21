@@ -52,7 +52,7 @@ namespace vSharpStudio
                 w = Math.Max(w, t.WpfBounds.Right);
                 h = Math.Max(h, t.WpfBounds.Bottom);
             }
-            if (userSettings.LastVirtualScreenWidth == w && userSettings.LastVirtualScreenHeight == h) // can use last app main window position
+            if (userSettings != null && userSettings.LastVirtualScreenWidth == w && userSettings.LastVirtualScreenHeight == h) // can use last app main window position
             {
                 var r = userSettings.LastAppMainWindowRectOnVirtualScreen;
                 Application.Current.MainWindow.Left = Math.Min(w - 200, Math.Max(0, r.X));

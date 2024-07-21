@@ -146,8 +146,10 @@ namespace vSharpStudio.ViewModels
             //}
             #endregion Git Version
         }
-        public static UserSettings UserSettingsRead()
+        public static UserSettings? UserSettingsRead()
         {
+            if (!File.Exists(USER_SETTINGS_FILE_PATH))
+                return null;
             var user_settings = File.ReadAllBytes(USER_SETTINGS_FILE_PATH);
             var us = Proto.Config.proto_user_settings.Parser.WithDiscardUnknownFields(true).ParseFrom(user_settings);
             return UserSettings.ConvertToVM(us, new UserSettings());
