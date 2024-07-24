@@ -584,21 +584,6 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private string? _ClrLiteralSuf = null;
-        //[BrowsableAttribute(false)]
-        //public string ClrTypeNameNotNull
-        //{
-        //    get { if (_ClrTypeNameNotNull == null) ClrTypeNameCalc(); return _ClrTypeNameNotNull; }
-        //    set
-        //    {
-        //        if (this._ClrTypeNameNotNull != value)
-        //        {
-        //            this._ClrTypeNameNotNull = value;
-        //            this.OnPropertyChanged();
-        //            this.ValidateProperty();
-        //        }
-        //    }
-        //}
-        //private string _ClrTypeNameNotNull = null;
         private void ClrTypeNameCalc()
         {
             this.ClrLiteralSuf = "";
