@@ -673,7 +673,7 @@ namespace vSharpStudio.vm.ViewModels
                             mv *= 10;
                         }
                     }
-                    this.MaxNumericalValue = mv;
+                    this.MaxNumericalValue = mv - 1;
                     if (this.Accuracy == 0)
                     {
                         if (this.IsPositive)
