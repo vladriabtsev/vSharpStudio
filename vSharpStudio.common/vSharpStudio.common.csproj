@@ -26,13 +26,6 @@
   <!--<ItemGroup Condition="'$(TargetFramework)' == 'net472'">
     <PackageReference Include="System.Runtime.Extensions" Version="4.2.2.0" />
   </ItemGroup>-->
-  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-windows'">
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[7.0.0,8)" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="[7.0.0,8)" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[7.0.1,8)" />
-    <PackageReference Include="System.Collections.Immutable" Version="[7.0.0,8)" />
-    <PackageReference Include="System.ComponentModel.Composition" Version="[7.0.0,8)" />
-  </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[8.0.0,9)" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="[8.0.0,9)" />

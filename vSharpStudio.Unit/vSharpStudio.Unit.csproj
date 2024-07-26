@@ -31,12 +31,6 @@
   <PropertyGroup>
     <RunSettingsFilePath>$(MSBuildProjectDirectory)\..\test_settings.runsettings</RunSettingsFilePath>
   </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-windows'">
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="[7.0.1,8)" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="[7.0.0,8)" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="[7.0.0,8)" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="[7.0.0,8)" />
-  </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="[8.0.0,9)" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="[8.0.0,9)" />
@@ -50,7 +44,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Serilog" Version="4.0.0" />
     <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
     <PackageReference Include="Serilog.Enrichers.Process" Version="3.0.0" />
     <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />

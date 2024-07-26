@@ -24,8 +24,16 @@
   <ItemGroup>
     <Compile Include="..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
   </ItemGroup>
+  <PropertyGroup>
+    <!-- WPF workaround: GitVersion and .NET SDK between v5.0.200 and v6.0.0-preview.2 -->
+    <IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
+    <PackageReference Include="GitVersion.MsBuild" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
   </ItemGroup>
   <ItemGroup>
