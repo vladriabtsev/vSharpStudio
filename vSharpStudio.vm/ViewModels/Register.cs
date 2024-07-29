@@ -601,6 +601,7 @@ namespace vSharpStudio.vm.ViewModels
                 var pPostDate = (Property)m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateTime", 9, false); // position 9
                 pPostDate.TagInList = "pd";
                 pPostDate.DataType.IsPKey = true;
+                pPostDate.IsCsNullable = false;
                 //pPostDate.IsBalanceDate = true;
                 lst.Add(pPostDate);
             }
