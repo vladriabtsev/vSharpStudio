@@ -93,7 +93,6 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsRefTimeline { get; set; }
         [Browsable(false)]
         public bool IsCsNullable { get; set; }
-
         [Browsable(false)]
         public GroupListProperties ParentGroupListProperties { get { Debug.Assert(this.Parent != null); return (GroupListProperties)this.Parent; } }
         [Browsable(false)]

@@ -77,7 +77,7 @@ namespace ViewModelBase
             {
                 try
                 {
-                    _dispatcher._windowsDispatcher.Invoke(action);
+                    _dispatcher?._windowsDispatcher.Invoke(action);
                 }
                 catch (TaskCanceledException)
                 {

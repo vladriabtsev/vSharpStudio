@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFrameworkVariation>windows</TargetFrameworkVariation>
     <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <Import Project="..\Solution.targets" />
@@ -56,9 +57,9 @@
     <Message Text="**********" Importance="high" />-->
     <Message Text="***** $(SolutionDir)" Importance="high" />
     <Message Text="***** $(OutDir)" Importance="high" />
-    <RemoveDir Directories="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample2\" />
-    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample2\" />
-    <RemoveDir Directories="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample2\" />
-    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample2\" />
+    <RemoveDir Directories="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\Sample2\" />
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\Sample2\" />
+    <RemoveDir Directories="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\Sample2\" />
+    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\Sample2\" />
   </Target>
 </Project>
