@@ -548,11 +548,11 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     case EnumCodeType.Number:
                         prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
-                            this.CodePropertySettings.MaxSequenceLength, false);
+                            this.CodePropertySettings.MaxSequenceLength, true);
                         break;
                     case EnumCodeType.Text:
                         prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
-                            this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false);
+                            this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, true);
                         break;
                     default:
                         throw new NotImplementedException();

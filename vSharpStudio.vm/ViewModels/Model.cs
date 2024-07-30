@@ -869,18 +869,18 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyDocNumberString(IGroupListProperties parent, string guid, uint length)
         {
             var res = new Property(parent, guid, this.GroupDocuments.PropertyDocNumberName, true);
-            res.DataType = (DataType)this.GetDataTypeString(res, length, false);
+            res.DataType = (DataType)this.GetDataTypeString(res, length, true);
             res.Position = IProperty.PropertyDocumentNumberPosition;
-            res.IsCsNullable = true;
+            //res.IsCsNullable = true;
             return res;
         }
         public IProperty GetPropertyDocNumberInt(IGroupListProperties parent, string guid, uint length)
         {
             var res = new Property(parent, guid, this.GroupDocuments.PropertyDocNumberName, true);
-            res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, true, false);
-            res.DataType.IsNullable = false;
+            res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, true, true);
+            //res.DataType.IsNullable = true;
             res.Position = IProperty.PropertyDocumentNumberPosition;
-            res.IsCsNullable = true;
+            //res.IsCsNullable = true;
             return res;
         }
         public IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable = false, bool is_pkey = false)
