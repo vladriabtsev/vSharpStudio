@@ -564,6 +564,13 @@ namespace vSharpStudio.vm.ViewModels
                 _ => throw new Exception("Not supported operation"),
             };
         }
+        [Browsable(false)]
+        public string? ComplexRefSuffix
+        {
+            get { return this._ComplexRefSuffix; }
+            set { SetProperty(ref this._ComplexRefSuffix, value); }
+        }
+        private string? _ComplexRefSuffix = null;
         [PropertyOrderAttribute(11)]
         public string ClrTypeName
         {

@@ -27,6 +27,7 @@ namespace vSharpStudio.common
         int EnumerationStrFieldLength { get; }
         bool IsEnumStr();
         string EnumerationDefault { get; }
+        string? ComplexRefSuffix { get; set; }
         bool IsComplex { get; }
         bool IsComplexOne { get; }
         bool IsComplexMany { get; }
