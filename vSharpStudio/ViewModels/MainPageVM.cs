@@ -78,6 +78,9 @@ namespace vSharpStudio.ViewModels
             dialogChildWindow.WindowState = WindowState.Open;
         }
         internal static MainPageVM Instance { get; private set; }
+        private readonly string? configFile;
+        //public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
+        internal static MainPage? _mainPage = null;
         public MainPageVM() : base(MainPageVMValidator.Validator)
         {
             Instance = this;
@@ -108,9 +111,6 @@ namespace vSharpStudio.ViewModels
 
             //_Config = new Config();
         }
-        private readonly string? configFile;
-        //public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
-        internal static MainPage? _mainPage = null;
         public MainPageVM(MainPage? mainPage, string? explicitConfigurationPathForTests = null) : this()
         {
             _logger = Logger.CreateLogger<MainPageVM>();

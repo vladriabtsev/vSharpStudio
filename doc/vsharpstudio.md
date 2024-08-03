@@ -2521,9 +2521,8 @@ with history |
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | CHAR | 0 | @attr [Description(&#34;Char&#34;)] |
-| STRING | 11 | @attr [Description(&#34;String&#34;)]
-
-attr [Description(&#34;ULID&#34;)] https://github.com/Cysharp/Ulid ULID = 15; |
+| STRING | 11 | @attr [Description(&#34;String&#34;)] |
+| ULID | 15 | @attr [Description(&#34;ULID&#34;)] https://github.com/Cysharp/Ulid |
 | NUMERICAL | 21 | @attr [Description(&#34;Numerical&#34;)] |
 | BOOL | 31 | @attr [Description(&#34;Boolean&#34;)] |
 | DATETIMEOFFSET | 35 | @attr [Browsable(false)] @attr [Description(&#34;DateTimeOffset&#34;)] not supported in PG, not storing ZONE |

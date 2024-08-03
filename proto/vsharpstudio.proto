@@ -743,10 +743,9 @@ enum proto_enum_data_type {
     CHAR = 0;
     // @attr [Description("String")]
     STRING = 11;
-    // attr [Description("ULID")]
+    // @attr [Description("ULID")]
     // https://github.com/Cysharp/Ulid
-    //ULID = 15;
-
+    ULID = 15;
     // @attr [Description("Numerical")]
     NUMERICAL = 21;
     // @attr [Description("Boolean")]
