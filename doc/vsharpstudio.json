@@ -390,7 +390,7 @@
             {
               "name": "STRING",
               "number": "11",
-              "description": "@attr [Description(\"String\")]"
+              "description": "@attr [Description(\"String\")]\n\nattr [Description(\"ULID\")]\nhttps://github.com/Cysharp/Ulid\nULID = 15;"
             },
             {
               "name": "NUMERICAL",

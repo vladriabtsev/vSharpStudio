@@ -130,6 +130,10 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	{
 		[Description("Char")]
 		CHAR = 0,
+		// 
+		// attr [Description("ULID")]
+		// https://github.com/Cysharp/Ulid
+		// ULID = 15;
 		[Description("String")]
 		STRING = 11,
 		[Description("Numerical")]
