@@ -1385,6 +1385,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.NUMERICAL:
                 case EnumDataType.STRING:
+                case EnumDataType.ULID:
                 case EnumDataType.TIME:
                     throw new ArgumentException("Unexpected EnumDataType type");
                 case EnumDataType.CATALOGS:

@@ -210,6 +210,8 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.STRING:
                     this._Length = length ?? 30;
                     break;
+                case EnumDataType.ULID:
+                    break;
                 default:
                     throw new ArgumentException();
             }
@@ -404,6 +406,8 @@ namespace vSharpStudio.vm.ViewModels
                         sb.Append(p.Length);
                     else
                         sb.Append("unlimited");
+                    break;
+                case EnumDataType.ULID:
                     break;
                 case EnumDataType.BOOL:
                     break;
@@ -671,6 +675,9 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.STRING:
                     this.ClrTypeName = "string";
                     break;
+                case EnumDataType.ULID:
+                    this.ClrTypeName = "Ulid";
+                    break;
                 case EnumDataType.NUMERICAL:
                     BigInteger mv = 1;
                     if (this.Length > 0)
@@ -932,6 +939,15 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityLength = Visibility.Visible;
                     this.VisibilityObjectName = Visibility.Collapsed;
                     this._Length = 25;
+                    this._Accuracy = 0;
+                    this._IsPositive = false;
+                    break;
+                case EnumDataType.ULID:
+                    this.VisibilityIsPositive = Visibility.Collapsed;
+                    this.VisibilityAccuracy = Visibility.Collapsed;
+                    this.VisibilityLength = Visibility.Collapsed;
+                    this.VisibilityObjectName = Visibility.Collapsed;
+                    this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
                     break;

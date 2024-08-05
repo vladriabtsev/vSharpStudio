@@ -266,6 +266,21 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddPropertyUlid(string name, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.ULID };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddPropertyNumerical(string name, uint length, uint accuracy, string? guid = null)
         {
             var node = new Property(this) { Name = name };

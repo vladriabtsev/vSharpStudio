@@ -203,6 +203,13 @@ namespace vSharpStudio.vm.ViewModels
                     this.ConfigObjectGuid = string.Empty;
                     this.ListObjectRefs.Clear();
                     break;
+                case EnumDataType.ULID:
+                    this.Length = 0;
+                    this.Accuracy = 0;
+                    this.IsPositive = false;
+                    this.ConfigObjectGuid = string.Empty;
+                    this.ListObjectRefs.Clear();
+                    break;
                 default:
                     throw new NotSupportedException();
             }
@@ -408,6 +415,8 @@ namespace vSharpStudio.vm.ViewModels
                         return ".Value";
                     case EnumDataType.STRING:
                         return "";
+                    case EnumDataType.ULID:
+                        return ".Value";
                     case EnumDataType.NUMERICAL:
                         return ".Value";
                     default:

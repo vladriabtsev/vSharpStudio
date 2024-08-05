@@ -713,6 +713,13 @@ namespace vSharpStudio.Unit
             // Assert.IsTrue(dt.VisibilityAccuracy == Visibility.Collapsed);
             // Assert.IsTrue(dt.VisibilityLength == Visibility.Visible);
             // Assert.IsTrue(dt.VisibilityObjectName == Visibility.Collapsed);
+
+            dt.DataTypeEnum = EnumDataType.ULID;
+            dt.Validate();
+            Assert.IsTrue(dt.CountErrors == 0);
+            Assert.IsTrue(dt.CountInfos == 0);
+            Assert.IsTrue(dt.CountWarnings == 0);
+            Assert.IsTrue(dt.ValidationCollection.Count == 0);
         }
 
         [TestMethod]

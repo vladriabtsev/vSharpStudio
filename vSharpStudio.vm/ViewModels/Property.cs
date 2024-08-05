@@ -410,6 +410,9 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.STRING:
                     this.Length = 25;
                     break;
+                case EnumDataType.ULID:
+                    this.Length = 0;
+                    break;
                 case EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER:
                 case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG:
                 case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER:
@@ -737,6 +740,8 @@ namespace vSharpStudio.vm.ViewModels
                         return ".Value";
                     case EnumDataType.STRING:
                         return "";
+                    case EnumDataType.ULID:
+                        return ".Value";
                     case EnumDataType.NUMERICAL:
                         return ".Value";
                     default:
@@ -1080,6 +1085,8 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.STRING:
                     if (this.Length < from.Length)
                         return "Destination length is shorter than source length.";
+                    break;
+                case EnumDataType.ULID:
                     break;
                 default:
                     ThrowHelper.ThrowNotSupportedException();

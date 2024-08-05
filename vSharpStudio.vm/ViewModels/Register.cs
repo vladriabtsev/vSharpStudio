@@ -1067,6 +1067,10 @@ namespace vSharpStudio.vm.ViewModels
                             if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
                                 return;
                             break;
+                        case EnumDataType.ULID:
+                            if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
+                                return;
+                            break;
                         case EnumDataType.TIME:
                             if (p.DataType.DataTypeEnum != row.AttachedProperty.DataType.DataTypeEnum)
                                 return;
