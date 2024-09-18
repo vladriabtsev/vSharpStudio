@@ -798,7 +798,6 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetIdRefDataType(res, isNullable);
             res.IsHidden = true;
             res.Position = position;
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyRefCatalog(ITreeConfigNode parent, string guid, ICatalog c, uint position, bool isNullable)
@@ -807,7 +806,6 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = true;
             res.DataType = (DataType)this.GetDataType(parent, c, isNullable);
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyCatalogCode(IGroupListProperties parent, string guid, uint length, bool isNullable)
@@ -855,7 +853,6 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = true;
             res.DataType = (DataType)this.GetDataType(parent, d, isNullable);
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyDocumentDate(IGroupListProperties parent, string guid, bool isPKey = false)
@@ -891,7 +888,6 @@ namespace vSharpStudio.vm.ViewModels
             res.IsHidden = true;
             res.Position = position;
             res.DataType.IsPKey = is_pkey;
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyRef(IDetail fromObject, IDetail toObject, string guid, string name, uint position, bool isNullable)
@@ -903,7 +899,6 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_DETAIL;
             res.DataType.IsNullable = isNullable;
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyRef(IDetail fromObject, ICatalog toObject, string guid, string name, uint position, bool isNullable)
@@ -915,7 +910,6 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_CATALOG;
             res.DataType.IsNullable = isNullable;
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyRef(IDetail fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable)
@@ -927,7 +921,6 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER;
             res.DataType.IsNullable = isNullable;
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyRef(IDetail fromObject, IDocument toObject, string guid, string name, uint position, bool isNullable)
@@ -939,7 +932,6 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT;
             res.DataType.IsNullable = isNullable;
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyRef(ICatalog fromObject, ICatalog toObject, string guid, string name, uint position, bool isNullable)
@@ -951,7 +943,6 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT;
             res.DataType.IsNullable = isNullable;
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyRef(ICatalog fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable)
@@ -963,7 +954,6 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER;
             res.DataType.IsNullable = isNullable;
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyRef(ICatalogFolder fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable)
@@ -975,7 +965,6 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT;
             res.DataType.IsNullable = isNullable;
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyRef(IRegister fromObject, IDocumentTimeline toObject, string guid, string name, uint position, bool isNullable)
@@ -987,7 +976,6 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_TIMELINE;
             res.DataType.IsNullable = isNullable;
-            res.IsComplex = true;
             return res;
         }
 
@@ -997,7 +985,6 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = (DataType)this.GetDataTypeCatalog(parent, catGuid, isNullable);
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyDocument(ITreeConfigNode parent, string guid, string name, string docGuid, uint position, bool isNullable)
@@ -1006,7 +993,6 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = (DataType)this.GetDataTypeDocument(parent, docGuid, isNullable);
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyTimeline(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, bool isPKey)
@@ -1015,7 +1001,6 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = (DataType)this.GetDataTypeTimeline(parent, this.GroupDocuments.DocumentTimeline.Guid, isNullable, isPKey);
-            res.IsComplex = true;
             return res;
         }
         public IDataType GetDataTypeCatalogs(ITreeConfigNode? parent, IEnumerable<ComplexRef> lstCatGuids, bool isNullable)
@@ -1048,7 +1033,6 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = (DataType)this.GetDataTypeCatalogs(parent, lstCatGuids, isNullable);
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<ComplexRef> lstDocGuids, uint position, bool isNullable)
@@ -1057,7 +1041,6 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = (DataType)this.GetDataTypeDocuments(parent, lstDocGuids, isNullable);
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyCatalogsDocuments(IGroupListProperties parent, string guid, string name, IEnumerable<ComplexRef> lstCatOrDocGuids, uint position, bool isNullable)
@@ -1066,7 +1049,6 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = (DataType)this.GetDataTypeCatalogsDocuments(parent, lstCatOrDocGuids, isNullable);
-            res.IsComplex = true;
             return res;
         }
         public IProperty GetPropertyAny(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable)
@@ -1075,7 +1057,6 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = position;
             res.IsCsNullable = isNullable;
             res.DataType = (DataType)this.GetDataTypeAny(parent, isNullable);
-            res.IsComplex = true;
             return res;
         }
 

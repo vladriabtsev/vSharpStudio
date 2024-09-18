@@ -169,7 +169,6 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
                 case EnumDataType.REF_TIMELINE:
-                    this.IsComplex = true;
                     break;
             }
             Init();
@@ -366,7 +365,6 @@ namespace vSharpStudio.vm.ViewModels
         //}
         private void OnDataTypeEnumChanged()
         {
-            this.IsComplex = false;
             switch (this.DataType.DataTypeEnum)
             {
                 case EnumDataType.CHAR:
@@ -389,13 +387,11 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DOCUMENTS:
                 case EnumDataType.ANY:
                     this.Length = 0;
-                    this.IsComplex = true;
                     this.IsNullable = true;
                     break;
                 case EnumDataType.CATALOG:
                 case EnumDataType.DOCUMENT:
                     this.Length = 0;
-                    this.IsComplex = true;
                     this.IsNullable = true;
                     break;
                 case EnumDataType.ENUMERATION:
@@ -421,7 +417,6 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
                 case EnumDataType.REF_TIMELINE:
-                    this.IsComplex = true;
                     break;
                 default:
                     throw new NotSupportedException();
@@ -904,7 +899,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty? ParentProperty { get; set; }
         public string NameWithExtention { get { if (this.ParentProperty == null) return this.Name; return this.ParentProperty.Name + this.Name; } }
         [Browsable(false)]
-        public bool IsComplex { get; internal set; }
+        public bool IsComplex { get { return this.DataType.IsComplex; } }
         [Browsable(false)]
         public bool IsComplexRefId { get; set; }
         [Browsable(false)]

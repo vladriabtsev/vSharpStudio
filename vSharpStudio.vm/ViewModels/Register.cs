@@ -562,7 +562,6 @@ namespace vSharpStudio.vm.ViewModels
                             var pCat = Property.Clone(t, t.PropertyRefDimensionCatalog, true);
                             pCat.Position = t.Position;
                             pCat.IsPKey = false;
-                            pCat.IsComplex = true;
                             pCat.IsNullable = false;
                             pCat.IsCsNullable = true;
                             lst.Add(pCat);
@@ -645,7 +644,6 @@ namespace vSharpStudio.vm.ViewModels
                             var pCat = Property.Clone(t, t.PropertyRefDimensionCatalog, true);
                             pCat.Position = t.Position;
                             pCat.IsPKey = true;
-                            pCat.IsComplex = true;
                             pCat.IsNullable = false;
                             pCat.IsCsNullable = true;
                             lst.Add(pCat);

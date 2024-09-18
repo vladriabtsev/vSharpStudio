@@ -1126,8 +1126,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                return this.DataTypeEnum == EnumDataType.CATALOG || this.DataTypeEnum == EnumDataType.DOCUMENT ||
-                    this.DataTypeEnum == EnumDataType.CATALOGS || this.DataTypeEnum == EnumDataType.DOCUMENTS || this.DataTypeEnum == EnumDataType.ANY;
+                return this.DataTypeEnum == EnumDataType.CATALOG || this.DataTypeEnum == EnumDataType.DOCUMENT
+                    || this.DataTypeEnum == EnumDataType.CATALOGS || this.DataTypeEnum == EnumDataType.DOCUMENTS || this.DataTypeEnum == EnumDataType.ANY
+                    || this.DataTypeEnum == EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER || this.DataTypeEnum == EnumDataType.REF_DETAIL_TO_PARENT_CATALOG
+                    || this.DataTypeEnum == EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER || this.DataTypeEnum == EnumDataType.REF_DETAIL_TO_PARENT_DETAIL
+                    || this.DataTypeEnum == EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT || this.DataTypeEnum == EnumDataType.REF_TIMELINE
+                    || this.DataTypeEnum == EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT || this.DataTypeEnum == EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT
+                    ;
             }
         }
         public bool IsComplexOne
