@@ -813,7 +813,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(parent, guid, this.GroupCatalogs.PropertyCodeName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, isNullable);
             res.Position = IProperty.PropertyCodePosition;
-            res.IsCsNullable = true;
+            res.IsCsNullable = false;
             return res;
         }
         public IProperty GetPropertyCatalogCodeInt(IGroupListProperties parent, string guid, uint length, bool isNullable)
@@ -821,7 +821,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(parent, guid, this.GroupCatalogs.PropertyCodeName, true);
             res.DataType = (DataType)this.GetDataTypeNumerical(res, length, true, isNullable);
             res.Position = IProperty.PropertyCodePosition;
-            res.IsCsNullable = true;
+            res.IsCsNullable = false;
             return res;
         }
         public IProperty GetPropertyCatalogName(IGroupListProperties parent, string guid, uint length, bool isNullable)
