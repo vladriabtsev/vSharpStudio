@@ -539,6 +539,8 @@ namespace vSharpStudio.vm.ViewModels
                 "bool" => typeof(bool),
                 "bool?" => typeof(bool?),
                 "string" => typeof(string),
+                "char" => typeof(char),
+                "char?" => typeof(char?),
                 "byte" => typeof(byte),
                 "byte?" => typeof(byte?),
                 "ushort" => typeof(ushort),
