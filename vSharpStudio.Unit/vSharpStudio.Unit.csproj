@@ -32,9 +32,9 @@
     <RunSettingsFilePath>$(MSBuildProjectDirectory)\..\test_settings.runsettings</RunSettingsFilePath>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="[8.0.0,9)" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="[8.0.0,9)" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="[8.0.0,9)" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="[8.0.1,9)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="[8.0.1,9)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="[8.0.1,9)" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="[8.0.0,9)" />
   </ItemGroup>
   <ItemGroup>
