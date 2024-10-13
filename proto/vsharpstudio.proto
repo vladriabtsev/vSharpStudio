@@ -2547,19 +2547,17 @@ message proto_register {
     // @attr [PropertyOrderAttribute(16)]
     // @attr [DisplayName("Qty name")]
     // @attr [Description("Quantity accumulator property name")]
-    string table_turnover_property_qty_accumulator_name = 16;
+    string property_qty_accumulator_name = 16;
     // @attr [PropertyOrderAttribute(17)]
     // @attr [DisplayName("Qty Length")]
     // @attr [Description("Maximum decimal digits for quantity data")]
-    uint32 table_turnover_property_qty_accumulator_length = 17; 
+    uint32 property_qty_accumulator_length = 17; 
     // @attr [PropertyOrderAttribute(18)]
     // @attr [DisplayName("Qty accuracy")]
     // @attr [Description("Number of decimal places in fractional part for quantity data. If negative, than maximum possible accuracy")]
-    uint32 table_turnover_property_qty_accumulator_accuracy = 18; 
+    uint32 property_qty_accumulator_accuracy = 18; 
     // @attr [Browsable(false)]
-    string table_turnover_property_qty_accumulator_guid = 19; 
-    // @attr [Browsable(false)]
-    string table_balance_property_qty_accumulator_guid = 20; 
+    string property_qty_accumulator_guid = 19; 
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Money")]
     // @attr [Description("Use money accumulator for register")]
@@ -2567,19 +2565,17 @@ message proto_register {
     // @attr [PropertyOrderAttribute(22)]
     // @attr [DisplayName("Money name")]
     // @attr [Description("Money accumulator property name")]
-    string table_turnover_property_money_accumulator_name = 22;
+    string property_money_accumulator_name = 22;
     // @attr [PropertyOrderAttribute(23)]
     // @attr [DisplayName("Money Length")]
     // @attr [Description("Maximum decimal digits for money data")]
-    uint32 table_turnover_property_money_accumulator_length = 23; 
+    uint32 property_money_accumulator_length = 23; 
     // @attr [PropertyOrderAttribute(24)]
     // @attr [DisplayName("Money accuracy")]
     // @attr [Description("Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy")]
-    uint32 table_turnover_property_money_accumulator_accuracy = 24; 
+    uint32 property_money_accumulator_accuracy = 24; 
     // @attr [Browsable(false)]
-    string table_turnover_property_money_accumulator_guid = 25; 
-    // @attr [Browsable(false)]
-    string table_balance_property_money_accumulator_guid = 26; 
+    string property_money_accumulator_guid = 25; 
 
 
     // @attr [Browsable(false)]

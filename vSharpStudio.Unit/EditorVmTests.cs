@@ -927,71 +927,71 @@ namespace vSharpStudio.Unit
             r.SelectedDoc = d;
 
             // 1. Can find doc numerical property to map register property.
-            r.TableTurnoverPropertyQtyAccumulatorLength = 28;
-            r.TableTurnoverPropertyQtyAccumulatorAccuracy = 4;
-            r.TableTurnoverPropertyMoneyAccumulatorLength = 28;
-            r.TableTurnoverPropertyMoneyAccumulatorAccuracy = 4;
+            r.PropertyQtyAccumulatorLength = 28;
+            r.PropertyQtyAccumulatorAccuracy = 4;
+            r.PropertyMoneyAccumulatorLength = 28;
+            r.PropertyMoneyAccumulatorAccuracy = 4;
             Register.UpdateListMappings(r, d);
             Assert.AreEqual(2, r.ListMappings.Count);
-            var mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
-            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyMoneyAccumulatorName);
+            var mrec = r.ListMappings.Single(m => m.Name == r.PropertyQtyAccumulatorName);
+            mrec = r.ListMappings.Single(m => m.Name == r.PropertyMoneyAccumulatorName);
             mrec.ListToMap.Single(m => m.Name == pMoney.Name);
             mrec.ListToMap.Single(m => m.Name == pQty.Name);
 
             var s_qty5_2 = cfg.Model.GroupDocuments.DocumentTimeline.AddPropertyNumerical("qty", 15, 1);
             Register.UpdateListMappings(r, d);
-            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
+            mrec = r.ListMappings.Single(m => m.Name == r.PropertyQtyAccumulatorName);
             Assert.AreEqual(3, mrec.ListToMap.Count);
             mrec.ListToMap.Single(m => m.Name == pMoney.Name);
             mrec.ListToMap.Single(m => m.Name == pQty.Name);
             mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
 
             // Length of doc property has to be less or equal than numerical register property length.
-            r.TableTurnoverPropertyQtyAccumulatorLength = 16;
-            r.TableTurnoverPropertyMoneyAccumulatorLength = 16;
+            r.PropertyQtyAccumulatorLength = 16;
+            r.PropertyMoneyAccumulatorLength = 16;
             Register.UpdateListMappings(r, d);
-            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
+            mrec = r.ListMappings.Single(m => m.Name == r.PropertyQtyAccumulatorName);
             mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
             Assert.AreEqual(1, mrec.ListToMap.Count);
-            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyMoneyAccumulatorName);
+            mrec = r.ListMappings.Single(m => m.Name == r.PropertyMoneyAccumulatorName);
             mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
             Assert.AreEqual(1, mrec.ListToMap.Count);
 
-            r.TableTurnoverPropertyQtyAccumulatorLength = 17;
-            r.TableTurnoverPropertyMoneyAccumulatorLength = 17;
+            r.PropertyQtyAccumulatorLength = 17;
+            r.PropertyMoneyAccumulatorLength = 17;
             Register.UpdateListMappings(r, d);
-            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
+            mrec = r.ListMappings.Single(m => m.Name == r.PropertyQtyAccumulatorName);
             Assert.AreEqual(2, mrec.ListToMap.Count);
             mrec.ListToMap.Single(m => m.Name == pQty.Name);
             mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
-            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyMoneyAccumulatorName);
+            mrec = r.ListMappings.Single(m => m.Name == r.PropertyMoneyAccumulatorName);
             Assert.AreEqual(2, mrec.ListToMap.Count);
             mrec.ListToMap.Single(m => m.Name == pQty.Name);
             mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
 
-            r.TableTurnoverPropertyQtyAccumulatorLength = 28;
-            r.TableTurnoverPropertyQtyAccumulatorAccuracy = 4;
-            r.TableTurnoverPropertyMoneyAccumulatorLength = 28;
-            r.TableTurnoverPropertyMoneyAccumulatorAccuracy = 4;
+            r.PropertyQtyAccumulatorLength = 28;
+            r.PropertyQtyAccumulatorAccuracy = 4;
+            r.PropertyMoneyAccumulatorLength = 28;
+            r.PropertyMoneyAccumulatorAccuracy = 4;
             // Accuracy of doc property has to be less or equal than numerical register property accuracy.
-            r.TableTurnoverPropertyQtyAccumulatorAccuracy = 1;
-            r.TableTurnoverPropertyMoneyAccumulatorAccuracy = 1;
+            r.PropertyQtyAccumulatorAccuracy = 1;
+            r.PropertyMoneyAccumulatorAccuracy = 1;
             Register.UpdateListMappings(r, d);
-            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
+            mrec = r.ListMappings.Single(m => m.Name == r.PropertyQtyAccumulatorName);
             Assert.AreEqual(1, mrec.ListToMap.Count);
             mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
-            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyMoneyAccumulatorName);
+            mrec = r.ListMappings.Single(m => m.Name == r.PropertyMoneyAccumulatorName);
             Assert.AreEqual(1, mrec.ListToMap.Count);
             mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
 
-            r.TableTurnoverPropertyQtyAccumulatorAccuracy = 2;
-            r.TableTurnoverPropertyMoneyAccumulatorAccuracy = 2;
+            r.PropertyQtyAccumulatorAccuracy = 2;
+            r.PropertyMoneyAccumulatorAccuracy = 2;
             Register.UpdateListMappings(r, d);
-            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyQtyAccumulatorName);
+            mrec = r.ListMappings.Single(m => m.Name == r.PropertyQtyAccumulatorName);
             Assert.AreEqual(2, mrec.ListToMap.Count);
             mrec.ListToMap.Single(m => m.Name == pMoney.Name);
             mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);
-            mrec = r.ListMappings.Single(m => m.Name == r.TableTurnoverPropertyMoneyAccumulatorName);
+            mrec = r.ListMappings.Single(m => m.Name == r.PropertyMoneyAccumulatorName);
             Assert.AreEqual(2, mrec.ListToMap.Count);
             mrec.ListToMap.Single(m => m.Name == pMoney.Name);
             mrec.ListToMap.Single(m => m.Name == s_qty5_2.Name);

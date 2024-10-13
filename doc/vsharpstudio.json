@@ -12113,7 +12113,7 @@
               "defaultValue": ""
             },
             {
-              "name": "table_turnover_property_qty_accumulator_name",
+              "name": "property_qty_accumulator_name",
               "description": "@attr [PropertyOrderAttribute(16)]\n@attr [DisplayName(\"Qty name\")]\n@attr [Description(\"Quantity accumulator property name\")]",
               "label": "",
               "type": "string",
@@ -12125,7 +12125,7 @@
               "defaultValue": ""
             },
             {
-              "name": "table_turnover_property_qty_accumulator_length",
+              "name": "property_qty_accumulator_length",
               "description": "@attr [PropertyOrderAttribute(17)]\n@attr [DisplayName(\"Qty Length\")]\n@attr [Description(\"Maximum decimal digits for quantity data\")]",
               "label": "",
               "type": "uint32",
@@ -12137,7 +12137,7 @@
               "defaultValue": ""
             },
             {
-              "name": "table_turnover_property_qty_accumulator_accuracy",
+              "name": "property_qty_accumulator_accuracy",
               "description": "@attr [PropertyOrderAttribute(18)]\n@attr [DisplayName(\"Qty accuracy\")]\n@attr [Description(\"Number of decimal places in fractional part for quantity data. If negative, than maximum possible accuracy\")]",
               "label": "",
               "type": "uint32",
@@ -12149,19 +12149,7 @@
               "defaultValue": ""
             },
             {
-              "name": "table_turnover_property_qty_accumulator_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "table_balance_property_qty_accumulator_guid",
+              "name": "property_qty_accumulator_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -12185,7 +12173,7 @@
               "defaultValue": ""
             },
             {
-              "name": "table_turnover_property_money_accumulator_name",
+              "name": "property_money_accumulator_name",
               "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Money name\")]\n@attr [Description(\"Money accumulator property name\")]",
               "label": "",
               "type": "string",
@@ -12197,7 +12185,7 @@
               "defaultValue": ""
             },
             {
-              "name": "table_turnover_property_money_accumulator_length",
+              "name": "property_money_accumulator_length",
               "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Money Length\")]\n@attr [Description(\"Maximum decimal digits for money data\")]",
               "label": "",
               "type": "uint32",
@@ -12209,7 +12197,7 @@
               "defaultValue": ""
             },
             {
-              "name": "table_turnover_property_money_accumulator_accuracy",
+              "name": "property_money_accumulator_accuracy",
               "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Money accuracy\")]\n@attr [Description(\"Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy\")]",
               "label": "",
               "type": "uint32",
@@ -12221,19 +12209,7 @@
               "defaultValue": ""
             },
             {
-              "name": "table_turnover_property_money_accumulator_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "table_balance_property_money_accumulator_guid",
+              "name": "property_money_accumulator_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",

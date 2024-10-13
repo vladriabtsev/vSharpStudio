@@ -37,67 +37,67 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
-            this.RuleFor(x => x.TableTurnoverPropertyMoneyAccumulatorAccuracy).Custom((acc, cntx) =>
+            this.RuleFor(x => x.PropertyMoneyAccumulatorAccuracy).Custom((acc, cntx) =>
             {
                 var p = (Register)cntx.InstanceToValidate;
                 if (!p.UseMoneyAccumulator)
                     return;
-                if (acc >= p.TableTurnoverPropertyMoneyAccumulatorLength)
+                if (acc >= p.PropertyMoneyAccumulatorLength)
                 {
-                    var vf = new ValidationFailure(nameof(p.TableTurnoverPropertyMoneyAccumulatorAccuracy),
-                        $"Value greater or equal than {nameof(p.TableTurnoverPropertyMoneyAccumulatorLength)} property value");
+                    var vf = new ValidationFailure(nameof(p.PropertyMoneyAccumulatorAccuracy),
+                        $"Value greater or equal than {nameof(p.PropertyMoneyAccumulatorLength)} property value");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.TableTurnoverPropertyMoneyAccumulatorLength).Custom((len, cntx) =>
+            this.RuleFor(x => x.PropertyMoneyAccumulatorLength).Custom((len, cntx) =>
             {
                 var p = (Register)cntx.InstanceToValidate;
                 if (!p.UseMoneyAccumulator)
                     return;
-                if (len <= p.TableTurnoverPropertyMoneyAccumulatorAccuracy)
+                if (len <= p.PropertyMoneyAccumulatorAccuracy)
                 {
-                    var vf = new ValidationFailure(nameof(p.TableTurnoverPropertyMoneyAccumulatorLength),
-                        $"Value less or equal than {nameof(p.TableTurnoverPropertyMoneyAccumulatorAccuracy)} property value");
+                    var vf = new ValidationFailure(nameof(p.PropertyMoneyAccumulatorLength),
+                        $"Value less or equal than {nameof(p.PropertyMoneyAccumulatorAccuracy)} property value");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
                 if (len > 28)
                 {
-                    var vf = new ValidationFailure(nameof(p.TableTurnoverPropertyMoneyAccumulatorLength),
+                    var vf = new ValidationFailure(nameof(p.PropertyMoneyAccumulatorLength),
                         $"Value greater than 28 is not supported");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.TableTurnoverPropertyQtyAccumulatorAccuracy).Custom((acc, cntx) =>
+            this.RuleFor(x => x.PropertyQtyAccumulatorAccuracy).Custom((acc, cntx) =>
             {
                 var p = (Register)cntx.InstanceToValidate;
                 if (!p.UseQtyAccumulator)
                     return;
-                if (acc >= p.TableTurnoverPropertyQtyAccumulatorLength)
+                if (acc >= p.PropertyQtyAccumulatorLength)
                 {
-                    var vf = new ValidationFailure(nameof(p.TableTurnoverPropertyQtyAccumulatorAccuracy),
-                        $"Value greater or equal than {nameof(p.TableTurnoverPropertyQtyAccumulatorLength)} property value");
+                    var vf = new ValidationFailure(nameof(p.PropertyQtyAccumulatorAccuracy),
+                        $"Value greater or equal than {nameof(p.PropertyQtyAccumulatorLength)} property value");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.TableTurnoverPropertyQtyAccumulatorLength).Custom((len, cntx) =>
+            this.RuleFor(x => x.PropertyQtyAccumulatorLength).Custom((len, cntx) =>
             {
                 var r = (Register)cntx.InstanceToValidate;
                 if (!r.UseQtyAccumulator)
                     return;
-                if (len <= r.TableTurnoverPropertyQtyAccumulatorAccuracy)
+                if (len <= r.PropertyQtyAccumulatorAccuracy)
                 {
-                    var vf = new ValidationFailure(nameof(r.TableTurnoverPropertyQtyAccumulatorLength),
-                        $"Value less or equal than {nameof(r.TableTurnoverPropertyQtyAccumulatorAccuracy)} property value");
+                    var vf = new ValidationFailure(nameof(r.PropertyQtyAccumulatorLength),
+                        $"Value less or equal than {nameof(r.PropertyQtyAccumulatorAccuracy)} property value");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }
                 if (len > 28)
                 {
-                    var vf = new ValidationFailure(nameof(r.TableTurnoverPropertyQtyAccumulatorLength),
+                    var vf = new ValidationFailure(nameof(r.PropertyQtyAccumulatorLength),
                         $"Value greater than 28 is not supported");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
@@ -187,7 +187,7 @@ namespace vSharpStudio.vm.ViewModels
                                             vf.Severity = Severity.Error;
                                             cntx.AddFailure(vf);
                                         }
-                                        found = true; 
+                                        found = true;
                                         break;
                                     }
                                 }
@@ -231,7 +231,7 @@ namespace vSharpStudio.vm.ViewModels
                                 found = false;
                                 foreach (var dpm in dtr.ListMappings)
                                 {
-                                    if (dpm.RegPropGuid == r.TableTurnoverPropertyMoneyAccumulatorGuid)
+                                    if (dpm.RegPropGuid == r.PropertyMoneyAccumulatorGuid)
                                     {
                                         if (!string.IsNullOrWhiteSpace(dpm.DocPropGuid))
                                         {
@@ -239,36 +239,37 @@ namespace vSharpStudio.vm.ViewModels
                                             if (p.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
                                             {
                                                 var vf = new ValidationFailure(cntx.PropertyPath,
-                                                    $"Register '{r.Name}'. Accumulator property '{r.TableTurnoverPropertyMoneyAccumulatorName}' can be mapped to numerical property only, but property '{p.Name}' of '{doc.Name}' document has a type '{Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.");
+                                                    $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' can be mapped to numerical property only, but property '{p.Name}' of '{doc.Name}' document has a type '{Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.");
                                                 vf.Severity = Severity.Info;
                                                 cntx.AddFailure(vf);
                                             }
                                             else
                                             {
                                                 //var mes = p.CanAssignToNumerical(r.TableTurnoverPropertyMoneyAccumulatorLength, r.TableTurnoverPropertyMoneyAccumulatorAccuracy, false);
-                                                if (p.Length > r.TableTurnoverPropertyMoneyAccumulatorLength)
+                                                if (p.Length > r.PropertyMoneyAccumulatorLength)
                                                 {
                                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                                        $"Register '{r.Name}'. Accumulator property '{r.TableTurnoverPropertyMoneyAccumulatorName}' has length less than length '{p.Name}' property of '{doc.Name}' document.");
+                                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' has length less than length '{p.Name}' property of '{doc.Name}' document.");
                                                     vf.Severity = Severity.Info;
                                                     cntx.AddFailure(vf);
                                                 }
-                                                if (p.Accuracy > r.TableTurnoverPropertyMoneyAccumulatorAccuracy)
+                                                if (p.Accuracy > r.PropertyMoneyAccumulatorAccuracy)
                                                 {
                                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                                        $"Register '{r.Name}'. Accumulator property '{r.TableTurnoverPropertyMoneyAccumulatorName}' has accuracy less than accuracy '{p.Name}' property of '{doc.Name}' document.");
+                                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' has accuracy less than accuracy '{p.Name}' property of '{doc.Name}' document.");
                                                     vf.Severity = Severity.Info;
                                                     cntx.AddFailure(vf);
                                                 }
                                             }
                                         }
-                                        found = true; break;
+                                        found = true;
+                                        break;
                                     }
                                 }
                                 if (!found)
                                 {
                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                        $"Register '{r.Name}'. Accumulator property '{r.TableTurnoverPropertyMoneyAccumulatorName}' is not mapped to '{doc.Name}' document property.");
+                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' is not mapped to '{doc.Name}' document property.");
                                     vf.Severity = Severity.Error;
                                     cntx.AddFailure(vf);
                                 }
@@ -278,7 +279,7 @@ namespace vSharpStudio.vm.ViewModels
                                 found = false;
                                 foreach (var dpm in dtr.ListMappings)
                                 {
-                                    if (dpm.RegPropGuid == r.TableTurnoverPropertyQtyAccumulatorGuid)
+                                    if (dpm.RegPropGuid == r.PropertyQtyAccumulatorGuid)
                                     {
                                         if (!string.IsNullOrWhiteSpace(dpm.DocPropGuid))
                                         {
@@ -286,36 +287,37 @@ namespace vSharpStudio.vm.ViewModels
                                             if (p.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
                                             {
                                                 var vf = new ValidationFailure(cntx.PropertyPath,
-                                                    $"Register '{r.Name}'. Accumulator property '{r.TableTurnoverPropertyQtyAccumulatorName}' can be mapped to numerical property only, but property '{p.Name}' of '{doc.Name}' document has a type '{Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.");
+                                                    $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' can be mapped to numerical property only, but property '{p.Name}' of '{doc.Name}' document has a type '{Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.");
                                                 vf.Severity = Severity.Info;
                                                 cntx.AddFailure(vf);
                                             }
                                             else
                                             {
                                                 //var mes = p.CanAssignToNumerical(r.TableTurnoverPropertyMoneyAccumulatorLength, r.TableTurnoverPropertyMoneyAccumulatorAccuracy, false);
-                                                if (p.Length > r.TableTurnoverPropertyQtyAccumulatorLength)
+                                                if (p.Length > r.PropertyQtyAccumulatorLength)
                                                 {
                                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                                        $"Register '{r.Name}'. Accumulator property '{r.TableTurnoverPropertyQtyAccumulatorName}' has length less than length '{p.Name}' property of '{doc.Name}' document.");
+                                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' has length less than length '{p.Name}' property of '{doc.Name}' document.");
                                                     vf.Severity = Severity.Info;
                                                     cntx.AddFailure(vf);
                                                 }
-                                                if (p.Accuracy > r.TableTurnoverPropertyQtyAccumulatorAccuracy)
+                                                if (p.Accuracy > r.PropertyQtyAccumulatorAccuracy)
                                                 {
                                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                                        $"Register '{r.Name}'. Accumulator property '{r.TableTurnoverPropertyQtyAccumulatorName}' has accuracy less than accuracy '{p.Name}' property of '{doc.Name}' document.");
+                                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' has accuracy less than accuracy '{p.Name}' property of '{doc.Name}' document.");
                                                     vf.Severity = Severity.Info;
                                                     cntx.AddFailure(vf);
                                                 }
                                             }
                                         }
-                                        found = true; break;
+                                        found = true;
+                                        break;
                                     }
                                 }
                                 if (!found)
                                 {
                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                        $"Register '{r.Name}'. Accumulator property '{r.TableTurnoverPropertyQtyAccumulatorName}' is not mapped to '{doc.Name}' document property.");
+                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' is not mapped to '{doc.Name}' document property.");
                                     vf.Severity = Severity.Error;
                                     cntx.AddFailure(vf);
                                 }
@@ -365,13 +367,13 @@ namespace vSharpStudio.vm.ViewModels
                             }
                             if (string.IsNullOrEmpty(regPropName))
                             {
-                                if (r.TableTurnoverPropertyMoneyAccumulatorGuid == dpm.RegPropGuid)
+                                if (r.PropertyMoneyAccumulatorGuid == dpm.RegPropGuid)
                                 {
-                                    regPropName = r.TableTurnoverPropertyMoneyAccumulatorName;
+                                    regPropName = r.PropertyMoneyAccumulatorName;
                                 }
-                                else if (r.TableTurnoverPropertyQtyAccumulatorGuid == dpm.RegPropGuid)
+                                else if (r.PropertyQtyAccumulatorGuid == dpm.RegPropGuid)
                                 {
-                                    regPropName = r.TableTurnoverPropertyQtyAccumulatorName;
+                                    regPropName = r.PropertyQtyAccumulatorName;
                                 }
                                 else
                                 {
@@ -449,22 +451,22 @@ namespace vSharpStudio.vm.ViewModels
                                 var deepestDimension = (RegisterDimension)r.Cfg.DicNodes[deepest.RegPropGuid];
                                 foreach (var pm in propMappings)
                                 {
-                                    if (r.UseMoneyAccumulator && r.TableTurnoverPropertyMoneyAccumulatorGuid == pm.RegPropGuid)
+                                    if (r.UseMoneyAccumulator && r.PropertyMoneyAccumulatorGuid == pm.RegPropGuid)
                                     {
                                         if (deepest.BranchPath != pm.BranchPath)
                                         {
                                             var vf = new ValidationFailure(cntx.PropertyPath,
-                                                $"Register '{r.Name}'. Accumulator property '{r.TableTurnoverPropertyMoneyAccumulatorName}' not mapped on a same record as a deepest dimension '{deepestDimension.Name}' of '{doc.Name}' document.");
+                                                $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' not mapped on a same record as a deepest dimension '{deepestDimension.Name}' of '{doc.Name}' document.");
                                             vf.Severity = Severity.Error;
                                             cntx.AddFailure(vf);
                                         }
                                     }
-                                    if (r.UseQtyAccumulator && r.TableTurnoverPropertyQtyAccumulatorGuid == pm.RegPropGuid)
+                                    if (r.UseQtyAccumulator && r.PropertyQtyAccumulatorGuid == pm.RegPropGuid)
                                     {
                                         if (deepest.BranchPath != pm.BranchPath)
                                         {
                                             var vf = new ValidationFailure(cntx.PropertyPath,
-                                                $"Register '{r.Name}'. Accumulator property '{r.TableTurnoverPropertyQtyAccumulatorName}' not mapped on a same record as a deepest dimension '{deepestDimension.Name}' of '{doc.Name}' document.");
+                                                $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' not mapped on a same record as a deepest dimension '{deepestDimension.Name}' of '{doc.Name}' document.");
                                             vf.Severity = Severity.Error;
                                             cntx.AddFailure(vf);
                                         }

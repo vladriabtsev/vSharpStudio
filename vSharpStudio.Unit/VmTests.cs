@@ -418,7 +418,7 @@ namespace vSharpStudio.Unit
 
             // Can work with register without catalogs and docs
             var reg1 = cfg.Model.GroupDocuments.GroupRegisters.AddRegister("turnover", EnumRegisterType.TURNOVER);
-            reg1.TableTurnoverPropertyMoneyAccumulatorLength = 20;
+            reg1.PropertyMoneyAccumulatorLength = 20;
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
@@ -459,7 +459,7 @@ namespace vSharpStudio.Unit
 
             // Map Money Accumulator to property with low accuracy
             var p_num28_5 = doc1.AddPropertyNumerical("num28_5", 28, 5);
-            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid, p_num28_5.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.PropertyMoneyAccumulatorGuid, p_num28_5.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountWarnings == 0);
             Assert.IsTrue(cfg.CountInfos == 2);
@@ -470,9 +470,9 @@ namespace vSharpStudio.Unit
             cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' has accuracy less than accuracy 'num28_5' property of 'doc1' document."));
 
             // Map Money Accumulator
-            Register.MappingRegPropertyRemove(reg1, doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid);
+            Register.MappingRegPropertyRemove(reg1, doc1.Guid, reg1.PropertyMoneyAccumulatorGuid);
             var p_num10_2 = doc1.AddPropertyNumerical("num10_2", 10, 2);
-            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid, p_num10_2.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.PropertyMoneyAccumulatorGuid, p_num10_2.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
@@ -492,8 +492,8 @@ namespace vSharpStudio.Unit
             cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' not mapped on a same record as a deepest dimension 'cat_dimension1' of 'doc1' document."));
             // Map Money Accumulator on a same record as deepest dimension
             var pd_num10_2 = det1.AddPropertyNumerical("num10_2", 10, 2);
-            Register.MappingRegPropertyRemove(reg1, doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid);
-            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.TableTurnoverPropertyMoneyAccumulatorGuid, pd_num10_2.Guid);
+            Register.MappingRegPropertyRemove(reg1, doc1.Guid, reg1.PropertyMoneyAccumulatorGuid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.PropertyMoneyAccumulatorGuid, pd_num10_2.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
@@ -502,7 +502,7 @@ namespace vSharpStudio.Unit
 
             // Map Qty Accumulator on a same record as deepest dimension
             var pd_num10_4 = det1.AddPropertyNumerical("num10_4", 10, 4);
-            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.TableTurnoverPropertyQtyAccumulatorGuid, pd_num10_4.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.PropertyQtyAccumulatorGuid, pd_num10_4.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
@@ -510,7 +510,7 @@ namespace vSharpStudio.Unit
 
             // Add dimension
             var dim2 = (RegisterDimension)reg1.AddDimension("cat_dimension2");
-            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.TableTurnoverPropertyQtyAccumulatorGuid, pd_num10_4.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.PropertyQtyAccumulatorGuid, pd_num10_4.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);

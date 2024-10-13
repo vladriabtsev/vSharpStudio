@@ -122,15 +122,15 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this._UseMoneyAccumulator = true;
-            this._TableTurnoverPropertyMoneyAccumulatorName = "AccumulatedMoney";
-            this._TableTurnoverPropertyMoneyAccumulatorAccuracy = 2;
-            this._TableTurnoverPropertyMoneyAccumulatorLength = 28;
+            this._PropertyMoneyAccumulatorName = "AccumulatedMoney";
+            this._PropertyMoneyAccumulatorAccuracy = 2;
+            this._PropertyMoneyAccumulatorLength = 28;
             this._UseQtyAccumulator = true;
-            this._TableTurnoverPropertyQtyAccumulatorName = "AccumulatedQty";
-            this._TableTurnoverPropertyQtyAccumulatorAccuracy = 4;
-            this._TableTurnoverPropertyQtyAccumulatorLength = 28;
-            this._TableTurnoverPropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
-            this._TableTurnoverPropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
+            this._PropertyQtyAccumulatorName = "AccumulatedQty";
+            this._PropertyQtyAccumulatorAccuracy = 4;
+            this._PropertyQtyAccumulatorLength = 28;
+            this._PropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
+            this._PropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
             this._PropertyRefTimeline = (Property)this.Cfg.Model.GetPropertyRef(this, this.Cfg.Model.GroupDocuments.DocumentTimeline, System.Guid.NewGuid().ToString(),
                                             "Ref" + this.Cfg.Model.GroupDocuments.DocumentTimeline.CompositeName, 0, false);
             this._IndexDocDateGuid = System.Guid.NewGuid().ToString();
@@ -143,8 +143,6 @@ namespace vSharpStudio.vm.ViewModels
             this._TableBalancePropertyIdGuid = System.Guid.NewGuid().ToString();
             this._TableBalancePropertyVersionGuid = System.Guid.NewGuid().ToString();
             this._TableBalancePropertyDateGuid = System.Guid.NewGuid().ToString();
-            this._TableBalancePropertyMoneyAccumulatorGuid = System.Guid.NewGuid().ToString();
-            this._TableBalancePropertyQtyAccumulatorGuid = System.Guid.NewGuid().ToString();
 
             this._PropertyDocRefGuidName = "DocGuid";
             this._PropertyDocRefName = "Doc";
@@ -412,19 +410,33 @@ namespace vSharpStudio.vm.ViewModels
         //}
         #endregion Roles
 
-        public RegisterDimension AddDimension(string name)
+        public RegisterDimension AddDimension(string name, string? guid = null)
         {
-            var d = new RegisterDimension(this.GroupRegisterDimensions) { Name = name };
-            d.Position = this.GroupProperties.GetNextPosition();
-            this.GroupRegisterDimensions.ListDimensions.Add(d);
-            return d;
+            var node = new RegisterDimension(this.GroupRegisterDimensions) { Name = name };
+            node.Position = this.GroupProperties.GetNextPosition();
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                Debug.Assert(!this.Cfg.DicNodes.ContainsKey(guid));
+                node.Guid = guid;
+            }
+#endif
+            this.GroupRegisterDimensions.ListDimensions.Add(node);
+            return node;
         }
-        public RegisterDimension AddDimension(string name, ICatalog c)
+        public RegisterDimension AddDimension(string name, ICatalog c, string? guid = null)
         {
-            var d = new RegisterDimension(this.GroupRegisterDimensions) { Name = name, DimensionCatalogGuid = c.Guid };
-            d.Position = this.GroupProperties.GetNextPosition();
-            this.GroupRegisterDimensions.ListDimensions.Add(d);
-            return d;
+            var node = new RegisterDimension(this.GroupRegisterDimensions) { Name = name, DimensionCatalogGuid = c.Guid };
+            node.Position = this.GroupProperties.GetNextPosition();
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                Debug.Assert(!this.Cfg.DicNodes.ContainsKey(guid));
+                node.Guid = guid;
+            }
+#endif
+            this.GroupRegisterDimensions.ListDimensions.Add(node);
+            return node;
         }
         public Property AddAttachedProperty(string name, EnumDataType type = EnumDataType.STRING, uint length = 0, uint accuracy = 0, string? guid = null)
         {
@@ -432,8 +444,9 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
             if (guid != null) // for test model generation
             {
-                if (this.Cfg.DicNodes.ContainsKey(guid))
-                    return node;
+                Debug.Assert(!this.Cfg.DicNodes.ContainsKey(guid));
+                //if (this.Cfg.DicNodes.ContainsKey(guid))
+                //    return node;
                 node.Guid = guid;
             }
 #endif
@@ -510,23 +523,10 @@ namespace vSharpStudio.vm.ViewModels
             pRefTimeline.IsRefTimeline = true;
             lst.Add(pRefTimeline);
 
-            //if (isOptimistic) - not relevant for registers
-            //{
-            //    // Version
-            //    var pVer = m.GetPropertyVersion(this, this.Cfg.Model.PropertyVersionGuid); // position 7
-            //    pVer.TagInList = "vr";
-            //    lst.Add(pVer);
-            //}
-
-            //// Post date
-            //var pPostDate = m.GetPropertyDateTimeUtc(this, this.TableTurnoverPropertyPostDateGuid, "PostDate", 9, false); // position 9
-            //pPostDate.TagInList = "pd";
-            //lst.Add(pPostDate);
-
             // Money accumulator
             if (this.UseMoneyAccumulator)
             {
-                var pMoney = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName, this.TableTurnoverPropertyMoneyAccumulatorLength, this.TableTurnoverPropertyMoneyAccumulatorAccuracy, false);
+                var pMoney = (Property)m.GetPropertyNumber(this, this.PropertyMoneyAccumulatorGuid, this.PropertyMoneyAccumulatorName, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
                 pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
                 pMoney.TagInList = "ma";
                 lst.Add(pMoney);
@@ -535,19 +535,11 @@ namespace vSharpStudio.vm.ViewModels
             // Qty accumulator
             if (this.UseQtyAccumulator)
             {
-                var pQty = (Property)m.GetPropertyNumber(this, this.TableTurnoverPropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName, this.TableTurnoverPropertyQtyAccumulatorLength, this.TableTurnoverPropertyQtyAccumulatorAccuracy, false);
+                var pQty = (Property)m.GetPropertyNumber(this, this.PropertyQtyAccumulatorGuid, this.PropertyQtyAccumulatorName, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
                 pQty.Position = IProperty.PropertyQtyAccumulatorPosition;
                 pQty.TagInList = "qa";
                 lst.Add(pQty);
             }
-
-            // Reference to register header
-            //var pRegRef = (Property)m.GetPropertyRef(this, this.Guid, "Ref" + this.CompositeName, 13);
-            //pRegRef.TagInList = "rr";
-            //lst.Add(pRegRef);
-
-            //var pDoc = (Property)m.GetPropertyDocuments(this, this.PropertyDocRefGuid, this.PropertyDocRefName, this.ListObjectDocRefs, 15, false);
-            //lst.Add(pDoc);
 
             // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
             // For all dimensions (catalogs).
@@ -560,6 +552,7 @@ namespace vSharpStudio.vm.ViewModels
                         if (node is Catalog c)
                         {
                             var pCat = Property.Clone(t, t.PropertyRefDimensionCatalog, true);
+                            pCat.Guid = t.Guid;
                             pCat.Position = t.Position;
                             pCat.IsPKey = false;
                             pCat.IsNullable = false;
@@ -605,18 +598,10 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(pPostDate);
             }
 
-            //if (isOptimistic) -not relevant for registers
-            //{
-            //    // Version
-            //    var pVer = m.GetPropertyVersion(this, this.TableBalancePropertyVersionGuid); // position 7
-            //    pVer.TagInList = "vr";
-            //    lst.Add(pVer);
-            //}
-
             // Money accumulator
             if (this.UseMoneyAccumulator)
             {
-                var pMoney = (Property)m.GetPropertyNumber(this, this.TableBalancePropertyMoneyAccumulatorGuid, this.TableTurnoverPropertyMoneyAccumulatorName, this.TableTurnoverPropertyMoneyAccumulatorLength, this.TableTurnoverPropertyMoneyAccumulatorAccuracy, false);
+                var pMoney = (Property)m.GetPropertyNumber(this, this.PropertyMoneyAccumulatorGuid, this.PropertyMoneyAccumulatorName, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
                 pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
                 pMoney.TagInList = "ma";
                 lst.Add(pMoney);
@@ -625,7 +610,7 @@ namespace vSharpStudio.vm.ViewModels
             // Qty accumulator
             if (this.UseQtyAccumulator)
             {
-                var pQty = (Property)m.GetPropertyNumber(this, this.TableBalancePropertyQtyAccumulatorGuid, this.TableTurnoverPropertyQtyAccumulatorName, this.TableTurnoverPropertyQtyAccumulatorLength, this.TableTurnoverPropertyQtyAccumulatorAccuracy, false);
+                var pQty = (Property)m.GetPropertyNumber(this, this.PropertyQtyAccumulatorGuid, this.PropertyQtyAccumulatorName, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
                 pQty.Position = IProperty.PropertyQtyAccumulatorPosition;
                 pQty.TagInList = "qa";
                 lst.Add(pQty);
@@ -642,6 +627,7 @@ namespace vSharpStudio.vm.ViewModels
                         if (node is Catalog c)
                         {
                             var pCat = Property.Clone(t, t.PropertyRefDimensionCatalog, true);
+                            pCat.Guid = t.Guid;
                             pCat.Position = t.Position;
                             pCat.IsPKey = true;
                             pCat.IsNullable = false;
@@ -917,12 +903,12 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 if (reg.UseQtyAccumulator)
                 {
-                    var row = new RegisterMappingRow(doc, reg, reg.TableTurnoverPropertyQtyAccumulatorGuid, reg.TableTurnoverPropertyQtyAccumulatorName);
+                    var row = new RegisterMappingRow(doc, reg, reg.PropertyQtyAccumulatorGuid, reg.PropertyQtyAccumulatorName);
                     reg.ListMappings.Add(row);
                 }
                 if (reg.UseMoneyAccumulator)
                 {
-                    var row = new RegisterMappingRow(doc, reg, reg.TableTurnoverPropertyMoneyAccumulatorGuid, reg.TableTurnoverPropertyMoneyAccumulatorName);
+                    var row = new RegisterMappingRow(doc, reg, reg.PropertyMoneyAccumulatorGuid, reg.PropertyMoneyAccumulatorName);
                     reg.ListMappings.Add(row);
                 }
                 foreach (var t in reg.GroupProperties.ListProperties)
@@ -965,12 +951,12 @@ namespace vSharpStudio.vm.ViewModels
                         }
                         else if (!string.IsNullOrEmpty(t.RegPropertyGuid))
                         {
-                            if (reg.TableTurnoverPropertyMoneyAccumulatorGuid == t.RegPropertyGuid && dicRegPropToDocProp.ContainsKey(t.RegPropertyGuid) && tt.Guid == dicRegPropToDocProp[t.RegPropertyGuid])
+                            if (reg.PropertyMoneyAccumulatorGuid == t.RegPropertyGuid && dicRegPropToDocProp.ContainsKey(t.RegPropertyGuid) && tt.Guid == dicRegPropToDocProp[t.RegPropertyGuid])
                             {
                                 selected = tt;
                                 cnt++;
                             }
-                            else if (reg.TableTurnoverPropertyQtyAccumulatorGuid == t.RegPropertyGuid && dicRegPropToDocProp.ContainsKey(t.RegPropertyGuid) && tt.Guid == dicRegPropToDocProp[t.RegPropertyGuid])
+                            else if (reg.PropertyQtyAccumulatorGuid == t.RegPropertyGuid && dicRegPropToDocProp.ContainsKey(t.RegPropertyGuid) && tt.Guid == dicRegPropToDocProp[t.RegPropertyGuid])
                             {
                                 selected = tt;
                                 cnt++;
@@ -1093,18 +1079,18 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (p.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
                         return;
-                    if (row.RegPropertyGuid == reg.TableTurnoverPropertyMoneyAccumulatorGuid)
+                    if (row.RegPropertyGuid == reg.PropertyMoneyAccumulatorGuid)
                     {
-                        if (p.DataType.Accuracy > 0 && p.DataType.Accuracy > reg.TableTurnoverPropertyMoneyAccumulatorAccuracy)
+                        if (p.DataType.Accuracy > 0 && p.DataType.Accuracy > reg.PropertyMoneyAccumulatorAccuracy)
                             return;
-                        if (p.DataType.Length > reg.TableTurnoverPropertyMoneyAccumulatorLength)
+                        if (p.DataType.Length > reg.PropertyMoneyAccumulatorLength)
                             return;
                     }
-                    else if (row.RegPropertyGuid == reg.TableTurnoverPropertyQtyAccumulatorGuid)
+                    else if (row.RegPropertyGuid == reg.PropertyQtyAccumulatorGuid)
                     {
-                        if (p.DataType.Accuracy > 0 && p.DataType.Accuracy > reg.TableTurnoverPropertyQtyAccumulatorAccuracy)
+                        if (p.DataType.Accuracy > 0 && p.DataType.Accuracy > reg.PropertyQtyAccumulatorAccuracy)
                             return;
-                        if (p.DataType.Length > reg.TableTurnoverPropertyQtyAccumulatorLength)
+                        if (p.DataType.Length > reg.PropertyQtyAccumulatorLength)
                             return;
                     }
                     else
