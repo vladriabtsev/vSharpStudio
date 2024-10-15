@@ -62,6 +62,8 @@
                                     <TextBlock Text="Id"/>
                                     <TextBlock Text="RefTreeParent" Visibility="{Binding UseSeparateTreeForFolders, Converter={StaticResource ConverterBoolToVisible}}"/>
                                     <TextBlock Text="RefParent" Visibility="{Binding UseSelfTreeForFolders, Converter={StaticResource ConverterBoolToVisible}}"/>
+                                    <TextBlock Text="DocNumber" Visibility="{Binding IsDoc, Converter={StaticResource ConverterBoolToVisible}}"/>
+                                    <TextBlock Text="DocDateTime" Visibility="{Binding IsDoc, Converter={StaticResource ConverterBoolToVisible}}"/>
                                     <!--<TextBlock Text="{Binding CodePropertyName}" Visibility="{Binding UseCodeProperty, Converter={StaticResource ConverterBoolToVisible}}"/>
                                     <TextBlock Text="{Binding DescriptionPropertyName}" Visibility="{Binding UseDescriptionProperty, Converter={StaticResource ConverterBoolToVisible}}"/>-->
                                     <!--<TextBlock Text="{Binding IsOpenPropertyName}" Visibility="{Binding UseSelfTreeForFolders, Converter={StaticResource ConverterBoolToVisible}}"/>-->

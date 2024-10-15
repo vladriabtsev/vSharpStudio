@@ -271,9 +271,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var lst = new List<string>();
             Debug.Assert(this.Parent != null);
-            if (this.Parent.Parent is ICatalog)
+            if (this.Parent.Parent is ICatalog c)
             {
-                var c = (Catalog)this.Parent.Parent;
                 if (!c.GetUseCodeProperty())
                     lst.Add(nameof(this.IsUseCode));
                 if (!c.GetUseNameProperty())
@@ -299,7 +298,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             else if (this.Parent.Parent is IDetail)
             {
-                var c = (IDetail)this.Parent.Parent;
                 lst.Add(nameof(this.IsUseCode));
                 lst.Add(nameof(this.IsUseName));
                 lst.Add(nameof(this.IsUseDesc));
@@ -319,7 +317,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             else if (this.Parent.Parent is IRegister)
             {
-                var c = (IRegister)this.Parent.Parent;
                 lst.Add(nameof(this.IsUseCode));
                 lst.Add(nameof(this.IsUseName));
                 lst.Add(nameof(this.IsUseDesc));
@@ -387,7 +384,8 @@ namespace vSharpStudio.vm.ViewModels
         private List<IProperty>? _ListProperties = null;
 
         #region Editor
-
+        [Browsable(false)]
+        public bool IsDoc { get; set; }
         private bool isOnOpeningEditor = false;
         public override void OnOpeningEditor()
         {
@@ -495,6 +493,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else if (this.ParentGroupListForms.Parent is Document d4)
             {
+                this.IsDoc = true;
                 this._ListAllNotSpecialProperties.Clear();
                 var res = new List<IProperty>();
                 d4.GetNormalProperties(res);
