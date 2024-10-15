@@ -170,13 +170,11 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupForms.AddAllAppGenSettingsVmsToNode();
             this.GroupReports.AddAllAppGenSettingsVmsToNode();
         }
-
         public Catalog(ITreeConfigNode parent, string name)
             : this(parent)
         {
             this._Name = name;
         }
-
         public Catalog(ITreeConfigNode parent, string name, List<Property> listProperties)
             : this(parent)
         {

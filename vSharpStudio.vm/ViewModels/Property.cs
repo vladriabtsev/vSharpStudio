@@ -94,6 +94,10 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsCsNullable { get; set; }
         [Browsable(false)]
+        public bool IsViewDefault { get; set; }
+        [Browsable(false)]
+        public bool IsSimple { get; set; }
+        [Browsable(false)]
         public GroupListProperties ParentGroupListProperties { get { Debug.Assert(this.Parent != null); return (GroupListProperties)this.Parent; } }
         [Browsable(false)]
         public IGroupListProperties ParentGroupListPropertiesI { get { Debug.Assert(this.Parent != null); return (IGroupListProperties)this.Parent; } }

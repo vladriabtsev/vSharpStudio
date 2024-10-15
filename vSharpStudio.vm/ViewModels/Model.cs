@@ -814,6 +814,7 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetDataTypeString(res, length, isNullable);
             res.Position = IProperty.PropertyCodePosition;
             res.IsCsNullable = false;
+            res.IsViewDefault = true;
             return res;
         }
         public IProperty GetPropertyCatalogCodeInt(IGroupListProperties parent, string guid, uint length, bool isNullable)
@@ -822,6 +823,7 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetDataTypeNumerical(res, length, true, isNullable);
             res.Position = IProperty.PropertyCodePosition;
             res.IsCsNullable = false;
+            res.IsViewDefault = true;
             return res;
         }
         public IProperty GetPropertyCatalogName(IGroupListProperties parent, string guid, uint length, bool isNullable)
@@ -829,6 +831,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(parent, guid, this.GroupCatalogs.PropertyNameName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, isNullable);
             res.Position = IProperty.PropertyNamePosition;
+            res.IsViewDefault = true;
             return res;
         }
         public IProperty GetPropertyCatalogDescription(IGroupListProperties parent, string guid, uint length, bool isNullable)
@@ -836,6 +839,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(parent, guid, this.GroupCatalogs.PropertyDescriptionName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, isNullable);
             res.Position = IProperty.PropertyDescriptionPosition;
+            res.IsViewDefault = true;
             return res;
         }
         public IProperty GetPropertyIsFolder(IGroupListProperties parent, string guid, bool isNullable)
@@ -861,6 +865,7 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res, EnumTimeAccuracyType.MAX_TIME_ACC, false, isPKey);
             res.Position = IProperty.PropertyDocumentDatePosition;
             res.IsCsNullable = true;
+            res.IsViewDefault = true;
             return res;
         }
         public IProperty GetPropertyDocNumberString(IGroupListProperties parent, string guid, uint length)
@@ -869,6 +874,7 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetDataTypeString(res, length, true);
             res.Position = IProperty.PropertyDocumentNumberPosition;
             //res.IsCsNullable = true;
+            res.IsViewDefault = true;
             return res;
         }
         public IProperty GetPropertyDocNumberInt(IGroupListProperties parent, string guid, uint length)
@@ -878,6 +884,7 @@ namespace vSharpStudio.vm.ViewModels
             //res.DataType.IsNullable = true;
             res.Position = IProperty.PropertyDocumentNumberPosition;
             //res.IsCsNullable = true;
+            res.IsViewDefault = true;
             return res;
         }
         public IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable = false, bool is_pkey = false)
