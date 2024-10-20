@@ -18,8 +18,8 @@ namespace ApplicationLogging
         //public static ILogger CreateLogger<T>() =>
         //  ApplicationLogging.LoggerFactory.CreateLogger<T>();
 
-        public static ILoggerProvider LogerProvider;
-        public static ILogger CreateLogger<T>() => ApplicationLogging.LogerProvider.CreateLogger(typeof(T).Name);
-        public static ILogger CreateLogger(string category) => ApplicationLogging.LogerProvider.CreateLogger(category);
+        public static ILoggerProvider? LogerProvider;
+        public static ILogger CreateLogger<T>() => ApplicationLogging.LogerProvider!.CreateLogger(typeof(T).Name);
+        public static ILogger CreateLogger(string category) => ApplicationLogging.LogerProvider!.CreateLogger(category);
     }
 }

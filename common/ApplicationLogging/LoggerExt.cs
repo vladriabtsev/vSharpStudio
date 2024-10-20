@@ -160,7 +160,7 @@ namespace ApplicationLogging
         //    logger.Log(Microsoft.Extensions.Logging.LogLevel.Trace, null, msg);
         //}
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Trace(this Microsoft.Extensions.Logging.ILogger? logger, string? message = null,
+        public static void Trace(this Microsoft.Extensions.Logging.ILogger? logger, string message = "",
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
@@ -285,7 +285,7 @@ namespace ApplicationLogging
         #region Debug
 
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Debug(this Microsoft.Extensions.Logging.ILogger? logger, string? message = null,
+        public static void Debug(this Microsoft.Extensions.Logging.ILogger? logger, string message = "",
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
@@ -395,7 +395,7 @@ namespace ApplicationLogging
 
         #region Information
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Information(this Microsoft.Extensions.Logging.ILogger? logger, string? message = null,
+        public static void Information(this Microsoft.Extensions.Logging.ILogger? logger, string message = "",
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
@@ -505,7 +505,7 @@ namespace ApplicationLogging
 
         #region Warning
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Warning(this Microsoft.Extensions.Logging.ILogger? logger, string? message = null,
+        public static void Warning(this Microsoft.Extensions.Logging.ILogger? logger, string message = "",
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
@@ -615,7 +615,7 @@ namespace ApplicationLogging
 
         #region Error
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Error(this Microsoft.Extensions.Logging.ILogger? logger, string? message = null,
+        public static void Error(this Microsoft.Extensions.Logging.ILogger? logger, string message = "",
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",
@@ -725,7 +725,7 @@ namespace ApplicationLogging
 
         #region Critical
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Critical(this Microsoft.Extensions.Logging.ILogger? logger, Exception ex, string? message = null,
+        public static void Critical(this Microsoft.Extensions.Logging.ILogger? logger, Exception ex, string message = "",
             LoggerExt.Dummy? dummy = null,
             [CallerMemberName] string memberName = "",
             [CallerFilePath] string sourceFilePath = "",

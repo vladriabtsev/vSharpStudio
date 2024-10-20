@@ -102,7 +102,7 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public IGroupListProperties ParentGroupListPropertiesI { get { Debug.Assert(this.Parent != null); return (IGroupListProperties)this.Parent; } }
         [Browsable(false)]
-        public IListProperties ParentListPropertiesI { get { Debug.Assert(this.Parent != null); return (IListProperties)this.Parent; } }
+        public IListProperties ParentListPropertiesI { get { Debug.Assert(this.Parent != null); if (this.ParentProperty != null) return (IListProperties)this.ParentProperty.ParentGroupListPropertiesI; return (IListProperties)this.Parent; } }
         [Browsable(false)]
         // Can be used by a generator to keep calculated property data
         public object? Tag { get; set; }
@@ -1003,7 +1003,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.TIME:
                 case EnumDataType.TIMESPAN:
                 case EnumDataType.TIMESPAN_TIME_ONLY:
-                //case EnumDataType.TIMEZ:
+                    //case EnumDataType.TIMEZ:
                     break;
                 case EnumDataType.CATALOG:
                     if (this.DataType.ObjectRef.ForeignObjectGuid != from.DataType.ObjectRef.ForeignObjectGuid)

@@ -13,7 +13,9 @@ namespace ApplicationLogging
         public static string GetMethodStartString()
         {
             var sb = new StringBuilder();
-            var method = new StackTrace().GetFrame(2).GetMethod();
+            var method = new StackTrace().GetFrame(2)?.GetMethod();
+            if (method == null)
+                return "No method in stack frame";
             //sb.Append("Method is starting. Class = ");
             //sb.Append(method.DeclaringType.FullName);
             //sb.Append("Method = ");

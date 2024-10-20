@@ -62,6 +62,7 @@ namespace GenVmFromProto
                     {
                         var rootPath = Path.GetPathRoot(o.LogFilePath);
                         var dir = Path.GetDirectoryName(o.LogFilePath);
+                        Debug.Assert(dir != null);
                         if (rootPath != "" && dir != "" && !Directory.Exists(dir))
                         {
                             Console.WriteLine($"ERROR: Log directory '{o.LogFilePath}' is not exists.");
