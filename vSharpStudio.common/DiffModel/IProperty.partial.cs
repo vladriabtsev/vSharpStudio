@@ -76,7 +76,6 @@ namespace vSharpStudio.common
         /// </summary>
         bool IsHidden { get; set; }
         string? ComplexObjectName { get; set; }
-        string RefIdName();
         string PropValueValue { get; }
         IPropertyRangeValuesRequirements? RangeValuesRequirementsI { get; }
         string ComplexObjectNameWithDot();

@@ -41,31 +41,6 @@ namespace vSharpStudio.vm.ViewModels
                     mes = mes + $" Tag:{this.TagInList?.ToString()}";
             }
         }
-        public string RefIdName()
-        {
-            if (!string.IsNullOrWhiteSpace(this.DataType.ObjectRef.ForeignObjectGuid))
-            {
-                var fname = ((ICompositeName)this.Cfg.DicNodes[this.DataType.ObjectRef.ForeignObjectGuid]).CompositeName;
-                switch (this.DataType.DataTypeEnum)
-                {
-                    case EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER:
-                    case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG:
-                    case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER:
-                    case EnumDataType.REF_DETAIL_TO_PARENT_DETAIL:
-                    case EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT:
-                        return this.Name + "Ref" + fname;
-                    case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
-                    case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
-                        return this.Name + "Ref" + fname;
-                    case EnumDataType.REF_TIMELINE:
-                        return this.Name + "Ref" + fname;
-                    case EnumDataType.CATALOG:
-                    case EnumDataType.DOCUMENT:
-                        return this.Name + "Ref" + fname;
-                }
-            }
-            return this.Name;
-        }
         /// <summary>
         /// Property Path in object. Samples: Property1, Detail1->Property1
         /// </summary>

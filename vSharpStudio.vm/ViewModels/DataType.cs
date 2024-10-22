@@ -411,6 +411,22 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumDataType.BOOL:
                     break;
+                case EnumDataType.DATE:
+                    break;
+                case EnumDataType.DATETIMELOCAL:
+                    break;
+                case EnumDataType.DATETIMEUTC:
+                    break;
+                case EnumDataType.DATETIMEZ:
+                    break;
+                case EnumDataType.DATETIMEOFFSET:
+                    break;
+                case EnumDataType.TIMESPAN_TIME_ONLY:
+                case EnumDataType.TIMESPAN:
+                case EnumDataType.TIME:
+                    sb.Append(" Acc:");
+                    sb.Append(Enum.GetName<EnumTimeAccuracyType>(p.AccuracyForTime));
+                    break;
                 default:
                     sb.Append(" - NOT SUPPORTED");
                     break;
