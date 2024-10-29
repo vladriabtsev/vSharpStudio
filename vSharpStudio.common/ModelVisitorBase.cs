@@ -353,6 +353,9 @@ namespace vSharpStudio.common
         {
             this._act = act;
             this.currCfg = curr;
+            this.currSln = sln;
+            this.currPrj = prj;
+            this.currAppProjectGenerator = prjGen;
             this.currModel = curr.Model;
 
             this.BeginVisit(this.currCfg);
@@ -454,6 +457,7 @@ namespace vSharpStudio.common
         protected IConfig? currCfg;
         protected IAppSolution? currSln = null;
         protected IAppProject? currPrj = null;
+        protected IAppProjectGenerator? currAppProjectGenerator = null;
         protected IModel? currModel;
         protected IEnumeration? currEnum = null;
         protected IForm? currForm = null;
