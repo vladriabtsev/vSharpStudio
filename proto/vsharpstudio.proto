@@ -2123,8 +2123,8 @@ message proto_catalog {
     bool use_separate_tree_for_folders = 23;
     // @attr [PropertyOrderAttribute(24)]
     // @attr [DisplayName("Items at root")]
-    // @attr [Description("Support items in the root of separate tree for folders")]
-    bool use_items_without_folder_in_separate_tree_for_folders = 24;
+    // @attr [Description("Support items in the root without folders")]
+    bool use_items_at_root = 24;
     // @attr [PropertyOrderAttribute(25)]
     // @attr [DisplayName("Use Code")]
     // @attr [Description("Use Code property for catalog item")]

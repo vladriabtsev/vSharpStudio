@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using FluentValidation;
+using FluentValidation.Results;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.wpf.Controls;
@@ -52,13 +53,16 @@ namespace vSharpStudio.vm.ViewModels
 
         private void Init()
         {
-            this.ListAppSolutions.OnAddingAction = (t) => {
+            this.ListAppSolutions.OnAddingAction = (t) =>
+            {
                 t.IsNew = true;
             };
-            this.ListAppSolutions.OnRemovedAction = (t) => {
+            this.ListAppSolutions.OnRemovedAction = (t) =>
+            {
                 this.OnRemoveChild();
             };
-            this.ListAppSolutions.OnClearedAction = () => {
+            this.ListAppSolutions.OnClearedAction = () =>
+            {
                 this.OnRemoveChild();
             };
             this._Name = Defaults.ApplicationGroupName;
@@ -132,6 +136,48 @@ namespace vSharpStudio.vm.ViewModels
                 nameof(this.Children)
             };
             return lst.ToArray();
+        }
+        public string? TableNameValidation(string name)
+        {
+            foreach (var t in this.ListAppSolutions)
+            {
+                foreach (var tt in t.ListAppProjects)
+                {
+                    foreach (var ttt in tt.ListAppProjectGenerators)
+                    {
+                        if (ttt.DynamicGeneratorSettings is IDbNamesValidator lim)
+                        {
+                            var res = lim.TableNameValidation(name);
+                            if (res != null)
+                            {
+                                return $"{res} Sln:{t.Name}, Prj:{tt.Name}, Gen:{ttt.Name}";
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+        public string? FieldNameValidation(string name)
+        {
+            foreach (var t in this.ListAppSolutions)
+            {
+                foreach (var tt in t.ListAppProjects)
+                {
+                    foreach (var ttt in tt.ListAppProjectGenerators)
+                    {
+                        if (ttt.DynamicGeneratorSettings is IDbNamesValidator lim)
+                        {
+                            var res = lim.FieldNameValidation(name);
+                            if (res != null)
+                            {
+                                return $"{res} Sln:{t.Name}, Prj:{tt.Name}, Gen:{ttt.Name}";
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
         }
     }
 }

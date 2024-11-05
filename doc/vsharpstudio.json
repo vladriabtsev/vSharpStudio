@@ -3149,8 +3149,8 @@
               "defaultValue": ""
             },
             {
-              "name": "use_items_without_folder_in_separate_tree_for_folders",
-              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Items at root\")]\n@attr [Description(\"Support items in the root of separate tree for folders\")]",
+              "name": "use_items_at_root",
+              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Items at root\")]\n@attr [Description(\"Support items in the root without folders\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",

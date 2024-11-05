@@ -48,6 +48,13 @@ namespace vSharpStudio.vm.ViewModels
                         cntx.AddFailure(vf);
                     }
                 }
+                var mes = p.Cfg.GroupAppSolutions.TableNameValidation(p.CompositeName);
+                if (!string.IsNullOrEmpty(mes))
+                {
+                    var vf = new ValidationFailure(nameof(p.Name), mes);
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
             });
         }
     }

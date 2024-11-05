@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
+using FluentValidation.Results;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -9,6 +11,17 @@ namespace vSharpStudio.vm.ViewModels
     {
         public GroupListConstantsValidator()
         {
+            this.RuleFor(x => x.Name).Custom((name, cntx) =>
+            {
+                var c = (IGroupListConstants)cntx.InstanceToValidate;
+                var mes = c.Cfg.GroupAppSolutions.TableNameValidation(c.CompositeName);
+                if (!string.IsNullOrEmpty(mes))
+                {
+                    var vf = new ValidationFailure(nameof(c.Name), mes);
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+            });
             this.RuleFor(x => x.ShortIdTypeForCacheKey).NotEmpty().WithMessage("Can't be empty");
             this.RuleFor(x => x.ShortIdTypeForCacheKey)
                 .Must((o, id) =>

@@ -106,7 +106,7 @@ namespace vSharpStudio.vm.ViewModels
             this._MaxDescriptionLength = 100;
             this._UseTree = false;
             this._MaxTreeLevels = 2;
-            this._UseItemsWithoutFolderInSeparateTreeForFolders = true;
+            this._UseItemsAtRoot = true;
             this._UseSeparateTreeForFolders = false;
             this._GroupIconType = EnumCatalogTreeIcon.Folder;
             this._UseCodeProperty = EnumUseType.Default;
@@ -399,12 +399,12 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(nameof(this.GroupIconType));
                 lst.Add(nameof(this.MaxTreeLevels));
                 lst.Add(nameof(this.UseSeparateTreeForFolders));
-                lst.Add(nameof(this.UseItemsWithoutFolderInSeparateTreeForFolders));
+                lst.Add(nameof(this.UseItemsAtRoot));
             }
             else
             {
                 if (!this.UseSeparateTreeForFolders)
-                    lst.Add(nameof(this.UseItemsWithoutFolderInSeparateTreeForFolders));
+                    lst.Add(nameof(this.UseItemsAtRoot));
             }
             if (!this.GetUseCodeProperty())
             {
@@ -516,7 +516,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     prp = this.PropertyRefFolder;
                     prp.SetPosition(IProperty.PropertyRefParentPosition);
-                    if (this.UseItemsWithoutFolderInSeparateTreeForFolders)
+                    if (this.UseItemsAtRoot)
                     {
                         ((Property)prp).IsNullable = true;
                     }

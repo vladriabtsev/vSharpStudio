@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
 using FluentValidation.Results;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -44,6 +45,13 @@ namespace vSharpStudio.vm.ViewModels
                         vf.Severity = Severity.Error;
                         cntx.AddFailure(vf);
                     }
+                }
+                var mes = p.Cfg.GroupAppSolutions.TableNameValidation(p.CompositeName);
+                if (!string.IsNullOrEmpty(mes))
+                {
+                    var vf = new ValidationFailure(nameof(p.Name), mes);
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
                 }
             });
             #region Auto UI
