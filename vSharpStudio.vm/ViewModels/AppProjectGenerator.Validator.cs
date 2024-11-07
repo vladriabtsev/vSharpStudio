@@ -51,10 +51,12 @@ namespace vSharpStudio.vm.ViewModels
                     if (!string.IsNullOrEmpty(file))
                     {
                         var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                        if (pg.PluginDbGenerator != null)
+                            return;
                         var path = pg.GetGenerationFilePath();
                         var gs = pg.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions;
                         StringBuilder sb = new StringBuilder();
-                        sb.Append("Files override each other . Generators: ");
+                        sb.Append("Files override each other. Generators: ");
                         int count = 0;
                         string sep = "";
                         foreach (var t in gs.ListAppSolutions)

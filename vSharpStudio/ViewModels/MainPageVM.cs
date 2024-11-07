@@ -1259,7 +1259,7 @@ namespace vSharpStudio.ViewModels
                 });
             }
         }
-        private async Task ValidateConfigAsync(TestTransformation? o)
+        private async Task<bool> ValidateConfigAsync(TestTransformation? o)
         {
             await this.BtnConfigValidateAsync.ExecuteAsync(o);
             if (this._Config.CountErrors > 0)
@@ -1272,7 +1272,7 @@ namespace vSharpStudio.ViewModels
                         "Error", System.Windows.MessageBoxButton.OK);
                     this.cancellationTokenSource = null;
                     this.ProgressVM.ProgressClose();
-                    return;
+                    return false;
 #if DEBUG
                 }
                 else
@@ -1296,11 +1296,12 @@ namespace vSharpStudio.ViewModels
                 {
                     var res = Xceed.Wpf.Toolkit.MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                     if (res != System.Windows.MessageBoxResult.OK)
-                        return;
+                        return false;
                 }
 #if DEBUG
             }
 #endif
+            return true;
         }
         public vButtonVmAsync<TestTransformation?> BtnConfigCurrentUpdateAsync
         {
@@ -1313,7 +1314,9 @@ namespace vSharpStudio.ViewModels
                             Debug.Assert(this.ProgressVM != null);
                             try
                             {
-                                await ValidateConfigAsync(o);
+                                var isValid = await ValidateConfigAsync(o);
+                                if (!isValid)
+                                    return;
 
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
@@ -1393,7 +1396,9 @@ namespace vSharpStudio.ViewModels
                             Debug.Assert(this.ProgressVM != null);
                             try
                             {
-                                await ValidateConfigAsync(o);
+                                var isValid = await ValidateConfigAsync(o);
+                                if (!isValid)
+                                    return;
 
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;

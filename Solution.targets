@@ -7,6 +7,8 @@
   </PropertyGroup>  
   <PropertyGroup>
     <MyTargetFramework>net8.0</MyTargetFramework>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <!--<Platforms>x64</Platforms>-->
   </PropertyGroup>
   <PropertyGroup Condition="'$(MyTargetFramework)'=='net6.0'">
     <TargetFramework Condition="'$(TargetFrameworkVariation)'==''">net6.0</TargetFramework>
