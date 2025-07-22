@@ -22,4 +22,8 @@
     <TargetFramework Condition="'$(TargetFrameworkVariation)'==''">net9.0</TargetFramework>
     <TargetFramework Condition="'$(TargetFrameworkVariation)'=='windows'">net9.0-windows</TargetFramework>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(MyTargetFramework)'=='net10.0'">
+    <TargetFramework Condition="'$(TargetFrameworkVariation)'==''">net10.0</TargetFramework>
+    <TargetFramework Condition="'$(TargetFrameworkVariation)'=='windows'">net10.0-windows</TargetFramework>
+  </PropertyGroup>
 </Project>
