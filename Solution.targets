@@ -6,7 +6,7 @@
     <InformationalVersion>0.0.0.0</InformationalVersion>
   </PropertyGroup>  
   <PropertyGroup>
-    <MyTargetFramework>net8.0</MyTargetFramework>
+    <MyTargetFramework>net9.0</MyTargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <!--<Platforms>x64</Platforms>-->
   </PropertyGroup>
@@ -26,4 +26,13 @@
     <TargetFramework Condition="'$(TargetFrameworkVariation)'==''">net10.0</TargetFramework>
     <TargetFramework Condition="'$(TargetFrameworkVariation)'=='windows'">net10.0-windows</TargetFramework>
   </PropertyGroup>
+  <!--for project files-->
+  <!--https://learn.microsoft.com/en-us/nuget/concepts/package-versioning?tabs=semver20sort-->
+  <!--https://learn.microsoft.com/en-us/nuget/concepts/package-versioning?tabs=semver20sort#version-ranges-->
+  <!--https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management-->
+  <!--https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files-->
+  <!--<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+  </ItemGroup>-->
+  <!--<ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
+  </ItemGroup>-->
 </Project>

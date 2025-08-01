@@ -50,19 +50,8 @@
     <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj" />
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
-    <!--<PackageReference Include="System.IO.FileSystem.Primitives" Version="4.1.0" />-->
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-windows'">
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.2" />
-    
-    <!--<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />-->
     <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="9.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.14.15">
       <PrivateAssets>all</PrivateAssets>

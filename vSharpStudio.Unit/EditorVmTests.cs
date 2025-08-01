@@ -1187,9 +1187,9 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("test_one_to_one_rel", lst[0].Name);
             // RefCat1
             lst = d2.GetIncludedProperties(null, false, true);
-            Assert.AreEqual(1, lst.Count);
-            Assert.AreEqual(EnumDataType.CATALOG, lst[0].DataType.DataTypeEnum);
-            Assert.AreEqual("test_one_to_one_rel", lst[0].Name);
+            Assert.AreEqual(2, lst.Count);
+            Assert.AreEqual(EnumDataType.CATALOG, lst[1].DataType.DataTypeEnum);
+            Assert.AreEqual("test_one_to_one_rel", lst[1].Name);
 
             // 2.
             rel.RefType = EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY;
@@ -1204,7 +1204,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("test_one_to_one_rel", lst[0].Name);
             // nothing
             lst = d2.GetIncludedProperties(null, false, true);
-            Assert.AreEqual(0, lst.Count);
+            Assert.AreEqual(1, lst.Count);
 
             // 3.
             rel.RefType = EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_SECOND_TO_FIRST_ONLY;
@@ -1217,9 +1217,9 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(2, lst.Count);
             // RefCat1
             lst = d2.GetIncludedProperties(null, false, true);
-            Assert.AreEqual(1, lst.Count);
-            Assert.AreEqual(EnumDataType.CATALOG, lst[0].DataType.DataTypeEnum);
-            Assert.AreEqual("test_one_to_one_rel", lst[0].Name);
+            Assert.AreEqual(2, lst.Count);
+            Assert.AreEqual(EnumDataType.CATALOG, lst[1].DataType.DataTypeEnum);
+            Assert.AreEqual("test_one_to_one_rel", lst[1].Name);
             #endregion One To One
 
             #region Many To Many
@@ -1238,7 +1238,7 @@ namespace vSharpStudio.Unit
             lst = c1.GetIncludedProperties(null, false, true);
             Assert.AreEqual(2, lst.Count);
             lst = d2.GetIncludedProperties(null, false, true);
-            Assert.AreEqual(0, lst.Count);
+            Assert.AreEqual(1, lst.Count);
 
             lst = rel2.GetIncludedProperties(null, false, true);
             Assert.AreEqual(2, lst.Count);
