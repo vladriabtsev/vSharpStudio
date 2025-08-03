@@ -29,9 +29,9 @@ namespace ApplicationLogging
             }
         }
         private static ILoggerProvider? _LoggerProvider = null;
-        public static ILogger? CreateLogger<T>() => Logger.LoggerProvider?.CreateLogger(typeof(T).Name);
-        public static ILogger? CreateLogger(string category) => Logger.LoggerProvider?.CreateLogger(category);
-        public static ILogger? CreateLogger(object obj) => Logger.LoggerProvider?.CreateLogger(obj.GetType().Name);
+        public static ILogger? CreateLogger<T>() => _LoggerProvider?.CreateLogger(typeof(T).Name);
+        public static ILogger? CreateLogger(string category) => _LoggerProvider?.CreateLogger(category);
+        public static ILogger? CreateLogger(object obj) => _LoggerProvider?.CreateLogger(obj.GetType().Name);
 
     }
 }
