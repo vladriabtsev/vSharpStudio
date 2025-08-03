@@ -63,7 +63,6 @@ namespace vSharpStudio.Unit
     {
         static VmCommand()
         {
-            LoggerInit.Init();
         }
         private static Microsoft.Extensions.Logging.ILogger _logger;
         // public VmTests(ITestOutputHelper output)
@@ -76,7 +75,7 @@ namespace vSharpStudio.Unit
             // _logger.LogInformation("======================  Start VmTests tests ===============================");
             if (_logger == null)
                 //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
-                _logger = Logger.CreateLogger<PluginTests>();
+                _logger = AppLogger.CreateLogger<PluginTests>();
         }
 
         #region AsyncCommand
@@ -103,7 +102,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         async public Task ExecuteFuncAsyncWithException()
         {
-            await Assert.ThrowsExceptionAsync<Exception>(async () =>
+            await Assert.ThrowsExactlyAsync<Exception>(async () =>
             {
                 await vCommandAsync.ExecuteActionAsync(() =>
                 {
@@ -114,7 +113,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         async public Task ExecuteFuncAsyncIntWithException()
         {
-            await Assert.ThrowsExceptionAsync<Exception>(async () =>
+            await Assert.ThrowsExactlyAsync<Exception>(async () =>
             {
                 await vCommandAsync<int>.ExecuteFuncAsync(() =>
                 {
@@ -212,7 +211,7 @@ namespace vSharpStudio.Unit
         [TestMethod]
         async public Task AsyncCommandIntWithException()
         {
-            await Assert.ThrowsExceptionAsync<Exception>(async () =>
+            await Assert.ThrowsExactlyAsync<Exception>(async () =>
             {
                 var command = vCommandAsync<int>.Create((c) =>
                 {

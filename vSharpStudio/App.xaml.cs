@@ -28,20 +28,6 @@ namespace vSharpStudio
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
-
-            Serilog.Log.Logger = new Serilog.LoggerConfiguration()
-                .MinimumLevel.Verbose()
-                .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
-                // .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
-                .CreateLogger();
-            if (Logger.LoggerProvider != null)
-                return;
-            Logger.LoggerProvider = new SerilogLoggerProvider(Serilog.Log.Logger);
-
-            //ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
-            //this.logger = loggerFactory.CreateLogger<App>();
-            //this.logger.LogInformation("Application is starting");
 
             //#region DI services
 

@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Config(bool isNew) : this((ITreeConfigNode?)null)
         {
-            this._logger = Logger.CreateLogger<Config>();
+            this._logger = AppLogger.CreateLogger<Config>();
             this.IsNew = isNew;
             this.Init();
             if (isNew)

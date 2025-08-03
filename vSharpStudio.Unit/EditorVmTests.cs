@@ -30,7 +30,6 @@ namespace vSharpStudio.Unit
     {
         static EditorVmTests()
         {
-            LoggerInit.Init();
         }
         private static Microsoft.Extensions.Logging.ILogger _logger;
         public EditorVmTests()
@@ -38,7 +37,7 @@ namespace vSharpStudio.Unit
             VmBindable.isUnitTests = true;
             if (_logger == null)
                 //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
-                _logger = ApplicationLogging.Logger.CreateLogger<PluginTests>();
+                _logger = AppLogger.CreateLogger<PluginTests>();
         }
 
         //internal static void InitLogging(object type)

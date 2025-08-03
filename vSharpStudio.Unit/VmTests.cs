@@ -24,7 +24,6 @@ namespace vSharpStudio.Unit
     {
         static VmTests()
         {
-            LoggerInit.Init();
         }
         private static Microsoft.Extensions.Logging.ILogger _logger;
         // public VmTests(ITestOutputHelper output)
@@ -39,7 +38,7 @@ namespace vSharpStudio.Unit
             // _logger.LogInformation("======================  Start VmTests tests ===============================");
             if (_logger == null)
                 //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
-                _logger = Logger.CreateLogger<PluginTests>();
+                _logger = AppLogger.CreateLogger<PluginTests>();
         }
 
         #region Editable

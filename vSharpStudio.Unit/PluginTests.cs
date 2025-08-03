@@ -44,17 +44,6 @@ namespace vSharpStudio.Unit
             ////    .AddHostedService<MainPageVM>());
             //MyHost = hostBuilder.Build();
             //MyHost.RunAsync();
-
-            //MyLoggerFactory = LoggerFactory.Create(builder => builder
-            //    .AddDebug()
-            //.AddSimpleConsole(options =>
-            //{
-            //    options.IncludeScopes = true;
-            //    options.SingleLine = true;
-            //    options.TimestampFormat = "hh:mm:ss ";
-            //})
-            //);
-            Logger.LoggerProvider = new DebugLoggerProvider();
         }
         [AssemblyCleanup]
         public static void TearDownTests()
@@ -67,7 +56,7 @@ namespace vSharpStudio.Unit
             testContext = cntx;
             //_logger = MyHost.Services.GetRequiredService<ILogger<PluginTests>>();
             //_logger = MyLoggerFactory.CreateLogger<PluginTests>();
-            _logger = Logger.CreateLogger<PluginTests>();
+            _logger = AppLogger.CreateLogger<PluginTests>();
         }
         [ClassCleanup]
         public static void TearDownTestClass()
@@ -1303,7 +1292,7 @@ namespace vSharpStudio.Unit
 
             // Can catch Exception
             tt.IsThrowExceptionOnBuildValidated = true;
-            await Assert.ThrowsExceptionAsync<Exception>(() =>
+            await Assert.ThrowsExactlyAsync<Exception>(() =>
             {
                 return vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
             });
@@ -1333,7 +1322,7 @@ namespace vSharpStudio.Unit
             #region not compilable code
             tt = new TestTransformation();
             tt.IsThrowExceptionOnBuildValidated = true;
-            await Assert.ThrowsExceptionAsync<Exception>(() =>
+            await Assert.ThrowsExactlyAsync<Exception>(() =>
             {
                 return vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
             });
@@ -1357,7 +1346,7 @@ namespace vSharpStudio.Unit
             #region not compilable code
             tt = new TestTransformation();
             tt.IsThrowExceptionOnBuildValidated = true;
-            await Assert.ThrowsExceptionAsync<Exception>(() =>
+            await Assert.ThrowsExactlyAsync<Exception>(() =>
             {
                 return vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
             });

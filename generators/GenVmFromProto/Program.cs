@@ -13,6 +13,7 @@ using CommunityToolkit.Diagnostics;
 using Google.Protobuf.Reflection;
 using Microsoft.Extensions.Logging;
 using Proto.Doc;
+using Serilog.Core;
 using vSharpStudio.common;
 
 namespace GenVmFromProto
@@ -74,8 +75,8 @@ namespace GenVmFromProto
                         if (string.IsNullOrWhiteSpace(fileExt)) fileExt = ".txt";
                         logFilePath = Path.Combine(new string[] { rootPath ?? "", dir, fileName + fileExt });
                     }
-                    LoggerInit.Init(logFilePath);
-                    var _logger = Logger.CreateLogger<Program>();
+                    AppLogger.LogFilePath = logFilePath;
+                    var _logger = AppLogger.CreateLogger<Program>();
                     _logger?.Information("***  App Starting IsModel={IsModel}", o.IsModel);
 
                     Debug.Assert(o.ProtoFileName != null);

@@ -26,7 +26,6 @@ namespace vSharpStudio.Unit
 
         static MainVmTests()
         {
-            LoggerInit.Init();
         }
         private static Microsoft.Extensions.Logging.ILogger _logger;
         public MainVmTests()
@@ -34,7 +33,7 @@ namespace vSharpStudio.Unit
             VmBindable.isUnitTests = true;
             if (_logger == null)
                 //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
-                _logger = Logger.CreateLogger<PluginTests>();
+                _logger = AppLogger.CreateLogger<PluginTests>();
         }
 
         private void remove_config()

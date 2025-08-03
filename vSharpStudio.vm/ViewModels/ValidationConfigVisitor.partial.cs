@@ -39,7 +39,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public ValidationConfigVisitor(CancellationToken cancellationToken, ProgressVM? progressVM)
         {
-            this._logger = Logger.CreateLogger<ValidationConfigVisitor>();
+            this._logger = AppLogger.CreateLogger<ValidationConfigVisitor>();
             this._cancellationToken = cancellationToken;
             this.progressVM = progressVM;
             this.CountCurrentValidatableNode = 0;

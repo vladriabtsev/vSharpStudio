@@ -117,10 +117,10 @@ namespace ApplicationLogging
             var methodName = memberName;
             var line = sourceLineNumber;
             int n = Environment.StackTrace.Split(Environment.NewLine).Count();
-            if (n < Logger.IndentShift)
-                Logger.IndentShift = n;
+            if (n < AppLogger.IndentShift)
+                AppLogger.IndentShift = n;
             //System.Diagnostics.Debug.Assert(n >= Logger.IndentShift);
-            var indent = new String(' ', n - Logger.IndentShift);
+            var indent = new String(' ', n - AppLogger.IndentShift);
             string msg = "";
             if (message != null)
                 msg = $"{indent}{message} [{methodName}] {fileName} {line}";

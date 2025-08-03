@@ -19,6 +19,7 @@ namespace ApplicationLogging
 {
     public static class AppLogger
     {
+        public static string? LogFilePath { get; set; } = ".\\Logs\\log.txt";
         public static int IndentShift { get; internal set; } = -1;
         public static Microsoft.Extensions.Logging.ILoggerFactory? LoggerFactory
         {
@@ -28,23 +29,32 @@ namespace ApplicationLogging
                 {
                     int n = Environment.StackTrace.Split(Environment.NewLine).Count();
                     if (IndentShift == -1 || IndentShift > n) IndentShift = n;
-                    //SelfLog.Enable(msg => Debug.WriteLine(msg));
-                    var logCfg = new LoggerConfiguration()
-                        .MinimumLevel.Verbose();
-                    //if (category != null)
-                    //    logCfg.Filter.ByIncludingOnly(Matching.FromSource(category));
-                    var path = ".\\Logs\\log.txt";
-                    logCfg.WriteTo.Async(a => a.File(path,
-                        retainedFileTimeLimit: TimeSpan.FromDays(3),
-                        //retainedFileCountLimit: 5,
-                        rollingInterval: Serilog.RollingInterval.Day,
-                        rollOnFileSizeLimit: true
-                        ));
-                    Log.Logger = logCfg.CreateLogger();
-                    _LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder
-                        .SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace)
-                        .AddSerilog()
-                        .AddDebug());
+                    if (LogFilePath.Length > 0)
+                    {
+                        //logPath = AppDomain.CurrentDomain.BaseDirectory + logPath;
+                        Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
+                        var logCfg = new Serilog.LoggerConfiguration()
+                            .MinimumLevel.Verbose();
+                        //if (category != null)
+                        //    logCfg.Filter.ByIncludingOnly(Matching.FromSource(category));
+                        logCfg.WriteTo.Async(a => a.File(LogFilePath,
+                            retainedFileTimeLimit: TimeSpan.FromDays(3),
+                            //retainedFileCountLimit: 5,
+                            rollingInterval: Serilog.RollingInterval.Day,
+                            rollOnFileSizeLimit: true
+                            ));
+                        Serilog.Log.Logger = logCfg.CreateLogger();
+                        _LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder
+                            .SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace)
+                            .AddSerilog()
+                            .AddDebug());
+                    }
+                    else
+                    {
+                        _LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder
+                            .SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace)
+                            .AddDebug());
+                    }
                 }
                 return _LoggerFactory;
             }

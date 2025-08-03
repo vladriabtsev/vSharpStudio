@@ -21,7 +21,7 @@ namespace Renamer
     {
         public static async Task RenameAsync(Solution solution, Document document, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
         {
-            var _logger = Logger.CreateLogger<CodeAnalysisCSharp>();
+            var _logger = AppLogger.CreateLogger<CodeAnalysisCSharp>();
             _logger?.Information("List renames:");
             foreach (var tr in lstRenames)
             {

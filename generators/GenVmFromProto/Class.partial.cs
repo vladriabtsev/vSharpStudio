@@ -23,7 +23,7 @@ namespace GenVmFromProto
         public Class(FileDescriptor root, MessageDescriptor message, Dictionary<string, List<MessageDescriptor>> dicParents,
             string destNS, string protoNS, string defaultBaseClass)
         {
-            var _logger = Logger.CreateLogger(this);
+            var _logger = AppLogger.CreateLogger(this);
             this.root = root;
             this.message = message;
             this.dicParents = dicParents;

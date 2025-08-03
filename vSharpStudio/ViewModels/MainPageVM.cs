@@ -113,7 +113,7 @@ namespace vSharpStudio.ViewModels
         }
         public MainPageVM(MainPage? mainPage, string? explicitConfigurationPathForTests = null) : this()
         {
-            _logger = Logger.CreateLogger<MainPageVM>();
+            _logger = AppLogger.CreateLogger<MainPageVM>();
             _logger?.Debug("Created with configFile='{ExplicitConfigurationPathForTests}'", explicitConfigurationPathForTests);
             MainPageVM._mainPage = mainPage;
             //this.onImportsSatisfied = onImportsSatisfied;
