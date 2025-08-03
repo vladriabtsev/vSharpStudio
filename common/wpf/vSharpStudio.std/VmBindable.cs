@@ -336,6 +336,8 @@ namespace ViewModelBase
                         {
                             if (toType.BaseType?.Name != "Enum")
                                 throw new Exception("Destination object property with name '" + p.Name + "' is not Enum");
+                            Debug.Assert(from != null);
+                            Debug.Assert(to != null);
                             if ((int)from != (int)to)
                             {
                                 foreach (var t in Enum.GetValues(toType))

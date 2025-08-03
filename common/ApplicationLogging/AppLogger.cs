@@ -17,6 +17,15 @@ using Serilog.Debugging;
 
 namespace ApplicationLogging
 {
+    // https://docs.microsoft.com/en-us/aspnet/core/migration/logging-nonaspnetcore?view=aspnetcore-2.2
+    // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-2.2
+
+    // https://msdn.microsoft.com/en-us/magazine/mt694089.aspx
+
+    // https://nblumhardt.com/2017/08/use-serilog/
+    // https://andrewlock.net/creating-a-rolling-file-logging-provider-for-asp-net-core-2-0/
+    // https://msdn.microsoft.com/en-us/magazine/mt830355.aspx EF
+    // https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md
     public static class AppLogger
     {
         public static string? LogFilePath { get; set; } = ".\\Logs\\log.txt";
@@ -29,7 +38,7 @@ namespace ApplicationLogging
                 {
                     int n = Environment.StackTrace.Split(Environment.NewLine).Count();
                     if (IndentShift == -1 || IndentShift > n) IndentShift = n;
-                    if (LogFilePath.Length > 0)
+                    if (LogFilePath?.Length > 0)
                     {
                         //logPath = AppDomain.CurrentDomain.BaseDirectory + logPath;
                         Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
@@ -45,7 +54,7 @@ namespace ApplicationLogging
                             ));
                         Serilog.Log.Logger = logCfg.CreateLogger();
                         _LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder
-                            .SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace)
+                            .SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug)
                             .AddSerilog()
                             .AddDebug());
                     }

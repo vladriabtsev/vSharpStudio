@@ -230,10 +230,10 @@ namespace vSharpStudio.Unit
             var prj1 = sol1.AddAppProject("prj1", "./");
             var gen1 = prj1.AddGenerator("gen1", string.Empty, string.Empty, "");
 
-            string mes1 = "test error message";
-            string mes2 = "test warning message";
-            string mes22 = "test warning2 message";
-            string mes3 = "test info message";
+            //string mes1 = "test error message";
+            //string mes2 = "test warning message";
+            //string mes22 = "test warning2 message";
+            //string mes3 = "test info message";
 
             //AppProjectGeneratorValidator.Validator.RuleFor(x => x).Null().WithMessage(mes22).WithSeverity(Severity.Warning).WithState(x => SeverityWeight.VeryHigh);
             //AppProjectGeneratorValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.VeryLow);

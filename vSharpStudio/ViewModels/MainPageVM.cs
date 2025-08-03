@@ -158,18 +158,18 @@ namespace vSharpStudio.ViewModels
         {
             Debug.Assert(this.ProgressVM != null);
             this.ProgressVM.ProgressStart("Configuration Loading");
-            _logger?.Debug("*** Application is starting. ***");
+            _logger?.Trace("*** Application is starting. ***");
             if (File.Exists(USER_SETTINGS_FILE_PATH))
             {
-                _logger?.Trace("User settings file exists.");
                 var user_settings = File.ReadAllBytes(USER_SETTINGS_FILE_PATH);
                 var us = Proto.Config.proto_user_settings.Parser.WithDiscardUnknownFields(true).ParseFrom(user_settings);
                 this.UserSettings = UserSettings.ConvertToVM(us, new UserSettings());
+                _logger?.Debug("User settings file. History length of opened Configs: '{HistoryConfigsLength}'.", this.UserSettings.ListOpenConfigHistory.Count);
                 if (this.UserSettings.ListOpenConfigHistory.Count > 0 &&
                     !string.IsNullOrWhiteSpace(this.UserSettings.ListOpenConfigHistory[0].ConfigPath) &&
                     File.Exists(this.UserSettings.ListOpenConfigHistory[0].ConfigPath))
                 {
-                    _logger?.Trace("Last opened configuration exists: '{ConfigPath}'.", this.UserSettings.ListOpenConfigHistory[0].ConfigPath);
+                    _logger?.Debug("Last opened configuration exists: '{ConfigPath}'.", this.UserSettings.ListOpenConfigHistory[0].ConfigPath);
                     this.CurrentCfgFilePath = this.UserSettings.ListOpenConfigHistory[0].ConfigPath;
                 }
                 //else
@@ -180,7 +180,7 @@ namespace vSharpStudio.ViewModels
             }
             else
             {
-                _logger?.Trace("There is no user settings. Creating empty user settings.");
+                _logger?.Debug("There is no user settings. Creating empty user settings.");
                 this.UserSettings = new UserSettings();
             }
             this.UserSettings.OnOpenRecentConfig = p =>
@@ -230,9 +230,9 @@ namespace vSharpStudio.ViewModels
             try
             {
                 this.pconfig_history = Proto.Config.proto_config_short_history.Parser.WithDiscardUnknownFields(true).ParseFrom(protoarr);
-                _logger?.Debug("Configuration is loaded from file: {FilePath}", file_path);
+                _logger?.Debug("???Configuration is loaded from file: {FilePath}", file_path);
                 var config = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config(false));
-                _logger?.Trace("Config VM is created");
+                _logger?.Debug("Config VM is created");
                 var currFolder = Path.GetDirectoryName(this.CurrentCfgFilePath);
                 config.CurrentCfgFolderPath = currFolder ?? String.Empty;
                 config.PrevCurrentConfig = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config(false));
@@ -241,14 +241,14 @@ namespace vSharpStudio.ViewModels
                     if (this.pconfig_history.PrevStableConfig != null)
                     {
                         config.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.PrevStableConfig, new Config(false));
-                        _logger?.Trace("Previous Stable Config VM is created");
+                        _logger?.Debug("Previous Stable Config VM is created");
                     }
                     this.CurrentCfgFilePath = file_path;
                 }
                 string ind2 = indent + "   ";
                 foreach (var t in config.GroupConfigLinks.ListBaseConfigLinks.ToList())
                 {
-                    _logger?.Trace("Load Linked Config {Name} from {Path}", t.Name, t.RelativeConfigFilePath);
+                    _logger?.Debug("Load Linked Config {Name} from {Path}", t.Name, t.RelativeConfigFilePath);
                     t.ConfigBase = this.LoadConfig(Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
                     Debug.Assert(t.ConfigBase != null);
                     t.Name = t.ConfigBase.Name;
@@ -343,7 +343,7 @@ namespace vSharpStudio.ViewModels
         public void OnImportsSatisfied()
         {
             Debug.Assert(this._plugins != null);
-            _logger?.Trace("Loaded {Count} plugins", this._plugins.Count());
+            _logger?.Debug("Loaded {Count} plugins", this._plugins.Count());
             this.onPluginsLoaded?.Invoke();
         }
         public void InitConfig(Config? cfg)
@@ -585,7 +585,7 @@ namespace vSharpStudio.ViewModels
             try
             {
                 string folder = (pluginsFolderPath ?? Directory.GetCurrentDirectory()) + "\\Plugins";
-                _logger?.Trace("Loading plugins from folder: {folder}", folder);
+                _logger?.Debug("Loading plugins from folder: {folder}", folder);
                 AggregateCatalog catalog = new AggregateCatalog();
                 this.AgregateCatalogs(folder, "vPlugin*.dll", catalog, true);
                 CompositionContainer container = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
@@ -657,7 +657,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnNewConfig ??= new vButtonVM(
                     () =>
                     {
-                        this._logger?.Debug("**********************************************************************");
+                        this._logger?.Trace();
                         this.NewConfig();
                         this.BtnConfigSave.Command.NotifyCanExecuteChanged();
                         this.BtnConfigSaveAs.Command.NotifyCanExecuteChanged();
@@ -694,7 +694,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnOpenConfig ??= new vButtonVM<string>(
                     (o) =>
                     {
-                        this._logger?.Debug("**********************************************************************");
+                        this._logger?.Trace();
                         this.OpenConfig(o);
                         this.BtnConfigSave.Command.NotifyCanExecuteChanged();
                         this.BtnConfigSaveAs.Command.NotifyCanExecuteChanged();
@@ -750,7 +750,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnConfigSave ??= new vButtonVM(
                     () =>
                     {
-                        this._logger?.Debug("**********************************************************************");
+                        this._logger?.Trace();
                         this.Save();
                     },
                     () => { return this.CurrentCfgFilePath != null; });
@@ -897,7 +897,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnConfigSaveAs ??= new vButtonVM<string>(
                     (o) =>
                     {
-                        this._logger?.Debug("**********************************************************************");
+                        this._logger?.Trace();
                         this.SaveAs(o);
                     },
                     (o) => { return this.Config != null; });
@@ -1080,7 +1080,7 @@ namespace vSharpStudio.ViewModels
         //            {
         //                return this._BtnRestore ??= new vButtonVM<string>(
         //                    (o) => {
-        //this._logger?.Debug("**********************************************************************");
+        //this._logger?.Trace();
         //                    this.Restore(o);
         //                    },
         //                    (o) => { return this.Config != null; });
@@ -1097,7 +1097,7 @@ namespace vSharpStudio.ViewModels
         //            {
         //                return this._BtnBackupAs ??= new vButtonVM<string>(
         //                    (o) => {
-        //this._logger?.Debug("**********************************************************************");
+        //this._logger?.Trace();
         //                    this.BackupAs(o);
         //                    },
         //                    (o) => { return this.Config != null; });
@@ -1187,7 +1187,7 @@ namespace vSharpStudio.ViewModels
                 this._BtnConfigValidateAsync ??= new vButtonVmAsync<TestTransformation?>(
                         async (o) =>
                         {
-                            this._logger?.Debug("**********************************************************************");
+                            this._logger?.Trace();
                             Debug.Assert(this.ProgressVM != null);
                             try
                             {
@@ -1248,7 +1248,7 @@ namespace vSharpStudio.ViewModels
             {
                 if (this.cancellationSourceForValidatingSubTreeFromNode != null)
                 {
-                    this.cancellationSourceForValidatingSubTreeFromNode.Cancel();
+                    await this.cancellationSourceForValidatingSubTreeFromNode.CancelAsync();
                     this._logger?.Information("=== Cancellation request ===");
                 }
                 this.cancellationSourceForValidatingSubTreeFromNode = new CancellationTokenSource();
@@ -1310,7 +1310,7 @@ namespace vSharpStudio.ViewModels
                 this._BtnConfigCurrentUpdate ??= new vButtonVmAsync<TestTransformation?>(
                         async (o) =>
                         {
-                            this._logger?.Debug("**********************************************************************");
+                            this._logger?.Trace();
                             Debug.Assert(this.ProgressVM != null);
                             try
                             {
@@ -1392,7 +1392,7 @@ namespace vSharpStudio.ViewModels
                 this._BtnConfigCurrentUpdateSql ??= new vButtonVmAsync<TestTransformation?>(
                         async (o) =>
                         {
-                            this._logger?.Debug("**********************************************************************");
+                            this._logger?.Trace();
                             Debug.Assert(this.ProgressVM != null);
                             try
                             {
@@ -1540,6 +1540,8 @@ namespace vSharpStudio.ViewModels
                                             if (isOnlySqlTextUpdate)
                                             {
                                                 Debug.Assert(this.BtnConfigCurrentUpdateSqlResultByConnStr != null);
+                                                Debug.Assert(tpg != null);
+                                                Debug.Assert(tpg.PluginDbGenerator != null);
                                                 var sql = tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, ts, tp, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true);
                                                 if (sql != null)
                                                     this.BtnConfigCurrentUpdateSqlResultByConnStr[tpg.Name] = sql;
@@ -1878,7 +1880,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnConfigCreateStableVersionAsync ??= new vButtonVmAsync<TestTransformation?>(
                     (t) =>
                     {
-                        this._logger?.Debug("**********************************************************************");
+                        this._logger?.Trace();
                         this.ProgressVM?.ProgressStart("Creating Version for Deployment");
                         try
                         {
@@ -2058,7 +2060,7 @@ namespace vSharpStudio.ViewModels
                 {
                     Utils.TryCall(() =>
                     {
-                        this._logger?.Debug("**********************************************************************");
+                        this._logger?.Trace();
                         Debug.Assert(this.Config.SelectedNode != null);
                         if (this.Config.SelectedNode.NodeCanAddNewSubNode())
                         {
@@ -2092,7 +2094,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnAddClone ??= new vButtonVM(
                 () =>
                 {
-                    this._logger?.Debug("**********************************************************************");
+                    this._logger?.Trace();
                     Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddClone();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddClone(); });
@@ -2106,7 +2108,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnMoveDown ??= new vButtonVM(
                 () =>
                 {
-                    this._logger?.Debug("**********************************************************************");
+                    this._logger?.Trace();
                     Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveDown();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveDown(); });
@@ -2120,7 +2122,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnMoveUp ??= new vButtonVM(
                 () =>
                 {
-                    this._logger?.Debug("**********************************************************************");
+                    this._logger?.Trace();
                     Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveUp();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveUp(); });
@@ -2134,7 +2136,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnDelete ??= new vButtonVM(
                 () =>
                 {
-                    this._logger?.Debug("**********************************************************************");
+                    this._logger?.Trace();
                     Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMarkForDeletion();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMarkForDeletion(); });
@@ -2148,7 +2150,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnSelectionLeft ??= new vButtonVM(
                 () =>
                 {
-                    this._logger?.Debug("**********************************************************************");
+                    this._logger?.Trace();
                     Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeLeft();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanLeft(); });
@@ -2162,7 +2164,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnSelectionRight ??= new vButtonVM(
                 () =>
                 {
-                    this._logger?.Debug("**********************************************************************");
+                    this._logger?.Trace();
                     Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeRight();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanRight(); });
@@ -2176,7 +2178,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnSelectionDown ??= new vButtonVM(
                 () =>
                 {
-                    this._logger?.Debug("**********************************************************************");
+                    this._logger?.Trace();
                     Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeDown();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanDown(); });
@@ -2190,7 +2192,7 @@ namespace vSharpStudio.ViewModels
                 return this._BtnSelectionUp ??= new vButtonVM(
                 () =>
                 {
-                    this._logger?.Debug("**********************************************************************");
+                    this._logger?.Trace();
                     Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeUp();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanUp(); });

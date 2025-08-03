@@ -428,6 +428,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnPluginGeneratorGuidChanged()
         {
             Debug.Assert(this._PluginGeneratorGuid != null); // expect empty
+            Debug.Assert(cfg != null);
             var nv = new ModelVisitorNodeGenSettings();
             nv.NodeGenSettingsApplyAction(cfg, (p) =>
             {

@@ -384,7 +384,7 @@
                     {
                         var isNameUIWasNotEdited = this.__Name == this.__NameUi;
                         this.__Name = value.Trim();
-                        if (isNameUIWasNotEdited) (this as IName).NameUi = this.__Name;
+                        if (isNameUIWasNotEdited) ((IName)this).NameUi = this.__Name;
                         if (this.ValidateProperty("Name"))
                         {
                             this._SortingNameValue = this.EncodeNameToUlong(this.__Name);

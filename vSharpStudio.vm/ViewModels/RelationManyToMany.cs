@@ -336,14 +336,14 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        var prp = t.PropertyRefObj1 as Property;
+                        var prp = (Property)t.PropertyRefObj1;
                         prp.Position = (uint)res.Count;
                         res.Add(prp);
                         //res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
                     }
                     else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        var prp = t.PropertyRefObj1 as Property;
+                        var prp = (Property)t.PropertyRefObj1;
                         prp.Position = (uint)res.Count;
                         res.Add(prp);
                         //res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
@@ -355,14 +355,14 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        var prp = t.PropertyRefObj2 as Property;
+                        var prp = (Property)t.PropertyRefObj2;
                         prp.Position = (uint)res.Count;
                         res.Add(prp);
                         //res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));
                     }
                     else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        var prp = t.PropertyRefObj2 as Property;
+                        var prp = (Property)t.PropertyRefObj2;
                         prp.Position = (uint)res.Count;
                         res.Add(prp);
                         //res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));

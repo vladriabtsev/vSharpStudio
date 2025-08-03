@@ -163,7 +163,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._level++;
                 }
                 this.parent = p;
-                this._logger?.Information(string.Empty.PadRight(this._level, ' ') + p.GetType().Name + ": " + pp.Name);
+                this._logger?.Trace(string.Empty.PadRight(this._level, ' ') + p.GetType().Name + ": " + pp.Name);
                 UIDispatcher.Invoke(() =>
                 {
                     p.ValidationCollection.Clear();
@@ -194,7 +194,7 @@ namespace vSharpStudio.vm.ViewModels
             this.progressVM?.ProgressUpdate(this.CountCurrentValidatableNode * 100 / this.CountTotalValidatableNodes);
             if (p is ITreeConfigNode pp)
             {
-                this._logger?.Information(string.Empty.PadRight(this._level, ' ') + pp.GetType().Name + ": " + pp.Name);
+                this._logger?.Trace(string.Empty.PadRight(this._level, ' ') + pp.GetType().Name + ": " + pp.Name);
                 this._level--;
             }
         }

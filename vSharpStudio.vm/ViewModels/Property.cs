@@ -407,6 +407,7 @@ namespace vSharpStudio.vm.ViewModels
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
+            Debug.Assert(this.Parent != null);
             if (!(this.Parent.Parent is Catalog))
             {
                 lst.Add(nameof(this.IsUseHistory));

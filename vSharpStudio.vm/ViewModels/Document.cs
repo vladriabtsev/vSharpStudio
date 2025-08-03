@@ -378,7 +378,7 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(t.GuidObj2 != null);
                     if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        var prp = t.PropertyRefObj2 as Property;
+                        var prp = (Property)t.PropertyRefObj2;
                         prp.Position = ++pos;
                         //var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
                         if (!isOnlyShared)
@@ -386,7 +386,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        var prp = t.PropertyRefObj2 as Property;
+                        var prp = (Property)t.PropertyRefObj2;
                         prp.Position = ++pos;
                         //var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
                         if (!isOnlyShared)
@@ -400,7 +400,7 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(t.GuidObj1 != null);
                     if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
-                        var prp = t.PropertyRefObj1 as Property;
+                        var prp = (Property)t.PropertyRefObj1;
                         prp.Position = ++pos;
                         //var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
                         if (!isOnlyShared)
@@ -408,7 +408,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
-                        var prp = t.PropertyRefObj1 as Property;
+                        var prp = (Property)t.PropertyRefObj1;
                         prp.Position = ++pos;
                         //var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
                         if (!isOnlyShared)
