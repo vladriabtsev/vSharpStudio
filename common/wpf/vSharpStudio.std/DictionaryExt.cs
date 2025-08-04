@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ViewModelBase
@@ -21,7 +22,7 @@ namespace ViewModelBase
         public Action<TKey, TValue>? OnAddValue { get; set; }
         public Action<TKey, TValue>? OnRemoveValue { get; set; }
         public Action? OnClear { get; set; }
-        public new TValue this[TKey key]
+        public new TValue? this[TKey key]
         {
             get
             {
@@ -39,6 +40,7 @@ namespace ViewModelBase
             }
             set
             {
+                Debug.Assert(value != null);
                 if (this.IsActivateActions && OnAddValue != null)
                     OnAddValue(key, value);
                 base[key] = value;

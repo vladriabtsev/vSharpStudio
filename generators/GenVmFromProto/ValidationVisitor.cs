@@ -13,6 +13,7 @@ namespace GenVmFromProto
     using System.Text;
     using System.Collections.Generic;
     using vSharpStudio.common;
+    using ApplicationLogging;
     using System;
     
     /// <summary>
@@ -31,21 +32,21 @@ namespace GenVmFromProto
         {
             this.Write("\r\npublic partial class Validation");
             
-            #line 8 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 9 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("Visitor : ");
             
-            #line 8 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 9 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("Visitor // ");
             
-            #line 8 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 9 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
@@ -53,7 +54,7 @@ namespace GenVmFromProto
             this.Write("\r\n{\r\n    partial void OnVisit(IValidatableWithSeverity p);\r\n    partial void OnVi" +
                     "sitEnd(IValidatableWithSeverity p);\r\n");
             
-            #line 12 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 13 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
  foreach (var message in messages) { 
      if (message.Name.EndsWith("_nullable"))
        continue;
@@ -63,21 +64,21 @@ namespace GenVmFromProto
             #line hidden
             this.Write("    protected override void OnVisit(");
             
-            #line 16 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 17 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" p) // ");
             
-            #line 16 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 17 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n    {\r\n        this.OnVisit((IValidatableWithSeverity)p);\r\n");
             
-            #line 19 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 20 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
  foreach (var field in message.Fields.InDeclarationOrder()) { 
      if (field.FieldType != Google.Protobuf.Reflection.FieldType.Message)
        continue;
@@ -90,152 +91,146 @@ namespace GenVmFromProto
             #line default
             #line hidden
             
-            #line 27 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 28 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
  if (this.IsBaseWithParent(message.Name)) { 
             
             #line default
             #line hidden
             
-            #line 28 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 29 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
    if (!field.IsAny() && !field.IsCsSimple() && !field.IsDefaultBase()) { 
             
             #line default
             #line hidden
             
-            #line 29 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 30 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
      if (field.IsRepeated) { 
             
             #line default
             #line hidden
             this.Write("        foreach (var t in p.");
             
-            #line 30 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 31 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(") // ");
             
-            #line 30 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 31 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n            ValidateSubAndCollectErrors(p, t);\r\n");
             
-            #line 32 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 33 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
      } else { 
             
             #line default
             #line hidden
             this.Write("        ValidateSubAndCollectErrors(p, p.");
             
-            #line 33 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 34 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("); // ");
             
-            #line 33 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 34 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 34 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 35 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 35 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 36 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
    } else { 
             
             #line default
             #line hidden
             
-            #line 36 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 37 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
    } 
             
             #line default
             #line hidden
             
-            #line 37 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 38 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
  } else { 
             
             #line default
             #line hidden
             
-            #line 38 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 39 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
    if (!field.IsAny() && !field.IsCsSimple() && !field.IsDefaultBase()) { 
             
             #line default
             #line hidden
             
-            #line 39 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 40 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
      if (field.IsRepeated) { 
             
             #line default
             #line hidden
             this.Write("        foreach (var t in p.");
             
-            #line 40 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 41 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(") // ");
             
-            #line 40 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 41 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n            p.ValidateSubAndCollectErrors(t);\r\n");
             
-            #line 42 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 43 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
      } else { 
             
             #line default
             #line hidden
             this.Write("        p.ValidateSubAndCollectErrors(p.");
             
-            #line 43 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 44 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("); // ");
             
-            #line 43 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 44 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 44 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 45 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
      } 
             
             #line default
             #line hidden
             
-            #line 45 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 46 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
    } else { 
             
             #line default
             #line hidden
             
-            #line 46 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
-   } 
-            
-            #line default
-            #line hidden
-            
             #line 47 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
- } 
+   } 
             
             #line default
             #line hidden
@@ -245,23 +240,29 @@ namespace GenVmFromProto
             
             #line default
             #line hidden
+            
+            #line 49 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+ } 
+            
+            #line default
+            #line hidden
             this.Write("    }\r\n    protected override void OnVisitEnd(");
             
-            #line 50 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 51 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" p) // ");
             
-            #line 50 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 51 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n    {\r\n        this.OnVisitEnd((IValidatableWithSeverity)p);\r\n    }\r\n");
             
-            #line 54 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
+            #line 55 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ValidationVisitor.tt"
  } 
             
             #line default

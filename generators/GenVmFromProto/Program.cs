@@ -13,8 +13,10 @@ using CommunityToolkit.Diagnostics;
 using Google.Protobuf.Reflection;
 using Microsoft.Extensions.Logging;
 using Proto.Doc;
+using Serilog;
 using Serilog.Core;
 using vSharpStudio.common;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace GenVmFromProto
 {
@@ -50,6 +52,7 @@ namespace GenVmFromProto
 
         static void Main(string[] args)
         {
+            ILogger? _logger = null;
             //    Console.WriteLine($"Hello {subject}!");
             Parser.Default.ParseArguments<Options>(args)
             .WithParsed<Options>(o =>
@@ -75,9 +78,23 @@ namespace GenVmFromProto
                         if (string.IsNullOrWhiteSpace(fileExt)) fileExt = ".txt";
                         logFilePath = Path.Combine(new string[] { rootPath ?? "", dir, fileName + fileExt });
                     }
+                    AppLogger.LogLevel = LogLevel.Trace;
+                    AppLogger.UseConsole = true;
                     AppLogger.LogFilePath = logFilePath;
-                    var _logger = AppLogger.CreateLogger<Program>();
-                    _logger?.Information("***  App Starting IsModel={IsModel}", o.IsModel);
+                    _logger = AppLogger.CreateLogger<Program>();
+                    _logger?.Debug("**********************");
+                    _logger?.Debug("***  App Starting  ***");
+                    _logger?.Debug("**********************");
+                    if (o.LogFilePath != null)
+                        _logger?.Trace("### LogFilePath={LogFilePath}", o.LogFilePath);
+                    _logger?.Trace("### IsModel={IsModel}", o.IsModel);
+                    _logger?.Trace("### IsInterface={IsInterface}", o.IsInterface);
+                    _logger?.Trace("### IsReadonly={IsReadonly}", o.IsReadonly);
+                    _logger?.Trace("### OutputFile={OutputFile}", o.OutputFile);
+                    _logger?.Trace("### ProtoFileName={ProtoFileName}", o.ProtoFileName);
+                    _logger?.Trace("### Namespace={Namespace}", o.Namespace);
+                    _logger?.Trace("### BaseclassDefault={BaseclassDefault}", o.BaseclassDefault);
+                    _logger?.Trace("### JsonDocFolder={JsonDocFolder}", o.JsonDocFolder);
 
                     Debug.Assert(o.ProtoFileName != null);
                     var ncs = o.ProtoFileName.ToNameCs();
@@ -114,20 +131,27 @@ namespace GenVmFromProto
                     string? res = null;
                     if (o.IsModel)
                     {
-                        //Debug.Assert(o.BaseclassDefault != null);
+                        Debug.Assert(o.BaseclassDefault != null);
+                        _logger?.Debug("Generate models");
                         NameSpace ns = new NameSpace(typedValue, messages, dicParents, o.Namespace, protoNS, o.BaseclassDefault);
                         res = ns.TransformText();
                     }
                     else if (o.IsInterface)
                     {
+                        _logger?.Debug("Generate interfaces");
                         ModelInterfaces ns = new ModelInterfaces(typedValue, messages, dicParents, o.Namespace, protoNS);
                         res = ns.TransformText();
                     }
                     else
-                        throw new ArgumentException("Expected 'model' or 'interface'");
+                    {
+                        var ex = new ArgumentException("Expected 'model' or 'interface'");
+                        _logger?.Critical(ex);
+                        throw ex;
+                    }
 
                     Debug.Assert(o.OutputFile != null);
 
+                    _logger?.Debug("Writing results");
                     FileUtils.WriteToFile(res, o.OutputFile);
 
                     //string filedest = o.OutputFile;
@@ -140,11 +164,10 @@ namespace GenVmFromProto
                     //    var bytes = Encoding.UTF8.GetBytes(res);
                     //    fs.Write(bytes, 0, bytes.Count());
                     //}
-                    System.Diagnostics.Trace.WriteLine("#### FINISHED ####");
-                    System.Diagnostics.Debug.WriteLine("#### FINISHED #### DEBUG");
                 }
                 catch (Exception ex)
                 {
+                    _logger?.Critical(ex);
                     System.Diagnostics.Trace.WriteLine(ex);
                     throw;
                 }

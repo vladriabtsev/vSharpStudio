@@ -83,7 +83,7 @@ namespace ViewModelBase
             }
         }
         protected bool _IsChanged;
-        private bool isDelayActivated = false;
+        //private bool isDelayActivated = false;
         private readonly object lockObject = new object();
         protected virtual void OnIsChangedChanged() { }
         //protected virtual void OnIsChangedChangedWithDelay() { }

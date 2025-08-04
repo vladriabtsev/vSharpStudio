@@ -4,6 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="vSharpStudio.common" #>
+<#@ import namespace="ApplicationLogging" #>
 
 <#= this.Doc.Comments #><#= this.Doc.Attributes #>public <#=PropType#> <#=FieldName#> // <#=t4.FilePos() #>
 { 

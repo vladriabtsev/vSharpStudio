@@ -1028,7 +1028,7 @@ namespace vSharpStudio.Unit
 
             // 6. Can find doc catalog property to map register attached property.
 
-            //await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
         }
         #endregion Register
 

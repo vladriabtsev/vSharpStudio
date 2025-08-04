@@ -1,20 +1,25 @@
-﻿using Google.Protobuf.Reflection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApplicationLogging;
+using Google.Protobuf.Reflection;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace GenVmFromProto
 {
     public partial class IVisitorProto
     {
+        ILogger? _logger;
         readonly FileDescriptor root;
         readonly string nameSpace;
         readonly string protoNameSpace;
 
         public IVisitorProto(FileDescriptor root, string destNS, string protoNS)
         {
+            _logger = AppLogger.CreateLogger<IVisitorProto>();
+            _logger?.Debug("Create proto visitor for '{0}'", root.Name);
             this.root = root;
             this.nameSpace = destNS;
             this.protoNameSpace = protoNS;

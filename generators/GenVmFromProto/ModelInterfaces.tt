@@ -4,6 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="vSharpStudio.common" #>
+<#@ import namespace="ApplicationLogging" #>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,7 @@ namespace <#= nameSpace #> // <#=t4.FilePos() #>
    foreach (var message in messages) { 
      if (message.Name.EndsWith("_nullable"))
        continue;
+     _logger?.Trace("Message '{@message}'", message);
      this.MessageDoc = JsonDoc.Files[root.Name].Messages[message.Name]; 
      this.PushIndent("    "); #>
 <#= this.MessageDoc.Comments #>

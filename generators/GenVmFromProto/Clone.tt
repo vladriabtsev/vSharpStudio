@@ -4,6 +4,8 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="vSharpStudio.common" #>
+<#@ import namespace="ApplicationLogging" #>
+
 <# if (this.Doc.IsConfigObjectBase) { #>
 
 public override void Sort(Type type) // <#=t4.FilePos() #>

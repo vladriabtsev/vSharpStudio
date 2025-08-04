@@ -4,6 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="vSharpStudio.common" #>
+<#@ import namespace="ApplicationLogging" #>
 
 public partial class Validation<#= root.Package.ToNameCs() #>Visitor : <#= root.Package.ToNameCs() #>Visitor // <#=t4.FilePos() #>
 {

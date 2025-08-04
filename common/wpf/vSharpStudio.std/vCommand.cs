@@ -153,11 +153,11 @@ namespace ViewModelBase
         //    set { SetProperty<Visibility>(ref this._Visibility, value); }
         //}
         //private Visibility _Visibility;
-        public string? ToolTipText
-        {
-            get { return this._ToolTipText; }
-            set { SetProperty<string?>(ref this._ToolTipText, value); }
-        }
-        private string? _ToolTipText;
+        //public string? ToolTipText
+        //{
+        //    get { return this._ToolTipText; }
+        //    set { SetProperty<string?>(ref this._ToolTipText, value); }
+        //}
+        //private string? _ToolTipText;
     }
 }

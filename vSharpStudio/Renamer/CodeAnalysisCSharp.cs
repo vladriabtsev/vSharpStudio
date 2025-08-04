@@ -97,7 +97,10 @@ namespace Renamer
                                         Debug.Assert(semanticModel != null);
                                         var propSymbolOpt = semanticModel.GetDeclaredSymbol(c) as IPropertySymbol;
                                         Debug.Assert(propSymbolOpt != null);
-                                        await Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync(solution, propSymbolOpt, tp.PropNameNew, solution.Options, cancellationToken);
+                                        // https://learn.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.rename.symbolrenameoptions?view=roslyn-dotnet-4.13.0
+                                        var opts = new SymbolRenameOptions(RenameInStrings: true, RenameInComments: true, RenameOverloads: true, RenameFile: false);
+                                        await Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync(solution, propSymbolOpt, opts, tp.PropNameNew, cancellationToken);
+                                        //await Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync(solution, propSymbolOpt, tp.PropNameNew, solution.Options, cancellationToken);
                                     }
                                 }
                                 // rename classes
@@ -108,7 +111,10 @@ namespace Renamer
                                     Debug.Assert(semanticModel != null);
                                     var propSymbolOpt = semanticModel.GetDeclaredSymbol(c) as INamedTypeSymbol;
                                     Debug.Assert(propSymbolOpt != null);
-                                    await Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync(solution, propSymbolOpt, tr.ClassNameNew, solution.Options, cancellationToken);
+                                    // https://learn.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.rename.symbolrenameoptions?view=roslyn-dotnet-4.13.0
+                                    var opts = new SymbolRenameOptions(RenameInStrings: true, RenameInComments: true, RenameOverloads: false, RenameFile: true);
+                                    await Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync(solution, propSymbolOpt, opts, tr.ClassNameNew, cancellationToken);
+                                    //await Microsoft.CodeAnalysis.Rename.Renamer.RenameSymbolAsync(solution, propSymbolOpt, tr.ClassNameNew, solution.Options, cancellationToken);
                                 }
                             }
                             //}

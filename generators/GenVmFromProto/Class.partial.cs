@@ -13,6 +13,7 @@ namespace GenVmFromProto
 {
     public partial class Class
     {
+        ILogger? _logger;
         readonly FileDescriptor root;
         readonly MessageDescriptor message;
         readonly MessageDoc Doc;
@@ -23,13 +24,13 @@ namespace GenVmFromProto
         public Class(FileDescriptor root, MessageDescriptor message, Dictionary<string, List<MessageDescriptor>> dicParents,
             string destNS, string protoNS, string defaultBaseClass)
         {
-            var _logger = AppLogger.CreateLogger(this);
+            _logger = AppLogger.CreateLogger<Class>();
+            _logger?.Debug("Generating class for '{root}' message '{message}'", root.Name, message.Name);
             this.root = root;
             this.message = message;
             this.dicParents = dicParents;
             this.nameSpace = destNS;
             this.protoNameSpace = protoNS;
-            _logger?.Information("Message {0}", message.Name);
             if (!JsonDoc.Files.ContainsKey(root.Name))
             {
             }
@@ -37,9 +38,10 @@ namespace GenVmFromProto
             {
             }
             this.Doc = JsonDoc.Files[root.Name].Messages[message.Name];
-            _logger?.Information("Base class from doc '{Name}'", this.Doc.BaseClass);
+            _logger?.Trace("Initial base class from doc '{Name}'", this.Doc.BaseClass);
             if (this.Doc.BaseClass == "")
             {
+                _logger?.Trace("Default base class '{Name}'", defaultBaseClass);
                 this.Doc.BaseClass = " : " + defaultBaseClass + "<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, I" + root.Package.ToNameCs() + "AcceptVisitor";
             }
@@ -100,6 +102,7 @@ namespace GenVmFromProto
             {
 
             }
+            _logger?.Trace("Final base class '{Name}'", this.Doc.BaseClass);
         }
         private bool IsObservable(FieldDescriptor field)
         {

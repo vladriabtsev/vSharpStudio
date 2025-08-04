@@ -4,12 +4,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApplicationLogging;
 using Google.Protobuf.Reflection;
+using Microsoft.Extensions.Logging;
+using Proto.Doc;
 
 namespace GenVmFromProto
 {
     public partial class ModelInterfaces
     {
+        ILogger? _logger;
         MessageDoc? MessageDoc;
         FieldDoc? FieldDoc;
         readonly FileDescriptor root;
@@ -23,6 +27,8 @@ namespace GenVmFromProto
             Dictionary<string, List<MessageDescriptor>> dicParents,
             string destNS, string protoNS)
         {
+            _logger = AppLogger.CreateLogger<ModelInterfaces>();
+            _logger?.Debug("Create interfaces for '{0}'", root.Name);
             this.root = root;
             this.nameSpace = destNS;
             this.protoNameSpace = protoNS;
@@ -56,12 +62,15 @@ namespace GenVmFromProto
             Debug.Assert(MessageDoc != null);
             if (MessageDoc.IsConfigObjectBase)
             {
-                if (field.Name == "guid")
-                    return true;
-                if (field.Name == "name")
-                    return true;
-                if (field.Name == "sorting_value")
-                    return true;
+                switch(field.Name)
+                {
+                    case "guid":
+                    case "name":
+                    case "name_ui":
+                    case "sorting_value":
+                        _logger?.Trace("Skipping field '{field}'", field.Name);
+                        return true;
+                }
             }
             return false;
         }
