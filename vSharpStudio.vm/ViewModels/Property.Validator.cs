@@ -146,7 +146,7 @@ namespace vSharpStudio.vm.ViewModels
                 else if (pg.Parent is Document d)
                 {
                     ValidateSpecialProperties(name, cntx, p, d);
-                    pList = d.ParentGroupListDocuments.ParentGroupDocuments.DocumentTimeline.ListProperties.ToList();
+                    pList = [.. d.ParentGroupListDocuments.ParentGroupDocuments.DocumentTimeline.ListProperties];
                 }
                 else if (pg.Parent is GroupDocuments gd)
                 {

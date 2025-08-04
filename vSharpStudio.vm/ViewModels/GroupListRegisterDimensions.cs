@@ -137,7 +137,7 @@ namespace vSharpStudio.vm.ViewModels
             //    lst.Add(nameof(this.PropertyCodeName));
             //if (!this.UseNameProperty)
             //    lst.Add(nameof(this.PropertyNameName));
-            return lst.ToArray();
+            return [.. lst];
         }
 
         #region Roles

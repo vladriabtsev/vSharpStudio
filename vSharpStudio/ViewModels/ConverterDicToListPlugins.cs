@@ -30,7 +30,7 @@ namespace vSharpStudio.ViewModels
             if (dic.ContainsKey((vPluginLayerTypeEnum)parameter))
             {
                 var lst = dic[(vPluginLayerTypeEnum)parameter];
-                lst = lst.Distinct(new PluginComparer()).ToList();
+                lst = [.. lst.Distinct(new PluginComparer())];
                 return lst;
             }
             return null;

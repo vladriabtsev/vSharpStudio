@@ -431,7 +431,7 @@ namespace vSharpStudio.vm.ViewModels
                 nameof(this.Parent)
             };
             //lst.Add(this.GetPropertyName(() => this.Children));
-            return lst.ToArray();
+            return [.. lst];
         }
         public void Delete()
         {

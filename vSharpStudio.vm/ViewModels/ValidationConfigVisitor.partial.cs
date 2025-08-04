@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class ValidationConfigVisitor
     {
-        private ILogger? _logger;
+        private readonly ILogger? _logger;
         public SortedObservableCollection<ValidationMessage> Result { get; private set; }
         public int CountTotalValidatableNodes;
         public int _CountCurrentValidatableNode;

@@ -318,7 +318,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 lst.Add(nameof(this.RegisterBalanceWeeklyStartDay));
             }
-            return lst.ToArray();
+            return [.. lst];
         }
         #endregion Editing logic
 
@@ -1237,7 +1237,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private ISortingValue? _SelectedDoc;
-        private ObservableCollection<Property> fulListToMap = new ObservableCollection<Property>();
+        private readonly ObservableCollection<Property> fulListToMap = new ObservableCollection<Property>();
         [Browsable(false)]
         public Visibility VisibilityTextDocNotSelected
         {

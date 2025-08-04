@@ -206,7 +206,7 @@ namespace vSharpStudio.vm.ViewModels
                     lst.Add(nameof(this.ScopePeriodStartMonthDay));
                     break;
             }
-            return lst.ToArray();
+            return [.. lst];
         }
     }
 }

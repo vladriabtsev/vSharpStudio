@@ -13,7 +13,7 @@ namespace GenVmFromProto
 {
     public partial class ModelInterfaces
     {
-        ILogger? _logger;
+        readonly ILogger? _logger;
         MessageDoc? MessageDoc;
         FieldDoc? FieldDoc;
         readonly FileDescriptor root;

@@ -11,7 +11,7 @@ namespace GenVmFromProto
 {
     public partial class IVisitorProto
     {
-        ILogger? _logger;
+        readonly ILogger? _logger;
         readonly FileDescriptor root;
         readonly string nameSpace;
         readonly string protoNameSpace;

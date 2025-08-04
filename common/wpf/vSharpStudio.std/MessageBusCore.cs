@@ -187,7 +187,7 @@ namespace ViewModelBase
                 if (!_subscriptions.TryGetValue(token, out weakSubscribers)) return;
 
                 // Make a copy while locked
-                weakSubscribers = weakSubscribers.ToList();
+                weakSubscribers = [.. weakSubscribers];
             }
 
             // Get compatible living subscribers

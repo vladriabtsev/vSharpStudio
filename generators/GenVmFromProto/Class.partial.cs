@@ -13,7 +13,7 @@ namespace GenVmFromProto
 {
     public partial class Class
     {
-        ILogger? _logger;
+        readonly ILogger? _logger;
         readonly FileDescriptor root;
         readonly MessageDescriptor message;
         readonly MessageDoc Doc;

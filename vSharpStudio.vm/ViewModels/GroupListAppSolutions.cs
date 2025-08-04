@@ -135,7 +135,7 @@ namespace vSharpStudio.vm.ViewModels
                 nameof(this.Parent),
                 nameof(this.Children)
             };
-            return lst.ToArray();
+            return [.. lst];
         }
         public string? TableNameValidation(string name)
         {

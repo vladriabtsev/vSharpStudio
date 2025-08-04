@@ -1295,7 +1295,7 @@ namespace vSharpStudio.vm.ViewModels
                 nameof(this.Parent),
                 nameof(this.Children)
             };
-            return lst.ToArray();
+            return [.. lst];
         }
         public void SavePluginGroupsModels()
         {

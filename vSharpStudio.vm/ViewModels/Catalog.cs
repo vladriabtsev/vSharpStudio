@@ -422,7 +422,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.AutoGenerateProperties = true;
             }
-            return lst.ToArray();
+            return [.. lst];
         }
 
         #region Get Properties and Details

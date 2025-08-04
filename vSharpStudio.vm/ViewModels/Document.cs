@@ -591,7 +591,7 @@ namespace vSharpStudio.vm.ViewModels
                 nameof(this.Parent),
                 nameof(this.Children)
             };
-            return lst.ToArray();
+            return [.. lst];
         }
         public bool IsGridSortableGet()
         {
@@ -932,7 +932,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private ISortingValue? _SelectedReg;
-        private ObservableCollection<Property> fulListToMap = new ObservableCollection<Property>();
+        private readonly ObservableCollection<Property> fulListToMap = new ObservableCollection<Property>();
         [Browsable(false)]
         public Visibility VisibilityTextRegNotSelected
         {

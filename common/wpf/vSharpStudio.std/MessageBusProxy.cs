@@ -144,9 +144,7 @@ namespace ViewModelBase
                 if (!_subscriptions.TryGetValue(token, out handlers)) return;
 
                 // Get callbacks with the same event args type
-                handlers = handlers
-                    .Where(h => h.EventArgsType == e.GetType())
-                    .ToList();
+                handlers = [.. handlers.Where(h => h.EventArgsType == e.GetType())];
             }
 
             // Invoke each callback associated with token

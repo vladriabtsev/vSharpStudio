@@ -347,7 +347,7 @@ namespace vSharpStudio.vm.ViewModels
                     lst.Add(nameof(this.IsUseFolderDesc));
                     break;
             }
-            return lst.ToArray();
+            return [.. lst];
         }
         #endregion Visibility
 

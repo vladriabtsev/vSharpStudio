@@ -231,7 +231,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private object? _DynamicPluginGroupSettings;
         // GroupGeneratorsSettings guid, settings
-        private DictionaryExt<string, IvPluginGroupSettings?> dicPluginsGroupSettings =
+        private readonly DictionaryExt<string, IvPluginGroupSettings?> dicPluginsGroupSettings =
             new DictionaryExt<string, IvPluginGroupSettings?>(5, false, true, (ki, v) => { }, (kr, v) => { }, () => { });
         [Browsable(false)]
         public DictionaryExt<string, IvPluginGroupSettings?> DicPluginsGroupSettings
@@ -447,7 +447,7 @@ namespace vSharpStudio.vm.ViewModels
                 nameof(this.Parent)
             };
             //lst.Add(this.GetPropertyName(() => this.Children));
-            return lst.ToArray();
+            return [.. lst];
         }
         public void Delete()
         {

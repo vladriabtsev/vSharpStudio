@@ -271,7 +271,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 lst.Add(nameof(this.RangeValuesRequirements));
             }
-            return lst.ToArray();
+            return [.. lst];
         }
         [Category("")]
         [DisplayName("Type")]

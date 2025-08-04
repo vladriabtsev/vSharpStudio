@@ -136,7 +136,7 @@ namespace vSharpStudio.vm.ViewModels
             //    lst.Add(this.GetPropertyName(() => this.MaxSequenceLength));
             //    lst.Add(this.GetPropertyName(() => this.Prefix));
             //}
-            return lst.ToArray();
+            return [.. lst];
         }
     }
 }

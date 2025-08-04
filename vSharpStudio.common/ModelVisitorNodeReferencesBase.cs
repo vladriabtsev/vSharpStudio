@@ -13,7 +13,7 @@ namespace vSharpStudio.common
     public class ModelVisitorNodeReferencesBase : ModelVisitorBase
     {
         public ModelVisitorNodeReferencesBase(string appDbGenGuid) { this.appDbGenGuid = appDbGenGuid; }
-        private string appDbGenGuid;
+        private readonly string appDbGenGuid;
         /// <summary>
         /// Model object references
         /// </summary>

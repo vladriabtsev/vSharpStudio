@@ -270,7 +270,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    lst.Add(this.GetPropertyName(() => this.RangeValuesRequirements));
             //}
-            return lst.ToArray();
+            return [.. lst];
         }
         #endregion Editing logic
 

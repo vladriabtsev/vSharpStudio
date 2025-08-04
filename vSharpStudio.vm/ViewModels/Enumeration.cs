@@ -289,7 +289,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 lst.Add(nameof(this.DataTypeLength));
             }
-            return lst.ToArray();
+            return [.. lst];
         }
     }
 }

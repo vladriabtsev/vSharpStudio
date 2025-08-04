@@ -688,7 +688,7 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(nameof(this.GenScriptFileName));
                 lst.Add(nameof(this.ConnStrToPrevStable));
             }
-            return lst.ToArray();
+            return [.. lst];
         }
         public string GetGenerationFilePath()
         {

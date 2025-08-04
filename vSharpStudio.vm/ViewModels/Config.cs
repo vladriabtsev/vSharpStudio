@@ -26,7 +26,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class Config : ITreeModel, IMigration, ICanGoLeft, IEditableNodeGroup
     {
-        private ILogger? _logger;
+        private readonly ILogger? _logger;
         internal bool isCanHaveChangesInTest = true;
         public bool IsCanHaveChangesInTest()
         {

@@ -11,7 +11,7 @@ namespace GenVmFromProto
 {
     public partial class NodeVisitor
     {
-        ILogger? _logger;
+        readonly ILogger? _logger;
         readonly FileDescriptor root;
         readonly List<MessageDescriptor> messages = new List<MessageDescriptor>();
         public NodeVisitor(FileDescriptor root)

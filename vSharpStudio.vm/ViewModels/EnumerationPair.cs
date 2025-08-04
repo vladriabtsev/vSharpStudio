@@ -93,7 +93,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 nameof(this.Parent)
             };
-            return lst.ToArray();
+            return [.. lst];
         }
     }
 }

@@ -11,7 +11,7 @@ namespace GenVmFromProto
 {
     public partial class ValidationVisitor
     {
-        ILogger? _logger;
+        readonly ILogger? _logger;
         readonly FileDescriptor root;
         readonly List<MessageDescriptor> messages = new List<MessageDescriptor>();
         public ValidationVisitor(FileDescriptor root)

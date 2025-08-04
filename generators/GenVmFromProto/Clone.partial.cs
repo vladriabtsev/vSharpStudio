@@ -11,7 +11,7 @@ namespace GenVmFromProto
 {
     public partial class Clone
     {
-        ILogger? _logger;
+        readonly ILogger? _logger;
         readonly string nameSpace;
         readonly string protoNameSpace;
         readonly FileDescriptor root;

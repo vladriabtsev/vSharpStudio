@@ -125,7 +125,7 @@ namespace vSharpStudio.vm.ViewModels
             var lst = new List<string>();
             //lst.Add(this.GetPropertyName(() => this.Parent));
             //lst.Add(this.GetPropertyName(() => this.Children));
-            return lst.ToArray();
+            return [.. lst];
         }
         public IFormAutoLayoutBlock AddAutoLayoutBlock(string name = "")
         {
