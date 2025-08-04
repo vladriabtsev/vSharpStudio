@@ -43,8 +43,10 @@ namespace vSharpStudio.vm.ViewModels
             this._cancellationToken = cancellationToken;
             this.progressVM = progressVM;
             this.CountCurrentValidatableNode = 0;
-            this.Result = new SortedObservableCollection<ValidationMessage>();
-            this.Result.SortDirection = SortDirection.Descending;
+            this.Result = new SortedObservableCollection<ValidationMessage>
+            {
+                SortDirection = SortDirection.Descending
+            };
         }
 
         public void UpdateSubstructCounts(ITreeConfigNode p)

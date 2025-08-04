@@ -26,15 +26,21 @@ namespace vSharpStudio.vm.ViewModels
             this.guid = ((IvPluginGeneratorNodeSettings)propertyItem.Value).AppProjectGeneratorGuid;
             this.node = ((IParent)propertyItem.Value).Parent;
             Grid grd = new Grid();
-            var cd1 = new ColumnDefinition();
-            cd1.Width = new GridLength(1, GridUnitType.Star);
-            var cd2 = new ColumnDefinition();
-            cd2.Width = new GridLength(1, GridUnitType.Auto);
+            var cd1 = new ColumnDefinition
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            };
+            var cd2 = new ColumnDefinition
+            {
+                Width = new GridLength(1, GridUnitType.Auto)
+            };
             grd.ColumnDefinitions.Add(cd1);
             grd.ColumnDefinitions.Add(cd2);
 
-            textBox = new PropertyGridEditorTextBox();
-            textBox.Watermark = "Open Settings in Dialog";
+            textBox = new PropertyGridEditorTextBox
+            {
+                Watermark = "Open Settings in Dialog"
+            };
             //var _binding = new Binding("Value"); //bind to the Value property of the PropertyItem
             //_binding.Source = propertyItem;
             //_binding.ValidatesOnExceptions = true;
@@ -42,8 +48,10 @@ namespace vSharpStudio.vm.ViewModels
             //_binding.Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay;
             //BindingOperations.SetBinding(textBox, PropertyGridEditorTextBox.TextProperty, _binding);
 
-            Button b = new Button();
-            b.Content = "...";
+            Button b = new Button
+            {
+                Content = "..."
+            };
             b.Click += B_Click;
 
             Grid.SetColumn(textBox, 0);

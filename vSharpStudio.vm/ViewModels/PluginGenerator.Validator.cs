@@ -24,10 +24,12 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append("' of plugin '");
                     sb.Append(pg.ParentPlugin.Name);
                     sb.Append("' is not found");
-                    var flr = new ValidationFailure();
-                    flr.ErrorMessage = sb.ToString();
-                    flr.Severity = Severity.Info;
-                    flr.PropertyName = cntx.PropertyPath;
+                    var flr = new ValidationFailure
+                    {
+                        ErrorMessage = sb.ToString(),
+                        Severity = Severity.Info,
+                        PropertyName = cntx.PropertyPath
+                    };
                     cntx.AddFailure(flr);
                 }
             });

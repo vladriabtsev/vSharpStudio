@@ -14,13 +14,17 @@ namespace vSharpStudio.vm.ViewModels
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Debug.Assert(propertyItem != null);
-            ComboBox cbx = new ComboBox();
-            cbx.DisplayMemberPath = "Name";
-            cbx.SelectedValuePath = "Guid";
-            var _binding_lst = new Binding("ListObjects"); // bind to the Value property of the PropertyItem
-            _binding_lst.ValidatesOnExceptions = false;
-            _binding_lst.ValidatesOnDataErrors = false;
-            _binding_lst.Mode = BindingMode.OneWay;
+            ComboBox cbx = new ComboBox
+            {
+                DisplayMemberPath = "Name",
+                SelectedValuePath = "Guid"
+            };
+            var _binding_lst = new Binding("ListObjects")
+            {
+                ValidatesOnExceptions = false,
+                ValidatesOnDataErrors = false,
+                Mode = BindingMode.OneWay
+            }; // bind to the Value property of the PropertyItem
             if (propertyItem.Instance is DataType)
                 _binding_lst.Source = (DataType)propertyItem.Instance;
             else if (propertyItem.Instance is Property)
@@ -45,11 +49,13 @@ namespace vSharpStudio.vm.ViewModels
             else
                 throw new Exception();
             BindingOperations.SetBinding(cbx, ComboBox.ItemsSourceProperty, _binding_lst);
-            var _binding = new Binding("Value"); // bind to the Value property of the PropertyItem
-            _binding.Source = propertyItem;
-            _binding.ValidatesOnExceptions = true;
-            _binding.ValidatesOnDataErrors = true;
-            _binding.Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay;
+            var _binding = new Binding("Value")
+            {
+                Source = propertyItem,
+                ValidatesOnExceptions = true,
+                ValidatesOnDataErrors = true,
+                Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay
+            }; // bind to the Value property of the PropertyItem
             BindingOperations.SetBinding(cbx, ComboBox.SelectedValueProperty, _binding);
             return cbx;
         }

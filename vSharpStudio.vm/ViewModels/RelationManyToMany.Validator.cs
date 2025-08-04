@@ -19,16 +19,20 @@ namespace vSharpStudio.vm.ViewModels
                 var rel = (RelationManyToMany)cntx.InstanceToValidate;
                 if (string.IsNullOrEmpty(guid))
                 {
-                    var vf = new ValidationFailure(nameof(rel.GuidObj1), "Configuration object type is not selected.");
-                    vf.Severity = Severity.Error;
+                    var vf = new ValidationFailure(nameof(rel.GuidObj1), "Configuration object type is not selected.")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (!rel.Cfg.DicNodes.ContainsKey(guid))
                 {
                     var vf = new ValidationFailure(nameof(rel.GuidObj1),
-                        "Selected object type is not exists in configuration.");
-                    vf.Severity = Severity.Error;
+                        "Selected object type is not exists in configuration.")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -37,16 +41,20 @@ namespace vSharpStudio.vm.ViewModels
                 var rel = (RelationManyToMany)cntx.InstanceToValidate;
                 if (string.IsNullOrEmpty(guid))
                 {
-                    var vf = new ValidationFailure(nameof(rel.GuidObj2), "Configuration object type is not selected.");
-                    vf.Severity = Severity.Error;
+                    var vf = new ValidationFailure(nameof(rel.GuidObj2), "Configuration object type is not selected.")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (!rel.Cfg.DicNodes.ContainsKey(guid))
                 {
                     var vf = new ValidationFailure(nameof(rel.GuidObj2),
-                        "Selected object type is not exists in configuration.");
-                    vf.Severity = Severity.Error;
+                        "Selected object type is not exists in configuration.")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });

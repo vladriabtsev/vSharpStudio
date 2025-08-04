@@ -28,8 +28,10 @@ namespace vSharpStudio.vm.ViewModels
                     if ((p.Guid != t.Guid) && (name == t.Name))
                     {
                         var vf = new ValidationFailure(nameof(p.Name),
-                            $"Not unique journal name '{name}'");
-                        vf.Severity = Severity.Error;
+                            $"Not unique journal name '{name}'")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                     }
                 }

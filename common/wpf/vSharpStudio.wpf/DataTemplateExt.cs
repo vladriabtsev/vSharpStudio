@@ -32,8 +32,10 @@ namespace vSharpStudio.wpf
             var frameworkElementFactory = new FrameworkElementFactory(typeof(_TemplateGeneratorControl));
             frameworkElementFactory.SetValue(_TemplateGeneratorControl.FactoryProperty, factory);
 
-            var dataTemplate = new System.Windows.DataTemplate(typeof(DependencyObject));
-            dataTemplate.VisualTree = frameworkElementFactory;
+            var dataTemplate = new System.Windows.DataTemplate(typeof(DependencyObject))
+            {
+                VisualTree = frameworkElementFactory
+            };
             return dataTemplate;
         }
         /// <summary>
@@ -50,8 +52,10 @@ namespace vSharpStudio.wpf
             var frameworkElementFactory = new FrameworkElementFactory(typeof(_TemplateGeneratorControl));
             frameworkElementFactory.SetValue(_TemplateGeneratorControl.FactoryProperty, factory);
 
-            var controlTemplate = new ControlTemplate(controlType);
-            controlTemplate.VisualTree = frameworkElementFactory;
+            var controlTemplate = new ControlTemplate(controlType)
+            {
+                VisualTree = frameworkElementFactory
+            };
             return controlTemplate;
         }
     }

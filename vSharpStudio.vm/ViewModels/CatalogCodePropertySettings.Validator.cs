@@ -24,8 +24,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (p.Prefix.Length > 0 && (p.SequenceType == common.EnumCodeType.Number))
                 {
                     var vf = new ValidationFailure(nameof(p.Prefix),
-                        $"Prefix for numbers is not used. Expected to be empty");
-                    vf.Severity = Severity.Error;
+                        $"Prefix for numbers is not used. Expected to be empty")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
                 //}

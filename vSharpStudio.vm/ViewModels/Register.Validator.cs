@@ -43,8 +43,10 @@ namespace vSharpStudio.vm.ViewModels
                 var mes = p.Cfg.GroupAppSolutions.TableNameValidation(p.CompositeName);
                 if (!string.IsNullOrEmpty(mes))
                 {
-                    var vf = new ValidationFailure(nameof(p.Name), mes);
-                    vf.Severity = Severity.Error;
+                    var vf = new ValidationFailure(nameof(p.Name), mes)
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -56,8 +58,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (acc >= p.PropertyMoneyAccumulatorLength)
                 {
                     var vf = new ValidationFailure(nameof(p.PropertyMoneyAccumulatorAccuracy),
-                        $"Value greater or equal than {nameof(p.PropertyMoneyAccumulatorLength)} property value");
-                    vf.Severity = Severity.Error;
+                        $"Value greater or equal than {nameof(p.PropertyMoneyAccumulatorLength)} property value")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -69,15 +73,19 @@ namespace vSharpStudio.vm.ViewModels
                 if (len <= p.PropertyMoneyAccumulatorAccuracy)
                 {
                     var vf = new ValidationFailure(nameof(p.PropertyMoneyAccumulatorLength),
-                        $"Value less or equal than {nameof(p.PropertyMoneyAccumulatorAccuracy)} property value");
-                    vf.Severity = Severity.Error;
+                        $"Value less or equal than {nameof(p.PropertyMoneyAccumulatorAccuracy)} property value")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
                 if (len > 28)
                 {
                     var vf = new ValidationFailure(nameof(p.PropertyMoneyAccumulatorLength),
-                        $"Value greater than 28 is not supported");
-                    vf.Severity = Severity.Error;
+                        $"Value greater than 28 is not supported")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -89,8 +97,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (acc >= p.PropertyQtyAccumulatorLength)
                 {
                     var vf = new ValidationFailure(nameof(p.PropertyQtyAccumulatorAccuracy),
-                        $"Value greater or equal than {nameof(p.PropertyQtyAccumulatorLength)} property value");
-                    vf.Severity = Severity.Error;
+                        $"Value greater or equal than {nameof(p.PropertyQtyAccumulatorLength)} property value")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -102,15 +112,19 @@ namespace vSharpStudio.vm.ViewModels
                 if (len <= r.PropertyQtyAccumulatorAccuracy)
                 {
                     var vf = new ValidationFailure(nameof(r.PropertyQtyAccumulatorLength),
-                        $"Value less or equal than {nameof(r.PropertyQtyAccumulatorAccuracy)} property value");
-                    vf.Severity = Severity.Error;
+                        $"Value less or equal than {nameof(r.PropertyQtyAccumulatorAccuracy)} property value")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
                 if (len > 28)
                 {
                     var vf = new ValidationFailure(nameof(r.PropertyQtyAccumulatorLength),
-                        $"Value greater than 28 is not supported");
-                    vf.Severity = Severity.Error;
+                        $"Value greater than 28 is not supported")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -120,8 +134,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (!use && !r.UseMoneyAccumulator)
                 {
                     var vf = new ValidationFailure(nameof(r.UseQtyAccumulator),
-                        $"At least one accumulator type has to be selected");
-                    vf.Severity = Severity.Error;
+                        $"At least one accumulator type has to be selected")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -131,8 +147,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (!use && !r.UseQtyAccumulator)
                 {
                     var vf = new ValidationFailure(nameof(r.UseMoneyAccumulator),
-                        $"At least one accumulator type has to be selected");
-                    vf.Severity = Severity.Error;
+                        $"At least one accumulator type has to be selected")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -154,8 +172,10 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     var r = (Register)cntx.InstanceToValidate;
                     var vf = new ValidationFailure(cntx.PropertyPath,
-                        $"Register '{r.Name}'. List of Document types for Register is empty.");
-                    vf.Severity = Severity.Error;
+                        $"Register '{r.Name}'. List of Document types for Register is empty.")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -185,8 +205,10 @@ namespace vSharpStudio.vm.ViewModels
                                         if (p.DataType.DataTypeEnum != EnumDataType.CATALOG)
                                         {
                                             var vf = new ValidationFailure(cntx.PropertyPath,
-                                                $"Register '{r.Name}'. Dimension can mapped to catalog property only, but property '{p.Name}' of '{doc.Name}' document has type '{System.Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.");
-                                            vf.Severity = Severity.Error;
+                                                $"Register '{r.Name}'. Dimension can mapped to catalog property only, but property '{p.Name}' of '{doc.Name}' document has type '{System.Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.")
+                                            {
+                                                Severity = Severity.Error
+                                            };
                                             cntx.AddFailure(vf);
                                         }
                                         if (!string.IsNullOrWhiteSpace(p.DataType.ObjectRef.ForeignObjectGuid) && p.DataType.ObjectRef.ForeignObjectGuid != rd.DimensionCatalogGuid)
@@ -194,8 +216,10 @@ namespace vSharpStudio.vm.ViewModels
                                             var cp = (Catalog)r.Cfg.DicNodes[p.DataType.ObjectRef.ForeignObjectGuid];
                                             var crd = (Catalog)r.Cfg.DicNodes[rd.DimensionCatalogGuid];
                                             var vf = new ValidationFailure(cntx.PropertyPath,
-                                                $"Register '{r.Name}'. Dimension can mapped to catalog property of type '{crd.Name}', but property '{p.Name}' of '{doc.Name}' document has catalog type '{cp.Name}'.");
-                                            vf.Severity = Severity.Error;
+                                                $"Register '{r.Name}'. Dimension can mapped to catalog property of type '{crd.Name}', but property '{p.Name}' of '{doc.Name}' document has catalog type '{cp.Name}'.")
+                                            {
+                                                Severity = Severity.Error
+                                            };
                                             cntx.AddFailure(vf);
                                         }
                                         found = true;
@@ -205,8 +229,10 @@ namespace vSharpStudio.vm.ViewModels
                                 if (!found)
                                 {
                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                        $"Register '{r.Name}'. Dimension '{rd.Name}' is not mapped to '{doc.Name}' document property.");
-                                    vf.Severity = Severity.Error;
+                                        $"Register '{r.Name}'. Dimension '{rd.Name}' is not mapped to '{doc.Name}' document property.")
+                                    {
+                                        Severity = Severity.Error
+                                    };
                                     cntx.AddFailure(vf);
                                 }
                             }
@@ -222,8 +248,10 @@ namespace vSharpStudio.vm.ViewModels
                                         if (!string.IsNullOrEmpty(mes))
                                         {
                                             var vf = new ValidationFailure(cntx.PropertyPath,
-                                                $"Register '{r.Name}'. {mes} Attached property '{ra.Name}' is mapped to '{p.Name}' property of '{doc.Name}' document.");
-                                            vf.Severity = Severity.Error;
+                                                $"Register '{r.Name}'. {mes} Attached property '{ra.Name}' is mapped to '{p.Name}' property of '{doc.Name}' document.")
+                                            {
+                                                Severity = Severity.Error
+                                            };
                                             cntx.AddFailure(vf);
                                         }
                                         found = true; break;
@@ -232,8 +260,10 @@ namespace vSharpStudio.vm.ViewModels
                                 if (!found)
                                 {
                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                        $"Register '{r.Name}'. Attached property '{ra.Name}' is not mapped to '{doc.Name}' document property.");
-                                    vf.Severity = Severity.Error;
+                                        $"Register '{r.Name}'. Attached property '{ra.Name}' is not mapped to '{doc.Name}' document property.")
+                                    {
+                                        Severity = Severity.Error
+                                    };
                                     cntx.AddFailure(vf);
                                 }
                             }
@@ -250,8 +280,10 @@ namespace vSharpStudio.vm.ViewModels
                                             if (p.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
                                             {
                                                 var vf = new ValidationFailure(cntx.PropertyPath,
-                                                    $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' can be mapped to numerical property only, but property '{p.Name}' of '{doc.Name}' document has a type '{Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.");
-                                                vf.Severity = Severity.Info;
+                                                    $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' can be mapped to numerical property only, but property '{p.Name}' of '{doc.Name}' document has a type '{Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.")
+                                                {
+                                                    Severity = Severity.Info
+                                                };
                                                 cntx.AddFailure(vf);
                                             }
                                             else
@@ -260,15 +292,19 @@ namespace vSharpStudio.vm.ViewModels
                                                 if (p.Length > r.PropertyMoneyAccumulatorLength)
                                                 {
                                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' has length less than length '{p.Name}' property of '{doc.Name}' document.");
-                                                    vf.Severity = Severity.Info;
+                                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' has length less than length '{p.Name}' property of '{doc.Name}' document.")
+                                                    {
+                                                        Severity = Severity.Info
+                                                    };
                                                     cntx.AddFailure(vf);
                                                 }
                                                 if (p.Accuracy > r.PropertyMoneyAccumulatorAccuracy)
                                                 {
                                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' has accuracy less than accuracy '{p.Name}' property of '{doc.Name}' document.");
-                                                    vf.Severity = Severity.Info;
+                                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' has accuracy less than accuracy '{p.Name}' property of '{doc.Name}' document.")
+                                                    {
+                                                        Severity = Severity.Info
+                                                    };
                                                     cntx.AddFailure(vf);
                                                 }
                                             }
@@ -280,8 +316,10 @@ namespace vSharpStudio.vm.ViewModels
                                 if (!found)
                                 {
                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' is not mapped to '{doc.Name}' document property.");
-                                    vf.Severity = Severity.Error;
+                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' is not mapped to '{doc.Name}' document property.")
+                                    {
+                                        Severity = Severity.Error
+                                    };
                                     cntx.AddFailure(vf);
                                 }
                             }
@@ -298,8 +336,10 @@ namespace vSharpStudio.vm.ViewModels
                                             if (p.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
                                             {
                                                 var vf = new ValidationFailure(cntx.PropertyPath,
-                                                    $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' can be mapped to numerical property only, but property '{p.Name}' of '{doc.Name}' document has a type '{Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.");
-                                                vf.Severity = Severity.Info;
+                                                    $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' can be mapped to numerical property only, but property '{p.Name}' of '{doc.Name}' document has a type '{Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.")
+                                                {
+                                                    Severity = Severity.Info
+                                                };
                                                 cntx.AddFailure(vf);
                                             }
                                             else
@@ -308,15 +348,19 @@ namespace vSharpStudio.vm.ViewModels
                                                 if (p.Length > r.PropertyQtyAccumulatorLength)
                                                 {
                                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' has length less than length '{p.Name}' property of '{doc.Name}' document.");
-                                                    vf.Severity = Severity.Info;
+                                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' has length less than length '{p.Name}' property of '{doc.Name}' document.")
+                                                    {
+                                                        Severity = Severity.Info
+                                                    };
                                                     cntx.AddFailure(vf);
                                                 }
                                                 if (p.Accuracy > r.PropertyQtyAccumulatorAccuracy)
                                                 {
                                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' has accuracy less than accuracy '{p.Name}' property of '{doc.Name}' document.");
-                                                    vf.Severity = Severity.Info;
+                                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' has accuracy less than accuracy '{p.Name}' property of '{doc.Name}' document.")
+                                                    {
+                                                        Severity = Severity.Info
+                                                    };
                                                     cntx.AddFailure(vf);
                                                 }
                                             }
@@ -328,8 +372,10 @@ namespace vSharpStudio.vm.ViewModels
                                 if (!found)
                                 {
                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' is not mapped to '{doc.Name}' document property.");
-                                    vf.Severity = Severity.Error;
+                                        $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' is not mapped to '{doc.Name}' document property.")
+                                    {
+                                        Severity = Severity.Error
+                                    };
                                     cntx.AddFailure(vf);
                                 }
                             }
@@ -340,8 +386,10 @@ namespace vSharpStudio.vm.ViewModels
                     if (!foundDocMappings)
                     {
                         var vf = new ValidationFailure(cntx.PropertyPath,
-                            $"Register '{r.Name}'. There are no any mappings for '{doc.Name}' document.");
-                        vf.Severity = Severity.Error;
+                            $"Register '{r.Name}'. There are no any mappings for '{doc.Name}' document.")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                     }
 
@@ -396,8 +444,10 @@ namespace vSharpStudio.vm.ViewModels
                             if (!r.Cfg.DicNodes.ContainsKey(dpm.DocPropGuid))
                             {
                                 var vf = new ValidationFailure(cntx.PropertyPath,
-                                    $"Register '{r.Name}'. It's property '{regPropName}' mapped to not existing property of '{doc.Name}' document.");
-                                vf.Severity = Severity.Error;
+                                    $"Register '{r.Name}'. It's property '{regPropName}' mapped to not existing property of '{doc.Name}' document.")
+                                {
+                                    Severity = Severity.Error
+                                };
                                 cntx.AddFailure(vf);
                             }
                             else
@@ -408,8 +458,10 @@ namespace vSharpStudio.vm.ViewModels
                                 if (hashPropGuid.Contains(dpm.DocPropGuid))
                                 {
                                     var vf = new ValidationFailure(cntx.PropertyPath,
-                                        $"Property '{regPropName}' of register '{r.Name}' is mapped to property '{prop.Name}' of document '{doc.Name}'. This document property is used for mapping more than ones.");
-                                    vf.Severity = Severity.Error;
+                                        $"Property '{regPropName}' of register '{r.Name}' is mapped to property '{prop.Name}' of document '{doc.Name}'. This document property is used for mapping more than ones.")
+                                    {
+                                        Severity = Severity.Error
+                                    };
                                     cntx.AddFailure(vf);
                                 }
                                 hashPropGuid.Add(dpm.DocPropGuid);
@@ -432,8 +484,10 @@ namespace vSharpStudio.vm.ViewModels
                                 var rp1 = (Property)r.Cfg.DicNodes[pathPrev.RegPropGuid];
                                 var rp2 = (Property)r.Cfg.DicNodes[path.RegPropGuid];
                                 var vf = new ValidationFailure(cntx.PropertyPath,
-                                    $"Register '{r.Name}'. It's property '{rp1.Name}' and  '{rp2.Name}' are mapped on different tree branches of '{doc.Name}' document.");
-                                vf.Severity = Severity.Error;
+                                    $"Register '{r.Name}'. It's property '{rp1.Name}' and  '{rp2.Name}' are mapped on different tree branches of '{doc.Name}' document.")
+                                {
+                                    Severity = Severity.Error
+                                };
                                 cntx.AddFailure(vf);
                                 foundMappingError = true;
                             }
@@ -467,8 +521,10 @@ namespace vSharpStudio.vm.ViewModels
                                         if (deepest.BranchPath != pm.BranchPath)
                                         {
                                             var vf = new ValidationFailure(cntx.PropertyPath,
-                                                $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' not mapped on a same record as a deepest dimension '{deepestDimension.Name}' of '{doc.Name}' document.");
-                                            vf.Severity = Severity.Error;
+                                                $"Register '{r.Name}'. Accumulator property '{r.PropertyMoneyAccumulatorName}' not mapped on a same record as a deepest dimension '{deepestDimension.Name}' of '{doc.Name}' document.")
+                                            {
+                                                Severity = Severity.Error
+                                            };
                                             cntx.AddFailure(vf);
                                         }
                                     }
@@ -477,8 +533,10 @@ namespace vSharpStudio.vm.ViewModels
                                         if (deepest.BranchPath != pm.BranchPath)
                                         {
                                             var vf = new ValidationFailure(cntx.PropertyPath,
-                                                $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' not mapped on a same record as a deepest dimension '{deepestDimension.Name}' of '{doc.Name}' document.");
-                                            vf.Severity = Severity.Error;
+                                                $"Register '{r.Name}'. Accumulator property '{r.PropertyQtyAccumulatorName}' not mapped on a same record as a deepest dimension '{deepestDimension.Name}' of '{doc.Name}' document.")
+                                            {
+                                                Severity = Severity.Error
+                                            };
                                             cntx.AddFailure(vf);
                                         }
                                     }

@@ -62,8 +62,10 @@ namespace vSharpStudio.vm.ViewModels
             RegisterDimension node = null!;
             if (node_impl == null)
             {
-                node = new RegisterDimension(this);
-                node.Position = this.GetNextPosition();
+                node = new RegisterDimension(this)
+                {
+                    Position = this.GetNextPosition()
+                };
             }
             else
             {

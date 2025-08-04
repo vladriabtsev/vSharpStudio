@@ -30,8 +30,10 @@ namespace vSharpStudio.vm.ViewModels
                         if (name == c.Folder.Name)
                         {
                             var vf = new ValidationFailure(nameof(p.Name),
-                                $"Properties tab name can't be same as catalog folder name '{name}'");
-                            vf.Severity = Severity.Error;
+                                $"Properties tab name can't be same as catalog folder name '{name}'")
+                            {
+                                Severity = Severity.Error
+                            };
                             cntx.AddFailure(vf);
                         }
                     }
@@ -41,16 +43,20 @@ namespace vSharpStudio.vm.ViewModels
                     if ((p.Guid != t.Guid) && (name == t.Name))
                     {
                         var vf = new ValidationFailure(nameof(p.Name),
-                            $"Not unique properties tab name '{name}'");
-                        vf.Severity = Severity.Error;
+                            $"Not unique properties tab name '{name}'")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                     }
                 }
                 var mes = p.Cfg.GroupAppSolutions.TableNameValidation(p.CompositeName);
                 if (!string.IsNullOrEmpty(mes))
                 {
-                    var vf = new ValidationFailure(nameof(p.Name), mes);
-                    vf.Severity = Severity.Error;
+                    var vf = new ValidationFailure(nameof(p.Name), mes)
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -65,8 +71,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (indx == 0)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStopTabControl),
-                        $"Can't stop using tab control when it is first field");
-                    vf.Severity = Severity.Error;
+                        $"Can't stop using tab control when it is first field")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
@@ -83,8 +91,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (!is_tab)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStopTabControl),
-                        $"Can't stop using tab control when there are no current tab control");
-                    vf.Severity = Severity.Error;
+                        $"Can't stop using tab control when there are no current tab control")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
@@ -97,8 +107,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (p.IsStopTabControl)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStartNewTabControl),
-                        $"Can't start new tab control and stop at the same time");
-                    vf.Severity = Severity.Error;
+                        $"Can't start new tab control and stop at the same time")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });

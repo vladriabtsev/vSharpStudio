@@ -48,8 +48,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (nmap > 0)
                 {
                     var vf = new ValidationFailure(nameof(row.Selected),
-                        $"Selected catalog property '{sel.Name}' is used more than ones for mapping");
-                    vf.Severity = Severity.Error;
+                        $"Selected catalog property '{sel.Name}' is used more than ones for mapping")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });

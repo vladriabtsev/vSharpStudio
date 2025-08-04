@@ -412,8 +412,11 @@ namespace vSharpStudio.vm.ViewModels
 
         public RegisterDimension AddDimension(string name, string? guid = null)
         {
-            var node = new RegisterDimension(this.GroupRegisterDimensions) { Name = name };
-            node.Position = this.GroupProperties.GetNextPosition();
+            var node = new RegisterDimension(this.GroupRegisterDimensions)
+            {
+                Name = name,
+                Position = this.GroupProperties.GetNextPosition()
+            };
 #if DEBUG
             if (guid != null) // for test model generation
             {
@@ -426,8 +429,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public RegisterDimension AddDimension(string name, ICatalog c, string? guid = null)
         {
-            var node = new RegisterDimension(this.GroupRegisterDimensions) { Name = name, DimensionCatalogGuid = c.Guid };
-            node.Position = this.GroupProperties.GetNextPosition();
+            var node = new RegisterDimension(this.GroupRegisterDimensions)
+            {
+                Name = name,
+                DimensionCatalogGuid = c.Guid,
+                Position = this.GroupProperties.GetNextPosition()
+            };
 #if DEBUG
             if (guid != null) // for test model generation
             {

@@ -21,8 +21,10 @@ namespace vSharpStudio.vm.ViewModels
                 var mes = c.Cfg.GroupAppSolutions.TableNameValidation(c.CompositeName);
                 if (!string.IsNullOrEmpty(mes))
                 {
-                    var vf = new ValidationFailure(nameof(c.Name), mes);
-                    vf.Severity = Severity.Error;
+                    var vf = new ValidationFailure(nameof(c.Name), mes)
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });

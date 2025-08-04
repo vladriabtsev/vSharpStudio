@@ -16,20 +16,26 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(propertyItem != null);
             INodeGenSettings instance = (INodeGenSettings)propertyItem.Instance;
-            ComboBox cbx = new ComboBox();
-            cbx.DisplayMemberPath = "GroupInfo";
-            cbx.SelectedValuePath = "GroupGuid";
-            var _binding_lst = new Binding("ListPluginsGroups"); // bind to the Value property of the PropertyItem
-            _binding_lst.Source = instance;
-            _binding_lst.ValidatesOnExceptions = false;
-            _binding_lst.ValidatesOnDataErrors = false;
-            _binding_lst.Mode = BindingMode.OneWay;
+            ComboBox cbx = new ComboBox
+            {
+                DisplayMemberPath = "GroupInfo",
+                SelectedValuePath = "GroupGuid"
+            };
+            var _binding_lst = new Binding("ListPluginsGroups")
+            {
+                Source = instance,
+                ValidatesOnExceptions = false,
+                ValidatesOnDataErrors = false,
+                Mode = BindingMode.OneWay
+            }; // bind to the Value property of the PropertyItem
             BindingOperations.SetBinding(cbx, ComboBox.ItemsSourceProperty, _binding_lst);
-            var _binding = new Binding("Value"); // bind to the Value property of the PropertyItem
-            _binding.Source = propertyItem;
-            _binding.ValidatesOnExceptions = true;
-            _binding.ValidatesOnDataErrors = true;
-            _binding.Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay;
+            var _binding = new Binding("Value")
+            {
+                Source = propertyItem,
+                ValidatesOnExceptions = true,
+                ValidatesOnDataErrors = true,
+                Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay
+            }; // bind to the Value property of the PropertyItem
             BindingOperations.SetBinding(cbx, ComboBox.SelectedValueProperty, _binding);
             return cbx;
         }

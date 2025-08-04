@@ -894,8 +894,12 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsDocShared { get; set; }
         public IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInConfigObject, uint position, bool isPKey)
         {
-            var node = new Property(this) { Name = subName, ParentProperty = this };
-            node.Guid = complexRef.RefComplexObjectIdPropertyGuid;
+            var node = new Property(this)
+            {
+                Name = subName,
+                ParentProperty = this,
+                Guid = complexRef.RefComplexObjectIdPropertyGuid
+            };
             node.DataType = (DataType)this.Cfg.Model.GetIdRefDataType(node, true);
             node.DataType.IsPKey = isPKey;
             node.IsNullable = isNullable;
@@ -937,15 +941,21 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty AddExtensionPropertyString(string subName, uint length, string guid)
         {
-            var node = new Property(this) { Name = this.Name + subName };
-            node.Guid = guid;
+            var node = new Property(this)
+            {
+                Name = this.Name + subName,
+                Guid = guid
+            };
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
             return node;
         }
         public IProperty AddExtensionPropertyNumerical(string subName, uint length, uint accuracy, string guid)
         {
-            var node = new Property(this) { Name = this.Name + subName };
-            node.Guid = guid;
+            var node = new Property(this)
+            {
+                Name = this.Name + subName,
+                Guid = guid
+            };
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
             return node;
         }

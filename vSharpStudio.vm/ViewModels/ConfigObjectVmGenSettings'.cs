@@ -81,10 +81,12 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     this.DicVmExclProps[t.GetType().Name] = t.DicNodeExcludedProperties;
                     this._DicGenNodeSettings[appProjectGeneratorGuid] = t;
-                    gs = new PluginGeneratorNodeSettings((ITreeConfigNode)this);
-                    gs.Name = appgen.Name;
-                    gs.AppProjectGeneratorGuid = appgen.Guid;
-                    gs.SettingsVm = t;
+                    gs = new PluginGeneratorNodeSettings((ITreeConfigNode)this)
+                    {
+                        Name = appgen.Name,
+                        AppProjectGeneratorGuid = appgen.Guid,
+                        SettingsVm = t
+                    };
                     //_logger.LogTrace("Adding Node Settings. {Path} NodeSettingsVmGuid={NodeSettingsVmGuid} Name={Name}".CallerInfo(), t.SearchPathInModel, gs.NodeSettingsVmGuid, appProjectGenerator.Name);
                     ngs.ListNodeGeneratorsSettings.Add(gs);
                 }

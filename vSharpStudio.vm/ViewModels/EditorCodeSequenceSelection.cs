@@ -19,9 +19,11 @@ namespace vSharpStudio.vm.ViewModels
             // this.Config.GroupPlugins.ListPlugins
             ITreeConfigNode? instance = (ITreeConfigNode?)((IParent)propertyItem.Instance).Parent;
             Debug.Assert(instance != null);
-            ComboBox cbx = new ComboBox();
-            cbx.DisplayMemberPath = "Text";
-            cbx.SelectedValuePath = "Value";
+            ComboBox cbx = new ComboBox
+            {
+                DisplayMemberPath = "Text",
+                SelectedValuePath = "Value"
+            };
             var _binding_lst = new Binding(); // bind to the Value property of the PropertyItem
             ObservableCollectionExt<ITextValue> listSequences = new();
             listSequences.Add(new TextValue() { Text="<Not selected>" });
@@ -34,11 +36,13 @@ namespace vSharpStudio.vm.ViewModels
             _binding_lst.ValidatesOnDataErrors = false;
             _binding_lst.Mode = BindingMode.OneWay;
             BindingOperations.SetBinding(cbx, ComboBox.ItemsSourceProperty, _binding_lst);
-            var _binding = new Binding("Value"); // bind to the Value property of the PropertyItem
-            _binding.Source = propertyItem;
-            _binding.ValidatesOnExceptions = true;
-            _binding.ValidatesOnDataErrors = true;
-            _binding.Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay;
+            var _binding = new Binding("Value")
+            {
+                Source = propertyItem,
+                ValidatesOnExceptions = true,
+                ValidatesOnDataErrors = true,
+                Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay
+            }; // bind to the Value property of the PropertyItem
             BindingOperations.SetBinding(cbx, ComboBox.SelectedValueProperty, _binding);
             return cbx;
         }

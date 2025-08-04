@@ -17,13 +17,17 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(false, "Need converter Timestamp-Datetime");
             Debug.Assert(propertyItem != null);
-            var ctrl = new DateTimePicker();
-            ctrl.Format = DateTimeFormat.MonthDay;
-            var _binding = new Binding("Value"); // bind to the Value property of the PropertyItem
-            _binding.Source = propertyItem;
-            _binding.ValidatesOnExceptions = true;
-            _binding.ValidatesOnDataErrors = true;
-            _binding.Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay;
+            var ctrl = new DateTimePicker
+            {
+                Format = DateTimeFormat.MonthDay
+            };
+            var _binding = new Binding("Value")
+            {
+                Source = propertyItem,
+                ValidatesOnExceptions = true,
+                ValidatesOnDataErrors = true,
+                Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay
+            }; // bind to the Value property of the PropertyItem
             BindingOperations.SetBinding(ctrl, DateTimePicker.ValueProperty, _binding);
             return ctrl;
         }

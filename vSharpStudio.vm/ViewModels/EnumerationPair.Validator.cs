@@ -43,8 +43,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (prev != null && pg.Value != prev.Value)
                 {
                     var vf = new ValidationFailure(nameof(pg.Value),
-                        $"Comparison with previous {ver} version. Enumeration value was changed from '{prev.Value}' to '{pg.Value}'");
-                    vf.Severity = Severity.Warning;
+                        $"Comparison with previous {ver} version. Enumeration value was changed from '{prev.Value}' to '{pg.Value}'")
+                    {
+                        Severity = Severity.Warning
+                    };
                     cntx.AddFailure(vf);
                 }
                 prev = (EnumerationPair?)pg.PrevStableVersion();
@@ -52,8 +54,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (prev != null && pg.Value != prev.Value)
                 {
                     var vf = new ValidationFailure(nameof(pg.Value),
-                        $"Comparison with previous {ver} version. Enumeration value was changed from '{prev.Value}' to '{pg.Value}'");
-                    vf.Severity = Severity.Warning;
+                        $"Comparison with previous {ver} version. Enumeration value was changed from '{prev.Value}' to '{pg.Value}'")
+                    {
+                        Severity = Severity.Warning
+                    };
                     cntx.AddFailure(vf);
                 }
             });

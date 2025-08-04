@@ -26,8 +26,10 @@ namespace vSharpStudio.vm.ViewModels
                         if (name == t.Name)
                         {
                             var vf = new ValidationFailure(nameof(p.Name),
-                                $"Catalog folder name can't be same as properties tab name '{name}'");
-                            vf.Severity = Severity.Error;
+                                $"Catalog folder name can't be same as properties tab name '{name}'")
+                            {
+                                Severity = Severity.Error
+                            };
                             cntx.AddFailure(vf);
                         }
                     }

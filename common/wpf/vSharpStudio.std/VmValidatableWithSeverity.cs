@@ -28,8 +28,10 @@ namespace ViewModelBase
         {
             Debug.Assert(validator != null);
             this._validator = validator;
-            this._ValidationCollection = new SortedObservableCollection<ValidationMessage>();
-            this._ValidationCollection.SortDirection = SortDirection.Descending;
+            this._ValidationCollection = new SortedObservableCollection<ValidationMessage>
+            {
+                SortDirection = SortDirection.Descending
+            };
         }
         protected TValidator _validator { get; private set; }
         protected void SetValidator(TValidator validator) { this._validator = validator; }

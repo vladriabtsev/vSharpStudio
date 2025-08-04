@@ -82,8 +82,10 @@ namespace vSharpStudio.wpf.Controls
         public TreeList()
         {
             Rows = new ObservableCollectionAdv<TreeNode>();
-            _root = new TreeNode(this, null);
-            _root.IsExpanded = true;
+            _root = new TreeNode(this, null)
+            {
+                IsExpanded = true
+            };
             ItemsSource = Rows;
             ItemContainerGenerator.StatusChanged += ItemContainerGeneratorStatusChanged;
         }

@@ -426,22 +426,26 @@ namespace vSharpStudio.vm.ViewModels
         #region Utils
         public IDataType GetDataType(ITreeConfigNode? parent, int enumDataType, uint length, uint accuracy, bool isPositive, string objectGuid, bool isNullable)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = Enum.Parse<EnumDataType>(enumDataType.ToString());
-            dt.Length = length;
-            dt.Accuracy = accuracy;
-            dt.IsPositive = isPositive;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = Enum.Parse<EnumDataType>(enumDataType.ToString()),
+                Length = length,
+                Accuracy = accuracy,
+                IsPositive = isPositive
+            };
             dt.ObjectRef0.ForeignObjectGuid = objectGuid;
             dt.IsNullable = isNullable;
             return dt;
         }
         public IDataType GetDataType(ITreeConfigNode? parent, EnumDataType enumDataType, uint length, bool isPositive, bool isNullable)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = enumDataType;
-            dt.Length = length;
-            dt.IsPositive = isPositive;
-            dt.IsNullable = isNullable;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = enumDataType,
+                Length = length,
+                IsPositive = isPositive,
+                IsNullable = isNullable
+            };
             return dt;
         }
         public uint GetLengthFromMaxValue(System.Numerics.BigInteger maxValue)
@@ -459,32 +463,38 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetDataTypeFromMaxValue(ITreeConfigNode? parent, System.Numerics.BigInteger maxValue, bool isPositive, bool isNullable, bool isPKey = false)
         {
             uint length = this.GetLengthFromMaxValue(maxValue);
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.NUMERICAL;
-            dt.Length = length;
-            dt.IsPositive = isPositive;
-            dt.IsNullable = isNullable;
-            dt.IsPKey = isPKey;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.NUMERICAL,
+                Length = length,
+                IsPositive = isPositive,
+                IsNullable = isNullable,
+                IsPKey = isPKey
+            };
             return dt;
         }
         // numerical
         public IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, uint accuracy, bool isNullable)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.NUMERICAL;
-            dt.Length = length;
-            dt.Accuracy = accuracy;
-            dt.IsNullable = isNullable;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.NUMERICAL,
+                Length = length,
+                Accuracy = accuracy,
+                IsNullable = isNullable
+            };
             return dt;
         }
         // numerical
         public IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, bool isPositive, bool isNullable)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.NUMERICAL;
-            dt.Length = length;
-            dt.IsPositive = isPositive;
-            dt.IsNullable = isNullable;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.NUMERICAL,
+                Length = length,
+                IsPositive = isPositive,
+                IsNullable = isNullable
+            };
             return dt;
         }
         public IDataType GetDataTypeInt(ITreeConfigNode? parent, bool isPositive, bool isNullable)
@@ -494,18 +504,22 @@ namespace vSharpStudio.vm.ViewModels
         // string
         public IDataType GetDataTypeString(ITreeConfigNode? parent, uint length, bool isNullable)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.STRING;
-            dt.Length = length;
-            dt.IsNullable = isNullable;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.STRING,
+                Length = length,
+                IsNullable = isNullable
+            };
             return dt;
         }
         public IDataType GetDataTypeStringGuid(ITreeConfigNode? parent, bool isNullable)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.STRING;
-            dt.Length = 36;
-            dt.IsNullable = isNullable;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.STRING,
+                Length = 36,
+                IsNullable = isNullable
+            };
             return dt;
         }
         public IDataType GetDataTypeCatalog(ITreeConfigNode? parent, string catGuid, bool isNullable)
@@ -535,9 +549,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IDataType GetDataTypeAny(ITreeConfigNode? parent, bool isNullable)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.ANY;
-            dt.IsNullable = isNullable;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.ANY,
+                IsNullable = isNullable
+            };
             return dt;
         }
         // catalog
@@ -560,33 +576,41 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IDataType GetDataTypeBool(ITreeConfigNode? parent, bool isNullable)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.BOOL;
-            dt.IsNullable = isNullable;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.BOOL,
+                IsNullable = isNullable
+            };
             return dt;
         }
         public IDataType GetDataTypeDate(ITreeConfigNode? parent, bool isNullable)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.DATE;
-            dt.IsNullable = isNullable;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.DATE,
+                IsNullable = isNullable
+            };
             return dt;
         }
         public IDataType GetDataTypeDateTimeUtc(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable, bool isPKey = false)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.DATETIMEUTC;
-            dt.IsNullable = isNullable;
-            dt.IsPKey = isPKey;
-            dt.AccuracyForTime = accuracyForTime;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.DATETIMEUTC,
+                IsNullable = isNullable,
+                IsPKey = isPKey,
+                AccuracyForTime = accuracyForTime
+            };
             return dt;
         }
         public IDataType GetDataTypeDateTimeLocal(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.DATETIMELOCAL;
-            dt.IsNullable = isNullable;
-            dt.AccuracyForTime = accuracyForTime;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.DATETIMELOCAL,
+                IsNullable = isNullable,
+                AccuracyForTime = accuracyForTime
+            };
             return dt;
         }
         //public IDataType GetDataTypeDateTime(bool isNullable = true)
@@ -598,26 +622,32 @@ namespace vSharpStudio.vm.ViewModels
         //}
         public IDataType GetDataTypeDateTimeZ(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.DATETIMEZ;
-            dt.IsNullable = isNullable;
-            dt.AccuracyForTime = accuracyForTime;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.DATETIMEZ,
+                IsNullable = isNullable,
+                AccuracyForTime = accuracyForTime
+            };
             return dt;
         }
         public IDataType GetDataTypeTime(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.TIME;
-            dt.IsNullable = isNullable;
-            dt.AccuracyForTime = accuracyForTime;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.TIME,
+                IsNullable = isNullable,
+                AccuracyForTime = accuracyForTime
+            };
             return dt;
         }
         public IDataType GetDataTypeDateTimeOffset(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable)
         {
-            DataType dt = new DataType(parent);
-            dt.DataTypeEnum = EnumDataType.DATETIMEOFFSET;
-            dt.IsNullable = isNullable;
-            dt.AccuracyForTime = accuracyForTime;
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.DATETIMEOFFSET,
+                IsNullable = isNullable,
+                AccuracyForTime = accuracyForTime
+            };
             return dt;
         }
         //public IDataType GetDataTypeTimeZ(bool isNullable = true)
@@ -802,10 +832,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyRefCatalog(ITreeConfigNode parent, string guid, ICatalog c, uint position, bool isNullable)
         {
-            var res = new Property(parent, guid, "Ref" + c.CompositeName, true);
-            res.Position = position;
-            res.IsCsNullable = true;
-            res.DataType = (DataType)this.GetDataType(parent, c, isNullable);
+            var res = new Property(parent, guid, "Ref" + c.CompositeName, true)
+            {
+                Position = position,
+                IsCsNullable = true,
+                DataType = (DataType)this.GetDataType(parent, c, isNullable)
+            };
             return res;
         }
         public IProperty GetPropertyCatalogCode(IGroupListProperties parent, string guid, uint length, bool isNullable)
@@ -853,10 +885,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyRefDocument(IGroupListProperties parent, string guid, IDocument d, uint position, bool isNullable)
         {
-            var res = new Property(parent, guid, "Ref" + d.CompositeName, true);
-            res.Position = position;
-            res.IsCsNullable = true;
-            res.DataType = (DataType)this.GetDataType(parent, d, isNullable);
+            var res = new Property(parent, guid, "Ref" + d.CompositeName, true)
+            {
+                Position = position,
+                IsCsNullable = true,
+                DataType = (DataType)this.GetDataType(parent, d, isNullable)
+            };
             return res;
         }
         public IProperty GetPropertyDocumentDate(IGroupListProperties parent, string guid, bool isPKey = false)
@@ -899,10 +933,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyRef(IDetail fromObject, IDetail toObject, string guid, string name, uint position, bool isNullable)
         {
-            var res = new Property(fromObject.GroupProperties, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = new DataType(fromObject);
+            var res = new Property(fromObject.GroupProperties, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = new DataType(fromObject)
+            };
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_DETAIL;
             res.DataType.IsNullable = isNullable;
@@ -910,10 +946,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyRef(IDetail fromObject, ICatalog toObject, string guid, string name, uint position, bool isNullable)
         {
-            var res = new Property(fromObject.GroupProperties, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = new DataType(fromObject);
+            var res = new Property(fromObject.GroupProperties, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = new DataType(fromObject)
+            };
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_CATALOG;
             res.DataType.IsNullable = isNullable;
@@ -921,10 +959,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyRef(IDetail fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable)
         {
-            var res = new Property(fromObject.GroupProperties, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = new DataType(fromObject);
+            var res = new Property(fromObject.GroupProperties, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = new DataType(fromObject)
+            };
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER;
             res.DataType.IsNullable = isNullable;
@@ -932,10 +972,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyRef(IDetail fromObject, IDocument toObject, string guid, string name, uint position, bool isNullable)
         {
-            var res = new Property(fromObject.GroupProperties, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = new DataType(fromObject);
+            var res = new Property(fromObject.GroupProperties, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = new DataType(fromObject)
+            };
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT;
             res.DataType.IsNullable = isNullable;
@@ -943,10 +985,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyRef(ICatalog fromObject, ICatalog toObject, string guid, string name, uint position, bool isNullable)
         {
-            var res = new Property(fromObject.GroupProperties, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = new DataType(fromObject);
+            var res = new Property(fromObject.GroupProperties, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = new DataType(fromObject)
+            };
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT;
             res.DataType.IsNullable = isNullable;
@@ -954,10 +998,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyRef(ICatalog fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable)
         {
-            var res = new Property(fromObject.GroupProperties, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = new DataType(fromObject);
+            var res = new Property(fromObject.GroupProperties, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = new DataType(fromObject)
+            };
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER;
             res.DataType.IsNullable = isNullable;
@@ -965,10 +1011,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyRef(ICatalogFolder fromObject, ICatalogFolder toObject, string guid, string name, uint position, bool isNullable)
         {
-            var res = new Property(fromObject.GroupProperties, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = new DataType(fromObject);
+            var res = new Property(fromObject.GroupProperties, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = new DataType(fromObject)
+            };
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT;
             res.DataType.IsNullable = isNullable;
@@ -976,10 +1024,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyRef(IRegister fromObject, IDocumentTimeline toObject, string guid, string name, uint position, bool isNullable)
         {
-            var res = new Property(fromObject.GroupProperties, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = new DataType(fromObject);
+            var res = new Property(fromObject.GroupProperties, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = new DataType(fromObject)
+            };
             res.DataType.ObjectRef0.ForeignObjectGuid = toObject.Guid;
             res.DataType.DataTypeEnum = EnumDataType.REF_TIMELINE;
             res.DataType.IsNullable = isNullable;
@@ -988,26 +1038,32 @@ namespace vSharpStudio.vm.ViewModels
 
         public IProperty GetPropertyCatalog(ITreeConfigNode parent, string guid, string name, string catGuid, uint position, bool isNullable)
         {
-            var res = new Property(parent, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = (DataType)this.GetDataTypeCatalog(parent, catGuid, isNullable);
+            var res = new Property(parent, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = (DataType)this.GetDataTypeCatalog(parent, catGuid, isNullable)
+            };
             return res;
         }
         public IProperty GetPropertyDocument(ITreeConfigNode parent, string guid, string name, string docGuid, uint position, bool isNullable)
         {
-            var res = new Property(parent, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = (DataType)this.GetDataTypeDocument(parent, docGuid, isNullable);
+            var res = new Property(parent, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = (DataType)this.GetDataTypeDocument(parent, docGuid, isNullable)
+            };
             return res;
         }
         public IProperty GetPropertyTimeline(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, bool isPKey)
         {
-            var res = new Property(parent, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = (DataType)this.GetDataTypeTimeline(parent, this.GroupDocuments.DocumentTimeline.Guid, isNullable, isPKey);
+            var res = new Property(parent, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = (DataType)this.GetDataTypeTimeline(parent, this.GroupDocuments.DocumentTimeline.Guid, isNullable, isPKey)
+            };
             return res;
         }
         public IDataType GetDataTypeCatalogs(ITreeConfigNode? parent, IEnumerable<ComplexRef> lstCatGuids, bool isNullable)
@@ -1036,34 +1092,42 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyCatalogs(IGroupListProperties parent, string guid, string name, IEnumerable<ComplexRef> lstCatGuids, uint position, bool isNullable)
         {
-            var res = new Property(parent, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = (DataType)this.GetDataTypeCatalogs(parent, lstCatGuids, isNullable);
+            var res = new Property(parent, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = (DataType)this.GetDataTypeCatalogs(parent, lstCatGuids, isNullable)
+            };
             return res;
         }
         public IProperty GetPropertyDocuments(ITreeConfigNode parent, string guid, string name, IEnumerable<ComplexRef> lstDocGuids, uint position, bool isNullable)
         {
-            var res = new Property(parent, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = (DataType)this.GetDataTypeDocuments(parent, lstDocGuids, isNullable);
+            var res = new Property(parent, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = (DataType)this.GetDataTypeDocuments(parent, lstDocGuids, isNullable)
+            };
             return res;
         }
         public IProperty GetPropertyCatalogsDocuments(IGroupListProperties parent, string guid, string name, IEnumerable<ComplexRef> lstCatOrDocGuids, uint position, bool isNullable)
         {
-            var res = new Property(parent, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = (DataType)this.GetDataTypeCatalogsDocuments(parent, lstCatOrDocGuids, isNullable);
+            var res = new Property(parent, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = (DataType)this.GetDataTypeCatalogsDocuments(parent, lstCatOrDocGuids, isNullable)
+            };
             return res;
         }
         public IProperty GetPropertyAny(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable)
         {
-            var res = new Property(parent, guid, name, true);
-            res.Position = position;
-            res.IsCsNullable = isNullable;
-            res.DataType = (DataType)this.GetDataTypeAny(parent, isNullable);
+            var res = new Property(parent, guid, name, true)
+            {
+                Position = position,
+                IsCsNullable = isNullable,
+                DataType = (DataType)this.GetDataTypeAny(parent, isNullable)
+            };
             return res;
         }
 

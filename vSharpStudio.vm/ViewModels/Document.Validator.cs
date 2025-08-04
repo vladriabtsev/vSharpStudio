@@ -26,16 +26,20 @@ namespace vSharpStudio.vm.ViewModels
                 if (string.IsNullOrWhiteSpace(p.SequenceGuid))
                 {
                     var vf = new ValidationFailure(nameof(p.SequenceGuid),
-                        $"Document enumerator sequence is not selected.");
-                    vf.Severity = Severity.Error;
+                        $"Document enumerator sequence is not selected.")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
                 var pg = p.ParentGroupListDocuments;
                 if (name == pg.ParentGroupDocuments.DocumentDocDateTimePropertyName)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Document date and time property name is set to '{pg.ParentGroupDocuments.DocumentDocDateTimePropertyName}'. This name is reserved for document timeline property.");
-                    vf.Severity = Severity.Error;
+                        $"Document date and time property name is set to '{pg.ParentGroupDocuments.DocumentDocDateTimePropertyName}'. This name is reserved for document timeline property.")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
                 foreach (var t in pg.ListDocuments)
@@ -43,16 +47,20 @@ namespace vSharpStudio.vm.ViewModels
                     if ((p.Guid != t.Guid) && (name == t.Name))
                     {
                         var vf = new ValidationFailure(nameof(p.Name),
-                            $"Not unique document name '{name}'");
-                        vf.Severity = Severity.Error;
+                            $"Not unique document name '{name}'")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                     }
                 }
                 var mes = p.Cfg.GroupAppSolutions.TableNameValidation(p.CompositeName);
                 if (!string.IsNullOrEmpty(mes))
                 {
-                    var vf = new ValidationFailure(nameof(p.Name), mes);
-                    vf.Severity = Severity.Error;
+                    var vf = new ValidationFailure(nameof(p.Name), mes)
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });

@@ -35,29 +35,41 @@ namespace vSharpStudio.vm.ViewModels
             this.propItem = propertyItem;
             var objName = ((IName)propertyItem.Instance).Name; // name of object
             var displName = propertyItem.DisplayName; // label of property
-            this.val = new PropertyGridDialogVm();
-            this.val.Caption = $"{objName}->{displName}:";
-            this.val.Value = this.propItem.Value;
+            this.val = new PropertyGridDialogVm
+            {
+                Caption = $"{objName}->{displName}:",
+                Value = this.propItem.Value
+            };
             Grid grd = new Grid();
-            var cd1 = new ColumnDefinition();
-            cd1.Width = new GridLength(1, GridUnitType.Star);
-            var cd2 = new ColumnDefinition();
-            cd2.Width = new GridLength(1, GridUnitType.Auto);
+            var cd1 = new ColumnDefinition
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            };
+            var cd2 = new ColumnDefinition
+            {
+                Width = new GridLength(1, GridUnitType.Auto)
+            };
             grd.ColumnDefinitions.Add(cd1);
             grd.ColumnDefinitions.Add(cd2);
 
-            textBox = new PropertyGridEditorTextBox();
-            textBox.IsEnabled = false;
+            textBox = new PropertyGridEditorTextBox
+            {
+                IsEnabled = false
+            };
             //textBox.Watermark = propertyItem.Value.ToString();
-            var _binding = new Binding($"Instance.{propertyItem.PropertyName}");
-            _binding.Mode = BindingMode.OneWay;
-            _binding.Source = propertyItem;
-            _binding.ValidatesOnExceptions = true;
-            _binding.ValidatesOnDataErrors = true;
+            var _binding = new Binding($"Instance.{propertyItem.PropertyName}")
+            {
+                Mode = BindingMode.OneWay,
+                Source = propertyItem,
+                ValidatesOnExceptions = true,
+                ValidatesOnDataErrors = true
+            };
             BindingOperations.SetBinding(textBox, PropertyGridEditorTextBox.WatermarkProperty, _binding);
 
-            Button b = new Button();
-            b.Content = "...";
+            Button b = new Button
+            {
+                Content = "..."
+            };
             b.Click += B_Click;
 
             Grid.SetColumn(textBox, 0);

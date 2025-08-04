@@ -247,8 +247,10 @@ namespace vSharpStudio.vm.ViewModels
             this.ListGeneratorsSolutionSettings.Clear();
             foreach (var t in this.DicPluginsGroupSettings)
             {
-                var set = new PluginGeneratorSolutionSettings(this);
-                set.Guid = t.Key;
+                var set = new PluginGeneratorSolutionSettings(this)
+                {
+                    Guid = t.Key
+                };
                 if (t.Value == null)
                     set.Settings = String.Empty;
                 else

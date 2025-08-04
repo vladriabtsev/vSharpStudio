@@ -18,24 +18,34 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(propertyItem != null);
             m = (BaseConfigLink)propertyItem.Instance;
             Grid grd = new Grid();
-            var cd1 = new ColumnDefinition();
-            cd1.Width = new GridLength(1, GridUnitType.Star);
-            var cd2 = new ColumnDefinition();
-            cd2.Width = new GridLength(1, GridUnitType.Auto);
+            var cd1 = new ColumnDefinition
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            };
+            var cd2 = new ColumnDefinition
+            {
+                Width = new GridLength(1, GridUnitType.Auto)
+            };
             grd.ColumnDefinitions.Add(cd1);
             grd.ColumnDefinitions.Add(cd2);
 
-            textBox = new PropertyGridEditorTextBox();
-            textBox.Watermark = "Select file";
-            var _binding = new Binding("Value"); //bind to the Value property of the PropertyItem
-            _binding.Source = propertyItem;
-            _binding.ValidatesOnExceptions = true;
-            _binding.ValidatesOnDataErrors = true;
-            _binding.Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay;
+            textBox = new PropertyGridEditorTextBox
+            {
+                Watermark = "Select file"
+            };
+            var _binding = new Binding("Value")
+            {
+                Source = propertyItem,
+                ValidatesOnExceptions = true,
+                ValidatesOnDataErrors = true,
+                Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay
+            }; //bind to the Value property of the PropertyItem
             BindingOperations.SetBinding(textBox, PropertyGridEditorTextBox.TextProperty, _binding);
 
-            Button b = new Button();
-            b.Content = "...";
+            Button b = new Button
+            {
+                Content = "..."
+            };
             b.Click += B_Click;
 
             Grid.SetColumn(textBox, 0);
@@ -48,10 +58,12 @@ namespace vSharpStudio.vm.ViewModels
 
         private void B_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.FileName = ""; // Default file name
-            dlg.DefaultExt = ".vcfg"; // Default file extension
-            dlg.Filter = "Solution file (.vcfg)|*.vcfg"; // Filter files by extension
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
+            {
+                FileName = "", // Default file name
+                DefaultExt = ".vcfg", // Default file extension
+                Filter = "Solution file (.vcfg)|*.vcfg" // Filter files by extension
+            };
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {

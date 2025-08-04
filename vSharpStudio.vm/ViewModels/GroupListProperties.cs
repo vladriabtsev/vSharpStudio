@@ -492,8 +492,10 @@ namespace vSharpStudio.vm.ViewModels
                 node.Guid = guid;
             }
 #endif
-            node.DataType = new DataType(node);
-            node.DataType.DataTypeEnum = EnumDataType.ANY;
+            node.DataType = new DataType(node)
+            {
+                DataTypeEnum = EnumDataType.ANY
+            };
             node.IsNullable = true;
             this.NodeAddNewSubNode(node);
             return node;

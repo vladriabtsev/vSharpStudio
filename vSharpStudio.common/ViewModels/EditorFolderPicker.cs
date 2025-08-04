@@ -18,25 +18,35 @@ namespace vSharpStudio.common.ViewModels
             Debug.Assert(propertyItem != null);
             this.propItem= propertyItem;
             Grid grd = new Grid();
-            var cd1 = new ColumnDefinition();
-            cd1.Width = new GridLength(1, GridUnitType.Star);
-            var cd2 = new ColumnDefinition();
-            cd2.Width = new GridLength(1, GridUnitType.Auto);
+            var cd1 = new ColumnDefinition
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            };
+            var cd2 = new ColumnDefinition
+            {
+                Width = new GridLength(1, GridUnitType.Auto)
+            };
             grd.ColumnDefinitions.Add(cd1);
             grd.ColumnDefinitions.Add(cd2);
 
-            textBox = new PropertyGridEditorTextBox();
-            textBox.Watermark = "Select folder";
+            textBox = new PropertyGridEditorTextBox
+            {
+                Watermark = "Select folder"
+            };
             // https://learn.microsoft.com/en-us/dotnet/api/system.windows.data.binding?view=windowsdesktop-7.0
-            var _binding = new Binding("Value"); //bind to the Value property of the PropertyItem
-            _binding.Source = propertyItem;
-            _binding.ValidatesOnExceptions = true;
-            _binding.ValidatesOnDataErrors = true;
-            _binding.Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay;
+            var _binding = new Binding("Value")
+            {
+                Source = propertyItem,
+                ValidatesOnExceptions = true,
+                ValidatesOnDataErrors = true,
+                Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay
+            }; //bind to the Value property of the PropertyItem
             BindingOperations.SetBinding(textBox, PropertyGridEditorTextBox.TextProperty, _binding);
 
-            Button b = new Button();
-            b.Content = "...";
+            Button b = new Button
+            {
+                Content = "..."
+            };
             b.Click += B_Click;
 
             Grid.SetColumn(textBox, 0);

@@ -19,8 +19,10 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (ft== FormType.FormTypeNotSelected)
                     {
-                        var vf = new ValidationFailure(cntx.PropertyPath, $"Form type is not selected");
-                        vf.Severity = Severity.Warning;
+                        var vf = new ValidationFailure(cntx.PropertyPath, $"Form type is not selected")
+                        {
+                            Severity = Severity.Warning
+                        };
                         cntx.AddFailure(vf);
                         return;
                     }
@@ -29,21 +31,27 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (instance.ListSelectedNotSpecialProperties.Count == 0)
                         {
-                            var vf = new ValidationFailure(cntx.PropertyPath, $"No properties are selected for view");
-                            vf.Severity = Severity.Warning;
+                            var vf = new ValidationFailure(cntx.PropertyPath, $"No properties are selected for view")
+                            {
+                                Severity = Severity.Warning
+                            };
                             cntx.AddFailure(vf);
                         }
                         if (instance.UseSeparateTreeForFolders && instance.ListSeparateTreeSelectedNotSpecialProperties.Count == 0)
                         {
-                            var vf = new ValidationFailure(cntx.PropertyPath, $"No properties are selected for separate tree view");
-                            vf.Severity = Severity.Warning;
+                            var vf = new ValidationFailure(cntx.PropertyPath, $"No properties are selected for separate tree view")
+                            {
+                                Severity = Severity.Warning
+                            };
                             cntx.AddFailure(vf);
                         }
                     }
                     else
                     {
-                        var vf = new ValidationFailure(cntx.PropertyPath, $"Form type {Enum.GetName<FormType>(ft)} is not supported yet");
-                        vf.Severity = Severity.Warning;
+                        var vf = new ValidationFailure(cntx.PropertyPath, $"Form type {Enum.GetName<FormType>(ft)} is not supported yet")
+                        {
+                            Severity = Severity.Warning
+                        };
                         cntx.AddFailure(vf);
                     }
                 });

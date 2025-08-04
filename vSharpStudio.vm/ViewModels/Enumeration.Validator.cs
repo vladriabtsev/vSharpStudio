@@ -66,8 +66,10 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (pg.DataTypeLength < prev.DataTypeLength)
                     {
-                        var vf = new ValidationFailure(nameof(pg.DataTypeLength), $"Comparison with previous {ver} version. Length was reduced from '{prev.DataTypeLength}' to '{pg.DataTypeLength}'");
-                        vf.Severity = Severity.Warning;
+                        var vf = new ValidationFailure(nameof(pg.DataTypeLength), $"Comparison with previous {ver} version. Length was reduced from '{prev.DataTypeLength}' to '{pg.DataTypeLength}'")
+                        {
+                            Severity = Severity.Warning
+                        };
                         cntx.AddFailure(vf);
                     }
                 }
@@ -77,8 +79,10 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (pg.DataTypeLength < prev.DataTypeLength)
                     {
-                        var vf = new ValidationFailure(nameof(pg.DataTypeLength), $"Comparison with previous {ver} version. Length was reduced from '{prev.DataTypeLength}' to '{pg.DataTypeLength}'");
-                        vf.Severity = Severity.Warning;
+                        var vf = new ValidationFailure(nameof(pg.DataTypeLength), $"Comparison with previous {ver} version. Length was reduced from '{prev.DataTypeLength}' to '{pg.DataTypeLength}'")
+                        {
+                            Severity = Severity.Warning
+                        };
                         cntx.AddFailure(vf);
                     }
                 }
@@ -92,8 +96,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {
                     var vf = new ValidationFailure(nameof(pg.DataTypeEnum),
-                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumEnumerationType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumEnumerationType), pg.DataTypeEnum)}'");
-                    vf.Severity = Severity.Warning;
+                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumEnumerationType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumEnumerationType), pg.DataTypeEnum)}'")
+                    {
+                        Severity = Severity.Warning
+                    };
                     cntx.AddFailure(vf);
                 }
                 prev = (Enumeration?)pg.PrevStableVersion();
@@ -101,8 +107,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {
                     var vf = new ValidationFailure(nameof(pg.DataTypeEnum),
-                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumEnumerationType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumEnumerationType), pg.DataTypeEnum)}'");
-                    vf.Severity = Severity.Warning;
+                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumEnumerationType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumEnumerationType), pg.DataTypeEnum)}'")
+                    {
+                        Severity = Severity.Warning
+                    };
                     cntx.AddFailure(vf);
                 }
             });

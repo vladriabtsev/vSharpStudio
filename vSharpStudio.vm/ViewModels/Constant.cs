@@ -658,8 +658,12 @@ namespace vSharpStudio.vm.ViewModels
         public string NameWithExtention { get { if (this.ParentConstant == null) return this.Name; return this.ParentConstant.Name + this.Name; } }
         public IConstant AddExtensionConstantRefId(string subName, string guid)
         {
-            var node = new Constant(this) { Name = subName, ParentConstant = this };
-            node.Guid = guid;
+            var node = new Constant(this)
+            {
+                Name = subName,
+                ParentConstant = this,
+                Guid = guid
+            };
             node.DataType = (DataType)this.Cfg.Model.GetIdRefDataType(node, true);
             node.DataType.IsPKey = false;
             node.IsNullable = true;
@@ -671,8 +675,11 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsComplexDesc { get; private set; }
         public IConstant AddExtensionConstantGd(string subName, string guid)
         {
-            var node = new Constant(this) { Name = subName };
-            node.Guid = guid;
+            var node = new Constant(this)
+            {
+                Name = subName,
+                Guid = guid
+            };
             node.DataType = (DataType)this.Cfg.Model.GetDataTypeInt(node, false, true);
             node.IsNullable = true;
             node.ParentConstant = this;
@@ -681,8 +688,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IConstant AddExtensionConstantDesc(string subName, string guid)
         {
-            var node = new Constant(this) { Name = subName };
-            node.Guid = guid;
+            var node = new Constant(this)
+            {
+                Name = subName,
+                Guid = guid
+            };
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = this.Cfg.Model.ComplexPropertyRefDescrLength };
             node.IsNullable = true;
             node.ParentConstant = this;
@@ -691,15 +701,21 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IConstant AddExtensionConstantString(string subName, uint length, string guid)
         {
-            var node = new Constant(this) { Name = this.Name + subName };
-            node.Guid = guid;
+            var node = new Constant(this)
+            {
+                Name = this.Name + subName,
+                Guid = guid
+            };
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
             return node;
         }
         public IConstant AddExtensionConstantNumerical(string subName, uint length, uint accuracy, string guid)
         {
-            var node = new Constant(this) { Name = this.Name + subName };
-            node.Guid = guid;
+            var node = new Constant(this)
+            {
+                Name = this.Name + subName,
+                Guid = guid
+            };
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
             return node;
         }

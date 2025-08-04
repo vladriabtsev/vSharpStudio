@@ -26,8 +26,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (!rd.Cfg.DicNodes.ContainsKey(cguid))
                 {
                     var vf = new ValidationFailure(nameof(rd.DimensionCatalogGuid),
-                        $"Selected catalog type for register dimension is not found in the configuration.");
-                    vf.Severity = Severity.Error;
+                        $"Selected catalog type for register dimension is not found in the configuration.")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
                 var r = rd.ParentGroupListRegisterDimensions.ParentRegister;
@@ -37,8 +39,10 @@ namespace vSharpStudio.vm.ViewModels
                     if (t.DimensionCatalogGuid == rd.DimensionCatalogGuid)
                     {
                         var vf = new ValidationFailure(nameof(rd.DimensionCatalogGuid),
-                            $"Register '{r.Name}' dimension '{rd.Name}'. Selected catalog type for register dimension is already used for '{t.Name}' dimension.");
-                        vf.Severity = Severity.Error;
+                            $"Register '{r.Name}' dimension '{rd.Name}'. Selected catalog type for register dimension is already used for '{t.Name}' dimension.")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                     }
                 }

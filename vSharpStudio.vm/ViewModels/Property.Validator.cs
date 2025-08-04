@@ -25,8 +25,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 foreach (var t in req.ListErrors)
                 {
-                    var vf = new ValidationFailure(nameof(p.RangeValuesRequirementStr), t);
-                    vf.Severity = Severity.Error;
+                    var vf = new ValidationFailure(nameof(p.RangeValuesRequirementStr), t)
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             }
@@ -44,8 +46,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (string.IsNullOrEmpty(p.Name))
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Enter property 'Name' for config object {p.ParentGroupListProperties.Parent?.Name}. 'Name' of property can't be empty");
-                    vf.Severity = Severity.Error;
+                        $"Enter property 'Name' for config object {p.ParentGroupListProperties.Parent?.Name}. 'Name' of property can't be empty")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
@@ -63,15 +67,19 @@ namespace vSharpStudio.vm.ViewModels
                 if (name == model.PKeyName)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Model is configured to use {model.PKeyName} as primary key name. Property name {model.PKeyName} is reserved for primary key property");
-                    vf.Severity = Severity.Error;
+                        $"Model is configured to use {model.PKeyName} as primary key name. Property name {model.PKeyName} is reserved for primary key property")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
                 if (name == model.RecordVersionFieldName)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Model is configured to use {model.RecordVersionFieldName} as record version name. Property name {model.RecordVersionFieldName} is reserved for record version property");
-                    vf.Severity = Severity.Error;
+                        $"Model is configured to use {model.RecordVersionFieldName} as record version name. Property name {model.RecordVersionFieldName} is reserved for record version property")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
                 if (pg.Parent is Catalog c)
@@ -87,8 +95,10 @@ namespace vSharpStudio.vm.ViewModels
                             if (name == Property.SpecialPropertyNameRefParent && pg.ListProperties.Contains(p))
                             {
                                 var vf = new ValidationFailure(nameof(p.Name),
-                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name '{Property.SpecialPropertyNameRefParent}' is reserved for auto generated property");
-                                vf.Severity = Severity.Error;
+                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name '{Property.SpecialPropertyNameRefParent}' is reserved for auto generated property")
+                                {
+                                    Severity = Severity.Error
+                                };
                                 cntx.AddFailure(vf);
                             }
                         }
@@ -97,8 +107,10 @@ namespace vSharpStudio.vm.ViewModels
                             if (name == Property.SpecialPropertyNameRefTreeParent && pg.ListProperties.Contains(p))
                             {
                                 var vf = new ValidationFailure(nameof(p.Name),
-                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'false'. Property name '{Property.SpecialPropertyNameRefTreeParent}' is reserved for auto generated property");
-                                vf.Severity = Severity.Error;
+                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'false'. Property name '{Property.SpecialPropertyNameRefTreeParent}' is reserved for auto generated property")
+                                {
+                                    Severity = Severity.Error
+                                };
                                 cntx.AddFailure(vf);
                             }
                             if (c.UseTree && !c.UseSeparateTreeForFolders)
@@ -106,8 +118,10 @@ namespace vSharpStudio.vm.ViewModels
                                 if (model.GroupCatalogs.PropertyIsFolderName == name)
                                 {
                                     var vf = new ValidationFailure(nameof(p.Name),
-                                        $"Catalog parameter 'Explicit Folders' is set to 'true'. Property name '{model.GroupCatalogs.PropertyIsFolderName}' is reserved for auto generated property");
-                                    vf.Severity = Severity.Error;
+                                        $"Catalog parameter 'Explicit Folders' is set to 'true'. Property name '{model.GroupCatalogs.PropertyIsFolderName}' is reserved for auto generated property")
+                                    {
+                                        Severity = Severity.Error
+                                    };
                                     cntx.AddFailure(vf);
                                 }
                             }
@@ -126,8 +140,10 @@ namespace vSharpStudio.vm.ViewModels
                             if (name == Property.SpecialPropertyNameRefTreeParent && pg.ListProperties.Contains(p))
                             {
                                 var vf = new ValidationFailure(nameof(p.Name),
-                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name '{Property.SpecialPropertyNameRefTreeParent}' is reserved for auto generated property");
-                                vf.Severity = Severity.Error;
+                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name '{Property.SpecialPropertyNameRefTreeParent}' is reserved for auto generated property")
+                                {
+                                    Severity = Severity.Error
+                                };
                                 cntx.AddFailure(vf);
                             }
                         }
@@ -138,8 +154,10 @@ namespace vSharpStudio.vm.ViewModels
                     if (name == Property.SpecialPropertyNameRefParent && pg.ListProperties.Contains(p))
                     {
                         var vf = new ValidationFailure(nameof(p.Name),
-                            $"Property name '{Property.SpecialPropertyNameRefParent}' is reserved for auto generated property");
-                        vf.Severity = Severity.Error;
+                            $"Property name '{Property.SpecialPropertyNameRefParent}' is reserved for auto generated property")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                     }
                 }
@@ -168,8 +186,10 @@ namespace vSharpStudio.vm.ViewModels
                         if ((p.Guid != t.Guid) && (name == t.Name))
                         {
                             var vf = new ValidationFailure(nameof(p.Name),
-                                $"Not unique property name '{name}'. Same as shared property");
-                            vf.Severity = Severity.Error;
+                                $"Not unique property name '{name}'. Same as shared property")
+                            {
+                                Severity = Severity.Error
+                            };
                             cntx.AddFailure(vf);
                         }
                     }
@@ -179,16 +199,20 @@ namespace vSharpStudio.vm.ViewModels
                     if ((p.Guid != t.Guid) && (name == t.Name))
                     {
                         var vf = new ValidationFailure(nameof(p.Name),
-                            $"Not unique property name '{name}'");
-                        vf.Severity = Severity.Error;
+                            $"Not unique property name '{name}'")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                     }
                 }
                 var mes = p.Cfg.GroupAppSolutions.FieldNameValidation(p.Name);
                 if (!string.IsNullOrEmpty(mes))
                 {
-                    var vf = new ValidationFailure(nameof(p.Name), mes);
-                    vf.Severity = Severity.Error;
+                    var vf = new ValidationFailure(nameof(p.Name), mes)
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -206,8 +230,10 @@ namespace vSharpStudio.vm.ViewModels
                             if (p.Length <= vmin)
                             {
                                 var vf = new ValidationFailure(nameof(p.Length),
-                                    $"Value less or equal than {nameof(p.MinLengthRequirement)} property value");
-                                vf.Severity = Severity.Error;
+                                    $"Value less or equal than {nameof(p.MinLengthRequirement)} property value")
+                                {
+                                    Severity = Severity.Error
+                                };
                                 cntx.AddFailure(vf);
                             }
                         }
@@ -220,8 +246,10 @@ namespace vSharpStudio.vm.ViewModels
                             if (p.Length <= vmax)
                             {
                                 var vf = new ValidationFailure(nameof(p.Length),
-                                    $"Value less or equal than {nameof(p.MaxLengthRequirement)} property value");
-                                vf.Severity = Severity.Error;
+                                    $"Value less or equal than {nameof(p.MaxLengthRequirement)} property value")
+                                {
+                                    Severity = Severity.Error
+                                };
                                 cntx.AddFailure(vf);
                             }
                         }
@@ -232,15 +260,19 @@ namespace vSharpStudio.vm.ViewModels
                     if (p.Length <= p.Accuracy)
                     {
                         var vf = new ValidationFailure(nameof(p.Length),
-                            $"Value less or equal than {nameof(p.Accuracy)} property value");
-                        vf.Severity = Severity.Error;
+                            $"Value less or equal than {nameof(p.Accuracy)} property value")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                     }
                     if (p.Length > 28)
                     {
                         var vf = new ValidationFailure(nameof(p.Length),
-                            $"Value greater than 28 is not supported");
-                        vf.Severity = Severity.Error;
+                            $"Value greater than 28 is not supported")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                     }
                 }
@@ -255,8 +287,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (p.Accuracy >= p.Length)
                 {
                     var vf = new ValidationFailure(nameof(p.Accuracy),
-                        $"Value greater or equal than {nameof(p.Length)} property value");
-                    vf.Severity = Severity.Error;
+                        $"Value greater or equal than {nameof(p.Length)} property value")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -286,8 +320,10 @@ namespace vSharpStudio.vm.ViewModels
                         if (p.Parent.Parent is IRegister)
                             return;
                         var vf = new ValidationFailure(nameof(p.IsNullable),
-                            $"Reference property to complex type expected to be nullable. For example, when object is created.");
-                        vf.Severity = Severity.Error;
+                            $"Reference property to complex type expected to be nullable. For example, when object is created.")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                         break;
                     default:
@@ -305,8 +341,10 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     p.ClearValidationForProperty(nameof(p.TimespanMaxValue));
                     var vf = new ValidationFailure(nameof(p.TimespanAccuracy),
-                        $"TimeSpan Accuracy has to be less or equal than TimeSpan Max value");
-                    vf.Severity = Severity.Error;
+                        $"TimeSpan Accuracy has to be less or equal than TimeSpan Max value")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -321,8 +359,10 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     p.ClearValidationForProperty(nameof(p.TimespanAccuracy));
                     var vf = new ValidationFailure(nameof(p.TimespanMaxValue),
-                        $"TimeSpan Max has to be greater or equal than TimeSpan Accuracy");
-                    vf.Severity = Severity.Error;
+                        $"TimeSpan Max has to be greater or equal than TimeSpan Accuracy")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -338,16 +378,20 @@ namespace vSharpStudio.vm.ViewModels
                 if (!BigInteger.TryParse(p.MinLengthRequirement, out vmin))
                 {
                     var vf = new ValidationFailure(nameof(p.MinLengthRequirement),
-                        $"Can't parse to INTEGER");
-                    vf.Severity = Severity.Error;
+                        $"Can't parse to INTEGER")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (vmin >= p.Length)
                 {
                     var vf = new ValidationFailure(nameof(p.MinLengthRequirement),
-                        $"Value greater or equal than {nameof(p.Length)} property value");
-                    vf.Severity = Severity.Error;
+                        $"Value greater or equal than {nameof(p.Length)} property value")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
                 if (string.IsNullOrWhiteSpace(p.MaxLengthRequirement))
@@ -358,8 +402,10 @@ namespace vSharpStudio.vm.ViewModels
                     if (vmin >= vmax)
                     {
                         var vf = new ValidationFailure(nameof(p.MinLengthRequirement),
-                            $"Value greater or equal than {nameof(p.MaxLengthRequirement)} property value");
-                        vf.Severity = Severity.Error;
+                            $"Value greater or equal than {nameof(p.MaxLengthRequirement)} property value")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                     }
                 }
@@ -375,16 +421,20 @@ namespace vSharpStudio.vm.ViewModels
                 if (!BigInteger.TryParse(p.MaxLengthRequirement, out vmax))
                 {
                     var vf = new ValidationFailure(nameof(p.MaxLengthRequirement),
-                        $"Can't parse to INTEGER");
-                    vf.Severity = Severity.Error;
+                        $"Can't parse to INTEGER")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (vmax >= p.Length)
                 {
                     var vf = new ValidationFailure(nameof(p.MaxLengthRequirement),
-                        $"Value greater or equal than {nameof(p.Length)} property value");
-                    vf.Severity = Severity.Error;
+                        $"Value greater or equal than {nameof(p.Length)} property value")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
                 if (string.IsNullOrWhiteSpace(p.MinLengthRequirement))
@@ -395,8 +445,10 @@ namespace vSharpStudio.vm.ViewModels
                     if (vmin >= vmax)
                     {
                         var vf = new ValidationFailure(nameof(p.MaxLengthRequirement),
-                            $"Value less or equal than {nameof(p.MinLengthRequirement)} property value");
-                        vf.Severity = Severity.Error;
+                            $"Value less or equal than {nameof(p.MinLengthRequirement)} property value")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                     }
                 }
@@ -432,8 +484,10 @@ namespace vSharpStudio.vm.ViewModels
                         if (!bool.TryParse(val, out bool v))
                         {
                             var vf = new ValidationFailure(nameof(p.DefaultValue),
-                                $"Can't parse by bool.Parse() default property value");
-                            vf.Severity = Severity.Error;
+                                $"Can't parse by bool.Parse() default property value")
+                            {
+                                Severity = Severity.Error
+                            };
                             cntx.AddFailure(vf);
                         }
                         break;
@@ -441,22 +495,28 @@ namespace vSharpStudio.vm.ViewModels
                         if (val[0] != '\'')
                         {
                             var vf = new ValidationFailure(nameof(p.DefaultValue),
-                                $"Char value has to start with \' character");
-                            vf.Severity = Severity.Error;
+                                $"Char value has to start with \' character")
+                            {
+                                Severity = Severity.Error
+                            };
                             cntx.AddFailure(vf);
                         }
                         if (val[val.Length - 1] != '\'')
                         {
                             var vf = new ValidationFailure(nameof(p.DefaultValue),
-                                $"Char value has to finish with \' character");
-                            vf.Severity = Severity.Error;
+                                $"Char value has to finish with \' character")
+                            {
+                                Severity = Severity.Error
+                            };
                             cntx.AddFailure(vf);
                         }
                         if (val.Length != 3)
                         {
                             var vf = new ValidationFailure(nameof(p.DefaultValue),
-                                $"Char value has to follow next format 'a'");
-                            vf.Severity = Severity.Error;
+                                $"Char value has to follow next format 'a'")
+                            {
+                                Severity = Severity.Error
+                            };
                             cntx.AddFailure(vf);
                         }
                         break;
@@ -465,8 +525,10 @@ namespace vSharpStudio.vm.ViewModels
                         if (!DateTime.TryParse(val, out DateTime vd))
                         {
                             var vf = new ValidationFailure(nameof(p.DefaultValue),
-                                $"Can't parse by DateOnly.Parse() default property value");
-                            vf.Severity = Severity.Error;
+                                $"Can't parse by DateOnly.Parse() default property value")
+                            {
+                                Severity = Severity.Error
+                            };
                             cntx.AddFailure(vf);
                         }
 #else
@@ -485,8 +547,10 @@ namespace vSharpStudio.vm.ViewModels
                         if (!DateTime.TryParse(val, out DateTime vdt))
                         {
                             var vf = new ValidationFailure(nameof(p.DefaultValue),
-                                $"Can't parse by DateTime.Parse() default property value");
-                            vf.Severity = Severity.Error;
+                                $"Can't parse by DateTime.Parse() default property value")
+                            {
+                                Severity = Severity.Error
+                            };
                             cntx.AddFailure(vf);
                         }
                         break;
@@ -494,8 +558,10 @@ namespace vSharpStudio.vm.ViewModels
                         if (!DateTimeOffset.TryParse(val, out DateTimeOffset vdto))
                         {
                             var vf = new ValidationFailure(nameof(p.DefaultValue),
-                                $"Can't parse by DateTimeOffset.Parse() default property value");
-                            vf.Severity = Severity.Error;
+                                $"Can't parse by DateTimeOffset.Parse() default property value")
+                            {
+                                Severity = Severity.Error
+                            };
                             cntx.AddFailure(vf);
                         }
                         break;
@@ -504,8 +570,10 @@ namespace vSharpStudio.vm.ViewModels
                         if (!DateTime.TryParse(val, out DateTime vt))
                         {
                             var vf = new ValidationFailure(nameof(p.DefaultValue),
-                                $"Can't parse by DateOnly.Parse() default property value");
-                            vf.Severity = Severity.Error;
+                                $"Can't parse by DateOnly.Parse() default property value")
+                            {
+                                Severity = Severity.Error
+                            };
                             cntx.AddFailure(vf);
                         }
 #else
@@ -522,15 +590,19 @@ namespace vSharpStudio.vm.ViewModels
                         if (val[0] != '\"')
                         {
                             var vf = new ValidationFailure(nameof(p.DefaultValue),
-                                $"String value has to start with \" character");
-                            vf.Severity = Severity.Error;
+                                $"String value has to start with \" character")
+                            {
+                                Severity = Severity.Error
+                            };
                             cntx.AddFailure(vf);
                         }
                         if (val[val.Length - 1] != '\"')
                         {
                             var vf = new ValidationFailure(nameof(p.DefaultValue),
-                                $"String value has to finish with \" character");
-                            vf.Severity = Severity.Error;
+                                $"String value has to finish with \" character")
+                            {
+                                Severity = Severity.Error
+                            };
                             cntx.AddFailure(vf);
                         }
                         break;
@@ -696,8 +768,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {
                     var vf = new ValidationFailure(nameof(pg.DataTypeEnum),
-                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumDataType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumDataType), pg.DataTypeEnum)}'");
-                    vf.Severity = Severity.Warning;
+                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumDataType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumDataType), pg.DataTypeEnum)}'")
+                    {
+                        Severity = Severity.Warning
+                    };
                     cntx.AddFailure(vf);
                 }
                 prev = pg.PrevStableVersion();
@@ -705,8 +779,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {
                     var vf = new ValidationFailure(nameof(pg.DataTypeEnum),
-                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumDataType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumDataType), pg.DataTypeEnum)}'");
-                    vf.Severity = Severity.Warning;
+                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumDataType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumDataType), pg.DataTypeEnum)}'")
+                    {
+                        Severity = Severity.Warning
+                    };
                     cntx.AddFailure(vf);
                 }
             });
@@ -719,14 +795,18 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (pg.Length > 0 && prev.Length > 0 && pg.Length < prev.Length)
                     {
-                        var vf = new ValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from '{prev.Length}' to '{pg.Length}'");
-                        vf.Severity = Severity.Warning;
+                        var vf = new ValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from '{prev.Length}' to '{pg.Length}'")
+                        {
+                            Severity = Severity.Warning
+                        };
                         cntx.AddFailure(vf);
                     }
                     else if (pg.Length > 0 && prev.Length == 0)
                     {
-                        var vf = new ValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from 'MAX' to '{pg.Length}'");
-                        vf.Severity = Severity.Warning;
+                        var vf = new ValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from 'MAX' to '{pg.Length}'")
+                        {
+                            Severity = Severity.Warning
+                        };
                         cntx.AddFailure(vf);
                     }
                 }
@@ -736,14 +816,18 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (pg.Length > 0 && prev.Length > 0 && pg.Length < prev.Length)
                     {
-                        var vf = new ValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from '{prev.Length}' to '{pg.Length}'");
-                        vf.Severity = Severity.Warning;
+                        var vf = new ValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from '{prev.Length}' to '{pg.Length}'")
+                        {
+                            Severity = Severity.Warning
+                        };
                         cntx.AddFailure(vf);
                     }
                     else if (pg.Length > 0 && prev.Length == 0)
                     {
-                        var vf = new ValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from 'MAX' to '{pg.Length}'");
-                        vf.Severity = Severity.Warning;
+                        var vf = new ValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from 'MAX' to '{pg.Length}'")
+                        {
+                            Severity = Severity.Warning
+                        };
                         cntx.AddFailure(vf);
                         return;
                     }
@@ -760,8 +844,10 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (pg.Accuracy < prev.Accuracy)
                         {
-                            var vf = new ValidationFailure(nameof(pg.Accuracy), $"Comparison with previous {ver} version. Accuracy was reduced from '{prev.Accuracy}' to '{pg.Accuracy}'");
-                            vf.Severity = Severity.Warning;
+                            var vf = new ValidationFailure(nameof(pg.Accuracy), $"Comparison with previous {ver} version. Accuracy was reduced from '{prev.Accuracy}' to '{pg.Accuracy}'")
+                            {
+                                Severity = Severity.Warning
+                            };
                             cntx.AddFailure(vf);
                         }
                     }
@@ -774,8 +860,10 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (pg.Accuracy < prev.Accuracy)
                         {
-                            var vf = new ValidationFailure(nameof(pg.Accuracy), $"Comparison with previous {ver} version. Accuracy was reduced from '{prev.Accuracy}' to '{pg.Accuracy}'");
-                            vf.Severity = Severity.Warning;
+                            var vf = new ValidationFailure(nameof(pg.Accuracy), $"Comparison with previous {ver} version. Accuracy was reduced from '{prev.Accuracy}' to '{pg.Accuracy}'")
+                            {
+                                Severity = Severity.Warning
+                            };
                             cntx.AddFailure(vf);
                         }
                     }
@@ -793,8 +881,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (indx == 0)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStopTabControl),
-                        $"Can't stop using tab control when it is first field");
-                    vf.Severity = Severity.Error;
+                        $"Can't stop using tab control when it is first field")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
@@ -811,8 +901,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (!is_tab)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStopTabControl),
-                        $"Can't stop using tab control when there are no current tab control");
-                    vf.Severity = Severity.Error;
+                        $"Can't stop using tab control when there are no current tab control")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
@@ -825,8 +917,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (p.IsTryAttach)
                 {
                     var vf = new ValidationFailure(nameof(p.TabName),
-                        $"Can't start new tab when attached to previous field");
-                    vf.Severity = Severity.Error;
+                        $"Can't start new tab when attached to previous field")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
@@ -840,16 +934,20 @@ namespace vSharpStudio.vm.ViewModels
                 if (indx == 0)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStartNewRow),
-                        $"Can't start new row when it is first field. It is new row anyway");
-                    vf.Severity = Severity.Error;
+                        $"Can't start new row when it is first field. It is new row anyway")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (p.IsTryAttach)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStartNewRow),
-                        $"Can't start new row when attached to previous field");
-                    vf.Severity = Severity.Error;
+                        $"Can't start new row when attached to previous field")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
@@ -862,32 +960,40 @@ namespace vSharpStudio.vm.ViewModels
                 if (p.IsTryAttach)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStartNewTabControl),
-                        $"Can't start new tab control when property must be attached to previous field");
-                    vf.Severity = Severity.Error;
+                        $"Can't start new tab control when property must be attached to previous field")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (p.IsStopTabControl)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStartNewTabControl),
-                        $"Can't start new tab control and stop at the same time");
-                    vf.Severity = Severity.Error;
+                        $"Can't start new tab control and stop at the same time")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (p.IsStartNewRow)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStartNewTabControl),
-                        $"Can't start new tab control and start new row the same time");
-                    vf.Severity = Severity.Error;
+                        $"Can't start new tab control and start new row the same time")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(p.TabName))
                 {
                     var vf = new ValidationFailure(nameof(p.IsStartNewTabControl),
-                        $"Can't start new tab control without tab name");
-                    vf.Severity = Severity.Error;
+                        $"Can't start new tab control without tab name")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
@@ -901,40 +1007,50 @@ namespace vSharpStudio.vm.ViewModels
                 if (indx == 0)
                 {
                     var vf = new ValidationFailure(nameof(p.IsTryAttach),
-                        $"Can't be attached to previous property when it is a first field");
-                    vf.Severity = Severity.Error;
+                        $"Can't be attached to previous property when it is a first field")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (p.IsStartNewTabControl)
                 {
                     var vf = new ValidationFailure(nameof(p.IsTryAttach),
-                        $"Can't be attached to previous property when must be placed on new tab control");
-                    vf.Severity = Severity.Error;
+                        $"Can't be attached to previous property when must be placed on new tab control")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (p.IsStopTabControl)
                 {
                     var vf = new ValidationFailure(nameof(p.IsTryAttach),
-                        $"Can't be attached to previous property when must be placed without tab control which was used for previous field");
-                    vf.Severity = Severity.Error;
+                        $"Can't be attached to previous property when must be placed without tab control which was used for previous field")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (p.IsStartNewRow)
                 {
                     var vf = new ValidationFailure(nameof(p.IsTryAttach),
-                        $"Can't be attached to previous property when must be placed on an next row");
-                    vf.Severity = Severity.Error;
+                        $"Can't be attached to previous property when must be placed on an next row")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (!string.IsNullOrWhiteSpace(p.TabName))
                 {
                     var vf = new ValidationFailure(nameof(p.IsTryAttach),
-                        $"Can't be attached to previous property when must be placed on new TAB page");
-                    vf.Severity = Severity.Error;
+                        $"Can't be attached to previous property when must be placed on new TAB page")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                     return;
                 }
@@ -958,8 +1074,10 @@ namespace vSharpStudio.vm.ViewModels
                     if (string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
                     {
                         var vf = new ValidationFailure(nameof(p.ConfigObjectGuid),
-                            $"Property general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtype is not selected");
-                        vf.Severity = Severity.Error;
+                            $"Property general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtype is not selected")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                         return;
                     }
@@ -976,8 +1094,10 @@ namespace vSharpStudio.vm.ViewModels
                             if (!p.IsMarkedForDeletion && !pe.IsMarkedForDeletion)
                             {
                                 var vf = new ValidationFailure(nameof(p.IsMarkedForDeletion),
-                                    $"Property type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this property or object '{p.Parent.Name}' is not marked for deletion");
-                                vf.Severity = Severity.Error;
+                                    $"Property type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this property or object '{p.Parent.Name}' is not marked for deletion")
+                                {
+                                    Severity = Severity.Error
+                                };
                                 cntx.AddFailure(vf);
                             }
                         }
@@ -988,8 +1108,10 @@ namespace vSharpStudio.vm.ViewModels
                     if (p.ListObjectRefs.Count == 0)
                     {
                         var vf = new ValidationFailure(nameof(p.ConfigObjectGuid),
-                            $"Property general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtypes are not selected");
-                        vf.Severity = Severity.Error;
+                            $"Property general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtypes are not selected")
+                        {
+                            Severity = Severity.Error
+                        };
                         cntx.AddFailure(vf);
                         return;
                     }
@@ -1008,8 +1130,10 @@ namespace vSharpStudio.vm.ViewModels
                                 if (!p.IsMarkedForDeletion && !pe.IsMarkedForDeletion)
                                 {
                                     var vf = new ValidationFailure(nameof(p.IsMarkedForDeletion),
-                                        $"Property type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this constant can use it as it's type");
-                                    vf.Severity = Severity.Error;
+                                        $"Property type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this constant can use it as it's type")
+                                    {
+                                        Severity = Severity.Error
+                                    };
                                     cntx.AddFailure(vf);
                                 }
                             }
@@ -1027,8 +1151,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (model.GroupCatalogs.PropertyCodeName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Catalog parameter 'UseCodeProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyCodeName}' is reserved for auto generated property");
-                    vf.Severity = Severity.Error;
+                        $"Catalog parameter 'UseCodeProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyCodeName}' is reserved for auto generated property")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             }
@@ -1037,8 +1163,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (model.GroupCatalogs.PropertyNameName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Catalog parameter 'UseNameProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyNameName}' is reserved for auto generated property");
-                    vf.Severity = Severity.Error;
+                        $"Catalog parameter 'UseNameProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyNameName}' is reserved for auto generated property")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             }
@@ -1047,8 +1175,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (model.GroupCatalogs.PropertyDescriptionName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Catalog parameter 'UseDescriptionProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyDescriptionName}' is reserved for auto generated property");
-                    vf.Severity = Severity.Error;
+                        $"Catalog parameter 'UseDescriptionProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyDescriptionName}' is reserved for auto generated property")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             }
@@ -1061,8 +1191,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (model.GroupCatalogs.PropertyCodeName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Catalog folder parameter 'UseCodeProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyCodeName}' is reserved for auto generated property");
-                    vf.Severity = Severity.Error;
+                        $"Catalog folder parameter 'UseCodeProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyCodeName}' is reserved for auto generated property")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             }
@@ -1071,8 +1203,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (model.GroupCatalogs.PropertyNameName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Catalog folder parameter 'UseNameProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyNameName}' is reserved for auto generated property");
-                    vf.Severity = Severity.Error;
+                        $"Catalog folder parameter 'UseNameProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyNameName}' is reserved for auto generated property")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             }
@@ -1081,8 +1215,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (model.GroupCatalogs.PropertyDescriptionName == name)
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Catalog folder parameter 'UseDescriptionProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyDescriptionName}' is reserved for auto generated property");
-                    vf.Severity = Severity.Error;
+                        $"Catalog folder parameter 'UseDescriptionProperty' is set to 'true'. Property name '{model.GroupCatalogs.PropertyDescriptionName}' is reserved for auto generated property")
+                    {
+                        Severity = Severity.Error
+                    };
                     cntx.AddFailure(vf);
                 }
             }
@@ -1093,15 +1229,19 @@ namespace vSharpStudio.vm.ViewModels
             if (model.GroupDocuments.PropertyDocNumberName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Document parameter 'UseDocCodeProperty' is set to 'true'. Property name '{model.GroupDocuments.PropertyDocNumberName}' is reserved for auto generated property");
-                vf.Severity = Severity.Error;
+                    $"Document parameter 'UseDocCodeProperty' is set to 'true'. Property name '{model.GroupDocuments.PropertyDocNumberName}' is reserved for auto generated property")
+                {
+                    Severity = Severity.Error
+                };
                 cntx.AddFailure(vf);
             }
             if (model.GroupDocuments.DocumentDocDateTimePropertyName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Document parameter 'UseDocDateProperty' is set to 'true'. Property name '{model.GroupDocuments.DocumentDocDateTimePropertyName}' is reserved for auto generated property");
-                vf.Severity = Severity.Error;
+                    $"Document parameter 'UseDocDateProperty' is set to 'true'. Property name '{model.GroupDocuments.DocumentDocDateTimePropertyName}' is reserved for auto generated property")
+                {
+                    Severity = Severity.Error
+                };
                 cntx.AddFailure(vf);
             }
         }
@@ -1110,30 +1250,38 @@ namespace vSharpStudio.vm.ViewModels
             if (name == gd.DocumentDocDateTimePropertyName)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Document timeline is configured to use {gd.DocumentDocDateTimePropertyName} as document date and time property name in documents. Property name {gd.DocumentTimeline.TimeLineDocDateTimePropertyName} is reserved.");
-                vf.Severity = Severity.Error;
+                    $"Document timeline is configured to use {gd.DocumentDocDateTimePropertyName} as document date and time property name in documents. Property name {gd.DocumentTimeline.TimeLineDocDateTimePropertyName} is reserved.")
+                {
+                    Severity = Severity.Error
+                };
                 cntx.AddFailure(vf);
             }
             if (name == gd.DocShortTypeIdPropertyName)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Group documents is configured to use {gd.DocShortTypeIdPropertyName} as document short type property name. Property name {gd.DocShortTypeIdPropertyName} is reserved for document short type property.");
-                vf.Severity = Severity.Error;
+                    $"Group documents is configured to use {gd.DocShortTypeIdPropertyName} as document short type property name. Property name {gd.DocShortTypeIdPropertyName} is reserved for document short type property.")
+                {
+                    Severity = Severity.Error
+                };
                 cntx.AddFailure(vf);
             }
             var model = gd.ParentModel;
             if (model.GroupDocuments.PropertyDocNumberName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Document parameter 'UseDocCodeProperty' is set to 'true'. Property name '{model.GroupDocuments.PropertyDocNumberName}' is reserved for auto generated property");
-                vf.Severity = Severity.Error;
+                    $"Document parameter 'UseDocCodeProperty' is set to 'true'. Property name '{model.GroupDocuments.PropertyDocNumberName}' is reserved for auto generated property")
+                {
+                    Severity = Severity.Error
+                };
                 cntx.AddFailure(vf);
             }
             if (model.GroupDocuments.DocumentDocDateTimePropertyName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Document parameter 'UseDocDateProperty' is set to 'true'. Property name '{model.GroupDocuments.DocumentDocDateTimePropertyName}' is reserved for auto generated property");
-                vf.Severity = Severity.Error;
+                    $"Document parameter 'UseDocDateProperty' is set to 'true'. Property name '{model.GroupDocuments.DocumentDocDateTimePropertyName}' is reserved for auto generated property")
+                {
+                    Severity = Severity.Error
+                };
                 cntx.AddFailure(vf);
             }
         }
@@ -1144,43 +1292,55 @@ namespace vSharpStudio.vm.ViewModels
             if (model.GroupDocuments.PropertyDocNumberName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Property name '{name}' is reserved for auto generated document number property");
-                vf.Severity = Severity.Error;
+                    $"Property name '{name}' is reserved for auto generated document number property")
+                {
+                    Severity = Severity.Error
+                };
                 cntx.AddFailure(vf);
             }
             if (model.GroupDocuments.DocumentDocDateTimePropertyName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Property name '{name}' is reserved for auto generated document date property");
-                vf.Severity = Severity.Error;
+                    $"Property name '{name}' is reserved for auto generated document date property")
+                {
+                    Severity = Severity.Error
+                };
                 cntx.AddFailure(vf);
             }
             if (r.PropertyMoneyAccumulatorName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Property name '{name}' is reserved for auto generated money accumulator property of this register");
-                vf.Severity = Severity.Error;
+                    $"Property name '{name}' is reserved for auto generated money accumulator property of this register")
+                {
+                    Severity = Severity.Error
+                };
                 cntx.AddFailure(vf);
             }
             if (r.PropertyQtyAccumulatorName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Property name '{name}' is reserved for auto generated quantity accumulator property of this register");
-                vf.Severity = Severity.Error;
+                    $"Property name '{name}' is reserved for auto generated quantity accumulator property of this register")
+                {
+                    Severity = Severity.Error
+                };
                 cntx.AddFailure(vf);
             }
             if (r.PropertyDocRefName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Property name '{name}' is reserved for auto generated document reference property of this register");
-                vf.Severity = Severity.Error;
+                    $"Property name '{name}' is reserved for auto generated document reference property of this register")
+                {
+                    Severity = Severity.Error
+                };
                 cntx.AddFailure(vf);
             }
             if (r.PropertyDocRefGuidName == name)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
-                    $"Property name '{name}' is reserved for auto generated document Guid property of this register");
-                vf.Severity = Severity.Error;
+                    $"Property name '{name}' is reserved for auto generated document Guid property of this register")
+                {
+                    Severity = Severity.Error
+                };
                 cntx.AddFailure(vf);
             }
             //foreach (var t in r.GroupRegisterDimensions.ListDimensions)
