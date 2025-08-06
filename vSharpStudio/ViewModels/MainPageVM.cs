@@ -38,7 +38,6 @@ using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using vSharpStudio.Controls;
-using vSharpStudio.std;
 using vSharpStudio.Views;
 using vSharpStudio.vm.ViewModels;
 using Xceed.Wpf.Toolkit;
