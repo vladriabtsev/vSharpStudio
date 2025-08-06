@@ -13,6 +13,7 @@ using Serilog.Extensions.Logging;
 //using Microsoft.Extensions.Logging;
 using Serilog.Debugging;
 using Microsoft.Extensions.Logging;
+using Serilog.Core;
 //using Serilog;
 //using Serilog.Filters;
 
@@ -42,11 +43,21 @@ namespace ApplicationLogging
             {
                 if (_LoggerFactory == null)
                 {
+                    //Trace.WriteLine("##### LogFilePath: " + LogFilePath);
+                    //Trace.WriteLine("##### UseDebug: " + UseDebug);
+                    //Trace.WriteLine("##### UseConsole: " + UseConsole);
+                    //Trace.WriteLine("##### LogLevel: " + LogLevel);
+
+                    Debug.WriteLine("##### LogFilePath: " + LogFilePath);
+                    Debug.WriteLine("##### UseDebug: " + UseDebug);
+                    Debug.WriteLine("##### UseConsole: " + UseConsole);
+                    Debug.WriteLine("##### LogLevel: " + LogLevel);
+
                     int n = Environment.StackTrace.Split(Environment.NewLine).Count();
                     if (IndentShift == -1 || IndentShift > n) IndentShift = n;
                     Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
                     var logCfg = new Serilog.LoggerConfiguration();
-                    switch(LogLevel)
+                    switch (LogLevel)
                     {
                         case LogLevel.Trace:
                             logCfg.MinimumLevel.Verbose();
@@ -120,6 +131,8 @@ namespace ApplicationLogging
                     //        .AddDebug());
                     //}
                 }
+                //var _logger = _LoggerFactory.CreateLogger("AppLogger");
+                //_logger?.Trace("### IsModel={IsModel}", o.IsModel);
                 return _LoggerFactory;
             }
             set

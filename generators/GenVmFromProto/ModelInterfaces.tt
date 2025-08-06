@@ -13,7 +13,8 @@ using vSharpStudio.common.ViewModels;
 
 namespace <#= nameSpace #> // <#=t4.FilePos() #>
 {
-<# foreach (var t in JsonDoc.Files[root.Name].Enums) { 
+<# _logger?.Trace("NameSpace '{nameSpace}'", nameSpace);
+   foreach (var t in JsonDoc.Files[root.Name].Enums) { 
      this.PushIndent("\t"); #>
 <#= t.Value.Comments #><#= t.Value.Attributes #>public enum <#= t.Key.ToNameCs() #> // <#=t4.FilePos() #>
 {
@@ -28,7 +29,7 @@ namespace <#= nameSpace #> // <#=t4.FilePos() #>
    foreach (var message in messages) { 
      if (message.Name.EndsWith("_nullable"))
        continue;
-     _logger?.Trace("Message '{@message}'", message);
+     _logger?.Trace("Message '{message}'", message.Name);
      this.MessageDoc = JsonDoc.Files[root.Name].Messages[message.Name]; 
      this.PushIndent("    "); #>
 <#= this.MessageDoc.Comments #>

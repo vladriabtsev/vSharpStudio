@@ -78,15 +78,19 @@ namespace GenVmFromProto
                         if (string.IsNullOrWhiteSpace(fileExt)) fileExt = ".txt";
                         logFilePath = Path.Combine(new string[] { rootPath ?? "", dir, fileName + fileExt });
                     }
+                    else
+                    {
+                        string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                        logFilePath = Path.GetDirectoryName(exePath) + "\\logs\\log.txt";
+                    }
                     AppLogger.LogLevel = LogLevel.Trace;
                     AppLogger.UseConsole = true;
                     AppLogger.LogFilePath = logFilePath;
                     _logger = AppLogger.CreateLogger<Program>();
-                    _logger?.Debug("**********************");
-                    _logger?.Debug("***  App Starting  ***");
-                    _logger?.Debug("**********************");
-                    if (o.LogFilePath != null)
-                        _logger?.Trace("### LogFilePath={LogFilePath}", o.LogFilePath);
+                    _logger?.Debug("****************************************");
+                    _logger?.Debug("***  GenVmFromProto app is starting  ***");
+                    _logger?.Debug("****************************************");
+                    _logger?.Trace("### AppLogger.LogFilePath={LogFilePath}", AppLogger.LogFilePath);
                     _logger?.Trace("### IsModel={IsModel}", o.IsModel);
                     _logger?.Trace("### IsInterface={IsInterface}", o.IsInterface);
                     _logger?.Trace("### IsReadonly={IsReadonly}", o.IsReadonly);
@@ -131,7 +135,10 @@ namespace GenVmFromProto
                     string? res = null;
                     if (o.IsModel)
                     {
-                        Debug.Assert(o.BaseclassDefault != null);
+                        //if (o.BaseclassDefault == null)
+                        //{
+                        //    throw new ArgumentException("Option '-b', base class default parameter is empty");
+                        //}
                         _logger?.Debug("Generate models");
                         NameSpace ns = new NameSpace(typedValue, messages, dicParents, o.Namespace, protoNS, o.BaseclassDefault);
                         res = ns.TransformText();
@@ -144,9 +151,7 @@ namespace GenVmFromProto
                     }
                     else
                     {
-                        var ex = new ArgumentException("Expected 'model' or 'interface'");
-                        _logger?.Critical(ex);
-                        throw ex;
+                        throw new ArgumentException("Expected 'model' or 'interface'");
                     }
 
                     Debug.Assert(o.OutputFile != null);

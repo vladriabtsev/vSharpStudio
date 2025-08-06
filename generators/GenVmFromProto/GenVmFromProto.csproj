@@ -218,7 +218,8 @@
       <ProtoFile>$(ProtoName).proto</ProtoFile>
       <ProtoDocGenPath>$(SolutionDir)$(SharpStudioRelativePath)protoc\protoc-gen-doc.exe</ProtoDocGenPath>
       <DocGenOutPath>$(SolutionDir)doc</DocGenOutPath>
-      <OutDirGenVm>bin\Debug\net8.0\</OutDirGenVm>
+      <!--<OutDirGenVm>bin\Debug\net8.0\</OutDirGenVm>-->
+      <OutDirGenVm>$(OutputPath)</OutDirGenVm> 
       <IsGen></IsGen>
     </PropertyGroup>
     <PropertyGroup Condition="$(ProtoName)=='vsharpstudio'">
