@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using ViewModelBase;
 using vSharpStudio.common;
 
@@ -26,7 +22,7 @@ namespace vSharpStudio.vm.ViewModels
             };
             var _binding_lst = new Binding(); // bind to the Value property of the PropertyItem
             ObservableCollectionExt<ITextValue> listSequences = new();
-            listSequences.Add(new TextValue() { Text="<Not selected>" });
+            listSequences.Add(new TextValue() { Text = "<Not selected>" });
             foreach (var t in instance.Cfg.Model.GroupDocuments.GroupListSequences.ListEnumeratorSequences)
             {
                 listSequences.Add(t);

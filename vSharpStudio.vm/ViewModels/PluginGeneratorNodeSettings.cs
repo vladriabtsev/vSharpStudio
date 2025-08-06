@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Diagnostics.Contracts;
-using System.Text;
+﻿using System.Diagnostics;
 using ViewModelBase;
 using vSharpStudio.common;
 

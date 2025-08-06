@@ -1,28 +1,15 @@
 ﻿namespace vSharpStudio.common
 {
     using System;
-    using System.CodeDom;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
     using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Linq;
-    using System.Reflection;
     using System.Text;
-    using System.Threading.Tasks;
-    using System.Windows;
-    using ApplicationLogging;
-    using CommunityToolkit.Diagnostics;
     using FluentValidation;
-    using FluentValidation.Results;
     //using JetBrains.Annotations;
-    using Microsoft.Extensions.Logging;
     using ViewModelBase;
-    using vSharpStudio.common;
     using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
     public partial class ConfigObjectCommonBase<T, TValidator> : VmValidatableWithSeverityAndAttributes<T, TValidator>, IComparable<T>, IEquatable<T>

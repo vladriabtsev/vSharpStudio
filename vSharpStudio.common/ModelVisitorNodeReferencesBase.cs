@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Text;
-using Serilog.Events;
-using System.Net.WebSockets;
-using System.Runtime.CompilerServices;
 using System.Diagnostics;
-using System.Reflection.Metadata;
 
 namespace vSharpStudio.common
 {

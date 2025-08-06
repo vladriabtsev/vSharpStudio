@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using FluentValidation;
-
-namespace vSharpStudio.vm.ViewModels
+﻿namespace vSharpStudio.vm.ViewModels
 {
     public partial class ConfigValidator
     {

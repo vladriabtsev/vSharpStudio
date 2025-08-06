@@ -5,10 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ApplicationLogging;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Debug;
 //using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ViewModelBase;
@@ -24,7 +21,7 @@ namespace vSharpStudio.Unit
     {
         //internal static ILoggerFactory MyLoggerFactory { get; private set; }
         //internal static IHost MyHost { get; private set; }
-        private static ILogger _logger;
+        private static ILogger? _logger;
         private static TestContext testContext;
         //public PluginTests(ILogger<PluginTests> logger)
         //{
@@ -54,8 +51,7 @@ namespace vSharpStudio.Unit
         public static void InitializeTestClass(TestContext cntx)
         {
             testContext = cntx;
-            //_logger = MyHost.Services.GetRequiredService<ILogger<PluginTests>>();
-            //_logger = MyLoggerFactory.CreateLogger<PluginTests>();
+            AppLogger.LogLevel = LogLevel.Debug;
             _logger = AppLogger.CreateLogger<PluginTests>();
         }
         [ClassCleanup]
@@ -162,7 +158,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, sln2.ListAppProjects.Count);
             var prj2 = sln2.ListAppProjects[0];
             Assert.AreEqual(1, prj2.ListAppProjectGenerators.Count);
-            var apg2= prj2.ListAppProjectGenerators[0];
+            var apg2 = prj2.ListAppProjectGenerators[0];
             Assert.AreEqual(string.Empty, apg2.PluginGuid);
             Assert.IsNull(apg2.Plugin);
             Assert.AreEqual(string.Empty, apg2.PluginGeneratorGuid);
@@ -291,7 +287,7 @@ namespace vSharpStudio.Unit
             Assert.IsNull(apg.DynamicModelNodeSettings);
             Assert.IsNull(apg.DynamicMainConnStrSettings);
             // Keep user settings until Save (for case if generater from same group will be added later)
-            Assert.AreEqual(1, sln.DicPluginsGroupSettings.Count); 
+            Assert.AreEqual(1, sln.DicPluginsGroupSettings.Count);
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
             Assert.AreEqual(1, prj.DicPluginsGroupSettings.Count);
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
@@ -594,11 +590,11 @@ namespace vSharpStudio.Unit
             vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
-            sln.RelativeAppSolutionPath = Path.Combine(vm.Config.CurrentCfgFolderPath, 
+            sln.RelativeAppSolutionPath = Path.Combine(vm.Config.CurrentCfgFolderPath,
                 @"Solution.sln");
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
-            prj.RelativeAppProjectPath = Path.Combine(sln.GetSolutionFolderPath(), 
+            prj.RelativeAppProjectPath = Path.Combine(sln.GetSolutionFolderPath(),
                 @"ConsoleApp1\ConsoleApp1.csproj");
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();

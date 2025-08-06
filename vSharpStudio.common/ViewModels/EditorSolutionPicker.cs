@@ -67,7 +67,7 @@ namespace vSharpStudio.common.ViewModels
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {
-                this.propItem!.Value = dlg.FileName;;
+                this.propItem!.Value = dlg.FileName; ;
             }
         }
     }

@@ -1,30 +1,13 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
-using System.Data.SqlTypes;
 using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
-using System.DirectoryServices;
-using System.Numerics;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Xml.Linq;
 using CommunityToolkit.Diagnostics;
-using CommunityToolkit.Mvvm.ComponentModel;
-using FluentValidation;
-using Google.Protobuf;
-using Google.Protobuf.WellKnownTypes;
-using Proto.Config;
 using ViewModelBase;
 using vSharpStudio.common;
-using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
-using System.Text.RegularExpressions;
 
 namespace vSharpStudio.vm.ViewModels
 {

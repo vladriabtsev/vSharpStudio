@@ -1,13 +1,12 @@
 ﻿//#define TEST
 using System;
-using System.Linq;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Threading;
 using System.ComponentModel;
-using static ViewModelBase.MessageBusProxy;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading;
 
 namespace ViewModelBase
 {

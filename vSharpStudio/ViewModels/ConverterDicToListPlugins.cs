@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Data;
-using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.vm.ViewModels;
 

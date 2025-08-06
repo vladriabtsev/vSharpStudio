@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
-using ViewModelBase;
-using vSharpStudio.common;
 using Xceed.Wpf.Toolkit;
 
 namespace vSharpStudio.vm.ViewModels

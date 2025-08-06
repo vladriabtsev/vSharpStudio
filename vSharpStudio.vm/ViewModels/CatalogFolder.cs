@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
-using System.Text;
 using System.Linq;
+using System.Text;
 using FluentValidation;
-using ViewModelBase;
 using vSharpStudio.common;
-using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using vSharpStudio.common.DiffModel;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -225,26 +222,26 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
-//        public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable, string? guid = null)
-//        {
-//            var node = new Property(this) { Name = name };
-//#if DEBUG
-//            if (guid != null) // for test model generation
-//            {
-//                if (this.Cfg.DicNodes.ContainsKey(guid))
-//                    return node;
-//                node.Guid = guid;
-//            }
-//#endif
-//            node.DataType = new DataType(node)
-//            {
-//                DataTypeEnum = EnumDataType.ENUMERATION,
-//            };
-//            node.ListObjectRefs.Add(new ComplexRef(node.Guid, en.Guid));
-//            node.IsNullable = isNullable;
-//            this.NodeAddNewSubNode(node);
-//            return node;
-//        }
+        //        public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable, string? guid = null)
+        //        {
+        //            var node = new Property(this) { Name = name };
+        //#if DEBUG
+        //            if (guid != null) // for test model generation
+        //            {
+        //                if (this.Cfg.DicNodes.ContainsKey(guid))
+        //                    return node;
+        //                node.Guid = guid;
+        //            }
+        //#endif
+        //            node.DataType = new DataType(node)
+        //            {
+        //                DataTypeEnum = EnumDataType.ENUMERATION,
+        //            };
+        //            node.ListObjectRefs.Add(new ComplexRef(node.Guid, en.Guid));
+        //            node.IsNullable = isNullable;
+        //            this.NodeAddNewSubNode(node);
+        //            return node;
+        //        }
 
         #region Tree operations
         #endregion Tree operations

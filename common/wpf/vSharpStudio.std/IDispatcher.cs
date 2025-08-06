@@ -2,9 +2,9 @@
 
 namespace ViewModelBase
 {
-	public interface IDispatcher
-	{
-		bool CheckAccess();
-		void BeginInvoke(Action action);
+    public interface IDispatcher
+    {
+        bool CheckAccess();
+        void BeginInvoke(Action action);
     }
 }

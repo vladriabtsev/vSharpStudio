@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace ViewModelBase
 {
-	public interface IValidatable
-	{
-		bool Validate();
+    public interface IValidatable
+    {
+        bool Validate();
         Task<bool> ValidateAsync();
-	}
+    }
 }

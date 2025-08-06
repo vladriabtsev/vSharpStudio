@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation.Results;
-using ViewModelBase;
+﻿using System.Collections.Generic;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels

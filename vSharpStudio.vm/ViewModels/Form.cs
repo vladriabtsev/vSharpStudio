@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Windows.Documents;
 using CommunityToolkit.Diagnostics;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit;
-using Xceed.Wpf.Toolkit.PropertyGrid;
-using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -26,31 +21,31 @@ namespace vSharpStudio.vm.ViewModels
 
         public Form(ITreeConfigNode? parent, FormType ftype, List<IProperty> lst) : this(parent)
         {
-//#if DEBUG
-//            foreach (var t in lst)
-//            {
-//                switch (t.DataType.DataTypeEnum)
-//                {
-//                    case EnumDataType.ANY:
-//                    case EnumDataType.CATALOG:
-//                    case EnumDataType.CATALOGS:
-//                    case EnumDataType.DOCUMENT:
-//                    case EnumDataType.DOCUMENTS:
-//                    case EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER:
-//                    case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG:
-//                    case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER:
-//                    case EnumDataType.REF_DETAIL_TO_PARENT_DETAIL:
-//                    case EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT:
-//                    case EnumDataType.REF_TIMELINE:
-//                    case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
-//                    case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
-//                        Debug.Assert(false, "Expected simple properties ");
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//#endif
+            //#if DEBUG
+            //            foreach (var t in lst)
+            //            {
+            //                switch (t.DataType.DataTypeEnum)
+            //                {
+            //                    case EnumDataType.ANY:
+            //                    case EnumDataType.CATALOG:
+            //                    case EnumDataType.CATALOGS:
+            //                    case EnumDataType.DOCUMENT:
+            //                    case EnumDataType.DOCUMENTS:
+            //                    case EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER:
+            //                    case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG:
+            //                    case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER:
+            //                    case EnumDataType.REF_DETAIL_TO_PARENT_DETAIL:
+            //                    case EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT:
+            //                    case EnumDataType.REF_TIMELINE:
+            //                    case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
+            //                    case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
+            //                        Debug.Assert(false, "Expected simple properties ");
+            //                        break;
+            //                    default:
+            //                        break;
+            //                }
+            //            }
+            //#endif
             this._ListProperties = lst;
             switch (ftype)
             {

@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing.Printing;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
-using static System.Windows.Forms.AxHost;
-using static Xceed.Wpf.Toolkit.Calculator;
 
 namespace vSharpStudio.vm.ViewModels
 {

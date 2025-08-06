@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Reflection;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using ViewModelBase;
-using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -20,9 +15,9 @@ namespace vSharpStudio.vm.ViewModels
             var prj = (AppProject)propertyItem.Instance;
             var gr = prj.ParentAppSolution.ParentGroupListAppSolutions;
             var lst = new List<AppProject>();
-            foreach(var t in gr.ListAppSolutions)
+            foreach (var t in gr.ListAppSolutions)
             {
-                foreach(var tt in t.ListAppProjects)
+                foreach (var tt in t.ListAppProjects)
                 {
                     if (prj.Guid == tt.Guid)
                         continue;

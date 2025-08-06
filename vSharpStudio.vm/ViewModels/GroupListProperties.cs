@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.SqlTypes;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using FluentValidation;
-using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
-using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -253,22 +246,22 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-//        public Property AddPropertyTimeZ(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND_TIME_ACC, string? guid = null)
-//        {
-//            var node = new Property(this) { Name = name };
-//#if DEBUG
-//            if (guid != null) // for test model generation
-//            {
-//                if (this.Cfg.DicNodes.ContainsKey(guid))
-//                    return node;
-//                node.Guid = guid;
-//            }
-//#endif
-//            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.TIMEZ, AccuracyForTime = accuracy };
-//            node.IsNullable = isNullable;
-//            this.NodeAddNewSubNode(node);
-//            return node;
-//        }
+        //        public Property AddPropertyTimeZ(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND_TIME_ACC, string? guid = null)
+        //        {
+        //            var node = new Property(this) { Name = name };
+        //#if DEBUG
+        //            if (guid != null) // for test model generation
+        //            {
+        //                if (this.Cfg.DicNodes.ContainsKey(guid))
+        //                    return node;
+        //                node.Guid = guid;
+        //            }
+        //#endif
+        //            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.TIMEZ, AccuracyForTime = accuracy };
+        //            node.IsNullable = isNullable;
+        //            this.NodeAddNewSubNode(node);
+        //            return node;
+        //        }
         public Property AddPropertyDate(string name, bool isNullable = false, string? guid = null)
         {
             var node = new Property(this) { Name = name };

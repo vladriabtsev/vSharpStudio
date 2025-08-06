@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
-using System.Windows.Documents;
-using CommunityToolkit.Diagnostics;
 using FluentValidation;
-using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
-using static vSharpStudio.common.ModelVisitorNodeReferencesBase;
 
 namespace vSharpStudio.vm.ViewModels
 {

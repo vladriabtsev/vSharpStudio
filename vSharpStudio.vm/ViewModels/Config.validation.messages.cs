@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using ViewModelBase;
-using vSharpStudio.vm.ViewModels;
-
-namespace vSharpStudio.vm.ViewModels
+﻿namespace vSharpStudio.vm.ViewModels
 {
     public partial class Config
     {

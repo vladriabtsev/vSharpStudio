@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using Proto.Doc;
 
 namespace GenVmFromProto
@@ -227,7 +225,7 @@ namespace GenVmFromProto
                 string sepAttr = "";
                 bool isDocComments = false;
                 bool isFirstLine = true;
-                if (lines.Count()>0)
+                if (lines.Count() > 0)
                 {
                     if (lines[0].Contains("<summary>"))
                         isDocComments = true;

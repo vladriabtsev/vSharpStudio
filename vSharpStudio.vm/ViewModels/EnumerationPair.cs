@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Text;
-using FluentValidation;
-using ViewModelBase;
 using vSharpStudio.common;
-using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -14,7 +9,7 @@ namespace vSharpStudio.vm.ViewModels
     public partial class EnumerationPair : IEditableNode, ICanAddNode, INodeGenSettings
     {
         [Browsable(false)]
-        public Enumeration ParentEnumeration { get { Debug.Assert(this.Parent != null); return (Enumeration) this.Parent; } }
+        public Enumeration ParentEnumeration { get { Debug.Assert(this.Parent != null); return (Enumeration)this.Parent; } }
         [Browsable(false)]
         public IEnumeration ParentEnumerationI { get { Debug.Assert(this.Parent != null); return (IEnumeration)this.Parent; } }
 

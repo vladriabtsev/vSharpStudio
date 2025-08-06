@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using vSharpStudio.vm.Migration;
 
 namespace vSharpStudio.Migration
@@ -34,7 +31,7 @@ namespace vSharpStudio.Migration
         {
             System.Diagnostics.Trace.WriteLine(o);
         }
-        
+
         // https://github.com/DotNetPlus/ReswPlus/wiki/Features:-Pluralization-support
         internal static string Singularize(string word)
         {

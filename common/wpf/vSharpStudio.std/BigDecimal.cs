@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-//https://gist.github.com/nberardi
+﻿//https://gist.github.com/nberardi
 namespace System.Numerics
 {
     public struct BigDecimal : IConvertible, IFormattable, IComparable, IComparable<BigDecimal>, IEquatable<BigDecimal>

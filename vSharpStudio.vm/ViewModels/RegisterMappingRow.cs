@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
@@ -14,7 +10,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         public string ToDebugString()
         {
-            var sb=new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("RegMapRow:");
             sb.Append(this.Name);
             sb.Append(" Reg:");

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 //using FluentValidation.Results;
 
 namespace vPlugin.Sample2
@@ -14,7 +9,7 @@ namespace vPlugin.Sample2
         {
             this.RuleFor(p => p.AccessParam3).Must((p, y) =>
             {
-                if (y=="error")
+                if (y == "error")
                 {
                     return false;
                 }

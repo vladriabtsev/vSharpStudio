@@ -1,26 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using ApplicationLogging;
-using FluentValidation;
 using Google.Protobuf;
-using JetBrains.Annotations;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.vm.Migration;
 using vSharpStudio.wpf.Controls;
-using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace vSharpStudio.vm.ViewModels
 {

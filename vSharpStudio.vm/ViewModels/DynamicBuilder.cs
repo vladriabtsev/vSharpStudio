@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Xml.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Threading;
-using System.Diagnostics;
 
 // https://www.codeproject.com/articles/110065/quickly-generate-and-use-dynamic-class
 namespace vSharpStudio.vm.ViewModels

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using FluentValidation;
-using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.wpf.Controls;
-using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -58,10 +52,12 @@ namespace vSharpStudio.vm.ViewModels
             {
                 t.OnAdded();
             };
-            this.ListEnumerations.OnRemovedAction = (t) => {
+            this.ListEnumerations.OnRemovedAction = (t) =>
+            {
                 this.OnRemoveChild();
             };
-            this.ListEnumerations.OnClearedAction = () => {
+            this.ListEnumerations.OnClearedAction = () =>
+            {
                 this.OnRemoveChild();
             };
             this._Name = Defaults.GroupEnumerationsName;

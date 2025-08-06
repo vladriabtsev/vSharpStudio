@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Windows.Threading;
 using ApplicationLogging;
 using Microsoft.Extensions.Logging;
 using ViewModelBase;
@@ -23,12 +20,12 @@ namespace vSharpStudio.vm.ViewModels
             get { return this._CountCurrentValidatableNode; }
             set
             {
-//#if DEBUG
-//                if (value == 0)
-//                {
-//                    hashValidatableNodeGuid.Clear();
-//                }
-//#endif
+                //#if DEBUG
+                //                if (value == 0)
+                //                {
+                //                    hashValidatableNodeGuid.Clear();
+                //                }
+                //#endif
                 this._CountCurrentValidatableNode = value;
             }
         }
@@ -131,19 +128,19 @@ namespace vSharpStudio.vm.ViewModels
         }
         // only for not ITreeConfigNode
         IValidatableWithSeverity? parent;
-//#if DEBUG
-//        private HashSet<string> hashValidatableNodeGuid = new HashSet<string>();
-//#endif
+        //#if DEBUG
+        //        private HashSet<string> hashValidatableNodeGuid = new HashSet<string>();
+        //#endif
         partial void OnVisit(IValidatableWithSeverity p)
         {
             if (p is IGuid pg)
             {
-//#if DEBUG
-//                string guid = pg.Guid;
-//                if (hashValidatableNodeGuid.Contains(guid))
-//                    Debug.Assert(false);
-//                hashValidatableNodeGuid.Add(guid);
-//#endif
+                //#if DEBUG
+                //                string guid = pg.Guid;
+                //                if (hashValidatableNodeGuid.Contains(guid))
+                //                    Debug.Assert(false);
+                //                hashValidatableNodeGuid.Add(guid);
+                //#endif
                 this.CountCurrentValidatableNode++;
             }
             if (IsCountOnly)

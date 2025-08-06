@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing.Text;
-using System.IO;
 using System.Text;
 using FluentValidation;
 using FluentValidation.Results;

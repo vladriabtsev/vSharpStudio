@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using FluentValidation;
-using JetBrains.Annotations;
-using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.wpf.Controls;
-using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -61,10 +55,12 @@ namespace vSharpStudio.vm.ViewModels
             {
                 t.AddAllAppGenSettingsVmsToNode();
             };
-            this.ListReports.OnRemovedAction = (t) => {
+            this.ListReports.OnRemovedAction = (t) =>
+            {
                 this.OnRemoveChild();
             };
-            this.ListReports.OnClearedAction = () => {
+            this.ListReports.OnClearedAction = () =>
+            {
                 this.OnRemoveChild();
             };
             this._Name = Defaults.GroupReportsName;

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ApplicationLogging
+﻿namespace ApplicationLogging
 {
     // https://www.codeproject.com/Articles/795865/Csharp-Log-All-Parameters-that-Were-Passed-to-a-Me
     //internal class ParamLogUtility

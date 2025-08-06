@@ -1,10 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
-using vSharpStudio.common;
-
-namespace vSharpStudio.vm.ViewModels
+﻿namespace vSharpStudio.vm.ViewModels
 {
     public partial class PluginsGroup
     {

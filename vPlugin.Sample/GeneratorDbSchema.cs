@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Text;
-using FluentValidation.Results;
 using Microsoft.Extensions.Logging;
 using Proto.Plugin;
 using vSharpStudio.common;

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Data;
 
 namespace vSharpStudio.wpf.Converters
@@ -28,7 +23,7 @@ namespace vSharpStudio.wpf.Converters
         {
             int res = 0;
             int i = 1;
-            while(i <= count)
+            while (i <= count)
             {
                 res++;
                 i <<= i;

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 // https://josephwoodward.co.uk/2016/12/in-memory-c-sharp-compilation-using-roslyn
 // https://joshvarty.com/learn-roslyn-now/

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ApplicationLogging;
 using Google.Protobuf.Reflection;
 using Microsoft.Extensions.Logging;
-using Proto.Doc;
 
 namespace GenVmFromProto
 {
@@ -36,8 +31,8 @@ namespace GenVmFromProto
             this.dicParents = dicParents;
             Debug.Assert(Program.RunOptions != null);
             if (!Program.RunOptions.IsReadonly)
-            //    Setter = "internal set; ";
-            //else
+                //    Setter = "internal set; ";
+                //else
                 Setter = "set; ";
             //var files = JsonDoc.Files;
 
@@ -62,7 +57,7 @@ namespace GenVmFromProto
             Debug.Assert(MessageDoc != null);
             if (MessageDoc.IsConfigObjectBase)
             {
-                switch(field.Name)
+                switch (field.Name)
                 {
                     case "guid":
                     case "name":

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace vSharpStudio.wpf.Controls
@@ -63,7 +58,7 @@ namespace vSharpStudio.wpf.Controls
                 if (tvi != null)
                 {
                     tvi.IsSelected = true;
-//                    targetObject.SubItems = tvi.Items;
+                    //                    targetObject.SubItems = tvi.Items;
                 }
                 //else
                 //{

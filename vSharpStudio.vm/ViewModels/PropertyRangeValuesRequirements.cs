@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
@@ -203,9 +201,9 @@ namespace vSharpStudio.vm.ViewModels
                 return new Tuple<bool, IComparable?>(true, null);
             }
             else if (//p.DataTypeEnum == EnumDataType.DATETIME || 
-                p.DataTypeEnum == EnumDataType.DATETIMELOCAL || 
-                p.DataTypeEnum == EnumDataType.DATETIMEUTC || 
-                p.DataTypeEnum == EnumDataType.DATETIMEZ || 
+                p.DataTypeEnum == EnumDataType.DATETIMELOCAL ||
+                p.DataTypeEnum == EnumDataType.DATETIMEUTC ||
+                p.DataTypeEnum == EnumDataType.DATETIMEZ ||
                 p.DataTypeEnum == EnumDataType.DATE)
             {
                 DateTime res;

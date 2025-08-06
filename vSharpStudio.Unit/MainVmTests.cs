@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Linq;
-using vSharpStudio.vm.ViewModels;
-using ViewModelBase;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System.Windows;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using vSharpStudio.ViewModels;
-using vSharpStudio.common;
-using Microsoft.Extensions.DependencyInjection;
 using System.IO;
-using Microsoft.Extensions.Logging;
-using System.Threading;
-using vPlugin.Sample;
+using System.Linq;
 using System.Threading.Tasks;
-using System.Configuration;
 using ApplicationLogging;
+using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ViewModelBase;
+using vPlugin.Sample;
+using vSharpStudio.common;
+using vSharpStudio.ViewModels;
+using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.Unit
 {
@@ -27,13 +22,12 @@ namespace vSharpStudio.Unit
         static MainVmTests()
         {
         }
-        private static Microsoft.Extensions.Logging.ILogger _logger;
+        private static Microsoft.Extensions.Logging.ILogger? _logger;
         public MainVmTests()
         {
             VmBindable.isUnitTests = true;
-            if (_logger == null)
-                //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
-                _logger = AppLogger.CreateLogger<PluginTests>();
+            AppLogger.LogLevel = LogLevel.Debug;
+            _logger = AppLogger.CreateLogger<MainVmTests>();
         }
 
         private void remove_config()
@@ -309,7 +303,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.GroupPlugins.IsHasNew);
             Assert.IsFalse(vm.Config.GroupPlugins.IsChanged);
             Assert.IsTrue(vm.Config.GroupPlugins.IsHasChanged);
-            foreach(var plugin in vm.Config.GroupPlugins.ListPlugins)
+            foreach (var plugin in vm.Config.GroupPlugins.ListPlugins)
             {
                 Assert.IsTrue(plugin.IsNew);
                 Assert.IsFalse(plugin.IsHasNew);

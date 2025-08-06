@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using FluentValidation;
-using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -28,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (string.IsNullOrEmpty(id))
                         return true;
-                    return !char.IsDigit(id[id.Length-1]);
+                    return !char.IsDigit(id[id.Length - 1]);
                 })
                 .WithMessage("Solution short ID can't contain digit as a last symbol");
             this.RuleFor(x => x.RelativeAppSolutionPath)

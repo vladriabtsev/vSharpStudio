@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Reflection;
-using System.Reflection.Emit;
-using System.Text;
-using System.Windows;
-using FluentValidation;
-using Microsoft.Extensions.Logging;
-using ViewModelBase;
+﻿using FluentValidation;
 using vSharpStudio.common;
-using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {

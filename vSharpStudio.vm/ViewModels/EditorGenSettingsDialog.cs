@@ -2,8 +2,6 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using Remotion.Linq.Clauses;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 

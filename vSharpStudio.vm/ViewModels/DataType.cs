@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
 using System.Numerics;
 using System.Text;
 using System.Windows;
-using System.Windows.Shapes;
 using CommunityToolkit.Diagnostics;
-using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using FluentValidation;
 using FluentValidation.Results;
 using vSharpStudio.common;
@@ -89,7 +87,7 @@ namespace vSharpStudio.vm.ViewModels
                         return;
                     }
                     var cfg = p.Cfg;
-                    foreach(var t in p.ListObjectRefs)
+                    foreach (var t in p.ListObjectRefs)
                     {
                         Debug.Assert(cfg.DicNodes.ContainsKey(t.ForeignObjectGuid));
                         var refObj = cfg.DicNodes[t.ForeignObjectGuid];

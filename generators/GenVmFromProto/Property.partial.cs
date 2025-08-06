@@ -1,9 +1,4 @@
 ﻿using Google.Protobuf.Reflection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GenVmFromProto
 {
@@ -19,7 +14,7 @@ namespace GenVmFromProto
         readonly string FieldType;
         readonly string PropType;
         readonly bool isSetPropertyByRef = true;
-        readonly string refstr="ref ";
+        readonly string refstr = "ref ";
         readonly string defstr = "";
 
         public Property(FileDescriptor root, MessageDescriptor message, FieldDescriptor field)

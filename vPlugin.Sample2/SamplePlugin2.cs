@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Proto.Plugin;
+﻿using System.Collections.Generic;
 using vSharpStudio.common;
 
 // https://docs.microsoft.com/en-us/ef/core/providers/

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ApplicationLogging;
 using Google.Protobuf.Reflection;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
@@ -16,7 +12,7 @@ namespace GenVmFromProto
         readonly List<MessageDescriptor> messages = new List<MessageDescriptor>();
         public IVisitorConfigNode(FileDescriptor root)
         {
-            _logger = AppLogger.CreateLogger<NameSpace>();
+            _logger = AppLogger.CreateLogger<IVisitorConfigNode>();
             _logger?.Debug("Create for '{0}'", root.Name);
             this.root = root;
             CollectMessages(root);

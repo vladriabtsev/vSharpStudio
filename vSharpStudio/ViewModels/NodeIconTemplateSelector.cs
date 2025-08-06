@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using vSharpStudio.vm.ViewModels;
+﻿using System.Windows.Controls;
 
 namespace vSharpStudio.ViewModels
 {

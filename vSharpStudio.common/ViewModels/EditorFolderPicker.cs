@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,7 +15,7 @@ namespace vSharpStudio.common.ViewModels
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Debug.Assert(propertyItem != null);
-            this.propItem= propertyItem;
+            this.propItem = propertyItem;
             Grid grd = new Grid();
             var cd1 = new ColumnDefinition
             {

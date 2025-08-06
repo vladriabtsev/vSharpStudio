@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using FluentValidation;
-using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
-using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -72,10 +65,12 @@ namespace vSharpStudio.vm.ViewModels
                 t.OnAdded();
                 t.InitRoles();
             };
-            this.ListDetails.OnRemovedAction = (t) => {
+            this.ListDetails.OnRemovedAction = (t) =>
+            {
                 this.OnRemoveChild();
             };
-            this.ListDetails.OnClearedAction = () => {
+            this.ListDetails.OnClearedAction = () =>
+            {
                 this.OnRemoveChild();
             };
             this._Name = Defaults.GroupDetailsName;

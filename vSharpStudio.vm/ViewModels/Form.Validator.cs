@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using FluentValidation;
 using FluentValidation.Results;
 using vSharpStudio.common;
@@ -17,7 +15,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Name).Must((o, name) => { return this.IsUnique(o); }).WithMessage(Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
             this.RuleFor(x => x.EnumFormType).Custom((ft, cntx) =>
                 {
-                    if (ft== FormType.FormTypeNotSelected)
+                    if (ft == FormType.FormTypeNotSelected)
                     {
                         var vf = new ValidationFailure(cntx.PropertyPath, $"Form type is not selected")
                         {

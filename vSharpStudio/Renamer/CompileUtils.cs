@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Renamer;
-using vSharpStudio.common;
-using vSharpStudio.common.DiffModel;
-using Microsoft.CodeAnalysis;
 using ApplicationLogging;
+using Microsoft.CodeAnalysis;
+using Renamer;
+using vSharpStudio.common.DiffModel;
 
 namespace vSharpStudio.ViewModels
 {
@@ -34,7 +31,7 @@ namespace vSharpStudio.ViewModels
             //https://gist.github.com/DustinCampbell/32cd69d04ea1c08a16ae5c4cd21dd3a3
             //using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
             {
-                _logger?.Information("Compiling solution {SolutionPath}", solutionPath );
+                _logger?.Information("Compiling solution {SolutionPath}", solutionPath);
                 Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync(solutionPath);
                 if (workspace.Diagnostics.Count > 0)
                 {

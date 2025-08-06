@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace ViewModelBase
 {
@@ -9,7 +8,7 @@ namespace ViewModelBase
         where TKey : notnull
     {
         private readonly bool isReturnDefaultWhenNotInDictionary;
-        public DictionaryExt(int initialSize = 100, bool isReturnDefaultWhenNotInDictionary = false, bool isActivateActions = false, 
+        public DictionaryExt(int initialSize = 100, bool isReturnDefaultWhenNotInDictionary = false, bool isActivateActions = false,
             Action<TKey, TValue>? onAddValue = null, Action<TKey, TValue>? onRemoveValue = null, Action? onClear = null) : base(initialSize)
         {
             this.IsActivateActions = isActivateActions;

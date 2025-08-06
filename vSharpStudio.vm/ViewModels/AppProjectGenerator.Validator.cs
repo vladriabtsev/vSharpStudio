@@ -1,12 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Text;
 using FluentValidation;
-using vSharpStudio.common;
 using FluentValidation.Results;
-using ViewModelBase;
-using System.Diagnostics;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {

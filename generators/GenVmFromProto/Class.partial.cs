@@ -1,13 +1,7 @@
-﻿using ApplicationLogging;
+﻿using System.Collections.Generic;
+using ApplicationLogging;
 using Google.Protobuf.Reflection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using vSharpStudio.common;
 
 namespace GenVmFromProto
 {

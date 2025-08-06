@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
-using System.Text;
-using FluentValidation;
-using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.wpf.Controls;
 

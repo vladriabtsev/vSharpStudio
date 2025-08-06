@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 //<Grid>
 //  <TextBox Text = "{Binding Url}" />
@@ -184,7 +181,7 @@ namespace ViewModelBase
         {
             get
             {
-                if (this.Execution==null)
+                if (this.Execution == null)
                     return false;
                 return this.Execution.IsFaulted;
             }

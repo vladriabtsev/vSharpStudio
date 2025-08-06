@@ -2,14 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
-using FluentValidation;
-using ViewModelBase;
 using vSharpStudio.common;
-using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace vSharpStudio.vm.ViewModels
 {

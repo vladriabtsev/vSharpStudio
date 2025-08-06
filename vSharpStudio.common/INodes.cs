@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using ViewModelBase;
-using vSharpStudio.common.DiffModel;
-
-namespace vSharpStudio.common
+﻿namespace vSharpStudio.common
 {
     public interface ICanGoLeft
     {

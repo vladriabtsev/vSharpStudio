@@ -1,17 +1,11 @@
 ﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows;
-using System.Windows.Media.TextFormatting;
+using System.Windows.Controls;
+using System.Windows.Media;
+using CommunityToolkit.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Diagnostics;
-using System.Diagnostics;
-using System.Windows.Media;
 
 namespace ViewModelBase
 {
@@ -190,7 +184,7 @@ namespace ViewModelBase
         private ControlTemplate? GetIconControlTemplate(string iconResourceKey)
         {
 #if DEBUG
-            if (Application.Current==null)
+            if (Application.Current == null)
                 return null;
 #endif
             Guard.IsNotNullOrWhiteSpace(iconResourceKey);

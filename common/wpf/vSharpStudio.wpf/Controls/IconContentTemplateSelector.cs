@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommunityToolkit.Diagnostics;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows;
+using CommunityToolkit.Diagnostics;
 
 namespace vSharpStudio.wpf.Controls
 {

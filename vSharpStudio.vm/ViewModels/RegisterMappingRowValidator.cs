@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Results;
 using ViewModelBase;
 
@@ -22,7 +17,7 @@ namespace vSharpStudio.vm.ViewModels
                 foreach (var t in row.Reg.ListMappings)
                 {
                     if (t == row || t.Selected == null)
-                            continue;
+                        continue;
                     if (t.Selected.Guid == sel.Guid)
                         nmap++;
                     //switch (row.Reg.RegisterType)

@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using ApplicationLogging;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Rename;
-using System.Threading;
-using System.Threading.Tasks;
 //using Proto.Renamer;
-using Microsoft.Extensions.Logging;
 using vSharpStudio.common.DiffModel;
-using System.Diagnostics;
-using vSharpStudio.common;
-using vSharpStudio.ViewModels;
-using ApplicationLogging;
 
 namespace Renamer
 {

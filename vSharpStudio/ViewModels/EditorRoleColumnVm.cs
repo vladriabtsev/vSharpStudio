@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
-using vSharpStudio.common.DiffModel;
-using vSharpStudio.common;
-using vSharpStudio.vm.ViewModels;
-using vSharpStudio.wpf.Controls;
 using System.ComponentModel;
-using System.Reflection;
 using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
 using System.Windows;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ViewModelBase;
-using System.Windows.Controls;
-using System.Xml.Linq;
-using System.DirectoryServices;
+using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
+using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.ViewModels
 {

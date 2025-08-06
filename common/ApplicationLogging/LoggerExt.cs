@@ -6,7 +6,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Microsoft.Extensions.Logging;
-using static System.Net.Mime.MediaTypeNames;
 
 // https://andrewlock.net/defining-custom-logging-messages-with-loggermessage-define-in-asp-net-core/
 // https://www.c-sharpcorner.com/article/speed-up-logging-in-net/

@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Text;
-using CommunityToolkit.Diagnostics;
 
 namespace ApplicationLogging
 {

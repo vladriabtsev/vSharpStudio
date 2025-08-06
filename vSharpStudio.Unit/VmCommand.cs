@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using ApplicationLogging;
-using FluentValidation;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Debug;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ViewModelBase;
-using vSharpStudio.common;
-using vSharpStudio.ViewModels;
-using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.Unit
 {

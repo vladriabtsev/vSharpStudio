@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Text;
-using FluentValidation;
 using Google.Protobuf;
 using Proto.Config;
-using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
-using static vSharpStudio.common.ModelVisitorNodeReferencesBase;
 
 namespace vSharpStudio.vm.ViewModels
 {

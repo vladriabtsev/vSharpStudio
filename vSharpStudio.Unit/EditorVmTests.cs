@@ -1,27 +1,14 @@
 ﻿using System;
-using System.Linq;
-using vSharpStudio.vm.ViewModels;
-using ViewModelBase;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System.Windows;
-using Microsoft.Extensions.Logging.Console;
-using Microsoft.Extensions.Logging;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using vSharpStudio.common;
-using Serilog;
-using Microsoft.Extensions.DependencyInjection;
-using Serilog.Extensions.Logging;
-using Microsoft.CodeAnalysis.Operations;
-using NSubstitute;
-using Xceed.Wpf.Toolkit;
+using System.Linq;
 using System.Threading;
-using Newtonsoft.Json.Linq;
-using vSharpStudio.ViewModels;
-using Polly.Caching;
-using ApplicationLogging;
 using System.Threading.Tasks;
-using Microsoft.CodeAnalysis.Rename;
+using ApplicationLogging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ViewModelBase;
+using vSharpStudio.common;
+using vSharpStudio.ViewModels;
+using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.Unit
 {

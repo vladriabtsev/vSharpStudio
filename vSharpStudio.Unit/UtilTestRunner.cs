@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 // https://www.chriswirz.com/software/programmatically-run-unit-tests-in-c-sharp
 // https://stackoverflow.com/questions/195061/how-to-run-nunit-programmatically

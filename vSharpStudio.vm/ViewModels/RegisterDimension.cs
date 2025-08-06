@@ -1,21 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
-using System.DirectoryServices;
-using System.Numerics;
-using System.Text;
-using CommunityToolkit.Diagnostics;
-using FluentValidation;
-using Google.Protobuf;
-using Google.Protobuf.WellKnownTypes;
-using Proto.Config;
 using ViewModelBase;
 using vSharpStudio.common;
-using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels

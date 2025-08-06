@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ViewModelBase
+﻿namespace ViewModelBase
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.datagrid?view=netcore-3.1
     public class DataGridViewModelBase<T> : VmBindable

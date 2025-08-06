@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 #nullable enable
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Diagnostics;
-using CommunityToolkit.Diagnostics;
-using System.Net.Http.Headers;
 using System.Linq;
 using Serilog;
-using Serilog.Extensions.Logging;
 //using Microsoft.Extensions.Logging;
-using Serilog.Debugging;
 using Microsoft.Extensions.Logging;
-using Serilog.Core;
 //using Serilog;
 //using Serilog.Filters;
 

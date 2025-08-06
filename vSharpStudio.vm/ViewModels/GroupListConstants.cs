@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data.SqlTypes;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using CommunityToolkit.Diagnostics;
-using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -424,7 +418,7 @@ namespace vSharpStudio.vm.ViewModels
                         case EnumDataType.DOCUMENTS:
                         case EnumDataType.ANY:
                             if (string.IsNullOrWhiteSpace(t.RefComplexObjectDescrPropertyGuid))
-                                t.RefComplexObjectDescrPropertyGuid=System.Guid.NewGuid().ToString();
+                                t.RefComplexObjectDescrPropertyGuid = System.Guid.NewGuid().ToString();
                             p.RefComplexObjectDescrPropertyGuid = t.RefComplexObjectDescrPropertyGuid;
                             p.PositionOfDescr = t.PositionOfDescr;
                             if (string.IsNullOrWhiteSpace(t.RefComplexObjectGdPropertyGuid))

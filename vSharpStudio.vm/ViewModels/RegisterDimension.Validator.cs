@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Results;
-using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -33,7 +26,7 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
                 var r = rd.ParentGroupListRegisterDimensions.ParentRegister;
-                foreach(var t in rd.ParentGroupListRegisterDimensions.ListDimensions)
+                foreach (var t in rd.ParentGroupListRegisterDimensions.ListDimensions)
                 {
                     if (t.Guid == rd.Guid) continue;
                     if (t.DimensionCatalogGuid == rd.DimensionCatalogGuid)

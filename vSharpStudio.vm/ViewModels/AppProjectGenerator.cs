@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.IO.Packaging;
-using System.Text;
 using FluentValidation.Results;
 using ViewModelBase;
 using vSharpStudio.common;

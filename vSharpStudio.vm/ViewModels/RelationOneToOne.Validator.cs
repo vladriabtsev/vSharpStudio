@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Results;
 
 namespace vSharpStudio.vm.ViewModels

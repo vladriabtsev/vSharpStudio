@@ -5,9 +5,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Extensions.Logging.Abstractions;
-using Microsoft.Extensions.Logging;
 using CommunityToolkit.Diagnostics;
+using Microsoft.Extensions.Logging;
 
 namespace ApplicationLogging
 {

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Text;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels

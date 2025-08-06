@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace vSharpStudio.vm.Migration
+﻿namespace vSharpStudio.vm.Migration
 {
     class Migration
     {
