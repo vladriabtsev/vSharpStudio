@@ -200,7 +200,7 @@ namespace vSharpStudio.ViewModels
             else
             {
                 _logger?.Debug("Using empty Configuration");
-                this._Config = new Config(true);
+                this.Config = new Config(true);
             }
             this.ProgressVM.ProgressClose();
         }

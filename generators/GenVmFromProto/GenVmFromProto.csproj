@@ -256,16 +256,8 @@
     <Message Importance="high" Condition="$(IsGen)=='true'" Text="$(ProjectName)**     CommandVmInterface: $(ProtoDocGenCommandVmInterface)" />
     <Message Importance="high" Condition="$(IsGen)=='true'" Text="$(ProjectName)** Generating proto VM ..." />
     <Exec Command="$(ProtoDocGenCommandVm)" Condition="$(IsGen)=='true'" ContinueOnError="false" />
-    <Exec WorkingDirectory="$(TargetDir)" Command="$(ProtoDocGenCommandVm)" Condition="$(IsGen)=='true'" ContinueOnError="true">
-      <Output TaskParameter="ExitCode" PropertyName="TestModelGeneratorExitCode"/>
-    </Exec>
-    <Error Message="GENERATION IS FAILED!" Condition=" '$(TestModelGeneratorExitCode)' != '0' " />
     <Message Importance="high" Condition="$(IsGen)=='true'" Text="$(ProjectName)** Generating proto VM Interfaces ..." />
-    <!--<Exec Command="$(ProtoDocGenCommandVmInterface)" Condition="$(IsGen)=='true'" ContinueOnError="false" />-->
-    <Exec WorkingDirectory="$(TargetDir)" Command="$(ProtoDocGenCommandVmInterface)" Condition="$(IsGen)=='true'" ContinueOnError="true">
-      <Output TaskParameter="ExitCode" PropertyName="TestModelGeneratorExitCode"/>
-    </Exec>
-    <Error Message="GENERATION IS FAILED!" Condition=" '$(TestModelGeneratorExitCode)' != '0' " />
+    <Exec Command="$(ProtoDocGenCommandVmInterface)" Condition="$(IsGen)=='true'" ContinueOnError="false" />
     <Message Importance="high" Condition="$(IsGen)=='true'" Text="$(ProjectName)****************** End Proto To VM Generation **********************" />
   </Target>
   <!--***** VM generation from proto files end *****-->

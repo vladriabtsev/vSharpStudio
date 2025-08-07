@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using ApplicationLogging;
 using AsyncAwaitBestPractices;
+using Renamer;
 using ViewModelBase;
 using vSharpStudio.ViewModels;
 using vSharpStudio.vm.ViewModels;
@@ -29,6 +31,10 @@ namespace vSharpStudio.Views
             {
                 return;
             }
+
+            AppLogger.LogLevel= Microsoft.Extensions.Logging.LogLevel.Trace;
+            AppLogger.UseDebug = false;
+
             this._model = new MainPageVM(this);
             MainPage.MainPageVM = this._model;
             this.DataContext = this._model;
