@@ -851,12 +851,12 @@ namespace vSharpStudio.ViewModels
                 Debug.Assert(folder != null);
                 Directory.CreateDirectory(folder);
                 File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
-#if DEBUG
+//#if DEBUG
                 //var json = JsonFormatter.Default.Format(this.pconfig_history);
                 JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
                 var json = formatter.Format(this.pconfig_history);
                 File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
-#endif
+//#endif
                 this.UpdateUserSettingsSaveConfigs();
                 this.ResetIsChangedBeforeSave();
                 if (!MainPageVM.NotSaveUserSettings)

@@ -40,7 +40,11 @@ namespace vSharpStudio.vm.ViewModels
                 var p = (Constant)cntx.InstanceToValidate;
                 if (p.IsMarkedForDeletion)
                     return;
-                if (p.DataTypeEnum == EnumDataType.CATALOG || p.DataTypeEnum == EnumDataType.ENUMERATION || p.DataTypeEnum == EnumDataType.DOCUMENT)
+                //if (p.DataTypeEnum == EnumDataType.ENUMERATION)
+                //{
+                //}
+                //else 
+                if (p.DataTypeEnum == EnumDataType.CATALOG || p.DataTypeEnum == EnumDataType.DOCUMENT)
                 {
                     if (string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
                     {

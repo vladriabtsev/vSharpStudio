@@ -34,6 +34,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.GetPositions(cr);
                 }
             }
+            ClrTypeNameCalc();
         }
         private uint GetNextPosition()
         {
@@ -607,7 +608,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private string? _ClrLiteralSuf = null;
-        private void ClrTypeNameCalc()
+        internal void ClrTypeNameCalc()
         {
             this.ClrLiteralSuf = "";
             // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
@@ -624,9 +625,16 @@ namespace vSharpStudio.vm.ViewModels
                     return;
                 case EnumDataType.CATALOG:
                     Debug.Assert(this.Cfg != null);
-                    if (!string.IsNullOrEmpty(this.ObjectRef.ForeignObjectGuid))
+                    Debug.Assert(this.ListObjectRefs.Count < 2);
+                    //if (!string.IsNullOrEmpty(this.ObjectRef.ForeignObjectGuid))
+                    //{
+                    //    var en = (Catalog?)this.Cfg.DicNodes[this.ObjectRef.ForeignObjectGuid];
+                    //    Debug.Assert(en != null);
+                    //    this.ClrTypeName = en.Name;
+                    //}
+                    if (this.ListObjectRefs.Count == 1 && !string.IsNullOrEmpty(this.ListObjectRefs[0].ForeignObjectGuid))
                     {
-                        var en = (Catalog?)this.Cfg.DicNodes[this.ObjectRef.ForeignObjectGuid];
+                        var en = (Catalog?)this.Cfg.DicNodes[this.ListObjectRefs[0].ForeignObjectGuid];
                         Debug.Assert(en != null);
                         this.ClrTypeName = en.Name;
                     }
@@ -635,9 +643,17 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumDataType.DOCUMENT:
                     Debug.Assert(this.Cfg != null);
-                    if (!string.IsNullOrEmpty(this.ObjectRef.ForeignObjectGuid))
+                    Debug.Assert(this.ListObjectRefs.Count < 2);
+                    //if (!string.IsNullOrEmpty(this.ObjectRef.ForeignObjectGuid))
+                    //{
+                    //    var en = (Document?)this.Cfg.DicNodes[this.ObjectRef.ForeignObjectGuid];
+                    //    Debug.Assert(en != null);
+                    //    this.ClrTypeName = en.Name;
+                    //}
+                    if (this.ListObjectRefs.Count == 1 && !string.IsNullOrEmpty(this.ListObjectRefs[0].ForeignObjectGuid))
                     {
-                        var en = (Document?)this.Cfg.DicNodes[this.ObjectRef.ForeignObjectGuid];
+                        Debug.Assert(!string.IsNullOrEmpty(this.ListObjectRefs[0].ForeignObjectGuid));
+                        var en = (Catalog?)this.Cfg.DicNodes[this.ListObjectRefs[0].ForeignObjectGuid];
                         Debug.Assert(en != null);
                         this.ClrTypeName = en.Name;
                     }
@@ -853,10 +869,12 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
                 case EnumDataType.REF_TIMELINE:
+                    this.ListObjectRefs.Clear();
                     return;
                 case EnumDataType.CHAR:
                 case EnumDataType.BOOL:
                 case EnumDataType.DATE:
+                    this.ListObjectRefs.Clear();
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;
@@ -872,6 +890,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.TIME:
                 case EnumDataType.TIMEZ:
+                    this.ListObjectRefs.Clear();
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;
@@ -910,6 +929,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     break;
                 case EnumDataType.ENUMERATION:
+                    this.ListObjectRefs.Clear();
                     this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
@@ -920,6 +940,7 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumDataType.TIMESPAN:
                 case EnumDataType.TIMESPAN_TIME_ONLY:
+                    this.ListObjectRefs.Clear();
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityIsPositive = Visibility.Visible;
                     this.VisibilityLength = Visibility.Visible;
@@ -927,9 +948,9 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 6;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    this.ObjectRef0.ForeignObjectGuid = string.Empty;
                     break;
                 case EnumDataType.NUMERICAL:
+                    this.ListObjectRefs.Clear();
                     if (this.Accuracy == 0)
                     {
                         this.VisibilityIsPositive = Visibility.Visible;
@@ -946,6 +967,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._IsPositive = false;
                     break;
                 case EnumDataType.STRING:
+                    this.ListObjectRefs.Clear();
                     this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Visible;
@@ -955,6 +977,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._IsPositive = false;
                     break;
                 case EnumDataType.ULID:
+                    this.ListObjectRefs.Clear();
                     this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;

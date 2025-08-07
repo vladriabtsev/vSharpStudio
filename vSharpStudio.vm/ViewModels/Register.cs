@@ -416,8 +416,9 @@ namespace vSharpStudio.vm.ViewModels
             {
                 Name = name,
                 DimensionCatalogGuid = c.Guid,
-                Position = this.GroupProperties.GetNextPosition()
+                Position = this.GroupProperties.GetNextPosition(),
             };
+            //node.PropertyRefDimensionCatalog.ListObjectRefs.Add(new ComplexRef() { ForeignObjectGuid = c.Guid });
 #if DEBUG
             if (guid != null) // for test model generation
             {

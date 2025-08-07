@@ -54,6 +54,7 @@ namespace vSharpStudio.vm.ViewModels
             this._DimensionCatalogGuid = string.Empty;
             var m = (Model)this.Cfg.Model;
             this._PropertyRefDimensionCatalog = (Property)m.GetPropertyRef(this.ParentGroupListRegisterDimensions.ParentRegister.GroupProperties, this.Guid, "Ref2", 0, false);
+            //this._PropertyRefDimensionCatalog.lis
             this._PropertyRefDimensionCatalog.DataTypeEnum = EnumDataType.CATALOG;
             this._PropertyRefDimensionCatalog.IsNullable = false;
             Init();
@@ -89,8 +90,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnDimensionCatalogGuidChanged()
         {
-            this.PropertyRefDimensionCatalog.DataType.ObjectRef0.ForeignObjectGuid = this.DimensionCatalogGuid ?? "";
             this.PropertyRefDimensionCatalog.Name = this.Name;
+            this.PropertyRefDimensionCatalog.DataType.ObjectRef0.ForeignObjectGuid = this.DimensionCatalogGuid ?? "";
+            this.PropertyRefDimensionCatalog.DataType.ClrTypeNameCalc();
             //this.OnPropertyChanged(nameof(this.ListCatalogs));
         }
         #endregion OnChanged
