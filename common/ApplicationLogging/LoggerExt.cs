@@ -127,8 +127,9 @@ namespace ApplicationLogging
             if (AppLogger.IndentShift != -1)
             {
                 int n = Environment.StackTrace.Split(Environment.NewLine).Count();
-                //if (n < AppLogger.IndentShift)
-                //    AppLogger.IndentShift = n;
+                if (n < AppLogger.IndentShift)
+                {
+                }
                 System.Diagnostics.Debug.Assert(n >= AppLogger.IndentShift);
                 indent = new String(' ', n - AppLogger.IndentShift);
             }
