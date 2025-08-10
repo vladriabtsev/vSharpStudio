@@ -7,7 +7,7 @@ namespace GenVmFromProto
 {
     public partial class Class
     {
-        readonly ILogger? _logger;
+        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(Class));
         readonly FileDescriptor root;
         readonly MessageDescriptor message;
         readonly MessageDoc Doc;
@@ -18,7 +18,6 @@ namespace GenVmFromProto
         public Class(FileDescriptor root, MessageDescriptor message, Dictionary<string, List<MessageDescriptor>> dicParents,
             string destNS, string protoNS, string defaultBaseClass)
         {
-            _logger = AppLogger.CreateLogger<Class>();
             _logger?.Debug("Generating class for '{root}' message '{message}'", root.Name, message.Name);
             this.root = root;
             this.message = message;

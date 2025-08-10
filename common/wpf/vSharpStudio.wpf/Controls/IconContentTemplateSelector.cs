@@ -10,7 +10,7 @@ namespace vSharpStudio.wpf.Controls
         public override DataTemplate SelectTemplate(object value, DependencyObject container)
         {
             Guard.IsAssignableToType<string>(value);
-            DataTemplate? res = null;
+            DataTemplate res = null;
             if (value is string s)
             {
                 var obj = Application.Current.TryFindResource(s);

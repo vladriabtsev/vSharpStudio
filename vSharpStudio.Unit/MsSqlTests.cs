@@ -25,36 +25,14 @@ namespace vSharpStudio.Unit
     [TestClass]
     public class MsSqlTests
     {
-        private Microsoft.Extensions.Logging.ILogger _logger;
+        private readonly ILogger? _logger;
         public MsSqlTests()
         {
+            AppLogger.LogLevel = LogLevel.Trace;
+            AppLogger.UseDebug = true;
+            _logger = AppLogger.CreateLogger(nameof(MsSqlTests));
+
             ViewModelBindable.isUnitTests = true;
-
-            InitLogging(this);
-
-            _logger = ApplicationLogging.CreateLogger<MsSqlTests>();
-        }
-
-        internal static void InitLogging(object type)
-        {
-            if (ApplicationLogging.LogerProvider == null)
-            {
-                Log.Logger = new LoggerConfiguration()
-                    .MinimumLevel.Debug()
-                    .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
-                    //.WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
-                    .CreateLogger().ForContext(type.GetType());
-                var serviceCollection = new ServiceCollection();
-                var lp = serviceCollection.AddLogging(loggingBuilder =>
-                {
-                    //loggingBuilder.AddFilter((p) => { return p >= LogLevel.Trace; });
-                    //loggingBuilder.AddConsole((o) => { o.IncludeScopes = true; });
-                    loggingBuilder.AddSerilog();
-                    //loggingBuilder.AddConfiguration(new )
-                    //loggingBuilder.AddDebug();
-                }).BuildServiceProvider().GetRequiredService<ILoggerProvider>();
-                ApplicationLogging.LogerProvider = lp;
-            }
         }
 
         //#region Config

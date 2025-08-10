@@ -16,23 +16,18 @@ namespace vSharpStudio.Unit
     [TestClass]
     public class VmTests
     {
+        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(VmTests));
         static VmTests()
         {
         }
-        private static Microsoft.Extensions.Logging.ILogger _logger;
         // public VmTests(ITestOutputHelper output)
         public VmTests()
         {
-            //UIDispatcher.Initialize();
+            AppLogger.LogLevel = LogLevel.Trace;
+            AppLogger.UseDebug = true;
+            _logger = AppLogger.CreateLogger(nameof(VmTests));
 
             VmBindable.isUnitTests = true;
-            // ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
-            // loggerFactory.AddProvider(new DebugLoggerProvider());
-            // _logger = loggerFactory.CreateLogger<VmTests>();
-            // _logger.LogInformation("======================  Start VmTests tests ===============================");
-            if (_logger == null)
-                //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
-                _logger = AppLogger.CreateLogger<PluginTests>();
         }
 
         #region Editable
@@ -50,8 +45,8 @@ namespace vSharpStudio.Unit
             cfg.GroupAppSolutions.Name = "kuku2";
             //cfg.DbSettings.DbSchema = "schema2";
             cfg.CancelEdit();
-            Assert.IsTrue(cfg.Name == "test1");
-            Assert.IsTrue(cfg.GroupAppSolutions.Name == "kuku1");
+            Assert.AreEqual("test1", cfg.Name);
+            Assert.AreEqual("kuku1", cfg.GroupAppSolutions.Name);
             //Assert.IsTrue(cfg.DbSettings.DbSchema == "schema1");
         }
 
@@ -78,7 +73,7 @@ namespace vSharpStudio.Unit
             cat_vm.BeginEdit();
             cat_vm.Name = "test2";
             cat_vm.CancelEdit();
-            Assert.IsTrue(cat_vm.Name == "test1");
+            Assert.AreEqual("test1", cat_vm.Name);
         }
 
         [TestMethod]
@@ -94,13 +89,13 @@ namespace vSharpStudio.Unit
             vm.BeginEdit();
             vm.GroupProperties[0].Name = "test2";
             vm.CancelEdit();
-            Assert.IsTrue(vm.GroupProperties[0].Name == "test1");
+            Assert.AreEqual("test1", vm.GroupProperties[0].Name);
             vm.BeginEdit();
             prop = vm.GroupProperties.AddProperty("test3");
-            Assert.IsTrue(vm.GroupProperties.Count() == 2);
+            Assert.AreEqual(2, vm.GroupProperties.Count());
             vm.CancelEdit();
-            Assert.IsTrue(vm.GroupProperties.Count() == 1);
-            Assert.IsTrue(vm.GroupProperties[0].Name == "test1");
+            Assert.AreEqual(1, vm.GroupProperties.Count());
+            Assert.AreEqual("test1", vm.GroupProperties[0].Name);
         }
 
         [TestMethod]
@@ -115,18 +110,18 @@ namespace vSharpStudio.Unit
             vm.BeginEdit();
             vm.GroupProperties.AddProperty("pdouble0", EnumDataType.NUMERICAL, 10, 0);
             vm.CancelEdit();
-            Assert.IsTrue(vm.GroupProperties.Count() == 0);
+            Assert.AreEqual(0, vm.GroupProperties.Count());
             vm.GroupProperties.AddProperty("pdouble0", EnumDataType.NUMERICAL, 10, 0);
             vm.BeginEdit();
             vm.GroupProperties[0].DataType.DataTypeEnum = EnumDataType.STRING;
             vm.CancelEdit();
-            Assert.IsTrue(vm.GroupProperties.Count() == 1);
-            Assert.IsTrue(vm.GroupProperties[0].DataType.DataTypeEnum == EnumDataType.NUMERICAL);
+            Assert.AreEqual(1, vm.GroupProperties.Count());
+            Assert.AreEqual(EnumDataType.NUMERICAL, vm.GroupProperties[0].DataType.DataTypeEnum);
             vm.BeginEdit();
             vm.GroupProperties.ListProperties.Clear();
             vm.CancelEdit();
-            Assert.IsTrue(vm.GroupProperties.Count() == 1);
-            Assert.IsTrue(vm.GroupProperties[0].DataType.DataTypeEnum == EnumDataType.NUMERICAL);
+            Assert.AreEqual(1, vm.GroupProperties.Count());
+            Assert.AreEqual(EnumDataType.NUMERICAL, vm.GroupProperties[0].DataType.DataTypeEnum);
         }
         #endregion Editable
 
@@ -137,12 +132,12 @@ namespace vSharpStudio.Unit
             ConfigValidator.Reset();
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
-            Assert.IsTrue(cfg.ValidationCollection != null);
-            Assert.IsTrue(cfg.ValidationCollection.Count == 0);
+            Assert.IsNotNull(cfg.ValidationCollection);
+            Assert.IsEmpty(cfg.ValidationCollection);
         }
 
         [TestMethod]
-        async public Task Validation002_CatalogValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
+        public async Task Validation002_CatalogValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
         {
             var cancellation = new CancellationTokenSource();
             var token = cancellation.Token;
@@ -154,7 +149,7 @@ namespace vSharpStudio.Unit
             //cfg.SolutionPath = @"..\..\..\..\";
 
             var c = cfg.Model.GroupCatalogs.AddCatalog("test");
-            Assert.IsTrue(c.Parent == cfg.Model.GroupCatalogs);
+            Assert.AreEqual(cfg.Model.GroupCatalogs, c.Parent);
 
             string mes1 = "test error message";
             string mes2 = "test warning message";
@@ -170,24 +165,24 @@ namespace vSharpStudio.Unit
 
             await cfg.ValidateSubTreeFromNodeAsync(c, null, token);
 
-            Assert.IsTrue(cfg.ValidationCollection.Count == 0);
-            Assert.IsTrue(c.ValidationCollection.Count == 4);
+            Assert.IsEmpty(cfg.ValidationCollection);
+            Assert.HasCount(4, c.ValidationCollection);
             var p = c.ValidationCollection[0];
-            Assert.IsTrue(p.Severity == FluentValidation.Severity.Error);
-            Assert.IsTrue(p.Message == mes1);
-            Assert.IsTrue(p.Model == c);
+            Assert.AreEqual(FluentValidation.Severity.Error, p.Severity);
+            Assert.AreEqual(mes1, p.Message);
+            Assert.AreEqual(c, p.Model);
             p = c.ValidationCollection[1];
-            Assert.IsTrue(p.Severity == FluentValidation.Severity.Warning);
-            Assert.IsTrue(p.Message == mes22);
-            Assert.IsTrue(p.Model == c);
+            Assert.AreEqual(FluentValidation.Severity.Warning, p.Severity);
+            Assert.AreEqual(mes22, p.Message);
+            Assert.AreEqual(c, p.Model);
             p = c.ValidationCollection[2];
-            Assert.IsTrue(p.Severity == FluentValidation.Severity.Warning);
-            Assert.IsTrue(p.Message == mes2);
-            Assert.IsTrue(p.Model == c);
+            Assert.AreEqual(FluentValidation.Severity.Warning, p.Severity);
+            Assert.AreEqual(mes2, p.Message);
+            Assert.AreEqual(c, p.Model);
             p = c.ValidationCollection[3];
-            Assert.IsTrue(p.Severity == FluentValidation.Severity.Info);
-            Assert.IsTrue(p.Message == mes3);
-            Assert.IsTrue(p.Model == c);
+            Assert.AreEqual(FluentValidation.Severity.Info, p.Severity);
+            Assert.AreEqual(mes3, p.Message);
+            Assert.AreEqual(c, p.Model);
 
             Assert.AreEqual(1, c.CountErrors);
             Assert.AreEqual(2, c.CountWarnings);
@@ -202,13 +197,13 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, cfg.CountInfos);
 
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.ValidationCollection.Count == 4);
+            Assert.HasCount(4, cfg.ValidationCollection);
             //await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
             //Assert.IsTrue(cfg.ValidationCollection.Count == 4);
         }
 
         [TestMethod]
-        async public Task Validation003_AppProjectGeneratorValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
+        public async Task Validation003_AppProjectGeneratorValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
         {
             var cancellation = new CancellationTokenSource();
             var token = cancellation.Token;
@@ -237,8 +232,8 @@ namespace vSharpStudio.Unit
             cfg.Validate();
 
             await cfg.ValidateSubTreeFromNodeAsync(sol1, null, token);
-            Assert.IsTrue(cfg.ValidationCollection.Count == 0);
-            Assert.IsTrue(sol1.ValidationCollection.Count == 7);
+            Assert.IsEmpty(cfg.ValidationCollection);
+            Assert.HasCount(7, sol1.ValidationCollection);
             //var p = sol1.ValidationCollection[0];
             //Assert.IsTrue(p.Severity == FluentValidation.Severity.Error);
             //Assert.IsTrue(p.Message == mes1);
@@ -272,7 +267,7 @@ namespace vSharpStudio.Unit
             //Assert.IsTrue(cfg.ValidationCollection.Count == 4);
         }
         [TestMethod]
-        async public Task Validation007_Propagation()
+        public async Task Validation007_Propagation()
         {
             var cancellation = new CancellationTokenSource();
             var token = cancellation.Token;
@@ -290,34 +285,34 @@ namespace vSharpStudio.Unit
             ConstantValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Normal);
 
             await cfg.ValidateSubTreeFromNodeAsync(cfg.Model.GroupConstantGroups, null, token);
-            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ValidationCollection.Count == 1);
-            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].CountErrors == 1);
-            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].CountErrors == 1);
-            Assert.IsTrue(cfg.Model.GroupConstantGroups.ValidationCollection.Count == 1);
-            Assert.IsTrue(cfg.Model.GroupConstantGroups.CountErrors == 1);
-            Assert.IsTrue(cfg.ValidationCollection.Count == 0);
-            Assert.IsTrue(cfg.CountErrors == 1);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.HasCount(1, cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ValidationCollection);
+            Assert.AreEqual(1, cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].CountErrors);
+            Assert.AreEqual(1, cfg.Model.GroupConstantGroups.ListConstantGroups[0].CountErrors);
+            Assert.HasCount(1, cfg.Model.GroupConstantGroups.ValidationCollection);
+            Assert.AreEqual(1, cfg.Model.GroupConstantGroups.CountErrors);
+            Assert.IsEmpty(cfg.ValidationCollection);
+            Assert.AreEqual(1, cfg.CountErrors);
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
 
             cfg.Model.GroupEnumerations.NodeAddNewSubNode();
             EnumerationValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Low);
 
             await cfg.ValidateSubTreeFromNodeAsync(cfg.Model.GroupEnumerations, null, token);
-            Assert.IsTrue(cfg.Model.GroupEnumerations[0].ValidationCollection.Count == 1);
-            Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountErrors == 1);
-            Assert.IsTrue(cfg.Model.GroupEnumerations.ValidationCollection.Count == 1);
-            Assert.IsTrue(cfg.Model.GroupEnumerations.CountErrors == 1);
-            Assert.IsTrue(cfg.ValidationCollection.Count == 0);
-            Assert.IsTrue(cfg.CountErrors == 2);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.HasCount(1, cfg.Model.GroupEnumerations[0].ValidationCollection);
+            Assert.AreEqual(1, cfg.Model.GroupEnumerations[0].CountErrors);
+            Assert.HasCount(1, cfg.Model.GroupEnumerations.ValidationCollection);
+            Assert.AreEqual(1, cfg.Model.GroupEnumerations.CountErrors);
+            Assert.IsEmpty(cfg.ValidationCollection);
+            Assert.AreEqual(2, cfg.CountErrors);
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
 
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.ValidationCollection.Count == 2);
-            Assert.IsTrue(cfg.CountErrors == 2);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.HasCount(2, cfg.ValidationCollection);
+            Assert.AreEqual(2, cfg.CountErrors);
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
         }
         #endregion Validatable
 
@@ -330,22 +325,22 @@ namespace vSharpStudio.Unit
             mvm.BtnNewConfig.Execute();
 
             var cfg = mvm.Config;
-            int catPos = 21;
+            uint catPos = 21;
             cfg.Model.GroupCatalogs.NodeAddNewSubNode();
             cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].Position == catPos);
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == catPos);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties[0].Position);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition);
             cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
             catPos++;
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].Position == catPos);
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == catPos);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties[1].Position);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition);
             cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeRemove();
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].Position == catPos);
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == catPos);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties[0].Position);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition);
             cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeAddNew();
             catPos++;
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].Position == catPos);
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == catPos);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties[1].Position);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition);
         }
         [TestMethod]
         public void Register001_Property_Position()
@@ -393,7 +388,7 @@ namespace vSharpStudio.Unit
         #endregion Unique position for Protobuf
 
         [TestMethod]
-        async public System.Threading.Tasks.Task Register002_Validation()
+        public async System.Threading.Tasks.Task Register002_Validation()
         {
             var cancellation = new CancellationTokenSource();
             var token = cancellation.Token;
@@ -404,20 +399,20 @@ namespace vSharpStudio.Unit
             var cfg = vm.Config;
 
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountErrors == 0);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.ValidationCollection.Count == 0);
+            Assert.AreEqual(0, cfg.CountErrors);
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.IsEmpty(cfg.ValidationCollection);
 
             // Can work with register without catalogs and docs
             var reg1 = cfg.Model.GroupDocuments.GroupRegisters.AddRegister("turnover", EnumRegisterType.TURNOVER);
             reg1.PropertyMoneyAccumulatorLength = 20;
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 1);
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(1, cfg.CountErrors);
             //cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimensions are not selected."));
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. List of Document types for Register is empty"));
+            var valmesstmp=cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. List of Document types for Register is empty"));
 
             // Remove one error by adding document for register
             var doc1 = cfg.Model.GroupDocuments.AddDocument("doc1");
@@ -426,117 +421,117 @@ namespace vSharpStudio.Unit
             reg1.SelectedDoc = doc1;
             reg1.ListObjectDocRefs.Add(new ComplexRef("", doc1.Guid));
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 1);
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(1, cfg.CountErrors);
             //cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimensions are not selected."));
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. There are no any mappings for 'doc1' document."));
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. There are no any mappings for 'doc1' document."));
 
             // Dimension without selected catalog will produce another error
             var dim1 = (RegisterDimension)reg1.AddDimension("cat_dimension1");
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 2);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. There are no any mappings for 'doc1' document."));
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Catalog type is not selected for register dimension"));
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(2, cfg.CountErrors);
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. There are no any mappings for 'doc1' document."));
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Catalog type is not selected for register dimension"));
 
             // Set catalog type for dimension
             var cat1 = cfg.Model.GroupCatalogs.AddCatalog("cat1");
             dim1.DimensionCatalogGuid = cat1.Guid;
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 1);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. There are no any mappings for 'doc1' document."));
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(1, cfg.CountErrors);
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. There are no any mappings for 'doc1' document."));
 
             // Map Money Accumulator to property with low accuracy
             var p_num28_5 = doc1.AddPropertyNumerical("num28_5", 28, 5);
             Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.PropertyMoneyAccumulatorGuid, p_num28_5.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountInfos == 2);
-            Assert.IsTrue(cfg.CountErrors == 2);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension1' is not mapped to 'doc1' document property."));
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' has length less than length 'num28_5' property of 'doc1' document."));
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' has accuracy less than accuracy 'num28_5' property of 'doc1' document."));
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(2, cfg.CountInfos);
+            Assert.AreEqual(2, cfg.CountErrors);
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension1' is not mapped to 'doc1' document property."));
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' has length less than length 'num28_5' property of 'doc1' document."));
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' has accuracy less than accuracy 'num28_5' property of 'doc1' document."));
 
             // Map Money Accumulator
             Register.MappingRegPropertyRemove(reg1, doc1.Guid, reg1.PropertyMoneyAccumulatorGuid);
             var p_num10_2 = doc1.AddPropertyNumerical("num10_2", 10, 2);
             Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.PropertyMoneyAccumulatorGuid, p_num10_2.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 2);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension1' is not mapped to 'doc1' document property."));
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(2, cfg.CountErrors);
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension1' is not mapped to 'doc1' document property."));
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
 
             // Map dimension
             var det1 = doc1.AddDetails("det1");
             var p_det1_cat1 = det1.AddPropertyCatalog("cat1", cat1.Guid, true);
             Register.MappingRegPropertyAdd(reg1, doc1.Guid, dim1.PropertyRefDimensionCatalog.Guid, p_det1_cat1.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 2);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' not mapped on a same record as a deepest dimension 'cat_dimension1' of 'doc1' document."));
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(2, cfg.CountErrors);
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' not mapped on a same record as a deepest dimension 'cat_dimension1' of 'doc1' document."));
             // Map Money Accumulator on a same record as deepest dimension
             var pd_num10_2 = det1.AddPropertyNumerical("num10_2", 10, 2);
             Register.MappingRegPropertyRemove(reg1, doc1.Guid, reg1.PropertyMoneyAccumulatorGuid);
             Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.PropertyMoneyAccumulatorGuid, pd_num10_2.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 1);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(1, cfg.CountErrors);
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedQty' is not mapped to 'doc1' document property."));
 
             // Map Qty Accumulator on a same record as deepest dimension
             var pd_num10_4 = det1.AddPropertyNumerical("num10_4", 10, 4);
             Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.PropertyQtyAccumulatorGuid, pd_num10_4.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 0);
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(0, cfg.CountErrors);
 
             // Add dimension
             var dim2 = (RegisterDimension)reg1.AddDimension("cat_dimension2");
             Register.MappingRegPropertyAdd(reg1, doc1.Guid, reg1.PropertyQtyAccumulatorGuid, pd_num10_4.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 2);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension2' is not mapped to 'doc1' document property."));
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Catalog type is not selected for register dimension."));
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(2, cfg.CountErrors);
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension2' is not mapped to 'doc1' document property."));
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Catalog type is not selected for register dimension."));
 
             // Change dimension type to same as first dimension type
             dim2.DimensionCatalogGuid = cat1.Guid;
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 3);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension2' is not mapped to 'doc1' document property."));
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover' dimension 'cat_dimension1'. Selected catalog type for register dimension is already used for 'cat_dimension2' dimension."));
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover' dimension 'cat_dimension2'. Selected catalog type for register dimension is already used for 'cat_dimension1' dimension."));
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(3, cfg.CountErrors);
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension2' is not mapped to 'doc1' document property."));
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover' dimension 'cat_dimension1'. Selected catalog type for register dimension is already used for 'cat_dimension2' dimension."));
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover' dimension 'cat_dimension2'. Selected catalog type for register dimension is already used for 'cat_dimension1' dimension."));
 
             // Change dimension type to another catalog
             var cat2 = cfg.Model.GroupCatalogs.AddCatalog("cat2");
             dim2.DimensionCatalogGuid = cat2.Guid;
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 1);
-            cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension2' is not mapped to 'doc1' document property."));
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(1, cfg.CountErrors);
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension2' is not mapped to 'doc1' document property."));
 
             // Map dimension 2
             var p_doc1_cat2 = doc1.AddPropertyCatalog("cat2", cat2.Guid, true);
             Register.MappingRegPropertyAdd(reg1, doc1.Guid, dim2.PropertyRefDimensionCatalog.Guid, p_doc1_cat2.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
-            Assert.IsTrue(cfg.CountInfos == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountErrors == 0);
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(0, cfg.CountErrors);
 
             //var s_qty5_2 = cfg.Model.GroupDocuments.AddSharedPropertyNumerical("qty", 5, 2);
 
@@ -607,10 +602,10 @@ namespace vSharpStudio.Unit
             // Self tree catalogs
             c1.UseTree = true;
             c2.UseTree = true;
-            lst = c1.GetAllProperties(false).ToList();
+            lst = [.. c1.GetAllProperties(false)];
             p1 = lst.Single(t => t.Name == cfg.Model.GroupCatalogs.PropertyCodeName);
             var p1h = lst.Single(t => t.Name == c1.PropertyRefSelf.Name);
-            lst = c2.GetAllProperties(false).ToList();
+            lst = [.. c2.GetAllProperties(false)];
             p2 = lst.Single(t => t.Name == cfg.Model.GroupCatalogs.PropertyCodeName);
             var p2h = lst.Single(t => t.Name == c2.PropertyRefSelf.Name);
             Assert.AreNotEqual(p1.Guid, p2.Guid);
@@ -619,19 +614,19 @@ namespace vSharpStudio.Unit
             // Separate tree folder catalogs
             c1.UseSeparateTreeForFolders = true;
             c2.UseSeparateTreeForFolders = true;
-            lst = c1.GetAllFolderProperties(false).ToList();
+            lst = [.. c1.GetAllFolderProperties(false)];
             p1 = lst.Single(t => t.Name == cfg.Model.GroupCatalogs.PropertyCodeName);
             p1h = lst.Single(t => t.Name == c1.PropertyRefSelf.Name);
-            lst = c2.GetAllFolderProperties(false).ToList();
+            lst = [.. c2.GetAllFolderProperties(false)];
             p2 = lst.Single(t => t.Name == cfg.Model.GroupCatalogs.PropertyCodeName);
             p2h = lst.Single(t => t.Name == c2.PropertyRefSelf.Name);
             Assert.AreNotEqual(p1.Guid, p2.Guid);
             Assert.AreNotEqual(p1h.Guid, p2h.Guid);
 
-            lst = c1.GetAllProperties(false).ToList();
+            lst = [.. c1.GetAllProperties(false)];
             p1 = lst.Single(t => t.Name == cfg.Model.GroupCatalogs.PropertyCodeName);
             p1h = lst.Single(t => t.Name == c1.PropertyRefFolder.Name);
-            lst = c2.GetAllProperties(false).ToList();
+            lst = [.. c2.GetAllProperties(false)];
             p2 = lst.Single(t => t.Name == cfg.Model.GroupCatalogs.PropertyCodeName);
             p2h = lst.Single(t => t.Name == c2.PropertyRefFolder.Name);
             Assert.AreNotEqual(p1.Guid, p2.Guid);
@@ -678,7 +673,7 @@ namespace vSharpStudio.Unit
             var lst = cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GetPropertiesForUI(false).ToList();
             var p1 = lst.Single(t => t.Name == cfg.Model.GroupDocuments.PropertyDocNumberName);
             var p1h = lst.Single(t => t.Name == cfg.Model.GroupDocuments.PropertyDocNumberName + "UniqueScopeHelper");
-            lst = cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[1].GetPropertiesForUI(false).ToList();
+            lst = [.. cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[1].GetPropertiesForUI(false)];
             var p2 = lst.Single(t => t.Name == cfg.Model.GroupDocuments.PropertyDocNumberName);
             var p2h = lst.Single(t => t.Name == cfg.Model.GroupDocuments.PropertyDocNumberName + "UniqueScopeHelper");
             Assert.AreNotEqual(p1.Guid, p2.Guid);

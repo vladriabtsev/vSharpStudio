@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Xml.Linq;
 using FluentValidation.Results;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -14,9 +15,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
+        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(AppProject));
         partial void OnDebugStringExtend(ref string mes)
         {
-            mes = mes + $" Gens:{ListAppProjectGenerators.Count} RelPath:{RelativeAppProjectPath}";
+            mes += $" Gens:{ListAppProjectGenerators.Count} RelPath:{RelativeAppProjectPath}";
         }
         [Browsable(false)]
         public AppSolution ParentAppSolution { get { Debug.Assert(this.Parent != null); return (AppSolution)this.Parent; } }
@@ -42,7 +44,7 @@ namespace vSharpStudio.vm.ViewModels
         public new ConfigNodesCollection<AppProjectGenerator> Children { get { return this.ListAppProjectGenerators; } }
 
         [Browsable(false)]
-        public new string IconName { get { return "iconApplication"; } }
+        public static new string IconName { get { return "iconApplication"; } }
 
         //protected override string GetNodeIconName() { return "iconApplication"; }
         partial void OnCreated()
@@ -57,6 +59,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._ListAppProjectGenerators.OnAddingAction = (t) =>
             {
+                _logger?.Debug();
                 t.IsNew = true;
                 var cfg = this.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
                 //var nv = new ModelVisitorNodeGenSettings();
@@ -71,6 +74,7 @@ namespace vSharpStudio.vm.ViewModels
             //};
             this._ListAppProjectGenerators.OnRemovedAction = (t) =>
             {
+                _logger?.Debug();
                 var cfg = this.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
                 var nv = new ModelVisitorNodeGenSettings();
                 nv.NodeGenSettingsApplyAction(cfg, (p) =>
@@ -84,6 +88,7 @@ namespace vSharpStudio.vm.ViewModels
             };
             this._ListAppProjectGenerators.OnClearedAction = () =>
             {
+                _logger?.Debug();
                 this.OnRemoveChild();
             };
         }
@@ -123,6 +128,7 @@ namespace vSharpStudio.vm.ViewModels
         public AppProject(ITreeConfigNode parent, string name, string projectPath)
                         : this(parent)
         {
+            _logger?.Debug("Creating new project: '{name}', solution: '{solution}', path: '{projectPath}'", name, this.ParentAppSolution.Name, projectPath);
             Debug.Assert(parent != null);
             this._Name = name;
             this.ParentAppSolution.ListAppProjects.Add(this);
@@ -157,6 +163,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public AppProjectGenerator AddGenerator(string name, string pluginGuid, string generatorGuid, string outFile, string? generationPath = null)
         {
+            _logger?.Debug("Add new generator: '{name}'", name);
             AppProjectGenerator node = new AppProjectGenerator(this);
             this.ListAppProjectGenerators.Add(node);
             if (generationPath != null)
@@ -297,6 +304,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Tree operations
         public void Remove()
         {
+            _logger?.Debug();
             this.ParentAppSolution.ListAppProjects.Remove(this);
         }
         #region Group Generator Project Settings
@@ -340,6 +348,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void SaveGroupSettings()
         {
+            _logger?.Debug();
             this.ListGeneratorsProjectSettings.Clear();
             foreach (var t in this.DicPluginsGroupSettings)
             {
@@ -356,6 +365,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RestoreGroupSettings(IvPluginGenerator? gen = null)
         {
+            _logger?.Debug();
             if (gen == null)
             {
                 this.DicPluginsGroupSettings.Clear();
@@ -392,6 +402,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void OnValidated(ValidationResult res)
         {
+            _logger?.Debug();
             foreach (var t in this.DicPluginsGroupSettings)
             {
                 if (t.Value == null)
@@ -429,9 +440,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void Delete()
         {
+            _logger?.Debug();
             if (this.Children.Count > 0)
             {
-                var res = MessageBox.Show("Project contains generators. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                var res = Xceed.Wpf.Toolkit.MessageBox.Show("Project contains generators. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                 if (res == System.Windows.MessageBoxResult.OK)
                     this.Remove();
             }

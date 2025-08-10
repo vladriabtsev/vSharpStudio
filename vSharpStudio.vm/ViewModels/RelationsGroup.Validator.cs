@@ -2,6 +2,7 @@
 {
     public partial class RelationsGroupValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(RelationsGroupValidator));
         public RelationsGroupValidator()
         {
             //this.RuleFor(x => x.PrefixForDbTables).Must((o, prefix) =>

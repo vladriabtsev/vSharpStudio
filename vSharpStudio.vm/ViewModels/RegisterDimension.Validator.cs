@@ -5,6 +5,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class RegisterDimensionValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(RegisterDimensionValidator));
         public RegisterDimensionValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);

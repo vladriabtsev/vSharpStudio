@@ -6,14 +6,13 @@ namespace GenVmFromProto
 {
     public partial class IVisitorProto
     {
-        readonly ILogger? _logger;
+        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(IVisitorProto));
         readonly FileDescriptor root;
         readonly string nameSpace;
         readonly string protoNameSpace;
 
         public IVisitorProto(FileDescriptor root, string destNS, string protoNS)
         {
-            _logger = AppLogger.CreateLogger<IVisitorProto>();
             _logger?.Debug("Create proto visitor for '{0}'", root.Name);
             this.root = root;
             this.nameSpace = destNS;

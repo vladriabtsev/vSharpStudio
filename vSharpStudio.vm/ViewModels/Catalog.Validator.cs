@@ -6,6 +6,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class CatalogValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(CatalogValidator));
         public CatalogValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);

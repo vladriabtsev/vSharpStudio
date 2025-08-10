@@ -80,7 +80,7 @@ namespace GenVmFromProto
                     AppLogger.LogLevel = LogLevel.Trace;
                     AppLogger.UseConsole = true;
                     AppLogger.LogFilePath = logFilePath;
-                    _logger = AppLogger.CreateLogger<Program>();
+                    _logger = AppLogger.CreateLogger(nameof(Program));
                     _logger?.Debug("****************************************");
                     _logger?.Debug("***  GenVmFromProto app is starting  ***");
                     _logger?.Debug("****************************************");

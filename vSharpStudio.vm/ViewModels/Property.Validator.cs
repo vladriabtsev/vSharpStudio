@@ -11,6 +11,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class PropertyValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(PropertyValidator));
         public static PropertyRangeValuesRequirements GetRangeValidation(Property p)
         {
             return PropertyRangeValuesRequirements.GetRangeValidation(p);

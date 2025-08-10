@@ -4,6 +4,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class GroupListCatalogsValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(GroupListCatalogsValidator));
         public GroupListCatalogsValidator()
         {
             this.RuleFor(x => x.PropertyCodeName).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);

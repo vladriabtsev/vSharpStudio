@@ -5,6 +5,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class AppSolutionValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(AppSolutionValidator));
         public AppSolutionValidator()
         {
             this.RuleFor(x => x.Name)

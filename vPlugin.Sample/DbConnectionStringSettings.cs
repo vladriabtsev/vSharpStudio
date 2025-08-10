@@ -37,7 +37,7 @@ namespace vPlugin.Sample
         }
         partial void OnStringSettingsChanged()
         {
-            ((IAppProjectGenerator)this.Parent)?.NotifyConnStrChanged();
+            this.ParentAppProjectGenerator.NotifyConnStrChanged();
         }
         public IvPluginGenerator? Generator { get; set; }
         public ValidationResult? ValidateSettings()

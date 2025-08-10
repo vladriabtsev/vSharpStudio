@@ -13,7 +13,6 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <UseWPF>true</UseWPF>
-    <UseWindowsForms>true</UseWindowsForms>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <TargetFramework>net9.0-windows7.0</TargetFramework>
@@ -29,6 +28,9 @@
   <ItemGroup>
     <None Remove="icons\SettingsFile_16x.png" />
     <None Remove="icons\Settings_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\vSharpStudio.vm\GlobalUsing.cs" Link="GlobalUsing.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Controls\vButton.xaml.cs">

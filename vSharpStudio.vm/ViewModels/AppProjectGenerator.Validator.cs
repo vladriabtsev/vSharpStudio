@@ -11,6 +11,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class AppProjectGeneratorValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(AppProjectGeneratorValidator));
         public AppProjectGeneratorValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);

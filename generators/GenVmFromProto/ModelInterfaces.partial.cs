@@ -8,7 +8,7 @@ namespace GenVmFromProto
 {
     public partial class ModelInterfaces
     {
-        readonly ILogger? _logger;
+        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ModelInterfaces));
         MessageDoc? MessageDoc;
         FieldDoc? FieldDoc;
         readonly FileDescriptor root;
@@ -22,7 +22,6 @@ namespace GenVmFromProto
             Dictionary<string, List<MessageDescriptor>> dicParents,
             string destNS, string protoNS)
         {
-            _logger = AppLogger.CreateLogger<ModelInterfaces>();
             _logger?.Debug("Create interfaces for '{0}'", root.Name);
             this.root = root;
             this.nameSpace = destNS;

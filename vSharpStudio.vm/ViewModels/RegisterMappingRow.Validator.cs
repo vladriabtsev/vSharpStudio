@@ -6,6 +6,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public class RegisterMappingRowValidator : ValidatorBase<RegisterMappingRow, RegisterMappingRowValidator>
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(RegisterMappingRowValidator));
         public RegisterMappingRowValidator()
         {
             this.RuleFor(x => x.Selected).Custom((sel, cntx) =>

@@ -7,12 +7,11 @@ namespace GenVmFromProto
 {
     public partial class ValidationVisitor
     {
-        readonly ILogger? _logger;
+        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ValidationVisitor));
         readonly FileDescriptor root;
         readonly List<MessageDescriptor> messages = new List<MessageDescriptor>();
         public ValidationVisitor(FileDescriptor root)
         {
-            _logger = AppLogger.CreateLogger<ValidationVisitor>();
             _logger?.Debug("Create validation visitors for '{0}'", root.Name);
             this.root = root;
             CollectMessages(root);

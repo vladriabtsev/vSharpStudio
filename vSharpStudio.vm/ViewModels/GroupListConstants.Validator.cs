@@ -6,6 +6,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class GroupListConstantsValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(GroupListConstantsValidator));
         public GroupListConstantsValidator()
         {
             this.RuleFor(x => x.Name).Custom((name, cntx) =>

@@ -5,6 +5,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class DocumentEnumeratorSequenceValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(DocumentEnumeratorSequenceValidator));
         public DocumentEnumeratorSequenceValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);

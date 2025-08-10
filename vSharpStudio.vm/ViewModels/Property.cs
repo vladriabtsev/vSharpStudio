@@ -24,14 +24,11 @@ namespace vSharpStudio.vm.ViewModels
             {
                 mes = mes + " Complex:" + this.ParentProperty.Name;
             }
-            mes = mes + $" Type:{DataType.GetTypeDesc(this.DataType)}";
-            if (this.TagInList != null)
-            {
-                if (this.TagInList is string)
-                    mes = mes + $" Tag:{(string)this.TagInList}";
-                else
-                    mes = mes + $" Tag:{this.TagInList?.ToString()}";
-            }
+            mes += $" Type:{DataType.GetTypeDesc(this.DataType)}";
+            if (this.TagInList is string s)
+                mes += $" Tag:{s}";
+            else
+                mes += $" Tag:{this.TagInList?.ToString()}";
         }
         /// <summary>
         /// Property Path in object. Samples: Property1, Detail1->Property1
@@ -100,7 +97,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [Browsable(false)]
-        public new string IconName { get { return "iconProperty"; } }
+        public static new string IconName { get { return "iconProperty"; } }
         //protected override string GetNodeIconName() { return "iconProperty"; }
         [Browsable(false)]
         public string? ComplexObjectName { get; set; }
@@ -148,8 +145,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private StringBuilder ToRoot(ITreeConfigNode n, StringBuilder? sb = null)
         {
-            if (sb == null)
-                sb = new StringBuilder();
+            sb ??= new StringBuilder();
             if (n is Document)
                 return sb;
             if (n is Catalog)
@@ -303,14 +299,14 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(this.Parent != null);
             var node = Property.Clone(this.Parent, this, true, true);
             this.ParentListPropertiesI.ListProperties.Add(node);
-            this._Name = this._Name + "2";
+            this._Name += "2";
             this.SetSelected(node);
             return node;
         }
 
         public override ITreeConfigNode NodeAddNew()
         {
-            if (!(this.Parent is GroupListProperties))
+            if (this.Parent is not GroupListProperties)
             {
                 throw new Exception();
             }
@@ -400,7 +396,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var lst = new List<string>();
             Debug.Assert(this.Parent != null);
-            if (!(this.Parent.Parent is Catalog))
+            if (this.Parent.Parent is not Catalog)
             {
                 lst.Add(nameof(this.IsUseHistory));
             }
@@ -766,13 +762,14 @@ namespace vSharpStudio.vm.ViewModels
         #region Roles
         public object GetRoleAccess(IRole role)
         {
-            if (!this.dicPropertyAccess.ContainsKey(role.Guid))
+            if (!this.dicPropertyAccess.TryGetValue(role.Guid, out var value))
             {
                 var rca = new RolePropertyAccess() { Guid = role.Guid };
                 this.ListRolePropertyAccessSettings.Add(rca);
-                this.dicPropertyAccess[role.Guid] = rca;
+                value = rca;
+                this.dicPropertyAccess[role.Guid] = value;
             }
-            return dicPropertyAccess[role.Guid];
+            return value;
         }
         public void SetRoleAccess(IRole role, EnumPropertyAccess? edit, EnumPrintAccess? print)
         {
@@ -783,7 +780,7 @@ namespace vSharpStudio.vm.ViewModels
             if (print.HasValue)
                 dicPropertyAccess[role.Guid].PrintAccess = print.Value;
         }
-        internal Dictionary<string, RolePropertyAccess> dicPropertyAccess = new();
+        internal Dictionary<string, RolePropertyAccess> dicPropertyAccess = [];
         public void InitRoles()
         {
             foreach (var tt in this.ListRolePropertyAccessSettings)
@@ -1107,7 +1104,7 @@ namespace vSharpStudio.vm.ViewModels
             sb.Append(']');
             if (this.IsNullable)
                 sb.Append(" Nullable");
-            sb.Append(" ");
+            sb.Append(' ');
             DataType.GetTypeDesc(this.DataType, sb);
             return sb.ToString();
         }

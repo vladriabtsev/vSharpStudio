@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnDebugStringExtend(ref string mes)
         {
-            mes = mes + $" props:{GroupProperties.ListProperties.Count} details:{GroupDetails.ListDetails.Count} seq:{this.Sequence?.Name}";
+            mes += $" props:{GroupProperties.ListProperties.Count} details:{GroupDetails.ListDetails.Count} seq:{this.Sequence?.Name}";
         }
         public string GetDebuggerDisplay(bool isOptimistic)
         {
@@ -61,13 +61,13 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [Browsable(false)]
-        public new string IconName { get { return "iconDiagnosticesFile"; } }
+        public static new string IconName { get { return "iconDiagnosticesFile"; } }
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
 
             this._SequenceGuid = "";
-            this._ListSelectedRegisters = new SortedObservableCollection<ISortingValue>();
+            this._ListSelectedRegisters = [];
             this._ListSelectedRegisters.CollectionChanged += _ListSelectedRegisters_CollectionChanged;
             Init();
         }
@@ -167,7 +167,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = Document.Clone(this.ParentGroupListDocuments, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupListDocuments.Add(node);
-            this.Name = this.Name + "2";
+            this.Name += "2";
             this.SetSelected(node);
             return node;
         }
@@ -344,7 +344,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IProperty>();
             var grd = this.ParentGroupListDocuments.ParentGroupDocuments;
-            int i = 0;
             if (!isExcludeSpecial)
             {
                 this.GetSpecialProperties(res, isOptimistic);
@@ -521,21 +520,15 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetDocNumberProperty(List<IProperty> lst)
         {
-            IProperty prp = null!;
             Debug.Assert(this.Sequence != null);
-            switch (this.Sequence.SequenceType)
+            var prp = this.Sequence.SequenceType switch
             {
-                case EnumCodeType.Number:
-                    prp = this.Cfg.Model.GetPropertyDocNumberInt(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
-                        this.Sequence.MaxSequenceLength);
-                    break;
-                case EnumCodeType.Text:
-                    prp = this.Cfg.Model.GetPropertyDocNumberString(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
-                        this.Sequence.MaxSequenceLength + (uint)this.Sequence.Prefix.Length);
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
+                EnumCodeType.Number => this.Cfg.Model.GetPropertyDocNumberInt(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
+                                        this.Sequence.MaxSequenceLength),
+                EnumCodeType.Text => this.Cfg.Model.GetPropertyDocNumberString(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
+                                        this.Sequence.MaxSequenceLength + (uint)this.Sequence.Prefix.Length),
+                _ => throw new NotImplementedException(),
+            };
             lst.Add(prp);
             return prp;
         }
@@ -618,13 +611,14 @@ namespace vSharpStudio.vm.ViewModels
         #region Roles
         public object GetRoleAccess(IRole role)
         {
-            if (!this.dicDocumentAccess.ContainsKey(role.Guid))
+            if (!this.dicDocumentAccess.TryGetValue(role.Guid, out var value))
             {
                 var rca = new RoleDocumentAccess() { Guid = role.Guid };
                 this.ListRoleDocumentAccessSettings.Add(rca);
-                this.dicDocumentAccess[role.Guid] = rca;
+                value = rca;
+                this.dicDocumentAccess[role.Guid] = value;
             }
-            return dicDocumentAccess[role.Guid];
+            return value;
         }
         public void SetRoleAccess(IRole role, EnumDocumentAccess? edit, EnumPrintAccess? print)
         {
@@ -635,7 +629,7 @@ namespace vSharpStudio.vm.ViewModels
             if (print.HasValue)
                 dicDocumentAccess[role.Guid].PrintAccess = print.Value;
         }
-        internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = new();
+        internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = [];
         public void InitRoles()
         {
             foreach (var tt in this.ListRoleDocumentAccessSettings)
@@ -677,20 +671,13 @@ namespace vSharpStudio.vm.ViewModels
             if (ra == EnumDocumentAccess.D_BY_PARENT)
                 ra = this.ParentGroupListDocuments.GetRoleDocumentAccess(role);
             Debug.Assert(ra != EnumDocumentAccess.D_BY_PARENT);
-            switch (ra)
+            return ra switch
             {
-                case EnumDocumentAccess.D_HIDE:
-                    return EnumPropertyAccess.P_HIDE;
-                case EnumDocumentAccess.D_VIEW:
-                    return EnumPropertyAccess.P_VIEW;
-                case EnumDocumentAccess.D_EDIT:
-                case EnumDocumentAccess.D_MARK_DEL:
-                case EnumDocumentAccess.D_UNPOST:
-                case EnumDocumentAccess.D_POST:
-                    return EnumPropertyAccess.P_EDIT;
-                default:
-                    throw new NotImplementedException();
-            }
+                EnumDocumentAccess.D_HIDE => EnumPropertyAccess.P_HIDE,
+                EnumDocumentAccess.D_VIEW => EnumPropertyAccess.P_VIEW,
+                EnumDocumentAccess.D_EDIT or EnumDocumentAccess.D_MARK_DEL or EnumDocumentAccess.D_UNPOST or EnumDocumentAccess.D_POST => EnumPropertyAccess.P_EDIT,
+                _ => throw new NotImplementedException(),
+            };
         }
         public EnumPrintAccess GetRolePropertyPrint(IRole role)
         {
@@ -798,7 +785,7 @@ namespace vSharpStudio.vm.ViewModels
             get => _ListNotSelectedRegisters;
             set => SetProperty(ref _ListNotSelectedRegisters, value);
         }
-        private SortedObservableCollection<ISortingValue> _ListNotSelectedRegisters = new SortedObservableCollection<ISortingValue>();
+        private SortedObservableCollection<ISortingValue> _ListNotSelectedRegisters = [];
         [Browsable(false)]
         public SortedObservableCollection<ISortingValue> ListSelectedRegisters
         {
@@ -863,7 +850,7 @@ namespace vSharpStudio.vm.ViewModels
                     break;
             }
         }
-        private SortedObservableCollection<ISortingValue> _ListSelectedRegisters = new SortedObservableCollection<ISortingValue>();
+        private SortedObservableCollection<ISortingValue> _ListSelectedRegisters = [];
         #endregion Registers
 
         #region Mapping
@@ -929,7 +916,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private ISortingValue? _SelectedReg;
-        private readonly ObservableCollection<Property> fulListToMap = new ObservableCollection<Property>();
+        private readonly ObservableCollection<Property> fulListToMap = [];
         [Browsable(false)]
         public Visibility VisibilityTextRegNotSelected
         {
@@ -957,7 +944,7 @@ namespace vSharpStudio.vm.ViewModels
             get => _ListMappings;
             set => SetProperty(ref _ListMappings, value);
         }
-        private ObservableCollection<RegisterMappingRow> _ListMappings = new ObservableCollection<RegisterMappingRow>();
+        private ObservableCollection<RegisterMappingRow> _ListMappings = [];
         #endregion Mapping
 
         #endregion Mapping Editor

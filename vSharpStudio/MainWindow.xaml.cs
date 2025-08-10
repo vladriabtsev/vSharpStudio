@@ -12,7 +12,6 @@ namespace vSharpStudio
     /// </summary>
     public partial class MainWindow : Window
     {
-        readonly MainPageVM? mainPageVM;
         public MainWindow()
         {
             this.InitializeComponent();

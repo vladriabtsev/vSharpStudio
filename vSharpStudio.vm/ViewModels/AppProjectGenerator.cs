@@ -225,7 +225,7 @@ namespace vSharpStudio.vm.ViewModels
                         throw;
                     else
 #endif
-                        MessageBox.Show($"Can't create connection string VM.\nError: {ex.Message}\nChoose another provider!", "Error", System.Windows.MessageBoxButton.OKCancel);
+                        Xceed.Wpf.Toolkit.MessageBox.Show($"Can't create connection string VM.\nError: {ex.Message}\nChoose another provider!", "Error", System.Windows.MessageBoxButton.OKCancel);
                     this.DynamicMainConnStrSettings = null;
                 }
             }
@@ -818,7 +818,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (!VmBindable.isUnitTests)
                 {
 #endif
-                    var res = MessageBox.Show("You are deleting generator. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                    var res = Xceed.Wpf.Toolkit.MessageBox.Show("You are deleting generator. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                     if (res != System.Windows.MessageBoxResult.OK)
                         return;
 #if DEBUG
@@ -857,7 +857,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void Delete()
         {
-            var res = MessageBox.Show("You are going remove generator. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+            var res = Xceed.Wpf.Toolkit.MessageBox.Show("You are going remove generator. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
             if (res == System.Windows.MessageBoxResult.OK)
                 this.Remove();
         }

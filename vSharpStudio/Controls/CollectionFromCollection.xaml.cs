@@ -223,6 +223,7 @@ namespace vSharpStudio.Controls
                     {
                         Debug.Assert(this.ListRight != null);
                         var sel = this.SelectedRight;
+                        Debug.Assert(sel != null);
                         this.ListRight.MoveDown(sel);
                         this.ListRight.Sort();
                         this.SelectedRight = sel;

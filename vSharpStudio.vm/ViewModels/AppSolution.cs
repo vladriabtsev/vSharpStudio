@@ -448,7 +448,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.Children.Count > 0)
             {
-                var res = MessageBox.Show("Solution contains projects. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                var res = Xceed.Wpf.Toolkit.MessageBox.Show("Solution contains projects. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                 if (res == System.Windows.MessageBoxResult.OK)
                     this.Remove();
             }

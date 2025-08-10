@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnDebugStringExtend(ref string mes)
         {
-            mes = mes + $" props:{GroupProperties.ListProperties.Count}";
+            mes += $" props:{GroupProperties.ListProperties.Count}";
         }
         public string GetDebuggerDisplay(bool isOptimistic)
         {
@@ -72,7 +72,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [Browsable(false)]
-        public new string IconName { get { return "iconCatalogProperty"; } }
+        public static new string IconName { get { return "iconCatalogProperty"; } }
         //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
         partial void OnCreated()
         {
@@ -340,7 +340,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = Catalog.Clone(this.ParentGroupListCatalogs, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupListCatalogs.Add(node);
-            this._Name = this._Name + "2";
+            this._Name += "2";
             this.SetSelected(node);
             return node;
         }
@@ -552,19 +552,14 @@ namespace vSharpStudio.vm.ViewModels
             IProperty prp = null!;
             if (this.GetUseCodeProperty())
             {
-                switch (this.CodePropertySettings.SequenceType)
+                prp = this.CodePropertySettings.SequenceType switch
                 {
-                    case EnumCodeType.Number:
-                        prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
-                            this.CodePropertySettings.MaxSequenceLength, false);
-                        break;
-                    case EnumCodeType.Text:
-                        prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
-                            this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false);
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    EnumCodeType.Number => this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
+                                                this.CodePropertySettings.MaxSequenceLength, false),
+                    EnumCodeType.Text => this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
+                                                this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false),
+                    _ => throw new NotImplementedException(),
+                };
                 lst.Add(prp);
             }
             return prp;
@@ -721,7 +716,7 @@ namespace vSharpStudio.vm.ViewModels
             var model = this.ParentGroupListCatalogs.ParentModel;
             Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
             IProperty pId = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
-            IProperty? pRefTreeParent = null;
+            Property? pRefTreeParent = null;
             IProperty? pRefParent = null;
             if (this.UseTree)
             {
@@ -813,13 +808,14 @@ namespace vSharpStudio.vm.ViewModels
         #region Roles
         public object GetRoleAccess(IRole role)
         {
-            if (!this.dicCatalogAccess.ContainsKey(role.Guid))
+            if (!this.dicCatalogAccess.TryGetValue(role.Guid, out var value))
             {
                 var rca = new RoleCatalogAccess() { Guid = role.Guid };
                 this.ListRoleCatalogAccessSettings.Add(rca);
-                this.dicCatalogAccess[role.Guid] = rca;
+                value = rca;
+                this.dicCatalogAccess[role.Guid] = value;
             }
-            return dicCatalogAccess[role.Guid];
+            return value;
         }
         public void SetRoleAccess(IRole role, EnumCatalogDetailAccess? edit, EnumPrintAccess? print)
         {
@@ -830,7 +826,7 @@ namespace vSharpStudio.vm.ViewModels
             if (print.HasValue)
                 dicCatalogAccess[role.Guid].PrintAccess = print.Value;
         }
-        internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new();
+        internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = [];
         public void InitRoles()
         {
             foreach (var tt in this.ListRoleCatalogAccessSettings)
@@ -871,19 +867,13 @@ namespace vSharpStudio.vm.ViewModels
             {
                 ra = this.ParentGroupListCatalogs.GetRoleCatalogAccess(role);
             }
-            switch (ra)
+            return ra switch
             {
-                case EnumCatalogDetailAccess.C_HIDE:
-                    return EnumPropertyAccess.P_HIDE;
-                case EnumCatalogDetailAccess.C_VIEW:
-                    return EnumPropertyAccess.P_VIEW;
-                case EnumCatalogDetailAccess.C_EDIT_ITEMS:
-                case EnumCatalogDetailAccess.C_EDIT_FOLDERS:
-                case EnumCatalogDetailAccess.C_MARK_DEL:
-                    return EnumPropertyAccess.P_EDIT;
-                default:
-                    throw new NotImplementedException();
-            }
+                EnumCatalogDetailAccess.C_HIDE => EnumPropertyAccess.P_HIDE,
+                EnumCatalogDetailAccess.C_VIEW => EnumPropertyAccess.P_VIEW,
+                EnumCatalogDetailAccess.C_EDIT_ITEMS or EnumCatalogDetailAccess.C_EDIT_FOLDERS or EnumCatalogDetailAccess.C_MARK_DEL => EnumPropertyAccess.P_EDIT,
+                _ => throw new NotImplementedException(),
+            };
         }
         public EnumPrintAccess GetRolePropertyPrint(IRole role)
         {

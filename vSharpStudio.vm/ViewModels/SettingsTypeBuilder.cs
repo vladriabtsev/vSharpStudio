@@ -387,8 +387,8 @@ namespace vSharpStudio.vm.ViewModels
                   null, new[] { propertyType });
 
             ILGenerator setIl = setPropMthdBldr.GetILGenerator();
-            Label modifyProperty = setIl.DefineLabel();
-            Label exitSet = setIl.DefineLabel();
+            System.Reflection.Emit.Label modifyProperty = setIl.DefineLabel();
+            System.Reflection.Emit.Label exitSet = setIl.DefineLabel();
 
             setIl.MarkLabel(modifyProperty);
             setIl.Emit(OpCodes.Ldarg_0);

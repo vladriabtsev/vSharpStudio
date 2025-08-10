@@ -112,14 +112,26 @@ namespace ApplicationLogging
         //}
         private static string GetMsg(string message, string memberName, string sourceFilePath, int sourceLineNumber)
         {
-            var fileName = Path.GetFileName(sourceFilePath);
+            string fileName = "";
+            if (AppLogger.IsFullFilePath)
+            {
+                fileName = sourceFilePath;
+            }
+            else
+            {
+                fileName = Path.GetFileName(sourceFilePath);
+            }
             var methodName = memberName;
             var line = sourceLineNumber;
-            int n = Environment.StackTrace.Split(Environment.NewLine).Count();
-            if (n < AppLogger.IndentShift)
-                AppLogger.IndentShift = n;
-            //System.Diagnostics.Debug.Assert(n >= Logger.IndentShift);
-            var indent = new String(' ', n - AppLogger.IndentShift);
+            var indent = "";
+            if (AppLogger.IndentShift != -1)
+            {
+                int n = Environment.StackTrace.Split(Environment.NewLine).Count();
+                //if (n < AppLogger.IndentShift)
+                //    AppLogger.IndentShift = n;
+                System.Diagnostics.Debug.Assert(n >= AppLogger.IndentShift);
+                indent = new String(' ', n - AppLogger.IndentShift);
+            }
             string msg = "";
             if (message != null)
                 msg = $"{indent}{message} [{methodName}] {fileName} {line}";

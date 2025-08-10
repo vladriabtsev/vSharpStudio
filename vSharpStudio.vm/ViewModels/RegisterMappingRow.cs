@@ -8,7 +8,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public class RegisterMappingRow : VmValidatable<RegisterMappingRow, RegisterMappingRowValidator>
     {
-        public string ToDebugString()
+        public override string ToDebugString()
         {
             var sb = new StringBuilder();
             sb.Append("RegMapRow:");
@@ -44,7 +44,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        private string _RegPropertyGuid;
+        private string _RegPropertyGuid = "";
         public RegisterMappingRow(Document doc, Register reg, RegisterDimension dim)
         : base(RegisterMappingRowValidator.Validator)
         {
@@ -84,6 +84,6 @@ namespace vSharpStudio.vm.ViewModels
             get => _ListToMap;
             set => SetProperty(ref _ListToMap, value);
         }
-        private ObservableCollection<Property> _ListToMap = new ObservableCollection<Property>();
+        private ObservableCollection<Property> _ListToMap = [];
     }
 }

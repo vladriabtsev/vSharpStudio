@@ -7,7 +7,7 @@ namespace GenVmFromProto
 {
     public partial class NameSpace
     {
-        readonly ILogger? _logger;
+        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(NameSpace));
         readonly FileDescriptor root;
         readonly string nameSpace;
         readonly string defaultBaseClass = "ConfigObjectVmGenSettings";
@@ -17,9 +17,8 @@ namespace GenVmFromProto
 
         public NameSpace(FileDescriptor root, List<MessageDescriptor> messages,
             Dictionary<string, List<MessageDescriptor>> dicParents,
-            string destNS, string protoNS, string defaultBaseClass)
+            string destNS, string protoNS, string? defaultBaseClass)
         {
-            _logger = AppLogger.CreateLogger<NameSpace>();
             _logger?.Debug("Create models for '{0}'", root.Name);
             this.root = root;
             this.nameSpace = destNS;

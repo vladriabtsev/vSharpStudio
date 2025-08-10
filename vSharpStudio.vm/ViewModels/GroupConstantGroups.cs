@@ -10,6 +10,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class GroupConstantGroups : ITreeModel, ICanGoRight, ICanGoLeft, ICanAddSubNode, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
     {
+        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(GroupConstantGroups));
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" Count:{ListConstantGroups.Count}";
@@ -100,6 +101,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = new GroupListConstants(this) { Name = name };
             this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ListConstantGroups);
             this.NodeAddNewSubNode(node);
+            _logger?.Debug("Previous Stable Config VM is created");
             return node;
         }
         public IReadOnlyList<IGroupListConstants> GetIncludedConstantGroups(string guidAppPrjGen)

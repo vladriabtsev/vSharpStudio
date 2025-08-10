@@ -2,6 +2,7 @@
 {
     public partial class ConfigValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ConfigValidator));
         public ConfigValidator()
         {
             //this.RuleFor(x => x.SolutionPath).NotEmpty();

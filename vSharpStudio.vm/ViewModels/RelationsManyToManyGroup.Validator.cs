@@ -4,6 +4,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class RelationsManyToManyGroupValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(RelationsManyToManyGroupValidator));
         public RelationsManyToManyGroupValidator()
         {
             this.RuleFor(x => x.PrefixForCompositionNames).Must((o, prefix) =>

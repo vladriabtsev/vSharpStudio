@@ -6,6 +6,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class EnumerationPairValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(EnumerationPairValidator));
         public EnumerationPairValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);

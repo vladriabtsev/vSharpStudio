@@ -4,6 +4,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class RoleValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(RoleValidator));
         public RoleValidator()
         {
             this.RuleFor(x => x.DefaultConstantEditAccessSettings).NotNull().WithMessage("Can't be null");

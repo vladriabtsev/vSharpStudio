@@ -8,6 +8,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class ConstantValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ConstantValidator));
         public ConstantValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
@@ -40,11 +41,41 @@ namespace vSharpStudio.vm.ViewModels
                 var p = (Constant)cntx.InstanceToValidate;
                 if (p.IsMarkedForDeletion)
                     return;
-                //if (p.DataTypeEnum == EnumDataType.ENUMERATION)
-                //{
-                //}
-                //else 
-                if (p.DataTypeEnum == EnumDataType.CATALOG || p.DataTypeEnum == EnumDataType.DOCUMENT)
+                if (p.DataTypeEnum == EnumDataType.ENUMERATION)
+                {
+                    if (string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
+                    {
+                        var vf = new ValidationFailure(nameof(p.ConfigObjectGuid),
+                            $"Constant general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtype is not selected")
+                        {
+                            Severity = Severity.Error
+                        };
+                        cntx.AddFailure(vf);
+                        return;
+                    }
+                    var cfg = p.Cfg;
+                    Debug.Assert(cfg.DicNodes.ContainsKey(p.ConfigObjectGuid));
+                    var refObj = cfg.DicNodes[p.ConfigObjectGuid];
+                    Debug.Assert(refObj != null);
+                    var refObjEditable = refObj as IEditableNode;
+                    Debug.Assert(refObjEditable != null);
+                    if (refObjEditable.IsMarkedForDeletion)
+                    {
+                        if (p.Parent is IEditableNode pe)
+                        {
+                            if (!p.IsMarkedForDeletion && !pe.IsMarkedForDeletion)
+                            {
+                                var vf = new ValidationFailure(nameof(p.IsMarkedForDeletion),
+                                    $"Constant type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this constant is not marked for deletion")
+                                {
+                                    Severity = Severity.Error
+                                };
+                                cntx.AddFailure(vf);
+                            }
+                        }
+                    }
+                }
+                else if (p.DataTypeEnum == EnumDataType.CATALOG || p.DataTypeEnum == EnumDataType.DOCUMENT)
                 {
                     if (string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
                     {

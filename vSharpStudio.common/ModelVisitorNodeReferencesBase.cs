@@ -4,73 +4,56 @@ using System.Diagnostics;
 
 namespace vSharpStudio.common
 {
-    public class ModelVisitorNodeReferencesBase : ModelVisitorBase
+    public class ModelVisitorNodeReferencesBase(string appDbGenGuid) : ModelVisitorBase
     {
-        public ModelVisitorNodeReferencesBase(string appDbGenGuid) { this.appDbGenGuid = appDbGenGuid; }
-        private readonly string appDbGenGuid;
+        private readonly string appDbGenGuid = appDbGenGuid;
         /// <summary>
         /// Model object references
         /// </summary>
-        public class ModelNode
+        public class ModelNode(IGuid nodeObject)
         {
-            public ModelNode(IGuid nodeObject)
-            {
-                this.NodeObject = nodeObject;
-                this.DicReferenceToNodes = new Dictionary<string, ReferenceTo>();
-                this.DicReferecedFromNodes = new Dictionary<string, ReferenceFrom>();
-            }
             /// <summary>
             /// Model object
             /// </summary>
-            public IGuid NodeObject { get; set; }
+            public IGuid NodeObject { get; set; } = nodeObject;
             /// <summary>
             /// References from this model objects to others
             /// </summary>
-            public Dictionary<string, ReferenceTo> DicReferenceToNodes { get; set; }
+            public Dictionary<string, ReferenceTo> DicReferenceToNodes { get; set; } = [];
             /// <summary>
             /// References from other model objects to this model object
             /// </summary>
-            public Dictionary<string, ReferenceFrom> DicReferecedFromNodes { get; set; }
+            public Dictionary<string, ReferenceFrom> DicReferecedFromNodes { get; set; } = [];
         }
         /// <summary>
         /// Reference to another model object
         /// </summary>
-        public class ReferenceTo
+        public class ReferenceTo(IGuid toObject)
         {
-            public ReferenceTo(IGuid toObject)
-            {
-                this.DicByFields = new Dictionary<string, IGuid>();
-                this.ToObject = toObject;
-            }
             /// <summary>
             /// Model object
             /// </summary>
-            public IGuid ToObject { get; set; }
+            public IGuid ToObject { get; set; } = toObject;
             /// <summary>
             /// Model object field which is referencing 
             /// </summary>
-            public Dictionary<string, IGuid> DicByFields { get; set; }
+            public Dictionary<string, IGuid> DicByFields { get; set; } = [];
         }
         /// <summary>
         /// Referenced from another model object
         /// </summary>
-        public class ReferenceFrom
+        public class ReferenceFrom(IGuid fromObject)
         {
-            public ReferenceFrom(IGuid fromObject)
-            {
-                this.DicFromFields = new Dictionary<string, IGuid>();
-                this.FromObject = fromObject;
-            }
             /// <summary>
             /// Model object
             /// </summary>
-            public IGuid FromObject { get; set; }
+            public IGuid FromObject { get; set; } = fromObject;
             /// <summary>
             /// Model object field which is referencing 
             /// </summary>
-            public Dictionary<string, IGuid> DicFromFields { get; set; }
+            public Dictionary<string, IGuid> DicFromFields { get; set; } = [];
         }
-        protected Dictionary<string, ModelNode> DicNodesWithReferences = new Dictionary<string, ModelNode>();
+        protected Dictionary<string, ModelNode> DicNodesWithReferences = [];
         //private List<IGuid> GrapfToSequenceForDb()
         private void ScanForDicNodesWithReferences()
         {
@@ -177,11 +160,12 @@ namespace vSharpStudio.common
         }
         private static void AddReferenceFromNode(ModelNode md, IGuid property, IGuid from)
         {
-            if (!md.DicReferecedFromNodes.ContainsKey(from.Guid))
+            if (!md.DicReferecedFromNodes.TryGetValue(from.Guid, out var tn))
             {
-                md.DicReferecedFromNodes[from.Guid] = new ReferenceFrom(from);
+                tn = new ReferenceFrom(from);
+                md.DicReferecedFromNodes[from.Guid] = tn;
             }
-            var tn = md.DicReferecedFromNodes[from.Guid];
+
             tn.DicFromFields[property.Guid] = property;
         }
         public new void Run(IModel model, bool isActFromRootToBottom = true, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
@@ -199,7 +183,7 @@ namespace vSharpStudio.common
         /// <param name="curr">Current config or clone</param>
         /// <param name="act"></param>
         /// <returns></returns>
-        public new void Run(IConfig curr, IAppSolution? sln, IAppProject? prj, bool isActFromRootToBottom = true, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
+        public void Run(IConfig curr, IAppSolution? sln, IAppProject? prj, bool isActFromRootToBottom = true, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
         {
             this._act = act;
             this.currCfg = curr;
@@ -212,20 +196,17 @@ namespace vSharpStudio.common
             foreach (var t in this.currCfg.GroupAppSolutions.ListAppSolutions)
             {
                 this.BeginVisit(t);
-                if (_act != null)
-                    _act(this, t);
+                _act?.Invoke(this, t);
                 this.BeginVisit(t.ListAppProjects);
                 foreach (var tt in t.ListAppProjects)
                 {
                     this.BeginVisit(tt);
-                    if (_act != null)
-                        _act(this, tt);
+                    _act?.Invoke(this, tt);
                     this.BeginVisit(tt.ListAppProjectGenerators);
                     foreach (var ttt in tt.ListAppProjectGenerators)
                     {
                         this.BeginVisit(ttt);
-                        if (_act != null)
-                            _act(this, ttt);
+                        _act?.Invoke(this, ttt);
                         this.EndVisit(ttt);
                     }
                     this.EndVisit(tt);
@@ -241,8 +222,7 @@ namespace vSharpStudio.common
             foreach (var t in this.currCfg.GroupConfigLinks.ListBaseConfigLinks)
             {
                 this.BeginVisit(t);
-                if (_act != null)
-                    _act(this, t);
+                _act?.Invoke(this, t);
                 this.EndVisit(t);
             }
             this.EndVisit(this.currCfg.GroupConfigLinks.ListBaseConfigLinks);

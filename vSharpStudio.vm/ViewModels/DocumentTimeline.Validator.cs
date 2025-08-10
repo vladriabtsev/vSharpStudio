@@ -4,6 +4,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class DocumentTimelineValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(DocumentTimelineValidator));
         public DocumentTimelineValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);

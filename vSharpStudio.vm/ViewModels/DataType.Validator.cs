@@ -9,6 +9,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class DataTypeValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(DataTypeValidator));
         //IDataType prev = null;
         public DataTypeValidator()
         {

@@ -9,6 +9,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class ModelValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ModelValidator));
         public ModelValidator()
         {
             this.RuleFor(x => x.IsUseNameComposition).Custom((val, cntx) =>

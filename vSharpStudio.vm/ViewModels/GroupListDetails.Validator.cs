@@ -2,6 +2,7 @@
 {
     public partial class GroupListDetailsValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(GroupListDetailsValidator));
         public GroupListDetailsValidator()
         {
             //this.RuleFor(x => x.PrefixForDbTables).Must((o, prefix) =>

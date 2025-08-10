@@ -15,7 +15,7 @@ namespace vSharpStudio.ViewModels
     {
         public static async Task CompileAsync(string solutionPath, CancellationToken cancellationToken)
         {
-            var _logger = AppLogger.CreateLogger<CompileUtils>();
+            var _logger = AppLogger.CreateLogger(nameof(CompileUtils));
             //var lstBuilds = Microsoft.Build.Locator.MSBuildLocator.QueryVisualStudioInstances().ToList();
             //var build = lstBuilds[0];
             //Microsoft.Build.Locator.MSBuildLocator.RegisterInstance(build);

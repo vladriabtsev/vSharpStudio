@@ -16,9 +16,13 @@ namespace vSharpStudio.Unit
     [TestClass]
     public class DbCompareTests
     {
+        private readonly ILogger? _logger;
         public DbCompareTests()
         {
-            MsSqlTests.InitLogging(this);
+            AppLogger.LogLevel = LogLevel.Trace;
+            AppLogger.UseDebug = true;
+            _logger = AppLogger.CreateLogger(nameof(DbCompareTests));
+            VmBindable.isUnitTests = true;
         }
         [TestMethod]
         [DataRow("MsSQL")]

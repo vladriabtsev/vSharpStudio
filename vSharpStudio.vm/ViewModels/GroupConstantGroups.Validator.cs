@@ -4,6 +4,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class GroupConstantGroupsValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(GroupConstantGroupsValidator));
         public GroupConstantGroupsValidator()
         {
             this.RuleFor(x => x.PrefixForCompositionNames).Must((o, prefix) =>

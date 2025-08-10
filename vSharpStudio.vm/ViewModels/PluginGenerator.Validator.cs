@@ -8,6 +8,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class PluginGeneratorValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(PluginGeneratorValidator));
         public PluginGeneratorValidator()
         {
             this.RuleFor(x => x.Generator).Custom((plg, cntx) =>

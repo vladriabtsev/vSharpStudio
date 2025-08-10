@@ -5,6 +5,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class RelationManyToManyValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(RelationManyToManyValidator));
         public RelationManyToManyValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);

@@ -5,6 +5,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class BaseConfigLinkValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(BaseConfigLinkValidator));
         public BaseConfigLinkValidator()
         {
             this.RuleFor(x => x.RelativeConfigFilePath).NotEmpty();

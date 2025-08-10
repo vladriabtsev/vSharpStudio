@@ -176,7 +176,7 @@ namespace vSharpStudio.vm.ViewModels
                 // Count nodes
                 if (progressVM != null)
                     progressVM.Title = "Counting nodes for validation";
-                var visitor = new ValidationConfigVisitor(cancellationToken, progressVM);
+                var visitor = new ValidationConfigVisitor(progressVM, cancellationToken);
                 (node as IConfigAcceptVisitor)!.AcceptConfigNodeVisitor(visitor);
 
                 // prepare visitor for validation
@@ -194,7 +194,7 @@ namespace vSharpStudio.vm.ViewModels
                 visitor.CountCurrentValidatableNode = 0;
                 UIDispatcher.Invoke(() =>
                 {
-                    visitor.UpdateSubstructCounts(node);
+                    visitor.UpdateMinusCounts(node);
                 });
                 (node as IConfigAcceptVisitor)!.AcceptConfigNodeVisitor(visitor);
                 if (!cancellationToken.IsCancellationRequested)
@@ -443,8 +443,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in children)
             {
-                var p = t as IEditableNodeGroup;
-                if (p != null)
+                if (t is IEditableNodeGroup p)
                 {
                     if (p.IsHasChanged)
                     {
@@ -481,8 +480,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in children)
             {
-                var p = t as IEditableNodeGroup;
-                if (p != null)
+                if (t is IEditableNodeGroup p)
                 {
                     if (p.IsHasChanged)
                     {
@@ -553,8 +551,8 @@ namespace vSharpStudio.vm.ViewModels
     {
         public DicDiffResult()
         {
-            this.Dic1ButNotInDic2 = new Dictionary<TKey, TValue>();
-            this.Dic2ButNotInDic1 = new Dictionary<TKey, TValue>();
+            this.Dic1ButNotInDic2 = [];
+            this.Dic2ButNotInDic1 = [];
         }
         public Dictionary<TKey, TValue> Dic1ButNotInDic2 { get; private set; }
         public Dictionary<TKey, TValue> Dic2ButNotInDic1 { get; private set; }

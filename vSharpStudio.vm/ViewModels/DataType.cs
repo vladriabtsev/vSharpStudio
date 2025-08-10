@@ -17,11 +17,11 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnDebugStringExtend(ref string mes)
         {
-            mes = mes + $" Type:{DataType.GetTypeDesc(this)}";
+            mes += $" Type:{DataType.GetTypeDesc(this)}";
         }
         partial void OnCreating()
         {
-            this._ListObjectRefs = new ObservableCollectionWithActions<ComplexRef>();
+            this._ListObjectRefs = [];
             this._ListObjectRefs.CollectionChanged += ListObjectRefs_CollectionChanged;
         }
         private void ListObjectRefs_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -48,18 +48,18 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     return dt.GetNextPosition();
                 }
-                else if (tp.Parent is RelationManyToMany rm)
+                else if (tp.Parent is RelationManyToMany) // rm)
                 {
                     //tp.PositionOfDescr = rm.PropertyRefObj1. dt.GetNextPosition();
                 }
-                else if (tp.Parent is RelationOneToOne ro)
+                else if (tp.Parent is RelationOneToOne) // ro)
                 {
                     //tp.PositionOfDescr = dt.GetNextPosition();
                 }
                 else
                     ThrowHelper.ThrowInvalidOperationException();
             }
-            else if (this.Parent is Constant tc)
+            else if (this.Parent is Constant) // tc)
             {
                 //if (tc.PositionOfDescr == 0)
                 //{
@@ -148,7 +148,7 @@ namespace vSharpStudio.vm.ViewModels
                         var mes = "Can't change data type CATALOGS to CATALOG when list selected types for CATALOGS contains more than one type.";
                         if (VmBindable.isUnitTests)
                             throw new Exception(mes);
-                        var res = Xceed.Wpf.Toolkit.MessageBox.Show(mes, "Error", System.Windows.MessageBoxButton.OK);
+                        Xceed.Wpf.Toolkit.MessageBox.Show(mes, "Error", System.Windows.MessageBoxButton.OK);
                         isCancel = true;
                     }
                     break;
@@ -158,7 +158,7 @@ namespace vSharpStudio.vm.ViewModels
                         var mes = "Can't change data type DOCUMENTS to DOCUMENT when list selected types for DOCUMENTS contains more than one type.";
                         if (VmBindable.isUnitTests)
                             throw new Exception(mes);
-                        var res = Xceed.Wpf.Toolkit.MessageBox.Show(mes, "Error", System.Windows.MessageBoxButton.OK);
+                        Xceed.Wpf.Toolkit.MessageBox.Show(mes, "Error", System.Windows.MessageBoxButton.OK);
                         isCancel = true;
                     }
                     break;
@@ -208,13 +208,13 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.ULID:
                     break;
                 default:
-                    throw new ArgumentException();
+                    throw new ArgumentException("Unsupported type: "+ this.DataTypeEnum.ToString(), nameof(type));
             }
         }
         public DataType(ITreeConfigNode parent, EnumDataType type, string guidOfType) : this(parent)
         {
             this._DataTypeEnum = type;
-            this._ListObjectRefs = new ObservableCollectionWithActions<ComplexRef>();
+            this._ListObjectRefs = [];
             this._ListObjectRefs.Add(new ComplexRef() { ForeignObjectGuid = guidOfType });
         }
         public override string ToString()
@@ -302,11 +302,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Enumeration
 
-        public static string? GetTypeDesc(DataType p, StringBuilder sb = null)
+        public static string? GetTypeDesc(DataType p, StringBuilder? sb = null)
         {
             Debug.Assert(p != null);
-            if (sb == null)
-                sb = new StringBuilder();
+            sb ??= new StringBuilder();
             sb.Append(Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum)!);
             Debug.Assert(p.Parent != null);
             ITreeConfigNode par = p.Parent;
@@ -388,9 +387,9 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append(p.Length);
                     if (p.Accuracy > 0)
                     {
-                        sb.Append(".");
+                        sb.Append('.');
                         sb.Append(p.Accuracy);
-                        sb.Append(" ");
+                        sb.Append(' ');
                     }
                     sb.Append("clr:");
                     sb.Append(p.ClrTypeName);
@@ -844,11 +843,11 @@ namespace vSharpStudio.vm.ViewModels
                 switch (this.DataTypeEnum)
                 {
                     case EnumDataType.ENUMERATION:
-                        return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Cfg.Model.GroupEnumerations.ListEnumerations);
+                        return [.. this.Cfg.Model.GroupEnumerations.ListEnumerations];
                     case EnumDataType.CATALOG:
-                        return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Cfg.Model.GroupCatalogs.ListCatalogs);
+                        return [.. this.Cfg.Model.GroupCatalogs.ListCatalogs];
                     case EnumDataType.DOCUMENT:
-                        return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
+                        return [.. this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments];
                     default:
                         break;
                 }
@@ -869,12 +868,10 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
                 case EnumDataType.REF_TIMELINE:
-                    this.ListObjectRefs.Clear();
                     return;
                 case EnumDataType.CHAR:
                 case EnumDataType.BOOL:
                 case EnumDataType.DATE:
-                    this.ListObjectRefs.Clear();
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;
@@ -890,7 +887,6 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.TIME:
                 case EnumDataType.TIMEZ:
-                    this.ListObjectRefs.Clear();
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;
@@ -929,7 +925,6 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     break;
                 case EnumDataType.ENUMERATION:
-                    this.ListObjectRefs.Clear();
                     this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
@@ -940,7 +935,6 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumDataType.TIMESPAN:
                 case EnumDataType.TIMESPAN_TIME_ONLY:
-                    this.ListObjectRefs.Clear();
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityIsPositive = Visibility.Visible;
                     this.VisibilityLength = Visibility.Visible;
@@ -950,7 +944,6 @@ namespace vSharpStudio.vm.ViewModels
                     this._IsPositive = false;
                     break;
                 case EnumDataType.NUMERICAL:
-                    this.ListObjectRefs.Clear();
                     if (this.Accuracy == 0)
                     {
                         this.VisibilityIsPositive = Visibility.Visible;
@@ -967,7 +960,6 @@ namespace vSharpStudio.vm.ViewModels
                     this._IsPositive = false;
                     break;
                 case EnumDataType.STRING:
-                    this.ListObjectRefs.Clear();
                     this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Visible;
@@ -977,7 +969,6 @@ namespace vSharpStudio.vm.ViewModels
                     this._IsPositive = false;
                     break;
                 case EnumDataType.ULID:
-                    this.ListObjectRefs.Clear();
                     this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
@@ -1133,9 +1124,8 @@ namespace vSharpStudio.vm.ViewModels
         private Config? cfg = null;
         public IDataType? PrevStableVersion()
         {
-            Debug.Assert(this.Cfg == null || this.Cfg.PrevStableConfig == null || this.Parent != null);
             IDataType? res = null;
-            if (this.Cfg != null && this.Cfg.PrevStableConfig != null && this.Cfg.PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
+            if ((this.Cfg != null && this.Cfg.PrevStableConfig != null && this.Parent != null) && this.Cfg.PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
                 res = (this.Cfg.PrevStableConfig.DicNodes[this.Parent.Guid] as IDataTypeObject)?.IDataType;
             }
@@ -1143,10 +1133,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IDataType? PrevCurrentVersion()
         {
-            Debug.Assert(this.Cfg == null || this.Cfg.PrevCurrentConfig == null || this.Parent != null);
-            //Debug.Assert(this.Cfg == null || this.Parent != null);
             IDataType? res = null;
-            if (this.Cfg != null && this.Cfg.PrevCurrentConfig != null && this.Cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.Parent.Guid))
+            if ((this.Cfg != null && this.Cfg.PrevCurrentConfig != null && this.Parent != null) && this.Cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
                 res = (this.Cfg.PrevCurrentConfig.DicNodes[this.Parent.Guid] as IDataTypeObject)?.IDataType;
             }

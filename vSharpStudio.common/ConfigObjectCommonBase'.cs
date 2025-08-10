@@ -20,7 +20,7 @@
             : base(validator)
         {
             this._Parent = parent;
-            this.ListInModels = new List<IModelRow>();
+            this.ListInModels = [];
             this.PropertyChanged += ConfigObjectCommonBase_PropertyChanged;
         }
         private void ConfigObjectCommonBase_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -58,13 +58,13 @@
         }
         public ITreeConfigNode? FindSiblingWithValidationMessage(FluentValidation.Severity severity)
         {
-            return this.FindChildWithValidationMessage(this.GetListSiblings(), severity);
+            return ConfigObjectCommonBase<T, TValidator>.FindChildWithValidationMessage(this.GetListSiblings(), severity);
         }
         public ITreeConfigNode? FindChildWithValidationMessage(FluentValidation.Severity severity)
         {
-            return this.FindChildWithValidationMessage(this.GetListChildren(), severity);
+            return ConfigObjectCommonBase<T, TValidator>.FindChildWithValidationMessage(this.GetListChildren(), severity);
         }
-        private ITreeConfigNode? FindChildWithValidationMessage(IChildrenCollection lst, FluentValidation.Severity severity)
+        private static ITreeConfigNode? FindChildWithValidationMessage(IChildrenCollection lst, FluentValidation.Severity severity)
         {
             foreach (var t in lst)
             {
@@ -77,7 +77,7 @@
             }
             foreach (var t in lst)
             {
-                var tt = this.FindChildWithValidationMessage(((ITree)t).GetListChildren(), severity);
+                var tt = ConfigObjectCommonBase<T, TValidator>.FindChildWithValidationMessage(((ITree)t).GetListChildren(), severity);
                 if (tt != null)
                     return tt;
             }
@@ -101,7 +101,7 @@
                 if (v.Severity == severity)
                     return v;
             }
-            throw new Exception($"Validation message with severity '{Enum.GetName(typeof(Severity), severity)}' is not found");
+            throw new Exception($"Validation message with severity '{Enum.GetName<Severity>(severity)}' is not found");
         }
         [Browsable(false)]
         public IChildrenCollection Children
@@ -149,7 +149,7 @@
         {
             get
             {
-                string iconName = String.Empty;
+                string iconName;
                 if (this.IsExpanded)
                 {
                     iconName = "iconFolderOpen";
@@ -328,8 +328,7 @@
         {
             get
             {
-                if (this._cfg == null)
-                    this._cfg = this.GetConfig();
+                this._cfg ??= this.GetConfig();
                 return this._cfg;
             }
         }
@@ -392,7 +391,7 @@
         {
             if (this.Cfg.Model.IsUseNameComposition)
             {
-                List<ITreeConfigNode> lst = new List<ITreeConfigNode>();
+                List<ITreeConfigNode> lst = [];
                 ITreeConfigNode? p = this.Parent;
                 var sb = new StringBuilder();
                 if (this is IGroupListRegisters gr1)
@@ -556,9 +555,8 @@
                 }
                 if (tt.Name.StartsWith(defName))
                 {
-                    string s = tt.Name.Remove(0, defName.Length);
-                    int ii;
-                    if (int.TryParse(s, out ii))
+                    string s = tt.Name[defName.Length..];
+                    if (int.TryParse(s, out var ii))
                     {
                         if (ii > i)
                         {
@@ -663,7 +661,7 @@
         }
         public bool NodeCanMoveDown()
         {
-            if (!(this is ICanAddNode))
+            if (this is not ICanAddNode)
             {
                 return false;
             }
@@ -675,7 +673,7 @@
         }
         public bool NodeCanMoveUp()
         {
-            if (!(this is ICanAddNode))
+            if (this is not ICanAddNode)
             {
                 return false;
             }
@@ -723,7 +721,7 @@
             }
             return false;
         }
-        private bool IsIListNodesGen(object obj)
+        private static bool IsIListNodesGen(object obj)
         {
             bool res = false;
             foreach (var t in obj.GetType().GetInterfaces())
@@ -832,7 +830,7 @@
         }
         public void RestoreIsHas()
         {
-            if (this is IEditableNodeGroup pp)
+            if (this is IEditableNodeGroup)
             {
                 bool isHasChanged = false, isHasNew = false, isHasMarked = false;
                 foreach (var t in this.GetListChildren())
@@ -973,7 +971,7 @@
         }
         public virtual List<IEditableObjectExt> GetEditableNodeSettings()
         {
-            return new List<IEditableObjectExt>();
+            return [];
         }
         protected void OnNodeIsChangedChanged()
         {

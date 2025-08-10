@@ -5,6 +5,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class ConnStringVMValidator : ValidatorBase<ConnStringVM, ConnStringVMValidator>
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ConnStringVMValidator));
         public ConnStringVMValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);

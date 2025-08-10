@@ -17,17 +17,19 @@ namespace vSharpStudio.Unit
     [TestClass]
     public class MainVmTests
     {
+        private readonly ILogger? _logger;
         string pathExt = @".\extcfg\";
 
         static MainVmTests()
         {
         }
-        private static Microsoft.Extensions.Logging.ILogger? _logger;
         public MainVmTests()
         {
+            //AppLogger.IsFullFilePath = true;
+            AppLogger.LogLevel = LogLevel.Trace;
+            AppLogger.UseDebug = true;
+            _logger = AppLogger.CreateLogger(nameof(MainVmTests));
             VmBindable.isUnitTests = true;
-            AppLogger.LogLevel = LogLevel.Debug;
-            _logger = AppLogger.CreateLogger<MainVmTests>();
         }
 
         private void remove_config()
@@ -56,7 +58,7 @@ namespace vSharpStudio.Unit
         {
             this.remove_config();
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.IsTrue(vm.pconfig_history == null);
+            Assert.IsNull(vm.pconfig_history);
             Assert.IsTrue(vm.Config.IsNew);
             Assert.IsFalse(vm.Config.IsHasChanged);
             Assert.IsFalse(vm.BtnAddClone.CanExecute());
@@ -78,7 +80,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.BtnOpenConfig.CanExecute(null));
 
             vm.BtnNewConfig.Execute(); // not saved yet
-            Assert.IsTrue(vm.Config != null);
+            Assert.IsNotNull(vm.Config);
             Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
             Assert.IsTrue(vm.Config.IsNew);
             Assert.IsTrue(vm.Config.IsHasNew);
@@ -107,7 +109,7 @@ namespace vSharpStudio.Unit
 
 
             vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg"); // saved
-            Assert.IsTrue(vm.Config != null);
+            Assert.IsNotNull(vm.Config);
             Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
             Assert.IsFalse(vm.Config.IsNew);
             Assert.IsTrue(vm.Config.IsHasNew);
@@ -147,16 +149,16 @@ namespace vSharpStudio.Unit
             //}
         }
         [TestMethod]
-        async public Task Main002CanSaveConfigAndCreateVersions()
+        public async Task Main002CanSaveConfigAndCreateVersions()
         {
             // empty config
             this.remove_config();
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.Config.IsNew);
-            Assert.IsTrue(vm.pconfig_history == null);
+            Assert.IsNull(vm.pconfig_history);
 
             vm.BtnNewConfig.Execute();
-            Assert.IsTrue(vm.Config != null);
+            Assert.IsNotNull(vm.Config);
             Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
 
             // create object and save
@@ -169,7 +171,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.LastUpdated != null);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
             Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
-            Assert.IsTrue(vm.Config.Version == 0);
+            Assert.AreEqual(0, vm.Config.Version);
 
             Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
             gr.NodeAddNewSubNode();
@@ -195,14 +197,14 @@ namespace vSharpStudio.Unit
 
             // reload
             vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
-            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
+            Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants);
+            Assert.AreEqual(cnst.Name, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
             Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
-            Assert.IsTrue(vm.Config.Version == 0);
-            Assert.IsTrue(vm.pconfig_history != null);
-            Assert.IsTrue(vm.pconfig_history.CurrentConfig != null);
-            Assert.IsTrue(vm.pconfig_history.PrevStableConfig == null);
+            Assert.AreEqual(0, vm.Config.Version);
+            Assert.IsNotNull(vm.pconfig_history);
+            Assert.IsNotNull(vm.pconfig_history.CurrentConfig);
+            Assert.IsNull(vm.pconfig_history.PrevStableConfig);
             Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
 
             vm.Config.Model.GroupConstantGroups.NodeAddNewSubNode();
@@ -215,15 +217,15 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
-            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
-            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
+            Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants);
+            Assert.AreEqual(cnst.Name, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
             Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
-            Assert.IsTrue(vm.Config.Version == 1);
-            Assert.IsTrue(vm.pconfig_history != null);
-            Assert.IsTrue(vm.pconfig_history.CurrentConfig != null);
-            Assert.IsTrue(vm.pconfig_history.PrevStableConfig != null);
-            Assert.IsTrue(vm.pconfig_history.PrevStableConfig.Version == 0);
+            Assert.AreEqual(1, vm.Config.Version);
+            Assert.IsNotNull(vm.pconfig_history);
+            Assert.IsNotNull(vm.pconfig_history.CurrentConfig);
+            Assert.IsNotNull(vm.pconfig_history.PrevStableConfig);
+            Assert.AreEqual(0, vm.pconfig_history.PrevStableConfig.Version);
             // migration code is created?
             // Assert.IsTrue(false);
 
@@ -231,15 +233,15 @@ namespace vSharpStudio.Unit
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
-            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
+            Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants);
+            Assert.AreEqual(cnst.Name, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
             Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
-            Assert.IsTrue(vm.Config.Version == 2);
-            Assert.IsTrue(vm.pconfig_history != null);
-            Assert.IsTrue(vm.pconfig_history.CurrentConfig != null);
-            Assert.IsTrue(vm.pconfig_history.PrevStableConfig != null);
-            Assert.IsTrue(vm.pconfig_history.PrevStableConfig.Version == 1);
+            Assert.AreEqual(2, vm.Config.Version);
+            Assert.IsNotNull(vm.pconfig_history);
+            Assert.IsNotNull(vm.pconfig_history.CurrentConfig);
+            Assert.IsNotNull(vm.pconfig_history.PrevStableConfig);
+            Assert.AreEqual(1, vm.pconfig_history.PrevStableConfig.Version);
             // old migration code is kept?
             // Assert.IsTrue(false);
         }
@@ -248,25 +250,25 @@ namespace vSharpStudio.Unit
         {
             this.remove_config();
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
+            Assert.IsEmpty(vm.UserSettings.ListOpenConfigHistory);
 
             vm.BtnNewConfig.Execute();
-            Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
+            Assert.IsEmpty(vm.UserSettings.ListOpenConfigHistory);
 
             vm.Config.Name = "test1";
             vm.BtnConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
-            Assert.AreEqual(1, vm.UserSettings.ListOpenConfigHistory.Count);
+            Assert.HasCount(1, vm.UserSettings.ListOpenConfigHistory);
 
             vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             // Load from previous save
-            Assert.AreEqual(1, vm.UserSettings.ListOpenConfigHistory.Count);
+            Assert.HasCount(1, vm.UserSettings.ListOpenConfigHistory);
             Assert.AreEqual("test1", vm.Config.Name);
             vm.Config.Name = "test2";
             vm.BtnConfigSaveAs.Execute(@"..\..\..\TestApps\config2.vcfg");
 
             vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             // Load from previous save
-            Assert.AreEqual(2, vm.UserSettings.ListOpenConfigHistory.Count);
+            Assert.HasCount(2, vm.UserSettings.ListOpenConfigHistory);
             Assert.AreEqual("test2", vm.Config.Name);
         }
         [TestMethod]
@@ -283,9 +285,9 @@ namespace vSharpStudio.Unit
             vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             gr = vm.Config.Model.GroupConstantGroups.ListConstantGroups[0];
             // Load from previous save
-            Assert.AreEqual(1, vm.UserSettings.ListOpenConfigHistory.Count);
+            Assert.HasCount(1, vm.UserSettings.ListOpenConfigHistory);
             Assert.AreEqual("test1", vm.Config.Name);
-            Assert.AreEqual(1, gr.ListConstants.Count());
+            Assert.HasCount(1, gr.ListConstants);
             Assert.AreEqual("c1", gr.ListConstants[0].Name);
             Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c1.Guid));
         }
@@ -314,12 +316,12 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsChanged);
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasChanged);
-            Assert.AreEqual(0, vm.Config.GroupAppSolutions.ListAppSolutions.Count);
+            Assert.IsEmpty(vm.Config.GroupAppSolutions.ListAppSolutions);
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsNew); // always false
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsChanged);
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasChanged);
-            Assert.AreEqual(0, vm.Config.GroupConfigLinks.ListBaseConfigLinks.Count);
+            Assert.IsEmpty(vm.Config.GroupConfigLinks.ListBaseConfigLinks);
             Assert.IsFalse(vm.Config.Model.IsNew); // always false
             Assert.IsFalse(vm.Config.Model.IsHasNew);
             Assert.IsFalse(vm.Config.Model.IsChanged);
@@ -379,7 +381,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.IsHasNew);
             Assert.IsFalse(vm.Config.IsChanged);
             Assert.IsFalse(vm.Config.IsHasChanged);
-            Assert.AreEqual(0, vm.Config.GroupAppSolutions.ListAppSolutions.Count);
+            Assert.IsEmpty(vm.Config.GroupAppSolutions.ListAppSolutions);
             vm.Config.GroupAppSolutions.NodeAddNewSubNode();
             Assert.IsTrue(vm.Config.IsHasNew);
             Assert.IsFalse(vm.Config.IsChanged);
@@ -387,7 +389,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.GroupAppSolutions.IsHasNew);
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsChanged);
             Assert.IsTrue(vm.Config.GroupAppSolutions.IsHasChanged);
-            Assert.AreEqual(1, vm.Config.GroupAppSolutions.ListAppSolutions.Count);
+            Assert.HasCount(1, vm.Config.GroupAppSolutions.ListAppSolutions);
             Assert.IsTrue(vm.Config.GroupAppSolutions[0].IsNew);
             Assert.IsTrue(vm.Config.GroupAppSolutions[0].IsChanged);
 
@@ -546,7 +548,7 @@ namespace vSharpStudio.Unit
             // Simple catalog
             var c = gr.AddCatalog("test");
             var lst = c.GetAllProperties(true);
-            Assert.AreEqual(4, lst.Count);
+            Assert.HasCount(4, lst);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[1].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyCodeName, lst[2].Name);
@@ -565,7 +567,7 @@ namespace vSharpStudio.Unit
             // Tree catalog
             c.UseTree = true;
             lst = c.GetAllProperties(true);
-            Assert.AreEqual(6, lst.Count);
+            Assert.HasCount(6, lst);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefTreeParent", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyIsFolderName, lst[2].Name);
@@ -577,14 +579,14 @@ namespace vSharpStudio.Unit
             c.UseTree = true;
             c.UseSeparateTreeForFolders = true;
             lst = c.GetAllProperties(true);
-            Assert.AreEqual(5, lst.Count);
+            Assert.HasCount(5, lst);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefParent", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyCodeName, lst[3].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[4].Name);
             lst = c.GetAllFolderProperties(true);
-            Assert.AreEqual(5, lst.Count);
+            Assert.HasCount(5, lst);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefTreeParent", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[2].Name);
@@ -729,7 +731,7 @@ namespace vSharpStudio.Unit
         //    Assert.IsTrue(c1Diff.IsRenamed());
         //}
         [TestMethod]
-        async public Task Main011_Diff_Constants()
+        public async Task Main011_Diff_Constants()
         {
             // empty config
             this.remove_config();
@@ -762,8 +764,8 @@ namespace vSharpStudio.Unit
 
             vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg");
             Assert.IsFalse(vm.Config.IsHasChanged);
-            Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
-            Assert.AreEqual(3, gr.ListConstants.Count());
+            Assert.HasCount(1, cfg.Model.GroupEnumerations.ListEnumerations);
+            Assert.HasCount(3, gr.ListConstants);
             Assert.IsTrue(c1.IsNew);
             Assert.IsTrue(c1.IsNewNode());
             Assert.IsTrue(gr.IsHasNew);
@@ -793,8 +795,8 @@ namespace vSharpStudio.Unit
             await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync();
             Assert.IsFalse(vm.Config.IsHasChanged);
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
-            Assert.AreEqual(0, cfg.Model.GroupEnumerations.ListEnumerations.Count());
-            Assert.AreEqual(1, gr.ListConstants.Count()); // second constant is deleted as it is new and enumeration marked for deletion
+            Assert.IsEmpty(cfg.Model.GroupEnumerations.ListEnumerations);
+            Assert.HasCount(1, gr.ListConstants); // second constant is deleted as it is new and enumeration marked for deletion
             Assert.IsTrue(c1.IsNew);
             Assert.IsTrue(gr.IsHasNew);
             Assert.IsFalse(gr.IsHasMarkedForDeletion);
@@ -805,7 +807,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             Assert.IsFalse(vm.Config.IsHasChanged);
             // prev c1 not new, not del
-            Assert.AreEqual(1, gr.ListConstants.Count());
+            Assert.HasCount(1, gr.ListConstants);
             Assert.IsFalse(c1.IsNew);
             Assert.IsFalse(gr.IsHasNew);
             Assert.IsFalse(gr.IsHasMarkedForDeletion);
@@ -825,7 +827,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(c2.IsDeprecated());
             c3 = gr.AddConstant("c3");
             c3.DataType.Length = 101;
-            Assert.AreEqual(3, gr.ListConstants.Count());
+            Assert.HasCount(3, gr.ListConstants);
             Assert.IsTrue(gr.IsHasNew);
             Assert.IsTrue(gr.IsHasMarkedForDeletion);
 
@@ -835,7 +837,7 @@ namespace vSharpStudio.Unit
             await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync();
             Assert.IsFalse(vm.Config.IsHasChanged);
             // prev c1 not new, not del
-            Assert.AreEqual(2, gr.ListConstants.Count());
+            Assert.HasCount(2, gr.ListConstants);
             Assert.IsTrue(c1.IsMarkedForDeletion);
             Assert.IsFalse(c1.IsNew);
             Assert.IsTrue(c1.IsDeprecated());
@@ -850,7 +852,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             Assert.IsFalse(vm.Config.IsHasChanged);
             // prev c1 not new, del
-            Assert.AreEqual(2, gr.ListConstants.Count());
+            Assert.HasCount(2, gr.ListConstants);
             Assert.IsFalse(c1.IsNew);
             Assert.IsTrue(c1.IsMarkedForDeletion);
             Assert.AreEqual(c3, gr.ListConstants[1]);
@@ -865,7 +867,7 @@ namespace vSharpStudio.Unit
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             Assert.IsFalse(vm.Config.IsHasChanged);
-            Assert.AreEqual(1, gr.ListConstants.Count());
+            Assert.HasCount(1, gr.ListConstants);
             Assert.AreEqual(c3, gr.ListConstants[0]);
             Assert.IsFalse(c3.IsMarkedForDeletion);
             Assert.IsFalse(c3.IsNew);
@@ -873,7 +875,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(gr.IsHasMarkedForDeletion);
         }
         [TestMethod]
-        async public Task Main012_Diff_Enumerations()
+        public async Task Main012_Diff_Enumerations()
         {
             // empty config
             this.remove_config();
@@ -890,7 +892,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
 
             vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg");
-            Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.HasCount(1, cfg.Model.GroupEnumerations.ListEnumerations);
             Assert.IsTrue(c1.IsNew);
             Assert.IsTrue(c1.IsNewNode());
             Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasNew);
@@ -898,7 +900,7 @@ namespace vSharpStudio.Unit
 
             // c1-new -> new
             await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync();
-            Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.HasCount(1, cfg.Model.GroupEnumerations.ListEnumerations);
             Assert.IsTrue(c1.IsNew);
             Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasNew);
             Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
@@ -907,7 +909,7 @@ namespace vSharpStudio.Unit
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             // prev c1 not new, not del
-            Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.HasCount(1, cfg.Model.GroupEnumerations.ListEnumerations);
             Assert.IsFalse(c1.IsNew);
             Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasNew);
             Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
@@ -920,7 +922,7 @@ namespace vSharpStudio.Unit
             var c3 = cfg.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.BYTE_VALUE);
             Assert.IsTrue(c1.IsMarkedForDeletion);
             Assert.IsTrue(c1.IsDeprecated());
-            Assert.AreEqual(3, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.HasCount(3, cfg.Model.GroupEnumerations.ListEnumerations);
             Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasNew);
             Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
 
@@ -929,7 +931,7 @@ namespace vSharpStudio.Unit
             // c3- new -> new
             await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync();
             // prev c1 not new, not del
-            Assert.AreEqual(2, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.HasCount(2, cfg.Model.GroupEnumerations.ListEnumerations);
             Assert.IsTrue(c1.IsMarkedForDeletion);
             Assert.IsFalse(c1.IsNew);
             Assert.IsTrue(c1.IsDeprecated());
@@ -943,7 +945,7 @@ namespace vSharpStudio.Unit
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             // prev c1 not new, del
-            Assert.AreEqual(2, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.HasCount(2, cfg.Model.GroupEnumerations.ListEnumerations);
             Assert.IsFalse(c1.IsNew);
             Assert.IsTrue(c1.IsMarkedForDeletion);
             Assert.AreEqual(c3, cfg.Model.GroupEnumerations.ListEnumerations[1]);
@@ -957,7 +959,7 @@ namespace vSharpStudio.Unit
             // c3- new -> new
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
-            Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
+            Assert.HasCount(1, cfg.Model.GroupEnumerations.ListEnumerations);
             Assert.AreEqual(c3, cfg.Model.GroupEnumerations.ListEnumerations[0]);
             Assert.IsFalse(c3.IsMarkedForDeletion);
             Assert.IsFalse(c3.IsNew);
@@ -1250,7 +1252,7 @@ namespace vSharpStudio.Unit
         //    #endregion document
         //}
         [TestMethod]
-        async public Task Main015_Delete_New_Enumerations()
+        public async Task Main015_Delete_New_Enumerations()
         {
             // empty config
             this.remove_config();
@@ -1292,13 +1294,13 @@ namespace vSharpStudio.Unit
             c3.IsMarkedForDeletion = true;
             Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsTrue(vm.Config.Model.IsHasNew);
-            Assert.AreEqual(3, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
+            Assert.HasCount(3, vm.Config.Model.GroupEnumerations.ListEnumerations);
 
             vm.BtnConfigSave.Execute();
             // expect IsHasMarkedForDeletion and IsHasNew will not changed
             Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsTrue(vm.Config.Model.IsHasNew);
-            Assert.AreEqual(3, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
+            Assert.HasCount(3, vm.Config.Model.GroupEnumerations.ListEnumerations);
 
             Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
             Debug.Assert(vm.Config == vm.Config.Model.Parent);
@@ -1308,7 +1310,7 @@ namespace vSharpStudio.Unit
             // expect new objects (IsNew) with IsMarkedForDeletion will be deleted in DB and model
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsTrue(vm.Config.Model.IsHasNew);
-            Assert.AreEqual(2, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
+            Assert.HasCount(2, vm.Config.Model.GroupEnumerations.ListEnumerations);
 
             c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
             // mark for deletion
@@ -1316,7 +1318,7 @@ namespace vSharpStudio.Unit
             c2.IsMarkedForDeletion = true;
             Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsTrue(vm.Config.Model.IsHasNew);
-            Assert.AreEqual(3, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
+            Assert.HasCount(3, vm.Config.Model.GroupEnumerations.ListEnumerations);
             Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
             Debug.Assert(vm.Config == vm.Config.Model.Parent);
 
@@ -1329,7 +1331,7 @@ namespace vSharpStudio.Unit
             Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
             // expect IsHasMarkedForDeletion and IsHasNew will be false
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
-            Assert.AreEqual(1, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
+            Assert.HasCount(1, vm.Config.Model.GroupEnumerations.ListEnumerations);
 
             c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
@@ -1371,16 +1373,16 @@ namespace vSharpStudio.Unit
             prms.IsAccessParam2 = false;
             prms.AccessParam3 = "test";
 
-            Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(0, vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm.Config.DicActiveAppProjectGenerators);
+            Assert.IsEmpty(vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);
             foreach (var t in vm.Config.Model.GroupConstantGroups.ListConstantGroups)
             {
-                Assert.AreEqual(1, t.ListNodeGeneratorsSettings.Count);
+                Assert.HasCount(1, t.ListNodeGeneratorsSettings);
             }
-            Assert.AreEqual(1, vm.Config.Model.GroupEnumerations.ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(0, vm.Config.Model.GroupDocuments.ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm.Config.Model.GroupEnumerations.ListNodeGeneratorsSettings);
+            Assert.IsEmpty(vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings);
+            Assert.IsEmpty(vm.Config.Model.GroupDocuments.ListNodeGeneratorsSettings);
             //Assert.AreEqual(1, vm.Config.Model.GroupJournals.ListNodeGeneratorsSettings.Count);
 
             vm.BtnConfigSave.Execute();
@@ -1388,8 +1390,8 @@ namespace vSharpStudio.Unit
             var vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.AreEqual(1, vm2.Config.GroupAppSolutions.Count());
             Assert.AreEqual(sln.RelativeAppSolutionPath, vm2.Config.GroupAppSolutions[0].RelativeAppSolutionPath);
-            Assert.AreEqual(1, vm2.Config.GroupAppSolutions[0].ListAppProjects.Count());
-            Assert.AreEqual(1, vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators.Count());
+            Assert.HasCount(1, vm2.Config.GroupAppSolutions[0].ListAppProjects);
+            Assert.HasCount(1, vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators);
             var gen2 = vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
             Assert.AreEqual(gen.RelativePathToGenFolder, gen2.RelativePathToGenFolder);
             Assert.AreEqual(gen.GenFileName, gen2.GenFileName);
@@ -1414,7 +1416,7 @@ namespace vSharpStudio.Unit
             // 3. When new generator is selected: old generator has to be removed from all model nodes, 
             //     and new generator settings has to be added for all model nodes
             // 4. When saving Config: convert all model nodes generators settings to string representations
-            _logger.LogTrace("Start test".CallerInfo());
+            _logger.LogTrace("Start test");
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //vm.BtnNewConfig.Execute(@".\kuku.vcfg");
             vm.BtnNewConfig.Execute();
@@ -1441,23 +1443,23 @@ namespace vSharpStudio.Unit
 
             // 3. When new generator is selected: old generator has to be removed from all model nodes, 
             //     and new generator settings has to be added for all model nodes
-            Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm.Config.DicActiveAppProjectGenerators);
+            Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);
             foreach (var t in vm.Config.Model.GroupConstantGroups.ListConstantGroups)
             {
-                Assert.AreEqual(1, t.ListNodeGeneratorsSettings.Count);
+                Assert.HasCount(1, t.ListNodeGeneratorsSettings);
             }
-            Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
+            Assert.IsEmpty(vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings);
             gen.NodeRemove(false);
-            Assert.AreEqual(1, vm.Config.GroupAppSolutions[0].ListAppProjects.Count);
-            Assert.AreEqual(0, vm.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators.Count);
-            Assert.AreEqual(0, vm.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(0, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm.Config.GroupAppSolutions[0].ListAppProjects);
+            Assert.IsEmpty(vm.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators);
+            Assert.IsEmpty(vm.Config.DicActiveAppProjectGenerators);
+            Assert.IsEmpty(vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);
             foreach (var t in vm.Config.Model.GroupConstantGroups.ListConstantGroups)
             {
-                Assert.AreEqual(0, t.ListNodeGeneratorsSettings.Count);
+                Assert.IsEmpty(t.ListNodeGeneratorsSettings);
             }
-            Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
+            Assert.IsEmpty(vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings);
             gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\ConsoleApp1\Generated";
             gen.GenFileName = "test_file.cs";
@@ -1465,33 +1467,33 @@ namespace vSharpStudio.Unit
             gen.PluginGeneratorGuid = genDbAccess.Guid;
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
-            Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm.Config.DicActiveAppProjectGenerators);
+            Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);
             foreach (var t in vm.Config.Model.GroupConstantGroups.ListConstantGroups)
             {
-                Assert.AreEqual(1, t.ListNodeGeneratorsSettings.Count);
+                Assert.HasCount(1, t.ListNodeGeneratorsSettings);
             }
-            Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
+            Assert.IsEmpty(vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings);
 
             // 2. When model node is added: init all generators settings VMs on this node
-            Assert.AreEqual(1, vm.Config.Model.GroupEnumerations.ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm.Config.Model.GroupEnumerations.ListNodeGeneratorsSettings);
             vm.Config.Model.GroupEnumerations.NodeAddNewSubNode();
-            Assert.AreEqual(1, vm.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);
             foreach (var t in vm.Config.Model.GroupConstantGroups.ListConstantGroups)
             {
-                Assert.AreEqual(1, t.ListNodeGeneratorsSettings.Count);
+                Assert.HasCount(1, t.ListNodeGeneratorsSettings);
             }
             vm.Config.Model.GroupCatalogs.NodeAddNewSubNode();
-            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings);
             vm.Config.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
-            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
             vm.Config.Model.GroupCatalogs[0].GroupForms.NodeAddNewSubNode();
-            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
             vm.Config.Model.GroupDocuments.GroupListDocuments.NodeAddNewSubNode();
-            Assert.AreEqual(1, vm.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings);
             vm.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties.NodeAddNewSubNode();
-            Assert.AreEqual(1, vm.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings);
 
 
             var main = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicGeneratorSettings;
@@ -1522,34 +1524,34 @@ namespace vSharpStudio.Unit
             //Assert.AreEqual("", vm.Config.Model.GroupConstants.ListGeneratorsSettings[0].Settings);
             vm.BtnConfigSave.Execute();
             //Assert.AreNotEqual("", vm.Config.Model.GroupConstants.ListGeneratorsSettings[0].Settings);
-            Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
+            Assert.HasCount(1, vm.Config.DicActiveAppProjectGenerators);
 
             // 1. When Config is loaded: init all generators settings VMs on all model nodes
             var vm2 = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm2.Config.DicActiveAppProjectGenerators);
+            Assert.HasCount(1, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);
             foreach (var t in vm2.Config.Model.GroupConstantGroups.ListConstantGroups)
             {
-                Assert.AreEqual(1, t.ListNodeGeneratorsSettings.Count);
+                Assert.HasCount(1, t.ListNodeGeneratorsSettings);
             }
-            Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings);
 
             main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
-            Assert.AreEqual(true, main.IsAccessParam1);
-            Assert.AreEqual(false, main.IsAccessParam2);
+            Assert.IsTrue(main.IsAccessParam1);
+            Assert.IsFalse(main.IsAccessParam2);
             nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid);
-            Assert.AreEqual(true, nds.IsParam1);
+            Assert.IsTrue(nds.IsParam1);
 
             Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
 
             // if new app progect generator is added, new setting are attached to all appropriate nodes
             var gen0 = vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
-            Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
+            Assert.HasCount(1, vm2.Config.DicActiveAppProjectGenerators);
             vm2.Config.GroupAppSolutions[0].ListAppProjects[0].NodeAddNewSubNode();
             var gen2 = (from p in vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators where p.Guid != gen0.Guid select p).Single();
             gen2.RelativePathToGenFolder = @"..\..\..\..\TestApps\ConsoleApp1\Generated";
@@ -1557,30 +1559,30 @@ namespace vSharpStudio.Unit
             gen2.PluginGuid = pluginNode.Guid;
             // Expect attached settings for Property and Catalog.Form
             gen2.PluginGeneratorGuid = genDbAccess.Guid;
-            Assert.AreEqual(2, vm2.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(2, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(2, vm2.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(2, vm2.Config.DicActiveAppProjectGenerators);
+            Assert.HasCount(2, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(2, vm2.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);
             //Assert.AreEqual(2, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListNodeGeneratorsSettings.Count);
             //Assert.AreEqual(2, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(2, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(2, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(2, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings);
 
             // if app progect generator is removed, attached seetings are removed from appropriate nodes as well
             gen2.NodeRemove(false);
-            Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            Assert.HasCount(1, vm2.Config.DicActiveAppProjectGenerators);
+            Assert.HasCount(1, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);
             //Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListNodeGeneratorsSettings.Count);
             //Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
-            _logger.LogTrace("End test".CallerInfo());
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings);
+            _logger.LogTrace("End test");
         }
         [TestMethod]
         public void Main015_Diff_WorkWithPluginsGroupSettings()
@@ -1590,7 +1592,7 @@ namespace vSharpStudio.Unit
             // 2. When generator is removed, appropriate project/solution settings are still kept in case user will use them again. Such setting will be removed when configuration is restored.
             // 3. When new generator is added and it is having new project/solution settings, than appropriate project/solution settings has to be added in project/solution
             // 4. When saving Config: Only for active generators projects/solutions settings will be converted to string representations and saved.
-            _logger.LogTrace("Start test".CallerInfo());
+            _logger.LogTrace("Start test");
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //vm.BtnNewConfig.Execute(@".\kuku.vcfg");
             vm.BtnNewConfig.Execute();
@@ -1609,13 +1611,13 @@ namespace vSharpStudio.Unit
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\ConsoleApp1\Generated";
             gen.GenFileName = "test_file.cs";
-            Assert.IsTrue(gen.PluginGuid == string.Empty);
-            Assert.IsTrue(gen.PluginGeneratorGuid == string.Empty);
+            Assert.AreEqual(string.Empty, gen.PluginGuid);
+            Assert.AreEqual(string.Empty, gen.PluginGeneratorGuid);
             Assert.IsNull(gen.PluginGenerator);
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
-            Assert.IsTrue(gen.PluginGuid != string.Empty);
-            Assert.IsTrue(gen.PluginGeneratorGuid != string.Empty);
+            Assert.AreNotEqual(string.Empty, gen.PluginGuid);
+            Assert.AreNotEqual(string.Empty, gen.PluginGeneratorGuid);
             Assert.IsNotNull(gen.PluginGenerator);
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
@@ -1668,7 +1670,7 @@ namespace vSharpStudio.Unit
             // 4. When saving Config: convert all projects/solutions settings to string representations
             set = (vPlugin.Sample.PluginsGroupSolutionSettings)sln.DicPluginsGroupSettings[vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic];
             Assert.IsTrue(set.IsGroupParam1);
-            _logger.LogTrace("End test".CallerInfo());
+            _logger.LogTrace("End test");
         }
         [TestMethod]
         public void Main081_BaseConfigLoading()
@@ -1678,7 +1680,7 @@ namespace vSharpStudio.Unit
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             //vm.BtnNewConfig. Execute(@".\kuku.vcfg");
             vm.BtnNewConfig.Execute();
-            Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
+            Assert.AreEqual(0, vm.Config.GroupConfigLinks.Count());
             var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
             vm.BtnConfigSaveAs.Execute(pathExt + MainPageVM.DEFAULT_CFG_FILEName);
 
@@ -1699,15 +1701,15 @@ namespace vSharpStudio.Unit
 
             vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             gr = vm.Config.Model.GroupConstantGroups.ListConstantGroups[0];
-            Assert.AreEqual(1, gr.ListConstants.Count);
-            Assert.IsTrue(gr.Count() == 1);
-            Assert.IsTrue(gr.ListConstants[0].Name == "c1");
-            Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 1);
-            Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Model.GroupConstantGroups.ListConstantGroups.Count() == 1);
-            Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count() == 1);
-            Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == "c2");
-            Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Name == "ext");
-            Assert.IsTrue(vm.Config.GroupConfigLinks[0].Name == "ext");
+            Assert.HasCount(1, gr.ListConstants);
+            Assert.AreEqual(1, gr.Count());
+            Assert.AreEqual("c1", gr.ListConstants[0].Name);
+            Assert.AreEqual(1, vm.Config.GroupConfigLinks.Count());
+            Assert.HasCount(1, vm.Config.GroupConfigLinks[0].ConfigBase.Model.GroupConstantGroups.ListConstantGroups);
+            Assert.HasCount(1, vm.Config.GroupConfigLinks[0].ConfigBase.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants);
+            Assert.AreEqual("c2", vm.Config.GroupConfigLinks[0].ConfigBase.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
+            Assert.AreEqual("ext", vm.Config.GroupConfigLinks[0].ConfigBase.Name);
+            Assert.AreEqual("ext", vm.Config.GroupConfigLinks[0].Name);
         }
         [TestMethod]
         public void Main082_BaseConfigDiff()
@@ -1720,7 +1722,7 @@ namespace vSharpStudio.Unit
             vm.Config.Name = "main";
             var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
             var c3 = gr.AddConstant("c3");
-            Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
+            Assert.AreEqual(0, vm.Config.GroupConfigLinks.Count());
 
             // base config
             var vmb = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
@@ -1771,32 +1773,32 @@ namespace vSharpStudio.Unit
             p.Validate();
             var v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(0, v.ListBoundaries.Count);
-            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.IsEmpty(v.ListBoundaries);
+            Assert.HasCount(1, v.ListValues);
             Assert.AreEqual("'c'", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = " 'c'";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(0, v.ListBoundaries.Count);
-            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.IsEmpty(v.ListBoundaries);
+            Assert.HasCount(1, v.ListValues);
             Assert.AreEqual("'c'", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = "'c' ";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(0, v.ListBoundaries.Count);
-            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.IsEmpty(v.ListBoundaries);
+            Assert.HasCount(1, v.ListValues);
             Assert.AreEqual("'c'", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = "'c';'b'";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(0, v.ListBoundaries.Count);
-            Assert.AreEqual(2, v.ListValues.Count);
+            Assert.IsEmpty(v.ListBoundaries);
+            Assert.HasCount(2, v.ListValues);
             Assert.AreEqual("'c'", v.ListValues[0]);
             Assert.AreEqual("'b'", v.ListValues[1]);
 
@@ -1804,8 +1806,8 @@ namespace vSharpStudio.Unit
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(0, v.ListBoundaries.Count);
-            Assert.AreEqual(2, v.ListValues.Count);
+            Assert.IsEmpty(v.ListBoundaries);
+            Assert.HasCount(2, v.ListValues);
             Assert.AreEqual("'c'", v.ListValues[0]);
             Assert.AreEqual("'b'", v.ListValues[1]);
 
@@ -1813,26 +1815,26 @@ namespace vSharpStudio.Unit
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListBoundaries.Count);
-            Assert.AreEqual(0, v.ListValues.Count);
-            Assert.AreEqual(null, v.ListBoundaries[0].BoundaryMin);
+            Assert.HasCount(1, v.ListBoundaries);
+            Assert.IsEmpty(v.ListValues);
+            Assert.IsNull(v.ListBoundaries[0].BoundaryMin);
             Assert.AreEqual("'c'", v.ListBoundaries[0].BoundaryMax);
 
             p.RangeValuesRequirementStr = "'c'#";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListBoundaries.Count);
-            Assert.AreEqual(0, v.ListValues.Count);
+            Assert.HasCount(1, v.ListBoundaries);
+            Assert.IsEmpty(v.ListValues);
             Assert.AreEqual("'c'", v.ListBoundaries[0].BoundaryMin);
-            Assert.AreEqual(null, v.ListBoundaries[0].BoundaryMax);
+            Assert.IsNull(v.ListBoundaries[0].BoundaryMax);
 
             p.RangeValuesRequirementStr = "'a'#'c'";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListBoundaries.Count);
-            Assert.AreEqual(0, v.ListValues.Count);
+            Assert.HasCount(1, v.ListBoundaries);
+            Assert.IsEmpty(v.ListValues);
             Assert.AreEqual("'a'", v.ListBoundaries[0].BoundaryMin);
             Assert.AreEqual("'c'", v.ListBoundaries[0].BoundaryMax);
 
@@ -1840,8 +1842,8 @@ namespace vSharpStudio.Unit
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(3, v.ListBoundaries.Count);
-            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.HasCount(3, v.ListBoundaries);
+            Assert.HasCount(1, v.ListValues);
             Assert.AreEqual("'b'", v.ListValues[0]);
 
 
@@ -1850,16 +1852,16 @@ namespace vSharpStudio.Unit
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
-            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
-            Assert.IsTrue(v.ListErrors[0].Contains("''"));
+            Assert.Contains("Can't", v.ListErrors[0]);
+            Assert.Contains("''", v.ListErrors[0]);
 
             p.RangeValuesRequirementStr = "\"c\"";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListErrors.Count);
-            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
-            Assert.IsTrue(v.ListErrors[0].Contains("\"c\""));
+            Assert.HasCount(1, v.ListErrors);
+            Assert.Contains("Can't", v.ListErrors[0]);
+            Assert.Contains("\"c\"", v.ListErrors[0]);
 
             p.RangeValuesRequirementStr = "  ";
             p.Validate();
@@ -1884,40 +1886,40 @@ namespace vSharpStudio.Unit
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(0, v.ListBoundaries.Count);
-            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.IsEmpty(v.ListBoundaries);
+            Assert.HasCount(1, v.ListValues);
             Assert.AreEqual("\"\"", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = "\"c\"";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(0, v.ListBoundaries.Count);
-            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.IsEmpty(v.ListBoundaries);
+            Assert.HasCount(1, v.ListValues);
             Assert.AreEqual("\"c\"", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = " \"c\"";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(0, v.ListBoundaries.Count);
-            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.IsEmpty(v.ListBoundaries);
+            Assert.HasCount(1, v.ListValues);
             Assert.AreEqual("\"c\"", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = "\"c\" ";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(0, v.ListBoundaries.Count);
-            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.IsEmpty(v.ListBoundaries);
+            Assert.HasCount(1, v.ListValues);
             Assert.AreEqual("\"c\"", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = "\"c\";\"b\"";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(0, v.ListBoundaries.Count);
-            Assert.AreEqual(2, v.ListValues.Count);
+            Assert.IsEmpty(v.ListBoundaries);
+            Assert.HasCount(2, v.ListValues);
             Assert.AreEqual("\"c\"", v.ListValues[0]);
             Assert.AreEqual("\"b\"", v.ListValues[1]);
 
@@ -1925,8 +1927,8 @@ namespace vSharpStudio.Unit
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(0, v.ListBoundaries.Count);
-            Assert.AreEqual(2, v.ListValues.Count);
+            Assert.IsEmpty(v.ListBoundaries);
+            Assert.HasCount(2, v.ListValues);
             Assert.AreEqual("\"c\"", v.ListValues[0]);
             Assert.AreEqual("\"b\"", v.ListValues[1]);
 
@@ -1934,33 +1936,33 @@ namespace vSharpStudio.Unit
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListErrors.Count);
-            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
-            Assert.IsTrue(v.ListErrors[0].Contains("'c'"));
+            Assert.HasCount(1, v.ListErrors);
+            Assert.Contains("Can't", v.ListErrors[0]);
+            Assert.Contains("'c'", v.ListErrors[0]);
 
             p.RangeValuesRequirementStr = "#\"c\"";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListErrors.Count);
-            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
-            Assert.IsTrue(v.ListErrors[0].Contains("#\"c\""));
+            Assert.HasCount(1, v.ListErrors);
+            Assert.Contains("Can't", v.ListErrors[0]);
+            Assert.Contains("#\"c\"", v.ListErrors[0]);
 
             p.RangeValuesRequirementStr = "\"c\"#";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListErrors.Count);
-            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
-            Assert.IsTrue(v.ListErrors[0].Contains("\"c\"#"));
+            Assert.HasCount(1, v.ListErrors);
+            Assert.Contains("Can't", v.ListErrors[0]);
+            Assert.Contains("\"c\"#", v.ListErrors[0]);
 
             p.RangeValuesRequirementStr = "\"a\"#\"c\"";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListErrors.Count);
-            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
-            Assert.IsTrue(v.ListErrors[0].Contains("\"a\"#\"c\""));
+            Assert.HasCount(1, v.ListErrors);
+            Assert.Contains("Can't", v.ListErrors[0]);
+            Assert.Contains("\"a\"#\"c\"", v.ListErrors[0]);
 
             p.RangeValuesRequirementStr = "";
             p.Validate();
@@ -1978,34 +1980,34 @@ namespace vSharpStudio.Unit
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(0, v.ListBoundaries.Count);
-            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.IsEmpty(v.ListBoundaries);
+            Assert.HasCount(1, v.ListValues);
             Assert.AreEqual("1", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = "#2";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListBoundaries.Count);
-            Assert.AreEqual(0, v.ListValues.Count);
-            Assert.AreEqual(null, v.ListBoundaries[0].BoundaryMin);
+            Assert.HasCount(1, v.ListBoundaries);
+            Assert.IsEmpty(v.ListValues);
+            Assert.IsNull(v.ListBoundaries[0].BoundaryMin);
             Assert.AreEqual("2", v.ListBoundaries[0].BoundaryMax);
 
             p.RangeValuesRequirementStr = "2#";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListBoundaries.Count);
-            Assert.AreEqual(0, v.ListValues.Count);
+            Assert.HasCount(1, v.ListBoundaries);
+            Assert.IsEmpty(v.ListValues);
             Assert.AreEqual("2", v.ListBoundaries[0].BoundaryMin);
-            Assert.AreEqual(null, v.ListBoundaries[0].BoundaryMax);
+            Assert.IsNull(v.ListBoundaries[0].BoundaryMax);
 
             p.RangeValuesRequirementStr = "3#7";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListBoundaries.Count);
-            Assert.AreEqual(0, v.ListValues.Count);
+            Assert.HasCount(1, v.ListBoundaries);
+            Assert.IsEmpty(v.ListValues);
             Assert.AreEqual("3", v.ListBoundaries[0].BoundaryMin);
             Assert.AreEqual("7", v.ListBoundaries[0].BoundaryMax);
 
@@ -2013,8 +2015,8 @@ namespace vSharpStudio.Unit
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListBoundaries.Count);
-            Assert.AreEqual(0, v.ListValues.Count);
+            Assert.HasCount(1, v.ListBoundaries);
+            Assert.IsEmpty(v.ListValues);
             Assert.AreEqual("-7", v.ListBoundaries[0].BoundaryMin);
             Assert.AreEqual("-3", v.ListBoundaries[0].BoundaryMax);
 
@@ -2022,24 +2024,24 @@ namespace vSharpStudio.Unit
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
-            Assert.AreEqual(3, v.ListBoundaries.Count);
-            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.HasCount(3, v.ListBoundaries);
+            Assert.HasCount(1, v.ListValues);
 
             p.RangeValuesRequirementStr = "5#2";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListErrors.Count);
-            Assert.IsTrue(v.ListErrors[0].Contains("greater"));
-            Assert.IsTrue(v.ListErrors[0].Contains("5#2"));
+            Assert.HasCount(1, v.ListErrors);
+            Assert.Contains("greater", v.ListErrors[0]);
+            Assert.Contains("5#2", v.ListErrors[0]);
 
             p.RangeValuesRequirementStr = "bbb";
             p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
-            Assert.AreEqual(1, v.ListErrors.Count);
-            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
-            Assert.IsTrue(v.ListErrors[0].Contains("bbb"));
+            Assert.HasCount(1, v.ListErrors);
+            Assert.Contains("Can't", v.ListErrors[0]);
+            Assert.Contains("bbb", v.ListErrors[0]);
 
             p.RangeValuesRequirementStr = "";
             p.Validate();
@@ -2059,23 +2061,23 @@ namespace vSharpStudio.Unit
             // Catalog
             var gc = m.GroupCatalogs;
             var c = gc.AddCatalog("Simple");
-            Assert.IsTrue(c.dicCatalogAccess.Count == 0);
+            Assert.IsEmpty(c.dicCatalogAccess);
             var det = c.AddDetails("det1");
             var pdet = det.AddPropertyString("pdet", 5);
-            Assert.IsTrue(pdet.dicPropertyAccess.Count == 0);
-            Assert.IsTrue(det.GroupProperties.dicPropertyAccess.Count == 0);
-            Assert.IsTrue(det.dicDetailAccess.Count == 0);
+            Assert.IsEmpty(pdet.dicPropertyAccess);
+            Assert.IsEmpty(det.GroupProperties.dicPropertyAccess);
+            Assert.IsEmpty(det.dicDetailAccess);
             var role = m.GroupCommon.GroupRoles.AddRole("role1");
-            Assert.IsTrue(pdet.dicPropertyAccess.Count == 1);
-            Assert.IsTrue(det.GroupProperties.dicPropertyAccess.Count == 1);
-            Assert.IsTrue(det.dicDetailAccess.Count == 1);
+            Assert.HasCount(1, pdet.dicPropertyAccess);
+            Assert.HasCount(1, det.GroupProperties.dicPropertyAccess);
+            Assert.HasCount(1, det.dicDetailAccess);
 
-            Assert.IsTrue(c.dicCatalogAccess.Count == 1);
+            Assert.HasCount(1, c.dicCatalogAccess);
             Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, c.GetRoleCatalogAccess(role));
             Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, gc.GetRoleCatalogAccess(role));
             var p = c.GroupProperties.AddPropertyChar("char_notnullable");
             var pf = c.Folder.GroupProperties.AddPropertyChar("pfolder");
-            Assert.IsTrue(p.dicPropertyAccess.Count == 1);
+            Assert.HasCount(1, p.dicPropertyAccess);
             Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, c.GetRoleCatalogAccess(role));
             Assert.AreEqual(EnumPrintAccess.PR_PRINT, c.GetRoleCatalogPrint(role));
             Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role));
@@ -2084,8 +2086,8 @@ namespace vSharpStudio.Unit
             var gtg = m.GroupConstantGroups;
             var ctg = gtg.AddGroupConstants("settings1");
             var ct = ctg.AddConstantString("const1");
-            Assert.IsTrue(ct.dicConstantAccess.Count == 1);
-            Assert.IsTrue(ctg.dicConstantAccess.Count == 1);
+            Assert.HasCount(1, ct.dicConstantAccess);
+            Assert.HasCount(1, ctg.dicConstantAccess);
             Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role));
             Assert.AreEqual(EnumPrintAccess.PR_PRINT, ct.GetRoleConstantPrint(role));
 
@@ -2093,21 +2095,21 @@ namespace vSharpStudio.Unit
             var gd = m.GroupDocuments;
             var d = gd.AddDocument("Doc1");
             var gld = d.ParentGroupListDocuments;
-            Assert.IsTrue(d.dicDocumentAccess.Count == 1);
+            Assert.HasCount(1, d.dicDocumentAccess);
             Assert.AreEqual(EnumDocumentAccess.D_UNPOST, d.GetRoleDocumentAccess(role));
             Assert.AreEqual(EnumDocumentAccess.D_UNPOST, gd.GetRoleDocumentAccess(role));
             var pd = d.GroupProperties.AddPropertyChar("char_notnullable");
-            Assert.IsTrue(pd.dicPropertyAccess.Count == 1);
+            Assert.HasCount(1, pd.dicPropertyAccess);
             Assert.AreEqual(EnumPropertyAccess.P_EDIT, pd.GetRolePropertyAccess(role));
 
             // Timeline
             var pTimeline = gd.DocumentTimeline.AddPropertyString("shared", 5);
 
             // Constant
-            foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
+            foreach (var tpr in Enum.GetValues<EnumPrintAccess>())
             {
                 var enPrint = (EnumPrintAccess)tpr;
-                foreach (var tpa in Enum.GetValues(typeof(EnumConstantAccess)))
+                foreach (var tpa in Enum.GetValues<EnumConstantAccess>())
                 {
                     var enConstAccess = (EnumConstantAccess)tpa;
                     ct.SetRoleAccess(role, enConstAccess, enPrint);
@@ -2127,10 +2129,10 @@ namespace vSharpStudio.Unit
             }
 
             // Catalog property
-            foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
+            foreach (var tpr in Enum.GetValues<EnumPrintAccess>())
             {
                 var enPrint = (EnumPrintAccess)tpr;
-                foreach (var tpa in Enum.GetValues(typeof(EnumPropertyAccess)))
+                foreach (var tpa in Enum.GetValues<EnumPropertyAccess>())
                 {
                     var enPropAccess = (EnumPropertyAccess)tpa;
                     p.SetRoleAccess(role, enPropAccess, enPrint);
@@ -2150,10 +2152,10 @@ namespace vSharpStudio.Unit
             }
 
             // Catalog detail property
-            foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
+            foreach (var tpr in Enum.GetValues<EnumPrintAccess>())
             {
                 var enPrint = (EnumPrintAccess)tpr;
-                foreach (var tpa in Enum.GetValues(typeof(EnumPropertyAccess)))
+                foreach (var tpa in Enum.GetValues<EnumPropertyAccess>())
                 {
                     var enPropAccess = (EnumPropertyAccess)tpa;
                     pdet.SetRoleAccess(role, enPropAccess, enPrint);
@@ -2173,10 +2175,10 @@ namespace vSharpStudio.Unit
             }
 
             // Catalog folder property
-            foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
+            foreach (var tpr in Enum.GetValues<EnumPrintAccess>())
             {
                 var enPrint = (EnumPrintAccess)tpr;
-                foreach (var tpa in Enum.GetValues(typeof(EnumPropertyAccess)))
+                foreach (var tpa in Enum.GetValues<EnumPropertyAccess>())
                 {
                     var enPropAccess = (EnumPropertyAccess)tpa;
                     pf.SetRoleAccess(role, enPropAccess, enPrint);
@@ -2196,10 +2198,10 @@ namespace vSharpStudio.Unit
             }
 
             // Document property
-            foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
+            foreach (var tpr in Enum.GetValues<EnumPrintAccess>())
             {
                 var enPrint = (EnumPrintAccess)tpr;
-                foreach (var tpa in Enum.GetValues(typeof(EnumPropertyAccess)))
+                foreach (var tpa in Enum.GetValues<EnumPropertyAccess>())
                 {
                     var enPropAccess = (EnumPropertyAccess)tpa;
                     pd.SetRoleAccess(role, enPropAccess, enPrint);
@@ -2219,10 +2221,10 @@ namespace vSharpStudio.Unit
             }
 
             // Timeline property
-            foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
+            foreach (var tpr in Enum.GetValues<EnumPrintAccess>())
             {
                 var enPrint = (EnumPrintAccess)tpr;
-                foreach (var tpa in Enum.GetValues(typeof(EnumPropertyAccess)))
+                foreach (var tpa in Enum.GetValues<EnumPropertyAccess>())
                 {
                     var enPropAccess = (EnumPropertyAccess)tpa;
                     pTimeline.SetRoleAccess(role, enPropAccess, enPrint);
@@ -2243,7 +2245,7 @@ namespace vSharpStudio.Unit
         }
         private static void TestConstantsGroup(Role role, GroupConstantGroups gctg, GroupListConstants ctg, Constant ct, EnumPrintAccess enPrint)
         {
-            foreach (var tca in Enum.GetValues(typeof(EnumConstantAccess)))
+            foreach (var tca in Enum.GetValues<EnumConstantAccess>())
             {
                 var enCnstAccess = (EnumConstantAccess)tca;
                 ctg.SetRoleAccess(role, enCnstAccess, enPrint);
@@ -2262,7 +2264,7 @@ namespace vSharpStudio.Unit
                         switch (enCnstAccess)
                         {
                             case EnumConstantAccess.CN_BY_PARENT:
-                                foreach (var tca_gc in Enum.GetValues(typeof(EnumConstantAccess)))
+                                foreach (var tca_gc in Enum.GetValues<EnumConstantAccess>())
                                 {
                                     var enGCnstAccess = (EnumConstantAccess)tca_gc;
                                     ctg.SetRoleAccess(role, enGCnstAccess, enPrint);
@@ -2316,7 +2318,7 @@ namespace vSharpStudio.Unit
         }
         private static void TestGroupConstantsGroup(Role role, GroupConstantGroups gctg, GroupListConstants ctg, Constant ct, EnumPrintAccess enPrint)
         {
-            foreach (var tca in Enum.GetValues(typeof(EnumConstantAccess)))
+            foreach (var tca in Enum.GetValues<EnumConstantAccess>())
             {
                 var enCnstAccess = (EnumConstantAccess)tca;
                 role.DefaultConstantEditAccessSettings = enCnstAccess;
@@ -2412,7 +2414,7 @@ namespace vSharpStudio.Unit
         private static void TestGroupListProperties(Role role, GroupDocuments gd, Property p, EnumPrintAccess enPrint)
         {
             var glp = p.ParentListPropertiesI;
-            foreach (var tca in Enum.GetValues(typeof(EnumPropertyAccess)))
+            foreach (var tca in Enum.GetValues<EnumPropertyAccess>())
             {
                 var enPropAccess = (EnumPropertyAccess)tca;
                 glp.SetRoleAccess(role, enPropAccess, enPrint);
@@ -2433,7 +2435,7 @@ namespace vSharpStudio.Unit
         private static void TestGroupListProperties(Role role, CatalogFolder cf, Property p, EnumPrintAccess enPrint)
         {
             var glp = p.ParentGroupListProperties;
-            foreach (var tca in Enum.GetValues(typeof(EnumPropertyAccess)))
+            foreach (var tca in Enum.GetValues<EnumPropertyAccess>())
             {
                 var enPropAccess = (EnumPropertyAccess)tca;
                 glp.SetRoleAccess(role, enPropAccess, enPrint);
@@ -2455,7 +2457,7 @@ namespace vSharpStudio.Unit
         {
             var c = cf.ParentCatalog;
             var gc = c.ParentGroupListCatalogs;
-            foreach (var tca in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+            foreach (var tca in Enum.GetValues<EnumCatalogDetailAccess>())
             {
                 var enCatAccess = (EnumCatalogDetailAccess)tca;
                 c.SetRoleAccess(role, enCatAccess, enPrint);
@@ -2473,7 +2475,7 @@ namespace vSharpStudio.Unit
                         switch (enCatAccess)
                         {
                             case EnumCatalogDetailAccess.C_BY_PARENT:
-                                foreach (var tca_gc in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+                                foreach (var tca_gc in Enum.GetValues<EnumCatalogDetailAccess>())
                                 {
                                     var enGCatAccess = (EnumCatalogDetailAccess)tca_gc;
                                     role.DefaultCatalogEditAccessSettings = enGCatAccess;
@@ -2505,7 +2507,7 @@ namespace vSharpStudio.Unit
         private static void TestCatalog(Role role, Catalog c, Property p, EnumPrintAccess enPrint)
         {
             var gc = c.ParentGroupListCatalogs;
-            foreach (var tca in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+            foreach (var tca in Enum.GetValues<EnumCatalogDetailAccess>())
             {
                 var enCatAccess = (EnumCatalogDetailAccess)tca;
                 c.SetRoleAccess(role, enCatAccess, enPrint);
@@ -2523,7 +2525,7 @@ namespace vSharpStudio.Unit
                         switch (enCatAccess)
                         {
                             case EnumCatalogDetailAccess.C_BY_PARENT:
-                                foreach (var tca_gc in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+                                foreach (var tca_gc in Enum.GetValues<EnumCatalogDetailAccess>())
                                 {
                                     var enGCatAccess = (EnumCatalogDetailAccess)tca_gc;
                                     role.DefaultCatalogEditAccessSettings = enGCatAccess;
@@ -2555,7 +2557,7 @@ namespace vSharpStudio.Unit
         private static void TestDetail(Role role, Catalog c, Detail dt, Property p, EnumPrintAccess enPrint)
         {
             var gc = c.ParentGroupListCatalogs;
-            foreach (var tca in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+            foreach (var tca in Enum.GetValues<EnumCatalogDetailAccess>())
             {
                 var enCatAccess = (EnumCatalogDetailAccess)tca;
                 dt.SetRoleAccess(role, enCatAccess, enPrint);
@@ -2573,7 +2575,7 @@ namespace vSharpStudio.Unit
                         switch (enCatAccess)
                         {
                             case EnumCatalogDetailAccess.C_BY_PARENT:
-                                foreach (var tca_gc in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+                                foreach (var tca_gc in Enum.GetValues<EnumCatalogDetailAccess>())
                                 {
                                     var enGCatAccess = (EnumCatalogDetailAccess)tca_gc;
                                     role.DefaultCatalogEditAccessSettings = enGCatAccess;
@@ -2626,7 +2628,7 @@ namespace vSharpStudio.Unit
         }
         private static void TestGroupCatalog(Role role, GroupListCatalogs gc, Catalog c, Property p, EnumPrintAccess enPrint)
         {
-            foreach (var tca in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+            foreach (var tca in Enum.GetValues<EnumCatalogDetailAccess>())
             {
                 var enGrCatAccess = (EnumCatalogDetailAccess)tca;
                 role.DefaultCatalogEditAccessSettings = enGrCatAccess;
@@ -2651,7 +2653,7 @@ namespace vSharpStudio.Unit
         }
         private static void TestDocument(Role role, GroupDocuments gd, GroupListDocuments gld, Document d, Property p, EnumPrintAccess enPrint)
         {
-            foreach (var tca in Enum.GetValues(typeof(EnumDocumentAccess)))
+            foreach (var tca in Enum.GetValues<EnumDocumentAccess>())
             {
                 var enDocAccess = (EnumDocumentAccess)tca;
                 d.SetRoleAccess(role, enDocAccess, enPrint);
@@ -2673,7 +2675,7 @@ namespace vSharpStudio.Unit
         }
         private static void TestGroupListDocuments(Role role, GroupDocuments gd, GroupListDocuments gld, Document d, Property p, EnumPrintAccess enPrint)
         {
-            foreach (var tca in Enum.GetValues(typeof(EnumDocumentAccess)))
+            foreach (var tca in Enum.GetValues<EnumDocumentAccess>())
             {
                 var enGrDocAccess = (EnumDocumentAccess)tca;
                 gld.SetRoleAccess(role, enGrDocAccess, enPrint);
@@ -2720,7 +2722,7 @@ namespace vSharpStudio.Unit
         }
         private static void TestGroupDocuments(Role role, GroupDocuments gd, GroupListDocuments gld, Document d, Property p, EnumPrintAccess enPrint)
         {
-            foreach (var tca in Enum.GetValues(typeof(EnumDocumentAccess)))
+            foreach (var tca in Enum.GetValues<EnumDocumentAccess>())
             {
                 var enGrDocAccess = (EnumDocumentAccess)tca;
                 role.DefaultDocumentEditAccessSettings = enGrDocAccess;
@@ -2748,7 +2750,7 @@ namespace vSharpStudio.Unit
         }
         private static void TestGroupDocumentsShared(Role role, GroupDocuments gd, IListProperties glp, Property p, EnumPrintAccess enPrint)
         {
-            foreach (var tca in Enum.GetValues(typeof(EnumPropertyAccess)))
+            foreach (var tca in Enum.GetValues<EnumPropertyAccess>())
             {
                 var enPropAccess = (EnumDocumentAccess)tca;
                 role.DefaultDocumentEditAccessSettings = enPropAccess;

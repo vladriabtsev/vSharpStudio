@@ -7,12 +7,11 @@ namespace GenVmFromProto
 {
     public partial class IVisitorConfigNode
     {
-        readonly ILogger? _logger;
+        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(IVisitorConfigNode));
         readonly FileDescriptor root;
         readonly List<MessageDescriptor> messages = new List<MessageDescriptor>();
         public IVisitorConfigNode(FileDescriptor root)
         {
-            _logger = AppLogger.CreateLogger<IVisitorConfigNode>();
             _logger?.Debug("Create for '{0}'", root.Name);
             this.root = root;
             CollectMessages(root);

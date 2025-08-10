@@ -4,6 +4,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class GroupListDocumentsValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(GroupListDocumentsValidator));
         public GroupListDocumentsValidator()
         {
             this.RuleFor(x => x.ShortIdTypeForCacheKey).NotEmpty().WithMessage("Can't be empty");

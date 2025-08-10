@@ -5,6 +5,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class CatalogFolderValidator
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(CatalogFolderValidator));
         public CatalogFolderValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);

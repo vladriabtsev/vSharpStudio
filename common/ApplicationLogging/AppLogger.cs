@@ -5,6 +5,9 @@ using System.Linq;
 using Serilog;
 //using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging;
+using System.Text;
+using System.Reflection.Metadata;
+using Serilog.Core;
 //using Serilog;
 //using Serilog.Filters;
 
@@ -23,29 +26,59 @@ namespace ApplicationLogging
     // https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md
     public static class AppLogger
     {
+        /// <summary>
+        /// Use stack deepness for messages
+        /// </summary>
+        public static bool UseStackIndent { get; set; } = true;
+        /// <summary>
+        /// Log file path
+        /// </summary>
         public static string? LogFilePath { get; set; } = ".\\Logs\\log.txt";
+        /// <summary>
+        /// Use console logger
+        /// </summary>
         public static bool UseConsole { get; set; } = false;
+        /// <summary>
+        /// Use debug logger
+        /// </summary>
         public static bool UseDebug { get; set; } = true;
+        /// <summary>
+        /// Default log level 
+        /// </summary>
         public static LogLevel LogLevel { get; set; } = LogLevel.None;
+        /// <summary>
+        /// Log level for debug logger. Override default log level.
+        /// </summary>
+        public static LogLevel? LogLevelDebug { get; set; } = null;
+        /// <summary>
+        /// Log level for console logger. Override default log level.
+        /// </summary>
+        public static LogLevel? LogLevelConsole { get; set; } = null;
+        /// <summary>
+        /// Indent message log. If equal '-1' when logger factory is creating, then it indent will show deepness relative log factory creation call. 
+        /// </summary>
         public static int IndentShift { get; internal set; } = -1;
+        /// <summary>
+        /// If true, full file path wiil be used in logging messages
+        /// </summary>
+        public static bool IsFullFilePath { get; set; } = false;
+        /// <summary>
+        /// Logger factory to create loggers. Use next sample code: '_logger = AppLogger.CreateLogger(nameof(<Your-class-name>));'.
+        /// </summary>
         public static Microsoft.Extensions.Logging.ILoggerFactory? LoggerFactory
         {
             get
             {
                 if (_LoggerFactory == null)
                 {
-                    //Trace.WriteLine("##### LogFilePath: " + LogFilePath);
-                    //Trace.WriteLine("##### UseDebug: " + UseDebug);
-                    //Trace.WriteLine("##### UseConsole: " + UseConsole);
-                    //Trace.WriteLine("##### LogLevel: " + LogLevel);
-
-                    Debug.WriteLine("##### LogFilePath: " + LogFilePath);
-                    Debug.WriteLine("##### UseDebug: " + UseDebug);
-                    Debug.WriteLine("##### UseConsole: " + UseConsole);
-                    Debug.WriteLine("##### LogLevel: " + LogLevel);
-
-                    int n = Environment.StackTrace.Split(Environment.NewLine).Count();
-                    if (IndentShift == -1 || IndentShift > n) IndentShift = n;
+                    string call_from = "";
+                    if (UseStackIndent)
+                    {
+                        var lst = Environment.StackTrace.Split(Environment.NewLine);
+                        call_from = lst[3];
+                        int n = lst.Length;
+                        if (IndentShift == -1 || IndentShift > n) IndentShift = n;
+                    }
                     Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
                     var logCfg = new Serilog.LoggerConfiguration();
                     switch (LogLevel)
@@ -82,48 +115,103 @@ namespace ApplicationLogging
                             rollOnFileSizeLimit: true
                             ));
                         }
-                        if (UseDebug)
+                    }
+                    if (UseDebug)
+                    {
+                        if (LogLevelDebug == null)
+                            LogLevelDebug = LogLevel;
+                        switch (LogLevelDebug)
                         {
-                            logCfg.WriteTo.Debug();
+                            case LogLevel.Trace:
+                                logCfg.WriteTo.Debug().MinimumLevel.Verbose();
+                                break;
+                            case LogLevel.Debug:
+                                logCfg.WriteTo.Debug().MinimumLevel.Debug();
+                                break;
+                            case LogLevel.Information:
+                                logCfg.WriteTo.Debug().MinimumLevel.Information();
+                                break;
+                            case LogLevel.Warning:
+                                logCfg.WriteTo.Debug().MinimumLevel.Warning();
+                                break;
+                            case LogLevel.Error:
+                                logCfg.WriteTo.Debug().MinimumLevel.Error();
+                                break;
+                            case LogLevel.Critical:
+                                logCfg.WriteTo.Debug().MinimumLevel.Fatal();
+                                break;
                         }
-                        if (UseConsole)
+                    }
+                    if (UseConsole)
+                    {
+                        if (LogLevelConsole == null)
+                            LogLevelConsole = LogLevel;
+                        switch (LogLevelConsole)
                         {
-                            logCfg.WriteTo.Console();
+                            case LogLevel.Trace:
+                                logCfg.WriteTo.Console().MinimumLevel.Verbose();
+                                break;
+                            case LogLevel.Debug:
+                                logCfg.WriteTo.Console().MinimumLevel.Debug();
+                                break;
+                            case LogLevel.Information:
+                                logCfg.WriteTo.Console().MinimumLevel.Information();
+                                break;
+                            case LogLevel.Warning:
+                                logCfg.WriteTo.Console().MinimumLevel.Warning();
+                                break;
+                            case LogLevel.Error:
+                                logCfg.WriteTo.Console().MinimumLevel.Error();
+                                break;
+                            case LogLevel.Critical:
+                                logCfg.WriteTo.Console().MinimumLevel.Fatal();
+                                break;
                         }
-                        Serilog.Log.Logger = logCfg.CreateLogger();
+                    }
+                    Serilog.Log.Logger = logCfg.CreateLogger();
+                    if (LogLevel != LogLevel.None || UseDebug || UseConsole)
+                    {
                         _LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder
                             .SetMinimumLevel(LogLevel)
                             .AddSerilog());
                     }
-                    //if (LogFilePath?.Length > 0)
-                    //{
-                    //    //logPath = AppDomain.CurrentDomain.BaseDirectory + logPath;
-                    //    Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
-                    //    var logCfg = new Serilog.LoggerConfiguration()
-                    //        .MinimumLevel.Verbose();
-                    //    //if (category != null)
-                    //    //    logCfg.Filter.ByIncludingOnly(Matching.FromSource(category));
-                    //    logCfg.WriteTo.Async(a => a.File(LogFilePath,
-                    //        retainedFileTimeLimit: TimeSpan.FromDays(3),
-                    //        //retainedFileCountLimit: 5,
-                    //        rollingInterval: Serilog.RollingInterval.Day,
-                    //        rollOnFileSizeLimit: true
-                    //        ));
-                    //    Serilog.Log.Logger = logCfg.CreateLogger();
-                    //    _LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder
-                    //        .SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug)
-                    //        .AddSerilog()
-                    //        .AddDebug());
-                    //}
-                    //else
-                    //{
-                    //    _LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder
-                    //        .SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace)
-                    //        .AddDebug());
-                    //}
+                    StringBuilder log = new StringBuilder();
+                    if (!string.IsNullOrEmpty(LogFilePath))
+                    {
+                        log.Append("LogFilePath: '");
+                        log.Append(LogFilePath);
+                        log.Append("'");
+                        log.Append(", LogLevel: '");
+                        log.Append(LogLevel);
+                        log.Append("'");
+                    }
+                    if (UseDebug)
+                    {
+                        log.Append(", LogLevelDebug: '");
+                        log.Append(LogLevelDebug);
+                        log.Append("'");
+                    }
+                    else
+                    {
+                        log.Append(", LogDebug: 'false'");
+                    }
+                    if (UseConsole)
+                    {
+                        log.Append(", LogLevelConsole: '");
+                        log.Append(LogLevelConsole);
+                        log.Append("'");
+                    }
+                    else
+                    {
+                        log.Append(", LogConsole: 'false'");
+                    }
+                    Debug.WriteLine("##########################################  L O G G E R  ###################################################");
+                    Debug.WriteLine("##### " + log.ToString());
+                    Debug.WriteLine("############################################################################################################");
+                    var _logger = _LoggerFactory?.CreateLogger(nameof(AppLogger));
+                    call_from = "LoggerFactory is created " + call_from.TrimStart();
+                    _logger?.Information(call_from);
                 }
-                //var _logger = _LoggerFactory.CreateLogger("AppLogger");
-                //_logger?.Trace("### IsModel={IsModel}", o.IsModel);
                 return _LoggerFactory;
             }
             set
@@ -134,16 +222,21 @@ namespace ApplicationLogging
                 }
                 if (_LoggerFactory == null)
                 {
-                    int n = Environment.StackTrace.Split(Environment.NewLine).Count();
+                    int n = Environment.StackTrace.Split(Environment.NewLine).Length;
                     if (IndentShift == -1 || IndentShift > n) IndentShift = n;
                 }
                 _LoggerFactory = value;
             }
         }
         private static Microsoft.Extensions.Logging.ILoggerFactory? _LoggerFactory = null;
+        /// <summary>
+        /// Logger factory to create loggers '_logger = AppLogger.CreateLogger<Your-class-name>();'
+        /// </summary>
         public static Microsoft.Extensions.Logging.ILogger? CreateLogger<T>() => LoggerFactory?.CreateLogger(typeof(T).Name);
+        /// <summary>
+        /// Logger factory to create loggers '_logger = AppLogger.CreateLogger(nameof(Your-class-name));'
+        /// </summary>
         public static Microsoft.Extensions.Logging.ILogger? CreateLogger(string category) => LoggerFactory?.CreateLogger(category);
-        public static Microsoft.Extensions.Logging.ILogger? CreateLogger(object obj) => LoggerFactory?.CreateLogger(obj.GetType().Name);
     }
 
     // https://learn.microsoft.com/en-us/dotnet/core/extensions/logging?tabs=command-line

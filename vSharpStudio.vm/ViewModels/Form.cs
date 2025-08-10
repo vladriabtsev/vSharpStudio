@@ -122,7 +122,7 @@ namespace vSharpStudio.vm.ViewModels
                                where p.EnumFormType == this.EnumFormType
                                select p).Count();
                     if (cnt > 1)
-                        MessageBox.Show($"List forms already contains '{Enum.GetName<FormType>(this.EnumFormType)}' form type", "Warning", System.Windows.MessageBoxButton.OK);
+                        Xceed.Wpf.Toolkit.MessageBox.Show($"List forms already contains '{Enum.GetName<FormType>(this.EnumFormType)}' form type", "Warning", System.Windows.MessageBoxButton.OK);
                     break;
                 default:
                     break;

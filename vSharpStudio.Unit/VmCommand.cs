@@ -54,10 +54,10 @@ namespace vSharpStudio.Unit
     [TestClass]
     public class VmCommand
     {
+        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(VmCommand));
         static VmCommand()
         {
         }
-        private static Microsoft.Extensions.Logging.ILogger _logger;
         // public VmTests(ITestOutputHelper output)
         public VmCommand()
         {
@@ -66,15 +66,12 @@ namespace vSharpStudio.Unit
             // loggerFactory.AddProvider(new DebugLoggerProvider());
             // _logger = loggerFactory.CreateLogger<VmTests>();
             // _logger.LogInformation("======================  Start VmTests tests ===============================");
-            if (_logger == null)
-                //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
-                _logger = AppLogger.CreateLogger<PluginTests>();
         }
 
         #region AsyncCommand
 
         [TestMethod]
-        async public Task ExecuteFuncAsync()
+        public async Task ExecuteFuncAsync()
         {
             int i = 0;
             await vCommandAsync.ExecuteActionAsync(() =>
@@ -84,7 +81,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(5, i);
         }
         [TestMethod]
-        async public Task ExecuteFuncAsyncInt()
+        public async Task ExecuteFuncAsyncInt()
         {
             var res = await vCommandAsync<int>.ExecuteFuncAsync(() =>
                 {
@@ -93,7 +90,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(5, res);
         }
         [TestMethod]
-        async public Task ExecuteFuncAsyncWithException()
+        public async Task ExecuteFuncAsyncWithException()
         {
             await Assert.ThrowsExactlyAsync<Exception>(async () =>
             {
@@ -104,7 +101,7 @@ namespace vSharpStudio.Unit
             });
         }
         [TestMethod]
-        async public Task ExecuteFuncAsyncIntWithException()
+        public async Task ExecuteFuncAsyncIntWithException()
         {
             await Assert.ThrowsExactlyAsync<Exception>(async () =>
             {
@@ -115,7 +112,7 @@ namespace vSharpStudio.Unit
             });
         }
         [TestMethod]
-        async public Task ExecuteFuncAsyncWithProgress()
+        public async Task ExecuteFuncAsyncWithProgress()
         {
             var localProgress = new ProgressVM();
             int i = 0;
@@ -131,7 +128,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(9, localProgress.Progress);
         }
         [TestMethod]
-        async public Task ExecuteFuncAsyncWithProgressInt()
+        public async Task ExecuteFuncAsyncWithProgressInt()
         {
             var localProgress = new ProgressVM();
             int i = 0;
@@ -148,7 +145,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(9, localProgress.Progress);
         }
         [TestMethod]
-        async public Task AsyncCommandIntWithProgress()
+        public async Task AsyncCommandIntWithProgress()
         {
             var localProgress = new ProgressVM();
             int i = 0;
@@ -166,7 +163,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(9, localProgress.Progress);
         }
         [TestMethod]
-        async public Task AsyncCommandIntExecuteAsync()
+        public async Task AsyncCommandIntExecuteAsync()
         {
             var command = vCommandAsync<int>.Create((c) =>
             {
@@ -175,13 +172,13 @@ namespace vSharpStudio.Unit
             await command.ExecuteAsync(null);
             Assert.AreEqual(5, command.Execution.Result);
             Assert.IsTrue(string.IsNullOrEmpty(command.Execution.ErrorMessage));
-            Assert.AreEqual(false, command.Execution.IsFaulted);
-            Assert.AreEqual(false, command.Execution.IsNotCompleted);
-            Assert.AreEqual(true, command.Execution.IsCompleted);
-            Assert.AreEqual(false, command.Execution.IsCanceled);
+            Assert.IsFalse(command.Execution.IsFaulted);
+            Assert.IsFalse(command.Execution.IsNotCompleted);
+            Assert.IsTrue(command.Execution.IsCompleted);
+            Assert.IsFalse(command.Execution.IsCanceled);
             Assert.IsNull(command.Execution.Exception);
             Assert.IsNull(command.Execution.InnerException);
-            Assert.AreEqual(true, command.Execution.IsSuccessfullyCompleted);
+            Assert.IsTrue(command.Execution.IsSuccessfullyCompleted);
         }
         [TestMethod]
         public void AsyncCommandIntExecute()
@@ -193,16 +190,16 @@ namespace vSharpStudio.Unit
             command.Execute(null);
             Assert.AreEqual(5, command.Execution.Result);
             Assert.IsTrue(string.IsNullOrEmpty(command.Execution.ErrorMessage));
-            Assert.AreEqual(false, command.Execution.IsFaulted);
-            Assert.AreEqual(false, command.Execution.IsNotCompleted);
-            Assert.AreEqual(true, command.Execution.IsCompleted);
-            Assert.AreEqual(false, command.Execution.IsCanceled);
+            Assert.IsFalse(command.Execution.IsFaulted);
+            Assert.IsFalse(command.Execution.IsNotCompleted);
+            Assert.IsTrue(command.Execution.IsCompleted);
+            Assert.IsFalse(command.Execution.IsCanceled);
             Assert.IsNull(command.Execution.Exception);
             Assert.IsNull(command.Execution.InnerException);
-            Assert.AreEqual(true, command.Execution.IsSuccessfullyCompleted);
+            Assert.IsTrue(command.Execution.IsSuccessfullyCompleted);
         }
         [TestMethod]
-        async public Task AsyncCommandIntWithException()
+        public async Task AsyncCommandIntWithException()
         {
             await Assert.ThrowsExactlyAsync<Exception>(async () =>
             {
@@ -214,7 +211,7 @@ namespace vSharpStudio.Unit
             });
         }
         [TestMethod]
-        async public Task AsyncCommandIntWithExceptionCatch()
+        public async Task AsyncCommandIntWithExceptionCatch()
         {
             var command = vCommandAsync<int>.Create((c) =>
             {
@@ -222,16 +219,16 @@ namespace vSharpStudio.Unit
             }, (o) => { return true; });
             await command.ExecuteAsync(null, true);
             Assert.AreEqual("test", command.Execution.ErrorMessage);
-            Assert.AreEqual(true, command.Execution.IsFaulted);
-            Assert.AreEqual(false, command.Execution.IsNotCompleted);
-            Assert.AreEqual(true, command.Execution.IsCompleted);
-            Assert.AreEqual(false, command.Execution.IsCanceled);
+            Assert.IsTrue(command.Execution.IsFaulted);
+            Assert.IsFalse(command.Execution.IsNotCompleted);
+            Assert.IsTrue(command.Execution.IsCompleted);
+            Assert.IsFalse(command.Execution.IsCanceled);
             Assert.IsNotNull(command.Execution.Exception);
             Assert.IsNotNull(command.Execution.InnerException);
-            Assert.AreEqual(false, command.Execution.IsSuccessfullyCompleted);
+            Assert.IsFalse(command.Execution.IsSuccessfullyCompleted);
         }
         [TestMethod]
-        async public Task AsyncCommandIntExecuteAsyncWithCancellation()
+        public async Task AsyncCommandIntExecuteAsyncWithCancellation()
         {
             var command = vCommandAsync<int>.Create((cancellation) =>
             {
@@ -246,21 +243,21 @@ namespace vSharpStudio.Unit
             command.CancelCommand.Execute(null);
             await command.ExecuteAsync(null);
 
-            Assert.AreEqual(true, command.IsCanceled);
-            Assert.AreEqual(false, command.IsFaulted);
+            Assert.IsTrue(command.IsCanceled);
+            Assert.IsFalse(command.IsFaulted);
             Assert.IsNull(command.Exception);
             Assert.IsNull(command.InnerException);
             Assert.IsTrue(string.IsNullOrEmpty(command.ErrorMessage));
 
             Assert.AreEqual(-1, command.Execution.Result);
             Assert.IsTrue(string.IsNullOrEmpty(command.Execution.ErrorMessage));
-            Assert.AreEqual(false, command.Execution.IsFaulted);
-            Assert.AreEqual(false, command.Execution.IsNotCompleted);
-            Assert.AreEqual(true, command.Execution.IsCompleted);
-            Assert.AreEqual(false, command.Execution.IsCanceled);
+            Assert.IsFalse(command.Execution.IsFaulted);
+            Assert.IsFalse(command.Execution.IsNotCompleted);
+            Assert.IsTrue(command.Execution.IsCompleted);
+            Assert.IsFalse(command.Execution.IsCanceled);
             Assert.IsNull(command.Execution.Exception);
             Assert.IsNull(command.Execution.InnerException);
-            Assert.AreEqual(true, command.Execution.IsSuccessfullyCompleted);
+            Assert.IsTrue(command.Execution.IsSuccessfullyCompleted);
         }
 
         #endregion AsyncCommand

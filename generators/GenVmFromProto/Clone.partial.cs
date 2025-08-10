@@ -6,7 +6,7 @@ namespace GenVmFromProto
 {
     public partial class Clone
     {
-        readonly ILogger? _logger;
+        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(Clone));
         readonly string nameSpace;
         readonly string protoNameSpace;
         readonly FileDescriptor root;
@@ -14,7 +14,6 @@ namespace GenVmFromProto
         readonly MessageDoc Doc;
         public Clone(FileDescriptor root, MessageDescriptor message, string destNS, string protoNS)
         {
-            _logger = AppLogger.CreateLogger<Clone>();
             _logger?.Debug("Clone for '{root}' message '{message}'", root.Name, message.Name);
             this.root = root;
             this.message = message;
