@@ -214,6 +214,7 @@ namespace vSharpStudio.ViewModels
             var protoarr = File.ReadAllBytes(file_path);
             try
             {
+                IEditableObjectExt.IsTraceChanges = false;
                 this.pconfig_history = Proto.Config.proto_config_short_history.Parser.WithDiscardUnknownFields(true).ParseFrom(protoarr);
                 _logger?.Debug("???Configuration is loaded from file: {FilePath}", file_path);
                 var config = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config(false));
@@ -251,6 +252,7 @@ namespace vSharpStudio.ViewModels
                     InitConfig((Config)config.PrevStableConfig);
                 if (config.PrevCurrentConfig != null)
                     InitConfig((Config)config.PrevCurrentConfig);
+                IEditableObjectExt.IsTraceChanges = true;
                 return config;
             }
             catch (Exception ex)

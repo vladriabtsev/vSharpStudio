@@ -41,6 +41,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            this._Name = Defaults.GroupCommonName;
             if (this.Children.Count > 0)
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
@@ -62,7 +63,6 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.OnRemoveChild();
             //};
-            this._Name = Defaults.GroupCommonName;
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

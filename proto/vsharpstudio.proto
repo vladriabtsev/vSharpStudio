@@ -66,7 +66,7 @@ message proto_user_settings_opened_config {
  * ####################################### P L U G I N S ##################################
  */
 // @base ConfigObjectVmBase
-// @attr [Description("Installed plugins")]
+// @attr [Description("Installed Plugins")]
 message proto_group_list_plugins {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -162,6 +162,7 @@ message proto_config_short_history {
     proto_config prev_stable_config = 4;
 }
 // @base ConfigObjectVmBase
+// @attr [Description("Links to Base Configs")]
 message proto_group_list_base_config_links {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]

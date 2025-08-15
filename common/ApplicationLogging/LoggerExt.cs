@@ -124,20 +124,22 @@ namespace ApplicationLogging
             var methodName = memberName;
             var line = sourceLineNumber;
             var indent = "";
+            string msg = "";
             if (AppLogger.IndentShift != -1)
             {
                 int n = Environment.StackTrace.Split(Environment.NewLine).Count();
                 if (n < AppLogger.IndentShift)
                 {
+                    msg = $"#####################  S T A C K  S H I F T:  from {AppLogger.IndentShift} to {n} ######################\n";
+                    AppLogger.IndentShift = n;
                 }
                 System.Diagnostics.Debug.Assert(n >= AppLogger.IndentShift);
                 indent = new String(' ', n - AppLogger.IndentShift);
             }
-            string msg = "";
             if (message != null)
-                msg = $"{indent}{message} [{methodName}] {fileName} {line}";
+                msg += $"{indent}{message} [{methodName}] {fileName} {line}";
             else
-                msg = $"{indent}[{methodName}] {fileName} {line}";
+                msg += $"{indent}[{methodName}] {fileName} {line}";
             return msg;
         }
         public class Dummy { }

@@ -44,6 +44,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            this._Name = Defaults.GroupEnumerationsName;
             this.ListEnumerations.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
@@ -60,7 +61,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.GroupEnumerationsName;
         }
 
         #region Tree operations

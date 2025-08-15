@@ -30,14 +30,6 @@ namespace vSharpStudio.Views
             {
                 return;
             }
-#if DEBUG
-            AppLogger.LogLevel = Microsoft.Extensions.Logging.LogLevel.Trace;
-            AppLogger.UseDebug = true;
-            AppLogger.LogLevelDebug = Microsoft.Extensions.Logging.LogLevel.Information;
-#else
-            AppLogger.LogLevel= Microsoft.Extensions.Logging.LogLevel.Trace;
-            AppLogger.UseDebug = false;
-#endif
             this._model = new MainPageVM(this);
             MainPage.MainPageVM = this._model;
             this.DataContext = this._model;

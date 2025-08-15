@@ -33,6 +33,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            this._Name = Defaults.GroupConstantsGroupsName;
             this.ListConstants.OnAddingAction = (t) =>
             {
                 t.IsNew = true;

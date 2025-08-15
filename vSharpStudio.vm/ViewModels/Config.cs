@@ -83,10 +83,7 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "icon3DScene"; }
         partial void OnCreated()
         {
-            if (string.IsNullOrWhiteSpace(this._Name))
-            {
-                this._Name = Defaults.ConfigName;
-            }
+            this._Name = Defaults.ConfigName;
             Init();
         }
         protected override void OnInitFromDto()

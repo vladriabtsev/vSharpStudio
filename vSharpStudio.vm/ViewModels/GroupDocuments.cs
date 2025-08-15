@@ -40,9 +40,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this._MondayBeforeFirstDocDate = Timestamp.FromDateTime(new DateTime(1000, 1, 6, 0, 0, 0, DateTimeKind.Utc));
-
             this._UseDocNumberProperty = true;
-
             this.IsEditable = false;
             Init();
         }
@@ -52,6 +50,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            this._Name = Defaults.DocumentsGroupName;
             if (string.IsNullOrWhiteSpace(this._PrefixForCompositionNames)) this._PrefixForCompositionNames = "Doc";
             if (string.IsNullOrWhiteSpace(this._PropertyDocNumberName)) this._PropertyDocNumberName = "DocNumber";
             if (string.IsNullOrWhiteSpace(this._DocShortTypeIdPropertyName)) this._DocShortTypeIdPropertyName = "DocShortTypeId";

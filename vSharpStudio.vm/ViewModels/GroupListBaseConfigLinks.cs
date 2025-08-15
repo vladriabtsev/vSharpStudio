@@ -50,6 +50,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            this._Name = Defaults.BaseConfigLinksName;
             //this.AddAllAppGenSettingsVmsToNode();
             this.ListBaseConfigLinks.OnAddingAction = (t) =>
             {
@@ -67,7 +68,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.BaseConfigLinksName;
         }
 
         #region Tree operations

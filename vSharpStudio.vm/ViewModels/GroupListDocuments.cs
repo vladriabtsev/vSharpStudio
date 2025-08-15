@@ -46,6 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            this._Name = Defaults.Documents;
             this.ListDocuments.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
@@ -63,7 +64,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.Documents;
         }
         public Document AddDocument(string name)
         {

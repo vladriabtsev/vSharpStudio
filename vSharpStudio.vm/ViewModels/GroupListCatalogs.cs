@@ -79,6 +79,7 @@ namespace vSharpStudio.vm.ViewModels
 
         private void Init()
         {
+            this._Name = Defaults.GroupCatalogsName;
             if (string.IsNullOrWhiteSpace(this._PrefixForCompositionNames)) this._PrefixForCompositionNames = "Ctlg";
             if (string.IsNullOrWhiteSpace(this._PropertyCodeName)) this._PropertyCodeName = "Code";
             if (string.IsNullOrWhiteSpace(this._PropertyNameName)) this._PropertyNameName = "Name";
@@ -105,7 +106,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.GroupCatalogsName;
         }
         public int IndexOf(ICatalog cat)
         {

@@ -49,6 +49,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            this._Name = Defaults.GroupPluginsName;
             //this.ListRoles.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;
@@ -65,7 +66,6 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.OnRemoveChild();
             //};
-            this._Name = Defaults.GroupPluginsName;
         }
         public bool GetIsHasMarkedForDeletion()
         {

@@ -76,7 +76,6 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._Name = Defaults.DocumentsTimelineName;
             this._PropertyTimelineDocDateTimeGuid = System.Guid.NewGuid().ToString();
             this._TimeLineDocDateTimePropertyName = "DocDateTime";
             this.IsEditable = false;
@@ -90,6 +89,7 @@ namespace vSharpStudio.vm.ViewModels
 
         private void Init()
         {
+            this._Name = Defaults.DocumentsTimelineName;
             //if (this.Parent is Catalog)
             //{
             //    this.NameUi = "Sub Catalogs";

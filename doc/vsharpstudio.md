@@ -1127,6 +1127,7 @@ C O N S T A N T
 
 ### proto_group_list_base_config_links
 @base ConfigObjectVmBase
+@attr [Description(&#34;Links to Base Configs&#34;)]
 
 
 | Field | Type | Label | Description |
@@ -1398,7 +1399,7 @@ main view forms hierarchy node with children
 
 ### proto_group_list_plugins
 @base ConfigObjectVmBase
-@attr [Description(&#34;Installed plugins&#34;)]
+@attr [Description(&#34;Installed Plugins&#34;)]
 
 
 | Field | Type | Label | Description |

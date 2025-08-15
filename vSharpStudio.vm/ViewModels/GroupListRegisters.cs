@@ -86,6 +86,7 @@ namespace vSharpStudio.vm.ViewModels
 
         private void Init()
         {
+            this._Name = Defaults.RegisterGroupName;
             //if (this.Parent is Catalog)
             //{
             //    this.NameUi = "Sub Catalogs";
@@ -107,7 +108,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.RegisterGroupName;
         }
         public int IndexOf(IRegister reg)
         {

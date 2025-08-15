@@ -7,6 +7,7 @@
     using System.Diagnostics;
     using System.IO;
     using System.Text;
+    using ApplicationLogging;
     using FluentValidation;
     //using JetBrains.Annotations;
     using ViewModelBase;
@@ -16,6 +17,7 @@
         where TValidator : AbstractValidator<T>
         where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>, IEquatable<T>//, ISortingValue //, IGuid // , ITreeConfigNode
     {
+        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ConfigObjectCommonBase<T, TValidator>));
         public ConfigObjectCommonBase(ITreeConfigNode? parent, TValidator? validator)
             : base(validator)
         {
@@ -229,7 +231,7 @@
         [ReadOnly(true)]
         [Category("")]
         [PropertyOrderAttribute(-1)]
-        [DisplayName("Model Type")]
+        [DisplayName("Model Path")]
 #else
         [Browsable(false)]
 #endif
@@ -237,14 +239,40 @@
         {
             get
             {
-                if (_ModelPath == String.Empty)
+                if (_ModelPath == null)
                 {
-                    _ModelPath = (this.Parent != null ? this.Parent.ModelPath + "." : "") + this._Name; // this.GetType().Name;
+                    //_ModelPath = (this.Parent != null ? this.Parent.ModelPath + "." : "") + this._Name; // this.GetType().Name;
+                    if (this is IConfig)
+                    {
+                        _ModelPath = String.Empty;
+                    }
+                    else if (this is IModel)
+                    {
+                        _ModelPath = "M";
+                    }
+                    else
+                    {
+                        if (this is ICatalog)
+                        {
+                        }
+                        if (this.Parent != null)
+                        {
+                            if (this.Parent.ModelPath != String.Empty)
+                            {
+                                _ModelPath = this.Parent.ModelPath + "." + this._Name;
+                            }
+                            else
+                            {
+                                _ModelPath = this._Name;
+                            }
+                        }
+                    }
                 }
+                Debug.Assert(_ModelPath != null);
                 return _ModelPath;
             }
         }
-        private string _ModelPath = String.Empty;
+        private string? _ModelPath;
 #if DEBUG
         [ReadOnly(true)]
         [Category("")]
@@ -867,6 +895,7 @@
         }
         public void CheckChildrenIsOrHasChanged()
         {
+            _logger?.Debug("Start checking object: {ModelPath}", this.ModelPath);
             if (this is IEditableNodeGroup pp)
             {
                 bool isHasChanged = false;
@@ -876,6 +905,7 @@
                     {
                         if (p.IsChanged)
                         {
+                            _logger?.Debug("Child object: {ModelPath} is changed.", ((ITreeConfigNode)t).Name);
                             isHasChanged = true;
                             break;
                         }
@@ -884,6 +914,7 @@
                     {
                         if (pg2.IsHasChanged)
                         {
+                            _logger?.Debug("Child object: {ModelPath} has changed object.", ((ITreeConfigNode)t).Name);
                             isHasChanged = true;
                             break;
                         }
@@ -901,6 +932,7 @@
                     }
                 }
                 pp.IsHasChanged = isHasChanged;
+                _logger?.Debug("Object: {ModelPath}, IsHasChanged: {IsHasChanged}", this.ModelPath, pp.IsHasChanged);
             }
             if (this.Parent != null && this.Parent is IEditableNodeGroup pg)
             {
@@ -909,6 +941,7 @@
         }
         public void CheckChildrenIsOrHasNew()
         {
+            _logger?.Debug("Start checking object: {ModelPath}", this.ModelPath);
             if (this is IEditableNodeGroup pp)
             {
                 bool isHasNew = false;
@@ -918,6 +951,7 @@
                     {
                         if (p.IsNew)
                         {
+                            _logger?.Debug("Child object: {ModelPath} is new.", ((ITreeConfigNode)t).Name);
                             isHasNew = true;
                             break;
                         }
@@ -926,12 +960,14 @@
                     {
                         if (pg2.IsHasNew)
                         {
+                            _logger?.Debug("Child object: {ModelPath} has new.", ((ITreeConfigNode)t).Name);
                             isHasNew = true;
                             break;
                         }
                     }
                 }
                 pp.IsHasNew = isHasNew;
+                _logger?.Debug("Object: {ModelPath}, IsHasNew: {IsHasNew}", this.ModelPath, pp.IsHasNew);
             }
             if (this.Parent != null && this.Parent is IEditableNodeGroup pg)
             {
@@ -940,6 +976,7 @@
         }
         public void CheckChildrenIsOrHasMarkedForDeletion()
         {
+            _logger?.Debug("Start checking object: {ModelPath}", this.ModelPath);
             if (this is IEditableNodeGroup pp)
             {
                 bool isHasMarked = false;
@@ -949,6 +986,7 @@
                     {
                         if (p.IsMarkedForDeletion)
                         {
+                            _logger?.Debug("Child object: {ModelPath} is marked for deletion.", ((ITreeConfigNode)t).Name);
                             isHasMarked = true;
                             break;
                         }
@@ -957,12 +995,14 @@
                     {
                         if (pg2.IsHasMarkedForDeletion)
                         {
+                            _logger?.Debug("Child object: {ModelPath} has marked for deletion object.", ((ITreeConfigNode)t).Name);
                             isHasMarked = true;
                             break;
                         }
                     }
                 }
                 pp.IsHasMarkedForDeletion = isHasMarked;
+                _logger?.Debug("Object: {ModelPath}, IsHasMarkedForDeletion: {IsHasMarkedForDeletion}", this.ModelPath, pp.IsHasMarkedForDeletion);
             }
             if (this.Parent != null && this.Parent is IEditableNodeGroup pg)
             {

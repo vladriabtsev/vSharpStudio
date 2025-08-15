@@ -21,6 +21,7 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\vSharpStudio.vm\GlobalUsing.cs" Link="GlobalUsing.cs" />
     <Compile Include="..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
   </ItemGroup>
   <ItemGroup>

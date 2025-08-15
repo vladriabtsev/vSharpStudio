@@ -11,6 +11,7 @@ using vPlugin.Sample;
 using vSharpStudio.common;
 using vSharpStudio.ViewModels;
 using vSharpStudio.vm.ViewModels;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace vSharpStudio.Unit
 {
@@ -761,7 +762,6 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(c2.IsNew);
             Assert.IsTrue(gr.IsHasNew);
             Assert.IsFalse(gr.IsHasMarkedForDeletion);
-
             vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg");
             Assert.IsFalse(vm.Config.IsHasChanged);
             Assert.HasCount(1, cfg.Model.GroupEnumerations.ListEnumerations);
@@ -966,291 +966,282 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasNew);
             Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
         }
-        //[TestMethod]
-        //public void Main014_HasMarkedAndNewPropagation()
-        //{
-        //    // initial
-        //    var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-        //    vm.CommandNewConfig.Execute(@".\kuku.vcfg");
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+        [TestMethod]
+        public void Main014_HasMarkedAndNewPropagation()
+        {
+            // initial
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            vm.BtnNewConfig.Execute();
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
-        //    #region constant
-        //    var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
-        //    Assert.IsTrue(gr.IsNew);
-        //    Assert.IsFalse(gr.IsHasNew);
-        //    var cn1 = gr.AddConstant("c1");
-        //    Assert.IsTrue(cn1.IsNew);
-        //    Assert.IsFalse(cn1.IsHasNew);
-        //    Assert.IsTrue(gr.IsHasNew);
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+            #region constant
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            Assert.IsTrue(gr.IsNew);
+            Assert.IsFalse(gr.IsHasNew);
+            var cn1 = gr.AddConstant("c1");
+            Assert.IsTrue(cn1.IsNew);
+            Assert.IsFalse(cn1.IsHasNew);
+            Assert.IsTrue(gr.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
-        //    #region new
-        //    //gr.ListConstants.Remove(cn1);
-        //    cn1.IsNew = false;
-        //    Assert.IsFalse(gr.IsHasNew);
+            #region new
+            //gr.ListConstants.Remove(cn1);
+            cn1.IsNew = false;
+            Assert.IsFalse(gr.IsHasNew);
 
-        //    cn1.IsNew = true;
-        //    Assert.IsTrue(gr.IsHasNew);
+            cn1.IsNew = true;
+            Assert.IsTrue(gr.IsHasNew);
+            #endregion new
 
-        //    cn1 = gr.AddConstant("c1");
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            #region deletion
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            cn1.IsMarkedForDeletion = true;
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
-        //    cn1.IsNew = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            cn1.IsMarkedForDeletion = false;
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
 
-        //    cn1.IsNew = true;
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
-        //    #endregion new
+            #endregion deletion
+            gr.ListConstants.Clear();
+            #endregion constant
 
-        //    #region deletion
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
-        //    cn1.IsMarkedForDeletion = true;
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
-        //    Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+            #region enumeration
+            var en1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
-        //    cn1.IsMarkedForDeletion = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            #region new
+            vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(en1);
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    #endregion deletion
-        //    gr.ListConstants.Clear();
-        //    #endregion constant
+            en1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    #region enumeration
-        //    var c1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+            en1.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    #region new
-        //    vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(c1);
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            var p1 = en1.AddEnumerationPair("e1", "123");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    c1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            p1.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    c1.IsNew = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            p1.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    var p1 = c1.AddEnumerationPair("e1", "123");
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            en1.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            #endregion new
 
-        //    p1.IsNew = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            #region deletion
+            en1.IsMarkedForDeletion = true;
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
-        //    p1.IsNew = true;
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            en1.IsMarkedForDeletion = false;
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
 
-        //    c1.IsNew = true;
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
-        //    #endregion new
+            p1 = en1.AddEnumerationPair("e1", "123");
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
 
-        //    #region deletion
-        //    c1.IsMarkedForDeletion = true;
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
-        //    Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+            p1.IsMarkedForDeletion = true;
+            Assert.IsTrue(en1.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
 
-        //    c1.IsMarkedForDeletion = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            p1.IsMarkedForDeletion = false;
+            Assert.IsFalse(en1.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            #endregion deletion
+            vm.Config.Model.GroupEnumerations.ListEnumerations.Clear();
+            #endregion enumeration
 
-        //    p1 = c1.AddEnumerationPair("e1", "123");
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            #region catalog
+            var c2 = vm.Config.Model.GroupCatalogs.AddCatalog();
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
-        //    p1.IsMarkedForDeletion = true;
-        //    Assert.IsTrue(c1.IsHasMarkedForDeletion);
-        //    Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            #region new
+            vm.Config.Model.GroupCatalogs.ListCatalogs.Remove(c2);
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    p1.IsMarkedForDeletion = false;
-        //    Assert.IsFalse(c1.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
-        //    #endregion deletion
-        //    vm.Config.Model.GroupEnumerations.ListEnumerations.Clear();
-        //    #endregion enumeration
+            c2 = vm.Config.Model.GroupCatalogs.AddCatalog();
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    #region catalog
-        //    var c2 = vm.Config.Model.GroupCatalogs.AddCatalog();
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+            c2.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    #region new
-        //    vm.Config.Model.GroupCatalogs.ListCatalogs.Remove(c2);
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            var p2 = c2.AddProperty("p2");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    c2 = vm.Config.Model.GroupCatalogs.AddCatalog();
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            p2.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    c2.IsNew = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            p2.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    var p2 = c2.AddProperty("p2");
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            var pt2 = c2.AddDetails("kuku2");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    p2.IsNew = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            pt2.IsNew = false;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    p2.IsNew = true;
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            p2.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    var pt2 = c2.AddPropertiesTab("kuku2");
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            pt2.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    pt2.IsNew = false;
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            var pt2p2 = pt2.AddProperty("pt2p2");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    p2.IsNew = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            pt2.IsNew = false;
+            pt2p2.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    pt2.IsNew = true;
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            pt2p2.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    var pt2p2 = pt2.AddProperty("pt2p2");
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            c2.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            #endregion new
 
-        //    pt2.IsNew = false;
-        //    pt2p2.IsNew = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            #region deletion
+            c2.IsMarkedForDeletion = true;
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
-        //    pt2p2.IsNew = true;
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            c2.IsMarkedForDeletion = false;
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
 
-        //    c2.IsNew = true;
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
-        //    #endregion new
+            pt2 = c2.AddDetails("kuku");
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
 
-        //    #region deletion
-        //    c2.IsMarkedForDeletion = true;
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
-        //    Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+            pt2.IsMarkedForDeletion = true;
+            Assert.IsTrue(c2.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
 
-        //    c2.IsMarkedForDeletion = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            pt2.IsMarkedForDeletion = false;
+            Assert.IsFalse(c2.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            #endregion deletion
+            vm.Config.Model.GroupCatalogs.ListCatalogs.Clear();
+            #endregion catalog
 
-        //    pt2 = c2.AddPropertiesTab("kuku");
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            #region document
+            var d1 = vm.Config.Model.GroupDocuments.AddDocument("d1");
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
-        //    pt2.IsMarkedForDeletion = true;
-        //    Assert.IsTrue(c2.IsHasMarkedForDeletion);
-        //    Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            #region new
+            vm.Config.Model.GroupDocuments.GroupListDocuments.Remove(d1);
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    pt2.IsMarkedForDeletion = false;
-        //    Assert.IsFalse(c2.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
-        //    #endregion deletion
-        //    vm.Config.Model.GroupCatalogs.ListCatalogs.Clear();
-        //    #endregion catalog
+            d1 = vm.Config.Model.GroupDocuments.AddDocument("d1");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    #region document
-        //    var d1 = vm.Config.Model.GroupDocuments.AddDocument("d1");
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+            d1.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    #region new
-        //    vm.Config.Model.GroupDocuments.GroupListDocuments.Remove(d1);
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            var dp1 = d1.AddProperty("dp1");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    d1 = vm.Config.Model.GroupDocuments.AddDocument("d1");
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            dp1.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    d1.IsNew = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            //dp1.IsNew = true;
+            //Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    var dp1 = d1.AddProperty("dp1");
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            pt2 = d1.AddDetails("kuku2");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    dp1.IsNew = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            pt2.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    //dp1.IsNew = true;
-        //    //Assert.IsTrue(vm.Config.Model.IsHasNew);
+            var vis = new ModelVisitorBase();
+            vis.RunFromRoot(vm.Config, null, null, null, (v, n) =>
+            {
+                if (n is IEditableNode)
+                {
+                    var p = n as IEditableNode;
+                    //p.IsNew = false;
+                }
+            });
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    pt2 = d1.AddPropertiesTab("kuku2");
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            pt2p2 = pt2.AddProperty("pt2p2");
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    pt2.IsNew = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            pt2p2.IsNew = false;
+            Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-        //    var vis = new ModelVisitorBase();
-        //    vis.Run(vm.Config, null, null, null, (v, n) =>
-        //    {
-        //        if (n is IEditableNode)
-        //        {
-        //            var p = n as IEditableNode;
-        //            p.IsNew = false;
-        //        }
-        //    });
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            pt2p2.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
 
-        //    pt2p2 = pt2.AddProperty("pt2p2");
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            d1.IsNew = true;
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            #endregion new
 
-        //    pt2p2.IsNew = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasNew);
+            #region deletion
+            d1.IsMarkedForDeletion = true;
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
+            Assert.IsTrue(vm.Config.Model.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
-        //    pt2p2.IsNew = true;
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
+            d1.IsMarkedForDeletion = false;
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
 
-        //    d1.IsNew = true;
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
-        //    #endregion new
+            pt2 = d1.AddDetails("kuku");
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
 
-        //    #region deletion
-        //    d1.IsMarkedForDeletion = true;
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
-        //    Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
-        //    Assert.IsTrue(vm.Config.Model.IsHasNew);
-        //    Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
+            pt2.IsMarkedForDeletion = true;
+            Assert.IsTrue(d1.IsHasMarkedForDeletion);
+            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
 
-        //    d1.IsMarkedForDeletion = false;
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
-
-        //    pt2 = d1.AddPropertiesTab("kuku");
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
-
-        //    pt2.IsMarkedForDeletion = true;
-        //    Assert.IsTrue(d1.IsHasMarkedForDeletion);
-        //    Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
-
-        //    pt2.IsMarkedForDeletion = false;
-        //    Assert.IsFalse(d1.IsHasMarkedForDeletion);
-        //    Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
-        //    #endregion deletion
-        //    vm.Config.Model.GroupDocuments.GroupListDocuments.ListDocuments.Clear();
-        //    #endregion document
-        //}
+            pt2.IsMarkedForDeletion = false;
+            Assert.IsFalse(d1.IsHasMarkedForDeletion);
+            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            #endregion deletion
+            vm.Config.Model.GroupDocuments.GroupListDocuments.ListDocuments.Clear();
+            #endregion document
+        }
         [TestMethod]
         public async Task Main015_Delete_New_Enumerations()
         {
@@ -1341,7 +1332,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.Model.IsHasNew);
         }
         [TestMethod]
-        public void Main013_Diff_WorkWithAppGeneratorSettings()
+        public void Main016_Diff_WorkWithAppGeneratorSettings()
         {
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute();
@@ -1405,7 +1396,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
         }
         [TestMethod]
-        public void Main014_Diff_WorkWithNodeGeneratorSettings()
+        public void Main017_Diff_WorkWithNodeGeneratorSettings()
         {
             // GeneratorDbAccessNodeCatalogFormSettings "Catalog.*.Form"
             // GeneratorDbAccessNodePropertySettings    "Property"
@@ -1585,7 +1576,7 @@ namespace vSharpStudio.Unit
             _logger.LogTrace("End test");
         }
         [TestMethod]
-        public void Main015_Diff_WorkWithPluginsGroupSettings()
+        public void Main018_Diff_WorkWithPluginsGroupSettings()
         {
             // Settings workflow:
             // 1. When Config is loaded: init plugin generators settings on all solution and project nodes
@@ -2049,6 +2040,71 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(v.IsHasErrors);
             #endregion int requirements validation
         }
+        [TestMethod]
+        public async Task Main092ModelPath()
+        {
+            // empty config
+            this.remove_config();
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            vm.BtnNewConfig.Execute();
+            var cfg = vm.Config;
+            Assert.AreEqual("", cfg.ModelPath);
+            Assert.AreEqual(null, cfg.ToolTipText);
+            Assert.AreEqual("BaseConfigs", cfg.GroupConfigLinks.ModelPath);
+            Assert.AreEqual("Links to Base Configs", cfg.GroupConfigLinks.ToolTipText);
+            Assert.AreEqual("Plugins", cfg.GroupPlugins.ModelPath);
+            Assert.AreEqual("Installed Plugins", cfg.GroupPlugins.ToolTipText);
+            Assert.AreEqual("M", cfg.Model.ModelPath);
+            Assert.AreEqual("Model of application for generation in the 'Applications' group", cfg.Model.ToolTipText);
+            Assert.AreEqual("M.Common", cfg.Model.GroupCommon.ModelPath);
+            Assert.AreEqual("M.Common.Roles", cfg.Model.GroupCommon.GroupRoles.ModelPath);
+
+            Assert.AreEqual("M.Enumerations", cfg.Model.GroupEnumerations.ModelPath);
+            var en1 = cfg.Model.GroupEnumerations.AddEnumeration("en1", EnumEnumerationType.BYTE_VALUE);
+            Assert.AreEqual("M.Enumerations.en1", en1.ModelPath);
+
+            Assert.AreEqual("M.Constants", cfg.Model.GroupConstantGroups.ModelPath);
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            Assert.AreEqual("M.Constants.Gr", gr.ModelPath);
+            var c1 = gr.AddConstant("c1");
+            Assert.AreEqual("M.Constants.Gr.c1", c1.ModelPath);
+
+            Assert.AreEqual("M.Catalogs", cfg.Model.GroupCatalogs.ModelPath);
+            var cat = cfg.Model.GroupCatalogs.AddCatalog("cat");
+            Assert.AreEqual("M.Catalogs.cat", cat.ModelPath);
+            Assert.AreEqual("M.Catalogs.cat.Properties", cat.GroupProperties.ModelPath);
+            cat.AddProperty("p1");
+            Assert.AreEqual("M.Catalogs.cat.Properties.p1", cat.GroupProperties.ListProperties[0].ModelPath);
+
+            Assert.AreEqual("M.Relations", cfg.Model.GroupRelations.ModelPath);
+            Assert.AreEqual("M.Relations.ManyToMany", cfg.Model.GroupRelations.GroupListManyToManyRelations.ModelPath);
+            var cat2 = cfg.Model.GroupCatalogs.AddCatalog("cat2");
+            cfg.Model.GroupRelations.GroupListManyToManyRelations.AddRelation("cat-to-cat2", cat, cat2, false);
+            Assert.AreEqual("M.Relations.ManyToMany.cat-to-cat2", cfg.Model.GroupRelations.GroupListManyToManyRelations.ListRelations[0].ModelPath);
+            Assert.AreEqual("M.Relations.OneToMany", cfg.Model.GroupRelations.GroupListOneToOneRelations.ModelPath);
+            var cat3 = cfg.Model.GroupCatalogs.AddCatalog("cat3");
+            cfg.Model.GroupRelations.GroupListOneToOneRelations.AddRelation("cat-to-cat3", cat, cat3, false);
+            Assert.AreEqual("M.Relations.ManyToMany.cat-to-cat3", cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations[0].ModelPath);
+
+            Assert.AreEqual("M.Documents", cfg.Model.GroupDocuments.ModelPath);
+            Assert.AreEqual("M.Documents.Documents", cfg.Model.GroupDocuments.GroupListDocuments.ModelPath);
+            var d1 = cfg.Model.GroupDocuments.AddDocument("d1");
+            Assert.AreEqual("M.Documents.Documents.d1", d1.ModelPath);
+            Assert.AreEqual("M.Documents.Documents.d1.Properties",d1.GroupProperties.ModelPath);
+            var p2 = d1.GroupProperties.AddProperty("p2");
+            Assert.AreEqual("M.Documents.Documents.d1.Properties.p2", p2.ModelPath);
+
+
+            Assert.AreEqual("M.Documents.Journals", cfg.Model.GroupDocuments.GroupJournals.ModelPath);
+            Assert.AreEqual("M.Documents.Sequences", cfg.Model.GroupDocuments.GroupListSequences.ModelPath);
+            Assert.AreEqual("M.Documents.Registers", cfg.Model.GroupDocuments.GroupRegisters.ModelPath);
+            Assert.AreEqual("M.Documents.Timeline", cfg.Model.GroupDocuments.DocumentTimeline.ModelPath);
+            //Assert.AreEqual("M.Documents.Timeline", cfg.Model.GroupDocuments.DocumentTimeline.ListProperties.ModelPath);
+            Assert.AreEqual("Applications", cfg.GroupAppSolutions.ModelPath);
+
+            //vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg");
+        }
+
         #region Roles
         [TestMethod]
         public void Main101_RolesTests()

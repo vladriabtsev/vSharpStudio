@@ -7,9 +7,9 @@
 
         public const string GroupPluginsName = "Plugins";
 
-        public const string GroupCommonName = "Common Group";
+        public const string GroupCommonName = "Common";
+        
         public const string GroupConstantsGroupsName = "Constants";
-
         public const string ConstantsGroupName = "Group";
         public const string ConstantName = "Constant";
 
@@ -48,8 +48,8 @@
         //public const string FormTabControlTabName = "TabControlTab";
         //public const string FormTreeName = "Tree";
 
-        public const string DocumentName = "Document";
         public const string DocumentsGroupName = "Documents";
+        public const string DocumentName = "Document";
         public const string Documents = "Documents";
         public const string DocumentsTimelineName = "Timeline";
 

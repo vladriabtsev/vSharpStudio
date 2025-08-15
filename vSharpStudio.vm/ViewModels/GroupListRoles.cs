@@ -42,6 +42,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            this._Name = Defaults.GroupRolesName;
             //VmBindable.IsNotifyingStatic = false;
             //var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             //children.Add(this.GroupRoles, 6);
@@ -74,7 +75,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.GroupRolesName;
         }
 
         #region Tree operations

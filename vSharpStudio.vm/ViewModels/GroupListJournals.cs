@@ -50,6 +50,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            this._Name = Defaults.GroupJournalsName;
             this.ListJournals.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
@@ -66,7 +67,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.GroupJournalsName;
         }
 
         [PropertyOrder(100)]

@@ -14,6 +14,15 @@ namespace vSharpStudio
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+#if DEBUG
+            AppLogger.LogLevel = Microsoft.Extensions.Logging.LogLevel.Trace;
+            AppLogger.UseDebug = true;
+            AppLogger.LogLevelDebug = Microsoft.Extensions.Logging.LogLevel.Information;
+#else
+            AppLogger.LogLevel= Microsoft.Extensions.Logging.LogLevel.Trace;
+            AppLogger.UseDebug = false;
+#endif
+
 
             //#region DI services
 
