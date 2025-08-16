@@ -15,6 +15,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class DataType : IParent
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(DataType));
         partial void OnDebugStringExtend(ref string mes)
         {
             mes += $" Type:{DataType.GetTypeDesc(this)}";
@@ -26,6 +27,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void ListObjectRefs_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            //_logger.Trace();
             if (e.NewItems != null)
             {
                 foreach (var t in e.NewItems)
@@ -124,6 +126,7 @@ namespace vSharpStudio.vm.ViewModels
         public IComplexRef ObjectRef { get { return this.ObjectRef0; } }
         partial void OnDataTypeEnumChanging(ref EnumDataType to, ref bool isCancel)
         {
+            //_logger.Trace("from: '{from}' to: '{to}'", this.DataTypeEnum.ToString(), to.ToString());
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.CATALOG:
@@ -208,7 +211,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.ULID:
                     break;
                 default:
-                    throw new ArgumentException("Unsupported type: "+ this.DataTypeEnum.ToString(), nameof(type));
+                    throw new ArgumentException("Unsupported type: " + this.DataTypeEnum.ToString(), nameof(type));
             }
         }
         public DataType(ITreeConfigNode parent, EnumDataType type, string guidOfType) : this(parent)
@@ -593,6 +596,7 @@ namespace vSharpStudio.vm.ViewModels
             get { if (_ClrTypeName == null) ClrTypeNameCalc(); return _ClrTypeName!; }
             set
             {
+                //_logger.Trace("_ClrTypeName='{val}'", value);
                 SetProperty(ref this._ClrTypeName, value);
             }
         }

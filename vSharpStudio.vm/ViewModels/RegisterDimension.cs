@@ -11,6 +11,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class RegisterDimension : ICanAddNode, ICanGoLeft, INodeGenSettings, ITreeConfigNodeSortable, IEditableNode //, IDetail //, IRoleAccess, IPropertyAccessRoles
     {
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(RegisterDimension));
+
         //partial void OnDebugStringExtend(ref string mes)
         //{
         //    mes = mes + $" Type:{this.}";
@@ -87,12 +89,16 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnNameChanged()
         {
             this.OnDimensionCatalogGuidChanged();
+            //_logger.Trace();
         }
         partial void OnDimensionCatalogGuidChanged()
         {
+            //_logger.Trace();
             this.PropertyRefDimensionCatalog.Name = this.Name;
             this.PropertyRefDimensionCatalog.DataType.ObjectRef0.ForeignObjectGuid = this.DimensionCatalogGuid ?? "";
             this.PropertyRefDimensionCatalog.DataType.ClrTypeNameCalc();
+            //Debug.Assert(this.PropertyRefDimensionCatalog.DataType.ClrTypeName != "");
+            //_logger.Trace("ClrTypeName='{ClrTypeName}'", this.PropertyRefDimensionCatalog.DataType.ClrTypeName);
             //this.OnPropertyChanged(nameof(this.ListCatalogs));
         }
         #endregion OnChanged

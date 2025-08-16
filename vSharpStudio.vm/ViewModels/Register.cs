@@ -427,6 +427,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             this.GroupRegisterDimensions.ListDimensions.Add(node);
+            Debug.Assert(node.PropertyRefDimensionCatalog.DataType.ClrTypeName != "");
             return node;
         }
         public Property AddAttachedProperty(string name, EnumDataType type = EnumDataType.STRING, uint length = 0, uint accuracy = 0, string? guid = null)
