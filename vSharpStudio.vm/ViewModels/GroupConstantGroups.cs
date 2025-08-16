@@ -76,6 +76,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            this._Name = Defaults.GroupConstantsGroupsName;
             if (string.IsNullOrWhiteSpace(this._PrefixForCompositionNames)) this._PrefixForCompositionNames = "Cnst";
             this.ListConstantGroups.OnAddingAction = (t) =>
             {
@@ -94,7 +95,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.GroupConstantsGroupsName;
         }
         public GroupListConstants AddGroupConstants(string name)
         {

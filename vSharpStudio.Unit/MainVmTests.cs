@@ -979,6 +979,8 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.Model.IsHasNew);
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
+            var m = vm.Config.Model;
+
             #region constant
             var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
             Assert.IsTrue(gr.IsNew);
@@ -1004,20 +1006,37 @@ namespace vSharpStudio.Unit
             #endregion new
 
             #region deletion
+
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
             cn1.IsMarkedForDeletion = true;
+            Assert.IsTrue(m.GroupConstantGroups.IsHasMarkedForDeletion);
+            Assert.IsTrue(m.GroupConstantGroups.IsHasNew);
+            Assert.IsTrue(m.IsHasMarkedForDeletion);
+            Assert.IsTrue(m.IsHasNew);
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
-            Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
-            Assert.IsTrue(vm.Config.Model.IsHasNew);
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
             cn1.IsMarkedForDeletion = false;
-            Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
+            Assert.IsFalse(m.GroupConstantGroups.IsHasMarkedForDeletion);
+            Assert.IsFalse(m.IsHasMarkedForDeletion);
+
+            Assert.IsTrue(gr.IsHasNew);
+            gr.ListConstants.Clear();
+            Assert.IsFalse(gr.IsHasNew);
+            Assert.IsTrue(m.GroupConstantGroups.IsHasNew);
+            Assert.IsTrue(m.IsHasNew);
+
+            m.GroupConstantGroups.ListConstantGroups.Clear();
+            Assert.IsFalse(m.GroupConstantGroups.IsHasMarkedForDeletion);
+            Assert.IsFalse(m.IsHasMarkedForDeletion);
+            Assert.IsFalse(m.GroupConstantGroups.IsHasNew);
+            Assert.IsFalse(m.IsHasNew);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
 
             #endregion deletion
-            gr.ListConstants.Clear();
+
             #endregion constant
 
             #region enumeration
@@ -1031,6 +1050,8 @@ namespace vSharpStudio.Unit
 
             #region new
             vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(en1);
+            Assert.AreEqual(0, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
+            Assert.IsFalse(vm.Config.Model.GroupEnumerations.IsHasNew);
             Assert.IsFalse(vm.Config.Model.IsHasNew);
 
             en1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
@@ -2081,10 +2102,10 @@ namespace vSharpStudio.Unit
             var cat2 = cfg.Model.GroupCatalogs.AddCatalog("cat2");
             cfg.Model.GroupRelations.GroupListManyToManyRelations.AddRelation("cat-to-cat2", cat, cat2, false);
             Assert.AreEqual("M.Relations.ManyToMany.cat-to-cat2", cfg.Model.GroupRelations.GroupListManyToManyRelations.ListRelations[0].ModelPath);
-            Assert.AreEqual("M.Relations.OneToMany", cfg.Model.GroupRelations.GroupListOneToOneRelations.ModelPath);
+            Assert.AreEqual("M.Relations.OneToOne", cfg.Model.GroupRelations.GroupListOneToOneRelations.ModelPath);
             var cat3 = cfg.Model.GroupCatalogs.AddCatalog("cat3");
             cfg.Model.GroupRelations.GroupListOneToOneRelations.AddRelation("cat-to-cat3", cat, cat3, false);
-            Assert.AreEqual("M.Relations.ManyToMany.cat-to-cat3", cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations[0].ModelPath);
+            Assert.AreEqual("M.Relations.OneToOne.cat-to-cat3", cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations[0].ModelPath);
 
             Assert.AreEqual("M.Documents", cfg.Model.GroupDocuments.ModelPath);
             Assert.AreEqual("M.Documents.Documents", cfg.Model.GroupDocuments.GroupListDocuments.ModelPath);

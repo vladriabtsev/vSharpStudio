@@ -23,6 +23,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
+            this._Name = Defaults.ConstantsGroupName;
             this.IsEditable = true;
             this._ShortIdTypeForCacheKey = "t";
             Init();
@@ -33,7 +34,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
-            this._Name = Defaults.GroupConstantsGroupsName;
             this.ListConstants.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
