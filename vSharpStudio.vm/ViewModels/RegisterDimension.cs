@@ -96,10 +96,7 @@ namespace vSharpStudio.vm.ViewModels
             //_logger.Trace();
             this.PropertyRefDimensionCatalog.Name = this.Name;
             this.PropertyRefDimensionCatalog.DataType.ObjectRef0.ForeignObjectGuid = this.DimensionCatalogGuid ?? "";
-            this.PropertyRefDimensionCatalog.DataType.ClrTypeNameCalc();
-            //Debug.Assert(this.PropertyRefDimensionCatalog.DataType.ClrTypeName != "");
-            //_logger.Trace("ClrTypeName='{ClrTypeName}'", this.PropertyRefDimensionCatalog.DataType.ClrTypeName);
-            //this.OnPropertyChanged(nameof(this.ListCatalogs));
+            //this.PropertyRefDimensionCatalog.DataType.ClrTypeNameCalc();
         }
         #endregion OnChanged
 

@@ -36,7 +36,6 @@ namespace vSharpStudio.vm.ViewModels
                     this.GetPositions(cr);
                 }
             }
-            ClrTypeNameCalc();
         }
         private uint GetNextPosition()
         {
@@ -517,13 +516,25 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public BigInteger? MaxNumericalValue
         {
-            get { if (_MaxNumericalValue == null) ClrTypeNameCalc(); return _MaxNumericalValue; }
-            set
-            {
-                SetProperty(ref this._MaxNumericalValue, value);
-            }
+            get { return MaxNumericalValueCalc(); }
         }
-        private BigInteger? _MaxNumericalValue = null;
+        internal BigInteger MaxNumericalValueCalc()
+        {
+            // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
+            if (this.DataTypeEnum == EnumDataType.NUMERICAL)
+            {
+                BigInteger mv = 1;
+                if (this.Length > 0)
+                {
+                    for (int i = 0; i < this.Length; i++)
+                    {
+                        mv *= 10;
+                    }
+                }
+                return mv - 1;
+            }
+            return 0;
+        }
         public static uint GetLengthFromMaxValue(BigInteger maxValue)
         {
             uint length = 0;
@@ -593,27 +604,10 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(11)]
         public string ClrTypeName
         {
-            get { if (_ClrTypeName == null) ClrTypeNameCalc(); return _ClrTypeName!; }
-            set
-            {
-                //_logger.Trace("_ClrTypeName='{val}'", value);
-                SetProperty(ref this._ClrTypeName, value);
-            }
+            get { return ClrTypeNameCalc(); }
         }
-        private string? _ClrTypeName = null;
-        [Browsable(false)]
-        public string ClrLiteralSuf
+        internal string ClrTypeNameCalc()
         {
-            get { if (_ClrLiteralSuf == null) ClrTypeNameCalc(); Debug.Assert(_ClrLiteralSuf != null); return _ClrLiteralSuf!; }
-            set
-            {
-                SetProperty(ref this._ClrLiteralSuf, value);
-            }
-        }
-        private string? _ClrLiteralSuf = null;
-        internal void ClrTypeNameCalc()
-        {
-            this.ClrLiteralSuf = "";
             // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
             switch (this.DataTypeEnum)
             {
@@ -625,166 +619,108 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
                 case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
                 case EnumDataType.REF_TIMELINE:
-                    return;
+                    return "";
                 case EnumDataType.CATALOG:
                     Debug.Assert(this.Cfg != null);
                     Debug.Assert(this.ListObjectRefs.Count < 2);
-                    //if (!string.IsNullOrEmpty(this.ObjectRef.ForeignObjectGuid))
-                    //{
-                    //    var en = (Catalog?)this.Cfg.DicNodes[this.ObjectRef.ForeignObjectGuid];
-                    //    Debug.Assert(en != null);
-                    //    this.ClrTypeName = en.Name;
-                    //}
                     if (this.ListObjectRefs.Count == 1 && !string.IsNullOrEmpty(this.ListObjectRefs[0].ForeignObjectGuid))
                     {
                         var en = (Catalog?)this.Cfg.DicNodes[this.ListObjectRefs[0].ForeignObjectGuid];
                         Debug.Assert(en != null);
-                        this.ClrTypeName = en.Name;
+                        return en.Name;
                     }
-                    else
-                        this.ClrTypeName = string.Empty;
-                    break;
+                    throw new Exception();
                 case EnumDataType.DOCUMENT:
                     Debug.Assert(this.Cfg != null);
                     Debug.Assert(this.ListObjectRefs.Count < 2);
-                    //if (!string.IsNullOrEmpty(this.ObjectRef.ForeignObjectGuid))
-                    //{
-                    //    var en = (Document?)this.Cfg.DicNodes[this.ObjectRef.ForeignObjectGuid];
-                    //    Debug.Assert(en != null);
-                    //    this.ClrTypeName = en.Name;
-                    //}
                     if (this.ListObjectRefs.Count == 1 && !string.IsNullOrEmpty(this.ListObjectRefs[0].ForeignObjectGuid))
                     {
                         Debug.Assert(!string.IsNullOrEmpty(this.ListObjectRefs[0].ForeignObjectGuid));
                         var en = (Catalog?)this.Cfg.DicNodes[this.ListObjectRefs[0].ForeignObjectGuid];
                         Debug.Assert(en != null);
-                        this.ClrTypeName = en.Name;
+                        return en.Name;
                     }
-                    else
-                        this.ClrTypeName = string.Empty;
-                    break;
+                    throw new Exception();
                 case EnumDataType.CATALOGS:
-                    this.ClrTypeName = "object";
-                    break;
                 case EnumDataType.DOCUMENTS:
-                    this.ClrTypeName = "object";
-                    break;
                 case EnumDataType.ANY:
-                    this.ClrTypeName = "object";
-                    break;
+                    return "object";
                 case EnumDataType.ENUMERATION:
-                    this.ClrTypeName = this.EnumerationName;
-                    break;
+                    return this.EnumerationName;
                 case EnumDataType.TIME:
                 case EnumDataType.TIMEZ:
-                    this.ClrTypeName = "TimeOnly";
-                    break;
+                    return "TimeOnly";
                 case EnumDataType.DATE:
-                    this.ClrTypeName = "DateOnly";
-                    break;
+                    return "DateOnly";
                 case EnumDataType.DATETIMEZ:
-                    this.ClrTypeName = "DateTimeOffset";
-                    break;
+                    return "DateTimeOffset";
                 case EnumDataType.DATETIMELOCAL:
                 case EnumDataType.DATETIMEUTC:
                     //case EnumDataType.DATETIME:
-                    this.ClrTypeName = "DateTime";
-                    break;
+                    return "DateTime";
                 case EnumDataType.DATETIMEOFFSET:
-                    this.ClrTypeName = "DateTimeOffset";
-                    break;
+                    return "DateTimeOffset";
                 case EnumDataType.TIMESPAN_TIME_ONLY:
                 case EnumDataType.TIMESPAN:
-                    this.ClrTypeName = "TimeSpan";
-                    break;
+                    return "TimeSpan";
                 case EnumDataType.BOOL:
-                    this.ClrTypeName = "bool";
-                    break;
+                    return "bool";
                 case EnumDataType.CHAR:
-                    this.ClrTypeName = "char";
-                    break;
+                    return "char";
                 case EnumDataType.STRING:
-                    this.ClrTypeName = "string";
-                    break;
+                    return "string";
                 case EnumDataType.ULID:
-                    this.ClrTypeName = "Ulid";
-                    break;
+                    return "Ulid";
                 case EnumDataType.NUMERICAL:
-                    BigInteger mv = 1;
-                    if (this.Length > 0)
-                    {
-                        for (int i = 0; i < this.Length; i++)
-                        {
-                            mv *= 10;
-                        }
-                    }
-                    this.MaxNumericalValue = mv - 1;
+                    BigInteger mv = MaxNumericalValueCalc();
                     if (this.Accuracy == 0)
                     {
                         if (this.IsPositive)
                         {
-                            if (this.MaxNumericalValue <= byte.MaxValue)
+                            if (mv <= byte.MaxValue)
                             {
-                                this.ClrTypeName = "byte";
-                                this.ClrLiteralSuf = "U";
-                                break;
+                                return "byte";
                             }
-                            if (this.MaxNumericalValue <= ushort.MaxValue)
+                            if (mv <= ushort.MaxValue)
                             {
-                                this.ClrTypeName = "ushort";
-                                this.ClrLiteralSuf = "U";
-                                break;
+                                return "ushort";
                             }
-                            if (this.MaxNumericalValue <= uint.MaxValue)
+                            if (mv <= uint.MaxValue)
                             {
-                                this.ClrTypeName = "uint";
-                                this.ClrLiteralSuf = "U";
-                                break;
+                                return "uint";
                             }
-                            if (this.MaxNumericalValue <= ulong.MaxValue) // long, not ulong
+                            if (mv <= ulong.MaxValue) // long, not ulong
                             {
-                                this.ClrTypeName = "ulong";
-                                this.ClrLiteralSuf = "LU";
-                                break;
+                                return "ulong";
                             }
                             if (this.Length <= 28)
                             {
-                                this.ClrTypeName = "decimal";
-                                this.ClrLiteralSuf = "m";
-                                break;
+                                return "decimal";
                             }
                             throw new Exception("Not supported operation");
                             // return "BigInteger" + sn;
                         }
                         else
                         {
-                            if (this.MaxNumericalValue <= sbyte.MaxValue)
+                            if (mv <= sbyte.MaxValue)
                             {
-                                //this.ClrTypeName = "short";
-                                this.ClrTypeName = "sbyte"; // problem with Dapper, writing wrong value in DB
-                                break;
+                                return "sbyte"; // problem with Dapper, writing wrong value in DB
                             }
-                            if (this.MaxNumericalValue <= short.MaxValue)
+                            if (mv <= short.MaxValue)
                             {
-                                this.ClrTypeName = "short";
-                                break;
+                                return "short";
                             }
-                            if (this.MaxNumericalValue <= int.MaxValue)
+                            if (mv <= int.MaxValue)
                             {
-                                this.ClrTypeName = "int";
-                                break;
+                                return "int";
                             }
-                            if (this.MaxNumericalValue <= long.MaxValue)
+                            if (mv <= long.MaxValue)
                             {
-                                this.ClrTypeName = "long";
-                                this.ClrLiteralSuf = "L";
-                                break;
+                                return "long";
                             }
                             if (this.Length <= 28)
                             {
-                                this.ClrTypeName = "decimal";
-                                this.ClrLiteralSuf = "m";
-                                break;
+                                return "decimal";
                             }
                             throw new Exception("Not supported operation");
                             // return "BigInteger" + sn;
@@ -797,26 +733,19 @@ namespace vSharpStudio.vm.ViewModels
                         // decimal ±1.0 x 10-28   to ±7.9228 x 10+28     28-29 significant digits
                         if (this.Length == 0)
                         {
-                            this.ClrTypeName = "BigDecimal";
-                            break;
+                            return "BigDecimal";
                         }
                         if (this.Length <= 6)
                         {
-                            this.ClrTypeName = "float";
-                            this.ClrLiteralSuf = "f";
-                            break;
+                            return "float";
                         }
                         if (this.Length <= 15)
                         {
-                            this.ClrTypeName = "double";
-                            this.ClrLiteralSuf = "d";
-                            break;
+                            return "double";
                         }
                         if (this.Length < 29)
                         {
-                            this.ClrTypeName = "decimal";
-                            this.ClrLiteralSuf = "m";
-                            break;
+                            return "decimal";
                         }
                         throw new Exception("Not supported operation");
                         // return "BigDecimal";
@@ -824,6 +753,96 @@ namespace vSharpStudio.vm.ViewModels
                 default:
                     throw new Exception("Not supported operation");
             }
+        }
+        public string ClrLiteralSuf
+        {
+            get { return ClrLiteralSufCalc(); }
+        }
+        internal string ClrLiteralSufCalc()
+        {
+            // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
+            if (this.DataTypeEnum == EnumDataType.NUMERICAL)
+            {
+                BigInteger mv = MaxNumericalValueCalc();
+                if (this.Accuracy == 0)
+                {
+                    if (this.IsPositive)
+                    {
+                        if (mv <= byte.MaxValue)
+                        {
+                            return "U";
+                        }
+                        if (mv <= ushort.MaxValue)
+                        {
+                            return "U";
+                        }
+                        if (mv <= uint.MaxValue)
+                        {
+                            return "U";
+                        }
+                        if (mv <= ulong.MaxValue) // long, not ulong
+                        {
+                            return "LU";
+                        }
+                        if (this.Length <= 28)
+                        {
+                            return "m";
+                        }
+                        throw new Exception("Not supported operation");
+                        // return "BigInteger" + sn;
+                    }
+                    else
+                    {
+                        if (mv <= sbyte.MaxValue)
+                        {
+                            return "";
+                        }
+                        if (mv <= short.MaxValue)
+                        {
+                            return "";
+                        }
+                        if (mv <= int.MaxValue)
+                        {
+                            return "";
+                        }
+                        if (mv <= long.MaxValue)
+                        {
+                            return "L";
+                        }
+                        if (this.Length <= 28)
+                        {
+                            return "m";
+                        }
+                        throw new Exception("Not supported operation");
+                        // return "BigInteger" + sn;
+                    }
+                }
+                else
+                {
+                    // float   ±1.5 x 10−45   to ±3.4    x 10+38    ~6-9 digits
+                    // double  ±5.0 × 10−324  to ±1.7    × 10+308   ~15-17 digits
+                    // decimal ±1.0 x 10-28   to ±7.9228 x 10+28     28-29 significant digits
+                    if (this.Length == 0)
+                    {
+                        return "";
+                    }
+                    if (this.Length <= 6)
+                    {
+                        return "f";
+                    }
+                    if (this.Length <= 15)
+                    {
+                        return "d";
+                    }
+                    if (this.Length < 29)
+                    {
+                        return "m";
+                    }
+                    throw new Exception("Not supported operation");
+                    // return "BigDecimal";
+                }
+            }
+            return "";
         }
         /// <summary>
         /// Potential data lost analysis
@@ -984,7 +1003,6 @@ namespace vSharpStudio.vm.ViewModels
                 default:
                     throw new NotSupportedException();
             }
-            ClrTypeNameCalc();
             MinValueCalc();
             MaxValueCalc();
             this.OnPropertyChanged(nameof(this.Length));
@@ -997,8 +1015,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.Cfg == null)
                 return;
-            this._MaxNumericalValue = 0;
-            ClrTypeNameCalc();
             MaxValueCalc();
             this.ValidateProperty(nameof(this.Accuracy));
         }
@@ -1006,7 +1022,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.Cfg == null)
                 return;
-            ClrTypeNameCalc();
             MaxValueCalc();
             MinValueCalc();
             this.ValidateProperty(nameof(this.Length));
@@ -1023,7 +1038,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.Cfg == null)
                 return;
-            ClrTypeNameCalc();
             MaxValueCalc();
             MinValueCalc();
         }
