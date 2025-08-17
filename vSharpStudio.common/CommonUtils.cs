@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Numerics;
+using System.Runtime.Versioning;
 using System.Text;
 using Google.Protobuf;
 
@@ -47,6 +48,31 @@ namespace vSharpStudio.common
         public static string GetProtoTypeForNumeric(IProperty p)
         {
             return GetProtoTypeForNumeric(p.DataType.IsNullable, p.DataType.MaxNumericalValue, p.DataType.IsPositive, p.DataType.Accuracy, p.DataType.Length);
+        }
+        public static string GetProtoTypeForCsNumeric(string csNumericType)
+        {
+            string res = "";
+            switch(csNumericType)
+            {
+                case "sbyte":
+                    return GetProtoTypeForNumeric(false, sbyte.MaxValue, false, 0, 28);
+                case "byte":
+                    return GetProtoTypeForNumeric(false, byte.MaxValue, false, 0, 28);
+                case "short":
+                    return GetProtoTypeForNumeric(false, short.MaxValue, false, 0, 28);
+                case "ushort":
+                    return GetProtoTypeForNumeric(false, ushort.MaxValue, false, 0, 28);
+                case "int":
+                    return GetProtoTypeForNumeric(false, int.MaxValue, false, 0, 28);
+                case "uint":
+                    return GetProtoTypeForNumeric(false, uint.MaxValue, false, 0, 28);
+                case "long":
+                    return GetProtoTypeForNumeric(false, long.MaxValue, false, 0, 28);
+                case "ulong":
+                    return GetProtoTypeForNumeric(false, ulong.MaxValue, false, 0, 28);
+                default:
+                    throw new ArgumentException($"Unsupported type: {csNumericType}");
+            }
         }
         public static string GetProtoTypeForNumeric(bool isNullable, BigInteger? max_value, bool is_positive, uint accuracy, uint length)
         {

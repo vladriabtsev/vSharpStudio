@@ -11,7 +11,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class ValidationConfigVisitor
     {
-        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ValidationConfigVisitor));
+        //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ValidationConfigVisitor));
         public SortedObservableCollection<ValidationMessage> Result { get; private set; }
         public int CountTotalValidatableNodes;
         public int _CountCurrentValidatableNode;
@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public ValidationConfigVisitor(ProgressVM? progressVM, CancellationToken cancellationToken)
         {
-            _logger.Trace();
+            //_logger.Trace();
             this._cancellationToken = cancellationToken;
             this.progressVM = progressVM;
             this.CountCurrentValidatableNode = 0;
@@ -50,20 +50,20 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(p != null);
             var pp = p;
-            _logger.Trace("Minus Counts. Node: {Name}, Err: {CountErrors}, Wrn: {CountWarnings}, Inf: {CountInfos},", pp.Name, pp.CountErrors, pp.CountWarnings, pp.CountInfos);
+            //_logger.Trace("Minus Counts. Node: {Name}, Err: {CountErrors}, Wrn: {CountWarnings}, Inf: {CountInfos},", pp.Name, pp.CountErrors, pp.CountWarnings, pp.CountInfos);
             while (pp.Parent != null)
             {
                 pp = pp.Parent;
                 pp.CountErrors -= p.CountErrors;
                 pp.CountWarnings -= p.CountWarnings;
                 pp.CountInfos -= p.CountInfos;
-                _logger.Trace("Updated Parent Counts. Node: {Name}, Err: {CountErrors}, Wrn: {CountWarnings}, Inf: {CountInfos},", pp.Name, pp.CountErrors, pp.CountWarnings, pp.CountInfos);
+                //_logger.Trace("Updated Parent Counts. Node: {Name}, Err: {CountErrors}, Wrn: {CountWarnings}, Inf: {CountInfos},", pp.Name, pp.CountErrors, pp.CountWarnings, pp.CountInfos);
             }
         }
 
         private void UpdateAddCounts(ITreeConfigNode p, ValidationMessage m)
         {
-            _logger.Trace("Before Add Counts. Node: {Name}, Err: {CountErrors}, Wrn: {CountWarnings}, Inf: {CountInfos}", p.Name, p.CountErrors, p.CountWarnings, p.CountInfos);
+            //_logger.Trace("Before Add Counts. Node: {Name}, Err: {CountErrors}, Wrn: {CountWarnings}, Inf: {CountInfos}", p.Name, p.CountErrors, p.CountWarnings, p.CountInfos);
             switch (m.Severity)
             {
                 case FluentValidation.Severity.Error:
@@ -93,12 +93,12 @@ namespace vSharpStudio.vm.ViewModels
                 default:
                     throw new ArgumentException("Unsupported severity type: " + m.Severity.ToString(), nameof(m));
             }
-            _logger.Trace("After Add Counts. Node: {Name}, Err: {CountErrors}, Wrn: {CountWarnings}, Inf: {CountInfos}", p.Name, p.CountErrors, p.CountWarnings, p.CountInfos);
+            //_logger.Trace("After Add Counts. Node: {Name}, Err: {CountErrors}, Wrn: {CountWarnings}, Inf: {CountInfos}", p.Name, p.CountErrors, p.CountWarnings, p.CountInfos);
         }
 
         private void AddMessage(ITreeConfigNode p, ValidationMessage t)
         {
-            _logger?.Debug("Adding Message. Node: {model}, Property: {property}, Severity: {severity}, Message: {message}", p.ModelPath, t.PropertyName, t.SeverityName, t.Message);
+            //_logger?.Debug("Adding Message. Node: {model}, Property: {property}, Severity: {severity}, Message: {message}", p.ModelPath, t.PropertyName, t.SeverityName, t.Message);
             this.UpdateAddCounts(p, t);
             t.RaiseSeverityLevel(this._level);
             ulong weight = 0;
@@ -167,7 +167,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._level++;
                 }
                 this.parent = p;
-                this._logger?.Trace(string.Empty.PadRight(this._level, ' ') + p.GetType().Name + ": " + pp.Name);
+                //this._logger?.Trace(string.Empty.PadRight(this._level, ' ') + p.GetType().Name + ": " + pp.Name);
                 UIDispatcher.Invoke(() =>
                 {
                     p.ValidationCollection.Clear();
@@ -197,7 +197,7 @@ namespace vSharpStudio.vm.ViewModels
             this.progressVM?.ProgressUpdate(this.CountCurrentValidatableNode * 100 / this.CountTotalValidatableNodes);
             if (p is ITreeConfigNode pp)
             {
-                this._logger?.Trace(string.Empty.PadRight(this._level, ' ') + pp.GetType().Name + ": " + pp.Name);
+                //this._logger?.Trace(string.Empty.PadRight(this._level, ' ') + pp.GetType().Name + ": " + pp.Name);
                 this._level--;
             }
         }
