@@ -1,5 +1,5 @@
 ﻿#define Async
-#define nPARRALEL
+#define nPARRALEL // https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/how-to-write-a-simple-parallel-foreach-loop
 //#if RELEASE && !PARRALEL
 #if RELEASE && PARRALEL
 Not tested yet
@@ -1804,7 +1804,7 @@ namespace vSharpStudio.ViewModels
                     this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Generating code/DB", iProgressStep * 100 / iProgressSteps);
                     iProgressStep++;
 #if PARRALEL
-                    await this.GenerateCodeAsync(cancellationToken, this.Config, true);
+                    await this.GenerateCodeAsync(isOnlySqlTextUpdate, cancellationToken, this.Config, true);
 #else
                     this.GenerateCode(isOnlySqlTextUpdate, cancellationToken, this.Config, true);
 #endif
