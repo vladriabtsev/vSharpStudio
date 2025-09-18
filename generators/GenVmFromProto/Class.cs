@@ -140,7 +140,7 @@ namespace GenVmFromProto
         {
             try
             {
-                Encoding.UTF8.GetString(Encoding.Default.GetBytes(str));
+                System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
             }
             catch(Exception ex)
             {

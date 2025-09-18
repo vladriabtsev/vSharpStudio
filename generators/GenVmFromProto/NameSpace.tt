@@ -7,7 +7,6 @@
 <#@ import namespace="vSharpStudio.common" #>
 <#@ import namespace="ApplicationLogging" #>
 using System;
-using System.Text;
 using System.Linq;
 using ViewModelBase;
 using System.Collections.ObjectModel;

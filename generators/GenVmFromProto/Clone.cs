@@ -2286,7 +2286,7 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write(" = Encoding.UTF8.GetString(Encoding.Default.GetBytes(vm.");
+            this.Write(" = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.");
             
             #line 274 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));

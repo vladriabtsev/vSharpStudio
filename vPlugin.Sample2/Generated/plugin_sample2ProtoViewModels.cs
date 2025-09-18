@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 using System.Linq;
 using ViewModelBase;
 using System.Collections.ObjectModel;
@@ -16,13 +15,13 @@ using System.Diagnostics;
 using FluentValidation;
 using FluentValidation.Results;
 
-namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:27
+namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:26
 {
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
 
-    public interface IPluginSampleAcceptVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:33
+    public interface IPluginSampleAcceptVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:32
     {
         void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor);
     }
@@ -44,7 +43,7 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
             {
                 try
                 {
-                    Encoding.UTF8.GetString(Encoding.Default.GetBytes(str));
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
                 }
                 catch(Exception ex)
                 {
@@ -128,7 +127,7 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
         {
             Debug.Assert(vm != null);
             Proto.Plugin.proto_db_connection_string_settings2 m = new Proto.Plugin.proto_db_connection_string_settings2(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.StringSettings = Encoding.UTF8.GetString(Encoding.Default.GetBytes(vm.StringSettings)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            try { m.StringSettings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.StringSettings)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
             catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'plugin_sample2.proto' message 'proto_db_connection_string_settings2' field 'string_settings'", ex); }
             return m;
         }
@@ -182,7 +181,7 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
             {
                 try
                 {
-                    Encoding.UTF8.GetString(Encoding.Default.GetBytes(str));
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
                 }
                 catch(Exception ex)
                 {
@@ -280,7 +279,7 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
             Proto.Plugin.proto_generator_db_access_settings2 m = new Proto.Plugin.proto_generator_db_access_settings2(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
             m.IsAccessParam1 = vm.IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
             m.IsAccessParam2 = vm.IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.AccessParam3 = Encoding.UTF8.GetString(Encoding.Default.GetBytes(vm.AccessParam3)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            try { m.AccessParam3 = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.AccessParam3)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
             catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'plugin_sample2.proto' message 'proto_generator_db_access_settings2' field 'access_param3'", ex); }
             m.AccessParam4 = vm.AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
             m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
