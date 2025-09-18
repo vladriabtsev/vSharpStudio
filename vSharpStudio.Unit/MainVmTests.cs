@@ -21,7 +21,7 @@ namespace vSharpStudio.Unit
     [TestClass]
     public class MainVmTests
     {
-        private readonly ILogger? _logger;
+        private readonly ILogger _logger;
         string pathExt = @".\extcfg\";
 
         static MainVmTests()

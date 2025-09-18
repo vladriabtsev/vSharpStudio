@@ -1,5 +1,5 @@
 ﻿#define Async
-#define nPARALLEL // https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/how-to-write-a-simple-parallel-foreach-loop
+#define PARALLEL // https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/how-to-write-a-simple-parallel-foreach-loop
 //#if RELEASE && !PARALLEL
 #if RELEASE && PARALLEL
 Not tested yet
@@ -31,8 +31,7 @@ using Xceed.Wpf.Toolkit;
 
 namespace vSharpStudio.ViewModels
 {
-    //TODO 2020-08-07 Version. Faild to get working
-    // https://github.com/GitTools/GitVersion
+    //TODO 2020-08-07 Version. Faild to get working https://github.com/GitTools/GitVersion
     public class MainPageVM : VmValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
         private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(MainPageVM));
@@ -63,7 +62,7 @@ namespace vSharpStudio.ViewModels
                 dialogChildWindow.DataContext = dataContext;
             dialogChildWindow.WindowState = WindowState.Open;
         }
-        internal static MainPageVM Instance { get; private set; }
+        internal static MainPageVM? Instance { get; private set; }
         private readonly string? configFile;
         //public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
         internal static MainPage? _mainPage = null;
@@ -627,7 +626,6 @@ namespace vSharpStudio.ViewModels
             {
                 SetProperty(ref this._Config, value);
                 MainPageVM.ConfigInstance = value;
-                Debug.Assert(this._Config != null);
                 //TODO when loading another config it is not changing config view
                 //Debug.Assert(MainPageVM._mainPage != null);
                 // ??? MainPageVM._mainPage.configTree.configTreeView.ItemsSource = this.Config.Children;
@@ -657,7 +655,7 @@ namespace vSharpStudio.ViewModels
                 };
             }
         }
-        private Config _Config;
+        private Config? _Config;
 
         #region Main
         public vButtonVM BtnNewConfig
@@ -858,7 +856,7 @@ namespace vSharpStudio.ViewModels
 #endif
             this.Config.PluginSettingsToModel();
             this.Config.SetLastUpdated(DateTime.UtcNow);
-            var proto = Config.ConvertToProto(this._Config);
+            var proto = Config.ConvertToProto(this.Config);
             this.pconfig_history ??= new Proto.Config.proto_config_short_history();
 
             this.pconfig_history.CurrentConfig = proto;
@@ -1212,11 +1210,11 @@ namespace vSharpStudio.ViewModels
                                 // https://learn.microsoft.com/en-us/archive/msdn-magazine/2014/april/mvvm-multithreading-and-dispatching-in-mvvm-applications
                                 // https://softwareengineering.stackexchange.com/questions/347970/multithreaded-c-mvvm-application-architecture
                                 if (VmBindable.isUnitTests)
-                                    await this._Config.ValidateSubTreeFromNodeAsync(this._Config, null, cancellationToken);
+                                    await this.Config.ValidateSubTreeFromNodeAsync(this.Config, null, cancellationToken);
                                 else
                                     await Task.Run(() =>
                                     {
-                                        return this._Config.ValidateSubTreeFromNodeAsync(this._Config, this.ProgressVM, cancellationToken);
+                                        return this.Config.ValidateSubTreeFromNodeAsync(this.Config, this.ProgressVM, cancellationToken);
                                     });
                             }
                             catch (CancellationException)
@@ -1277,13 +1275,13 @@ namespace vSharpStudio.ViewModels
         private async Task<bool> ValidateConfigAsync(TestTransformation? o)
         {
             await this.BtnConfigValidateAsync.ExecuteAsync(o);
-            if (this._Config.CountErrors > 0)
+            if (this.Config.CountErrors > 0)
             {
 #if DEBUG
                 if (!VmBindable.isUnitTests)
                 {
 #endif
-                    var res = Xceed.Wpf.Toolkit.MessageBox.Show($"There are {this._Config.CountErrors} errors in configuration. First error is\n\n{this._Config.FindValidationMessage()?.Message}\n\nFix errors and try again.",
+                    var res = Xceed.Wpf.Toolkit.MessageBox.Show($"There are {this.Config.CountErrors} errors in configuration. First error is\n\n{this.Config.FindValidationMessage()?.Message}\n\nFix errors and try again.",
                         "Error", System.Windows.MessageBoxButton.OK);
                     this.cancellationTokenSource = null;
                     this.ProgressVM.ProgressClose();
@@ -1294,12 +1292,12 @@ namespace vSharpStudio.ViewModels
                 {
                     var sb = new StringBuilder();
                     sb.AppendLine();
-                    foreach (var t in this._Config.ValidationCollection)
+                    foreach (var t in this.Config.ValidationCollection)
                     {
                         if (t.Severity == FluentValidation.Severity.Error)
                             sb.AppendLine(t.Message);
                     }
-                    throw new Exception($"There are {this._Config.CountErrors} config errors.{sb}");
+                    throw new Exception($"There are {this.Config.CountErrors} config errors.{sb}");
                 }
 #endif
             }
@@ -1307,7 +1305,7 @@ namespace vSharpStudio.ViewModels
             if (!VmBindable.isUnitTests)
             {
 #endif
-                if (this._Config.CountWarnings > 0)
+                if (this.Config.CountWarnings > 0)
                 {
                     var res = Xceed.Wpf.Toolkit.MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                     if (res != System.Windows.MessageBoxResult.OK)
@@ -1484,17 +1482,14 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vButtonVmAsync<TestTransformation?>? _BtnConfigCurrentUpdateSql;
-#if PARALLEL
-        public async Task GenerateCodeAsync(bool isOnlySqlTextUpdate, CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
+        public void GenerateCode(bool isOnlySqlTextUpdate, CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
         {
+#if PARALLEL
             ParallelOptions options = new()
             {
                 CancellationToken = cancellationToken,
                 MaxDegreeOfParallelism = Environment.ProcessorCount
             };
-#else
-        public void GenerateCode(bool isOnlySqlTextUpdate, CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
-        {
 #endif
             var nGens = 0;
             //var dicGroupGuids = new Dictionary<string, string?>();
@@ -1661,10 +1656,14 @@ namespace vSharpStudio.ViewModels
                                 }
                             }
 #if PARALLEL
-                            );
+                            //);
 #endif
                         }
+#if PARALLEL
+                    });
+#else
                     }
+#endif
                     if (isCurrentUpdate)
                     {
                         foreach (var t in dicAppSettings)
@@ -1744,8 +1743,8 @@ namespace vSharpStudio.ViewModels
                                 {
                                     if (cancellationToken.IsCancellationRequested)
                                         throw new CancellationException();
-                                    Debug.Assert(this._Config.DicGenerators != null);
-                                    var gg = this._Config.DicGenerators[tg.PluginGeneratorGuid];
+                                    Debug.Assert(this.Config.DicGenerators != null);
+                                    var gg = this.Config.DicGenerators[tg.PluginGeneratorGuid];
                                     if (gg is not IvPluginCodeGenerator)
                                         continue;
                                     var generator = (IvPluginCodeGenerator)gg;
@@ -1815,8 +1814,8 @@ namespace vSharpStudio.ViewModels
                                 {
                                     if (cancellationToken.IsCancellationRequested)
                                         throw new CancellationException();
-                                    Debug.Assert(this._Config.DicGenerators != null);
-                                    var gg = this._Config.DicGenerators[tg.PluginGeneratorGuid];
+                                    Debug.Assert(this.Config.DicGenerators != null);
+                                    var gg = this.Config.DicGenerators[tg.PluginGeneratorGuid];
                                     if (gg is not IvPluginCodeGenerator)
                                         continue;
                                     var generator = (IvPluginCodeGenerator)gg;
@@ -1842,11 +1841,7 @@ namespace vSharpStudio.ViewModels
                     #region
                     this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Generating code/DB", iProgressStep * 100 / iProgressSteps);
                     iProgressStep++;
-#if PARALLEL
-                    await this.GenerateCodeAsync(isOnlySqlTextUpdate, cancellationToken, this.Config, true);
-#else
                     this.GenerateCode(isOnlySqlTextUpdate, cancellationToken, this.Config, true);
-#endif
                     var vis = new ModelVisitorRemoveMarkedIfNewObjects(this.Config);
                     vis.DeleteNewMarkedForDeletion();
                     //this.Config.SetIsNeedCurrentUpdate(false);
@@ -2035,7 +2030,7 @@ namespace vSharpStudio.ViewModels
             this.ResetIsChangedBeforeSave();
         }
 
-        #endregion Main
+#endregion Main
 
         #region ConfigTree
         private void VisibilityAndMessageInstructions()

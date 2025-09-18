@@ -21,7 +21,7 @@ namespace vSharpStudio.Unit
     {
         //internal static ILoggerFactory MyLoggerFactory { get; private set; }
         //internal static IHost MyHost { get; private set; }
-        private readonly ILogger? _logger;
+        private readonly ILogger _logger;
         private static TestContext testContext;
 
         [AssemblyInitialize]

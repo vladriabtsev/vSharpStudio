@@ -14,7 +14,7 @@ namespace vSharpStudio.Unit
     [TestClass]
     public class EditorVmTests
     {
-        private readonly ILogger? _logger;
+        private readonly ILogger _logger;
         static EditorVmTests()
         {
         }

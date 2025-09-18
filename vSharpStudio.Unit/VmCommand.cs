@@ -54,7 +54,7 @@ namespace vSharpStudio.Unit
     [TestClass]
     public class VmCommand
     {
-        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(VmCommand));
+        private readonly ILogger _logger = AppLogger.CreateLogger(nameof(VmCommand));
         static VmCommand()
         {
         }

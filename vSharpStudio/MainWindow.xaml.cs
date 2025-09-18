@@ -60,7 +60,7 @@ namespace vSharpStudio
                 w = Math.Max(w, t.WpfBounds.Right); //  / t.ScaleFactor
                 h = Math.Max(h, t.WpfBounds.Bottom);
             }
-            Debug.Assert(MainPageVM.Instance.UserSettings != null);
+            Debug.Assert(MainPageVM.Instance?.UserSettings != null);
             MainPageVM.Instance.UserSettings.LastVirtualScreenWidth = w;
             MainPageVM.Instance.UserSettings.LastVirtualScreenHeight = h;
             MainPageVM.Instance.UserSettings.LastAppMainWindowRectOnVirtualScreen.X = Application.Current.MainWindow.Left;
@@ -76,6 +76,7 @@ namespace vSharpStudio
             var y = (int)Application.Current.MainWindow.Top;
             var width = (int)Application.Current.MainWindow.Width;
             var height = (int)Application.Current.MainWindow.Height;
+            Debug.Assert(MainPageVM.Instance != null);
             MainPageVM.Instance.WindowPosition = $"X:{x} Y:{y} W:{width} h:{height}   ";
         }
 #endif
