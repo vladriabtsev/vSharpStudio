@@ -1,9 +1,9 @@
 ﻿#define Async
-#define nPARRALEL // https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/how-to-write-a-simple-parallel-foreach-loop
-//#if RELEASE && !PARRALEL
-#if RELEASE && PARRALEL
+#define nPARALLEL // https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/how-to-write-a-simple-parallel-foreach-loop
+//#if RELEASE && !PARALLEL
+#if RELEASE && PARALLEL
 Not tested yet
-//Release version is expecting #define PARRALEL in previous lines of code
+//Release version is expecting #define PARALLEL in previous lines of code
 #endif
 using System;
 using System.Collections.Generic;
@@ -206,16 +206,28 @@ namespace vSharpStudio.ViewModels
         private const string emptyStr = "";
         private Config? LoadConfig(string file_path, string indent, bool isRoot = false)
         {
-            if (!File.Exists(file_path) || Path.GetExtension(file_path) != ".vcfg")
+            if (!File.Exists(file_path) || (Path.GetExtension(file_path) != ".vcfg" && Path.GetExtension(file_path) != ".json"))
             {
                 _logger?.Information("Configuration file is not found: {FilePath}", file_path);
-                return null;
+                throw new ArgumentException($"Configuration file {file_path} is not found.", nameof(file_path));
             }
-            var protoarr = File.ReadAllBytes(file_path);
             try
             {
-                IEditableObjectExt.IsTraceChanges = false;
-                this.pconfig_history = Proto.Config.proto_config_short_history.Parser.WithDiscardUnknownFields(true).ParseFrom(protoarr);
+                if (Path.GetExtension(file_path) == ".vcfg")
+                {
+                    var protoarr = File.ReadAllBytes(file_path);
+                    IEditableObjectExt.IsTraceChanges = false;
+                    this.pconfig_history = Proto.Config.proto_config_short_history.Parser.WithDiscardUnknownFields(true).ParseFrom(protoarr);
+                }
+                else if (Path.GetExtension(file_path) == ".json")
+                {
+                    var json = File.ReadAllText(file_path);
+                    var jparser = new Google.Protobuf.JsonParser(new JsonParser.Settings(100));
+                    IEditableObjectExt.IsTraceChanges = false;
+                    this.pconfig_history = jparser.Parse<Proto.Config.proto_config_short_history>(json);
+                }
+                else
+                    throw new NotImplementedException($"Not supported file type: {file_path}");
                 _logger?.Debug("???Configuration is loaded from file: {FilePath}", file_path);
                 var config = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config(false));
                 _logger?.Debug("Config VM is created");
@@ -244,7 +256,7 @@ namespace vSharpStudio.ViewModels
                 InitConfig(config);
                 if (isRoot)
                 {
-                    this.Config = config;
+                    this._Config = config;
                     this.VisibilityAndMessageInstructions();
                     this.Config.RestoreIsHas();
                 }
@@ -252,7 +264,11 @@ namespace vSharpStudio.ViewModels
                     InitConfig((Config)config.PrevStableConfig);
                 if (config.PrevCurrentConfig != null)
                     InitConfig((Config)config.PrevCurrentConfig);
-                IEditableObjectExt.IsTraceChanges = true;
+                if (isRoot)
+                {
+                    this.Config = config;
+                    IEditableObjectExt.IsTraceChanges = true;
+                }
                 return config;
             }
             catch (Exception ex)
@@ -612,6 +628,9 @@ namespace vSharpStudio.ViewModels
                 SetProperty(ref this._Config, value);
                 MainPageVM.ConfigInstance = value;
                 Debug.Assert(this._Config != null);
+                Debug.Assert(MainPageVM._mainPage != null);
+                //TODO when loading another config it is not changing config view
+                // ??? MainPageVM._mainPage.configTree.configTreeView.ItemsSource = this.Config.Children;
                 this.ValidateProperty();
                 this._Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath) ?? String.Empty;
                 this.Config.OnSelectedNodeChanging = (oldValue, newValue) =>
@@ -724,7 +743,7 @@ namespace vSharpStudio.ViewModels
                 {
                     FileName = emptyStr, // Default file name
                     DefaultExt = ".vcfg", // Default file extension
-                    Filter = "Any file (.vcfg)|*.vcfg" // Filter files by extension
+                    Filter = "Proto config (.vcfg)|*.vcfg|Json config (.json)|*.json" // Filter files by extension
                 };
                 Nullable<bool> result = dlg.ShowDialog();
                 if (result == true)
@@ -855,22 +874,27 @@ namespace vSharpStudio.ViewModels
                 var folder = Path.GetDirectoryName(this.CurrentCfgFilePath);
                 Debug.Assert(folder != null);
                 Directory.CreateDirectory(folder);
-                File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
-//#if DEBUG
-                //var json = JsonFormatter.Default.Format(this.pconfig_history);
+                var protoarr = this.pconfig_history.ToByteArray();
+                // Proto format
+#if DEBUG // test can parse from byte array
+                IEditableObjectExt.IsTraceChanges = false;
+                Proto.Config.proto_config_short_history.Parser.WithDiscardUnknownFields(false).ParseFrom(protoarr);
+#endif
+                File.WriteAllBytes(this.CurrentCfgFilePath, protoarr);
+                // Json format
                 JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
                 var json = formatter.Format(this.pconfig_history);
+#if DEBUG // test can parse from json
+                var jparser = new Google.Protobuf.JsonParser(new JsonParser.Settings(100));
+                var jtest_config = jparser.Parse(json, Proto.Config.proto_config_short_history.Descriptor);
+                //CompareSaved(json);
+#endif
                 File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
-//#endif
+
                 this.UpdateUserSettingsSaveConfigs();
                 this.ResetIsChangedBeforeSave();
                 if (!MainPageVM.NotSaveUserSettings)
                     File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
-#if DEBUG
-                //var json = JsonFormatter.Default.Format(this.pconfig_history);
-                //File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
-                //CompareSaved(json);
-#endif
             }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
             //TODO restore private ConnStr
             this.ConnectionStringSettingsSave();
@@ -1460,12 +1484,18 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vButtonVmAsync<TestTransformation?>? _BtnConfigCurrentUpdateSql;
-#if PARRALEL
+#if PARALLEL
         public async Task GenerateCodeAsync(bool isOnlySqlTextUpdate, CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
+        {
+            ParallelOptions options = new()
+            {
+                CancellationToken = cancellationToken,
+                MaxDegreeOfParallelism = Environment.ProcessorCount
+            };
 #else
         public void GenerateCode(bool isOnlySqlTextUpdate, CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
-#endif
         {
+#endif
             var nGens = 0;
             //var dicGroupGuids = new Dictionary<string, string?>();
             foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
@@ -1505,17 +1535,26 @@ namespace vSharpStudio.ViewModels
                         continue;
                     // app settings path, 
                     var dicAppSettings = new Dictionary<string, StringBuilder>();
+#if PARALLEL
+                    Parallel.ForEach(tp.ListAppProjectGenerators, tpg =>
+#else
                     foreach (var tpg in tp.ListAppProjectGenerators)
+#endif
                     {
                         if (tpg.IsMarkedForDeletion)
+#if PARALLEL
+                            return;
+#else
                             continue;
+#endif
                         Debug.Assert(tpg.ListGenerators != null);
                         foreach (var tg in tpg.ListGenerators)
                         {
                             if (tg.Guid != tpg.PluginGeneratorGuid)
                                 continue;
-#if PARRALEL
+#if PARALLEL
                             await Task.Run(() =>
+#else
 #endif
                             {
                                 if (tg.Generator != null)
@@ -1598,7 +1637,7 @@ namespace vSharpStudio.ViewModels
                                             break;
                                         default:
                                             if (!isCurrentUpdate)
-#if PARRALEL
+#if PARALLEL
                                                 return;
 #else
                                                 continue;
@@ -1621,7 +1660,7 @@ namespace vSharpStudio.ViewModels
                                     }
                                 }
                             }
-#if PARRALEL
+#if PARALLEL
                             );
 #endif
                         }
@@ -1803,7 +1842,7 @@ namespace vSharpStudio.ViewModels
                     #region
                     this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Generating code/DB", iProgressStep * 100 / iProgressSteps);
                     iProgressStep++;
-#if PARRALEL
+#if PARALLEL
                     await this.GenerateCodeAsync(isOnlySqlTextUpdate, cancellationToken, this.Config, true);
 #else
                     this.GenerateCode(isOnlySqlTextUpdate, cancellationToken, this.Config, true);

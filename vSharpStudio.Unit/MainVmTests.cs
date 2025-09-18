@@ -13,6 +13,9 @@ using vSharpStudio.ViewModels;
 using vSharpStudio.vm.ViewModels;
 using static System.Net.Mime.MediaTypeNames;
 
+//TODO test work with json to load config (now config loading is not changing current)
+//TODO with encoding string, for proto we need UTF8
+
 namespace vSharpStudio.Unit
 {
     [TestClass]

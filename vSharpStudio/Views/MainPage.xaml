@@ -241,7 +241,7 @@
                     </Grid.ColumnDefinitions>
                     <!--Config Tree-->
                     <Grid Grid.Column="0">
-                        <local:ConfigTree />
+                        <local:ConfigTree x:Name="configTree" />
                     </Grid>
                     <GridSplitter Grid.Column="1" ResizeDirection="Columns" Width="5" HorizontalAlignment="Center" Opacity="0.5" >
                         <GridSplitter.Background>

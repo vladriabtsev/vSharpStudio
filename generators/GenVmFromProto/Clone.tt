@@ -270,6 +270,9 @@ public static <#= this.protoNameSpace #>.<#= message.Name #> ConvertToProto(<#= 
     m.<#= field.Name.ToNameCs() #> = ByteString.CopyFrom(vm.<#= field.Name.ToNameCs() #>); // <#=t4.FilePos() #>
 <#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.Enum) {#>
     m.<#= field.Name.ToNameCs() #> = (<#= this.protoNameSpace #>.<#= field.EnumType.Name #>)vm.<#= field.Name.ToNameCs() #>; // <#=t4.FilePos() #>
+<#      } else if (field.FieldType == Google.Protobuf.Reflection.FieldType.String) {#>
+    try { m.<#= field.Name.ToNameCs() #> = Encoding.UTF8.GetString(Encoding.Default.GetBytes(vm.<#= field.Name.ToNameCs() #>)); } // <#=t4.FilePos() #>
+    catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For '<#=root.Name#>' message '<#=message.Name#>' field '<#=field.Name#>'", ex); }
 <#      } else { #>
     m.<#= field.Name.ToNameCs() #> = vm.<#= field.Name.ToNameCs() #>; // <#=t4.FilePos() #>
 <#      } 
