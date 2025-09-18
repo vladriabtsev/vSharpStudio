@@ -5,6 +5,7 @@
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(RelationsGroupValidator));
         public RelationsGroupValidator()
         {
+            this.GeneralRules();
             //this.RuleFor(x => x.PrefixForDbTables).Must((o, prefix) =>
             //{
             //    if (!string.IsNullOrWhiteSpace(prefix))

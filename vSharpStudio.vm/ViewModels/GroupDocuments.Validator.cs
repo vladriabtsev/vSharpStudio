@@ -8,6 +8,7 @@ namespace vSharpStudio.vm.ViewModels
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(GroupDocumentsValidator));
         public GroupDocumentsValidator()
         {
+            this.GeneralRules();
             this.RuleFor(x => x.PrefixForCompositionNames).Must((o, prefix) =>
             {
                 if (!o.ParentModel.IsUseNameComposition)

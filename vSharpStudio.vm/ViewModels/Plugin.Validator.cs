@@ -10,6 +10,7 @@ namespace vSharpStudio.vm.ViewModels
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(PluginValidator));
         public PluginValidator()
         {
+            this.GeneralRules();
             this.RuleFor(x => x.VPlugin).Custom((plg, cntx) =>
             {
                 if (plg == null)

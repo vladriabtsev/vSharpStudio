@@ -628,8 +628,8 @@ namespace vSharpStudio.ViewModels
                 SetProperty(ref this._Config, value);
                 MainPageVM.ConfigInstance = value;
                 Debug.Assert(this._Config != null);
-                Debug.Assert(MainPageVM._mainPage != null);
                 //TODO when loading another config it is not changing config view
+                //Debug.Assert(MainPageVM._mainPage != null);
                 // ??? MainPageVM._mainPage.configTree.configTreeView.ItemsSource = this.Config.Children;
                 this.ValidateProperty();
                 this._Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath) ?? String.Empty;

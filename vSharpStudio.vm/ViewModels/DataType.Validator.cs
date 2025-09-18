@@ -13,6 +13,8 @@ namespace vSharpStudio.vm.ViewModels
         //IDataType prev = null;
         public DataTypeValidator()
         {
+            this.GeneralRules();
+
             #region Length
             // RuleFor(x => x.LengthString).Must(ParsableToBigInteger).WithMessage(Config.ValidationMessages.TYPE_MINMAX_CANT_PARSE);
             this.RuleFor(p => p.Length).Must((p, y) =>

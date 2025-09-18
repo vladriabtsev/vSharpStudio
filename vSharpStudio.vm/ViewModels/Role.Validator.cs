@@ -7,6 +7,7 @@ namespace vSharpStudio.vm.ViewModels
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(RoleValidator));
         public RoleValidator()
         {
+            this.GeneralRules();
             this.RuleFor(x => x.DefaultConstantEditAccessSettings).NotNull().WithMessage("Can't be null");
             this.RuleFor(x => x.DefaultConstantEditAccessSettings).NotEqual(common.EnumConstantAccess.CN_BY_PARENT).WithMessage("Can't use 'By Parent'");
             this.RuleFor(x => x.DefaultConstantPrintAccessSettings).NotNull().WithMessage("Can't be null");

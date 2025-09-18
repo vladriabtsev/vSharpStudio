@@ -8,6 +8,7 @@ namespace vSharpStudio.vm.ViewModels
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(CatalogCodePropertySettingsValidator));
         public CatalogCodePropertySettingsValidator()
         {
+            this.GeneralRules();
             this.RuleFor(x => x.MaxSequenceLength).GreaterThan(0u);
             this.RuleFor(x => x.MaxSequenceLength).LessThan(20u);
             this.RuleFor(x => x.Prefix).Custom((prefix, cntx) =>

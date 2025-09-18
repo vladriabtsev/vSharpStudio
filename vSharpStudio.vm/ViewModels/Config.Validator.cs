@@ -5,6 +5,7 @@
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ConfigValidator));
         public ConfigValidator()
         {
+            this.GeneralRules();
             //this.RuleFor(x => x.SolutionPath).NotEmpty();
             //this.RuleFor(x => x.SolutionPath).Must((o, path) =>
             //{

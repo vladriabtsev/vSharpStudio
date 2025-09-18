@@ -9,6 +9,7 @@ namespace vSharpStudio.vm.ViewModels
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(RegisterMappingRowValidator));
         public RegisterMappingRowValidator()
         {
+            //this.GeneralRules();
             this.RuleFor(x => x.Selected).Custom((sel, cntx) =>
             {
                 if (sel == null)

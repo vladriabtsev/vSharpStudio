@@ -15,7 +15,27 @@
 //     IsEditableBase: <#=this.Doc.IsEditableBase#> 
 //  IsValidatableBase: <#=this.Doc.IsValidatableBase#> 
 //    IsISortingValue: <#=this.Doc.IsISortingValue#> 
-public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { } // <#=t4.FilePos() #>
+public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator>  // <#=t4.FilePos() #>
+{
+    private void GeneralRules()
+    {
+<#    foreach (var t in message.Fields.InDeclarationOrder()) { 
+         if (t.FieldType == Google.Protobuf.Reflection.FieldType.String && !t.IsRepeated) {#>
+        this.RuleFor(x => x.<#=t.Name.ToNameCs()#>).Custom((str, cntx) =>
+        {
+            try
+            {
+                Encoding.UTF8.GetString(Encoding.Default.GetBytes(str));
+            }
+            catch(Exception ex)
+            {
+                cntx.AddFailure(new ValidationFailure("<#=t.Name.ToNameCs()#>", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+            }
+        });
+<#       }
+      } #>
+    }
+}
 <#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>, I<#= message.Name.ToNameCs() #> // <#=t4.FilePos() #>
 {
 <# if (this.Doc.IsBindableBase) { #>

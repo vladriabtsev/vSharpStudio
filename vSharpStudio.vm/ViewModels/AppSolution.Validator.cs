@@ -8,6 +8,7 @@ namespace vSharpStudio.vm.ViewModels
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(AppSolutionValidator));
         public AppSolutionValidator()
         {
+            this.GeneralRules();
             this.RuleFor(x => x.Name)
                 .NotEmpty()
                 .WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);

@@ -5,6 +5,7 @@
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(GroupListDetailsValidator));
         public GroupListDetailsValidator()
         {
+            this.GeneralRules();
             //this.RuleFor(x => x.PrefixForDbTables).Must((o, prefix) =>
             //{
             //    if (!string.IsNullOrWhiteSpace(prefix))

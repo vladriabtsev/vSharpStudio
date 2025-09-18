@@ -10,7 +10,6 @@ using System;
 using System.Text;
 using System.Linq;
 using ViewModelBase;
-using FluentValidation;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Threading;
@@ -22,6 +21,8 @@ using vSharpStudio.common;
 using vSharpStudio.common.ViewModels;
 using Google.Protobuf;
 using System.Diagnostics;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace <#= nameSpace #> // <#=t4.FilePos() #>
 {

@@ -12,6 +12,7 @@ namespace vSharpStudio.vm.ViewModels
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ModelValidator));
         public ModelValidator()
         {
+            this.GeneralRules();
             this.RuleFor(x => x.IsUseNameComposition).Custom((val, cntx) =>
             {
                 if (val)
