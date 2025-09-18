@@ -1,5 +1,5 @@
 ﻿#define Async
-#define PARALLEL // https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/how-to-write-a-simple-parallel-foreach-loop
+#define nPARALLEL // https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/how-to-write-a-simple-parallel-foreach-loop
 //#if RELEASE && !PARALLEL
 #if RELEASE && PARALLEL
 Not tested yet
@@ -1553,7 +1553,7 @@ namespace vSharpStudio.ViewModels
                             if (tg.Guid != tpg.PluginGeneratorGuid)
                                 continue;
 #if PARALLEL
-                            await Task.Run(() =>
+                            //await Task.Run(() =>
 #else
 #endif
                             {
