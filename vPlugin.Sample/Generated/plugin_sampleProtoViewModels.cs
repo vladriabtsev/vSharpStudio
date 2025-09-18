@@ -131,8 +131,14 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         {
             Debug.Assert(vm != null);
             Proto.Plugin.proto_db_connection_string_settings m = new Proto.Plugin.proto_db_connection_string_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.StringSettings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.StringSettings)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'plugin_sample.proto' message 'proto_db_connection_string_settings' field 'string_settings'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.StringSettings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.StringSettings)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'plugin_sample.proto' message 'proto_db_connection_string_settings' field 'string_settings'", ex); 
+            }
             return m;
         }
         
@@ -262,8 +268,8 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         {
             Debug.Assert(vm != null);
             Proto.Plugin.proto_plugins_group_solution_sub_settings m = new Proto.Plugin.proto_plugins_group_solution_sub_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            m.IsSubParam1 = vm.IsSubParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsSubParam2 = vm.IsSubParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsSubParam1 = vm.IsSubParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsSubParam2 = vm.IsSubParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         
@@ -414,7 +420,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         {
             Debug.Assert(vm != null);
             Proto.Plugin.proto_plugins_group_solution_settings m = new Proto.Plugin.proto_plugins_group_solution_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            m.IsGroupParam1 = vm.IsGroupParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsGroupParam1 = vm.IsGroupParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.SubSettings = vPlugin.Sample.PluginsGroupSolutionSubSettings.ConvertToProto((PluginsGroupSolutionSubSettings)vm.SubSettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             return m;
         }
@@ -567,7 +573,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         {
             Debug.Assert(vm != null);
             Proto.Plugin.proto_plugins_group_project_settings m = new Proto.Plugin.proto_plugins_group_project_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            m.IsGroupProjectParam1 = vm.IsGroupProjectParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsGroupProjectParam1 = vm.IsGroupProjectParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         
@@ -710,10 +716,16 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         {
             Debug.Assert(vm != null);
             Proto.Plugin.proto_generator_db_schema_settings m = new Proto.Plugin.proto_generator_db_schema_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            m.IsSchemaParam1 = vm.IsSchemaParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsSchemaParam2 = vm.IsSchemaParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.SchemaParam3 = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.SchemaParam3)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'plugin_sample.proto' message 'proto_generator_db_schema_settings' field 'schema_param3'", ex); }
+            m.IsSchemaParam1 = vm.IsSchemaParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsSchemaParam2 = vm.IsSchemaParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.SchemaParam3 = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.SchemaParam3)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'plugin_sample.proto' message 'proto_generator_db_schema_settings' field 'schema_param3'", ex); 
+            }
             return m;
         }
         
@@ -882,10 +894,10 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         {
             Debug.Assert(vm != null);
             Proto.Plugin.proto_generator_db_schema_node_settings m = new Proto.Plugin.proto_generator_db_schema_node_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            m.IsParam1 = vm.IsParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsIncluded = vm.IsIncluded; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsConstantParam1 = vm.IsConstantParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsParam1 = vm.IsParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsIncluded = vm.IsIncluded; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsConstantParam1 = vm.IsConstantParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         
@@ -1085,12 +1097,18 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         {
             Debug.Assert(vm != null);
             Proto.Plugin.proto_generator_db_access_settings m = new Proto.Plugin.proto_generator_db_access_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            m.IsAccessParam1 = vm.IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsAccessParam2 = vm.IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.AccessParam3 = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.AccessParam3)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'plugin_sample.proto' message 'proto_generator_db_access_settings' field 'access_param3'", ex); }
-            m.AccessParam4 = vm.AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsAccessParam1 = vm.IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsAccessParam2 = vm.IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.AccessParam3 = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.AccessParam3)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'plugin_sample.proto' message 'proto_generator_db_access_settings' field 'access_param3'", ex); 
+            }
+            m.AccessParam4 = vm.AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         
@@ -1293,10 +1311,10 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         {
             Debug.Assert(vm != null);
             Proto.Plugin.proto_generator_db_access_node_settings m = new Proto.Plugin.proto_generator_db_access_node_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            m.IsParam1 = vm.IsParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsIncluded = vm.IsIncluded; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsPropertyParam1 = vm.IsPropertyParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsParam1 = vm.IsParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsIncluded = vm.IsIncluded; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsPropertyParam1 = vm.IsPropertyParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         

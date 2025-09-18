@@ -127,8 +127,14 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
         {
             Debug.Assert(vm != null);
             Proto.Plugin.proto_db_connection_string_settings2 m = new Proto.Plugin.proto_db_connection_string_settings2(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.StringSettings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.StringSettings)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'plugin_sample2.proto' message 'proto_db_connection_string_settings2' field 'string_settings'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.StringSettings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.StringSettings)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'plugin_sample2.proto' message 'proto_db_connection_string_settings2' field 'string_settings'", ex); 
+            }
             return m;
         }
         
@@ -277,12 +283,18 @@ namespace vPlugin.Sample2 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gen
         {
             Debug.Assert(vm != null);
             Proto.Plugin.proto_generator_db_access_settings2 m = new Proto.Plugin.proto_generator_db_access_settings2(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            m.IsAccessParam1 = vm.IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsAccessParam2 = vm.IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.AccessParam3 = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.AccessParam3)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'plugin_sample2.proto' message 'proto_generator_db_access_settings2' field 'access_param3'", ex); }
-            m.AccessParam4 = vm.AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsAccessParam1 = vm.IsAccessParam1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsAccessParam2 = vm.IsAccessParam2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.AccessParam3 = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.AccessParam3)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'plugin_sample2.proto' message 'proto_generator_db_access_settings2' field 'access_param3'", ex); 
+            }
+            m.AccessParam4 = vm.AccessParam4; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         

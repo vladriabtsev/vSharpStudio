@@ -127,10 +127,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_rect_on_screen m = new Proto.Config.proto_rect_on_screen(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            m.X = vm.X; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.Y = vm.Y; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.Width = vm.Width; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.Height = vm.Height; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.X = vm.X; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.Y = vm.Y; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.Width = vm.Width; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.Height = vm.Height; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         
@@ -369,8 +369,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             foreach (var t in vm.ListOpenConfigHistory) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListOpenConfigHistory.Add(UserSettingsOpenedConfig.ConvertToProto((UserSettingsOpenedConfig)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             m.LastAppMainWindowRectOnVirtualScreen = vSharpStudio.vm.ViewModels.RectOnScreen.ConvertToProto((RectOnScreen)vm.LastAppMainWindowRectOnVirtualScreen); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            m.LastVirtualScreenWidth = vm.LastVirtualScreenWidth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.LastVirtualScreenHeight = vm.LastVirtualScreenHeight; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.LastVirtualScreenWidth = vm.LastVirtualScreenWidth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.LastVirtualScreenHeight = vm.LastVirtualScreenHeight; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         
@@ -588,11 +588,23 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_user_settings_opened_config m = new Proto.Config.proto_user_settings_opened_config(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_user_settings_opened_config' field 'guid'", ex); }
-            m.OpenedLastTimeOn = vm.OpenedLastTimeOn; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.ConfigPath = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ConfigPath)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_user_settings_opened_config' field 'config_path'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_user_settings_opened_config' field 'guid'", ex); 
+            }
+            m.OpenedLastTimeOn = vm.OpenedLastTimeOn; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ConfigPath = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ConfigPath)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_user_settings_opened_config' field 'config_path'", ex); 
+            }
             return m;
         }
         
@@ -863,15 +875,33 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_plugins m = new Proto.Config.proto_group_list_plugins(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_plugins' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_plugins' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_plugins' field 'name_ui'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_plugins' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_plugins' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_plugins' field 'name_ui'", ex); 
+            }
             foreach (var t in vm.ListPlugins) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListPlugins.Add(Plugin.ConvertToProto((Plugin)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         
@@ -1244,20 +1274,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_plugin m = new Proto.Config.proto_plugin(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin' field 'guid'", ex); }
-            try { m.Version = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Version)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin' field 'version'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Version = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Version)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin' field 'version'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListGenerators) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListGenerators.Add(PluginGenerator.ConvertToProto((PluginGenerator)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         
@@ -1596,15 +1656,39 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_plugin_generator m = new Proto.Config.proto_plugin_generator(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         
@@ -1854,14 +1938,32 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_settings_config m = new Proto.Config.proto_settings_config(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_settings_config' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_settings_config' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_settings_config' field 'description'", ex); }
-            m.VersionMigrationCurrent = vm.VersionMigrationCurrent; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.VersionMigrationSupportFromMin = vm.VersionMigrationSupportFromMin; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_settings_config' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_settings_config' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_settings_config' field 'description'", ex); 
+            }
+            m.VersionMigrationCurrent = vm.VersionMigrationCurrent; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.VersionMigrationSupportFromMin = vm.VersionMigrationSupportFromMin; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         #endregion Procedures
@@ -2088,10 +2190,22 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_config_short_history m = new Proto.Config.proto_config_short_history(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_config_short_history' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_config_short_history' field 'name'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_config_short_history' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_config_short_history' field 'name'", ex); 
+            }
             m.CurrentConfig = vSharpStudio.vm.ViewModels.Config.ConvertToProto((Config)vm.CurrentConfig); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.PrevStableConfig = vSharpStudio.vm.ViewModels.Config.ConvertToProto((Config)vm.PrevStableConfig); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             return m;
@@ -2430,15 +2544,39 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_base_config_links m = new Proto.Config.proto_group_list_base_config_links(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_base_config_links' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_base_config_links' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_base_config_links' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_base_config_links' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_base_config_links' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_base_config_links' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_base_config_links' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_base_config_links' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListBaseConfigLinks) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListBaseConfigLinks.Add(BaseConfigLink.ConvertToProto((BaseConfigLink)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -2859,19 +2997,49 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_base_config_link m = new Proto.Config.proto_base_config_link(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_base_config_link' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_base_config_link' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_base_config_link' field 'name_ui'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_base_config_link' field 'description'", ex); }
-            try { m.RelativeConfigFilePath = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RelativeConfigFilePath)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_base_config_link' field 'relative_config_file_path'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_base_config_link' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_base_config_link' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_base_config_link' field 'name_ui'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_base_config_link' field 'description'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.RelativeConfigFilePath = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RelativeConfigFilePath)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_base_config_link' field 'relative_config_file_path'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -3276,18 +3444,42 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_config m = new Proto.Config.proto_config(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_config' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_config' field 'name'", ex); }
-            m.Version = vm.Version; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_config' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_config' field 'description'", ex); }
-            m.LastUpdated = vm.LastUpdated; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNeedCurrentUpdate = vm.IsNeedCurrentUpdate; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_config' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_config' field 'name'", ex); 
+            }
+            m.Version = vm.Version; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_config' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_config' field 'description'", ex); 
+            }
+            m.LastUpdated = vm.LastUpdated; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNeedCurrentUpdate = vm.IsNeedCurrentUpdate; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.GroupConfigLinks = vSharpStudio.vm.ViewModels.GroupListBaseConfigLinks.ConvertToProto((GroupListBaseConfigLinks)vm.GroupConfigLinks); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.Model = vSharpStudio.vm.ViewModels.Model.ConvertToProto((Model)vm.Model); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.GroupPlugins = vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToProto((GroupListPlugins)vm.GroupPlugins); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
@@ -3734,20 +3926,62 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_app_db_settings m = new Proto.Config.proto_app_db_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.PluginGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PluginGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'plugin_guid'", ex); }
-            try { m.PluginName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PluginName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'plugin_name'", ex); }
-            try { m.Version = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Version)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'version'", ex); }
-            try { m.PluginGenGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PluginGenGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'plugin_gen_guid'", ex); }
-            try { m.PluginGenName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PluginGenName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'plugin_gen_name'", ex); }
-            try { m.ConnGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ConnGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'conn_guid'", ex); }
-            try { m.ConnName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ConnName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'conn_name'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PluginGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PluginGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'plugin_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PluginName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PluginName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'plugin_name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Version = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Version)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'version'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PluginGenGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PluginGenGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'plugin_gen_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PluginGenName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PluginGenName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'plugin_gen_name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ConnGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ConnGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'conn_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ConnName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ConnName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_db_settings' field 'conn_name'", ex); 
+            }
             return m;
         }
         
@@ -4017,10 +4251,22 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_plugin_generator_solution_settings m = new Proto.Config.proto_plugin_generator_solution_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_solution_settings' field 'guid'", ex); }
-            try { m.Settings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Settings)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_solution_settings' field 'settings'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_solution_settings' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Settings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Settings)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_solution_settings' field 'settings'", ex); 
+            }
             return m;
         }
         
@@ -4190,10 +4436,22 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_plugin_generator_project_settings m = new Proto.Config.proto_plugin_generator_project_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_project_settings' field 'guid'", ex); }
-            try { m.Settings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Settings)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_project_settings' field 'settings'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_project_settings' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Settings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Settings)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_project_settings' field 'settings'", ex); 
+            }
             return m;
         }
         
@@ -4460,15 +4718,39 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_app_solutions m = new Proto.Config.proto_group_list_app_solutions(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_app_solutions' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_app_solutions' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_app_solutions' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_app_solutions' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_app_solutions' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_app_solutions' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_app_solutions' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_app_solutions' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListAppSolutions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListAppSolutions.Add(AppSolution.ConvertToProto((AppSolution)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -4924,21 +5206,57 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_app_solution m = new Proto.Config.proto_app_solution(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_solution' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_solution' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_solution' field 'name_ui'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_solution' field 'description'", ex); }
-            try { m.ShortIdForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdForCacheKey)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_solution' field 'short_id_for_cache_key'", ex); }
-            try { m.RelativeAppSolutionPath = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RelativeAppSolutionPath)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_solution' field 'relative_app_solution_path'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_solution' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_solution' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_solution' field 'name_ui'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_solution' field 'description'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ShortIdForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdForCacheKey)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_solution' field 'short_id_for_cache_key'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.RelativeAppSolutionPath = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RelativeAppSolutionPath)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_solution' field 'relative_app_solution_path'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListAppProjects) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListAppProjects.Add(AppProject.ConvertToProto((AppProject)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListGeneratorsSolutionSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -5460,19 +5778,49 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_app_project m = new Proto.Config.proto_app_project(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project' field 'name_ui'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project' field 'description'", ex); }
-            try { m.RelativeAppProjectPath = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RelativeAppProjectPath)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project' field 'relative_app_project_path'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project' field 'name_ui'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project' field 'description'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.RelativeAppProjectPath = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RelativeAppProjectPath)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project' field 'relative_app_project_path'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListAppProjectGenerators) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListAppProjectGenerators.Add(AppProjectGenerator.ConvertToProto((AppProjectGenerator)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListGeneratorsProjectSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -5874,17 +6222,47 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_plugin_generator_node_settings m = new Proto.Config.proto_plugin_generator_node_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_settings' field 'guid'", ex); }
-            try { m.AppProjectGeneratorGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.AppProjectGeneratorGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_settings' field 'app_project_generator_guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_settings' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_settings' field 'name_ui'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.Settings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Settings)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_settings' field 'settings'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_settings' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.AppProjectGeneratorGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.AppProjectGeneratorGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_settings' field 'app_project_generator_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_settings' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_settings' field 'name_ui'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Settings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Settings)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_settings' field 'settings'", ex); 
+            }
             return m;
         }
         
@@ -6126,10 +6504,22 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_plugin_group_model_extensions m = new Proto.Config.proto_plugin_group_model_extensions(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_group_model_extensions' field 'guid'", ex); }
-            try { m.Settings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Settings)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_group_model_extensions' field 'settings'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_group_model_extensions' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Settings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Settings)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_group_model_extensions' field 'settings'", ex); 
+            }
             return m;
         }
         
@@ -6342,16 +6732,46 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_plugin_generator_settings m = new Proto.Config.proto_plugin_generator_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_settings' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_settings' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_settings' field 'name_ui'", ex); }
-            try { m.AppProjectGeneratorGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.AppProjectGeneratorGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_settings' field 'app_project_generator_guid'", ex); }
-            try { m.Settings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Settings)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_settings' field 'settings'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_settings' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_settings' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_settings' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.AppProjectGeneratorGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.AppProjectGeneratorGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_settings' field 'app_project_generator_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Settings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Settings)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_settings' field 'settings'", ex); 
+            }
             return m;
         }
         
@@ -6780,39 +7200,123 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_app_project_generator m = new Proto.Config.proto_app_project_generator(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'name_ui'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'description'", ex); }
-            try { m.PluginGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PluginGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'plugin_guid'", ex); }
-            try { m.DescriptionPlugin = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DescriptionPlugin)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'description_plugin'", ex); }
-            try { m.PluginGeneratorGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PluginGeneratorGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'plugin_generator_guid'", ex); }
-            try { m.DescriptionGenerator = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DescriptionGenerator)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'description_generator'", ex); }
-            try { m.RelativePathToGenFolder = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RelativePathToGenFolder)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'relative_path_to_gen_folder'", ex); }
-            try { m.GenFileName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.GenFileName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'gen_file_name'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.GeneratorSettings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.GeneratorSettings)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'generator_settings'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'name_ui'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'description'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PluginGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PluginGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'plugin_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.DescriptionPlugin = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DescriptionPlugin)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'description_plugin'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PluginGeneratorGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PluginGeneratorGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'plugin_generator_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.DescriptionGenerator = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DescriptionGenerator)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'description_generator'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.RelativePathToGenFolder = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RelativePathToGenFolder)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'relative_path_to_gen_folder'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.GenFileName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.GenFileName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'gen_file_name'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.GeneratorSettings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.GeneratorSettings)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'generator_settings'", ex); 
+            }
             m.GeneratorSettingsVm = vSharpStudio.vm.ViewModels.PluginGeneratorSettings.ConvertToProto((PluginGeneratorSettings)vm.GeneratorSettingsVm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            try { m.ConnStr = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ConnStr)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'conn_str'", ex); }
-            try { m.ConnStrToPrevStable = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ConnStrToPrevStable)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'conn_str_to_prev_stable'", ex); }
-            m.IsGenerateSqlSqriptToUpdatePrevStable = vm.IsGenerateSqlSqriptToUpdatePrevStable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.GenScriptFileName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.GenScriptFileName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'gen_script_file_name'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ConnStr = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ConnStr)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'conn_str'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ConnStrToPrevStable = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ConnStrToPrevStable)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'conn_str_to_prev_stable'", ex); 
+            }
+            m.IsGenerateSqlSqriptToUpdatePrevStable = vm.IsGenerateSqlSqriptToUpdatePrevStable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.GenScriptFileName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.GenScriptFileName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_app_project_generator' field 'gen_script_file_name'", ex); 
+            }
             return m;
         }
         
@@ -7324,10 +7828,22 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_plugin_generator_node_default_settings m = new Proto.Config.proto_plugin_generator_node_default_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.NodeSettingsVmGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NodeSettingsVmGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_default_settings' field 'node_settings_vm_guid'", ex); }
-            try { m.Settings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Settings)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_default_settings' field 'settings'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NodeSettingsVmGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NodeSettingsVmGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_default_settings' field 'node_settings_vm_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Settings = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Settings)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_plugin_generator_node_default_settings' field 'settings'", ex); 
+            }
             return m;
         }
         
@@ -7888,49 +8404,145 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_model m = new Proto.Config.proto_model(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'guid'", ex); }
-            m.Version = vm.Version; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'description'", ex); }
-            m.CompositeNameMaxLength = vm.CompositeNameMaxLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsUseNameComposition = vm.IsUseNameComposition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.PKeyName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PKeyName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'p_key_name'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'guid'", ex); 
+            }
+            m.Version = vm.Version; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'description'", ex); 
+            }
+            m.CompositeNameMaxLength = vm.CompositeNameMaxLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsUseNameComposition = vm.IsUseNameComposition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PKeyName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PKeyName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'p_key_name'", ex); 
+            }
             m.PKeyType = (Proto.Config.proto_enum_primary_key_type)vm.PKeyType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            try { m.RecordVersionFieldName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RecordVersionFieldName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'record_version_field_name'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.RecordVersionFieldName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RecordVersionFieldName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'record_version_field_name'", ex); 
+            }
             m.RecordVersionFieldType = (Proto.Config.proto_enum_version_field_type)vm.RecordVersionFieldType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.ComplexPropertyRefDescrLength = vm.ComplexPropertyRefDescrLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.LastTypeShortRefId = vm.LastTypeShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.PropertyIdGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyIdGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_id_guid'", ex); }
-            try { m.PropertyVersionGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyVersionGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_version_guid'", ex); }
-            try { m.PropertyCtlgCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCtlgCodeGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_ctlg_code_guid'", ex); }
-            try { m.PropertyCtlgNameGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCtlgNameGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_ctlg_name_guid'", ex); }
-            try { m.PropertyCtlgDescriptionGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCtlgDescriptionGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_ctlg_description_guid'", ex); }
-            try { m.PropertyCtlgIsFolderGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCtlgIsFolderGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_ctlg_is_folder_guid'", ex); }
-            try { m.PropertyDocNumberGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocNumberGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_doc_number_guid'", ex); }
-            try { m.PropertyDocDateGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocDateGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_doc_date_guid'", ex); }
-            try { m.PropertyDocShortTypeIdGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocShortTypeIdGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_doc_short_type_id_guid'", ex); }
-            try { m.PropertyDocIsPostedGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocIsPostedGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_doc_is_posted_guid'", ex); }
-            m.IsGridSortable = vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsGridSortableCustom = vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsGridFilterable = vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.ComplexPropertyRefDescrLength = vm.ComplexPropertyRefDescrLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.LastTypeShortRefId = vm.LastTypeShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyIdGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyIdGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_id_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyVersionGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyVersionGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_version_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyCtlgCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCtlgCodeGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_ctlg_code_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyCtlgNameGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCtlgNameGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_ctlg_name_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyCtlgDescriptionGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCtlgDescriptionGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_ctlg_description_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyCtlgIsFolderGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCtlgIsFolderGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_ctlg_is_folder_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyDocNumberGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocNumberGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_doc_number_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyDocDateGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocDateGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_doc_date_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyDocShortTypeIdGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocShortTypeIdGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_doc_short_type_id_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyDocIsPostedGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocIsPostedGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_doc_is_posted_guid'", ex); 
+            }
+            m.IsGridSortable = vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsGridSortableCustom = vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsGridFilterable = vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.GroupCommon = vSharpStudio.vm.ViewModels.GroupListCommon.ConvertToProto((GroupListCommon)vm.GroupCommon); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.GroupConstantGroups = vSharpStudio.vm.ViewModels.GroupConstantGroups.ConvertToProto((GroupConstantGroups)vm.GroupConstantGroups); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToProto((GroupListEnumerations)vm.GroupEnumerations); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
@@ -8798,16 +9410,40 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.complex_ref m = new Proto.Config.complex_ref(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'complex_ref' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'complex_ref' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.ForeignObjectGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ForeignObjectGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'complex_ref' field 'foreign_object_guid'", ex); }
-            try { m.RefComplexObjectIdPropertyGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RefComplexObjectIdPropertyGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'complex_ref' field 'ref_complex_object_id_property_guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'complex_ref' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'complex_ref' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ForeignObjectGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ForeignObjectGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'complex_ref' field 'foreign_object_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.RefComplexObjectIdPropertyGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RefComplexObjectIdPropertyGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'complex_ref' field 'ref_complex_object_id_property_guid'", ex); 
+            }
             return m;
         }
         
@@ -9110,18 +9746,18 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             Debug.Assert(vm != null);
             Proto.Config.proto_data_type m = new Proto.Config.proto_data_type(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
             m.DataTypeEnum = (Proto.Config.proto_enum_data_type)vm.DataTypeEnum; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.Length = vm.Length; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsPositive = vm.IsPositive; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.Accuracy = vm.Accuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.Length = vm.Length; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsPositive = vm.IsPositive; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.Accuracy = vm.Accuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.AccuracyForTime = (Proto.Config.proto_enum_time_accuracy_type)vm.AccuracyForTime; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             foreach (var t in vm.ListObjectRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListObjectRefs.Add(ComplexRef.ConvertToProto((ComplexRef)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.IsNullable = vm.IsNullable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsNullable = vm.IsNullable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.TimespanAccuracy = (Proto.Config.proto_enum_timespan_boundary_type)vm.TimespanAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.TimespanMaxValue = (Proto.Config.proto_enum_timespan_boundary_type)vm.TimespanMaxValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.IsUseHistory = vm.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsPKey = vm.IsPKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsRefParent = vm.IsRefParent; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsUseHistory = vm.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsPKey = vm.IsPKey; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsRefParent = vm.IsRefParent; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         
@@ -9616,15 +10252,39 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_common m = new Proto.Config.proto_group_list_common(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_common' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_common' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_common' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_common' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_common' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_common' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_common' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_common' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.GroupRoles = vSharpStudio.vm.ViewModels.GroupListRoles.ConvertToProto((GroupListRoles)vm.GroupRoles); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.GroupViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToProto((GroupListMainViewForms)vm.GroupViewForms); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -10044,17 +10704,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_role m = new Proto.Config.proto_role(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role' field 'description'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role' field 'description'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.DefaultConstantPrintAccessSettings = (Proto.Config.proto_enum_print_access)vm.DefaultConstantPrintAccessSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.DefaultConstantEditAccessSettings = (Proto.Config.proto_enum_constant_access)vm.DefaultConstantEditAccessSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.DefaultCatalogPrintAccessSettings = (Proto.Config.proto_enum_print_access)vm.DefaultCatalogPrintAccessSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -10476,8 +11160,14 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_role_constant_access m = new Proto.Config.proto_role_constant_access(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role_constant_access' field 'guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role_constant_access' field 'guid'", ex); 
+            }
             m.EditAccess = (Proto.Config.proto_enum_constant_access)vm.EditAccess; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.PrintAccess = (Proto.Config.proto_enum_print_access)vm.PrintAccess; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             return m;
@@ -10659,8 +11349,14 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_role_property_access m = new Proto.Config.proto_role_property_access(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role_property_access' field 'guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role_property_access' field 'guid'", ex); 
+            }
             m.EditAccess = (Proto.Config.proto_enum_property_access)vm.EditAccess; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.PrintAccess = (Proto.Config.proto_enum_print_access)vm.PrintAccess; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             return m;
@@ -10842,8 +11538,14 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_role_catalog_access m = new Proto.Config.proto_role_catalog_access(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role_catalog_access' field 'guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role_catalog_access' field 'guid'", ex); 
+            }
             m.EditAccess = (Proto.Config.proto_enum_catalog_detail_access)vm.EditAccess; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.PrintAccess = (Proto.Config.proto_enum_print_access)vm.PrintAccess; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             return m;
@@ -11025,8 +11727,14 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_role_detail_access m = new Proto.Config.proto_role_detail_access(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role_detail_access' field 'guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role_detail_access' field 'guid'", ex); 
+            }
             m.EditAccess = (Proto.Config.proto_enum_catalog_detail_access)vm.EditAccess; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.PrintAccess = (Proto.Config.proto_enum_print_access)vm.PrintAccess; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             return m;
@@ -11208,8 +11916,14 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_role_document_access m = new Proto.Config.proto_role_document_access(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role_document_access' field 'guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_role_document_access' field 'guid'", ex); 
+            }
             m.EditAccess = (Proto.Config.proto_enum_document_access)vm.EditAccess; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.PrintAccess = (Proto.Config.proto_enum_print_access)vm.PrintAccess; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             return m;
@@ -11545,17 +12259,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_roles m = new Proto.Config.proto_group_list_roles(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_roles' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_roles' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_roles' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_roles' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_roles' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_roles' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_roles' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_roles' field 'description'", ex); 
+            }
             foreach (var t in vm.ListRoles) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListRoles.Add(Role.ConvertToProto((Role)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -11970,18 +12708,42 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_main_view_form m = new Proto.Config.proto_main_view_form(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_main_view_form' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_main_view_form' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_main_view_form' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_main_view_form' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_main_view_form' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_main_view_form' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_main_view_form' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_main_view_form' field 'description'", ex); 
+            }
             m.GroupListViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToProto((GroupListMainViewForms)vm.GroupListViewForms); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -12444,17 +13206,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_main_view_forms m = new Proto.Config.proto_group_list_main_view_forms(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_main_view_forms' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_main_view_forms' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_main_view_forms' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_main_view_forms' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_main_view_forms' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_main_view_forms' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_main_view_forms' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_main_view_forms' field 'description'", ex); 
+            }
             foreach (var t in vm.ListMainViewForms) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListMainViewForms.Add(MainViewForm.ConvertToProto((MainViewForm)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -12966,18 +13752,42 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_properties m = new Proto.Config.proto_group_list_properties(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_properties' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_properties' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_properties' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_properties' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_properties' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_properties' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_properties' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_properties' field 'description'", ex); 
+            }
             foreach (var t in vm.ListProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListProperties.Add(Property.ConvertToProto((Property)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.LastGenPosition = vm.LastGenPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.LastGenPosition = vm.LastGenPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -13684,46 +14494,112 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_property m = new Proto.Config.proto_property(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'description'", ex); 
+            }
             m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            try { m.DefaultValue = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DefaultValue)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'default_value'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.RangeValuesRequirementStr = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RangeValuesRequirementStr)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'range_values_requirement_str'", ex); }
-            try { m.MinLengthRequirement = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.MinLengthRequirement)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'min_length_requirement'", ex); }
-            try { m.MaxLengthRequirement = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.MaxLengthRequirement)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'max_length_requirement'", ex); }
-            m.IsTryAttach = vm.IsTryAttach; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.LinesOnScreen = vm.LinesOnScreen; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsStartNewRow = vm.IsStartNewRow; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.TabName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TabName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'tab_name'", ex); }
-            m.IsStartNewTabControl = vm.IsStartNewTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsStopTabControl = vm.IsStopTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.DefaultValue = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DefaultValue)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'default_value'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.RangeValuesRequirementStr = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RangeValuesRequirementStr)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'range_values_requirement_str'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.MinLengthRequirement = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.MinLengthRequirement)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'min_length_requirement'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.MaxLengthRequirement = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.MaxLengthRequirement)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'max_length_requirement'", ex); 
+            }
+            m.IsTryAttach = vm.IsTryAttach; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.LinesOnScreen = vm.LinesOnScreen; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsStartNewRow = vm.IsStartNewRow; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.TabName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TabName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'tab_name'", ex); 
+            }
+            m.IsStartNewTabControl = vm.IsStartNewTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsStopTabControl = vm.IsStopTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.DataGenerator = vSharpStudio.vm.ViewModels.PropertyDataGenerator.ConvertToProto((PropertyDataGenerator)vm.DataGenerator); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             foreach (var t in vm.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListRolePropertyAccessSettings.Add(RolePropertyAccess.ConvertToProto((RolePropertyAccess)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            try { m.RefComplexObjectGdPropertyGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RefComplexObjectGdPropertyGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'ref_complex_object_gd_property_guid'", ex); }
-            try { m.RefComplexObjectDescrPropertyGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RefComplexObjectDescrPropertyGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'ref_complex_object_descr_property_guid'", ex); }
-            m.PositionOfGd = vm.PositionOfGd; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.PositionOfDescr = vm.PositionOfDescr; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.RefComplexObjectGdPropertyGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RefComplexObjectGdPropertyGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'ref_complex_object_gd_property_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.RefComplexObjectDescrPropertyGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RefComplexObjectDescrPropertyGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_property' field 'ref_complex_object_descr_property_guid'", ex); 
+            }
+            m.PositionOfGd = vm.PositionOfGd; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.PositionOfDescr = vm.PositionOfDescr; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -14723,17 +15599,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_details m = new Proto.Config.proto_group_list_details(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_details' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_details' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_details' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_details' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_details' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_details' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_details' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_details' field 'description'", ex); 
+            }
             foreach (var t in vm.ListDetails) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListDetails.Add(Detail.ConvertToProto((Detail)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -15384,35 +16284,77 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_detail m = new Proto.Config.proto_detail(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'description'", ex); }
-            m.IsIndexFk = vm.IsIndexFk; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'description'", ex); 
+            }
+            m.IsIndexFk = vm.IsIndexFk; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.PropertyRefParent = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefParent); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsTryAttach = vm.IsTryAttach; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsStartNewRow = vm.IsStartNewRow; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsStartNewTab = vm.IsStartNewTab; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.TabName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TabName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'tab_name'", ex); }
-            m.IsStartNewTabControl = vm.IsStartNewTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsStopTabControl = vm.IsStopTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.ViewListDatagridGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ViewListDatagridGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'view_list_datagrid_guid'", ex); }
-            try { m.ViewListComboBoxGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ViewListComboBoxGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'view_list_combo_box_guid'", ex); }
+            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsTryAttach = vm.IsTryAttach; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsStartNewRow = vm.IsStartNewRow; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsStartNewTab = vm.IsStartNewTab; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.TabName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TabName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'tab_name'", ex); 
+            }
+            m.IsStartNewTabControl = vm.IsStartNewTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsStopTabControl = vm.IsStopTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ViewListDatagridGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ViewListDatagridGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'view_list_datagrid_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ViewListComboBoxGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ViewListComboBoxGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'view_list_combo_box_guid'", ex); 
+            }
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -16281,17 +17223,47 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_constant_groups m = new Proto.Config.proto_group_constant_groups(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_constant_groups' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_constant_groups' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_constant_groups' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_constant_groups' field 'description'", ex); }
-            try { m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_constant_groups' field 'prefix_for_composition_names'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_constant_groups' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_constant_groups' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_constant_groups' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_constant_groups' field 'description'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_constant_groups' field 'prefix_for_composition_names'", ex); 
+            }
             foreach (var t in vm.ListConstantGroups) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListConstantGroups.Add(GroupListConstants.ConvertToProto((GroupListConstants)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -16818,23 +17790,53 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_constants m = new Proto.Config.proto_group_list_constants(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_constants' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_constants' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_constants' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_constants' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_constants' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_constants' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_constants' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_constants' field 'description'", ex); 
+            }
             foreach (var t in vm.ListConstants) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListConstants.Add(Constant.ConvertToProto((Constant)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            try { m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_constants' field 'short_id_type_for_cache_key'", ex); }
-            m.LastGenPosition = vm.LastGenPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_constants' field 'short_id_type_for_cache_key'", ex); 
+            }
+            m.LastGenPosition = vm.LastGenPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListRoleConstantAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListRoleConstantAccessSettings.Add(RoleConstantAccess.ConvertToProto((RoleConstantAccess)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -17552,46 +18554,112 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_constant m = new Proto.Config.proto_constant(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'description'", ex); 
+            }
             m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            m.IsNullable = vm.IsNullable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.DefaultValue = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DefaultValue)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'default_value'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.RangeValuesRequirementStr = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RangeValuesRequirementStr)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'range_values_requirement_str'", ex); }
-            try { m.MinLengthRequirement = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.MinLengthRequirement)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'min_length_requirement'", ex); }
-            try { m.MaxLengthRequirement = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.MaxLengthRequirement)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'max_length_requirement'", ex); }
+            m.IsNullable = vm.IsNullable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.DefaultValue = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DefaultValue)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'default_value'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.RangeValuesRequirementStr = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RangeValuesRequirementStr)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'range_values_requirement_str'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.MinLengthRequirement = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.MinLengthRequirement)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'min_length_requirement'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.MaxLengthRequirement = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.MaxLengthRequirement)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'max_length_requirement'", ex); 
+            }
             m.AccuracyForTime = (Proto.Config.proto_enum_time_accuracy_type)vm.AccuracyForTime; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.IsTryAttach = vm.IsTryAttach; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.LinesOnScreen = vm.LinesOnScreen; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsStartNewRow = vm.IsStartNewRow; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.TabName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TabName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'tab_name'", ex); }
-            m.IsStartNewTabControl = vm.IsStartNewTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsStopTabControl = vm.IsStopTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsTryAttach = vm.IsTryAttach; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.LinesOnScreen = vm.LinesOnScreen; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsStartNewRow = vm.IsStartNewRow; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.TabName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TabName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'tab_name'", ex); 
+            }
+            m.IsStartNewTabControl = vm.IsStartNewTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsStopTabControl = vm.IsStopTabControl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListRoleConstantAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListRoleConstantAccessSettings.Add(RoleConstantAccess.ConvertToProto((RoleConstantAccess)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            try { m.RefComplexObjectGdPropertyGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RefComplexObjectGdPropertyGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'ref_complex_object_gd_property_guid'", ex); }
-            try { m.RefComplexObjectDescrPropertyGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RefComplexObjectDescrPropertyGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'ref_complex_object_descr_property_guid'", ex); }
-            m.PositionOfGd = vm.PositionOfGd; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.PositionOfDescr = vm.PositionOfDescr; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.RefComplexObjectGdPropertyGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RefComplexObjectGdPropertyGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'ref_complex_object_gd_property_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.RefComplexObjectDescrPropertyGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RefComplexObjectDescrPropertyGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_constant' field 'ref_complex_object_descr_property_guid'", ex); 
+            }
+            m.PositionOfGd = vm.PositionOfGd; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.PositionOfDescr = vm.PositionOfDescr; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -18465,17 +19533,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_enumerations m = new Proto.Config.proto_group_list_enumerations(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerations' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerations' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerations' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerations' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerations' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerations' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerations' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerations' field 'description'", ex); 
+            }
             foreach (var t in vm.ListEnumerations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListEnumerations.Add(Enumeration.ConvertToProto((Enumeration)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -18938,21 +20030,45 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_enumeration m = new Proto.Config.proto_enumeration(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration' field 'description'", ex); 
+            }
             m.DataTypeEnum = (Proto.Config.enum_enumeration_type)vm.DataTypeEnum; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.DataTypeLength = vm.DataTypeLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.DataTypeLength = vm.DataTypeLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListEnumerationPairs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListEnumerationPairs.Add(EnumerationPair.ConvertToProto((EnumerationPair)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -19441,21 +20557,51 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_enumeration_pair m = new Proto.Config.proto_enumeration_pair(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration_pair' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration_pair' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration_pair' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration_pair' field 'description'", ex); }
-            try { m.Value = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Value)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration_pair' field 'value'", ex); }
-            m.IsDefault = vm.IsDefault; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.NumericValue = vm.NumericValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration_pair' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration_pair' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration_pair' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration_pair' field 'description'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Value = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Value)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_enumeration_pair' field 'value'", ex); 
+            }
+            m.IsDefault = vm.IsDefault; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.NumericValue = vm.NumericValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -20105,34 +21251,88 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_catalog_folder m = new Proto.Config.proto_catalog_folder(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'description'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'description'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.PropertyRefSelf = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefSelf); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.UseCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseCodeProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            try { m.IndexUniqueCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexUniqueCodeGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'index_unique_code_guid'", ex); }
-            try { m.IndexRefTreeParentCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexRefTreeParentCodeGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'index_ref_tree_parent_code_guid'", ex); }
-            try { m.IndexNotUniqueCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexNotUniqueCodeGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'index_not_unique_code_guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.IndexUniqueCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexUniqueCodeGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'index_unique_code_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.IndexRefTreeParentCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexRefTreeParentCodeGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'index_ref_tree_parent_code_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.IndexNotUniqueCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexNotUniqueCodeGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'index_not_unique_code_guid'", ex); 
+            }
             m.UseNameProperty = (Proto.Config.proto_enum_use_type)vm.UseNameProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.MaxNameLength = vm.MaxNameLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.MaxNameLength = vm.MaxNameLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.UseDescriptionProperty = (Proto.Config.proto_enum_use_type)vm.UseDescriptionProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.MaxDescriptionLength = vm.MaxDescriptionLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.ViewListDatagridGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ViewListDatagridGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'view_list_datagrid_guid'", ex); }
-            try { m.ViewListComboBoxGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ViewListComboBoxGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'view_list_combo_box_guid'", ex); }
+            m.MaxDescriptionLength = vm.MaxDescriptionLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ViewListDatagridGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ViewListDatagridGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'view_list_datagrid_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ViewListComboBoxGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ViewListComboBoxGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_folder' field 'view_list_combo_box_guid'", ex); 
+            }
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -20831,11 +22031,17 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             Debug.Assert(vm != null);
             Proto.Config.proto_catalog_code_property_settings m = new Proto.Config.proto_catalog_code_property_settings(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
             m.SequenceType = (Proto.Config.proto_enum_code_type)vm.SequenceType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.MaxSequenceLength = vm.MaxSequenceLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.Prefix = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Prefix)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_code_property_settings' field 'prefix'", ex); }
+            m.MaxSequenceLength = vm.MaxSequenceLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Prefix = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Prefix)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog_code_property_settings' field 'prefix'", ex); 
+            }
             m.UniqueScope = (Proto.Config.proto_enum_catalog_code_unique_scope)vm.UniqueScope; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.PropertyCodeName = vm.PropertyCodeName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.PropertyCodeName = vm.PropertyCodeName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         
@@ -21415,45 +22621,105 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_catalog m = new Proto.Config.proto_catalog(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'description'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'description'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.PropertyRefSelf = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefSelf); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.PropertyRefFolder = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefFolder); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.UseTree = vm.UseTree; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.MaxTreeLevels = vm.MaxTreeLevels; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.UseSeparateTreeForFolders = vm.UseSeparateTreeForFolders; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.UseItemsAtRoot = vm.UseItemsAtRoot; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.UseTree = vm.UseTree; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.MaxTreeLevels = vm.MaxTreeLevels; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.UseSeparateTreeForFolders = vm.UseSeparateTreeForFolders; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.UseItemsAtRoot = vm.UseItemsAtRoot; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.UseCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseCodeProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.UseNameProperty = (Proto.Config.proto_enum_use_type)vm.UseNameProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.MaxNameLength = vm.MaxNameLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.MaxNameLength = vm.MaxNameLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.UseDescriptionProperty = (Proto.Config.proto_enum_use_type)vm.UseDescriptionProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.MaxDescriptionLength = vm.MaxDescriptionLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.IndexUniqueCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexUniqueCodeGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'index_unique_code_guid'", ex); }
-            try { m.IndexRefFolderCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexRefFolderCodeGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'index_ref_folder_code_guid'", ex); }
-            try { m.IndexRefTreeParentCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexRefTreeParentCodeGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'index_ref_tree_parent_code_guid'", ex); }
-            try { m.IndexNotUniqueCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexNotUniqueCodeGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'index_not_unique_code_guid'", ex); }
+            m.MaxDescriptionLength = vm.MaxDescriptionLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.IndexUniqueCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexUniqueCodeGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'index_unique_code_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.IndexRefFolderCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexRefFolderCodeGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'index_ref_folder_code_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.IndexRefTreeParentCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexRefTreeParentCodeGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'index_ref_tree_parent_code_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.IndexNotUniqueCodeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexNotUniqueCodeGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'index_not_unique_code_guid'", ex); 
+            }
             m.ItemIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.ItemIconType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.GroupIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.GroupIconType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            try { m.ViewListDatagridGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ViewListDatagridGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'view_list_datagrid_guid'", ex); }
-            try { m.ViewListComboBoxGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ViewListComboBoxGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'view_list_combo_box_guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ViewListDatagridGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ViewListDatagridGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'view_list_datagrid_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ViewListComboBoxGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ViewListComboBoxGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'view_list_combo_box_guid'", ex); 
+            }
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -22632,35 +23898,95 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_catalogs m = new Proto.Config.proto_group_list_catalogs(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'description'", ex); }
-            try { m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'prefix_for_composition_names'", ex); }
-            try { m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'short_id_type_for_cache_key'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'description'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'prefix_for_composition_names'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'short_id_type_for_cache_key'", ex); 
+            }
             foreach (var t in vm.ListCatalogs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListCatalogs.Add(Catalog.ConvertToProto((Catalog)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.UseCodeProperty = vm.UseCodeProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.PropertyCodeName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCodeName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_code_name'", ex); }
-            m.UseNameProperty = vm.UseNameProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.PropertyNameName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyNameName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_name_name'", ex); }
-            m.UseDescriptionProperty = vm.UseDescriptionProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.PropertyDescriptionName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDescriptionName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_description_name'", ex); }
-            m.UseCodePropertyInSeparateTree = vm.UseCodePropertyInSeparateTree; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.UseNamePropertyInSeparateTree = vm.UseNamePropertyInSeparateTree; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.UseDescriptionPropertyInSeparateTree = vm.UseDescriptionPropertyInSeparateTree; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.PropertyIsFolderName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyIsFolderName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_is_folder_name'", ex); }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.UseCodeProperty = vm.UseCodeProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyCodeName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCodeName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_code_name'", ex); 
+            }
+            m.UseNameProperty = vm.UseNameProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyNameName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyNameName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_name_name'", ex); 
+            }
+            m.UseDescriptionProperty = vm.UseDescriptionProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyDescriptionName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDescriptionName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_description_name'", ex); 
+            }
+            m.UseCodePropertyInSeparateTree = vm.UseCodePropertyInSeparateTree; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.UseNamePropertyInSeparateTree = vm.UseNamePropertyInSeparateTree; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.UseDescriptionPropertyInSeparateTree = vm.UseDescriptionPropertyInSeparateTree; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyIsFolderName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyIsFolderName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_is_folder_name'", ex); 
+            }
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -23466,23 +24792,65 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_registers m = new Proto.Config.proto_group_list_registers(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'description'", ex); 
+            }
             foreach (var t in vm.ListRegisters) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListRegisters.Add(Register.ConvertToProto((Register)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'prefix_for_composition_names'", ex); }
-            try { m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'short_id_type_for_cache_key'", ex); }
-            try { m.PropertyRegGuidGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyRegGuidGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'property_reg_guid_guid'", ex); }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'prefix_for_composition_names'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'short_id_type_for_cache_key'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyRegGuidGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyRegGuidGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'property_reg_guid_guid'", ex); 
+            }
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -23974,21 +25342,51 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_register_dimension m = new Proto.Config.proto_register_dimension(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_dimension' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_dimension' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_dimension' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_dimension' field 'description'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.DimensionCatalogGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DimensionCatalogGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_dimension' field 'dimension_catalog_guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_dimension' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_dimension' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_dimension' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_dimension' field 'description'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.DimensionCatalogGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DimensionCatalogGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_dimension' field 'dimension_catalog_guid'", ex); 
+            }
             m.PropertyRefDimensionCatalog = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefDimensionCatalog); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -24552,17 +25950,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_register_dimensions m = new Proto.Config.proto_group_list_register_dimensions(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_register_dimensions' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_register_dimensions' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_register_dimensions' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_register_dimensions' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_register_dimensions' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_register_dimensions' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_register_dimensions' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_register_dimensions' field 'description'", ex); 
+            }
             foreach (var t in vm.ListDimensions) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListDimensions.Add(RegisterDimension.ConvertToProto((RegisterDimension)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -25412,64 +26834,184 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_register m = new Proto.Config.proto_register(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'description'", ex); 
+            }
             m.RegisterType = (Proto.Config.proto_enum_register_type)vm.RegisterType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.RegisterBalancePeriodicity = (Proto.Config.proto_enum_register_balance_periodicity)vm.RegisterBalancePeriodicity; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.RegisterBalanceWeeklyStartDay = (Proto.Config.proto_enum_week_days)vm.RegisterBalanceWeeklyStartDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.UseQtyAccumulator = vm.UseQtyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.PropertyQtyAccumulatorName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyQtyAccumulatorName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_qty_accumulator_name'", ex); }
-            m.PropertyQtyAccumulatorLength = vm.PropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.PropertyQtyAccumulatorAccuracy = vm.PropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.PropertyQtyAccumulatorGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyQtyAccumulatorGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_qty_accumulator_guid'", ex); }
-            m.UseMoneyAccumulator = vm.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.PropertyMoneyAccumulatorName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyMoneyAccumulatorName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_money_accumulator_name'", ex); }
-            m.PropertyMoneyAccumulatorLength = vm.PropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.PropertyMoneyAccumulatorAccuracy = vm.PropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.PropertyMoneyAccumulatorGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyMoneyAccumulatorGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_money_accumulator_guid'", ex); }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.UseQtyAccumulator = vm.UseQtyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyQtyAccumulatorName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyQtyAccumulatorName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_qty_accumulator_name'", ex); 
+            }
+            m.PropertyQtyAccumulatorLength = vm.PropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.PropertyQtyAccumulatorAccuracy = vm.PropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyQtyAccumulatorGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyQtyAccumulatorGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_qty_accumulator_guid'", ex); 
+            }
+            m.UseMoneyAccumulator = vm.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyMoneyAccumulatorName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyMoneyAccumulatorName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_money_accumulator_name'", ex); 
+            }
+            m.PropertyMoneyAccumulatorLength = vm.PropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.PropertyMoneyAccumulatorAccuracy = vm.PropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyMoneyAccumulatorGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyMoneyAccumulatorGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_money_accumulator_guid'", ex); 
+            }
             m.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.ConvertToProto((GroupListRegisterDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            try { m.PropertyDocRefGuidName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocRefGuidName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_doc_ref_guid_name'", ex); }
-            try { m.PropertyDocRefName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocRefName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_doc_ref_name'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyDocRefGuidName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocRefGuidName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_doc_ref_guid_name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyDocRefName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocRefName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_doc_ref_name'", ex); 
+            }
             foreach (var t in vm.ListObjectDocRefs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListObjectDocRefs.Add(ComplexRef.ConvertToProto((ComplexRef)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            try { m.IndexDocDateGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexDocDateGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'index_doc_date_guid'", ex); }
-            try { m.IndexDocIdTypeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexDocIdTypeGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'index_doc_id_type_guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.IndexDocDateGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexDocDateGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'index_doc_date_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.IndexDocIdTypeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.IndexDocIdTypeGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'index_doc_id_type_guid'", ex); 
+            }
             m.PropertyRefTimeline = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefTimeline); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            try { m.TableTurnoverPropertyIdGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableTurnoverPropertyIdGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_turnover_property_id_guid'", ex); }
-            try { m.TableTurnoverPropertyVersionGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableTurnoverPropertyVersionGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_turnover_property_version_guid'", ex); }
-            try { m.TableTurnoverGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableTurnoverGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_turnover_guid'", ex); }
-            try { m.TableTurnoverPropertyPostDateGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableTurnoverPropertyPostDateGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_turnover_property_post_date_guid'", ex); }
-            try { m.TableBalancePropertyIdGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableBalancePropertyIdGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_balance_property_id_guid'", ex); }
-            try { m.TableBalancePropertyVersionGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableBalancePropertyVersionGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_balance_property_version_guid'", ex); }
-            try { m.TableBalanceGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableBalanceGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_balance_guid'", ex); }
-            try { m.TableBalancePropertyDateGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableBalancePropertyDateGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_balance_property_date_guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.TableTurnoverPropertyIdGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableTurnoverPropertyIdGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_turnover_property_id_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.TableTurnoverPropertyVersionGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableTurnoverPropertyVersionGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_turnover_property_version_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.TableTurnoverGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableTurnoverGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_turnover_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.TableTurnoverPropertyPostDateGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableTurnoverPropertyPostDateGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_turnover_property_post_date_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.TableBalancePropertyIdGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableBalancePropertyIdGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_balance_property_id_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.TableBalancePropertyVersionGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableBalancePropertyVersionGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_balance_property_version_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.TableBalanceGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableBalanceGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_balance_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.TableBalancePropertyDateGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TableBalancePropertyDateGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'table_balance_property_date_guid'", ex); 
+            }
             foreach (var t in vm.ListDocMappings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListDocMappings.Add(RegisterDocToReg.ConvertToProto((RegisterDocToReg)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
@@ -26413,13 +27955,25 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_register_doc_to_reg m = new Proto.Config.proto_register_doc_to_reg(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_doc_to_reg' field 'guid'", ex); }
-            try { m.DocGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DocGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_doc_to_reg' field 'doc_guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_doc_to_reg' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.DocGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DocGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_doc_to_reg' field 'doc_guid'", ex); 
+            }
             foreach (var t in vm.ListMappings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListMappings.Add(RegisterRegPropToDocProp.ConvertToProto((RegisterRegPropToDocProp)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.IsManualPostCode = vm.IsManualPostCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsManualPostCode = vm.IsManualPostCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         #endregion Procedures
@@ -26617,12 +28171,30 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_register_reg_prop_to_doc_prop m = new Proto.Config.proto_register_reg_prop_to_doc_prop(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_reg_prop_to_doc_prop' field 'guid'", ex); }
-            try { m.RegPropGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RegPropGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_reg_prop_to_doc_prop' field 'reg_prop_guid'", ex); }
-            try { m.DocPropGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DocPropGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_reg_prop_to_doc_prop' field 'doc_prop_guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_reg_prop_to_doc_prop' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.RegPropGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RegPropGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_reg_prop_to_doc_prop' field 'reg_prop_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.DocPropGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DocPropGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register_reg_prop_to_doc_prop' field 'doc_prop_guid'", ex); 
+            }
             return m;
         }
         #endregion Procedures
@@ -26943,24 +28515,54 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_document_enumerator_sequence m = new Proto.Config.proto_document_enumerator_sequence(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_enumerator_sequence' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_enumerator_sequence' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_enumerator_sequence' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_enumerator_sequence' field 'description'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_enumerator_sequence' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_enumerator_sequence' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_enumerator_sequence' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_enumerator_sequence' field 'description'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.SequenceType = (Proto.Config.proto_enum_code_type)vm.SequenceType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.MaxSequenceLength = vm.MaxSequenceLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.Prefix = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Prefix)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_enumerator_sequence' field 'prefix'", ex); }
+            m.MaxSequenceLength = vm.MaxSequenceLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Prefix = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Prefix)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_enumerator_sequence' field 'prefix'", ex); 
+            }
             m.ScopeOfUnique = (Proto.Config.proto_enum_doc_number_unique_scope)vm.ScopeOfUnique; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.ScopePeriodStartMonth = (Proto.Config.proto_enum_months)vm.ScopePeriodStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.ScopePeriodStartMonthDay = vm.ScopePeriodStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.ScopePeriodStartMonthDay = vm.ScopePeriodStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -27527,15 +29129,39 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_enumerator_sequences m = new Proto.Config.proto_group_list_enumerator_sequences(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerator_sequences' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerator_sequences' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerator_sequences' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerator_sequences' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerator_sequences' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerator_sequences' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerator_sequences' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_enumerator_sequences' field 'description'", ex); 
+            }
             foreach (var t in vm.ListEnumeratorSequences) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListEnumeratorSequences.Add(DocumentEnumeratorSequence.ConvertToProto((DocumentEnumeratorSequence)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -28036,28 +29662,70 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_documents m = new Proto.Config.proto_group_documents(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'description'", ex); }
-            try { m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'prefix_for_composition_names'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'description'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'prefix_for_composition_names'", ex); 
+            }
             m.DocumentTimeline = vSharpStudio.vm.ViewModels.DocumentTimeline.ConvertToProto((DocumentTimeline)vm.DocumentTimeline); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToProto((GroupListDocuments)vm.GroupListDocuments); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            try { m.DocShortTypeIdPropertyName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DocShortTypeIdPropertyName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'doc_short_type_id_property_name'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.DocShortTypeIdPropertyName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DocShortTypeIdPropertyName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'doc_short_type_id_property_name'", ex); 
+            }
             m.GroupRegisters = vSharpStudio.vm.ViewModels.GroupListRegisters.ConvertToProto((GroupListRegisters)vm.GroupRegisters); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.ConvertToProto((GroupListJournals)vm.GroupJournals); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.GroupListSequences = vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.ConvertToProto((GroupListEnumeratorSequences)vm.GroupListSequences); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            m.MondayBeforeFirstDocDate = vm.MondayBeforeFirstDocDate; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.PropertyDocNumberName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocNumberName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'property_doc_number_name'", ex); }
-            m.UseDocNumberProperty = vm.UseDocNumberProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.MondayBeforeFirstDocDate = vm.MondayBeforeFirstDocDate; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyDocNumberName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocNumberName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'property_doc_number_name'", ex); 
+            }
+            m.UseDocNumberProperty = vm.UseDocNumberProperty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -28836,28 +30504,70 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_document_timeline m = new Proto.Config.proto_document_timeline(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'description'", ex); 
+            }
             foreach (var t in vm.ListProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListProperties.Add(Property.ConvertToProto((Property)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.TimeLineTimeAccuracy = (Proto.Config.proto_enum_time_accuracy_type)vm.TimeLineTimeAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            try { m.TimeLineDocDateTimePropertyName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TimeLineDocDateTimePropertyName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'time_line_doc_date_time_property_name'", ex); }
-            try { m.PropertyTimelineDocDateTimeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyTimelineDocDateTimeGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'property_timeline_doc_date_time_guid'", ex); }
-            try { m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'short_id_type_for_cache_key'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.TimeLineDocDateTimePropertyName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TimeLineDocDateTimePropertyName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'time_line_doc_date_time_property_name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyTimelineDocDateTimeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyTimelineDocDateTimeGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'property_timeline_doc_date_time_guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'short_id_type_for_cache_key'", ex); 
+            }
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.LastGenPosition = vm.LastGenPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.LastGenPosition = vm.LastGenPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListRolePropertyAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListRolePropertyAccessSettings.Add(RolePropertyAccess.ConvertToProto((RolePropertyAccess)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -29532,25 +31242,55 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_document m = new Proto.Config.proto_document(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document' field 'description'", ex); }
-            try { m.SequenceGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.SequenceGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document' field 'sequence_guid'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document' field 'description'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.SequenceGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.SequenceGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document' field 'sequence_guid'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -30282,19 +32022,49 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_documents m = new Proto.Config.proto_group_list_documents(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'description'", ex); }
-            try { m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'short_id_type_for_cache_key'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'description'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'short_id_type_for_cache_key'", ex); 
+            }
             foreach (var t in vm.ListDocuments) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListDocuments.Add(Document.ConvertToProto((Document)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListRoleDocumentAccessSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListRoleDocumentAccessSettings.Add(RoleDocumentAccess.ConvertToProto((RoleDocumentAccess)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -30756,15 +32526,39 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_relations_group m = new Proto.Config.proto_relations_group(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_group' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_group' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_group' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_group' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_group' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_group' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_group' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_group' field 'description'", ex); 
+            }
             m.GroupListManyToManyRelations = vSharpStudio.vm.ViewModels.RelationsManyToManyGroup.ConvertToProto((RelationsManyToManyGroup)vm.GroupListManyToManyRelations); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.GroupListOneToOneRelations = vSharpStudio.vm.ViewModels.RelationsOneToOneGroup.ConvertToProto((RelationsOneToOneGroup)vm.GroupListOneToOneRelations); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -31044,7 +32838,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             Debug.Assert(vm != null);
             Proto.Config.proto_relation_node m = new Proto.Config.proto_relation_node(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
             m.RefObjType = (Proto.Config.proto_enum_relation_config_type)vm.RefObjType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.GuidObj = vm.GuidObj; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.GuidObj = vm.GuidObj; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         
@@ -31376,28 +33170,58 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_relation_many_to_many m = new Proto.Config.proto_relation_many_to_many(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_many_to_many' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_many_to_many' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_many_to_many' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_many_to_many' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_many_to_many' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_many_to_many' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_many_to_many' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_many_to_many' field 'description'", ex); 
+            }
             m.RefObj1Type = (Proto.Config.proto_enum_relation_config_type)vm.RefObj1Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.GuidObj1 = vm.GuidObj1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.GuidObj1 = vm.GuidObj1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.RefObj2Type = (Proto.Config.proto_enum_relation_config_type)vm.RefObj2Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.GuidObj2 = vm.GuidObj2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsUseHistory = vm.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.GuidObj2 = vm.GuidObj2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsUseHistory = vm.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.PropertyRefObj1 = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefObj1); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.PropertyRefObj2 = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefObj2); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            try { m.PropertyDataTimeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDataTimeGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_many_to_many' field 'property_data_time_guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyDataTimeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDataTimeGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_many_to_many' field 'property_data_time_guid'", ex); 
+            }
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -32072,19 +33896,55 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_relations_many_to_many_group m = new Proto.Config.proto_relations_many_to_many_group(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_many_to_many_group' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_many_to_many_group' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_many_to_many_group' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_many_to_many_group' field 'description'", ex); }
-            try { m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_many_to_many_group' field 'prefix_for_composition_names'", ex); }
-            try { m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_many_to_many_group' field 'short_id_type_for_cache_key'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_many_to_many_group' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_many_to_many_group' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_many_to_many_group' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_many_to_many_group' field 'description'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_many_to_many_group' field 'prefix_for_composition_names'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_many_to_many_group' field 'short_id_type_for_cache_key'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListRelations.Add(RelationManyToMany.ConvertToProto((RelationManyToMany)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -32567,30 +34427,60 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_relation_one_to_one m = new Proto.Config.proto_relation_one_to_one(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_one_to_one' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_one_to_one' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_one_to_one' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_one_to_one' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_one_to_one' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_one_to_one' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_one_to_one' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_one_to_one' field 'description'", ex); 
+            }
             m.RefObj1Type = (Proto.Config.proto_enum_relation_config_type)vm.RefObj1Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.GuidObj1 = vm.GuidObj1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsRelationReferenceNullable = vm.IsRelationReferenceNullable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.GuidObj1 = vm.GuidObj1; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsRelationReferenceNullable = vm.IsRelationReferenceNullable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.RefType = (Proto.Config.proto_enum_one_to_one_ref_type)vm.RefType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.RefObj2Type = (Proto.Config.proto_enum_relation_config_type)vm.RefObj2Type; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.GuidObj2 = vm.GuidObj2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsUseHistory = vm.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.GuidObj2 = vm.GuidObj2; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsUseHistory = vm.IsUseHistory; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.ShortId = vm.ShortId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.ShortRefId = vm.ShortRefId; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.PropertyRefObj1 = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefObj1); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.PropertyRefObj2 = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefObj2); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
-            try { m.PropertyDataTimeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDataTimeGuid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_one_to_one' field 'property_data_time_guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PropertyDataTimeGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDataTimeGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_one_to_one' field 'property_data_time_guid'", ex); 
+            }
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -33307,19 +35197,55 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_relations_one_to_one_group m = new Proto.Config.proto_relations_one_to_one_group(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_one_to_one_group' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_one_to_one_group' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_one_to_one_group' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_one_to_one_group' field 'description'", ex); }
-            try { m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_one_to_one_group' field 'prefix_for_composition_names'", ex); }
-            try { m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_one_to_one_group' field 'short_id_type_for_cache_key'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_one_to_one_group' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_one_to_one_group' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_one_to_one_group' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_one_to_one_group' field 'description'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_one_to_one_group' field 'prefix_for_composition_names'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.ShortIdTypeForCacheKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeForCacheKey)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_one_to_one_group' field 'short_id_type_for_cache_key'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListRelations) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListRelations.Add(RelationOneToOne.ConvertToProto((RelationOneToOne)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -33801,17 +35727,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_journals m = new Proto.Config.proto_group_list_journals(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_journals' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_journals' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_journals' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_journals' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_journals' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_journals' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_journals' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_journals' field 'description'", ex); 
+            }
             foreach (var t in vm.ListJournals) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListJournals.Add(Journal.ConvertToProto((Journal)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -34337,17 +36287,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_journal m = new Proto.Config.proto_journal(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_journal' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_journal' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_journal' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_journal' field 'description'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_journal' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_journal' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_journal' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_journal' field 'description'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -34732,8 +36706,14 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_doc_in_journal m = new Proto.Config.proto_doc_in_journal(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_doc_in_journal' field 'guid'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_doc_in_journal' field 'guid'", ex); 
+            }
             foreach (var t in vm.ListPropertyGuids) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListPropertyGuids.Add(t); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
             return m;
@@ -35057,17 +37037,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_forms m = new Proto.Config.proto_group_list_forms(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_forms' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_forms' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_forms' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_forms' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_forms' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_forms' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_forms' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_forms' field 'description'", ex); 
+            }
             foreach (var t in vm.ListForms) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListForms.Add(Form.ConvertToProto((Form)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -35538,17 +37542,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_form m = new Proto.Config.proto_form(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form' field 'description'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form' field 'description'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.IsUseCode = (Proto.Config.proto_enum_use_type)vm.IsUseCode; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsUseName = (Proto.Config.proto_enum_use_type)vm.IsUseName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsUseDesc = (Proto.Config.proto_enum_use_type)vm.IsUseDesc; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
@@ -35556,7 +37584,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.IsUseFolderName = (Proto.Config.proto_enum_use_type)vm.IsUseFolderName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsUseFolderDesc = (Proto.Config.proto_enum_use_type)vm.IsUseFolderDesc; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.IsUseDocDate = (Proto.Config.proto_enum_use_type)vm.IsUseDocDate; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.IsDummy = vm.IsDummy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.IsDummy = vm.IsDummy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.EnumFormType = (Proto.Config.proto_form_type)vm.EnumFormType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
             m.GridSystem = vSharpStudio.vm.ViewModels.FormGridSystem.ConvertToProto((FormGridSystem)vm.GridSystem); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             foreach (var t in vm.ListGuidViewProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -36275,17 +38303,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_form_grid_system m = new Proto.Config.proto_form_grid_system(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListRows) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListRows.Add(FormGridSystemRow.ConvertToProto((FormGridSystemRow)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListGuidProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -36786,17 +38838,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_form_grid_system_row m = new Proto.Config.proto_form_grid_system_row(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_row' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_row' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_row' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_row' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_row' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_row' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_row' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_row' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListColumns) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListColumns.Add(FormGridSystemColumn.ConvertToProto((FormGridSystemColumn)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -37254,24 +39330,48 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_form_grid_system_column m = new Proto.Config.proto_form_grid_system_column(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_column' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_column' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_column' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_column' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_column' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_column' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_column' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_grid_system_column' field 'description'", ex); 
+            }
             m.HideType = (Proto.Config.proto_enum_hidden_type)vm.HideType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:272
-            m.WidthXs = vm.WidthXs; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.WidthSm = vm.WidthSm; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.WidthMd = vm.WidthMd; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.WidthLg = vm.WidthLg; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.WidthXl = vm.WidthXl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.WidthXx = vm.WidthXx; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.WidthXs = vm.WidthXs; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.WidthSm = vm.WidthSm; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.WidthMd = vm.WidthMd; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.WidthLg = vm.WidthLg; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.WidthXl = vm.WidthXl; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.WidthXx = vm.WidthXx; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.FormBlock = vSharpStudio.vm.ViewModels.FormAutoLayoutBlock.ConvertToProto((FormAutoLayoutBlock)vm.FormBlock); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
@@ -37884,17 +39984,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_form_auto_layout_block m = new Proto.Config.proto_form_auto_layout_block(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_block' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_block' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_block' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_block' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_block' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_block' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_block' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_block' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListFormAutoLayoutSubBlock) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListFormAutoLayoutSubBlock.Add(FormAutoLayoutSubBlock.ConvertToProto((FormAutoLayoutSubBlock)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -38371,17 +40495,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_form_auto_layout_sub_block m = new Proto.Config.proto_form_auto_layout_sub_block(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_sub_block' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_sub_block' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_sub_block' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_sub_block' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_sub_block' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_sub_block' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_sub_block' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_auto_layout_sub_block' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             m.TabControl = vSharpStudio.vm.ViewModels.FormTabControl.ConvertToProto((FormTabControl)vm.TabControl); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.DataGridControl = vSharpStudio.vm.ViewModels.FormDataGrid.ConvertToProto((FormDataGrid)vm.DataGridControl); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             m.AutoLayoutBlockControl = vSharpStudio.vm.ViewModels.FormAutoLayoutBlock.ConvertToProto((FormAutoLayoutBlock)vm.AutoLayoutBlockControl); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
@@ -38904,17 +41052,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_form_field m = new Proto.Config.proto_form_field(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_field' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_field' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_field' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_field' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_field' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_field' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_field' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_field' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -39339,17 +41511,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_form_tab_control_tab m = new Proto.Config.proto_form_tab_control_tab(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control_tab' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control_tab' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control_tab' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control_tab' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control_tab' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control_tab' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control_tab' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control_tab' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListGuidProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListGuidProperties.Add(t); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
             m.FormBlock = vSharpStudio.vm.ViewModels.FormAutoLayoutBlock.ConvertToProto((FormAutoLayoutBlock)vm.FormBlock); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
@@ -39859,17 +42055,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_form_tab_control m = new Proto.Config.proto_form_tab_control(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tab_control' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListTabs) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListTabs.Add(FormTabControlTab.ConvertToProto((FormTabControlTab)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             foreach (var t in vm.ListGuidProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -40333,17 +42553,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_form_data_grid m = new Proto.Config.proto_form_data_grid(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_data_grid' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_data_grid' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_data_grid' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_data_grid' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_data_grid' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_data_grid' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_data_grid' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_data_grid' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListGuidProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListGuidProperties.Add(t); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -40782,17 +43026,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_form_tree m = new Proto.Config.proto_form_tree(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tree' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tree' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tree' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tree' field 'description'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tree' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tree' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tree' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_form_tree' field 'description'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListGuidProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListGuidProperties.Add(t); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:242
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
@@ -41264,17 +43532,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_group_list_reports m = new Proto.Config.proto_group_list_reports(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_reports' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_reports' field 'name'", ex); }
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_reports' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_reports' field 'description'", ex); }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_reports' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_reports' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_reports' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_reports' field 'description'", ex); 
+            }
             foreach (var t in vm.ListReports) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListReports.Add(Report.ConvertToProto((Report)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -41682,17 +43974,41 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_report m = new Proto.Config.proto_report(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_report' field 'guid'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_report' field 'name'", ex); }
-            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            try { m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_report' field 'name_ui'", ex); }
-            try { m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_report' field 'description'", ex); }
-            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_report' field 'guid'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_report' field 'name'", ex); 
+            }
+            m.SortingValue = vm.SortingValue; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_report' field 'name_ui'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_report' field 'description'", ex); 
+            }
+            m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:240
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:244
             return m;
@@ -41991,13 +44307,31 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             Debug.Assert(vm != null);
             Proto.Config.proto_model_row m = new Proto.Config.proto_model_row(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            try { m.GroupName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.GroupName)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model_row' field 'group_name'", ex); }
-            try { m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model_row' field 'name'", ex); }
-            try { m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
-            catch (Exception ex) { throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model_row' field 'guid'", ex); }
-            m.IsIncluded = vm.IsIncluded; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:277
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.GroupName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.GroupName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model_row' field 'group_name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model_row' field 'name'", ex); 
+            }
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:274
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model_row' field 'guid'", ex); 
+            }
+            m.IsIncluded = vm.IsIncluded; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:283
             return m;
         }
         #endregion Procedures
