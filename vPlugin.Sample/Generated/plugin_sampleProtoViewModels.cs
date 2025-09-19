@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using ViewModelBase;
 using System.Collections.ObjectModel;

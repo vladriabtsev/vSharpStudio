@@ -6,6 +6,7 @@ Not tested yet
 //Release version is expecting #define PARALLEL in previous lines of code
 #endif
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
@@ -1529,141 +1530,125 @@ namespace vSharpStudio.ViewModels
                     if (tp.IsMarkedForDeletion)
                         continue;
                     // app settings path, 
-                    var dicAppSettings = new Dictionary<string, StringBuilder>();
-#if PARALLEL
-                    Parallel.ForEach(tp.ListAppProjectGenerators, tpg =>
-#else
+                    var dicAppSettings = new ConcurrentDictionary<string, StringBuilder>();
                     foreach (var tpg in tp.ListAppProjectGenerators)
-#endif
                     {
                         if (tpg.IsMarkedForDeletion)
-#if PARALLEL
-                            return;
-#else
                             continue;
-#endif
                         Debug.Assert(tpg.ListGenerators != null);
-                        foreach (var tg in tpg.ListGenerators)
-                        {
-                            if (tg.Guid != tpg.PluginGeneratorGuid)
-                                continue;
-#if PARALLEL
-                            //await Task.Run(() =>
-#else
+#if DEBUG
+                        foreach (var tGen in tpg.ListGenerators) { Debug.Assert(tGen.Guid == tpg.PluginGeneratorGuid); }
 #endif
+#if PARALLEL
+                        Parallel.ForEach(tpg.ListGenerators, tg =>
+#else
+                        foreach (var tg in tpg.ListGenerators)
+#endif
+                        {
+                            if (tg.Generator != null)
                             {
-                                if (tg.Generator != null)
+                                this.ProgressVM?.ProgressUpdateSubTask($"Project '{ts.Name}'-'{tp.Name}'-'{tpg.Name}'", 100 * i / nGens);
+                                i++;
+                                string? code = null;
+                                switch (tg.Generator.PluginGeneratorType)
                                 {
-                                    this.ProgressVM?.ProgressUpdateSubTask($"Project '{ts.Name}'-'{tp.Name}'-'{tpg.Name}'", 100 * i / nGens);
-                                    i++;
-                                    string? code = null;
-                                    switch (tg.Generator.PluginGeneratorType)
-                                    {
-                                        case vPluginLayerTypeEnum.DbDesign:
-                                            if (tg.Generator is not IvPluginDbGenerator)
-                                                throw new Exception("Generator type vPluginLayerTypeEnum.DbDesign has to have interface: " + typeof(IvPluginDbGenerator).Name);
-                                            if (isOnlySqlTextUpdate)
+                                    case vPluginLayerTypeEnum.DbDesign:
+                                        if (tg.Generator is not IvPluginDbGenerator)
+                                            throw new Exception("Generator type vPluginLayerTypeEnum.DbDesign has to have interface: " + typeof(IvPluginDbGenerator).Name);
+                                        if (isOnlySqlTextUpdate)
+                                        {
+                                            Debug.Assert(this.BtnConfigCurrentUpdateSqlResultByConnStr != null);
+                                            Debug.Assert(tpg != null);
+                                            Debug.Assert(tpg.PluginDbGenerator != null);
+                                            var sql = tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, ts, tp, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true);
+                                            if (sql != null)
+                                                this.BtnConfigCurrentUpdateSqlResultByConnStr[tpg.Name] = sql;
+                                        }
+                                        else
+                                        {
+                                            Debug.Assert(this.Config.CurrentCfgFolderPath != null);
+                                            string outFileConn = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
+                                            bool first = false;
+                                            StringBuilder? sb = null;
+                                            if (!dicAppSettings.ContainsKey(outFileConn))
                                             {
-                                                Debug.Assert(this.BtnConfigCurrentUpdateSqlResultByConnStr != null);
-                                                Debug.Assert(tpg != null);
-                                                Debug.Assert(tpg.PluginDbGenerator != null);
-                                                var sql = tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, ts, tp, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true);
-                                                if (sql != null)
-                                                    this.BtnConfigCurrentUpdateSqlResultByConnStr[tpg.Name] = sql;
+                                                first = true;
+                                                sb = new StringBuilder();
+                                                dicAppSettings[outFileConn] = sb;
+                                                sb.AppendLine("{");
+                                                sb.AppendLine("\t\"db_conns\": {");
+                                            }
+                                            else
+                                                sb = dicAppSettings[outFileConn];
+                                            if (!first)
+                                                sb.AppendLine(",");
+                                            sb.Append("\t\t\"");
+                                            sb.Append(tpg.Name);
+                                            sb.AppendLine("\": {");
+                                            sb.Append("\t\t\t\"provider\": \"");
+                                            Debug.Assert(tpg.PluginDbGenerator != null);
+                                            sb.Append(tpg.PluginDbGenerator.ProviderName);
+                                            sb.AppendLine("\",");
+                                            sb.Append("\t\t\t\"connection_string\": \"");
+                                            Debug.Assert(tpg.DynamicMainConnStrSettings != null);
+                                            var cnstr = tpg.DynamicMainConnStrSettings.GenerateCode(this.Config, ts, tp, tpg);
+                                            sb.Append(cnstr);
+                                            sb.AppendLine("\"");
+                                            sb.Append("\t\t}");
+                                            code = sb.ToString();
+                                            if (isDeleteDb)
+                                            {
+                                                tpg.PluginDbGenerator.EnsureDbDeleted(tpg.ConnStr);
+                                            }
+                                            tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, ts, tp, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, false);
+                                            if (isCurrentUpdate)
+                                            {
+                                                if (tpg.IsGenerateSqlSqriptToUpdatePrevStable)
+                                                {
+                                                    //TODO generate Stable DB update SQL script
+                                                    var sql = tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, ts, tp, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true);
+                                                    string outSqlFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenScriptFileName);
+                                                    // tg.GetRelativeToConfigDiskPath()
+                                                    //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
+                                                    byte[] sqlBytes = Encoding.UTF8.GetBytes(code);
+                                                    File.WriteAllBytes(outSqlFile, sqlBytes);
+                                                }
                                             }
                                             else
                                             {
-                                                Debug.Assert(this.Config.CurrentCfgFolderPath != null);
-                                                string outFileConn = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
-                                                bool first = false;
-                                                StringBuilder? sb = null;
-                                                if (!dicAppSettings.ContainsKey(outFileConn))
-                                                {
-                                                    first = true;
-                                                    sb = new StringBuilder();
-                                                    dicAppSettings[outFileConn] = sb;
-                                                    sb.AppendLine("{");
-                                                    sb.AppendLine("\t\"db_conns\": {");
-                                                }
-                                                else
-                                                    sb = dicAppSettings[outFileConn];
-                                                if (!first)
-                                                    sb.AppendLine(",");
-                                                sb.Append("\t\t\"");
-                                                sb.Append(tpg.Name);
-                                                sb.AppendLine("\": {");
-                                                sb.Append("\t\t\t\"provider\": \"");
-                                                Debug.Assert(tpg.PluginDbGenerator != null);
-                                                sb.Append(tpg.PluginDbGenerator.ProviderName);
-                                                sb.AppendLine("\",");
-                                                sb.Append("\t\t\t\"connection_string\": \"");
-                                                Debug.Assert(tpg.DynamicMainConnStrSettings != null);
-                                                var cnstr = tpg.DynamicMainConnStrSettings.GenerateCode(this.Config, ts, tp, tpg);
-                                                sb.Append(cnstr);
-                                                sb.AppendLine("\"");
-                                                sb.Append("\t\t}");
-                                                code = sb.ToString();
-                                                if (isDeleteDb)
-                                                {
-                                                    tpg.PluginDbGenerator.EnsureDbDeleted(tpg.ConnStr);
-                                                }
-                                                tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, ts, tp, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, false);
-                                                if (isCurrentUpdate)
-                                                {
-                                                    if (tpg.IsGenerateSqlSqriptToUpdatePrevStable)
-                                                    {
-                                                        //TODO generate Stable DB update SQL script
-                                                        var sql = tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, ts, tp, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true);
-                                                        string outSqlFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenScriptFileName);
-                                                        // tg.GetRelativeToConfigDiskPath()
-                                                        //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
-                                                        byte[] sqlBytes = Encoding.UTF8.GetBytes(code);
-                                                        File.WriteAllBytes(outSqlFile, sqlBytes);
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    //TODO create copy of DEV DB into Stable DB. Same name with version suffix
-                                                    //genConn.DbGenerator
-                                                }
+                                                //TODO create copy of DEV DB into Stable DB. Same name with version suffix
+                                                //genConn.DbGenerator
                                             }
-                                            if (tpg.PluginDbGenerator.IsDbDataStructureChanged)
-                                                this.IsDbDataStructureChanged = true;
+                                        }
+                                        if (tpg.PluginDbGenerator.IsDbDataStructureChanged)
+                                            this.IsDbDataStructureChanged = true;
+                                        break;
+                                    default:
+                                        if (!isCurrentUpdate)
                                             break;
-                                        default:
-                                            if (!isCurrentUpdate)
-#if PARALLEL
-                                                return;
-#else
-                                                continue;
-#endif
-                                            if (tg.Generator is not IvPluginGenerator)
-                                                throw new Exception("Default generator has to have interface: " + typeof(IvPluginGenerator).Name);
-                                            Debug.Assert(tpg.DynamicGeneratorSettings != null);
-                                            if (!isOnlySqlTextUpdate)
-                                                code = tpg.DynamicGeneratorSettings.GenerateCode(this.Config, ts, tp, tpg);
-                                            break;
-                                    }
-                                    if (!string.IsNullOrWhiteSpace(code))
-                                    {
-                                        Debug.Assert(this.Config.CurrentCfgFolderPath != null);
-                                        string outFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
-                                        // tg.GetRelativeToConfigDiskPath()
-                                        //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
-                                        byte[] bytes = Encoding.UTF8.GetBytes(code);
-                                        File.WriteAllBytes(outFile, bytes);
-                                    }
+                                        if (tg.Generator is not IvPluginGenerator)
+                                            throw new Exception("Default generator has to have interface: " + typeof(IvPluginGenerator).Name);
+                                        Debug.Assert(tpg.DynamicGeneratorSettings != null);
+                                        if (!isOnlySqlTextUpdate)
+                                            code = tpg.DynamicGeneratorSettings.GenerateCode(this.Config, ts, tp, tpg);
+                                        break;
+                                }
+                                if (isCurrentUpdate && !string.IsNullOrWhiteSpace(code))
+                                {
+                                    Debug.Assert(this.Config.CurrentCfgFolderPath != null);
+                                    string outFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
+                                    // tg.GetRelativeToConfigDiskPath()
+                                    //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
+                                    byte[] bytes = Encoding.UTF8.GetBytes(code);
+                                    File.WriteAllBytes(outFile, bytes);
                                 }
                             }
 #if PARALLEL
-                            //);
-#endif
-                        }
-#if PARALLEL
-                    });
+                        });
 #else
-                    }
+                        }
 #endif
+                    }
                     if (isCurrentUpdate)
                     {
                         foreach (var t in dicAppSettings)
@@ -1679,7 +1664,6 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
-        // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
         /// <summary>
         /// if 'sqlUpdate' is not null then only SQL updates are accumulated there. No any real updates.
         /// </summary>
@@ -2030,7 +2014,7 @@ namespace vSharpStudio.ViewModels
             this.ResetIsChangedBeforeSave();
         }
 
-#endregion Main
+        #endregion Main
 
         #region ConfigTree
         private void VisibilityAndMessageInstructions()
