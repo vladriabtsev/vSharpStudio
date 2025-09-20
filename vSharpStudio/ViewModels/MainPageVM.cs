@@ -1590,7 +1590,7 @@ namespace vSharpStudio.ViewModels
         }
         private void GeneratorApply(GeneratorData genData, IConfig diffConfig, int i, int nGens, bool isCurrentUpdate, bool isOnlySqlTextUpdate, bool isDeleteDb, ConcurrentDictionary<string, StringBuilder> dicAppSettings)
         {
-            this.ProgressVM?.ProgressUpdateSubTask($"'{genData.ts.Name}'-'{genData.tp.Name}'-'{genData.tpg.Name}'-'{genData.tg.Name}'", 100 * i / nGens);
+            this.ProgressVM?.ProgressUpdateSubTask($"'{genData.ts.Name}'-'{genData.tp.Name}'-'{genData.tpg.Name}'-'{genData.tg.Name}'", 100 * (i - 1) / nGens);
             i++;
             string? code = null;
             Debug.Assert(genData.tg.Generator != null);
