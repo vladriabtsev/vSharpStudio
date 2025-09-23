@@ -653,6 +653,7 @@ namespace vSharpStudio.ViewModels
                     this.BtnConfigCurrentUpdateSqlAsync.Command.NotifyCanExecuteChanged();
                     this.BtnConfigCreateStableVersionAsync.Command.NotifyCanExecuteChanged();
                 };
+                this.BtnConfigValidateAsync.Command.Execute(null);
             }
         }
         private Config? _Config;

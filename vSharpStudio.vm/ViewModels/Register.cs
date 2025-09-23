@@ -980,7 +980,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (string.IsNullOrEmpty(row.Dimension.DimensionCatalogGuid))
                         return;
                     var cat = reg.Cfg.DicNodes[row.Dimension.DimensionCatalogGuid];
-                    if (p.DataType.DataTypeEnum != EnumDataType.CATALOG || cat.Guid != p.DataType.ObjectRef.ForeignObjectGuid)
+                    if (p.DataType.DataTypeEnum != EnumDataType.CATALOG) // || cat.Guid != p.DataType.ObjectRef.ForeignObjectGuid)
                         return;
                 }
                 else if (row.AttachedProperty != null)
