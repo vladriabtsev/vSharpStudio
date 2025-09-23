@@ -626,11 +626,9 @@ namespace vSharpStudio.ViewModels
             }
             set
             {
-                SetProperty(ref this._Config, value);
+                this._Config = value;
                 MainPageVM.ConfigInstance = value;
-                //TODO when loading another config it is not changing config view
-                //Debug.Assert(MainPageVM._mainPage != null);
-                // ??? MainPageVM._mainPage.configTree.configTreeView.ItemsSource = this.Config.Children;
+                this.OnPropertyChanged();
                 this.ValidateProperty();
                 this._Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath) ?? String.Empty;
                 this.Config.OnSelectedNodeChanging = (oldValue, newValue) =>
@@ -889,7 +887,7 @@ namespace vSharpStudio.ViewModels
                 var jtest_config = jparser.Parse(json, Proto.Config.proto_config_short_history.Descriptor);
                 //CompareSaved(json);
 #endif
-                File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
+                File.WriteAllText(this.CurrentCfgFilePath + ".json", json, Encoding.UTF8);
 
                 this.UpdateUserSettingsSaveConfigs();
                 this.ResetIsChangedBeforeSave();
