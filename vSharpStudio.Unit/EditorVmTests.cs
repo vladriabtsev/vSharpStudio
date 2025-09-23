@@ -622,12 +622,12 @@ namespace vSharpStudio.Unit
             // Assert.IsTrue(dt.VisibilityLength == Visibility.Collapsed);
             // Assert.IsTrue(dt.VisibilityObjectName == Visibility.Collapsed);
 
-            //dt.DataTypeEnum = EnumDataType.ANY;
-            //dt.Validate();
-            //Assert.IsTrue(dt.CountErrors == 0);
-            //Assert.IsTrue(dt.CountInfos == 0);
-            //Assert.IsTrue(dt.CountWarnings == 0);
-            //Assert.IsTrue(dt.ValidationCollection.Count == 0);
+            dt.DataTypeEnum = EnumDataType.ANY;
+            dt.Validate();
+            Assert.AreEqual(0, dt.CountErrors);
+            Assert.AreEqual(0, dt.CountInfos);
+            Assert.AreEqual(0, dt.CountWarnings);
+            Assert.IsEmpty(dt.ValidationCollection);
 
 
             // Assert.IsTrue(dt.VisibilityAccuracy == Visibility.Collapsed);
@@ -651,7 +651,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, dt.CountWarnings);
             Assert.IsTrue(dt.HasErrors);
             Assert.HasCount(2, dt.ValidationCollection);
-            Assert.AreEqual(Config.ValidationMessages.TYPE_EMPTY_CATALOG, dt.ValidationCollection[0].Message);
+            dt.ValidationCollection.Single(msg => msg.Message == Config.ValidationMessages.TYPE_EMPTY_CATALOG);
             // Assert.IsTrue(dt.VisibilityAccuracy == Visibility.Collapsed);
             // Assert.IsTrue(dt.VisibilityLength == Visibility.Collapsed);
             // Assert.IsTrue(dt.VisibilityObjectName == Visibility.Visible);
@@ -685,7 +685,8 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, dt.CountWarnings);
             Assert.IsTrue(dt.HasErrors);
             Assert.HasCount(2, dt.ValidationCollection);
-            Assert.AreEqual(Config.ValidationMessages.TYPE_EMPTY_ENUMERATION, dt.ValidationCollection[0].Message);
+            dt.ValidationCollection.Single(msg => msg.Message == Config.ValidationMessages.TYPE_EMPTY_ENUMERATION);
+            //Assert.AreEqual(Config.ValidationMessages.TYPE_EMPTY_ENUMERATION, dt.ValidationCollection[0].Message);
             // Assert.IsTrue(dt.VisibilityAccuracy == Visibility.Collapsed);
             // Assert.IsTrue(dt.VisibilityLength == Visibility.Collapsed);
             // Assert.IsTrue(dt.VisibilityObjectName == Visibility.Visible);

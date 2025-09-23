@@ -13,9 +13,9 @@
     using ViewModelBase;
     using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
-    public partial class ConfigObjectCommonBase<T, TValidator> : VmValidatableWithSeverityAndAttributes<T, TValidator>, IComparable<T>, IEquatable<T>
+    public partial class ConfigObjectCommonBase<T, TValidator> : VmValidatableWithSeverityAndAttributes<T, TValidator>, IComparable<T>//, IEquatable<T>
         where TValidator : AbstractValidator<T>
-        where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>, IEquatable<T>//, ISortingValue //, IGuid // , ITreeConfigNode
+        where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>//, IEquatable<T>//, ISortingValue //, IGuid // , ITreeConfigNode
     {
         private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ConfigObjectCommonBase<T, TValidator>));
         public ConfigObjectCommonBase(ITreeConfigNode? parent, TValidator? validator)
@@ -168,11 +168,11 @@
             Debug.Assert(other != null);
             return this._SortingValue.CompareTo(other._SortingValue);
         }
-        public bool Equals(T? other)
-        {
-            Debug.Assert(other != null && other is IGuid);
-            return this.__Guid == (other as IGuid)!.Guid;
-        }
+        //public bool Equals(T? other)
+        //{
+        //    Debug.Assert(other != null && other is IGuid);
+        //    return this.__Guid == (other as IGuid)!.Guid;
+        //}
 
         #region Sort
         [Browsable(false)]

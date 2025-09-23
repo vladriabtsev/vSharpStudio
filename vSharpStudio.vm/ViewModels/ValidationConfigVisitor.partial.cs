@@ -101,19 +101,21 @@ namespace vSharpStudio.vm.ViewModels
             //_logger?.Debug("Adding Message. Node: {model}, Property: {property}, Severity: {severity}, Message: {message}", p.ModelPath, t.PropertyName, t.SeverityName, t.Message);
             this.UpdateAddCounts(p, t);
             t.RaiseSeverityLevel(this._level);
-            ulong weight = 0;
-            ITreeConfigNode nnode = p;
-            while (nnode.Parent != null)
-            {
-                weight++;
-                nnode = nnode.Parent;
-            }
-            if (weight > VmBindable.MaxSortingWeight)
-            {
-                throw new Exception();
-            }
 
-            this.Result.Add(t, VmBindable.MaxSortingWeight - weight);
+            //ulong weight = 0;
+            //ITreeConfigNode nnode = p;
+            //while (nnode.Parent != null)
+            //{
+            //    weight++;
+            //    nnode = nnode.Parent;
+            //}
+            //if (weight > VmBindable.MaxSortingWeight)
+            //{
+            //    throw new Exception();
+            //}
+            //this.Result.Add(t, VmBindable.MaxSortingWeight - weight);
+
+            this.Result.Add(t);
         }
 
         private void ValidateSubAndCollectErrors(ITreeConfigNode p, IValidatableWithSeverity sub)

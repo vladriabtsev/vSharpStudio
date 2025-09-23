@@ -1540,9 +1540,9 @@ namespace vSharpStudio.ViewModels
                         Debug.Assert(tpg.ListGenerators != null);
                         foreach (var tg in tpg.ListGenerators)
                         {
-                            if (tg.Generator != null)
+                            if (tg.Guid == tpg.PluginGeneratorGuid)
                             {
-                                Debug.Assert(tg.Guid == tpg.PluginGeneratorGuid);
+                                Debug.Assert(tg.Generator != null);
                                 var genData = new GeneratorData();
                                 genData.ts = ts;
                                 genData.tp = tp;

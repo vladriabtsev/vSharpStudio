@@ -169,7 +169,7 @@ namespace ViewModelBase
                     UIDispatcher.Invoke(() =>
                     {
                         Debug.Assert(msg != null);
-                        ValidationCollection.Add(msg);
+                        ValidationCollection.Add(msg, msg.SortingValue);
                     });
                 }
                 Dictionary<string, string?> dic = new Dictionary<string, string?>();

@@ -337,7 +337,7 @@ namespace ViewModelBase
                     var ifrom = -1;
                     for (int j = 0; j < this.Count; j++)
                     {
-                        if (this[j].Equals(item))
+                        if (this[j].SortingValue == item.SortingValue)
                         {
                             ifrom = j;
                             break;
