@@ -206,17 +206,7 @@ namespace vSharpStudio.vm.ViewModels
                                 //        cntx.AddFailure(vf);
                                 //    }
                                 //}
-                                //if (string.IsNullOrEmpty(rd.DimensionCatalogGuid))
-                                //{
-                                //    var vf = new ValidationFailure(cntx.PropertyPath,
-                                //        $"Register '{r.Name}'. Dimension '{rd.Name}' is not mapped to '{doc.Name}' document property.")
-                                //    {
-                                //        Severity = Severity.Error
-                                //    };
-                                //    cntx.AddFailure(vf);
-                                //}
-                                //else
-                                //{
+                                bool dim_mapped = false;
                                 foreach (var dpm in dtr.ListMappings)
                                 {
                                     if (string.IsNullOrEmpty(dpm.DocPropGuid))
@@ -247,6 +237,10 @@ namespace vSharpStudio.vm.ViewModels
                                             };
                                             cntx.AddFailure(vf);
                                         }
+                                        if (rd.Guid == rdd.Guid)
+                                        {
+                                            dim_mapped = true;
+                                        }
                                     }
                                     //if (dpm.RegPropGuid == rd.DimensionCatalogGuid)
                                     //{
@@ -274,7 +268,15 @@ namespace vSharpStudio.vm.ViewModels
                                     //    break;
                                     //}
                                 }
-                                //}
+                                if (!dim_mapped)
+                                {
+                                    var vf = new ValidationFailure(cntx.PropertyPath,
+                                        $"Register '{r.Name}'. Dimension '{rd.Name}' is not mapped to '{doc.Name}' document property.")
+                                    {
+                                        Severity = Severity.Error
+                                    };
+                                    cntx.AddFailure(vf);
+                                }
                             }
                             var found = false;
                             foreach (var ra in r.GroupProperties.ListProperties)

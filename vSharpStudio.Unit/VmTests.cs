@@ -502,8 +502,7 @@ namespace vSharpStudio.Unit
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.AreEqual(0, cfg.CountInfos);
             Assert.AreEqual(0, cfg.CountWarnings);
-            Assert.AreEqual(2, cfg.CountErrors);
-            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimension 'cat_dimension2' is not mapped to 'doc1' document property."));
+            Assert.AreEqual(1, cfg.CountErrors);
             valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Catalog type is not selected for register dimension."));
 
             // Change dimension type to same as first dimension type
