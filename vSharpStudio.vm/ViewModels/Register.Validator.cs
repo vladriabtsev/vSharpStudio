@@ -193,45 +193,88 @@ namespace vSharpStudio.vm.ViewModels
                             foreach (var rd in r.GroupRegisterDimensions.ListDimensions)
                             {
                                 if (string.IsNullOrEmpty(rd.DimensionCatalogGuid))
+                                    continue;
+                                //foreach (var rd2 in r.GroupRegisterDimensions.ListDimensions)
+                                //{
+                                //    if (rd.Guid != rd2.Guid && rd.DimensionCatalogGuid == rd2.DimensionCatalogGuid)
+                                //    {
+                                //        var vf = new ValidationFailure(cntx.PropertyPath,
+                                //            $"Register '{r.Name}'. Dimension '{rd.Name}' and '{rd2.Name}' are mapped to same property of document '{doc.Name}'.")
+                                //        {
+                                //            Severity = Severity.Error
+                                //        };
+                                //        cntx.AddFailure(vf);
+                                //    }
+                                //}
+                                //if (string.IsNullOrEmpty(rd.DimensionCatalogGuid))
+                                //{
+                                //    var vf = new ValidationFailure(cntx.PropertyPath,
+                                //        $"Register '{r.Name}'. Dimension '{rd.Name}' is not mapped to '{doc.Name}' document property.")
+                                //    {
+                                //        Severity = Severity.Error
+                                //    };
+                                //    cntx.AddFailure(vf);
+                                //}
+                                //else
+                                //{
+                                foreach (var dpm in dtr.ListMappings)
                                 {
-                                    var vf = new ValidationFailure(cntx.PropertyPath,
-                                        $"Register '{r.Name}'. Dimension '{rd.Name}' is not mapped to '{doc.Name}' document property.")
+                                    if (string.IsNullOrEmpty(dpm.DocPropGuid))
+                                        continue;
+                                    if (string.IsNullOrEmpty(dpm.RegPropGuid))
+                                        continue;
+                                    var p = (Property)r.Cfg.DicNodes[dpm.DocPropGuid];
+                                    var node = r.Cfg.DicNodes[dpm.RegPropGuid];
+                                    if (node is RegisterDimension rdd)
                                     {
-                                        Severity = Severity.Error
-                                    };
-                                    cntx.AddFailure(vf);
-                                }
-                                else
-                                {
-                                    foreach (var dpm in dtr.ListMappings)
-                                    {
-                                        if (dpm.RegPropGuid == rd.DimensionCatalogGuid)
+                                        if (p.DataType.DataTypeEnum != EnumDataType.CATALOG)
                                         {
-                                            var p = (Property)r.Cfg.DicNodes[dpm.DocPropGuid];
-                                            if (p.DataType.DataTypeEnum != EnumDataType.CATALOG)
+                                            var vf = new ValidationFailure(cntx.PropertyPath,
+                                                $"Register '{r.Name}'. Dimension '{rdd.Name}' has to be mapped to Catalog, but property '{p.Name}' of '{doc.Name}' document has type '{System.Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.")
                                             {
-                                                var vf = new ValidationFailure(cntx.PropertyPath,
-                                                    $"Register '{r.Name}'. Dimension can be mapped to catalog property only, but property '{p.Name}' of '{doc.Name}' document has type '{System.Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.")
-                                                {
-                                                    Severity = Severity.Error
-                                                };
-                                                cntx.AddFailure(vf);
-                                            }
-                                            if (!string.IsNullOrWhiteSpace(p.DataType.ObjectRef.ForeignObjectGuid) && p.DataType.ObjectRef.ForeignObjectGuid != rd.DimensionCatalogGuid)
+                                                Severity = Severity.Error
+                                            };
+                                            cntx.AddFailure(vf);
+                                        }
+                                        else if (rdd.DimensionCatalogGuid != p.DataType.ObjectRef.ForeignObjectGuid)
+                                        {
+                                            var cp = (Catalog)r.Cfg.DicNodes[p.DataType.ObjectRef.ForeignObjectGuid];
+                                            var crd = (Catalog)r.Cfg.DicNodes[rd.DimensionCatalogGuid];
+                                            var vf = new ValidationFailure(cntx.PropertyPath,
+                                                $"Register '{r.Name}'. Dimension can be mapped to catalog property of type '{crd.Name}', but property '{p.Name}' of '{doc.Name}' document has catalog type '{cp.Name}'.")
                                             {
-                                                var cp = (Catalog)r.Cfg.DicNodes[p.DataType.ObjectRef.ForeignObjectGuid];
-                                                var crd = (Catalog)r.Cfg.DicNodes[rd.DimensionCatalogGuid];
-                                                var vf = new ValidationFailure(cntx.PropertyPath,
-                                                    $"Register '{r.Name}'. Dimension can be mapped to catalog property of type '{crd.Name}', but property '{p.Name}' of '{doc.Name}' document has catalog type '{cp.Name}'.")
-                                                {
-                                                    Severity = Severity.Error
-                                                };
-                                                cntx.AddFailure(vf);
-                                            }
-                                            break;
+                                                Severity = Severity.Error
+                                            };
+                                            cntx.AddFailure(vf);
                                         }
                                     }
+                                    //if (dpm.RegPropGuid == rd.DimensionCatalogGuid)
+                                    //{
+                                    //    var p = (Property)r.Cfg.DicNodes[dpm.DocPropGuid];
+                                    //    if (p.DataType.DataTypeEnum != EnumDataType.CATALOG)
+                                    //    {
+                                    //        var vf = new ValidationFailure(cntx.PropertyPath,
+                                    //            $"Register '{r.Name}'. Dimension can be mapped to catalog property only, but property '{p.Name}' of '{doc.Name}' document has type '{System.Enum.GetName<EnumDataType>(p.DataType.DataTypeEnum)}'.")
+                                    //        {
+                                    //            Severity = Severity.Error
+                                    //        };
+                                    //        cntx.AddFailure(vf);
+                                    //    }
+                                    //    if (!string.IsNullOrWhiteSpace(p.DataType.ObjectRef.ForeignObjectGuid) && p.DataType.ObjectRef.ForeignObjectGuid != rd.DimensionCatalogGuid)
+                                    //    {
+                                    //        var cp = (Catalog)r.Cfg.DicNodes[p.DataType.ObjectRef.ForeignObjectGuid];
+                                    //        var crd = (Catalog)r.Cfg.DicNodes[rd.DimensionCatalogGuid];
+                                    //        var vf = new ValidationFailure(cntx.PropertyPath,
+                                    //            $"Register '{r.Name}'. Dimension can be mapped to catalog property of type '{crd.Name}', but property '{p.Name}' of '{doc.Name}' document has catalog type '{cp.Name}'.")
+                                    //        {
+                                    //            Severity = Severity.Error
+                                    //        };
+                                    //        cntx.AddFailure(vf);
+                                    //    }
+                                    //    break;
+                                    //}
                                 }
+                                //}
                             }
                             var found = false;
                             foreach (var ra in r.GroupProperties.ListProperties)

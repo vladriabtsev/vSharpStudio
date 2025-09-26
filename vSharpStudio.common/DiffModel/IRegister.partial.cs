@@ -14,5 +14,7 @@ namespace vSharpStudio.common
         IReadOnlyList<IProperty> GetIncludedBalanceProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial);
         //IForm GetForm(FormType ftype, string guidAppPrjGen);
         string GetDebuggerDisplay(bool isOptimistic);
+        IProperty PropertyMoneyAccumulator { get; }
+        IProperty PropertyQtyAccumulator { get; }
     }
 }

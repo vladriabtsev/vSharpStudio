@@ -469,6 +469,7 @@ namespace vSharpStudio.ViewModels
                 var nvb = new ModelVisitorBase();
                 nvb.RunFromRoot(cfg, null, null, null, (p, n) =>
                 {
+                    //Debug.Assert(!cfg._DicNodes.ContainsKey(n.Guid));
                     cfg._DicNodes[n.Guid] = n;
                     if (n is IRoleAccess ra)
                         ra.InitRoles();

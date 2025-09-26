@@ -2675,6 +2675,10 @@ message proto_register_reg_prop_to_doc_prop
     string reg_prop_guid = 2;
     // Document property GUID
     string doc_prop_guid = 3;
+    // Register GUID
+    string reg_guid = 4;
+    // Document GUID
+    string doc_guid = 5;
 }
 // @interface ICanAddNode
 // @interface ISortingValue

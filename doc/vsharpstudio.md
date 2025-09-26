@@ -2006,6 +2006,8 @@ Configuration model
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | reg_prop_guid | [string](#string) |  | Register property GUID |
 | doc_prop_guid | [string](#string) |  | Document property GUID |
+| reg_guid | [string](#string) |  | Register GUID |
+| doc_guid | [string](#string) |  | Document GUID |
 
 
 

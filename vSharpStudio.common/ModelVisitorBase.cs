@@ -196,6 +196,12 @@ namespace vSharpStudio.common
                 if (!isActFromRootToBottom)
                     this._act?.Invoke(this, tr.GroupRegisterDimensions);
                 this.EndVisit(tr.GroupRegisterDimensions);
+
+                //this.BeginVisit(tr.PropertyMoneyAccumulator);
+                //this._act?.Invoke(this, tr.PropertyMoneyAccumulator);
+                //this.BeginVisit(tr.PropertyQtyAccumulator);
+                //this._act?.Invoke(this, tr.PropertyQtyAccumulator);
+
                 this.VisitProperties(tr.GroupProperties, tr.GroupProperties.ListProperties, isActFromRootToBottom);
                 this.VisitReports(tr.GroupReports, tr.GroupReports.ListReports, isActFromRootToBottom);
                 this.EndVisit(tr);

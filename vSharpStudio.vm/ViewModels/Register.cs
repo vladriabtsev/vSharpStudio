@@ -160,6 +160,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            RecreatePropertyQtyAccumulator();
+            RecreatePropertyMoneyAccumulator();
             if (this.Children.Count > 0)
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
@@ -284,10 +286,57 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
 
+        #region Accumulator properties
+        [Browsable(false)]
+        public IProperty PropertyQtyAccumulator { get; private set; }
+        private void RecreatePropertyQtyAccumulator()
+        {
+            this.PropertyQtyAccumulator = this.Cfg.Model.GetPropertyNumber(this,
+                this.PropertyQtyAccumulatorGuid, this.PropertyQtyAccumulatorName,
+                this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
+            ((Config)this.Cfg)._DicNodes[this.PropertyQtyAccumulatorGuid] = this.PropertyQtyAccumulator;
+        }
+        partial void OnPropertyQtyAccumulatorAccuracyChanged()
+        {
+            RecreatePropertyQtyAccumulator();
+        }
+        partial void OnPropertyQtyAccumulatorLengthChanged()
+        {
+            RecreatePropertyQtyAccumulator();
+        }
+        partial void OnPropertyQtyAccumulatorNameChanged()
+        {
+            RecreatePropertyQtyAccumulator();
+        }
+        [Browsable(false)]
+        public IProperty PropertyMoneyAccumulator { get; private set; }
+        private void RecreatePropertyMoneyAccumulator()
+        {
+            this.PropertyMoneyAccumulator = this.Cfg.Model.GetPropertyNumber(this,
+                this.PropertyMoneyAccumulatorGuid, this.PropertyMoneyAccumulatorName,
+                this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
+            ((Config)this.Cfg)._DicNodes[this.PropertyMoneyAccumulatorGuid] = this.PropertyMoneyAccumulator;
+        }
+        partial void OnPropertyMoneyAccumulatorAccuracyChanged()
+        {
+            RecreatePropertyMoneyAccumulator();
+        }
+        partial void OnPropertyMoneyAccumulatorLengthChanged()
+        {
+            RecreatePropertyMoneyAccumulator();
+        }
+        partial void OnPropertyMoneyAccumulatorNameChanged()
+        {
+            RecreatePropertyMoneyAccumulator();
+        }
+        #endregion Accumulator properties
+
         #region Editing logic
         partial void OnRegisterTypeChanged()
         {
             this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+            RecreatePropertyQtyAccumulator();
+            RecreatePropertyMoneyAccumulator();
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
@@ -539,23 +588,23 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (!string.IsNullOrEmpty(t.DimensionCatalogGuid))
                 {
-                    if (m.ParentConfig.DicNodes.TryGetValue(t.DimensionCatalogGuid, out var node))
-                    {
-                        if (node is Catalog c)
-                        {
-                            var pCat = Property.Clone(t, t.PropertyRefDimensionCatalog, true);
-                            pCat.Guid = t.Guid;
-                            pCat.Position = t.Position;
-                            pCat.IsPKey = false;
-                            pCat.IsNullable = false;
-                            pCat.IsCsNullable = true;
-                            lst.Add(pCat);
-                        }
-                        else
-                            ThrowHelper.ThrowNotSupportedException();
-                    }
-                    else
-                        ThrowHelper.ThrowNotSupportedException();
+                    //if (m.ParentConfig.DicNodes.TryGetValue(t.DimensionCatalogGuid, out var node))
+                    //{
+                    //    if (node is Catalog c)
+                    //    {
+                    var pCat = Property.Clone(t, t.PropertyRefDimensionCatalog, true);
+                    pCat.Guid = t.Guid;
+                    pCat.Position = t.Position;
+                    pCat.IsPKey = false;
+                    pCat.IsNullable = false;
+                    pCat.IsCsNullable = true;
+                    lst.Add(pCat);
+                    //    }
+                    //    else
+                    //        ThrowHelper.ThrowNotSupportedException();
+                    //}
+                    //else
+                    //    ThrowHelper.ThrowNotSupportedException();
                 }
                 else
                     ThrowHelper.ThrowNotSupportedException();
@@ -593,7 +642,7 @@ namespace vSharpStudio.vm.ViewModels
             // Money accumulator
             if (this.UseMoneyAccumulator)
             {
-                var pMoney = (Property)m.GetPropertyNumber(this, this.PropertyMoneyAccumulatorGuid, this.PropertyMoneyAccumulatorName, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
+                var pMoney = (Property)this.PropertyMoneyAccumulator;
                 pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
                 pMoney.TagInList = "ma";
                 lst.Add(pMoney);
@@ -602,7 +651,7 @@ namespace vSharpStudio.vm.ViewModels
             // Qty accumulator
             if (this.UseQtyAccumulator)
             {
-                var pQty = (Property)m.GetPropertyNumber(this, this.PropertyQtyAccumulatorGuid, this.PropertyQtyAccumulatorName, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
+                var pQty = (Property)this.PropertyQtyAccumulator;
                 pQty.Position = IProperty.PropertyQtyAccumulatorPosition;
                 pQty.TagInList = "qa";
                 lst.Add(pQty);
@@ -857,7 +906,13 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (mapToProp == null)
             {
-                rec.ListMappings.Add(new RegisterRegPropToDocProp() { DocPropGuid = docPropertyGuid, RegPropGuid = regPropertyGuid });
+                rec.ListMappings.Add(new RegisterRegPropToDocProp()
+                {
+                    DocGuid = docGuid,
+                    DocPropGuid = docPropertyGuid,
+                    RegGuid = reg.Guid,
+                    RegPropGuid = regPropertyGuid
+                });
                 reg.IsChanged = true;
             }
             else
@@ -980,7 +1035,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (string.IsNullOrEmpty(row.Dimension.DimensionCatalogGuid))
                         return;
                     var cat = reg.Cfg.DicNodes[row.Dimension.DimensionCatalogGuid];
-                    if (p.DataType.DataTypeEnum != EnumDataType.CATALOG) // || cat.Guid != p.DataType.ObjectRef.ForeignObjectGuid)
+                    if (p.DataType.DataTypeEnum != EnumDataType.CATALOG || cat.Guid != p.DataType.ObjectRef.ForeignObjectGuid)
                         return;
                 }
                 else if (row.AttachedProperty != null)

@@ -317,10 +317,10 @@ namespace GenVmFromProto
             
             #line default
             #line hidden
-            this.Write(".Add(t.Clone());\r\n          ");
+            this.Write(".Add(t.Clone());\r\n");
             
             #line 48 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt"
- } else if (!field.IsMessage()) { 
+        } else if (!field.IsMessage()) { 
             
             #line default
             #line hidden
@@ -345,10 +345,10 @@ namespace GenVmFromProto
             
             #line default
             #line hidden
-            this.Write(".Add(t);\r\n          ");
+            this.Write(".Add(t);\r\n");
             
             #line 51 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt"
- } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { var isFieldWithParent=JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsWithParent; 
+        } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { var isFieldWithParent=JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsWithParent; 
             
             #line default
             #line hidden
@@ -435,10 +435,10 @@ namespace GenVmFromProto
             
             #line default
             #line hidden
-            this.Write(")t, isDeep));\r\n          ");
+            this.Write(")t, isDeep));\r\n");
             
             #line 55 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt"
- } else { 
+        } else { 
             
             #line default
             #line hidden
@@ -512,10 +512,10 @@ namespace GenVmFromProto
             
             #line default
             #line hidden
-            this.Write(")t, isDeep));\r\n          ");
+            this.Write(")t, isDeep));\r\n");
             
             #line 59 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt"
- } 
+        } 
             
             #line default
             #line hidden
