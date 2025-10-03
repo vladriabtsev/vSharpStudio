@@ -316,7 +316,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentGroupListAppSolutions.ListAppSolutions.CanUp(this))
+                if (this.ParentGroupListAppSolutions.SortType == EnumSortingType.EXPLICIT && this.ParentGroupListAppSolutions.ListAppSolutions.CanUp(this))
                 {
                     return true;
                 }
@@ -342,7 +342,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentGroupListAppSolutions.ListAppSolutions.CanDown(this))
+                if (this.ParentGroupListAppSolutions.SortType == EnumSortingType.EXPLICIT && this.ParentGroupListAppSolutions.ListAppSolutions.CanDown(this))
                 {
                     return true;
                 }

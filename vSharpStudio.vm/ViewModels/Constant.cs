@@ -79,6 +79,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            this.IsCanSortByName = true;
             this.DataType.PropertyChanged += DataType_PropertyChanged;
             //this.ListRoles.OnAddingAction = (t) =>
             //{

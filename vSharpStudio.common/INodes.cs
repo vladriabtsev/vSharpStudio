@@ -52,4 +52,22 @@
     {
         bool CanAddSubNode();
     }
+    /// <summary>
+    /// Sorting nodes
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="P"></typeparam>
+    public interface INodeSortable<T, P>
+        where T : class
+        where P : INodeSortableParent
+    {
+        bool IsExplicitlySortable { get; }
+    }
+    /// <summary>
+    /// Parent of sortable node
+    /// </summary>
+    public interface INodeSortableParent
+    {
+        void Sort();
+    }
 }

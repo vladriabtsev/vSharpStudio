@@ -44,8 +44,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
+        partial void OnSortTypeChanged() { this.ListDocuments.Sort((int)this.SortType); }
         private void Init()
         {
+            OnSortTypeChanged();
             this._Name = Defaults.Documents;
             this.ListDocuments.OnAddingAction = (t) =>
             {
@@ -87,6 +89,14 @@ namespace vSharpStudio.vm.ViewModels
             else
             {
                 node = (Document)node_impl;
+            }
+            if (this.ListDocuments.Count > 0)
+            {
+                node.SortingValue = this.ListDocuments[this.ListDocuments.Count - 1].SortingValue + 1;
+            }
+            else
+            {
+                node.SortingValue = 1;
             }
             this.Add(node);
             if (node_impl == null)

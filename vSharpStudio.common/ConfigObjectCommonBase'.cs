@@ -684,30 +684,6 @@
         {
             throw new NotImplementedException();
         }
-        public bool NodeCanMoveDown()
-        {
-            if (this is not ICanAddNode)
-            {
-                return false;
-            }
-            return this.NodeCanDown();
-        }
-        public virtual void NodeMoveDown()
-        {
-            throw new NotImplementedException();
-        }
-        public bool NodeCanMoveUp()
-        {
-            if (this is not ICanAddNode)
-            {
-                return false;
-            }
-            return this.NodeCanUp();
-        }
-        public virtual void NodeMoveUp()
-        {
-            throw new NotImplementedException();
-        }
         public bool NodeCanMarkForDeletion()
         {
             if (this is IEditableNode)
@@ -762,11 +738,35 @@
         {
             throw new NotImplementedException();
         }
+        public bool NodeCanMoveDown()
+        {
+            if (this is not ICanAddNode)
+            {
+                return false;
+            }
+            return this.NodeCanDown();
+        }
+        public virtual void NodeMoveDown()
+        {
+            throw new NotImplementedException();
+        }
         public virtual bool NodeCanDown()
         {
             return false;
         }
         public virtual void NodeDown()
+        {
+            throw new NotImplementedException();
+        }
+        public bool NodeCanMoveUp()
+        {
+            if (this is not ICanAddNode)
+            {
+                return false;
+            }
+            return this.NodeCanUp();
+        }
+        public virtual void NodeMoveUp()
         {
             throw new NotImplementedException();
         }

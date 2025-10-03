@@ -42,8 +42,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
+        partial void OnSortTypeChanged() { this.ListEnumeratorSequences.Sort((int)this.SortType); }
         private void Init()
         {
+            OnSortTypeChanged();
             this._Name = Defaults.GroupSequenceName;
             this.ListEnumeratorSequences.OnAddingAction = (t) =>
             {
@@ -92,6 +94,14 @@ namespace vSharpStudio.vm.ViewModels
             else
             {
                 node = (DocumentEnumeratorSequence)node_impl;
+            }
+            if (this.ListEnumeratorSequences.Count > 0)
+            {
+                node.SortingValue = this.ListEnumeratorSequences[this.ListEnumeratorSequences.Count - 1].SortingValue + 1;
+            }
+            else
+            {
+                node.SortingValue = 1;
             }
             this.Add(node);
             if (node_impl == null)

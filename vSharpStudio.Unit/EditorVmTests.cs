@@ -193,13 +193,44 @@ namespace vSharpStudio.Unit
             var cfg = vm.Config;
             var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
+            Assert.AreEqual(typeof(Constant).Name + 1, gr.ListConstants[0].Name);
             gr.NodeAddNewSubNode();
-            cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].NodeMoveUp();
+            Assert.AreEqual(typeof(Constant).Name + 2, gr.ListConstants[1].Name);
             string json = cfg.ExportToJson();
             Assert.IsGreaterThan(0, json.Length);
             var cfg2 = new Config(json);
-            Assert.HasCount(2, cfg2.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants);
-            Assert.AreEqual(typeof(Constant).Name + 2, cfg2.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
+            var gr2 = cfg2.Model.GroupConstantGroups.ListConstantGroups[0];
+            Assert.HasCount(2, gr2.ListConstants);
+            Assert.AreEqual(typeof(Constant).Name + 1, gr2.ListConstants[0].Name);
+            Assert.AreEqual(typeof(Constant).Name + 2, gr2.ListConstants[1].Name);
+
+            gr.ListConstants[1].NodeMoveUp();
+            Assert.AreEqual(typeof(Constant).Name + 2, gr.ListConstants[0].Name);
+            Assert.AreEqual(typeof(Constant).Name + 1, gr.ListConstants[1].Name);
+            gr.ListConstants[0].NodeMoveUp();
+            Assert.AreEqual(typeof(Constant).Name + 2, gr.ListConstants[0].Name);
+            Assert.AreEqual(typeof(Constant).Name + 1, gr.ListConstants[1].Name);
+            json = cfg.ExportToJson();
+            Assert.IsGreaterThan(0, json.Length);
+            cfg2 = new Config(json);
+            gr2 = cfg2.Model.GroupConstantGroups.ListConstantGroups[0];
+            Assert.HasCount(2, gr2.ListConstants);
+            Assert.AreEqual(typeof(Constant).Name + 2, gr2.ListConstants[0].Name);
+            Assert.AreEqual(typeof(Constant).Name + 1, gr2.ListConstants[1].Name);
+
+            gr.ListConstants[0].NodeMoveDown();
+            Assert.AreEqual(typeof(Constant).Name + 1, gr.ListConstants[0].Name);
+            Assert.AreEqual(typeof(Constant).Name + 2, gr.ListConstants[1].Name);
+            gr.ListConstants[1].NodeMoveDown();
+            Assert.AreEqual(typeof(Constant).Name + 1, gr.ListConstants[0].Name);
+            Assert.AreEqual(typeof(Constant).Name + 2, gr.ListConstants[1].Name);
+            json = cfg.ExportToJson();
+            Assert.IsGreaterThan(0, json.Length);
+            cfg2 = new Config(json);
+            gr2 = cfg2.Model.GroupConstantGroups.ListConstantGroups[0];
+            Assert.HasCount(2, gr2.ListConstants);
+            Assert.AreEqual(typeof(Constant).Name + 1, gr2.ListConstants[0].Name);
+            Assert.AreEqual(typeof(Constant).Name + 2, gr2.ListConstants[1].Name);
         }
         // TODO business validation tests
         // [TestMethod]

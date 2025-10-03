@@ -1770,6 +1770,29 @@
           ]
         },
         {
+          "name": "proto_enum_sorting_type",
+          "longName": "proto_enum_sorting_type",
+          "fullName": "proto_config.proto_enum_sorting_type",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
+          "values": [
+            {
+              "name": "EXPLICIT",
+              "number": "0",
+              "description": "@attr [Description(\"Explicitly by user\")]"
+            },
+            {
+              "name": "ASCENDING",
+              "number": "1",
+              "description": "@attr [Description(\"Ascending order\")]"
+            },
+            {
+              "name": "DESCENDING",
+              "number": "2",
+              "description": "@attr [Description(\"Descending order\")]"
+            }
+          ]
+        },
+        {
           "name": "proto_enum_system_data_type",
           "longName": "proto_enum_system_data_type",
           "fullName": "proto_config.proto_enum_system_data_type",
@@ -2771,6 +2794,18 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for config app projects\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -7925,6 +7960,18 @@
               "defaultValue": ""
             },
             {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for config solutions\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "sorting_value",
               "description": "@attr [Browsable(false)]",
               "label": "",
@@ -8003,6 +8050,18 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for config links\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -8105,8 +8164,20 @@
               "defaultValue": ""
             },
             {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for properties\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "prefix_for_composition_names",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Composition prefix\")]\n@attr [Description(\"Prefix for catalogs composition names. Used if set to use in config model\")]",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Composition prefix\")]\n@attr [Description(\"Prefix for catalogs composition names. Used if set to use in config model\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -8501,6 +8572,18 @@
               "defaultValue": ""
             },
             {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for properties\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "list_constants",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -8657,6 +8740,18 @@
               "defaultValue": ""
             },
             {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for details\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "list_details",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -8801,6 +8896,18 @@
               "defaultValue": ""
             },
             {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for documents\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "short_id_type_for_cache_key",
               "description": "@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Short ID\")]\n@attr [Description(\"Short document type ID for cache key generator\")]",
               "label": "",
@@ -8921,6 +9028,18 @@
               "defaultValue": ""
             },
             {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for enumerations\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "list_enumerations",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -9029,6 +9148,18 @@
               "defaultValue": ""
             },
             {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for enumeration sequences\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "list_enumerator_sequences",
               "description": "@attr [Browsable(false)]\n@attr [Description(\"Document number sequences\")]",
               "label": "repeated",
@@ -9107,6 +9238,18 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for forms\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -9203,6 +9346,18 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for journals\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -9335,6 +9490,18 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for config forms\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -9509,6 +9676,18 @@
               "defaultValue": ""
             },
             {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for properties\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "list_properties",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -9665,6 +9844,18 @@
               "defaultValue": ""
             },
             {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for register dimensions\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "list_dimensions",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -9809,6 +10000,18 @@
               "defaultValue": ""
             },
             {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for registers\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "list_registers",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -9941,6 +10144,18 @@
               "defaultValue": ""
             },
             {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for reports\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "list_reports",
               "description": "repeated proto_property list_shared_properties = 6;\n@attr [Browsable(false)]",
               "label": "repeated",
@@ -10031,6 +10246,18 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for config roles\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -13409,8 +13636,20 @@
               "defaultValue": ""
             },
             {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for relations\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "prefix_for_composition_names",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Composition prefix\")]\n@attr [Description(\"Prefix for many-to-many relations composition names. Used if set to use in config model\")]",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Composition prefix\")]\n@attr [Description(\"Prefix for many-to-many relations composition names. Used if set to use in config model\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -13529,8 +13768,20 @@
               "defaultValue": ""
             },
             {
+              "name": "sort_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for relations\")]",
+              "label": "",
+              "type": "proto_enum_sorting_type",
+              "longType": "proto_enum_sorting_type",
+              "fullType": "proto_config.proto_enum_sorting_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "prefix_for_composition_names",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Composition prefix\")]\n@attr [Description(\"Prefix for many-to-many relations composition names. Used if set to use in config model\")]",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Composition prefix\")]\n@attr [Description(\"Prefix for many-to-many relations composition names. Used if set to use in config model\")]",
               "label": "",
               "type": "string",
               "longType": "string",

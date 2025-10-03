@@ -58,6 +58,14 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (Register)node_impl;
             }
+            if (this.ListRegisters.Count > 0)
+            {
+                node.SortingValue = this.ListRegisters[this.ListRegisters.Count - 1].SortingValue + 1;
+            }
+            else
+            {
+                node.SortingValue = 1;
+            }
             this.Add(node);
             if (node_impl == null)
             {
@@ -83,9 +91,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
-
+        partial void OnSortTypeChanged() { this.ListRegisters.Sort((int)this.SortType); }
         private void Init()
         {
+            OnSortTypeChanged();
             this._Name = Defaults.RegisterGroupName;
             //if (this.Parent is Catalog)
             //{

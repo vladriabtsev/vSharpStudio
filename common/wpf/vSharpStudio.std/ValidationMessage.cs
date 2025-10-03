@@ -21,6 +21,8 @@ namespace ViewModelBase
     [DebuggerDisplay("{SeverityName,nq}, {SeverityWeightName,nq}, {SortingValue,nq}: {Message,nq}")]
     public class ValidationMessage : ISortingValue, IComparable<ValidationMessage>
     {
+        public bool IsCanSortByName { get { return false; } }
+        public string NameToCompare { get { return string.Empty; } }
         private static readonly int _lenSeverity = Enum.GetNames(typeof(FluentValidation.Severity)).Length;
         private static readonly int _lenSeverityWeight = Enum.GetNames(typeof(SeverityWeight)).Length;
         // than higher weight than higher importance of the message

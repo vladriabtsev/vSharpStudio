@@ -48,8 +48,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
+        partial void OnSortTypeChanged() { this.ListBaseConfigLinks.Sort((int)this.SortType); }
         private void Init()
         {
+            OnSortTypeChanged();
             this._Name = Defaults.BaseConfigLinksName;
             //this.AddAllAppGenSettingsVmsToNode();
             this.ListBaseConfigLinks.OnAddingAction = (t) =>
@@ -96,6 +98,14 @@ namespace vSharpStudio.vm.ViewModels
             else
             {
                 node = (BaseConfigLink)node_impl;
+            }
+            if (this.ListBaseConfigLinks.Count > 0)
+            {
+                node.SortingValue = this.ListBaseConfigLinks[this.ListBaseConfigLinks.Count - 1].SortingValue + 1;
+            }
+            else
+            {
+                node.SortingValue = 1;
             }
             this.Add(node);
             if (node_impl == null)

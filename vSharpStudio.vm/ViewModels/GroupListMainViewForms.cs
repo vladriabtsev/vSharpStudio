@@ -40,8 +40,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
+        partial void OnSortTypeChanged() { this.ListMainViewForms.Sort((int)this.SortType); }
         private void Init()
         {
+            OnSortTypeChanged();
             this.ListMainViewForms.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
@@ -75,6 +77,14 @@ namespace vSharpStudio.vm.ViewModels
         //    //    node = (Constant)node_impl;
         //    //}
 
+        //    if (this.ListJournals.Count > 0)
+        //    {
+        //    node.SortingValue = this.ListJournals[this.ListJournals.Count - 1].SortingValue + 1;
+        //}
+        //    else
+        //    {
+        //    node.SortingValue = 1;
+        //}
         //    //this.Add(node);
         //    //if (node_impl == null)
         //    //{

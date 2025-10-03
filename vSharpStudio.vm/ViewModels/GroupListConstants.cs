@@ -32,8 +32,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
+        partial void OnSortTypeChanged() { this.ListConstants.Sort((int)this.SortType); }
         private void Init()
         {
+            OnSortTypeChanged();
             this.ListConstants.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
@@ -367,6 +369,14 @@ namespace vSharpStudio.vm.ViewModels
             else
             {
                 node = (Constant)node_impl;
+            }
+            if (this.ListConstants.Count > 0)
+            {
+                node.SortingValue = this.ListConstants[this.ListConstants.Count - 1].SortingValue + 1;
+            }
+            else
+            {
+                node.SortingValue = 1;
             }
             this.Add(node);
             node.DataType.Parent = node;

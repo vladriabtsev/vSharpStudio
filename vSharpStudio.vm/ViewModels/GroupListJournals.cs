@@ -48,8 +48,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
+        partial void OnSortTypeChanged() { this.ListJournals.Sort((int)this.SortType); }
         private void Init()
         {
+            OnSortTypeChanged();
             this._Name = Defaults.GroupJournalsName;
             this.ListJournals.OnAddingAction = (t) =>
             {
@@ -113,6 +115,14 @@ namespace vSharpStudio.vm.ViewModels
             else
             {
                 node = (Journal)node_impl;
+            }
+            if (this.ListJournals.Count > 0)
+            {
+                node.SortingValue = this.ListJournals[this.ListJournals.Count - 1].SortingValue + 1;
+            }
+            else
+            {
+                node.SortingValue = 1;
             }
             this.Add(node);
             if (node_impl == null)

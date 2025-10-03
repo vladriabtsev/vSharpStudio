@@ -40,8 +40,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
+        partial void OnSortTypeChanged() { this.ListRoles.Sort((int)this.SortType); }
         private void Init()
         {
+            OnSortTypeChanged();
             this._Name = Defaults.GroupRolesName;
             //VmBindable.IsNotifyingStatic = false;
             //var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
@@ -79,7 +81,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public void AddForm(Role node)
+        public void AddRole(Role node)
         {
             this.NodeAddNewSubNode(node);
         }
@@ -95,7 +97,14 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (Role)node_impl;
             }
-
+            if (this.ListRoles.Count > 0)
+            {
+                node.SortingValue = this.ListRoles[this.ListRoles.Count - 1].SortingValue + 1;
+            }
+            else
+            {
+                node.SortingValue = 1;
+            }
             this.Add(node);
             if (node_impl == null)
             {

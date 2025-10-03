@@ -45,8 +45,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
+        partial void OnSortTypeChanged() { this.ListForms.Sort((int)this.SortType); }
         private void Init()
         {
+            OnSortTypeChanged();
             this.ListForms.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
@@ -83,6 +85,14 @@ namespace vSharpStudio.vm.ViewModels
             else
             {
                 node = (Form)node_impl;
+            }
+            if (this.ListForms.Count > 0)
+            {
+                node.SortingValue = this.ListForms[this.ListForms.Count - 1].SortingValue + 1;
+            }
+            else
+            {
+                node.SortingValue = 1;
             }
             this.Add(node);
             if (node_impl == null)

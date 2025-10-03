@@ -45,6 +45,14 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (Catalog)node_impl;
             }
+            if (this.ListCatalogs.Count > 0)
+            {
+                node.SortingValue = this.ListCatalogs[this.ListCatalogs.Count - 1].SortingValue + 1;
+            }
+            else
+            {
+                node.SortingValue = 1;
+            }
             this.Add(node);
             if (node_impl == null)
             {
@@ -76,9 +84,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
-
+        partial void OnSortTypeChanged() { this.ListCatalogs.Sort((int)this.SortType); }
         private void Init()
         {
+            OnSortTypeChanged();
             this._Name = Defaults.GroupCatalogsName;
             if (string.IsNullOrWhiteSpace(this._PrefixForCompositionNames)) this._PrefixForCompositionNames = "Ctlg";
             if (string.IsNullOrWhiteSpace(this._PropertyCodeName)) this._PropertyCodeName = "Code";

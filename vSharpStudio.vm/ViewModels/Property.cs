@@ -175,6 +175,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            this.IsCanSortByName = true;
             //this.ListMainViewForms.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;
@@ -241,7 +242,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentListPropertiesI.ListProperties.CanUp(this))
+                if (this.ParentGroupListProperties.SortType == EnumSortingType.EXPLICIT && this.ParentListPropertiesI.ListProperties.CanUp(this))
                 {
                     return true;
                 }
@@ -267,7 +268,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentListPropertiesI.ListProperties.CanDown(this))
+                if (this.ParentGroupListProperties.SortType == EnumSortingType.EXPLICIT && this.ParentListPropertiesI.ListProperties.CanDown(this))
                 {
                     return true;
                 }

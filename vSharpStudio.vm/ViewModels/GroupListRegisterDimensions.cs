@@ -65,6 +65,14 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (RegisterDimension)node_impl;
             }
+            if (this.ListDimensions.Count > 0)
+            {
+                node.SortingValue = this.ListDimensions[this.ListDimensions.Count - 1].SortingValue + 1;
+            }
+            else
+            {
+                node.SortingValue = 1;
+            }
             this.ListDimensions.Add(node);
             if (node_impl == null)
             {
@@ -89,9 +97,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
-
+        partial void OnSortTypeChanged() { this.ListDimensions.Sort((int)this.SortType); }
         private void Init()
         {
+            OnSortTypeChanged();
             //if (this.Parent is Catalog)
             //{
             //    this.NameUi = "Sub Catalogs";

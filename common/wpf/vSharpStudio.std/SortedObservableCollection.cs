@@ -21,8 +21,8 @@ namespace ViewModelBase
         /// <param name="sortValue"></param>
         void SetSortingValueField(ulong sortValue);
         ulong SortingWeight { get; set; }
+        string NameToCompare { get; }
     }
-    public enum SortDirection { Ascending, Descending }
     public interface IMoveUpDown
     {
         bool CanUp(object current);
@@ -140,8 +140,11 @@ namespace ViewModelBase
     public class SortedObservableCollection<T> : ObservableCollectionWithActions<T>, ISortedObservableCollection<T>
       where T : ISortingValue //, IComparable<T> //IEquatable<T>
     {
+        /// <summary>
+        /// Current sorting direction: 0 - explicitly by user; 1 - ascending order; 2 - descending order;
+        /// </summary>
+        public int SortingDirection { get; set; }
         private readonly object _lock = new object();
-        public SortDirection SortDirection = SortDirection.Ascending;
         //Action<NotifyCollectionChangedEventArgs> onCollectionChanged = null;
         //bool isSort;
         public SortedObservableCollection()
@@ -200,9 +203,12 @@ namespace ViewModelBase
         {
             T p = (T)current;
             int i = this.IndexOf(p);
-            if (i > 0)
+            while (i > 0)
             {
-                p.SortingValue = this[i - 1].SortingValue - 1;
+                var prev = this[i - 1].SortingValue;
+                this[i - 1].SortingValue = this[i].SortingValue;
+                this[i].SortingValue = prev;
+                i--;
             }
             return current;
         }
@@ -211,9 +217,12 @@ namespace ViewModelBase
         {
             T p = (T)current;
             int i = this.IndexOf(p);
-            if (i < this.Count - 1)
+            while (i < this.Count - 1)
             {
-                p.SortingValue = this[i + 1].SortingValue + 1;
+                var next = this[i + 1].SortingValue;
+                this[i + 1].SortingValue = this[i].SortingValue;
+                this[i].SortingValue = next;
+                i++;
             }
             return current;
         }
@@ -260,6 +269,11 @@ namespace ViewModelBase
                 item.SetSortingValueField(item._SortingNameValue + item.SortingWeight);
             }
             base.Add(item);
+            //#if DEBUG
+            //            if (item is not ValidationMessage)
+            //            {
+            //            }
+            //#endif
             InternalSort();
         }
         public new bool Remove(T item)
@@ -308,17 +322,33 @@ namespace ViewModelBase
         {
             InternalSort(Items.OrderBy(keySelector, comparer));
         }
-        public void Sort()
+        public void Sort(int? sortType = null)
         {
+            if (sortType != null)
+            {
+                this.SortingDirection = sortType.Value;
+            }
             InternalSort();
         }
         private void InternalSort()
         {
-            var comparer = Comparer<ulong>.Create((k1, k2) => k1.CompareTo(k2));
-            if (SortDirection == SortDirection.Ascending)
-                InternalSort(Items.OrderBy(t => t.SortingValue, comparer));
-            else
-                InternalSort(Items.OrderByDescending(t => t.SortingValue, comparer));
+            if (Items.Count > 1)
+            {
+                switch (this.SortingDirection)
+                {
+                    case 0: // SortType.ExplicitlyByUser
+                        InternalSort(Items.OrderBy(t => t.SortingValue, Comparer<ulong>.Create((k1, k2) => k1.CompareTo(k2))));
+                        break;
+                    case 1: // SortType.Ascending:
+                        InternalSort(Items.OrderBy(t => t.NameToCompare, Comparer<string>.Create((k1, k2) => k1.CompareTo(k2))));
+                        break;
+                    case 2: // SortType.Descending:
+                        InternalSort(Items.OrderByDescending(t => t.NameToCompare, Comparer<string>.Create((k1, k2) => k1.CompareTo(k2))));
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
         }
         /// <summary>
         /// Moves the items of the collection so that their orders are the same as those of the items provided.

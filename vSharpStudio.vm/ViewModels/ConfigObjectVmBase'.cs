@@ -11,46 +11,47 @@ namespace vSharpStudio.vm.ViewModels
             : base(parent, validator)
         {
         }
+        public bool IsCanSortByName { get; protected set; }
+        public string NameToCompare { get { return _Name; } }
+    //public object NodeIcon
+    //{
+    //    get
+    //    {
+    //        if (this.nodeIcon == null)
+    //        {
+    //            if (Application.Current.Resources.MergedDictionaries[0].Contains(this.GetNodeIconName()))
+    //            {
+    //                this.nodeIcon = Application.Current.Resources.MergedDictionaries[0][this.GetNodeIconName()];
+    //            }
+    //        }
+    //        return this.nodeIcon;
+    //    }
+    //}
+    //private object nodeIcon;
+    //protected virtual string GetNodeIconName() { throw new Exception(); }
 
-        //public object NodeIcon
-        //{
-        //    get
-        //    {
-        //        if (this.nodeIcon == null)
-        //        {
-        //            if (Application.Current.Resources.MergedDictionaries[0].Contains(this.GetNodeIconName()))
-        //            {
-        //                this.nodeIcon = Application.Current.Resources.MergedDictionaries[0][this.GetNodeIconName()];
-        //            }
-        //        }
-        //        return this.nodeIcon;
-        //    }
-        //}
-        //private object nodeIcon;
-        //protected virtual string GetNodeIconName() { throw new Exception(); }
-
-        //protected virtual void OnNodeAdded(ITreeConfigNode node) { }
-        //protected void OnAddRemoveNode(System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        //{
-        //    var cfg = this.GetConfig();
-        //    switch (e.Action)
-        //    {
-        //        case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-        //            cfg.DicNodes[this.Guid] = this;
-        //            this.OnNodeAdded(this);
-        //            break;
-        //        case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
-        //            cfg.DicNodes.Remove(this.Guid);
-        //            break;
-        //    }
-        //}
-        //protected override void OnIsChangedChangedWithDelay()
-        //{
-        //    var cfg = (Config)this.Cfg;
-        //    if (cfg.SelectedNode != null && cfg.SelectedNode == this)
-        //    {
-        //        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
-        //    }
-        //}
-    }
+    //protected virtual void OnNodeAdded(ITreeConfigNode node) { }
+    //protected void OnAddRemoveNode(System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    //{
+    //    var cfg = this.GetConfig();
+    //    switch (e.Action)
+    //    {
+    //        case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+    //            cfg.DicNodes[this.Guid] = this;
+    //            this.OnNodeAdded(this);
+    //            break;
+    //        case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+    //            cfg.DicNodes.Remove(this.Guid);
+    //            break;
+    //    }
+    //}
+    //protected override void OnIsChangedChangedWithDelay()
+    //{
+    //    var cfg = (Config)this.Cfg;
+    //    if (cfg.SelectedNode != null && cfg.SelectedNode == this)
+    //    {
+    //        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
+    //    }
+    //}
+}
 }

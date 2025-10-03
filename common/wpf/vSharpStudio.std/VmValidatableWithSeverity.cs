@@ -27,7 +27,7 @@ namespace ViewModelBase
             this._validator = validator;
             this._ValidationCollection = new SortedObservableCollection<ValidationMessage>
             {
-                SortDirection = SortDirection.Descending
+               SortingDirection = 2 // Descending order
             };
         }
         protected TValidator _validator { get; private set; }

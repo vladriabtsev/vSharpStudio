@@ -7,6 +7,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class PluginGeneratorNodeSettings : ISortingValue, ITreeConfigNode
     {
+        public bool IsCanSortByName { get { return false; } }
+        public string NameToCompare { get { return string.Empty; } }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" Path:{ModelPath}";
