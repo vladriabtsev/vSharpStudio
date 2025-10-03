@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.ViewModels;
 
@@ -101,6 +102,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        protected override SortedObservableCollection<DocumentEnumeratorSequence>? GetParentCollection() { return this.ParentGroupListSequences.ListEnumeratorSequences; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -110,57 +112,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListSequences.ListEnumeratorSequences.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (DocumentEnumeratorSequence?)this.ParentGroupListSequences.ListEnumeratorSequences.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentGroupListSequences.ListEnumeratorSequences.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListSequences.ListEnumeratorSequences.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (DocumentEnumeratorSequence?)this.ParentGroupListSequences.ListEnumeratorSequences.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentGroupListSequences.ListEnumeratorSequences.MoveDown(this);
-            this.SetSelected(this);
-        }
         public override ITreeConfigNode NodeAddClone()
         {
             Debug.Assert(this.Parent != null);
@@ -171,7 +122,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new DocumentEnumeratorSequence(this.Parent);

@@ -93,57 +93,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.ParentGroupConstantGroups.ListConstantGroups.Remove(this);
         }
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupConstantGroups.ListConstantGroups.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (GroupListConstants?)this.ParentGroupConstantGroups.ListConstantGroups.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentGroupConstantGroups.ListConstantGroups.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupConstantGroups.ListConstantGroups.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (GroupListConstants?)this.ParentGroupConstantGroups.ListConstantGroups.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentGroupConstantGroups.ListConstantGroups.MoveDown(this);
-            this.SetSelected(this);
-        }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = GroupListConstants.Clone(this.ParentGroupConstantGroups, this, true, true);

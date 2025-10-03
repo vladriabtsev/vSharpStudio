@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using FluentValidation;
+using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
@@ -141,6 +142,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        protected override SortedObservableCollection<Catalog>? GetParentCollection() { return this.ParentGroupListCatalogs.ListCatalogs; }
         public void RefillChildren()
         {
             //if (this.Children.Count > 0)
@@ -284,57 +286,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListCatalogs.ListCatalogs.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (Catalog?)this.ParentGroupListCatalogs.ListCatalogs.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentGroupListCatalogs.ListCatalogs.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListCatalogs.ListCatalogs.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (Catalog?)this.ParentGroupListCatalogs.ListCatalogs.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentGroupListCatalogs.ListCatalogs.MoveDown(this);
-            this.SetSelected(this);
-        }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Catalog.Clone(this.ParentGroupListCatalogs, this, true, true);
@@ -344,7 +295,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Catalog(this.Parent);

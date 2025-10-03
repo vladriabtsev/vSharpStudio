@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using ViewModelBase;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
@@ -60,6 +61,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        protected override SortedObservableCollection<EnumerationPair>? GetParentCollection() { return this.ParentEnumeration.ListEnumerationPairs; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();

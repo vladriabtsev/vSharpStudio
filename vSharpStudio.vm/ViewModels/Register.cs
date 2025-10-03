@@ -185,6 +185,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        protected override SortedObservableCollection<Register>? GetParentCollection() { return this.ParentGroupListRegisters.ListRegisters; }
         // doc guid, reg prop guid, doc prop guid
         internal Dictionary<string, Dictionary<string, string>> mappingDic = new();
 
@@ -195,52 +196,6 @@ namespace vSharpStudio.vm.ViewModels
         internal bool isSpecialItself;
 
         #region Tree operations
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListRegisters.ListRegisters.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public override void NodeUp()
-        {
-            var prev = (Register?)this.ParentGroupListRegisters.ListRegisters.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-        public override void NodeMoveUp()
-        {
-            this.ParentGroupListRegisters.ListRegisters.MoveUp(this);
-            this.SetSelected(this);
-        }
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListRegisters.ListRegisters.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public override void NodeDown()
-        {
-            var next = (Register?)this.ParentGroupListRegisters.ListRegisters.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-        public override void NodeMoveDown()
-        {
-            this.ParentGroupListRegisters.ListRegisters.MoveDown(this);
-            this.SetSelected(this);
-        }
         public void NodeRemove(bool ask = true)
         {
             this.ParentGroupListRegisters.Remove(this);

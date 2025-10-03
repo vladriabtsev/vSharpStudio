@@ -7,6 +7,7 @@ using System.Text;
 using CommunityToolkit.Diagnostics;
 using Google.Protobuf;
 using Proto.Config;
+using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
@@ -193,6 +194,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        protected override SortedObservableCollection<Property>? GetParentCollection() { return this.ParentGroupListProperties.ListProperties; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -238,58 +240,6 @@ namespace vSharpStudio.vm.ViewModels
         //public string DefaultValue { get { return this.DataType.DefaultValue; } }
 
         #region Tree operations
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListProperties.SortType == EnumSortingType.EXPLICIT && this.ParentListPropertiesI.ListProperties.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (Property?)this.ParentListPropertiesI.ListProperties.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentListPropertiesI.ListProperties.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListProperties.SortType == EnumSortingType.EXPLICIT && this.ParentListPropertiesI.ListProperties.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (Property?)this.ParentListPropertiesI.ListProperties.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentListPropertiesI.ListProperties.MoveDown(this);
-            this.SetSelected(this);
-        }
-
         public void NodeRemove(bool ask = true)
         {
             this.ParentListPropertiesI.ListProperties.Remove(this);

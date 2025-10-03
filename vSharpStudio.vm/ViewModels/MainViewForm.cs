@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using ViewModelBase;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
@@ -30,29 +31,32 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            //    Init();
+            Init();
         }
-        //protected override void OnInitFromDto()
-        //{
-        //    Init();
-        //}
-        //private void Init()
-        //{
-        //    this.ListMainViewForms.OnAddingAction = (t) =>
-        //    {
-        //        t.IsNew = true;
-        //    };
-        //    this.ListMainViewForms.OnAddedAction = (t) =>
-        //    {
-        //        t.OnAdded();
-        //    };
-        //    this.ListMainViewForms.OnRemovedAction = (t) => {
-        //        this.OnRemoveChild();
-        //    };
-        //    this.ListMainViewForms.OnClearedAction = () => {
-        //        this.OnRemoveChild();
-        //    };
-        //}
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
+            //this.ListMainViewForms.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListMainViewForms.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListMainViewForms.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListMainViewForms.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+        }
+        protected override SortedObservableCollection<MainViewForm>? GetParentCollection() { return this.ParentGroupListMainViewForms.ListMainViewForms; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -62,57 +66,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListMainViewForms.ListMainViewForms.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (Form?)this.ParentGroupListMainViewForms.ListMainViewForms.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentGroupListMainViewForms.ListMainViewForms.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListMainViewForms.ListMainViewForms.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (Form?)this.ParentGroupListMainViewForms.ListMainViewForms.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentGroupListMainViewForms.ListMainViewForms.MoveDown(this);
-            this.SetSelected(this);
-        }
         public override ITreeConfigNode NodeAddClone()
         {
             Debug.Assert(this.Parent != null);
@@ -123,7 +76,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new MainViewForm(this.Parent);

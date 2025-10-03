@@ -82,6 +82,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
+        protected override SortedObservableCollection<AppSolution>? GetParentCollection() { return this.ParentGroupListAppSolutions.ListAppSolutions; }
         //protected override void OnConfigInitializedVirtual()
         //{
         //    // All computed properties have to implement init logic in their getters
@@ -312,58 +313,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListAppSolutions.SortType == EnumSortingType.EXPLICIT && this.ParentGroupListAppSolutions.ListAppSolutions.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (AppSolution?)this.ParentGroupListAppSolutions.ListAppSolutions.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentGroupListAppSolutions.ListAppSolutions.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListAppSolutions.SortType == EnumSortingType.EXPLICIT && this.ParentGroupListAppSolutions.ListAppSolutions.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (AppSolution?)this.ParentGroupListAppSolutions.ListAppSolutions.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentGroupListAppSolutions.ListAppSolutions.MoveDown(this);
-            this.SetSelected(this);
-        }
-
         //public override void NodeRemove(bool ask = true)
         //{
         //    if (ask)

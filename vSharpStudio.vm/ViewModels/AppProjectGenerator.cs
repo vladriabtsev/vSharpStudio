@@ -758,58 +758,6 @@ namespace vSharpStudio.vm.ViewModels
         //    (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
         //    this.Parent = null;
         //}
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentAppProject.ListAppProjectGenerators.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (AppProject?)this.ParentAppProject.ListAppProjectGenerators.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentAppProject.ListAppProjectGenerators.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentAppProject.ListAppProjectGenerators.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (AppProject?)this.ParentAppProject.ListAppProjectGenerators.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentAppProject.ListAppProjectGenerators.MoveDown(this);
-            this.SetSelected(this);
-        }
-
         public void NodeRemove(bool ask = true)
         {
             if (ask)

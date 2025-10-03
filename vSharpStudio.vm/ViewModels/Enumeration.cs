@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using ViewModelBase;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
@@ -63,6 +64,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
+        protected override SortedObservableCollection<Enumeration>? GetParentCollection() { return this.ParentGroupListEnumerations.ListEnumerations; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -164,7 +166,6 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
             EnumerationPair node = null!;
@@ -185,59 +186,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListEnumerations.ListEnumerations.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (Enumeration?)this.ParentGroupListEnumerations.ListEnumerations.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentGroupListEnumerations.ListEnumerations.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListEnumerations.ListEnumerations.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (Enumeration?)this.ParentGroupListEnumerations.ListEnumerations.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentGroupListEnumerations.ListEnumerations.MoveDown(this);
-            this.SetSelected(this);
-        }
-
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Enumeration.Clone(this.ParentGroupListEnumerations, this, true, true);
@@ -247,7 +195,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Enumeration(this.ParentGroupListEnumerations);
@@ -260,7 +207,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.ParentGroupListEnumerations.ListEnumerations.Remove(this);
         }
-
         public bool CanAddSubNode()
         {
             return true;

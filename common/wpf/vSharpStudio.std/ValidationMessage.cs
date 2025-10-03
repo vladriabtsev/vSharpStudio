@@ -21,6 +21,10 @@ namespace ViewModelBase
     [DebuggerDisplay("{SeverityName,nq}, {SeverityWeightName,nq}, {SortingValue,nq}: {Message,nq}")]
     public class ValidationMessage : ISortingValue, IComparable<ValidationMessage>
     {
+        public SortedObservableCollection<K> GetCollection<K>() where K : ISortingValue
+        {
+            throw new NotImplementedException();
+        }
         public bool IsCanSortByName { get { return false; } }
         public string NameToCompare { get { return string.Empty; } }
         private static readonly int _lenSeverity = Enum.GetNames(typeof(FluentValidation.Severity)).Length;

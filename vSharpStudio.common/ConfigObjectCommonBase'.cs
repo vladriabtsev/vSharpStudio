@@ -15,7 +15,7 @@
 
     public partial class ConfigObjectCommonBase<T, TValidator> : VmValidatableWithSeverityAndAttributes<T, TValidator>, IComparable<T>//, IEquatable<T>
         where TValidator : AbstractValidator<T>
-        where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>//, IEquatable<T>//, ISortingValue //, IGuid // , ITreeConfigNode
+        where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>, ISortingValue//, IEquatable<T>//, ISortingValue //, IGuid // , ITreeConfigNode
     {
         private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ConfigObjectCommonBase<T, TValidator>));
         public ConfigObjectCommonBase(ITreeConfigNode? parent, TValidator? validator)
@@ -738,25 +738,21 @@
         {
             throw new NotImplementedException();
         }
+
+        protected virtual SortedObservableCollection<T>? GetParentCollection() { return null; }
+
         public bool NodeCanMoveDown()
         {
             if (this is not ICanAddNode)
             {
                 return false;
             }
-            return this.NodeCanDown();
+            return this.GetParentCollection()?.CanDown(this) ?? false;
         }
-        public virtual void NodeMoveDown()
+        public void NodeMoveDown()
         {
-            throw new NotImplementedException();
-        }
-        public virtual bool NodeCanDown()
-        {
-            return false;
-        }
-        public virtual void NodeDown()
-        {
-            throw new NotImplementedException();
+            this.GetParentCollection()?.MoveDown(this);
+            this.SetSelected((ITreeConfigNode)this);
         }
         public bool NodeCanMoveUp()
         {
@@ -764,19 +760,15 @@
             {
                 return false;
             }
-            return this.NodeCanUp();
+            return this.GetParentCollection()?.CanUp(this) ?? false;
         }
-        public virtual void NodeMoveUp()
+        public void NodeMoveUp()
         {
-            throw new NotImplementedException();
-        }
-        public virtual bool NodeCanUp()
-        {
-            return false;
-        }
-        public virtual void NodeUp()
-        {
-            throw new NotImplementedException();
+            //var prev = this.GetParentCollection()?.GetPrev(this);
+            this.GetParentCollection()?.MoveUp(this);
+            //if (prev != null)
+            //    this.SetSelected(prev);
+            this.SetSelected((ITreeConfigNode)this);
         }
         #endregion Commands
 

@@ -48,10 +48,6 @@ namespace vSharpStudio.common
         void NodeLeft();
         bool NodeCanRight();
         void NodeRight();
-        bool NodeCanUp();
-        void NodeUp();
-        bool NodeCanDown();
-        void NodeDown();
         // Get path relative to config file path
         string GetRelativeToConfigDiskPath(string path);
         // Get combined config and relative path

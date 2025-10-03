@@ -187,6 +187,8 @@ namespace ViewModelBase
 
         public bool CanUp(object current)
         {
+            if (this.SortingDirection != 0)
+                return false;
             T p = (T)current;
             if (this.IndexOf(p) > 0)
                 return true;
@@ -194,6 +196,8 @@ namespace ViewModelBase
         }
         public bool CanDown(object current)
         {
+            if (this.SortingDirection != 0)
+                return false;
             T p = (T)current;
             if (this.IndexOf(p) < this.Count - 1)
                 return true;
@@ -201,6 +205,7 @@ namespace ViewModelBase
         }
         public object MoveUp(object current)
         {
+            Debug.Assert(this.SortingDirection == 0);
             T p = (T)current;
             int i = this.IndexOf(p);
             while (i > 0)
@@ -215,6 +220,7 @@ namespace ViewModelBase
 
         public object MoveDown(object current)
         {
+            Debug.Assert(this.SortingDirection == 0);
             T p = (T)current;
             int i = this.IndexOf(p);
             while (i < this.Count - 1)

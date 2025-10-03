@@ -82,6 +82,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        protected override SortedObservableCollection<RelationOneToOne>? GetParentCollection() { return this.ParentOneToOneGroupRelations.ListRelations; }
 
         #region OnChanged
         partial void OnIsRelationReferenceNullableChanged()
@@ -196,57 +197,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentOneToOneGroupRelations.ListRelations.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (Catalog?)this.ParentOneToOneGroupRelations.ListRelations.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentOneToOneGroupRelations.ListRelations.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentOneToOneGroupRelations.ListRelations.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (RelationOneToOne?)this.ParentOneToOneGroupRelations.ListRelations.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentOneToOneGroupRelations.ListRelations.MoveDown(this);
-            this.SetSelected(this);
-        }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = RelationOneToOne.Clone(this.ParentOneToOneGroupRelations, this, true, true);
@@ -256,7 +206,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new RelationOneToOne(this.Parent);

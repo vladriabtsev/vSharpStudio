@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using CommunityToolkit.Diagnostics;
+using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
@@ -116,6 +117,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        protected override SortedObservableCollection<Detail>? GetParentCollection() { return this.ParentGroupListDetails.ListDetails; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -125,52 +127,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListDetails.ListDetails.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public override void NodeUp()
-        {
-            var prev = (Detail?)this.ParentGroupListDetails.ListDetails.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-        public override void NodeMoveUp()
-        {
-            this.ParentGroupListDetails.ListDetails.MoveUp(this);
-            this.SetSelected(this);
-        }
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListDetails.ListDetails.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public override void NodeDown()
-        {
-            var next = (Detail?)this.ParentGroupListDetails.ListDetails.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-        public override void NodeMoveDown()
-        {
-            this.ParentGroupListDetails.ListDetails.MoveDown(this);
-            this.SetSelected(this);
-        }
         public override ITreeConfigNode NodeAddClone()
         {
             Debug.Assert(this.Parent != null);

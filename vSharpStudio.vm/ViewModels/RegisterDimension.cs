@@ -84,6 +84,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        protected override SortedObservableCollection<RegisterDimension>? GetParentCollection() { return this.ParentGroupListRegisterDimensions.ListDimensions; }
 
         #region OnChanged
         partial void OnNameChanged()
@@ -107,58 +108,6 @@ namespace vSharpStudio.vm.ViewModels
         internal bool isSpecialItself;
 
         #region Tree operations
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListRegisterDimensions.ListDimensions.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (Register?)this.ParentGroupListRegisterDimensions.ListDimensions.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentGroupListRegisterDimensions.ListDimensions.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListRegisterDimensions.ListDimensions.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (Register?)this.ParentGroupListRegisterDimensions.ListDimensions.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentGroupListRegisterDimensions.ListDimensions.MoveDown(this);
-            this.SetSelected(this);
-        }
-
         public void NodeRemove(bool ask = true)
         {
             this.ParentGroupListRegisterDimensions.ListDimensions.Remove(this);
@@ -173,7 +122,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNew()
         {
             if (!(this.Parent is GroupListProperties))

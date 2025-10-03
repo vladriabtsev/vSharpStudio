@@ -94,6 +94,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        protected override SortedObservableCollection<RelationManyToMany>? GetParentCollection() { return this.ParentManyToManyGroupRelations.ListRelations; }
 
         #region OnChanged
         partial void OnNameChanged()
@@ -209,57 +210,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentManyToManyGroupRelations.ListRelations.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (Catalog?)this.ParentManyToManyGroupRelations.ListRelations.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentManyToManyGroupRelations.ListRelations.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentManyToManyGroupRelations.ListRelations.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (RelationManyToMany?)this.ParentManyToManyGroupRelations.ListRelations.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentManyToManyGroupRelations.ListRelations.MoveDown(this);
-            this.SetSelected(this);
-        }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = RelationManyToMany.Clone(this.ParentManyToManyGroupRelations, this, true, true);
@@ -269,7 +219,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new RelationManyToMany(this.Parent);

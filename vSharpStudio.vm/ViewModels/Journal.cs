@@ -32,29 +32,32 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            //    Init();
+            Init();
         }
-        //protected override void OnInitFromDto()
-        //{
-        //    Init();
-        //}
-        //private void Init()
-        //{
-        //    this.ListMainViewForms.OnAddingAction = (t) =>
-        //    {
-        //        t.IsNew = true;
-        //    };
-        //    this.ListMainViewForms.OnAddedAction = (t) =>
-        //    {
-        //        t.OnAdded();
-        //    };
-        //    this.ListMainViewForms.OnRemovedAction = (t) => {
-        //        this.OnRemoveChild();
-        //    };
-        //    this.ListMainViewForms.OnClearedAction = () => {
-        //        this.OnRemoveChild();
-        //    };
-        //}
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
+            //this.ListMainViewForms.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListMainViewForms.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListMainViewForms.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListMainViewForms.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+        }
+        protected override SortedObservableCollection<Journal>? GetParentCollection() { return this.ParentGroupListJournals.ListJournals; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -65,52 +68,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListJournals.ListJournals.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public override void NodeUp()
-        {
-            var prev = (Journal?)this.ParentGroupListJournals.ListJournals.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-        public override void NodeMoveUp()
-        {
-            this.ParentGroupListJournals.ListJournals.MoveUp(this);
-            this.SetSelected(this);
-        }
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListJournals.ListJournals.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public override void NodeDown()
-        {
-            var next = (Journal?)this.ParentGroupListJournals.ListJournals.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-        public override void NodeMoveDown()
-        {
-            this.ParentGroupListJournals.ListJournals.MoveDown(this);
-            this.SetSelected(this);
-        }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Journal.Clone(this.ParentGroupListJournals, this, true, true);

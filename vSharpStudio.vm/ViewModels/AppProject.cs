@@ -92,6 +92,11 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
+        protected override SortedObservableCollection<AppProject>? GetParentCollection() { return this.ParentAppSolution.ListAppProjects; }
+        public SortedObservableCollection<AppProject> GetCollection()
+        {
+            return this.ParentAppSolution.ListAppProjects;
+        }
         protected override void OnConfigInitializedVirtual()
         {
             // All computed properties have to implement init logic in their getters
@@ -208,46 +213,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentAppSolution.SortType == EnumSortingType.EXPLICIT && this.ParentAppSolution.ListAppProjects.CanUp(this))
-                    return true;
-            }
-            return false;
-        }
-        public override void NodeUp()
-        {
-            var prev = (AppProject?)this.ParentAppSolution.ListAppProjects.GetPrev(this);
-            if (prev != null)
-                this.SetSelected(prev);
-        }
-        public override void NodeMoveUp()
-        {
-            this.ParentAppSolution.ListAppProjects.MoveUp(this);
-            this.SetSelected(this);
-        }
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentAppSolution.SortType == EnumSortingType.EXPLICIT && this.ParentAppSolution.ListAppProjects.CanDown(this))
-                    return true;
-            }
-            return false;
-        }
-        public override void NodeDown()
-        {
-            var next = (AppProject?)this.ParentAppSolution.ListAppProjects.GetNext(this);
-            if (next != null)
-                this.SetSelected(next);
-        }
-        public override void NodeMoveDown()
-        {
-            this.ParentAppSolution.ListAppProjects.MoveDown(this);
-            this.SetSelected(this);
-        }
         //public override void NodeRemove(bool ask = true)
         //{
         //    if (ask)

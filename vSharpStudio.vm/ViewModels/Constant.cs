@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using Google.Protobuf;
 using Proto.Config;
+using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
@@ -98,6 +99,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        protected override SortedObservableCollection<Constant>? GetParentCollection() { return this.ParentGroupListConstants.ListConstants; }
 
         public Constant(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)
             : this(parent)
@@ -461,57 +463,6 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         #region Tree operations
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListConstants.ListConstants.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (Constant?)this.ParentGroupListConstants.ListConstants.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentGroupListConstants.ListConstants.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListConstants.ListConstants.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (Constant?)this.ParentGroupListConstants.ListConstants.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentGroupListConstants.ListConstants.MoveDown(this);
-            this.SetSelected(this);
-        }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Constant.Clone(this.ParentGroupListConstants, this, true, true);
@@ -521,7 +472,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Constant(this.ParentGroupListConstants);

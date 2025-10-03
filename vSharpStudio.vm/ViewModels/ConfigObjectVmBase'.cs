@@ -1,11 +1,12 @@
 ﻿using FluentValidation;
+using ViewModelBase;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
     public partial class ConfigObjectVmBase<T, TValidator> : ConfigObjectCommonBase<T, TValidator>
       where TValidator : AbstractValidator<T>
-      where T : ConfigObjectVmBase<T, TValidator> //, IComparable<T>, ISortingValue 
+      where T : ConfigObjectVmBase<T, TValidator>, ISortingValue //, IComparable<T> 
     {
         public ConfigObjectVmBase(ITreeConfigNode? parent, TValidator? validator)
             : base(parent, validator)

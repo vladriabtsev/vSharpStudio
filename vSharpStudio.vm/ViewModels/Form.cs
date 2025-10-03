@@ -151,6 +151,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        protected override SortedObservableCollection<Form>? GetParentCollection() { return this.ParentGroupListForms.ListForms; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -158,58 +159,6 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListForms.ListForms.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (Form?)this.ParentGroupListForms.ListForms.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentGroupListForms.ListForms.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListForms.ListForms.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (Form?)this.ParentGroupListForms.ListForms.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentGroupListForms.ListForms.MoveDown(this);
-            this.SetSelected(this);
-        }
-
         //partial void OnIsHasMarkedForDeletionChanged()
         //{
         //    if (this.IsHasMarkedForDeletion)

@@ -101,6 +101,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        protected override SortedObservableCollection<Document>? GetParentCollection() { return this.ParentGroupListDocuments.ListDocuments; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -110,58 +111,6 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupReports.AddAllAppGenSettingsVmsToNode();
         }
         #region Tree operations
-        public override bool NodeCanUp()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListDocuments.ListDocuments.CanUp(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeUp()
-        {
-            var prev = (Document?)this.ParentGroupListDocuments.ListDocuments.GetPrev(this);
-            if (prev == null)
-                return;
-            this.SetSelected(prev);
-        }
-
-        public override void NodeMoveUp()
-        {
-            this.ParentGroupListDocuments.ListDocuments.MoveUp(this);
-            this.SetSelected(this);
-        }
-
-        public override bool NodeCanDown()
-        {
-            if (this.NodeCanAddClone())
-            {
-                if (this.ParentGroupListDocuments.ListDocuments.CanDown(this))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public override void NodeDown()
-        {
-            var next = (Document?)this.ParentGroupListDocuments.ListDocuments.GetNext(this);
-            if (next == null)
-                return;
-            this.SetSelected(next);
-        }
-
-        public override void NodeMoveDown()
-        {
-            this.ParentGroupListDocuments.ListDocuments.MoveDown(this);
-            this.SetSelected(this);
-        }
-
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Document.Clone(this.ParentGroupListDocuments, this, true, true);
@@ -171,7 +120,6 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
-
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Document(this.ParentGroupListDocuments);

@@ -2212,9 +2212,9 @@ namespace vSharpStudio.ViewModels
                 () =>
                 {
                     this._logger?.Information();
-                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeDown();
+                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveDown();
                 },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanDown(); });
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveDown(); });
             }
         }
         private vButtonVM? _BtnSelectionDown;
@@ -2226,9 +2226,9 @@ namespace vSharpStudio.ViewModels
                 () =>
                 {
                     this._logger?.Information();
-                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeUp();
+                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveUp();
                 },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanUp(); });
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveUp(); });
             }
         }
         private vButtonVM? _BtnSelectionUp;
