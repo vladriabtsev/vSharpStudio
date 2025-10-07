@@ -117,7 +117,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<Detail>? GetParentCollection() { return this.ParentGroupListDetails.ListDetails; }
+        protected override ConfigNodesCollection<Detail>? GetParentCollection() { return this.ParentGroupListDetails.ListDetails; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -143,7 +143,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(this.Parent != null);
             var node = new Detail(this.Parent);
-            this.ParentGroupListDetails.Add(node);
+            this.ParentGroupListDetails.ListDetails.Add(node, this);
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             Debug.Assert(glp != null);
             node.Position = glp.GroupProperties.GetNextPosition();

@@ -45,7 +45,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
-        partial void OnSortTypeChanged() { this.ListReports.Sort((int)this.SortType); }
+        partial void OnSortTypeChanged() { this.ListReports.Sort(this.SortType); }
         private void Init()
         {
             OnSortTypeChanged();
@@ -84,14 +84,6 @@ namespace vSharpStudio.vm.ViewModels
             else
             {
                 node = (Report)node_impl;
-            }
-            if (this.ListReports.Count > 0)
-            {
-                node.SortingValue = this.ListReports[this.ListReports.Count - 1].SortingValue + 1;
-            }
-            else
-            {
-                node.SortingValue = 1;
             }
             this.Add(node);
             if (node_impl == null)

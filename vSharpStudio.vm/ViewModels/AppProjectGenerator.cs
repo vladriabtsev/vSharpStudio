@@ -792,7 +792,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new AppProjectGenerator(this.ParentAppProject);
-            this.ParentAppProject.ListAppProjectGenerators.Add(node);
+            this.ParentAppProject.ListAppProjectGenerators.Add(node, this);
             this.GetUniqueName(Defaults.AppPrjGeneratorName, node, this.ParentAppProject.ListAppProjectGenerators);
             this.SetSelected(node);
             return node;

@@ -42,7 +42,7 @@ namespace vSharpStudio.vm.ViewModels
             this.CountCurrentValidatableNode = 0;
             this.Result = new SortedObservableCollection<ValidationMessage>
             {
-                SortingDirection = 2 // Descending
+                Direction = SortedObservableCollection<ValidationMessage>.SortingDirection.DECREASE
             };
         }
 

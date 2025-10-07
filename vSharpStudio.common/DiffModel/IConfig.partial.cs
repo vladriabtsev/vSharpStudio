@@ -16,5 +16,8 @@ namespace vSharpStudio.common
         void SetIsNeedCurrentUpdate(bool val);
         void SetIsNew(bool isNew);
         bool IsCanHaveChangesInTest();
+        bool IsInitialized { get; }
+        void AddToDicNodes(ITreeConfigNode node);
+        void RemoveFromDicNodes(ITreeConfigNode node);
     }
 }

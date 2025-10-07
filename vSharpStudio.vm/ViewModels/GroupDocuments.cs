@@ -57,11 +57,11 @@ namespace vSharpStudio.vm.ViewModels
             if (this.Children.Count > 0)
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
-            children.Add(this.DocumentTimeline, 2);
-            children.Add(this.GroupListSequences, 3);
-            children.Add(this.GroupListDocuments, 4);
-            children.Add(this.GroupRegisters, 5);
-            children.Add(this.GroupJournals, 6);
+            children.Add(this.DocumentTimeline, 1);
+            children.Add(this.GroupListSequences, 2);
+            children.Add(this.GroupListDocuments, 3);
+            children.Add(this.GroupRegisters, 4);
+            children.Add(this.GroupJournals, 5);
 
             //this.ListRoles.OnAddingAction = (t) =>
             //{

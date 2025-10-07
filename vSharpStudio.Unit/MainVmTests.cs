@@ -1756,7 +1756,6 @@ namespace vSharpStudio.Unit
 
             // create object and save
             var bcfg = vm.Config.GroupConfigLinks.AddBaseConfig("base", pathExt + "kuku.vcfg");
-            vm.Config.GroupConfigLinks.AddBaseConfig(bcfg);
             var c1 = vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].AddConstant("c1");
             vm.BtnConfigSave.Execute();
 

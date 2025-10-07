@@ -102,7 +102,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<DocumentEnumeratorSequence>? GetParentCollection() { return this.ParentGroupListSequences.ListEnumeratorSequences; }
+        protected override ConfigNodesCollection<DocumentEnumeratorSequence>? GetParentCollection() { return this.ParentGroupListSequences.ListEnumeratorSequences; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -125,7 +125,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new DocumentEnumeratorSequence(this.Parent);
-            this.ParentGroupListSequences.Add(node);
+            this.ParentGroupListSequences.ListEnumeratorSequences.Add(node, this);
             this.GetUniqueName(Defaults.SequenceName, node, this.ParentGroupListSequences.ListEnumeratorSequences);
             this.SetSelected(node);
             return node;

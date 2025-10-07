@@ -84,7 +84,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<RegisterDimension>? GetParentCollection() { return this.ParentGroupListRegisterDimensions.ListDimensions; }
+        protected override ConfigNodesCollection<RegisterDimension>? GetParentCollection() { return this.ParentGroupListRegisterDimensions.ListDimensions; }
 
         #region OnChanged
         partial void OnNameChanged()
@@ -130,7 +130,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             var node = new Register(this.Parent);
-            this.ParentGroupListRegisterDimensions.ListDimensions.Add(node);
+            this.ParentGroupListRegisterDimensions.ListDimensions.Add(node, this);
             this.GetUniqueName(Defaults.RegisterDimensionName, node, this.ParentGroupListRegisterDimensions.ListDimensions);
             this.SetSelected(node);
             return node;

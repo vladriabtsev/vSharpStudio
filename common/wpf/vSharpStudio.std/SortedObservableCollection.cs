@@ -13,24 +13,12 @@ namespace ViewModelBase
     }
     public interface ISortingValue
     {
-        ulong _SortingNameValue { get; }
-        ulong SortingValue { get; set; }
+        int ExplicitSortingPosition { get; set; }
         /// <summary>
-        /// Set sorting value field without changing IsChanged
+        /// Set ExplicitSortingPosition field without changing IsChanged
         /// </summary>
-        /// <param name="sortValue"></param>
-        void SetSortingValueField(ulong sortValue);
-        ulong SortingWeight { get; set; }
-        string NameToCompare { get; }
-    }
-    public interface IMoveUpDown
-    {
-        bool CanUp(object current);
-        bool CanDown(object current);
-        object MoveUp(object current);
-        object MoveDown(object current);
-        object? GetPrev(object current);
-        object? GetNext(object current);
+        /// <param name="sortPosition"></param>
+        void SetExplicitSortingPosition(int sortPosition);
     }
     public interface IObservableCollectionWithActions<T>
     {
@@ -66,6 +54,10 @@ namespace ViewModelBase
             });
             if (OnClearedAction != null)
                 OnClearedAction();
+        }
+        public void AddClone(T item)
+        {
+            base.Add(item);
         }
         public new void Add(T item)
         {
@@ -133,17 +125,20 @@ namespace ViewModelBase
         public Action<T>? OnRemovingAction { get; set; }
         public Action<T>? OnAddingAction { get; set; }
     }
-    public interface ISortedObservableCollection<T> : IObservableCollectionWithActions<T>, IMoveUpDown
+    public interface ISortedObservableCollection<T> : IObservableCollectionWithActions<T>
     {
-
+        bool CanUp(T current);
+        bool CanDown(T current);
+        T MoveUp(T current);
+        T MoveDown(T current);
+        T? GetPrev(T current);
+        T? GetNext(T current);
     }
     public class SortedObservableCollection<T> : ObservableCollectionWithActions<T>, ISortedObservableCollection<T>
       where T : ISortingValue //, IComparable<T> //IEquatable<T>
     {
-        /// <summary>
-        /// Current sorting direction: 0 - explicitly by user; 1 - ascending order; 2 - descending order;
-        /// </summary>
-        public int SortingDirection { get; set; }
+        public enum SortingDirection { INCREASE, DECREASE }
+        public SortingDirection Direction { get; set; } = SortingDirection.INCREASE;
         private readonly object _lock = new object();
         //Action<NotifyCollectionChangedEventArgs> onCollectionChanged = null;
         //bool isSort;
@@ -155,103 +150,59 @@ namespace ViewModelBase
         {
             this.AddRange(lst);
         }
-        //public SortedObservableCollection(Action<T> onAddingAction, Action<T> onRemovingAction, Action? onClearingAction = null)
-        //{
-        //    this.OnAddingAction = onAddingAction;
-        //    this.OnRemovingAction = onRemovingAction;
-        //    this.OnClearingAction = onClearingAction;
-        //}
-        //public SortedObservableCollection(object parent, bool isSort = true) : this()
-        //{
-        //    this.Parent = parent;
-        //}
-        //public SortedObservableCollection(Action<NotifyCollectionChangedEventArgs> onCollectionChanged, bool isSort = true) : this()
-        //{
-        //    this.isSort = isSort;
-        //    this.onCollectionChanged = onCollectionChanged;
-        //}
-        //private void SortedObservableCollection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        //{
-        //    if (this.onCollectionChanged != null)
-        //        this.onCollectionChanged(e);
-        //    if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
-        //        foreach (var t in e.NewItems)
-        //        {
-        //            if (t is ISetParent)
-        //                (t as ISetParent).SetParent(this.Parent);
-        //        }
-        //}
-        //public object Parent { get; set; }
 
         #region IMoveUpDown
-
-        public bool CanUp(object current)
+        public virtual bool CanUp(T current)
         {
-            if (this.SortingDirection != 0)
-                return false;
-            T p = (T)current;
-            if (this.IndexOf(p) > 0)
+            if (this.IndexOf(current) > 0)
                 return true;
             return false;
         }
-        public bool CanDown(object current)
+        public virtual bool CanDown(T current)
         {
-            if (this.SortingDirection != 0)
-                return false;
-            T p = (T)current;
-            if (this.IndexOf(p) < this.Count - 1)
+            if (this.IndexOf(current) < this.Count - 1)
                 return true;
             return false;
         }
-        public object MoveUp(object current)
+        public T MoveUp(T current)
         {
-            Debug.Assert(this.SortingDirection == 0);
-            T p = (T)current;
-            int i = this.IndexOf(p);
-            while (i > 0)
+            int i = this.Items.IndexOf(current);
+            if (i > 0)
             {
-                var prev = this[i - 1].SortingValue;
-                this[i - 1].SortingValue = this[i].SortingValue;
-                this[i].SortingValue = prev;
-                i--;
+                var prev = this.Items[i - 1].ExplicitSortingPosition;
+                this.Items[i - 1].SetExplicitSortingPosition(this.Items[i].ExplicitSortingPosition);
+                this.Items[i].SetExplicitSortingPosition(prev);
+                this.InternalSort();
             }
             return current;
         }
-
-        public object MoveDown(object current)
+        public T MoveDown(T current)
         {
-            Debug.Assert(this.SortingDirection == 0);
-            T p = (T)current;
-            int i = this.IndexOf(p);
-            while (i < this.Count - 1)
+            int i = this.Items.IndexOf(current);
+            if (i < this.Count - 1)
             {
-                var next = this[i + 1].SortingValue;
-                this[i + 1].SortingValue = this[i].SortingValue;
-                this[i].SortingValue = next;
-                i++;
+                var next = this.Items[i + 1].ExplicitSortingPosition;
+                this.Items[i + 1].SetExplicitSortingPosition(this.Items[i].ExplicitSortingPosition);
+                this.Items[i].SetExplicitSortingPosition(next);
+                this.InternalSort();
             }
             return current;
         }
-
-        public object? GetPrev(object current)
+        public T? GetPrev(T current)
         {
-            T p = (T)current;
-            int i = this.IndexOf(p);
+            int i = this.IndexOf(current);
             if (i == 0)
-                return null;
+                return default(T);
             return this[i - 1];
         }
-
-        public object? GetNext(object current)
+        public T? GetNext(T current)
         {
-            T p = (T)current;
-            int i = this.IndexOf(p);
+            int i = this.IndexOf(current);
             if (i < this.Count - 1)
                 return this[i + 1];
-            return null;
+            return default(T);
         }
-
-        #endregion IMove
+        #endregion IMoveUpDown
 
         public new void Clear()
         {
@@ -261,25 +212,40 @@ namespace ViewModelBase
             if (OnClearedAction != null)
                 OnClearedAction();
         }
-        public new void Add(T item)
+        /// <summary>
+        /// Add T item after selected
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="selected"></param>
+        public new void Add(T item, T? selected)
         {
-            this.Add(item, 0);
-        }
-        public void Add(T item, ulong sortingWeight)
-        {
-            if (sortingWeight > 0)
+            int explicitPosition = 0;
+            if (selected == null) // add at end of list
             {
-                Guard.IsLessThan(sortingWeight, VmBindable.MaxSortingWeight);
-                item.SortingWeight = sortingWeight << (64 - VmBindable.MaxSortingWeightShift);
-                //item.SortingValue = item._SortingNameValue + item.SortingWeight;
-                item.SetSortingValueField(item._SortingNameValue + item.SortingWeight);
+                if (this.Count > 0)
+                {
+                    for (int i = 0; i < this.Count; ++i)
+                    {
+                        explicitPosition = Math.Max(explicitPosition, this[i].ExplicitSortingPosition);
+                    }
+                }
             }
+            else
+            {
+                var indx = this.IndexOf(selected);
+                explicitPosition = selected.ExplicitSortingPosition;
+                for (int i = this.Count - 1; i > indx; ++i)
+                {
+                    this[i].ExplicitSortingPosition = this[i].ExplicitSortingPosition + 1;
+                }
+            }
+            this.Add(item, ++explicitPosition);
+        }
+        public void Add(T item, int explicitPosition)
+        {
+            item.ExplicitSortingPosition = explicitPosition;
+            //item.SetExplicitSortingPosition(explicitPosition);
             base.Add(item);
-            //#if DEBUG
-            //            if (item is not ValidationMessage)
-            //            {
-            //            }
-            //#endif
             InternalSort();
         }
         public new bool Remove(T item)
@@ -293,31 +259,16 @@ namespace ViewModelBase
             base.RemoveAt(indx);
             // InternalSort(); no need for resorting
         }
-        public void AddRange(IEnumerable<T> collection, ulong sortingWeight = 0)
+        public void AddRange(IEnumerable<T> collection)
         {
             foreach (T itm in collection)
             {
-                this.Add(itm, sortingWeight);
+                this.Add(itm);
             }
             InternalSort();
         }
         public Action<int, int>? OnSortMovedAction { get; set; }
         #region Sort
-        /// <summary>
-        /// Sorts the items of the collection in descending order according to a key.
-        /// </summary>
-        /// <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
-        /// <param name="keySelector">A function to extract a key from an item.</param>
-        public void SortDescending<TKey>(Func<T, TKey> keySelector)
-        {
-            InternalSort(Items.OrderByDescending(keySelector));
-        }
-        public void SortDescending()
-        {
-            var comparer = Comparer<ulong>.Create((k1, k2) => k2.CompareTo(k1));
-            InternalSort(Items.OrderBy(t => t.SortingValue, comparer));
-        }
-
         /// <summary>
         /// Sorts the items of the collection in ascending order according to a key.
         /// </summary>
@@ -328,39 +279,11 @@ namespace ViewModelBase
         {
             InternalSort(Items.OrderBy(keySelector, comparer));
         }
-        public void Sort(int? sortType = null)
-        {
-            if (sortType != null)
-            {
-                this.SortingDirection = sortType.Value;
-            }
-            InternalSort();
-        }
-        private void InternalSort()
-        {
-            if (Items.Count > 1)
-            {
-                switch (this.SortingDirection)
-                {
-                    case 0: // SortType.ExplicitlyByUser
-                        InternalSort(Items.OrderBy(t => t.SortingValue, Comparer<ulong>.Create((k1, k2) => k1.CompareTo(k2))));
-                        break;
-                    case 1: // SortType.Ascending:
-                        InternalSort(Items.OrderBy(t => t.NameToCompare, Comparer<string>.Create((k1, k2) => k1.CompareTo(k2))));
-                        break;
-                    case 2: // SortType.Descending:
-                        InternalSort(Items.OrderByDescending(t => t.NameToCompare, Comparer<string>.Create((k1, k2) => k1.CompareTo(k2))));
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
-        }
         /// <summary>
         /// Moves the items of the collection so that their orders are the same as those of the items provided.
         /// </summary>
         /// <param name="sortedItems">An <see cref="IEnumerable{T}"/> to provide item orders.</param>
-        private void InternalSort(IEnumerable<T> sortedItems)
+        protected void InternalSort(IEnumerable<T> sortedItems)
         {
             lock (_lock)
             {
@@ -373,7 +296,7 @@ namespace ViewModelBase
                     var ifrom = -1;
                     for (int j = 0; j < this.Count; j++)
                     {
-                        if (this[j].SortingValue == item.SortingValue)
+                        if (this[j].ExplicitSortingPosition == item.ExplicitSortingPosition)
                         {
                             ifrom = j;
                             break;
@@ -395,7 +318,36 @@ namespace ViewModelBase
                 OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
             });
         }
-
+        protected virtual void InternalSort()
+        {
+            if (Items.Count > 1)
+            {
+                if (Direction == SortingDirection.INCREASE)
+                {
+                    InternalSort(Items.OrderBy(t => t.ExplicitSortingPosition, Comparer<int>.Create((k1, k2) => k1.CompareTo(k2))));
+                }
+                else if (Direction == SortingDirection.DECREASE)
+                {
+                    InternalSort(Items.OrderByDescending(t => t.ExplicitSortingPosition, Comparer<int>.Create((k1, k2) => k1.CompareTo(k2))));
+                }
+                else
+                    throw new NotImplementedException();
+            }
+        }
+        ///// <summary>
+        ///// Sorts the items of the collection in descending order according to a key.
+        ///// </summary>
+        ///// <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
+        ///// <param name="keySelector">A function to extract a key from an item.</param>
+        //public void SortDescending<TKey>(Func<T, TKey> keySelector)
+        //{
+        //    InternalSort(Items.OrderByDescending(keySelector));
+        //}
+        //public void SortDescending()
+        //{
+        //    var comparer = Comparer<int>.Create((k1, k2) => k2.CompareTo(k1));
+        //    InternalSort(Items.OrderBy(t => t.ExplicitSortingPosition, comparer));
+        //}
         #endregion Sort
     }
 }

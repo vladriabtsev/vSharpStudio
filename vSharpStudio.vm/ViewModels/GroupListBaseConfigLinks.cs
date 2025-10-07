@@ -48,7 +48,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
-        partial void OnSortTypeChanged() { this.ListBaseConfigLinks.Sort((int)this.SortType); }
+        partial void OnSortTypeChanged() { this.ListBaseConfigLinks.Sort(this.SortType); }
         private void Init()
         {
             OnSortTypeChanged();
@@ -74,10 +74,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public void AddBaseConfig(BaseConfigLink node)
-        {
-            this.NodeAddNewSubNode(node);
-        }
         public BaseConfigLink AddBaseConfig(string name, string baseConfigPath)
         {
             BaseConfigLink node = new BaseConfigLink(this)
@@ -98,14 +94,6 @@ namespace vSharpStudio.vm.ViewModels
             else
             {
                 node = (BaseConfigLink)node_impl;
-            }
-            if (this.ListBaseConfigLinks.Count > 0)
-            {
-                node.SortingValue = this.ListBaseConfigLinks[this.ListBaseConfigLinks.Count - 1].SortingValue + 1;
-            }
-            else
-            {
-                node.SortingValue = 1;
             }
             this.Add(node);
             if (node_impl == null)

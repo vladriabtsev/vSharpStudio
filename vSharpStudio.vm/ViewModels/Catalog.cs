@@ -142,7 +142,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<Catalog>? GetParentCollection() { return this.ParentGroupListCatalogs.ListCatalogs; }
+        protected override ConfigNodesCollection<Catalog>? GetParentCollection() { return this.ParentGroupListCatalogs.ListCatalogs; }
         public void RefillChildren()
         {
             //if (this.Children.Count > 0)
@@ -298,7 +298,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Catalog(this.Parent);
-            this.ParentGroupListCatalogs.Add(node);
+            this.ParentGroupListCatalogs.ListCatalogs.Add(node, this);
             this.GetUniqueName(Defaults.CatalogName, node, this.ParentGroupListCatalogs.ListCatalogs);
             var model = this.ParentGroupListCatalogs.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();

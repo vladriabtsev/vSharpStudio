@@ -40,7 +40,7 @@ namespace ViewModelBase
             this.Severity = severity;
             this.SeverityWeight = weight;
             this.Message = message;
-            this.SortingValue = (ulong)(ValidationMessage._lenSeverityWeight * (2 - (int)Severity) + (int)weight);
+            this.ExplicitSortingPosition = ValidationMessage._lenSeverityWeight * (2 - (int)Severity) + (int)weight;
         }
         public object? Model { get; set; }
         public string PropertyName { get; private set; }
@@ -84,9 +84,7 @@ namespace ViewModelBase
             }
         }
         public string Message { get; private set; }
-        public ulong _SortingNameValue { get; }
-        public ulong SortingValue { get; set; }
-        public ulong SortingWeight { get; set; }
+        public int ExplicitSortingPosition { get; set; }
         /// <summary>
         /// Raise severity level for message. SortingValue will be increased by shifting to left. 
         /// </summary>
@@ -94,17 +92,17 @@ namespace ViewModelBase
         public void RaiseSeverityLevel(int shiftLevel)
         {
             Guard.IsBetweenOrEqualTo(shiftLevel, 0, int.MaxValue / (ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity));
-            SortingValue += (ulong)(ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity * shiftLevel);
+            ExplicitSortingPosition += ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity * shiftLevel;
         }
         public int CompareTo(ValidationMessage? other)
         {
             if (other == null)
                 return -1;
-            return this.SortingValue.CompareTo(other.SortingValue);
+            return this.ExplicitSortingPosition.CompareTo(other.ExplicitSortingPosition);
         }
-        public void SetSortingValueField(ulong sortValue)
+        public void SetExplicitSortingPosition(int sortPosition)
         {
-            this.SortingValue = sortValue;
+            this.ExplicitSortingPosition = sortPosition;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class ConfigObjectVmBase<T, TValidator> : ConfigObjectCommonBase<T, TValidator>
       where TValidator : AbstractValidator<T>
-      where T : ConfigObjectVmBase<T, TValidator>, ISortingValue //, IComparable<T> 
+      where T : ConfigObjectVmBase<T, TValidator>, ITreeConfigNodeSortable //, IComparable<T> 
     {
         public ConfigObjectVmBase(ITreeConfigNode? parent, TValidator? validator)
             : base(parent, validator)

@@ -339,8 +339,79 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition);
             cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeAddNew();
             catPos++;
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties[1].Position);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties[0].Position);
             Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition);
+        }
+        [TestMethod]
+        public void Property002_Sorting()
+        {
+            var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            mvm.BtnNewConfig.Execute();
+
+            var cfg = mvm.Config;
+            int pSort = 0;
+            var c = (Catalog)cfg.Model.GroupCatalogs.NodeAddNewSubNode();
+            var g = c.GroupProperties;
+            var p0 = (Property)g.NodeAddNewSubNode();
+            Assert.AreEqual(++pSort, p0.ExplicitSortingPosition);
+            Assert.AreEqual("Property1", p0.Name);
+            Assert.AreEqual(0, g.IndexOf(p0));
+            var p1 = (Property)g.NodeAddNewSubNode();
+            Assert.AreEqual(++pSort, p1.ExplicitSortingPosition);
+            Assert.AreEqual("Property2", p1.Name);
+            Assert.AreEqual(1, g.IndexOf(p1));
+            var p2 = (Property)g.NodeAddNewSubNode();
+            Assert.AreEqual(++pSort, p2.ExplicitSortingPosition);
+            Assert.AreEqual("Property3", p2.Name);
+            Assert.AreEqual(2, g.IndexOf(p2));
+
+            g.SortType = EnumSortingType.ASCENDING;
+            Assert.AreEqual(0, g.IndexOf(p0));
+            Assert.AreEqual(1, g.IndexOf(p1));
+            Assert.AreEqual(2, g.IndexOf(p2));
+
+            g.SortType = EnumSortingType.DESCENDING;
+            Assert.AreEqual(0, g.IndexOf(p2));
+            Assert.AreEqual(1, g.IndexOf(p1));
+            Assert.AreEqual(2, g.IndexOf(p0));
+
+            g.SortType = EnumSortingType.EXPLICIT;
+            Assert.AreEqual(0, g.IndexOf(p0));
+            Assert.AreEqual(1, g.IndexOf(p1));
+            Assert.AreEqual(2, g.IndexOf(p2));
+
+            Assert.AreEqual(1, p0.ExplicitSortingPosition);
+            Assert.AreEqual(2, p1.ExplicitSortingPosition);
+            Assert.AreEqual(3, p2.ExplicitSortingPosition);
+            mvm.Config.SelectedNode = p1;
+            mvm.BtnSelectionUp.Execute();
+            Assert.AreEqual(p1, mvm.Config.SelectedNode);
+            Assert.AreEqual(2, p0.ExplicitSortingPosition);
+            Assert.AreEqual(1, p1.ExplicitSortingPosition);
+            Assert.AreEqual(3, p2.ExplicitSortingPosition);
+            Assert.AreEqual(0, g.IndexOf(p1));
+            Assert.AreEqual(1, g.IndexOf(p0));
+            Assert.AreEqual(2, g.IndexOf(p2));
+
+            mvm.BtnSelectionDown.Execute();
+            Assert.AreEqual(1, p0.ExplicitSortingPosition);
+            Assert.AreEqual(2, p1.ExplicitSortingPosition);
+            Assert.AreEqual(3, p2.ExplicitSortingPosition);
+            Assert.AreEqual(0, g.IndexOf(p0));
+            Assert.AreEqual(1, g.IndexOf(p1));
+            Assert.AreEqual(2, g.IndexOf(p2));
+
+            mvm.Config.SelectedNode = p1;
+            mvm.BtnAddNew.Execute();
+            Assert.AreEqual("Property4", g.ListProperties[1].Name);
+            Assert.AreEqual(1, p0.ExplicitSortingPosition);
+            Assert.AreEqual(2, g.ListProperties[1].ExplicitSortingPosition);
+            Assert.AreEqual(3, p1.ExplicitSortingPosition);
+            Assert.AreEqual(4, p2.ExplicitSortingPosition);
+            Assert.AreEqual(0, g.IndexOf(p0));
+            Assert.AreEqual(2, g.IndexOf(p1));
+            Assert.AreEqual(3, g.IndexOf(p2));
+
         }
         [TestMethod]
         public void Register001_Property_Position()
@@ -412,7 +483,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, cfg.CountWarnings);
             Assert.AreEqual(1, cfg.CountErrors);
             //cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimensions are not selected."));
-            var valmesstmp=cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. List of Document types for Register is empty"));
+            var valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. List of Document types for Register is empty"));
 
             // Remove one error by adding document for register
             var doc1 = cfg.Model.GroupDocuments.AddDocument("doc1");

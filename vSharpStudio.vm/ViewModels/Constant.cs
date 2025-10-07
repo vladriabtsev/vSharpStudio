@@ -99,7 +99,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<Constant>? GetParentCollection() { return this.ParentGroupListConstants.ListConstants; }
+        protected override ConfigNodesCollection<Constant>? GetParentCollection() { return this.ParentGroupListConstants.ListConstants; }
 
         public Constant(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)
             : this(parent)
@@ -475,7 +475,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Constant(this.ParentGroupListConstants);
-            this.ParentGroupListConstants.Add(node);
+            this.ParentGroupListConstants.ListConstants.Add(node, this);
             node.Position = this.ParentGroupListConstants.GetNextPosition();
             this.GetUniqueName(Defaults.ConstantName, node, this.ParentGroupListConstants.ListConstants);
             var model = this.ParentGroupListConstants.ParentGroupConstantGroups.ParentModel;

@@ -15,7 +15,7 @@
 <#   if (this.DocMes.IsBindableBase && this.isSetPropertyByRef) { #>
         if (SetProperty(this._<#=FieldName#>, value, (t) => { bool isCancel = false; this.On<#=FieldName#>Changing(<#=refstr#>value, ref isCancel); if (isCancel) return; this._<#=FieldName#> = value; this.On<#=FieldName#>Changed(); })) // <#=t4.FilePos() #>
         {
-<#     if (this.DocMes.IsValidatableBase) { #>
+<#     if (this.DocMes.IsValidatableBase && IsNotSpecial(field.Name)) { #>
             this.ValidateProperty(); // <#=t4.FilePos() #>
 <#     } #>
 <#     if (this.DocMes.IsEditableBase && IsSimple) { #>
@@ -30,7 +30,7 @@
             if (isCancel) return;
             this._<#=FieldName#> = value;
             this.On<#=FieldName#>Changed();
-<#     if (this.DocMes.IsValidatableBase) { #>
+<#     if (this.DocMes.IsValidatableBase && IsNotSpecial(field.Name)) { #>
             this.ValidateProperty(); // <#=t4.FilePos() #>
 <#     } #>
 <#     if (this.DocMes.IsEditableBase && IsSimple) { #>
@@ -79,8 +79,8 @@ I<#=FieldType#> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassN
 <#   } #>
 <# } #>
 <# if (FieldName == "SortingValue") {#>
-public void SetSortingValueField(ulong sortValue)
+public void SetExplicitSortingPosition(int sortPosition)
 {
-    this._SortingValue = sortValue;
+    this._ExplicitSortingPosition = sortPosition;
 }
 <# } #>

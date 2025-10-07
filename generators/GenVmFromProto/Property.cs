@@ -131,7 +131,7 @@ namespace GenVmFromProto
             this.Write("\r\n        {\r\n");
             
             #line 18 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt"
-     if (this.DocMes.IsValidatableBase) { 
+     if (this.DocMes.IsValidatableBase && IsNotSpecial(field.Name)) { 
             
             #line default
             #line hidden
@@ -221,7 +221,7 @@ namespace GenVmFromProto
             this.Write("Changed();\r\n");
             
             #line 33 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt"
-     if (this.DocMes.IsValidatableBase) { 
+     if (this.DocMes.IsValidatableBase && IsNotSpecial(field.Name)) { 
             
             #line default
             #line hidden
@@ -603,8 +603,8 @@ if (!IsSimple) {
             
             #line default
             #line hidden
-            this.Write("public void SetSortingValueField(ulong sortValue)\r\n{\r\n    this._SortingValue = so" +
-                    "rtValue;\r\n}\r\n");
+            this.Write("public void SetExplicitSortingPosition(int sortPosition)\r\n{\r\n    this._ExplicitSo" +
+                    "rtingPosition = sortPosition;\r\n}\r\n");
             
             #line 86 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt"
  } 

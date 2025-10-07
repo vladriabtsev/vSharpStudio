@@ -57,7 +57,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<Journal>? GetParentCollection() { return this.ParentGroupListJournals.ListJournals; }
+        protected override ConfigNodesCollection<Journal>? GetParentCollection() { return this.ParentGroupListJournals.ListJournals; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -79,7 +79,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Journal(this.ParentGroupListJournals);
-            this.ParentGroupListJournals.Add(node);
+            this.ParentGroupListJournals.ListJournals.Add(node, this);
             this.GetUniqueName(Defaults.JournalName, node, this.ParentGroupListJournals.ListJournals);
             this.SetSelected(node);
             return node;

@@ -165,9 +165,9 @@ namespace vSharpStudio.vm.ViewModels
             if (this.Children.Count > 0)
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
-            children.Add(this.GroupRegisterDimensions, 0);
-            children.Add(this.GroupProperties, 1);
-            children.Add(this.GroupReports, 2);
+            children.Add(this.GroupRegisterDimensions, 1);
+            children.Add(this.GroupProperties, 2);
+            children.Add(this.GroupReports, 3);
             //this.ListMainViewForms.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;
@@ -185,7 +185,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<Register>? GetParentCollection() { return this.ParentGroupListRegisters.ListRegisters; }
+        protected override ConfigNodesCollection<Register>? GetParentCollection() { return this.ParentGroupListRegisters.ListRegisters; }
         // doc guid, reg prop guid, doc prop guid
         internal Dictionary<string, Dictionary<string, string>> mappingDic = new();
 
@@ -213,7 +213,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Register(this.Parent);
-            this.ParentGroupListRegisters.Add(node);
+            this.ParentGroupListRegisters.ListRegisters.Add(node, this);
             this.GetUniqueName(Defaults.RegisterName, node, this.ParentGroupListRegisters.ListRegisters);
             var model = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();

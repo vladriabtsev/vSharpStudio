@@ -194,7 +194,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<Property>? GetParentCollection() { return this.ParentGroupListProperties.ListProperties; }
+        protected override ConfigNodesCollection<Property>? GetParentCollection() { return this.ParentGroupListProperties.ListProperties; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -249,7 +249,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(this.Parent != null);
             var node = Property.Clone(this.Parent, this, true, true);
-            this.ParentListPropertiesI.ListProperties.Add(node);
+            this.ParentListPropertiesI.ListProperties.Add(node, this);
             this._Name += "2";
             this.SetSelected(node);
             return node;
@@ -263,7 +263,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             var node = new Property(this.Parent);
-            this.ParentListPropertiesI.ListProperties.Add(node);
+            this.ParentListPropertiesI.ListProperties.Add(node, this);
             node.Position = this.ParentListPropertiesI.GetNextPosition();
             this.GetUniqueName(Defaults.PropertyName, node, this.ParentListPropertiesI.ListProperties);
             this.SetSelected(node);
@@ -614,6 +614,76 @@ namespace vSharpStudio.vm.ViewModels
         {
             get { return this.DataType.ListObjectRefs; }
         }
+        public bool IsTryAttachSorted
+        {
+            get
+            {
+                if (this.ParentGroupListProperties.ListProperties.SortingType!= EnumSortingType.EXPLICIT)
+                    return false;
+                return this.IsTryAttach;
+            }
+        }
+        partial void OnIsTryAttachChanged()
+        {
+            this.OnPropertyChanged(nameof(this.NodeNameDecorations));
+            this.OnPropertyChanged(nameof(this.IsTryAttachSorted));
+        }
+        public bool IsStartNewRowSorted
+        {
+            get
+            {
+                if (this.ParentGroupListProperties.ListProperties.SortingType != EnumSortingType.EXPLICIT)
+                    return false;
+                return this.IsStartNewRow;
+            }
+        }
+        partial void OnIsStartNewRowChanged()
+        {
+            this.OnPropertyChanged(nameof(this.NodeNameDecorations));
+            this.OnPropertyChanged(nameof(this.IsStartNewRowSorted));
+        }
+        public bool IsStartNewTabControlSorted
+        {
+            get
+            {
+                if (this.ParentGroupListProperties.ListProperties.SortingType != EnumSortingType.EXPLICIT)
+                    return false;
+                return this.IsStartNewTabControl;
+            }
+        }
+        partial void OnIsStartNewTabControlChanged()
+        {
+            this.OnPropertyChanged(nameof(this.NodeNameDecorations));
+            this.OnPropertyChanged(nameof(this.IsStartNewTabControlSorted));
+        }
+        public bool IsStopTabControlSorted
+        {
+            get
+            {
+                if (this.ParentGroupListProperties.ListProperties.SortingType != EnumSortingType.EXPLICIT)
+                    return false;
+                return this.IsStopTabControl;
+            }
+        }
+        partial void OnIsStopTabControlChanged()
+        {
+            this.OnPropertyChanged(nameof(this.NodeNameDecorations));
+            this.OnPropertyChanged(nameof(this.IsStopTabControlSorted));
+        }
+        public string TabNameSorted
+        {
+            get
+            {
+                if (this.ParentGroupListProperties.ListProperties.SortingType != EnumSortingType.EXPLICIT)
+                    return string.Empty;
+                return this.TabName;
+            }
+        }
+        partial void OnTabNameChanged()
+        {
+            this.OnPropertyChanged(nameof(this.NodeNameDecorations));
+            this.OnPropertyChanged(nameof(this.TabNameSorted));
+        }
         #endregion Editing logic
 
         [Browsable(false)]
@@ -662,26 +732,6 @@ namespace vSharpStudio.vm.ViewModels
                         return "null";
                 }
             }
-        }
-        partial void OnIsStopTabControlChanged()
-        {
-            this.OnPropertyChanged(nameof(this.NodeNameDecorations));
-        }
-        partial void OnIsStartNewTabControlChanged()
-        {
-            this.OnPropertyChanged(nameof(this.NodeNameDecorations));
-        }
-        partial void OnTabNameChanged()
-        {
-            this.OnPropertyChanged(nameof(this.NodeNameDecorations));
-        }
-        //partial void OnIsTryAttachChanged()
-        //{
-        //    this.OnPropertyChanged(nameof(this.NodeNameDecorations));
-        //}
-        partial void OnIsStartNewRowChanged()
-        {
-            this.OnPropertyChanged(nameof(this.NodeNameDecorations));
         }
         //[BrowsableAttribute(false)]
         //public new bool IsHasNew { get { return this.IsNew; } }

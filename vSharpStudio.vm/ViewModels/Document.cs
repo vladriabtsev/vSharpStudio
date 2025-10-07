@@ -80,10 +80,10 @@ namespace vSharpStudio.vm.ViewModels
             if (this.Children.Count > 0)
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
-            children.Add(this.GroupProperties, 0);
-            children.Add(this.GroupDetails, 1);
-            children.Add(this.GroupForms, 2);
-            children.Add(this.GroupReports, 3);
+            children.Add(this.GroupProperties, 1);
+            children.Add(this.GroupDetails, 2);
+            children.Add(this.GroupForms, 3);
+            children.Add(this.GroupReports, 4);
             //this.ListRoles.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;
@@ -101,7 +101,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<Document>? GetParentCollection() { return this.ParentGroupListDocuments.ListDocuments; }
+        protected override ConfigNodesCollection<Document>? GetParentCollection() { return this.ParentGroupListDocuments.ListDocuments; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -123,7 +123,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Document(this.ParentGroupListDocuments);
-            this.ParentGroupListDocuments.Add(node);
+            this.ParentGroupListDocuments.ListDocuments.Add(node, this);
             this.GetUniqueName(Defaults.DocumentName, node, this.ParentGroupListDocuments.ListDocuments);
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();

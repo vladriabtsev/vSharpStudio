@@ -15,7 +15,7 @@
 
     public partial class ConfigObjectCommonBase<T, TValidator> : VmValidatableWithSeverityAndAttributes<T, TValidator>, IComparable<T>//, IEquatable<T>
         where TValidator : AbstractValidator<T>
-        where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>, ISortingValue//, IEquatable<T>//, ISortingValue //, IGuid // , ITreeConfigNode
+        where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>, ITreeConfigNodeSortable//, IEquatable<T>//, ISortingValue //, IGuid // , ITreeConfigNode
     {
         private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(ConfigObjectCommonBase<T, TValidator>));
         public ConfigObjectCommonBase(ITreeConfigNode? parent, TValidator? validator)
@@ -163,11 +163,6 @@
                 return iconName;
             }
         }
-        public int CompareTo(T? other)
-        {
-            Debug.Assert(other != null);
-            return this._SortingValue.CompareTo(other._SortingValue);
-        }
         //public bool Equals(T? other)
         //{
         //    Debug.Assert(other != null && other is IGuid);
@@ -175,21 +170,21 @@
         //}
 
         #region Sort
-        [Browsable(false)]
-        public ulong SortingWeight { get; set; }
-        [Browsable(false)]
-        public ulong _SortingNameValue { get; private set; }
-        protected ulong _SortingValue
+        public void SetExplicitSortingPosition(int sortPosition)
+        {
+            __ExplicitSortingPosition = sortPosition;
+        }
+        protected int _ExplicitSortingPosition
         {
             get
             {
-                return this.__SortingValue;
+                return this.__ExplicitSortingPosition;
             }
             set
             {
-                if (this.__SortingValue != value)
+                if (this.__ExplicitSortingPosition != value)
                 {
-                    this.__SortingValue = value;
+                    this.__ExplicitSortingPosition = value;
                     ITreeConfigNode p = (ITreeConfigNode)this;
                     if (p.Parent != null)
                     {
@@ -200,11 +195,50 @@
                 }
             }
         }
-        private ulong __SortingValue;
+        private int __ExplicitSortingPosition;
         public virtual void Sort(Type type)
         {
             throw new NotImplementedException();
         }
+        //public int CompareTo(T? other)
+        //{
+        //    Debug.Assert(other != null);
+        //    return this._SortingValue.CompareTo(other._SortingValue);
+        //}
+        public int CompareTo(T? other)
+        {
+            if (other == null) return 1;
+            if (this._ExplicitSortingPosition.CompareTo(other._ExplicitSortingPosition) == 0)
+            {
+                return 0;
+            }
+            else if (this._ExplicitSortingPosition.CompareTo(other._ExplicitSortingPosition) > 0)
+            {
+                return 1;
+            }
+            return -1;
+        }
+        //// Define the is greater than operator.
+        //public static bool operator >(T operand1, T operand2)
+        //{
+        //    return operand1.CompareTo(operand2) > 0;
+        //}
+        //// Define the is less than operator.
+        //public static bool operator <(T operand1, T operand2)
+        //{
+        //    return operand1.CompareTo(operand2) < 0;
+        //}
+        //// Define the is greater than or equal to operator.
+        //public static bool operator >=(T operand1, T operand2)
+        //{
+        //    return operand1.CompareTo(operand2) >= 0;
+        //}
+        //// Define the is less than or equal to operator.
+        //public static bool operator <=(T operand1, T operand2)
+        //{
+        //    return operand1.CompareTo(operand2) <= 0;
+        //}
+
         #endregion Sort
 
         protected string _Guid
@@ -398,8 +432,8 @@
                         if (isNameUIWasNotEdited) ((IName)this).NameUi = this.__Name;
                         if (this.ValidateProperty("Name"))
                         {
-                            this._SortingNameValue = this.EncodeNameToUlong(this.__Name);
-                            this._SortingValue = _SortingNameValue + this.SortingWeight;
+                            //this._SortingNameValue = this.EncodeNameToUlong(this.__Name);
+                            //this._SortingValue = _SortingNameValue + this.SortingWeight;
                             ITreeConfigNode p = (ITreeConfigNode)this;
                             if (p.Parent != null)
                             {
@@ -524,47 +558,47 @@
             }
         }
         private string __NameUi = string.Empty;
-        protected ulong EncodeNameToUlong(string name)
-        {
-            const int step = 1 + '9' - '0' + 1 + 'Z' - 'A' + 1; // first is '_'
-            if (_maxlen == 0)
-            {
-                _maxlen = (int)Math.Log(VmBindable.SortingWeightBase, step);
-                ulong val = 1;
-                for (int i = 0; i < _maxlen; i++)
-                {
-                    val *= step;
-                }
-            }
-            int len = Math.Min(_maxlen, name.Length);
-            ulong res = 0;
-            for (int i = 0; i < len; i++)
-            {
-                var c = char.ToUpper(name[i]);
-                int ci = 0;
-                if (char.IsDigit(c))
-                {
-                    ci = c - '0' + 1;
-                }
-                else if (c == '_')
-                {
-                    ci = 0;
-                }
-                else if (c >= 'A' && c <= 'Z')
-                {
-                    ci = c - 'A' + 11;
-                }
-                // else
-                //    throw new ArgumentException("Unexpected char value: '" + c + "'");
-                ulong pow = 1;
-                for (int j = 0; j < _maxlen - i - 1; j++)
-                {
-                    pow *= step;
-                }
-                res += (ulong)ci * pow;
-            }
-            return res;
-        }
+        //protected ulong EncodeNameToUlong(string name)
+        //{
+        //    const int step = 1 + '9' - '0' + 1 + 'Z' - 'A' + 1; // first is '_'
+        //    if (_maxlen == 0)
+        //    {
+        //        _maxlen = (int)Math.Log(VmBindable.SortingWeightBase, step);
+        //        ulong val = 1;
+        //        for (int i = 0; i < _maxlen; i++)
+        //        {
+        //            val *= step;
+        //        }
+        //    }
+        //    int len = Math.Min(_maxlen, name.Length);
+        //    ulong res = 0;
+        //    for (int i = 0; i < len; i++)
+        //    {
+        //        var c = char.ToUpper(name[i]);
+        //        int ci = 0;
+        //        if (char.IsDigit(c))
+        //        {
+        //            ci = c - '0' + 1;
+        //        }
+        //        else if (c == '_')
+        //        {
+        //            ci = 0;
+        //        }
+        //        else if (c >= 'A' && c <= 'Z')
+        //        {
+        //            ci = c - 'A' + 11;
+        //        }
+        //        // else
+        //        //    throw new ArgumentException("Unexpected char value: '" + c + "'");
+        //        ulong pow = 1;
+        //        for (int j = 0; j < _maxlen - i - 1; j++)
+        //        {
+        //            pow *= step;
+        //        }
+        //        res += (ulong)ci * pow;
+        //    }
+        //    return res;
+        //}
         protected void GetUniqueName(string defName, ITreeConfigNode configObject, IEnumerable<ITreeConfigNode> lst)
         {
             if (!string.IsNullOrWhiteSpace(configObject.Name))
@@ -739,7 +773,7 @@
             throw new NotImplementedException();
         }
 
-        protected virtual SortedObservableCollection<T>? GetParentCollection() { return null; }
+        protected virtual ConfigNodesCollection<T>? GetParentCollection() { throw new NotImplementedException(); }
 
         public bool NodeCanMoveDown()
         {
@@ -747,11 +781,11 @@
             {
                 return false;
             }
-            return this.GetParentCollection()?.CanDown(this) ?? false;
+            return this.GetParentCollection()?.CanDown((T)this) ?? false;
         }
         public void NodeMoveDown()
         {
-            this.GetParentCollection()?.MoveDown(this);
+            this.GetParentCollection()?.MoveDown((T)this);
             this.SetSelected((ITreeConfigNode)this);
         }
         public bool NodeCanMoveUp()
@@ -760,12 +794,12 @@
             {
                 return false;
             }
-            return this.GetParentCollection()?.CanUp(this) ?? false;
+            return this.GetParentCollection()?.CanUp((T)this) ?? false;
         }
         public void NodeMoveUp()
         {
             //var prev = this.GetParentCollection()?.GetPrev(this);
-            this.GetParentCollection()?.MoveUp(this);
+            this.GetParentCollection()?.MoveUp((T)this);
             //if (prev != null)
             //    this.SetSelected(prev);
             this.SetSelected((ITreeConfigNode)this);
@@ -1166,14 +1200,13 @@
         }
 
         #region ITree
-        public class DummyChildrenCollection : List<object>, IChildrenCollection { }
         public virtual IChildrenCollection GetListChildren()
         {
-            return new DummyChildrenCollection();
+            throw new NotImplementedException();
         }
         public virtual IChildrenCollection GetListSiblings()
         {
-            return new DummyChildrenCollection();
+            throw new NotImplementedException();
         }
         public virtual bool HasChildren()
         {

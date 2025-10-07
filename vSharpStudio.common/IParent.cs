@@ -14,7 +14,7 @@ namespace vSharpStudio.common
     public interface IChildrenCollection : ICollection, IEnumerable //IMoveUpDown, 
     {
         void Clear();
-        void Add(object item);
+        void Add(object item, object? selected = null);
         //void Add(ITreeConfigNode item);
         //bool Remove(ITreeConfigNode item);
         //void RemoveAt(int indx);

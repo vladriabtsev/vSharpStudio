@@ -58,6 +58,8 @@ namespace GenVmFromProto
                 return false;
             if (fieldName == "is_has_changed")
                 return false;
+            if (fieldName == "explicit_sorting_position")
+                return false;
             return true;
         }
         private bool IsCollection { get { return field.IsRepeated; } }
@@ -95,7 +97,7 @@ namespace GenVmFromProto
             {
                 if (this.DocMes.IsConfigObjectBase)
                 {
-                    if (field.Name == "guid" || field.Name == "name" || field.Name == "sorting_value" || field.Name == "name_ui")
+                    if (field.Name == "guid" || field.Name == "name" || field.Name == "explicit_sorting_position" || field.Name == "name_ui")
                         return false;
                 }
                 return true;

@@ -42,7 +42,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
-        partial void OnSortTypeChanged() { this.ListEnumerations.Sort((int)this.SortType); }
+        partial void OnSortTypeChanged() { this.ListEnumerations.Sort(this.SortType); }
         private void Init()
         {
             OnSortTypeChanged();
@@ -107,14 +107,6 @@ namespace vSharpStudio.vm.ViewModels
             else
             {
                 node = (Enumeration)node_impl;
-            }
-            if (this.ListEnumerations.Count > 0)
-            {
-                node.SortingValue = this.ListEnumerations[this.ListEnumerations.Count - 1].SortingValue + 1;
-            }
-            else
-            {
-                node.SortingValue = 1;
             }
             this.Add(node);
             if (node_impl == null)

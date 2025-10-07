@@ -151,7 +151,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<Form>? GetParentCollection() { return this.ParentGroupListForms.ListForms; }
+        protected override ConfigNodesCollection<Form>? GetParentCollection() { return this.ParentGroupListForms.ListForms; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -199,7 +199,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(this.Parent != null);
             var node = new Form(this.Parent);
-            this.ParentGroupListForms.Add(node);
+            this.ParentGroupListForms.ListForms.Add(node, this);
             this.GetUniqueName(Defaults.FormName, node, this.ParentGroupListForms.ListForms);
             this.SetSelected(node);
             return node;

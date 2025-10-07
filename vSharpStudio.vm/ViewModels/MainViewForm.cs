@@ -56,7 +56,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<MainViewForm>? GetParentCollection() { return this.ParentGroupListMainViewForms.ListMainViewForms; }
+        protected override ConfigNodesCollection<MainViewForm>? GetParentCollection() { return this.ParentGroupListMainViewForms.ListMainViewForms; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -79,7 +79,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new MainViewForm(this.Parent);
-            this.ParentGroupListMainViewForms.Add(node);
+            this.ParentGroupListMainViewForms.ListMainViewForms.Add(node, this);
             this.GetUniqueName(Defaults.MainFormName, node, this.ParentGroupListMainViewForms.ListMainViewForms);
             this.SetSelected(node);
             return node;

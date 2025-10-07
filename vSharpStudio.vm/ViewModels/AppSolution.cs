@@ -82,7 +82,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
-        protected override SortedObservableCollection<AppSolution>? GetParentCollection() { return this.ParentGroupListAppSolutions.ListAppSolutions; }
+        protected override ConfigNodesCollection<AppSolution>? GetParentCollection() { return this.ParentGroupListAppSolutions.ListAppSolutions; }
         //protected override void OnConfigInitializedVirtual()
         //{
         //    // All computed properties have to implement init logic in their getters
@@ -341,7 +341,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new AppSolution(this.ParentGroupListAppSolutions);
-            this.ParentGroupListAppSolutions.Add(node);
+            this.ParentGroupListAppSolutions.ListAppSolutions.Add(node, this);
             this.GetUniqueName(Defaults.AppSolutionName, node, this.ParentGroupListAppSolutions.ListAppSolutions);
             this.SetSelected(node);
             return node;

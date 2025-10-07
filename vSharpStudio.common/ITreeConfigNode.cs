@@ -10,6 +10,7 @@ namespace vSharpStudio.common
     }
     public interface ITreeConfigNodeSortable : ITreeConfigNode, ISortingValue
     {
+        string NameToCompare { get; }
     }
     public interface ITreeConfigNode : ITree, IValidatableWithSeverity, IGuid, IName, ISettings
     {

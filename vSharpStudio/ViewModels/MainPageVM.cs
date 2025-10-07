@@ -2128,7 +2128,8 @@ namespace vSharpStudio.ViewModels
                 () =>
                 {
                     this._logger?.Information();
-                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddClone();
+                    Debug.Assert(this.Config.SelectedNode != null); 
+                    this.Config.SelectedNode.NodeAddClone();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddClone(); });
             }
@@ -2142,7 +2143,8 @@ namespace vSharpStudio.ViewModels
                 () =>
                 {
                     this._logger?.Information();
-                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveDown();
+                    Debug.Assert(this.Config.SelectedNode != null); 
+                    this.Config.SelectedNode.NodeMoveDown();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveDown(); });
             }
@@ -2156,7 +2158,8 @@ namespace vSharpStudio.ViewModels
                 () =>
                 {
                     this._logger?.Information();
-                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveUp();
+                    Debug.Assert(this.Config.SelectedNode != null); 
+                    this.Config.SelectedNode.NodeMoveUp();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveUp(); });
             }
@@ -2170,7 +2173,8 @@ namespace vSharpStudio.ViewModels
                 () =>
                 {
                     this._logger?.Information();
-                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMarkForDeletion();
+                    Debug.Assert(this.Config.SelectedNode != null); 
+                    this.Config.SelectedNode.NodeMarkForDeletion();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMarkForDeletion(); });
             }
@@ -2184,7 +2188,8 @@ namespace vSharpStudio.ViewModels
                 () =>
                 {
                     this._logger?.Information();
-                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeLeft();
+                    Debug.Assert(this.Config.SelectedNode != null); 
+                    this.Config.SelectedNode.NodeLeft();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanLeft(); });
             }
@@ -2198,7 +2203,8 @@ namespace vSharpStudio.ViewModels
                 () =>
                 {
                     this._logger?.Information();
-                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeRight();
+                    Debug.Assert(this.Config.SelectedNode != null); 
+                    this.Config.SelectedNode.NodeRight();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanRight(); });
             }
@@ -2212,7 +2218,8 @@ namespace vSharpStudio.ViewModels
                 () =>
                 {
                     this._logger?.Information();
-                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveDown();
+                    Debug.Assert(this.Config.SelectedNode != null); 
+                    this.Config.SelectedNode.NodeMoveDown();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveDown(); });
             }
@@ -2226,7 +2233,8 @@ namespace vSharpStudio.ViewModels
                 () =>
                 {
                     this._logger?.Information();
-                    Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveUp();
+                    Debug.Assert(this.Config.SelectedNode != null); 
+                    this.Config.SelectedNode.NodeMoveUp();
                 },
                 () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveUp(); });
             }

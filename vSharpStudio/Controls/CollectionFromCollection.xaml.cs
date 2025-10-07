@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using ViewModelBase;
+using vSharpStudio.common;
 
 namespace vSharpStudio.Controls
 {
@@ -26,26 +27,26 @@ namespace vSharpStudio.Controls
         }
         public static readonly DependencyProperty TitleLeftProperty =
             DependencyProperty.Register("TitleLeft", typeof(string), typeof(CollectionFromCollection), new PropertyMetadata(null));
-        public ObservableCollection<ISortingValue>? ListLeft
+        public ObservableCollection<ITreeConfigNodeSortable>? ListLeft
         {
-            get { return (ObservableCollection<ISortingValue>?)GetValue(ListLeftProperty); }
+            get { return (ObservableCollection<ITreeConfigNodeSortable>?)GetValue(ListLeftProperty); }
             set { SetValue(ListLeftProperty, value); }
         }
         public static readonly DependencyProperty ListLeftProperty =
-            DependencyProperty.Register("ListLeft", typeof(ObservableCollection<ISortingValue>), typeof(CollectionFromCollection), new PropertyMetadata(null, OnListLeftChanged));
+            DependencyProperty.Register("ListLeft", typeof(ObservableCollection<ITreeConfigNodeSortable>), typeof(CollectionFromCollection), new PropertyMetadata(null, OnListLeftChanged));
         private static void OnListLeftChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var cfc = (CollectionFromCollection)d;
             Debug.Assert(cfc != null);
             if (e.OldValue != null)
             {
-                var val = (ObservableCollection<ISortingValue>?)e.OldValue;
+                var val = (ObservableCollection<ITreeConfigNodeSortable>?)e.OldValue;
                 if (val != null)
                     val.CollectionChanged -= cfc.Left_CollectionChanged;
             }
             if (e.NewValue != null)
             {
-                var val = (ObservableCollection<ISortingValue>?)e.NewValue;
+                var val = (ObservableCollection<ITreeConfigNodeSortable>?)e.NewValue;
                 if (val != null)
                     val.CollectionChanged += cfc.Left_CollectionChanged;
             }
@@ -55,30 +56,30 @@ namespace vSharpStudio.Controls
         {
             this.UpdateCommandStatuses();
         }
-        public ISortingValue? SelectedLeft
+        public ITreeConfigNodeSortable? SelectedLeft
         {
-            get { return (ISortingValue?)GetValue(SelectedLeftProperty); }
+            get { return (ITreeConfigNodeSortable?)GetValue(SelectedLeftProperty); }
             set { SetValue(SelectedLeftProperty, value); }
         }
         public static readonly DependencyProperty SelectedLeftProperty =
-            DependencyProperty.Register("SelectedLeft", typeof(ISortingValue), typeof(CollectionFromCollection), new PropertyMetadata(null));
+            DependencyProperty.Register("SelectedLeft", typeof(ITreeConfigNodeSortable), typeof(CollectionFromCollection), new PropertyMetadata(null));
         /// <summary>
         /// Multi selection support
         /// </summary>
-        public List<ISortingValue> ListSelectedLeft
+        public List<ITreeConfigNodeSortable> ListSelectedLeft
         {
             get { return listSelectedLeft; }
         }
-        private readonly List<ISortingValue> listSelectedLeft = new List<ISortingValue>();
+        private readonly List<ITreeConfigNodeSortable> listSelectedLeft = new List<ITreeConfigNodeSortable>();
         private void ListBoxLeft_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             foreach (var t in e.RemovedItems)
             {
-                this.listSelectedLeft.Remove((ISortingValue)t);
+                this.listSelectedLeft.Remove((ITreeConfigNodeSortable)t);
             }
             foreach (var t in e.AddedItems)
             {
-                this.listSelectedLeft.Add((ISortingValue)t);
+                this.listSelectedLeft.Add((ITreeConfigNodeSortable)t);
             }
             if (this.listSelectedLeft.Count == 1)
                 this.SelectedLeft = this.listSelectedLeft[0];
@@ -104,13 +105,13 @@ namespace vSharpStudio.Controls
         }
         public static readonly DependencyProperty UpperRightContentProperty =
             DependencyProperty.Register("UpperRightContent", typeof(object), typeof(CollectionFromCollection), new PropertyMetadata(null));
-        public SortedObservableCollection<ISortingValue>? ListRight
+        public SortedObservableCollection<ITreeConfigNodeSortable>? ListRight
         {
-            get { return (SortedObservableCollection<ISortingValue>?)GetValue(ListRightProperty); }
+            get { return (SortedObservableCollection<ITreeConfigNodeSortable>?)GetValue(ListRightProperty); }
             set { SetValue(ListRightProperty, value); }
         }
         public static readonly DependencyProperty ListRightProperty =
-            DependencyProperty.Register("ListRight", typeof(SortedObservableCollection<ISortingValue>), typeof(CollectionFromCollection), new PropertyMetadata(null, OnListRightChanged));
+            DependencyProperty.Register("ListRight", typeof(SortedObservableCollection<ITreeConfigNodeSortable>), typeof(CollectionFromCollection), new PropertyMetadata(null, OnListRightChanged));
 
         #region Collection Changed
         public static readonly RoutedEvent CollectionChangedRightEvent = EventManager.RegisterRoutedEvent(
@@ -136,13 +137,13 @@ namespace vSharpStudio.Controls
             Debug.Assert(cfc != null);
             if (e.OldValue != null)
             {
-                var val = (SortedObservableCollection<ISortingValue>?)e.OldValue;
+                var val = (SortedObservableCollection<ITreeConfigNodeSortable>?)e.OldValue;
                 if (val != null)
                     val.CollectionChanged -= cfc.Right_CollectionChanged;
             }
             if (e.NewValue != null)
             {
-                var val = (SortedObservableCollection<ISortingValue>?)e.NewValue;
+                var val = (SortedObservableCollection<ITreeConfigNodeSortable>?)e.NewValue;
                 if (val != null)
                     val.CollectionChanged += cfc.Right_CollectionChanged;
             }
@@ -153,30 +154,30 @@ namespace vSharpStudio.Controls
             this.UpdateCommandStatuses();
             this.RaiseCollectionChangedRightEvent();
         }
-        public ISortingValue? SelectedRight
+        public ITreeConfigNodeSortable? SelectedRight
         {
-            get { return (ISortingValue?)GetValue(SelectedRightProperty); }
+            get { return (ITreeConfigNodeSortable?)GetValue(SelectedRightProperty); }
             set { SetValue(SelectedRightProperty, value); }
         }
         public static readonly DependencyProperty SelectedRightProperty =
-            DependencyProperty.Register("SelectedRight", typeof(ISortingValue), typeof(CollectionFromCollection), new PropertyMetadata(null));
+            DependencyProperty.Register("SelectedRight", typeof(ITreeConfigNodeSortable), typeof(CollectionFromCollection), new PropertyMetadata(null));
         /// <summary>
         /// Multi selection support
         /// </summary>
-        public List<ISortingValue> ListSelectedRight
+        public List<ITreeConfigNodeSortable> ListSelectedRight
         {
             get { return listSelectedRight; }
         }
-        private readonly List<ISortingValue> listSelectedRight = new List<ISortingValue>();
+        private readonly List<ITreeConfigNodeSortable> listSelectedRight = new List<ITreeConfigNodeSortable>();
         private void ListBoxRight_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             foreach (var t in e.RemovedItems)
             {
-                this.listSelectedRight.Remove((ISortingValue)t);
+                this.listSelectedRight.Remove((ITreeConfigNodeSortable)t);
             }
             foreach (var t in e.AddedItems)
             {
-                this.listSelectedRight.Add((ISortingValue)t);
+                this.listSelectedRight.Add((ITreeConfigNodeSortable)t);
             }
             if (this.listSelectedRight.Count == 1)
                 this.SelectedRight = this.listSelectedRight[0];
@@ -199,7 +200,7 @@ namespace vSharpStudio.Controls
                         var sel = this.SelectedRight;
                         Debug.Assert(sel != null);
                         this.ListRight.MoveUp(sel);
-                        this.ListRight.Sort();
+                        //this.ListRight.Sort();
                         this.SelectedRight = sel;
                         this.UpdateCommandStatuses();
                     },
@@ -225,7 +226,7 @@ namespace vSharpStudio.Controls
                         var sel = this.SelectedRight;
                         Debug.Assert(sel != null);
                         this.ListRight.MoveDown(sel);
-                        this.ListRight.Sort();
+                        //this.ListRight.Sort();
                         this.SelectedRight = sel;
                         this.UpdateCommandStatuses();
                     },

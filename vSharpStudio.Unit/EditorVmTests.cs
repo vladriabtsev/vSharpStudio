@@ -54,114 +54,6 @@ namespace vSharpStudio.Unit
         //    }
         //}
 
-        #region SortedCollection
-        public partial class TestValidator : ValidatorBase<TestSortable, TestValidator> { }
-
-        [DebuggerDisplay("{Name} {SortingValue} Guid:{Guid,nq}")]
-        public class TestSortable : ConfigObjectVmBase<TestSortable, TestValidator>, ITreeConfigNodeSortable
-        {
-            public TestSortable() : base(null, TestValidator.Validator) { }
-            public string Guid // Property.tt Line: 58
-            {
-                get { return this._Guid; }
-                set
-                {
-                    if (this._Guid != value)
-                    {
-                        this._Guid = value;
-                        this.OnPropertyChanged();
-                        this.ValidateProperty();
-                        this.IsChanged = true;
-                    }
-                }
-            }
-            public string Name
-            {
-                get { return this._Name; }
-                set
-                {
-                    if (this._Name != value)
-                    {
-                        this._Name = value;
-                        this.OnPropertyChanged();
-                        this.ValidateProperty();
-                        this.IsChanged = true;
-                    }
-                }
-            }
-            public string NameUi
-            {
-                get { return this._NameUi; }
-                set
-                {
-                    if (this._NameUi != value)
-                    {
-                        this._NameUi = value;
-                        this.OnPropertyChanged();
-                        this.ValidateProperty();
-                        this.IsChanged = true;
-                    }
-                }
-            }
-            public ulong SortingValue
-            {
-                get { return this._SortingValue; }
-                set
-                {
-                    if (this._SortingValue != value)
-                    {
-                        this._SortingValue = value;
-                        this.OnPropertyChanged();
-                        this.ValidateProperty();
-                        this.IsChanged = true;
-                    }
-                }
-            }
-            public void SetSortingValueField(ulong sortValue)
-            {
-                this._SortingValue = sortValue;
-            }
-        }
-
-        [TestMethod]
-        public void SortedCollection001CanSort()
-        {
-            var sc = new SortedObservableCollection<TestSortable>();
-            TestSortable t2 = new TestSortable
-            {
-                Name = "t2"
-            };
-            sc.Add(t2);
-            TestSortable t1 = new TestSortable
-            {
-                Name = "t1"
-            };
-            sc.Add(t1);
-            TestSortable t3 = new TestSortable
-            {
-                Name = "t3"
-            };
-            sc.Add(t3);
-
-            TestSortable t31 = new TestSortable
-            {
-                Name = "t3"
-            };
-            sc.Add(t31, 1);
-            TestSortable t22 = new TestSortable
-            {
-                Name = "t2"
-            };
-            sc.Add(t22, 2);
-
-            Assert.AreEqual(t1.Name, sc[0].Name);
-            Assert.AreEqual(t2.Name, sc[1].Name);
-            Assert.AreEqual(t3.Name, sc[2].Name);
-            Assert.AreEqual(t31.Name, sc[3].Name);
-            Assert.AreEqual(t22.Name, sc[4].Name);
-        }
-        #endregion SortedCollection
-
         #region Config
         [TestMethod]
         public void Config001GuidInit()
@@ -194,8 +86,10 @@ namespace vSharpStudio.Unit
             var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
             Assert.AreEqual(typeof(Constant).Name + 1, gr.ListConstants[0].Name);
+            Assert.AreEqual(1, gr.ListConstants[0].ExplicitSortingPosition);
             gr.NodeAddNewSubNode();
             Assert.AreEqual(typeof(Constant).Name + 2, gr.ListConstants[1].Name);
+            Assert.AreEqual(2, gr.ListConstants[1].ExplicitSortingPosition);
             string json = cfg.ExportToJson();
             Assert.IsGreaterThan(0, json.Length);
             var cfg2 = new Config(json);
@@ -332,76 +226,76 @@ namespace vSharpStudio.Unit
 
         #region ITreeConfigNode
 #if DEBUG
-        [TestMethod]
-        public void ITreeConfigNode001_UpdateSortingValueWhenNameIsChanged()
-        {
-            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath(), null, true);
-            var cfg = vm.Config;
-            VmBindable.IsNotValidate = true;
-            var gc = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
-            var cnst = new Constant(gc);
-            gc.Add(cnst);
-            var curr = cnst.SortingValue;
-            cnst.Name = "abc1";
-            Assert.AreNotEqual(curr, cnst.SortingValue);
-            curr = cnst.SortingValue;
-            cnst.Name = "ABC1";
-            Assert.AreEqual(curr, cnst.SortingValue);
+        //[TestMethod]
+        //public void ITreeConfigNode001_UpdateSortingValueWhenNameIsChanged()
+        //{
+        //    var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath(), null, true);
+        //    var cfg = vm.Config;
+        //    VmBindable.IsNotValidate = true;
+        //    var gc = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
+        //    var cnst = new Constant(gc);
+        //    gc.Add(cnst);
+        //    var curr = cnst.SortingValue;
+        //    cnst.Name = "abc1";
+        //    Assert.AreNotEqual(curr, cnst.SortingValue);
+        //    curr = cnst.SortingValue;
+        //    cnst.Name = "ABC1";
+        //    Assert.AreEqual(curr, cnst.SortingValue);
 
-            cnst.Name = "_0";
-            curr = cnst.SortingValue;
-            cnst.Name = "00";
-            Assert.IsGreaterThan(curr, cnst.SortingValue);
+        //    cnst.Name = "_0";
+        //    curr = cnst.SortingValue;
+        //    cnst.Name = "00";
+        //    Assert.IsGreaterThan(curr, cnst.SortingValue);
 
-            cnst.Name = "_";
-            curr = cnst.SortingValue;
-            cnst.Name = "0";
-            Assert.IsGreaterThan(curr, cnst.SortingValue);
+        //    cnst.Name = "_";
+        //    curr = cnst.SortingValue;
+        //    cnst.Name = "0";
+        //    Assert.IsGreaterThan(curr, cnst.SortingValue);
 
-            cnst.Name = "0";
-            curr = cnst.SortingValue;
-            cnst.Name = "1";
-            Assert.IsGreaterThan(curr, cnst.SortingValue);
+        //    cnst.Name = "0";
+        //    curr = cnst.SortingValue;
+        //    cnst.Name = "1";
+        //    Assert.IsGreaterThan(curr, cnst.SortingValue);
 
-            cnst.Name = "9";
-            curr = cnst.SortingValue;
-            cnst.Name = "A";
-            Assert.IsGreaterThan(curr, cnst.SortingValue);
+        //    cnst.Name = "9";
+        //    curr = cnst.SortingValue;
+        //    cnst.Name = "A";
+        //    Assert.IsGreaterThan(curr, cnst.SortingValue);
 
-            cnst.Name = "A";
-            curr = cnst.SortingValue;
-            cnst.Name = "B";
-            Assert.IsGreaterThan(curr, cnst.SortingValue);
+        //    cnst.Name = "A";
+        //    curr = cnst.SortingValue;
+        //    cnst.Name = "B";
+        //    Assert.IsGreaterThan(curr, cnst.SortingValue);
 
-            cnst.Name = "A";
-            curr = cnst.SortingValue;
-            cnst.Name = "a";
-            Assert.AreEqual(curr, cnst.SortingValue);
+        //    cnst.Name = "A";
+        //    curr = cnst.SortingValue;
+        //    cnst.Name = "a";
+        //    Assert.AreEqual(curr, cnst.SortingValue);
 
-            // cnst.Name = "__";
-            cnst.Name = "_z";
-            curr = cnst.SortingValue;
-            cnst.Name = "0_";
-            Assert.IsGreaterThan(curr, cnst.SortingValue);
+        //    // cnst.Name = "__";
+        //    cnst.Name = "_z";
+        //    curr = cnst.SortingValue;
+        //    cnst.Name = "0_";
+        //    Assert.IsGreaterThan(curr, cnst.SortingValue);
 
-            cnst.Name = "ABC1";
-            curr = cnst.SortingValue;
-            cnst.Name = "BBC1";
-            Assert.IsGreaterThan(curr, cnst.SortingValue);
-            cnst.Name = "ACC1";
-            Assert.IsGreaterThan(curr, cnst.SortingValue);
-            cnst.Name = "ABD1";
-            Assert.IsGreaterThan(curr, cnst.SortingValue);
-            cnst.Name = "ABC2";
-            Assert.IsGreaterThan(curr, cnst.SortingValue);
+        //    cnst.Name = "ABC1";
+        //    curr = cnst.SortingValue;
+        //    cnst.Name = "BBC1";
+        //    Assert.IsGreaterThan(curr, cnst.SortingValue);
+        //    cnst.Name = "ACC1";
+        //    Assert.IsGreaterThan(curr, cnst.SortingValue);
+        //    cnst.Name = "ABD1";
+        //    Assert.IsGreaterThan(curr, cnst.SortingValue);
+        //    cnst.Name = "ABC2";
+        //    Assert.IsGreaterThan(curr, cnst.SortingValue);
 
-            cnst.Name = "ABC0";
-            Assert.IsLessThan(curr, cnst.SortingValue);
-            cnst.Name = "ABB1";
-            Assert.IsLessThan(curr, cnst.SortingValue);
-            cnst.Name = "AAC1";
-            Assert.IsLessThan(curr, cnst.SortingValue);
-        }
+        //    cnst.Name = "ABC0";
+        //    Assert.IsLessThan(curr, cnst.SortingValue);
+        //    cnst.Name = "ABB1";
+        //    Assert.IsLessThan(curr, cnst.SortingValue);
+        //    cnst.Name = "AAC1";
+        //    Assert.IsLessThan(curr, cnst.SortingValue);
+        //}
 #endif
 
         [TestMethod]
@@ -419,7 +313,7 @@ namespace vSharpStudio.Unit
             var cfg2 = new Config(json);
 
             Assert.AreEqual(cnst.Name, cfg2.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
-            Assert.AreEqual(cnst.SortingValue, cfg2.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].SortingValue);
+            Assert.AreEqual(cnst.ExplicitSortingPosition, cfg2.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ExplicitSortingPosition);
         }
 
         [TestMethod]
@@ -438,13 +332,13 @@ namespace vSharpStudio.Unit
 
             Assert.AreNotEqual(cnst2.Guid, cnst.Guid);
 
+            gc.SortType = EnumSortingType.ASCENDING;
+
             cnst2.Name = "abc0";
-            Assert.IsLessThan(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].SortingValue, cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].SortingValue);
             Assert.AreEqual(cnst.Guid, cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].Guid);
             Assert.AreEqual(cnst2.Guid, cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Guid);
 
             cnst2.Name = "abc2";
-            Assert.IsLessThan(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].SortingValue, cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].SortingValue);
             Assert.AreEqual(cnst.Guid, cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Guid);
             Assert.AreEqual(cnst2.Guid, cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].Guid);
         }
@@ -584,8 +478,8 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeCanAddNewSubNode());
 
             cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeAddNew();
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[1], cfg.SelectedNode);
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[1].Guid, cfg.SelectedNode.Guid);
+            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[0], cfg.SelectedNode);
+            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[0].Guid, cfg.SelectedNode.Guid);
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].NodeCanLeft());
             Assert.IsFalse(cfg.Model.GroupCatalogs[0].GroupProperties[1].NodeCanRight());
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].NodeCanMoveUp());
@@ -603,8 +497,8 @@ namespace vSharpStudio.Unit
             // p.DataType.MaxValue = 6;
 
             p.NodeAddClone();
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[2], p);
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[0].Name + "2", cfg.Model.GroupCatalogs[0].GroupProperties[2].Name);
+            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[1], p);
+            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[0].Name + "2", cfg.Model.GroupCatalogs[0].GroupProperties[1].Name);
             // Assert.IsTrue(5 == cfg.Model.GroupCatalogs[0].GroupProperties.ListProperties[2].DataType.MinValue);
             // Assert.IsTrue(6 == cfg.Model.GroupCatalogs[0].GroupProperties.ListProperties[2].DataType.MaxValue);
 

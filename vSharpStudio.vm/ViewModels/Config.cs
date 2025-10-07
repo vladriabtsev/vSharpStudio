@@ -50,7 +50,7 @@ namespace vSharpStudio.vm.ViewModels
             return vm;
         }
         // to use xxxIsChanging(x from, x to)
-        public bool IsInitialized = false;
+        public bool IsInitialized { get; set; } = false;
         public bool IsNew { get; private set; }
 
         #region ITree
@@ -95,8 +95,8 @@ namespace vSharpStudio.vm.ViewModels
             if (this.Children.Count > 0)
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
-            children.Add(this.GroupConfigLinks, 0);
-            children.Add(this.Model, 1);
+            children.Add(this.GroupConfigLinks, 1);
+            children.Add(this.Model, 2);
             children.Add(this.GroupPlugins, 9);
             children.Add(this.GroupAppSolutions, 10);
             //this.ListRoles.OnAddingAction = (t) =>
@@ -515,6 +515,14 @@ namespace vSharpStudio.vm.ViewModels
         public void SetLastUpdated(DateTime moment)
         {
             this._LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+        }
+        public void AddToDicNodes(ITreeConfigNode node)
+        {
+            this._DicNodes[node.Guid] = node;
+        }
+        public void RemoveFromDicNodes(ITreeConfigNode node)
+        {
+            this._DicNodes.Remove(node.Guid);
         }
 #if DEBUG
         public void DicDiffDebug(Config anotherCfg)

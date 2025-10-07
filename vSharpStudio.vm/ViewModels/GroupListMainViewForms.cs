@@ -40,7 +40,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
-        partial void OnSortTypeChanged() { this.ListMainViewForms.Sort((int)this.SortType); }
+        partial void OnSortTypeChanged() { this.ListMainViewForms.Sort(this.SortType); }
         private void Init()
         {
             OnSortTypeChanged();

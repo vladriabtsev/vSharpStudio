@@ -27,7 +27,7 @@ namespace ViewModelBase
             this._validator = validator;
             this._ValidationCollection = new SortedObservableCollection<ValidationMessage>
             {
-               SortingDirection = 2 // Descending order
+                Direction = SortedObservableCollection<ValidationMessage>.SortingDirection.DECREASE
             };
         }
         protected TValidator _validator { get; private set; }
@@ -169,7 +169,7 @@ namespace ViewModelBase
                     UIDispatcher.Invoke(() =>
                     {
                         Debug.Assert(msg != null);
-                        ValidationCollection.Add(msg, msg.SortingValue);
+                        ValidationCollection.Add(msg, msg.ExplicitSortingPosition);
                     });
                 }
                 Dictionary<string, string?> dic = new Dictionary<string, string?>();
@@ -225,8 +225,10 @@ namespace ViewModelBase
         protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
             Debug.Assert(propertyName != null);
-#if DEBUG
             if (IsNotValidate)
+                return true;
+#if DEBUG
+            if (IsNotValidateAll)
                 return true;
 #endif
             var res = this._validator.Validate((T)this);

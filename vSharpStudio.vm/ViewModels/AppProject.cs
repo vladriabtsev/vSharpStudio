@@ -92,7 +92,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
-        protected override SortedObservableCollection<AppProject>? GetParentCollection() { return this.ParentAppSolution.ListAppProjects; }
+        protected override ConfigNodesCollection<AppProject>? GetParentCollection() { return this.ParentAppSolution.ListAppProjects; }
         public SortedObservableCollection<AppProject> GetCollection()
         {
             return this.ParentAppSolution.ListAppProjects;
@@ -240,7 +240,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new AppProject(this.ParentAppSolution);
-            this.ParentAppSolution.ListAppProjects.Add(node);
+            this.ParentAppSolution.ListAppProjects.Add(node, this);
             this.GetUniqueName(Defaults.AppProjectName, node, this.ParentAppSolution.ListAppProjects);
             this.SetSelected(node);
             return node;

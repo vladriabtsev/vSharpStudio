@@ -94,7 +94,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<RelationManyToMany>? GetParentCollection() { return this.ParentManyToManyGroupRelations.ListRelations; }
+        protected override ConfigNodesCollection<RelationManyToMany>? GetParentCollection() { return this.ParentManyToManyGroupRelations.ListRelations; }
 
         #region OnChanged
         partial void OnNameChanged()
@@ -222,7 +222,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new RelationManyToMany(this.Parent);
-            this.ParentManyToManyGroupRelations.Add(node);
+            this.ParentManyToManyGroupRelations.ListRelations.Add(node, this);
             this.GetUniqueName(Defaults.ManyToManyRelationName, node, this.ParentManyToManyGroupRelations.ListRelations);
             var model = this.ParentManyToManyGroupRelations.ParentGroupRelations.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();

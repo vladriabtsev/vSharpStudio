@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
-        partial void OnSortTypeChanged() { this.ListConstants.Sort((int)this.SortType); }
+        partial void OnSortTypeChanged() { this.ListConstants.Sort(this.SortType); }
         private void Init()
         {
             OnSortTypeChanged();
@@ -54,6 +54,11 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
+        protected override ConfigNodesCollection<GroupListConstants>? GetParentCollection() { return this.ParentGroupConstantGroups.ListConstantGroups; }
+        //public SortedObservableCollection<AppProject> GetCollection()
+        //{
+        //    return this.ParentAppSolution.ListAppProjects;
+        //}
         public int IndexOf(IConstant cnst)
         {
             return this.ListConstants.IndexOf((Constant)cnst);
@@ -105,7 +110,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new GroupListConstants(this.ParentGroupConstantGroups);
-            this.ParentGroupConstantGroups.ListConstantGroups.Add(node);
+            this.ParentGroupConstantGroups.ListConstantGroups.Add(node, this);
             this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ParentGroupConstantGroups.ListConstantGroups);
             var model = this.ParentGroupConstantGroups.ParentModel;
             node.ShortId = model.LastTypeShortIdForNode();
@@ -319,14 +324,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (Constant)node_impl;
             }
-            if (this.ListConstants.Count > 0)
-            {
-                node.SortingValue = this.ListConstants[this.ListConstants.Count - 1].SortingValue + 1;
-            }
-            else
-            {
-                node.SortingValue = 1;
-            }
             this.Add(node);
             node.DataType.Parent = node;
             node.Position = this.GetNextPosition();
@@ -359,7 +356,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IProperty>();
             this.GetSpecialProperties(res, isOptimistic);
-            VmBindable.IsNotValidate = true;
+            VmBindable.IsNotValidateAll = true;
             foreach (var t in this.ListConstants)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -394,7 +391,7 @@ namespace vSharpStudio.vm.ViewModels
                     res.Add(p);
                 }
             }
-            VmBindable.IsNotValidate = false;
+            VmBindable.IsNotValidateAll = false;
             return res;
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()

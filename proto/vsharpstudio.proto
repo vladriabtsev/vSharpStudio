@@ -84,7 +84,7 @@ message proto_group_list_plugins {
     // @attr [Browsable(false)]
     repeated proto_plugin list_plugins = 4;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
 }
 // @interface ISortingValue
 // @base ConfigObjectVmBase
@@ -108,7 +108,7 @@ message proto_plugin {
     // @attr [Description("Description of plugin")]
     string description = 4;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 5;
+    int32 explicit_sorting_position = 5;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator list_generators = 6;
     // @attr [Browsable(false)]
@@ -130,7 +130,7 @@ message proto_plugin_generator {
     // @attr [Description("Description of plugin")]
     string description = 3;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 4;
+    int32 explicit_sorting_position = 4;
 }
 // @base VmEditable
 message proto_settings_config {
@@ -185,7 +185,7 @@ message proto_group_list_base_config_links {
     // @attr [Description("Sort type for config links")]
     proto_enum_sorting_type sort_type = 6;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
     // @attr [Browsable(false)]
     repeated proto_base_config_link list_base_config_links = 9;
     // @attr [Browsable(false)]
@@ -206,7 +206,7 @@ message proto_base_config_link {
     // @attr [PropertyOrderAttribute(2)]
     string name_ui = 6;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     // @attr [ReadOnly(true)]
@@ -238,7 +238,7 @@ message proto_config {
     int32 version = 3;
 
     // @attr [Browsable(false)]
-    //uint64 sorting_value = 4;
+    //int32 explicit_sorting_position = 4;
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -250,7 +250,7 @@ message proto_config {
     // @attr [PropertyOrderAttribute(6)]
     google.protobuf.Timestamp last_updated = 7;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
     // @attr [Browsable(false)]
     /// <summary>
     /// True if configuration was changed since last code generation.
@@ -335,7 +335,7 @@ message proto_group_list_app_solutions {
     proto_enum_sorting_type sort_type = 6;
 
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
     // List NET solutions
     // @attr [Browsable(false)]
     repeated proto_app_solution list_app_solutions = 9;
@@ -356,7 +356,7 @@ message proto_app_solution {
     // @attr [PropertyOrderAttribute(2)]
     string name_ui = 3;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 4;
+    int32 explicit_sorting_position = 4;
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -405,7 +405,7 @@ message proto_app_project {
     // @attr [PropertyOrderAttribute(2)]
     string name_ui = 3;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 4;
+    int32 explicit_sorting_position = 4;
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -452,7 +452,7 @@ message proto_plugin_generator_node_settings {
     string name = 3;
     string name_ui = 4;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 5;
+    int32 explicit_sorting_position = 5;
     //string node_settings_vm_guid = 6;
     string settings = 7;
 }
@@ -493,7 +493,7 @@ message proto_app_project_generator {
     // @attr [PropertyOrderAttribute(2)]
     string name_ui = 3;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 4;
+    int32 explicit_sorting_position = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -654,7 +654,7 @@ message proto_model {
     // @attr [PropertyOrderAttribute(1)]
     string name = 3;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 4;
+    int32 explicit_sorting_position = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [Description("Used as label/name for UI")]
@@ -906,7 +906,7 @@ message complex_ref
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Browsable(false)]
     // unique in object (can be used as Protobuf field position)
     uint32 position = 10;
@@ -990,7 +990,7 @@ message proto_group_list_common {
     string description = 5;
 
     // @attr [Browsable(false)]
-    uint64 sorting_value = 6;
+    int32 explicit_sorting_position = 6;
     // @attr [Browsable(false)]
     proto_group_list_roles group_roles = 7;
     // @attr [Browsable(false)]
@@ -1014,7 +1014,7 @@ message proto_role {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1188,7 +1188,7 @@ message proto_group_list_roles {
     // @attr [Browsable(false)]
     repeated proto_role list_roles = 6;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1206,7 +1206,7 @@ message proto_main_view_form {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1251,7 +1251,7 @@ message proto_group_list_main_view_forms {
     // @attr [Browsable(false)]
     repeated proto_main_view_form list_main_view_forms = 6;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1286,7 +1286,7 @@ message proto_group_list_properties {
     // @attr [ReadOnly(true)]
     uint32 last_gen_position = 7;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -1319,7 +1319,7 @@ message proto_property {
     // @attr [Description("Property name")]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1524,7 +1524,7 @@ message proto_group_list_details {
     // @attr [Browsable(false)]
     repeated proto_detail list_details = 6;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -1555,7 +1555,7 @@ message proto_detail {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1665,7 +1665,7 @@ message proto_group_constant_groups {
     // @attr [ReadOnly(true)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1698,7 +1698,7 @@ message proto_group_list_constants {
     // @attr [Description("Group name of constants")]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1747,7 +1747,7 @@ message proto_constant {
     // @attr [Description("Constant name")]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
     // @attr [Description("Used as label/name for UI")]
@@ -1878,7 +1878,7 @@ message proto_group_list_enumerations {
     // @attr [Browsable(false)]
     repeated proto_enumeration list_enumerations = 6;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1906,7 +1906,7 @@ message proto_enumeration {
     // @attr [Description("Enumeration name")]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1951,7 +1951,7 @@ message proto_enumeration_pair {
     // @attr [Description("Enumeration element name")]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("UI name")]
@@ -2009,7 +2009,7 @@ message proto_catalog_folder {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -2136,7 +2136,7 @@ message proto_catalog {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -2302,7 +2302,7 @@ message proto_group_list_catalogs {
     // @attr [Browsable(false)]
     repeated proto_catalog list_catalogs = 8;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 9;
+    int32 explicit_sorting_position = 9;
 
     // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(22)]
@@ -2431,7 +2431,7 @@ message proto_group_list_registers {
     // @attr [Browsable(false)]
     repeated proto_register list_registers = 7;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(9)]
     // @attr [DisplayName("Composition prefix")]
@@ -2458,7 +2458,7 @@ message proto_register_dimension {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -2517,7 +2517,7 @@ message proto_group_list_register_dimensions {
     repeated proto_register_dimension list_dimensions = 6;
 
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -2580,7 +2580,7 @@ message proto_register {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -2760,7 +2760,7 @@ message proto_document_enumerator_sequence {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -2815,7 +2815,7 @@ message proto_group_list_enumerator_sequences {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -2852,7 +2852,7 @@ message proto_group_documents {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -2941,7 +2941,7 @@ message proto_document_timeline {
     // @attr [Browsable(false)]
     repeated proto_property list_properties = 7;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(6)]
     // @attr [DisplayName("Timeline accuracy")]
@@ -2992,7 +2992,7 @@ message proto_document {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -3075,7 +3075,7 @@ message proto_group_list_documents {
     // @attr [Browsable(false)]
     repeated proto_document list_documents = 7;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
     // @attr [Browsable(false)]
     repeated proto_role_document_access list_role_document_access_settings = 101;
     // @attr [Browsable(false)]
@@ -3102,7 +3102,7 @@ message proto_relations_group {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -3147,7 +3147,7 @@ message proto_relation_many_to_many {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -3238,7 +3238,7 @@ message proto_relations_many_to_many_group {
     // @attr [Description("Short catalog type ID for cache key generator")]
     string short_id_type_for_cache_key = 7;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 9;
+    int32 explicit_sorting_position = 9;
 
     // @attr [Browsable(false)]
     repeated proto_relation_many_to_many list_relations = 21;
@@ -3268,7 +3268,7 @@ message proto_relation_one_to_one {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -3370,7 +3370,7 @@ message proto_relations_one_to_one_group {
     // @attr [Description("Short catalog type ID for cache key generator")]
     string short_id_type_for_cache_key = 7;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 9;
+    int32 explicit_sorting_position = 9;
 
     // @attr [Browsable(false)]
     repeated proto_relation_one_to_one list_relations = 21;
@@ -3406,7 +3406,7 @@ message proto_group_list_journals {
     // @attr [Browsable(false)]
     repeated proto_journal list_journals = 7;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -3435,7 +3435,7 @@ message proto_journal {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -3503,7 +3503,7 @@ message proto_group_list_forms {
     // @attr [Browsable(false)]
     repeated proto_form list_forms = 7;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -3540,7 +3540,7 @@ message proto_form {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -3638,7 +3638,7 @@ message proto_form_grid_system {
     string description = 4;
 
     // @attr [Browsable(false)]
-    uint64 sorting_value = 6;
+    int32 explicit_sorting_position = 6;
 
     // @attr [Browsable(false)]
     bool is_new = 11;
@@ -3681,7 +3681,7 @@ message proto_form_grid_system_row {
     string description = 4;
 
     // @attr [Browsable(false)]
-    uint64 sorting_value = 10;
+    int32 explicit_sorting_position = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
     // @attr [DisplayName("For deletion")]
@@ -3753,7 +3753,7 @@ message proto_form_grid_system_column {
     google.protobuf.UInt32Value width_xx = 16;
 
     // @attr [Browsable(false)]
-    uint64 sorting_value = 21;
+    int32 explicit_sorting_position = 21;
     // @attr [Browsable(false)]
     bool is_new = 22;
     // @attr [DisplayName("For deletion")]
@@ -3802,7 +3802,7 @@ message proto_form_auto_layout_block {
     string description = 4;
 
     // @attr [Browsable(false)]
-    uint64 sorting_value = 10;
+    int32 explicit_sorting_position = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
     // @attr [DisplayName("For deletion")]
@@ -3839,7 +3839,7 @@ message proto_form_auto_layout_sub_block {
     string description = 4;
 
     // @attr [Browsable(false)]
-    uint64 sorting_value = 10;
+    int32 explicit_sorting_position = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
     // @attr [DisplayName("For deletion")]
@@ -3880,7 +3880,7 @@ message proto_form_field {
     string description = 4;
 
     // @attr [Browsable(false)]
-    uint64 sorting_value = 10;
+    int32 explicit_sorting_position = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
     // @attr [DisplayName("For deletion")]
@@ -3914,7 +3914,7 @@ message proto_form_tab_control_tab {
     string description = 4;
 
     // @attr [Browsable(false)]
-    uint64 sorting_value = 10;
+    int32 explicit_sorting_position = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
     // @attr [DisplayName("For deletion")]
@@ -3956,7 +3956,7 @@ message proto_form_tab_control {
     string description = 4;
 
     // @attr [Browsable(false)]
-    uint64 sorting_value = 10;
+    int32 explicit_sorting_position = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
     // @attr [DisplayName("For deletion")]
@@ -3994,7 +3994,7 @@ message proto_form_data_grid {
     string description = 4;
 
     // @attr [Browsable(false)]
-    uint64 sorting_value = 10;
+    int32 explicit_sorting_position = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
     // @attr [DisplayName("For deletion")]
@@ -4030,7 +4030,7 @@ message proto_form_tree {
     string description = 4;
 
     // @attr [Browsable(false)]
-    uint64 sorting_value = 10;
+    int32 explicit_sorting_position = 10;
     // @attr [Browsable(false)]
     bool is_new = 11;
     // @attr [DisplayName("For deletion")]
@@ -4071,7 +4071,7 @@ message proto_group_list_reports {
     // @attr [Browsable(false)]
     repeated proto_report list_reports = 7;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
+    int32 explicit_sorting_position = 8;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -4086,7 +4086,7 @@ message proto_report {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -4113,7 +4113,7 @@ message proto_report {
 message proto_item_name_value {
     string name = 1;
     google.protobuf.Any value = 2;
-    uint64 sorting_value = 3;
+    int32 explicit_sorting_position = 3;
 }
 */
 // @base VmBindable

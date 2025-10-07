@@ -45,14 +45,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (Catalog)node_impl;
             }
-            if (this.ListCatalogs.Count > 0)
-            {
-                node.SortingValue = this.ListCatalogs[this.ListCatalogs.Count - 1].SortingValue + 1;
-            }
-            else
-            {
-                node.SortingValue = 1;
-            }
             this.Add(node);
             if (node_impl == null)
             {
@@ -84,7 +76,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Init();
         }
-        partial void OnSortTypeChanged() { this.ListCatalogs.Sort((int)this.SortType); }
+        partial void OnSortTypeChanged() { this.ListCatalogs.Sort(this.SortType); }
         private void Init()
         {
             OnSortTypeChanged();

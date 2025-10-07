@@ -69,8 +69,10 @@ namespace ViewModelBase
         protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
             Debug.Assert(propertyName != null);
-#if DEBUG
             if (IsNotValidate)
+                return true;
+#if DEBUG
+            if (IsNotValidateAll)
                 return true;
 #endif
             var res = this._validator.Validate((T)this);

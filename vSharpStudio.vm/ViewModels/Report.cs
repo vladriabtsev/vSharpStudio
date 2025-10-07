@@ -56,7 +56,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<Report>? GetParentCollection() { return this.ParentGroupListReports.ListReports; }
+        protected override ConfigNodesCollection<Report>? GetParentCollection() { return this.ParentGroupListReports.ListReports; }
 
         #region Tree operations
         public override ITreeConfigNode NodeAddClone()
@@ -71,7 +71,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Report(this.Parent);
-            this.ParentGroupListReports.Add(node);
+            this.ParentGroupListReports.ListReports.Add(node, this);
             this.GetUniqueName(Defaults.ReportName, node, this.ParentGroupListReports.ListReports);
             this.SetSelected(node);
             return node;

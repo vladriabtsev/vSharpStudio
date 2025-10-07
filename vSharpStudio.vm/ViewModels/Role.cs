@@ -62,7 +62,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override SortedObservableCollection<Role>? GetParentCollection() { return this.ParentGroupListRoles.ListRoles; }
+        protected override ConfigNodesCollection<Role>? GetParentCollection() { return this.ParentGroupListRoles.ListRoles; }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -85,7 +85,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Role(this.Parent);
-            this.ParentGroupListRoles.Add(node);
+            this.ParentGroupListRoles.ListRoles.Add(node, this);
             this.GetUniqueName(Defaults.RoleName, node, this.ParentGroupListRoles.ListRoles);
             this.SetSelected(node);
             return node;
