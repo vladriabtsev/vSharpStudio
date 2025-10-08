@@ -171,8 +171,8 @@ namespace vSharpStudio.Unit
             var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
             Assert.AreEqual(Defaults.ConstantName + "1", cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
-            cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].NodeAddNew();
-            Assert.AreEqual(Defaults.ConstantName + "2", cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].Name);
+            cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].NodeAddNew(); // insert before current
+            Assert.AreEqual(Defaults.ConstantName + "2", cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
         }
         #endregion Constant
 

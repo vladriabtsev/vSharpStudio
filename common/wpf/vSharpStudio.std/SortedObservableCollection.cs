@@ -236,14 +236,14 @@ namespace ViewModelBase
                 explicitPosition = selected.ExplicitSortingPosition;
                 for (int i = this.Count - 1; i > indx; ++i)
                 {
-                    this[i].ExplicitSortingPosition = this[i].ExplicitSortingPosition + 1;
+                    this[i].SetExplicitSortingPosition(this[i].ExplicitSortingPosition + 1);
                 }
             }
             this.Add(item, ++explicitPosition);
         }
         public void Add(T item, int explicitPosition)
         {
-            item.ExplicitSortingPosition = explicitPosition;
+            item.SetExplicitSortingPosition(explicitPosition);
             //item.SetExplicitSortingPosition(explicitPosition);
             base.Add(item);
             InternalSort();

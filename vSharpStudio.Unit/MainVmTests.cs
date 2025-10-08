@@ -48,23 +48,77 @@ namespace vSharpStudio.Unit
             }
         }
 
-        //[TestMethod]
-        //public void MainUI001FirstStart()
-        //{
-        //    this.remove_config();
-        //    var vm = new MainPageVM(true);
-        //    vm.OnFormLoaded();
-        //    vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
-        //    Assert.IsTrue(vm.pconfig_history == null);
-        //}
-        [TestMethod]
-        public void Main001StartWithEmptyConfig()
+        private void CheckNewConfig(MainPageVM vm, bool isWithPlugins, bool isWasSaved = false)
         {
-            this.remove_config();
-            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.IsNull(vm.pconfig_history);
+            if (!isWasSaved)
+                Assert.IsNull(vm.pconfig_history);
             Assert.IsTrue(vm.Config.IsNew);
-            Assert.IsFalse(vm.Config.IsHasChanged);
+            if (isWithPlugins)
+            {
+                Assert.IsTrue(vm.Config.IsHasChanged);
+            }
+            else
+            {
+                Assert.IsFalse(vm.Config.IsHasChanged);
+            }
+
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsNew);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsChanged);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsChangedOrHasChanged);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasChanged);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsNew);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsChanged);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsChangedOrHasChanged);
+            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasChanged);
+            foreach (var plugin in vm.Config.GroupPlugins.ListPlugins)
+            {
+                Assert.IsTrue(plugin.IsNew);
+                Assert.IsFalse(plugin.IsHasNew);
+                Assert.IsTrue(plugin.IsChanged);
+                Assert.IsFalse(plugin.IsHasChanged);
+            }
+            Assert.IsFalse(vm.Config.GroupPlugins.IsNew);
+            Assert.IsFalse(vm.Config.GroupPlugins.IsChanged);
+            if (isWithPlugins)
+            {
+                Assert.IsTrue(vm.Config.GroupPlugins.IsChangedOrHasChanged);
+                Assert.IsTrue(vm.Config.GroupPlugins.IsHasChanged);
+            }
+            else
+            {
+                Assert.IsFalse(vm.Config.GroupPlugins.IsChangedOrHasChanged);
+                Assert.IsFalse(vm.Config.GroupPlugins.IsHasChanged);
+            }
+
+            Assert.IsFalse(vm.Config.Model.IsNew);
+            Assert.IsFalse(vm.Config.Model.IsChanged);
+            Assert.IsFalse(vm.Config.Model.IsChangedOrHasChanged);
+            Assert.IsFalse(vm.Config.Model.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.IsNew);
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.IsChangedOrHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupCommon.IsNew);
+            Assert.IsFalse(vm.Config.Model.GroupCommon.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupCommon.IsChangedOrHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupCommon.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsNew);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChangedOrHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupDocuments.IsNew);
+            Assert.IsFalse(vm.Config.Model.GroupDocuments.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupDocuments.IsChangedOrHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupDocuments.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupEnumerations.IsNew);
+            Assert.IsFalse(vm.Config.Model.GroupEnumerations.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupEnumerations.IsChangedOrHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupEnumerations.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupRelations.IsNew);
+            Assert.IsFalse(vm.Config.Model.GroupRelations.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupRelations.IsChangedOrHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupRelations.IsHasChanged);
+
             Assert.IsFalse(vm.BtnAddClone.CanExecute());
             Assert.IsFalse(vm.BtnAddNew.CanExecute());
             //Assert.IsFalse(vm.BtnAddNewChild.CanExecute());
@@ -82,254 +136,15 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.BtnSelectionUp.CanExecute());
             Assert.IsFalse(vm.BtnNewConfig.CanExecute());
             Assert.IsTrue(vm.BtnOpenConfig.CanExecute(null));
-
+        }
+        [TestMethod]
+        public async Task Main001_IsNew_IsChanged_IsHasChanged()
+        {
+            this.remove_config();
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            CheckNewConfig(vm, false);
             vm.BtnNewConfig.Execute(); // not saved yet
-            Assert.IsNotNull(vm.Config);
-            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
-            Assert.IsTrue(vm.Config.IsNew);
-            Assert.IsTrue(vm.Config.IsHasNew);
-            foreach (var t in vm.Config.GroupPlugins.ListPlugins)
-            {
-                Assert.IsTrue(t.IsNew);
-                Assert.IsFalse(t.IsHasNew);
-            }
-            Assert.IsFalse(vm.BtnAddClone.CanExecute());
-            Assert.IsFalse(vm.BtnAddNew.CanExecute());
-            //Assert.IsFalse(vm.BtnAddNewChild.CanExecute());
-            Assert.IsFalse(vm.BtnConfigCreateStableVersionAsync.CanExecute());
-            Assert.IsFalse(vm.BtnConfigCurrentUpdateAsync.CanExecute(null));
-            Assert.IsFalse(vm.BtnConfigSave.CanExecute());
-            Assert.IsTrue(vm.BtnConfigSaveAs.CanExecute(null));
-            Assert.IsFalse(vm.BtnDelete.CanExecute());
-            Assert.IsTrue(vm.CommandFromErrorToSelection.CanExecute(null));
-            Assert.IsFalse(vm.BtnMoveDown.CanExecute());
-            Assert.IsFalse(vm.BtnMoveUp.CanExecute());
-            Assert.IsFalse(vm.BtnNewConfig.CanExecute());
-            Assert.IsTrue(vm.BtnOpenConfig.CanExecute(null));
-            Assert.IsFalse(vm.BtnSelectionDown.CanExecute());
-            Assert.IsFalse(vm.BtnSelectionLeft.CanExecute());
-            Assert.IsFalse(vm.BtnSelectionRight.CanExecute());
-            Assert.IsFalse(vm.BtnSelectionUp.CanExecute());
-
-
-            vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg"); // saved
-            Assert.IsNotNull(vm.Config);
-            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
-            Assert.IsFalse(vm.Config.IsNew);
-            Assert.IsTrue(vm.Config.IsHasNew);
-            foreach (var t in vm.Config.GroupPlugins.ListPlugins)
-            {
-                Assert.IsTrue(t.IsNew);
-                Assert.IsFalse(t.IsHasNew);
-            }
-            Assert.IsFalse(vm.BtnAddClone.CanExecute());
-            Assert.IsFalse(vm.BtnAddNew.CanExecute());
-            //Assert.IsFalse(vm.BtnAddNewChild.CanExecute());
-            Assert.IsTrue(vm.BtnConfigCreateStableVersionAsync.CanExecute());
-            Assert.IsTrue(vm.BtnConfigCurrentUpdateAsync.CanExecute(null));
-            Assert.IsTrue(vm.BtnConfigSave.CanExecute());
-            Assert.IsTrue(vm.BtnConfigSaveAs.CanExecute(null));
-            Assert.IsFalse(vm.BtnDelete.CanExecute());
-            Assert.IsTrue(vm.CommandFromErrorToSelection.CanExecute(null));
-            Assert.IsFalse(vm.BtnMoveDown.CanExecute());
-            Assert.IsFalse(vm.BtnMoveUp.CanExecute());
-            Assert.IsTrue(vm.BtnNewConfig.CanExecute());
-            Assert.IsTrue(vm.BtnOpenConfig.CanExecute(null));
-            Assert.IsFalse(vm.BtnSelectionDown.CanExecute());
-            Assert.IsFalse(vm.BtnSelectionLeft.CanExecute());
-            Assert.IsFalse(vm.BtnSelectionRight.CanExecute());
-            Assert.IsFalse(vm.BtnSelectionUp.CanExecute());
-
-            //await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
-            //Assert.IsTrue(vm.Config != null);
-            //Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
-            //Assert.IsTrue(vm.VisibilityConfig == Visibility.Visible);
-            //Assert.IsFalse(vm.Config.IsNew);
-            //Assert.IsFalse(vm.Config.IsHasNew);
-            //foreach (var t in vm.Config.GroupPlugins.ListPlugins)
-            //{
-            //    Assert.IsFalse(t.IsNew);
-            //    Assert.IsFalse(t.IsHasNew);
-            //}
-        }
-        [TestMethod]
-        public async Task Main002CanSaveConfigAndCreateVersions()
-        {
-            // empty config
-            this.remove_config();
-            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.IsTrue(vm.Config.IsNew);
-            Assert.IsNull(vm.pconfig_history);
-
-            vm.BtnNewConfig.Execute();
-            Assert.IsNotNull(vm.Config);
-            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
-
-            // create object and save
-            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
-            gr.NodeAddNewSubNode();
-            var cnst = (Constant)vm.Config.SelectedNode;
-            var ct = DateTime.UtcNow;
-            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
-            vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg");
-            Assert.IsTrue(vm.Config.LastUpdated != null);
-            Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
-            Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
-            Assert.AreEqual(0, vm.Config.Version);
-
-            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
-            gr.NodeAddNewSubNode();
-            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
-
-            //Assert.IsTrue(vm.BtnAddClone.CanExecute());
-            //Assert.IsTrue(vm.BtnAddNew.CanExecute());
-            //Assert.IsFalse(vm.BtnAddNewChild.CanExecute());
-            //Assert.IsTrue(vm.BtnConfigCreateStableVersionAsync.CanExecute());
-            //Assert.IsTrue(vm.BtnConfigCurrentUpdateAsync.CanExecute(null));
-            //Assert.IsTrue(vm.BtnConfigSave.CanExecute());
-            //Assert.IsTrue(vm.BtnConfigSaveAs.CanExecute(null));
-            //Assert.IsTrue(vm.BtnDelete.CanExecute());
-            //Assert.IsTrue(vm.CommandFromErrorToSelection.CanExecute(null));
-            //Assert.IsFalse(vm.BtnMoveDown.CanExecute());
-            //Assert.IsFalse(vm.BtnMoveUp.CanExecute());
-            //Assert.IsTrue(vm.BtnNewConfig.IsEnabled);
-            //Assert.IsTrue(vm.BtnOpenConfig.CanExecute(null));
-            //Assert.IsFalse(vm.BtnSelectionDown.CanExecute());
-            //Assert.IsTrue(vm.BtnSelectionLeft.CanExecute());
-            //Assert.IsFalse(vm.BtnSelectionRight.CanExecute());
-            //Assert.IsFalse(vm.BtnSelectionUp.CanExecute());
-
-            // reload
-            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants);
-            Assert.AreEqual(cnst.Name, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
-            Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
-            Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
-            Assert.AreEqual(0, vm.Config.Version);
-            Assert.IsNotNull(vm.pconfig_history);
-            Assert.IsNotNull(vm.pconfig_history.CurrentConfig);
-            Assert.IsNull(vm.pconfig_history.PrevStableConfig);
-            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
-
-            vm.Config.Model.GroupConstantGroups.NodeAddNewSubNode();
-            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
-
-            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync();
-            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
-            // create stable version
-            await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
-            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
-            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
-            Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants);
-            Assert.AreEqual(cnst.Name, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
-            Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
-            Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
-            Assert.AreEqual(1, vm.Config.Version);
-            Assert.IsNotNull(vm.pconfig_history);
-            Assert.IsNotNull(vm.pconfig_history.CurrentConfig);
-            Assert.IsNotNull(vm.pconfig_history.PrevStableConfig);
-            Assert.AreEqual(0, vm.pconfig_history.PrevStableConfig.Version);
-            // migration code is created?
-            // Assert.IsTrue(false);
-
-            // create next stable version
-            await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
-            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
-            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants);
-            Assert.AreEqual(cnst.Name, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
-            Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
-            Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
-            Assert.AreEqual(2, vm.Config.Version);
-            Assert.IsNotNull(vm.pconfig_history);
-            Assert.IsNotNull(vm.pconfig_history.CurrentConfig);
-            Assert.IsNotNull(vm.pconfig_history.PrevStableConfig);
-            Assert.AreEqual(1, vm.pconfig_history.PrevStableConfig.Version);
-            // old migration code is kept?
-            // Assert.IsTrue(false);
-        }
-        [TestMethod]
-        public void Main003CanSaveConfigInSelectedSolutionFolderAndReloadFromThisFolderByDefault()
-        {
-            this.remove_config();
-            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.IsEmpty(vm.UserSettings.ListOpenConfigHistory);
-
-            vm.BtnNewConfig.Execute();
-            Assert.IsEmpty(vm.UserSettings.ListOpenConfigHistory);
-
-            vm.Config.Name = "test1";
-            vm.BtnConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
-            Assert.HasCount(1, vm.UserSettings.ListOpenConfigHistory);
-
-            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            // Load from previous save
-            Assert.HasCount(1, vm.UserSettings.ListOpenConfigHistory);
-            Assert.AreEqual("test1", vm.Config.Name);
-            vm.Config.Name = "test2";
-            vm.BtnConfigSaveAs.Execute(@"..\..\..\TestApps\config2.vcfg");
-
-            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            // Load from previous save
-            Assert.HasCount(2, vm.UserSettings.ListOpenConfigHistory);
-            Assert.AreEqual("test2", vm.Config.Name);
-        }
-        [TestMethod]
-        public void Main004CanSaveConfigAndReload()
-        {
-            this.remove_config();
-            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            vm.BtnNewConfig.Execute();
-            vm.Config.Name = "test1";
-            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
-            var c1 = gr.AddConstant("c1");
-            vm.BtnConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
-
-            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            gr = vm.Config.Model.GroupConstantGroups.ListConstantGroups[0];
-            // Load from previous save
-            Assert.HasCount(1, vm.UserSettings.ListOpenConfigHistory);
-            Assert.AreEqual("test1", vm.Config.Name);
-            Assert.HasCount(1, gr.ListConstants);
-            Assert.AreEqual("c1", gr.ListConstants[0].Name);
-            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c1.Guid));
-        }
-        [TestMethod]
-        public async Task Main005IsChangedAndIsTreeChanged()
-        {
-            this.remove_config();
-            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            vm.BtnNewConfig.Execute();
-            Assert.IsTrue(vm.Config.IsNew);
-            Assert.IsTrue(vm.Config.IsHasNew); // all plugins are new for new configuration
-            Assert.IsFalse(vm.Config.IsChanged);
-            Assert.IsTrue(vm.Config.IsHasChanged);
-            Assert.IsFalse(vm.Config.GroupPlugins.IsNew); // always false
-            Assert.IsTrue(vm.Config.GroupPlugins.IsHasNew);
-            Assert.IsFalse(vm.Config.GroupPlugins.IsChanged);
-            Assert.IsTrue(vm.Config.GroupPlugins.IsHasChanged);
-            foreach (var plugin in vm.Config.GroupPlugins.ListPlugins)
-            {
-                Assert.IsTrue(plugin.IsNew);
-                Assert.IsFalse(plugin.IsHasNew);
-                Assert.IsTrue(plugin.IsChanged);
-                Assert.IsFalse(plugin.IsHasChanged);
-            }
-            Assert.IsFalse(vm.Config.GroupAppSolutions.IsNew); // always false
-            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasNew);
-            Assert.IsFalse(vm.Config.GroupAppSolutions.IsChanged);
-            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasChanged);
-            Assert.IsEmpty(vm.Config.GroupAppSolutions.ListAppSolutions);
-            Assert.IsFalse(vm.Config.GroupConfigLinks.IsNew); // always false
-            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
-            Assert.IsFalse(vm.Config.GroupConfigLinks.IsChanged);
-            Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasChanged);
-            Assert.IsEmpty(vm.Config.GroupConfigLinks.ListBaseConfigLinks);
-            Assert.IsFalse(vm.Config.Model.IsNew); // always false
-            Assert.IsFalse(vm.Config.Model.IsHasNew);
-            Assert.IsFalse(vm.Config.Model.IsChanged);
-            Assert.IsFalse(vm.Config.Model.IsHasChanged);
+            CheckNewConfig(vm, true);
 
             vm.BtnConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
             Assert.IsFalse(vm.Config.IsNew);
@@ -540,6 +355,152 @@ namespace vSharpStudio.Unit
             vm.BtnConfigSave.Execute();
             Assert.IsFalse(vm.Config.IsChanged);
             Assert.IsFalse(vm.Config.IsHasChanged);
+
+            vm.BtnNewConfig.Execute();
+            CheckNewConfig(vm, true, true);
+        }
+        [TestMethod]
+        public async Task Main002CanSaveConfigAndCreateVersions()
+        {
+            // empty config
+            this.remove_config();
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            Assert.IsTrue(vm.Config.IsNew);
+            Assert.IsNull(vm.pconfig_history);
+
+            vm.BtnNewConfig.Execute();
+            Assert.IsNotNull(vm.Config);
+            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
+
+            // create object and save
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            gr.NodeAddNewSubNode();
+            var cnst = (Constant)vm.Config.SelectedNode;
+            var ct = DateTime.UtcNow;
+            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
+            vm.BtnConfigSaveAs.Execute(@".\kuku.vcfg");
+            Assert.IsTrue(vm.Config.LastUpdated != null);
+            Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
+            Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
+            Assert.AreEqual(0, vm.Config.Version);
+
+            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
+            gr.NodeAddNewSubNode();
+            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
+
+            //Assert.IsTrue(vm.BtnAddClone.CanExecute());
+            //Assert.IsTrue(vm.BtnAddNew.CanExecute());
+            //Assert.IsFalse(vm.BtnAddNewChild.CanExecute());
+            //Assert.IsTrue(vm.BtnConfigCreateStableVersionAsync.CanExecute());
+            //Assert.IsTrue(vm.BtnConfigCurrentUpdateAsync.CanExecute(null));
+            //Assert.IsTrue(vm.BtnConfigSave.CanExecute());
+            //Assert.IsTrue(vm.BtnConfigSaveAs.CanExecute(null));
+            //Assert.IsTrue(vm.BtnDelete.CanExecute());
+            //Assert.IsTrue(vm.CommandFromErrorToSelection.CanExecute(null));
+            //Assert.IsFalse(vm.BtnMoveDown.CanExecute());
+            //Assert.IsFalse(vm.BtnMoveUp.CanExecute());
+            //Assert.IsTrue(vm.BtnNewConfig.IsEnabled);
+            //Assert.IsTrue(vm.BtnOpenConfig.CanExecute(null));
+            //Assert.IsFalse(vm.BtnSelectionDown.CanExecute());
+            //Assert.IsTrue(vm.BtnSelectionLeft.CanExecute());
+            //Assert.IsFalse(vm.BtnSelectionRight.CanExecute());
+            //Assert.IsFalse(vm.BtnSelectionUp.CanExecute());
+
+            // reload
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants);
+            Assert.AreEqual(cnst.Name, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
+            Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
+            Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
+            Assert.AreEqual(0, vm.Config.Version);
+            Assert.IsNotNull(vm.pconfig_history);
+            Assert.IsNotNull(vm.pconfig_history.CurrentConfig);
+            Assert.IsNull(vm.pconfig_history.PrevStableConfig);
+            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
+
+            vm.Config.Model.GroupConstantGroups.NodeAddNewSubNode();
+            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
+
+            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync();
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
+            // create stable version
+            await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
+            Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants);
+            Assert.AreEqual(cnst.Name, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
+            Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
+            Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
+            Assert.AreEqual(1, vm.Config.Version);
+            Assert.IsNotNull(vm.pconfig_history);
+            Assert.IsNotNull(vm.pconfig_history.CurrentConfig);
+            Assert.IsNotNull(vm.pconfig_history.PrevStableConfig);
+            Assert.AreEqual(0, vm.pconfig_history.PrevStableConfig.Version);
+            // migration code is created?
+            // Assert.IsTrue(false);
+
+            // create next stable version
+            await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants);
+            Assert.AreEqual(cnst.Name, vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
+            Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
+            Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
+            Assert.AreEqual(2, vm.Config.Version);
+            Assert.IsNotNull(vm.pconfig_history);
+            Assert.IsNotNull(vm.pconfig_history.CurrentConfig);
+            Assert.IsNotNull(vm.pconfig_history.PrevStableConfig);
+            Assert.AreEqual(1, vm.pconfig_history.PrevStableConfig.Version);
+            // old migration code is kept?
+            // Assert.IsTrue(false);
+        }
+        [TestMethod]
+        public void Main003CanSaveConfigInSelectedSolutionFolderAndReloadFromThisFolderByDefault()
+        {
+            this.remove_config();
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            Assert.IsEmpty(vm.UserSettings.ListOpenConfigHistory);
+
+            vm.BtnNewConfig.Execute();
+            Assert.IsEmpty(vm.UserSettings.ListOpenConfigHistory);
+
+            vm.Config.Name = "test1";
+            vm.BtnConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
+            Assert.HasCount(1, vm.UserSettings.ListOpenConfigHistory);
+
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            // Load from previous save
+            Assert.HasCount(1, vm.UserSettings.ListOpenConfigHistory);
+            Assert.AreEqual("test1", vm.Config.Name);
+            vm.Config.Name = "test2";
+            vm.BtnConfigSaveAs.Execute(@"..\..\..\TestApps\config2.vcfg");
+
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            // Load from previous save
+            Assert.HasCount(2, vm.UserSettings.ListOpenConfigHistory);
+            Assert.AreEqual("test2", vm.Config.Name);
+        }
+        [TestMethod]
+        public void Main004CanSaveConfigAndReload()
+        {
+            this.remove_config();
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            vm.BtnNewConfig.Execute();
+            vm.Config.Name = "test1";
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            var c1 = gr.AddConstant("c1");
+            vm.BtnConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
+
+            vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            gr = vm.Config.Model.GroupConstantGroups.ListConstantGroups[0];
+            // Load from previous save
+            Assert.HasCount(1, vm.UserSettings.ListOpenConfigHistory);
+            Assert.AreEqual("test1", vm.Config.Name);
+            Assert.HasCount(1, gr.ListConstants);
+            Assert.AreEqual("c1", gr.ListConstants[0].Name);
+            Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c1.Guid));
         }
         [TestMethod]
         public void Main006CatalogSpecialFields()
@@ -2113,7 +2074,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("M.Documents.Documents", cfg.Model.GroupDocuments.GroupListDocuments.ModelPath);
             var d1 = cfg.Model.GroupDocuments.AddDocument("d1");
             Assert.AreEqual("M.Documents.Documents.d1", d1.ModelPath);
-            Assert.AreEqual("M.Documents.Documents.d1.Properties",d1.GroupProperties.ModelPath);
+            Assert.AreEqual("M.Documents.Documents.d1.Properties", d1.GroupProperties.ModelPath);
             var p2 = d1.GroupProperties.AddProperty("p2");
             Assert.AreEqual("M.Documents.Documents.d1.Properties.p2", p2.ModelPath);
 
