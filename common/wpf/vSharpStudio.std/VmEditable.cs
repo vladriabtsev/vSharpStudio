@@ -16,7 +16,11 @@ namespace ViewModelBase
         }
         private void VmEditable_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName != nameof(this.IsChanged) && e.PropertyName != "IsNewOrHasNew" && e.PropertyName != "IsExpanded" && e.PropertyName != "IconName")
+            if (e.PropertyName != nameof(this.IsChanged) 
+                && e.PropertyName != "IsNewOrHasNew" 
+                && e.PropertyName != "IsExpanded"
+                && e.PropertyName != "IsSelected"
+                && e.PropertyName != "IconName")
             {
                 if (IEditableObjectExt.IsTraceChanges)
                     this.IsChanged = true;
