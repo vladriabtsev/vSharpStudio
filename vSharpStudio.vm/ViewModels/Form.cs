@@ -189,7 +189,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(this.Parent != null);
             var node = Form.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            this.ParentGroupListForms.Add(node);
+            this.ParentGroupListForms.ListForms.Add(node, this);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;

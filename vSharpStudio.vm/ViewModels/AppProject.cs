@@ -232,7 +232,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = AppProject.Clone(this.ParentAppSolution, this, true, true);
             node.Parent = this.Parent;
-            this.ParentAppSolution.ListAppProjects.Add(node);
+            this.ParentAppSolution.ListAppProjects.Add(node, this);
             this._Name += "2";
             this.SetSelected(node);
             return node;

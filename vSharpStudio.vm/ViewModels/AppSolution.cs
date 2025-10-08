@@ -332,7 +332,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = AppSolution.Clone(this.ParentGroupListAppSolutions, this, true, true);
             node.Parent = this.Parent;
-            this.ParentGroupListAppSolutions.Add(node);
+            this.ParentGroupListAppSolutions.ListAppSolutions.Add(node, this);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;

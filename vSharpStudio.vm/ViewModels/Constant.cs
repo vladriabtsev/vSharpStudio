@@ -467,7 +467,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = Constant.Clone(this.ParentGroupListConstants, this, true, true);
             node.Parent = this.Parent;
-            this.ParentGroupListConstants.Add(node);
+            this.ParentGroupListConstants.ListConstants.Add(node, this);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;

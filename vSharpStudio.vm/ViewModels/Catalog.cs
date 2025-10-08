@@ -290,7 +290,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = Catalog.Clone(this.ParentGroupListCatalogs, this, true, true);
             node.Parent = this.Parent;
-            this.ParentGroupListCatalogs.Add(node);
+            this.ParentGroupListCatalogs.ListCatalogs.Add(node, this);
             this._Name += "2";
             this.SetSelected(node);
             return node;

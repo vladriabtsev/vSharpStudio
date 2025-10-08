@@ -41,7 +41,7 @@ namespace vSharpStudio.ViewModels
         public static MainPageVM Create(string? pluginsFolderPath = null, string? configFile = null, bool isCreateNewEmptyConfig = false)
         {
             // IsChanged in all classes is changed only if configuration objects properties are changed. Auto generated in code.
-            VmBindable.IsModifyIsChangedExplicitly = true;
+            //VmBindable.IsModifyIsChangedExplicitly = false;
             MainPageVM vm = new MainPageVM(null, configFile);
             vm.Compose(pluginsFolderPath);
             vm.OnFormLoaded(isCreateNewEmptyConfig);

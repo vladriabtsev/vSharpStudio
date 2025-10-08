@@ -71,7 +71,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(this.Parent != null);
             var node = MainViewForm.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            this.ParentGroupListMainViewForms.Add(node);
+            this.ParentGroupListMainViewForms.ListMainViewForms.Add(node, this);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;

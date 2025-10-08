@@ -190,7 +190,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = Enumeration.Clone(this.ParentGroupListEnumerations, this, true, true);
             node.Parent = this.Parent;
-            this.ParentGroupListEnumerations.Add(node);
+            this.ParentGroupListEnumerations.ListEnumerations.Add(node, this);
             this.Name = this.Name + "2";
             this.SetSelected(node);
             return node;

@@ -205,7 +205,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(this.Parent != null);
             var node = Register.Clone(this.Parent, this, true, true);
-            this.ParentGroupListRegisters.Add(node);
+            this.ParentGroupListRegisters.ListRegisters.Add(node, this);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;

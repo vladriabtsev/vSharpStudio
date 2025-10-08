@@ -77,7 +77,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(this.Parent != null);
             var node = Role.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            this.ParentGroupListRoles.Add(node);
+            this.ParentGroupListRoles.ListRoles.Add(node, this);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;

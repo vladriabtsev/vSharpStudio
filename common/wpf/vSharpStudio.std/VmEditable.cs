@@ -10,23 +10,10 @@ namespace ViewModelBase
         public override string ToDebugString() { return base.ToDebugString() + (IsChanged ? " Changed" : ""); }
         public VmEditable()
         {
-            if (!VmBindable.IsModifyIsChangedExplicitly)
-                this.PropertyChanged += VmEditable_PropertyChanged;
+            //if (!VmBindable.IsModifyIsChangedExplicitly)
+            //    this.PropertyChanged += VmEditable_PropertyChanged;
             //this._dtoBackup = this.Backup();
         }
-        private void VmEditable_PropertyChanged(object? sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName != nameof(this.IsChanged) 
-                && e.PropertyName != "IsNewOrHasNew" 
-                && e.PropertyName != "IsExpanded"
-                && e.PropertyName != "IsSelected"
-                && e.PropertyName != "IconName")
-            {
-                if (IEditableObjectExt.IsTraceChanges)
-                    this.IsChanged = true;
-            }
-        }
-
         //public virtual void ResetAllChanges()
         //{
         //    this.Restore(_dtoBackup);
@@ -57,6 +44,7 @@ namespace ViewModelBase
             get { return _IsChanged; }
             set
             {
+                //if (value && this.GetType().Name == "DocumentTimeline") { }
                 //if (SetProperty(ref _IsChanged, value))
                 //{
                 SetProperty(ref _IsChanged, value);

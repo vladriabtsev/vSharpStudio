@@ -115,7 +115,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = Document.Clone(this.ParentGroupListDocuments, this, true, true);
             node.Parent = this.Parent;
-            this.ParentGroupListDocuments.Add(node);
+            this.ParentGroupListDocuments.ListDocuments.Add(node, this);
             this.Name += "2";
             this.SetSelected(node);
             return node;

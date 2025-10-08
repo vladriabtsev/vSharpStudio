@@ -214,7 +214,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = RelationManyToMany.Clone(this.ParentManyToManyGroupRelations, this, true, true);
             node.Parent = this.Parent;
-            this.ParentManyToManyGroupRelations.ListRelations.Add(node);
+            this.ParentManyToManyGroupRelations.ListRelations.Add(node, this);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;

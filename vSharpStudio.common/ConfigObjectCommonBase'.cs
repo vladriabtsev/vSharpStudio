@@ -781,6 +781,10 @@
             {
                 return false;
             }
+            if (this.ModelPath.StartsWith("Plugins"))
+            {
+                return false;
+            }
             return this.GetParentCollection()?.CanDown((T)this) ?? false;
         }
         public void NodeMoveDown()
@@ -791,6 +795,10 @@
         public bool NodeCanMoveUp()
         {
             if (this is not ICanAddNode)
+            {
+                return false;
+            }
+            if (this.ModelPath.StartsWith("Plugins"))
             {
                 return false;
             }

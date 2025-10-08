@@ -117,7 +117,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(this.Parent != null);
             var node = RegisterDimension.Clone(this.Parent, this, true, true);
-            this.ParentGroupListRegisterDimensions.ListDimensions.Add(node);
+            this.ParentGroupListRegisterDimensions.ListDimensions.Add(node, this);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;

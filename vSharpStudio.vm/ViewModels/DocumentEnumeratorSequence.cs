@@ -117,7 +117,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(this.Parent != null);
             var node = DocumentEnumeratorSequence.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            this.ParentGroupListSequences.Add(node);
+            this.ParentGroupListSequences.ListEnumeratorSequences.Add(node, this);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;

@@ -66,6 +66,23 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.AddAllAppGenSettingsVmsToNode();
         }
+        public override ITreeConfigNode NodeAddClone()
+        {
+            var node = EnumerationPair.Clone(this.ParentEnumeration, this, true, true);
+            node.Parent = this.Parent;
+            this.ParentEnumeration.ListEnumerationPairs.Add(node, this);
+            this.Name = this.Name + "2";
+            this.SetSelected(node);
+            return node;
+        }
+        public override ITreeConfigNode NodeAddNew()
+        {
+            var node = new EnumerationPair(this.ParentEnumeration);
+            this.ParentEnumeration.ListEnumerationPairs.Add(node, this);
+            this.GetUniqueName(Defaults.EnumerationName, node, this.ParentEnumeration.ListEnumerationPairs);
+            this.SetSelected(node);
+            return node;
+        }
         public void Remove()
         {
             this.ParentEnumeration.ListEnumerationPairs.Remove(this);

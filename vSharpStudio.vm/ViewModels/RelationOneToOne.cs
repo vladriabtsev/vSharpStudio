@@ -201,7 +201,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = RelationOneToOne.Clone(this.ParentOneToOneGroupRelations, this, true, true);
             node.Parent = this.Parent;
-            this.ParentOneToOneGroupRelations.ListRelations.Add(node);
+            this.ParentOneToOneGroupRelations.ListRelations.Add(node, this);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;

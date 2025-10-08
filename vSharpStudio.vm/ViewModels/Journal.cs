@@ -71,7 +71,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Journal.Clone(this.ParentGroupListJournals, this, true, true);
-            this.ParentGroupListJournals.Add(node);
+            this.ParentGroupListJournals.ListJournals.Add(node, this);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;

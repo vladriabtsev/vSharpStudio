@@ -783,7 +783,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = AppProjectGenerator.Clone(this.ParentAppProject, this, true, true);
             node.Parent = this.Parent;
-            this.ParentAppProject.ListAppProjectGenerators.Add(node);
+            this.ParentAppProject.ListAppProjectGenerators.Add(node, this);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;

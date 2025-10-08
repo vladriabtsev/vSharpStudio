@@ -131,7 +131,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(this.Parent != null);
             var node = Detail.Clone(this.Parent, this, true, true);
-            this.ParentGroupListDetails.Add(node);
+            this.ParentGroupListDetails.ListDetails.Add(node, this);
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             Debug.Assert(glp != null);
             node.Position = glp.GroupProperties.GetNextPosition();

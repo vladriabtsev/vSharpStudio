@@ -63,7 +63,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(this.Parent != null);
             var node = Report.Clone(this.Parent, this, true, true);
-            this.ParentGroupListReports.Add(node);
+            this.ParentGroupListReports.ListReports.Add(node, this);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
