@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Numerics;
 using System.Text;
 using CommunityToolkit.Diagnostics;
 using Google.Protobuf;
@@ -230,6 +231,20 @@ namespace vSharpStudio.vm.ViewModels
                     return this.DataType.ClrTypeName + "?";
                 return this.DataType.ClrTypeName;
             }
+        }
+        public string GetSystemDataDbType()
+        {
+            return this.DataType.GetSystemDataDbType();
+            //switch (.EnumDbType)
+            //{
+            //    case EnumDbType.MsDataSqlClient:
+            //        return string.Empty;
+            //    case EnumDbType.MsDataSqlite:
+            //        return string.Empty;
+            //    case EnumDbType.Npgsql:
+            //        return string.Empty;
+            //}
+            //return string.Empty;
         }
         //public string ProtoType
         //{
