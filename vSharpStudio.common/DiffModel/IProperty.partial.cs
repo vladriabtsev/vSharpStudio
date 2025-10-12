@@ -100,7 +100,6 @@ namespace vSharpStudio.common
         #endregion Plugin group model
 
         string GetShortDescription(StringBuilder sb);
-        string GetSystemDataDbType();
     }
     public interface IPropertyRangeValuesRequirements
     {

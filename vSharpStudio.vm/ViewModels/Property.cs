@@ -232,20 +232,6 @@ namespace vSharpStudio.vm.ViewModels
                 return this.DataType.ClrTypeName;
             }
         }
-        public string GetSystemDataDbType()
-        {
-            return this.DataType.GetSystemDataDbType();
-            //switch (.EnumDbType)
-            //{
-            //    case EnumDbType.MsDataSqlClient:
-            //        return string.Empty;
-            //    case EnumDbType.MsDataSqlite:
-            //        return string.Empty;
-            //    case EnumDbType.Npgsql:
-            //        return string.Empty;
-            //}
-            //return string.Empty;
-        }
         //public string ProtoType
         //{
         //    get { return this.DataType.ProtoType; }
