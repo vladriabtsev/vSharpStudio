@@ -106,6 +106,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        protected override ConfigNodesCollection<AppProjectGenerator>? GetParentCollection() { return this.ParentAppProject.ListAppProjectGenerators; }
         protected override void OnConfigInitializedVirtual()
         {
             // All computed properties have to implement init logic in their getters
@@ -269,7 +270,7 @@ namespace vSharpStudio.vm.ViewModels
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
         [DisplayName("Model")]
-        [Description("Model node settings for generator")]
+        [Description("Default model node settings for generator")]
         public object? DynamicModelNodeSettings
         {
             get

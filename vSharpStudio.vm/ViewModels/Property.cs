@@ -64,9 +64,9 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsSimple { get; set; }
         [Browsable(false)]
-        public GroupListProperties ParentGroupListProperties { get { Debug.Assert(this.Parent != null); return (GroupListProperties)this.Parent; } }
+        public GroupListProperties? ParentGroupListProperties { get { Debug.Assert(this.Parent != null); return this.Parent as GroupListProperties; } }
         [Browsable(false)]
-        public IGroupListProperties ParentGroupListPropertiesI { get { Debug.Assert(this.Parent != null); return (IGroupListProperties)this.Parent; } }
+        public IGroupListProperties? ParentGroupListPropertiesI { get { Debug.Assert(this.Parent != null); return this.Parent as IGroupListProperties; } }
         [Browsable(false)]
         public IListProperties ParentListPropertiesI { get { Debug.Assert(this.Parent != null); if (this.ParentProperty != null) return (IListProperties)this.ParentProperty.ParentGroupListPropertiesI; return (IListProperties)this.Parent; } }
         [Browsable(false)]
@@ -619,7 +619,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                if (this.ParentGroupListProperties.ListProperties.SortingType!= EnumSortingType.EXPLICIT)
+                if (this.ParentGroupListProperties?.ListProperties.SortingType != EnumSortingType.EXPLICIT)
                     return false;
                 return this.IsTryAttach;
             }
@@ -633,7 +633,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                if (this.ParentGroupListProperties.ListProperties.SortingType != EnumSortingType.EXPLICIT)
+                if (this.ParentGroupListProperties?.ListProperties.SortingType != EnumSortingType.EXPLICIT)
                     return false;
                 return this.IsStartNewRow;
             }
@@ -647,7 +647,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                if (this.ParentGroupListProperties.ListProperties.SortingType != EnumSortingType.EXPLICIT)
+                if (this.ParentGroupListProperties?.ListProperties.SortingType != EnumSortingType.EXPLICIT)
                     return false;
                 return this.IsStartNewTabControl;
             }
@@ -661,7 +661,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                if (this.ParentGroupListProperties.ListProperties.SortingType != EnumSortingType.EXPLICIT)
+                if (this.ParentGroupListProperties?.ListProperties.SortingType != EnumSortingType.EXPLICIT)
                     return false;
                 return this.IsStopTabControl;
             }
@@ -675,7 +675,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                if (this.ParentGroupListProperties.ListProperties.SortingType != EnumSortingType.EXPLICIT)
+                if (this.ParentGroupListProperties?.ListProperties.SortingType != EnumSortingType.EXPLICIT)
                     return string.Empty;
                 return this.TabName;
             }
