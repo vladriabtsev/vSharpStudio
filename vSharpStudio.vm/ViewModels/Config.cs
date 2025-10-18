@@ -306,6 +306,11 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         this.OnSelectedNodeChanged?.Invoke();
                     }
+                    //this.OnSelectedNodeChanging?.Invoke(this._SelectedNode, value);
+                    //if (SetProperty(ref this._SelectedNode, value))
+                    //{
+                    //    this.OnSelectedNodeChanged?.Invoke();
+                    //}
 #if nDEBUG
                     stopWatch.Stop();
                     TimeSpan ts = stopWatch.Elapsed;
@@ -324,6 +329,8 @@ namespace vSharpStudio.vm.ViewModels
         private ITreeConfigNode? _SelectedNode;
         public Action? OnSelectedNodeChanged { get; set; }
         public Action<ITreeConfigNode?, ITreeConfigNode?>? OnSelectedNodeChanging { get; set; }
+        //public Func<Task>? OnSelectedNodeChangedAsync { get; set; }
+        //public Func<ITreeConfigNode?, ITreeConfigNode?, Task>? OnSelectedNodeChangingAsync { get; set; }
 
         #region Connection string editor
 

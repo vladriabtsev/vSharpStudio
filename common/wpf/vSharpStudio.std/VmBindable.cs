@@ -12,6 +12,7 @@ namespace ViewModelBase
     public class VmBindable : ObservableObject
     {
         public virtual string ToDebugString() { return ""; }
+        [BrowsableAttribute(false)]
         public string? ToolTipText
         {
             get
