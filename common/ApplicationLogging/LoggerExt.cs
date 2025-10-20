@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using static System.Net.Mime.MediaTypeNames;
 
 // https://andrewlock.net/defining-custom-logging-messages-with-loggermessage-define-in-asp-net-core/
 // https://www.c-sharpcorner.com/article/speed-up-logging-in-net/
@@ -70,19 +71,26 @@ namespace ApplicationLogging
             [CallerMemberName] string member = "",
             [CallerLineNumber] int line = 0)
         {
+#if DEBUG
             var sb = GetDebugText(text, file, member, line);
             return sb.ToString();
+#else
+            return string.Empty;
+#endif
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string CallerInfo(this string message, [CallerMemberName] string memberName = "",
                   [CallerFilePath] string sourceFilePath = "",
                   [CallerLineNumber] int sourceLineNumber = 0)
         {
+#if DEBUG
             var fileName = Path.GetFileNameWithoutExtension(sourceFilePath);
             var methodName = memberName;
             var line = sourceLineNumber;
-
             return $"{fileName}.cs {line} [{methodName}] {message}";
+#else
+            return string.Empty;
+#endif
         }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string StackInfo(this string message,
@@ -933,11 +941,11 @@ namespace ApplicationLogging
                 sb.Append(text);
                 sb.Append("\" ");
             }
-            else
-            {
-                sb.Append("\"\" ");
-            }
-            sb.Append(" Member: ");
+            //else
+            //{
+            //    sb.Append("\"\" ");
+            //}
+            sb.Append("Member: ");
             sb.Append(member);
             sb.Append(" File: ");
             sb.Append(Path.GetFileName(file));

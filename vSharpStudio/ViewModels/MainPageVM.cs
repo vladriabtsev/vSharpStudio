@@ -1619,6 +1619,11 @@ namespace vSharpStudio.ViewModels
                             sb = new StringBuilder();
                             dicAppSettings[outFileConn] = sb;
                             sb.AppendLine("{");
+#if DEBUG
+                            sb.Append("\t\"_generator_source\": \"");
+                            sb.Append(LoggerExt.FilePos());
+                            sb.AppendLine("\",");
+#endif
                             sb.AppendLine("\t\"db_conns\": {");
                         }
                         else
