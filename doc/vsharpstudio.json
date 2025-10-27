@@ -393,6 +393,11 @@
               "description": "@attr [Description(\"String\")]"
             },
             {
+              "name": "STRING_FIXED",
+              "number": "13",
+              "description": "@attr [Description(\"String Fixed\")]"
+            },
+            {
               "name": "ULID",
               "number": "15",
               "description": "@attr [Description(\"ULID\")]\nhttps://github.com/Cysharp/Ulid"

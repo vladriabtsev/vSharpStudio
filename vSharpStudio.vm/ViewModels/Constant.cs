@@ -195,6 +195,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.ConfigObjectGuid = string.Empty;
                     this.ListObjectRefs.Clear();
                     break;
+                case EnumDataType.STRING_FIXED:
                 case EnumDataType.STRING:
                     this.Length = 25;
                     this.Accuracy = 0;
@@ -228,7 +229,7 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(nameof(this.Accuracy));
                 lst.Add(nameof(this.IsPositive));
             }
-            if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
+            if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.STRING_FIXED && this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
             {
                 lst.Add(nameof(this.Length));
             }
@@ -412,6 +413,7 @@ namespace vSharpStudio.vm.ViewModels
                         return en.DefaultValue;
                     case EnumDataType.BOOL:
                         return ".Value";
+                    case EnumDataType.STRING_FIXED:
                     case EnumDataType.STRING:
                         return "";
                     case EnumDataType.ULID:

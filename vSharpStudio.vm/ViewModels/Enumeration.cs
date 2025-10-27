@@ -178,6 +178,7 @@ namespace vSharpStudio.vm.ViewModels
                 node = (EnumerationPair)node_impl;
             }
             this.ListEnumerationPairs.Add(node);
+            node.Parent = this;
             if (node_impl == null)
             {
                 this.GetUniqueName(Defaults.EnumerationPairName, node, this.ListEnumerationPairs);

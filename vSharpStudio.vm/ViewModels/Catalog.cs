@@ -254,6 +254,21 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddPropertyStringFixed(string name, uint length, string? guid = null)
+        {
+            var node = new Property(this.GroupProperties) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING_FIXED, Length = length };
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddPropertyUlid(string name, string? guid = null)
         {
             var node = new Property(this.GroupProperties) { Name = name };

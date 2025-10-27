@@ -625,6 +625,13 @@ namespace vSharpStudio.Unit
             // Assert.IsTrue(dt.VisibilityLength == Visibility.Visible);
             // Assert.IsTrue(dt.VisibilityObjectName == Visibility.Collapsed);
 
+            dt.DataTypeEnum = EnumDataType.STRING_FIXED;
+            dt.Validate();
+            Assert.AreEqual(0, dt.CountErrors);
+            Assert.AreEqual(0, dt.CountInfos);
+            Assert.AreEqual(0, dt.CountWarnings);
+            Assert.IsEmpty(dt.ValidationCollection);
+
             dt.DataTypeEnum = EnumDataType.STRING;
             dt.Validate();
             Assert.AreEqual(0, dt.CountErrors);

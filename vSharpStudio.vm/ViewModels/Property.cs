@@ -322,6 +322,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.NUMERICAL:
                     this.Length = 6;
                     break;
+                case EnumDataType.STRING_FIXED:
                 case EnumDataType.STRING:
                     this.Length = 25;
                     break;
@@ -362,7 +363,7 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(nameof(this.Accuracy));
                 lst.Add(nameof(this.IsPositive));
             }
-            if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
+            if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.STRING_FIXED && this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
             {
                 lst.Add(nameof(this.Length));
             }

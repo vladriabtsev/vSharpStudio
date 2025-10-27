@@ -132,6 +132,8 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		CHAR = 0,
 		[Description("String")]
 		STRING = 11,
+		[Description("String Fixed")]
+		STRING_FIXED = 13,
 		// https://github.com/Cysharp/Ulid
 		[Description("ULID")]
 		ULID = 15,

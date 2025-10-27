@@ -494,11 +494,21 @@ namespace vSharpStudio.vm.ViewModels
             };
             return dt;
         }
+        public IDataType GetDataTypeStringFixed(ITreeConfigNode? parent, uint length, bool isNullable)
+        {
+            DataType dt = new DataType(parent)
+            {
+                DataTypeEnum = EnumDataType.STRING_FIXED,
+                Length = length,
+                IsNullable = isNullable
+            };
+            return dt;
+        }
         public IDataType GetDataTypeStringGuid(ITreeConfigNode? parent, bool isNullable)
         {
             DataType dt = new DataType(parent)
             {
-                DataTypeEnum = EnumDataType.STRING,
+                DataTypeEnum = EnumDataType.STRING_FIXED,
                 Length = 36,
                 IsNullable = isNullable
             };
@@ -1419,6 +1429,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.NUMERICAL:
                 case EnumDataType.STRING:
+                case EnumDataType.STRING_FIXED:
                 case EnumDataType.ULID:
                 case EnumDataType.TIME:
                     throw new ArgumentException("Unexpected EnumDataType type");

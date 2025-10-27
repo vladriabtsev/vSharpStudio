@@ -204,6 +204,7 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumDataType.ENUMERATION:
                     break;
+                case EnumDataType.STRING_FIXED:
                 case EnumDataType.STRING:
                     this._Length = length ?? 30;
                     break;
@@ -396,6 +397,12 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append("clr:");
                     sb.Append(p.ClrTypeName);
                     break;
+                case EnumDataType.STRING_FIXED:
+                    Debug.Assert(p.Length > 0);
+                    sb.Append(", Fixed Length: ");
+                    if (p.Length > 0)
+                        sb.Append(p.Length);
+                    break;
                 case EnumDataType.STRING:
                     sb.Append(", Length: ");
                     if (p.Length > 0)
@@ -497,6 +504,10 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         this.MaxValue = string.Empty;
                     }
+                    break;
+                case EnumDataType.STRING_FIXED:
+                    Debug.Assert(this.Length > 0);
+                    this.MaxValue = "length " + this.Length;
                     break;
                 case EnumDataType.STRING:
                     if (this.Length > 0)
@@ -667,6 +678,7 @@ namespace vSharpStudio.vm.ViewModels
                     return "bool";
                 case EnumDataType.CHAR:
                     return "char";
+                case EnumDataType.STRING_FIXED:
                 case EnumDataType.STRING:
                     return "string";
                 case EnumDataType.ULID:
@@ -983,6 +995,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._IsPositive = false;
                     break;
                 case EnumDataType.STRING:
+                case EnumDataType.STRING_FIXED:
                     this.VisibilityIsPositive = Visibility.Collapsed;
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Visible;
