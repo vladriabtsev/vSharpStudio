@@ -3226,7 +3226,7 @@
             },
             {
               "name": "use_name_property",
-              "description": "@attr [PropertyOrderAttribute(27)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item\")]",
+              "description": "@attr [PropertyOrderAttribute(28)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item\")]",
               "label": "",
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
@@ -3237,8 +3237,20 @@
               "defaultValue": ""
             },
             {
+              "name": "is_unicode_name",
+              "description": "@attr [PropertyOrderAttribute(29)]\n@attr [DisplayName(\"Unicode\")]\n@attr [Description(\"Unicode encoding\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "max_name_length",
-              "description": "@attr [PropertyOrderAttribute(28)]\n@attr [DisplayName(\"Name Length\")]\n@attr [Description(\"Maximum catalog item name length. If zero, than unlimited length\")]",
+              "description": "@attr [PropertyOrderAttribute(30)]\n@attr [DisplayName(\"Name Length\")]\n@attr [Description(\"Maximum catalog item name length. If zero, than unlimited length\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -3250,7 +3262,7 @@
             },
             {
               "name": "use_description_property",
-              "description": "@attr [PropertyOrderAttribute(29)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item\")]",
+              "description": "@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item\")]",
               "label": "",
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
@@ -3261,8 +3273,20 @@
               "defaultValue": ""
             },
             {
+              "name": "is_unicode_description",
+              "description": "@attr [PropertyOrderAttribute(33)]\n@attr [DisplayName(\"Unicode\")]\n@attr [Description(\"Unicode encoding\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "max_description_length",
-              "description": "@attr [PropertyOrderAttribute(30)]\n@attr [DisplayName(\"Desc Length\")]\n@attr [Description(\"Maximum catalog item description length. If zero, than unlimited length\")]",
+              "description": "@attr [PropertyOrderAttribute(34)]\n@attr [DisplayName(\"Desc Length\")]\n@attr [Description(\"Maximum catalog item description length. If zero, than unlimited length\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -3513,8 +3537,20 @@
               "defaultValue": ""
             },
             {
+              "name": "is_unicode",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Unicode\")]\n@attr [Description(\"Unicode encoding\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "max_sequence_length",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Max Sequence\")]\n@attr [Description(\"Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number '9' is limited by this parameter\")]",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Max Sequence\")]\n@attr [Description(\"Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number '9' is limited by this parameter\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -3526,7 +3562,7 @@
             },
             {
               "name": "prefix",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Prefix\")]\n@attr [Description(\"Prefix for text code sequence\")]",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Prefix\")]\n@attr [Description(\"Prefix for text code sequence\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4510,7 +4546,7 @@
             },
             {
               "name": "is_unicode",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Unicode\")]\n@attr [Description(\"Unicode character strings\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Unicode\")]\n@attr [Description(\"Unicode encoding\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",

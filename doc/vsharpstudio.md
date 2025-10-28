@@ -334,10 +334,12 @@ Application project generator
 | use_items_at_root | [bool](#bool) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Items at root&#34;)] @attr [Description(&#34;Support items in the root without folders&#34;)] |
 | use_code_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
 | code_property_settings | [proto_catalog_code_property_settings](#proto_config-proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] |
-| use_name_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
-| max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(28)] @attr [DisplayName(&#34;Name Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
-| use_description_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
-| max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(30)] @attr [DisplayName(&#34;Desc Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
+| use_name_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(28)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
+| is_unicode_name | [bool](#bool) |  | @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Unicode&#34;)] @attr [Description(&#34;Unicode encoding&#34;)] |
+| max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(30)] @attr [DisplayName(&#34;Name Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
+| use_description_property | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
+| is_unicode_description | [bool](#bool) |  | @attr [PropertyOrderAttribute(33)] @attr [DisplayName(&#34;Unicode&#34;)] @attr [Description(&#34;Unicode encoding&#34;)] |
+| max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(34)] @attr [DisplayName(&#34;Desc Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
 | index_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_ref_folder_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_ref_tree_parent_code_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -371,8 +373,9 @@ Application project generator
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sequence_type | [proto_enum_code_type](#proto_config-proto_enum_code_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Sequence type&#34;)] @attr [Description(&#34;Sequence type general settings&#34;)] |
-| max_sequence_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number &#39;9&#39; is limited by this parameter&#34;)] |
-| prefix | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
+| is_unicode | [bool](#bool) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Unicode&#34;)] @attr [Description(&#34;Unicode encoding&#34;)] |
+| max_sequence_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number &#39;9&#39; is limited by this parameter&#34;)] |
+| prefix | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
 | unique_scope | [proto_enum_catalog_code_unique_scope](#proto_config-proto_enum_catalog_code_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
 | property_code_name | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Name of Code property&#34;)] @attr [Description(&#34;Name of code auto generated property if it is used in catalog. If empty, default model catalog Code will be used.&#34;)] |
 
@@ -521,7 +524,7 @@ Constant application wise value
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | data_type_enum | [proto_enum_data_type](#proto_config-proto_enum_data_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Type&#34;)] |
-| is_unicode | [bool](#bool) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Unicode&#34;)] @attr [Description(&#34;Unicode character strings&#34;)] |
+| is_unicode | [bool](#bool) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Unicode&#34;)] @attr [Description(&#34;Unicode encoding&#34;)] |
 | length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Maximum length of data (characters in string, or decimal digits for numeric data)&#34;)] |
 | is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Positive&#34;)] @attr [Description(&#34;Expected numerical value always &gt;= 0&#34;)] |
 | accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for numeric data&#34;)] |

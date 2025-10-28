@@ -107,7 +107,9 @@ namespace vSharpStudio.vm.ViewModels
             this._GroupIconType = EnumCatalogTreeIcon.Folder;
             this._UseCodeProperty = EnumUseType.Default;
             this._UseNameProperty = EnumUseType.Default;
+            this._IsUnicodeName = true;
             this._UseDescriptionProperty = EnumUseType.Default;
+            this._IsUnicodeDescription = true;
             var m = this.Cfg.Model;
             this._PropertyRefFolder = (Property)m.GetPropertyRef(this, this.Folder, System.Guid.NewGuid().ToString(), Property.SpecialPropertyNameRefParent, 0, false);
             this._PropertyRefSelf = (Property)m.GetPropertyRef(this, this, System.Guid.NewGuid().ToString(), Property.SpecialPropertyNameRefTreeParent, 0, true);

@@ -363,7 +363,7 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(nameof(this.Accuracy));
                 lst.Add(nameof(this.IsPositive));
             }
-            if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.STRING_FIXED)
+            if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.STRING_FIXED && this.DataType.DataTypeEnum != EnumDataType.CHAR)
             {
                 lst.Add(nameof(this.IsUnicode));
             }

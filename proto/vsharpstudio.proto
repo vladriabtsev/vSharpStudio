@@ -927,7 +927,7 @@ message proto_data_type {
     proto_enum_data_type data_type_enum = 1; 
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("Unicode")]
-    // @attr [Description("Unicode character strings")]
+    // @attr [Description("Unicode encoding")]
     bool is_unicode = 2; 
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("Length")]
@@ -2108,13 +2108,17 @@ message proto_catalog_code_property_settings {
     // @attr [Description("Sequence type general settings")]
     proto_enum_code_type sequence_type = 1;
     // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("Unicode")]
+    // @attr [Description("Unicode encoding")]
+    bool is_unicode = 2; 
+    // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("Max Sequence")]
     // @attr [Description("Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number '9' is limited by this parameter")]
-    uint32 max_sequence_length = 2;
-    // @attr [PropertyOrderAttribute(3)]
+    uint32 max_sequence_length = 3;
+    // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("Prefix")]
     // @attr [Description("Prefix for text code sequence")]
-    string prefix = 3;
+    string prefix = 4;
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Unique Scope")]
     // @attr [Description("Code has to be unique in selected scope")]
@@ -2197,31 +2201,39 @@ message proto_catalog {
     // @attr [Description("Code property settings for catalog item")]
     // @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]
     proto_catalog_code_property_settings code_property_settings = 26;
-    // @attr [PropertyOrderAttribute(27)]
+    // @attr [PropertyOrderAttribute(28)]
     // @attr [DisplayName("Use Name")]
     // @attr [Description("Use Name property for catalog item")]
-    proto_enum_use_type use_name_property = 27;
-    // @attr [PropertyOrderAttribute(28)]
+    proto_enum_use_type use_name_property = 28;
+    // @attr [PropertyOrderAttribute(29)]
+    // @attr [DisplayName("Unicode")]
+    // @attr [Description("Unicode encoding")]
+    bool is_unicode_name = 29; 
+    // @attr [PropertyOrderAttribute(30)]
     // @attr [DisplayName("Name Length")]
     // @attr [Description("Maximum catalog item name length. If zero, than unlimited length")]
-    uint32 max_name_length = 28;
-    // @attr [PropertyOrderAttribute(29)]
+    uint32 max_name_length = 30;
+    // @attr [PropertyOrderAttribute(32)]
     // @attr [DisplayName("Use Description")]
     // @attr [Description("Use Description property for catalog item")]
-    proto_enum_use_type use_description_property = 29;
-    // @attr [PropertyOrderAttribute(30)]
+    proto_enum_use_type use_description_property = 32;
+    // @attr [PropertyOrderAttribute(33)]
+    // @attr [DisplayName("Unicode")]
+    // @attr [Description("Unicode encoding")]
+    bool is_unicode_description = 33; 
+    // @attr [PropertyOrderAttribute(34)]
     // @attr [DisplayName("Desc Length")]
     // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
-    uint32 max_description_length = 30;
+    uint32 max_description_length = 34;
 
     // @attr [Browsable(false)]
-    string index_unique_code_guid = 31;
+    string index_unique_code_guid = 36;
     // @attr [Browsable(false)]
-    string index_ref_folder_code_guid = 32;
+    string index_ref_folder_code_guid = 37;
     // @attr [Browsable(false)]
-    string index_ref_tree_parent_code_guid = 33;
+    string index_ref_tree_parent_code_guid = 38;
     // @attr [Browsable(false)]
-    string index_not_unique_code_guid = 34;
+    string index_not_unique_code_guid = 39;
 
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Item Icon")]

@@ -1500,16 +1500,25 @@ Generator output file name </p></td>
                   <td>use_name_property</td>
                   <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(27)]
+                  <td><p>@attr [PropertyOrderAttribute(28)]
 @attr [DisplayName(&#34;Use Name&#34;)]
 @attr [Description(&#34;Use Name property for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_unicode_name</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(29)]
+@attr [DisplayName(&#34;Unicode&#34;)]
+@attr [Description(&#34;Unicode encoding&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>max_name_length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(28)]
+                  <td><p>@attr [PropertyOrderAttribute(30)]
 @attr [DisplayName(&#34;Name Length&#34;)]
 @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] </p></td>
                 </tr>
@@ -1518,16 +1527,25 @@ Generator output file name </p></td>
                   <td>use_description_property</td>
                   <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(29)]
+                  <td><p>@attr [PropertyOrderAttribute(32)]
 @attr [DisplayName(&#34;Use Description&#34;)]
 @attr [Description(&#34;Use Description property for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_unicode_description</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(33)]
+@attr [DisplayName(&#34;Unicode&#34;)]
+@attr [Description(&#34;Unicode encoding&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>max_description_length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(30)]
+                  <td><p>@attr [PropertyOrderAttribute(34)]
 @attr [DisplayName(&#34;Desc Length&#34;)]
 @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] </p></td>
                 </tr>
@@ -1695,10 +1713,19 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_unicode</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;Unicode&#34;)]
+@attr [Description(&#34;Unicode encoding&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>max_sequence_length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
+                  <td><p>@attr [PropertyOrderAttribute(3)]
 @attr [DisplayName(&#34;Max Sequence&#34;)]
 @attr [Description(&#34;Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number &#39;9&#39; is limited by this parameter&#34;)] </p></td>
                 </tr>
@@ -1707,7 +1734,7 @@ Generator output file name </p></td>
                   <td>prefix</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)]
+                  <td><p>@attr [PropertyOrderAttribute(4)]
 @attr [DisplayName(&#34;Prefix&#34;)]
 @attr [Description(&#34;Prefix for text code sequence&#34;)] </p></td>
                 </tr>
@@ -2430,7 +2457,7 @@ unique in object (can be used as Protobuf field position)
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(2)]
 @attr [DisplayName(&#34;Unicode&#34;)]
-@attr [Description(&#34;Unicode character strings&#34;)] </p></td>
+@attr [Description(&#34;Unicode encoding&#34;)] </p></td>
                 </tr>
               
                 <tr>

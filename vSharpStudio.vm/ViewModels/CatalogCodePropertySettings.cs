@@ -29,6 +29,8 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumCodeType.Number:
                     return $"Number{this.Prefix}{this.MaxSequenceLength}-{unique}";
                 case EnumCodeType.Text:
+                    if (this.IsUnicode)
+                    return $"Text{this.Prefix}{this.MaxSequenceLength}-Unicode-{unique}";
                     return $"Text{this.Prefix}{this.MaxSequenceLength}-{unique}";
                 default:
                     throw new NotImplementedException();
@@ -72,6 +74,7 @@ namespace vSharpStudio.vm.ViewModels
             this._MaxSequenceLength = 5;
             this._Prefix = "";
             this._UniqueScope = common.EnumCatalogCodeUniqueScope.code_unique_in_whole_catalog;
+            this._IsUnicode = true;
             //Init();
         }
         //protected override void OnInitFromDto()
@@ -114,6 +117,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.ParentCatalog?.NotifyCodePropertySettingsChanged();
             this.ParentCatalogFolder?.NotifyCodePropertySettingsChanged();
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
         }
         partial void OnUniqueScopeChanged()
         {
@@ -129,12 +133,10 @@ namespace vSharpStudio.vm.ViewModels
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
-            //if (!string.IsNullOrWhiteSpace(this.SequenceGuid))
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.SequenceType));
-            //    lst.Add(this.GetPropertyName(() => this.MaxSequenceLength));
-            //    lst.Add(this.GetPropertyName(() => this.Prefix));
-            //}
+            if (this._SequenceType == EnumCodeType.Number)
+            {
+                lst.Add(nameof(this.IsUnicode));
+            }
             return [.. lst];
         }
     }
