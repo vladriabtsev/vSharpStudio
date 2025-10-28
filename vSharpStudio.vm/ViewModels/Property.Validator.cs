@@ -254,6 +254,17 @@ namespace vSharpStudio.vm.ViewModels
                         }
                     }
                 }
+                else if (p.DataTypeEnum == EnumDataType.STRING_FIXED)
+                {
+                    if (p.Length == 0)
+                    {
+                        var vf = new ValidationFailure(nameof(p.Length), $"Expected grater than zero")
+                        {
+                            Severity = Severity.Error
+                        };
+                        cntx.AddFailure(vf);
+                    }
+                }
                 else if (p.DataTypeEnum == EnumDataType.NUMERICAL)
                 {
                     if (p.Length <= p.Accuracy)
