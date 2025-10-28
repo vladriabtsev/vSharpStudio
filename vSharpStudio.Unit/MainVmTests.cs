@@ -1742,7 +1742,7 @@ namespace vSharpStudio.Unit
             var gc = m.GroupCatalogs;
             var c = gc.AddCatalog("Simple");
 
-            var p = c.GroupProperties.AddPropertyChar("char_notnullable");
+            var p = c.GroupProperties.AddPropertyChar("char_notnullable", true);
             #region char
             p.RangeValuesRequirementStr = "'c'";
             p.Validate();
@@ -1854,7 +1854,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(v.IsHasErrors);
             #endregion char
 
-            p = c.GroupProperties.AddPropertyString("str_unlimited", 0);
+            p = c.GroupProperties.AddPropertyString("str_unlimited", false, 0);
 
             #region string requirements validation
             p.RangeValuesRequirementStr = "\"\"";

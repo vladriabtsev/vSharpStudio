@@ -222,7 +222,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         [Category("")]
-        [PropertyOrderAttribute(10)]
+        [PropertyOrderAttribute(9)]
         public string ClrType
         {
             get
@@ -363,6 +363,10 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(nameof(this.Accuracy));
                 lst.Add(nameof(this.IsPositive));
             }
+            if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.STRING_FIXED)
+            {
+                lst.Add(nameof(this.IsUnicode));
+            }
             if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.STRING_FIXED && this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
             {
                 lst.Add(nameof(this.Length));
@@ -421,7 +425,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         [Category("")]
         [DisplayName("Type")]
-        [PropertyOrderAttribute(11)]
+        [PropertyOrderAttribute(10)]
         public EnumDataType DataTypeEnum
         {
             get { return this.DataType.DataTypeEnum; }
@@ -436,6 +440,22 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnPropertyChanged();
                 this.ValidateProperty();
                 this.Tag = null;
+            }
+        }
+        [Category("")]
+        [DisplayName("Unicode")]
+        [Description("Unicode string")]
+        [PropertyOrderAttribute(11)]
+        public bool IsUnicode
+        {
+            get { return this.DataType.IsUnicode; }
+            set
+            {
+                this.DataType.IsUnicode = value;
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.ClrType));
+                this.ValidateProperty();
+                this.OnPropertyChanged(nameof(this.PropertyDefinitions));
             }
         }
         [Category("")]

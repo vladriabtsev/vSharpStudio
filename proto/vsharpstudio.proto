@@ -768,7 +768,9 @@ enum proto_enum_data_type {
     CHAR = 0;
     // @attr [Description("String")]
     STRING = 11;
+    // @attr [Browsable(false)]
     // @attr [Description("String Fixed")]
+    // not sure how work in c# with this typ
     STRING_FIXED = 13;
     // @attr [Description("ULID")]
     // https://github.com/Cysharp/Ulid
@@ -923,6 +925,10 @@ message proto_data_type {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Type")]
     proto_enum_data_type data_type_enum = 1; 
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("Unicode")]
+    // @attr [Description("Unicode character strings")]
+    bool is_unicode = 2; 
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("Length")]
     // @attr [Description("Maximum length of data (characters in string, or decimal digits for numeric data)")]

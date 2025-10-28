@@ -2425,6 +2425,15 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
+                  <td>is_unicode</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;Unicode&#34;)]
+@attr [Description(&#34;Unicode character strings&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
@@ -10508,7 +10517,9 @@ with history</p></td>
               <tr>
                 <td>STRING_FIXED</td>
                 <td>13</td>
-                <td><p>@attr [Description(&#34;String Fixed&#34;)]</p></td>
+                <td><p>@attr [Browsable(false)]
+@attr [Description(&#34;String Fixed&#34;)]
+not sure how work in c# with this typ</p></td>
               </tr>
             
               <tr>

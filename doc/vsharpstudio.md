@@ -521,6 +521,7 @@ Constant application wise value
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | data_type_enum | [proto_enum_data_type](#proto_config-proto_enum_data_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Type&#34;)] |
+| is_unicode | [bool](#bool) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Unicode&#34;)] @attr [Description(&#34;Unicode character strings&#34;)] |
 | length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Maximum length of data (characters in string, or decimal digits for numeric data)&#34;)] |
 | is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Positive&#34;)] @attr [Description(&#34;Expected numerical value always &gt;= 0&#34;)] |
 | accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for numeric data&#34;)] |
@@ -2543,7 +2544,7 @@ with history |
 | ---- | ------ | ----------- |
 | CHAR | 0 | @attr [Description(&#34;Char&#34;)] |
 | STRING | 11 | @attr [Description(&#34;String&#34;)] |
-| STRING_FIXED | 13 | @attr [Description(&#34;String Fixed&#34;)] |
+| STRING_FIXED | 13 | @attr [Browsable(false)] @attr [Description(&#34;String Fixed&#34;)] not sure how work in c# with this typ |
 | ULID | 15 | @attr [Description(&#34;ULID&#34;)] https://github.com/Cysharp/Ulid |
 | NUMERICAL | 21 | @attr [Description(&#34;Numerical&#34;)] |
 | BOOL | 31 | @attr [Description(&#34;Boolean&#34;)] |

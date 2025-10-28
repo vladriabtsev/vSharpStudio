@@ -180,7 +180,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyString(string name, uint length, bool isNullable = false, uint? min_length = null, uint? max_length = null, string? guid = null)
+        public Property AddPropertyString(string name, bool isUnicode, uint length, bool isNullable = false, uint? min_length = null, uint? max_length = null, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -192,6 +192,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
+            node.IsUnicode = isUnicode;
             node.IsNullable = isNullable;
             if (min_length != null)
                 node.MinLengthRequirement = min_length.ToString()!;
@@ -200,7 +201,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyStringFixed(string name, uint length, bool isNullable = false, string? guid = null)
+        public Property AddPropertyStringFixed(string name, bool isUnicode, uint length, bool isNullable = false, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -212,6 +213,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING_FIXED, Length = length };
+            node.IsUnicode = isUnicode;
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;

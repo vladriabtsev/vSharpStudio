@@ -99,6 +99,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Length = 10;
             this._DataTypeEnum = EnumDataType.STRING;
+            this._IsUnicode = true;
             //Init();
             //this.PropertyChanging += DataType_PropertyChanging;
             //this.PropertyChanged += DataType_PropertyChanged;
@@ -402,6 +403,8 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append(", Fixed Length: ");
                     if (p.Length > 0)
                         sb.Append(p.Length);
+                    if (p.IsUnicode)
+                        sb.Append(", Unicode");
                     break;
                 case EnumDataType.STRING:
                     sb.Append(", Length: ");
@@ -409,6 +412,8 @@ namespace vSharpStudio.vm.ViewModels
                         sb.Append(p.Length);
                     else
                         sb.Append("unlimited");
+                    if (p.IsUnicode)
+                        sb.Append(", Unicode");
                     break;
                 case EnumDataType.ULID:
                     break;

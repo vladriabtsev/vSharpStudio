@@ -395,7 +395,7 @@
             {
               "name": "STRING_FIXED",
               "number": "13",
-              "description": "@attr [Description(\"String Fixed\")]"
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"String Fixed\")]\nnot sure how work in c# with this typ"
             },
             {
               "name": "ULID",
@@ -4503,6 +4503,18 @@
               "type": "proto_enum_data_type",
               "longType": "proto_enum_data_type",
               "fullType": "proto_config.proto_enum_data_type",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "is_unicode",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Unicode\")]\n@attr [Description(\"Unicode character strings\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
