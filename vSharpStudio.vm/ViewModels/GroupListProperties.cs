@@ -164,7 +164,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyChar(string name, bool isNullable = false, string? guid = null)
+        public Property AddPropertyChar(string name, bool isUnicode, bool isNullable = false, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -176,6 +176,7 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.CHAR };
+            node.IsUnicode = isUnicode;
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;
