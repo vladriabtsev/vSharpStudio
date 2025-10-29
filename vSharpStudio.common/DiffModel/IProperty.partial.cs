@@ -66,6 +66,7 @@ namespace vSharpStudio.common
         bool IsCsNullable { get; set; }
         bool IsNullable { get; }
         bool IsReadonly { get; }
+        bool IsUnicode { get; }
 
         /// <summary>
         /// Is hidden on UI (special properties)
