@@ -12,12 +12,33 @@ namespace vSharpStudio.common
 
         TryKeepAll = TryKeepIndexes | TryKeepTables
     }
+    /// <summary>
+    /// A component which translates a CLR name (e.g. SomeClass) into a database name (e.g. some_class)
+    /// according to some scheme.
+    /// Used for mapping enum and composite types.
+    /// Idea from Npgsql.INpgsqlNameTranslator.
+    /// </summary>
+    public interface IDbNameTranslator
+    {
+        static void TranslateNameCacheClear() { throw new NotImplementedException(); }
+        /// <summary>
+        /// Given a CLR type name (e.g class, struct, enum), translates its name to a database type name.
+        /// </summary>
+        static string TranslateTypeNameStatic(string clrName) { throw new NotImplementedException(); }
+        string TranslateTypeName(string clrName);
+
+        /// <summary>
+        /// Given a CLR member name (property or field), translates its name to a database type name.
+        /// </summary>
+        static string TranslateMemberNameStatic(string clrName) { throw new NotImplementedException(); }
+        string TranslateMemberName(string clrName);
+    }
     // https://www.codeproject.com/Articles/376033/From-Zero-to-Proficient-with-MEF
     // https://docs.microsoft.com/en-us/dotnet/framework/mef/
     /// <summary>
     /// Interface for DbDesign type of plugins
     /// </summary>
-    public interface IvPluginDbGenerator : IvPluginGenerator
+    public interface IvPluginDbGenerator : IvPluginGenerator, IDbNameTranslator
     {
         //ILoggerFactory LoggerFactory { get; set; }
         bool IsStableDbConnection { get; set; }

@@ -2115,8 +2115,8 @@ namespace vSharpStudio.Unit
             Assert.HasCount(1, c.dicCatalogAccess);
             Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, c.GetRoleCatalogAccess(role));
             Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, gc.GetRoleCatalogAccess(role));
-            var p = c.GroupProperties.AddPropertyChar("char_notnullable");
-            var pf = c.Folder.GroupProperties.AddPropertyChar("pfolder");
+            var p = c.GroupProperties.AddPropertyChar("char_notnullable", false);
+            var pf = c.Folder.GroupProperties.AddPropertyChar("pfolder", false);
             Assert.HasCount(1, p.dicPropertyAccess);
             Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, c.GetRoleCatalogAccess(role));
             Assert.AreEqual(EnumPrintAccess.PR_PRINT, c.GetRoleCatalogPrint(role));
@@ -2138,7 +2138,7 @@ namespace vSharpStudio.Unit
             Assert.HasCount(1, d.dicDocumentAccess);
             Assert.AreEqual(EnumDocumentAccess.D_UNPOST, d.GetRoleDocumentAccess(role));
             Assert.AreEqual(EnumDocumentAccess.D_UNPOST, gd.GetRoleDocumentAccess(role));
-            var pd = d.GroupProperties.AddPropertyChar("char_notnullable");
+            var pd = d.GroupProperties.AddPropertyChar("char_notnullable", false);
             Assert.HasCount(1, pd.dicPropertyAccess);
             Assert.AreEqual(EnumPropertyAccess.P_EDIT, pd.GetRolePropertyAccess(role));
 
