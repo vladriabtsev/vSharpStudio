@@ -93,7 +93,7 @@ namespace vPlugin.Sample
         }
         public Dictionary<string, List<string>> DicPathTypes { get; private set; }
 
-        public string PKeyTypeStr => throw new NotImplementedException();
+        public string PKeyClrTypeStr => throw new NotImplementedException();
 
         public string VersionFieldTypeStr => throw new NotImplementedException();
 
