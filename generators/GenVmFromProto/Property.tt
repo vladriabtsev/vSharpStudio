@@ -11,7 +11,7 @@
     get { return this._<#=FieldName#>; }
     set
     {
-        // Use 'On<#=FieldName#>Changing' to change 'value' before setting property. It is a patial method and expected will be implemented not often.
+        // Use 'On<#=FieldName#>Changing' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
 <#   if (this.DocMes.IsBindableBase && this.isSetPropertyByRef) { #>
         if (SetProperty(this._<#=FieldName#>, value, (t) => { bool isCancel = false; this.On<#=FieldName#>Changing(<#=refstr#>value, ref isCancel); if (isCancel) return; this._<#=FieldName#> = value; this.On<#=FieldName#>Changed(); })) // <#=t4.FilePos() #>
         {

@@ -78,8 +78,8 @@ namespace GenVmFromProto
             
             #line default
             #line hidden
-            this.Write("Changing\' to change \'value\' before setting property. It is a patial method and ex" +
-                    "pected will be implemented not often.\r\n");
+            this.Write("Changing\' to change \'value\' before setting property. It is a partial method and e" +
+                    "xpected will be implemented not often.\r\n");
             
             #line 15 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt"
    if (this.DocMes.IsBindableBase && this.isSetPropertyByRef) { 

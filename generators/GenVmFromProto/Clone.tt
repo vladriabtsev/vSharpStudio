@@ -35,9 +35,9 @@ public static <#= message.Name.ToNameCs() #> Clone(I<#= message.Name.ToNameCs() 
 {
     Debug.Assert(from != null);
 <# if (this.Doc.IsWithParent) { #>
-    <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>(parent); // <#=t4.FilePos() #>
+    var vm = new <#= message.Name.ToNameCs() #>(parent); // <#=t4.FilePos() #>
 <# } else { #>
-    <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>(); // <#=t4.FilePos() #>
+    var vm = new <#= message.Name.ToNameCs() #>(); // <#=t4.FilePos() #>
 <# } #>
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
 <#      if (field.IsRepeated) { #>
@@ -210,11 +210,10 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
 <#        } #>
 <#      } else { #>
 <#        if (!field.IsCsSimple() && field.IsMessage() && !field.IsNullable()) { #>
-    if (vm.<#= field.Name.ToNameCs() #> == null) // <#=t4.FilePos() #>
 <#          if (field.GetMessageDoc().IsWithParent) { #>
-        vm.<#= field.Name.ToNameCs() #> = new <#= field.ToTypeCs() #>(vm); // <#=t4.FilePos() #>
+    vm.<#= field.Name.ToNameCs() #> ??= new <#= field.ToTypeCs() #>(vm); // <#=t4.FilePos() #>
 <#          } else { #>
-        vm.<#= field.Name.ToNameCs() #> = new <#= field.ToTypeCs() #>(); // <#=t4.FilePos() #>
+    vm.<#= field.Name.ToNameCs() #> ??= new <#= field.ToTypeCs() #>(); // <#=t4.FilePos() #>
 <#          } #>
     <#=nameSpace#>.<#= field.ToTypeCs() #>.ConvertToVM(m.<#= field.Name.ToNameCs() #>, (<#= field.ToTypeCs() #>)vm.<#= field.Name.ToNameCs() #>); // <#=t4.FilePos() #>
 <#        } else { #>
