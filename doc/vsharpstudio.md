@@ -2565,7 +2565,7 @@ with history |
 | CATALOGS | 101 | @attr [Description(&#34;Catalogs&#34;)] |
 | DOCUMENT | 111 | @attr [Description(&#34;Document&#34;)] |
 | DOCUMENTS | 121 | @attr [Description(&#34;Documents&#34;)] |
-| ANY | 131 | @attr [Browsable(false)] @attr [Description(&#34;Any&#34;)] |
+| ANY | 131 | @attr [Browsable(false)] @attr [Description(&#34;Any Doc or Catalog&#34;)] |
 | REF_DETAIL_TO_PARENT_DETAIL | 141 | @attr [Browsable(false)] |
 | REF_DETAIL_TO_PARENT_CATALOG | 142 | @attr [Browsable(false)] |
 | REF_DETAIL_TO_PARENT_CATALOG_FOLDER | 143 | @attr [Browsable(false)] |

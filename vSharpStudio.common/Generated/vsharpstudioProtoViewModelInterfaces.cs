@@ -177,7 +177,7 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		[Description("Documents")]
 		DOCUMENTS = 121,
 		[Browsable(false)]
-		[Description("Any")]
+		[Description("Any Doc or Catalog")]
 		ANY = 131,
 		[Browsable(false)]
 		REF_DETAIL_TO_PARENT_DETAIL = 141,

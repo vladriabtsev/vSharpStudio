@@ -813,7 +813,7 @@ enum proto_enum_data_type {
     // @attr [Description("Documents")]
     DOCUMENTS = 121;
     // @attr [Browsable(false)]
-    // @attr [Description("Any")]
+    // @attr [Description("Any Doc or Catalog")]
     ANY = 131;
     // @attr [Browsable(false)]
     REF_DETAIL_TO_PARENT_DETAIL = 141;
