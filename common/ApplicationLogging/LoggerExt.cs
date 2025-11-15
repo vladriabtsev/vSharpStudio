@@ -78,6 +78,22 @@ namespace ApplicationLogging
             return string.Empty;
 #endif
         }
+        public static string Pos(string? text = null,
+            [CallerLineNumber] int line = 0)
+        {
+#if DEBUG
+            var sb = new StringBuilder();
+            sb.Append("/*");
+            if (text != null)
+                sb.Append(text);
+            sb.Append("Line:");
+            sb.Append(line);
+            sb.Append("*/");
+            return sb.ToString();
+#else
+            return string.Empty;
+#endif
+        }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string CallerInfo(this string message, [CallerMemberName] string memberName = "",
                   [CallerFilePath] string sourceFilePath = "",

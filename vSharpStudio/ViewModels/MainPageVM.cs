@@ -1318,6 +1318,8 @@ namespace vSharpStudio.ViewModels
 #endif
             return true;
         }
+        public bool isExcludeDbGeneration;
+        public bool isExcludeCodeGeneration;
         public vButtonVmAsync<TestTransformation?> BtnConfigCurrentUpdateAsync
         {
             get
@@ -1560,6 +1562,10 @@ namespace vSharpStudio.ViewModels
 #endif
                     {
                         var step = lstGenData.IndexOf(gd) + 1;
+                        if (this.isExcludeDbGeneration && gd.tpg.PluginDbGenerator != null)
+                            continue;
+                        if (this.isExcludeCodeGeneration && gd.tpg.PluginDbGenerator == null)
+                            continue;
                         GeneratorApply(gd, diffConfig, step, nGen, isCurrentUpdate, isOnlySqlTextUpdate, isDeleteDb, dicAppSettings);
 #if PARALLEL
                     });
@@ -1740,113 +1746,116 @@ namespace vSharpStudio.ViewModels
 
                 using (Transaction.Create(am))
                 {
-                    if (!isOnlySqlTextUpdate)
+                    if (!this.isExcludeCodeGeneration)
                     {
-                        // II. Rename analysis
-                        #region
-                        this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Finding objects for renaming", iProgressStep * 100 / iProgressSteps);
-                        iProgressStep++;
-                        bool isNeedRenames = false;
-                        foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                        if (!isOnlySqlTextUpdate)
                         {
-                            foreach (var tp in ts.ListAppProjects)
+                            // II. Rename analysis
+                            #region
+                            this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Finding objects for renaming", iProgressStep * 100 / iProgressSteps);
+                            iProgressStep++;
+                            bool isNeedRenames = false;
+                            foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                             {
-                                foreach (var tg in tp.ListAppProjectGenerators)
+                                foreach (var tp in ts.ListAppProjects)
                                 {
-                                    if (cancellationToken.IsCancellationRequested)
-                                        throw new CancellationException();
-                                    Debug.Assert(this.Config.DicGenerators != null);
-                                    var gg = this.Config.DicGenerators[tg.PluginGeneratorGuid];
-                                    if (gg is not IvPluginCodeGenerator)
-                                        continue;
-                                    var generator = (IvPluginCodeGenerator)gg;
-                                    List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
-                                    if (lstRenames.Count == 0)
-                                        continue;
-                                    isNeedRenames = true;
-                                    break;
+                                    foreach (var tg in tp.ListAppProjectGenerators)
+                                    {
+                                        if (cancellationToken.IsCancellationRequested)
+                                            throw new CancellationException();
+                                        Debug.Assert(this.Config.DicGenerators != null);
+                                        var gg = this.Config.DicGenerators[tg.PluginGeneratorGuid];
+                                        if (gg is not IvPluginCodeGenerator)
+                                            continue;
+                                        var generator = (IvPluginCodeGenerator)gg;
+                                        List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
+                                        if (lstRenames.Count == 0)
+                                            continue;
+                                        isNeedRenames = true;
+                                        break;
+                                    }
+                                    if (isNeedRenames)
+                                        break;
                                 }
                                 if (isNeedRenames)
                                     break;
                             }
+                            #endregion
+
+                            // III. Build all solutions. Exception if not compilible (no need for UNDO)
+                            #region
                             if (isNeedRenames)
-                                break;
-                        }
-                        #endregion
-
-                        // III. Build all solutions. Exception if not compilible (no need for UNDO)
-                        #region
-                        if (isNeedRenames)
-                        {
-                            this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Compiling current code", iProgressStep * 100 / iProgressSteps);
-                            iProgressStep++;
-
-                            int ii = 0;
-                            foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                             {
-                                if (cancellationToken.IsCancellationRequested)
-                                    throw new CancellationException();
-                                this.ProgressVM?.ProgressUpdateSubTask($"Compiling solution '{ts.Name}'", 100 * ii / this.Config.GroupAppSolutions.ListAppSolutions.Count);
-                                ii++;
+                                this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Compiling current code", iProgressStep * 100 / iProgressSteps);
+                                iProgressStep++;
 
-                                await CompileUtils.CompileAsync(ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
-
-                                //TODO result of compilation
-                            }
-                        }
-                        else
-                        {
-                            iProgressStep++;
-                        }
-                        // unit test
-                        if (tst != null && tst.IsThrowExceptionOnBuildValidated)
-                            throw new Exception(nameof(tst.IsThrowExceptionOnBuildValidated));
-                        #endregion
-
-                        // IV. Rename objects and properties by solution (code can be not compilible after that) (need UNDO from zip code backup)
-                        #region
-                        this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Renaming objects in code", iProgressStep * 100 / iProgressSteps);
-                        iProgressStep++;
-                        var nProjects = 0;
-                        foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
-                        {
-                            foreach (var tp in ts.ListAppProjects)
-                            {
-                                nProjects++;
-                            }
-                        }
-                        int i = 0;
-                        foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
-                        {
-                            foreach (var tp in ts.ListAppProjects)
-                            {
-                                this.ProgressVM?.ProgressUpdateSubTask($"Project '{ts.Name}'-'{tp.Name}'", 100 * i / nProjects);
-                                i++;
-                                foreach (var tg in tp.ListAppProjectGenerators)
+                                int ii = 0;
+                                foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                                 {
                                     if (cancellationToken.IsCancellationRequested)
                                         throw new CancellationException();
-                                    Debug.Assert(this.Config.DicGenerators != null);
-                                    var gg = this.Config.DicGenerators[tg.PluginGeneratorGuid];
-                                    if (gg is not IvPluginCodeGenerator)
-                                        continue;
-                                    var generator = (IvPluginCodeGenerator)gg;
-                                    List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
-                                    if (lstRenames.Count == 0)
-                                        continue;
-                                    await CompileUtils.RenameAsync(ts.GetCombinedPath(ts.RelativeAppSolutionPath),
-                                        ts.GetCombinedPath(tp.RelativeAppProjectPath), lstRenames, cancellationToken);
+                                    this.ProgressVM?.ProgressUpdateSubTask($"Compiling solution '{ts.Name}'", 100 * ii / this.Config.GroupAppSolutions.ListAppSolutions.Count);
+                                    ii++;
+
+                                    await CompileUtils.CompileAsync(ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
+
+                                    //TODO result of compilation
                                 }
                             }
+                            else
+                            {
+                                iProgressStep++;
+                            }
+                            // unit test
+                            if (tst != null && tst.IsThrowExceptionOnBuildValidated)
+                                throw new Exception(nameof(tst.IsThrowExceptionOnBuildValidated));
+                            #endregion
+
+                            // IV. Rename objects and properties by solution (code can be not compilible after that) (need UNDO from zip code backup)
+                            #region
+                            this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Renaming objects in code", iProgressStep * 100 / iProgressSteps);
+                            iProgressStep++;
+                            var nProjects = 0;
+                            foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                            {
+                                foreach (var tp in ts.ListAppProjects)
+                                {
+                                    nProjects++;
+                                }
+                            }
+                            int i = 0;
+                            foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                            {
+                                foreach (var tp in ts.ListAppProjects)
+                                {
+                                    this.ProgressVM?.ProgressUpdateSubTask($"Project '{ts.Name}'-'{tp.Name}'", 100 * i / nProjects);
+                                    i++;
+                                    foreach (var tg in tp.ListAppProjectGenerators)
+                                    {
+                                        if (cancellationToken.IsCancellationRequested)
+                                            throw new CancellationException();
+                                        Debug.Assert(this.Config.DicGenerators != null);
+                                        var gg = this.Config.DicGenerators[tg.PluginGeneratorGuid];
+                                        if (gg is not IvPluginCodeGenerator)
+                                            continue;
+                                        var generator = (IvPluginCodeGenerator)gg;
+                                        List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
+                                        if (lstRenames.Count == 0)
+                                            continue;
+                                        await CompileUtils.RenameAsync(ts.GetCombinedPath(ts.RelativeAppSolutionPath),
+                                            ts.GetCombinedPath(tp.RelativeAppProjectPath), lstRenames, cancellationToken);
+                                    }
+                                }
+                            }
+                            // unit test
+                            if (tst != null && tst.IsThrowExceptionOnRenamed)
+                                throw new Exception(nameof(tst.IsThrowExceptionOnRenamed));
+                            #endregion
                         }
-                        // unit test
-                        if (tst != null && tst.IsThrowExceptionOnRenamed)
-                            throw new Exception(nameof(tst.IsThrowExceptionOnRenamed));
-                        #endregion
-                    }
-                    else
-                    {
-                        iProgressStep += 3;
+                        else
+                        {
+                            iProgressStep += 3;
+                        }
                     }
 
                     // V. Generate code (no need for UNDO)
