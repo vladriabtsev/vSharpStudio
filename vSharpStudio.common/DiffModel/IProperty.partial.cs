@@ -9,27 +9,28 @@ namespace vSharpStudio.common
         #region DB record
         static uint PropertyIdPosition { get; } = 5;
         static uint PropertyVersionPosition { get; } = 6;
-        static uint PropertyShortTypeIdPosition { get; } = 7;
+        static uint PropertyVersionPrevPosition { get; } = 7;
+        static uint PropertyShortTypeIdPosition { get; } = 8;
         #endregion DB record
 
         #region Catalog or Folder
-        static uint PropertyCodePosition { get; } = 8;
-        static uint PropertyNamePosition { get; } = 9;
-        static uint PropertyDescriptionPosition { get; } = 10;
-        static uint PropertyIsFolderPosition { get; } = 11;
-        static uint PropertyIsOpenPosition { get; } = 12;
-        static uint PropertyRefSelfParentPosition { get; } = 13;
+        static uint PropertyCodePosition { get; } = 9;
+        static uint PropertyNamePosition { get; } = 10;
+        static uint PropertyDescriptionPosition { get; } = 11;
+        static uint PropertyIsFolderPosition { get; } = 12;
+        static uint PropertyIsOpenPosition { get; } = 13;
+        static uint PropertyRefSelfParentPosition { get; } = 14;
         #endregion Catalog or Folder
 
         #region Document
-        static uint PropertyDocumentDatePosition { get; } = 8;
-        static uint PropertyDocumentNumberPosition { get; } = 9;
+        static uint PropertyDocumentDatePosition { get; } = 9;
+        static uint PropertyDocumentNumberPosition { get; } = 10;
         static uint PropertyIsPostedPosition { get; } = 11;
         #endregion Document
 
         #region Register
-        static uint PropertyMoneyAccumulatorPosition { get; } = 8;
-        static uint PropertyQtyAccumulatorPosition { get; } = 9;
+        static uint PropertyMoneyAccumulatorPosition { get; } = 9;
+        static uint PropertyQtyAccumulatorPosition { get; } = 10;
         #endregion Register
 
         #region Detail, or Catalog, or Document, or Register

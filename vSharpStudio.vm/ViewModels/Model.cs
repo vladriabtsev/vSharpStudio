@@ -814,6 +814,16 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = IProperty.PropertyVersionPosition;
             return res;
         }
+        public IProperty GetPropertyVersionPrev(ITreeConfigNode parent, string guid = "")
+        {
+            var res = new Property(parent, guid, this.RecordVersionFieldName + "Prev", true);
+            res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, false, false);
+            res.IsRecordVersion = true;
+            res.IsHidden = true;
+            res.IsNullable = false;
+            res.Position = IProperty.PropertyVersionPrevPosition;
+            return res;
+        }
         public IProperty GetPropertyRefDimension(IRegister parent, string guid, string name, uint position, bool isNullable = false)
         {
             var res = new Property(parent.GroupProperties, guid, name, true);
