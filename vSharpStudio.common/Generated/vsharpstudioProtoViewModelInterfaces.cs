@@ -129,6 +129,7 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	public enum EnumDataType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
 	{
 		[Description("Char")]
+		[Browsable(false)]
 		CHAR = 0,
 		[Description("String")]
 		STRING = 11,

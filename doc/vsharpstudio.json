@@ -385,7 +385,7 @@
             {
               "name": "CHAR",
               "number": "0",
-              "description": "@attr [Description(\"Char\")]"
+              "description": "@attr [Description(\"Char\")]\n@attr [Browsable(false)]"
             },
             {
               "name": "STRING",

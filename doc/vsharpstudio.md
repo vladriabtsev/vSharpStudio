@@ -2545,7 +2545,7 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| CHAR | 0 | @attr [Description(&#34;Char&#34;)] |
+| CHAR | 0 | @attr [Description(&#34;Char&#34;)] @attr [Browsable(false)] |
 | STRING | 11 | @attr [Description(&#34;String&#34;)] |
 | STRING_FIXED | 13 | @attr [Browsable(false)] @attr [Description(&#34;String Fixed&#34;)] not sure how work in c# with this typ |
 | ULID | 15 | @attr [Description(&#34;ULID&#34;)] https://github.com/Cysharp/Ulid |

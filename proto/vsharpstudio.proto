@@ -765,6 +765,7 @@ message proto_model {
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_data_type {
     // @attr [Description("Char")]
+    // @attr [Browsable(false)]
     CHAR = 0;
     // @attr [Description("String")]
     STRING = 11;
