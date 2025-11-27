@@ -106,14 +106,14 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="4.14.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.14.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="4.14.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.14.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.14.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.14.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.14.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="5.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="5.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="5.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="5.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="5.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="5.0.0" />
 
     <PackageReference Include="Microsoft.Build.Framework" Version="17.14.28" />
     <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.14.28" />
@@ -122,7 +122,7 @@
     <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.4.0" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="CompareNETObjects" Version="4.84.0" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.2" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.3" />
     <!--<PackageReference Include="GitVersionTask" Version="5.3.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
