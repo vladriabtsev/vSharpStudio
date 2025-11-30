@@ -70,7 +70,7 @@ namespace vSharpStudio
             MainPageVM.Instance.UserSettingsSave();
         }
 #if DEBUG
-        private void MainWindow_LocationChanged(object sender, EventArgs e)
+        private void MainWindow_LocationChanged(object? sender, EventArgs e)
         {
             var x = (int)Application.Current.MainWindow.Left;
             var y = (int)Application.Current.MainWindow.Top;

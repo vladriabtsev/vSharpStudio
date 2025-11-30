@@ -43,6 +43,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (tp.Parent is GroupListProperties)
                 {
+                    Debug.Assert(tp.ParentGroupListProperties != null);
                     return tp.ParentGroupListProperties.GetNextPosition();
                 }
                 else if (tp.Parent is DocumentTimeline dt)

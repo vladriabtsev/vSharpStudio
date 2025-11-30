@@ -1521,7 +1521,7 @@ namespace vSharpStudio.ViewModels
 
             //var nvb = new ModelVisitorBase();
             //nvb.Run(diffConfig, null, null, null, (p, n) => { if (n is Property pp) pp.Tag = null; });
-            int i = 0;
+            //int i = 0;
             foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
             {
                 if (ts.IsMarkedForDeletion)

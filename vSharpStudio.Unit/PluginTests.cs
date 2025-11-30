@@ -22,7 +22,7 @@ namespace vSharpStudio.Unit
         //internal static ILoggerFactory MyLoggerFactory { get; private set; }
         //internal static IHost MyHost { get; private set; }
         private readonly ILogger _logger;
-        private static TestContext testContext;
+        private TestContext testContext;
 
         [AssemblyInitialize]
         public static void InitializeTests(TestContext testContext)
@@ -44,11 +44,11 @@ namespace vSharpStudio.Unit
         {
             //MyHost?.Dispose();
         }
-        [ClassInitialize]
-        public static void InitializeTestClass(TestContext cntx)
-        {
-            testContext = cntx;
-        }
+        //[ClassInitialize]
+        //public static void InitializeTestClass(TestContext cntx)
+        //{
+        //    testContext = cntx;
+        //}
         [ClassCleanup]
         public static void TearDownTestClass()
         {

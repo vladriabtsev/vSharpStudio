@@ -1014,7 +1014,7 @@ namespace vSharpStudio.Unit
 
             #region new
             vm.Config.Model.GroupEnumerations.ListEnumerations.Remove(en1);
-            Assert.AreEqual(0, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
+            Assert.IsEmpty(vm.Config.Model.GroupEnumerations.ListEnumerations);
             Assert.IsFalse(vm.Config.Model.GroupEnumerations.IsHasNew);
             Assert.IsFalse(vm.Config.Model.IsHasNew);
 
@@ -2033,7 +2033,7 @@ namespace vSharpStudio.Unit
             vm.BtnNewConfig.Execute();
             var cfg = vm.Config;
             Assert.AreEqual("", cfg.ModelPath);
-            Assert.AreEqual(null, cfg.ToolTipText);
+            Assert.IsNull(cfg.ToolTipText);
             Assert.AreEqual("BaseConfigs", cfg.GroupConfigLinks.ModelPath);
             Assert.AreEqual("Links to Base Configs", cfg.GroupConfigLinks.ToolTipText);
             Assert.AreEqual("Plugins", cfg.GroupPlugins.ModelPath);

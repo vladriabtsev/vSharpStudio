@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using CommunityToolkit.Diagnostics;
 
 namespace ViewModelBase
@@ -36,7 +37,7 @@ namespace ViewModelBase
     }
     public class ObservableCollectionWithActions<T> : ObservableCollection<T>
     {
-        private readonly object _lock = new object();
+        private readonly Lock _lock = new();
         public ObservableCollectionWithActions()
         {
         }
@@ -46,14 +47,12 @@ namespace ViewModelBase
         }
         public new void Clear()
         {
-            if (OnClearingAction != null)
-                OnClearingAction();
+            OnClearingAction?.Invoke();
             UIDispatcher.Invoke(() =>
             {
                 base.Clear();
             });
-            if (OnClearedAction != null)
-                OnClearedAction();
+            OnClearedAction?.Invoke();
         }
         public void AddClone(T item)
         {
@@ -63,29 +62,25 @@ namespace ViewModelBase
         {
             lock (_lock)
             {
-                if (OnAddingAction != null)
-                    OnAddingAction(item);
+                OnAddingAction?.Invoke(item);
                 UIDispatcher.Invoke(() =>
                 {
                     base.Add(item);
                 });
-                if (OnAddedAction != null)
-                    OnAddedAction(item);
+                OnAddedAction?.Invoke(item);
             }
         }
         public new bool Remove(T item)
         {
             lock (_lock)
             {
-                if (OnRemovingAction != null)
-                    OnRemovingAction(item);
+                OnRemovingAction?.Invoke(item);
                 bool res = false;
                 UIDispatcher.Invoke(() =>
                 {
                     res = base.Remove(item);
                 });
-                if (OnRemovedAction != null)
-                    OnRemovedAction(item);
+                OnRemovedAction?.Invoke(item);
                 return res;
             }
         }
@@ -94,14 +89,12 @@ namespace ViewModelBase
             lock (_lock)
             {
                 var item = this[indx];
-                if (OnRemovingAction != null)
-                    OnRemovingAction(item);
+                OnRemovingAction?.Invoke(item);
                 UIDispatcher.Invoke(() =>
                 {
                     base.RemoveAt(indx);
                 });
-                if (OnRemovedAction != null)
-                    OnRemovedAction(item);
+                OnRemovedAction?.Invoke(item);
             }
         }
         public void AddRange(IEnumerable<T> collection)
@@ -110,11 +103,9 @@ namespace ViewModelBase
             {
                 foreach (T itm in collection)
                 {
-                    if (OnAddingAction != null)
-                        OnAddingAction(itm);
+                    OnAddingAction?.Invoke(itm);
                     this.Add(itm);
-                    if (OnAddedAction != null)
-                        OnAddedAction(itm);
+                    OnAddedAction?.Invoke(itm);
                 }
             }
         }
@@ -139,7 +130,7 @@ namespace ViewModelBase
     {
         public enum SortingDirection { INCREASE, DECREASE }
         public SortingDirection Direction { get; set; } = SortingDirection.INCREASE;
-        private readonly object _lock = new object();
+        private readonly Lock _lock = new();
         //Action<NotifyCollectionChangedEventArgs> onCollectionChanged = null;
         //bool isSort;
         public SortedObservableCollection()
@@ -192,7 +183,7 @@ namespace ViewModelBase
         {
             int i = this.IndexOf(current);
             if (i == 0)
-                return default(T);
+                return default;
             return this[i - 1];
         }
         public T? GetNext(T current)
@@ -200,24 +191,22 @@ namespace ViewModelBase
             int i = this.IndexOf(current);
             if (i < this.Count - 1)
                 return this[i + 1];
-            return default(T);
+            return default;
         }
         #endregion IMoveUpDown
 
         public new void Clear()
         {
-            if (OnClearingAction != null)
-                OnClearingAction();
+            OnClearingAction?.Invoke();
             base.Clear();
-            if (OnClearedAction != null)
-                OnClearedAction();
+            OnClearedAction?.Invoke();
         }
         /// <summary>
         /// Add T item after selected
         /// </summary>
         /// <param name="item"></param>
         /// <param name="selected"></param>
-        public new void Add(T item, T? selected)
+        public void Add(T item, T? selected)
         {
             int explicitPosition = 0;
             if (selected == null) // add at end of list
@@ -259,7 +248,7 @@ namespace ViewModelBase
             base.RemoveAt(indx);
             // InternalSort(); no need for resorting
         }
-        public void AddRange(IEnumerable<T> collection)
+        public new void AddRange(IEnumerable<T> collection)
         {
             foreach (T itm in collection)
             {
@@ -309,8 +298,7 @@ namespace ViewModelBase
                     {
                         base.MoveItem(ifrom, ito);
                     });
-                    if (OnSortMovedAction != null)
-                        OnSortMovedAction(ifrom, ito);
+                    OnSortMovedAction?.Invoke(ifrom, ito);
                 }
             }
             UIDispatcher.Invoke(() =>

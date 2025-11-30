@@ -743,6 +743,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     else
                     {
+                        Debug.Assert(p.ParentGroupListProperties != null);
                         MappingPath(p.ParentGroupListProperties.Parent, sb);
                     }
                 }

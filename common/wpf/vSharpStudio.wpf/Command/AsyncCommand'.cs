@@ -63,7 +63,7 @@ namespace vSharpStudio.wpf.Command
         }
         private sealed class CancelAsyncCommand : ICommand
         {
-            private CancellationTokenSource _cts = new CancellationTokenSource();
+            private CancellationTokenSource _cts = new();
             private bool _commandExecuting;
             public CancellationToken Token { get { return _cts.Token; } }
             public void NotifyCommandStarting()

@@ -1400,7 +1400,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         #endregion Properties
     }
     
-    public interface IVisitorProto // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\IVisitorProto.tt Line:8
+    public interface IVisitorProto // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\IVisitorProto.tt Line:9
     {
         void Visit(Proto.Plugin.proto_db_connection_string_settings p);
         void Visit(Proto.Plugin.proto_plugins_group_solution_sub_settings p);
@@ -1483,7 +1483,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         }
     }
     
-    public partial class PluginSampleVisitor : IVisitorPluginSampleNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NodeVisitor.tt Line:8
+    public partial class PluginSampleVisitor : IVisitorPluginSampleNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NodeVisitor.tt Line:9
     {
         public CancellationToken Token { get { return _cancellationToken; } }
         protected CancellationToken _cancellationToken;
@@ -1570,7 +1570,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
         protected virtual void OnVisitEnd(GeneratorDbAccessNodeSettings p) { }
     }
     
-    public interface IVisitorPluginSampleNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\IVisitorConfigNode.tt Line:8
+    public interface IVisitorPluginSampleNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\IVisitorConfigNode.tt Line:9
     {
         System.Threading.CancellationToken Token { get; }
     }

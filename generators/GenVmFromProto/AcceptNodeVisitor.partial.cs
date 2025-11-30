@@ -2,16 +2,10 @@
 
 namespace GenVmFromProto
 {
-    public partial class AcceptNodeVisitor
+    public partial class AcceptNodeVisitor(FileDescriptor root, MessageDescriptor message)
     {
-        readonly FileDescriptor root;
-        readonly MessageDescriptor message;
-        readonly MessageDoc Doc;
-        public AcceptNodeVisitor(FileDescriptor root, MessageDescriptor message)
-        {
-            this.root = root;
-            this.message = message;
-            this.Doc = JsonDoc.Files[root.Name].Messages[message.Name];
-        }
+        readonly FileDescriptor root = root;
+        readonly MessageDescriptor message = message;
+        readonly MessageDoc Doc = JsonDoc.Files[root.Name].Messages[message.Name];
     }
 }

@@ -45077,7 +45077,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         #endregion Properties
     }
     
-    public interface IVisitorProto // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\IVisitorProto.tt Line:8
+    public interface IVisitorProto // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\IVisitorProto.tt Line:9
     {
         void Visit(Proto.Config.proto_rect_on_screen p);
         void Visit(Proto.Config.proto_user_settings p);
@@ -45906,7 +45906,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
     }
     
-    public partial class ConfigVisitor : IVisitorConfigNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NodeVisitor.tt Line:8
+    public partial class ConfigVisitor : IVisitorConfigNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NodeVisitor.tt Line:9
     {
         public CancellationToken Token { get { return _cancellationToken; } }
         protected CancellationToken _cancellationToken;
@@ -46773,7 +46773,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         protected virtual void OnVisitEnd(PropertyDataGenerator p) { }
     }
     
-    public interface IVisitorConfigNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\IVisitorConfigNode.tt Line:8
+    public interface IVisitorConfigNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\IVisitorConfigNode.tt Line:9
     {
         System.Threading.CancellationToken Token { get; }
         void Visit(Config p);

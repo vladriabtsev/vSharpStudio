@@ -45,7 +45,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (string.IsNullOrEmpty(p.Name))
                 {
                     var vf = new ValidationFailure(nameof(p.Name),
-                        $"Enter property 'Name' for config object {p.ParentGroupListProperties.Parent?.Name}. 'Name' of property can't be empty")
+                        $"Enter property 'Name' for config object {p?.ParentGroupListProperties?.Parent?.Name}. 'Name' of property can't be empty")
                     {
                         Severity = Severity.Error
                     };
@@ -61,6 +61,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (!(p.Parent is GroupListProperties)) // no need validate
                     return;
                 var pg = p.ParentGroupListProperties;
+                Debug.Assert(pg != null);
                 List<Property>? pList = null;
                 var model = pg.Cfg.Model;
                 if (name == model.PKeyName)
@@ -887,6 +888,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (!isStopTabControl)
                     return;
                 var p = (Property)cntx.InstanceToValidate;
+                Debug.Assert(p.ParentGroupListProperties != null);
                 var indx = p.ParentGroupListProperties.ListProperties.IndexOf(p);
                 if (indx == 0)
                 {
@@ -901,6 +903,7 @@ namespace vSharpStudio.vm.ViewModels
                 var is_tab = false;
                 for (int i = indx - 1; i >= 0; i--)
                 {
+                    Debug.Assert(p.ParentGroupListProperties != null);
                     p = p.ParentGroupListProperties.ListProperties[i];
                     if (p.IsStartNewTabControl || !string.IsNullOrWhiteSpace(p.TabName))
                     {
@@ -940,6 +943,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (!isStartNewRow)
                     return;
                 var p = (Property)cntx.InstanceToValidate;
+                Debug.Assert(p.ParentGroupListProperties != null);
                 var indx = p.ParentGroupListProperties.ListProperties.IndexOf(p);
                 if (indx == 0)
                 {
@@ -1013,6 +1017,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (!isTryAttach)
                     return;
                 var p = (Property)cntx.InstanceToValidate;
+                Debug.Assert(p.ParentGroupListProperties != null);
                 var indx = p.ParentGroupListProperties.ListProperties.IndexOf(p);
                 if (indx == 0)
                 {

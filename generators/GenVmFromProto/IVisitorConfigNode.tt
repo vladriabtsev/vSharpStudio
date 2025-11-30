@@ -4,6 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="vSharpStudio.common" #>
+<#@ import namespace="ApplicationLogging" #>
 
 public interface IVisitor<#= root.Package.ToNameCs() #>Node // <#=t4.FilePos() #>
 {

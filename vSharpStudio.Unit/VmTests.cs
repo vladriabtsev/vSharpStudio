@@ -16,7 +16,7 @@ namespace vSharpStudio.Unit
     [TestClass]
     public class VmTests
     {
-        private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(VmTests));
+        private readonly ILogger _logger = AppLogger.CreateLogger(nameof(VmTests));
         static VmTests()
         {
         }

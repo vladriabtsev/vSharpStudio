@@ -51,28 +51,18 @@ namespace vSharpStudio.common
         }
         public static string GetProtoTypeForCsNumeric(string csNumericType)
         {
-            string res = "";
-            switch(csNumericType)
+            return csNumericType switch
             {
-                case "sbyte":
-                    return GetProtoTypeForNumeric(false, sbyte.MaxValue, false, 0, 28);
-                case "byte":
-                    return GetProtoTypeForNumeric(false, byte.MaxValue, false, 0, 28);
-                case "short":
-                    return GetProtoTypeForNumeric(false, short.MaxValue, false, 0, 28);
-                case "ushort":
-                    return GetProtoTypeForNumeric(false, ushort.MaxValue, false, 0, 28);
-                case "int":
-                    return GetProtoTypeForNumeric(false, int.MaxValue, false, 0, 28);
-                case "uint":
-                    return GetProtoTypeForNumeric(false, uint.MaxValue, false, 0, 28);
-                case "long":
-                    return GetProtoTypeForNumeric(false, long.MaxValue, false, 0, 28);
-                case "ulong":
-                    return GetProtoTypeForNumeric(false, ulong.MaxValue, false, 0, 28);
-                default:
-                    throw new ArgumentException($"Unsupported type: {csNumericType}");
-            }
+                "sbyte" => GetProtoTypeForNumeric(false, sbyte.MaxValue, false, 0, 28),
+                "byte" => GetProtoTypeForNumeric(false, byte.MaxValue, false, 0, 28),
+                "short" => GetProtoTypeForNumeric(false, short.MaxValue, false, 0, 28),
+                "ushort" => GetProtoTypeForNumeric(false, ushort.MaxValue, false, 0, 28),
+                "int" => GetProtoTypeForNumeric(false, int.MaxValue, false, 0, 28),
+                "uint" => GetProtoTypeForNumeric(false, uint.MaxValue, false, 0, 28),
+                "long" => GetProtoTypeForNumeric(false, long.MaxValue, false, 0, 28),
+                "ulong" => GetProtoTypeForNumeric(false, ulong.MaxValue, false, 0, 28),
+                _ => throw new ArgumentException($"Unsupported type: {csNumericType}"),
+            };
         }
         public static string GetProtoTypeForNumeric(bool isNullable, BigInteger? max_value, bool is_positive, uint accuracy, uint length)
         {
@@ -234,7 +224,7 @@ namespace vSharpStudio.common
             if (!string.IsNullOrWhiteSpace(relativePathToGenFolder))
             {
                 sb.Append(relativePathToGenFolder);
-                if (relativePathToGenFolder[relativePathToGenFolder.Length - 1] != '\\')
+                if (relativePathToGenFolder[^1] != '\\')
                     sb.Append('\\');
             }
             sb.Append(fileName);
@@ -866,20 +856,12 @@ namespace vSharpStudio.common
         }
     }
     public enum EnumVisitType { Load, Remove }
-    public class TableInfo
+    public class TableInfo(string className, string tableName, string tableParent, ITreeConfigNode node, IReadOnlyList<IProperty> lst)
     {
-        public TableInfo(string className, string tableName, string tableParent, ITreeConfigNode node, IReadOnlyList<IProperty> lst)
-        {
-            this.ClassName = className;
-            this.TableName = tableName;
-            this.TableParent = tableParent;
-            this.Node = node;
-            this.List = lst;
-        }
-        public string ClassName { get; set; }
-        public string TableName { get; set; }
-        public string TableParent { get; set; }
-        public ITreeConfigNode Node { get; set; }
-        public IReadOnlyList<IProperty> List { get; set; }
+        public string ClassName { get; set; } = className;
+        public string TableName { get; set; } = tableName;
+        public string TableParent { get; set; } = tableParent;
+        public ITreeConfigNode Node { get; set; } = node;
+        public IReadOnlyList<IProperty> List { get; set; } = lst;
     }
 }
