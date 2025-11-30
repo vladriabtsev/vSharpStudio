@@ -575,6 +575,18 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedBalanceProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
         {
             var lst = new List<IProperty>();
+
+            AddNotDimensionProperties(lst);
+
+            // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
+
+            // For all dimensions (catalogs).
+            AddDimenshionIdsProperties(lst);
+
+            return lst;
+        }
+        private void AddNotDimensionProperties(List<IProperty> lst)
+        {
             var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
 
             //// Id
@@ -611,7 +623,16 @@ namespace vSharpStudio.vm.ViewModels
                 pQty.TagInList = "qa";
                 lst.Add(pQty);
             }
-
+        }
+        public IReadOnlyList<IProperty> GetBalanceDimensionProperties()
+        {
+            var lst = new List<IProperty>();
+            AddDimenshionIdsProperties(lst);
+            return lst;
+        }
+        private void AddDimenshionIdsProperties(List<IProperty> lst)
+        {
+            var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
             // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
             // For all dimensions (catalogs).
             foreach (var t in this.GroupRegisterDimensions.ListDimensions)
@@ -639,8 +660,8 @@ namespace vSharpStudio.vm.ViewModels
                 else
                     ThrowHelper.ThrowNotSupportedException();
             }
-            return lst;
         }
+
         //public IReadOnlyList<IDetail> GetIncludedSubItems(string guidAppPrjDbGen)
         //{
         //    var res = new List<IDetail>();
