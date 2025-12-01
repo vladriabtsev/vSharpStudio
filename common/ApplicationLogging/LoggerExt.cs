@@ -55,28 +55,8 @@ namespace ApplicationLogging
     }
     public static class t4
     {
-        // SrcSql - with '--' comment for SQL
-        // SrcCs  - with '//' comment for c#
-        // Src    - without comment
-        // Pos    - c# commented '/*line*/' line number
-        // FilePos
-        // FilePos
-        public static string FilePos(string? text = null,
-            [CallerFilePath] string file = "",
-            [CallerMemberName] string member = "",
-            [CallerLineNumber] int line = 0)
-        {
-            var indx = file.IndexOf("vPlugin");
-            if (indx > 0)
-            {
-                if (text != null)
-                    return $"{text} ...{file.Substring(indx)} Line:{line}";
-                return $"...{file.Substring(indx)} Line:{line}";
-            }
-            if (text != null)
-                return $"{text} {file} Line:{line}";
-            return $"{file} Line:{line}";
-        }
+        // with '//' comment for c#
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string SrcCs(string? text = null,
             [CallerFilePath] string file = "",
             [CallerMemberName] string member = "",
@@ -93,6 +73,8 @@ namespace ApplicationLogging
                 return $"// {text} {file} Line:{line}";
             return $"// {file} Line:{line}";
         }
+        // with '--' comment for SQL
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string SrcSql(string? text = null,
             [CallerFilePath] string file = "",
             [CallerMemberName] string member = "",
@@ -109,6 +91,40 @@ namespace ApplicationLogging
                 return $"-- {text} {file} Line:{line}";
             return $"-- {file} Line:{line}";
         }
+        // without comment
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string Src(string? text = null,
+            [CallerFilePath] string file = "",
+            [CallerMemberName] string member = "",
+            [CallerLineNumber] int line = 0)
+        {
+            var indx = file.IndexOf("vPlugin");
+            if (indx > 0)
+            {
+                if (text != null)
+                    return $"{text} ...{file.Substring(indx)} Line:{line}";
+                return $"...{file.Substring(indx)} Line:{line}";
+            }
+            if (text != null)
+                return $"{text} {file} Line:{line}";
+            return $"{file} Line:{line}";
+        }
+        // c# commented '/*line*/' line number
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string Line(string? text = null,
+            [CallerLineNumber] int line = 0)
+        {
+            var sb = new StringBuilder();
+            sb.Append("/*");
+            if (text != null)
+                sb.Append(text);
+            sb.Append("Line:");
+            sb.Append(line);
+            sb.Append("*/");
+            return sb.ToString();
+        }
+
+
         //public static string FilePos(this string text,
         //                        [CallerFilePath] string file = "",
         //                        [CallerMemberName] string member = "",
@@ -153,22 +169,6 @@ namespace ApplicationLogging
         {
 #if DEBUG
             var sb = GetDebugText(text, file, member, line);
-            return sb.ToString();
-#else
-            return string.Empty;
-#endif
-        }
-        public static string Pos(string? text = null,
-            [CallerLineNumber] int line = 0)
-        {
-#if DEBUG
-            var sb = new StringBuilder();
-            sb.Append("/*");
-            if (text != null)
-                sb.Append(text);
-            sb.Append("Line:");
-            sb.Append(line);
-            sb.Append("*/");
             return sb.ToString();
 #else
             return string.Empty;
