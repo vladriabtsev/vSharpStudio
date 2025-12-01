@@ -45,16 +45,10 @@ namespace ApplicationLogging
             else
                 Debug.Write(message);
         }
-        public static string FilePos(this string text,
-            [CallerFilePath] string file = "",
-            [CallerMemberName] string member = "",
-            [CallerLineNumber] int line = 0)
-        {
-            return LoggerExt.FilePos(text, file, member, line);
-        }
     }
     public static class t4
     {
+        public static bool IsHideSourcePosition = true;
         // with '//' comment for c#
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string SrcCs(string? text = null,
@@ -62,15 +56,17 @@ namespace ApplicationLogging
             [CallerMemberName] string member = "",
             [CallerLineNumber] int line = 0)
         {
+            if (IsHideSourcePosition)
+                return string.Empty;
             var indx = file.IndexOf("vPlugin");
             if (indx > 0)
             {
                 if (text != null)
-                    return $"// {text} ...{file.Substring(indx)} Line:{line}";
+                    return $"// ...{file.Substring(indx)} Line:{line} {text}";
                 return $"// ...{file.Substring(indx)} Line:{line}";
             }
             if (text != null)
-                return $"// {text} {file} Line:{line}";
+                return $"// {file} Line:{line} {text}";
             return $"// {file} Line:{line}";
         }
         // with '--' comment for SQL
@@ -80,15 +76,17 @@ namespace ApplicationLogging
             [CallerMemberName] string member = "",
             [CallerLineNumber] int line = 0)
         {
+            if (IsHideSourcePosition)
+                return string.Empty;
             var indx = file.IndexOf("vPlugin");
             if (indx > 0)
             {
                 if (text != null)
-                    return $"-- {text} ...{file.Substring(indx)} Line:{line}";
+                    return $"-- ...{file.Substring(indx)} Line:{line} {text}";
                 return $"-- ...{file.Substring(indx)} Line:{line}";
             }
             if (text != null)
-                return $"-- {text} {file} Line:{line}";
+                return $"-- {file} Line:{line} {text}";
             return $"-- {file} Line:{line}";
         }
         // without comment
@@ -98,15 +96,17 @@ namespace ApplicationLogging
             [CallerMemberName] string member = "",
             [CallerLineNumber] int line = 0)
         {
+            if (IsHideSourcePosition)
+                return string.Empty;
             var indx = file.IndexOf("vPlugin");
             if (indx > 0)
             {
                 if (text != null)
-                    return $"{text} ...{file.Substring(indx)} Line:{line}";
+                    return $"...{file.Substring(indx)} Line:{line} {text}";
                 return $"...{file.Substring(indx)} Line:{line}";
             }
             if (text != null)
-                return $"{text} {file} Line:{line}";
+                return $"{file} Line:{line} {text}";
             return $"{file} Line:{line}";
         }
         // c# commented '/*line*/' line number
@@ -114,66 +114,53 @@ namespace ApplicationLogging
         public static string Line(string? text = null,
             [CallerLineNumber] int line = 0)
         {
+            if (IsHideSourcePosition)
+                return string.Empty;
             var sb = new StringBuilder();
             sb.Append("/*");
-            if (text != null)
-                sb.Append(text);
             sb.Append("Line:");
             sb.Append(line);
+            if (text != null)
+            {
+                sb.Append(' ');
+                sb.Append(text);
+            }
             sb.Append("*/");
             return sb.ToString();
         }
-
-
-        //public static string FilePos(this string text,
-        //                        [CallerFilePath] string file = "",
-        //                        [CallerMemberName] string member = "",
-        //                        [CallerLineNumber] int line = 0)
-        //{
-        //    var indx = file.IndexOf("vPlugin");
-        //    if (indx > 0)
-        //    {
-        //        if (text != null)
-        //            return $"{text} ...{file.Substring(indx)} Line:{line}";
-        //        return $"...{file.Substring(indx)} Line:{line}";
-        //    }
-        //    if (text != null)
-        //        return $"{text} {file} Line:{line}";
-        //    return $"{file} Line:{line}";
-        //}
-        //public static string Line([CallerLineNumber] int line = 0)
-        //{
-        //    StringBuilder sb = new StringBuilder();
-        //    sb.Append(line);
-        //    return sb.ToString();
-        //}
+        // c# commented '/*line*/' line number
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string LineXml(string? text = null,
+            [CallerLineNumber] int line = 0)
+        {
+            if (IsHideSourcePosition)
+                return string.Empty;
+            var sb = new StringBuilder();
+            sb.Append("<!--");
+            if (text != null)
+            {
+                sb.Append("Line:");
+                sb.Append(line);
+                sb.Append(' ');
+                sb.Append(text);
+            }
+            else
+            {
+                sb.Append(line);
+            }
+            sb.Append("-->");
+            return sb.ToString();
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string Member([CallerMemberName] string member = "")
+        {
+            if (IsHideSourcePosition)
+                return string.Empty;
+            return member;
+        }
     }
     public static class LoggerExt
     {
-        public static bool IsLog = false;
-        public static string Member([CallerMemberName] string member = "")
-        {
-            return member;
-        }
-        ////[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string Line([CallerLineNumber] int line = 0)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(line);
-            return sb.ToString();
-        }
-        public static string FilePos(string? text = null,
-            [CallerFilePath] string file = "",
-            [CallerMemberName] string member = "",
-            [CallerLineNumber] int line = 0)
-        {
-#if DEBUG
-            var sb = GetDebugText(text, file, member, line);
-            return sb.ToString();
-#else
-            return string.Empty;
-#endif
-        }
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string CallerInfo(this string message, [CallerMemberName] string memberName = "",
                   [CallerFilePath] string sourceFilePath = "",

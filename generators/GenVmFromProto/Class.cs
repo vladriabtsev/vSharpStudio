@@ -769,14 +769,7 @@ namespace GenVmFromProto
             this.Write("    partial void OnIsNewChanged() { OnNodeIsNewChanged(); } ");
             
             #line 160 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 160 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(message.Name));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs(message.Name)));
             
             #line default
             #line hidden

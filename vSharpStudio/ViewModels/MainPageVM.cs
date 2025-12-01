@@ -1627,7 +1627,7 @@ namespace vSharpStudio.ViewModels
                             sb.AppendLine("{");
 #if DEBUG
                             sb.Append("\t\"_generator_source\": \"");
-                            sb.Append(LoggerExt.FilePos());
+                            sb.Append(t4.Src());
                             sb.AppendLine("\",");
 #endif
                             sb.AppendLine("\t\"db_conns\": {");

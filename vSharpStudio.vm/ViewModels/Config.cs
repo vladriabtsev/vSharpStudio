@@ -319,7 +319,7 @@ namespace vSharpStudio.vm.ViewModels
                     string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
                     if (ts > TimeSpan.FromSeconds(10))
                     {
-                        Debug.WriteLine($"Long Selected Node Changed. Time {elapsedTime} {LoggerExt.FilePos()}");
+                        Debug.WriteLine($"Long Selected Node Changed. Time {elapsedTime} {t4.Src()}");
                         Debug.Assert(false);
                     }
 #endif

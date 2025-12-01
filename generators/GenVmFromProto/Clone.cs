@@ -583,14 +583,7 @@ namespace GenVmFromProto
             this.Write("    if (isDeep) ");
             
             #line 65 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" IsDefaultBase=");
-            
-            #line 65 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.IsDefaultBase()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs($"IsDefaultBase={field.IsDefaultBase()}")));
             
             #line default
             #line hidden
@@ -632,14 +625,7 @@ namespace GenVmFromProto
             this.Write("    if (isDeep) ");
             
             #line 68 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" IsDefaultBase=");
-            
-            #line 68 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.IsDefaultBase()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs($"IsDefaultBase={field.IsDefaultBase()}")));
             
             #line default
             #line hidden

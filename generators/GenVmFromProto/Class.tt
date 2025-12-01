@@ -157,7 +157,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <#   } else { #>
 <# } #>
 <# if (this.Doc.IsICanAddNode) { #>
-    partial void OnIsNewChanged() { OnNodeIsNewChanged(); } <#=t4.SrcCs()#> <#=message.Name#>
+    partial void OnIsNewChanged() { OnNodeIsNewChanged(); } <#=t4.SrcCs(message.Name)#>
     partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
 <# } #>
 <# } #>

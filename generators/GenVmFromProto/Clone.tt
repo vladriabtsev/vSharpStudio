@@ -62,10 +62,10 @@ public static <#= message.Name.ToNameCs() #> Clone(I<#= message.Name.ToNameCs() 
 <#      } else if (field.IsMessage() && field.IsAny()) { #>
     vm._<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.Clone(); <#=t4.SrcCs()#>
 <#      } else if (!field.IsCsSimple() && field.GetMessageDoc().IsWithParent) { #>
-    if (isDeep) <#=t4.SrcCs()#> IsDefaultBase=<#=field.IsDefaultBase()#>
+    if (isDeep) <#=t4.SrcCs($"IsDefaultBase={field.IsDefaultBase()}")#>
         vm._<#= field.Name.ToNameCs() #> = <#=nameSpace#>.<#= field.ToTypeCs() #>.Clone(vm, from.<#= field.Name.ToNameCs() #>, isDeep);
 <#      } else if (!field.IsCsSimple() && !field.GetMessageDoc().IsWithParent) { #>
-    if (isDeep) <#=t4.SrcCs()#> IsDefaultBase=<#=field.IsDefaultBase()#>
+    if (isDeep) <#=t4.SrcCs($"IsDefaultBase={field.IsDefaultBase()}")#>
         vm._<#= field.Name.ToNameCs() #> = <#=nameSpace#>.<#= field.ToTypeCs() #>.Clone(from.<#= field.Name.ToNameCs() #>, isDeep);
 <#      } else { #>
     vm._<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; <#=t4.SrcCs()#>
