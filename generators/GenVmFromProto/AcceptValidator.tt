@@ -6,7 +6,7 @@
 <#@ import namespace="vSharpStudio.common" #>
 <#@ import namespace="ApplicationLogging" #>
 
-public void AcceptValidator(VisitorConfigNode visitor) // <#=t4.FilePos() #>
+public void AcceptValidator(VisitorConfigNode visitor) <#=t4.SrcCs()#>
 {
     if (visitor.Token.IsCancellationRequested)
         return;
@@ -17,9 +17,9 @@ public void AcceptValidator(VisitorConfigNode visitor) // <#=t4.FilePos() #>
 #>
 <# if (field.IsRepeated) { #>
 	foreach (var t in this.<#= field.Name.ToNameCs() #>)
-		t.AcceptConfigNode(visitor); // <#=t4.FilePos() #>
+		t.AcceptConfigNode(visitor); <#=t4.SrcCs()#>
 <# } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "")) { #>
-	this.<#= field.Name.ToNameCs() #>.AcceptConfigNode(visitor); // <#=t4.FilePos() #>
+	this.<#= field.Name.ToNameCs() #>.AcceptConfigNode(visitor); <#=t4.SrcCs()#>
 <# } #>
 <# } #>
 	visitor.VisitEnd(this);

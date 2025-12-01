@@ -6,7 +6,7 @@
 <#@ import namespace="vSharpStudio.common" #>
 <#@ import namespace="ApplicationLogging" #>
 
-public interface IVisitor<#= root.Package.ToNameCs() #>Node // <#=t4.FilePos() #>
+public interface IVisitor<#= root.Package.ToNameCs() #>Node <#=t4.SrcCs()#>
 {
     System.Threading.CancellationToken Token { get; }
 <# foreach (var message in messages) { 

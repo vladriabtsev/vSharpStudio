@@ -6,7 +6,7 @@
 <#@ import namespace="vSharpStudio.common" #>
 <#@ import namespace="ApplicationLogging" #>
 
-// <#=t4.FilePos() #>
+<#=t4.SrcCs()#>
 //       IsWithParent: <#=this.Doc.IsWithParent#> 
 //      IsDefaultBase: <#=this.Doc.IsDefaultBase#> 
 // IsConfigObjectBase: <#=this.Doc.IsConfigObjectBase#> 
@@ -15,7 +15,7 @@
 //     IsEditableBase: <#=this.Doc.IsEditableBase#> 
 //  IsValidatableBase: <#=this.Doc.IsValidatableBase#> 
 //    IsISortingValue: <#=this.Doc.IsISortingValue#> 
-public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator>  // <#=t4.FilePos() #>
+public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator>  <#=t4.SrcCs()#>
 {
     private void GeneralRules()
     {
@@ -36,7 +36,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
       } #>
     }
 }
-<#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>, I<#= message.Name.ToNameCs() #> // <#=t4.FilePos() #>
+<#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>, I<#= message.Name.ToNameCs() #> <#=t4.SrcCs()#>
 {
 <# if (this.Doc.IsBindableBase) { #>
     public override string ToDebugString()
@@ -63,13 +63,13 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <# } #>
     #region CTOR
 <# if (!this.Doc.IsWithParent) { #>
-    /*public <#= message.Name.ToNameCs() #>() // <#=t4.FilePos() #>
+    /*public <#= message.Name.ToNameCs() #>() <#=t4.SrcCs()#>
     {
         this.OnCreating();
     }*/
 <# } #>
 <# if (this.Doc.IsWithParent) { #>
-    public <#= message.Name.ToNameCs() #>(<#=this.Doc.ParentTypeName#>? parent) // <#=t4.FilePos() #>
+    public <#= message.Name.ToNameCs() #>(<#=this.Doc.ParentTypeName#>? parent) <#=t4.SrcCs()#>
         : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator)
     {
         //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -77,25 +77,25 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <#    foreach (var t in message.Fields.InDeclarationOrder()) { 
          if (t.IsRepeated) {#>
 <# if (this.IsObservable(t)) { #>
-        this._<#= t.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= t.ToTypeCs() #>>(); // <#=t4.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= t.ToTypeCs() #>>(); <#=t4.SrcCs()#>
 <# } else { #>
-        this._<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=t4.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); <#=t4.SrcCs()#>
 <# } #>
 <#       } else if (t.IsMessage()) { if (t.IsCsSimple()) continue; #>
 <#         if (t.GetMessageDoc().IsWithParent) { #>
-        this._<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=t4.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); <#=t4.SrcCs()#>
 <#		   } else { #>
-        this._<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=t4.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); <#=t4.SrcCs()#>
 <#		   } #>
 <#		 } else if (t.IsMap) { #>
-		map??? // <#=t4.FilePos() #>
+		map??? <#=t4.SrcCs()#>
 <#		 } #>
 <# } #>
         this.OnCreated();
     }
 <# } else { #>
     public <#= message.Name.ToNameCs() #>()<# if (this.Doc.IsValidatableBase) { #> 
-        : base(<#= message.Name.ToNameCs() #>Validator.Validator)<# } #> // <#=t4.FilePos() #>
+        : base(<#= message.Name.ToNameCs() #>Validator.Validator)<# } #> <#=t4.SrcCs()#>
     {
         this.OnCreating();
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
@@ -103,19 +103,19 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
            continue;
 		if (t.IsRepeated) {#>
 <# if (!t.IsMessage() || t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-        this._<#= t.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= t.ToTypeCs() #>>(); // <#=t4.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= t.ToTypeCs() #>>(); <#=t4.SrcCs()#>
 <# } else { #>
-        this._<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=t4.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); <#=t4.SrcCs()#>
 <# } #>
 <#		} else if (t.IsMessage()) { #>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-        this._<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=t4.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); <#=t4.SrcCs()#>
 <# } else if (t.IsNullable()) { #>
 <# } else { #>
-        this._<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=t4.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); <#=t4.SrcCs()#>
 <# } #>
 <#		} else if (t.IsMap) { #>
-		map??? // <#=t4.FilePos() #>
+		map??? <#=t4.SrcCs()#>
 <#		} #>
 <# } #>
         this.OnCreated();
@@ -153,11 +153,11 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 	this.PopIndent(); #>
 <# if (this.Doc.IsWithParent) { #>
 <#   if (this.Doc.IsConfigObjectBase) { #>
-    protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // <#=t4.FilePos() #>
+    protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } <#=t4.SrcCs()#>
 <#   } else { #>
 <# } #>
 <# if (this.Doc.IsICanAddNode) { #>
-    partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // <#=t4.FilePos() #> <#=message.Name#>
+    partial void OnIsNewChanged() { OnNodeIsNewChanged(); } <#=t4.SrcCs()#> <#=message.Name#>
     partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
 <# } #>
 <# } #>

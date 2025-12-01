@@ -55,6 +55,12 @@ namespace ApplicationLogging
     }
     public static class t4
     {
+        // SrcSql - with '--' comment for SQL
+        // SrcCs  - with '//' comment for c#
+        // Src    - without comment
+        // Pos    - c# commented '/*line*/' line number
+        // FilePos
+        // FilePos
         public static string FilePos(string? text = null,
             [CallerFilePath] string file = "",
             [CallerMemberName] string member = "",
@@ -70,6 +76,38 @@ namespace ApplicationLogging
             if (text != null)
                 return $"{text} {file} Line:{line}";
             return $"{file} Line:{line}";
+        }
+        public static string SrcCs(string? text = null,
+            [CallerFilePath] string file = "",
+            [CallerMemberName] string member = "",
+            [CallerLineNumber] int line = 0)
+        {
+            var indx = file.IndexOf("vPlugin");
+            if (indx > 0)
+            {
+                if (text != null)
+                    return $"// {text} ...{file.Substring(indx)} Line:{line}";
+                return $"// ...{file.Substring(indx)} Line:{line}";
+            }
+            if (text != null)
+                return $"// {text} {file} Line:{line}";
+            return $"// {file} Line:{line}";
+        }
+        public static string SrcSql(string? text = null,
+            [CallerFilePath] string file = "",
+            [CallerMemberName] string member = "",
+            [CallerLineNumber] int line = 0)
+        {
+            var indx = file.IndexOf("vPlugin");
+            if (indx > 0)
+            {
+                if (text != null)
+                    return $"-- {text} ...{file.Substring(indx)} Line:{line}";
+                return $"-- ...{file.Substring(indx)} Line:{line}";
+            }
+            if (text != null)
+                return $"-- {text} {file} Line:{line}";
+            return $"-- {file} Line:{line}";
         }
         //public static string FilePos(this string text,
         //                        [CallerFilePath] string file = "",

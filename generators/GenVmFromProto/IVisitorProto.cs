@@ -30,10 +30,10 @@ namespace GenVmFromProto
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\npublic interface IVisitorProto // ");
+            this.Write("\r\npublic interface IVisitorProto ");
             
             #line 9 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\IVisitorProto.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs()));
             
             #line default
             #line hidden

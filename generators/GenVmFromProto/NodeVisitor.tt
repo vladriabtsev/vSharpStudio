@@ -6,7 +6,7 @@
 <#@ import namespace="vSharpStudio.common" #>
 <#@ import namespace="ApplicationLogging" #>
 
-public partial class <#= root.Package.ToNameCs() #>Visitor : IVisitor<#= root.Package.ToNameCs() #>Node // <#=t4.FilePos() #>
+public partial class <#= root.Package.ToNameCs() #>Visitor : IVisitor<#= root.Package.ToNameCs() #>Node <#=t4.SrcCs()#>
 {
     public CancellationToken Token { get { return _cancellationToken; } }
     protected CancellationToken _cancellationToken;

@@ -44,10 +44,10 @@ namespace GenVmFromProto
             
             #line default
             #line hidden
-            this.Write("Node // ");
+            this.Write("Node ");
             
             #line 9 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NodeVisitor.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs()));
             
             #line default
             #line hidden

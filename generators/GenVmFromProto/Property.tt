@@ -6,24 +6,24 @@
 <#@ import namespace="vSharpStudio.common" #>
 <#@ import namespace="ApplicationLogging" #>
 
-<#= this.Doc.Comments #><#= this.Doc.Attributes #>public <#=PropType#> <#=FieldName#> // <#=t4.FilePos() #>
+<#= this.Doc.Comments #><#= this.Doc.Attributes #>public <#=PropType#> <#=FieldName#> <#=t4.SrcCs()#>
 { 
     get { return this._<#=FieldName#>; }
     set
     {
         // Use 'On<#=FieldName#>Changing' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
 <#   if (this.DocMes.IsBindableBase && this.isSetPropertyByRef) { #>
-        if (SetProperty(this._<#=FieldName#>, value, (t) => { bool isCancel = false; this.On<#=FieldName#>Changing(<#=refstr#>value, ref isCancel); if (isCancel) return; this._<#=FieldName#> = value; this.On<#=FieldName#>Changed(); })) // <#=t4.FilePos() #>
+        if (SetProperty(this._<#=FieldName#>, value, (t) => { bool isCancel = false; this.On<#=FieldName#>Changing(<#=refstr#>value, ref isCancel); if (isCancel) return; this._<#=FieldName#> = value; this.On<#=FieldName#>Changed(); })) <#=t4.SrcCs()#>
         {
 <#     if (this.DocMes.IsValidatableBase && IsNotSpecial(field.Name)) { #>
-            this.ValidateProperty(); // <#=t4.FilePos() #>
+            this.ValidateProperty(); <#=t4.SrcCs()#>
 <#     } #>
 <#     if (this.DocMes.IsEditableBase && IsSimple) { #>
-            this.IsChanged = true; // <#=t4.FilePos() #>
+            this.IsChanged = true; <#=t4.SrcCs()#>
 <#     } #>
         }
 <#   } else { #>
-        if (this._<#=FieldName#> != value) // <#=t4.FilePos() #>
+        if (this._<#=FieldName#> != value) <#=t4.SrcCs()#>
         {
             bool isCancel = false;
             this.On<#=FieldName#>Changing(<#=refstr#>value, ref isCancel);
@@ -31,27 +31,27 @@
             this._<#=FieldName#> = value;
             this.On<#=FieldName#>Changed();
 <#     if (this.DocMes.IsValidatableBase && IsNotSpecial(field.Name)) { #>
-            this.ValidateProperty(); // <#=t4.FilePos() #>
+            this.ValidateProperty(); <#=t4.SrcCs()#>
 <#     } #>
 <#     if (this.DocMes.IsEditableBase && IsSimple) { #>
-            this.IsChanged = true; // <#=t4.FilePos() #>
+            this.IsChanged = true; <#=t4.SrcCs()#>
 <#     } #>
         }
 <#   } #>
     }
 }
 <# if (IsNotSkip) { #>
-private <#=PropType#> _<#=FieldName#><#=defstr#>; // <#=t4.FilePos() #>
+private <#=PropType#> _<#=FieldName#><#=defstr#>; <#=t4.SrcCs()#>
 <# } #>
-partial void On<#=FieldName#>Changing(<#=refstr#><#=PropType#> to, ref bool isCancel); // <#=t4.FilePos() #>
+partial void On<#=FieldName#>Changing(<#=refstr#><#=PropType#> to, ref bool isCancel); <#=t4.SrcCs()#>
 partial void On<#=FieldName#>Changed();
 <# if (this.IsCollection /*this.IsSelfCollection*/) { #>
-IReadOnlyList<<#if (!IsSimple) {#>I<#}#><#=FieldType#>> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassName#>).<#=FieldName#>; } } // <#=t4.FilePos() #>
+IReadOnlyList<<#if (!IsSimple) {#>I<#}#><#=FieldType#>> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassName#>).<#=FieldName#>; } } <#=t4.SrcCs()#>
 
 <#   if (this.IsSelfCollection) { #>
 public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#=FieldName#>[index]; } }
 I<#= field.MessageType.Name.ToNameCs() #> I<#= message.Name.ToNameCs() #>.this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#=FieldName#>[index]; } }
-public void Add(<#= field.MessageType.Name.ToNameCs() #> item) // <#=t4.FilePos() #>
+public void Add(<#= field.MessageType.Name.ToNameCs() #> item) <#=t4.SrcCs()#>
 { 
     Debug.Assert(item != null);
     this.<#=FieldName#>.Add(item); 
@@ -75,7 +75,7 @@ public void Remove(<#= field.MessageType.Name.ToNameCs() #> item)
 <#   } // if (this.IsSelfCollection) #>
 <# } if (!this.IsCollection) { #>
 <#   if (IsMessage) { #>
-I<#=FieldType#> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassName#>).<#=FieldName#>; } } // <#=t4.FilePos() #>
+I<#=FieldType#> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassName#>).<#=FieldName#>; } } <#=t4.SrcCs()#>
 <#   } #>
 <# } #>
 <# if (FieldName == "SortingValue") {#>
