@@ -3,7 +3,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IRegister : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, ICompositeName
+    public partial interface IRegister : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, ICompositeName, IPKey
     {
         IGroupListRegisters ParentGroupListRegistersI { get; }
         string FullName { get; } // name with config name

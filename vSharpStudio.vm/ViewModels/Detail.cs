@@ -315,6 +315,18 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
+        public IProperty? GetDateTimeUtcProperty(bool? isRegisterBalance = null)
+        {
+            return null;
+        }
+        public IReadOnlyList<IProperty> GetListIdPKeyProperties(bool? isRegisterBalance = null)
+        {
+            Debug.Assert(isRegisterBalance == null);
+            var res = new List<IProperty>();
+            var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+            res.Add(prp);
+            return res;
+        }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();

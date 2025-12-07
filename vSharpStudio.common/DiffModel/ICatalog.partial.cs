@@ -3,7 +3,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, ICompositeName
+    public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, ICompositeName, IPKey
     {
         string GetDebuggerDisplay(bool isOptimistic);
         IGroupListCatalogs ParentGroupListCatalogsI { get; }

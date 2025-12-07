@@ -306,7 +306,18 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-
+        public IProperty? GetDateTimeUtcProperty(bool? isRegisterBalance = null)
+        {
+            return null;
+        }
+        public IReadOnlyList<IProperty> GetListIdPKeyProperties(bool? isRegisterBalance = null)
+        {
+            Debug.Assert(isRegisterBalance == null);
+            var res = new List<IProperty>();
+            var prp = this.Cfg.Model.GetPropertyPkId(this, this.Guid);
+            res.Add(prp);
+            return res;
+        }
         /// <summary>
         /// Only shared properties
         /// </summary>
@@ -321,12 +332,6 @@ namespace vSharpStudio.vm.ViewModels
             var p = m.GetPropertyPkId(this, this.Guid);
             lst.Add(p);
 
-            // Field record version
-            if (isOptimistic)
-            {
-                p = m.GetPropertyVersion(this, this.ParentGroupDocuments.ParentModel.PropertyVersionGuid);
-                lst.Add(p);
-            }
             // Field document date and time value
             p = m.GetPropertyDateTimeUtc(this, this.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, true, this.TimeLineTimeAccuracy);
             p.SetPosition(IProperty.PropertyDocumentDatePosition);
@@ -346,6 +351,12 @@ namespace vSharpStudio.vm.ViewModels
                     t.IsDocShared = true;
                     lst.Add(t);
                 }
+            }
+            // Field record version
+            if (isOptimistic && !isExcludeSpecial)
+            {
+                var prp = m.GetPropertyVersion(this, m.PropertyVersionGuid);
+                lst.Add(prp);
             }
             return lst;
         }

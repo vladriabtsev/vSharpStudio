@@ -2,7 +2,7 @@
 
 namespace vSharpStudio.common
 {
-    public partial interface IDocumentTimeline : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName
+    public partial interface IDocumentTimeline : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName, IPKey
     {
         IGroupDocuments ParentGroupDocumentsI { get; }
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial);

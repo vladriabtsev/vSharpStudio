@@ -2,7 +2,7 @@
 
 namespace vSharpStudio.common
 {
-    public partial interface IDetail : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName
+    public partial interface IDetail : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName, IPKey
     {
         string GetDebuggerDisplay(bool isOptimistic);
         bool IsGridSortableGet();

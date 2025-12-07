@@ -450,6 +450,37 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
+        public IProperty? GetDateTimeUtcProperty(bool? isRegisterBalance = null)
+        {
+            Debug.Assert(isRegisterBalance != null);
+            IProperty res = null;
+            if (isRegisterBalance.Value) // balance
+            {
+                Debug.Assert(this.RegisterType != EnumRegisterType.TURNOVER);
+                if (this.RegisterType == EnumRegisterType.BALANCE_AND_TURNOVER)
+                {
+                    var m = this.Cfg.Model;
+                    res = m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateTime", IProperty.PropertyDocumentDatePosition, false); // position 9
+                }
+            }
+            return res;
+        }
+        public IReadOnlyList<IProperty> GetListIdPKeyProperties(bool? isRegisterBalance = null)
+        {
+            Debug.Assert(isRegisterBalance != null);
+            var res = new List<IProperty>();
+            if (isRegisterBalance.Value) // balance
+            {
+                Debug.Assert(this.RegisterType != EnumRegisterType.TURNOVER);
+                this.AddDimenshionIdsProperties(res);
+            }
+            else // not balance
+            {
+                var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+                res.Add(prp);
+            }
+            return res;
+        }
         public void GetNormalBalanceProperties(List<IProperty> res)
         {
             var lst = this.GetIncludedBalanceProperties("", false, true);
@@ -506,14 +537,14 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedTurnoverProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
         {
             var lst = new List<IProperty>();
-            var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
+            var m = this.Cfg.Model;
 
             // Id
-            var pId = m.GetPropertyPkId(this, this.Cfg.Model.PropertyIdGuid); // position 6
+            var pId = m.GetPropertyPkId(this, m.PropertyIdGuid); // position 6
             pId.TagInList = "id";
             lst.Add(pId);
 
-            this.PropertyRefTimeline.Name = "Ref" + this.Cfg.Model.GroupDocuments.DocumentTimeline.CompositeName;
+            this.PropertyRefTimeline.Name = "Ref" + m.GroupDocuments.DocumentTimeline.CompositeName;
             var pRefTimeline = this.PropertyRefTimeline;
             pRefTimeline.Position = IProperty.PropertyRefParentPosition;
             pRefTimeline.IsRefTimeline = true;
@@ -570,6 +601,11 @@ namespace vSharpStudio.vm.ViewModels
             {
                 lst.Add(t);
             }
+            if (isOptimistic && !isExcludeSpecial)
+            {
+                var prp = m.GetPropertyVersion(this.GroupProperties, m.PropertyVersionGuid);
+                lst.Add(prp);
+            }
             return lst;
         }
         public IReadOnlyList<IProperty> GetIncludedBalanceProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
@@ -583,11 +619,17 @@ namespace vSharpStudio.vm.ViewModels
             // For all dimensions (catalogs).
             AddDimenshionIdsProperties(lst);
 
+            if (isOptimistic && !isExcludeSpecial)
+            {
+                var m = this.Cfg.Model;
+                var prp = m.GetPropertyVersion(this.GroupProperties, m.PropertyVersionGuid);
+                lst.Add(prp);
+            }
             return lst;
         }
         private void AddNotDimensionProperties(List<IProperty> lst)
         {
-            var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
+            var m = this.Cfg.Model;
 
             //// Id
             //var pId = m.GetPropertyPkId(this, this.TableBalancePropertyIdGuid); // position 6
@@ -632,7 +674,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void AddDimenshionIdsProperties(List<IProperty> lst)
         {
-            var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
+            var m = (Model)this.Cfg.Model;
             // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
             // For all dimensions (catalogs).
             foreach (var t in this.GroupRegisterDimensions.ListDimensions)
