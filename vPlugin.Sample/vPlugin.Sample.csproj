@@ -21,14 +21,12 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <ResultFiles Include="$(TargetDir)*.*" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Generated\" />
     <Folder Include="proto\" />
+    <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
     <Protobuf Include="..\proto\plugin_sample.proto" GrpcServices="None" Link="proto\plugin_sample.proto" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,8 @@
     <InformationalVersion>0.0.0.0</InformationalVersion>
   </PropertyGroup>  
   <PropertyGroup>
-    <MyTargetFramework>net9.0</MyTargetFramework>
+    <MyTargetFramework>net10.0</MyTargetFramework>
+    <!--<MyTargetFramework>net9.0</MyTargetFramework>-->
     <PlatformTarget>AnyCPU</PlatformTarget>
     <!--<Platforms>x64</Platforms>-->
   </PropertyGroup>
