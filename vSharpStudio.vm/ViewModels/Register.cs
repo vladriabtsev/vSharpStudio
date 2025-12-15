@@ -460,7 +460,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (this.RegisterType == EnumRegisterType.BALANCE_AND_TURNOVER)
                 {
                     var m = this.Cfg.Model;
-                    res = m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateTime", IProperty.PropertyDocumentDatePosition, false); // position 9
+                    res = m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateInt", IProperty.PropertyDocumentDatePosition, false); // position 9
                 }
             }
             return res;
@@ -640,12 +640,19 @@ namespace vSharpStudio.vm.ViewModels
             {
 
                 // Balance date
-                var pPostDate = (Property)m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateTime", IProperty.PropertyDocumentDatePosition, false); // position 9
-                pPostDate.TagInList = "pd";
-                pPostDate.DataType.IsPKey = true;
-                pPostDate.IsCsNullable = false;
-                //pPostDate.IsBalanceDate = true;
-                lst.Add(pPostDate);
+                // Only keep date accuracy up to one day. See: proto_enum_register_balance_periodicity
+                var pPostDay = (Property)m.GetPropertyInt(this, this.TableBalancePropertyDateGuid, "OnDateInt", IProperty.PropertyDocumentDatePosition, false, false); // position 9
+                pPostDay.TagInList = "pd";
+                pPostDay.DataType.IsPKey = true;
+                pPostDay.IsCsNullable = false;
+                lst.Add(pPostDay);
+
+                //var pPostDate = (Property)m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateTime", IProperty.PropertyDocumentDatePosition, false); // position 9
+                //pPostDate.TagInList = "pd";
+                //pPostDate.DataType.IsPKey = true;
+                //pPostDate.IsCsNullable = false;
+                ////pPostDate.IsBalanceDate = true;
+                //lst.Add(pPostDate);
             }
 
             // Money accumulator

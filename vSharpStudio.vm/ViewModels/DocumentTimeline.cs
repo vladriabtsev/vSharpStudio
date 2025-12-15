@@ -336,8 +336,7 @@ namespace vSharpStudio.vm.ViewModels
             p = m.GetPropertyDateTimeUtc(this, this.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, true, this.TimeLineTimeAccuracy);
             p.SetPosition(IProperty.PropertyDocumentDatePosition);
             lst.Add(p);
-            p = m.GetPropertyInt(this, m.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.DocShortTypeIdPropertyName, false, false);
-            p.SetPosition(IProperty.PropertyShortTypeIdPosition);
+            p = m.GetPropertyInt(this, m.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.DocShortTypeIdPropertyName, IProperty.PropertyShortTypeIdPosition, false, false);
             lst.Add(p);
             p = m.GetPropertyBool(this, m.PropertyDocIsPostedGuid, "IsPosted", (uint)lst.Count, true);
             p.SetPosition(IProperty.PropertyIsPostedPosition);

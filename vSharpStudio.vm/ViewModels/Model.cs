@@ -797,11 +797,12 @@ namespace vSharpStudio.vm.ViewModels
             res.IsHidden = false;
             return res;
         }
-        public IProperty GetPropertyInt(ITreeConfigNode parent, string guid, string name, bool isPositive, bool isNullable)
+        public IProperty GetPropertyInt(ITreeConfigNode parent, string guid, string name, uint position, bool isPositive, bool isNullable)
         {
             var res = new Property(parent, guid, name, false);
             res.DataType = (DataType)this.GetDataTypeInt(res, isPositive, isNullable);
             res.IsHidden = false;
+            res.Position = position;
             return res;
         }
         public IProperty GetPropertyVersion(ITreeConfigNode parent, string guid)
