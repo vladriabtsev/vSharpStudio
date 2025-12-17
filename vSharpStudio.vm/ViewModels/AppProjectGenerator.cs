@@ -464,11 +464,6 @@ namespace vSharpStudio.vm.ViewModels
                 this.RestoreSettings();
                 (this.ParentAppProject as AppProject).RestoreGroupSettings(this.PluginGenerator);
                 (this.ParentAppProject.ParentAppSolution as AppSolution).RestoreGroupSettings(this.PluginGenerator);
-                nv.NodeGenSettingsApplyAction(cfg, (p) =>
-                {
-                    p.AddNodeAppGenSettings(this.Guid);
-                });
-                this._DynamicModelNodeSettings = this.cfg.Model.GetSettings(this.Guid);
                 if (this.PluginDbGenerator != null)
                 {
                     this._GenFileName = "app-settings.json";
@@ -492,6 +487,11 @@ namespace vSharpStudio.vm.ViewModels
                     this._GenFileName = prevGenFileName;
                     this._RelativePathToGenFolder = prevRelativePathToGenFolder;
                 }
+                nv.NodeGenSettingsApplyAction(cfg, (p) =>
+                {
+                    p.AddNodeAppGenSettings(this.Guid);
+                });
+                this._DynamicModelNodeSettings = this.cfg.Model.GetSettings(this.Guid);
                 OnConnStrChanged();
             }
             this.OnPropertyChanged(nameof(this.PropertyDefinitions));

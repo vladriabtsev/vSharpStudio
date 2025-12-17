@@ -3,6 +3,9 @@ using System.ComponentModel;
 
 namespace vSharpStudio.common
 {
+    /// <summary>
+    /// Plugin generator settings attached to each model node
+    /// </summary>
     public interface IvPluginGeneratorNodeSettings : IvPluginGeneratorValidatableSettings, INotifyPropertyChanged
     {
         //string Name { get; }
@@ -21,11 +24,14 @@ namespace vSharpStudio.common
         /// </summary>
         string SettingsAsJson { get; }
         string SettingsAsJsonDefault { get; }
-        //string[] GetListPropertiesToHideOnNodeSettings(ITreeConfigNode modelNode);
+        /// <summary>
+        /// Control settings property visibility in node editor by plugin generator node settings.
+        /// </summary>
         Dictionary<string, string?>? DicNodeExcludedProperties { get; }
         /// <summary>
-        /// Set by vSharpStudio Configuration editor. For internal usage.
+        /// Application project generator GUID.
         /// </summary>
         string AppProjectGeneratorGuid { get; set; }
+        //string[] GetListPropertiesToHideOnNodeSettings(ITreeConfigNode modelNode);
     }
 }

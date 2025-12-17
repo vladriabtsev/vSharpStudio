@@ -2,6 +2,9 @@
 
 namespace vSharpStudio.common
 {
+    /// <summary>
+    /// Plugin generator settings
+    /// </summary>
     public interface IvPluginGeneratorSettings : IvPluginGeneratorValidatableSettings, INotifyPropertyChanged
     {
         [Browsable(false)]

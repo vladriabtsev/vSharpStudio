@@ -272,35 +272,50 @@
         {
             get
             {
-                string? modelPath = null;
+                var sb = new StringBuilder();
+                sb.Append(string.Empty);
                 //_ModelPath = (this.Parent != null ? this.Parent.ModelPath + "." : "") + this._Name; // this.GetType().Name;
                 if (this is IConfig)
                 {
-                    modelPath = String.Empty;
                 }
                 else if (this is IModel)
                 {
-                    modelPath = "M";
+                    sb.Append('M');
                 }
                 else
                 {
-                    //if (this is ICatalog)
-                    //{
-                    //}
                     if (this.Parent != null)
                     {
                         if (this.Parent.ModelPath != String.Empty)
                         {
-                            modelPath = this.Parent.ModelPath + "." + this._Name;
-                        }
-                        else
-                        {
-                            modelPath = this._Name;
+                            sb.Append(this.Parent.ModelPath);
                         }
                     }
+                    if (this is not IPluginGeneratorNodeSettings && this is not IPluginGeneratorNodeSettings)
+                    {
+                        if (sb.Length > 0)
+                            sb.Append('.');
+                        sb.Append(this._Name);
+                    }
+                    if (this is IPluginGeneratorNodeSettings nset)
+                    {
+                        Debug.Assert(this.Cfg.DicNodes.ContainsKey(nset.AppProjectGeneratorGuid));
+                        var apg = (IAppProjectGenerator)this.Cfg.DicNodes[nset.AppProjectGeneratorGuid];
+                        sb.Append(", Settings: for ");
+                        sb.Append(apg.ModelPath);
+                        if (nset.SettingsVm != null)
+                        {
+                            sb.Append(", Type: ");
+                            sb.Append(nset.SettingsVm.GetType().FullName);
+                        }
+                    }
+                    else if (this is IPluginGeneratorSettings gset)
+                    {
+                        sb.Append(", Settings: for ");
+                        sb.Append(gset.GetType().FullName);
+                    }
                 }
-                Debug.Assert(modelPath != null);
-                return modelPath;
+                return sb.ToString();
             }
         }
 #if DEBUG

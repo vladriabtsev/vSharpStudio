@@ -62,7 +62,7 @@ namespace vSharpStudio.vm.ViewModels
             PluginGeneratorNodeSettings? gs = null;
             foreach (var ts in ngs.ListNodeGeneratorsSettings)
             {
-                if (ts.Guid == appProjectGeneratorGuid)
+                if (ts.AppProjectGeneratorGuid == appProjectGeneratorGuid)
                 {
                     gs = ts;
                 }
@@ -151,6 +151,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.DicVmExclProps[tt.SettingsVm.GetType().Name] = tt.SettingsVm.DicNodeExcludedProperties;
                 }
                 this._DicGenNodeSettings[tt.AppProjectGeneratorGuid] = tt.SettingsVm;
+                ((Config)this.Cfg)._DicNodes[tt.Guid] = tt;
             }
             //foreach (var t in cfg.DicActiveAppProjectGenerators)
             //{

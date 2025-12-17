@@ -2,5 +2,6 @@
 {
     public partial interface IPluginGeneratorNodeSettings : ITreeConfigNodeSortable
     {
+        IvPluginGeneratorNodeSettings? SettingsVm { get; }
     }
 }

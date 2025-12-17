@@ -575,7 +575,7 @@ namespace vSharpStudio.Unit
         public async Task Plugin004WorkWithAppGeneratorSettings()
         {
             _logger.LogTrace("Start test");
-            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath(), null, true);
             vm.BtnNewConfig.Execute();
             vm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
@@ -611,6 +611,7 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(gen.DynamicGeneratorSettings);
             Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessSettings).Name, gen.DynamicGeneratorSettings.GetType().Name);
             Assert.IsNotNull(vm.Config.Model.DynamicNodesSettings);
+            Assert.HasCount(1, vm.Config.Model.DicGenNodeSettings);
             //Assert.IsNotNull(vm.Config.Model.DynamicNodeDefaultSettings);
             //Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessNodeSettings).Name, vm.Config.Model.DynamicNodesSettings.GetType().Name);
 
@@ -634,6 +635,7 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(gen2.DynamicGeneratorSettings);
             Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessSettings).Name, gen2.DynamicGeneratorSettings.GetType().Name);
             Assert.IsNotNull(vm2.Config.Model.DynamicNodesSettings);
+            Assert.HasCount(1, vm2.Config.Model.DicGenNodeSettings);
             vm2.Config.SelectedNode = gen2;
             //Assert.IsNotNull(gen2.DynamicNodesSettings);
             var prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicGeneratorSettings;
@@ -658,6 +660,10 @@ namespace vSharpStudio.Unit
             Assert.IsEmpty(diffPluginLists.Dic1ButNotInDic2);
             Assert.IsEmpty(diffPluginLists.Dic2ButNotInDic1);
             var diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm.Config.DicNodes, vm2.Config.DicNodes);
+            foreach(var t in diffNodes.Dic1ButNotInDic2)
+            {
+                var yy = t.Value.ModelPath;
+            }
             Assert.IsEmpty(diffNodes.Dic1ButNotInDic2);
             Assert.IsEmpty(diffNodes.Dic2ButNotInDic1);
 #endif
