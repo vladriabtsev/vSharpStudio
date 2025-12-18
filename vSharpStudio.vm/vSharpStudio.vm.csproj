@@ -30,7 +30,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.4.0" />
-    <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
+    <!--<PackageReference Include="System.Reflection.Emit" Version="4.7.0" />-->
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />

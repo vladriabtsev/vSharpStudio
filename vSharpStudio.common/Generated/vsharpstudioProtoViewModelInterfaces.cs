@@ -1714,7 +1714,7 @@ namespace vSharpStudio.common
     	string Description { get; } 
     	IReadOnlyList<IProperty> ListProperties { get; } 
     	int ExplicitSortingPosition { get; } 
-    	EnumTimeAccuracyType TimeLineTimeAccuracy { get; } 
+    	EnumTimeAccuracyType TimelineTimeAccuracy { get; } 
     	string TimeLineDocDateTimePropertyName { get; } 
     	string PropertyTimelineDocDateTimeGuid { get; } 
     	string ShortIdTypeForCacheKey { get; } 

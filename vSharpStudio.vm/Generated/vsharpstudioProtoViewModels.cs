@@ -30527,7 +30527,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in from.ListProperties) 
                 vm._ListProperties.AddClone(Property.Clone(vm, (Property)t, isDeep));
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
-            vm._TimeLineTimeAccuracy = from.TimeLineTimeAccuracy; 
+            vm._TimelineTimeAccuracy = from.TimelineTimeAccuracy; 
             vm._TimeLineDocDateTimePropertyName = from.TimeLineDocDateTimePropertyName; 
             vm._PropertyTimelineDocDateTimeGuid = from.PropertyTimelineDocDateTimeGuid; 
             vm._ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; 
@@ -30590,7 +30590,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
-            to._TimeLineTimeAccuracy = from.TimeLineTimeAccuracy; 
+            to._TimelineTimeAccuracy = from.TimelineTimeAccuracy; 
             to._TimeLineDocDateTimePropertyName = from.TimeLineDocDateTimePropertyName; 
             to._PropertyTimelineDocDateTimeGuid = from.PropertyTimelineDocDateTimeGuid; 
             to._ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; 
@@ -30708,7 +30708,7 @@ namespace vSharpStudio.vm.ViewModels
                 vm.ListProperties.Add(tvm);
             }
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
-            vm._TimeLineTimeAccuracy = (EnumTimeAccuracyType)m.TimeLineTimeAccuracy; 
+            vm._TimelineTimeAccuracy = (EnumTimeAccuracyType)m.TimelineTimeAccuracy; 
             vm._TimeLineDocDateTimePropertyName = m.TimeLineDocDateTimePropertyName; 
             vm._PropertyTimelineDocDateTimeGuid = m.PropertyTimelineDocDateTimeGuid; 
             vm._ShortIdTypeForCacheKey = m.ShortIdTypeForCacheKey; 
@@ -30773,7 +30773,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in vm.ListProperties) 
                 m.ListProperties.Add(Property.ConvertToProto((Property)t)); 
             m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
-            m.TimeLineTimeAccuracy = (Proto.Config.proto_enum_time_accuracy_type)vm.TimeLineTimeAccuracy; 
+            m.TimelineTimeAccuracy = (Proto.Config.proto_enum_time_accuracy_type)vm.TimelineTimeAccuracy; 
             try 
             { 
                 m.TimeLineDocDateTimePropertyName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.TimeLineDocDateTimePropertyName)); 
@@ -30949,22 +30949,22 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(6)]
         [DisplayName("Timeline accuracy")]
         [Description("Document time line accuracy. Only one document can posted at any point of time line.")]
-        public EnumTimeAccuracyType TimeLineTimeAccuracy 
+        public EnumTimeAccuracyType TimelineTimeAccuracy 
         { 
-            get { return this._TimeLineTimeAccuracy; }
+            get { return this._TimelineTimeAccuracy; }
             set
             {
-                // Use 'OnTimeLineTimeAccuracyChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._TimeLineTimeAccuracy, value, (t) => { bool isCancel = false; this.OnTimeLineTimeAccuracyChanging(ref value, ref isCancel); if (isCancel) return; this._TimeLineTimeAccuracy = value; this.OnTimeLineTimeAccuracyChanged(); })) 
+                // Use 'OnTimelineTimeAccuracyChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._TimelineTimeAccuracy, value, (t) => { bool isCancel = false; this.OnTimelineTimeAccuracyChanging(ref value, ref isCancel); if (isCancel) return; this._TimelineTimeAccuracy = value; this.OnTimelineTimeAccuracyChanged(); })) 
                 {
                     this.ValidateProperty(); 
                     this.IsChanged = true; 
                 }
             }
         }
-        private EnumTimeAccuracyType _TimeLineTimeAccuracy; 
-        partial void OnTimeLineTimeAccuracyChanging(ref EnumTimeAccuracyType to, ref bool isCancel); 
-        partial void OnTimeLineTimeAccuracyChanged();
+        private EnumTimeAccuracyType _TimelineTimeAccuracy; 
+        partial void OnTimelineTimeAccuracyChanging(ref EnumTimeAccuracyType to, ref bool isCancel); 
+        partial void OnTimelineTimeAccuracyChanged();
         
         [Category("")]
         [PropertyOrderAttribute(12)]

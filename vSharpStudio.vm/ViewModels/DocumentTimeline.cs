@@ -333,7 +333,7 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(p);
 
             // Field document date and time value
-            p = m.GetPropertyDateTimeUtc(this, this.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, true, this.TimeLineTimeAccuracy);
+            p = m.GetPropertyDateTimeUtc(this, this.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, true, this.TimelineTimeAccuracy);
             p.SetPosition(IProperty.PropertyDocumentDatePosition);
             lst.Add(p);
             p = m.GetPropertyInt(this, m.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.DocShortTypeIdPropertyName, IProperty.PropertyShortTypeIdPosition, false, false);

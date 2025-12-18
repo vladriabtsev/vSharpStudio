@@ -2967,7 +2967,7 @@ message proto_document_timeline {
     // @attr [PropertyOrderAttribute(6)]
     // @attr [DisplayName("Timeline accuracy")]
     // @attr [Description("Document time line accuracy. Only one document can posted at any point of time line.")]
-    proto_enum_time_accuracy_type time_line_time_accuracy = 10;
+    proto_enum_time_accuracy_type timeline_time_accuracy = 10;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(12)]
     // @attr [DisplayName("Timeline property")]
