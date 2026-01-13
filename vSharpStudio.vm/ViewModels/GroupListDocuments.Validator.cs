@@ -7,16 +7,17 @@ namespace vSharpStudio.vm.ViewModels
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(GroupListDocumentsValidator));
         public GroupListDocumentsValidator()
         {
-            this.GeneralRules();
-            this.RuleFor(x => x.ShortIdTypeForCacheKey).NotEmpty().WithMessage("Can't be empty");
-            this.RuleFor(x => x.ShortIdTypeForCacheKey)
-                .Must((o, id) =>
-                {
-                    if (string.IsNullOrEmpty(id))
-                        return true;
-                    return !char.IsDigit(id[id.Length - 1]);
-                })
-                .WithMessage("Short type ID can't contain digit as a last symbol");
+            //this.GeneralRules();
+            //this.RuleFor(x => x.ShortIdTypeKey).NotEmpty().WithMessage("Can't be empty");
+            //this.RuleFor(x => x.ShortIdTypeKey)
+            //    .Must((o, id) =>
+            //    {
+            //        if (string.IsNullOrEmpty(id))
+            //            return true;
+            //        return !char.IsDigit(id[id.Length - 1]);
+            //    })
+            //    .WithMessage("Short type ID can't contain digit as a last symbol");
+
             //this.RuleFor(x => x.PrefixForDbTables).Must((o, prefix) =>
             //{
             //    if (!string.IsNullOrWhiteSpace(prefix))

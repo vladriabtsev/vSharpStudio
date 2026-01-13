@@ -12,6 +12,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IEditableNode, IRoleAccess
     {
+        public override string NameShortId { get { return $"{this.ShortIdTypeKey}{this.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" Count:{ListConstants.Count}";
@@ -25,7 +26,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = Defaults.ConstantsGroupName;
             this.IsEditable = true;
-            this._ShortIdTypeForCacheKey = "t";
+            this._ShortIdTypeKey = "n";
             Init();
         }
         protected override void OnInitFromDto()

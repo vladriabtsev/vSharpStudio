@@ -324,6 +324,7 @@ Application project generator
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
+| short_id_type_key | [string](#string) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Short Prefix&#34;)] @attr [Description(&#34;Short type ID prefix&#34;)] @attr [Browsable(false)] |
 | property_ref_self | [proto_property](#proto_config-proto_property) |  | special RefParent property @attr [Browsable(false)] |
 | property_ref_folder | [proto_property](#proto_config-proto_property) |  | special RefTreeParent property @attr [Browsable(false)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
@@ -563,6 +564,7 @@ Constant application wise value
 | group_details | [proto_group_list_details](#proto_config-proto_group_list_details) |  | @attr [Browsable(false)] |
 | position | [uint32](#uint32) |  | unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
 | property_ref_parent | [proto_property](#proto_config-proto_property) |  | special RefTreeParent property @attr [Browsable(false)] |
+| short_id_type_key | [string](#string) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Short Prefix&#34;)] @attr [Description(&#34;Short type ID prefix&#34;)] @attr [Browsable(false)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | is_try_attach | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;UI attach&#34;)] @attr [Description(&#34;UI engine will try put this detail block on same line as previous detail block or block of header fields&#34;)] |
@@ -622,8 +624,9 @@ Constant application wise value
 | group_details | [proto_group_list_details](#proto_config-proto_group_list_details) |  | @attr [Browsable(false)] |
 | group_forms | [proto_group_list_forms](#proto_config-proto_group_list_forms) |  | @attr [Browsable(false)] |
 | group_reports | [proto_group_list_reports](#proto_config-proto_group_list_reports) |  | @attr [Browsable(false)] |
-| short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
+| short_id_type_key | [string](#string) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Short Prefix&#34;)] @attr [Description(&#34;Short type ID prefix&#34;)] @attr [Browsable(false)] |
+| short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -678,10 +681,11 @@ Constant application wise value
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_properties | [proto_property](#proto_config-proto_property) | repeated | @attr [Browsable(false)] |
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
-| time_line_time_accuracy | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Timeline accuracy&#34;)] @attr [Description(&#34;Document time line accuracy. Only one document can posted at any point of time line.&#34;)] |
+| timeline_time_accuracy | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Timeline accuracy&#34;)] @attr [Description(&#34;Document time line accuracy. Only one document can posted at any point of time line.&#34;)] |
 | time_line_doc_date_time_property_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Timeline property&#34;)] @attr [Description(&#34;Timeline property name in document timeline&#34;)] |
 | property_timeline_doc_date_time_guid | [string](#string) |  | @attr [Browsable(false)] |
-| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short register type ID for cache key generator&#34;)] |
+| short_id_type_key | [string](#string) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Short Prefix&#34;)] @attr [Description(&#34;Short type ID prefix&#34;)] @attr [Browsable(false)] |
+| short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -1167,7 +1171,6 @@ C O N S T A N T
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | sort_type | [proto_enum_sorting_type](#proto_config-proto_enum_sorting_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Sort&#34;)] @attr [Description(&#34;Sort type for properties&#34;)] |
 | prefix_for_composition_names | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Composition prefix&#34;)] @attr [Description(&#34;Prefix for catalogs composition names. Used if set to use in config model&#34;)] |
-| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] |
 | list_catalogs | [proto_catalog](#proto_config-proto_catalog) | repeated | @attr [Browsable(false)] |
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | use_code_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item by default&#34;)] |
@@ -1228,10 +1231,10 @@ Common parameters section
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | sort_type | [proto_enum_sorting_type](#proto_config-proto_enum_sorting_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Sort&#34;)] @attr [Description(&#34;Sort type for properties&#34;)] |
 | list_constants | [proto_constant](#proto_config-proto_constant) | repeated | @attr [Browsable(false)] |
-| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short constant type ID for cache key generator&#34;)] |
 | last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
+| short_id_type_key | [string](#string) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Short Prefix&#34;)] @attr [Description(&#34;Short type ID prefix&#34;)] @attr [Browsable(false)] |
 | short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
 | list_role_constant_access_settings | [proto_role_constant_access](#proto_config-proto_role_constant_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -1282,7 +1285,6 @@ D E T A I L S
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | sort_type | [proto_enum_sorting_type](#proto_config-proto_enum_sorting_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Sort&#34;)] @attr [Description(&#34;Sort type for documents&#34;)] |
-| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short document type ID for cache key generator&#34;)] |
 | list_documents | [proto_document](#proto_config-proto_document) | repeated | @attr [Browsable(false)] |
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | list_role_document_access_settings | [proto_role_document_access](#proto_config-proto_role_document_access) | repeated | @attr [Browsable(false)] |
@@ -1503,7 +1505,6 @@ P R O P E R T Y
 | list_registers | [proto_register](#proto_config-proto_register) | repeated | @attr [Browsable(false)] |
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | prefix_for_composition_names | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Composition prefix&#34;)] @attr [Description(&#34;Prefix for registers composition names&#34;)] |
-| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short register type ID for cache key generator&#34;)] |
 | property_reg_guid_guid | [string](#string) |  | Guid for document guid property. Auto generated. @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
@@ -1623,8 +1624,9 @@ Configuration model
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| composite_name_max_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Max length&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] |
-| is_use_name_composition | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Use Composition&#34;)] @attr [Description(&#34;If selected, then configuration objects will use group prefixes and parent-child name composition as composite names. If not, then all configuration objects will use their names as composite names&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] |
+| is_use_name_composition | [bool](#bool) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Use Composite&#34;)] @attr [Description(&#34;Use composite object name for model configuration object&#34;)] |
+| is_use_short_id_composition | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Use Short ID&#34;)] @attr [Description(&#34;Use short ID for composite name for DB or gRPC configuration object&#34;)] |
+| is_try_use_name_composition_if_possible | [bool](#bool) |  | @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Try Use Composite&#34;)] @attr [Description(&#34;Try use composite object name if result is not too lengthy&#34;)] |
 | p_key_name | [string](#string) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Id name&#34;)] @attr [Description(&#34;Primary key field name&#34;)] @attr [Category(&#34;Property settings&#34;)] |
 | p_key_type | [proto_enum_primary_key_type](#proto_config-proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Id type&#34;)] @attr [Description(&#34;Primary key field type&#34;)] @attr [Category(&#34;Property settings&#34;)] |
 | record_version_field_name | [string](#string) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Version field&#34;)] @attr [Description(&#34;Record version field name&#34;)] @attr [Category(&#34;Property settings&#34;)] |
@@ -2054,10 +2056,11 @@ Configuration model
 | guid_obj1 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Object 1&#34;)] @attr [Description(&#34;First configuration object for Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
 | ref_obj2_type | [proto_enum_relation_config_type](#proto_config-proto_enum_relation_config_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Type 2&#34;)] @attr [Description(&#34;Type of second configuration object for Many To Many relation&#34;)] |
 | guid_obj2 | [google.protobuf.StringValue](#google-protobuf-StringValue) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Object 2&#34;)] @attr [Description(&#34;Second configuration object for Many To Many relation&#34;)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| short_id_type_key | [string](#string) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Short Prefix&#34;)] @attr [Description(&#34;Short type ID prefix&#34;)] @attr [Browsable(false)] |
+| short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for relation&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
-| short_id | [uint32](#uint32) |  | Sequential unique number in configuration @attr [Browsable(false)] |
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | property_ref_obj1 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
 | property_ref_obj2 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
@@ -2156,7 +2159,6 @@ Configuration model
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | sort_type | [proto_enum_sorting_type](#proto_config-proto_enum_sorting_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Sort&#34;)] @attr [Description(&#34;Sort type for relations&#34;)] |
 | prefix_for_composition_names | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Composition prefix&#34;)] @attr [Description(&#34;Prefix for many-to-many relations composition names. Used if set to use in config model&#34;)] |
-| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] |
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | list_relations | [proto_relation_many_to_many](#proto_config-proto_relation_many_to_many) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -2180,7 +2182,6 @@ Configuration model
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | sort_type | [proto_enum_sorting_type](#proto_config-proto_enum_sorting_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Sort&#34;)] @attr [Description(&#34;Sort type for relations&#34;)] |
 | prefix_for_composition_names | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Composition prefix&#34;)] @attr [Description(&#34;Prefix for many-to-many relations composition names. Used if set to use in config model&#34;)] |
-| short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] |
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | list_relations | [proto_relation_one_to_one](#proto_config-proto_relation_one_to_one) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |

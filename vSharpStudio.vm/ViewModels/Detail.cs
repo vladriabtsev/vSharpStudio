@@ -16,6 +16,43 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Detail : ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles, ILayoutParameters
     {
+        public override string NameShortId
+        {
+            get
+            {
+                var sb = new StringBuilder();
+                this.GetNodeShortId(sb, this);
+                return sb.ToString();
+            }
+        }
+        private void GetNodeShortId(StringBuilder sb, ITreeConfigNode n)
+        {
+            ITreeConfigNode? p;
+            if (n is Detail t)
+            {
+                p = t.ParentGroupListDetails.Parent;
+                Debug.Assert(p != null);
+                this.GetNodeShortId(sb, p);
+                sb.Append(t.ShortIdTypeKey);
+                sb.Append(t.ShortId);
+            }
+            else if (n is Catalog c)
+            {
+                sb.Append(c.ShortIdTypeKey);
+                sb.Append(c.ShortId);
+                return;
+            }
+            else if (n is Document d)
+            {
+                sb.Append(d.ShortIdTypeKey);
+                sb.Append(d.ShortId);
+                return;
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" props:{GroupProperties.ListProperties.Count} details:{GroupDetails.ListDetails.Count}";
@@ -65,6 +102,7 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
+            this._ShortIdTypeKey = "t";
             this.IsIncludableInModels = true;
             this._IsIndexFk = true;
             this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();

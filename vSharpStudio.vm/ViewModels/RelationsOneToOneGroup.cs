@@ -64,7 +64,6 @@ namespace vSharpStudio.vm.ViewModels
             this._PrefixForCompositionNames = "OneToOne";
             this.IsEditable = false;
 
-            this._ShortIdTypeForCacheKey = "m";
             Init();
         }
         protected override void OnInitFromDto()

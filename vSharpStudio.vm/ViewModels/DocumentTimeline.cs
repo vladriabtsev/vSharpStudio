@@ -12,6 +12,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class DocumentTimeline : IListProperties, ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting, IRoleAccess
     {
+        public override string NameShortId { get { return $"{this.ShortIdTypeKey}{this.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" Count:{ListProperties.Count}";
@@ -79,7 +80,7 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyTimelineDocDateTimeGuid = System.Guid.NewGuid().ToString();
             this._TimeLineDocDateTimePropertyName = "DocDateTime";
             this.IsEditable = false;
-            this._ShortIdTypeForCacheKey = "tl";
+            this._ShortIdTypeKey = "t";
             Init();
         }
         protected override void OnInitFromDto()

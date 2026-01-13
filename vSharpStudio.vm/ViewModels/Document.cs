@@ -16,6 +16,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, INodeWithProperties, IRoleAccess, IDocumentAccessRoles
     {
+        public override string NameShortId { get { return $"{this.ShortIdTypeKey}{this.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes += $" props:{GroupProperties.ListProperties.Count} details:{GroupDetails.ListDetails.Count} seq:{this.Sequence?.Name}";
@@ -66,6 +67,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
 
+            this._ShortIdTypeKey = "d";
             this._SequenceGuid = "";
             this._ListSelectedRegisters = [];
             this._ListSelectedRegisters.CollectionChanged += _ListSelectedRegisters_CollectionChanged;

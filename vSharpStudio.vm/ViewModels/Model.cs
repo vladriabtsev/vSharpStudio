@@ -43,8 +43,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this._Name = Defaults.ModelName;
-            // TODO validate, Id generator table, use in db names
-            this._CompositeNameMaxLength = 100;
             // TODO validate
             this._IsUseNameComposition = true;
 

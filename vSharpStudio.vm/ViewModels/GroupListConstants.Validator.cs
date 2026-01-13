@@ -23,8 +23,8 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.ShortIdTypeForCacheKey).NotEmpty().WithMessage("Can't be empty");
-            this.RuleFor(x => x.ShortIdTypeForCacheKey)
+            this.RuleFor(x => x.ShortIdTypeKey).NotEmpty().WithMessage("Can't be empty");
+            this.RuleFor(x => x.ShortIdTypeKey)
                 .Must((o, id) =>
                 {
                     if (string.IsNullOrEmpty(id))

@@ -968,8 +968,9 @@ namespace vSharpStudio.common
     	int Version { get; } 
     	int ExplicitSortingPosition { get; } 
     	string Description { get; } 
-    	uint CompositeNameMaxLength { get; } 
     	bool IsUseNameComposition { get; } 
+    	bool IsUseShortIdComposition { get; } 
+    	bool IsTryUseNameCompositionIfPossible { get; } 
     	string PKeyName { get; } 
     	EnumPrimaryKeyType PKeyType { get; } 
     	string RecordVersionFieldName { get; } 
@@ -1286,6 +1287,7 @@ namespace vSharpStudio.common
     	uint Position { get; } 
     	// special RefTreeParent property    
     	IProperty PropertyRefParent { get; } 
+    	string ShortIdTypeKey { get; } 
     	// Sequential unique number in configuration
     	uint ShortId { get; } 
     	// Combination of short_id and type group in higher bits
@@ -1328,11 +1330,11 @@ namespace vSharpStudio.common
     	IReadOnlyList<IConstant> ListConstants { get; } 
     	IConstant this[int index] { get; }
     	int Count();
-    	string ShortIdTypeForCacheKey { get; } 
     	// Last generated Protobuf field position
     	uint LastGenPosition { get; } 
     	bool IsNew { get; } 
     	bool IsMarkedForDeletion { get; } 
+    	string ShortIdTypeKey { get; } 
     	uint ShortId { get; } 
     	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
@@ -1471,6 +1473,7 @@ namespace vSharpStudio.common
     	string Description { get; } 
     	bool IsNew { get; } 
     	bool IsMarkedForDeletion { get; } 
+    	string ShortIdTypeKey { get; } 
     	// special RefParent property    
     	IProperty PropertyRefSelf { get; } 
     	// special RefTreeParent property    
@@ -1517,7 +1520,6 @@ namespace vSharpStudio.common
     	string Description { get; } 
     	EnumSortingType SortType { get; } 
     	string PrefixForCompositionNames { get; } 
-    	string ShortIdTypeForCacheKey { get; } 
     	IReadOnlyList<ICatalog> ListCatalogs { get; } 
     	ICatalog this[int index] { get; }
     	int Count();
@@ -1548,7 +1550,6 @@ namespace vSharpStudio.common
     	int Count();
     	int ExplicitSortingPosition { get; } 
     	string PrefixForCompositionNames { get; } 
-    	string ShortIdTypeForCacheKey { get; } 
     	// Guid for document guid property. Auto generated.
     	string PropertyRegGuidGuid { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
@@ -1717,7 +1718,9 @@ namespace vSharpStudio.common
     	EnumTimeAccuracyType TimelineTimeAccuracy { get; } 
     	string TimeLineDocDateTimePropertyName { get; } 
     	string PropertyTimelineDocDateTimeGuid { get; } 
-    	string ShortIdTypeForCacheKey { get; } 
+    	string ShortIdTypeKey { get; } 
+    	// Sequential unique number in configuration
+    	uint ShortId { get; } 
     	EnumUseType IsGridSortable { get; } 
     	EnumUseType IsGridSortableCustom { get; } 
     	EnumUseType IsGridFilterable { get; } 
@@ -1739,10 +1742,11 @@ namespace vSharpStudio.common
     	IGroupListDetails GroupDetails { get; } 
     	IGroupListForms GroupForms { get; } 
     	IGroupListReports GroupReports { get; } 
-    	// Sequential unique number in configuration
-    	uint ShortId { get; } 
     	// Combination of short_id and type group in higher bits
     	uint ShortRefId { get; } 
+    	string ShortIdTypeKey { get; } 
+    	// Sequential unique number in configuration
+    	uint ShortId { get; } 
     	EnumUseType IsGridSortable { get; } 
     	EnumUseType IsGridSortableCustom { get; } 
     	EnumUseType IsGridFilterable { get; } 
@@ -1755,7 +1759,6 @@ namespace vSharpStudio.common
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); 
     	string Description { get; } 
     	EnumSortingType SortType { get; } 
-    	string ShortIdTypeForCacheKey { get; } 
     	IReadOnlyList<IDocument> ListDocuments { get; } 
     	IDocument this[int index] { get; }
     	int Count();
@@ -1789,11 +1792,12 @@ namespace vSharpStudio.common
     	string? GuidObj1 { get; } 
     	EnumRelationConfigType RefObj2Type { get; } 
     	string? GuidObj2 { get; } 
+    	string ShortIdTypeKey { get; } 
+    	// Sequential unique number in configuration
+    	uint ShortId { get; } 
     	bool IsUseHistory { get; } 
     	bool IsNew { get; } 
     	bool IsMarkedForDeletion { get; } 
-    	// Sequential unique number in configuration
-    	uint ShortId { get; } 
     	// Combination of short_id and type group in higher bits
     	uint ShortRefId { get; } 
     	IProperty PropertyRefObj1 { get; } 
@@ -1808,7 +1812,6 @@ namespace vSharpStudio.common
     	string Description { get; } 
     	EnumSortingType SortType { get; } 
     	string PrefixForCompositionNames { get; } 
-    	string ShortIdTypeForCacheKey { get; } 
     	int ExplicitSortingPosition { get; } 
     	IReadOnlyList<IRelationManyToMany> ListRelations { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
@@ -1844,7 +1847,6 @@ namespace vSharpStudio.common
     	string Description { get; } 
     	EnumSortingType SortType { get; } 
     	string PrefixForCompositionNames { get; } 
-    	string ShortIdTypeForCacheKey { get; } 
     	int ExplicitSortingPosition { get; } 
     	IReadOnlyList<IRelationOneToOne> ListRelations { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 

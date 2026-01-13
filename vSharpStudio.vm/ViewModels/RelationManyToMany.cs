@@ -14,6 +14,7 @@ namespace vSharpStudio.vm.ViewModels
     public partial class RelationManyToMany : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
         ITreeConfigNodeSortable
     {
+        public override string NameShortId { get { return $"{this.ShortIdTypeKey}{this.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" {this.GetName(false)} History:{this.IsUseHistory}";
@@ -60,6 +61,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
+            this._ShortIdTypeKey = "m";
             this._Guid = System.Guid.NewGuid().ToString();
             this._PropertyDataTimeGuid = System.Guid.NewGuid().ToString();
             var m = (Model)this.Cfg.Model;

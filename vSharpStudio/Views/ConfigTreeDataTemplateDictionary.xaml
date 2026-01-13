@@ -26,7 +26,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding Name}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding NameWithShortId}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" Margin="2,0,0,2" />
             <!--AssociationLine, Export, Link-->
             <ContentControl Template="{StaticResource iconAttach}" Visibility="{Binding IsTryAttachSorted, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}" />
             <!--GoToCurrentLineLocation, GoToNextInList, Return-->
@@ -74,7 +74,7 @@
                     <ContentControl Template="{Binding IconStatus, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                 </Viewbox>
             </Grid>
-            <TextBlock Text="{Binding Name}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" ToolTip="{Binding ToolTipText}" Margin="2,0,0,2" />
+            <TextBlock Text="{Binding NameWithShortId}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" ToolTip="{Binding ToolTipText}" Margin="2,0,0,2" />
             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
                 <Viewbox Height="7" Width="7" VerticalAlignment="Top" Visibility="{Binding IsNewOrHasNew, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
                     <ContentControl Template="{StaticResource iconAdd}" ToolTip="Is new or has new subnodes" />

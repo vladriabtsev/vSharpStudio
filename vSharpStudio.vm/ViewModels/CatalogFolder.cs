@@ -55,6 +55,8 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [Browsable(false)]
+        public uint ShortId { get { return this.ParentCatalog.ShortId; } }
+        [Browsable(false)]
         public new string IconName { get { return "iconFolder"; } }
         partial void OnCreated()
         {
@@ -131,6 +133,9 @@ namespace vSharpStudio.vm.ViewModels
                 node.Guid = guid;
             }
 #endif
+            var model = (Model)this.Cfg.Model;
+            node.ShortId = model.LastTypeShortIdForNode();
+            node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.GroupDetails.NodeAddNewSubNode(node);
             return node;
         }

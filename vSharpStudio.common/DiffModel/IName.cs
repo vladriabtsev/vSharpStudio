@@ -4,7 +4,7 @@
     {
         string Name { get; set; }
         string NameUi { get; set; }
-
         //string FullName { get; }
+        string NameShortId { get; }
     }
 }

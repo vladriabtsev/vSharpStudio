@@ -970,19 +970,27 @@ namespace vSharpStudio.Unit
 
             cfg.Model.IsUseNameComposition = false;
             cfg.Model.GroupCatalogs.PrefixForCompositionNames = "Cat";
-            cfg.Model.GroupCatalogs.AddCatalog("Test1");
+            var c = cfg.Model.GroupCatalogs.AddCatalog("Test1");
             Assert.AreEqual(cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
             cfg.Model.IsUseNameComposition = true;
             Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForCompositionNames + cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
+            cfg.Model.IsUseShortIdComposition = true;
+            Assert.AreEqual("c1", c.NameShortId);
+            cfg.Model.IsTryUseNameCompositionIfPossible = true;
+            Assert.AreEqual("c1", c.NameShortId);
 
             cfg.Model.IsUseNameComposition = false;
-            cfg.Model.GroupCatalogs[0].GroupDetails.AddPropertiesTab("Tab1");
+            var t = cfg.Model.GroupCatalogs[0].GroupDetails.AddPropertiesTab("Tab1");
             Assert.AreEqual(cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
             Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupDetails[0].Name, cfg.Model.GroupCatalogs[0].GroupDetails[0].CompositeName);
             cfg.Model.IsUseNameComposition = true;
             Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForCompositionNames + cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
             Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForCompositionNames + cfg.Model.GroupCatalogs[0].Name + cfg.Model.GroupCatalogs[0].GroupDetails[0].Name,
                 cfg.Model.GroupCatalogs[0].GroupDetails[0].CompositeName);
+            cfg.Model.IsUseShortIdComposition = true;
+            Assert.AreEqual("c1t2", t.NameShortId);
+            cfg.Model.IsTryUseNameCompositionIfPossible = true;
+            Assert.AreEqual("c1t2", t.NameShortId);
 
         }
         [TestMethod]
@@ -993,19 +1001,25 @@ namespace vSharpStudio.Unit
 
             cfg.Model.IsUseNameComposition = false;
             cfg.Model.GroupDocuments.PrefixForCompositionNames = "Cat";
-            cfg.Model.GroupDocuments.GroupListDocuments.AddDocument("Test1");
+            var d =cfg.Model.GroupDocuments.GroupListDocuments.AddDocument("Test1");
             Assert.AreEqual(cfg.Model.GroupDocuments.GroupListDocuments[0].Name, cfg.Model.GroupDocuments.GroupListDocuments[0].CompositeName);
             cfg.Model.IsUseNameComposition = true;
             Assert.AreEqual(cfg.Model.GroupDocuments.PrefixForCompositionNames + cfg.Model.GroupDocuments.GroupListDocuments[0].Name, cfg.Model.GroupDocuments.GroupListDocuments[0].CompositeName);
+            Assert.AreEqual("d1", d.NameShortId);
+            cfg.Model.IsTryUseNameCompositionIfPossible = true;
+            Assert.AreEqual("d1", d.NameShortId);
 
             cfg.Model.IsUseNameComposition = false;
-            cfg.Model.GroupDocuments.GroupListDocuments[0].GroupDetails.AddPropertiesTab("Tab1");
+            var t = cfg.Model.GroupDocuments.GroupListDocuments[0].GroupDetails.AddPropertiesTab("Tab1");
             Assert.AreEqual(cfg.Model.GroupDocuments.GroupListDocuments[0].Name, cfg.Model.GroupDocuments.GroupListDocuments[0].CompositeName);
             Assert.AreEqual(cfg.Model.GroupDocuments.GroupListDocuments[0].GroupDetails[0].Name, cfg.Model.GroupDocuments.GroupListDocuments[0].GroupDetails[0].CompositeName);
             cfg.Model.IsUseNameComposition = true;
             Assert.AreEqual(cfg.Model.GroupDocuments.PrefixForCompositionNames + cfg.Model.GroupDocuments.GroupListDocuments[0].Name, cfg.Model.GroupDocuments.GroupListDocuments[0].CompositeName);
             Assert.AreEqual(cfg.Model.GroupDocuments.PrefixForCompositionNames + cfg.Model.GroupDocuments.GroupListDocuments[0].Name + cfg.Model.GroupDocuments.GroupListDocuments[0].GroupDetails[0].Name,
                 cfg.Model.GroupDocuments.GroupListDocuments[0].GroupDetails[0].CompositeName);
+            Assert.AreEqual("d1t2", t.NameShortId);
+            cfg.Model.IsTryUseNameCompositionIfPossible = true;
+            Assert.AreEqual("d1t2", t.NameShortId);
         }
         [TestMethod]
         public void DbName003_UniqueDbNamesValidation()

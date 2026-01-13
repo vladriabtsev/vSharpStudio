@@ -460,6 +460,20 @@
                 }
             }
         }
+        public string NameWithShortId
+        {
+            get
+            {
+                if (this.Cfg.Model.IsUseNameComposition && this.Cfg.Model.IsUseShortIdComposition)
+                {
+                    StringBuilder sb = new();
+                    return $"{this._Name}({this.NameShortId})";
+                }
+                return this._Name;
+            }
+        }
+        //public string CompositeNameShortId { get { return this.GetCompositeNameShortId(); } }
+        public virtual string NameShortId { get { return "not overriden"; } }
         protected string GetCompositeName()
         {
             if (this.Cfg.Model.IsUseNameComposition)
@@ -530,6 +544,44 @@
                 return this._Name;
             }
         }
+        //protected void GetNameShortId(StringBuilder sb)
+        //{
+        //    List<ITreeConfigNode> lst = [];
+        //    ITreeConfigNode? p = this.Parent;
+        //    while (p != null)
+        //    {
+        //        lst.Insert(0, p);
+        //        p = p.Parent;
+        //    }
+        //    foreach (var t in lst)
+        //    {
+        //        sb.Append(this.NameShortId);
+        //    }
+        //}
+        //protected string GetCompositeNameShortId(int maxLength = 1000, int maxStorageProcedureOpNameLength = 0)
+        //{
+        //    if (!this.Cfg.Model.IsUseNameComposition)
+        //    {
+        //        return this._Name;
+        //    }
+        //    else if (this.Cfg.Model.IsTryUseNameCompositionIfPossible)
+        //    {
+        //        var nam = this.GetCompositeName();
+        //        if (nam.Length <= maxLength - maxStorageProcedureOpNameLength)
+        //            return nam;
+        //    }
+        //    var sb = new StringBuilder();
+        //    if (this is IGroupListRegisters gr1)
+        //    {
+        //        sb.Append(gr1.PrefixForCompositionNames);
+        //    }
+        //    else
+        //    {
+        //        GetNameShortId(sb);
+        //    }
+        //    sb.Append(this._Name);
+        //    return sb.ToString();
+        //}
 
 
         //public bool CheckIsCompositeNameUnique()

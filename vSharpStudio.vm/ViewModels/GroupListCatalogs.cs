@@ -69,7 +69,6 @@ namespace vSharpStudio.vm.ViewModels
             this._UseCodePropertyInSeparateTree = true;
             this._UseNamePropertyInSeparateTree = true;
 
-            this._ShortIdTypeForCacheKey = "c";
             Init();
         }
         protected override void OnInitFromDto()

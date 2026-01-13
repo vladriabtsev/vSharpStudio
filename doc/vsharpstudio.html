@@ -1410,6 +1410,16 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
+                  <td>short_id_type_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(15)]
+@attr [DisplayName(&#34;Short Prefix&#34;)]
+@attr [Description(&#34;Short type ID prefix&#34;)]
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>property_ref_self</td>
                   <td><a href="#proto_config.proto_property">proto_property</a></td>
                   <td></td>
@@ -2674,6 +2684,16 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
+                  <td>short_id_type_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(18)]
+@attr [DisplayName(&#34;Short Prefix&#34;)]
+@attr [Description(&#34;Short type ID prefix&#34;)]
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>short_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
@@ -2956,18 +2976,28 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
-                  <td>short_id</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>Sequential unique number in configuration
-@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>short_ref_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>Combination of short_id and type group in higher bits
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id_type_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(21)]
+@attr [DisplayName(&#34;Short Prefix&#34;)]
+@attr [Description(&#34;Short type ID prefix&#34;)]
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Sequential unique number in configuration
 @attr [Browsable(false)] </p></td>
                 </tr>
               
@@ -3217,7 +3247,7 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
-                  <td>time_line_time_accuracy</td>
+                  <td>timeline_time_accuracy</td>
                   <td><a href="#proto_config.proto_enum_time_accuracy_type">proto_enum_time_accuracy_type</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
@@ -3244,12 +3274,21 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
-                  <td>short_id_type_for_cache_key</td>
+                  <td>short_id_type_key</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(15)]
-@attr [DisplayName(&#34;Short ID&#34;)]
-@attr [Description(&#34;Short register type ID for cache key generator&#34;)] </p></td>
+@attr [DisplayName(&#34;Short Prefix&#34;)]
+@attr [Description(&#34;Short type ID prefix&#34;)]
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Sequential unique number in configuration
+@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -5228,15 +5267,6 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
-                  <td>short_id_type_for_cache_key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(7)]
-@attr [DisplayName(&#34;Short ID&#34;)]
-@attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>list_catalogs</td>
                   <td><a href="#proto_config.proto_catalog">proto_catalog</a></td>
                   <td>repeated</td>
@@ -5541,15 +5571,6 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
-                  <td>short_id_type_for_cache_key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(7)]
-@attr [DisplayName(&#34;Short ID&#34;)]
-@attr [Description(&#34;Short constant type ID for cache key generator&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>last_gen_position</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
@@ -5570,6 +5591,16 @@ unique in object (can be used as Protobuf field position)
                   <td></td>
                   <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
 @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id_type_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(15)]
+@attr [DisplayName(&#34;Short Prefix&#34;)]
+@attr [Description(&#34;Short type ID prefix&#34;)]
+@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -5770,15 +5801,6 @@ unique in object (can be used as Protobuf field position)
 @attr [PropertyOrderAttribute(4)]
 @attr [DisplayName(&#34;Sort&#34;)]
 @attr [Description(&#34;Sort type for documents&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>short_id_type_for_cache_key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(6)]
-@attr [DisplayName(&#34;Short ID&#34;)]
-@attr [Description(&#34;Short document type ID for cache key generator&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -6642,15 +6664,6 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
-                  <td>short_id_type_for_cache_key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(15)]
-@attr [DisplayName(&#34;Short ID&#34;)]
-@attr [Description(&#34;Short register type ID for cache key generator&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>property_reg_guid_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -7103,22 +7116,30 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
-                  <td>composite_name_max_length</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(8)]
-@attr [DisplayName(&#34;Max length&#34;)]
-@attr [Category(&#34;Composite Names Generation&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>is_use_name_composition</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(8)]
+@attr [DisplayName(&#34;Use Composite&#34;)]
+@attr [Description(&#34;Use composite object name for model configuration object&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_short_id_composition</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
                   <td><p>@attr [PropertyOrderAttribute(9)]
-@attr [DisplayName(&#34;Use Composition&#34;)]
-@attr [Description(&#34;If selected, then configuration objects will use group prefixes and parent-child name composition as composite names. If not, then all configuration objects will use their names as composite names&#34;)]
-@attr [Category(&#34;Composite Names Generation&#34;)] </p></td>
+@attr [DisplayName(&#34;Use Short ID&#34;)]
+@attr [Description(&#34;Use short ID for composite name for DB or gRPC configuration object&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_try_use_name_composition_if_possible</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(10)]
+@attr [DisplayName(&#34;Try Use Composite&#34;)]
+@attr [Description(&#34;Try use composite object name if result is not too lengthy&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -8924,6 +8945,24 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
+                  <td>short_id_type_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(18)]
+@attr [DisplayName(&#34;Short Prefix&#34;)]
+@attr [Description(&#34;Short type ID prefix&#34;)]
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Sequential unique number in configuration
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_use_history</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -8946,14 +8985,6 @@ unique in object (can be used as Protobuf field position)
                   <td></td>
                   <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
 @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>short_id</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>Sequential unique number in configuration
-@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -9374,15 +9405,6 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
-                  <td>short_id_type_for_cache_key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(7)]
-@attr [DisplayName(&#34;Short ID&#34;)]
-@attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>explicit_sorting_position</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
@@ -9472,15 +9494,6 @@ unique in object (can be used as Protobuf field position)
                   <td><p>@attr [PropertyOrderAttribute(5)]
 @attr [DisplayName(&#34;Composition prefix&#34;)]
 @attr [Description(&#34;Prefix for many-to-many relations composition names. Used if set to use in config model&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>short_id_type_for_cache_key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(7)]
-@attr [DisplayName(&#34;Short ID&#34;)]
-@attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] </p></td>
                 </tr>
               
                 <tr>

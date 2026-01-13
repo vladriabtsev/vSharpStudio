@@ -75,7 +75,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._PrefixForCompositionNames = "Reg";
             this.IsEditable = false;
-            this._ShortIdTypeForCacheKey = "rg";
             this._PropertyRegGuidGuid = System.Guid.NewGuid().ToString();
             Init();
         }

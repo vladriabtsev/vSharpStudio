@@ -662,15 +662,19 @@ message proto_model {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 6;
+
     // @attr [PropertyOrderAttribute(8)]
-    // @attr [DisplayName("Max length")]
-    // @attr [Category("Composite Names Generation")]
-    uint32 composite_name_max_length = 8;
+    // @attr [DisplayName("Use Composite")]
+    // @attr [Description("Use composite object name for model configuration object")]
+    bool is_use_name_composition = 8;
     // @attr [PropertyOrderAttribute(9)]
-    // @attr [DisplayName("Use Composition")]
-    // @attr [Description("If selected, then configuration objects will use group prefixes and parent-child name composition as composite names. If not, then all configuration objects will use their names as composite names")]
-    // @attr [Category("Composite Names Generation")]
-    bool is_use_name_composition = 9;
+    // @attr [DisplayName("Use Short ID")]
+    // @attr [Description("Use short ID for composite name for DB or gRPC configuration object")]
+    bool is_use_short_id_composition = 9;
+    // @attr [PropertyOrderAttribute(10)]
+    // @attr [DisplayName("Try Use Composite")]
+    // @attr [Description("Try use composite object name if result is not too lengthy")]
+    bool is_try_use_name_composition_if_possible = 10;
 
     // @attr [PropertyOrderAttribute(14)]
     // @attr [DisplayName("Id name")]
@@ -1595,6 +1599,11 @@ message proto_detail {
     // @attr [Browsable(false)]
     proto_property property_ref_parent = 16;
 
+    // @attr [PropertyOrderAttribute(18)]
+    // @attr [DisplayName("Short Prefix")]
+    // @attr [Description("Short type ID prefix")]
+    // @attr [Browsable(false)]
+    string short_id_type_key = 18;
     // Sequential unique number in configuration
     // @attr [Browsable(false)]
     uint32 short_id = 19;
@@ -1723,10 +1732,6 @@ message proto_group_list_constants {
     proto_enum_sorting_type sort_type = 10;
     // @attr [Browsable(false)]
     repeated proto_constant list_constants = 6;
-    // @attr [PropertyOrderAttribute(7)]
-    // @attr [DisplayName("Short ID")]
-    // @attr [Description("Short constant type ID for cache key generator")]
-    string short_id_type_for_cache_key = 7;
     // Last generated Protobuf field position
     // @attr [ReadOnly(true)]
     uint32 last_gen_position = 8;
@@ -1735,6 +1740,11 @@ message proto_group_list_constants {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 11;
+    // @attr [PropertyOrderAttribute(15)]
+    // @attr [DisplayName("Short Prefix")]
+    // @attr [Description("Short type ID prefix")]
+    // @attr [Browsable(false)]
+    string short_id_type_key = 15;
     // @attr [Browsable(false)]
     uint32 short_id = 19;
 
@@ -2164,6 +2174,11 @@ message proto_catalog {
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
+    // @attr [PropertyOrderAttribute(15)]
+    // @attr [DisplayName("Short Prefix")]
+    // @attr [Description("Short type ID prefix")]
+    // @attr [Browsable(false)]
+    string short_id_type_key = 15;
     // special RefParent property    
     // @attr [Browsable(false)]
     proto_property property_ref_self = 16;
@@ -2316,10 +2331,6 @@ message proto_group_list_catalogs {
     // @attr [DisplayName("Composition prefix")]
     // @attr [Description("Prefix for catalogs composition names. Used if set to use in config model")]
     string prefix_for_composition_names = 6;
-    // @attr [PropertyOrderAttribute(7)]
-    // @attr [DisplayName("Short ID")]
-    // @attr [Description("Short catalog type ID for cache key generator")]
-    string short_id_type_for_cache_key = 7;
     // @attr [Browsable(false)]
     repeated proto_catalog list_catalogs = 8;
     // @attr [Browsable(false)]
@@ -2458,10 +2469,6 @@ message proto_group_list_registers {
     // @attr [DisplayName("Composition prefix")]
     // @attr [Description("Prefix for registers composition names")]
     string prefix_for_composition_names = 9;
-    // @attr [PropertyOrderAttribute(15)]
-    // @attr [DisplayName("Short ID")]
-    // @attr [Description("Short register type ID for cache key generator")]
-    string short_id_type_for_cache_key = 15;
     // Guid for document guid property. Auto generated.
     // @attr [Browsable(false)]
     string property_reg_guid_guid = 43; 
@@ -2976,9 +2983,15 @@ message proto_document_timeline {
     // @attr [Browsable(false)]
     string property_timeline_doc_date_time_guid = 13;
     // @attr [PropertyOrderAttribute(15)]
-    // @attr [DisplayName("Short ID")]
-    // @attr [Description("Short register type ID for cache key generator")]
-    string short_id_type_for_cache_key = 15;
+    // @attr [DisplayName("Short Prefix")]
+    // @attr [Description("Short type ID prefix")]
+    // @attr [Browsable(false)]
+    string short_id_type_key = 15;
+
+    // Sequential unique number in configuration
+    // @attr [Browsable(false)]
+    uint32 short_id = 19;
+
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -3043,12 +3056,17 @@ message proto_document {
     // @attr [Browsable(false)]
     proto_group_list_reports group_reports = 18;
 
-    // Sequential unique number in configuration
-    // @attr [Browsable(false)]
-    uint32 short_id = 19;
     // Combination of short_id and type group in higher bits
     // @attr [Browsable(false)]
     uint32 short_ref_id = 20;
+    // @attr [PropertyOrderAttribute(21)]
+    // @attr [DisplayName("Short Prefix")]
+    // @attr [Description("Short type ID prefix")]
+    // @attr [Browsable(false)]
+    string short_id_type_key = 21;
+    // Sequential unique number in configuration
+    // @attr [Browsable(false)]
+    uint32 short_id = 22;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -3089,10 +3107,6 @@ message proto_group_list_documents {
     // @attr [DisplayName("Sort")]
     // @attr [Description("Sort type for documents")]
     proto_enum_sorting_type sort_type = 9;
-    // @attr [PropertyOrderAttribute(6)]
-    // @attr [DisplayName("Short ID")]
-    // @attr [Description("Short document type ID for cache key generator")]
-    string short_id_type_for_cache_key = 6;
     // @attr [Browsable(false)]
     repeated proto_document list_documents = 7;
     // @attr [Browsable(false)]
@@ -3199,6 +3213,16 @@ message proto_relation_many_to_many {
     // @attr [Description("Second configuration object for Many To Many relation")]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     google.protobuf.StringValue guid_obj2 = 16;
+
+    // @attr [PropertyOrderAttribute(18)]
+    // @attr [DisplayName("Short Prefix")]
+    // @attr [Description("Short type ID prefix")]
+    // @attr [Browsable(false)]
+    string short_id_type_key = 18;
+    // Sequential unique number in configuration
+    // @attr [Browsable(false)]
+    uint32 short_id = 19;
+
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use History")]
@@ -3210,9 +3234,6 @@ message proto_relation_many_to_many {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 23;
-    // Sequential unique number in configuration
-    // @attr [Browsable(false)]
-    uint32 short_id = 24;
     // Combination of short_id and type group in higher bits
     // @attr [Browsable(false)]
     uint32 short_ref_id = 25;
@@ -3254,10 +3275,6 @@ message proto_relations_many_to_many_group {
     // @attr [DisplayName("Composition prefix")]
     // @attr [Description("Prefix for many-to-many relations composition names. Used if set to use in config model")]
     string prefix_for_composition_names = 6;
-    // @attr [PropertyOrderAttribute(7)]
-    // @attr [DisplayName("Short ID")]
-    // @attr [Description("Short catalog type ID for cache key generator")]
-    string short_id_type_for_cache_key = 7;
     // @attr [Browsable(false)]
     int32 explicit_sorting_position = 9;
 
@@ -3386,10 +3403,6 @@ message proto_relations_one_to_one_group {
     // @attr [DisplayName("Composition prefix")]
     // @attr [Description("Prefix for many-to-many relations composition names. Used if set to use in config model")]
     string prefix_for_composition_names = 6;
-    // @attr [PropertyOrderAttribute(7)]
-    // @attr [DisplayName("Short ID")]
-    // @attr [Description("Short catalog type ID for cache key generator")]
-    string short_id_type_for_cache_key = 7;
     // @attr [Browsable(false)]
     int32 explicit_sorting_position = 9;
 
