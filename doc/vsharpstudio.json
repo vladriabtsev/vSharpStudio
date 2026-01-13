@@ -3105,18 +3105,6 @@
               "defaultValue": ""
             },
             {
-              "name": "short_id_type_key",
-              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Short Prefix\")]\n@attr [Description(\"Short type ID prefix\")]\n@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "property_ref_self",
               "description": "special RefParent property    \n@attr [Browsable(false)]",
               "label": "",
@@ -3142,7 +3130,7 @@
             },
             {
               "name": "short_id",
-              "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
+              "description": "Sequential unique number in parent group\n@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -4306,7 +4294,7 @@
             },
             {
               "name": "short_id",
-              "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
+              "description": "Sequential unique number in parent group\n@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -4857,20 +4845,8 @@
               "defaultValue": ""
             },
             {
-              "name": "short_id_type_key",
-              "description": "@attr [PropertyOrderAttribute(18)]\n@attr [DisplayName(\"Short Prefix\")]\n@attr [Description(\"Short type ID prefix\")]\n@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "short_id",
-              "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
+              "description": "@attr [PropertyOrderAttribute(18)]\n@attr [DisplayName(\"Short Prefix\")]\n@attr [Description(\"Short type ID prefix\")]\n@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -5265,20 +5241,8 @@
               "defaultValue": ""
             },
             {
-              "name": "short_id_type_key",
-              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Short Prefix\")]\n@attr [Description(\"Short type ID prefix\")]\n@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "short_id",
-              "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
+              "description": "Sequential unique number in parent group\n@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -5649,20 +5613,8 @@
               "defaultValue": ""
             },
             {
-              "name": "short_id_type_key",
-              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Short Prefix\")]\n@attr [Description(\"Short type ID prefix\")]\n@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "short_id",
-              "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
+              "name": "last_short_id",
+              "description": "last id for property\n@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -7749,6 +7701,18 @@
               "defaultValue": ""
             },
             {
+              "name": "last_short_id",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -8313,6 +8277,18 @@
               "defaultValue": ""
             },
             {
+              "name": "last_short_id",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "use_code_property",
               "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item by default\")]",
               "label": "",
@@ -8721,12 +8697,12 @@
               "defaultValue": ""
             },
             {
-              "name": "short_id_type_key",
-              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Short Prefix\")]\n@attr [Description(\"Short type ID prefix\")]\n@attr [Browsable(false)]",
+              "name": "last_short_id",
+              "description": "@attr [Browsable(false)]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -8734,7 +8710,7 @@
             },
             {
               "name": "short_id",
-              "description": "@attr [Browsable(false)]",
+              "description": "Sequential unique number in parent group\n@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -8859,6 +8835,18 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_short_id",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -9015,6 +9003,18 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_short_id",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -9801,6 +9801,18 @@
               "defaultValue": ""
             },
             {
+              "name": "last_short_id",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "is_grid_sortable",
               "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
               "label": "",
@@ -9951,6 +9963,18 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_short_id",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -10119,6 +10143,18 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_short_id",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -10811,18 +10847,6 @@
             {
               "name": "complex_property_ref_descr_length",
               "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(20)]\n@attr [DisplayName(\"Descr Max\")]\n@attr [Description(\"Complex property description maximum length. Unlimited if zero\")]",
-              "label": "",
-              "type": "uint32",
-              "longType": "uint32",
-              "fullType": "uint32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "last_type_short_ref_id",
-              "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -11739,6 +11763,18 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "short_id",
+              "description": "Sequential unique number in parent group\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -12849,6 +12885,18 @@
               "defaultValue": ""
             },
             {
+              "name": "short_id",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "dimension_catalog_guid",
               "description": "\u003csummary\u003e\n/ Guid of Catalog type.\n/ \u003c/summary\u003e\n@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Dimension catalog\")]\n@attr [Description(\"Catalog for register dimension\")]\n@attr [Editor(typeof(EditorRegisterDimensionCatalogGuid), typeof(EditorRegisterDimensionCatalogGuid))]",
               "label": "",
@@ -13149,20 +13197,8 @@
               "defaultValue": ""
             },
             {
-              "name": "short_id_type_key",
-              "description": "@attr [PropertyOrderAttribute(18)]\n@attr [DisplayName(\"Short Prefix\")]\n@attr [Description(\"Short type ID prefix\")]\n@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "short_id",
-              "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
+              "description": "Sequential unique number in parent group\n@attr [Browsable(false)]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -13449,6 +13485,18 @@
               "defaultValue": ""
             },
             {
+              "name": "short_id",
+              "description": "Sequential unique number in parent group\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "is_use_history",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use History\")]\n@attr [Description(\"Use history for relation\")]",
               "label": "",
@@ -13479,18 +13527,6 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "short_id",
-              "description": "Sequential unique number in configuration\n@attr [Browsable(false)]",
-              "label": "",
-              "type": "uint32",
-              "longType": "uint32",
-              "fullType": "uint32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -13761,6 +13797,18 @@
               "defaultValue": ""
             },
             {
+              "name": "last_short_id",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "list_relations",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -13875,6 +13923,18 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_short_id",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

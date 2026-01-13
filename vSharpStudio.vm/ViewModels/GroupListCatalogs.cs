@@ -51,7 +51,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.GetUniqueName(Defaults.CatalogName, node, this.ListCatalogs);
             }
             var model = this.ParentModel;
-            node.ShortId = model.LastTypeShortIdForNode();
+            node.ShortId = ++this.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
             return node;

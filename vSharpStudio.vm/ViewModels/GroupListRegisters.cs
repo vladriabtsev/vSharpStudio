@@ -64,6 +64,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.GetUniqueName(Defaults.RegisterName, node, this.ListRegisters);
             }
             var model = this.ParentGroupDocuments.ParentModel;
+            node.ShortId = ++this.LastShortId;
             this.SetSelected(node);
             return node;
         }

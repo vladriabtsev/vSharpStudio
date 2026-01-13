@@ -704,9 +704,6 @@ message proto_model {
     uint32 complex_property_ref_descr_length = 43;
 
     // @attr [Browsable(false)]
-    uint32 last_type_short_ref_id = 31;
-
-    // @attr [Browsable(false)]
     string property_id_guid = 51;
     // @attr [Browsable(false)]
     string property_version_guid = 52;
@@ -1300,6 +1297,8 @@ message proto_group_list_properties {
     uint32 last_gen_position = 7;
     // @attr [Browsable(false)]
     int32 explicit_sorting_position = 8;
+    // @attr [Browsable(false)]
+    uint32 last_short_id = 10;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -1355,6 +1354,9 @@ message proto_property {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 11;
+    // Sequential unique number in parent group
+    // @attr [Browsable(false)]
+    uint32 short_id = 12;
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(32)]
@@ -1538,6 +1540,8 @@ message proto_group_list_details {
     repeated proto_detail list_details = 6;
     // @attr [Browsable(false)]
     int32 explicit_sorting_position = 8;
+    // @attr [Browsable(false)]
+    uint32 last_short_id = 10;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -1602,9 +1606,6 @@ message proto_detail {
     // @attr [PropertyOrderAttribute(18)]
     // @attr [DisplayName("Short Prefix")]
     // @attr [Description("Short type ID prefix")]
-    // @attr [Browsable(false)]
-    string short_id_type_key = 18;
-    // Sequential unique number in configuration
     // @attr [Browsable(false)]
     uint32 short_id = 19;
     // Combination of short_id and type group in higher bits
@@ -1702,6 +1703,8 @@ message proto_group_constant_groups {
     // @attr [Browsable(false)]
     repeated proto_group_list_constants list_constant_groups = 8;
     // @attr [Browsable(false)]
+    uint32 last_short_id = 11;
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ICanAddNode
@@ -1739,14 +1742,12 @@ message proto_group_list_constants {
     bool is_new = 9;
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
-    bool is_marked_for_deletion = 11;
-    // @attr [PropertyOrderAttribute(15)]
-    // @attr [DisplayName("Short Prefix")]
-    // @attr [Description("Short type ID prefix")]
+    bool is_marked_for_deletion = 12;
     // @attr [Browsable(false)]
-    string short_id_type_key = 15;
+    uint32 last_short_id = 11;
+    // Sequential unique number in parent group
     // @attr [Browsable(false)]
-    uint32 short_id = 19;
+    uint32 short_id = 13;
 
     // @attr [Browsable(false)]
     repeated proto_role_constant_access list_role_constant_access_settings = 101;
@@ -1793,7 +1794,7 @@ message proto_constant {
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 12;
 
-    // Sequential unique number in configuration
+    // Sequential unique number in parent group
     // @attr [Browsable(false)]
     uint32 short_id = 13;
     // Combination of short_id and type group in higher bits
@@ -2173,12 +2174,6 @@ message proto_catalog {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
-
-    // @attr [PropertyOrderAttribute(15)]
-    // @attr [DisplayName("Short Prefix")]
-    // @attr [Description("Short type ID prefix")]
-    // @attr [Browsable(false)]
-    string short_id_type_key = 15;
     // special RefParent property    
     // @attr [Browsable(false)]
     proto_property property_ref_self = 16;
@@ -2186,7 +2181,7 @@ message proto_catalog {
     // @attr [Browsable(false)]
     proto_property property_ref_folder = 17;
 
-    // Sequential unique number in configuration
+    // Sequential unique number in parent group
     // @attr [Browsable(false)]
     uint32 short_id = 19;
     // Combination of short_id and type group in higher bits
@@ -2335,6 +2330,8 @@ message proto_group_list_catalogs {
     repeated proto_catalog list_catalogs = 8;
     // @attr [Browsable(false)]
     int32 explicit_sorting_position = 9;
+    // @attr [Browsable(false)]
+    uint32 last_short_id = 11;
 
     // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(22)]
@@ -2469,6 +2466,8 @@ message proto_group_list_registers {
     // @attr [DisplayName("Composition prefix")]
     // @attr [Description("Prefix for registers composition names")]
     string prefix_for_composition_names = 9;
+    // @attr [Browsable(false)]
+    uint32 last_short_id = 11;
     // Guid for document guid property. Auto generated.
     // @attr [Browsable(false)]
     string property_reg_guid_guid = 43; 
@@ -2500,6 +2499,8 @@ message proto_register_dimension {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
+    // @attr [Browsable(false)]
+    uint32 short_id = 14;
     /// <summary>
     /// Guid of Catalog type.
     /// </summary>
@@ -2546,6 +2547,8 @@ message proto_group_list_register_dimensions {
 
     // @attr [Browsable(false)]
     int32 explicit_sorting_position = 8;
+    // @attr [Browsable(false)]
+    uint32 last_short_id = 10;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -2982,17 +2985,9 @@ message proto_document_timeline {
     string time_line_doc_date_time_property_name = 12;
     // @attr [Browsable(false)]
     string property_timeline_doc_date_time_guid = 13;
-    // @attr [PropertyOrderAttribute(15)]
-    // @attr [DisplayName("Short Prefix")]
-    // @attr [Description("Short type ID prefix")]
+    // last id for property
     // @attr [Browsable(false)]
-    string short_id_type_key = 15;
-
-    // Sequential unique number in configuration
-    // @attr [Browsable(false)]
-    uint32 short_id = 19;
-
-
+    uint32 last_short_id = 14;
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
     // @attr [Description("Sortable in data grid")]
@@ -3059,12 +3054,7 @@ message proto_document {
     // Combination of short_id and type group in higher bits
     // @attr [Browsable(false)]
     uint32 short_ref_id = 20;
-    // @attr [PropertyOrderAttribute(21)]
-    // @attr [DisplayName("Short Prefix")]
-    // @attr [Description("Short type ID prefix")]
-    // @attr [Browsable(false)]
-    string short_id_type_key = 21;
-    // Sequential unique number in configuration
+    // Sequential unique number in parent group
     // @attr [Browsable(false)]
     uint32 short_id = 22;
 
@@ -3111,6 +3101,8 @@ message proto_group_list_documents {
     repeated proto_document list_documents = 7;
     // @attr [Browsable(false)]
     int32 explicit_sorting_position = 8;
+    // @attr [Browsable(false)]
+    uint32 last_short_id = 10;
     // @attr [Browsable(false)]
     repeated proto_role_document_access list_role_document_access_settings = 101;
     // @attr [Browsable(false)]
@@ -3214,12 +3206,7 @@ message proto_relation_many_to_many {
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     google.protobuf.StringValue guid_obj2 = 16;
 
-    // @attr [PropertyOrderAttribute(18)]
-    // @attr [DisplayName("Short Prefix")]
-    // @attr [Description("Short type ID prefix")]
-    // @attr [Browsable(false)]
-    string short_id_type_key = 18;
-    // Sequential unique number in configuration
+    // Sequential unique number in parent group
     // @attr [Browsable(false)]
     uint32 short_id = 19;
 
@@ -3277,6 +3264,8 @@ message proto_relations_many_to_many_group {
     string prefix_for_composition_names = 6;
     // @attr [Browsable(false)]
     int32 explicit_sorting_position = 9;
+    // @attr [Browsable(false)]
+    uint32 last_short_id = 11;
 
     // @attr [Browsable(false)]
     repeated proto_relation_many_to_many list_relations = 21;
@@ -3348,6 +3337,9 @@ message proto_relation_one_to_one {
     // @attr [Description("Second configuration object for One To One relation")]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     google.protobuf.StringValue guid_obj2 = 16;
+    // Sequential unique number in parent group
+    // @attr [Browsable(false)]
+    uint32 short_id = 19;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use History")]
@@ -3359,9 +3351,6 @@ message proto_relation_one_to_one {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 23;
-    // Sequential unique number in configuration
-    // @attr [Browsable(false)]
-    uint32 short_id = 24;
     // Combination of short_id and type group in higher bits
     // @attr [Browsable(false)]
     uint32 short_ref_id = 25;
@@ -3405,6 +3394,8 @@ message proto_relations_one_to_one_group {
     string prefix_for_composition_names = 6;
     // @attr [Browsable(false)]
     int32 explicit_sorting_position = 9;
+    // @attr [Browsable(false)]
+    uint32 last_short_id = 11;
 
     // @attr [Browsable(false)]
     repeated proto_relation_one_to_one list_relations = 21;

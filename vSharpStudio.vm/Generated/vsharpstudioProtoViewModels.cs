@@ -8163,7 +8163,6 @@ namespace vSharpStudio.vm.ViewModels
             vm._RecordVersionFieldName = from.RecordVersionFieldName; 
             vm._RecordVersionFieldType = from.RecordVersionFieldType; 
             vm._ComplexPropertyRefDescrLength = from.ComplexPropertyRefDescrLength; 
-            vm._LastTypeShortRefId = from.LastTypeShortRefId; 
             vm._PropertyIdGuid = from.PropertyIdGuid; 
             vm._PropertyVersionGuid = from.PropertyVersionGuid; 
             vm._PropertyCtlgCodeGuid = from.PropertyCtlgCodeGuid; 
@@ -8217,7 +8216,6 @@ namespace vSharpStudio.vm.ViewModels
             to._RecordVersionFieldName = from.RecordVersionFieldName; 
             to._RecordVersionFieldType = from.RecordVersionFieldType; 
             to._ComplexPropertyRefDescrLength = from.ComplexPropertyRefDescrLength; 
-            to._LastTypeShortRefId = from.LastTypeShortRefId; 
             to._PropertyIdGuid = from.PropertyIdGuid; 
             to._PropertyVersionGuid = from.PropertyVersionGuid; 
             to._PropertyCtlgCodeGuid = from.PropertyCtlgCodeGuid; 
@@ -8356,7 +8354,6 @@ namespace vSharpStudio.vm.ViewModels
             vm._RecordVersionFieldName = m.RecordVersionFieldName; 
             vm._RecordVersionFieldType = (EnumVersionFieldType)m.RecordVersionFieldType; 
             vm._ComplexPropertyRefDescrLength = m.ComplexPropertyRefDescrLength; 
-            vm._LastTypeShortRefId = m.LastTypeShortRefId; 
             vm._PropertyIdGuid = m.PropertyIdGuid; 
             vm._PropertyVersionGuid = m.PropertyVersionGuid; 
             vm._PropertyCtlgCodeGuid = m.PropertyCtlgCodeGuid; 
@@ -8460,7 +8457,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             m.RecordVersionFieldType = (Proto.Config.proto_enum_version_field_type)vm.RecordVersionFieldType; 
             m.ComplexPropertyRefDescrLength = vm.ComplexPropertyRefDescrLength; 
-            m.LastTypeShortRefId = vm.LastTypeShortRefId; 
             try 
             { 
                 m.PropertyIdGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyIdGuid)); 
@@ -8865,24 +8861,6 @@ namespace vSharpStudio.vm.ViewModels
         private uint _ComplexPropertyRefDescrLength; 
         partial void OnComplexPropertyRefDescrLengthChanging(ref uint to, ref bool isCancel); 
         partial void OnComplexPropertyRefDescrLengthChanged();
-        
-        [Browsable(false)]
-        public uint LastTypeShortRefId 
-        { 
-            get { return this._LastTypeShortRefId; }
-            set
-            {
-                // Use 'OnLastTypeShortRefIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._LastTypeShortRefId, value, (t) => { bool isCancel = false; this.OnLastTypeShortRefIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastTypeShortRefId = value; this.OnLastTypeShortRefIdChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private uint _LastTypeShortRefId; 
-        partial void OnLastTypeShortRefIdChanging(ref uint to, ref bool isCancel); 
-        partial void OnLastTypeShortRefIdChanged();
         
         [Browsable(false)]
         public string PropertyIdGuid 
@@ -13607,6 +13585,7 @@ namespace vSharpStudio.vm.ViewModels
                 vm._ListProperties.AddClone(Property.Clone(vm, (Property)t, isDeep));
             vm._LastGenPosition = from.LastGenPosition; 
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            vm._LastShortId = from.LastShortId; 
             vm._IsGridSortable = from.IsGridSortable; 
             vm._IsGridSortableCustom = from.IsGridSortableCustom; 
             vm._IsGridFilterable = from.IsGridFilterable; 
@@ -13667,6 +13646,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             to._LastGenPosition = from.LastGenPosition; 
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            to._LastShortId = from.LastShortId; 
             to._IsGridSortable = from.IsGridSortable; 
             to._IsGridSortableCustom = from.IsGridSortableCustom; 
             to._IsGridFilterable = from.IsGridFilterable; 
@@ -13782,6 +13762,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             vm._LastGenPosition = m.LastGenPosition; 
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
+            vm._LastShortId = m.LastShortId; 
             vm._IsGridSortable = (EnumUseType)m.IsGridSortable; 
             vm._IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; 
             vm._IsGridFilterable = (EnumUseType)m.IsGridFilterable; 
@@ -13844,6 +13825,7 @@ namespace vSharpStudio.vm.ViewModels
                 m.ListProperties.Add(Property.ConvertToProto((Property)t)); 
             m.LastGenPosition = vm.LastGenPosition; 
             m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
+            m.LastShortId = vm.LastShortId; 
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; 
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; 
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; 
@@ -14052,6 +14034,24 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); 
         partial void OnExplicitSortingPositionChanged();
+        
+        [Browsable(false)]
+        public uint LastShortId 
+        { 
+            get { return this._LastShortId; }
+            set
+            {
+                // Use 'OnLastShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._LastShortId, value, (t) => { bool isCancel = false; this.OnLastShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastShortId = value; this.OnLastShortIdChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _LastShortId; 
+        partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnLastShortIdChanged();
         
         [Category("Auto Layout")]
         [DisplayName("Sortable")]
@@ -14352,6 +14352,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._DefaultValue = from.DefaultValue; 
             vm._IsNew = from.IsNew; 
             vm._IsMarkedForDeletion = from.IsMarkedForDeletion; 
+            vm._ShortId = from.ShortId; 
             vm._RangeValuesRequirementStr = from.RangeValuesRequirementStr; 
             vm._MinLengthRequirement = from.MinLengthRequirement; 
             vm._MaxLengthRequirement = from.MaxLengthRequirement; 
@@ -14395,6 +14396,7 @@ namespace vSharpStudio.vm.ViewModels
             to._DefaultValue = from.DefaultValue; 
             to._IsNew = from.IsNew; 
             to._IsMarkedForDeletion = from.IsMarkedForDeletion; 
+            to._ShortId = from.ShortId; 
             to._RangeValuesRequirementStr = from.RangeValuesRequirementStr; 
             to._MinLengthRequirement = from.MinLengthRequirement; 
             to._MaxLengthRequirement = from.MaxLengthRequirement; 
@@ -14523,6 +14525,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._DefaultValue = m.DefaultValue; 
             vm._IsNew = m.IsNew; 
             vm._IsMarkedForDeletion = m.IsMarkedForDeletion; 
+            vm._ShortId = m.ShortId; 
             vm._RangeValuesRequirementStr = m.RangeValuesRequirementStr; 
             vm._MinLengthRequirement = m.MinLengthRequirement; 
             vm._MaxLengthRequirement = m.MaxLengthRequirement; 
@@ -14608,6 +14611,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             m.IsNew = vm.IsNew; 
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; 
+            m.ShortId = vm.ShortId; 
             try 
             { 
                 m.RangeValuesRequirementStr = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RangeValuesRequirementStr)); 
@@ -14868,6 +14872,25 @@ namespace vSharpStudio.vm.ViewModels
         private bool _IsMarkedForDeletion; 
         partial void OnIsMarkedForDeletionChanging(ref bool to, ref bool isCancel); 
         partial void OnIsMarkedForDeletionChanged();
+        
+        // Sequential unique number in parent group
+        [Browsable(false)]
+        public uint ShortId 
+        { 
+            get { return this._ShortId; }
+            set
+            {
+                // Use 'OnShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._ShortId, value, (t) => { bool isCancel = false; this.OnShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._ShortId = value; this.OnShortIdChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _ShortId; 
+        partial void OnShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnShortIdChanged();
         
         [Category("")]
         [PropertyOrderAttribute(32)]
@@ -15467,6 +15490,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in from.ListDetails) 
                 vm._ListDetails.AddClone(Detail.Clone(vm, (Detail)t, isDeep));
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            vm._LastShortId = from.LastShortId; 
             vm._IsGridSortable = from.IsGridSortable; 
             vm._IsGridSortableCustom = from.IsGridSortableCustom; 
             vm._IsGridFilterable = from.IsGridFilterable; 
@@ -15526,6 +15550,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            to._LastShortId = from.LastShortId; 
             to._IsGridSortable = from.IsGridSortable; 
             to._IsGridSortableCustom = from.IsGridSortableCustom; 
             to._IsGridFilterable = from.IsGridFilterable; 
@@ -15640,6 +15665,7 @@ namespace vSharpStudio.vm.ViewModels
                 vm.ListDetails.Add(tvm);
             }
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
+            vm._LastShortId = m.LastShortId; 
             vm._IsGridSortable = (EnumUseType)m.IsGridSortable; 
             vm._IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; 
             vm._IsGridFilterable = (EnumUseType)m.IsGridFilterable; 
@@ -15701,6 +15727,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in vm.ListDetails) 
                 m.ListDetails.Add(Detail.ConvertToProto((Detail)t)); 
             m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
+            m.LastShortId = vm.LastShortId; 
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; 
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; 
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; 
@@ -15891,6 +15918,24 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); 
         partial void OnExplicitSortingPositionChanged();
         
+        [Browsable(false)]
+        public uint LastShortId 
+        { 
+            get { return this._LastShortId; }
+            set
+            {
+                // Use 'OnLastShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._LastShortId, value, (t) => { bool isCancel = false; this.OnLastShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastShortId = value; this.OnLastShortIdChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _LastShortId; 
+        partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnLastShortIdChanged();
+        
         [Category("Auto Layout")]
         [DisplayName("Sortable")]
         [Description("Sortable in data grid")]
@@ -16049,17 +16094,6 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
-            this.RuleFor(x => x.ShortIdTypeKey).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("ShortIdTypeKey", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
             this.RuleFor(x => x.TabName).Custom((str, cntx) =>
             {
                 try
@@ -16164,7 +16198,6 @@ namespace vSharpStudio.vm.ViewModels
             vm._Position = from.Position; 
             if (isDeep) 
                 vm._PropertyRefParent = vSharpStudio.vm.ViewModels.Property.Clone(vm, from.PropertyRefParent, isDeep);
-            vm._ShortIdTypeKey = from.ShortIdTypeKey; 
             vm._ShortId = from.ShortId; 
             vm._ShortRefId = from.ShortRefId; 
             vm._IsTryAttach = from.IsTryAttach; 
@@ -16209,7 +16242,6 @@ namespace vSharpStudio.vm.ViewModels
             to._Position = from.Position; 
             if (isDeep) 
                 vSharpStudio.vm.ViewModels.Property.Update((Property)to.PropertyRefParent, from.PropertyRefParent, isDeep);
-            to._ShortIdTypeKey = from.ShortIdTypeKey; 
             to._ShortId = from.ShortId; 
             to._ShortRefId = from.ShortRefId; 
             to._IsTryAttach = from.IsTryAttach; 
@@ -16339,7 +16371,6 @@ namespace vSharpStudio.vm.ViewModels
             vm._Position = m.Position; 
             vm.PropertyRefParent ??= new Property(vm); 
             vSharpStudio.vm.ViewModels.Property.ConvertToVM(m.PropertyRefParent, (Property)vm.PropertyRefParent); 
-            vm._ShortIdTypeKey = m.ShortIdTypeKey; 
             vm._ShortId = m.ShortId; 
             vm._ShortRefId = m.ShortRefId; 
             vm._IsTryAttach = m.IsTryAttach; 
@@ -16417,14 +16448,6 @@ namespace vSharpStudio.vm.ViewModels
             m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); 
             m.Position = vm.Position; 
             m.PropertyRefParent = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefParent); 
-            try 
-            { 
-                m.ShortIdTypeKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeKey)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_detail' field 'short_id_type_key'", ex); 
-            }
             m.ShortId = vm.ShortId; 
             m.ShortRefId = vm.ShortRefId; 
             m.IsTryAttach = vm.IsTryAttach; 
@@ -16719,25 +16742,6 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(18)]
         [DisplayName("Short Prefix")]
         [Description("Short type ID prefix")]
-        [Browsable(false)]
-        public string ShortIdTypeKey 
-        { 
-            get { return this._ShortIdTypeKey; }
-            set
-            {
-                // Use 'OnShortIdTypeKeyChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ShortIdTypeKey, value, (t) => { bool isCancel = false; this.OnShortIdTypeKeyChanging(ref value, ref isCancel); if (isCancel) return; this._ShortIdTypeKey = value; this.OnShortIdTypeKeyChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private string _ShortIdTypeKey = string.Empty; 
-        partial void OnShortIdTypeKeyChanging(ref string to, ref bool isCancel); 
-        partial void OnShortIdTypeKeyChanged();
-        
-        // Sequential unique number in configuration
         [Browsable(false)]
         public uint ShortId 
         { 
@@ -17194,6 +17198,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._ListConstantGroups = new ConfigNodesCollection<GroupListConstants>(vm); 
             foreach (var t in from.ListConstantGroups) 
                 vm._ListConstantGroups.AddClone(GroupListConstants.Clone(vm, (GroupListConstants)t, isDeep));
+            vm._LastShortId = from.LastShortId; 
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in from.ListNodeGeneratorsSettings) 
                 vm._ListNodeGeneratorsSettings.AddClone(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -17247,6 +17252,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
             }
+            to._LastShortId = from.LastShortId; 
             if (isDeep) 
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -17322,6 +17328,7 @@ namespace vSharpStudio.vm.ViewModels
                 var tvm = GroupListConstants.ConvertToVM(t, new GroupListConstants(vm)); 
                 vm.ListConstantGroups.Add(tvm);
             }
+            vm._LastShortId = m.LastShortId; 
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in m.ListNodeGeneratorsSettings) 
             {
@@ -17381,6 +17388,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             foreach (var t in vm.ListConstantGroups) 
                 m.ListConstantGroups.Add(GroupListConstants.ConvertToProto((GroupListConstants)t)); 
+            m.LastShortId = vm.LastShortId; 
             foreach (var t in vm.ListNodeGeneratorsSettings) 
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); 
             return m;
@@ -17544,6 +17552,24 @@ namespace vSharpStudio.vm.ViewModels
         
         
         [Browsable(false)]
+        public uint LastShortId 
+        { 
+            get { return this._LastShortId; }
+            set
+            {
+                // Use 'OnLastShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._LastShortId, value, (t) => { bool isCancel = false; this.OnLastShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastShortId = value; this.OnLastShortIdChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _LastShortId; 
+        partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnLastShortIdChanged();
+        
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings 
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -17622,17 +17648,6 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
-            this.RuleFor(x => x.ShortIdTypeKey).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("ShortIdTypeKey", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
         }
     }
     public partial class GroupListConstants : ConfigObjectVmGenSettings<GroupListConstants, GroupListConstantsValidator>, IComparable<GroupListConstants>, IConfigAcceptVisitor, IGroupListConstants 
@@ -17702,7 +17717,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._LastGenPosition = from.LastGenPosition; 
             vm._IsNew = from.IsNew; 
             vm._IsMarkedForDeletion = from.IsMarkedForDeletion; 
-            vm._ShortIdTypeKey = from.ShortIdTypeKey; 
+            vm._LastShortId = from.LastShortId; 
             vm._ShortId = from.ShortId; 
             vm._ListRoleConstantAccessSettings = new ObservableCollectionWithActions<RoleConstantAccess>(); 
             foreach (var t in from.ListRoleConstantAccessSettings) 
@@ -17763,7 +17778,7 @@ namespace vSharpStudio.vm.ViewModels
             to._LastGenPosition = from.LastGenPosition; 
             to._IsNew = from.IsNew; 
             to._IsMarkedForDeletion = from.IsMarkedForDeletion; 
-            to._ShortIdTypeKey = from.ShortIdTypeKey; 
+            to._LastShortId = from.LastShortId; 
             to._ShortId = from.ShortId; 
             if (isDeep) 
             {
@@ -17879,7 +17894,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._LastGenPosition = m.LastGenPosition; 
             vm._IsNew = m.IsNew; 
             vm._IsMarkedForDeletion = m.IsMarkedForDeletion; 
-            vm._ShortIdTypeKey = m.ShortIdTypeKey; 
+            vm._LastShortId = m.LastShortId; 
             vm._ShortId = m.ShortId; 
             vm._ListRoleConstantAccessSettings = new ObservableCollectionWithActions<RoleConstantAccess>(); 
             foreach (var t in m.ListRoleConstantAccessSettings) 
@@ -17942,14 +17957,7 @@ namespace vSharpStudio.vm.ViewModels
             m.LastGenPosition = vm.LastGenPosition; 
             m.IsNew = vm.IsNew; 
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; 
-            try 
-            { 
-                m.ShortIdTypeKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeKey)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_constants' field 'short_id_type_key'", ex); 
-            }
+            m.LastShortId = vm.LastShortId; 
             m.ShortId = vm.ShortId; 
             foreach (var t in vm.ListRoleConstantAccessSettings) 
                 m.ListRoleConstantAccessSettings.Add(RoleConstantAccess.ConvertToProto((RoleConstantAccess)t)); 
@@ -18193,27 +18201,25 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnIsMarkedForDeletionChanging(ref bool to, ref bool isCancel); 
         partial void OnIsMarkedForDeletionChanged();
         
-        [PropertyOrderAttribute(15)]
-        [DisplayName("Short Prefix")]
-        [Description("Short type ID prefix")]
         [Browsable(false)]
-        public string ShortIdTypeKey 
+        public uint LastShortId 
         { 
-            get { return this._ShortIdTypeKey; }
+            get { return this._LastShortId; }
             set
             {
-                // Use 'OnShortIdTypeKeyChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ShortIdTypeKey, value, (t) => { bool isCancel = false; this.OnShortIdTypeKeyChanging(ref value, ref isCancel); if (isCancel) return; this._ShortIdTypeKey = value; this.OnShortIdTypeKeyChanged(); })) 
+                // Use 'OnLastShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._LastShortId, value, (t) => { bool isCancel = false; this.OnLastShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastShortId = value; this.OnLastShortIdChanged(); })) 
                 {
                     this.ValidateProperty(); 
                     this.IsChanged = true; 
                 }
             }
         }
-        private string _ShortIdTypeKey = string.Empty; 
-        partial void OnShortIdTypeKeyChanging(ref string to, ref bool isCancel); 
-        partial void OnShortIdTypeKeyChanged();
+        private uint _LastShortId; 
+        partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnLastShortIdChanged();
         
+        // Sequential unique number in parent group
         [Browsable(false)]
         public uint ShortId 
         { 
@@ -19005,7 +19011,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnIsMarkedForDeletionChanging(ref bool to, ref bool isCancel); 
         partial void OnIsMarkedForDeletionChanged();
         
-        // Sequential unique number in configuration
+        // Sequential unique number in parent group
         [Browsable(false)]
         public uint ShortId 
         { 
@@ -22355,17 +22361,6 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
-            this.RuleFor(x => x.ShortIdTypeKey).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("ShortIdTypeKey", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
             this.RuleFor(x => x.IndexUniqueCodeGuid).Custom((str, cntx) =>
             {
                 try
@@ -22499,7 +22494,6 @@ namespace vSharpStudio.vm.ViewModels
             vm._Description = from.Description; 
             vm._IsNew = from.IsNew; 
             vm._IsMarkedForDeletion = from.IsMarkedForDeletion; 
-            vm._ShortIdTypeKey = from.ShortIdTypeKey; 
             if (isDeep) 
                 vm._PropertyRefSelf = vSharpStudio.vm.ViewModels.Property.Clone(vm, from.PropertyRefSelf, isDeep);
             if (isDeep) 
@@ -22561,7 +22555,6 @@ namespace vSharpStudio.vm.ViewModels
             to._Description = from.Description; 
             to._IsNew = from.IsNew; 
             to._IsMarkedForDeletion = from.IsMarkedForDeletion; 
-            to._ShortIdTypeKey = from.ShortIdTypeKey; 
             if (isDeep) 
                 vSharpStudio.vm.ViewModels.Property.Update((Property)to.PropertyRefSelf, from.PropertyRefSelf, isDeep);
             if (isDeep) 
@@ -22708,7 +22701,6 @@ namespace vSharpStudio.vm.ViewModels
             vm._Description = m.Description; 
             vm._IsNew = m.IsNew; 
             vm._IsMarkedForDeletion = m.IsMarkedForDeletion; 
-            vm._ShortIdTypeKey = m.ShortIdTypeKey; 
             vm.PropertyRefSelf ??= new Property(vm); 
             vSharpStudio.vm.ViewModels.Property.ConvertToVM(m.PropertyRefSelf, (Property)vm.PropertyRefSelf); 
             vm.PropertyRefFolder ??= new Property(vm); 
@@ -22806,14 +22798,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             m.IsNew = vm.IsNew; 
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; 
-            try 
-            { 
-                m.ShortIdTypeKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeKey)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_catalog' field 'short_id_type_key'", ex); 
-            }
             m.PropertyRefSelf = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefSelf); 
             m.PropertyRefFolder = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefFolder); 
             m.ShortId = vm.ShortId; 
@@ -23059,27 +23043,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnIsMarkedForDeletionChanging(ref bool to, ref bool isCancel); 
         partial void OnIsMarkedForDeletionChanged();
         
-        [PropertyOrderAttribute(15)]
-        [DisplayName("Short Prefix")]
-        [Description("Short type ID prefix")]
-        [Browsable(false)]
-        public string ShortIdTypeKey 
-        { 
-            get { return this._ShortIdTypeKey; }
-            set
-            {
-                // Use 'OnShortIdTypeKeyChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ShortIdTypeKey, value, (t) => { bool isCancel = false; this.OnShortIdTypeKeyChanging(ref value, ref isCancel); if (isCancel) return; this._ShortIdTypeKey = value; this.OnShortIdTypeKeyChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private string _ShortIdTypeKey = string.Empty; 
-        partial void OnShortIdTypeKeyChanging(ref string to, ref bool isCancel); 
-        partial void OnShortIdTypeKeyChanged();
-        
         // special RefParent property    
         [Browsable(false)]
         public Property PropertyRefSelf 
@@ -23118,7 +23081,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnPropertyRefFolderChanged();
         IProperty ICatalog.PropertyRefFolder { get { return (this as Catalog).PropertyRefFolder; } } 
         
-        // Sequential unique number in configuration
+        // Sequential unique number in parent group
         [Browsable(false)]
         public uint ShortId 
         { 
@@ -23916,6 +23879,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in from.ListCatalogs) 
                 vm._ListCatalogs.AddClone(Catalog.Clone(vm, (Catalog)t, isDeep));
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            vm._LastShortId = from.LastShortId; 
             vm._UseCodeProperty = from.UseCodeProperty; 
             vm._PropertyCodeName = from.PropertyCodeName; 
             vm._UseNameProperty = from.UseNameProperty; 
@@ -23983,6 +23947,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            to._LastShortId = from.LastShortId; 
             to._UseCodeProperty = from.UseCodeProperty; 
             to._PropertyCodeName = from.PropertyCodeName; 
             to._UseNameProperty = from.UseNameProperty; 
@@ -24072,6 +24037,7 @@ namespace vSharpStudio.vm.ViewModels
                 vm.ListCatalogs.Add(tvm);
             }
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
+            vm._LastShortId = m.LastShortId; 
             vm._UseCodeProperty = m.UseCodeProperty; 
             vm._PropertyCodeName = m.PropertyCodeName; 
             vm._UseNameProperty = m.UseNameProperty; 
@@ -24145,6 +24111,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in vm.ListCatalogs) 
                 m.ListCatalogs.Add(Catalog.ConvertToProto((Catalog)t)); 
             m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
+            m.LastShortId = vm.LastShortId; 
             m.UseCodeProperty = vm.UseCodeProperty; 
             try 
             { 
@@ -24386,6 +24353,24 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); 
         partial void OnExplicitSortingPositionChanged();
+        
+        [Browsable(false)]
+        public uint LastShortId 
+        { 
+            get { return this._LastShortId; }
+            set
+            {
+                // Use 'OnLastShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._LastShortId, value, (t) => { bool isCancel = false; this.OnLastShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastShortId = value; this.OnLastShortIdChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _LastShortId; 
+        partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnLastShortIdChanged();
         
         [Category("Property settings")]
         [PropertyOrderAttribute(22)]
@@ -24824,6 +24809,7 @@ namespace vSharpStudio.vm.ViewModels
                 vm._ListRegisters.AddClone(Register.Clone(vm, (Register)t, isDeep));
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
             vm._PrefixForCompositionNames = from.PrefixForCompositionNames; 
+            vm._LastShortId = from.LastShortId; 
             vm._PropertyRegGuidGuid = from.PropertyRegGuidGuid; 
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in from.ListNodeGeneratorsSettings) 
@@ -24879,6 +24865,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
             to._PrefixForCompositionNames = from.PrefixForCompositionNames; 
+            to._LastShortId = from.LastShortId; 
             to._PropertyRegGuidGuid = from.PropertyRegGuidGuid; 
             if (isDeep) 
             {
@@ -24956,6 +24943,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
             vm._PrefixForCompositionNames = m.PrefixForCompositionNames; 
+            vm._LastShortId = m.LastShortId; 
             vm._PropertyRegGuidGuid = m.PropertyRegGuidGuid; 
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in m.ListNodeGeneratorsSettings) 
@@ -25017,6 +25005,7 @@ namespace vSharpStudio.vm.ViewModels
             { 
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'prefix_for_composition_names'", ex); 
             }
+            m.LastShortId = vm.LastShortId; 
             try 
             { 
                 m.PropertyRegGuidGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyRegGuidGuid)); 
@@ -25227,6 +25216,24 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnPrefixForCompositionNamesChanging(ref string to, ref bool isCancel); 
         partial void OnPrefixForCompositionNamesChanged();
         
+        [Browsable(false)]
+        public uint LastShortId 
+        { 
+            get { return this._LastShortId; }
+            set
+            {
+                // Use 'OnLastShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._LastShortId, value, (t) => { bool isCancel = false; this.OnLastShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastShortId = value; this.OnLastShortIdChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _LastShortId; 
+        partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnLastShortIdChanged();
+        
         // Guid for document guid property. Auto generated.
         [Browsable(false)]
         public string PropertyRegGuidGuid 
@@ -25395,6 +25402,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._Description = from.Description; 
             vm._IsNew = from.IsNew; 
             vm._IsMarkedForDeletion = from.IsMarkedForDeletion; 
+            vm._ShortId = from.ShortId; 
             vm._DimensionCatalogGuid = from.DimensionCatalogGuid; 
             if (isDeep) 
                 vm._PropertyRefDimensionCatalog = vSharpStudio.vm.ViewModels.Property.Clone(vm, from.PropertyRefDimensionCatalog, isDeep);
@@ -25417,6 +25425,7 @@ namespace vSharpStudio.vm.ViewModels
             to._Description = from.Description; 
             to._IsNew = from.IsNew; 
             to._IsMarkedForDeletion = from.IsMarkedForDeletion; 
+            to._ShortId = from.ShortId; 
             to._DimensionCatalogGuid = from.DimensionCatalogGuid; 
             if (isDeep) 
                 vSharpStudio.vm.ViewModels.Property.Update((Property)to.PropertyRefDimensionCatalog, from.PropertyRefDimensionCatalog, isDeep);
@@ -25491,6 +25500,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._Description = m.Description; 
             vm._IsNew = m.IsNew; 
             vm._IsMarkedForDeletion = m.IsMarkedForDeletion; 
+            vm._ShortId = m.ShortId; 
             vm._DimensionCatalogGuid = m.DimensionCatalogGuid; 
             vm.PropertyRefDimensionCatalog ??= new Property(vm); 
             vSharpStudio.vm.ViewModels.Property.ConvertToVM(m.PropertyRefDimensionCatalog, (Property)vm.PropertyRefDimensionCatalog); 
@@ -25546,6 +25556,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             m.IsNew = vm.IsNew; 
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; 
+            m.ShortId = vm.ShortId; 
             try 
             { 
                 m.DimensionCatalogGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DimensionCatalogGuid)); 
@@ -25706,6 +25717,24 @@ namespace vSharpStudio.vm.ViewModels
         private bool _IsMarkedForDeletion; 
         partial void OnIsMarkedForDeletionChanging(ref bool to, ref bool isCancel); 
         partial void OnIsMarkedForDeletionChanged();
+        
+        [Browsable(false)]
+        public uint ShortId 
+        { 
+            get { return this._ShortId; }
+            set
+            {
+                // Use 'OnShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._ShortId, value, (t) => { bool isCancel = false; this.OnShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._ShortId = value; this.OnShortIdChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _ShortId; 
+        partial void OnShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnShortIdChanged();
         
         ///<summary>
         /// Guid of Catalog type.
@@ -25917,6 +25946,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in from.ListDimensions) 
                 vm._ListDimensions.AddClone(RegisterDimension.Clone(vm, (RegisterDimension)t, isDeep));
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            vm._LastShortId = from.LastShortId; 
             vm._IsGridSortable = from.IsGridSortable; 
             vm._IsGridSortableCustom = from.IsGridSortableCustom; 
             vm._IsGridFilterable = from.IsGridFilterable; 
@@ -25976,6 +26006,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            to._LastShortId = from.LastShortId; 
             to._IsGridSortable = from.IsGridSortable; 
             to._IsGridSortableCustom = from.IsGridSortableCustom; 
             to._IsGridFilterable = from.IsGridFilterable; 
@@ -26090,6 +26121,7 @@ namespace vSharpStudio.vm.ViewModels
                 vm.ListDimensions.Add(tvm);
             }
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
+            vm._LastShortId = m.LastShortId; 
             vm._IsGridSortable = (EnumUseType)m.IsGridSortable; 
             vm._IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; 
             vm._IsGridFilterable = (EnumUseType)m.IsGridFilterable; 
@@ -26151,6 +26183,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in vm.ListDimensions) 
                 m.ListDimensions.Add(RegisterDimension.ConvertToProto((RegisterDimension)t)); 
             m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
+            m.LastShortId = vm.LastShortId; 
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; 
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; 
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; 
@@ -26317,6 +26350,24 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); 
         partial void OnExplicitSortingPositionChanged();
+        
+        [Browsable(false)]
+        public uint LastShortId 
+        { 
+            get { return this._LastShortId; }
+            set
+            {
+                // Use 'OnLastShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._LastShortId, value, (t) => { bool isCancel = false; this.OnLastShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastShortId = value; this.OnLastShortIdChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _LastShortId; 
+        partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnLastShortIdChanged();
         
         [Category("Auto Layout")]
         [DisplayName("Sortable")]
@@ -30477,17 +30528,6 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(new ValidationFailure("PropertyTimelineDocDateTimeGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
-            this.RuleFor(x => x.ShortIdTypeKey).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("ShortIdTypeKey", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
         }
     }
     public partial class DocumentTimeline : ConfigObjectVmGenSettings<DocumentTimeline, DocumentTimelineValidator>, IComparable<DocumentTimeline>, IConfigAcceptVisitor, IDocumentTimeline 
@@ -30556,8 +30596,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._TimelineTimeAccuracy = from.TimelineTimeAccuracy; 
             vm._TimeLineDocDateTimePropertyName = from.TimeLineDocDateTimePropertyName; 
             vm._PropertyTimelineDocDateTimeGuid = from.PropertyTimelineDocDateTimeGuid; 
-            vm._ShortIdTypeKey = from.ShortIdTypeKey; 
-            vm._ShortId = from.ShortId; 
+            vm._LastShortId = from.LastShortId; 
             vm._IsGridSortable = from.IsGridSortable; 
             vm._IsGridSortableCustom = from.IsGridSortableCustom; 
             vm._IsGridFilterable = from.IsGridFilterable; 
@@ -30620,8 +30659,7 @@ namespace vSharpStudio.vm.ViewModels
             to._TimelineTimeAccuracy = from.TimelineTimeAccuracy; 
             to._TimeLineDocDateTimePropertyName = from.TimeLineDocDateTimePropertyName; 
             to._PropertyTimelineDocDateTimeGuid = from.PropertyTimelineDocDateTimeGuid; 
-            to._ShortIdTypeKey = from.ShortIdTypeKey; 
-            to._ShortId = from.ShortId; 
+            to._LastShortId = from.LastShortId; 
             to._IsGridSortable = from.IsGridSortable; 
             to._IsGridSortableCustom = from.IsGridSortableCustom; 
             to._IsGridFilterable = from.IsGridFilterable; 
@@ -30739,8 +30777,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._TimelineTimeAccuracy = (EnumTimeAccuracyType)m.TimelineTimeAccuracy; 
             vm._TimeLineDocDateTimePropertyName = m.TimeLineDocDateTimePropertyName; 
             vm._PropertyTimelineDocDateTimeGuid = m.PropertyTimelineDocDateTimeGuid; 
-            vm._ShortIdTypeKey = m.ShortIdTypeKey; 
-            vm._ShortId = m.ShortId; 
+            vm._LastShortId = m.LastShortId; 
             vm._IsGridSortable = (EnumUseType)m.IsGridSortable; 
             vm._IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; 
             vm._IsGridFilterable = (EnumUseType)m.IsGridFilterable; 
@@ -30819,15 +30856,7 @@ namespace vSharpStudio.vm.ViewModels
             { 
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'property_timeline_doc_date_time_guid'", ex); 
             }
-            try 
-            { 
-                m.ShortIdTypeKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeKey)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_timeline' field 'short_id_type_key'", ex); 
-            }
-            m.ShortId = vm.ShortId; 
+            m.LastShortId = vm.LastShortId; 
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; 
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; 
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; 
@@ -31035,45 +31064,24 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnPropertyTimelineDocDateTimeGuidChanging(ref string to, ref bool isCancel); 
         partial void OnPropertyTimelineDocDateTimeGuidChanged();
         
-        [PropertyOrderAttribute(15)]
-        [DisplayName("Short Prefix")]
-        [Description("Short type ID prefix")]
+        // last id for property
         [Browsable(false)]
-        public string ShortIdTypeKey 
+        public uint LastShortId 
         { 
-            get { return this._ShortIdTypeKey; }
+            get { return this._LastShortId; }
             set
             {
-                // Use 'OnShortIdTypeKeyChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ShortIdTypeKey, value, (t) => { bool isCancel = false; this.OnShortIdTypeKeyChanging(ref value, ref isCancel); if (isCancel) return; this._ShortIdTypeKey = value; this.OnShortIdTypeKeyChanged(); })) 
+                // Use 'OnLastShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._LastShortId, value, (t) => { bool isCancel = false; this.OnLastShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastShortId = value; this.OnLastShortIdChanged(); })) 
                 {
                     this.ValidateProperty(); 
                     this.IsChanged = true; 
                 }
             }
         }
-        private string _ShortIdTypeKey = string.Empty; 
-        partial void OnShortIdTypeKeyChanging(ref string to, ref bool isCancel); 
-        partial void OnShortIdTypeKeyChanged();
-        
-        // Sequential unique number in configuration
-        [Browsable(false)]
-        public uint ShortId 
-        { 
-            get { return this._ShortId; }
-            set
-            {
-                // Use 'OnShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ShortId, value, (t) => { bool isCancel = false; this.OnShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._ShortId = value; this.OnShortIdChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private uint _ShortId; 
-        partial void OnShortIdChanging(ref uint to, ref bool isCancel); 
-        partial void OnShortIdChanged();
+        private uint _LastShortId; 
+        partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnLastShortIdChanged();
         
         [Category("Auto Layout")]
         [DisplayName("Sortable")]
@@ -31263,17 +31271,6 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(new ValidationFailure("SequenceGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
-            this.RuleFor(x => x.ShortIdTypeKey).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("ShortIdTypeKey", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
         }
     }
     public partial class Document : ConfigObjectVmGenSettings<Document, DocumentValidator>, IComparable<Document>, IConfigAcceptVisitor, IDocument 
@@ -31347,7 +31344,6 @@ namespace vSharpStudio.vm.ViewModels
             if (isDeep) 
                 vm._GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
             vm._ShortRefId = from.ShortRefId; 
-            vm._ShortIdTypeKey = from.ShortIdTypeKey; 
             vm._ShortId = from.ShortId; 
             vm._IsGridSortable = from.IsGridSortable; 
             vm._IsGridSortableCustom = from.IsGridSortableCustom; 
@@ -31383,7 +31379,6 @@ namespace vSharpStudio.vm.ViewModels
             if (isDeep) 
                 vSharpStudio.vm.ViewModels.GroupListReports.Update((GroupListReports)to.GroupReports, from.GroupReports, isDeep);
             to._ShortRefId = from.ShortRefId; 
-            to._ShortIdTypeKey = from.ShortIdTypeKey; 
             to._ShortId = from.ShortId; 
             to._IsGridSortable = from.IsGridSortable; 
             to._IsGridSortableCustom = from.IsGridSortableCustom; 
@@ -31504,7 +31499,6 @@ namespace vSharpStudio.vm.ViewModels
             vm.GroupReports ??= new GroupListReports(vm); 
             vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, (GroupListReports)vm.GroupReports); 
             vm._ShortRefId = m.ShortRefId; 
-            vm._ShortIdTypeKey = m.ShortIdTypeKey; 
             vm._ShortId = m.ShortId; 
             vm._IsGridSortable = (EnumUseType)m.IsGridSortable; 
             vm._IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; 
@@ -31579,14 +31573,6 @@ namespace vSharpStudio.vm.ViewModels
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); 
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); 
             m.ShortRefId = vm.ShortRefId; 
-            try 
-            { 
-                m.ShortIdTypeKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeKey)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document' field 'short_id_type_key'", ex); 
-            }
             m.ShortId = vm.ShortId; 
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; 
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; 
@@ -31867,28 +31853,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnShortRefIdChanging(ref uint to, ref bool isCancel); 
         partial void OnShortRefIdChanged();
         
-        [PropertyOrderAttribute(21)]
-        [DisplayName("Short Prefix")]
-        [Description("Short type ID prefix")]
-        [Browsable(false)]
-        public string ShortIdTypeKey 
-        { 
-            get { return this._ShortIdTypeKey; }
-            set
-            {
-                // Use 'OnShortIdTypeKeyChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ShortIdTypeKey, value, (t) => { bool isCancel = false; this.OnShortIdTypeKeyChanging(ref value, ref isCancel); if (isCancel) return; this._ShortIdTypeKey = value; this.OnShortIdTypeKeyChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private string _ShortIdTypeKey = string.Empty; 
-        partial void OnShortIdTypeKeyChanging(ref string to, ref bool isCancel); 
-        partial void OnShortIdTypeKeyChanged();
-        
-        // Sequential unique number in configuration
+        // Sequential unique number in parent group
         [Browsable(false)]
         public uint ShortId 
         { 
@@ -32133,6 +32098,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in from.ListDocuments) 
                 vm._ListDocuments.AddClone(Document.Clone(vm, (Document)t, isDeep));
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            vm._LastShortId = from.LastShortId; 
             vm._ListRoleDocumentAccessSettings = new ObservableCollectionWithActions<RoleDocumentAccess>(); 
             foreach (var t in from.ListRoleDocumentAccessSettings) 
                 vm._ListRoleDocumentAccessSettings.AddClone(RoleDocumentAccess.Clone((RoleDocumentAccess)t, isDeep));
@@ -32189,6 +32155,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            to._LastShortId = from.LastShortId; 
             if (isDeep) 
             {
                 foreach (var t in to.ListRoleDocumentAccessSettings.ToList())
@@ -32300,6 +32267,7 @@ namespace vSharpStudio.vm.ViewModels
                 vm.ListDocuments.Add(tvm);
             }
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
+            vm._LastShortId = m.LastShortId; 
             vm._ListRoleDocumentAccessSettings = new ObservableCollectionWithActions<RoleDocumentAccess>(); 
             foreach (var t in m.ListRoleDocumentAccessSettings) 
             {
@@ -32358,6 +32326,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in vm.ListDocuments) 
                 m.ListDocuments.Add(Document.ConvertToProto((Document)t)); 
             m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
+            m.LastShortId = vm.LastShortId; 
             foreach (var t in vm.ListRoleDocumentAccessSettings) 
                 m.ListRoleDocumentAccessSettings.Add(RoleDocumentAccess.ConvertToProto((RoleDocumentAccess)t)); 
             foreach (var t in vm.ListNodeGeneratorsSettings) 
@@ -32544,6 +32513,24 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); 
         partial void OnExplicitSortingPositionChanged();
+        
+        [Browsable(false)]
+        public uint LastShortId 
+        { 
+            get { return this._LastShortId; }
+            set
+            {
+                // Use 'OnLastShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._LastShortId, value, (t) => { bool isCancel = false; this.OnLastShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastShortId = value; this.OnLastShortIdChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _LastShortId; 
+        partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnLastShortIdChanged();
         
         [Browsable(false)]
         public ObservableCollectionWithActions<RoleDocumentAccess> ListRoleDocumentAccessSettings 
@@ -33239,17 +33226,6 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
-            this.RuleFor(x => x.ShortIdTypeKey).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("ShortIdTypeKey", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
             this.RuleFor(x => x.PropertyDataTimeGuid).Custom((str, cntx) =>
             {
                 try
@@ -33323,7 +33299,6 @@ namespace vSharpStudio.vm.ViewModels
             vm._GuidObj1 = from.GuidObj1; 
             vm._RefObj2Type = from.RefObj2Type; 
             vm._GuidObj2 = from.GuidObj2; 
-            vm._ShortIdTypeKey = from.ShortIdTypeKey; 
             vm._ShortId = from.ShortId; 
             vm._IsUseHistory = from.IsUseHistory; 
             vm._IsNew = from.IsNew; 
@@ -33354,7 +33329,6 @@ namespace vSharpStudio.vm.ViewModels
             to._GuidObj1 = from.GuidObj1; 
             to._RefObj2Type = from.RefObj2Type; 
             to._GuidObj2 = from.GuidObj2; 
-            to._ShortIdTypeKey = from.ShortIdTypeKey; 
             to._ShortId = from.ShortId; 
             to._IsUseHistory = from.IsUseHistory; 
             to._IsNew = from.IsNew; 
@@ -33437,7 +33411,6 @@ namespace vSharpStudio.vm.ViewModels
             vm._GuidObj1 = m.GuidObj1; 
             vm._RefObj2Type = (EnumRelationConfigType)m.RefObj2Type; 
             vm._GuidObj2 = m.GuidObj2; 
-            vm._ShortIdTypeKey = m.ShortIdTypeKey; 
             vm._ShortId = m.ShortId; 
             vm._IsUseHistory = m.IsUseHistory; 
             vm._IsNew = m.IsNew; 
@@ -33501,14 +33474,6 @@ namespace vSharpStudio.vm.ViewModels
             m.GuidObj1 = vm.GuidObj1; 
             m.RefObj2Type = (Proto.Config.proto_enum_relation_config_type)vm.RefObj2Type; 
             m.GuidObj2 = vm.GuidObj2; 
-            try 
-            { 
-                m.ShortIdTypeKey = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.ShortIdTypeKey)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relation_many_to_many' field 'short_id_type_key'", ex); 
-            }
             m.ShortId = vm.ShortId; 
             m.IsUseHistory = vm.IsUseHistory; 
             m.IsNew = vm.IsNew; 
@@ -33728,28 +33693,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnGuidObj2Changing(ref string? to, ref bool isCancel); 
         partial void OnGuidObj2Changed();
         
-        [PropertyOrderAttribute(18)]
-        [DisplayName("Short Prefix")]
-        [Description("Short type ID prefix")]
-        [Browsable(false)]
-        public string ShortIdTypeKey 
-        { 
-            get { return this._ShortIdTypeKey; }
-            set
-            {
-                // Use 'OnShortIdTypeKeyChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ShortIdTypeKey, value, (t) => { bool isCancel = false; this.OnShortIdTypeKeyChanging(ref value, ref isCancel); if (isCancel) return; this._ShortIdTypeKey = value; this.OnShortIdTypeKeyChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private string _ShortIdTypeKey = string.Empty; 
-        partial void OnShortIdTypeKeyChanging(ref string to, ref bool isCancel); 
-        partial void OnShortIdTypeKeyChanged();
-        
-        // Sequential unique number in configuration
+        // Sequential unique number in parent group
         [Browsable(false)]
         public uint ShortId 
         { 
@@ -34052,6 +33996,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._SortType = from.SortType; 
             vm._PrefixForCompositionNames = from.PrefixForCompositionNames; 
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            vm._LastShortId = from.LastShortId; 
             vm._ListRelations = new ConfigNodesCollection<RelationManyToMany>(vm); 
             foreach (var t in from.ListRelations) 
                 vm._ListRelations.AddClone(RelationManyToMany.Clone(vm, (RelationManyToMany)t, isDeep));
@@ -34073,6 +34018,7 @@ namespace vSharpStudio.vm.ViewModels
             to._SortType = from.SortType; 
             to._PrefixForCompositionNames = from.PrefixForCompositionNames; 
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            to._LastShortId = from.LastShortId; 
             if (isDeep) 
             {
                 foreach (var t in to.ListRelations.ToList())
@@ -34179,6 +34125,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._SortType = (EnumSortingType)m.SortType; 
             vm._PrefixForCompositionNames = m.PrefixForCompositionNames; 
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
+            vm._LastShortId = m.LastShortId; 
             vm._ListRelations = new ConfigNodesCollection<RelationManyToMany>(vm); 
             foreach (var t in m.ListRelations) 
             {
@@ -34243,6 +34190,7 @@ namespace vSharpStudio.vm.ViewModels
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_many_to_many_group' field 'prefix_for_composition_names'", ex); 
             }
             m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
+            m.LastShortId = vm.LastShortId; 
             foreach (var t in vm.ListRelations) 
                 m.ListRelations.Add(RelationManyToMany.ConvertToProto((RelationManyToMany)t)); 
             foreach (var t in vm.ListNodeGeneratorsSettings) 
@@ -34403,6 +34351,24 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); 
         partial void OnExplicitSortingPositionChanged();
+        
+        [Browsable(false)]
+        public uint LastShortId 
+        { 
+            get { return this._LastShortId; }
+            set
+            {
+                // Use 'OnLastShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._LastShortId, value, (t) => { bool isCancel = false; this.OnLastShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastShortId = value; this.OnLastShortIdChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _LastShortId; 
+        partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnLastShortIdChanged();
         
         [Browsable(false)]
         public ConfigNodesCollection<RelationManyToMany> ListRelations 
@@ -34577,10 +34543,10 @@ namespace vSharpStudio.vm.ViewModels
             vm._RefType = from.RefType; 
             vm._RefObj2Type = from.RefObj2Type; 
             vm._GuidObj2 = from.GuidObj2; 
+            vm._ShortId = from.ShortId; 
             vm._IsUseHistory = from.IsUseHistory; 
             vm._IsNew = from.IsNew; 
             vm._IsMarkedForDeletion = from.IsMarkedForDeletion; 
-            vm._ShortId = from.ShortId; 
             vm._ShortRefId = from.ShortRefId; 
             if (isDeep) 
                 vm._PropertyRefObj1 = vSharpStudio.vm.ViewModels.Property.Clone(vm, from.PropertyRefObj1, isDeep);
@@ -34609,10 +34575,10 @@ namespace vSharpStudio.vm.ViewModels
             to._RefType = from.RefType; 
             to._RefObj2Type = from.RefObj2Type; 
             to._GuidObj2 = from.GuidObj2; 
+            to._ShortId = from.ShortId; 
             to._IsUseHistory = from.IsUseHistory; 
             to._IsNew = from.IsNew; 
             to._IsMarkedForDeletion = from.IsMarkedForDeletion; 
-            to._ShortId = from.ShortId; 
             to._ShortRefId = from.ShortRefId; 
             if (isDeep) 
                 vSharpStudio.vm.ViewModels.Property.Update((Property)to.PropertyRefObj1, from.PropertyRefObj1, isDeep);
@@ -34693,10 +34659,10 @@ namespace vSharpStudio.vm.ViewModels
             vm._RefType = (EnumOneToOneRefType)m.RefType; 
             vm._RefObj2Type = (EnumRelationConfigType)m.RefObj2Type; 
             vm._GuidObj2 = m.GuidObj2; 
+            vm._ShortId = m.ShortId; 
             vm._IsUseHistory = m.IsUseHistory; 
             vm._IsNew = m.IsNew; 
             vm._IsMarkedForDeletion = m.IsMarkedForDeletion; 
-            vm._ShortId = m.ShortId; 
             vm._ShortRefId = m.ShortRefId; 
             vm.PropertyRefObj1 ??= new Property(vm); 
             vSharpStudio.vm.ViewModels.Property.ConvertToVM(m.PropertyRefObj1, (Property)vm.PropertyRefObj1); 
@@ -34758,10 +34724,10 @@ namespace vSharpStudio.vm.ViewModels
             m.RefType = (Proto.Config.proto_enum_one_to_one_ref_type)vm.RefType; 
             m.RefObj2Type = (Proto.Config.proto_enum_relation_config_type)vm.RefObj2Type; 
             m.GuidObj2 = vm.GuidObj2; 
+            m.ShortId = vm.ShortId; 
             m.IsUseHistory = vm.IsUseHistory; 
             m.IsNew = vm.IsNew; 
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; 
-            m.ShortId = vm.ShortId; 
             m.ShortRefId = vm.ShortRefId; 
             m.PropertyRefObj1 = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefObj1); 
             m.PropertyRefObj2 = vSharpStudio.vm.ViewModels.Property.ConvertToProto((Property)vm.PropertyRefObj2); 
@@ -35019,6 +34985,25 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnGuidObj2Changing(ref string? to, ref bool isCancel); 
         partial void OnGuidObj2Changed();
         
+        // Sequential unique number in parent group
+        [Browsable(false)]
+        public uint ShortId 
+        { 
+            get { return this._ShortId; }
+            set
+            {
+                // Use 'OnShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._ShortId, value, (t) => { bool isCancel = false; this.OnShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._ShortId = value; this.OnShortIdChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _ShortId; 
+        partial void OnShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnShortIdChanged();
+        
         [Category("")]
         [PropertyOrderAttribute(21)]
         [DisplayName("Use History")]
@@ -35074,25 +35059,6 @@ namespace vSharpStudio.vm.ViewModels
         private bool _IsMarkedForDeletion; 
         partial void OnIsMarkedForDeletionChanging(ref bool to, ref bool isCancel); 
         partial void OnIsMarkedForDeletionChanged();
-        
-        // Sequential unique number in configuration
-        [Browsable(false)]
-        public uint ShortId 
-        { 
-            get { return this._ShortId; }
-            set
-            {
-                // Use 'OnShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ShortId, value, (t) => { bool isCancel = false; this.OnShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._ShortId = value; this.OnShortIdChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private uint _ShortId; 
-        partial void OnShortIdChanging(ref uint to, ref bool isCancel); 
-        partial void OnShortIdChanged();
         
         // Combination of short_id and type group in higher bits
         [Browsable(false)]
@@ -35322,6 +35288,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._SortType = from.SortType; 
             vm._PrefixForCompositionNames = from.PrefixForCompositionNames; 
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            vm._LastShortId = from.LastShortId; 
             vm._ListRelations = new ConfigNodesCollection<RelationOneToOne>(vm); 
             foreach (var t in from.ListRelations) 
                 vm._ListRelations.AddClone(RelationOneToOne.Clone(vm, (RelationOneToOne)t, isDeep));
@@ -35343,6 +35310,7 @@ namespace vSharpStudio.vm.ViewModels
             to._SortType = from.SortType; 
             to._PrefixForCompositionNames = from.PrefixForCompositionNames; 
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            to._LastShortId = from.LastShortId; 
             if (isDeep) 
             {
                 foreach (var t in to.ListRelations.ToList())
@@ -35449,6 +35417,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._SortType = (EnumSortingType)m.SortType; 
             vm._PrefixForCompositionNames = m.PrefixForCompositionNames; 
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
+            vm._LastShortId = m.LastShortId; 
             vm._ListRelations = new ConfigNodesCollection<RelationOneToOne>(vm); 
             foreach (var t in m.ListRelations) 
             {
@@ -35513,6 +35482,7 @@ namespace vSharpStudio.vm.ViewModels
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_relations_one_to_one_group' field 'prefix_for_composition_names'", ex); 
             }
             m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
+            m.LastShortId = vm.LastShortId; 
             foreach (var t in vm.ListRelations) 
                 m.ListRelations.Add(RelationOneToOne.ConvertToProto((RelationOneToOne)t)); 
             foreach (var t in vm.ListNodeGeneratorsSettings) 
@@ -35673,6 +35643,24 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); 
         partial void OnExplicitSortingPositionChanged();
+        
+        [Browsable(false)]
+        public uint LastShortId 
+        { 
+            get { return this._LastShortId; }
+            set
+            {
+                // Use 'OnLastShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._LastShortId, value, (t) => { bool isCancel = false; this.OnLastShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastShortId = value; this.OnLastShortIdChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _LastShortId; 
+        partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnLastShortIdChanged();
         
         [Browsable(false)]
         public ConfigNodesCollection<RelationOneToOne> ListRelations 

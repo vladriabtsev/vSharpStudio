@@ -543,6 +543,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.GetUniqueName(Defaults.PropertyName, node, this.ListProperties);
             }
 
+            node.ShortId = ++this.LastShortId;
             this.SetSelected(node);
             return node;
         }

@@ -1309,7 +1309,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else if (node is IRelationOneToOne rld)
             {
-                return $"rd{rld.ShortId.ToString()}";
+                //return $"rd{rld.ShortId.ToString()}";
             }
             else if (node is IGroupListConstants cts)
             {
@@ -1560,11 +1560,6 @@ namespace vSharpStudio.vm.ViewModels
                 sep = ", ";
             }
             return sb.ToString();
-        }
-        public uint LastTypeShortIdForNode()
-        {
-            uint res = ++this.LastTypeShortRefId;
-            return res;
         }
         public EnumRefType RefTypeForNode(ITreeConfigNode n)
         {

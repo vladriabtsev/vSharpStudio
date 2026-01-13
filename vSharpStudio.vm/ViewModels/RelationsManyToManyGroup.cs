@@ -50,7 +50,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.GetUniqueName(Defaults.ManyToManyRelationName, node, this.ListRelations);
             }
             var model = this.ParentGroupRelations.ParentModel;
-            node.ShortId = model.LastTypeShortIdForNode();
+            node.ShortId = ++this.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
             return node;

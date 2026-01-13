@@ -471,6 +471,7 @@ namespace vSharpStudio.vm.ViewModels
             node.Parent = this.Parent;
             this.ParentGroupListConstants.ListConstants.Add(node, this);
             this._Name = this._Name + "2";
+            node.ShortId = ++this.ParentGroupListConstants.LastShortId;
             this.SetSelected(node);
             return node;
         }
@@ -481,7 +482,7 @@ namespace vSharpStudio.vm.ViewModels
             node.Position = this.ParentGroupListConstants.GetNextPosition();
             this.GetUniqueName(Defaults.ConstantName, node, this.ParentGroupListConstants.ListConstants);
             var model = this.ParentGroupListConstants.ParentGroupConstantGroups.ParentModel;
-            node.ShortId = model.LastTypeShortIdForNode();
+            node.ShortId = ++this.ParentGroupListConstants.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
             return node;

@@ -207,6 +207,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = Register.Clone(this.Parent, this, true, true);
             this.ParentGroupListRegisters.ListRegisters.Add(node, this);
             this._Name = this._Name + "2";
+            node.ShortId = ++this.ParentGroupListRegisters.LastShortId;
             this.SetSelected(node);
             return node;
         }
@@ -215,8 +216,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Register(this.Parent);
             this.ParentGroupListRegisters.ListRegisters.Add(node, this);
             this.GetUniqueName(Defaults.RegisterName, node, this.ParentGroupListRegisters.ListRegisters);
-            var model = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
-            node.ShortId = model.LastTypeShortIdForNode();
+            node.ShortId = ++this.ParentGroupListRegisters.LastShortId;
             this.SetSelected(node);
             return node;
         }

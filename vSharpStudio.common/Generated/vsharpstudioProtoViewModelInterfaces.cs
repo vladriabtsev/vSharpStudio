@@ -976,7 +976,6 @@ namespace vSharpStudio.common
     	string RecordVersionFieldName { get; } 
     	EnumVersionFieldType RecordVersionFieldType { get; } 
     	uint ComplexPropertyRefDescrLength { get; } 
-    	uint LastTypeShortRefId { get; } 
     	string PropertyIdGuid { get; } 
     	string PropertyVersionGuid { get; } 
     	string PropertyCtlgCodeGuid { get; } 
@@ -1146,6 +1145,7 @@ namespace vSharpStudio.common
     	// Last generated Protobuf field position
     	uint LastGenPosition { get; } 
     	int ExplicitSortingPosition { get; } 
+    	uint LastShortId { get; } 
     	EnumUseType IsGridSortable { get; } 
     	EnumUseType IsGridSortableCustom { get; } 
     	EnumUseType IsGridFilterable { get; } 
@@ -1162,6 +1162,8 @@ namespace vSharpStudio.common
     	string DefaultValue { get; } 
     	bool IsNew { get; } 
     	bool IsMarkedForDeletion { get; } 
+    	// Sequential unique number in parent group
+    	uint ShortId { get; } 
     	string RangeValuesRequirementStr { get; } 
     	string MinLengthRequirement { get; } 
     	string MaxLengthRequirement { get; } 
@@ -1265,6 +1267,7 @@ namespace vSharpStudio.common
     	IDetail this[int index] { get; }
     	int Count();
     	int ExplicitSortingPosition { get; } 
+    	uint LastShortId { get; } 
     	EnumUseType IsGridSortable { get; } 
     	EnumUseType IsGridSortableCustom { get; } 
     	EnumUseType IsGridFilterable { get; } 
@@ -1287,8 +1290,6 @@ namespace vSharpStudio.common
     	uint Position { get; } 
     	// special RefTreeParent property    
     	IProperty PropertyRefParent { get; } 
-    	string ShortIdTypeKey { get; } 
-    	// Sequential unique number in configuration
     	uint ShortId { get; } 
     	// Combination of short_id and type group in higher bits
     	uint ShortRefId { get; } 
@@ -1318,6 +1319,7 @@ namespace vSharpStudio.common
     	string Description { get; } 
     	string PrefixForCompositionNames { get; } 
     	IReadOnlyList<IGroupListConstants> ListConstantGroups { get; } 
+    	uint LastShortId { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
     }
     
@@ -1334,7 +1336,8 @@ namespace vSharpStudio.common
     	uint LastGenPosition { get; } 
     	bool IsNew { get; } 
     	bool IsMarkedForDeletion { get; } 
-    	string ShortIdTypeKey { get; } 
+    	uint LastShortId { get; } 
+    	// Sequential unique number in parent group
     	uint ShortId { get; } 
     	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
@@ -1351,7 +1354,7 @@ namespace vSharpStudio.common
     	string DefaultValue { get; } 
     	bool IsNew { get; } 
     	bool IsMarkedForDeletion { get; } 
-    	// Sequential unique number in configuration
+    	// Sequential unique number in parent group
     	uint ShortId { get; } 
     	// Combination of short_id and type group in higher bits
     	uint ShortRefId { get; } 
@@ -1473,12 +1476,11 @@ namespace vSharpStudio.common
     	string Description { get; } 
     	bool IsNew { get; } 
     	bool IsMarkedForDeletion { get; } 
-    	string ShortIdTypeKey { get; } 
     	// special RefParent property    
     	IProperty PropertyRefSelf { get; } 
     	// special RefTreeParent property    
     	IProperty PropertyRefFolder { get; } 
-    	// Sequential unique number in configuration
+    	// Sequential unique number in parent group
     	uint ShortId { get; } 
     	// Combination of short_id and type group in higher bits
     	uint ShortRefId { get; } 
@@ -1524,6 +1526,7 @@ namespace vSharpStudio.common
     	ICatalog this[int index] { get; }
     	int Count();
     	int ExplicitSortingPosition { get; } 
+    	uint LastShortId { get; } 
     	bool UseCodeProperty { get; } 
     	string PropertyCodeName { get; } 
     	bool UseNameProperty { get; } 
@@ -1550,6 +1553,7 @@ namespace vSharpStudio.common
     	int Count();
     	int ExplicitSortingPosition { get; } 
     	string PrefixForCompositionNames { get; } 
+    	uint LastShortId { get; } 
     	// Guid for document guid property. Auto generated.
     	string PropertyRegGuidGuid { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
@@ -1562,6 +1566,7 @@ namespace vSharpStudio.common
     	string Description { get; } 
     	bool IsNew { get; } 
     	bool IsMarkedForDeletion { get; } 
+    	uint ShortId { get; } 
     	///<summary>
     	/// Guid of Catalog type.
     	/// </summary>
@@ -1580,6 +1585,7 @@ namespace vSharpStudio.common
     	EnumSortingType SortType { get; } 
     	IReadOnlyList<IRegisterDimension> ListDimensions { get; } 
     	int ExplicitSortingPosition { get; } 
+    	uint LastShortId { get; } 
     	EnumUseType IsGridSortable { get; } 
     	EnumUseType IsGridSortableCustom { get; } 
     	EnumUseType IsGridFilterable { get; } 
@@ -1718,9 +1724,8 @@ namespace vSharpStudio.common
     	EnumTimeAccuracyType TimelineTimeAccuracy { get; } 
     	string TimeLineDocDateTimePropertyName { get; } 
     	string PropertyTimelineDocDateTimeGuid { get; } 
-    	string ShortIdTypeKey { get; } 
-    	// Sequential unique number in configuration
-    	uint ShortId { get; } 
+    	// last id for property
+    	uint LastShortId { get; } 
     	EnumUseType IsGridSortable { get; } 
     	EnumUseType IsGridSortableCustom { get; } 
     	EnumUseType IsGridFilterable { get; } 
@@ -1744,8 +1749,7 @@ namespace vSharpStudio.common
     	IGroupListReports GroupReports { get; } 
     	// Combination of short_id and type group in higher bits
     	uint ShortRefId { get; } 
-    	string ShortIdTypeKey { get; } 
-    	// Sequential unique number in configuration
+    	// Sequential unique number in parent group
     	uint ShortId { get; } 
     	EnumUseType IsGridSortable { get; } 
     	EnumUseType IsGridSortableCustom { get; } 
@@ -1763,6 +1767,7 @@ namespace vSharpStudio.common
     	IDocument this[int index] { get; }
     	int Count();
     	int ExplicitSortingPosition { get; } 
+    	uint LastShortId { get; } 
     	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
     }
@@ -1792,8 +1797,7 @@ namespace vSharpStudio.common
     	string? GuidObj1 { get; } 
     	EnumRelationConfigType RefObj2Type { get; } 
     	string? GuidObj2 { get; } 
-    	string ShortIdTypeKey { get; } 
-    	// Sequential unique number in configuration
+    	// Sequential unique number in parent group
     	uint ShortId { get; } 
     	bool IsUseHistory { get; } 
     	bool IsNew { get; } 
@@ -1813,6 +1817,7 @@ namespace vSharpStudio.common
     	EnumSortingType SortType { get; } 
     	string PrefixForCompositionNames { get; } 
     	int ExplicitSortingPosition { get; } 
+    	uint LastShortId { get; } 
     	IReadOnlyList<IRelationManyToMany> ListRelations { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
     }
@@ -1828,11 +1833,11 @@ namespace vSharpStudio.common
     	EnumOneToOneRefType RefType { get; } 
     	EnumRelationConfigType RefObj2Type { get; } 
     	string? GuidObj2 { get; } 
+    	// Sequential unique number in parent group
+    	uint ShortId { get; } 
     	bool IsUseHistory { get; } 
     	bool IsNew { get; } 
     	bool IsMarkedForDeletion { get; } 
-    	// Sequential unique number in configuration
-    	uint ShortId { get; } 
     	// Combination of short_id and type group in higher bits
     	uint ShortRefId { get; } 
     	IProperty PropertyRefObj1 { get; } 
@@ -1848,6 +1853,7 @@ namespace vSharpStudio.common
     	EnumSortingType SortType { get; } 
     	string PrefixForCompositionNames { get; } 
     	int ExplicitSortingPosition { get; } 
+    	uint LastShortId { get; } 
     	IReadOnlyList<IRelationOneToOne> ListRelations { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
     }

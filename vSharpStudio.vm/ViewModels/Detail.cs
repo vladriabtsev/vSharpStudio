@@ -33,19 +33,17 @@ namespace vSharpStudio.vm.ViewModels
                 p = t.ParentGroupListDetails.Parent;
                 Debug.Assert(p != null);
                 this.GetNodeShortId(sb, p);
-                sb.Append(t.ShortIdTypeKey);
+                sb.Append("t");
                 sb.Append(t.ShortId);
             }
             else if (n is Catalog c)
             {
-                sb.Append(c.ShortIdTypeKey);
-                sb.Append(c.ShortId);
+                sb.Append(c.NameShortId);
                 return;
             }
             else if (n is Document d)
             {
-                sb.Append(d.ShortIdTypeKey);
-                sb.Append(d.ShortId);
+                sb.Append(d.NameShortId);
                 return;
             }
             else
@@ -102,7 +100,6 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
-            this._ShortIdTypeKey = "t";
             this.IsIncludableInModels = true;
             this._IsIndexFk = true;
             this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();
@@ -174,6 +171,9 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(glp != null);
             node.Position = glp.GroupProperties.GetNextPosition();
             this.Name = this.Name + "2";
+            var model = (Model)this.Cfg.Model;
+            node.ShortId = ++this.ParentGroupListDetails.LastShortId;
+            node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
             return node;
         }
@@ -187,7 +187,7 @@ namespace vSharpStudio.vm.ViewModels
             node.Position = glp.GroupProperties.GetNextPosition();
             this.GetUniqueName(Defaults.DetailName, node, this.ParentGroupListDetails.ListDetails);
             var model = (Model)this.Cfg.Model;
-            node.ShortId = model.LastTypeShortIdForNode();
+            node.ShortId = ++this.ParentGroupListDetails.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
             return node;
@@ -207,6 +207,9 @@ namespace vSharpStudio.vm.ViewModels
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             Debug.Assert(glp != null);
             node.Position = glp.GroupProperties.GetNextPosition();
+            var model = (Model)this.Cfg.Model;
+            node.ShortId = ++this.ParentGroupListDetails.LastShortId;
+            node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             return node;
         }
         public Property AddProperty(string name, string? guid = null)

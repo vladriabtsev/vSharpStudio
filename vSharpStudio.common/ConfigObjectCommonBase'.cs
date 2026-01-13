@@ -457,6 +457,7 @@
                             }
                         }
                     }
+                    this.OnPropertyChanged(nameof(this.NameWithShortId));
                 }
             }
         }
@@ -464,16 +465,14 @@
         {
             get
             {
-                if (this.Cfg.Model.IsUseNameComposition && this.Cfg.Model.IsUseShortIdComposition)
-                {
-                    StringBuilder sb = new();
+                if (this.NameShortId == null)
+                    return this._Name;
+                else
                     return $"{this._Name}({this.NameShortId})";
-                }
-                return this._Name;
             }
         }
         //public string CompositeNameShortId { get { return this.GetCompositeNameShortId(); } }
-        public virtual string NameShortId { get { return "not overriden"; } }
+        public virtual string? NameShortId { get { return null; } }
         protected string GetCompositeName()
         {
             if (this.Cfg.Model.IsUseNameComposition)

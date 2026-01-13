@@ -18,6 +18,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode, IRoleAccess, IPropertyAccessRoles, ILayoutFieldParameters
     {
+        public override string NameShortId { get { return $"p{this.ShortId}"; } }
         public const string SpecialPropertyNameRefParent = "RefParent";
         public const string SpecialPropertyNameRefTreeParent = "RefTreeParent";
         partial void OnDebugStringExtend(ref string mes)
@@ -252,6 +253,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = Property.Clone(this.Parent, this, true, true);
             this.ParentListPropertiesI.ListProperties.Add(node, this);
             this._Name += "2";
+            node.ShortId = ++this.ParentGroupListProperties.LastShortId;
             this.SetSelected(node);
             return node;
         }
@@ -267,6 +269,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentListPropertiesI.ListProperties.Add(node, this);
             node.Position = this.ParentListPropertiesI.GetNextPosition();
             this.GetUniqueName(Defaults.PropertyName, node, this.ParentListPropertiesI.ListProperties);
+            node.ShortId = ++this.ParentGroupListProperties.LastShortId;
             this.SetSelected(node);
             return node;
         }

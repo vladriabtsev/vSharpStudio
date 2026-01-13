@@ -11,6 +11,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class RegisterDimension : ICanAddNode, ICanGoLeft, INodeGenSettings, ITreeConfigNodeSortable, IEditableNode //, IDetail //, IRoleAccess, IPropertyAccessRoles
     {
+        public override string NameShortId { get { return $"r{this.ParentGroupListRegisterDimensions.ParentRegister.ShortId}d{this.ShortId}"; } }
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(RegisterDimension));
 
         //partial void OnDebugStringExtend(ref string mes)
@@ -119,6 +120,8 @@ namespace vSharpStudio.vm.ViewModels
             var node = RegisterDimension.Clone(this.Parent, this, true, true);
             this.ParentGroupListRegisterDimensions.ListDimensions.Add(node, this);
             this._Name = this._Name + "2";
+            var model = (Model)this.Cfg.Model;
+            node.ShortId = ++this.ParentGroupListRegisterDimensions.LastShortId;
             this.SetSelected(node);
             return node;
         }
@@ -132,6 +135,8 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Register(this.Parent);
             this.ParentGroupListRegisterDimensions.ListDimensions.Add(node, this);
             this.GetUniqueName(Defaults.RegisterDimensionName, node, this.ParentGroupListRegisterDimensions.ListDimensions);
+            var model = (Model)this.Cfg.Model;
+            node.ShortId = ++this.ParentGroupListRegisterDimensions.LastShortId;
             this.SetSelected(node);
             return node;
         }

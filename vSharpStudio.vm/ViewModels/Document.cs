@@ -16,7 +16,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, INodeWithProperties, IRoleAccess, IDocumentAccessRoles
     {
-        public override string NameShortId { get { return $"{this.ShortIdTypeKey}{this.ShortId}"; } }
+        public override string NameShortId { get { return $"d{this.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes += $" props:{GroupProperties.ListProperties.Count} details:{GroupDetails.ListDetails.Count} seq:{this.Sequence?.Name}";
@@ -67,7 +67,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
 
-            this._ShortIdTypeKey = "d";
             this._SequenceGuid = "";
             this._ListSelectedRegisters = [];
             this._ListSelectedRegisters.CollectionChanged += _ListSelectedRegisters_CollectionChanged;
@@ -119,6 +118,9 @@ namespace vSharpStudio.vm.ViewModels
             node.Parent = this.Parent;
             this.ParentGroupListDocuments.ListDocuments.Add(node, this);
             this.Name += "2";
+            var model = (Model)this.Cfg.Model;
+            node.ShortId = ++this.ParentGroupListDocuments.LastShortId;
+            node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
             return node;
         }
@@ -128,7 +130,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentGroupListDocuments.ListDocuments.Add(node, this);
             this.GetUniqueName(Defaults.DocumentName, node, this.ParentGroupListDocuments.ListDocuments);
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
-            node.ShortId = model.LastTypeShortIdForNode();
+            node.ShortId = ++this.ParentGroupListDocuments.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
             return node;

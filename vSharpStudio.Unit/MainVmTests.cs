@@ -218,10 +218,10 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(gr.ListConstants[0].IsHasChanged);
             Assert.IsTrue(gr.IsChanged);
             Assert.IsTrue(gr.IsHasChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChanged);
+            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.IsChanged);
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.IsHasChanged);
             Assert.IsTrue(vm.Config.Model.IsHasChanged);
-            Assert.IsTrue(vm.Config.Model.IsChanged);
+            Assert.IsFalse(vm.Config.Model.IsChanged);
             Assert.IsTrue(vm.Config.IsHasChanged);
             Assert.IsFalse(vm.Config.IsChanged);
 

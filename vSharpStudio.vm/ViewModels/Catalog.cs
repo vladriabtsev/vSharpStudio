@@ -17,7 +17,7 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
         INodeWithProperties, ITreeConfigNodeSortable, IRoleAccess, ICatalogDetailAccessRoles
     {
-        public override string NameShortId { get { return $"{this.ShortIdTypeKey}{this.ShortId}"; } }
+        public override string NameShortId { get { return $"c{this.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes += $" props:{GroupProperties.ListProperties.Count}";
@@ -84,7 +84,6 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
-            this._ShortIdTypeKey = "c";
             //this.Folder.Parent = this;
             //this.GroupProperties.Parent = this;
             //this.GroupDetails.Parent = this;
@@ -311,6 +310,9 @@ namespace vSharpStudio.vm.ViewModels
             node.Parent = this.Parent;
             this.ParentGroupListCatalogs.ListCatalogs.Add(node, this);
             this._Name += "2";
+            var model = this.ParentGroupListCatalogs.ParentModel;
+            node.ShortId = ++this.ParentGroupListCatalogs.LastShortId;
+            node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
             return node;
         }
@@ -320,7 +322,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentGroupListCatalogs.ListCatalogs.Add(node, this);
             this.GetUniqueName(Defaults.CatalogName, node, this.ParentGroupListCatalogs.ListCatalogs);
             var model = this.ParentGroupListCatalogs.ParentModel;
-            node.ShortId = model.LastTypeShortIdForNode();
+            node.ShortId = ++this.ParentGroupListCatalogs.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
             return node;

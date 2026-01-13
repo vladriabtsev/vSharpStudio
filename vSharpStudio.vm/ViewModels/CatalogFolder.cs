@@ -14,6 +14,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles
     {
+        public override string NameShortId { get { return $"f{this.ParentCatalog.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" props:{GroupProperties.ListProperties.Count}";
@@ -134,8 +135,6 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             var model = (Model)this.Cfg.Model;
-            node.ShortId = model.LastTypeShortIdForNode();
-            node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.GroupDetails.NodeAddNewSubNode(node);
             return node;
         }

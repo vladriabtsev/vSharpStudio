@@ -12,7 +12,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IEditableNode, IRoleAccess
     {
-        public override string NameShortId { get { return $"{this.ShortIdTypeKey}{this.ShortId}"; } }
+        public override string NameShortId { get { return $"gc{this.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" Count:{ListConstants.Count}";
@@ -26,7 +26,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = Defaults.ConstantsGroupName;
             this.IsEditable = true;
-            this._ShortIdTypeKey = "n";
             Init();
         }
         protected override void OnInitFromDto()
@@ -105,6 +104,8 @@ namespace vSharpStudio.vm.ViewModels
             node.Parent = this.Parent;
             this.ParentGroupConstantGroups.ListConstantGroups.Add(node, this);
             this._Name = this._Name + "2";
+            var model = (Model)this.Cfg.Model;
+            node.ShortId = ++this.ParentGroupConstantGroups.LastShortId;
             this.SetSelected(node);
             return node;
         }
@@ -114,7 +115,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentGroupConstantGroups.ListConstantGroups.Add(node, this);
             this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ParentGroupConstantGroups.ListConstantGroups);
             var model = this.ParentGroupConstantGroups.ParentModel;
-            node.ShortId = model.LastTypeShortIdForNode();
+            node.ShortId = ++this.LastShortId;
             this.SetSelected(node);
             return node;
         }
@@ -333,9 +334,8 @@ namespace vSharpStudio.vm.ViewModels
                 this.GetUniqueName(Defaults.ConstantName, node, this.ListConstants);
             }
             var model = this.ParentGroupConstantGroups.ParentModel;
-            node.ShortId = model.LastTypeShortIdForNode();
+            node.ShortId = ++this.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
-
             this.SetSelected(node);
             return node;
         }

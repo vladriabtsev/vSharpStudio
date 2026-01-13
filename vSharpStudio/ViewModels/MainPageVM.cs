@@ -782,8 +782,17 @@ namespace vSharpStudio.ViewModels
             //}
             // Constants
             hash.Clear();
+            foreach (var t in cfg.Model.GroupConstantGroups.ListConstantGroups)
+            {
+                if (hash.Contains(t.ShortId))
+                    throw new NotSupportedException();
+                if (t.ShortId == 0)
+                    throw new NotSupportedException();
+                hash.Add(t.ShortId);
+            }
             foreach (var tt in cfg.Model.GroupConstantGroups.ListConstantGroups)
             {
+                hash.Clear();
                 foreach (var t in tt.ListConstants)
                 {
                     if (hash.Contains(t.ShortId))
@@ -803,6 +812,18 @@ namespace vSharpStudio.ViewModels
                     throw new NotSupportedException();
                 hash.Add(t.ShortId);
             }
+            foreach (var tt in cfg.Model.GroupCatalogs.ListCatalogs)
+            {
+                hash.Clear();
+                foreach (var t in tt.GroupProperties.ListProperties)
+                {
+                    if (hash.Contains(t.ShortId))
+                        throw new NotSupportedException();
+                    if (t.ShortId == 0)
+                        throw new NotSupportedException();
+                    hash.Add(t.ShortId);
+                }
+            }
             // Documents
             hash.Clear();
             foreach (var t in cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
@@ -813,20 +834,31 @@ namespace vSharpStudio.ViewModels
                     throw new NotSupportedException();
                 hash.Add(t.ShortId);
             }
-            // Registers
-            //hash.Clear();
-            //foreach (var t in cfg.Model.GroupRegisters.ListRegisters)
-            //{
-            //    if (hash.Contains(t.ShortId))
-            //        throw new NotSupportedException();
-            //    if (t.ShortId == 0)
-            //        throw new NotSupportedException();
-            //    hash.Add(t.ShortId);
-            //}
+            foreach (var tt in cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+            {
+                hash.Clear();
+                foreach (var t in tt.GroupProperties.ListProperties)
+                {
+                    if (hash.Contains(t.ShortId))
+                        throw new NotSupportedException();
+                    if (t.ShortId == 0)
+                        throw new NotSupportedException();
+                    hash.Add(t.ShortId);
+                }
+            }
             // Details
             hash.Clear();
+            foreach (var t in cfg.Model.GroupCatalogs.ListCatalogs)
+            {
+                if (hash.Contains(t.ShortId))
+                    throw new NotSupportedException();
+                if (t.ShortId == 0)
+                    throw new NotSupportedException();
+                hash.Add(t.ShortId);
+            }
             foreach (var tt in cfg.Model.GroupCatalogs.ListCatalogs)
             {
+                hash.Clear();
                 foreach (var t in tt.GroupDetails.ListDetails)
                 {
                     if (hash.Contains(t.ShortId))
@@ -836,8 +868,18 @@ namespace vSharpStudio.ViewModels
                     hash.Add(t.ShortId);
                 }
             }
+            hash.Clear();
+            foreach (var t in cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+            {
+                if (hash.Contains(t.ShortId))
+                    throw new NotSupportedException();
+                if (t.ShortId == 0)
+                    throw new NotSupportedException();
+                hash.Add(t.ShortId);
+            }
             foreach (var tt in cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
             {
+                hash.Clear();
                 foreach (var t in tt.GroupDetails.ListDetails)
                 {
                     if (hash.Contains(t.ShortId))
@@ -846,6 +888,36 @@ namespace vSharpStudio.ViewModels
                         throw new NotSupportedException();
                     hash.Add(t.ShortId);
                 }
+            }
+            // Registers
+            hash.Clear();
+            foreach (var t in cfg.Model.GroupDocuments.GroupRegisters.ListRegisters)
+            {
+                if (hash.Contains(t.ShortId))
+                    throw new NotSupportedException();
+                if (t.ShortId == 0)
+                    throw new NotSupportedException();
+                hash.Add(t.ShortId);
+            }
+            // Many to many
+            hash.Clear();
+            foreach (var t in cfg.Model.GroupRelations.GroupListManyToManyRelations.ListRelations)
+            {
+                if (hash.Contains(t.ShortId))
+                    throw new NotSupportedException();
+                if (t.ShortId == 0)
+                    throw new NotSupportedException();
+                hash.Add(t.ShortId);
+            }
+            // One to one
+            hash.Clear();
+            foreach (var t in cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations)
+            {
+                if (hash.Contains(t.ShortId))
+                    throw new NotSupportedException();
+                if (t.ShortId == 0)
+                    throw new NotSupportedException();
+                hash.Add(t.ShortId);
             }
             // finish
             hash.Clear();
