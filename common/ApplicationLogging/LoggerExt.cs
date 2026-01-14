@@ -496,6 +496,28 @@ namespace ApplicationLogging
             var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
             logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
         }
+        public static void Debug<T0, T1, T2, T3, T4, T5, T6, T7>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7,
+            LoggerExt.Dummy? dummy = null,
+            [CallerMemberName] string memberName = "",
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            if (logger == null || !logger.IsEnabled(LogLevel.Debug))
+                return;
+            var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+        }
+        public static void Debug<T0, T1, T2, T3, T4, T5, T6, T7, T8>(this Microsoft.Extensions.Logging.ILogger? logger, string message, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
+            LoggerExt.Dummy? dummy = null,
+            [CallerMemberName] string memberName = "",
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            if (logger == null || !logger.IsEnabled(LogLevel.Debug))
+                return;
+            var msg = GetMsg(message, memberName, sourceFilePath, sourceLineNumber);
+            logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, msg, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+        }
         #endregion Debug
 
         #region Information

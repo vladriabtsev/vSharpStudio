@@ -73,7 +73,14 @@ namespace vSharpStudio.vm.ViewModels
         public IvPluginDbGenerator? PluginDbGenerator
         {
             get { return this._PluginDbGenerator; }
-            set { this.SetProperty(ref this._PluginDbGenerator, value); }
+            set
+            {
+                this.SetProperty(ref this._PluginDbGenerator, value);
+                if (this._PluginDbGenerator !=null)
+                {
+                    this.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig.Model.SetDbMaxLengthRequerements();
+                }
+            }
         }
         private IvPluginDbGenerator? _PluginDbGenerator;
         partial void OnCreated()

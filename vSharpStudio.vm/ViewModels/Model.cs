@@ -108,6 +108,15 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Validation
 
+        public static uint DbTableNameMaxLength { get; internal set; }
+        public static uint DbFieldNameMaxLength { get; internal set; }
+        public static uint DbIndexNameMaxLength { get; internal set; }
+        public static uint DbFkNameMaxLength { get; internal set; }
+        public static AppProjectGenerator? DbTableNameMaxLengthAppProjectGenerator { get; internal set; }
+        public static AppProjectGenerator? DbFieldNameMaxLengthAppProjectGenerator { get; internal set; }
+        public static AppProjectGenerator? DbIndexNameMaxLengthAppProjectGenerator { get; internal set; }
+        public static AppProjectGenerator? DbFkNameMaxLengthAppProjectGenerator { get; internal set; }
+
         private readonly CancellationTokenSource? cancellationSourceForValidatingFullConfig = null;
         //public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
         //{
@@ -1668,7 +1677,52 @@ namespace vSharpStudio.vm.ViewModels
         {
             return new Form(groupForms, formType, lst);
         }
+        public void SetDbMaxLengthRequerements()
+        {
+            Model.DbFieldNameMaxLength = 0;
+            Model.DbFieldNameMaxLengthAppProjectGenerator = null;
+            Model.DbFkNameMaxLength = 0;
+            Model.DbFkNameMaxLengthAppProjectGenerator = null;
+            Model.DbIndexNameMaxLength = 0;
+            Model.DbIndexNameMaxLengthAppProjectGenerator = null;
+            Model.DbTableNameMaxLength = 0;
+            Model.DbTableNameMaxLengthAppProjectGenerator = null;
+            foreach (var t in this.Cfg.GroupAppSolutions.ListAppSolutions)
+            {
+                foreach (var tt in t.ListAppProjects)
+                {
+                    foreach (var ttt in tt.ListAppProjectGenerators)
+                    {
+                        if (ttt.PluginDbGenerator != null && ttt.DynamicGeneratorSettings != null)
+                        {
+                            var set = (IvDbDesignSettings)ttt.DynamicGeneratorSettings;
+                            if (Model.DbFieldNameMaxLength == 0 || Model.DbFieldNameMaxLength > set.DbFieldNameMaxLength)
+                            {
+                                Model.DbFieldNameMaxLength = set.DbFieldNameMaxLength;
+                                Model.DbFieldNameMaxLengthAppProjectGenerator = (AppProjectGenerator)ttt;
+                            }
+                            if (Model.DbFkNameMaxLength == 0 || Model.DbFkNameMaxLength > set.DbFkNameMaxLength)
+                            {
+                                Model.DbFkNameMaxLength = set.DbFkNameMaxLength;
+                                Model.DbFkNameMaxLengthAppProjectGenerator = (AppProjectGenerator)ttt;
+                            }
+                            if (Model.DbIndexNameMaxLength == 0 || Model.DbIndexNameMaxLength > set.DbIndexNameMaxLength)
+                            {
+                                Model.DbIndexNameMaxLength = set.DbIndexNameMaxLength;
+                                Model.DbIndexNameMaxLengthAppProjectGenerator = (AppProjectGenerator)ttt;
+                            }
+                            if (Model.DbTableNameMaxLength == 0 || Model.DbTableNameMaxLength > set.DbTableNameMaxLength)
+                            {
+                                Model.DbTableNameMaxLength = set.DbTableNameMaxLength;
+                                Model.DbTableNameMaxLengthAppProjectGenerator = (AppProjectGenerator)ttt;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+
 
     // https://stackoverflow.com/questions/3862226/how-to-dynamically-create-a-class
     //public class DynamicClass : System.Dynamic.DynamicObject

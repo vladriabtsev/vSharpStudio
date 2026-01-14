@@ -5,6 +5,14 @@ namespace vSharpStudio.common
 {
     public partial interface IModel : ITreeConfigNodeSortable, IGetNodeSetting
     {
+        static uint DbTableNameMaxLength { get; }
+        static uint DbFieldNameMaxLength { get; }
+        static uint DbIndexNameMaxLength { get; }
+        static uint DbFkNameMaxLength { get; }
+        static IAppProjectGenerator? DbTableNameMaxLengthAppProjectGenerator { get; }
+        static IAppProjectGenerator? DbFieldNameMaxLengthAppProjectGenerator { get; }
+        static IAppProjectGenerator? DbIndexNameMaxLengthAppProjectGenerator { get; }
+        static IAppProjectGenerator? DbFkNameMaxLengthAppProjectGenerator { get; }
         IConfig ParentConfigI { get; }
         string PKeyTypeStr { get; }
         IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings?> DicGenNodeSettings { get; }
