@@ -260,7 +260,6 @@ namespace vSharpStudio.ViewModels
                     this._Config = config;
                     this.VisibilityAndMessageInstructions();
                     this.Config.RestoreIsHas();
-                    Config.Model.SetDbMaxLengthRequerements();
                 }
                 if (config.PrevStableConfig != null)
                     InitConfig((Config)config.PrevStableConfig);

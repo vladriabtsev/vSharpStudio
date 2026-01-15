@@ -46,6 +46,11 @@ namespace vSharpStudio.vm.ViewModels
                 sb.Append(d.NameShortId);
                 return;
             }
+            else if (n is CatalogFolder cf)
+            {
+                sb.Append(cf.NameShortId);
+                return;
+            }
             else
             {
                 throw new NotImplementedException();

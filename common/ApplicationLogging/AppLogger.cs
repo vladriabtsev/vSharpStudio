@@ -61,7 +61,7 @@ namespace ApplicationLogging
         /// <summary>
         /// If true, full file path wiil be used in logging messages
         /// </summary>
-        public static bool IsFullFilePath { get; set; } = false;
+        public static bool IsFullFilePath { get; set; } = true;
         /// <summary>
         /// Logger factory to create loggers. Use next sample code: '_logger = AppLogger.CreateLogger(nameof(<Your-class-name>));'.
         /// </summary>

@@ -76,10 +76,6 @@ namespace vSharpStudio.vm.ViewModels
             set
             {
                 this.SetProperty(ref this._PluginDbGenerator, value);
-                if (this._PluginDbGenerator !=null)
-                {
-                    this.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig.Model.SetDbMaxLengthRequerements();
-                }
             }
         }
         private IvPluginDbGenerator? _PluginDbGenerator;

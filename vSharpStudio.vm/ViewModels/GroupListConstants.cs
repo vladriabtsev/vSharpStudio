@@ -115,7 +115,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentGroupConstantGroups.ListConstantGroups.Add(node, this);
             this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ParentGroupConstantGroups.ListConstantGroups);
             var model = this.ParentGroupConstantGroups.ParentModel;
-            node.ShortId = ++this.LastShortId;
+            node.ShortId = ++this.ParentGroupConstantGroups.LastShortId;
             this.SetSelected(node);
             return node;
         }
