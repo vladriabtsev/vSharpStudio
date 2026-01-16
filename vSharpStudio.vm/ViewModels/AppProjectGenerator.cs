@@ -8,12 +8,14 @@ using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class AppProjectGenerator : ICanRemoveNode, ICanAddNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
+        protected readonly ILogger? _logger = AppLogger.CreateLogger<AppProjectGenerator>();
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" Conn:{ConnStr} File:{GenFileName}";
@@ -65,6 +67,7 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(cfg != null);
                     this.DynamicGeneratorSettings = this.PluginGenerator?.GetAppGenerationSettingsVmFromJson(this, this.GeneratorSettings);
                     this.PluginDbGenerator = this._PluginGenerator as IvPluginDbGenerator;
+                    _logger.Trace("Set PluginGenerator. ApgGuid:{Apg}. PluginDbGenerator:{PluginDbGenerator}, ConnStr:{ConnStr}", this.Guid, this.PluginDbGenerator?.Name, this.ConnStr);
                 }
             }
         }
@@ -487,6 +490,7 @@ namespace vSharpStudio.vm.ViewModels
                             this.Name = $"{this.Plugin!.Name}-{this.PluginGenerator.Name}";
                         this.DescriptionGenerator = this.PluginGenerator.Description;
                     }
+                    _logger.Trace("PluginGeneratorGuidChanged. Apg:{Apg}. ApgGuid:{Guid}, ConnStr:{ConnStr}", this.Name, this.Guid, this.ConnStr);
                     this._GenFileName = prevGenFileName;
                     this._RelativePathToGenFolder = prevRelativePathToGenFolder;
                 }
@@ -529,10 +533,12 @@ namespace vSharpStudio.vm.ViewModels
                 if (string.IsNullOrWhiteSpace(this.GeneratorSettings))
                 {
                     this.PluginGeneratorSettings = this.PluginGenerator.GetAppGenerationSettingsVmFromJson(this, null);
+                    _logger.Trace("Default settings. ApgGuid:{Apg}. For:{PluginDbGenerator}, ConnStr:{ConnStr}", this.Guid, this.PluginGenerator.Name, this.ConnStr);
                 }
                 else
                 {
                     this.PluginGeneratorSettings = this.PluginGenerator.GetAppGenerationSettingsVmFromJson(this, this.GeneratorSettings);
+                    _logger.Trace("Restore settings. ApgGuid:{Apg}. For:{PluginDbGenerator}, ConnStr:{ConnStr}", this.Guid, this.PluginGenerator.Name, this.ConnStr);
                 }
                 this.DynamicGeneratorSettings = this.PluginGeneratorSettings;
             }

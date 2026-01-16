@@ -1681,7 +1681,7 @@ namespace vSharpStudio.ViewModels
                     {
                         Debug.Assert(this.BtnConfigCurrentUpdateSqlResultByConnStr != null);
                         Debug.Assert(genData.tpg.PluginDbGenerator != null);
-                        var sql = genData.tpg.PluginDbGenerator.UpdateToModel(genData.tpg.ConnStr, diffConfig, genData.ts, genData.tp, genData.tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true);
+                        var sql = genData.tpg.PluginDbGenerator.UpdateToModel(genData.tpg.ConnStr, diffConfig, genData.ts, genData.tp, genData.tpg, EnumDbUpdateLevels.TryKeepAll, true);
                         if (sql != null)
                             this.BtnConfigCurrentUpdateSqlResultByConnStr[genData.tpg.Name] = sql;
                     }
@@ -1699,7 +1699,7 @@ namespace vSharpStudio.ViewModels
                             sb.AppendLine("{");
 #if DEBUG
                             sb.Append("\t\"_generator_source\": \"");
-                            sb.Append(t4.Src());
+                            sb.Append(t4.Src().Replace("\\", "\\\\"));
                             sb.AppendLine("\",");
 #endif
                             sb.AppendLine("\t\"db_conns\": {");
@@ -1726,13 +1726,13 @@ namespace vSharpStudio.ViewModels
                         {
                             genData.tpg.PluginDbGenerator.EnsureDbDeleted(genData.tpg.ConnStr);
                         }
-                        genData.tpg.PluginDbGenerator.UpdateToModel(genData.tpg.ConnStr, diffConfig, genData.ts, genData.tp, genData.tpg.Guid, EnumDbUpdateLevels.TryKeepAll, false);
+                        genData.tpg.PluginDbGenerator.UpdateToModel(genData.tpg.ConnStr, diffConfig, genData.ts, genData.tp, genData.tpg, EnumDbUpdateLevels.TryKeepAll, false);
                         if (isCurrentUpdate)
                         {
                             if (genData.tpg.IsGenerateSqlSqriptToUpdatePrevStable)
                             {
                                 //TODO generate Stable DB update SQL script
-                                var sql = genData.tpg.PluginDbGenerator.UpdateToModel(genData.tpg.ConnStr, diffConfig, genData.ts, genData.tp, genData.tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true);
+                                var sql = genData.tpg.PluginDbGenerator.UpdateToModel(genData.tpg.ConnStr, diffConfig, genData.ts, genData.tp, genData.tpg, EnumDbUpdateLevels.TryKeepAll, true);
                                 string outSqlFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, genData.ts, genData.tp, genData.tpg, genData.tpg.GenScriptFileName);
                                 // tg.GetRelativeToConfigDiskPath()
                                 //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));

@@ -80,7 +80,7 @@ namespace vSharpStudio.common
         /// <param name="operations">To do what model differ will not capable to do. Probably renaming tables and fields propery</param>
         /// <param name="target_model"></param>
         /// <param name="onNeedDbCreate"></param>
-        string? UpdateToModel(string connectionString, IConfig config, IAppSolution sln, IAppProject prj, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool>? onNeedDbCreate = null);
+        string? UpdateToModel(string connectionString, IConfig config, IAppSolution sln, IAppProject prj, IAppProjectGenerator apg, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool>? onNeedDbCreate = null);
         /// <summary>
         /// True if DB data structure is changed after last UpdateToModel call.
         /// Data structure changes can include: 
