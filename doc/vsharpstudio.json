@@ -1788,12 +1788,12 @@
             {
               "name": "ASCENDING",
               "number": "1",
-              "description": "@attr [Description(\"Ascending order\")]"
+              "description": "@attr [Description(\"Name Asc order\")]"
             },
             {
               "name": "DESCENDING",
               "number": "2",
-              "description": "@attr [Description(\"Descending order\")]"
+              "description": "@attr [Description(\"Name Desc order\")]"
             }
           ]
         },
@@ -10101,36 +10101,24 @@
               "defaultValue": ""
             },
             {
+              "name": "max_amount_register_dimensions",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Max dimensions\")]\n@attr [Description(\"Max amount of register dimensions\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "sort_type",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Sort\")]\n@attr [Description(\"Sort type for registers\")]",
               "label": "",
               "type": "proto_enum_sorting_type",
               "longType": "proto_enum_sorting_type",
               "fullType": "proto_config.proto_enum_sorting_type",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "list_registers",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_register",
-              "longType": "proto_register",
-              "fullType": "proto_config.proto_register",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "explicit_sorting_position",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -10155,6 +10143,30 @@
               "type": "uint32",
               "longType": "uint32",
               "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "list_registers",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_register",
+              "longType": "proto_register",
+              "fullType": "proto_config.proto_register",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "explicit_sorting_position",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

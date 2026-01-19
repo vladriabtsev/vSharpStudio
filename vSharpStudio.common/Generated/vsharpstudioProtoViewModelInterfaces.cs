@@ -592,9 +592,9 @@ namespace vSharpStudio.common
 	{
 		[Description("Explicitly by user")]
 		EXPLICIT = 0,
-		[Description("Ascending order")]
+		[Description("Name Asc order")]
 		ASCENDING = 1,
-		[Description("Descending order")]
+		[Description("Name Desc order")]
 		DESCENDING = 2,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
@@ -1547,13 +1547,14 @@ namespace vSharpStudio.common
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); 
     	string Description { get; } 
+    	uint MaxAmountRegisterDimensions { get; } 
     	EnumSortingType SortType { get; } 
+    	string PrefixForCompositionNames { get; } 
+    	uint LastShortId { get; } 
     	IReadOnlyList<IRegister> ListRegisters { get; } 
     	IRegister this[int index] { get; }
     	int Count();
     	int ExplicitSortingPosition { get; } 
-    	string PrefixForCompositionNames { get; } 
-    	uint LastShortId { get; } 
     	// Guid for document guid property. Auto generated.
     	string PropertyRegGuidGuid { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 

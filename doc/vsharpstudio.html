@@ -6632,6 +6632,16 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
+                  <td>max_amount_register_dimensions</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(6)]
+@attr [DisplayName(&#34;Max dimensions&#34;)]
+@attr [Description(&#34;Max amount of register dimensions&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>sort_type</td>
                   <td><a href="#proto_config.proto_enum_sorting_type">proto_enum_sorting_type</a></td>
                   <td></td>
@@ -6639,20 +6649,6 @@ unique in object (can be used as Protobuf field position)
 @attr [PropertyOrderAttribute(4)]
 @attr [DisplayName(&#34;Sort&#34;)]
 @attr [Description(&#34;Sort type for registers&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_registers</td>
-                  <td><a href="#proto_config.proto_register">proto_register</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>explicit_sorting_position</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -6668,6 +6664,20 @@ unique in object (can be used as Protobuf field position)
                 <tr>
                   <td>last_short_id</td>
                   <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_registers</td>
+                  <td><a href="#proto_config.proto_register">proto_register</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>explicit_sorting_position</td>
+                  <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -12312,13 +12322,13 @@ with history</p></td>
               <tr>
                 <td>ASCENDING</td>
                 <td>1</td>
-                <td><p>@attr [Description(&#34;Ascending order&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Name Asc order&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DESCENDING</td>
                 <td>2</td>
-                <td><p>@attr [Description(&#34;Descending order&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Name Desc order&#34;)]</p></td>
               </tr>
             
           </tbody>

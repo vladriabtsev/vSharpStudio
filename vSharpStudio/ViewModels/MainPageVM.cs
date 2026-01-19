@@ -952,7 +952,7 @@ namespace vSharpStudio.ViewModels
                 IEditableObjectExt.IsTraceChanges = false;
                 Proto.Config.proto_config_short_history.Parser.WithDiscardUnknownFields(false).ParseFrom(protoarr);
 #endif
-                File.WriteAllBytes(this.CurrentCfgFilePath, protoarr);
+                FileUtils.WritesAllBytesWithRetryIfTextIsChanged(this.CurrentCfgFilePath, protoarr);
                 // Json format
                 JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
                 var json = formatter.Format(this.pconfig_history);
@@ -961,12 +961,12 @@ namespace vSharpStudio.ViewModels
                 var jtest_config = jparser.Parse(json, Proto.Config.proto_config_short_history.Descriptor);
                 //CompareSaved(json);
 #endif
-                File.WriteAllText(this.CurrentCfgFilePath + ".json", json, Encoding.UTF8);
+                FileUtils.WriteAllTextWithRetryIfTextIsChanged(this.CurrentCfgFilePath + ".json", json);
 
                 this.UpdateUserSettingsSaveConfigs();
                 this.ResetIsChangedBeforeSave();
                 if (!MainPageVM.NotSaveUserSettings)
-                    File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+                    FileUtils.WritesAllBytesWithRetryIfTextIsChanged(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
             }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
             //TODO restore private ConnStr
             this.ConnectionStringSettingsSave();
@@ -975,7 +975,7 @@ namespace vSharpStudio.ViewModels
         public void UserSettingsSave()
         {
             Debug.Assert(this.UserSettings != null);
-            File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+            FileUtils.WritesAllBytesWithRetryIfTextIsChanged(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
         }
         public vButtonVM<string> BtnConfigSaveAs
         {
@@ -1032,20 +1032,20 @@ namespace vSharpStudio.ViewModels
                             var folder = Path.GetDirectoryName(this.CurrentCfgFilePath);
                             Debug.Assert(folder != null);
                             Directory.CreateDirectory(folder);
-                            File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+                            FileUtils.WritesAllBytesWithRetryIfTextIsChanged(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
 #if DEBUG
                             //var json = JsonFormatter.Default.Format(this.pconfig_history);
                             JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
                             var json = formatter.Format(this.pconfig_history);
-                            File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
+                            FileUtils.WriteAllTextWithRetryIfTextIsChanged(this.CurrentCfgFilePath + ".json", json);
 #endif
                             this.UpdateUserSettingsSaveConfigs();
                             this.ResetIsChangedBeforeSave();
                             if (!MainPageVM.NotSaveUserSettings)
-                                File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+                                FileUtils.WritesAllBytesWithRetryIfTextIsChanged(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
                             this.VisibilityAndMessageInstructions();
                             // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
-                            // File.WriteAllText(FilePathSaveAs, json);
+                            // FileUtils.WriteAllTextWithRetryIfTextIsChanged(FilePathSaveAs, json);
 #if DEBUG
                             // CompareSaved(json);
 #endif
@@ -1232,19 +1232,19 @@ namespace vSharpStudio.ViewModels
         //                            var folder = Path.GetDirectoryName(this.CurrentCfgFilePath);
         //                            Debug.Assert(folder != null);
         //                            Directory.CreateDirectory(folder);
-        //                            File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+        //                            FileUtils.WritesAllBytesWithRetryIfTextIsChanged(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
         //#if DEBUG
         //                            //var json = JsonFormatter.Default.Format(this.pconfig_history);
         //                            JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
         //                            var json = formatter.Format(this.pconfig_history);
-        //                            File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
+        //                            FileUtils.WriteAllTextWithRetryIfTextIsChanged(this.CurrentCfgFilePath + ".json", json);
         //#endif
         //                            UpdateUserSettingsSaveConfigs();
         //                            ResetIsChangedBeforeSave();
-        //                            File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+        //                            FileUtils.WritesAllBytesWithRetryIfTextIsChanged(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
         //                            this.VisibilityAndMessageInstructions();
         //                            // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
-        //                            // File.WriteAllText(FilePathSaveAs, json);
+        //                            // FileUtils.WriteAllTextWithRetryIfTextIsChanged(FilePathSaveAs, json);
         //#if DEBUG
         //                            // CompareSaved(json);
         //#endif
@@ -1653,7 +1653,7 @@ namespace vSharpStudio.ViewModels
                             sb.AppendLine("\t}");
                             sb.AppendLine("}");
                             byte[] bytes = Encoding.UTF8.GetBytes(sb.ToString());
-                            File.WriteAllBytes(t.Key, bytes);
+                            FileUtils.WritesAllBytesWithRetryIfTextIsChanged(t.Key, bytes);
                         }
                     }
                 }
@@ -1699,7 +1699,7 @@ namespace vSharpStudio.ViewModels
                             sb.AppendLine("{");
 #if DEBUG
                             sb.Append("\t\"_generator_source\": \"");
-                            sb.Append(t4.Src().Replace("\\", "\\\\"));
+                            sb.Append(t4.Src().Replace("\\", "/"));
                             sb.AppendLine("\",");
 #endif
                             sb.AppendLine("\t\"db_conns\": {");
@@ -1737,7 +1737,7 @@ namespace vSharpStudio.ViewModels
                                 // tg.GetRelativeToConfigDiskPath()
                                 //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
                                 byte[] sqlBytes = Encoding.UTF8.GetBytes(code);
-                                File.WriteAllBytes(outSqlFile, sqlBytes);
+                                FileUtils.WritesAllBytesWithRetryIfTextIsChanged(outSqlFile, sqlBytes);
                             }
                         }
                         else
@@ -1766,7 +1766,7 @@ namespace vSharpStudio.ViewModels
                 // tg.GetRelativeToConfigDiskPath()
                 //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
                 byte[] bytes = Encoding.UTF8.GetBytes(code);
-                File.WriteAllBytes(outFile, bytes);
+                FileUtils.WritesAllBytesWithRetryIfTextIsChanged(outFile, bytes);
             }
         }
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
@@ -2118,7 +2118,7 @@ namespace vSharpStudio.ViewModels
                 () =>
                 {
                     Debug.Assert(!string.IsNullOrWhiteSpace(CurrentCfgFilePath));
-                    File.WriteAllBytes(CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+                    FileUtils.WritesAllBytesWithRetryIfTextIsChanged(CurrentCfgFilePath, this.pconfig_history.ToByteArray());
                 }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
             this.ResetIsChangedBeforeSave();
         }

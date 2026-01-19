@@ -103,5 +103,40 @@ namespace vSharpStudio.common
                 File.WriteAllBytes(outFile, bytes);
             });
         }
+        public static void WriteAllTextWithRetryIfTextIsChanged(string outFile, string? contents, Encoding? encoding = null)
+        {
+            encoding ??= Encoding.UTF8;
+            bool isRewrite = false;
+            byte[] bytes = [];
+            if (contents != null)
+            {
+                bytes = encoding.GetBytes(contents);
+            }
+            var bytesCurrent = new byte[0];
+            if (File.Exists(outFile))
+            {
+                bytesCurrent = File.ReadAllBytes(outFile);
+                isRewrite = bytesCurrent.Length != bytes.Length;
+            }
+            else
+                isRewrite = true;
+            if (!isRewrite)
+            {
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    if (bytes[i] != bytesCurrent[i])
+                    {
+                        isRewrite = true;
+                        break;
+                    }
+                }
+            }
+            if (!isRewrite)
+                return;
+            FileUtils.RetryPolicy.Execute(() =>
+            {
+                File.WriteAllText(outFile, contents, encoding);
+            });
+        }
     }
 }

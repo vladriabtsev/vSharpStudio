@@ -24803,13 +24803,14 @@ namespace vSharpStudio.vm.ViewModels
             vm._Name = from.Name; 
             vm._NameUi = from.NameUi; 
             vm._Description = from.Description; 
+            vm._MaxAmountRegisterDimensions = from.MaxAmountRegisterDimensions; 
             vm._SortType = from.SortType; 
+            vm._PrefixForCompositionNames = from.PrefixForCompositionNames; 
+            vm._LastShortId = from.LastShortId; 
             vm._ListRegisters = new ConfigNodesCollection<Register>(vm); 
             foreach (var t in from.ListRegisters) 
                 vm._ListRegisters.AddClone(Register.Clone(vm, (Register)t, isDeep));
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
-            vm._PrefixForCompositionNames = from.PrefixForCompositionNames; 
-            vm._LastShortId = from.LastShortId; 
             vm._PropertyRegGuidGuid = from.PropertyRegGuidGuid; 
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in from.ListNodeGeneratorsSettings) 
@@ -24826,7 +24827,10 @@ namespace vSharpStudio.vm.ViewModels
             to._Name = from.Name; 
             to._NameUi = from.NameUi; 
             to._Description = from.Description; 
+            to._MaxAmountRegisterDimensions = from.MaxAmountRegisterDimensions; 
             to._SortType = from.SortType; 
+            to._PrefixForCompositionNames = from.PrefixForCompositionNames; 
+            to._LastShortId = from.LastShortId; 
             if (isDeep) 
             {
                 foreach (var t in to.ListRegisters.ToList())
@@ -24864,8 +24868,6 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
-            to._PrefixForCompositionNames = from.PrefixForCompositionNames; 
-            to._LastShortId = from.LastShortId; 
             to._PropertyRegGuidGuid = from.PropertyRegGuidGuid; 
             if (isDeep) 
             {
@@ -24934,7 +24936,10 @@ namespace vSharpStudio.vm.ViewModels
             vm._Name = m.Name; 
             vm._NameUi = m.NameUi; 
             vm._Description = m.Description; 
+            vm._MaxAmountRegisterDimensions = m.MaxAmountRegisterDimensions; 
             vm._SortType = (EnumSortingType)m.SortType; 
+            vm._PrefixForCompositionNames = m.PrefixForCompositionNames; 
+            vm._LastShortId = m.LastShortId; 
             vm._ListRegisters = new ConfigNodesCollection<Register>(vm); 
             foreach (var t in m.ListRegisters) 
             {
@@ -24942,8 +24947,6 @@ namespace vSharpStudio.vm.ViewModels
                 vm.ListRegisters.Add(tvm);
             }
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
-            vm._PrefixForCompositionNames = m.PrefixForCompositionNames; 
-            vm._LastShortId = m.LastShortId; 
             vm._PropertyRegGuidGuid = m.PropertyRegGuidGuid; 
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in m.ListNodeGeneratorsSettings) 
@@ -24993,10 +24996,8 @@ namespace vSharpStudio.vm.ViewModels
             { 
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'description'", ex); 
             }
+            m.MaxAmountRegisterDimensions = vm.MaxAmountRegisterDimensions; 
             m.SortType = (Proto.Config.proto_enum_sorting_type)vm.SortType; 
-            foreach (var t in vm.ListRegisters) 
-                m.ListRegisters.Add(Register.ConvertToProto((Register)t)); 
-            m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
             try 
             { 
                 m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); 
@@ -25006,6 +25007,9 @@ namespace vSharpStudio.vm.ViewModels
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_registers' field 'prefix_for_composition_names'", ex); 
             }
             m.LastShortId = vm.LastShortId; 
+            foreach (var t in vm.ListRegisters) 
+                m.ListRegisters.Add(Register.ConvertToProto((Register)t)); 
+            m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
             try 
             { 
                 m.PropertyRegGuidGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyRegGuidGuid)); 
@@ -25117,6 +25121,27 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnDescriptionChanged();
         
         [Category("")]
+        [PropertyOrderAttribute(6)]
+        [DisplayName("Max dimensions")]
+        [Description("Max amount of register dimensions")]
+        public uint MaxAmountRegisterDimensions 
+        { 
+            get { return this._MaxAmountRegisterDimensions; }
+            set
+            {
+                // Use 'OnMaxAmountRegisterDimensionsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._MaxAmountRegisterDimensions, value, (t) => { bool isCancel = false; this.OnMaxAmountRegisterDimensionsChanging(ref value, ref isCancel); if (isCancel) return; this._MaxAmountRegisterDimensions = value; this.OnMaxAmountRegisterDimensionsChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _MaxAmountRegisterDimensions; 
+        partial void OnMaxAmountRegisterDimensionsChanging(ref uint to, ref bool isCancel); 
+        partial void OnMaxAmountRegisterDimensionsChanged();
+        
+        [Category("")]
         [PropertyOrderAttribute(4)]
         [DisplayName("Sort")]
         [Description("Sort type for registers")]
@@ -25136,6 +25161,45 @@ namespace vSharpStudio.vm.ViewModels
         private EnumSortingType _SortType; 
         partial void OnSortTypeChanging(ref EnumSortingType to, ref bool isCancel); 
         partial void OnSortTypeChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(9)]
+        [DisplayName("Composition prefix")]
+        [Description("Prefix for registers composition names")]
+        public string PrefixForCompositionNames 
+        { 
+            get { return this._PrefixForCompositionNames; }
+            set
+            {
+                // Use 'OnPrefixForCompositionNamesChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._PrefixForCompositionNames, value, (t) => { bool isCancel = false; this.OnPrefixForCompositionNamesChanging(ref value, ref isCancel); if (isCancel) return; this._PrefixForCompositionNames = value; this.OnPrefixForCompositionNamesChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private string _PrefixForCompositionNames = string.Empty; 
+        partial void OnPrefixForCompositionNamesChanging(ref string to, ref bool isCancel); 
+        partial void OnPrefixForCompositionNamesChanged();
+        
+        [Browsable(false)]
+        public uint LastShortId 
+        { 
+            get { return this._LastShortId; }
+            set
+            {
+                // Use 'OnLastShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._LastShortId, value, (t) => { bool isCancel = false; this.OnLastShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastShortId = value; this.OnLastShortIdChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private uint _LastShortId; 
+        partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
+        partial void OnLastShortIdChanged();
         
         [Browsable(false)]
         public ConfigNodesCollection<Register> ListRegisters 
@@ -25194,45 +25258,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); 
         partial void OnExplicitSortingPositionChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(9)]
-        [DisplayName("Composition prefix")]
-        [Description("Prefix for registers composition names")]
-        public string PrefixForCompositionNames 
-        { 
-            get { return this._PrefixForCompositionNames; }
-            set
-            {
-                // Use 'OnPrefixForCompositionNamesChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._PrefixForCompositionNames, value, (t) => { bool isCancel = false; this.OnPrefixForCompositionNamesChanging(ref value, ref isCancel); if (isCancel) return; this._PrefixForCompositionNames = value; this.OnPrefixForCompositionNamesChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private string _PrefixForCompositionNames = string.Empty; 
-        partial void OnPrefixForCompositionNamesChanging(ref string to, ref bool isCancel); 
-        partial void OnPrefixForCompositionNamesChanged();
-        
-        [Browsable(false)]
-        public uint LastShortId 
-        { 
-            get { return this._LastShortId; }
-            set
-            {
-                // Use 'OnLastShortIdChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._LastShortId, value, (t) => { bool isCancel = false; this.OnLastShortIdChanging(ref value, ref isCancel); if (isCancel) return; this._LastShortId = value; this.OnLastShortIdChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private uint _LastShortId; 
-        partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
-        partial void OnLastShortIdChanged();
         
         // Guid for document guid property. Auto generated.
         [Browsable(false)]

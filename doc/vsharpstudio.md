@@ -1503,11 +1503,12 @@ P R O P E R T Y
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| max_amount_register_dimensions | [uint32](#uint32) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Max dimensions&#34;)] @attr [Description(&#34;Max amount of register dimensions&#34;)] |
 | sort_type | [proto_enum_sorting_type](#proto_config-proto_enum_sorting_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Sort&#34;)] @attr [Description(&#34;Sort type for registers&#34;)] |
-| list_registers | [proto_register](#proto_config-proto_register) | repeated | @attr [Browsable(false)] |
-| explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | prefix_for_composition_names | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Composition prefix&#34;)] @attr [Description(&#34;Prefix for registers composition names&#34;)] |
 | last_short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| list_registers | [proto_register](#proto_config-proto_register) | repeated | @attr [Browsable(false)] |
+| explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | property_reg_guid_guid | [string](#string) |  | Guid for document guid property. Auto generated. @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
@@ -3054,8 +3055,8 @@ with history |
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | EXPLICIT | 0 | @attr [Description(&#34;Explicitly by user&#34;)] |
-| ASCENDING | 1 | @attr [Description(&#34;Ascending order&#34;)] |
-| DESCENDING | 2 | @attr [Description(&#34;Descending order&#34;)] |
+| ASCENDING | 1 | @attr [Description(&#34;Name Asc order&#34;)] |
+| DESCENDING | 2 | @attr [Description(&#34;Name Desc order&#34;)] |
 
 
 

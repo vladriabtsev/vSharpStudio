@@ -567,9 +567,9 @@ message proto_plugin_generator_node_default_settings {
 enum proto_enum_sorting_type {
     // @attr [Description("Explicitly by user")]
     EXPLICIT = 0;
-    // @attr [Description("Ascending order")]
+    // @attr [Description("Name Asc order")]
     ASCENDING = 1;
-    // @attr [Description("Descending order")]
+    // @attr [Description("Name Desc order")]
     DESCENDING = 2;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
@@ -2453,14 +2453,15 @@ message proto_group_list_registers {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [DisplayName("Max dimensions")]
+    // @attr [Description("Max amount of register dimensions")]
+    uint32 max_amount_register_dimensions = 6;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("Sort")]
     // @attr [Description("Sort type for registers")]
     proto_enum_sorting_type sort_type = 10;
-    // @attr [Browsable(false)]
-    repeated proto_register list_registers = 7;
-    // @attr [Browsable(false)]
-    int32 explicit_sorting_position = 8;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(9)]
     // @attr [DisplayName("Composition prefix")]
@@ -2468,6 +2469,10 @@ message proto_group_list_registers {
     string prefix_for_composition_names = 9;
     // @attr [Browsable(false)]
     uint32 last_short_id = 11;
+    // @attr [Browsable(false)]
+    repeated proto_register list_registers = 31;
+    // @attr [Browsable(false)]
+    int32 explicit_sorting_position = 32;
     // Guid for document guid property. Auto generated.
     // @attr [Browsable(false)]
     string property_reg_guid_guid = 43; 

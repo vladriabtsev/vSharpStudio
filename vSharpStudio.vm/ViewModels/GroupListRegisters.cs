@@ -88,6 +88,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             OnSortTypeChanged();
             this._Name = Defaults.RegisterGroupName;
+            this._MaxAmountRegisterDimensions = 5;
             //if (this.Parent is Catalog)
             //{
             //    this.NameUi = "Sub Catalogs";
