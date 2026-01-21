@@ -135,7 +135,7 @@ namespace vSharpStudio.vm.ViewModels
                         return;
                     }
                     var cfg = pg.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
-                    var lst = pg.PluginDbGenerator.ValidateDbModel(connStr, cfg, pg.Guid);
+                    var lst = pg.PluginDbGenerator.ValidateDbModel(connStr, cfg);
                     AddValidationResults(cntx, lst);
                 });
             //this.RuleFor(x => x.DynamicGeneratorSettings)

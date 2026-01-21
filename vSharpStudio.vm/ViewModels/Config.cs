@@ -157,7 +157,7 @@ namespace vSharpStudio.vm.ViewModels
                     _logger?.Trace("Another validation in progress. Wait {DelayTime} mc.", delayTime);
                     await Task.Delay(delayTime);
 #if DEBUG
-                    if (i >= 10)
+                    if (i >= 30)
                     {
                         var ex = new Exception($"Waiting period to start validation exceeded {i * delayTime}mc. Need optimization.");
                         _logger?.Critical(ex);
