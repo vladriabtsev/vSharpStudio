@@ -8,6 +8,7 @@ using System.Text;
 using CommunityToolkit.Diagnostics;
 using Google.Protobuf;
 using Proto.Config;
+using Remotion.Linq.Parsing.Structure.IntermediateModel;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -18,7 +19,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode, IRoleAccess, IPropertyAccessRoles, ILayoutFieldParameters
     {
-        public override string NameShortId { get { return $"p{this.ShortId}"; } }
+        public override string NameShortId { get { if (this.ShortId == 0) { return $"ps{this.Position}"; } return $"p{this.ShortId}"; } }
         public const string SpecialPropertyNameRefParent = "RefParent";
         public const string SpecialPropertyNameRefTreeParent = "RefTreeParent";
         partial void OnDebugStringExtend(ref string mes)

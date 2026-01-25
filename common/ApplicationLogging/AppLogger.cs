@@ -77,8 +77,8 @@ namespace ApplicationLogging
                         var lst = Environment.StackTrace.Split(Environment.NewLine);
                         call_from = lst[3];
                         int n = lst.Length - 1;
-                        Debug.Assert(IndentShift == -1);
-                        IndentShift = n;
+                        if (IndentShift == -1)
+                            IndentShift = n;
                     }
                     Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
                     var logCfg = new Serilog.LoggerConfiguration();

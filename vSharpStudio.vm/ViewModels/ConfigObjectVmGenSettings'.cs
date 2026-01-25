@@ -215,7 +215,10 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsIncluded(string guidAppPrjGen) //, bool isFromPrevStable = false)
         {
             if (guidAppPrjGen == string.Empty)
+            {
+                Debug.Assert(false);
                 return true;
+            }
             //if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
             //    throw new Exception();
 
@@ -257,10 +260,6 @@ namespace vSharpStudio.vm.ViewModels
                         //return false;
                     }
                 }
-                //else
-                //    throw new Exception();
-                //if (p.Parent == null)
-                //    return true;
                 p = p.Parent;
             }
             return true;
@@ -275,6 +274,110 @@ namespace vSharpStudio.vm.ViewModels
         //        return prevNode.IsIncluded(guidAppPrjGen, true);
         //    }
         //    return false;
+        //}
+        //public bool IsUseForeignKeyConstraint(string guidAppPrjGen)
+        //{
+        //    if (guidAppPrjGen == string.Empty)
+        //    {
+        //        Debug.Assert(false);
+        //        return true;
+        //    }
+        //    //if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+        //    //    throw new Exception();
+
+        //    var p = (ITreeConfigNode)this;
+        //    while (p != null)
+        //    {
+        //        var ngs = p as INodeGenSettings;
+        //        if (p is Model m)
+        //        {
+        //            if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+        //            {
+        //                var settings = m.DicGenNodeSettings[guidAppPrjGen] as IvPluginGeneratorNodeIncludable;
+        //                if (settings != null)
+        //                {
+        //                    if (!settings.IsIncluded.HasValue || settings.IsIncluded.Value)
+        //                    {
+        //                        return true;
+        //                    }
+        //                }
+        //                //if (!isFromPrevStable)
+        //                //    return this.IsIncludedInStable(guidAppPrjGen);
+        //                return false;
+        //            }
+        //            return true;
+        //        }
+        //        else if (ngs != null)
+        //        {
+        //            if (ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+        //            {
+        //                //if (!ngs.DicGenNodeSettings.ContainsKey(guid))
+        //                //    return true;
+        //                var nodeSettings = ngs.DicGenNodeSettings[guidAppPrjGen] as IvPluginGeneratorNodeIncludable;
+        //                if (nodeSettings != null && nodeSettings.IsIncluded.HasValue)
+        //                {
+        //                    return nodeSettings.IsIncluded.Value;
+        //                }
+        //                //if (!isFromPrevStable)
+        //                //    return this.IsIncludedInStable(guidAppPrjGen);
+        //                //return false;
+        //            }
+        //        }
+        //        p = p.Parent;
+        //    }
+        //    return true;
+        //}
+        //public bool IsUseForeignKeyIndex(string guidAppPrjGen)
+        //{
+        //    if (guidAppPrjGen == string.Empty)
+        //    {
+        //        Debug.Assert(false);
+        //        return true;
+        //    }
+        //    //if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+        //    //    throw new Exception();
+
+        //    var p = (ITreeConfigNode)this;
+        //    while (p != null)
+        //    {
+        //        var ngs = p as INodeGenSettings;
+        //        if (p is Model m)
+        //        {
+        //            if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+        //            {
+        //                var settings = m.DicGenNodeSettings[guidAppPrjGen] as IvPluginGeneratorNodeIncludable;
+        //                if (settings != null)
+        //                {
+        //                    if (!settings.IsIncluded.HasValue || settings.IsIncluded.Value)
+        //                    {
+        //                        return true;
+        //                    }
+        //                }
+        //                //if (!isFromPrevStable)
+        //                //    return this.IsIncludedInStable(guidAppPrjGen);
+        //                return false;
+        //            }
+        //            return true;
+        //        }
+        //        else if (ngs != null)
+        //        {
+        //            if (ngs.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+        //            {
+        //                //if (!ngs.DicGenNodeSettings.ContainsKey(guid))
+        //                //    return true;
+        //                var nodeSettings = ngs.DicGenNodeSettings[guidAppPrjGen] as IvPluginGeneratorNodeIncludable;
+        //                if (nodeSettings != null && nodeSettings.IsIncluded.HasValue)
+        //                {
+        //                    return nodeSettings.IsIncluded.Value;
+        //                }
+        //                //if (!isFromPrevStable)
+        //                //    return this.IsIncludedInStable(guidAppPrjGen);
+        //                //return false;
+        //            }
+        //        }
+        //        p = p.Parent;
+        //    }
+        //    return true;
         //}
         public bool GetBoolSetting(string guidAppPrjGen, Func<IvPluginGeneratorNodeSettings, bool?> func, bool isFromPrevStable = false)
         {
