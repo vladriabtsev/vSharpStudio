@@ -389,6 +389,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     p.Guid = t.Guid;
                     p.Position = t.Position;
+                    p.ShortId = t.ShortId;
                     res.Add(p);
                 }
             }

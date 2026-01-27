@@ -719,6 +719,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(parent, this.PropertyIdGuid, fieldName, true);
             res.DataType = (DataType)this.GetIdDataType(res, false);
             res.DataType.IsPKey = true;
+            res.Position = IProperty.PropertyIdPosition;
             return res;
         }
         public IDataType GetIdDataType(ITreeConfigNode? parent, bool isNullable)
@@ -778,6 +779,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(parent, guid, name + this.PKeyName, true);
             res.DataType = (DataType)this.GetIdDataType(res, isNullable);
             res.IsHidden = true;
+            res.Position = IProperty.PropertyIdPosition;
             return res;
         }
         public IProperty GetPropertyBool(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable)

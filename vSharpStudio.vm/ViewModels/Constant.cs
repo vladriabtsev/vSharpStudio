@@ -15,6 +15,14 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IRoleAccess, IConstantAccessRoles, ILayoutFieldParameters
     {
+        public override string NameShortId
+        {
+            get
+            {
+                Debug.Assert(this.ShortId > 0);
+                return $"p{this.ShortId}";
+            }
+        }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" Type:{DataType.GetTypeDesc(this.DataType)}";

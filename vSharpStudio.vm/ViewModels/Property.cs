@@ -19,7 +19,45 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode, IRoleAccess, IPropertyAccessRoles, ILayoutFieldParameters
     {
-        public override string NameShortId { get { if (this.ShortId == 0) { return $"ps{this.Position}"; } return $"p{this.ShortId}"; } }
+        public override string NameShortId
+        {
+
+            get
+            {
+                //Debug.Assert(t.IsComplex);
+                //var p = t.AddExtensionPropertyRefId("Id", t.DataType.ObjectRef, t.DataType.IsNullable, t.IsCsNullable, t.PositionInConfigObject, IProperty.PropertyRefParentPosition, t.IsPKey);
+                if (this.ShortId == 0)
+                {
+                    if (this.ParentProperty != null)
+                    {
+                        if (this.IsComplexRefId)
+                        {
+                            return $"{this.ParentProperty.NameShortId}";
+                        }
+                        else
+                        {
+                            Debug.Assert(false);
+                        }
+                    }
+                    else
+                    {
+                        if (this.Name == "RefParent")
+                        {
+                            return $"p{this.ShortId}i";
+                        }
+                        else if (this.Name == this.Cfg.Model.PKeyName)
+                        {
+                            return $"p{this.ShortId}";
+                        }
+                        else
+                        {
+                            Debug.Assert(false);
+                        }
+                    }
+                }
+                return $"p{this.ShortId}";
+            }
+        }
         public const string SpecialPropertyNameRefParent = "RefParent";
         public const string SpecialPropertyNameRefTreeParent = "RefTreeParent";
         partial void OnDebugStringExtend(ref string mes)
