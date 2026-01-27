@@ -34886,6 +34886,7 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(11)]
         [DisplayName("Type 1")]
         [Description("Type of first configuration object for One To One relation")]
+        [ReadOnly(true)]
         public EnumRelationConfigType RefObj1Type 
         { 
             get { return this._RefObj1Type; }
@@ -34971,6 +34972,7 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(15)]
         [DisplayName("Type 2")]
         [Description("Type of second configuration object for One To One relation")]
+        [ReadOnly(true)]
         public EnumRelationConfigType RefObj2Type 
         { 
             get { return this._RefObj2Type; }

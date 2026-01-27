@@ -582,6 +582,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         var prp = (Property)t.PropertyRefObj2;
                         prp.Position = ++pos;
+                        //prp.IsNullable = t.IsRelationReferenceNullable;
                         //var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
                     }
@@ -589,6 +590,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         var prp = (Property)t.PropertyRefObj2;
                         prp.Position = ++pos;
+                        //prp.IsNullable = t.IsRelationReferenceNullable;
                         //var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
                     }
@@ -602,6 +604,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         var prp = (Property)t.PropertyRefObj1;
                         prp.Position = ++pos;
+                        //prp.IsNullable = t.IsRelationReferenceNullable;
                         //var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
                     }
@@ -609,6 +612,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         var prp = (Property)t.PropertyRefObj1;
                         prp.Position = ++pos;
+                        //prp.IsNullable = t.IsRelationReferenceNullable;
                         //var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
                     }

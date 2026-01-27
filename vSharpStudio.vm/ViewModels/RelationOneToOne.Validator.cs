@@ -13,12 +13,16 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
             this.RuleFor(x => x.Name).Must((o, name) => { return this.IsUnique(o); }).WithMessage(Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+            //this.RuleFor(x => x.RefObj1Type).Must((o, rf) => { return rf != common.EnumRelationConfigType.RelNone; }).WithMessage("Configuration type is not selected.");
+            //this.RuleFor(x => x.RefObj2Type).Must((o, rf) => { return rf != common.EnumRelationConfigType.RelNone; }).WithMessage("Configuration type is not selected.");
             this.RuleFor(x => x.GuidObj1).Custom((guid, cntx) =>
             {
                 var rel = (RelationOneToOne)cntx.InstanceToValidate;
+                //if (rel.RefObj1Type == common.EnumRelationConfigType.RelNone)
+                //    return;
                 if (string.IsNullOrEmpty(guid))
                 {
-                    var vf = new ValidationFailure(nameof(rel.GuidObj1), "Configuration object type is not selected.")
+                    var vf = new ValidationFailure(nameof(rel.GuidObj1), "Object type is not selected.")
                     {
                         Severity = Severity.Error
                     };
@@ -38,9 +42,11 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.GuidObj2).Custom((guid, cntx) =>
             {
                 var rel = (RelationOneToOne)cntx.InstanceToValidate;
+                //if (rel.RefObj2Type == common.EnumRelationConfigType.RelNone)
+                //    return;
                 if (string.IsNullOrEmpty(guid))
                 {
-                    var vf = new ValidationFailure(nameof(rel.GuidObj2), "Configuration object type is not selected.")
+                    var vf = new ValidationFailure(nameof(rel.GuidObj2), "Object type is not selected.")
                     {
                         Severity = Severity.Error
                     };

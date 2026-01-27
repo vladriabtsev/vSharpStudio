@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
     public partial class RelationOneToOne : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
         ITreeConfigNodeSortable
     {
-        public override string NameShortId { get { return $"one{this.ShortId}"; } }
+        public override string NameShortId { get { return $"o{this.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" {this.GetName(false)} History:{this.IsUseHistory}";
@@ -82,6 +82,8 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.OnRemoveChild();
             //};
+            this.OnPropertyChanged(nameof(this.ListObjectsNode1));
+            this.OnPropertyChanged(nameof(this.ListObjectsNode2));
         }
         protected override ConfigNodesCollection<RelationOneToOne>? GetParentCollection() { return this.ParentOneToOneGroupRelations.ListRelations; }
 
