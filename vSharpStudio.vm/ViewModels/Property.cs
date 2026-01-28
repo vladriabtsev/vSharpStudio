@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Numerics;
+using System.Security.Policy;
 using System.Text;
+using System.Windows.Documents;
 using CommunityToolkit.Diagnostics;
 using Google.Protobuf;
 using Proto.Config;
@@ -19,45 +21,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode, IRoleAccess, IPropertyAccessRoles, ILayoutFieldParameters
     {
-        public override string NameShortId
-        {
-
-            get
-            {
-                //Debug.Assert(t.IsComplex);
-                //var p = t.AddExtensionPropertyRefId("Id", t.DataType.ObjectRef, t.DataType.IsNullable, t.IsCsNullable, t.PositionInConfigObject, IProperty.PropertyRefParentPosition, t.IsPKey);
-                if (this.ShortId == 0)
-                {
-                    if (this.ParentProperty != null)
-                    {
-                        if (this.IsComplexRefId)
-                        {
-                            return $"{this.ParentProperty.NameShortId}";
-                        }
-                        else
-                        {
-                            Debug.Assert(false);
-                        }
-                    }
-                    else
-                    {
-                        if (this.Name == "RefParent")
-                        {
-                            return $"p{this.ShortId}i";
-                        }
-                        else if (this.Name == this.Cfg.Model.PKeyName)
-                        {
-                            return $"p{this.ShortId}";
-                        }
-                        else
-                        {
-                            Debug.Assert(false);
-                        }
-                    }
-                }
-                return $"p{this.ShortId}";
-            }
-        }
+        private string nameShortIdPrefix = "p";
+        public override string NameShortId { get { return $"{nameShortIdPrefix}{this.ShortId}"; } }
         public const string SpecialPropertyNameRefParent = "RefParent";
         public const string SpecialPropertyNameRefTreeParent = "RefTreeParent";
         partial void OnDebugStringExtend(ref string mes)
@@ -946,23 +911,53 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsRefParent { get { return this.DataType.IsRefParent; } }
         [Browsable(false)]
         public bool IsDocShared { get; set; }
-        public IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInConfigObject, uint position, bool isPKey)
+        //var p = t.AddExtensionPropertyRefId("Id", t.DataType.ObjectRef, t.DataType.IsNullable, t.IsCsNullable, t.PositionInConfigObject, IProperty.PropertyRefParentPosition, t.IsPKey, "pt");
+        //public IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInConfigObject, uint position, bool isPKey, string? nameShortIdPrefix)
+        public IProperty AddExtensionPropertyRefId(string subName, IProperty t, IComplexRef tt)
         {
             var node = new Property(this)
             {
                 Name = subName,
                 ParentProperty = this,
-                Guid = complexRef.RefComplexObjectIdPropertyGuid
+                Guid = tt.RefComplexObjectIdPropertyGuid
             };
             node.DataType = (DataType)this.Cfg.Model.GetIdRefDataType(node, true);
-            node.DataType.IsPKey = isPKey;
-            node.IsNullable = isNullable;
-            node.IsCsNullable = isCsNullable;
+            node.DataType.IsPKey = t.IsPKey;
+            node.IsNullable = t.DataType.IsNullable;
+            node.IsCsNullable = t.IsCsNullable;
             node.IsComplexRefId = true;
-            node.DataType.ObjectRef0.ForeignObjectGuid = complexRef.ForeignObjectGuid;
-            node.DataType.ObjectRef0.RefComplexObjectIdPropertyGuid = complexRef.RefComplexObjectIdPropertyGuid;
-            node.PositionInConfigObject = positionInConfigObject;
-            node.Position = position;
+            node.DataType.ObjectRef0.ForeignObjectGuid = tt.ForeignObjectGuid;
+            node.DataType.ObjectRef0.RefComplexObjectIdPropertyGuid = tt.RefComplexObjectIdPropertyGuid;
+            node.PositionInConfigObject = t.PositionInConfigObject;
+            switch (t.DataType.DataTypeEnum)
+            {
+                case EnumDataType.REF_TIMELINE:
+                    node.nameShortIdPrefix = "pt";
+                    break;
+                case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
+                case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
+                case EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER:
+                case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG:
+                case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER:
+                case EnumDataType.REF_DETAIL_TO_PARENT_DETAIL:
+                case EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT:
+                    node.nameShortIdPrefix = "pp";
+                    break;
+                case EnumDataType.CATALOG:
+                case EnumDataType.DOCUMENT:
+                    node.nameShortIdPrefix = "p";
+                    node.Position = tt.Position;
+                    break;
+                case EnumDataType.CATALOGS:
+                case EnumDataType.DOCUMENTS:
+                case EnumDataType.ANY:
+                    node.nameShortIdPrefix = "p";
+                    node.Position = tt.Position;
+                    break;
+                default:
+                    Debug.Assert(false);
+                    break;
+            }
             return node;
         }
         public IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable, uint position)
@@ -976,6 +971,7 @@ namespace vSharpStudio.vm.ViewModels
             node.IsCsNullable = isCsNullable;
             node.ParentProperty = this;
             node.IsComplexRefGuid = true;
+            node.nameShortIdPrefix = "pgd";
             node.Position = position;
             return node;
         }
@@ -990,6 +986,7 @@ namespace vSharpStudio.vm.ViewModels
             node.IsCsNullable = isCsNullable;
             node.ParentProperty = this;
             node.IsComplexDesc = true;
+            node.nameShortIdPrefix = "pds";
             node.Position = position;
             return node;
         }

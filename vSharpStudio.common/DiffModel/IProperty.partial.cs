@@ -94,7 +94,7 @@ namespace vSharpStudio.common
         IProperty? ParentProperty { get; set; }
         string NameWithExtention { get; }
         //List<IProperty> ListExtensionProperties { get; }
-        IProperty AddExtensionPropertyRefId(string subName, IComplexRef complexRef, bool isNullable, bool isCsNullable, int positionInConfigObject, uint position, bool isPKey);
+        IProperty AddExtensionPropertyRefId(string subName, IProperty t, IComplexRef tt);
         IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable, uint position);
         IProperty AddExtensionPropertyDesc(string subName, bool isNullable, bool isCsNullable, uint position);
         IProperty AddExtensionPropertyString(string subName, uint length, string guid);

@@ -14,6 +14,14 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Register : ICanAddNode, ICanGoLeft, INodeGenSettings, ITreeConfigNodeSortable, IEditableNode //, IRoleAccess, IPropertyAccessRoles
     {
+        public override string NameShortId
+        {
+            get
+            {
+                Debug.Assert(this.ShortId > 0);
+                return $"r{this.ShortId}";
+            }
+        }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" Docs:{this.ListObjectDocRefs.Count} Dims:{this.GroupRegisterDimensions.ListDimensions.Count} Atchs:{this.GroupProperties.ListProperties.Count} Maps:{this.ListDocMappings.Count}";
