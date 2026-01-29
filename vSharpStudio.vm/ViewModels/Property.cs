@@ -929,6 +929,7 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType.ObjectRef0.ForeignObjectGuid = tt.ForeignObjectGuid;
             node.DataType.ObjectRef0.RefComplexObjectIdPropertyGuid = tt.RefComplexObjectIdPropertyGuid;
             node.PositionInConfigObject = t.PositionInConfigObject;
+            node.ShortId = t.ShortId;
             switch (t.DataType.DataTypeEnum)
             {
                 case EnumDataType.REF_TIMELINE:

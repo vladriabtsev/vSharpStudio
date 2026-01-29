@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Windows.Documents;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -471,6 +472,51 @@ namespace vSharpStudio.vm.ViewModels
             this.Folder.GetNormalProperties(res);
             return res;
         }
+        public IProperty? GetCodeProperty()
+        {
+            IProperty? prp = null!;
+            if (this.GetUseCodeProperty())
+            {
+                prp = this.CodePropertySettings.SequenceType switch
+                {
+                    EnumCodeType.Number => this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, 
+                        this.Cfg.Model.PropertyCtlgCodeGuid, this.CodePropertySettings.MaxSequenceLength, false),
+                    EnumCodeType.Text => this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, 
+                        this.Cfg.Model.PropertyCtlgCodeGuid, this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false),
+                    _ => throw new NotImplementedException(),
+                };
+            }
+            return prp;
+        }
+        public IProperty GetParentProperty()
+        {
+            Property prp;
+            if (this.UseTree)
+            {
+                var model = this.ParentGroupListCatalogs.ParentModel;
+                if (this.UseSeparateTreeForFolders)
+                {
+                    prp = this.PropertyRefFolder;
+                    prp.SetPosition(IProperty.PropertyRefParentPosition);
+                    if (this.UseItemsAtRoot)
+                    {
+                        ((Property)prp).IsNullable = true;
+                    }
+                    else
+                    {
+                        ((Property)prp).IsNullable = false;
+                    }
+                    return prp;
+                }
+                else
+                {
+                    prp = this.PropertyRefSelf;
+                    prp.SetPosition(IProperty.PropertyRefSelfParentPosition);
+                    return prp;
+                }
+            }
+            throw new NotSupportedException();
+        }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentGroupListCatalogs.ParentModel;
@@ -518,21 +564,11 @@ namespace vSharpStudio.vm.ViewModels
                 res.Add(t);
             }
         }
-        public IProperty GetCodeProperty(List<IProperty> lst)
+        public IProperty? GetCodeProperty(List<IProperty> lst)
         {
-            IProperty prp = null!;
-            if (this.GetUseCodeProperty())
-            {
-                prp = this.CodePropertySettings.SequenceType switch
-                {
-                    EnumCodeType.Number => this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
-                                                this.CodePropertySettings.MaxSequenceLength, false),
-                    EnumCodeType.Text => this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
-                                                this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false),
-                    _ => throw new NotImplementedException(),
-                };
+            var prp = GetCodeProperty();
+            if (prp != null)
                 lst.Add(prp);
-            }
             return prp;
         }
         public IProperty GetNameProperty(List<IProperty> lst)
@@ -545,9 +581,9 @@ namespace vSharpStudio.vm.ViewModels
             }
             return prp;
         }
-        public IProperty GetDescriptionProperty(List<IProperty> lst)
+        public IProperty? GetDescriptionProperty(List<IProperty> lst)
         {
-            IProperty prp = null!;
+            IProperty? prp = null!;
             if (this.GetUseDescriptionProperty())
             {
                 prp = this.Cfg.Model.GetPropertyCatalogDescription(this.GroupProperties, this.Cfg.Model.PropertyCtlgDescriptionGuid, this.MaxDescriptionLength, true);

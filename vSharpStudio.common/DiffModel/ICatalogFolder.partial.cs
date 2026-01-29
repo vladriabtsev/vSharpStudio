@@ -21,9 +21,11 @@ namespace vSharpStudio.common
         IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access);
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
         //string GetDebuggerDisplay(bool isOptimistic);
-        IProperty GetCodeProperty(List<IProperty> lst);
+        IProperty? GetCodeProperty(List<IProperty> lst);
+        IProperty? GetCodeProperty();
         IProperty GetNameProperty(List<IProperty> lst);
-        IProperty GetDescriptionProperty(List<IProperty> lst);
+        IProperty? GetDescriptionProperty(List<IProperty> lst);
+        IProperty GetParentProperty();
 
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);

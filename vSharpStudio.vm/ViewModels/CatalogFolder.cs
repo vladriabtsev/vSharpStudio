@@ -314,6 +314,13 @@ namespace vSharpStudio.vm.ViewModels
                 res = false;
             return res;
         }
+        public IProperty GetParentProperty()
+        {
+            Property prp;
+            prp = this.PropertyRefSelf;
+            prp.SetPosition(IProperty.PropertyRefSelfParentPosition);
+            return prp;
+        }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
@@ -345,25 +352,26 @@ namespace vSharpStudio.vm.ViewModels
                 res.Add(t);
             }
         }
-        public IProperty GetCodeProperty(List<IProperty> lst)
+        public IProperty? GetCodeProperty(List<IProperty> lst)
         {
-            IProperty prp = null!;
+            var prp = GetCodeProperty();
+            if (prp != null)
+                lst.Add(prp);
+            return prp;
+        }
+        public IProperty? GetCodeProperty()
+        {
+            IProperty? prp = null!;
             if (this.GetUseCodeProperty())
             {
-                switch (this.CodePropertySettings.SequenceType)
+                prp = this.CodePropertySettings.SequenceType switch
                 {
-                    case EnumCodeType.Number:
-                        prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
-                            this.CodePropertySettings.MaxSequenceLength, false);
-                        break;
-                    case EnumCodeType.Text:
-                        prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.Cfg.Model.PropertyCtlgCodeGuid,
-                            this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false);
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-                lst.Add(prp);
+                    EnumCodeType.Number => this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, 
+                        this.Cfg.Model.PropertyCtlgCodeGuid, this.CodePropertySettings.MaxSequenceLength, false),
+                    EnumCodeType.Text => this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, 
+                        this.Cfg.Model.PropertyCtlgCodeGuid, this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false),
+                    _ => throw new NotImplementedException(),
+                };
             }
             return prp;
         }
@@ -377,9 +385,9 @@ namespace vSharpStudio.vm.ViewModels
             }
             return prp;
         }
-        public IProperty GetDescriptionProperty(List<IProperty> lst)
+        public IProperty? GetDescriptionProperty(List<IProperty> lst)
         {
-            IProperty prp = null!;
+            IProperty? prp = null!;
             if (this.GetUseDescriptionProperty())
             {
                 prp = this.Cfg.Model.GetPropertyCatalogDescription(this.GroupProperties, this.Cfg.Model.PropertyCtlgDescriptionGuid, this.MaxDescriptionLength, true);

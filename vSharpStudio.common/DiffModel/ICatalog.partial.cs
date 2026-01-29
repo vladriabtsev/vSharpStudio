@@ -22,9 +22,11 @@ namespace vSharpStudio.common
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
         string FullName { get; } // name with config name
         //string GetDebuggerDisplay(bool isOptimistic);
-        IProperty GetCodeProperty(List<IProperty> lst);
+        IProperty? GetCodeProperty(List<IProperty> lst);
+        IProperty? GetCodeProperty();
         IProperty GetNameProperty(List<IProperty> lst);
-        IProperty GetDescriptionProperty(List<IProperty> lst);
+        IProperty GetParentProperty();
+        IProperty? GetDescriptionProperty(List<IProperty> lst);
 
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjDbGen);
