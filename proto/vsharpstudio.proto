@@ -665,7 +665,7 @@ message proto_model {
 
     // @attr [PropertyOrderAttribute(8)]
     // @attr [DisplayName("Use Composite")]
-    // @attr [Description("Use composite object name for model configuration object")]
+    // @attr [Description("Use composite object name for DB model of configuration object")]
     bool is_use_name_composition = 8;
     // @attr [PropertyOrderAttribute(9)]
     // @attr [DisplayName("Use Short ID")]

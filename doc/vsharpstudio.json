@@ -10774,7 +10774,7 @@
             },
             {
               "name": "is_use_name_composition",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Use Composite\")]\n@attr [Description(\"Use composite object name for model configuration object\")]",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Use Composite\")]\n@attr [Description(\"Use composite object name for DB model of configuration object\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",

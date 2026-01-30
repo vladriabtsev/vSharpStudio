@@ -8699,7 +8699,7 @@ namespace vSharpStudio.vm.ViewModels
         
         [PropertyOrderAttribute(8)]
         [DisplayName("Use Composite")]
-        [Description("Use composite object name for model configuration object")]
+        [Description("Use composite object name for DB model of configuration object")]
         public bool IsUseNameComposition 
         { 
             get { return this._IsUseNameComposition; }

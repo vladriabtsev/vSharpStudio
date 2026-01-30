@@ -1628,7 +1628,7 @@ Configuration model
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| is_use_name_composition | [bool](#bool) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Use Composite&#34;)] @attr [Description(&#34;Use composite object name for model configuration object&#34;)] |
+| is_use_name_composition | [bool](#bool) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Use Composite&#34;)] @attr [Description(&#34;Use composite object name for DB model of configuration object&#34;)] |
 | is_use_short_id_composition | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Use Short ID&#34;)] @attr [Description(&#34;Use short ID for composite name for DB or gRPC configuration object&#34;)] |
 | is_try_use_name_composition_if_possible | [bool](#bool) |  | @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Try Use Composite&#34;)] @attr [Description(&#34;Try use composite object name if result is not too lengthy&#34;)] |
 | p_key_name | [string](#string) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Id name&#34;)] @attr [Description(&#34;Primary key field name&#34;)] @attr [Category(&#34;Property settings&#34;)] |
