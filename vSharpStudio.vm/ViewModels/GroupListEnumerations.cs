@@ -46,7 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         private void Init()
         {
             OnSortTypeChanged();
-            this._Name = Defaults.GroupEnumerationsName;
+            this._Name = Defaults.EnumerationsGroupName;
             this.ListEnumerations.OnAddingAction = (t) =>
             {
                 t.IsNew = true;

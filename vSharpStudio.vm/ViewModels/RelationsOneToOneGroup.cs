@@ -47,7 +47,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Defaults.OneToOneRelationName, node, this.ListRelations);
+                this.GetUniqueName(Defaults.RelationOneToOneName, node, this.ListRelations);
             }
             var model = this.ParentGroupRelations.ParentModel;
             node.ShortId = ++this.LastShortId;
@@ -94,7 +94,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.OneToOneRelationsGroupName;
+            this._Name = Defaults.RelationsOneToOneGroupName;
         }
         public int IndexOf(IRelationOneToOne relOneToOne)
         {

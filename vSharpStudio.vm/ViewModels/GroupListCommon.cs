@@ -41,7 +41,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
-            this._Name = Defaults.GroupCommonName;
+            this._Name = Defaults.CommonGroupName;
             if (this.Children.Count > 0)
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;

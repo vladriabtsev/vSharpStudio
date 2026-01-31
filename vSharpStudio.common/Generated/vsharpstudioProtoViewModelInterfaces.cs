@@ -992,9 +992,8 @@ namespace vSharpStudio.common
     	IGroupListCommon GroupCommon { get; } 
     	IGroupConstantGroups GroupConstantGroups { get; } 
     	IGroupListEnumerations GroupEnumerations { get; } 
-    	IGroupListCatalogs GroupCatalogs { get; } 
+    	IGroupCatalogs GroupCatalogs { get; } 
     	IGroupDocuments GroupDocuments { get; } 
-    	IRelationsGroup GroupRelations { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
     	// Plugin group Guid and string to store extensions
     	IReadOnlyList<IPluginGroupModelExtensions> ListPluginGroupsModelExtensions { get; } 
@@ -1521,12 +1520,22 @@ namespace vSharpStudio.common
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); 
     	string Description { get; } 
     	EnumSortingType SortType { get; } 
-    	string PrefixForCompositionNames { get; } 
     	IReadOnlyList<ICatalog> ListCatalogs { get; } 
     	ICatalog this[int index] { get; }
     	int Count();
     	int ExplicitSortingPosition { get; } 
     	uint LastShortId { get; } 
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
+    }
+    
+    public partial interface IGroupCatalogs : IGuid, IName 
+    {
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); 
+    	int ExplicitSortingPosition { get; } 
+    	string Description { get; } 
+    	string PrefixForCompositionNames { get; } 
+    	IGroupListCatalogs GroupListCatalogs { get; } 
+    	IRelationsGroup GroupRelations { get; } 
     	bool UseCodeProperty { get; } 
     	string PropertyCodeName { get; } 
     	bool UseNameProperty { get; } 

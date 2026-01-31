@@ -323,7 +323,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (!string.IsNullOrWhiteSpace(t.DimensionCatalogGuid))
                         hs.Add(t.DimensionCatalogGuid);
                 }
-                foreach (var t in this.Cfg.Model.GroupCatalogs.ListCatalogs)
+                foreach (var t in this.Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
                 {
                     if (hs.Contains(t.Guid))
                         continue;

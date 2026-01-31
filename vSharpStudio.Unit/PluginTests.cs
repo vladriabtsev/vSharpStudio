@@ -787,7 +787,7 @@ namespace vSharpStudio.Unit
             Assert.IsEmpty(vm.Config.Model.GroupCatalogs.DicGenNodeSettings);
             Assert.IsEmpty(vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings);
             Assert.HasCount(1, vm.Config.Model.ListNodeGeneratorsSettings);
-            foreach (var t in vm.Config.Model.GroupCatalogs.ListCatalogs)
+            foreach (var t in vm.Config.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
             {
                 Assert.HasCount(1, t.ListNodeGeneratorsSettings);
             }
@@ -798,7 +798,7 @@ namespace vSharpStudio.Unit
             Assert.IsEmpty(vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);
             Assert.IsEmpty(vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings);
             Assert.IsEmpty(vm.Config.Model.ListNodeGeneratorsSettings);
-            foreach (var t in vm.Config.Model.GroupCatalogs.ListCatalogs)
+            foreach (var t in vm.Config.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
             {
                 Assert.IsEmpty(t.ListNodeGeneratorsSettings);
             }
@@ -816,7 +816,7 @@ namespace vSharpStudio.Unit
             Assert.IsEmpty(vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings);
             Assert.HasCount(2, gen.ListGenerators);
             Assert.HasCount(1, vm.Config.Model.ListNodeGeneratorsSettings);
-            foreach (var t in vm.Config.Model.GroupCatalogs.ListCatalogs)
+            foreach (var t in vm.Config.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
             {
                 Assert.HasCount(1, t.ListNodeGeneratorsSettings);
             }
@@ -829,12 +829,12 @@ namespace vSharpStudio.Unit
             var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
             Assert.HasCount(1, gr.ListConstants[0].ListNodeGeneratorsSettings);
-            vm.Config.Model.GroupCatalogs.NodeAddNewSubNode();
-            Assert.HasCount(1, vm.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings);
-            vm.Config.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
-            Assert.HasCount(1, vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
-            vm.Config.Model.GroupCatalogs[0].GroupForms.NodeAddNewSubNode();
-            Assert.HasCount(1, vm.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
+            vm.Config.Model.GroupCatalogs.GroupListCatalogs.NodeAddNewSubNode();
+            Assert.HasCount(1, vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].ListNodeGeneratorsSettings);
+            vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.NodeAddNewSubNode();
+            Assert.HasCount(1, vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
+            vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupForms.NodeAddNewSubNode();
+            Assert.HasCount(1, vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
             var d = (Document)vm.Config.Model.GroupDocuments.GroupListDocuments.NodeAddNewSubNode();
             var seq = vm.Config.Model.GroupDocuments.GroupListSequences.NodeAddNewSubNode();
             d.SequenceGuid = seq.Guid;
@@ -855,9 +855,9 @@ namespace vSharpStudio.Unit
             nds.IsParam1 = true;
             //Assert.AreEqual(nds.IsParam1, ngs.IsParam1);
 
-            Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
             nds.IsIncluded = false;
-            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
 
             //foreach (var t in genDbAccess.GetListNodeGenerationSettings())
             //{
@@ -882,9 +882,9 @@ namespace vSharpStudio.Unit
             Assert.HasCount(1, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ListNodeGeneratorsSettings);
             Assert.HasCount(1, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].DicGenNodeSettings);
             Assert.IsEmpty(vm2.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings);
-            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings);
-            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
-            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs.GroupListCatalogs[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
             Assert.HasCount(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings);
             Assert.HasCount(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings);
 
@@ -898,8 +898,8 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(main.IsAccessParam2);
             nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid);
             Assert.IsTrue(nds.IsParam1);
-            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
-            Assert.IsFalse(vm2.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
+            Assert.IsFalse(vm2.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
 
             await vm2.BtnConfigCurrentUpdateAsync.ExecuteAsync(new TestTransformation());
             main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevCurrentConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
@@ -907,17 +907,17 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(main.IsAccessParam2);
             nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm2.Config.PrevCurrentConfig.Model.GetSettings(gen.Guid);
             Assert.IsTrue(nds.IsParam1);
-            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
 
             await vm2.BtnConfigCreateStableVersionAsync.ExecuteAsync();
             Assert.IsFalse(vm2.Config.IsNeedCurrentUpdate);
-            Assert.IsFalse((vm2.Config.PrevStableConfig.Model.GroupCatalogs[0].GroupProperties as IGetNodeSetting).IsIncluded(gen.Guid));
+            Assert.IsFalse((vm2.Config.PrevStableConfig.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties as IGetNodeSetting).IsIncluded(gen.Guid));
             main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevStableConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
             Assert.IsTrue(main.IsAccessParam1);
             Assert.IsFalse(main.IsAccessParam2);
             nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm2.Config.PrevStableConfig.Model.GetSettings(gen.Guid);
             Assert.IsTrue(nds.IsParam1);
-            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
 
 
             _logger.LogTrace("End test");

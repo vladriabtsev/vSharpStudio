@@ -76,7 +76,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
-            this._Name = Defaults.GroupConstantsGroupsName;
+            this._Name = Defaults.ConstantsGroupGroupsName;
             if (string.IsNullOrWhiteSpace(this._PrefixForCompositionNames)) this._PrefixForCompositionNames = "Cnst";
             this.ListConstantGroups.OnAddingAction = (t) =>
             {

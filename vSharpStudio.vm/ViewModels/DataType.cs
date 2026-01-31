@@ -323,7 +323,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 case EnumDataType.CATALOG:
                     sb.Append(": ");
-                    foreach (var t in config.Model.GroupCatalogs.ListCatalogs)
+                    foreach (var t in config.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
                     {
                         if (p.ObjectRef.ForeignObjectGuid == t.Guid)
                         {
@@ -349,7 +349,7 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append(" types");
                     foreach (var tt in p.ListObjectRefs)
                     {
-                        foreach (var t in config.Model.GroupCatalogs.ListCatalogs)
+                        foreach (var t in config.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
                         {
                             if (tt.ForeignObjectGuid == t.Guid)
                             {
@@ -886,7 +886,7 @@ namespace vSharpStudio.vm.ViewModels
                     case EnumDataType.ENUMERATION:
                         return [.. this.Cfg.Model.GroupEnumerations.ListEnumerations];
                     case EnumDataType.CATALOG:
-                        return [.. this.Cfg.Model.GroupCatalogs.ListCatalogs];
+                        return [.. this.Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs];
                     case EnumDataType.DOCUMENT:
                         return [.. this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments];
                     default:

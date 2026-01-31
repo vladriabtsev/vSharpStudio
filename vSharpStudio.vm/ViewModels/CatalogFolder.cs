@@ -25,14 +25,14 @@ namespace vSharpStudio.vm.ViewModels
             sb.Append("FOL ");
             sb.Append(this.Name);
             sb.Append(", ");
-            sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentModel.PKeyName);
+            sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel.PKeyName);
             sb.Append(":{");
-            sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentModel.PKeyName);
+            sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel.PKeyName);
             sb.Append(",nq} RefTreeParent:{RefTreeParent,nq}");
             if (isOptimistic)
             {
                 sb.Append(" RecVer:{");
-                sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentModel.RecordVersionFieldName);
+                sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel.RecordVersionFieldName);
                 sb.Append(",nq}");
             }
             return sb.ToString();
@@ -323,7 +323,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
+            var model = this.ParentCatalog.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
             var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             res.Add(prp);
 

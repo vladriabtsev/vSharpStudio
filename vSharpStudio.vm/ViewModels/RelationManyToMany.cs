@@ -227,7 +227,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new RelationManyToMany(this.Parent);
             this.ParentManyToManyGroupRelations.ListRelations.Add(node, this);
-            this.GetUniqueName(Defaults.ManyToManyRelationName, node, this.ParentManyToManyGroupRelations.ListRelations);
+            this.GetUniqueName(Defaults.RelationManyToManyName, node, this.ParentManyToManyGroupRelations.ListRelations);
             var model = this.ParentManyToManyGroupRelations.ParentGroupRelations.ParentModel;
             node.ShortId = ++this.ParentManyToManyGroupRelations.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
@@ -276,7 +276,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new List<IProperty>();
             if (!isExcludeSpecial)
                 this.GetSpecialProperties(res, isOptimistic);
-            foreach (var t in this.Cfg.Model.GroupRelations.GroupListManyToManyRelations.ListRelations)
+            foreach (var t in this.Cfg.Model.GroupCatalogs.GroupRelations.GroupListManyToManyRelations.ListRelations)
             {
                 if (!string.IsNullOrWhiteSpace(t.GuidObj1))
                 {
@@ -335,7 +335,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 Debug.Assert(this.Parent != null);
                 if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
-                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupCatalogs.ListCatalogs);
+                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs);
                 else if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
                 else throw new NotImplementedException();
@@ -348,7 +348,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 Debug.Assert(this.Parent != null);
                 if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
-                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupCatalogs.ListCatalogs);
+                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs);
                 else if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
                 else throw new NotImplementedException();

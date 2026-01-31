@@ -80,7 +80,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new MainViewForm(this.Parent);
             this.ParentGroupListMainViewForms.ListMainViewForms.Add(node, this);
-            this.GetUniqueName(Defaults.MainFormName, node, this.ParentGroupListMainViewForms.ListMainViewForms);
+            this.GetUniqueName(Defaults.FormMainName, node, this.ParentGroupListMainViewForms.ListMainViewForms);
             this.SetSelected(node);
             return node;
         }

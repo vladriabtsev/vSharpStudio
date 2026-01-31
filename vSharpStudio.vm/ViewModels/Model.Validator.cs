@@ -28,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels
         private static void CheckObjectsWithDbTables(ValidationContext<Model> cntx, string recom, Model m, bool isCheckTabs)
         {
             var dic = new Dictionary<string, ITreeConfigNode>();
-            foreach (var t in m.GroupCatalogs.ListCatalogs)
+            foreach (var t in m.GroupCatalogs.GroupListCatalogs.ListCatalogs)
             {
                 if (string.IsNullOrWhiteSpace(t.CompositeName))
                     continue;
@@ -139,7 +139,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             if (nerr >= nerrMax) return;
-            foreach (var t in model.GroupCatalogs.ListCatalogs)
+            foreach (var t in model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
             {
                 foreach (var tt in t.GroupProperties.ListProperties)
                 {

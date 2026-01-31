@@ -97,11 +97,11 @@ namespace vSharpStudio.vm.ViewModels
             };
             if (this.Parent is GroupDocuments)
             {
-                this._Name = Defaults.GroupSharedPropertiesName;
+                this._Name = Defaults.PropertiesGroupSharedName;
             }
             else
             {
-                this._Name = Defaults.GroupPropertiesName;
+                this._Name = Defaults.PropertiesGroupName;
             }
         }
 
@@ -109,11 +109,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.Parent is GroupDocuments)
             {
-                this._Name = Defaults.GroupSharedPropertiesName;
+                this._Name = Defaults.PropertiesGroupSharedName;
             }
             else
             {
-                this._Name = Defaults.GroupPropertiesName;
+                this._Name = Defaults.PropertiesGroupName;
             }
         }
 

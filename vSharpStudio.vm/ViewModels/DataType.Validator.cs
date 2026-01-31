@@ -182,7 +182,7 @@ namespace vSharpStudio.vm.ViewModels
                     return true;
                 if (p.Parent.Parent.Parent is IRelationOneToOne)
                     return true;
-                foreach (var t in p.Cfg.Model.GroupCatalogs.ListCatalogs)
+                foreach (var t in p.Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
                 {
                     if (t.Guid == y)
                     {

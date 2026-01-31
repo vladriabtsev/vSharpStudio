@@ -69,7 +69,7 @@ namespace vSharpStudio.Unit
         {
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
             var cfg = vm.Config;
-            Catalog cat_vm = cfg.Model.GroupCatalogs.AddCatalog("test1");
+            Catalog cat_vm = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("test1");
             cat_vm.BeginEdit();
             cat_vm.Name = "test2";
             cat_vm.CancelEdit();
@@ -84,7 +84,7 @@ namespace vSharpStudio.Unit
             mvm.BtnConfigSaveAs.Execute(@".\test.vcfg");
 
             var cfg = mvm.Config;
-            Catalog vm = cfg.Model.GroupCatalogs.AddCatalog("test");
+            Catalog vm = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("test");
             var prop = vm.GroupProperties.AddProperty("test1");
             vm.BeginEdit();
             vm.GroupProperties[0].Name = "test2";
@@ -106,7 +106,7 @@ namespace vSharpStudio.Unit
             mvm.BtnNewConfig.Execute();
 
             var cfg = mvm.Config;
-            Catalog vm = cfg.Model.GroupCatalogs.AddCatalog();
+            Catalog vm = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
             vm.BeginEdit();
             vm.GroupProperties.AddProperty("pdouble0", EnumDataType.NUMERICAL, 10, 0);
             vm.CancelEdit();
@@ -148,8 +148,8 @@ namespace vSharpStudio.Unit
             var cfg = vm.Config;
             //cfg.SolutionPath = @"..\..\..\..\";
 
-            var c = cfg.Model.GroupCatalogs.AddCatalog("test");
-            Assert.AreEqual(cfg.Model.GroupCatalogs, c.Parent);
+            var c = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("test");
+            Assert.AreEqual(cfg.Model.GroupCatalogs.GroupListCatalogs, c.Parent);
 
             string mes1 = "test error VeryLow";
             string mes2 = "test warning VeryLow";
@@ -326,21 +326,21 @@ namespace vSharpStudio.Unit
 
             var cfg = mvm.Config;
             uint catPos = 21;
-            cfg.Model.GroupCatalogs.NodeAddNewSubNode();
-            cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties[0].Position);
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition);
-            cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
+            cfg.Model.GroupCatalogs.GroupListCatalogs.NodeAddNewSubNode();
+            cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.NodeAddNewSubNode();
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].Position);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.LastGenPosition);
+            cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.NodeAddNewSubNode();
             catPos++;
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties[1].Position);
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition);
-            cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeRemove();
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties[0].Position);
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition);
-            cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeAddNew();
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[1].Position);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.LastGenPosition);
+            cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].NodeRemove();
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].Position);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.LastGenPosition);
+            cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].NodeAddNew();
             catPos++;
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties[0].Position);
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].Position);
+            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.LastGenPosition);
         }
         [TestMethod]
         public void Property002_Sorting()
@@ -350,7 +350,7 @@ namespace vSharpStudio.Unit
 
             var cfg = mvm.Config;
             int pSort = 0;
-            var c = (Catalog)cfg.Model.GroupCatalogs.NodeAddNewSubNode();
+            var c = (Catalog)cfg.Model.GroupCatalogs.GroupListCatalogs.NodeAddNewSubNode();
             var g = c.GroupProperties;
             var p0 = (Property)g.NodeAddNewSubNode();
             Assert.AreEqual(++pSort, p0.ExplicitSortingPosition);
@@ -430,7 +430,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
             Assert.AreEqual(pos, dim.Position);
 
-            var cat = cfg.Model.GroupCatalogs.AddCatalog("test_cat");
+            var cat = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("test_cat");
             dim = reg.AddDimension("test_dim", cat);
             pos += 4;
             Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
@@ -508,7 +508,7 @@ namespace vSharpStudio.Unit
             valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Catalog type is not selected for register dimension"));
 
             // Set catalog type for dimension
-            var cat1 = cfg.Model.GroupCatalogs.AddCatalog("cat1");
+            var cat1 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("cat1");
             dim1.DimensionCatalogGuid = cat1.Guid;
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.AreEqual(0, cfg.CountInfos);
@@ -587,7 +587,7 @@ namespace vSharpStudio.Unit
             valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover' dimension 'cat_dimension2'. Selected catalog type for register dimension is already used for 'cat_dimension1' dimension."));
 
             // Change dimension type to another catalog
-            var cat2 = cfg.Model.GroupCatalogs.AddCatalog("cat2");
+            var cat2 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("cat2");
             dim2.DimensionCatalogGuid = cat2.Guid;
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.AreEqual(0, cfg.CountInfos);
@@ -665,8 +665,8 @@ namespace vSharpStudio.Unit
             var c1 = (Catalog)cfg.Model.GroupCatalogs.NodeAddNewSubNode();
             var c2 = (Catalog)cfg.Model.GroupCatalogs.NodeAddNewSubNode();
             var lst = new List<IProperty>();
-            var p1 = cfg.Model.GroupCatalogs[0].GetCodeProperty(lst);
-            var p2 = cfg.Model.GroupCatalogs[1].GetCodeProperty(lst);
+            var p1 = cfg.Model.GroupCatalogs.GroupListCatalogs[0].GetCodeProperty(lst);
+            var p2 = cfg.Model.GroupCatalogs.GroupListCatalogs[1].GetCodeProperty(lst);
             Assert.AreNotEqual(p1.Guid, p2.Guid);
 
             // Self tree catalogs

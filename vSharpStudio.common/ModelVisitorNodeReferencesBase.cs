@@ -71,14 +71,20 @@ namespace vSharpStudio.common
                     AddReferenceToNode(md, tt, tt.DataType);
                 }
             }
-            foreach (var t in currModel.GroupCatalogs.ListCatalogs)
+            foreach (var t in currModel.GroupCatalogs.GroupListCatalogs.ListCatalogs)
             {
                 var md = new ModelNode(t);
                 this.DicNodesWithReferences[t.Guid] = md;
                 ScanProperties(md, t.GetIncludedProperties(this.appDbGenGuid, false, false));
                 ScanDetails(md, t.GetIncludedDetails(this.appDbGenGuid));
             }
-            foreach (var t in currModel.GroupRelations.GroupListManyToManyRelations.ListRelations)
+            foreach (var t in currModel.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations)
+            {
+                var md = new ModelNode(t);
+                this.DicNodesWithReferences[t.Guid] = md;
+                ScanProperties(md, t.GetIncludedProperties(this.appDbGenGuid, false, false));
+            }
+            foreach (var t in currModel.GroupCatalogs.GroupRelations.GroupListManyToManyRelations.ListRelations)
             {
                 var md = new ModelNode(t);
                 this.DicNodesWithReferences[t.Guid] = md;

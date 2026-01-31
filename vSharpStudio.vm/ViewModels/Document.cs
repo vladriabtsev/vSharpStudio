@@ -346,7 +346,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.GetDocNumberProperty(res);
             uint pos = this.GroupProperties.LastGenPosition;
-            foreach (var t in this.Cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations)
+            foreach (var t in this.Cfg.Model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations)
             {
                 if (t.GuidObj1 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY))
                 {

@@ -65,7 +65,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.GroupReportsName;
+            this._Name = Defaults.ReportsGroupName;
         }
 
         #region Tree operations

@@ -747,11 +747,9 @@ message proto_model {
     // @attr [Browsable(false)]
     proto_group_list_enumerations group_enumerations = 102;
     // @attr [Browsable(false)]
-    proto_group_list_catalogs group_catalogs = 103;
+    proto_group_catalogs group_catalogs = 103;
     // @attr [Browsable(false)]
     proto_group_documents group_documents = 104;
-    // @attr [Browsable(false)]
-    proto_relations_group group_relations = 108;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -2322,16 +2320,43 @@ message proto_group_list_catalogs {
     // @attr [DisplayName("Sort")]
     // @attr [Description("Sort type for properties")]
     proto_enum_sorting_type sort_type = 10;
-    // @attr [PropertyOrderAttribute(5)]
-    // @attr [DisplayName("Composition prefix")]
-    // @attr [Description("Prefix for catalogs composition names. Used if set to use in config model")]
-    string prefix_for_composition_names = 6;
     // @attr [Browsable(false)]
     repeated proto_catalog list_catalogs = 8;
     // @attr [Browsable(false)]
     int32 explicit_sorting_position = 9;
     // @attr [Browsable(false)]
     uint32 last_short_id = 11;
+
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+message proto_group_catalogs {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Browsable(false)]
+    int32 explicit_sorting_position = 3;
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [PropertyOrderAttribute(5)]
+    // @attr [DisplayName("Composition prefix")]
+    // @attr [Description("Prefix for catalogs composition names. Used if set to use in config model")]
+    string prefix_for_composition_names = 6;
+    // @attr [Browsable(false)]
+    proto_group_list_catalogs group_list_catalogs = 8;
+    // @attr [Browsable(false)]
+    proto_relations_group group_relations = 9;
 
     // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(22)]

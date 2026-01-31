@@ -75,7 +75,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.GroupDetailsName;
+            this._Name = Defaults.DetailsGroupName;
         }
         public int IndexOf(IDetail det)
         {

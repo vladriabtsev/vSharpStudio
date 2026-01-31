@@ -49,7 +49,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
-            this._Name = Defaults.GroupPluginsName;
+            this._Name = Defaults.PluginsGroupName;
             //this.ListRoles.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;

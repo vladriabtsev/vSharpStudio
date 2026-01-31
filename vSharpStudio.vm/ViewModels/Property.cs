@@ -929,6 +929,7 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType.ObjectRef0.ForeignObjectGuid = tt.ForeignObjectGuid;
             node.DataType.ObjectRef0.RefComplexObjectIdPropertyGuid = tt.RefComplexObjectIdPropertyGuid;
             node.PositionInConfigObject = t.PositionInConfigObject;
+            node.Position = tt.Position;
             node.ShortId = t.ShortId;
             switch (t.DataType.DataTypeEnum)
             {
@@ -947,13 +948,11 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.CATALOG:
                 case EnumDataType.DOCUMENT:
                     node.nameShortIdPrefix = "p";
-                    node.Position = tt.Position;
                     break;
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
                 case EnumDataType.ANY:
                     node.nameShortIdPrefix = "p";
-                    node.Position = tt.Position;
                     break;
                 default:
                     Debug.Assert(false);

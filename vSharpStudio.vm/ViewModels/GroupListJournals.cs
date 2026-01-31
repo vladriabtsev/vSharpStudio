@@ -52,7 +52,7 @@ namespace vSharpStudio.vm.ViewModels
         private void Init()
         {
             OnSortTypeChanged();
-            this._Name = Defaults.GroupJournalsName;
+            this._Name = Defaults.JournalsGroupName;
             this.ListJournals.OnAddingAction = (t) =>
             {
                 t.IsNew = true;

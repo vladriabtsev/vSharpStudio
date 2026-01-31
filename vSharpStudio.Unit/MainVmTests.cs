@@ -114,10 +114,10 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.Model.GroupEnumerations.IsChanged);
             Assert.IsFalse(vm.Config.Model.GroupEnumerations.IsChangedOrHasChanged);
             Assert.IsFalse(vm.Config.Model.GroupEnumerations.IsHasChanged);
-            Assert.IsFalse(vm.Config.Model.GroupRelations.IsNew);
-            Assert.IsFalse(vm.Config.Model.GroupRelations.IsChanged);
-            Assert.IsFalse(vm.Config.Model.GroupRelations.IsChangedOrHasChanged);
-            Assert.IsFalse(vm.Config.Model.GroupRelations.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.GroupRelations.IsNew);
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.GroupRelations.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.GroupRelations.IsChangedOrHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.GroupRelations.IsHasChanged);
 
             Assert.IsFalse(vm.BtnAddClone.CanExecute());
             Assert.IsFalse(vm.BtnAddNew.CanExecute());
@@ -511,7 +511,7 @@ namespace vSharpStudio.Unit
             var gr = vm.Config.Model.GroupCatalogs;
 
             // Simple catalog
-            var c = gr.AddCatalog("test");
+            var c = gr.GroupListCatalogs.AddCatalog("test");
             var lst = c.GetAllProperties(true);
             Assert.HasCount(4, lst);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
@@ -721,7 +721,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(c2.IsNew);
             Assert.IsTrue(gr.IsHasNew);
             Assert.IsFalse(gr.IsHasMarkedForDeletion);
-            var cat = cfg.Model.GroupCatalogs.AddCatalog("cat");
+            var cat = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("cat");
             var c3 = gr.AddConstantTypeRefCatalog("c3", cat);
             Assert.IsTrue(c2.IsNew);
             Assert.IsTrue(gr.IsHasNew);
@@ -1064,7 +1064,7 @@ namespace vSharpStudio.Unit
             #endregion enumeration
 
             #region catalog
-            var c2 = vm.Config.Model.GroupCatalogs.AddCatalog();
+            var c2 = vm.Config.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
@@ -1073,10 +1073,10 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
             #region new
-            vm.Config.Model.GroupCatalogs.ListCatalogs.Remove(c2);
+            vm.Config.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs.Remove(c2);
             Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-            c2 = vm.Config.Model.GroupCatalogs.AddCatalog();
+            c2 = vm.Config.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
             Assert.IsTrue(vm.Config.Model.IsHasNew);
 
             c2.IsNew = false;
@@ -1140,7 +1140,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(c2.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
             #endregion deletion
-            vm.Config.Model.GroupCatalogs.ListCatalogs.Clear();
+            vm.Config.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs.Clear();
             #endregion catalog
 
             #region document
@@ -1460,12 +1460,12 @@ namespace vSharpStudio.Unit
             {
                 Assert.HasCount(1, t.ListNodeGeneratorsSettings);
             }
-            vm.Config.Model.GroupCatalogs.NodeAddNewSubNode();
-            Assert.HasCount(1, vm.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings);
-            vm.Config.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
-            Assert.HasCount(1, vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
-            vm.Config.Model.GroupCatalogs[0].GroupForms.NodeAddNewSubNode();
-            Assert.HasCount(1, vm.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
+            vm.Config.Model.GroupCatalogs.GroupListCatalogs.NodeAddNewSubNode();
+            Assert.HasCount(1, vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].ListNodeGeneratorsSettings);
+            vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.NodeAddNewSubNode();
+            Assert.HasCount(1, vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
+            vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupForms.NodeAddNewSubNode();
+            Assert.HasCount(1, vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
             vm.Config.Model.GroupDocuments.GroupListDocuments.NodeAddNewSubNode();
             Assert.HasCount(1, vm.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings);
             vm.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties.NodeAddNewSubNode();
@@ -1484,9 +1484,9 @@ namespace vSharpStudio.Unit
             nds.IsParam1 = true;
             Assert.AreEqual(nds.IsParam1, ngs.IsParam1);
 
-            Assert.IsTrue(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
+            Assert.IsTrue(vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
             nds.IsIncluded = false;
-            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
 
             //foreach (var t in genDbAccess.GetListNodeGenerationSettings())
             //{
@@ -1511,9 +1511,9 @@ namespace vSharpStudio.Unit
             {
                 Assert.HasCount(1, t.ListNodeGeneratorsSettings);
             }
-            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings);
-            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
-            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs.GroupListCatalogs[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
             Assert.HasCount(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings);
             Assert.HasCount(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings);
 
@@ -1523,7 +1523,7 @@ namespace vSharpStudio.Unit
             nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid);
             Assert.IsTrue(nds.IsParam1);
 
-            Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
+            Assert.IsFalse(vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
 
             // if new app progect generator is added, new setting are attached to all appropriate nodes
             var gen0 = vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
@@ -1540,9 +1540,9 @@ namespace vSharpStudio.Unit
             Assert.HasCount(2, vm2.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);
             //Assert.AreEqual(2, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListNodeGeneratorsSettings.Count);
             //Assert.AreEqual(2, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ListNodeGeneratorsSettings.Count);
-            Assert.HasCount(2, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings);
-            Assert.HasCount(2, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
-            Assert.HasCount(2, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(2, vm2.Config.Model.GroupCatalogs.GroupListCatalogs[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(2, vm2.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(2, vm2.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
             Assert.HasCount(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings);
             Assert.HasCount(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings);
 
@@ -1553,9 +1553,9 @@ namespace vSharpStudio.Unit
             Assert.HasCount(1, vm2.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);
             //Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListNodeGeneratorsSettings.Count);
             //Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ListNodeGeneratorsSettings.Count);
-            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings);
-            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
-            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs.GroupListCatalogs[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings);
+            Assert.HasCount(1, vm2.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
             Assert.HasCount(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings);
             Assert.HasCount(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings);
             _logger.LogTrace("End test");
@@ -1740,7 +1740,7 @@ namespace vSharpStudio.Unit
             vm.BtnNewConfig.Execute();
             var m = vm.Config.Model;
             var gc = m.GroupCatalogs;
-            var c = gc.AddCatalog("Simple");
+            var c = gc.GroupListCatalogs.AddCatalog("Simple");
 
             var p = c.GroupProperties.AddPropertyChar("char_notnullable", true);
             #region char
@@ -2054,29 +2054,30 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("M.Constants.Gr.c1", c1.ModelPath);
 
             Assert.AreEqual("M.Catalogs", cfg.Model.GroupCatalogs.ModelPath);
-            var cat = cfg.Model.GroupCatalogs.AddCatalog("cat");
-            Assert.AreEqual("M.Catalogs.cat", cat.ModelPath);
-            Assert.AreEqual("M.Catalogs.cat.Properties", cat.GroupProperties.ModelPath);
+            Assert.AreEqual("M.Catalogs.ListCatalogs", cfg.Model.GroupCatalogs.GroupListCatalogs.ModelPath);
+            var cat = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("cat");
+            Assert.AreEqual("M.Catalogs.ListCatalogs.cat", cat.ModelPath);
+            Assert.AreEqual("M.Catalogs.ListCatalogs.cat.Properties", cat.GroupProperties.ModelPath);
             cat.AddProperty("p1");
-            Assert.AreEqual("M.Catalogs.cat.Properties.p1", cat.GroupProperties.ListProperties[0].ModelPath);
+            Assert.AreEqual("M.Catalogs.ListCatalogs.cat.Properties.p1", cat.GroupProperties.ListProperties[0].ModelPath);
 
-            Assert.AreEqual("M.Relations", cfg.Model.GroupRelations.ModelPath);
-            Assert.AreEqual("M.Relations.ManyToMany", cfg.Model.GroupRelations.GroupListManyToManyRelations.ModelPath);
-            var cat2 = cfg.Model.GroupCatalogs.AddCatalog("cat2");
-            cfg.Model.GroupRelations.GroupListManyToManyRelations.AddRelation("cat-to-cat2", cat, cat2, false);
-            Assert.AreEqual("M.Relations.ManyToMany.cat-to-cat2", cfg.Model.GroupRelations.GroupListManyToManyRelations.ListRelations[0].ModelPath);
-            Assert.AreEqual("M.Relations.OneToOne", cfg.Model.GroupRelations.GroupListOneToOneRelations.ModelPath);
-            var cat3 = cfg.Model.GroupCatalogs.AddCatalog("cat3");
-            cfg.Model.GroupRelations.GroupListOneToOneRelations.AddRelation("cat-to-cat3", cat, cat3, false);
-            Assert.AreEqual("M.Relations.OneToOne.cat-to-cat3", cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations[0].ModelPath);
+            Assert.AreEqual("M.Catalogs.Relations", cfg.Model.GroupCatalogs.GroupRelations.ModelPath);
+            Assert.AreEqual("M.Catalogs.Relations.ManyToMany", cfg.Model.GroupCatalogs.GroupRelations.GroupListManyToManyRelations.ModelPath);
+            var cat2 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("cat2");
+            cfg.Model.GroupCatalogs.GroupRelations.GroupListManyToManyRelations.AddRelation("cat-to-cat2", cat, cat2, false);
+            Assert.AreEqual("M.Catalogs.Relations.ManyToMany.cat-to-cat2", cfg.Model.GroupCatalogs.GroupRelations.GroupListManyToManyRelations.ListRelations[0].ModelPath);
+            Assert.AreEqual("M.Catalogs.Relations.OneToOne", cfg.Model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ModelPath);
+            var cat3 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("cat3");
+            cfg.Model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.AddRelation("cat-to-cat3", cat, cat3, false);
+            Assert.AreEqual("M.Catalogs.Relations.OneToOne.cat-to-cat3", cfg.Model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations[0].ModelPath);
 
             Assert.AreEqual("M.Documents", cfg.Model.GroupDocuments.ModelPath);
-            Assert.AreEqual("M.Documents.Documents", cfg.Model.GroupDocuments.GroupListDocuments.ModelPath);
+            Assert.AreEqual("M.Documents.ListDocuments", cfg.Model.GroupDocuments.GroupListDocuments.ModelPath);
             var d1 = cfg.Model.GroupDocuments.AddDocument("d1");
-            Assert.AreEqual("M.Documents.Documents.d1", d1.ModelPath);
-            Assert.AreEqual("M.Documents.Documents.d1.Properties", d1.GroupProperties.ModelPath);
+            Assert.AreEqual("M.Documents.ListDocuments.d1", d1.ModelPath);
+            Assert.AreEqual("M.Documents.ListDocuments.d1.Properties", d1.GroupProperties.ModelPath);
             var p2 = d1.GroupProperties.AddProperty("p2");
-            Assert.AreEqual("M.Documents.Documents.d1.Properties.p2", p2.ModelPath);
+            Assert.AreEqual("M.Documents.ListDocuments.d1.Properties.p2", p2.ModelPath);
 
 
             Assert.AreEqual("M.Documents.Journals", cfg.Model.GroupDocuments.GroupJournals.ModelPath);
@@ -2100,7 +2101,7 @@ namespace vSharpStudio.Unit
 
             // Catalog
             var gc = m.GroupCatalogs;
-            var c = gc.AddCatalog("Simple");
+            var c = gc.GroupListCatalogs.AddCatalog("Simple");
             Assert.IsEmpty(c.dicCatalogAccess);
             var det = c.AddDetails("det1");
             var pdet = det.AddPropertyString("pdet", 5);
@@ -2527,8 +2528,8 @@ namespace vSharpStudio.Unit
                                             break;
                                         default:
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role));
-                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role));
+                                                Assert.AreEqual(enPrint, gc.ParentGroupCatalogs.GetRoleCatalogPrint(role));
+                                            Assert.AreEqual(enGCatAccess, gc.ParentGroupCatalogs.GetRoleCatalogAccess(role));
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
                                                 Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                                             TestProperty(role, p, enGCatAccess);
@@ -2577,8 +2578,8 @@ namespace vSharpStudio.Unit
                                             break;
                                         default:
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role));
-                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role));
+                                                Assert.AreEqual(enPrint, gc.ParentGroupCatalogs.GetRoleCatalogPrint(role));
+                                            Assert.AreEqual(enGCatAccess, gc.ParentGroupCatalogs.GetRoleCatalogAccess(role));
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
                                                 Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                                             TestProperty(role, p, enGCatAccess);
@@ -2627,8 +2628,8 @@ namespace vSharpStudio.Unit
                                             break;
                                         default:
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role));
-                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role));
+                                                Assert.AreEqual(enPrint, gc.ParentGroupCatalogs.GetRoleCatalogPrint(role));
+                                            Assert.AreEqual(enGCatAccess, gc.ParentGroupCatalogs.GetRoleCatalogAccess(role));
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
                                                 Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                                             TestProperty(role, p, enGCatAccess);
@@ -2679,8 +2680,8 @@ namespace vSharpStudio.Unit
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role));
-                        Assert.AreEqual(enGrCatAccess, gc.GetRoleCatalogAccess(role));
+                            Assert.AreEqual(enPrint, gc.ParentGroupCatalogs.GetRoleCatalogPrint(role));
+                        Assert.AreEqual(enGrCatAccess, gc.ParentGroupCatalogs.GetRoleCatalogAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
                             Assert.AreEqual(enPrint, c.GetRoleCatalogPrint(role));
                         Assert.AreEqual(enGrCatAccess, c.GetRoleCatalogAccess(role));

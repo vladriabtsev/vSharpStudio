@@ -17,9 +17,9 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
-        public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }
+        public Model ParentModel { get { Debug.Assert(this.Parent != null && this.Parent.Parent != null); return (Model)this.Parent.Parent; } }
         [Browsable(false)]
-        public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
+        public IModel ParentModelI { get { Debug.Assert(this.Parent != null && this.Parent.Parent != null); return (IModel)this.Parent.Parent; } }
 
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -46,7 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
-            this._Name = Defaults.GroupMtmRelationsName;
+            this._Name = Defaults.RelationsGroupName;
             if (this.Children.Count > 0)
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
@@ -71,7 +71,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.OnRemoveChild();
             //};
-            this._Name = Defaults.GroupMtmRelationsName;
+            this._Name = Defaults.RelationsGroupName;
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

@@ -204,7 +204,7 @@ namespace vSharpStudio.Unit
         {
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath(), null, true);
             var cfg = vm.Config;
-            var c = cfg.Model.GroupCatalogs.AddCatalog();
+            var c = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
             Assert.IsGreaterThan(0, c.Guid.Length);
             var p = c.AddProperty("test");
             Assert.IsGreaterThan(0, p.Guid.Length);
@@ -446,61 +446,62 @@ namespace vSharpStudio.Unit
 
             #region Catalogs
 
-            Assert.IsFalse(cfg.Model.GroupCatalogs.NodeCanLeft());
-            Assert.IsTrue(cfg.Model.GroupCatalogs.NodeCanRight());
-            Assert.IsFalse(cfg.Model.GroupCatalogs.NodeCanMoveUp());
-            Assert.IsFalse(cfg.Model.GroupCatalogs.NodeCanMoveDown());
-            Assert.IsFalse(cfg.Model.GroupCatalogs.NodeCanAddNew());
-            Assert.IsTrue(cfg.Model.GroupCatalogs.NodeCanAddNewSubNode());
-            cfg.Model.GroupCatalogs.NodeAddNewSubNode();
+            var ctlst = cfg.Model.GroupCatalogs.GroupListCatalogs;
+            Assert.IsFalse(ctlst.NodeCanLeft());
+            Assert.IsTrue(ctlst.NodeCanRight());
+            Assert.IsFalse(ctlst.NodeCanMoveUp());
+            Assert.IsFalse(ctlst.NodeCanMoveDown());
+            Assert.IsFalse(ctlst.NodeCanAddNew());
+            Assert.IsTrue(ctlst.NodeCanAddNewSubNode());
+            cfg.Model.GroupCatalogs.GroupListCatalogs.NodeAddNewSubNode();
             Assert.IsNotNull(cfg.SelectedNode);
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0], cfg.SelectedNode);
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].Guid, cfg.SelectedNode.Guid);
+            Assert.AreEqual(ctlst[0], cfg.SelectedNode);
+            Assert.AreEqual(ctlst[0].Guid, cfg.SelectedNode.Guid);
 
-            Assert.IsTrue(cfg.Model.GroupCatalogs.NodeCanRight());
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].NodeCanLeft());
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].NodeCanRight());
-            Assert.IsFalse(cfg.Model.GroupCatalogs[0].NodeCanMoveUp());
-            Assert.IsFalse(cfg.Model.GroupCatalogs[0].NodeCanMoveDown());
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].NodeCanAddNew());
-            Assert.IsFalse(cfg.Model.GroupCatalogs[0].NodeCanAddNewSubNode());
+            Assert.IsTrue(ctlst.NodeCanRight());
+            Assert.IsTrue(ctlst[0].NodeCanLeft());
+            Assert.IsTrue(ctlst[0].NodeCanRight());
+            Assert.IsFalse(ctlst[0].NodeCanMoveUp());
+            Assert.IsFalse(ctlst[0].NodeCanMoveDown());
+            Assert.IsTrue(ctlst[0].NodeCanAddNew());
+            Assert.IsFalse(ctlst[0].NodeCanAddNewSubNode());
 
             #region Properties
 
-            cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
+            ctlst[0].GroupProperties.NodeAddNewSubNode();
             Assert.IsNotNull(cfg.SelectedNode);
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[0], cfg.SelectedNode);
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeCanLeft());
-            Assert.IsFalse(cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeCanRight());
-            Assert.IsFalse(cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeCanMoveUp());
-            Assert.IsFalse(cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeCanMoveDown());
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeCanAddNew());
-            Assert.IsFalse(cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeCanAddNewSubNode());
+            Assert.AreEqual(ctlst[0].GroupProperties[0], cfg.SelectedNode);
+            Assert.IsTrue(ctlst[0].GroupProperties[0].NodeCanLeft());
+            Assert.IsFalse(ctlst[0].GroupProperties[0].NodeCanRight());
+            Assert.IsFalse(ctlst[0].GroupProperties[0].NodeCanMoveUp());
+            Assert.IsFalse(ctlst[0].GroupProperties[0].NodeCanMoveDown());
+            Assert.IsTrue(ctlst[0].GroupProperties[0].NodeCanAddNew());
+            Assert.IsFalse(ctlst[0].GroupProperties[0].NodeCanAddNewSubNode());
 
-            cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeAddNew();
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[0], cfg.SelectedNode);
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[0].Guid, cfg.SelectedNode.Guid);
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].NodeCanLeft());
-            Assert.IsFalse(cfg.Model.GroupCatalogs[0].GroupProperties[1].NodeCanRight());
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].NodeCanMoveUp());
-            Assert.IsFalse(cfg.Model.GroupCatalogs[0].GroupProperties[1].NodeCanMoveDown());
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].NodeCanAddNew());
-            Assert.IsFalse(cfg.Model.GroupCatalogs[0].GroupProperties[1].NodeCanAddNewSubNode());
+            ctlst[0].GroupProperties[0].NodeAddNew();
+            Assert.AreEqual(ctlst[0].GroupProperties[0], cfg.SelectedNode);
+            Assert.AreEqual(ctlst[0].GroupProperties[0].Guid, cfg.SelectedNode.Guid);
+            Assert.IsTrue(ctlst[0].GroupProperties[1].NodeCanLeft());
+            Assert.IsFalse(ctlst[0].GroupProperties[1].NodeCanRight());
+            Assert.IsTrue(ctlst[0].GroupProperties[1].NodeCanMoveUp());
+            Assert.IsFalse(ctlst[0].GroupProperties[1].NodeCanMoveDown());
+            Assert.IsTrue(ctlst[0].GroupProperties[1].NodeCanAddNew());
+            Assert.IsFalse(ctlst[0].GroupProperties[1].NodeCanAddNewSubNode());
 
-            var p = cfg.Model.GroupCatalogs[0].GroupProperties[1];
+            var p = ctlst[0].GroupProperties[1];
             p.NodeMoveUp();
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[0], p);
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[0], cfg.SelectedNode);
+            Assert.AreEqual(ctlst[0].GroupProperties[0], p);
+            Assert.AreEqual(ctlst[0].GroupProperties[0], cfg.SelectedNode);
 
             // change property parameters
             // p.DataType.MinValue = 5;
             // p.DataType.MaxValue = 6;
 
             p.NodeAddClone();
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[1], p);
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupProperties[0].Name + "2", cfg.Model.GroupCatalogs[0].GroupProperties[1].Name);
-            // Assert.IsTrue(5 == cfg.Model.GroupCatalogs[0].GroupProperties.ListProperties[2].DataType.MinValue);
-            // Assert.IsTrue(6 == cfg.Model.GroupCatalogs[0].GroupProperties.ListProperties[2].DataType.MaxValue);
+            Assert.AreEqual(ctlst[0].GroupProperties[1], p);
+            Assert.AreEqual(ctlst[0].GroupProperties[0].Name + "2", ctlst[0].GroupProperties[1].Name);
+            // Assert.IsTrue(5 == ctlst[0].GroupProperties.ListProperties[2].DataType.MinValue);
+            // Assert.IsTrue(6 == ctlst[0].GroupProperties.ListProperties[2].DataType.MaxValue);
 
             #endregion Properties
 
@@ -534,7 +535,7 @@ namespace vSharpStudio.Unit
         {
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath(), null, true);
             var cfg = vm.Config;
-            var c = cfg.Model.GroupCatalogs.AddCatalog("Test1");
+            var c = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("Test1");
             var p = c.AddProperty("tp");
             var dt = p.DataType; ;
 
@@ -837,8 +838,8 @@ namespace vSharpStudio.Unit
             var vm = this.CreateVM();
             var cfg = vm.Config;
 
-            var c1 = vm.Config.Model.GroupCatalogs.AddCatalog(cat1Name);
-            var c2 = vm.Config.Model.GroupCatalogs.AddCatalog(cat2Name);
+            var c1 = vm.Config.Model.GroupCatalogs.GroupListCatalogs.AddCatalog(cat1Name);
+            var c2 = vm.Config.Model.GroupCatalogs.GroupListCatalogs.AddCatalog(cat2Name);
 
             var d = vm.Config.Model.GroupDocuments.AddDocument(docName);
             var seq = vm.Config.Model.GroupDocuments.GroupListSequences.AddSequence("Seq");
@@ -968,25 +969,26 @@ namespace vSharpStudio.Unit
             var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath(), null, true);
             var cfg = vm.Config;
 
+            var ctlst = cfg.Model.GroupCatalogs.GroupListCatalogs;
             cfg.Model.IsUseNameComposition = false;
             cfg.Model.GroupCatalogs.PrefixForCompositionNames = "Cat";
-            var c = cfg.Model.GroupCatalogs.AddCatalog("Test1");
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
+            var c = ctlst.AddCatalog("Test1");
+            Assert.AreEqual(ctlst[0].Name, ctlst[0].CompositeName);
             cfg.Model.IsUseNameComposition = true;
-            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForCompositionNames + cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
+            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForCompositionNames + ctlst[0].Name, ctlst[0].CompositeName);
             cfg.Model.IsUseShortIdComposition = true;
             Assert.AreEqual("c1", c.NameShortId);
             cfg.Model.IsTryUseNameCompositionIfPossible = true;
             Assert.AreEqual("c1", c.NameShortId);
 
             cfg.Model.IsUseNameComposition = false;
-            var t = cfg.Model.GroupCatalogs[0].GroupDetails.AddPropertiesTab("Tab1");
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
-            Assert.AreEqual(cfg.Model.GroupCatalogs[0].GroupDetails[0].Name, cfg.Model.GroupCatalogs[0].GroupDetails[0].CompositeName);
+            var t = ctlst[0].GroupDetails.AddPropertiesTab("Tab1");
+            Assert.AreEqual(ctlst[0].Name, ctlst[0].CompositeName);
+            Assert.AreEqual(ctlst[0].GroupDetails[0].Name, ctlst[0].GroupDetails[0].CompositeName);
             cfg.Model.IsUseNameComposition = true;
-            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForCompositionNames + cfg.Model.GroupCatalogs[0].Name, cfg.Model.GroupCatalogs[0].CompositeName);
-            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForCompositionNames + cfg.Model.GroupCatalogs[0].Name + cfg.Model.GroupCatalogs[0].GroupDetails[0].Name,
-                cfg.Model.GroupCatalogs[0].GroupDetails[0].CompositeName);
+            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForCompositionNames + ctlst[0].Name, ctlst[0].CompositeName);
+            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForCompositionNames + ctlst[0].Name + ctlst[0].GroupDetails[0].Name,
+                ctlst[0].GroupDetails[0].CompositeName);
             cfg.Model.IsUseShortIdComposition = true;
             Assert.AreEqual("c1t1", t.NameShortId);
             cfg.Model.IsTryUseNameCompositionIfPossible = true;
@@ -1029,7 +1031,7 @@ namespace vSharpStudio.Unit
 
             cfg.Model.IsUseNameComposition = false;
             cfg.Model.GroupCatalogs.PrefixForCompositionNames = "Cat";
-            cfg.Model.GroupCatalogs.AddCatalog("Test1");
+            cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("Test1");
             cfg.Model.Validate();
             Assert.IsEmpty(cfg.Model.ValidationCollection);
 
@@ -1037,7 +1039,7 @@ namespace vSharpStudio.Unit
             cfg.Model.Validate();
             Assert.HasCount(1, cfg.Model.ValidationCollection);
 
-            cfg.Model.GroupCatalogs.ListCatalogs[0].GroupDetails.AddTab("Test1");
+            cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs[0].GroupDetails.AddTab("Test1");
             cfg.Model.Validate();
             Assert.HasCount(2, cfg.Model.ValidationCollection);
 
@@ -1063,12 +1065,13 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1u, cnst.ShortId);
             Assert.AreEqual(1u + (1u << nbits), cnst.ShortRefId);
 
-            var c1 = cfg.Model.GroupCatalogs.AddCatalog("Cat1");
-            Assert.AreEqual(1u, cfg.Model.GroupCatalogs.LastShortId);
+            var ctlst = cfg.Model.GroupCatalogs.GroupListCatalogs;
+            var c1 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("Cat1");
+            Assert.AreEqual(1u, cfg.Model.GroupCatalogs.GroupListCatalogs.LastShortId);
             Assert.AreEqual(1u, c1.ShortId);
             Assert.AreEqual(1u + (2u << nbits), c1.ShortRefId);
 
-            var t1 = cfg.Model.GroupCatalogs[0].GroupDetails.AddPropertiesTab("CatTab1");
+            var t1 = ctlst[0].GroupDetails.AddPropertiesTab("CatTab1");
             Assert.AreEqual(1u, t1.ParentGroupListDetails.LastShortId);
             Assert.AreEqual(1u, t1.ShortId);
             Assert.AreEqual(1u + (3u << nbits), t1.ShortRefId);
@@ -1085,10 +1088,10 @@ namespace vSharpStudio.Unit
 
             string json = cfg.ExportToJson();
             var cfg2 = new Config(json);
-            Assert.AreEqual(1u, cfg2.Model.GroupCatalogs.ListCatalogs[0].ShortId);
-            Assert.AreEqual(1u + (2u << nbits), cfg2.Model.GroupCatalogs.ListCatalogs[0].ShortRefId);
-            Assert.AreEqual(1u, cfg2.Model.GroupCatalogs.ListCatalogs[0].GroupDetails.ListDetails[0].ShortId);
-            Assert.AreEqual(1u + (3u << nbits), cfg2.Model.GroupCatalogs.ListCatalogs[0].GroupDetails.ListDetails[0].ShortRefId);
+            Assert.AreEqual(1u, cfg2.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs[0].ShortId);
+            Assert.AreEqual(1u + (2u << nbits), cfg2.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs[0].ShortRefId);
+            Assert.AreEqual(1u, cfg2.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs[0].GroupDetails.ListDetails[0].ShortId);
+            Assert.AreEqual(1u + (3u << nbits), cfg2.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs[0].GroupDetails.ListDetails[0].ShortRefId);
             Assert.AreEqual(1u, cfg2.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].ShortId);
             Assert.AreEqual(1u + (7u << nbits), cfg2.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].ShortRefId);
             Assert.AreEqual(1u, cfg2.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GroupDetails.ListDetails[0].ShortId);
@@ -1108,15 +1111,15 @@ namespace vSharpStudio.Unit
 
 
             #region One To One
-            Assert.IsEmpty(cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations);
-            var c1 = cfg.Model.GroupCatalogs.AddCatalog("cat");
+            Assert.IsEmpty(cfg.Model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations);
+            var c1 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("cat");
             var d2 = cfg.Model.GroupDocuments.AddDocument("test_doc");
             var seq = cfg.Model.GroupDocuments.GroupListSequences.AddSequence("seq");
             d2.SequenceGuid = seq.Guid;
 
             // 1. EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS
             // without history, not optimistic
-            var rel = cfg.Model.GroupRelations.GroupListOneToOneRelations.AddRelation("test_one_to_one_rel", c1, d2, false);
+            var rel = cfg.Model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.AddRelation("test_one_to_one_rel", c1, d2, false);
             await vm.BtnConfigValidateAsync.ExecuteAsync();
             Assert.AreEqual(0, vm.Config.CountErrors);
             var lst = rel.GetIncludedProperties(null, false, false);
@@ -1164,15 +1167,15 @@ namespace vSharpStudio.Unit
             #endregion One To One
 
             #region Many To Many
-            Assert.IsEmpty(cfg.Model.GroupRelations.GroupListManyToManyRelations.ListRelations);
-            c1 = cfg.Model.GroupCatalogs.AddCatalog("cat2");
+            Assert.IsEmpty(cfg.Model.GroupCatalogs.GroupRelations.GroupListManyToManyRelations.ListRelations);
+            c1 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("cat2");
             d2 = cfg.Model.GroupDocuments.AddDocument("test_doc2");
             var seq2 = cfg.Model.GroupDocuments.GroupListSequences.AddSequence("seq2");
             d2.SequenceGuid = seq2.Guid;
 
             // 1. EnumOneToOneRefType.ONE_TO_ONE_NOT_SELECTED
             // without history, not optimistic
-            var rel2 = cfg.Model.GroupRelations.GroupListManyToManyRelations.AddRelation("test_many_to_many_rel", c1, d2, false);
+            var rel2 = cfg.Model.GroupCatalogs.GroupRelations.GroupListManyToManyRelations.AddRelation("test_many_to_many_rel", c1, d2, false);
             await vm.BtnConfigValidateAsync.ExecuteAsync();
             Assert.AreEqual(0, vm.Config.CountErrors);
 

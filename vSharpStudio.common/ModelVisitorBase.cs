@@ -89,10 +89,61 @@ namespace vSharpStudio.common
 
             #region Catalogs
             this.BeginVisit(currModel.GroupCatalogs);
+            //if (isActFromRootToBottom)
+            //    this._act?.Invoke(this, this.currModel.GroupCatalogs);
+            #region Relations
+            this.BeginVisit(currModel.GroupCatalogs.GroupRelations);
             if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupCatalogs);
-            this.BeginVisit(currModel.GroupCatalogs.ListCatalogs);
-            foreach (var tt in currModel.GroupCatalogs.ListCatalogs)
+                this._act?.Invoke(this, this.currModel.GroupCatalogs.GroupRelations);
+
+            #region OneToOne
+            this.BeginVisit(currModel.GroupCatalogs.GroupRelations.GroupListOneToOneRelations);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCatalogs.GroupRelations.GroupListOneToOneRelations);
+            foreach (var tr in currModel.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations)
+            {
+                this.currOneToOneRelation = tr;
+                this.BeginVisit(tr);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, tr);
+                if (!isActFromRootToBottom)
+                    this._act?.Invoke(this, tr);
+                this.EndVisit(tr);
+            }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCatalogs.GroupRelations.GroupListOneToOneRelations);
+            this.EndVisit(currModel.GroupCatalogs.GroupRelations.GroupListOneToOneRelations);
+            #endregion OneToOne
+
+            #region ManyToMany
+            this.BeginVisit(currModel.GroupCatalogs.GroupRelations.GroupListManyToManyRelations);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCatalogs.GroupRelations.GroupListManyToManyRelations);
+            foreach (var tr in currModel.GroupCatalogs.GroupRelations.GroupListManyToManyRelations.ListRelations)
+            {
+                this.currManyToManyRelation = tr;
+                this.BeginVisit(tr);
+                if (isActFromRootToBottom)
+                    this._act?.Invoke(this, tr);
+                if (!isActFromRootToBottom)
+                    this._act?.Invoke(this, tr);
+                this.EndVisit(tr);
+            }
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCatalogs.GroupRelations.GroupListManyToManyRelations);
+            this.EndVisit(currModel.GroupCatalogs.GroupRelations.GroupListManyToManyRelations);
+            #endregion ManyToMany
+
+            if (!isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCatalogs.GroupRelations);
+            this.EndVisit(currModel.GroupCatalogs.GroupRelations);
+            #endregion Relations
+
+            this.BeginVisit(currModel.GroupCatalogs.GroupListCatalogs);
+            if (isActFromRootToBottom)
+                this._act?.Invoke(this, this.currModel.GroupCatalogs.GroupListCatalogs);
+            this.BeginVisit(currModel.GroupCatalogs.GroupListCatalogs.ListCatalogs);
+            foreach (var tt in currModel.GroupCatalogs.GroupListCatalogs.ListCatalogs)
             {
                 this.BeginVisit(tt);
                 this.currCat = tt;
@@ -109,9 +160,12 @@ namespace vSharpStudio.common
                 this.EndVisit(tt);
                 this.currCat = null;
             }
-            this.EndVisit(currModel.GroupCatalogs.ListCatalogs);
+            this.EndVisit(currModel.GroupCatalogs.GroupListCatalogs.ListCatalogs);
             if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupCatalogs);
+                this._act?.Invoke(this, this.currModel.GroupCatalogs.GroupListCatalogs);
+            this.EndVisit(currModel.GroupCatalogs.GroupListCatalogs);
+            //if (!isActFromRootToBottom)
+            //    this._act?.Invoke(this, this.currModel.GroupCatalogs);
             this.EndVisit(currModel.GroupCatalogs);
             #endregion Catalogs
 
@@ -240,54 +294,6 @@ namespace vSharpStudio.common
                 this._act?.Invoke(this, this.currModel.GroupDocuments);
             this.EndVisit(currModel.GroupDocuments);
             #endregion Documents
-
-            #region Relations
-            this.BeginVisit(currModel.GroupRelations);
-            if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRelations);
-
-            #region OneToOne
-            this.BeginVisit(currModel.GroupRelations.GroupListOneToOneRelations);
-            if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListOneToOneRelations);
-            foreach (var tr in currModel.GroupRelations.GroupListOneToOneRelations.ListRelations)
-            {
-                this.currOneToOneRelation = tr;
-                this.BeginVisit(tr);
-                if (isActFromRootToBottom)
-                    this._act?.Invoke(this, tr);
-                if (!isActFromRootToBottom)
-                    this._act?.Invoke(this, tr);
-                this.EndVisit(tr);
-            }
-            if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListOneToOneRelations);
-            this.EndVisit(currModel.GroupRelations.GroupListOneToOneRelations);
-            #endregion OneToOne
-
-            #region ManyToMany
-            this.BeginVisit(currModel.GroupRelations.GroupListManyToManyRelations);
-            if (isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListManyToManyRelations);
-            foreach (var tr in currModel.GroupRelations.GroupListManyToManyRelations.ListRelations)
-            {
-                this.currManyToManyRelation = tr;
-                this.BeginVisit(tr);
-                if (isActFromRootToBottom)
-                    this._act?.Invoke(this, tr);
-                if (!isActFromRootToBottom)
-                    this._act?.Invoke(this, tr);
-                this.EndVisit(tr);
-            }
-            if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRelations.GroupListManyToManyRelations);
-            this.EndVisit(currModel.GroupRelations.GroupListManyToManyRelations);
-            #endregion ManyToMany
-
-            if (!isActFromRootToBottom)
-                this._act?.Invoke(this, this.currModel.GroupRelations);
-            this.EndVisit(currModel.GroupRelations);
-            #endregion Relations
 
             #region Constants
             this.BeginVisit(currModel.GroupConstantGroups);
@@ -591,6 +597,8 @@ namespace vSharpStudio.common
         #endregion Constant
 
         #region Catalog
+        protected virtual void BeginVisit(IGroupCatalogs cn) { }
+        protected virtual void EndVisit(IGroupCatalogs cn) { }
         protected virtual void BeginVisit(IGroupListCatalogs cn) { }
         protected virtual void EndVisit(IGroupListCatalogs cn) { }
         protected virtual void BeginVisit(ICatalog ct) { }

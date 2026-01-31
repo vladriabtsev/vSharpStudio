@@ -216,7 +216,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new RelationOneToOne(this.Parent);
             this.ParentOneToOneGroupRelations.ListRelations.Add(node, this);
-            this.GetUniqueName(Defaults.OneToOneRelationName, node, this.ParentOneToOneGroupRelations.ListRelations);
+            this.GetUniqueName(Defaults.RelationOneToOneName, node, this.ParentOneToOneGroupRelations.ListRelations);
             var model = this.ParentOneToOneGroupRelations.ParentGroupRelations.ParentModel;
             node.ShortId = ++this.ParentOneToOneGroupRelations.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
@@ -297,7 +297,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 Debug.Assert(this.Parent != null);
                 if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
-                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupCatalogs.ListCatalogs);
+                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs);
                 else if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
                 else throw new NotImplementedException();
@@ -310,7 +310,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 Debug.Assert(this.Parent != null);
                 if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
-                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupCatalogs.ListCatalogs);
+                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs);
                 else if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
                 else throw new NotImplementedException();

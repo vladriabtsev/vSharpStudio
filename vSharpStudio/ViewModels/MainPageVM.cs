@@ -804,7 +804,7 @@ namespace vSharpStudio.ViewModels
             }
             // Catalogs
             hash.Clear();
-            foreach (var t in cfg.Model.GroupCatalogs.ListCatalogs)
+            foreach (var t in cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
             {
                 if (hash.Contains(t.ShortId))
                     throw new NotSupportedException();
@@ -812,7 +812,7 @@ namespace vSharpStudio.ViewModels
                     throw new NotSupportedException();
                 hash.Add(t.ShortId);
             }
-            foreach (var tt in cfg.Model.GroupCatalogs.ListCatalogs)
+            foreach (var tt in cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
             {
                 hash.Clear();
                 foreach (var t in tt.GroupProperties.ListProperties)
@@ -848,7 +848,7 @@ namespace vSharpStudio.ViewModels
             }
             // Details
             hash.Clear();
-            foreach (var t in cfg.Model.GroupCatalogs.ListCatalogs)
+            foreach (var t in cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
             {
                 if (hash.Contains(t.ShortId))
                     throw new NotSupportedException();
@@ -856,7 +856,7 @@ namespace vSharpStudio.ViewModels
                     throw new NotSupportedException();
                 hash.Add(t.ShortId);
             }
-            foreach (var tt in cfg.Model.GroupCatalogs.ListCatalogs)
+            foreach (var tt in cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
             {
                 hash.Clear();
                 foreach (var t in tt.GroupDetails.ListDetails)
@@ -901,7 +901,7 @@ namespace vSharpStudio.ViewModels
             }
             // Many to many
             hash.Clear();
-            foreach (var t in cfg.Model.GroupRelations.GroupListManyToManyRelations.ListRelations)
+            foreach (var t in cfg.Model.GroupCatalogs.GroupRelations.GroupListManyToManyRelations.ListRelations)
             {
                 if (hash.Contains(t.ShortId))
                     throw new NotSupportedException();
@@ -911,7 +911,7 @@ namespace vSharpStudio.ViewModels
             }
             // One to one
             hash.Clear();
-            foreach (var t in cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations)
+            foreach (var t in cfg.Model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations)
             {
                 if (hash.Contains(t.ShortId))
                     throw new NotSupportedException();

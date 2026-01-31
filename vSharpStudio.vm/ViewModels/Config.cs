@@ -329,8 +329,6 @@ namespace vSharpStudio.vm.ViewModels
         private ITreeConfigNode? _SelectedNode;
         public Action? OnSelectedNodeChanged { get; set; }
         public Action<ITreeConfigNode?, ITreeConfigNode?>? OnSelectedNodeChanging { get; set; }
-        //public Func<Task>? OnSelectedNodeChangedAsync { get; set; }
-        //public Func<ITreeConfigNode?, ITreeConfigNode?, Task>? OnSelectedNodeChangingAsync { get; set; }
 
         #region Connection string editor
 

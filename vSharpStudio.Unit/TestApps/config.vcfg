@@ -1,30 +1,30 @@
-÷
-$b5656af8-2850-4e12-8c1b-0b66e6fe048etest1*test1:ÕÔøÀ†ŒæáÄ™B
-$93c980ce-93be-466e-b036-a8ad4b46e933BaseConfigsBaseConfigs@≤ı
-$af2aed00-970a-4370-89bc-3d1ad4d9910eModel *Model@rIdíReCoRdVeRsIoNòö$bdd094d2-e999-4aa9-b27e-faad9877bdf1¢$40b333d6-4757-4cca-a3fb-1c93c9b694cc∫$08bd5ff4-f559-4d03-8694-6e923b60357d¬$331fd5f9-3705-41a9-927f-1180121ef395 $42ddb9e6-5d7e-45c6-89ec-848511ba17db“$a949020e-1fb9-4a4b-8e99-fd5c83bb9ebf≤$3f784dc8-33ce-430d-a0e5-5a3196958267∫$5951db53-d4b3-40c2-9859-9cfc1f4fbfc7 $0d2aef00-e480-4311-850b-4b64aeae6fa4“$a860e9c2-b91a-4ccb-8f67-b0a68e98f970™∆
-$3277e7b6-29ed-4d65-a56f-76a9b154cf13	Constants"	Constants2CnstB~
-$7d332a41-ad6c-4de2-918e-c7c49f707e82Gr"Gr2D
-$bb0b5729-952f-4a5c-bf4f-5295642d6e31c1"c12
+§
+$1289ebc0-116e-45ad-a603-25d25586f31btest1*test1:Ùü¯ÀÃÒ¨öÄ™B
+$580c3cc5-b1c2-4988-a161-25607af16e9cBaseConfigsBaseConfigs@≤√
+$99cc8693-ae84-4ab1-8cea-8422fefad1a5Model *Model@rIdíReCoRdVeRsIoNòö$9703c3af-73db-466f-a8d1-5fb9f7deb9f3¢$86a7bf96-8d64-4799-89ca-193bc33857f2∫$e4e72ac2-c657-4a44-8f46-9bcbaac937ca¬$8463c3d1-f506-48d8-b3cf-fe082d4459a3 $1ce155e6-c51c-4e0d-b90d-718de5c4fca8“$d4d8821b-47ec-42fe-a81b-13c1a5a0dd91≤$40182a2a-6225-4a9b-9d7b-67052faac1e2∫$38c273f0-d5fb-4a22-9067-482244cdac66 $f97afebc-ed88-481d-abe7-ae38d010fb19“$155d74a2-68b6-4973-8404-ec0504bd7281™∆
+$7d8a78b2-33a5-4b99-9196-b67a04d49319	Constants"	Constants2CnstB~
+$af3c058b-72ea-47eb-ab0f-741a68ac0872Gr"Gr2D
+$954e449f-a7ef-4b29-946c-53a08cd3ba8fc1"c12
 PhpÅÄÄ @HXhX≤D
-$31813d62-68bc-41ad-a6ad-105448c62f61Enumerations"Enumerations@∫u
-$3869946c-ff5a-44bd-89a0-d6c5c9abe659Catalogs"Catalogs2CtlgH	∞∫Code¿ Name⁄DescriptionÄê¬IsFolder¬ë
-$731c7dae-a8ac-418a-8fce-1e12760bc512	Documents"	Documents2Doc:o
-$c1971158-d221-4147-bffd-c61a6fb49702Timeline"Timeline@bDocDateTimej$35a4144d-f4b0-4393-9af0-fd58023049f4B>
-$439a6131-d817-4eaa-a18b-83d204e352fe	Documents"	Documents@rDocShortTypeId¢m
-$934459c7-15f4-4e44-b064-05be32b25105	Registers"	Registers0JRegÄ⁄$7f72707e-c75f-4907-a591-77108732f583™<
-$24b211cf-1196-4a2e-9789-1eefed7e2319Journals"Journals@≤>
-$a2a539fc-6ba1-404a-9d95-a7c868e243ce	Sequences"	Sequences∫Ä»é¸çˇˇˇˇ 	DocNumber–“¶
-$9779e689-fa27-47b2-993d-563e573ae404Common"Common0:6
-$e11f4c55-18b0-4522-8187-127a157b9cc4Roles"Roles@B4
-$3ebef4c7-5870-4ce5-8bd1-a0e96beca579Views"Views‚‘
-$c9784af1-ebe4-4190-b59d-46f639a41d1c	Relations
-"	Relations:L
-$257b76b9-aeac-4965-861f-a6674eaade80
+$84b8fff9-34f9-44cc-8bdc-5c220c877b87Enumerations"Enumerations@∫í
+$603f9d89-aeac-46e6-9267-6c5fe6c6c6fdCatalogs	"Catalogs2CtlgBD
+$b7f6abde-1447-445e-87ce-74ef22290068ListCatalogs"ListCatalogsHJ‘
+$f83058ca-add6-45c6-904a-9754aa60968b	Relations"	Relations:L
+$81ff7eba-34b4-4e53-9410-c8ed39649e7d
 ManyToMany"
 ManyToMany2
 ManyToManyHBF
-$240ed548-d110-4f56-8d11-29fb2cdb102eOneToOne"OneToOne2OneToOneH¬à
-$1ad339b0-fe29-48fc-a5c6-8692df4c8c75PluginsPlugins"ø
+$342fe8e5-f09a-45ce-9c54-390a16d936bcOneToOne"OneToOne2OneToOneH∞∫Code¿ Name⁄DescriptionÄê¬IsFolder¬ô
+$6041f414-5467-466d-a458-d14da36c8c8d	Documents"	Documents2Doc:o
+$28aa3bb8-fe70-4709-9b12-877b2085d74dTimeline"Timeline@bDocDateTimej$b80b2628-a91b-498c-9668-af72166bf60cBF
+$09d0bff3-4288-4930-af9f-9e2f0c4e77b8ListDocuments"ListDocuments@rDocShortTypeId¢m
+$5ab11c4e-eed1-43ee-b59c-08a2623ef7d2	Registers"	Registers0JRegÄ⁄$642f098f-ad9e-48c4-8ae5-905cdd35d419™<
+$25c6751f-9895-472e-aa19-c1d48018bf00Journals"Journals@≤>
+$915a8c8f-674d-4a28-b2fd-b8a914ea4cee	Sequences"	Sequences∫Ä»é¸çˇˇˇˇ 	DocNumber–“¶
+$e104b21b-7248-4bfe-83ba-c6dff705ecc2Common"Common0:6
+$aa0e3e25-1b0d-4a3d-8ec4-6a23103a1ce1Roles"Roles@B4
+$21133f41-4237-4163-a9c8-28ee8ffce046Views"Views¬à
+$6c4f0abd-f0ad-41a2-8667-f828235f7971PluginsPlugins"ø
 $3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(2_
 $1E35FCDB-6425-4C66-B047-6882738AF552
 RepositoryDB repository code generation 2
@@ -48,4 +48,4 @@ $D535B939-6A33-4B96-B64C-F8FB78FD9F940.1Sample2"'vSharpStudio plugin with on
 $8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer 2	DbAccess2:Sample2X"Ë
 $EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(2Ç
 $32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions 2gRPC service:gRPCX@	 D
-$0ee91e85-7d22-49dc-bb73-510d75184f09ApplicationsApplications@
+$b87e784b-73cf-4f6b-bd84-b5b7b550c7cdApplicationsApplications@

@@ -29,9 +29,9 @@ namespace vSharpStudio.vm.ViewModels
             sb.Append("CAT ");
             sb.Append(this.Name);
             sb.Append(", ");
-            sb.Append(this.ParentGroupListCatalogs.ParentModel.PKeyName);
+            sb.Append(this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel.PKeyName);
             sb.Append(":{");
-            sb.Append(this.ParentGroupListCatalogs.ParentModel.PKeyName);
+            sb.Append(this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel.PKeyName);
             sb.Append(",nq}");
             if (this.UseTree)
             {
@@ -53,7 +53,7 @@ namespace vSharpStudio.vm.ViewModels
             if (isOptimistic)
             {
                 sb.Append(" RecVer:{");
-                sb.Append(this.ParentGroupListCatalogs.ParentModel.RecordVersionFieldName);
+                sb.Append(this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel.RecordVersionFieldName);
                 sb.Append(",nq}");
             }
             return sb.ToString();
@@ -311,7 +311,7 @@ namespace vSharpStudio.vm.ViewModels
             node.Parent = this.Parent;
             this.ParentGroupListCatalogs.ListCatalogs.Add(node, this);
             this._Name += "2";
-            var model = this.ParentGroupListCatalogs.ParentModel;
+            var model = this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
             node.ShortId = ++this.ParentGroupListCatalogs.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
@@ -322,7 +322,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Catalog(this.Parent);
             this.ParentGroupListCatalogs.ListCatalogs.Add(node, this);
             this.GetUniqueName(Defaults.CatalogName, node, this.ParentGroupListCatalogs.ListCatalogs);
-            var model = this.ParentGroupListCatalogs.ParentModel;
+            var model = this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
             node.ShortId = ++this.ParentGroupListCatalogs.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
@@ -439,7 +439,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.UseCodeProperty == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.UseCodeProperty;
+            return this.ParentGroupListCatalogs.ParentGroupCatalogs.UseCodeProperty;
         }
         public bool GetUseNameProperty()
         {
@@ -447,7 +447,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.UseNameProperty == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.UseNameProperty;
+            return this.ParentGroupListCatalogs.ParentGroupCatalogs.UseNameProperty;
         }
         public bool GetUseDescriptionProperty()
         {
@@ -455,7 +455,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.UseDescriptionProperty == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.UseDescriptionProperty;
+            return this.ParentGroupListCatalogs.ParentGroupCatalogs.UseDescriptionProperty;
         }
 
         public IReadOnlyList<IProperty> GetAllProperties(bool isUseRecordVersionField)
@@ -493,7 +493,7 @@ namespace vSharpStudio.vm.ViewModels
             Property prp;
             if (this.UseTree)
             {
-                var model = this.ParentGroupListCatalogs.ParentModel;
+                var model = this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
                 if (this.UseSeparateTreeForFolders)
                 {
                     prp = this.PropertyRefFolder;
@@ -519,7 +519,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var model = this.ParentGroupListCatalogs.ParentModel;
+            var model = this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
             var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             res.Add(prp);
             if (this.UseTree)
@@ -609,7 +609,7 @@ namespace vSharpStudio.vm.ViewModels
             if (!isExcludeSpecial)
                 this.GetSpecialProperties(res, isOptimistic);
             uint pos = this.GroupProperties.LastGenPosition;
-            foreach (var t in this.Cfg.Model.GroupRelations.GroupListOneToOneRelations.ListRelations)
+            foreach (var t in this.Cfg.Model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations)
             {
                 if (t.GuidObj1 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY))
                 {
@@ -736,7 +736,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             ViewTreeData? viewTreeData = null;
             ViewListData? viewListData = null;
-            var model = this.ParentGroupListCatalogs.ParentModel;
+            var model = this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
             Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
             IProperty pId = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
             Property? pRefTreeParent = null;
@@ -809,7 +809,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridSortable == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.GetIsGridSortable();
+            return this.ParentGroupListCatalogs.ParentGroupCatalogs.IsGridSortableGet();
         }
         public bool IsGridFilterableGet()
         {
@@ -817,7 +817,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridFilterable == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.GetIsGridFilterable();
+            return this.ParentGroupListCatalogs.ParentGroupCatalogs.IsGridFilterableGet();
         }
         public bool IsGridSortableCustomGet()
         {
@@ -825,7 +825,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridSortableCustom == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.GetIsGridSortableCustom();
+            return this.ParentGroupListCatalogs.ParentGroupCatalogs.IsGridSortableCustomGet();
         }
 
         #region Roles
@@ -888,7 +888,7 @@ namespace vSharpStudio.vm.ViewModels
             EnumCatalogDetailAccess ra = this.dicCatalogAccess[role.Guid].EditAccess;
             if (ra == EnumCatalogDetailAccess.C_BY_PARENT)
             {
-                ra = this.ParentGroupListCatalogs.GetRoleCatalogAccess(role);
+                ra = this.ParentGroupListCatalogs.ParentGroupCatalogs.GetRoleCatalogAccess(role);
             }
             return ra switch
             {
@@ -903,7 +903,7 @@ namespace vSharpStudio.vm.ViewModels
             EnumPrintAccess ra = EnumPrintAccess.PR_BY_PARENT;
             if (!this.dicCatalogAccess.TryGetValue(role.Guid, out var r) || r.PrintAccess == EnumPrintAccess.PR_BY_PARENT)
             {
-                ra = this.ParentGroupListCatalogs.GetRoleCatalogPrint(role);
+                ra = this.ParentGroupListCatalogs.ParentGroupCatalogs.GetRoleCatalogPrint(role);
             }
             Debug.Assert(ra != EnumPrintAccess.PR_BY_PARENT);
             return ra;
@@ -912,13 +912,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.dicCatalogAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
                 return r.EditAccess;
-            return this.ParentGroupListCatalogs.GetRoleCatalogAccess(role);
+            return this.ParentGroupListCatalogs.ParentGroupCatalogs.GetRoleCatalogAccess(role);
         }
         public EnumPrintAccess GetRoleCatalogPrint(IRole role)
         {
             if (this.dicCatalogAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
                 return r.PrintAccess;
-            return this.ParentGroupListCatalogs.GetRoleCatalogPrint(role);
+            return this.ParentGroupListCatalogs.ParentGroupCatalogs.GetRoleCatalogPrint(role);
         }
         public IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access)
         {

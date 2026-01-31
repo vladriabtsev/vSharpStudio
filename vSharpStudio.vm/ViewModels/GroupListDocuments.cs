@@ -47,7 +47,7 @@ namespace vSharpStudio.vm.ViewModels
         private void Init()
         {
             OnSortTypeChanged();
-            this._Name = Defaults.Documents;
+            this._Name = Defaults.DocumentsListName;
             this.ListDocuments.OnAddingAction = (t) =>
             {
                 t.IsNew = true;

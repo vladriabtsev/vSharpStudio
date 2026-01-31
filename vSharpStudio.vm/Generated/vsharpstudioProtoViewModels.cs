@@ -8123,9 +8123,8 @@ namespace vSharpStudio.vm.ViewModels
             this._GroupCommon = new GroupListCommon(this); 
             this._GroupConstantGroups = new GroupConstantGroups(this); 
             this._GroupEnumerations = new GroupListEnumerations(this); 
-            this._GroupCatalogs = new GroupListCatalogs(this); 
+            this._GroupCatalogs = new GroupCatalogs(this); 
             this._GroupDocuments = new GroupDocuments(this); 
-            this._GroupRelations = new RelationsGroup(this); 
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); 
             this._ListPluginGroupsModelExtensions = new ObservableCollectionWithActions<PluginGroupModelExtensions>(); 
             this.OnCreated();
@@ -8183,11 +8182,9 @@ namespace vSharpStudio.vm.ViewModels
             if (isDeep) 
                 vm._GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.Clone(vm, from.GroupEnumerations, isDeep);
             if (isDeep) 
-                vm._GroupCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.Clone(vm, from.GroupCatalogs, isDeep);
+                vm._GroupCatalogs = vSharpStudio.vm.ViewModels.GroupCatalogs.Clone(vm, from.GroupCatalogs, isDeep);
             if (isDeep) 
                 vm._GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.Clone(vm, from.GroupDocuments, isDeep);
-            if (isDeep) 
-                vm._GroupRelations = vSharpStudio.vm.ViewModels.RelationsGroup.Clone(vm, from.GroupRelations, isDeep);
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in from.ListNodeGeneratorsSettings) 
                 vm._ListNodeGeneratorsSettings.AddClone(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -8236,11 +8233,9 @@ namespace vSharpStudio.vm.ViewModels
             if (isDeep) 
                 vSharpStudio.vm.ViewModels.GroupListEnumerations.Update((GroupListEnumerations)to.GroupEnumerations, from.GroupEnumerations, isDeep);
             if (isDeep) 
-                vSharpStudio.vm.ViewModels.GroupListCatalogs.Update((GroupListCatalogs)to.GroupCatalogs, from.GroupCatalogs, isDeep);
+                vSharpStudio.vm.ViewModels.GroupCatalogs.Update((GroupCatalogs)to.GroupCatalogs, from.GroupCatalogs, isDeep);
             if (isDeep) 
                 vSharpStudio.vm.ViewModels.GroupDocuments.Update((GroupDocuments)to.GroupDocuments, from.GroupDocuments, isDeep);
-            if (isDeep) 
-                vSharpStudio.vm.ViewModels.RelationsGroup.Update((RelationsGroup)to.GroupRelations, from.GroupRelations, isDeep);
             if (isDeep) 
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -8373,12 +8368,10 @@ namespace vSharpStudio.vm.ViewModels
             vSharpStudio.vm.ViewModels.GroupConstantGroups.ConvertToVM(m.GroupConstantGroups, (GroupConstantGroups)vm.GroupConstantGroups); 
             vm.GroupEnumerations ??= new GroupListEnumerations(vm); 
             vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToVM(m.GroupEnumerations, (GroupListEnumerations)vm.GroupEnumerations); 
-            vm.GroupCatalogs ??= new GroupListCatalogs(vm); 
-            vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToVM(m.GroupCatalogs, (GroupListCatalogs)vm.GroupCatalogs); 
+            vm.GroupCatalogs ??= new GroupCatalogs(vm); 
+            vSharpStudio.vm.ViewModels.GroupCatalogs.ConvertToVM(m.GroupCatalogs, (GroupCatalogs)vm.GroupCatalogs); 
             vm.GroupDocuments ??= new GroupDocuments(vm); 
             vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToVM(m.GroupDocuments, (GroupDocuments)vm.GroupDocuments); 
-            vm.GroupRelations ??= new RelationsGroup(vm); 
-            vSharpStudio.vm.ViewModels.RelationsGroup.ConvertToVM(m.GroupRelations, (RelationsGroup)vm.GroupRelations); 
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in m.ListNodeGeneratorsSettings) 
             {
@@ -8543,9 +8536,8 @@ namespace vSharpStudio.vm.ViewModels
             m.GroupCommon = vSharpStudio.vm.ViewModels.GroupListCommon.ConvertToProto((GroupListCommon)vm.GroupCommon); 
             m.GroupConstantGroups = vSharpStudio.vm.ViewModels.GroupConstantGroups.ConvertToProto((GroupConstantGroups)vm.GroupConstantGroups); 
             m.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToProto((GroupListEnumerations)vm.GroupEnumerations); 
-            m.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToProto((GroupListCatalogs)vm.GroupCatalogs); 
+            m.GroupCatalogs = vSharpStudio.vm.ViewModels.GroupCatalogs.ConvertToProto((GroupCatalogs)vm.GroupCatalogs); 
             m.GroupDocuments = vSharpStudio.vm.ViewModels.GroupDocuments.ConvertToProto((GroupDocuments)vm.GroupDocuments); 
-            m.GroupRelations = vSharpStudio.vm.ViewModels.RelationsGroup.ConvertToProto((RelationsGroup)vm.GroupRelations); 
             foreach (var t in vm.ListNodeGeneratorsSettings) 
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); 
             foreach (var t in vm.ListPluginGroupsModelExtensions) 
@@ -8570,8 +8562,6 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupCatalogs.AcceptConfigNodeVisitor(visitor); 
         
             this.GroupDocuments.AcceptConfigNodeVisitor(visitor); 
-        
-            this.GroupRelations.AcceptConfigNodeVisitor(visitor); 
         
             foreach (var t in this.ListNodeGeneratorsSettings) 
             {
@@ -9157,7 +9147,7 @@ namespace vSharpStudio.vm.ViewModels
         IGroupListEnumerations IModel.GroupEnumerations { get { return (this as Model).GroupEnumerations; } } 
         
         [Browsable(false)]
-        public GroupListCatalogs GroupCatalogs 
+        public GroupCatalogs GroupCatalogs 
         { 
             get { return this._GroupCatalogs; }
             set
@@ -9169,10 +9159,10 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        private GroupListCatalogs _GroupCatalogs; 
-        partial void OnGroupCatalogsChanging(ref GroupListCatalogs to, ref bool isCancel); 
+        private GroupCatalogs _GroupCatalogs; 
+        partial void OnGroupCatalogsChanging(ref GroupCatalogs to, ref bool isCancel); 
         partial void OnGroupCatalogsChanged();
-        IGroupListCatalogs IModel.GroupCatalogs { get { return (this as Model).GroupCatalogs; } } 
+        IGroupCatalogs IModel.GroupCatalogs { get { return (this as Model).GroupCatalogs; } } 
         
         [Browsable(false)]
         public GroupDocuments GroupDocuments 
@@ -9191,24 +9181,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnGroupDocumentsChanging(ref GroupDocuments to, ref bool isCancel); 
         partial void OnGroupDocumentsChanged();
         IGroupDocuments IModel.GroupDocuments { get { return (this as Model).GroupDocuments; } } 
-        
-        [Browsable(false)]
-        public RelationsGroup GroupRelations 
-        { 
-            get { return this._GroupRelations; }
-            set
-            {
-                // Use 'OnGroupRelationsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._GroupRelations, value, (t) => { bool isCancel = false; this.OnGroupRelationsChanging(ref value, ref isCancel); if (isCancel) return; this._GroupRelations = value; this.OnGroupRelationsChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                }
-            }
-        }
-        private RelationsGroup _GroupRelations; 
-        partial void OnGroupRelationsChanging(ref RelationsGroup to, ref bool isCancel); 
-        partial void OnGroupRelationsChanged();
-        IRelationsGroup IModel.GroupRelations { get { return (this as Model).GroupRelations; } } 
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings 
@@ -23758,61 +23730,6 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
-            this.RuleFor(x => x.PrefixForCompositionNames).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.PropertyCodeName).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PropertyCodeName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.PropertyNameName).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PropertyNameName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.PropertyDescriptionName).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PropertyDescriptionName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.PropertyIsFolderName).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PropertyIsFolderName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
         }
     }
     public partial class GroupListCatalogs : ConfigObjectVmGenSettings<GroupListCatalogs, GroupListCatalogsValidator>, IComparable<GroupListCatalogs>, IConfigAcceptVisitor, IGroupListCatalogs 
@@ -23874,25 +23791,11 @@ namespace vSharpStudio.vm.ViewModels
             vm._NameUi = from.NameUi; 
             vm._Description = from.Description; 
             vm._SortType = from.SortType; 
-            vm._PrefixForCompositionNames = from.PrefixForCompositionNames; 
             vm._ListCatalogs = new ConfigNodesCollection<Catalog>(vm); 
             foreach (var t in from.ListCatalogs) 
                 vm._ListCatalogs.AddClone(Catalog.Clone(vm, (Catalog)t, isDeep));
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
             vm._LastShortId = from.LastShortId; 
-            vm._UseCodeProperty = from.UseCodeProperty; 
-            vm._PropertyCodeName = from.PropertyCodeName; 
-            vm._UseNameProperty = from.UseNameProperty; 
-            vm._PropertyNameName = from.PropertyNameName; 
-            vm._UseDescriptionProperty = from.UseDescriptionProperty; 
-            vm._PropertyDescriptionName = from.PropertyDescriptionName; 
-            vm._UseCodePropertyInSeparateTree = from.UseCodePropertyInSeparateTree; 
-            vm._UseNamePropertyInSeparateTree = from.UseNamePropertyInSeparateTree; 
-            vm._UseDescriptionPropertyInSeparateTree = from.UseDescriptionPropertyInSeparateTree; 
-            vm._PropertyIsFolderName = from.PropertyIsFolderName; 
-            vm._IsGridSortable = from.IsGridSortable; 
-            vm._IsGridSortableCustom = from.IsGridSortableCustom; 
-            vm._IsGridFilterable = from.IsGridFilterable; 
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in from.ListNodeGeneratorsSettings) 
                 vm._ListNodeGeneratorsSettings.AddClone(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -23909,7 +23812,6 @@ namespace vSharpStudio.vm.ViewModels
             to._NameUi = from.NameUi; 
             to._Description = from.Description; 
             to._SortType = from.SortType; 
-            to._PrefixForCompositionNames = from.PrefixForCompositionNames; 
             if (isDeep) 
             {
                 foreach (var t in to.ListCatalogs.ToList())
@@ -23948,19 +23850,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
             to._LastShortId = from.LastShortId; 
-            to._UseCodeProperty = from.UseCodeProperty; 
-            to._PropertyCodeName = from.PropertyCodeName; 
-            to._UseNameProperty = from.UseNameProperty; 
-            to._PropertyNameName = from.PropertyNameName; 
-            to._UseDescriptionProperty = from.UseDescriptionProperty; 
-            to._PropertyDescriptionName = from.PropertyDescriptionName; 
-            to._UseCodePropertyInSeparateTree = from.UseCodePropertyInSeparateTree; 
-            to._UseNamePropertyInSeparateTree = from.UseNamePropertyInSeparateTree; 
-            to._UseDescriptionPropertyInSeparateTree = from.UseDescriptionPropertyInSeparateTree; 
-            to._PropertyIsFolderName = from.PropertyIsFolderName; 
-            to._IsGridSortable = from.IsGridSortable; 
-            to._IsGridSortableCustom = from.IsGridSortableCustom; 
-            to._IsGridFilterable = from.IsGridFilterable; 
             if (isDeep) 
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -24029,7 +23918,6 @@ namespace vSharpStudio.vm.ViewModels
             vm._NameUi = m.NameUi; 
             vm._Description = m.Description; 
             vm._SortType = (EnumSortingType)m.SortType; 
-            vm._PrefixForCompositionNames = m.PrefixForCompositionNames; 
             vm._ListCatalogs = new ConfigNodesCollection<Catalog>(vm); 
             foreach (var t in m.ListCatalogs) 
             {
@@ -24038,19 +23926,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
             vm._LastShortId = m.LastShortId; 
-            vm._UseCodeProperty = m.UseCodeProperty; 
-            vm._PropertyCodeName = m.PropertyCodeName; 
-            vm._UseNameProperty = m.UseNameProperty; 
-            vm._PropertyNameName = m.PropertyNameName; 
-            vm._UseDescriptionProperty = m.UseDescriptionProperty; 
-            vm._PropertyDescriptionName = m.PropertyDescriptionName; 
-            vm._UseCodePropertyInSeparateTree = m.UseCodePropertyInSeparateTree; 
-            vm._UseNamePropertyInSeparateTree = m.UseNamePropertyInSeparateTree; 
-            vm._UseDescriptionPropertyInSeparateTree = m.UseDescriptionPropertyInSeparateTree; 
-            vm._PropertyIsFolderName = m.PropertyIsFolderName; 
-            vm._IsGridSortable = (EnumUseType)m.IsGridSortable; 
-            vm._IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; 
-            vm._IsGridFilterable = (EnumUseType)m.IsGridFilterable; 
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in m.ListNodeGeneratorsSettings) 
             {
@@ -24100,59 +23975,10 @@ namespace vSharpStudio.vm.ViewModels
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'description'", ex); 
             }
             m.SortType = (Proto.Config.proto_enum_sorting_type)vm.SortType; 
-            try 
-            { 
-                m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'prefix_for_composition_names'", ex); 
-            }
             foreach (var t in vm.ListCatalogs) 
                 m.ListCatalogs.Add(Catalog.ConvertToProto((Catalog)t)); 
             m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
             m.LastShortId = vm.LastShortId; 
-            m.UseCodeProperty = vm.UseCodeProperty; 
-            try 
-            { 
-                m.PropertyCodeName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCodeName)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_code_name'", ex); 
-            }
-            m.UseNameProperty = vm.UseNameProperty; 
-            try 
-            { 
-                m.PropertyNameName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyNameName)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_name_name'", ex); 
-            }
-            m.UseDescriptionProperty = vm.UseDescriptionProperty; 
-            try 
-            { 
-                m.PropertyDescriptionName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDescriptionName)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_description_name'", ex); 
-            }
-            m.UseCodePropertyInSeparateTree = vm.UseCodePropertyInSeparateTree; 
-            m.UseNamePropertyInSeparateTree = vm.UseNamePropertyInSeparateTree; 
-            m.UseDescriptionPropertyInSeparateTree = vm.UseDescriptionPropertyInSeparateTree; 
-            try 
-            { 
-                m.PropertyIsFolderName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyIsFolderName)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_is_folder_name'", ex); 
-            }
-            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; 
-            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; 
-            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; 
             foreach (var t in vm.ListNodeGeneratorsSettings) 
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); 
             return m;
@@ -24276,26 +24102,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnSortTypeChanging(ref EnumSortingType to, ref bool isCancel); 
         partial void OnSortTypeChanged();
         
-        [PropertyOrderAttribute(5)]
-        [DisplayName("Composition prefix")]
-        [Description("Prefix for catalogs composition names. Used if set to use in config model")]
-        public string PrefixForCompositionNames 
-        { 
-            get { return this._PrefixForCompositionNames; }
-            set
-            {
-                // Use 'OnPrefixForCompositionNamesChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._PrefixForCompositionNames, value, (t) => { bool isCancel = false; this.OnPrefixForCompositionNamesChanging(ref value, ref isCancel); if (isCancel) return; this._PrefixForCompositionNames = value; this.OnPrefixForCompositionNamesChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private string _PrefixForCompositionNames = string.Empty; 
-        partial void OnPrefixForCompositionNamesChanging(ref string to, ref bool isCancel); 
-        partial void OnPrefixForCompositionNamesChanged();
-        
         [Browsable(false)]
         public ConfigNodesCollection<Catalog> ListCatalogs 
         { 
@@ -24371,6 +24177,610 @@ namespace vSharpStudio.vm.ViewModels
         private uint _LastShortId; 
         partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
         partial void OnLastShortIdChanged();
+        
+        [Browsable(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings 
+        { 
+            get { return this._ListNodeGeneratorsSettings; }
+            set
+            {
+                // Use 'OnListNodeGeneratorsSettingsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._ListNodeGeneratorsSettings, value, (t) => { bool isCancel = false; this.OnListNodeGeneratorsSettingsChanging(value, ref isCancel); if (isCancel) return; this._ListNodeGeneratorsSettings = value; this.OnListNodeGeneratorsSettingsChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings; 
+        partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to, ref bool isCancel); 
+        partial void OnListNodeGeneratorsSettingsChanged();
+        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListCatalogs.ListNodeGeneratorsSettings { get { return (this as GroupListCatalogs).ListNodeGeneratorsSettings; } } 
+        
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } 
+        #endregion Properties
+    }
+    
+    
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    //    IsISortingValue: False 
+    public partial class GroupCatalogsValidator : ValidatorBase<GroupCatalogs, GroupCatalogsValidator>  
+    {
+        private void GeneralRules()
+        {
+            this.RuleFor(x => x.Guid).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.Name).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.NameUi).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.Description).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.PrefixForCompositionNames).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.PropertyCodeName).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("PropertyCodeName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.PropertyNameName).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("PropertyNameName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.PropertyDescriptionName).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("PropertyDescriptionName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.PropertyIsFolderName).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("PropertyIsFolderName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+        }
+    }
+    public partial class GroupCatalogs : ConfigObjectVmGenSettings<GroupCatalogs, GroupCatalogsValidator>, IComparable<GroupCatalogs>, IConfigAcceptVisitor, IGroupCatalogs 
+    {
+        public override string ToDebugString()
+        {
+            var t = this.GetType();
+            var mes = t.Name + ":";
+            var p = t.GetProperty("Name");
+            if (p != null)
+                mes = mes + (string?)p.GetValue(this) + ":";
+            p = t.GetProperty("IsNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " New";
+            p = t.GetProperty("IsHasNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " HasNew";
+            OnDebugStringExtend(ref mes);
+            return mes + base.ToDebugString();
+        }
+        partial void OnDebugStringExtend(ref string mes);
+        #region CTOR
+        public GroupCatalogs(ITreeConfigNode? parent) 
+            : base(parent, GroupCatalogsValidator.Validator)
+        {
+            //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
+            this.OnCreating();
+            this._GroupListCatalogs = new GroupListCatalogs(this); 
+            this._GroupRelations = new RelationsGroup(this); 
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); 
+            this.OnCreated();
+        }
+        // Use fields to set properties of this class during creation to avoid property change notification
+        partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
+        partial void OnCreated();
+        #endregion CTOR
+        #region Procedures
+        
+        
+        public override void Sort(Type type) 
+        {
+            if (type == typeof(PluginGeneratorNodeSettings)) 
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
+        }
+        public static GroupCatalogs Clone(ITreeConfigNode? parent, IGroupCatalogs from, bool isDeep = true, bool isNewGuid = false) 
+        {
+            Debug.Assert(from != null);
+            var vm = new GroupCatalogs(parent); 
+            vm._Guid = from.Guid; 
+            vm._Name = from.Name; 
+            vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            vm._NameUi = from.NameUi; 
+            vm._Description = from.Description; 
+            vm._PrefixForCompositionNames = from.PrefixForCompositionNames; 
+            if (isDeep) 
+                vm._GroupListCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.Clone(vm, from.GroupListCatalogs, isDeep);
+            if (isDeep) 
+                vm._GroupRelations = vSharpStudio.vm.ViewModels.RelationsGroup.Clone(vm, from.GroupRelations, isDeep);
+            vm._UseCodeProperty = from.UseCodeProperty; 
+            vm._PropertyCodeName = from.PropertyCodeName; 
+            vm._UseNameProperty = from.UseNameProperty; 
+            vm._PropertyNameName = from.PropertyNameName; 
+            vm._UseDescriptionProperty = from.UseDescriptionProperty; 
+            vm._PropertyDescriptionName = from.PropertyDescriptionName; 
+            vm._UseCodePropertyInSeparateTree = from.UseCodePropertyInSeparateTree; 
+            vm._UseNamePropertyInSeparateTree = from.UseNamePropertyInSeparateTree; 
+            vm._UseDescriptionPropertyInSeparateTree = from.UseDescriptionPropertyInSeparateTree; 
+            vm._PropertyIsFolderName = from.PropertyIsFolderName; 
+            vm._IsGridSortable = from.IsGridSortable; 
+            vm._IsGridSortableCustom = from.IsGridSortableCustom; 
+            vm._IsGridFilterable = from.IsGridFilterable; 
+            vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
+            foreach (var t in from.ListNodeGeneratorsSettings) 
+                vm._ListNodeGeneratorsSettings.AddClone(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) 
+                vm.SetNewGuid();
+            return vm;
+        }
+        public static void Update(GroupCatalogs to, IGroupCatalogs from, bool isDeep = true) 
+        {
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
+            to._Guid = from.Guid; 
+            to._Name = from.Name; 
+            to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            to._NameUi = from.NameUi; 
+            to._Description = from.Description; 
+            to._PrefixForCompositionNames = from.PrefixForCompositionNames; 
+            if (isDeep) 
+                vSharpStudio.vm.ViewModels.GroupListCatalogs.Update((GroupListCatalogs)to.GroupListCatalogs, from.GroupListCatalogs, isDeep);
+            if (isDeep) 
+                vSharpStudio.vm.ViewModels.RelationsGroup.Update((RelationsGroup)to.GroupRelations, from.GroupRelations, isDeep);
+            to._UseCodeProperty = from.UseCodeProperty; 
+            to._PropertyCodeName = from.PropertyCodeName; 
+            to._UseNameProperty = from.UseNameProperty; 
+            to._PropertyNameName = from.PropertyNameName; 
+            to._UseDescriptionProperty = from.UseDescriptionProperty; 
+            to._PropertyDescriptionName = from.PropertyDescriptionName; 
+            to._UseCodePropertyInSeparateTree = from.UseCodePropertyInSeparateTree; 
+            to._UseNamePropertyInSeparateTree = from.UseNamePropertyInSeparateTree; 
+            to._UseDescriptionPropertyInSeparateTree = from.UseDescriptionPropertyInSeparateTree; 
+            to._PropertyIsFolderName = from.PropertyIsFolderName; 
+            to._IsGridSortable = from.IsGridSortable; 
+            to._IsGridSortableCustom = from.IsGridSortableCustom; 
+            to._IsGridFilterable = from.IsGridFilterable; 
+            if (isDeep) 
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); 
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.AddClone(p);
+                    }
+                }
+            }
+        }
+        
+        #region IEditable
+        public override GroupCatalogs Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return GroupCatalogs.Clone(this.Parent, this); 
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(GroupCatalogs from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            GroupCatalogs.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_group_catalogs' to 'GroupCatalogs'
+        public static GroupCatalogs ConvertToVM(Proto.Config.proto_group_catalogs m, GroupCatalogs vm) 
+        {
+            Debug.Assert(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm._Guid = m.Guid; 
+            vm._Name = m.Name; 
+            vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
+            vm._NameUi = m.NameUi; 
+            vm._Description = m.Description; 
+            vm._PrefixForCompositionNames = m.PrefixForCompositionNames; 
+            vm.GroupListCatalogs ??= new GroupListCatalogs(vm); 
+            vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToVM(m.GroupListCatalogs, (GroupListCatalogs)vm.GroupListCatalogs); 
+            vm.GroupRelations ??= new RelationsGroup(vm); 
+            vSharpStudio.vm.ViewModels.RelationsGroup.ConvertToVM(m.GroupRelations, (RelationsGroup)vm.GroupRelations); 
+            vm._UseCodeProperty = m.UseCodeProperty; 
+            vm._PropertyCodeName = m.PropertyCodeName; 
+            vm._UseNameProperty = m.UseNameProperty; 
+            vm._PropertyNameName = m.PropertyNameName; 
+            vm._UseDescriptionProperty = m.UseDescriptionProperty; 
+            vm._PropertyDescriptionName = m.PropertyDescriptionName; 
+            vm._UseCodePropertyInSeparateTree = m.UseCodePropertyInSeparateTree; 
+            vm._UseNamePropertyInSeparateTree = m.UseNamePropertyInSeparateTree; 
+            vm._UseDescriptionPropertyInSeparateTree = m.UseDescriptionPropertyInSeparateTree; 
+            vm._PropertyIsFolderName = m.PropertyIsFolderName; 
+            vm._IsGridSortable = (EnumUseType)m.IsGridSortable; 
+            vm._IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; 
+            vm._IsGridFilterable = (EnumUseType)m.IsGridFilterable; 
+            vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
+            foreach (var t in m.ListNodeGeneratorsSettings) 
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); 
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
+            vm.OnInitFromDto(); 
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
+            return vm;
+        }
+        // Conversion from 'GroupCatalogs' to 'proto_group_catalogs'
+        public static Proto.Config.proto_group_catalogs ConvertToProto(GroupCatalogs vm) 
+        {
+            Debug.Assert(vm != null);
+            Proto.Config.proto_group_catalogs m = new Proto.Config.proto_group_catalogs(); 
+            try 
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'guid'", ex); 
+            }
+            try 
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'name'", ex); 
+            }
+            m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
+            try 
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'name_ui'", ex); 
+            }
+            try 
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'description'", ex); 
+            }
+            try 
+            { 
+                m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'prefix_for_composition_names'", ex); 
+            }
+            m.GroupListCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToProto((GroupListCatalogs)vm.GroupListCatalogs); 
+            m.GroupRelations = vSharpStudio.vm.ViewModels.RelationsGroup.ConvertToProto((RelationsGroup)vm.GroupRelations); 
+            m.UseCodeProperty = vm.UseCodeProperty; 
+            try 
+            { 
+                m.PropertyCodeName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCodeName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'property_code_name'", ex); 
+            }
+            m.UseNameProperty = vm.UseNameProperty; 
+            try 
+            { 
+                m.PropertyNameName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyNameName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'property_name_name'", ex); 
+            }
+            m.UseDescriptionProperty = vm.UseDescriptionProperty; 
+            try 
+            { 
+                m.PropertyDescriptionName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDescriptionName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'property_description_name'", ex); 
+            }
+            m.UseCodePropertyInSeparateTree = vm.UseCodePropertyInSeparateTree; 
+            m.UseNamePropertyInSeparateTree = vm.UseNamePropertyInSeparateTree; 
+            m.UseDescriptionPropertyInSeparateTree = vm.UseDescriptionPropertyInSeparateTree; 
+            try 
+            { 
+                m.PropertyIsFolderName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyIsFolderName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'property_is_folder_name'", ex); 
+            }
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; 
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; 
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; 
+            foreach (var t in vm.ListNodeGeneratorsSettings) 
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); 
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) 
+        {
+            Debug.Assert(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            this.GroupListCatalogs.AcceptConfigNodeVisitor(visitor); 
+        
+            this.GroupRelations.AcceptConfigNodeVisitor(visitor); 
+        
+            foreach (var t in this.ListNodeGeneratorsSettings) 
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this); 
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [Category("")]
+        [PropertyOrderAttribute(-2)]
+        [ReadOnly(true)]
+        public string Guid 
+        { 
+            get { return this._Guid; }
+            set
+            {
+                // Use 'OnGuidChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._Guid, value, (t) => { bool isCancel = false; this.OnGuidChanging(ref value, ref isCancel); if (isCancel) return; this._Guid = value; this.OnGuidChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        partial void OnGuidChanging(ref string to, ref bool isCancel); 
+        partial void OnGuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(1)]
+        public string Name 
+        { 
+            get { return this._Name; }
+            set
+            {
+                // Use 'OnNameChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._Name, value, (t) => { bool isCancel = false; this.OnNameChanging(ref value, ref isCancel); if (isCancel) return; this._Name = value; this.OnNameChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        partial void OnNameChanging(ref string to, ref bool isCancel); 
+        partial void OnNameChanged();
+        
+        [Browsable(false)]
+        public int ExplicitSortingPosition 
+        { 
+            get { return this._ExplicitSortingPosition; }
+            set
+            {
+                // Use 'OnExplicitSortingPositionChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._ExplicitSortingPosition, value, (t) => { bool isCancel = false; this.OnExplicitSortingPositionChanging(ref value, ref isCancel); if (isCancel) return; this._ExplicitSortingPosition = value; this.OnExplicitSortingPositionChanged(); })) 
+                {
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); 
+        partial void OnExplicitSortingPositionChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(2)]
+        [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
+        public string NameUi 
+        { 
+            get { return this._NameUi; }
+            set
+            {
+                // Use 'OnNameUiChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._NameUi, value, (t) => { bool isCancel = false; this.OnNameUiChanging(ref value, ref isCancel); if (isCancel) return; this._NameUi = value; this.OnNameUiChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        partial void OnNameUiChanging(ref string to, ref bool isCancel); 
+        partial void OnNameUiChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(3)]
+        public string Description 
+        { 
+            get { return this._Description; }
+            set
+            {
+                // Use 'OnDescriptionChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._Description, value, (t) => { bool isCancel = false; this.OnDescriptionChanging(ref value, ref isCancel); if (isCancel) return; this._Description = value; this.OnDescriptionChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private string _Description = string.Empty; 
+        partial void OnDescriptionChanging(ref string to, ref bool isCancel); 
+        partial void OnDescriptionChanged();
+        
+        [PropertyOrderAttribute(5)]
+        [DisplayName("Composition prefix")]
+        [Description("Prefix for catalogs composition names. Used if set to use in config model")]
+        public string PrefixForCompositionNames 
+        { 
+            get { return this._PrefixForCompositionNames; }
+            set
+            {
+                // Use 'OnPrefixForCompositionNamesChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._PrefixForCompositionNames, value, (t) => { bool isCancel = false; this.OnPrefixForCompositionNamesChanging(ref value, ref isCancel); if (isCancel) return; this._PrefixForCompositionNames = value; this.OnPrefixForCompositionNamesChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private string _PrefixForCompositionNames = string.Empty; 
+        partial void OnPrefixForCompositionNamesChanging(ref string to, ref bool isCancel); 
+        partial void OnPrefixForCompositionNamesChanged();
+        
+        [Browsable(false)]
+        public GroupListCatalogs GroupListCatalogs 
+        { 
+            get { return this._GroupListCatalogs; }
+            set
+            {
+                // Use 'OnGroupListCatalogsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._GroupListCatalogs, value, (t) => { bool isCancel = false; this.OnGroupListCatalogsChanging(ref value, ref isCancel); if (isCancel) return; this._GroupListCatalogs = value; this.OnGroupListCatalogsChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                }
+            }
+        }
+        private GroupListCatalogs _GroupListCatalogs; 
+        partial void OnGroupListCatalogsChanging(ref GroupListCatalogs to, ref bool isCancel); 
+        partial void OnGroupListCatalogsChanged();
+        IGroupListCatalogs IGroupCatalogs.GroupListCatalogs { get { return (this as GroupCatalogs).GroupListCatalogs; } } 
+        
+        [Browsable(false)]
+        public RelationsGroup GroupRelations 
+        { 
+            get { return this._GroupRelations; }
+            set
+            {
+                // Use 'OnGroupRelationsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._GroupRelations, value, (t) => { bool isCancel = false; this.OnGroupRelationsChanging(ref value, ref isCancel); if (isCancel) return; this._GroupRelations = value; this.OnGroupRelationsChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                }
+            }
+        }
+        private RelationsGroup _GroupRelations; 
+        partial void OnGroupRelationsChanging(ref RelationsGroup to, ref bool isCancel); 
+        partial void OnGroupRelationsChanged();
+        IRelationsGroup IGroupCatalogs.GroupRelations { get { return (this as GroupCatalogs).GroupRelations; } } 
         
         [Category("Property settings")]
         [PropertyOrderAttribute(22)]
@@ -24658,7 +25068,7 @@ namespace vSharpStudio.vm.ViewModels
         private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings; 
         partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to, ref bool isCancel); 
         partial void OnListNodeGeneratorsSettingsChanged();
-        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListCatalogs.ListNodeGeneratorsSettings { get { return (this as GroupListCatalogs).ListNodeGeneratorsSettings; } } 
+        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupCatalogs.ListNodeGeneratorsSettings { get { return (this as GroupCatalogs).ListNodeGeneratorsSettings; } } 
         
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } 
         #endregion Properties
@@ -45153,6 +45563,7 @@ namespace vSharpStudio.vm.ViewModels
         void Visit(Proto.Config.proto_catalog_code_property_settings p);
         void Visit(Proto.Config.proto_catalog p);
         void Visit(Proto.Config.proto_group_list_catalogs p);
+        void Visit(Proto.Config.proto_group_catalogs p);
         void Visit(Proto.Config.proto_group_list_registers p);
         void Visit(Proto.Config.proto_register_dimension p);
         void Visit(Proto.Config.proto_group_list_register_dimensions p);
@@ -45618,6 +46029,14 @@ namespace vSharpStudio.vm.ViewModels
             this.OnVisit((IValidatableWithSeverity)p);
         }
         protected override void OnVisitEnd(GroupListCatalogs p) 
+        {
+            this.OnVisitEnd((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisit(GroupCatalogs p) 
+        {
+            this.OnVisit((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisitEnd(GroupCatalogs p) 
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
@@ -46426,6 +46845,16 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected virtual void OnVisit(GroupListCatalogs p) { }
         protected virtual void OnVisitEnd(GroupListCatalogs p) { }
+        public void Visit(GroupCatalogs p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(GroupCatalogs p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(GroupCatalogs p) { }
+        protected virtual void OnVisitEnd(GroupCatalogs p) { }
         public void Visit(GroupListRegisters p)
         {
             this.OnVisit(p);
@@ -46841,6 +47270,8 @@ namespace vSharpStudio.vm.ViewModels
         void VisitEnd(Catalog p);
         void Visit(GroupListCatalogs p);
         void VisitEnd(GroupListCatalogs p);
+        void Visit(GroupCatalogs p);
+        void VisitEnd(GroupCatalogs p);
         void Visit(GroupListRegisters p);
         void VisitEnd(GroupListRegisters p);
         void Visit(RegisterDimension p);

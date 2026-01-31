@@ -86,7 +86,6 @@ namespace vSharpStudio.vm.ViewModels
             children.Add(this.GroupEnumerations, 7);
             children.Add(this.GroupConstantGroups, 8);
             children.Add(this.GroupCatalogs, 9);
-            children.Add(this.GroupRelations, 10);
             children.Add(this.GroupDocuments, 11);
             //this.ListMainViewForms.OnAddingAction = (t) =>
             //{
@@ -1216,7 +1215,7 @@ namespace vSharpStudio.vm.ViewModels
             var lst = new List<ICatalog>();
             var cfg = this.ParentConfig;
             var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
-            foreach (var tt in cfg.Model.GroupCatalogs.ListCatalogs)
+            foreach (var tt in cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
             {
                 if (tt.IsIncluded(guidAppPrjGen))
                 {
@@ -1469,7 +1468,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     else
                     {
-                        foreach (var t in Cfg.Model.GroupCatalogs.ListCatalogs)
+                        foreach (var t in Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
                         {
                             Debug.Assert(!res.ContainsKey(t.Guid));
                             res[t.Guid] = new Tuple<string, string>($"Catalogs.{t.Name}", t.CompositeName);
@@ -1534,7 +1533,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     else
                     {
-                        foreach (var t in Cfg.Model.GroupCatalogs.ListCatalogs)
+                        foreach (var t in Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
                         {
                             Debug.Assert(!res.ContainsKey(t.Guid));
                             res[t.Guid] = new Tuple<string, string>($"Catalogs.{t.Name}", t.CompositeName);

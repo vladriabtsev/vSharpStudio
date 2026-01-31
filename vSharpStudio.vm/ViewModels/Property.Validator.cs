@@ -721,7 +721,7 @@ namespace vSharpStudio.vm.ViewModels
                 //        return true;
                 //    }
                 //}
-                foreach (var t in p.Cfg.Model.GroupCatalogs.ListCatalogs)
+                foreach (var t in p.Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs)
                 {
                     if (t.Guid == y)
                     {
@@ -1160,7 +1160,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, Catalog c)
         {
-            var model = c.ParentGroupListCatalogs.ParentModel;
+            var model = c.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
             if (c.GetUseCodeProperty())
             {
                 if (model.GroupCatalogs.PropertyCodeName == name)
@@ -1200,7 +1200,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, CatalogFolder cf)
         {
-            var model = cf.ParentCatalog.ParentGroupListCatalogs.ParentModel;
+            var model = cf.ParentCatalog.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
             if (cf.GetUseCodeProperty())
             {
                 if (model.GroupCatalogs.PropertyCodeName == name)

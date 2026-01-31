@@ -60,7 +60,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-            this._Name = Defaults.GroupViewFormsName;
+            this._Name = Defaults.ViewFormsGroupName;
         }
 
         #region Tree operations

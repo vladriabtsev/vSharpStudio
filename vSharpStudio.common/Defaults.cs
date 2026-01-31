@@ -5,38 +5,39 @@
         public const string ConfigName = "Config";
         public const string ModelName = "Model";
 
-        public const string GroupPluginsName = "Plugins";
+        public const string PluginsGroupName = "Plugins";
 
-        public const string GroupCommonName = "Common";
+        public const string CommonGroupName = "Common";
         
-        public const string GroupConstantsGroupsName = "Constants";
+        public const string ConstantsGroupGroupsName = "Constants";
         public const string ConstantsGroupName = "Group";
         public const string ConstantName = "Constant";
 
-        public const string GroupEnumerationsName = "Enumerations";
+        public const string EnumerationsGroupName = "Enumerations";
         public const string EnumerationName = "Enumeration";
         public const string EnumerationPairName = "Element";
 
-        public const string GroupDetailsName = "Details";
+        public const string DetailsGroupName = "Details";
+        public const string DetailName = "Detail";
 
-        public const string GroupCatalogsName = "Catalogs";
-        public const string CatalogsName = "Catalogs";
+        public const string CatalogsGroupName = "Catalogs";
+        public const string CatalogsListName = "ListCatalogs";
         public const string CatalogName = "Catalog";
         //public const string Folder = "Folder";
-        public const string DetailName = "Detail";
-        public const string GroupSequenceName = "Sequences";
+
+        public const string SequenceGroupName = "Sequences";
         public const string SequenceName = "Sequence";
 
-        public const string GroupPropertiesName = "Properties";
-        public const string GroupSharedPropertiesName = "Timeline";
+        public const string PropertiesGroupName = "Properties";
+        public const string PropertiesGroupSharedName = "Timeline";
         public const string PropertyName = "Property";
 
-        public const string GroupFormsName = "Forms";
+        public const string FormsGroupName = "Forms";
         public const string FormName = "Form";
+        public const string FormMainName = "MainForm";
 
-        public const string GroupViewFormsName = "Views";
+        public const string ViewFormsGroupName = "Views";
         public const string ViewFormName = "View";
-        public const string MainFormName = "MainForm";
         //public const string FormAutoLayoutBlockName = "Auto Layout Block";
         //public const string FormAutoLayoutSubBlockName = "Auto Layout Sub Block";
         //public const string FormDataGridName = "DataGrid";
@@ -50,16 +51,16 @@
 
         public const string DocumentsGroupName = "Documents";
         public const string DocumentName = "Document";
-        public const string Documents = "Documents";
+        public const string DocumentsListName = "ListDocuments";
         public const string DocumentsTimelineName = "Timeline";
 
-        public const string GroupMtmRelationsName = "Relations";
-        public const string ManyToManyRelationsGroupName = "ManyToMany";
-        public const string ManyToManyRelationName = "ManyToManyRelation";
-        public const string OneToOneRelationsGroupName = "OneToOne";
-        public const string OneToOneRelationName = "OneToOneRelation";
+        public const string RelationsGroupName = "Relations";
+        public const string RelationsManyToManyGroupName = "ManyToMany";
+        public const string RelationManyToManyName = "ManyToManyRelation";
+        public const string RelationsOneToOneGroupName = "OneToOne";
+        public const string RelationOneToOneName = "OneToOneRelation";
 
-        public const string GroupJournalsName = "Journals";
+        public const string JournalsGroupName = "Journals";
         public const string JournalName = "Journal";
 
         public const string AppSolutionName = "Solution";
@@ -76,10 +77,10 @@
 
         public const string ApplicationGroupName = "Applications";
 
-        public const string GroupReportsName = "Reports";
+        public const string ReportsGroupName = "Reports";
         public const string ReportName = "Report";
 
-        public const string GroupRolesName = "Roles";
+        public const string RolesGroupName = "Roles";
         public const string RoleName = "Role";
     }
 }

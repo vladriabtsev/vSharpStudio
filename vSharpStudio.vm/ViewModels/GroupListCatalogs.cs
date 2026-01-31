@@ -17,9 +17,9 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
-        public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }
+        public GroupCatalogs ParentGroupCatalogs { get { Debug.Assert(this.Parent != null); return (GroupCatalogs)this.Parent; } }
         [Browsable(false)]
-        public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
+        public IGroupCatalogs ParentGroupCatalogsI { get { Debug.Assert(this.Parent != null); return (IGroupCatalogs)this.Parent; } }
 
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -28,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IChildrenCollection GetListSiblings()
         {
-            return this.ParentModel.Children;
+            return this.ParentGroupCatalogs.Children;
         }
         #endregion ITree
 
@@ -50,7 +50,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.GetUniqueName(Defaults.CatalogName, node, this.ListCatalogs);
             }
-            var model = this.ParentModel;
+            var model = this.ParentGroupCatalogs.ParentModel;
             node.ShortId = ++this.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
@@ -63,12 +63,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsEditable = false;
-            this._UseCodeProperty = true;
-            this._UseNameProperty = true;
-            this._UseDescriptionProperty = false;
-            this._UseCodePropertyInSeparateTree = true;
-            this._UseNamePropertyInSeparateTree = true;
-
             Init();
         }
         protected override void OnInitFromDto()
@@ -79,12 +73,7 @@ namespace vSharpStudio.vm.ViewModels
         private void Init()
         {
             OnSortTypeChanged();
-            this._Name = Defaults.GroupCatalogsName;
-            if (string.IsNullOrWhiteSpace(this._PrefixForCompositionNames)) this._PrefixForCompositionNames = "Ctlg";
-            if (string.IsNullOrWhiteSpace(this._PropertyCodeName)) this._PropertyCodeName = "Code";
-            if (string.IsNullOrWhiteSpace(this._PropertyNameName)) this._PropertyNameName = "Name";
-            if (string.IsNullOrWhiteSpace(this._PropertyDescriptionName)) this._PropertyDescriptionName = "Description";
-            if (string.IsNullOrWhiteSpace(this._PropertyIsFolderName)) this._PropertyIsFolderName = "IsFolder";
+            this._Name = Defaults.CatalogsListName;
             //if (this.Parent is Catalog)
             //{
             //    this.NameUi = "Sub Catalogs";
@@ -127,30 +116,6 @@ namespace vSharpStudio.vm.ViewModels
             //    lst.Add(nameof(this.PropertyNameName));
             return [.. lst];
         }
-        public bool GetIsGridSortable()
-        {
-            if (this.IsGridSortable == EnumUseType.Yes)
-                return true;
-            if (this.IsGridSortable == EnumUseType.No)
-                return false;
-            return this.ParentModel.IsGridSortable;
-        }
-        public bool GetIsGridFilterable()
-        {
-            if (this.IsGridFilterable == EnumUseType.Yes)
-                return true;
-            if (this.IsGridFilterable == EnumUseType.No)
-                return false;
-            return this.ParentModel.IsGridFilterable;
-        }
-        public bool GetIsGridSortableCustom()
-        {
-            if (this.IsGridSortableCustom == EnumUseType.Yes)
-                return true;
-            if (this.IsGridSortableCustom == EnumUseType.No)
-                return false;
-            return this.ParentModel.IsGridSortableCustom;
-        }
         //partial void OnUseCodePropertyChanged()
         //{
         //    this.NotifyPropertyChanged(() => this.PropertyDefinitions);
@@ -181,16 +146,5 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-
-        #region Roles
-        public EnumCatalogDetailAccess GetRoleCatalogAccess(IRole role)
-        {
-            return role.DefaultCatalogEditAccessSettings;
-        }
-        public EnumPrintAccess GetRoleCatalogPrint(IRole role)
-        {
-            return role.DefaultCatalogPrintAccessSettings;
-        }
-        #endregion Roles
     }
 }

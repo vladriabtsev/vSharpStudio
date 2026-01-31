@@ -44,7 +44,7 @@ namespace vSharpStudio.vm.ViewModels
         private void Init()
         {
             OnSortTypeChanged();
-            this._Name = Defaults.GroupRolesName;
+            this._Name = Defaults.RolesGroupName;
             //VmBindable.IsNotifyingStatic = false;
             //var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             //children.Add(this.GroupRoles, 6);
