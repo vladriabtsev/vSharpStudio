@@ -574,7 +574,7 @@ namespace vSharpStudio.vm.ViewModels
                 return d.IsGridSortableGet();
             else if (this.Parent is CatalogFolder cf)
                 return cf.IsGridSortableGet();
-            else if (this.Parent is GroupDocuments gd)
+            else if (this.Parent is GroupListDocuments gd)
                 return gd.IsGridSortableGet();
             else
                 throw new NotImplementedException();
@@ -593,7 +593,7 @@ namespace vSharpStudio.vm.ViewModels
                 return d.IsGridFilterableGet();
             else if (this.Parent is CatalogFolder cf)
                 return cf.IsGridFilterableGet();
-            else if (this.Parent is GroupDocuments gd)
+            else if (this.Parent is GroupListDocuments gd)
                 return gd.IsGridFilterableGet();
             else
                 throw new NotImplementedException();
@@ -612,7 +612,7 @@ namespace vSharpStudio.vm.ViewModels
                 return d.IsGridSortableCustomGet();
             else if (this.Parent is CatalogFolder cf)
                 return cf.IsGridSortableCustomGet();
-            else if (this.Parent is GroupDocuments gd)
+            else if (this.Parent is GroupListDocuments gd)
                 return gd.IsGridSortableCustomGet();
             else
                 throw new NotImplementedException();
@@ -684,8 +684,8 @@ namespace vSharpStudio.vm.ViewModels
                 return d.GetRolePropertyAccess(role);
             else if (this.Parent is CatalogFolder cf)
                 return cf.GetRolePropertyAccess(role);
-            else if (this.Parent is GroupDocuments gd)
-                return gd.GetRolePropertyAccess(role);
+            //else if (this.Parent is GroupListDocuments gd)
+            //    return gd.GetRolePropertyAccess(role);
             else
                 throw new NotImplementedException();
         }
@@ -701,8 +701,8 @@ namespace vSharpStudio.vm.ViewModels
                 return d.GetRolePropertyPrint(role);
             else if (this.Parent is CatalogFolder cf)
                 return cf.GetRolePropertyPrint(role);
-            else if (this.Parent is GroupDocuments gd)
-                return gd.GetRolePropertyPrint(role);
+            //else if (this.Parent is GroupListDocuments gd)
+            //    return gd.GetRolePropertyPrint(role);
             else
                 throw new NotImplementedException();
         }

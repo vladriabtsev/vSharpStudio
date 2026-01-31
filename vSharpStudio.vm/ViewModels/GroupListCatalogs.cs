@@ -12,6 +12,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnDebugStringExtend(ref string mes)
         {
+            mes = mes + $" Code:{(this.UseCodeProperty ? this.PropertyCodeName : "No")} Desc:{(this.UseDescriptionProperty ? this.PropertyDescriptionName : "No")} SepTreeCode:{this.UseCodePropertyInSeparateTree} SepTreeName:{this.UseNamePropertyInSeparateTree} Cats:{this.ListCatalogs.Count}";
             mes = mes + $" Count:{ListCatalogs.Count}";
         }
         [Browsable(false)]
@@ -20,6 +21,10 @@ namespace vSharpStudio.vm.ViewModels
         public GroupCatalogs ParentGroupCatalogs { get { Debug.Assert(this.Parent != null); return (GroupCatalogs)this.Parent; } }
         [Browsable(false)]
         public IGroupCatalogs ParentGroupCatalogsI { get { Debug.Assert(this.Parent != null); return (IGroupCatalogs)this.Parent; } }
+        [Browsable(false)]
+        public Model ParentModel { get { Debug.Assert(this.Parent != null && this.Parent.Parent != null); return (Model)this.Parent.Parent; } }
+        [Browsable(false)]
+        public IModel ParentModelI { get { Debug.Assert(this.Parent != null && this.Parent.Parent != null); return (IModel)this.Parent.Parent; } }
 
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -63,6 +68,11 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsEditable = false;
+            this._UseCodeProperty = true;
+            this._UseNameProperty = true;
+            this._UseDescriptionProperty = false;
+            this._UseCodePropertyInSeparateTree = true;
+            this._UseNamePropertyInSeparateTree = true;
             Init();
         }
         protected override void OnInitFromDto()
@@ -74,6 +84,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             OnSortTypeChanged();
             this._Name = Defaults.CatalogsListName;
+            if (string.IsNullOrWhiteSpace(this._PrefixForCompositionNames)) this._PrefixForCompositionNames = "Ctlg";
+            if (string.IsNullOrWhiteSpace(this._PropertyCodeName)) this._PropertyCodeName = "Code";
+            if (string.IsNullOrWhiteSpace(this._PropertyNameName)) this._PropertyNameName = "Name";
+            if (string.IsNullOrWhiteSpace(this._PropertyDescriptionName)) this._PropertyDescriptionName = "Description";
+            if (string.IsNullOrWhiteSpace(this._PropertyIsFolderName)) this._PropertyIsFolderName = "IsFolder";
             //if (this.Parent is Catalog)
             //{
             //    this.NameUi = "Sub Catalogs";
@@ -146,5 +161,67 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+
+        #region Roles
+        public EnumCatalogDetailAccess GetRoleCatalogAccess(IRole role)
+        {
+            return role.DefaultCatalogEditAccessSettings;
+        }
+        public EnumPrintAccess GetRoleCatalogPrint(IRole role)
+        {
+            return role.DefaultCatalogPrintAccessSettings;
+        }
+        public EnumPropertyAccess GetRolePropertyAccess(IRole role)
+        {
+            var pa = role.DefaultCatalogEditAccessSettings;
+            switch (pa)
+            {
+                case EnumCatalogDetailAccess.C_HIDE:
+                    return EnumPropertyAccess.P_HIDE;
+                case EnumCatalogDetailAccess.C_VIEW:
+                    return EnumPropertyAccess.P_VIEW;
+                case EnumCatalogDetailAccess.C_EDIT_ITEMS:
+                case EnumCatalogDetailAccess.C_MARK_DEL:
+                case EnumCatalogDetailAccess.C_EDIT_FOLDERS:
+                    return EnumPropertyAccess.P_EDIT;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+        public EnumPrintAccess GetRolePropertyPrint(IRole role)
+        {
+            var pa = role.DefaultCatalogPrintAccessSettings;
+            if (pa == EnumPrintAccess.PR_BY_PARENT)
+                return EnumPrintAccess.PR_PRINT;
+            return pa;
+        }
+        #endregion Roles
+
+        #region View
+        public bool IsGridSortableGet()
+        {
+            if (this.IsGridSortable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortable == EnumUseType.No)
+                return false;
+            return this.ParentModel.IsGridSortable;
+        }
+        public bool IsGridFilterableGet()
+        {
+            if (this.IsGridFilterable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridFilterable == EnumUseType.No)
+                return false;
+            return this.ParentModel.IsGridFilterable;
+        }
+        public bool IsGridSortableCustomGet()
+        {
+            if (this.IsGridSortableCustom == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortableCustom == EnumUseType.No)
+                return false;
+            return this.ParentModel.IsGridSortableCustom;
+        }
+        #endregion View
     }
 }

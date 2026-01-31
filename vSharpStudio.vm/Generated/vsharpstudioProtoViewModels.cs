@@ -23730,6 +23730,61 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
+            this.RuleFor(x => x.PrefixForCompositionNames).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.PropertyCodeName).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("PropertyCodeName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.PropertyNameName).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("PropertyNameName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.PropertyDescriptionName).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("PropertyDescriptionName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.PropertyIsFolderName).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("PropertyIsFolderName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
         }
     }
     public partial class GroupListCatalogs : ConfigObjectVmGenSettings<GroupListCatalogs, GroupListCatalogsValidator>, IComparable<GroupListCatalogs>, IConfigAcceptVisitor, IGroupListCatalogs 
@@ -23790,12 +23845,26 @@ namespace vSharpStudio.vm.ViewModels
             vm._Name = from.Name; 
             vm._NameUi = from.NameUi; 
             vm._Description = from.Description; 
+            vm._PrefixForCompositionNames = from.PrefixForCompositionNames; 
             vm._SortType = from.SortType; 
             vm._ListCatalogs = new ConfigNodesCollection<Catalog>(vm); 
             foreach (var t in from.ListCatalogs) 
                 vm._ListCatalogs.AddClone(Catalog.Clone(vm, (Catalog)t, isDeep));
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
             vm._LastShortId = from.LastShortId; 
+            vm._UseCodeProperty = from.UseCodeProperty; 
+            vm._PropertyCodeName = from.PropertyCodeName; 
+            vm._UseNameProperty = from.UseNameProperty; 
+            vm._PropertyNameName = from.PropertyNameName; 
+            vm._UseDescriptionProperty = from.UseDescriptionProperty; 
+            vm._PropertyDescriptionName = from.PropertyDescriptionName; 
+            vm._UseCodePropertyInSeparateTree = from.UseCodePropertyInSeparateTree; 
+            vm._UseNamePropertyInSeparateTree = from.UseNamePropertyInSeparateTree; 
+            vm._UseDescriptionPropertyInSeparateTree = from.UseDescriptionPropertyInSeparateTree; 
+            vm._PropertyIsFolderName = from.PropertyIsFolderName; 
+            vm._IsGridSortable = from.IsGridSortable; 
+            vm._IsGridSortableCustom = from.IsGridSortableCustom; 
+            vm._IsGridFilterable = from.IsGridFilterable; 
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in from.ListNodeGeneratorsSettings) 
                 vm._ListNodeGeneratorsSettings.AddClone(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -23811,6 +23880,7 @@ namespace vSharpStudio.vm.ViewModels
             to._Name = from.Name; 
             to._NameUi = from.NameUi; 
             to._Description = from.Description; 
+            to._PrefixForCompositionNames = from.PrefixForCompositionNames; 
             to._SortType = from.SortType; 
             if (isDeep) 
             {
@@ -23850,6 +23920,19 @@ namespace vSharpStudio.vm.ViewModels
             }
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
             to._LastShortId = from.LastShortId; 
+            to._UseCodeProperty = from.UseCodeProperty; 
+            to._PropertyCodeName = from.PropertyCodeName; 
+            to._UseNameProperty = from.UseNameProperty; 
+            to._PropertyNameName = from.PropertyNameName; 
+            to._UseDescriptionProperty = from.UseDescriptionProperty; 
+            to._PropertyDescriptionName = from.PropertyDescriptionName; 
+            to._UseCodePropertyInSeparateTree = from.UseCodePropertyInSeparateTree; 
+            to._UseNamePropertyInSeparateTree = from.UseNamePropertyInSeparateTree; 
+            to._UseDescriptionPropertyInSeparateTree = from.UseDescriptionPropertyInSeparateTree; 
+            to._PropertyIsFolderName = from.PropertyIsFolderName; 
+            to._IsGridSortable = from.IsGridSortable; 
+            to._IsGridSortableCustom = from.IsGridSortableCustom; 
+            to._IsGridFilterable = from.IsGridFilterable; 
             if (isDeep) 
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -23917,6 +24000,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._Name = m.Name; 
             vm._NameUi = m.NameUi; 
             vm._Description = m.Description; 
+            vm._PrefixForCompositionNames = m.PrefixForCompositionNames; 
             vm._SortType = (EnumSortingType)m.SortType; 
             vm._ListCatalogs = new ConfigNodesCollection<Catalog>(vm); 
             foreach (var t in m.ListCatalogs) 
@@ -23926,6 +24010,19 @@ namespace vSharpStudio.vm.ViewModels
             }
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
             vm._LastShortId = m.LastShortId; 
+            vm._UseCodeProperty = m.UseCodeProperty; 
+            vm._PropertyCodeName = m.PropertyCodeName; 
+            vm._UseNameProperty = m.UseNameProperty; 
+            vm._PropertyNameName = m.PropertyNameName; 
+            vm._UseDescriptionProperty = m.UseDescriptionProperty; 
+            vm._PropertyDescriptionName = m.PropertyDescriptionName; 
+            vm._UseCodePropertyInSeparateTree = m.UseCodePropertyInSeparateTree; 
+            vm._UseNamePropertyInSeparateTree = m.UseNamePropertyInSeparateTree; 
+            vm._UseDescriptionPropertyInSeparateTree = m.UseDescriptionPropertyInSeparateTree; 
+            vm._PropertyIsFolderName = m.PropertyIsFolderName; 
+            vm._IsGridSortable = (EnumUseType)m.IsGridSortable; 
+            vm._IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; 
+            vm._IsGridFilterable = (EnumUseType)m.IsGridFilterable; 
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in m.ListNodeGeneratorsSettings) 
             {
@@ -23974,11 +24071,60 @@ namespace vSharpStudio.vm.ViewModels
             { 
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'description'", ex); 
             }
+            try 
+            { 
+                m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'prefix_for_composition_names'", ex); 
+            }
             m.SortType = (Proto.Config.proto_enum_sorting_type)vm.SortType; 
             foreach (var t in vm.ListCatalogs) 
                 m.ListCatalogs.Add(Catalog.ConvertToProto((Catalog)t)); 
             m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
             m.LastShortId = vm.LastShortId; 
+            m.UseCodeProperty = vm.UseCodeProperty; 
+            try 
+            { 
+                m.PropertyCodeName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCodeName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_code_name'", ex); 
+            }
+            m.UseNameProperty = vm.UseNameProperty; 
+            try 
+            { 
+                m.PropertyNameName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyNameName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_name_name'", ex); 
+            }
+            m.UseDescriptionProperty = vm.UseDescriptionProperty; 
+            try 
+            { 
+                m.PropertyDescriptionName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDescriptionName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_description_name'", ex); 
+            }
+            m.UseCodePropertyInSeparateTree = vm.UseCodePropertyInSeparateTree; 
+            m.UseNamePropertyInSeparateTree = vm.UseNamePropertyInSeparateTree; 
+            m.UseDescriptionPropertyInSeparateTree = vm.UseDescriptionPropertyInSeparateTree; 
+            try 
+            { 
+                m.PropertyIsFolderName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyIsFolderName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_catalogs' field 'property_is_folder_name'", ex); 
+            }
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; 
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; 
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; 
             foreach (var t in vm.ListNodeGeneratorsSettings) 
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); 
             return m;
@@ -24081,6 +24227,26 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnDescriptionChanging(ref string to, ref bool isCancel); 
         partial void OnDescriptionChanged();
         
+        [PropertyOrderAttribute(5)]
+        [DisplayName("Composition prefix")]
+        [Description("Prefix for catalogs composition names. Used if set to use in config model")]
+        public string PrefixForCompositionNames 
+        { 
+            get { return this._PrefixForCompositionNames; }
+            set
+            {
+                // Use 'OnPrefixForCompositionNamesChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._PrefixForCompositionNames, value, (t) => { bool isCancel = false; this.OnPrefixForCompositionNamesChanging(ref value, ref isCancel); if (isCancel) return; this._PrefixForCompositionNames = value; this.OnPrefixForCompositionNamesChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private string _PrefixForCompositionNames = string.Empty; 
+        partial void OnPrefixForCompositionNamesChanging(ref string to, ref bool isCancel); 
+        partial void OnPrefixForCompositionNamesChanged();
+        
         [Category("")]
         [PropertyOrderAttribute(4)]
         [DisplayName("Sort")]
@@ -24177,610 +24343,6 @@ namespace vSharpStudio.vm.ViewModels
         private uint _LastShortId; 
         partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
         partial void OnLastShortIdChanged();
-        
-        [Browsable(false)]
-        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings 
-        { 
-            get { return this._ListNodeGeneratorsSettings; }
-            set
-            {
-                // Use 'OnListNodeGeneratorsSettingsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ListNodeGeneratorsSettings, value, (t) => { bool isCancel = false; this.OnListNodeGeneratorsSettingsChanging(value, ref isCancel); if (isCancel) return; this._ListNodeGeneratorsSettings = value; this.OnListNodeGeneratorsSettingsChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                }
-            }
-        }
-        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings; 
-        partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to, ref bool isCancel); 
-        partial void OnListNodeGeneratorsSettingsChanged();
-        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListCatalogs.ListNodeGeneratorsSettings { get { return (this as GroupListCatalogs).ListNodeGeneratorsSettings; } } 
-        
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } 
-        #endregion Properties
-    }
-    
-    
-    //       IsWithParent: True 
-    //      IsDefaultBase: True 
-    // IsConfigObjectBase: True 
-    //      IsGenSettings: True 
-    //     IsBindableBase: True 
-    //     IsEditableBase: True 
-    //  IsValidatableBase: True 
-    //    IsISortingValue: False 
-    public partial class GroupCatalogsValidator : ValidatorBase<GroupCatalogs, GroupCatalogsValidator>  
-    {
-        private void GeneralRules()
-        {
-            this.RuleFor(x => x.Guid).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.Name).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.NameUi).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.Description).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.PrefixForCompositionNames).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.PropertyCodeName).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PropertyCodeName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.PropertyNameName).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PropertyNameName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.PropertyDescriptionName).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PropertyDescriptionName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.PropertyIsFolderName).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PropertyIsFolderName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-        }
-    }
-    public partial class GroupCatalogs : ConfigObjectVmGenSettings<GroupCatalogs, GroupCatalogsValidator>, IComparable<GroupCatalogs>, IConfigAcceptVisitor, IGroupCatalogs 
-    {
-        public override string ToDebugString()
-        {
-            var t = this.GetType();
-            var mes = t.Name + ":";
-            var p = t.GetProperty("Name");
-            if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew");
-            if (p != null)
-                if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
-            p = t.GetProperty("IsHasNew");
-            if (p != null)
-                if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes);
-            return mes + base.ToDebugString();
-        }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR
-        public GroupCatalogs(ITreeConfigNode? parent) 
-            : base(parent, GroupCatalogsValidator.Validator)
-        {
-            //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
-            this.OnCreating();
-            this._GroupListCatalogs = new GroupListCatalogs(this); 
-            this._GroupRelations = new RelationsGroup(this); 
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); 
-            this.OnCreated();
-        }
-        // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating();
-        // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreated();
-        #endregion CTOR
-        #region Procedures
-        
-        
-        public override void Sort(Type type) 
-        {
-            if (type == typeof(PluginGeneratorNodeSettings)) 
-            {
-                this.ListNodeGeneratorsSettings.Sort();
-            }
-        }
-        public static GroupCatalogs Clone(ITreeConfigNode? parent, IGroupCatalogs from, bool isDeep = true, bool isNewGuid = false) 
-        {
-            Debug.Assert(from != null);
-            var vm = new GroupCatalogs(parent); 
-            vm._Guid = from.Guid; 
-            vm._Name = from.Name; 
-            vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
-            vm._NameUi = from.NameUi; 
-            vm._Description = from.Description; 
-            vm._PrefixForCompositionNames = from.PrefixForCompositionNames; 
-            if (isDeep) 
-                vm._GroupListCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.Clone(vm, from.GroupListCatalogs, isDeep);
-            if (isDeep) 
-                vm._GroupRelations = vSharpStudio.vm.ViewModels.RelationsGroup.Clone(vm, from.GroupRelations, isDeep);
-            vm._UseCodeProperty = from.UseCodeProperty; 
-            vm._PropertyCodeName = from.PropertyCodeName; 
-            vm._UseNameProperty = from.UseNameProperty; 
-            vm._PropertyNameName = from.PropertyNameName; 
-            vm._UseDescriptionProperty = from.UseDescriptionProperty; 
-            vm._PropertyDescriptionName = from.PropertyDescriptionName; 
-            vm._UseCodePropertyInSeparateTree = from.UseCodePropertyInSeparateTree; 
-            vm._UseNamePropertyInSeparateTree = from.UseNamePropertyInSeparateTree; 
-            vm._UseDescriptionPropertyInSeparateTree = from.UseDescriptionPropertyInSeparateTree; 
-            vm._PropertyIsFolderName = from.PropertyIsFolderName; 
-            vm._IsGridSortable = from.IsGridSortable; 
-            vm._IsGridSortableCustom = from.IsGridSortableCustom; 
-            vm._IsGridFilterable = from.IsGridFilterable; 
-            vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
-            foreach (var t in from.ListNodeGeneratorsSettings) 
-                vm._ListNodeGeneratorsSettings.AddClone(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
-            if (isNewGuid) 
-                vm.SetNewGuid();
-            return vm;
-        }
-        public static void Update(GroupCatalogs to, IGroupCatalogs from, bool isDeep = true) 
-        {
-            Debug.Assert(to != null);
-            Debug.Assert(from != null);
-            to._Guid = from.Guid; 
-            to._Name = from.Name; 
-            to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
-            to._NameUi = from.NameUi; 
-            to._Description = from.Description; 
-            to._PrefixForCompositionNames = from.PrefixForCompositionNames; 
-            if (isDeep) 
-                vSharpStudio.vm.ViewModels.GroupListCatalogs.Update((GroupListCatalogs)to.GroupListCatalogs, from.GroupListCatalogs, isDeep);
-            if (isDeep) 
-                vSharpStudio.vm.ViewModels.RelationsGroup.Update((RelationsGroup)to.GroupRelations, from.GroupRelations, isDeep);
-            to._UseCodeProperty = from.UseCodeProperty; 
-            to._PropertyCodeName = from.PropertyCodeName; 
-            to._UseNameProperty = from.UseNameProperty; 
-            to._PropertyNameName = from.PropertyNameName; 
-            to._UseDescriptionProperty = from.UseDescriptionProperty; 
-            to._PropertyDescriptionName = from.PropertyDescriptionName; 
-            to._UseCodePropertyInSeparateTree = from.UseCodePropertyInSeparateTree; 
-            to._UseNamePropertyInSeparateTree = from.UseNamePropertyInSeparateTree; 
-            to._UseDescriptionPropertyInSeparateTree = from.UseDescriptionPropertyInSeparateTree; 
-            to._PropertyIsFolderName = from.PropertyIsFolderName; 
-            to._IsGridSortable = from.IsGridSortable; 
-            to._IsGridSortableCustom = from.IsGridSortableCustom; 
-            to._IsGridFilterable = from.IsGridFilterable; 
-            if (isDeep) 
-            {
-                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListNodeGeneratorsSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListNodeGeneratorsSettings.Remove(t);
-                }
-                foreach (var tt in from.ListNodeGeneratorsSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new PluginGeneratorNodeSettings(to); 
-                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
-                        to.ListNodeGeneratorsSettings.AddClone(p);
-                    }
-                }
-            }
-        }
-        
-        #region IEditable
-        public override GroupCatalogs Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            Debug.Assert(this is IConfig || this.Parent != null);
-            return GroupCatalogs.Clone(this.Parent, this); 
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(GroupCatalogs from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            GroupCatalogs.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_group_catalogs' to 'GroupCatalogs'
-        public static GroupCatalogs ConvertToVM(Proto.Config.proto_group_catalogs m, GroupCatalogs vm) 
-        {
-            Debug.Assert(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm._Guid = m.Guid; 
-            vm._Name = m.Name; 
-            vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
-            vm._NameUi = m.NameUi; 
-            vm._Description = m.Description; 
-            vm._PrefixForCompositionNames = m.PrefixForCompositionNames; 
-            vm.GroupListCatalogs ??= new GroupListCatalogs(vm); 
-            vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToVM(m.GroupListCatalogs, (GroupListCatalogs)vm.GroupListCatalogs); 
-            vm.GroupRelations ??= new RelationsGroup(vm); 
-            vSharpStudio.vm.ViewModels.RelationsGroup.ConvertToVM(m.GroupRelations, (RelationsGroup)vm.GroupRelations); 
-            vm._UseCodeProperty = m.UseCodeProperty; 
-            vm._PropertyCodeName = m.PropertyCodeName; 
-            vm._UseNameProperty = m.UseNameProperty; 
-            vm._PropertyNameName = m.PropertyNameName; 
-            vm._UseDescriptionProperty = m.UseDescriptionProperty; 
-            vm._PropertyDescriptionName = m.PropertyDescriptionName; 
-            vm._UseCodePropertyInSeparateTree = m.UseCodePropertyInSeparateTree; 
-            vm._UseNamePropertyInSeparateTree = m.UseNamePropertyInSeparateTree; 
-            vm._UseDescriptionPropertyInSeparateTree = m.UseDescriptionPropertyInSeparateTree; 
-            vm._PropertyIsFolderName = m.PropertyIsFolderName; 
-            vm._IsGridSortable = (EnumUseType)m.IsGridSortable; 
-            vm._IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; 
-            vm._IsGridFilterable = (EnumUseType)m.IsGridFilterable; 
-            vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
-            foreach (var t in m.ListNodeGeneratorsSettings) 
-            {
-                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); 
-                vm.ListNodeGeneratorsSettings.Add(tvm);
-            }
-            vm.OnInitFromDto(); 
-            vm.IsChanged = false;
-            vm.IsHasChanged = false;
-            return vm;
-        }
-        // Conversion from 'GroupCatalogs' to 'proto_group_catalogs'
-        public static Proto.Config.proto_group_catalogs ConvertToProto(GroupCatalogs vm) 
-        {
-            Debug.Assert(vm != null);
-            Proto.Config.proto_group_catalogs m = new Proto.Config.proto_group_catalogs(); 
-            try 
-            { 
-                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'guid'", ex); 
-            }
-            try 
-            { 
-                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'name'", ex); 
-            }
-            m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
-            try 
-            { 
-                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'name_ui'", ex); 
-            }
-            try 
-            { 
-                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'description'", ex); 
-            }
-            try 
-            { 
-                m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'prefix_for_composition_names'", ex); 
-            }
-            m.GroupListCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToProto((GroupListCatalogs)vm.GroupListCatalogs); 
-            m.GroupRelations = vSharpStudio.vm.ViewModels.RelationsGroup.ConvertToProto((RelationsGroup)vm.GroupRelations); 
-            m.UseCodeProperty = vm.UseCodeProperty; 
-            try 
-            { 
-                m.PropertyCodeName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyCodeName)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'property_code_name'", ex); 
-            }
-            m.UseNameProperty = vm.UseNameProperty; 
-            try 
-            { 
-                m.PropertyNameName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyNameName)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'property_name_name'", ex); 
-            }
-            m.UseDescriptionProperty = vm.UseDescriptionProperty; 
-            try 
-            { 
-                m.PropertyDescriptionName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDescriptionName)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'property_description_name'", ex); 
-            }
-            m.UseCodePropertyInSeparateTree = vm.UseCodePropertyInSeparateTree; 
-            m.UseNamePropertyInSeparateTree = vm.UseNamePropertyInSeparateTree; 
-            m.UseDescriptionPropertyInSeparateTree = vm.UseDescriptionPropertyInSeparateTree; 
-            try 
-            { 
-                m.PropertyIsFolderName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyIsFolderName)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'property_is_folder_name'", ex); 
-            }
-            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; 
-            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; 
-            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; 
-            foreach (var t in vm.ListNodeGeneratorsSettings) 
-                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); 
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) 
-        {
-            Debug.Assert(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            this.GroupListCatalogs.AcceptConfigNodeVisitor(visitor); 
-        
-            this.GroupRelations.AcceptConfigNodeVisitor(visitor); 
-        
-            foreach (var t in this.ListNodeGeneratorsSettings) 
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            visitor.VisitEnd(this); 
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [Category("")]
-        [PropertyOrderAttribute(-2)]
-        [ReadOnly(true)]
-        public string Guid 
-        { 
-            get { return this._Guid; }
-            set
-            {
-                // Use 'OnGuidChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._Guid, value, (t) => { bool isCancel = false; this.OnGuidChanging(ref value, ref isCancel); if (isCancel) return; this._Guid = value; this.OnGuidChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        partial void OnGuidChanging(ref string to, ref bool isCancel); 
-        partial void OnGuidChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(1)]
-        public string Name 
-        { 
-            get { return this._Name; }
-            set
-            {
-                // Use 'OnNameChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._Name, value, (t) => { bool isCancel = false; this.OnNameChanging(ref value, ref isCancel); if (isCancel) return; this._Name = value; this.OnNameChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        partial void OnNameChanging(ref string to, ref bool isCancel); 
-        partial void OnNameChanged();
-        
-        [Browsable(false)]
-        public int ExplicitSortingPosition 
-        { 
-            get { return this._ExplicitSortingPosition; }
-            set
-            {
-                // Use 'OnExplicitSortingPositionChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ExplicitSortingPosition, value, (t) => { bool isCancel = false; this.OnExplicitSortingPositionChanging(ref value, ref isCancel); if (isCancel) return; this._ExplicitSortingPosition = value; this.OnExplicitSortingPositionChanged(); })) 
-                {
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); 
-        partial void OnExplicitSortingPositionChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(2)]
-        [DisplayName("UI name")]
-        [Description("Used as label/name for UI")]
-        public string NameUi 
-        { 
-            get { return this._NameUi; }
-            set
-            {
-                // Use 'OnNameUiChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._NameUi, value, (t) => { bool isCancel = false; this.OnNameUiChanging(ref value, ref isCancel); if (isCancel) return; this._NameUi = value; this.OnNameUiChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        partial void OnNameUiChanging(ref string to, ref bool isCancel); 
-        partial void OnNameUiChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(3)]
-        public string Description 
-        { 
-            get { return this._Description; }
-            set
-            {
-                // Use 'OnDescriptionChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._Description, value, (t) => { bool isCancel = false; this.OnDescriptionChanging(ref value, ref isCancel); if (isCancel) return; this._Description = value; this.OnDescriptionChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private string _Description = string.Empty; 
-        partial void OnDescriptionChanging(ref string to, ref bool isCancel); 
-        partial void OnDescriptionChanged();
-        
-        [PropertyOrderAttribute(5)]
-        [DisplayName("Composition prefix")]
-        [Description("Prefix for catalogs composition names. Used if set to use in config model")]
-        public string PrefixForCompositionNames 
-        { 
-            get { return this._PrefixForCompositionNames; }
-            set
-            {
-                // Use 'OnPrefixForCompositionNamesChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._PrefixForCompositionNames, value, (t) => { bool isCancel = false; this.OnPrefixForCompositionNamesChanging(ref value, ref isCancel); if (isCancel) return; this._PrefixForCompositionNames = value; this.OnPrefixForCompositionNamesChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private string _PrefixForCompositionNames = string.Empty; 
-        partial void OnPrefixForCompositionNamesChanging(ref string to, ref bool isCancel); 
-        partial void OnPrefixForCompositionNamesChanged();
-        
-        [Browsable(false)]
-        public GroupListCatalogs GroupListCatalogs 
-        { 
-            get { return this._GroupListCatalogs; }
-            set
-            {
-                // Use 'OnGroupListCatalogsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._GroupListCatalogs, value, (t) => { bool isCancel = false; this.OnGroupListCatalogsChanging(ref value, ref isCancel); if (isCancel) return; this._GroupListCatalogs = value; this.OnGroupListCatalogsChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                }
-            }
-        }
-        private GroupListCatalogs _GroupListCatalogs; 
-        partial void OnGroupListCatalogsChanging(ref GroupListCatalogs to, ref bool isCancel); 
-        partial void OnGroupListCatalogsChanged();
-        IGroupListCatalogs IGroupCatalogs.GroupListCatalogs { get { return (this as GroupCatalogs).GroupListCatalogs; } } 
-        
-        [Browsable(false)]
-        public RelationsGroup GroupRelations 
-        { 
-            get { return this._GroupRelations; }
-            set
-            {
-                // Use 'OnGroupRelationsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._GroupRelations, value, (t) => { bool isCancel = false; this.OnGroupRelationsChanging(ref value, ref isCancel); if (isCancel) return; this._GroupRelations = value; this.OnGroupRelationsChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                }
-            }
-        }
-        private RelationsGroup _GroupRelations; 
-        partial void OnGroupRelationsChanging(ref RelationsGroup to, ref bool isCancel); 
-        partial void OnGroupRelationsChanged();
-        IRelationsGroup IGroupCatalogs.GroupRelations { get { return (this as GroupCatalogs).GroupRelations; } } 
         
         [Category("Property settings")]
         [PropertyOrderAttribute(22)]
@@ -25051,6 +24613,444 @@ namespace vSharpStudio.vm.ViewModels
         private EnumUseType _IsGridFilterable; 
         partial void OnIsGridFilterableChanging(ref EnumUseType to, ref bool isCancel); 
         partial void OnIsGridFilterableChanged();
+        
+        [Browsable(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings 
+        { 
+            get { return this._ListNodeGeneratorsSettings; }
+            set
+            {
+                // Use 'OnListNodeGeneratorsSettingsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._ListNodeGeneratorsSettings, value, (t) => { bool isCancel = false; this.OnListNodeGeneratorsSettingsChanging(value, ref isCancel); if (isCancel) return; this._ListNodeGeneratorsSettings = value; this.OnListNodeGeneratorsSettingsChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings; 
+        partial void OnListNodeGeneratorsSettingsChanging(ConfigNodesCollection<PluginGeneratorNodeSettings> to, ref bool isCancel); 
+        partial void OnListNodeGeneratorsSettingsChanged();
+        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListCatalogs.ListNodeGeneratorsSettings { get { return (this as GroupListCatalogs).ListNodeGeneratorsSettings; } } 
+        
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } 
+        #endregion Properties
+    }
+    
+    
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    //    IsISortingValue: False 
+    public partial class GroupCatalogsValidator : ValidatorBase<GroupCatalogs, GroupCatalogsValidator>  
+    {
+        private void GeneralRules()
+        {
+            this.RuleFor(x => x.Guid).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.Name).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.NameUi).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.Description).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+        }
+    }
+    public partial class GroupCatalogs : ConfigObjectVmGenSettings<GroupCatalogs, GroupCatalogsValidator>, IComparable<GroupCatalogs>, IConfigAcceptVisitor, IGroupCatalogs 
+    {
+        public override string ToDebugString()
+        {
+            var t = this.GetType();
+            var mes = t.Name + ":";
+            var p = t.GetProperty("Name");
+            if (p != null)
+                mes = mes + (string?)p.GetValue(this) + ":";
+            p = t.GetProperty("IsNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " New";
+            p = t.GetProperty("IsHasNew");
+            if (p != null)
+                if ((bool?)p.GetValue(this) == true)
+                    mes = mes + " HasNew";
+            OnDebugStringExtend(ref mes);
+            return mes + base.ToDebugString();
+        }
+        partial void OnDebugStringExtend(ref string mes);
+        #region CTOR
+        public GroupCatalogs(ITreeConfigNode? parent) 
+            : base(parent, GroupCatalogsValidator.Validator)
+        {
+            //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
+            this.OnCreating();
+            this._GroupListCatalogs = new GroupListCatalogs(this); 
+            this._GroupRelations = new RelationsGroup(this); 
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); 
+            this.OnCreated();
+        }
+        // Use fields to set properties of this class during creation to avoid property change notification
+        partial void OnCreating();
+        // Use fields to set properties of this class during creation to avoid property change notification
+        partial void OnCreated();
+        #endregion CTOR
+        #region Procedures
+        
+        
+        public override void Sort(Type type) 
+        {
+            if (type == typeof(PluginGeneratorNodeSettings)) 
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
+        }
+        public static GroupCatalogs Clone(ITreeConfigNode? parent, IGroupCatalogs from, bool isDeep = true, bool isNewGuid = false) 
+        {
+            Debug.Assert(from != null);
+            var vm = new GroupCatalogs(parent); 
+            vm._Guid = from.Guid; 
+            vm._Name = from.Name; 
+            vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            vm._NameUi = from.NameUi; 
+            vm._Description = from.Description; 
+            if (isDeep) 
+                vm._GroupListCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.Clone(vm, from.GroupListCatalogs, isDeep);
+            if (isDeep) 
+                vm._GroupRelations = vSharpStudio.vm.ViewModels.RelationsGroup.Clone(vm, from.GroupRelations, isDeep);
+            vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
+            foreach (var t in from.ListNodeGeneratorsSettings) 
+                vm._ListNodeGeneratorsSettings.AddClone(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) 
+                vm.SetNewGuid();
+            return vm;
+        }
+        public static void Update(GroupCatalogs to, IGroupCatalogs from, bool isDeep = true) 
+        {
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
+            to._Guid = from.Guid; 
+            to._Name = from.Name; 
+            to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
+            to._NameUi = from.NameUi; 
+            to._Description = from.Description; 
+            if (isDeep) 
+                vSharpStudio.vm.ViewModels.GroupListCatalogs.Update((GroupListCatalogs)to.GroupListCatalogs, from.GroupListCatalogs, isDeep);
+            if (isDeep) 
+                vSharpStudio.vm.ViewModels.RelationsGroup.Update((RelationsGroup)to.GroupRelations, from.GroupRelations, isDeep);
+            if (isDeep) 
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); 
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.AddClone(p);
+                    }
+                }
+            }
+        }
+        
+        #region IEditable
+        public override GroupCatalogs Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return GroupCatalogs.Clone(this.Parent, this); 
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(GroupCatalogs from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            GroupCatalogs.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_group_catalogs' to 'GroupCatalogs'
+        public static GroupCatalogs ConvertToVM(Proto.Config.proto_group_catalogs m, GroupCatalogs vm) 
+        {
+            Debug.Assert(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm._Guid = m.Guid; 
+            vm._Name = m.Name; 
+            vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
+            vm._NameUi = m.NameUi; 
+            vm._Description = m.Description; 
+            vm.GroupListCatalogs ??= new GroupListCatalogs(vm); 
+            vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToVM(m.GroupListCatalogs, (GroupListCatalogs)vm.GroupListCatalogs); 
+            vm.GroupRelations ??= new RelationsGroup(vm); 
+            vSharpStudio.vm.ViewModels.RelationsGroup.ConvertToVM(m.GroupRelations, (RelationsGroup)vm.GroupRelations); 
+            vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
+            foreach (var t in m.ListNodeGeneratorsSettings) 
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); 
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
+            vm.OnInitFromDto(); 
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
+            return vm;
+        }
+        // Conversion from 'GroupCatalogs' to 'proto_group_catalogs'
+        public static Proto.Config.proto_group_catalogs ConvertToProto(GroupCatalogs vm) 
+        {
+            Debug.Assert(vm != null);
+            Proto.Config.proto_group_catalogs m = new Proto.Config.proto_group_catalogs(); 
+            try 
+            { 
+                m.Guid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Guid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'guid'", ex); 
+            }
+            try 
+            { 
+                m.Name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Name)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'name'", ex); 
+            }
+            m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
+            try 
+            { 
+                m.NameUi = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.NameUi)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'name_ui'", ex); 
+            }
+            try 
+            { 
+                m.Description = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.Description)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_catalogs' field 'description'", ex); 
+            }
+            m.GroupListCatalogs = vSharpStudio.vm.ViewModels.GroupListCatalogs.ConvertToProto((GroupListCatalogs)vm.GroupListCatalogs); 
+            m.GroupRelations = vSharpStudio.vm.ViewModels.RelationsGroup.ConvertToProto((RelationsGroup)vm.GroupRelations); 
+            foreach (var t in vm.ListNodeGeneratorsSettings) 
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); 
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) 
+        {
+            Debug.Assert(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            this.GroupListCatalogs.AcceptConfigNodeVisitor(visitor); 
+        
+            this.GroupRelations.AcceptConfigNodeVisitor(visitor); 
+        
+            foreach (var t in this.ListNodeGeneratorsSettings) 
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this); 
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [Category("")]
+        [PropertyOrderAttribute(-2)]
+        [ReadOnly(true)]
+        public string Guid 
+        { 
+            get { return this._Guid; }
+            set
+            {
+                // Use 'OnGuidChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._Guid, value, (t) => { bool isCancel = false; this.OnGuidChanging(ref value, ref isCancel); if (isCancel) return; this._Guid = value; this.OnGuidChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        partial void OnGuidChanging(ref string to, ref bool isCancel); 
+        partial void OnGuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(1)]
+        public string Name 
+        { 
+            get { return this._Name; }
+            set
+            {
+                // Use 'OnNameChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._Name, value, (t) => { bool isCancel = false; this.OnNameChanging(ref value, ref isCancel); if (isCancel) return; this._Name = value; this.OnNameChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        partial void OnNameChanging(ref string to, ref bool isCancel); 
+        partial void OnNameChanged();
+        
+        [Browsable(false)]
+        public int ExplicitSortingPosition 
+        { 
+            get { return this._ExplicitSortingPosition; }
+            set
+            {
+                // Use 'OnExplicitSortingPositionChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._ExplicitSortingPosition, value, (t) => { bool isCancel = false; this.OnExplicitSortingPositionChanging(ref value, ref isCancel); if (isCancel) return; this._ExplicitSortingPosition = value; this.OnExplicitSortingPositionChanged(); })) 
+                {
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); 
+        partial void OnExplicitSortingPositionChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(2)]
+        [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
+        public string NameUi 
+        { 
+            get { return this._NameUi; }
+            set
+            {
+                // Use 'OnNameUiChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._NameUi, value, (t) => { bool isCancel = false; this.OnNameUiChanging(ref value, ref isCancel); if (isCancel) return; this._NameUi = value; this.OnNameUiChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        partial void OnNameUiChanging(ref string to, ref bool isCancel); 
+        partial void OnNameUiChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(3)]
+        public string Description 
+        { 
+            get { return this._Description; }
+            set
+            {
+                // Use 'OnDescriptionChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._Description, value, (t) => { bool isCancel = false; this.OnDescriptionChanging(ref value, ref isCancel); if (isCancel) return; this._Description = value; this.OnDescriptionChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private string _Description = string.Empty; 
+        partial void OnDescriptionChanging(ref string to, ref bool isCancel); 
+        partial void OnDescriptionChanged();
+        
+        [Browsable(false)]
+        public GroupListCatalogs GroupListCatalogs 
+        { 
+            get { return this._GroupListCatalogs; }
+            set
+            {
+                // Use 'OnGroupListCatalogsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._GroupListCatalogs, value, (t) => { bool isCancel = false; this.OnGroupListCatalogsChanging(ref value, ref isCancel); if (isCancel) return; this._GroupListCatalogs = value; this.OnGroupListCatalogsChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                }
+            }
+        }
+        private GroupListCatalogs _GroupListCatalogs; 
+        partial void OnGroupListCatalogsChanging(ref GroupListCatalogs to, ref bool isCancel); 
+        partial void OnGroupListCatalogsChanged();
+        IGroupListCatalogs IGroupCatalogs.GroupListCatalogs { get { return (this as GroupCatalogs).GroupListCatalogs; } } 
+        
+        [Browsable(false)]
+        public RelationsGroup GroupRelations 
+        { 
+            get { return this._GroupRelations; }
+            set
+            {
+                // Use 'OnGroupRelationsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._GroupRelations, value, (t) => { bool isCancel = false; this.OnGroupRelationsChanging(ref value, ref isCancel); if (isCancel) return; this._GroupRelations = value; this.OnGroupRelationsChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                }
+            }
+        }
+        private RelationsGroup _GroupRelations; 
+        partial void OnGroupRelationsChanging(ref RelationsGroup to, ref bool isCancel); 
+        partial void OnGroupRelationsChanged();
+        IRelationsGroup IGroupCatalogs.GroupRelations { get { return (this as GroupCatalogs).GroupRelations; } } 
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings 
@@ -30165,39 +30165,6 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
-            this.RuleFor(x => x.PrefixForCompositionNames).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.DocShortTypeIdPropertyName).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("DocShortTypeIdPropertyName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.PropertyDocNumberName).Custom((str, cntx) =>
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PropertyDocNumberName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
         }
     }
     public partial class GroupDocuments : ConfigObjectVmGenSettings<GroupDocuments, GroupDocumentsValidator>, IComparable<GroupDocuments>, IConfigAcceptVisitor, IGroupDocuments 
@@ -30259,24 +30226,16 @@ namespace vSharpStudio.vm.ViewModels
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
             vm._NameUi = from.NameUi; 
             vm._Description = from.Description; 
-            vm._PrefixForCompositionNames = from.PrefixForCompositionNames; 
             if (isDeep) 
                 vm._DocumentTimeline = vSharpStudio.vm.ViewModels.DocumentTimeline.Clone(vm, from.DocumentTimeline, isDeep);
             if (isDeep) 
                 vm._GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.Clone(vm, from.GroupListDocuments, isDeep);
-            vm._DocShortTypeIdPropertyName = from.DocShortTypeIdPropertyName; 
             if (isDeep) 
                 vm._GroupRegisters = vSharpStudio.vm.ViewModels.GroupListRegisters.Clone(vm, from.GroupRegisters, isDeep);
             if (isDeep) 
                 vm._GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.Clone(vm, from.GroupJournals, isDeep);
             if (isDeep) 
                 vm._GroupListSequences = vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.Clone(vm, from.GroupListSequences, isDeep);
-            vm._MondayBeforeFirstDocDate = from.MondayBeforeFirstDocDate; 
-            vm._PropertyDocNumberName = from.PropertyDocNumberName; 
-            vm._UseDocNumberProperty = from.UseDocNumberProperty; 
-            vm._IsGridSortable = from.IsGridSortable; 
-            vm._IsGridSortableCustom = from.IsGridSortableCustom; 
-            vm._IsGridFilterable = from.IsGridFilterable; 
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in from.ListNodeGeneratorsSettings) 
                 vm._ListNodeGeneratorsSettings.AddClone(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -30293,24 +30252,16 @@ namespace vSharpStudio.vm.ViewModels
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
             to._NameUi = from.NameUi; 
             to._Description = from.Description; 
-            to._PrefixForCompositionNames = from.PrefixForCompositionNames; 
             if (isDeep) 
                 vSharpStudio.vm.ViewModels.DocumentTimeline.Update((DocumentTimeline)to.DocumentTimeline, from.DocumentTimeline, isDeep);
             if (isDeep) 
                 vSharpStudio.vm.ViewModels.GroupListDocuments.Update((GroupListDocuments)to.GroupListDocuments, from.GroupListDocuments, isDeep);
-            to._DocShortTypeIdPropertyName = from.DocShortTypeIdPropertyName; 
             if (isDeep) 
                 vSharpStudio.vm.ViewModels.GroupListRegisters.Update((GroupListRegisters)to.GroupRegisters, from.GroupRegisters, isDeep);
             if (isDeep) 
                 vSharpStudio.vm.ViewModels.GroupListJournals.Update((GroupListJournals)to.GroupJournals, from.GroupJournals, isDeep);
             if (isDeep) 
                 vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.Update((GroupListEnumeratorSequences)to.GroupListSequences, from.GroupListSequences, isDeep);
-            to._MondayBeforeFirstDocDate = from.MondayBeforeFirstDocDate; 
-            to._PropertyDocNumberName = from.PropertyDocNumberName; 
-            to._UseDocNumberProperty = from.UseDocNumberProperty; 
-            to._IsGridSortable = from.IsGridSortable; 
-            to._IsGridSortableCustom = from.IsGridSortableCustom; 
-            to._IsGridFilterable = from.IsGridFilterable; 
             if (isDeep) 
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -30379,24 +30330,16 @@ namespace vSharpStudio.vm.ViewModels
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
             vm._NameUi = m.NameUi; 
             vm._Description = m.Description; 
-            vm._PrefixForCompositionNames = m.PrefixForCompositionNames; 
             vm.DocumentTimeline ??= new DocumentTimeline(vm); 
             vSharpStudio.vm.ViewModels.DocumentTimeline.ConvertToVM(m.DocumentTimeline, (DocumentTimeline)vm.DocumentTimeline); 
             vm.GroupListDocuments ??= new GroupListDocuments(vm); 
             vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToVM(m.GroupListDocuments, (GroupListDocuments)vm.GroupListDocuments); 
-            vm._DocShortTypeIdPropertyName = m.DocShortTypeIdPropertyName; 
             vm.GroupRegisters ??= new GroupListRegisters(vm); 
             vSharpStudio.vm.ViewModels.GroupListRegisters.ConvertToVM(m.GroupRegisters, (GroupListRegisters)vm.GroupRegisters); 
             vm.GroupJournals ??= new GroupListJournals(vm); 
             vSharpStudio.vm.ViewModels.GroupListJournals.ConvertToVM(m.GroupJournals, (GroupListJournals)vm.GroupJournals); 
             vm.GroupListSequences ??= new GroupListEnumeratorSequences(vm); 
             vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.ConvertToVM(m.GroupListSequences, (GroupListEnumeratorSequences)vm.GroupListSequences); 
-            vm._MondayBeforeFirstDocDate = m.MondayBeforeFirstDocDate; 
-            vm._PropertyDocNumberName = m.PropertyDocNumberName; 
-            vm._UseDocNumberProperty = m.UseDocNumberProperty; 
-            vm._IsGridSortable = (EnumUseType)m.IsGridSortable; 
-            vm._IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; 
-            vm._IsGridFilterable = (EnumUseType)m.IsGridFilterable; 
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); 
             foreach (var t in m.ListNodeGeneratorsSettings) 
             {
@@ -30446,40 +30389,11 @@ namespace vSharpStudio.vm.ViewModels
             { 
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'description'", ex); 
             }
-            try 
-            { 
-                m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'prefix_for_composition_names'", ex); 
-            }
             m.DocumentTimeline = vSharpStudio.vm.ViewModels.DocumentTimeline.ConvertToProto((DocumentTimeline)vm.DocumentTimeline); 
             m.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToProto((GroupListDocuments)vm.GroupListDocuments); 
-            try 
-            { 
-                m.DocShortTypeIdPropertyName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DocShortTypeIdPropertyName)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'doc_short_type_id_property_name'", ex); 
-            }
             m.GroupRegisters = vSharpStudio.vm.ViewModels.GroupListRegisters.ConvertToProto((GroupListRegisters)vm.GroupRegisters); 
             m.GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.ConvertToProto((GroupListJournals)vm.GroupJournals); 
             m.GroupListSequences = vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.ConvertToProto((GroupListEnumeratorSequences)vm.GroupListSequences); 
-            m.MondayBeforeFirstDocDate = vm.MondayBeforeFirstDocDate; 
-            try 
-            { 
-                m.PropertyDocNumberName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocNumberName)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'property_doc_number_name'", ex); 
-            }
-            m.UseDocNumberProperty = vm.UseDocNumberProperty; 
-            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; 
-            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; 
-            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; 
             foreach (var t in vm.ListNodeGeneratorsSettings) 
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); 
             return m;
@@ -30604,27 +30518,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnDescriptionChanging(ref string to, ref bool isCancel); 
         partial void OnDescriptionChanged();
         
-        [Category("")]
-        [PropertyOrderAttribute(4)]
-        [DisplayName("Composition prefix")]
-        [Description("Prefix for documents composition names. Used if set to use in config model")]
-        public string PrefixForCompositionNames 
-        { 
-            get { return this._PrefixForCompositionNames; }
-            set
-            {
-                // Use 'OnPrefixForCompositionNamesChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._PrefixForCompositionNames, value, (t) => { bool isCancel = false; this.OnPrefixForCompositionNamesChanging(ref value, ref isCancel); if (isCancel) return; this._PrefixForCompositionNames = value; this.OnPrefixForCompositionNamesChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private string _PrefixForCompositionNames = string.Empty; 
-        partial void OnPrefixForCompositionNamesChanging(ref string to, ref bool isCancel); 
-        partial void OnPrefixForCompositionNamesChanged();
-        
         [Browsable(false)]
         [Description("Properties for all documents")]
         public DocumentTimeline DocumentTimeline 
@@ -30661,27 +30554,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnGroupListDocumentsChanging(ref GroupListDocuments to, ref bool isCancel); 
         partial void OnGroupListDocumentsChanged();
         IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return (this as GroupDocuments).GroupListDocuments; } } 
-        
-        [Category("")]
-        [PropertyOrderAttribute(14)]
-        [DisplayName("Doc short type")]
-        [Description("Doc short type property name in document timeline")]
-        public string DocShortTypeIdPropertyName 
-        { 
-            get { return this._DocShortTypeIdPropertyName; }
-            set
-            {
-                // Use 'OnDocShortTypeIdPropertyNameChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._DocShortTypeIdPropertyName, value, (t) => { bool isCancel = false; this.OnDocShortTypeIdPropertyNameChanging(ref value, ref isCancel); if (isCancel) return; this._DocShortTypeIdPropertyName = value; this.OnDocShortTypeIdPropertyNameChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private string _DocShortTypeIdPropertyName = string.Empty; 
-        partial void OnDocShortTypeIdPropertyNameChanging(ref string to, ref bool isCancel); 
-        partial void OnDocShortTypeIdPropertyNameChanged();
         
         [Browsable(false)]
         [Description("Registers for documents")]
@@ -30737,130 +30609,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnGroupListSequencesChanging(ref GroupListEnumeratorSequences to, ref bool isCancel); 
         partial void OnGroupListSequencesChanged();
         IGroupListEnumeratorSequences IGroupDocuments.GroupListSequences { get { return (this as GroupDocuments).GroupListSequences; } } 
-        
-        [Category("")]
-        [PropertyOrderAttribute(23)]
-        [DisplayName("Monday Date")]
-        [Description("Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions ")]
-        [ReadOnly(true)]
-        public Google.Protobuf.WellKnownTypes.Timestamp MondayBeforeFirstDocDate 
-        { 
-            get { return this._MondayBeforeFirstDocDate; }
-            set
-            {
-                // Use 'OnMondayBeforeFirstDocDateChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._MondayBeforeFirstDocDate, value, (t) => { bool isCancel = false; this.OnMondayBeforeFirstDocDateChanging(ref value, ref isCancel); if (isCancel) return; this._MondayBeforeFirstDocDate = value; this.OnMondayBeforeFirstDocDateChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private Google.Protobuf.WellKnownTypes.Timestamp _MondayBeforeFirstDocDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.MinValue.AddDays(1).ToUniversalTime()); 
-        partial void OnMondayBeforeFirstDocDateChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to, ref bool isCancel); 
-        partial void OnMondayBeforeFirstDocDateChanged();
-        
-        [Category("Property settings")]
-        [PropertyOrderAttribute(42)]
-        [DisplayName("Doc Number property")]
-        [Description("Name of document number auto generated property")]
-        public string PropertyDocNumberName 
-        { 
-            get { return this._PropertyDocNumberName; }
-            set
-            {
-                // Use 'OnPropertyDocNumberNameChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._PropertyDocNumberName, value, (t) => { bool isCancel = false; this.OnPropertyDocNumberNameChanging(ref value, ref isCancel); if (isCancel) return; this._PropertyDocNumberName = value; this.OnPropertyDocNumberNameChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private string _PropertyDocNumberName = string.Empty; 
-        partial void OnPropertyDocNumberNameChanging(ref string to, ref bool isCancel); 
-        partial void OnPropertyDocNumberNameChanged();
-        
-        [Category("Property settings")]
-        [PropertyOrderAttribute(41)]
-        [DisplayName("Use Doc Number")]
-        [Description("Use document number property for documents")]
-        public bool UseDocNumberProperty 
-        { 
-            get { return this._UseDocNumberProperty; }
-            set
-            {
-                // Use 'OnUseDocNumberPropertyChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._UseDocNumberProperty, value, (t) => { bool isCancel = false; this.OnUseDocNumberPropertyChanging(ref value, ref isCancel); if (isCancel) return; this._UseDocNumberProperty = value; this.OnUseDocNumberPropertyChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private bool _UseDocNumberProperty; 
-        partial void OnUseDocNumberPropertyChanging(ref bool to, ref bool isCancel); 
-        partial void OnUseDocNumberPropertyChanged();
-        
-        [Category("Auto Layout")]
-        [DisplayName("Sortable")]
-        [Description("Sortable in data grid")]
-        public EnumUseType IsGridSortable 
-        { 
-            get { return this._IsGridSortable; }
-            set
-            {
-                // Use 'OnIsGridSortableChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._IsGridSortable, value, (t) => { bool isCancel = false; this.OnIsGridSortableChanging(ref value, ref isCancel); if (isCancel) return; this._IsGridSortable = value; this.OnIsGridSortableChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private EnumUseType _IsGridSortable; 
-        partial void OnIsGridSortableChanging(ref EnumUseType to, ref bool isCancel); 
-        partial void OnIsGridSortableChanged();
-        
-        [Category("Auto Layout")]
-        [DisplayName("Custom Sortable")]
-        [Description("Custom sortable in data grid by using custom function")]
-        public EnumUseType IsGridSortableCustom 
-        { 
-            get { return this._IsGridSortableCustom; }
-            set
-            {
-                // Use 'OnIsGridSortableCustomChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._IsGridSortableCustom, value, (t) => { bool isCancel = false; this.OnIsGridSortableCustomChanging(ref value, ref isCancel); if (isCancel) return; this._IsGridSortableCustom = value; this.OnIsGridSortableCustomChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private EnumUseType _IsGridSortableCustom; 
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to, ref bool isCancel); 
-        partial void OnIsGridSortableCustomChanged();
-        
-        [Category("Auto Layout")]
-        [DisplayName("Filterable")]
-        [Description("Filterable in data grid")]
-        public EnumUseType IsGridFilterable 
-        { 
-            get { return this._IsGridFilterable; }
-            set
-            {
-                // Use 'OnIsGridFilterableChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._IsGridFilterable, value, (t) => { bool isCancel = false; this.OnIsGridFilterableChanging(ref value, ref isCancel); if (isCancel) return; this._IsGridFilterable = value; this.OnIsGridFilterableChanged(); })) 
-                {
-                    this.ValidateProperty(); 
-                    this.IsChanged = true; 
-                }
-            }
-        }
-        private EnumUseType _IsGridFilterable; 
-        partial void OnIsGridFilterableChanging(ref EnumUseType to, ref bool isCancel); 
-        partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings 
@@ -32467,6 +32215,39 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
+            this.RuleFor(x => x.PrefixForCompositionNames).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.DocShortTypeIdPropertyName).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("DocShortTypeIdPropertyName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
+            this.RuleFor(x => x.PropertyDocNumberName).Custom((str, cntx) =>
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("PropertyDocNumberName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
         }
     }
     public partial class GroupListDocuments : ConfigObjectVmGenSettings<GroupListDocuments, GroupListDocumentsValidator>, IComparable<GroupListDocuments>, IConfigAcceptVisitor, IGroupListDocuments 
@@ -32528,12 +32309,20 @@ namespace vSharpStudio.vm.ViewModels
             vm._Name = from.Name; 
             vm._NameUi = from.NameUi; 
             vm._Description = from.Description; 
+            vm._PrefixForCompositionNames = from.PrefixForCompositionNames; 
             vm._SortType = from.SortType; 
             vm._ListDocuments = new ConfigNodesCollection<Document>(vm); 
             foreach (var t in from.ListDocuments) 
                 vm._ListDocuments.AddClone(Document.Clone(vm, (Document)t, isDeep));
             vm._ExplicitSortingPosition = from.ExplicitSortingPosition; 
             vm._LastShortId = from.LastShortId; 
+            vm._DocShortTypeIdPropertyName = from.DocShortTypeIdPropertyName; 
+            vm._MondayBeforeFirstDocDate = from.MondayBeforeFirstDocDate; 
+            vm._PropertyDocNumberName = from.PropertyDocNumberName; 
+            vm._UseDocNumberProperty = from.UseDocNumberProperty; 
+            vm._IsGridSortable = from.IsGridSortable; 
+            vm._IsGridSortableCustom = from.IsGridSortableCustom; 
+            vm._IsGridFilterable = from.IsGridFilterable; 
             vm._ListRoleDocumentAccessSettings = new ObservableCollectionWithActions<RoleDocumentAccess>(); 
             foreach (var t in from.ListRoleDocumentAccessSettings) 
                 vm._ListRoleDocumentAccessSettings.AddClone(RoleDocumentAccess.Clone((RoleDocumentAccess)t, isDeep));
@@ -32552,6 +32341,7 @@ namespace vSharpStudio.vm.ViewModels
             to._Name = from.Name; 
             to._NameUi = from.NameUi; 
             to._Description = from.Description; 
+            to._PrefixForCompositionNames = from.PrefixForCompositionNames; 
             to._SortType = from.SortType; 
             if (isDeep) 
             {
@@ -32591,6 +32381,13 @@ namespace vSharpStudio.vm.ViewModels
             }
             to._ExplicitSortingPosition = from.ExplicitSortingPosition; 
             to._LastShortId = from.LastShortId; 
+            to._DocShortTypeIdPropertyName = from.DocShortTypeIdPropertyName; 
+            to._MondayBeforeFirstDocDate = from.MondayBeforeFirstDocDate; 
+            to._PropertyDocNumberName = from.PropertyDocNumberName; 
+            to._UseDocNumberProperty = from.UseDocNumberProperty; 
+            to._IsGridSortable = from.IsGridSortable; 
+            to._IsGridSortableCustom = from.IsGridSortableCustom; 
+            to._IsGridFilterable = from.IsGridFilterable; 
             if (isDeep) 
             {
                 foreach (var t in to.ListRoleDocumentAccessSettings.ToList())
@@ -32694,6 +32491,7 @@ namespace vSharpStudio.vm.ViewModels
             vm._Name = m.Name; 
             vm._NameUi = m.NameUi; 
             vm._Description = m.Description; 
+            vm._PrefixForCompositionNames = m.PrefixForCompositionNames; 
             vm._SortType = (EnumSortingType)m.SortType; 
             vm._ListDocuments = new ConfigNodesCollection<Document>(vm); 
             foreach (var t in m.ListDocuments) 
@@ -32703,6 +32501,13 @@ namespace vSharpStudio.vm.ViewModels
             }
             vm._ExplicitSortingPosition = m.ExplicitSortingPosition; 
             vm._LastShortId = m.LastShortId; 
+            vm._DocShortTypeIdPropertyName = m.DocShortTypeIdPropertyName; 
+            vm._MondayBeforeFirstDocDate = m.MondayBeforeFirstDocDate; 
+            vm._PropertyDocNumberName = m.PropertyDocNumberName; 
+            vm._UseDocNumberProperty = m.UseDocNumberProperty; 
+            vm._IsGridSortable = (EnumUseType)m.IsGridSortable; 
+            vm._IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; 
+            vm._IsGridFilterable = (EnumUseType)m.IsGridFilterable; 
             vm._ListRoleDocumentAccessSettings = new ObservableCollectionWithActions<RoleDocumentAccess>(); 
             foreach (var t in m.ListRoleDocumentAccessSettings) 
             {
@@ -32757,11 +32562,40 @@ namespace vSharpStudio.vm.ViewModels
             { 
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'description'", ex); 
             }
+            try 
+            { 
+                m.PrefixForCompositionNames = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PrefixForCompositionNames)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'prefix_for_composition_names'", ex); 
+            }
             m.SortType = (Proto.Config.proto_enum_sorting_type)vm.SortType; 
             foreach (var t in vm.ListDocuments) 
                 m.ListDocuments.Add(Document.ConvertToProto((Document)t)); 
             m.ExplicitSortingPosition = vm.ExplicitSortingPosition; 
             m.LastShortId = vm.LastShortId; 
+            try 
+            { 
+                m.DocShortTypeIdPropertyName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.DocShortTypeIdPropertyName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'doc_short_type_id_property_name'", ex); 
+            }
+            m.MondayBeforeFirstDocDate = vm.MondayBeforeFirstDocDate; 
+            try 
+            { 
+                m.PropertyDocNumberName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyDocNumberName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_list_documents' field 'property_doc_number_name'", ex); 
+            }
+            m.UseDocNumberProperty = vm.UseDocNumberProperty; 
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; 
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; 
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; 
             foreach (var t in vm.ListRoleDocumentAccessSettings) 
                 m.ListRoleDocumentAccessSettings.Add(RoleDocumentAccess.ConvertToProto((RoleDocumentAccess)t)); 
             foreach (var t in vm.ListNodeGeneratorsSettings) 
@@ -32872,6 +32706,27 @@ namespace vSharpStudio.vm.ViewModels
         
         [Category("")]
         [PropertyOrderAttribute(4)]
+        [DisplayName("Composition prefix")]
+        [Description("Prefix for documents composition names. Used if set to use in config model")]
+        public string PrefixForCompositionNames 
+        { 
+            get { return this._PrefixForCompositionNames; }
+            set
+            {
+                // Use 'OnPrefixForCompositionNamesChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._PrefixForCompositionNames, value, (t) => { bool isCancel = false; this.OnPrefixForCompositionNamesChanging(ref value, ref isCancel); if (isCancel) return; this._PrefixForCompositionNames = value; this.OnPrefixForCompositionNamesChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private string _PrefixForCompositionNames = string.Empty; 
+        partial void OnPrefixForCompositionNamesChanging(ref string to, ref bool isCancel); 
+        partial void OnPrefixForCompositionNamesChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(4)]
         [DisplayName("Sort")]
         [Description("Sort type for documents")]
         public EnumSortingType SortType 
@@ -32966,6 +32821,151 @@ namespace vSharpStudio.vm.ViewModels
         private uint _LastShortId; 
         partial void OnLastShortIdChanging(ref uint to, ref bool isCancel); 
         partial void OnLastShortIdChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(14)]
+        [DisplayName("Doc short type")]
+        [Description("Doc short type property name in document timeline")]
+        public string DocShortTypeIdPropertyName 
+        { 
+            get { return this._DocShortTypeIdPropertyName; }
+            set
+            {
+                // Use 'OnDocShortTypeIdPropertyNameChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._DocShortTypeIdPropertyName, value, (t) => { bool isCancel = false; this.OnDocShortTypeIdPropertyNameChanging(ref value, ref isCancel); if (isCancel) return; this._DocShortTypeIdPropertyName = value; this.OnDocShortTypeIdPropertyNameChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private string _DocShortTypeIdPropertyName = string.Empty; 
+        partial void OnDocShortTypeIdPropertyNameChanging(ref string to, ref bool isCancel); 
+        partial void OnDocShortTypeIdPropertyNameChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(23)]
+        [DisplayName("Monday Date")]
+        [Description("Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions ")]
+        [ReadOnly(true)]
+        public Google.Protobuf.WellKnownTypes.Timestamp MondayBeforeFirstDocDate 
+        { 
+            get { return this._MondayBeforeFirstDocDate; }
+            set
+            {
+                // Use 'OnMondayBeforeFirstDocDateChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._MondayBeforeFirstDocDate, value, (t) => { bool isCancel = false; this.OnMondayBeforeFirstDocDateChanging(ref value, ref isCancel); if (isCancel) return; this._MondayBeforeFirstDocDate = value; this.OnMondayBeforeFirstDocDateChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private Google.Protobuf.WellKnownTypes.Timestamp _MondayBeforeFirstDocDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.MinValue.AddDays(1).ToUniversalTime()); 
+        partial void OnMondayBeforeFirstDocDateChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to, ref bool isCancel); 
+        partial void OnMondayBeforeFirstDocDateChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(42)]
+        [DisplayName("Doc Number property")]
+        [Description("Name of document number auto generated property")]
+        public string PropertyDocNumberName 
+        { 
+            get { return this._PropertyDocNumberName; }
+            set
+            {
+                // Use 'OnPropertyDocNumberNameChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._PropertyDocNumberName, value, (t) => { bool isCancel = false; this.OnPropertyDocNumberNameChanging(ref value, ref isCancel); if (isCancel) return; this._PropertyDocNumberName = value; this.OnPropertyDocNumberNameChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private string _PropertyDocNumberName = string.Empty; 
+        partial void OnPropertyDocNumberNameChanging(ref string to, ref bool isCancel); 
+        partial void OnPropertyDocNumberNameChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(41)]
+        [DisplayName("Use Doc Number")]
+        [Description("Use document number property for documents")]
+        public bool UseDocNumberProperty 
+        { 
+            get { return this._UseDocNumberProperty; }
+            set
+            {
+                // Use 'OnUseDocNumberPropertyChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._UseDocNumberProperty, value, (t) => { bool isCancel = false; this.OnUseDocNumberPropertyChanging(ref value, ref isCancel); if (isCancel) return; this._UseDocNumberProperty = value; this.OnUseDocNumberPropertyChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private bool _UseDocNumberProperty; 
+        partial void OnUseDocNumberPropertyChanging(ref bool to, ref bool isCancel); 
+        partial void OnUseDocNumberPropertyChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable 
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                // Use 'OnIsGridSortableChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._IsGridSortable, value, (t) => { bool isCancel = false; this.OnIsGridSortableChanging(ref value, ref isCancel); if (isCancel) return; this._IsGridSortable = value; this.OnIsGridSortableChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private EnumUseType _IsGridSortable; 
+        partial void OnIsGridSortableChanging(ref EnumUseType to, ref bool isCancel); 
+        partial void OnIsGridSortableChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public EnumUseType IsGridSortableCustom 
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                // Use 'OnIsGridSortableCustomChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._IsGridSortableCustom, value, (t) => { bool isCancel = false; this.OnIsGridSortableCustomChanging(ref value, ref isCancel); if (isCancel) return; this._IsGridSortableCustom = value; this.OnIsGridSortableCustomChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private EnumUseType _IsGridSortableCustom; 
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to, ref bool isCancel); 
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable 
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                // Use 'OnIsGridFilterableChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._IsGridFilterable, value, (t) => { bool isCancel = false; this.OnIsGridFilterableChanging(ref value, ref isCancel); if (isCancel) return; this._IsGridFilterable = value; this.OnIsGridFilterableChanged(); })) 
+                {
+                    this.ValidateProperty(); 
+                    this.IsChanged = true; 
+                }
+            }
+        }
+        private EnumUseType _IsGridFilterable; 
+        partial void OnIsGridFilterableChanging(ref EnumUseType to, ref bool isCancel); 
+        partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
         public ObservableCollectionWithActions<RoleDocumentAccess> ListRoleDocumentAccessSettings 

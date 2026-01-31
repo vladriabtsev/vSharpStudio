@@ -844,7 +844,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyCatalogCode(IGroupListProperties parent, string guid, uint length, bool isNullable)
         {
-            var res = new Property(parent, guid, this.GroupCatalogs.PropertyCodeName, true);
+            var res = new Property(parent, guid, this.GroupCatalogs.GroupListCatalogs.PropertyCodeName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, isNullable);
             res.Position = IProperty.PropertyCodePosition;
             res.IsCsNullable = false;
@@ -853,7 +853,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyCatalogCodeInt(IGroupListProperties parent, string guid, uint length, bool isNullable)
         {
-            var res = new Property(parent, guid, this.GroupCatalogs.PropertyCodeName, true);
+            var res = new Property(parent, guid, this.GroupCatalogs.GroupListCatalogs.PropertyCodeName, true);
             res.DataType = (DataType)this.GetDataTypeNumerical(res, length, true, isNullable);
             res.Position = IProperty.PropertyCodePosition;
             res.IsCsNullable = false;
@@ -862,7 +862,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyCatalogName(IGroupListProperties parent, string guid, uint length, bool isNullable)
         {
-            var res = new Property(parent, guid, this.GroupCatalogs.PropertyNameName, true);
+            var res = new Property(parent, guid, this.GroupCatalogs.GroupListCatalogs.PropertyNameName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, isNullable);
             res.Position = IProperty.PropertyNamePosition;
             res.IsViewDefault = true;
@@ -870,7 +870,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyCatalogDescription(IGroupListProperties parent, string guid, uint length, bool isNullable)
         {
-            var res = new Property(parent, guid, this.GroupCatalogs.PropertyDescriptionName, true);
+            var res = new Property(parent, guid, this.GroupCatalogs.GroupListCatalogs.PropertyDescriptionName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, isNullable);
             res.Position = IProperty.PropertyDescriptionPosition;
             res.IsViewDefault = true;
@@ -878,7 +878,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyIsFolder(IGroupListProperties parent, string guid, bool isNullable)
         {
-            var res = new Property(parent, guid, this.GroupCatalogs.PropertyIsFolderName, true);
+            var res = new Property(parent, guid, this.GroupCatalogs.GroupListCatalogs.PropertyIsFolderName, true);
             res.DataType = new DataType(res) { DataTypeEnum = EnumDataType.BOOL };
             res.IsHidden = true;
             res.IsNullable = isNullable;
@@ -897,7 +897,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocumentDate(IGroupListProperties parent, string guid, bool isPKey = false)
         {
-            var res = new Property(parent, guid, this.GroupDocuments.DocumentDocDateTimePropertyName, true);
+            var res = new Property(parent, guid, this.GroupDocuments.DocumentTimeline.TimeLineDocDateTimePropertyName, true);
             res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res, EnumTimeAccuracyType.MAX_TIME_ACC, false, isPKey);
             res.Position = IProperty.PropertyDocumentDatePosition;
             res.IsCsNullable = true;
@@ -906,7 +906,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocNumberString(IGroupListProperties parent, string guid, uint length)
         {
-            var res = new Property(parent, guid, this.GroupDocuments.PropertyDocNumberName, true);
+            var res = new Property(parent, guid, this.GroupDocuments.GroupListDocuments.PropertyDocNumberName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, true);
             res.Position = IProperty.PropertyDocumentNumberPosition;
             //res.IsCsNullable = true;
@@ -915,7 +915,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocNumberInt(IGroupListProperties parent, string guid, uint length)
         {
-            var res = new Property(parent, guid, this.GroupDocuments.PropertyDocNumberName, true);
+            var res = new Property(parent, guid, this.GroupDocuments.GroupListDocuments.PropertyDocNumberName, true);
             res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, true, true);
             //res.DataType.IsNullable = true;
             res.Position = IProperty.PropertyDocumentNumberPosition;

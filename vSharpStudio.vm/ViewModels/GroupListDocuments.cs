@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using Google.Protobuf.WellKnownTypes;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
@@ -20,6 +21,11 @@ namespace vSharpStudio.vm.ViewModels
         public GroupDocuments ParentGroupDocuments { get { Debug.Assert(this.Parent != null); return (GroupDocuments)this.Parent; } }
         [Browsable(false)]
         public IGroupDocuments ParentGroupDocumentsI { get { Debug.Assert(this.Parent != null); return (IGroupDocuments)this.Parent; } }
+        [Browsable(false)]
+        public Model ParentModel { get { Debug.Assert(this.Parent != null && this.Parent.Parent != null); return (Model)this.Parent.Parent; } }
+        [Browsable(false)]
+        public IModel ParentModelI { get { Debug.Assert(this.Parent != null && this.Parent.Parent != null); return (IModel)this.Parent.Parent; } }
+
         #region ITree
         public override IChildrenCollection GetListChildren()
         {
@@ -36,6 +42,8 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
+            this._MondayBeforeFirstDocDate = Timestamp.FromDateTime(new DateTime(1000, 1, 6, 0, 0, 0, DateTimeKind.Utc));
+            this._UseDocNumberProperty = true;
             this.IsEditable = false;
             Init();
         }
@@ -48,6 +56,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             OnSortTypeChanged();
             this._Name = Defaults.DocumentsListName;
+            if (string.IsNullOrWhiteSpace(this._PrefixForCompositionNames)) this._PrefixForCompositionNames = "Doc";
+            if (string.IsNullOrWhiteSpace(this._PropertyDocNumberName)) this._PropertyDocNumberName = "DocNumber";
+            if (string.IsNullOrWhiteSpace(this._DocShortTypeIdPropertyName)) this._DocShortTypeIdPropertyName = "DocShortTypeId";
             this.ListDocuments.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
@@ -101,18 +112,6 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
-        protected override string[]? OnGetWhatHideOnPropertyGrid()
-        {
-            var lst = new List<string>
-            {
-                nameof(this.Description),
-                nameof(this.Guid),
-                nameof(this.NameUi),
-                nameof(this.Parent),
-                nameof(this.Children)
-            };
-            return [.. lst];
-        }
 
         #region Roles
         public object GetRoleAccess(IRole role)
@@ -172,14 +171,54 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumDocumentAccess.D_BY_PARENT)
                 return r.EditAccess;
-            return this.ParentGroupDocuments.GetRoleDocumentAccess(role);
+            return this.GetRoleDocumentAccess(role);
         }
         public EnumPrintAccess GetRoleDocumentPrint(IRole role)
         {
             if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
                 return r.PrintAccess;
-            return this.ParentGroupDocuments.GetRoleDocumentPrint(role);
+            return this.GetRoleDocumentPrint(role);
         }
         #endregion Roles
+
+        #region View
+        public bool IsGridSortableGet()
+        {
+            if (this.IsGridSortable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortable == EnumUseType.No)
+                return false;
+            return this.ParentModel.IsGridSortable;
+        }
+        public bool IsGridFilterableGet()
+        {
+            if (this.IsGridFilterable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridFilterable == EnumUseType.No)
+                return false;
+            return this.ParentModel.IsGridFilterable;
+        }
+        public bool IsGridSortableCustomGet()
+        {
+            if (this.IsGridSortableCustom == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortableCustom == EnumUseType.No)
+                return false;
+            return this.ParentModel.IsGridSortableCustom;
+        }
+        #endregion View
+
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
+        {
+            var lst = new List<string>
+            {
+                nameof(this.Description),
+                nameof(this.Guid),
+                nameof(this.NameUi),
+                nameof(this.Parent),
+                nameof(this.Children)
+            };
+            return [.. lst];
+        }
     }
 }

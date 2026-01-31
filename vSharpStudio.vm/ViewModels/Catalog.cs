@@ -439,7 +439,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.UseCodeProperty == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.ParentGroupCatalogs.UseCodeProperty;
+            return this.ParentGroupListCatalogs.UseCodeProperty;
         }
         public bool GetUseNameProperty()
         {
@@ -447,7 +447,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.UseNameProperty == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.ParentGroupCatalogs.UseNameProperty;
+            return this.ParentGroupListCatalogs.UseNameProperty;
         }
         public bool GetUseDescriptionProperty()
         {
@@ -455,7 +455,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.UseDescriptionProperty == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.ParentGroupCatalogs.UseDescriptionProperty;
+            return this.ParentGroupListCatalogs.UseDescriptionProperty;
         }
 
         public IReadOnlyList<IProperty> GetAllProperties(bool isUseRecordVersionField)
@@ -809,7 +809,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridSortable == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.ParentGroupCatalogs.IsGridSortableGet();
+            return this.ParentGroupListCatalogs.IsGridSortableGet();
         }
         public bool IsGridFilterableGet()
         {
@@ -817,7 +817,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridFilterable == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.ParentGroupCatalogs.IsGridFilterableGet();
+            return this.ParentGroupListCatalogs.IsGridFilterableGet();
         }
         public bool IsGridSortableCustomGet()
         {
@@ -825,7 +825,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridSortableCustom == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.ParentGroupCatalogs.IsGridSortableCustomGet();
+            return this.ParentGroupListCatalogs.IsGridSortableCustomGet();
         }
 
         #region Roles
@@ -888,7 +888,7 @@ namespace vSharpStudio.vm.ViewModels
             EnumCatalogDetailAccess ra = this.dicCatalogAccess[role.Guid].EditAccess;
             if (ra == EnumCatalogDetailAccess.C_BY_PARENT)
             {
-                ra = this.ParentGroupListCatalogs.ParentGroupCatalogs.GetRoleCatalogAccess(role);
+                ra = this.ParentGroupListCatalogs.GetRoleCatalogAccess(role);
             }
             return ra switch
             {
@@ -903,7 +903,7 @@ namespace vSharpStudio.vm.ViewModels
             EnumPrintAccess ra = EnumPrintAccess.PR_BY_PARENT;
             if (!this.dicCatalogAccess.TryGetValue(role.Guid, out var r) || r.PrintAccess == EnumPrintAccess.PR_BY_PARENT)
             {
-                ra = this.ParentGroupListCatalogs.ParentGroupCatalogs.GetRoleCatalogPrint(role);
+                ra = this.ParentGroupListCatalogs.GetRoleCatalogPrint(role);
             }
             Debug.Assert(ra != EnumPrintAccess.PR_BY_PARENT);
             return ra;
@@ -912,13 +912,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.dicCatalogAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
                 return r.EditAccess;
-            return this.ParentGroupListCatalogs.ParentGroupCatalogs.GetRoleCatalogAccess(role);
+            return this.ParentGroupListCatalogs.GetRoleCatalogAccess(role);
         }
         public EnumPrintAccess GetRoleCatalogPrint(IRole role)
         {
             if (this.dicCatalogAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
                 return r.PrintAccess;
-            return this.ParentGroupListCatalogs.ParentGroupCatalogs.GetRoleCatalogPrint(role);
+            return this.ParentGroupListCatalogs.GetRoleCatalogPrint(role);
         }
         public IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access)
         {

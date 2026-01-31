@@ -516,8 +516,8 @@ namespace vSharpStudio.Unit
             Assert.HasCount(4, lst);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[1].Name);
-            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyCodeName, lst[2].Name);
-            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[3].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyCodeName, lst[2].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyNameName, lst[3].Name);
 
             //// Tree catalog
             //c.UseTree = true;
@@ -535,10 +535,10 @@ namespace vSharpStudio.Unit
             Assert.HasCount(6, lst);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefTreeParent", lst[1].Name);
-            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyIsFolderName, lst[2].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyIsFolderName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[3].Name);
-            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyCodeName, lst[4].Name);
-            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[5].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyCodeName, lst[4].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyNameName, lst[5].Name);
 
             // Tree catalog with separate properties for tree
             c.UseTree = true;
@@ -548,15 +548,15 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefParent", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[2].Name);
-            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyCodeName, lst[3].Name);
-            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[4].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyCodeName, lst[3].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyNameName, lst[4].Name);
             lst = c.GetAllFolderProperties(true);
             Assert.HasCount(5, lst);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefTreeParent", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[2].Name);
-            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyCodeName, lst[3].Name);
-            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[4].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyCodeName, lst[3].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyNameName, lst[4].Name);
         }
         [TestMethod]
         [Ignore("Not implemented yet")]
@@ -2100,8 +2100,8 @@ namespace vSharpStudio.Unit
             var m = vm.Config.Model;
 
             // Catalog
-            var gc = m.GroupCatalogs;
-            var c = gc.GroupListCatalogs.AddCatalog("Simple");
+            var gc = m.GroupCatalogs.GroupListCatalogs;
+            var c = gc.AddCatalog("Simple");
             Assert.IsEmpty(c.dicCatalogAccess);
             var det = c.AddDetails("det1");
             var pdet = det.AddPropertyString("pdet", 5);
@@ -2138,7 +2138,7 @@ namespace vSharpStudio.Unit
             var gld = d.ParentGroupListDocuments;
             Assert.HasCount(1, d.dicDocumentAccess);
             Assert.AreEqual(EnumDocumentAccess.D_UNPOST, d.GetRoleDocumentAccess(role));
-            Assert.AreEqual(EnumDocumentAccess.D_UNPOST, gd.GetRoleDocumentAccess(role));
+            Assert.AreEqual(EnumDocumentAccess.D_UNPOST, gld.GetRoleDocumentAccess(role));
             var pd = d.GroupProperties.AddPropertyChar("char_notnullable", false);
             Assert.HasCount(1, pd.dicPropertyAccess);
             Assert.AreEqual(EnumPropertyAccess.P_EDIT, pd.GetRolePropertyAccess(role));
@@ -2528,8 +2528,8 @@ namespace vSharpStudio.Unit
                                             break;
                                         default:
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, gc.ParentGroupCatalogs.GetRoleCatalogPrint(role));
-                                            Assert.AreEqual(enGCatAccess, gc.ParentGroupCatalogs.GetRoleCatalogAccess(role));
+                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role));
+                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role));
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
                                                 Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                                             TestProperty(role, p, enGCatAccess);
@@ -2578,8 +2578,8 @@ namespace vSharpStudio.Unit
                                             break;
                                         default:
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, gc.ParentGroupCatalogs.GetRoleCatalogPrint(role));
-                                            Assert.AreEqual(enGCatAccess, gc.ParentGroupCatalogs.GetRoleCatalogAccess(role));
+                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role));
+                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role));
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
                                                 Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                                             TestProperty(role, p, enGCatAccess);
@@ -2628,8 +2628,8 @@ namespace vSharpStudio.Unit
                                             break;
                                         default:
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, gc.ParentGroupCatalogs.GetRoleCatalogPrint(role));
-                                            Assert.AreEqual(enGCatAccess, gc.ParentGroupCatalogs.GetRoleCatalogAccess(role));
+                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role));
+                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role));
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
                                                 Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                                             TestProperty(role, p, enGCatAccess);
@@ -2680,8 +2680,8 @@ namespace vSharpStudio.Unit
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, gc.ParentGroupCatalogs.GetRoleCatalogPrint(role));
-                        Assert.AreEqual(enGrCatAccess, gc.ParentGroupCatalogs.GetRoleCatalogAccess(role));
+                            Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role));
+                        Assert.AreEqual(enGrCatAccess, gc.GetRoleCatalogAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
                             Assert.AreEqual(enPrint, c.GetRoleCatalogPrint(role));
                         Assert.AreEqual(enGrCatAccess, c.GetRoleCatalogAccess(role));
@@ -2774,8 +2774,8 @@ namespace vSharpStudio.Unit
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, gd.GetRoleDocumentPrint(role));
-                        Assert.AreEqual(enGrDocAccess, gd.GetRoleDocumentAccess(role));
+                            Assert.AreEqual(enPrint, gld.GetRoleDocumentPrint(role));
+                        Assert.AreEqual(enGrDocAccess, gld.GetRoleDocumentAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
                             Assert.AreEqual(enPrint, gld.GetRoleDocumentPrint(role));
                         Assert.AreEqual(enGrDocAccess, gld.GetRoleDocumentAccess(role));
@@ -2802,8 +2802,8 @@ namespace vSharpStudio.Unit
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, gd.GetRoleDocumentPrint(role));
-                        Assert.AreEqual(enPropAccess, gd.GetRoleDocumentAccess(role));
+                            Assert.AreEqual(enPrint, gd.GroupListDocuments.GetRoleDocumentPrint(role));
+                        Assert.AreEqual(enPropAccess, gd.GroupListDocuments.GetRoleDocumentAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
                             Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                         TestProperty(role, p, enPropAccess);

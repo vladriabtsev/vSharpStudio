@@ -38,10 +38,10 @@ namespace vSharpStudio.vm.ViewModels
                 sb.Append(",nq}");
             }
             sb.Append(" Number:{");
-            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.PropertyDocNumberName);
+            sb.Append(this.ParentGroupListDocuments.PropertyDocNumberName);
             sb.Append(",nq}");
             sb.Append(" Date:{");
-            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.DocumentDocDateTimePropertyName);
+            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.DocumentTimeline.TimeLineDocDateTimePropertyName);
             sb.Append(",nq}");
             return sb.ToString();
         }
@@ -111,6 +111,7 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupForms.AddAllAppGenSettingsVmsToNode();
             this.GroupReports.AddAllAppGenSettingsVmsToNode();
         }
+
         #region Tree operations
         public override ITreeConfigNode NodeAddClone()
         {
@@ -277,6 +278,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentGroupListDocuments.ListDocuments.Remove(this);
         }
         #endregion Tree operations
+
         [PropertyOrder(100)]
         [ReadOnly(true)]
         [DisplayName("Composite")]
@@ -568,7 +570,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridSortable == EnumUseType.No)
                 return false;
-            return this.ParentGroupListDocuments.ParentGroupDocuments.IsGridSortableGet();
+            return this.ParentGroupListDocuments.IsGridSortableGet();
         }
         public bool IsGridFilterableGet()
         {
@@ -576,7 +578,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridFilterable == EnumUseType.No)
                 return false;
-            return this.ParentGroupListDocuments.ParentGroupDocuments.IsGridFilterableGet();
+            return this.ParentGroupListDocuments.IsGridFilterableGet();
         }
         public bool IsGridSortableCustomGet()
         {
@@ -584,7 +586,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridSortableCustom == EnumUseType.No)
                 return false;
-            return this.ParentGroupListDocuments.ParentGroupDocuments.IsGridSortableCustomGet();
+            return this.ParentGroupListDocuments.IsGridSortableCustomGet();
         }
 
         #region Roles
@@ -642,6 +644,18 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.dicDocumentAccess.Remove(role.Guid);
         }
+        public EnumDocumentAccess GetRoleDocumentAccess(IRole role)
+        {
+            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumDocumentAccess.D_BY_PARENT)
+                return r.EditAccess;
+            return this.ParentGroupListDocuments.GetRoleDocumentAccess(role);
+        }
+        public EnumPrintAccess GetRoleDocumentPrint(IRole role)
+        {
+            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
+                return r.PrintAccess;
+            return this.ParentGroupListDocuments.GetRoleDocumentPrint(role);
+        }
         public EnumPropertyAccess GetRolePropertyAccess(IRole role)
         {
             var ra = EnumDocumentAccess.D_BY_PARENT;
@@ -667,18 +681,6 @@ namespace vSharpStudio.vm.ViewModels
                 ra = this.ParentGroupListDocuments.GetRoleDocumentPrint(role);
             Debug.Assert(ra != EnumPrintAccess.PR_BY_PARENT);
             return ra;
-        }
-        public EnumDocumentAccess GetRoleDocumentAccess(IRole role)
-        {
-            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumDocumentAccess.D_BY_PARENT)
-                return r.EditAccess;
-            return this.ParentGroupListDocuments.GetRoleDocumentAccess(role);
-        }
-        public EnumPrintAccess GetRoleDocumentPrint(IRole role)
-        {
-            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                return r.PrintAccess;
-            return this.ParentGroupListDocuments.GetRoleDocumentPrint(role);
         }
         public IReadOnlyList<string> GetRolesByAccess(EnumDocumentAccess access)
         {

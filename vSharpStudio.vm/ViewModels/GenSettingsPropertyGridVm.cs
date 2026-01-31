@@ -12,8 +12,15 @@ namespace vSharpStudio.vm.ViewModels
             this.Node = node;
             this.Settings = set;
         }
-        public IvPluginGeneratorNodeSettings? Settings { get => settings; set => SetProperty(ref settings, value); }
-        private IvPluginGeneratorNodeSettings? settings;
+        public GenSettingsPropertyGridVm(ITreeConfigNode node, IvPluginGeneratorSettings? set) : this()
+        {
+            this.Node = node;
+            this.Settings = set;
+        }
+        //public IvPluginGeneratorNodeSettings? Settings { get => settings; set => SetProperty(ref settings, value); }
+        //private IvPluginGeneratorNodeSettings? settings;
+        public object? Settings { get => settings; set => SetProperty(ref settings, value); }
+        private object? settings;
         public GridLength GridColumnWidth
         {
             get

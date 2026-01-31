@@ -7,7 +7,25 @@ namespace vSharpStudio.vm.ViewModels
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(GroupListDocumentsValidator));
         public GroupListDocumentsValidator()
         {
-            //this.GeneralRules();
+            this.GeneralRules();
+            this.RuleFor(x => x.PrefixForCompositionNames).Must((o, prefix) =>
+            {
+                if (!o.ParentModel.IsUseNameComposition)
+                    return true;
+                if (!string.IsNullOrWhiteSpace(prefix))
+                    return true;
+                return false;
+            }).WithMessage("Prefix can't be empty if name composition usage is chosen for composite names in the model");
+            this.RuleFor(x => x.MondayBeforeFirstDocDate).Must((o, monday) =>
+            {
+                if (monday != null)
+                {
+                    var dt = monday.ToDateTime();
+                    if (dt.DayOfWeek == DayOfWeek.Monday)
+                        return true;
+                }
+                return false;
+            }).WithMessage("Selected day has to be Monday");
             //this.RuleFor(x => x.ShortIdTypeKey).NotEmpty().WithMessage("Can't be empty");
             //this.RuleFor(x => x.ShortIdTypeKey)
             //    .Must((o, id) =>

@@ -1519,23 +1519,13 @@ namespace vSharpStudio.common
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); 
     	string Description { get; } 
+    	string PrefixForCompositionNames { get; } 
     	EnumSortingType SortType { get; } 
     	IReadOnlyList<ICatalog> ListCatalogs { get; } 
     	ICatalog this[int index] { get; }
     	int Count();
     	int ExplicitSortingPosition { get; } 
     	uint LastShortId { get; } 
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
-    }
-    
-    public partial interface IGroupCatalogs : IGuid, IName 
-    {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); 
-    	int ExplicitSortingPosition { get; } 
-    	string Description { get; } 
-    	string PrefixForCompositionNames { get; } 
-    	IGroupListCatalogs GroupListCatalogs { get; } 
-    	IRelationsGroup GroupRelations { get; } 
     	bool UseCodeProperty { get; } 
     	string PropertyCodeName { get; } 
     	bool UseNameProperty { get; } 
@@ -1549,6 +1539,16 @@ namespace vSharpStudio.common
     	EnumUseType IsGridSortable { get; } 
     	EnumUseType IsGridSortableCustom { get; } 
     	EnumUseType IsGridFilterable { get; } 
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
+    }
+    
+    public partial interface IGroupCatalogs : IGuid, IName 
+    {
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); 
+    	int ExplicitSortingPosition { get; } 
+    	string Description { get; } 
+    	IGroupListCatalogs GroupListCatalogs { get; } 
+    	IRelationsGroup GroupRelations { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
     }
     
@@ -1709,19 +1709,11 @@ namespace vSharpStudio.common
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); 
     	int ExplicitSortingPosition { get; } 
     	string Description { get; } 
-    	string PrefixForCompositionNames { get; } 
     	IDocumentTimeline DocumentTimeline { get; } 
     	IGroupListDocuments GroupListDocuments { get; } 
-    	string DocShortTypeIdPropertyName { get; } 
     	IGroupListRegisters GroupRegisters { get; } 
     	IGroupListJournals GroupJournals { get; } 
     	IGroupListEnumeratorSequences GroupListSequences { get; } 
-    	Google.Protobuf.WellKnownTypes.Timestamp MondayBeforeFirstDocDate { get; } 
-    	string PropertyDocNumberName { get; } 
-    	bool UseDocNumberProperty { get; } 
-    	EnumUseType IsGridSortable { get; } 
-    	EnumUseType IsGridSortableCustom { get; } 
-    	EnumUseType IsGridFilterable { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
     }
     
@@ -1772,12 +1764,20 @@ namespace vSharpStudio.common
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); 
     	string Description { get; } 
+    	string PrefixForCompositionNames { get; } 
     	EnumSortingType SortType { get; } 
     	IReadOnlyList<IDocument> ListDocuments { get; } 
     	IDocument this[int index] { get; }
     	int Count();
     	int ExplicitSortingPosition { get; } 
     	uint LastShortId { get; } 
+    	string DocShortTypeIdPropertyName { get; } 
+    	Google.Protobuf.WellKnownTypes.Timestamp MondayBeforeFirstDocDate { get; } 
+    	string PropertyDocNumberName { get; } 
+    	bool UseDocNumberProperty { get; } 
+    	EnumUseType IsGridSortable { get; } 
+    	EnumUseType IsGridSortableCustom { get; } 
+    	EnumUseType IsGridFilterable { get; } 
     	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } 
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } 
     }

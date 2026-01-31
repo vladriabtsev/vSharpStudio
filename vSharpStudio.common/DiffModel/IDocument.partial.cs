@@ -9,10 +9,10 @@ namespace vSharpStudio.common
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();
-        EnumPropertyAccess GetRolePropertyAccess(IRole role);
-        EnumPrintAccess GetRolePropertyPrint(IRole role);
         EnumDocumentAccess GetRoleDocumentAccess(IRole role);
         EnumPrintAccess GetRoleDocumentPrint(IRole role);
+        EnumPropertyAccess GetRolePropertyAccess(IRole role);
+        EnumPrintAccess GetRolePropertyPrint(IRole role);
         IReadOnlyList<string> GetRolesByAccess(EnumDocumentAccess access);
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
         string FullName { get; } // name with config name

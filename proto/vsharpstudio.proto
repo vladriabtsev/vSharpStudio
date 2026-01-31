@@ -2315,6 +2315,10 @@ message proto_group_list_catalogs {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // @attr [PropertyOrderAttribute(5)]
+    // @attr [DisplayName("Composition prefix")]
+    // @attr [Description("Prefix for catalogs composition names. Used if set to use in config model")]
+    string prefix_for_composition_names = 6;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("Sort")]
@@ -2326,37 +2330,6 @@ message proto_group_list_catalogs {
     int32 explicit_sorting_position = 9;
     // @attr [Browsable(false)]
     uint32 last_short_id = 11;
-
-    // @attr [Browsable(false)]
-    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
-}
-message proto_group_catalogs {
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(-2)]
-    // @attr [ReadOnly(true)]
-    string guid = 1;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(1)]
-    string name = 2;
-    // @attr [Browsable(false)]
-    int32 explicit_sorting_position = 3;
-
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("UI name")]
-    // @attr [Description("Used as label/name for UI")]
-    string name_ui = 4;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(3)]
-    string description = 5;
-    // @attr [PropertyOrderAttribute(5)]
-    // @attr [DisplayName("Composition prefix")]
-    // @attr [Description("Prefix for catalogs composition names. Used if set to use in config model")]
-    string prefix_for_composition_names = 6;
-    // @attr [Browsable(false)]
-    proto_group_list_catalogs group_list_catalogs = 8;
-    // @attr [Browsable(false)]
-    proto_relations_group group_relations = 9;
 
     // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(22)]
@@ -2421,6 +2394,33 @@ message proto_group_catalogs {
     // @attr [DisplayName("Filterable")]
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
+
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+message proto_group_catalogs {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Browsable(false)]
+    int32 explicit_sorting_position = 3;
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [Browsable(false)]
+    proto_group_list_catalogs group_list_catalogs = 8;
+    // @attr [Browsable(false)]
+    proto_relations_group group_relations = 9;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -2923,23 +2923,11 @@ message proto_group_documents {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Composition prefix")]
-    // @attr [Description("Prefix for documents composition names. Used if set to use in config model")]
-    string prefix_for_composition_names = 6;
     // @attr [Browsable(false)]
     // @attr [Description("Properties for all documents")]
     proto_document_timeline document_timeline = 7;
     // @attr [Browsable(false)]
     proto_group_list_documents group_list_documents = 8;
-
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(14)]
-    // @attr [DisplayName("Doc short type")]
-    // @attr [Description("Doc short type property name in document timeline")]
-    string doc_short_type_id_property_name = 14;
-
     // @attr [Browsable(false)]
     // @attr [Description("Registers for documents")]
     proto_group_list_registers group_registers = 20;
@@ -2947,39 +2935,6 @@ message proto_group_documents {
     proto_group_list_journals group_journals = 21;
     // @attr [Browsable(false)]
     proto_group_list_enumerator_sequences group_list_sequences = 22;
-
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(23)]
-    // @attr [DisplayName("Monday Date")]
-    // @attr [Description("Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions ")]
-    // @attr [ReadOnly(true)]
-    google.protobuf.Timestamp monday_before_first_doc_date = 23;
-
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(42)]
-    // @attr [DisplayName("Doc Number property")]
-    // @attr [Description("Name of document number auto generated property")]
-    string property_doc_number_name = 41;
-    // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(41)]
-    // @attr [DisplayName("Use Doc Number")]
-    // @attr [Description("Use document number property for documents")]
-    bool use_doc_number_property = 42;
-
-
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Sortable")]
-    // @attr [Description("Sortable in data grid")]
-    proto_enum_use_type is_grid_sortable = 71;
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Custom Sortable")]
-    // @attr [Description("Custom sortable in data grid by using custom function")]
-    proto_enum_use_type is_grid_sortable_custom = 72;
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Filterable")]
-    // @attr [Description("Filterable in data grid")]
-    proto_enum_use_type is_grid_filterable = 73;
-
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -3124,6 +3079,11 @@ message proto_group_list_documents {
     string description = 5;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Composition prefix")]
+    // @attr [Description("Prefix for documents composition names. Used if set to use in config model")]
+    string prefix_for_composition_names = 6;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("Sort")]
     // @attr [Description("Sort type for documents")]
     proto_enum_sorting_type sort_type = 9;
@@ -3133,6 +3093,41 @@ message proto_group_list_documents {
     int32 explicit_sorting_position = 8;
     // @attr [Browsable(false)]
     uint32 last_short_id = 10;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(14)]
+    // @attr [DisplayName("Doc short type")]
+    // @attr [Description("Doc short type property name in document timeline")]
+    string doc_short_type_id_property_name = 14;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(23)]
+    // @attr [DisplayName("Monday Date")]
+    // @attr [Description("Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions ")]
+    // @attr [ReadOnly(true)]
+    google.protobuf.Timestamp monday_before_first_doc_date = 23;
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(42)]
+    // @attr [DisplayName("Doc Number property")]
+    // @attr [Description("Name of document number auto generated property")]
+    string property_doc_number_name = 41;
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(41)]
+    // @attr [DisplayName("Use Doc Number")]
+    // @attr [Description("Use document number property for documents")]
+    bool use_doc_number_property = 42;
+
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Sortable")]
+    // @attr [Description("Sortable in data grid")]
+    proto_enum_use_type is_grid_sortable = 71;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Custom Sortable")]
+    // @attr [Description("Custom sortable in data grid by using custom function")]
+    proto_enum_use_type is_grid_sortable_custom = 72;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Filterable")]
+    // @attr [Description("Filterable in data grid")]
+    proto_enum_use_type is_grid_filterable = 73;
+
     // @attr [Browsable(false)]
     repeated proto_role_document_access list_role_document_access_settings = 101;
     // @attr [Browsable(false)]

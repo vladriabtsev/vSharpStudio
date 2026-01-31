@@ -1065,22 +1065,8 @@ No Children
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| prefix_for_composition_names | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Composition prefix&#34;)] @attr [Description(&#34;Prefix for catalogs composition names. Used if set to use in config model&#34;)] |
 | group_list_catalogs | [proto_group_list_catalogs](#proto_config-proto_group_list_catalogs) |  | @attr [Browsable(false)] |
 | group_relations | [proto_relations_group](#proto_config-proto_relations_group) |  | @attr [Browsable(false)] |
-| use_code_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item by default&#34;)] |
-| property_code_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Code property&#34;)] @attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] |
-| use_name_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item by default&#34;)] |
-| property_name_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Name property&#34;)] @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] |
-| use_description_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item by default&#34;)] |
-| property_description_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;Description property&#34;)] @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] |
-| use_code_property_in_separate_tree | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Tree Use Code&#34;)] @attr [Description(&#34;Use Code property in separate tree for catalog folder by default&#34;)] |
-| use_name_property_in_separate_tree | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(34)] @attr [DisplayName(&#34;Tree Use Name&#34;)] @attr [Description(&#34;Use Name property in separate tree for catalog item by default&#34;)] |
-| use_description_property_in_separate_tree | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(36)] @attr [DisplayName(&#34;Tree Use Description&#34;)] @attr [Description(&#34;Use Description property in separate tree for catalog item by default&#34;)] |
-| property_is_folder_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(40)] @attr [DisplayName(&#34;IsFolder property&#34;)] @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] |
-| is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
-| is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
-| is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1126,19 +1112,11 @@ C O N S T A N T
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| prefix_for_composition_names | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Composition prefix&#34;)] @attr [Description(&#34;Prefix for documents composition names. Used if set to use in config model&#34;)] |
 | document_timeline | [proto_document_timeline](#proto_config-proto_document_timeline) |  | @attr [Browsable(false)] @attr [Description(&#34;Properties for all documents&#34;)] |
 | group_list_documents | [proto_group_list_documents](#proto_config-proto_group_list_documents) |  | @attr [Browsable(false)] |
-| doc_short_type_id_property_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Doc short type&#34;)] @attr [Description(&#34;Doc short type property name in document timeline&#34;)] |
 | group_registers | [proto_group_list_registers](#proto_config-proto_group_list_registers) |  | @attr [Browsable(false)] @attr [Description(&#34;Registers for documents&#34;)] |
 | group_journals | [proto_group_list_journals](#proto_config-proto_group_list_journals) |  | @attr [Browsable(false)] |
 | group_list_sequences | [proto_group_list_enumerator_sequences](#proto_config-proto_group_list_enumerator_sequences) |  | @attr [Browsable(false)] |
-| monday_before_first_doc_date | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Monday Date&#34;)] @attr [Description(&#34;Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions &#34;)] @attr [ReadOnly(true)] |
-| property_doc_number_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Doc Number property&#34;)] @attr [Description(&#34;Name of document number auto generated property&#34;)] |
-| use_doc_number_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Doc Number&#34;)] @attr [Description(&#34;Use document number property for documents&#34;)] |
-| is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
-| is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
-| is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1203,10 +1181,24 @@ C O N S T A N T
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| prefix_for_composition_names | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Composition prefix&#34;)] @attr [Description(&#34;Prefix for catalogs composition names. Used if set to use in config model&#34;)] |
 | sort_type | [proto_enum_sorting_type](#proto_config-proto_enum_sorting_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Sort&#34;)] @attr [Description(&#34;Sort type for properties&#34;)] |
 | list_catalogs | [proto_catalog](#proto_config-proto_catalog) | repeated | @attr [Browsable(false)] |
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| use_code_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item by default&#34;)] |
+| property_code_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Code property&#34;)] @attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] |
+| use_name_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item by default&#34;)] |
+| property_name_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Name property&#34;)] @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] |
+| use_description_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item by default&#34;)] |
+| property_description_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;Description property&#34;)] @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] |
+| use_code_property_in_separate_tree | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Tree Use Code&#34;)] @attr [Description(&#34;Use Code property in separate tree for catalog folder by default&#34;)] |
+| use_name_property_in_separate_tree | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(34)] @attr [DisplayName(&#34;Tree Use Name&#34;)] @attr [Description(&#34;Use Name property in separate tree for catalog item by default&#34;)] |
+| use_description_property_in_separate_tree | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(36)] @attr [DisplayName(&#34;Tree Use Description&#34;)] @attr [Description(&#34;Use Description property in separate tree for catalog item by default&#34;)] |
+| property_is_folder_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(40)] @attr [DisplayName(&#34;IsFolder property&#34;)] @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1306,10 +1298,18 @@ D E T A I L S
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| prefix_for_composition_names | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Composition prefix&#34;)] @attr [Description(&#34;Prefix for documents composition names. Used if set to use in config model&#34;)] |
 | sort_type | [proto_enum_sorting_type](#proto_config-proto_enum_sorting_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Sort&#34;)] @attr [Description(&#34;Sort type for documents&#34;)] |
 | list_documents | [proto_document](#proto_config-proto_document) | repeated | @attr [Browsable(false)] |
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| doc_short_type_id_property_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Doc short type&#34;)] @attr [Description(&#34;Doc short type property name in document timeline&#34;)] |
+| monday_before_first_doc_date | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Monday Date&#34;)] @attr [Description(&#34;Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions &#34;)] @attr [ReadOnly(true)] |
+| property_doc_number_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Doc Number property&#34;)] @attr [Description(&#34;Name of document number auto generated property&#34;)] |
+| use_doc_number_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Doc Number&#34;)] @attr [Description(&#34;Use document number property for documents&#34;)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | list_role_document_access_settings | [proto_role_document_access](#proto_config-proto_role_document_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 

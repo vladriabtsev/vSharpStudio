@@ -509,7 +509,7 @@
                         {
                             sb.Append(t.Name);
                         }
-                        else if (t is IGroupCatalogs gc)
+                        else if (t is IGroupListCatalogs gc)
                         {
                             sb.Append(gc.PrefixForCompositionNames);
                         }
@@ -517,7 +517,7 @@
                         {
                             sb.Append(t.Name);
                         }
-                        else if (t is IGroupDocuments gd && this is not IRegister)
+                        else if (t is IGroupListDocuments gd && this is not IRegister)
                         {
                             sb.Append(gd.PrefixForCompositionNames);
                         }

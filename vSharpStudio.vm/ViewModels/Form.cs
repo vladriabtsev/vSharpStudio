@@ -757,7 +757,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         [Browsable(false)]
-        public string IsFolderPropertyName { get { return this.Cfg.Model.GroupCatalogs.PropertyIsFolderName; } }
+        public string IsFolderPropertyName { get { return this.Cfg.Model.GroupCatalogs.GroupListCatalogs.PropertyIsFolderName; } }
         [Browsable(false)]
         public bool UseFolderTypeExplicitly
         {

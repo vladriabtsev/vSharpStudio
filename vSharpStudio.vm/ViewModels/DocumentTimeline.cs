@@ -338,7 +338,7 @@ namespace vSharpStudio.vm.ViewModels
             p = m.GetPropertyDateTimeUtc(this, this.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, true, this.TimelineTimeAccuracy);
             p.SetPosition(IProperty.PropertyDocumentDatePosition);
             lst.Add(p);
-            p = m.GetPropertyInt(this, m.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.DocShortTypeIdPropertyName, IProperty.PropertyShortTypeIdPosition, false, false);
+            p = m.GetPropertyInt(this, m.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.GroupListDocuments.DocShortTypeIdPropertyName, IProperty.PropertyShortTypeIdPosition, false, false);
             lst.Add(p);
             p = m.GetPropertyBool(this, m.PropertyDocIsPostedGuid, "IsPosted", (uint)lst.Count, true);
             p.SetPosition(IProperty.PropertyIsPostedPosition);
@@ -369,13 +369,13 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             if (this.Parent is Detail dd)
                 return dd.IsGridSortableGet();
-            else if (this.Parent is Catalog c)
-                return c.IsGridSortableGet();
+            //else if (this.Parent is Catalog c)
+            //    return c.IsGridSortableGet();
             else if (this.Parent is Document d)
                 return d.IsGridSortableGet();
-            else if (this.Parent is CatalogFolder cf)
-                return cf.IsGridSortableGet();
-            else if (this.Parent is GroupDocuments gd)
+            //else if (this.Parent is CatalogFolder cf)
+            //    return cf.IsGridSortableGet();
+            else if (this.Parent is GroupListDocuments gd)
                 return gd.IsGridSortableGet();
             else
                 throw new NotImplementedException();
@@ -388,13 +388,13 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             if (this.Parent is Detail dd)
                 return dd.IsGridFilterableGet();
-            else if (this.Parent is Catalog c)
-                return c.IsGridFilterableGet();
+            //else if (this.Parent is Catalog c)
+            //    return c.IsGridFilterableGet();
             else if (this.Parent is Document d)
                 return d.IsGridFilterableGet();
-            else if (this.Parent is CatalogFolder cf)
-                return cf.IsGridFilterableGet();
-            else if (this.Parent is GroupDocuments gd)
+            //else if (this.Parent is CatalogFolder cf)
+            //    return cf.IsGridFilterableGet();
+            else if (this.Parent is GroupListDocuments gd)
                 return gd.IsGridFilterableGet();
             else
                 throw new NotImplementedException();
@@ -407,13 +407,13 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             if (this.Parent is Detail dd)
                 return dd.IsGridSortableCustomGet();
-            else if (this.Parent is Catalog c)
-                return c.IsGridSortableCustomGet();
+            //else if (this.Parent is Catalog c)
+            //    return c.IsGridSortableCustomGet();
             else if (this.Parent is Document d)
                 return d.IsGridSortableCustomGet();
-            else if (this.Parent is CatalogFolder cf)
-                return cf.IsGridSortableCustomGet();
-            else if (this.Parent is GroupDocuments gd)
+            //else if (this.Parent is CatalogFolder cf)
+            //    return cf.IsGridSortableCustomGet();
+            else if (this.Parent is GroupListDocuments gd)
                 return gd.IsGridSortableCustomGet();
             else
                 throw new NotImplementedException();
@@ -479,14 +479,14 @@ namespace vSharpStudio.vm.ViewModels
                 return r.EditAccess;
             if (this.Parent is Detail dd)
                 return dd.GetRolePropertyAccess(role);
-            else if (this.Parent is Catalog c)
-                return c.GetRolePropertyAccess(role);
+            //else if (this.Parent is Catalog c)
+            //    return c.GetRolePropertyAccess(role);
             else if (this.Parent is Document d)
                 return d.GetRolePropertyAccess(role);
-            else if (this.Parent is CatalogFolder cf)
-                return cf.GetRolePropertyAccess(role);
-            else if (this.Parent is GroupDocuments gd)
-                return gd.GetRolePropertyAccess(role);
+            //else if (this.Parent is CatalogFolder cf)
+            //    return cf.GetRolePropertyAccess(role);
+            //else if (this.Parent is GroupListDocuments gd)
+            //    return gd.GetRolePropertyAccess(role);
             else
                 throw new NotImplementedException();
         }
@@ -496,14 +496,14 @@ namespace vSharpStudio.vm.ViewModels
                 return r.PrintAccess;
             if (this.Parent is Detail dd)
                 return dd.GetRolePropertyPrint(role);
-            else if (this.Parent is Catalog c)
-                return c.GetRolePropertyPrint(role);
+            //else if (this.Parent is Catalog c)
+            //    return c.GetRolePropertyPrint(role);
             else if (this.Parent is Document d)
                 return d.GetRolePropertyPrint(role);
-            else if (this.Parent is CatalogFolder cf)
-                return cf.GetRolePropertyPrint(role);
-            else if (this.Parent is GroupDocuments gd)
-                return gd.GetRolePropertyPrint(role);
+            //else if (this.Parent is CatalogFolder cf)
+            //    return cf.GetRolePropertyPrint(role);
+            //else if (this.Parent is GroupListDocuments gd)
+            //    return gd.GetRolePropertyPrint(role);
             else
                 throw new NotImplementedException();
         }

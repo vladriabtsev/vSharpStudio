@@ -1,6 +1,6 @@
 ﻿namespace vSharpStudio.common
 {
-    public partial interface IGroupDocuments : ITreeConfigNodeSortable
+    public partial interface IGroupCatalogs : ITreeConfigNodeSortable
     {
         IModel ParentModelI { get; }
     }

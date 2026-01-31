@@ -971,11 +971,11 @@ namespace vSharpStudio.Unit
 
             var ctlst = cfg.Model.GroupCatalogs.GroupListCatalogs;
             cfg.Model.IsUseNameComposition = false;
-            cfg.Model.GroupCatalogs.PrefixForCompositionNames = "Cat";
+            ctlst.PrefixForCompositionNames = "Cat";
             var c = ctlst.AddCatalog("Test1");
             Assert.AreEqual(ctlst[0].Name, ctlst[0].CompositeName);
             cfg.Model.IsUseNameComposition = true;
-            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForCompositionNames + ctlst[0].Name, ctlst[0].CompositeName);
+            Assert.AreEqual(ctlst.PrefixForCompositionNames + ctlst[0].Name, ctlst[0].CompositeName);
             cfg.Model.IsUseShortIdComposition = true;
             Assert.AreEqual("c1", c.NameShortId);
             cfg.Model.IsTryUseNameCompositionIfPossible = true;
@@ -986,8 +986,8 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(ctlst[0].Name, ctlst[0].CompositeName);
             Assert.AreEqual(ctlst[0].GroupDetails[0].Name, ctlst[0].GroupDetails[0].CompositeName);
             cfg.Model.IsUseNameComposition = true;
-            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForCompositionNames + ctlst[0].Name, ctlst[0].CompositeName);
-            Assert.AreEqual(cfg.Model.GroupCatalogs.PrefixForCompositionNames + ctlst[0].Name + ctlst[0].GroupDetails[0].Name,
+            Assert.AreEqual(ctlst.PrefixForCompositionNames + ctlst[0].Name, ctlst[0].CompositeName);
+            Assert.AreEqual(ctlst.PrefixForCompositionNames + ctlst[0].Name + ctlst[0].GroupDetails[0].Name,
                 ctlst[0].GroupDetails[0].CompositeName);
             cfg.Model.IsUseShortIdComposition = true;
             Assert.AreEqual("c1t1", t.NameShortId);
@@ -1002,11 +1002,11 @@ namespace vSharpStudio.Unit
             var cfg = vm.Config;
 
             cfg.Model.IsUseNameComposition = false;
-            cfg.Model.GroupDocuments.PrefixForCompositionNames = "Cat";
+            cfg.Model.GroupDocuments.GroupListDocuments.PrefixForCompositionNames = "Cat";
             var d =cfg.Model.GroupDocuments.GroupListDocuments.AddDocument("Test1");
             Assert.AreEqual(cfg.Model.GroupDocuments.GroupListDocuments[0].Name, cfg.Model.GroupDocuments.GroupListDocuments[0].CompositeName);
             cfg.Model.IsUseNameComposition = true;
-            Assert.AreEqual(cfg.Model.GroupDocuments.PrefixForCompositionNames + cfg.Model.GroupDocuments.GroupListDocuments[0].Name, cfg.Model.GroupDocuments.GroupListDocuments[0].CompositeName);
+            Assert.AreEqual(cfg.Model.GroupDocuments.GroupListDocuments.PrefixForCompositionNames + cfg.Model.GroupDocuments.GroupListDocuments[0].Name, cfg.Model.GroupDocuments.GroupListDocuments[0].CompositeName);
             Assert.AreEqual("d1", d.NameShortId);
             cfg.Model.IsTryUseNameCompositionIfPossible = true;
             Assert.AreEqual("d1", d.NameShortId);
@@ -1016,8 +1016,8 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(cfg.Model.GroupDocuments.GroupListDocuments[0].Name, cfg.Model.GroupDocuments.GroupListDocuments[0].CompositeName);
             Assert.AreEqual(cfg.Model.GroupDocuments.GroupListDocuments[0].GroupDetails[0].Name, cfg.Model.GroupDocuments.GroupListDocuments[0].GroupDetails[0].CompositeName);
             cfg.Model.IsUseNameComposition = true;
-            Assert.AreEqual(cfg.Model.GroupDocuments.PrefixForCompositionNames + cfg.Model.GroupDocuments.GroupListDocuments[0].Name, cfg.Model.GroupDocuments.GroupListDocuments[0].CompositeName);
-            Assert.AreEqual(cfg.Model.GroupDocuments.PrefixForCompositionNames + cfg.Model.GroupDocuments.GroupListDocuments[0].Name + cfg.Model.GroupDocuments.GroupListDocuments[0].GroupDetails[0].Name,
+            Assert.AreEqual(cfg.Model.GroupDocuments.GroupListDocuments.PrefixForCompositionNames + cfg.Model.GroupDocuments.GroupListDocuments[0].Name, cfg.Model.GroupDocuments.GroupListDocuments[0].CompositeName);
+            Assert.AreEqual(cfg.Model.GroupDocuments.GroupListDocuments.PrefixForCompositionNames + cfg.Model.GroupDocuments.GroupListDocuments[0].Name + cfg.Model.GroupDocuments.GroupListDocuments[0].GroupDetails[0].Name,
                 cfg.Model.GroupDocuments.GroupListDocuments[0].GroupDetails[0].CompositeName);
             Assert.AreEqual("d1t1", t.NameShortId);
             cfg.Model.IsTryUseNameCompositionIfPossible = true;
@@ -1030,7 +1030,7 @@ namespace vSharpStudio.Unit
             var cfg = vm.Config;
 
             cfg.Model.IsUseNameComposition = false;
-            cfg.Model.GroupCatalogs.PrefixForCompositionNames = "Cat";
+            cfg.Model.GroupCatalogs.GroupListCatalogs.PrefixForCompositionNames = "Cat";
             cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("Test1");
             cfg.Model.Validate();
             Assert.IsEmpty(cfg.Model.ValidationCollection);
