@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using Polly.Caching;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
@@ -32,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                return GetCompositeName();
+                return $"{this.ParentGroupDocuments.GroupListDocuments.PrefixForCompositionNames}{this._Name}";
             }
         }
 

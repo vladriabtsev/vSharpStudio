@@ -533,6 +533,10 @@
                         {
                             sb.Append(gdr.PrefixForCompositionNames);
                         }
+                        //else if (t is IDocumentTimeline dtl)
+                        //{
+                        //    sb.Append(dtl.ParentGroupDocumentsI.GroupListDocuments.PrefixForCompositionNames);
+                        //}
                     }
                 }
                 sb.Append(this._Name);

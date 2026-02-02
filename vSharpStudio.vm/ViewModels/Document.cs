@@ -41,7 +41,7 @@ namespace vSharpStudio.vm.ViewModels
             sb.Append(this.ParentGroupListDocuments.PropertyDocNumberName);
             sb.Append(",nq}");
             sb.Append(" Date:{");
-            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.DocumentTimeline.TimeLineDocDateTimePropertyName);
+            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.TimeLineDocDateTimePropertyName);
             sb.Append(",nq}");
             return sb.ToString();
         }

@@ -89,7 +89,34 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupListDocuments.NodeAddNewSubNode(node);
             return node;
         }
-
+        [Browsable(false)]
+        public string DocumentTimelineName
+        {
+            get
+            {
+                if (this._DocumentTimelineName == null)
+                {
+                    this._DocumentTimelineName = this.DocumentTimeline.Name;
+                }
+                Debug.Assert(this._DocumentTimelineName != null);
+                return this._DocumentTimelineName;
+            }
+        }
+        private string? _DocumentTimelineName = null;
+        [Browsable(false)]
+        public string TimeLineDocDateTimePropertyName
+        {
+            get
+            {
+                if (this._TimeLineDocDateTimePropertyName == null)
+                {
+                    this._TimeLineDocDateTimePropertyName = this.DocumentTimeline.TimeLineDocDateTimePropertyName;
+                }
+                Debug.Assert(this._TimeLineDocDateTimePropertyName != null);
+                return this._TimeLineDocDateTimePropertyName;
+            }
+        }
+        private string? _TimeLineDocDateTimePropertyName = null;
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>
