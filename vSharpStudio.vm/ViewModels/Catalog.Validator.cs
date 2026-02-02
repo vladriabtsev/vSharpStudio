@@ -14,19 +14,6 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
             this.RuleFor(x => x.Name).Must((o, name) => { return this.IsUnique(o); }).WithMessage(Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
-            this.RuleFor(x => x.Name).Custom((name, cntx) =>
-            {
-                var c = (ICatalog)cntx.InstanceToValidate;
-                var mes = c.Cfg.GroupAppSolutions.TableNameValidation(c.CompositeName);
-                if (!string.IsNullOrEmpty(mes))
-                {
-                    var vf = new ValidationFailure(nameof(c.Name), mes)
-                    {
-                        Severity = Severity.Error
-                    };
-                    cntx.AddFailure(vf);
-                }
-            });
         }
         private bool IsUnique(Catalog val)
         {

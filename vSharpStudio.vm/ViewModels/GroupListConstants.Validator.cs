@@ -10,19 +10,6 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListConstantsValidator()
         {
             this.GeneralRules();
-            this.RuleFor(x => x.Name).Custom((name, cntx) =>
-            {
-                var c = (IGroupListConstants)cntx.InstanceToValidate;
-                var mes = c.Cfg.GroupAppSolutions.TableNameValidation(c.CompositeName);
-                if (!string.IsNullOrEmpty(mes))
-                {
-                    var vf = new ValidationFailure(nameof(c.Name), mes)
-                    {
-                        Severity = Severity.Error
-                    };
-                    cntx.AddFailure(vf);
-                }
-            });
             //this.RuleFor(x => x.ShortIdTypeKey).NotEmpty().WithMessage("Can't be empty");
             //this.RuleFor(x => x.ShortIdTypeKey)
             //    .Must((o, id) =>

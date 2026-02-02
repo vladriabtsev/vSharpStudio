@@ -7,7 +7,7 @@ using vSharpStudio.common;
 
 namespace vPlugin.Sample
 {
-    public partial class GeneratorDbSchemaSettings : IvPluginGeneratorSettings, IDbNamesValidator
+    public partial class GeneratorDbSchemaSettings : IvPluginGeneratorSettings
     {
         [Browsable(false)]
         public IAppProjectGenerator ParentAppProjectGenerator
@@ -49,16 +49,6 @@ namespace vPlugin.Sample
         {
             await this.ValidateAsync();
             return this.ValidationResult;
-        }
-
-        public string? TableNameValidation(string name)
-        {
-            return null;
-        }
-
-        public string? FieldNameValidation(string name)
-        {
-            return null;
         }
     }
 }

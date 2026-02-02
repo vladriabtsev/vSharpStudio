@@ -131,47 +131,5 @@ namespace vSharpStudio.vm.ViewModels
             };
             return [.. lst];
         }
-        public string? TableNameValidation(string name)
-        {
-            foreach (var t in this.ListAppSolutions)
-            {
-                foreach (var tt in t.ListAppProjects)
-                {
-                    foreach (var ttt in tt.ListAppProjectGenerators)
-                    {
-                        if (ttt.DynamicGeneratorSettings is IDbNamesValidator lim)
-                        {
-                            var res = lim.TableNameValidation(name);
-                            if (res != null)
-                            {
-                                return $"{res} Sln:{t.Name}, Prj:{tt.Name}, Gen:{ttt.Name}";
-                            }
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-        public string? FieldNameValidation(string name)
-        {
-            foreach (var t in this.ListAppSolutions)
-            {
-                foreach (var tt in t.ListAppProjects)
-                {
-                    foreach (var ttt in tt.ListAppProjectGenerators)
-                    {
-                        if (ttt.DynamicGeneratorSettings is IDbNamesValidator lim)
-                        {
-                            var res = lim.FieldNameValidation(name);
-                            if (res != null)
-                            {
-                                return $"{res} Sln:{t.Name}, Prj:{tt.Name}, Gen:{ttt.Name}";
-                            }
-                        }
-                    }
-                }
-            }
-            return null;
-        }
     }
 }

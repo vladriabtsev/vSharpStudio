@@ -206,15 +206,6 @@ namespace vSharpStudio.vm.ViewModels
                         cntx.AddFailure(vf);
                     }
                 }
-                var mes = p.Cfg.GroupAppSolutions.FieldNameValidation(p.Name);
-                if (!string.IsNullOrEmpty(mes))
-                {
-                    var vf = new ValidationFailure(nameof(p.Name), mes)
-                    {
-                        Severity = Severity.Error
-                    };
-                    cntx.AddFailure(vf);
-                }
             });
 
             this.RuleFor(x => x.Length).Custom((name, cntx) =>
