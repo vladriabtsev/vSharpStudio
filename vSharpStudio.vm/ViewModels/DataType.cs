@@ -646,18 +646,18 @@ namespace vSharpStudio.vm.ViewModels
                         Debug.Assert(en != null);
                         return en.Name;
                     }
-                    throw new Exception();
+                    return "";
                 case EnumDataType.DOCUMENT:
                     Debug.Assert(this.Cfg != null);
                     Debug.Assert(this.ListObjectRefs.Count < 2);
                     if (this.ListObjectRefs.Count == 1 && !string.IsNullOrEmpty(this.ListObjectRefs[0].ForeignObjectGuid))
                     {
                         Debug.Assert(!string.IsNullOrEmpty(this.ListObjectRefs[0].ForeignObjectGuid));
-                        var en = (Catalog?)this.Cfg.DicNodes[this.ListObjectRefs[0].ForeignObjectGuid];
+                        var en = (Document?)this.Cfg.DicNodes[this.ListObjectRefs[0].ForeignObjectGuid];
                         Debug.Assert(en != null);
                         return en.Name;
                     }
-                    throw new Exception();
+                    return "";
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
                 case EnumDataType.ANY:

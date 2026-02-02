@@ -85,7 +85,6 @@ namespace vSharpStudio.vm.ViewModels
                 if (pg.Parent is Catalog c)
                 {
                     Debug.Assert(c.Parent != null);
-                    var gc = (IGroupListCatalogs)c.Parent;
                     if (!p.isSpecialItself)
                         ValidateSpecialProperties(name, cntx, p, c);
                     if (c.UseTree)

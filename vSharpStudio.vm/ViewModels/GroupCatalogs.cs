@@ -74,13 +74,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Catalog AddCatalog()
         {
-            var node = new Catalog(this);
+            var node = new Catalog(this.GroupListCatalogs);
             this.GroupListCatalogs.NodeAddNewSubNode(node);
             return node;
         }
         public Catalog AddCatalog(string name, string? guid = null, string? guidFolder = null)
         {
-            var node = new Catalog(this) { Name = name };
+            var node = new Catalog(this.GroupListCatalogs) { Name = name };
 #if DEBUG
             if (guid != null) // for test model generation
             {

@@ -25,7 +25,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return true;
             }
-            GroupListCatalogs p = (GroupListCatalogs)val.Parent;
+            var p = val.ParentGroupListCatalogs;
             foreach (var t in p.ListCatalogs)
             {
                 if ((val.Guid != t.Guid) && (val.Name == t.Name))
