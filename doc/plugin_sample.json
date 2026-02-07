@@ -332,6 +332,54 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "test_map",
+              "description": "",
+              "label": "repeated",
+              "type": "TestMapEntry",
+              "longType": "proto_plugins_group_solution_settings.TestMapEntry",
+              "fullType": "proto_plugin_sample.proto_plugins_group_solution_settings.TestMapEntry",
+              "ismap": true,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "TestMapEntry",
+          "longName": "proto_plugins_group_solution_settings.TestMapEntry",
+          "fullName": "proto_plugin_sample.proto_plugins_group_solution_settings.TestMapEntry",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "key",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },

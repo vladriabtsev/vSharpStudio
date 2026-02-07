@@ -31,6 +31,8 @@ message proto_plugins_group_solution_settings {
     // @attr [Description("Sample of Sub Settings")]
     // @attr [ExpandableObjectAttribute()]
     proto_plugins_group_solution_sub_settings sub_settings = 2;
+
+    map<string, uint32> test_map = 5;
 }
 // @base BaseSettings
 message proto_plugins_group_project_settings {

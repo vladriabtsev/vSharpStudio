@@ -626,6 +626,7 @@ enum proto_enum_code_type {
     // @attr [Description("Text")]
     Text = 1;
 }
+// for generating ShortRefIdForNode
 enum proto_enum_ref_type {
     REF_TYPE_NOT_SELECTED = 0;
     REF_TYPE_CONSTANT = 1;
@@ -703,30 +704,6 @@ message proto_model {
     // @attr [Description("Complex property description maximum length. Unlimited if zero")]
     uint32 complex_property_ref_descr_length = 43;
 
-    // @attr [Browsable(false)]
-    string property_id_guid = 51;
-    // @attr [Browsable(false)]
-    string property_version_guid = 52;
-
-    // @attr [Browsable(false)]
-    string property_ctlg_code_guid = 55;
-    // @attr [Browsable(false)]
-    string property_ctlg_name_guid = 56;
-    // @attr [Browsable(false)]
-    string property_ctlg_description_guid = 57;
-    // @attr [Browsable(false)]
-    string property_ctlg_is_folder_guid = 58;
-
-    // @attr [Browsable(false)]
-    string property_doc_number_guid = 70;
-    // @attr [Browsable(false)]
-    string property_doc_date_guid = 71;
-    // @attr [Browsable(false)]
-    string property_doc_short_type_id_guid = 73;
-    // @attr [Browsable(false)]
-    string property_doc_is_posted_guid = 74;
-
-
     // @attr [Category("DataGrid settings")]
     // @attr [DisplayName("Sortable")]
     // @attr [Description("Sortable in data grid")]
@@ -761,6 +738,32 @@ message proto_model {
  * @exclude
  * ####################################### D A T A  T Y P E ##########################################
  */
+enum proto_enum_special_property_type {
+    CONFIG_PROPERTY = 0;
+    REF_DETAIL_TO_PARENT_DETAIL = 1;
+    REF_DETAIL_TO_PARENT_CATALOG = 2;
+    REF_DETAIL_TO_PARENT_CATALOG_FOLDER = 3;
+    REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER = 4;
+    REF_TO_SELF_TREE_CATALOG_PARENT = 5;
+    REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT = 6;
+    REF_DETAIL_TO_PARENT_DOCUMENT = 7;
+    REF_TIMELINE = 8;
+    RECORD_ID = 9;
+    RECORD_VERSION = 10;
+    RECORD_VERSION_PREV = 11;
+    IS_FOLDER = 12;
+    CODE_NUMBER_INT = 13;
+    CODE_NUMBER_STRING = 14;
+    NAME = 15;
+    DESCRIPTION = 16;
+    DOC_DATE = 17;
+    IS_POSTED = 18;
+    SHORT_TYPE_ID = 19;
+    ACCUMULATOR_QTY = 20;
+    ACCUMULATOR_MONEY = 21;
+    REG_BALANCE_ONDATEINT = 22;
+    HISTORY_DATATIMEUTC = 23;
+}
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_data_type {
     // @attr [Description("Char")]
@@ -815,22 +818,6 @@ enum proto_enum_data_type {
     // @attr [Browsable(false)]
     // @attr [Description("Any Doc or Catalog")]
     ANY = 131;
-    // @attr [Browsable(false)]
-    REF_DETAIL_TO_PARENT_DETAIL = 141;
-    // @attr [Browsable(false)]
-    REF_DETAIL_TO_PARENT_CATALOG = 142;
-    // @attr [Browsable(false)]
-    REF_DETAIL_TO_PARENT_CATALOG_FOLDER = 143;
-    // @attr [Browsable(false)]
-    REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER = 144;
-    // @attr [Browsable(false)]
-    REF_TO_SELF_TREE_CATALOG_PARENT = 145;
-    // @attr [Browsable(false)]
-    REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT = 146;
-    // @attr [Browsable(false)]
-    REF_DETAIL_TO_PARENT_DOCUMENT = 147;
-    // @attr [Browsable(false)]
-    REF_TIMELINE = 148;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_time_accuracy_type {
@@ -966,6 +953,8 @@ message proto_data_type {
     // @attr [DisplayName("TimeSpan Max")]
     // @attr [Description("TimeSpan maximum value")]
     proto_enum_timespan_boundary_type timespan_max_value = 12;
+    // @attr [Browsable(false)]
+    proto_enum_special_property_type special_property_type_enum = 13;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(15)]
     // @attr [DisplayName("Use History")]
@@ -1074,39 +1063,43 @@ message proto_role {
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_print_access {
-    // @attr [Description("By Parent")]
-    PR_BY_PARENT = 0;
+    // @attr [Description("Print")]
+    PR_PRINT = 0;
     // @attr [Description("No print")]
     PR_NO_PRINT = 11;
-    // @attr [Description("Print")]
-    PR_PRINT = 21;
+    // @attr [Description("By Parent")]
+    PR_BY_PARENT = 21;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_constant_access {
-    // @attr [Description("By Parent")]
-    CN_BY_PARENT = 0;
+    // @attr [Description("Full Access")]
+    CN_FULL_ACCESS = 0;
     // @attr [Description("Hide")]
     CN_HIDE = 11;
     // @attr [Description("View")]
     CN_VIEW = 21; // with history
     // @attr [Description("Edit")]
     CN_EDIT = 31; // with history
+    // @attr [Description("By Parent")]
+    CN_BY_PARENT = 41;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_property_access {
-    // @attr [Description("By Parent")]
-    P_BY_PARENT = 0;
+    // @attr [Description("Full Access")]
+    P_FULL_ACCESS = 0;
     // @attr [Description("Hide")]
     P_HIDE = 11;
     // @attr [Description("View")]
     P_VIEW = 21; // with history
     // @attr [Description("Edit")]
     P_EDIT = 31; // with history
+    // @attr [Description("By Parent")]
+    P_BY_PARENT = 41;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_catalog_detail_access {
-    // @attr [Description("By Parent")]
-    C_BY_PARENT = 0;
+    // @attr [Description("Full Access")]
+    C_FULL_ACCESS = 0;
     // @attr [Description("Hide")]
     C_HIDE = 11;
     // @attr [Description("View")]
@@ -1117,11 +1110,13 @@ enum proto_enum_catalog_detail_access {
     C_EDIT_FOLDERS = 41;
     // @attr [Description("Del")]
     C_MARK_DEL = 51;
+    // @attr [Description("By Parent")]
+    C_BY_PARENT = 61;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_document_access {
-    // @attr [Description("By Parent")]
-    D_BY_PARENT = 0;
+    // @attr [Description("Full Access")]
+    D_FULL_ACCESS = 0;
     // @attr [Description("Hide")]
     D_HIDE = 11;
     // @attr [Description("View")]
@@ -1136,6 +1131,8 @@ enum proto_enum_document_access {
     D_UNPOST = 51;
     // @attr [Description("Del")]
     D_MARK_DEL = 61;
+    // @attr [Description("By Parent")]
+    D_BY_PARENT = 71;
 }
 // @base VmValidatableWithSeverity
 message proto_role_constant_access {
@@ -1316,10 +1313,14 @@ message proto_group_list_properties {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @base VmBindable
+message proto_standart_property_guid_position {
+    string guid = 1;
+    uint32 position = 2;
+}
 // @interface ICanAddNode
 // @interface ISortingValue
 message proto_property {
-    reserved 21; // bool
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
@@ -1412,6 +1413,11 @@ message proto_property {
 
     // @attr [Browsable(false)]
     repeated proto_role_property_access list_role_property_access_settings = 101;
+    // @attr [Browsable(false)]
+    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
+    // @attr [Browsable(false)]
+    uint32 last_position = 103;
 /*
     // @attr [PropertyOrderAttribute(28)]
     // @attr [Category("12 Column Grid System")]
@@ -1592,15 +1598,9 @@ message proto_detail {
     proto_group_list_properties group_properties = 13;
     // @attr [Browsable(false)]
     proto_group_list_details group_details = 14;
-
     // unique in object (can be used as Protobuf field position)
     // @attr [ReadOnly(true)]
     uint32 position = 15;
-
-    // special RefTreeParent property    
-    // @attr [Browsable(false)]
-    proto_property property_ref_parent = 16;
-
     // @attr [PropertyOrderAttribute(18)]
     // @attr [DisplayName("Short Prefix")]
     // @attr [Description("Short type ID prefix")]
@@ -1664,6 +1664,11 @@ message proto_detail {
 
     // @attr [Browsable(false)]
     repeated proto_role_detail_access list_role_detail_access_settings = 101;
+    // @attr [Browsable(false)]
+    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
+    // @attr [Browsable(false)]
+    uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1749,6 +1754,11 @@ message proto_group_list_constants {
 
     // @attr [Browsable(false)]
     repeated proto_role_constant_access list_role_constant_access_settings = 101;
+    // @attr [Browsable(false)]
+    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
+    // @attr [Browsable(false)]
+    uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -2041,11 +2051,6 @@ message proto_catalog_folder {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
-
-    // special RefTreeParent property    
-    // @attr [Browsable(false)]
-    proto_property property_ref_self = 16;
-
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Code")]
     // @attr [Description("Use Code property for catalog item")]
@@ -2108,6 +2113,11 @@ message proto_catalog_folder {
 
     // @attr [Browsable(false)]
     repeated proto_role_catalog_access list_role_catalog_access_settings = 101;
+    // @attr [Browsable(false)]
+    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
+    // @attr [Browsable(false)]
+    uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -2172,12 +2182,6 @@ message proto_catalog {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
-    // special RefParent property    
-    // @attr [Browsable(false)]
-    proto_property property_ref_self = 16;
-    // special RefTreeParent property    
-    // @attr [Browsable(false)]
-    proto_property property_ref_folder = 17;
 
     // Sequential unique number in parent group
     // @attr [Browsable(false)]
@@ -2296,6 +2300,11 @@ message proto_catalog {
 
     // @attr [Browsable(false)]
     repeated proto_role_catalog_access list_role_catalog_access_settings = 101;
+    // @attr [Browsable(false)]
+    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
+    // @attr [Browsable(false)]
+    uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -2778,6 +2787,11 @@ message proto_register {
     proto_group_list_reports group_reports = 85;
 
     // @attr [Browsable(false)]
+    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
+    // @attr [Browsable(false)]
+    uint32 last_position = 103;
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @base Object
@@ -2993,6 +3007,11 @@ message proto_document_timeline {
     // @attr [Browsable(false)]
     repeated proto_role_property_access list_role_property_access_settings = 101;
     // @attr [Browsable(false)]
+    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
+    // @attr [Browsable(false)]
+    uint32 last_position = 103;
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ICanAddNode
@@ -3059,6 +3078,11 @@ message proto_document {
     // @attr [Browsable(false)]
     repeated proto_role_document_access list_role_document_access_settings = 101;
     // @attr [Browsable(false)]
+    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
+    // @attr [Browsable(false)]
+    uint32 last_position = 103;
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_documents {
@@ -3097,7 +3121,7 @@ message proto_group_list_documents {
     // @attr [PropertyOrderAttribute(14)]
     // @attr [DisplayName("Doc short type")]
     // @attr [Description("Doc short type property name in document timeline")]
-    string doc_short_type_id_property_name = 14;
+    string property_doc_short_type_id_name = 14;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(23)]
     // @attr [DisplayName("Monday Date")]
@@ -3114,6 +3138,11 @@ message proto_group_list_documents {
     // @attr [DisplayName("Use Doc Number")]
     // @attr [Description("Use document number property for documents")]
     bool use_doc_number_property = 42;
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(43)]
+    // @attr [DisplayName("IsPosted property")]
+    // @attr [Description("Name of is posted auto generated property")]
+    string property_is_posted_name = 43;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -3259,6 +3288,11 @@ message proto_relation_many_to_many {
     string property_data_time_guid = 62;
 
     // @attr [Browsable(false)]
+    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
+    // @attr [Browsable(false)]
+    uint32 last_position = 103;
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ISortingValue
@@ -3390,6 +3424,11 @@ message proto_relation_one_to_one {
     // @attr [Browsable(false)]
     string property_data_time_guid = 62;
 
+    // @attr [Browsable(false)]
+    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
+    // @attr [Browsable(false)]
+    uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

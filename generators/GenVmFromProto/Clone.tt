@@ -7,14 +7,13 @@
 <#@ import namespace="ApplicationLogging" #>
 
 <# if (this.Doc.IsConfigObjectBase) { #>
-
 public override void Sort(Type type) <#=t4.SrcCs()#>
 {
 <#    int isort=0;
       foreach (var field in message.Fields.InDeclarationOrder()) {
         if (field.IsRepeated) { 
           isort++; #>
-<# if (!field.IsAny() && field.IsMessage() && JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { #>
+<# if (!field.IsAny() && !field.IsMap() && field.IsMessage() && JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { #>
     if (type == typeof(<#= field.ToTypeCs() #>)) <#=t4.SrcCs()#>
     {
         this.<#= field.Name.ToNameCs() #>.Sort();
@@ -52,6 +51,10 @@ public static <#= message.Name.ToNameCs() #> Clone(I<#= message.Name.ToNameCs() 
     vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); <#=t4.SrcCs()#>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) <#=t4.SrcCs()#>
         vm._<#= field.Name.ToNameCs() #>.AddClone(<#= field.ToTypeCs() #>.Clone(<# if (isFieldWithParent) { #>parent, <# } #><# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
+<#        } else if (field.IsMap()) { #>
+    vm._<#= field.Name.ToNameCs() #> = new Dictionary<<#=field.GetMapKeyCs()#>, <#=field.GetMapValueCs(true)#>>(); <#=t4.SrcCs()#>
+    foreach (var t in from.<#= field.Name.ToNameCs() #>) <#=t4.SrcCs()#>
+        vm._<#= field.Name.ToNameCs() #>[t.Key] = t.Value;
 <#        } else { #>
     vm._<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); <#=t4.SrcCs()#>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) <#=t4.SrcCs()#>
@@ -86,7 +89,13 @@ public static void Update(<#= message.Name.ToNameCs() #> to, I<#= message.Name.T
         if (field.IsAny())
             continue;
         if (field.IsRepeated) { #>
-<# if (field.IsMessage()) { #>
+<#        if (field.IsMessage()) { #>
+<#          if (field.IsMap()) { #>
+    foreach (var tt in from.<#=field.Name.ToNameCs()#>) <#=t4.SrcCs()#>
+    {
+        to.<#=field.Name.ToNameCs()#>.Add(tt.Key, tt.Value);
+    }
+<#          } else { #>
     if (isDeep) <#=t4.SrcCs()#>
     {
         foreach (var t in to.<#= field.Name.ToNameCs() #>.ToList())
@@ -117,23 +126,24 @@ public static void Update(<#= message.Name.ToNameCs() #> to, I<#= message.Name.T
             }
             if (!isfound)
             {
-<# if (field.IsMessage() && field.GetMessageDoc().IsWithParent) { #>
+<#          if (field.IsMessage() && field.GetMessageDoc().IsWithParent) { #>
                 var p = new <#= field.ToTypeCs() #>(to); <#=t4.SrcCs()#>
-<# } else { #>
+<#          } else { #>
                 var p = new <#= field.ToTypeCs() #>(); <#=t4.SrcCs()#>
-<# } #>
+<#          } #>
                 <#= field.ToTypeCs() #>.Update(p, (<#= field.ToTypeCs() #>)tt, isDeep);
                 to.<#= field.Name.ToNameCs() #>.AddClone(p);
             }
         }
     }
-<# } else { #>
+<#          } #>
+<#        } else { #>
         to.<#= field.Name.ToNameCs() #>.Clear(); <#=t4.SrcCs()#>
         foreach (var tt in from.<#= field.Name.ToNameCs() #>)
         {
             to.<#= field.Name.ToNameCs() #>.Add(tt);
         }
-<# } #>
+<#        } #>
 <#      } else if (field.IsMessage() && field.MessageType.Name == "string_nullable") { #>
     to.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; <#=t4.SrcCs()#>
 <#      } else if (field.IsMessage() && field.MessageType.Name.EndsWith("_nullable")) { #>
@@ -162,7 +172,7 @@ public override <#= message.Name.ToNameCs() #> Backup()
 <# } #>
 }
 partial void OnBackupObjectStarting(ref bool isDeep);
-public override void Restore(<#= message.Name.ToNameCs() #> from)
+public override void Restore(<#= message.Name.ToNameCs() #> from) <#=t4.SrcCs()#>
 {
     bool isDeep = true;
     this.OnRestoreObjectStarting(ref isDeep);
@@ -183,19 +193,27 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
         if (field.IsAny())
             continue;
         if (field.IsRepeated) { #>
-<#        if (field.IsCsSimple()) { #>
+<#        if (field.IsMap()) { #>
+    vm._<#=field.Name.ToNameCs()#> = new Dictionary<<#=field.GetMapKeyCs()#>, <#=field.GetMapValueCs(true)#>>(); <#=t4.SrcCs()#>
+    foreach (var t in m.<#=field.Name.ToNameCs()#>) <#=t4.SrcCs()#>
+<#          if (field.GetMapValueIsMessage()) { #>
+        vm._<#=field.Name.ToNameCs()#>[t.Key] = <#=field.GetMapValueCs()#>.ConvertToVM(t.Value, new <#=field.GetMapValueCs()#>()); <#=t4.SrcCs()#>
+<#          } else { #>
+        vm._<#=field.Name.ToNameCs()#>[t.Key] = t.Value; <#=t4.SrcCs()#>
+<#          } #>
+<#        } else if (field.IsCsSimple()) { #>
     vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); <#=t4.SrcCs()#>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) <#=t4.SrcCs()#>
     {
-        vm.<#= field.Name.ToNameCs() #>.Add(t);
+        vm.<#=field.Name.ToNameCs()#>.Add(t);
     }
 <#        } else if (field.GetMessageDoc().IsWithParent) { #>
 <#          if (field.GetMessageDoc().IsConfigObjectBase) { #>
-    vm._<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); <#=t4.SrcCs()#>
+    vm._<#=field.Name.ToNameCs()#> = new ConfigNodesCollection<<#=field.ToTypeCs()#>>(vm); <#=t4.SrcCs()#>
 <#          } else { #>
-    vm._<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); <#=t4.SrcCs()#>
+    vm._<#=field.Name.ToNameCs()#> = new ObservableCollectionWithActions<<#=field.ToTypeCs()#>>(); <#=t4.SrcCs()#>
 <#          } #>
-    foreach (var t in m.<#= field.Name.ToNameCs() #>) <#=t4.SrcCs()#>
+    foreach (var t in m.<#=field.Name.ToNameCs()#>) <#=t4.SrcCs()#>
     {
         var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t, new <#= field.ToTypeCs() #>(vm)); <#=t4.SrcCs()#>
         vm.<#= field.Name.ToNameCs() #>.Add(tvm);
@@ -239,6 +257,12 @@ public static <#= this.protoNameSpace #>.<#= message.Name #> ConvertToProto(<#= 
     foreach (var t in vm.<#= field.Name.ToNameCs() #>) <#=t4.SrcCs()#>
 <#        if (field.IsCsSimple()) { #>
         m.<#= field.Name.ToNameCs() #>.Add(t); <#=t4.SrcCs()#>
+<#        } else if (field.IsMap()) { #>
+<#          if (field.GetMapValueIsMessage()) { #>
+        m.<#=field.Name.ToNameCs()#>.Add(t.Key, <#=field.GetMapValueCs()#>.ConvertToProto((<#=field.GetMapValueCs()#>)t.Value)); <#=t4.SrcCs()#>
+<#          } else { #>
+        m.<#= field.Name.ToNameCs() #>.Add(t.Key, t.Value); <#=t4.SrcCs()#>
+<#          } #>
 <#        } else { #>
         m.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.ConvertToProto((<#= field.ToTypeCs() #>)t)); <#=t4.SrcCs()#>
 <#        } #>

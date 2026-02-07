@@ -3,6 +3,7 @@ using System.Diagnostics;
 using ApplicationLogging;
 using Google.Protobuf.Reflection;
 using Microsoft.Extensions.Logging;
+using Proto.Doc;
 
 namespace GenVmFromProto
 {
@@ -50,6 +51,43 @@ namespace GenVmFromProto
             //{
             //    t.
             //}
+
+            //foreach (var message in messages)
+            //{
+            //    this.MessageDoc = JsonDoc.Files[root.Name].Messages[message.Name];
+            //    foreach (var field in message.Fields.InDeclarationOrder())
+            //    {
+            //        if (IsSkip(field)) continue;
+            //        this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name];
+            //        if (field.IsRepeated)
+            //        {
+            //            if (field.IsMap())
+            //            {
+            //                var lst = field.MessageType.Fields.InDeclarationOrder();
+            //                Debug.Assert(lst.Count == 2);
+            //                foreach (var f in lst)
+            //                {
+            //                    if (f.Name == "key")
+            //                    {
+
+            //                    }
+            //                    else if (f.Name == "value")
+            //                    {
+
+            //                    }
+            //                    else
+            //                    {
+
+            //                    }
+            //                }
+            //                //new Google.Protobuf.Reflection.MessageDescriptor.FieldCollection.FieldCollectionDebugView(field.MessageType.Fields).Items[0]
+            //                var key = field.MessageType.Fields[0].FieldType.FieldTypeSimpleToTypeCs();
+            //                var val = field.MessageType.Fields[1].FieldType.FieldTypeSimpleToTypeCs();
+            //            }
+            //        }
+            //    }
+            //}
+            t4.SrcCs();
         }
         bool IsSkip(FieldDescriptor field)
         {

@@ -158,7 +158,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\vSharpStudio.common\FileUtils.cs" Link="FileUtils.cs" />
-    <Compile Include="..\..\vSharpStudio.common\t4.cs" Link="t4.cs" />
     <Compile Include="..\..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
   </ItemGroup>
   <ItemGroup>

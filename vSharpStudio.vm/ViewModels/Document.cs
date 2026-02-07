@@ -14,7 +14,8 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, INodeWithProperties, IRoleAccess, IDocumentAccessRoles
+    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, 
+        INodeWithProperties, IRoleAccess, IDocumentAccessRoles
     {
         public override string NameShortId { get { return $"d{this.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
@@ -119,7 +120,7 @@ namespace vSharpStudio.vm.ViewModels
             node.Parent = this.Parent;
             this.ParentGroupListDocuments.ListDocuments.Add(node, this);
             this.Name += "2";
-            var model = (Model)this.Cfg.Model;
+            var model = this.Cfg.Model;
             node.ShortId = ++this.ParentGroupListDocuments.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
@@ -317,6 +318,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.GetSpecialProperties(res, isOptimistic);
             }
+            this.GetDocNumberProperty(res);
             foreach (var t in grd.DocumentTimeline.ListProperties)
             {
                 res.Add(t);
@@ -335,7 +337,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(isRegisterBalance == null);
             var res = new List<IProperty>();
-            var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             return res;
         }
@@ -420,22 +422,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
-            //var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
-            //string name = this.ParentGroupListDocuments.ParentGroupDocuments.GetTimelineCompositeName();
-            //var prp = model.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, "Ref" + name, 0, false, true);
-            IProperty prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
-            //prp = model.GetPropertyRef(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, this.Cfg.Model.PKeyName, 0, false, true);
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             if (isOptimistic)
             {
-                prp = model.GetPropertyVersion(this.GroupProperties, this.Cfg.Model.PropertyVersionGuid);
+                prp = Property.GetPropertyVersion(this);
                 res.Add(prp);
             }
-            //prp = model.GetPropertyDocumentDate(this.GroupProperties, this.Cfg.Model.PropertyDocDateGuid);
-            //res.Add(prp);
-            //prp = model.GetPropertyBool(this.GroupProperties, this.Cfg.Model.PropertyDocIsPostedGuid, "IsPosted", 10, true);
-            //res.Add(prp);
         }
         public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
         {
@@ -467,9 +460,9 @@ namespace vSharpStudio.vm.ViewModels
             {
                 var lstp = new List<IProperty>();
                 this.GetDocNumberProperty(lstp);
-                var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+                var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
                 lstp.Add(prp);
-                prp = this.Cfg.Model.GetPropertyDocumentDate(this.GroupProperties, this.Cfg.Model.PropertyDocDateGuid);
+                prp = Property.GetPropertyDocumentDate(this);
                 prp.IsSimple = true;
                 lstp.Add(prp);
                 f = new Form(this.GroupForms, ftype, lstp);
@@ -481,9 +474,9 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     lstp.Add((IProperty)t);
                 }
-                var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+                var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
                 lstp.Add(prp);
-                prp = this.Cfg.Model.GetPropertyDocumentDate(this.GroupProperties, this.Cfg.Model.PropertyDocDateGuid);
+                prp = Property.GetPropertyDocumentDate(this);
                 prp.IsSimple = true;
                 lstp.Add(prp);
                 f = new Form(this.GroupForms, ftype, lstp);
@@ -504,10 +497,8 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(this.Sequence != null);
             var prp = this.Sequence.SequenceType switch
             {
-                EnumCodeType.Number => this.Cfg.Model.GetPropertyDocNumberInt(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
-                                        this.Sequence.MaxSequenceLength),
-                EnumCodeType.Text => this.Cfg.Model.GetPropertyDocNumberString(this.GroupProperties, this.Cfg.Model.PropertyDocNumberGuid,
-                                        this.Sequence.MaxSequenceLength + (uint)this.Sequence.Prefix.Length),
+                EnumCodeType.Number => Property.GetPropertyDocNumberInt(this, this.Sequence.MaxSequenceLength),
+                EnumCodeType.Text => Property.GetPropertyDocNumberString(this, this.Sequence.MaxSequenceLength + (uint)this.Sequence.Prefix.Length),
                 _ => throw new NotImplementedException(),
             };
             lst.Add(prp);

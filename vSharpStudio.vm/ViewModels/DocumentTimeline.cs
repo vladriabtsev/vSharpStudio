@@ -11,7 +11,8 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class DocumentTimeline : IListProperties, ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting, IRoleAccess
+    public partial class DocumentTimeline : IListProperties, ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, 
+        IRoleGlobalSetting, IRoleAccess
     {
         public override string NameShortId { get { return "dt"; } }
         partial void OnDebugStringExtend(ref string mes)
@@ -317,7 +318,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(isRegisterBalance == null);
             var res = new List<IProperty>();
-            var prp = this.Cfg.Model.GetPropertyPkId(this, this.Guid);
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             return res;
         }
@@ -329,21 +330,23 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial)
         {
             var lst = new List<IProperty>();
-            var m = this.ParentGroupDocuments.ParentModel;
 
             // Field PK
-            var p = m.GetPropertyPkId(this, this.Guid);
-            lst.Add(p);
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            lst.Add(prp);
 
             // Field document date and time value
-            p = m.GetPropertyDateTimeUtc(this, this.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, true, this.TimelineTimeAccuracy);
-            p.SetPosition(IProperty.PropertyDocumentDatePosition);
-            lst.Add(p);
-            p = m.GetPropertyInt(this, m.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.GroupListDocuments.DocShortTypeIdPropertyName, IProperty.PropertyShortTypeIdPosition, false, false);
-            lst.Add(p);
-            p = m.GetPropertyBool(this, m.PropertyDocIsPostedGuid, "IsPosted", (uint)lst.Count, true);
-            p.SetPosition(IProperty.PropertyIsPostedPosition);
-            lst.Add(p);
+            prp = Property.GetPropertyDocumentDate(this);
+            //prp = model.GetPropertyDateTimeUtc(this, this.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, true, this.TimelineTimeAccuracy);
+            //prp.SetPosition(IProperty.PropertyDocumentDatePosition);
+            lst.Add(prp);
+            prp = Property.GetPropertyDocShortTypeId(this, false);
+            //prp = model.GetPropertyInt(this, model.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.GroupListDocuments.PropertyDocShortTypeIdName, IProperty.PropertyShortTypeIdPosition, false, false);
+            lst.Add(prp);
+            prp = Property.GetPropertyIsPosted(this, true);
+            //prp = model.GetPropertyBool(this, model.PropertyDocIsPostedGuid, "IsPosted", (uint)lst.Count, true);
+            //prp.SetPosition(IProperty.PropertyIsPostedPosition);
+            lst.Add(prp);
 
             // shared properties
             foreach (var t in this.ListProperties)
@@ -357,7 +360,7 @@ namespace vSharpStudio.vm.ViewModels
             // Field record version
             if (isOptimistic && !isExcludeSpecial)
             {
-                var prp = m.GetPropertyVersion(this, m.PropertyVersionGuid);
+                prp = Property.GetPropertyVersion(this);
                 lst.Add(prp);
             }
             return lst;

@@ -516,11 +516,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         public uint GetNextPosition()
         {
-            // For reserved positions see IProperty static members
-            if (this.LastGenPosition == 0)
-            {
-                this.LastGenPosition = IProperty.PropertyStartingPosition;
-            }
             this.LastGenPosition++;
             return this.LastGenPosition;
         }

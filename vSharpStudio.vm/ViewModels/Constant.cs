@@ -622,7 +622,7 @@ namespace vSharpStudio.vm.ViewModels
                 ParentConstant = this,
                 Guid = guid
             };
-            node.DataType = (DataType)this.Cfg.Model.GetIdRefDataType(node, true);
+            node.DataType = (DataType)Property.GetIdRefDataType(node, true);
             node.DataType.IsPKey = false;
             node.IsNullable = true;
             node.IsComplexRefId = true;
@@ -638,7 +638,7 @@ namespace vSharpStudio.vm.ViewModels
                 Name = subName,
                 Guid = guid
             };
-            node.DataType = (DataType)this.Cfg.Model.GetDataTypeInt(node, false, true);
+            node.DataType = (DataType)Property.GetDataTypeInt(node, false, true);
             node.IsNullable = true;
             node.ParentConstant = this;
             node.IsComplexRefGuid = true;

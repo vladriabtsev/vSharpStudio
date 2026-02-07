@@ -2,7 +2,8 @@
 
 namespace vSharpStudio.common
 {
-    public partial interface IGroupListConstants : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName
+    public partial interface IGroupListConstants : ITreeConfigNodeSortable, IGetNodeSetting, 
+        ICompositeName, INodeWithStandartProperties
     {
         int IndexOf(IConstant cnst);
         IGroupConstantGroups ParentGroupConstantGroupsI { get; }

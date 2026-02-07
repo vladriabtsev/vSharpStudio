@@ -61,7 +61,14 @@ namespace GenVmFromProto
             
             #line default
             #line hidden
-            this.Write(")\r\n\t\tt.AcceptConfigNode(visitor); ");
+            this.Write(") ");
+            
+            #line 19 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n\t\tt.AcceptConfigNode(visitor); ");
             
             #line 20 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs()));
@@ -102,7 +109,14 @@ namespace GenVmFromProto
             
             #line default
             #line hidden
-            this.Write("\tvisitor.VisitEnd(this);\r\n}");
+            this.Write("\tvisitor.VisitEnd(this); ");
+            
+            #line 25 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptValidator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n}");
             return this.GenerationEnvironment.ToString();
         }
     }

@@ -48,7 +48,11 @@ namespace ApplicationLogging
     }
     public static class t4
     {
+#if DEBUG
+        public static bool IsHideSourcePosition = false;
+#else
         public static bool IsHideSourcePosition = true;
+#endif
         // with '//' comment for c#
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string SrcCs(string? text = null,

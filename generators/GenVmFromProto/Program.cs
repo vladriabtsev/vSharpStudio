@@ -21,6 +21,8 @@ namespace GenVmFromProto
         // https://github.com/natemcmaster/CommandLineUtils
         // https://github.com/commandlineparser/commandline !!!!
         // https://github.com/commandlineparser/commandline/wiki/Immutable-Options-Type
+        // -r -m -p plugin_sample -o D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\..\..\vPlugin.Sample\Generated\plugin_sampleProtoViewModels.cs -n vPlugin.Sample -d D:\dev\vSharpStudio.pro\submodules\vSharpStudio\doc\ -b ConfigObjectVmGenSettings
+        // -r -i -p plugin_sample -o D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\..\..\vPlugin.Sample\Generated\plugin_sampleProtoViewModelInterfaces.cs -n vPlugin.Sample -d D:\dev\vSharpStudio.pro\submodules\vSharpStudio\doc\ -b ConfigObjectVmGenSettings
         public class Options
         {
             [Option('m', "model", SetName = "model", Required = false, HelpText = "Model generation")]
@@ -417,6 +419,13 @@ namespace GenVmFromProto
                     case "Timestamp":
                         return "Google.Protobuf.WellKnownTypes.Timestamp";
                     default:
+                        if (from.MessageType.IsMapEntry)
+                        {
+                            if (from.GetMapValueIsMessage())
+                                return $"Dictionary<{from.GetMapKeyCs()}, I{from.GetMapValueCs()}>";
+                            else
+                                return $"Dictionary<{from.GetMapKeyCs()}, {from.GetMapValueCs()}>";
+                        }
                         if (from.MessageType.Name.EndsWith("_nullable"))
                             return from.MessageType.Name.Replace("_nullable", "").ToNameCs() + "?";
                         if (from.MessageType.Name.EndsWith("_nullable_enum"))
@@ -428,7 +437,7 @@ namespace GenVmFromProto
             {
                 return from.EnumType.Name.ToNameCs();
             }
-            return FieldTypeSimpleToTypeCs(from.FieldType);
+            return from.FieldType.FieldTypeSimpleToTypeCs();
         }
         public static string ToSetDefaultCs(this Google.Protobuf.Reflection.FieldDescriptor from)
         {
@@ -649,7 +658,7 @@ namespace GenVmFromProto
         //    }
         //    return sb.ToString();
         //}
-        public static string FieldTypeSimpleToTypeCs(Google.Protobuf.Reflection.FieldType from)
+        public static string FieldTypeSimpleToTypeCs(this Google.Protobuf.Reflection.FieldType from)
         {
             switch (from)
             {
@@ -688,6 +697,49 @@ namespace GenVmFromProto
                 default:
                     throw new NotSupportedException();
             }
+        }
+        public static string GetMapKeyCs(this Google.Protobuf.Reflection.FieldDescriptor field, bool isUseInterface = false)
+        {
+            return GetMapFieldTypeCs(field, "key", isUseInterface);
+        }
+        public static string GetMapValueCs(this Google.Protobuf.Reflection.FieldDescriptor field, bool isUseInterface = false)
+        {
+            return GetMapFieldTypeCs(field, "value", isUseInterface);
+        }
+        private static string GetMapFieldTypeCs(Google.Protobuf.Reflection.FieldDescriptor field, string name, bool isUseInterface)
+        {
+            var res = string.Empty;
+            var lst = field.MessageType.Fields.InDeclarationOrder();
+            Debug.Assert(lst.Count == 2);
+            foreach (var f in lst)
+            {
+                if (f.Name == name)
+                {
+                    if (f.IsMessage() && isUseInterface)
+                    {
+                        res = $"I{f.ToTypeCs()}";
+                    }
+                    else
+                        res = f.ToTypeCs();
+                }
+            }
+            Debug.Assert(res != string.Empty, $"Name '{name}' is not found");
+            return res;
+        }
+        public static bool GetMapValueIsMessage(this Google.Protobuf.Reflection.FieldDescriptor field)
+        {
+            bool? res = null;
+            var lst = field.MessageType.Fields.InDeclarationOrder();
+            Debug.Assert(lst.Count == 2);
+            foreach (var f in lst)
+            {
+                if (f.Name == "value")
+                {
+                    res = f.IsMessage();
+                }
+            }
+            Debug.Assert(res != null, "Name 'value' is not found");
+            return res.Value;
         }
     }
 }

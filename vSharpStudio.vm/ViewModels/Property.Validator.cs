@@ -91,10 +91,10 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (c.UseSeparateTreeForFolders)
                         {
-                            if (name == Property.SpecialPropertyNameRefParent && pg.ListProperties.Contains(p))
+                            if (name == Property.SpecialRefParentName && pg.ListProperties.Contains(p))
                             {
                                 var vf = new ValidationFailure(nameof(p.Name),
-                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name '{Property.SpecialPropertyNameRefParent}' is reserved for auto generated property")
+                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name '{Property.SpecialRefParentName}' is reserved for auto generated property")
                                 {
                                     Severity = Severity.Error
                                 };
@@ -103,10 +103,10 @@ namespace vSharpStudio.vm.ViewModels
                         }
                         else
                         {
-                            if (name == Property.SpecialPropertyNameRefTreeParent && pg.ListProperties.Contains(p))
+                            if (name == Property.SpecialRefTreeParentName && pg.ListProperties.Contains(p))
                             {
                                 var vf = new ValidationFailure(nameof(p.Name),
-                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'false'. Property name '{Property.SpecialPropertyNameRefTreeParent}' is reserved for auto generated property")
+                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'false'. Property name '{Property.SpecialRefTreeParentName}' is reserved for auto generated property")
                                 {
                                     Severity = Severity.Error
                                 };
@@ -136,10 +136,10 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (cc.UseSeparateTreeForFolders)
                         {
-                            if (name == Property.SpecialPropertyNameRefTreeParent && pg.ListProperties.Contains(p))
+                            if (name == Property.SpecialRefTreeParentName && pg.ListProperties.Contains(p))
                             {
                                 var vf = new ValidationFailure(nameof(p.Name),
-                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name '{Property.SpecialPropertyNameRefTreeParent}' is reserved for auto generated property")
+                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name '{Property.SpecialRefTreeParentName}' is reserved for auto generated property")
                                 {
                                     Severity = Severity.Error
                                 };
@@ -150,10 +150,10 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else if (pg.Parent is Detail dd)
                 {
-                    if (name == Property.SpecialPropertyNameRefParent && pg.ListProperties.Contains(p))
+                    if (name == Property.SpecialRefParentName && pg.ListProperties.Contains(p))
                     {
                         var vf = new ValidationFailure(nameof(p.Name),
-                            $"Property name '{Property.SpecialPropertyNameRefParent}' is reserved for auto generated property")
+                            $"Property name '{Property.SpecialRefParentName}' is reserved for auto generated property")
                         {
                             Severity = Severity.Error
                         };
@@ -1261,7 +1261,7 @@ namespace vSharpStudio.vm.ViewModels
                 };
                 cntx.AddFailure(vf);
             }
-            if (name == gd.DocShortTypeIdPropertyName)
+            if (name == gd.PropertyDocShortTypeIdName)
             {
                 var vf = new ValidationFailure(nameof(p.Name),
                     $"Group documents is configured to use {name} as document short type property name. Property name {name} is reserved for document short type property.")

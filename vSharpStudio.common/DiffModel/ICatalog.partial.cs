@@ -3,7 +3,8 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, ICompositeName, IPKey
+    public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, 
+        ICompositeName, IPKey, INodeWithStandartProperties
     {
         string GetDebuggerDisplay(bool isOptimistic);
         IGroupListCatalogs ParentGroupListCatalogsI { get; }
@@ -25,7 +26,6 @@ namespace vSharpStudio.common
         IProperty? GetCodeProperty(List<IProperty> lst);
         IProperty? GetCodeProperty();
         IProperty GetNameProperty(List<IProperty> lst);
-        IProperty GetParentProperty();
         IProperty? GetDescriptionProperty(List<IProperty> lst);
 
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false);

@@ -1,30 +1,30 @@
-§
-$d081ed1c-dfef-4da9-871f-90aac2aa2dbbtest1*test1:≥àÄÃ†ÉÎﬂÄ™B
-$588bbf2c-f99f-4667-9585-444b286eb0c2BaseConfigsBaseConfigs@≤√
-$91552743-318a-45e3-b63b-59177a8a7f8eModel *Model@rIdíReCoRdVeRsIoNòö$5a25e20a-8d16-453a-914e-6fbcde2b1e02¢$2e012561-03ca-4196-a584-45f63fcb174b∫$08cecbb8-169f-44e7-b1f3-7b6f01702c60¬$cbdfde0c-e7ad-41dc-b4ef-3576604c8033 $d0d836fe-9221-4ff7-8657-5b3655c2ccee“$46ca2c08-024f-409a-b8b6-68fdc3cf19a9≤$e0b4bf78-e60c-42ab-8797-b7bac1007657∫$d40d9eca-c693-45c5-9194-7b2192119919 $7a7fa445-e059-4ca2-91ec-516350b65335“$c801b2b4-02a3-432f-982a-9d923889db42™∆
-$1b2d447f-6c27-419b-80a4-6c5c475971a9	Constants"	Constants2CnstB~
-$79d6415c-b1f0-4ccb-b79d-82607e04ac52Gr"Gr2D
-$a62ba666-a96a-45c9-9a43-1ccaa1cd4b13c1"c12
-PhpÅÄÄ @HXhX≤D
-$30440289-2c34-416b-b80e-cd1621aad5c9Enumerations"Enumerations@∫í
-$7322c92b-9a5e-4741-9571-8cac7e8f579eCatalogs	"CatalogsB}
-$7a2bfcaf-ce67-407a-a186-0d7c1e1e2e6dListCatalogs"ListCatalogs2CtlgH∞∫Code¿ Name⁄DescriptionÄê¬IsFolderJ‘
-$f707d026-bd43-46f7-bbda-0f74e1fa1df4	Relations"	Relations:L
-$e04e02e7-31ba-4b6e-a4ba-7299c9fd1274
+™
+$2003f307-170e-40ac-a366-83026e534756test1*test1:Ø´òÃÄﬂÌ¿Ä™B
+$61ad1352-57cf-4773-aeb7-9c1605138154BaseConfigsBaseConfigs@≤…
+$5944b8cc-1c9e-4935-8895-4904634f778fModel *Model@rIdíReCoRdVeRsIoNò™∆
+$34e673ff-9e04-4ad8-ad34-b2ee83c0fb8f	Constants"	Constants2CnstB~
+$79f1b259-7eb4-416c-87e5-1ed6cbf3407dGr"Gr2D
+$145a40ca-5416-4e50-a322-9bd6fa4fe1fdc1"c12
+PhpÅÄÄ @HXhX≤D
+$18a6c4ca-a043-48d5-bdef-4d667707cbd4Enumerations"Enumerations@∫í
+$5cb559e0-6fe6-493a-8bd1-7c8591c3e006Catalogs	"CatalogsB}
+$454824d2-382b-4569-9418-ec336eb44436ListCatalogs"ListCatalogs2CtlgH∞∫Code¿ Name⁄DescriptionÄê¬IsFolderJ‘
+$b1d2f23b-a786-4169-a4ef-971c9f56ed77	Relations"	Relations:L
+$16556c4b-d8c5-4964-8716-77ad6a61ad59
 ManyToMany"
 ManyToMany2
 ManyToManyHBF
-$61b777ed-8c2e-4860-b09b-bce5b5871152OneToOne"OneToOne2OneToOneH¬ô
-$a15dcd87-7783-42c9-8565-627cd62c564b	Documents"	Documents:o
-$0a177771-bee4-4969-81a7-4724a4535d0bTimeline"Timeline@bDocDateTimej$781c1bec-a405-46a5-a28d-4bbe142d66eeBx
-$cf406e7f-fca7-4787-afd9-8b77b3961a10ListDocuments"ListDocuments2Doc@rDocShortTypeId∫Ä»é¸çˇˇˇˇ 	DocNumber–¢m
-$523f7da6-e6b0-4e9e-bc18-a5c69fc6916f	Registers"	Registers0JRegÄ⁄$2bbbf1dd-8ebb-4927-8a8c-5f9c74e661c3™<
-$b0c08efc-4a7b-4b16-b4fe-dcd306518fe3Journals"Journals@≤>
-$d19d6b9b-f907-4f64-874e-4619b325fb93	Sequences"	Sequences“¶
-$2c337269-e6b2-43e6-bbc6-124b0334a373Common"Common0:6
-$9ae58c64-3e17-495b-99e2-2e25018f522dRoles"Roles@B4
-$03d20953-57e3-4406-af02-cb423698560fViews"Views¬à
-$d9377d00-9abd-4e40-bdda-0cacf135ca96PluginsPlugins"ø
+$66549ff7-7e49-4063-a2ad-a5ca284f94e8OneToOne"OneToOne2OneToOneH¬•
+$be104ce1-8857-4d38-9716-b9f865e8622f	Documents"	Documents:o
+$2e507cca-cdf9-49ac-b401-194b9aa118a4Timeline"Timeline@bDocDateTimej$316728cf-afa4-4ac1-b3d7-eb40b3dc7967BÉ
+$f9ff0c09-3c29-4059-965d-286f8416dc7cListDocuments"ListDocuments2Doc@rDocShortTypeId∫Ä»é¸çˇˇˇˇ 	DocNumber–⁄IsPosted¢m
+$b19026b3-d84b-4560-958d-e14408f98540	Registers"	Registers0JRegÄ⁄$ccdb8cd2-aadf-4107-8d7c-8021adb795c6™<
+$3587fe03-f9b5-42cd-a783-8f90337742bfJournals"Journals@≤>
+$131253d1-66a8-4afb-9743-7aa8d0a2abd5	Sequences"	Sequences“¶
+$5bd182c9-df1a-43a2-aeea-7d536d7af59eCommon"Common0:6
+$5af3dc2c-0061-4bad-abde-3d5a44778d2fRoles"Roles@B4
+$6428fcec-56df-4734-9cf7-9ef4b7ef31feViews"Views¬à
+$884e11cf-0182-4209-a39d-76dc0adf504fPluginsPlugins"ø
 $3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(2_
 $1E35FCDB-6425-4C66-B047-6882738AF552
 RepositoryDB repository code generation 2
@@ -48,4 +48,4 @@ $D535B939-6A33-4B96-B64C-F8FB78FD9F940.1Sample2"'vSharpStudio plugin with on
 $8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer 2	DbAccess2:Sample2X"Ë
 $EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(2Ç
 $32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions 2gRPC service:gRPCX@	 D
-$58e5d6ad-cac6-475c-a242-5a3f9779ba6cApplicationsApplications@
+$909ab193-12a4-43c7-a8d1-cc290d5d30f2ApplicationsApplications@

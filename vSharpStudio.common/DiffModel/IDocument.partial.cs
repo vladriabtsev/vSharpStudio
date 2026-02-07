@@ -2,7 +2,8 @@
 
 namespace vSharpStudio.common
 {
-    public partial interface IDocument : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName, IPKey
+    public partial interface IDocument : ITreeConfigNodeSortable, IGetNodeSetting, 
+        ICompositeName, IPKey, INodeWithStandartProperties
     {
         IGroupListDocuments ParentGroupListDocumentsI { get; }
         bool IsDocWithSharedProperties { get; }

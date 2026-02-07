@@ -2,7 +2,8 @@
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalogFolder : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName, IPKey
+    public partial interface ICatalogFolder : ITreeConfigNodeSortable, IGetNodeSetting, 
+        ICompositeName, IPKey, INodeWithStandartProperties
     {
         ICatalog ParentCatalogI { get; }
         string GetDebuggerDisplay(bool isOptimistic);
@@ -25,8 +26,6 @@ namespace vSharpStudio.common
         IProperty? GetCodeProperty();
         IProperty GetNameProperty(List<IProperty> lst);
         IProperty? GetDescriptionProperty(List<IProperty> lst);
-        IProperty GetParentProperty();
-
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
         IForm GetForm(FormType ftype, string guidAppPrjGen);

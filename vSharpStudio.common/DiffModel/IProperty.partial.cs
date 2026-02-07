@@ -1,49 +1,51 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace vSharpStudio.common
 {
     public partial interface IProperty : IParent, ITreeConfigNodeSortable, IGetNodeSetting
     {
-        #region Standard Property Positions
-        #region DB record
-        static uint PropertyIdPosition { get; } = 5;
-        static uint PropertyVersionPosition { get; } = 6;
-        static uint PropertyVersionPrevPosition { get; } = 7;
-        static uint PropertyShortTypeIdPosition { get; } = 8;
-        #endregion DB record
+        //#region Standard Property Positions
+        //#region DB record
+        //static uint PropertyIdPosition { get; } = 5;
+        //static uint PropertyVersionPosition { get; } = 6;
+        //static uint PropertyVersionPrevPosition { get; } = 7;
+        //static uint PropertyShortTypeIdPosition { get; } = 8;
+        //#endregion DB record
 
-        #region Catalog or Folder
-        static uint PropertyCodePosition { get; } = 9;
-        static uint PropertyNamePosition { get; } = 10;
-        static uint PropertyDescriptionPosition { get; } = 11;
-        static uint PropertyIsFolderPosition { get; } = 12;
-        static uint PropertyIsOpenPosition { get; } = 13;
-        static uint PropertyRefSelfParentPosition { get; } = 14;
-        #endregion Catalog or Folder
+        //#region Catalog or Folder
+        //static uint PropertyCodePosition { get; } = 9;
+        //static uint PropertyNamePosition { get; } = 10;
+        //static uint PropertyDescriptionPosition { get; } = 11;
+        //static uint PropertyIsFolderPosition { get; } = 12;
+        //static uint PropertyIsOpenPosition { get; } = 13;
+        //static uint PropertyRefSelfParentPosition { get; } = 14;
+        //#endregion Catalog or Folder
 
-        #region Document
-        static uint PropertyDocumentDatePosition { get; } = 9;
-        static uint PropertyDocumentNumberPosition { get; } = 10;
-        static uint PropertyIsPostedPosition { get; } = 11;
-        #endregion Document
+        //#region Document
+        //static uint PropertyDocumentNumberPosition { get; } = 9;
+        //static uint PropertyDocumentDatePosition { get; } = 10;
+        //static uint PropertyIsPostedPosition { get; } = 11;
+        //#endregion Document
 
-        #region Register
-        static uint PropertyMoneyAccumulatorPosition { get; } = 9;
-        static uint PropertyQtyAccumulatorPosition { get; } = 10;
-        #endregion Register
+        //#region Register
+        //static uint PropertyMoneyAccumulatorPosition { get; } = 9;
+        //static uint PropertyQtyAccumulatorPosition { get; } = 10;
+        //#endregion Register
 
-        #region Detail, or Catalog, or Document, or Register
-        static uint PropertyRefParentPosition { get; } = 14;
-        #endregion Detail, or Catalog, or Document, or Register
+        //#region Detail, or Catalog, or Document, or Register
+        //static uint PropertyRefParentPosition { get; } = 14;
+        //#endregion Detail, or Catalog, or Document, or Register
 
-        // reserved positions: 1-4
+        //// reserved positions: 1-4
 
-        // reserved positions: 5-20 special properties
+        //// reserved positions: 5-20 special properties
 
-        static uint PropertyStartingPosition { get; } = 20; // configured properties: starting from 21
+        //static uint PropertyStartingPosition { get; } = 21; // configured properties: starting from 21
+        ////static uint PropertyPositionGapFoComplex { get; } = 3; // configured properties: starting from 21
 
-        #endregion Standard Property Positions
+        //#endregion Standard Property Positions
 
         IGroupListProperties ParentGroupListPropertiesI { get; }
         //string DefaultValue { get; }
@@ -79,7 +81,6 @@ namespace vSharpStudio.common
         string ComplexObjectNameWithDot();
         object? Tag { get; set; }
         string? TagInList { get; set; }
-        int PositionInConfigObject { get; set; }
         void SetPosition(uint position);
         //static IConfig Config { get; set; }
         bool IsGridSortableGet();
@@ -102,6 +103,29 @@ namespace vSharpStudio.common
         #endregion Plugin group model
 
         string GetShortDescription(StringBuilder sb);
+
+        static string SpecialRefParentName { get; } = "Not implemented";
+        static string SpecialRefTreeParentName { get; } = "Not implemented";
+        static string SpecialPropertyNameRefTimeline { get; } = "Not implemented";
+        static string SpecialPropertyHistoryDataTimeUtc { get; } = "Not implemented";
+        static IProperty GetPropertyCodeStr(ITreeConfigNode node, bool isNullable, uint length) { throw new NotImplementedException(); }
+        static IProperty GetPropertyCodeInt(ITreeConfigNode node, bool isNullable, uint length) { throw new NotImplementedException(); }
+        static IProperty GetPropertyName(ITreeConfigNode node, bool isNullable, uint length) { throw new NotImplementedException(); }
+        static IProperty GetPropertyDocumentDate(ITreeConfigNode node) { throw new NotImplementedException(); }
+        static IProperty GetPropertyDocNumberString(ITreeConfigNode node, uint length) { throw new NotImplementedException(); }
+        static IProperty GetPropertyDocNumberInt(ITreeConfigNode node, uint length) { throw new NotImplementedException(); }
+        static IProperty GetPropertyDescription(ITreeConfigNode node, bool isNullable, uint length) { throw new NotImplementedException(); }
+        static IProperty GetPropertyIsFolder(ITreeConfigNode node, bool isNullable) { throw new NotImplementedException(); }
+        static IProperty GetPropertyIsPosted(ITreeConfigNode node, bool isNullable) { throw new NotImplementedException(); }
+        static IProperty GetPropertyDocShortTypeId(ITreeConfigNode node, bool isNullable) { throw new NotImplementedException(); }
+        static IProperty GetPropertyBalanceOnDateInt(ITreeConfigNode node, bool isPKey) { throw new NotImplementedException(); }
+        static IProperty GetPropertyDateTimeUtc(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MKS_TIME_ACC) { throw new NotImplementedException(); }
+        static IProperty GetPropertyVersion(ITreeConfigNode node) { throw new NotImplementedException(); }
+        static IProperty GetPropertyVersionPrev(ITreeConfigNode node) { throw new NotImplementedException(); }
+        static IProperty GetPropertyNumber(ITreeConfigNode node, EnumSpecialPropertyType enumDataType, uint length, uint accuracy, bool isNullable) { throw new NotImplementedException(); }
+        static IProperty GetPropertyRefDimension(IRegisterDimension node, bool isNullable = false) { throw new NotImplementedException(); }
+        static IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable = false, bool is_pkey = false) { throw new NotImplementedException(); }
+        static IProperty GetPropertySpecial(ITreeConfigNode node, EnumSpecialPropertyType propertyType, bool? isNullable = null, ITreeConfigNode? toNode = null) { throw new NotImplementedException(); }
     }
     public interface IPropertyRangeValuesRequirements
     {

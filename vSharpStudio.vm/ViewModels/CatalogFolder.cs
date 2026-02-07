@@ -12,7 +12,8 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles
+    public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup,
+        INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles
     {
         public override string NameShortId { get { return $"f{this.ParentCatalog.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
@@ -76,15 +77,8 @@ namespace vSharpStudio.vm.ViewModels
             this._MaxDescriptionLength = 100;
 
             //this.CodePropertySettings.Parent = this;
-            var m = this.Cfg.Model;
-            this._PropertyRefSelf = (Property)m.GetPropertyRef(this, this, System.Guid.NewGuid().ToString(), Property.SpecialPropertyNameRefTreeParent, 0, true);
 
             Init();
-        }
-        partial void OnGuidChanged()
-        {
-            this._PropertyRefSelf.DataType.ObjectRef0.ForeignObjectGuid = this.Guid;
-            this.ParentCatalog.PropertyRefFolder.DataType.ObjectRef0.ForeignObjectGuid = this.Guid;
         }
         protected override void OnInitFromDto()
         {
@@ -134,7 +128,7 @@ namespace vSharpStudio.vm.ViewModels
                 node.Guid = guid;
             }
 #endif
-            var model = (Model)this.Cfg.Model;
+            var model = this.Cfg.Model;
             this.GroupDetails.NodeAddNewSubNode(node);
             return node;
         }
@@ -314,31 +308,22 @@ namespace vSharpStudio.vm.ViewModels
                 res = false;
             return res;
         }
-        public IProperty GetParentProperty()
-        {
-            Property prp;
-            prp = this.PropertyRefSelf;
-            prp.SetPosition(IProperty.PropertyRefSelfParentPosition);
-            return prp;
-        }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var model = this.ParentCatalog.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
-            var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
 
-            prp = this.PropertyRefSelf;
-            prp.SetPosition(IProperty.PropertyRefSelfParentPosition);
+            prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT, true);
             res.Add(prp);
 
             if (this.ParentCatalog.UseTree && !this.ParentCatalog.UseSeparateTreeForFolders)
             {
-                prp = model.GetPropertyIsFolder(this.GroupProperties, this.Cfg.Model.PropertyCtlgIsFolderGuid, false);
+                prp = Property.GetPropertyIsFolder(this, false);
                 res.Add(prp);
             }
             if (isOptimistic)
             {
-                prp = model.GetPropertyVersion(this.GroupProperties, this.Cfg.Model.PropertyVersionGuid);
+                prp = Property.GetPropertyVersion(this);
                 res.Add(prp);
             }
         }
@@ -366,10 +351,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 prp = this.CodePropertySettings.SequenceType switch
                 {
-                    EnumCodeType.Number => this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, 
-                        this.Cfg.Model.PropertyCtlgCodeGuid, this.CodePropertySettings.MaxSequenceLength, false),
-                    EnumCodeType.Text => this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, 
-                        this.Cfg.Model.PropertyCtlgCodeGuid, this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false),
+                    EnumCodeType.Number =>
+                        Property.GetPropertyCodeInt(this, false, this.CodePropertySettings.MaxSequenceLength),
+                    EnumCodeType.Text =>
+                        Property.GetPropertyCodeStr(this, false, this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length),
                     _ => throw new NotImplementedException(),
                 };
             }
@@ -380,7 +365,7 @@ namespace vSharpStudio.vm.ViewModels
             IProperty prp = null!;
             if (this.GetUseNameProperty())
             {
-                prp = this.Cfg.Model.GetPropertyCatalogName(this.GroupProperties, this.Cfg.Model.PropertyCtlgNameGuid, this.MaxNameLength, false);
+                prp = Property.GetPropertyName(this, false, this.MaxNameLength);
                 lst.Add(prp);
             }
             return prp;
@@ -390,7 +375,7 @@ namespace vSharpStudio.vm.ViewModels
             IProperty? prp = null!;
             if (this.GetUseDescriptionProperty())
             {
-                prp = this.Cfg.Model.GetPropertyCatalogDescription(this.GroupProperties, this.Cfg.Model.PropertyCtlgDescriptionGuid, this.MaxDescriptionLength, true);
+                prp = Property.GetPropertyName(this, false, this.MaxDescriptionLength);
                 lst.Add(prp);
             }
             return prp;
@@ -403,7 +388,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(isRegisterBalance == null);
             var res = new List<IProperty>();
-            var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             return res;
         }

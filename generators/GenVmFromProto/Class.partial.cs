@@ -99,6 +99,8 @@ namespace GenVmFromProto
         }
         private bool IsObservable(FieldDescriptor field)
         {
+            if (field.IsMap)
+                return false;
             if (field.IsCsSimple() || field.IsAny())
                 return true;
             var doc = JsonDoc.Files[root.Name].Messages[field.MessageType.Name];

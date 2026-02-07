@@ -216,6 +216,11 @@ namespace vSharpStudio.vm.ViewModels
                     throw new ArgumentException("Unsupported type: " + this.DataTypeEnum.ToString(), nameof(type));
             }
         }
+        //public DataType(ITreeConfigNode parent, EnumDataType type) : this(parent)
+        //{
+        //    this._DataTypeEnum = type;
+        //    this._ListObjectRefs = [];
+        //}
         public DataType(ITreeConfigNode parent, EnumDataType type, string guidOfType) : this(parent)
         {
             this._DataTypeEnum = type;
@@ -628,15 +633,6 @@ namespace vSharpStudio.vm.ViewModels
             // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
             switch (this.DataTypeEnum)
             {
-                case EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER:
-                case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG:
-                case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER:
-                case EnumDataType.REF_DETAIL_TO_PARENT_DETAIL:
-                case EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT:
-                case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
-                case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
-                case EnumDataType.REF_TIMELINE:
-                    return "";
                 case EnumDataType.CATALOG:
                     Debug.Assert(this.Cfg != null);
                     Debug.Assert(this.ListObjectRefs.Count < 2);
@@ -901,15 +897,6 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             switch (this.DataTypeEnum)
             {
-                case EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER:
-                case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG:
-                case EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER:
-                case EnumDataType.REF_DETAIL_TO_PARENT_DETAIL:
-                case EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT:
-                case EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
-                case EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT:
-                case EnumDataType.REF_TIMELINE:
-                    return;
                 case EnumDataType.CHAR:
                 case EnumDataType.BOOL:
                 case EnumDataType.DATE:
@@ -1188,10 +1175,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return this.DataTypeEnum == EnumDataType.CATALOG || this.DataTypeEnum == EnumDataType.DOCUMENT
                     || this.DataTypeEnum == EnumDataType.CATALOGS || this.DataTypeEnum == EnumDataType.DOCUMENTS || this.DataTypeEnum == EnumDataType.ANY
-                    || this.DataTypeEnum == EnumDataType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER || this.DataTypeEnum == EnumDataType.REF_DETAIL_TO_PARENT_CATALOG
-                    || this.DataTypeEnum == EnumDataType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER || this.DataTypeEnum == EnumDataType.REF_DETAIL_TO_PARENT_DETAIL
-                    || this.DataTypeEnum == EnumDataType.REF_DETAIL_TO_PARENT_DOCUMENT || this.DataTypeEnum == EnumDataType.REF_TIMELINE
-                    || this.DataTypeEnum == EnumDataType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT || this.DataTypeEnum == EnumDataType.REF_TO_SELF_TREE_CATALOG_PARENT
+                    || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG
+                    || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DETAIL
+                    || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DOCUMENT || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_TIMELINE
+                    || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT
                     ;
             }
         }

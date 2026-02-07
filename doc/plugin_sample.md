@@ -11,6 +11,7 @@
     - [proto_generator_db_schema_settings](#proto_plugin_sample-proto_generator_db_schema_settings)
     - [proto_plugins_group_project_settings](#proto_plugin_sample-proto_plugins_group_project_settings)
     - [proto_plugins_group_solution_settings](#proto_plugin_sample-proto_plugins_group_solution_settings)
+    - [proto_plugins_group_solution_settings.TestMapEntry](#proto_plugin_sample-proto_plugins_group_solution_settings-TestMapEntry)
     - [proto_plugins_group_solution_sub_settings](#proto_plugin_sample-proto_plugins_group_solution_sub_settings)
   
 - [Scalar Value Types](#scalar-value-types)
@@ -140,6 +141,23 @@
 | ----- | ---- | ----- | ----------- |
 | is_group_param1 | [bool](#bool) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Param1&#34;)] @attr [Description(&#34;Sample of Param1&#34;)] |
 | sub_settings | [proto_plugins_group_solution_sub_settings](#proto_plugin_sample-proto_plugins_group_solution_sub_settings) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Sub Settings&#34;)] @attr [Description(&#34;Sample of Sub Settings&#34;)] @attr [ExpandableObjectAttribute()] |
+| test_map | [proto_plugins_group_solution_settings.TestMapEntry](#proto_plugin_sample-proto_plugins_group_solution_settings-TestMapEntry) | repeated |  |
+
+
+
+
+
+
+<a name="proto_plugin_sample-proto_plugins_group_solution_settings-TestMapEntry"></a>
+
+### proto_plugins_group_solution_settings.TestMapEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [uint32](#uint32) |  |  |
 
 
 

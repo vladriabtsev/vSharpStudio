@@ -55,9 +55,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this._DimensionCatalogGuid = string.Empty;
-            var m = (Model)this.Cfg.Model;
-            this._PropertyRefDimensionCatalog = (Property)m.GetPropertyRef(this.ParentGroupListRegisterDimensions.ParentRegister.GroupProperties, this.Guid, "Ref2", 0, false);
-            //this._PropertyRefDimensionCatalog.lis
+            var model = this.Cfg.Model;
+            //this._PropertyRefDimensionCatalog = (Property)model.GetPropertyRef(this.ParentGroupListRegisterDimensions.ParentRegister.GroupProperties, this.Guid, "Ref2", 0, false);
+            this._PropertyRefDimensionCatalog = (Property)Property.GetPropertyRef(model, this.ParentGroupListRegisterDimensions.ParentRegister.GroupProperties, this.Guid, "Ref2", 0, false);
             this._PropertyRefDimensionCatalog.DataTypeEnum = EnumDataType.CATALOG;
             this._PropertyRefDimensionCatalog.IsNullable = false;
             Init();
@@ -120,7 +120,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = RegisterDimension.Clone(this.Parent, this, true, true);
             this.ParentGroupListRegisterDimensions.ListDimensions.Add(node, this);
             this._Name = this._Name + "2";
-            var model = (Model)this.Cfg.Model;
+            var model = this.Cfg.Model;
             node.ShortId = ++this.ParentGroupListRegisterDimensions.LastShortId;
             this.SetSelected(node);
             return node;
@@ -135,7 +135,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Register(this.Parent);
             this.ParentGroupListRegisterDimensions.ListDimensions.Add(node, this);
             this.GetUniqueName(Defaults.RegisterDimensionName, node, this.ParentGroupListRegisterDimensions.ListDimensions);
-            var model = (Model)this.Cfg.Model;
+            var model = this.Cfg.Model;
             node.ShortId = ++this.ParentGroupListRegisterDimensions.LastShortId;
             this.SetSelected(node);
             return node;

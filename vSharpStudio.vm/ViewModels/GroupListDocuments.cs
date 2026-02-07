@@ -58,7 +58,8 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = Defaults.DocumentsListName;
             if (string.IsNullOrWhiteSpace(this._PrefixForCompositionNames)) this._PrefixForCompositionNames = "Doc";
             if (string.IsNullOrWhiteSpace(this._PropertyDocNumberName)) this._PropertyDocNumberName = "DocNumber";
-            if (string.IsNullOrWhiteSpace(this._DocShortTypeIdPropertyName)) this._DocShortTypeIdPropertyName = "DocShortTypeId";
+            if (string.IsNullOrWhiteSpace(this._PropertyIsPostedName)) this._PropertyIsPostedName = "IsPosted";
+            if (string.IsNullOrWhiteSpace(this._PropertyDocShortTypeIdName)) this._PropertyDocShortTypeIdName = "DocShortTypeId";
             this.ListDocuments.OnAddingAction = (t) =>
             {
                 t.IsNew = true;

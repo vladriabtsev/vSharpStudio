@@ -16,11 +16,11 @@ public void AcceptValidator(VisitorConfigNode visitor) <#=t4.SrcCs()#>
        continue;
 #>
 <# if (field.IsRepeated) { #>
-	foreach (var t in this.<#= field.Name.ToNameCs() #>)
+	foreach (var t in this.<#= field.Name.ToNameCs() #>) <#=t4.SrcCs()#>
 		t.AcceptConfigNode(visitor); <#=t4.SrcCs()#>
 <# } else if ((field.FieldType == Google.Protobuf.Reflection.FieldType.Message) && (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].BaseClass == "")) { #>
 	this.<#= field.Name.ToNameCs() #>.AcceptConfigNode(visitor); <#=t4.SrcCs()#>
 <# } #>
 <# } #>
-	visitor.VisitEnd(this);
+	visitor.VisitEnd(this); <#=t4.SrcCs()#>
 }

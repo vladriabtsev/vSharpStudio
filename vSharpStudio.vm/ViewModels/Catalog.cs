@@ -63,17 +63,6 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public IGroupListCatalogs ParentGroupListCatalogsI { get { Debug.Assert(this.Parent != null); return (IGroupListCatalogs)this.Parent; } }
 
-        #region ITree
-        public override IChildrenCollection GetListChildren()
-        {
-            return this.Children;
-        }
-        public override IChildrenCollection GetListSiblings()
-        {
-            return this.ParentGroupListCatalogs.Children;
-        }
-        #endregion ITree
-
         [Browsable(false)]
         public static new string IconName { get { return "iconCatalogProperty"; } }
         //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
@@ -113,13 +102,7 @@ namespace vSharpStudio.vm.ViewModels
             this._UseDescriptionProperty = EnumUseType.Default;
             this._IsUnicodeDescription = true;
             var m = this.Cfg.Model;
-            this._PropertyRefFolder = (Property)m.GetPropertyRef(this, this.Folder, System.Guid.NewGuid().ToString(), Property.SpecialPropertyNameRefParent, 0, false);
-            this._PropertyRefSelf = (Property)m.GetPropertyRef(this, this, System.Guid.NewGuid().ToString(), Property.SpecialPropertyNameRefTreeParent, 0, true);
             Init();
-        }
-        partial void OnGuidChanged()
-        {
-            this._PropertyRefSelf.DataType.ObjectRef0.ForeignObjectGuid = this.Guid;
         }
         protected override void OnInitFromDto()
         {
@@ -185,6 +168,43 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.GroupProperties.ListProperties.Add(t);
             }
+        }
+
+        #region Tree operations
+        public override IChildrenCollection GetListChildren()
+        {
+            return this.Children;
+        }
+        public override IChildrenCollection GetListSiblings()
+        {
+            return this.ParentGroupListCatalogs.Children;
+        }
+        public override ITreeConfigNode NodeAddClone()
+        {
+            var node = Catalog.Clone(this.ParentGroupListCatalogs, this, true, true);
+            node.Parent = this.Parent;
+            this.ParentGroupListCatalogs.ListCatalogs.Add(node, this);
+            this._Name += "2";
+            var model = this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
+            node.ShortId = ++this.ParentGroupListCatalogs.LastShortId;
+            node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
+            this.SetSelected(node);
+            return node;
+        }
+        public override ITreeConfigNode NodeAddNew()
+        {
+            var node = new Catalog(this.Parent);
+            this.ParentGroupListCatalogs.ListCatalogs.Add(node, this);
+            this.GetUniqueName(Defaults.CatalogName, node, this.ParentGroupListCatalogs.ListCatalogs);
+            var model = this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
+            node.ShortId = ++this.ParentGroupListCatalogs.LastShortId;
+            node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
+            this.SetSelected(node);
+            return node;
+        }
+        public void Remove()
+        {
+            this.ParentGroupListCatalogs.ListCatalogs.Remove(this);
         }
         public Detail AddDetails(string name, string? guid = null)
         {
@@ -302,35 +322,6 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
-        }
-
-        #region Tree operations
-        public override ITreeConfigNode NodeAddClone()
-        {
-            var node = Catalog.Clone(this.ParentGroupListCatalogs, this, true, true);
-            node.Parent = this.Parent;
-            this.ParentGroupListCatalogs.ListCatalogs.Add(node, this);
-            this._Name += "2";
-            var model = this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
-            node.ShortId = ++this.ParentGroupListCatalogs.LastShortId;
-            node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
-            this.SetSelected(node);
-            return node;
-        }
-        public override ITreeConfigNode NodeAddNew()
-        {
-            var node = new Catalog(this.Parent);
-            this.ParentGroupListCatalogs.ListCatalogs.Add(node, this);
-            this.GetUniqueName(Defaults.CatalogName, node, this.ParentGroupListCatalogs.ListCatalogs);
-            var model = this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
-            node.ShortId = ++this.ParentGroupListCatalogs.LastShortId;
-            node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
-            this.SetSelected(node);
-            return node;
-        }
-        public void Remove()
-        {
-            this.ParentGroupListCatalogs.ListCatalogs.Remove(this);
         }
         #endregion Tree operations
 
@@ -479,78 +470,51 @@ namespace vSharpStudio.vm.ViewModels
             {
                 prp = this.CodePropertySettings.SequenceType switch
                 {
-                    EnumCodeType.Number => this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, 
-                        this.Cfg.Model.PropertyCtlgCodeGuid, this.CodePropertySettings.MaxSequenceLength, false),
-                    EnumCodeType.Text => this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, 
-                        this.Cfg.Model.PropertyCtlgCodeGuid, this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length, false),
+                    EnumCodeType.Number =>
+                        Property.GetPropertyCodeInt(this, false, this.CodePropertySettings.MaxSequenceLength),
+                    EnumCodeType.Text => 
+                        Property.GetPropertyCodeStr(this, false, this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length),
                     _ => throw new NotImplementedException(),
                 };
             }
             return prp;
         }
-        public IProperty GetParentProperty()
-        {
-            Property prp;
-            if (this.UseTree)
-            {
-                var model = this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
-                if (this.UseSeparateTreeForFolders)
-                {
-                    prp = this.PropertyRefFolder;
-                    prp.SetPosition(IProperty.PropertyRefParentPosition);
-                    if (this.UseItemsAtRoot)
-                    {
-                        ((Property)prp).IsNullable = true;
-                    }
-                    else
-                    {
-                        ((Property)prp).IsNullable = false;
-                    }
-                    return prp;
-                }
-                else
-                {
-                    prp = this.PropertyRefSelf;
-                    prp.SetPosition(IProperty.PropertyRefSelfParentPosition);
-                    return prp;
-                }
-            }
-            throw new NotSupportedException();
-        }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var model = this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
-            var prp = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             if (this.UseTree)
             {
                 if (this.UseSeparateTreeForFolders)
                 {
-                    prp = this.PropertyRefFolder;
-                    prp.SetPosition(IProperty.PropertyRefParentPosition);
                     if (this.UseItemsAtRoot)
                     {
-                        ((Property)prp).IsNullable = true;
+                        prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER, true, this.Folder);
                     }
                     else
                     {
-                        ((Property)prp).IsNullable = false;
+                        prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER, false, this.Folder);
                     }
                     res.Add(prp);
                 }
                 else
                 {
-                    prp = this.PropertyRefSelf;
-                    prp.SetPosition(IProperty.PropertyRefSelfParentPosition);
+                    if (this.UseItemsAtRoot)
+                    {
+                        prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT, true);
+                    }
+                    else
+                    {
+                        prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT, false);
+                    }
                     res.Add(prp);
-                    prp = model.GetPropertyIsFolder(this.GroupProperties, this.Cfg.Model.PropertyCtlgIsFolderGuid, false);
+                    prp = Property.GetPropertyIsFolder(this, false);
                     res.Add(prp);
                 }
             }
             if (isOptimistic)
             {
-                prp = model.GetPropertyVersion(this.GroupProperties, this.Cfg.Model.PropertyVersionGuid);
-                //prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
+                prp = Property.GetPropertyVersion(this);
                 res.Add(prp);
             }
         }
@@ -576,7 +540,7 @@ namespace vSharpStudio.vm.ViewModels
             IProperty prp = null!;
             if (this.GetUseNameProperty())
             {
-                prp = this.Cfg.Model.GetPropertyCatalogName(this.GroupProperties, this.Cfg.Model.PropertyCtlgNameGuid, this.MaxNameLength, false);
+                prp = Property.GetPropertyName(this, false, this.MaxNameLength);
                 lst.Add(prp);
             }
             return prp;
@@ -586,7 +550,7 @@ namespace vSharpStudio.vm.ViewModels
             IProperty? prp = null!;
             if (this.GetUseDescriptionProperty())
             {
-                prp = this.Cfg.Model.GetPropertyCatalogDescription(this.GroupProperties, this.Cfg.Model.PropertyCtlgDescriptionGuid, this.MaxDescriptionLength, true);
+                prp = Property.GetPropertyDescription(this, false, this.MaxDescriptionLength);
                 lst.Add(prp);
             }
             return prp;
@@ -599,7 +563,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(isRegisterBalance == null);
             var res = new List<IProperty>();
-            var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             return res;
         }
@@ -736,37 +700,34 @@ namespace vSharpStudio.vm.ViewModels
         {
             ViewTreeData? viewTreeData = null;
             ViewListData? viewListData = null;
-            var model = this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel;
             Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
-            IProperty pId = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
-            Property? pRefTreeParent = null;
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            IProperty? pRefTreeParent = null;
             IProperty? pRefParent = null;
             if (this.UseTree)
             {
-                pRefTreeParent = this.PropertyRefSelf;
-                pRefTreeParent.SetPosition(IProperty.PropertyRefSelfParentPosition);
+                pRefTreeParent = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT);
                 if (this.UseSeparateTreeForFolders) // self tree and separate data grid for children
                 {
-                    viewTreeData = new ViewTreeData(pId, pRefTreeParent, null);
+                    viewTreeData = new ViewTreeData(prp, pRefTreeParent, null);
                     var lst = this.SelectViewProperties(formType, this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
                     viewTreeData.ListViewProperties.AddRange(lst);
 
-                    viewListData = new ViewListData(pId, pRefParent, null);
+                    viewListData = new ViewListData(prp, pRefParent, null);
                     lst = this.SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
                     viewListData.ListViewProperties.AddRange(lst);
                 }
                 else // only self tree
                 {
-                    IProperty? pIsFolder = null;
-                    pIsFolder = model.GetPropertyIsFolder(this.GroupProperties, this.Cfg.Model.PropertyCtlgIsFolderGuid, false);
-                    viewTreeData = new ViewTreeData(pId, pRefParent, pIsFolder);
+                    var pIsFolder = Property.GetPropertyIsFolder(this, false);
+                    viewTreeData = new ViewTreeData(prp, pRefParent, pIsFolder);
                     var lst = this.SelectViewProperties(formType, this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
                     viewTreeData.ListViewProperties.AddRange(lst);
                 }
             }
             else // only data grid for children
             {
-                viewListData = new ViewListData(pId);
+                viewListData = new ViewListData(prp);
                 var lst = this.SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
                 viewListData.ListViewProperties.AddRange(lst);
             }

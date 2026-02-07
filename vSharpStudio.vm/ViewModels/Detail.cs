@@ -14,7 +14,8 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class Detail : ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles, ILayoutParameters
+    public partial class Detail : ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, INodeWithProperties, 
+        IRoleAccess, ICatalogDetailAccessRoles, ILayoutParameters
     {
         public override string NameShortId
         {
@@ -112,19 +113,6 @@ namespace vSharpStudio.vm.ViewModels
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             Debug.Assert(glp != null);
             this._Position = glp.GroupProperties.GetNextPosition();
-            var m = this.Cfg.Model;
-            string guid = System.Guid.NewGuid().ToString();
-            if (this.ParentGroupListDetails.Parent is Catalog c)
-                this._PropertyRefParent = (Property)m.GetPropertyRef(this, c, guid, Property.SpecialPropertyNameRefParent, 0, false);
-            else if (this.ParentGroupListDetails.Parent is Detail dt)
-                this._PropertyRefParent = (Property)m.GetPropertyRef(this, dt, guid, Property.SpecialPropertyNameRefParent, 0, false);
-            else if (this.ParentGroupListDetails.Parent is Document d) // Timeline is parent record
-                this._PropertyRefParent = (Property)m.GetPropertyRef(this, d, guid, Property.SpecialPropertyNameRefParent, 0, false);
-            else if (this.ParentGroupListDetails.Parent is CatalogFolder cf)
-                this._PropertyRefParent = (Property)m.GetPropertyRef(this, cf, guid, Property.SpecialPropertyNameRefParent, 0, false);
-            else
-                ThrowHelper.ThrowNotSupportedException();
-            this._PropertyRefParent.Position = IProperty.PropertyRefParentPosition;
 
             Init();
         }
@@ -176,7 +164,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(glp != null);
             node.Position = glp.GroupProperties.GetNextPosition();
             this.Name = this.Name + "2";
-            var model = (Model)this.Cfg.Model;
+            var model = this.Cfg.Model;
             node.ShortId = ++this.ParentGroupListDetails.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
@@ -191,7 +179,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(glp != null);
             node.Position = glp.GroupProperties.GetNextPosition();
             this.GetUniqueName(Defaults.DetailName, node, this.ParentGroupListDetails.ListDetails);
-            var model = (Model)this.Cfg.Model;
+            var model = this.Cfg.Model;
             node.ShortId = ++this.ParentGroupListDetails.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
@@ -212,7 +200,7 @@ namespace vSharpStudio.vm.ViewModels
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             Debug.Assert(glp != null);
             node.Position = glp.GroupProperties.GetNextPosition();
-            var model = (Model)this.Cfg.Model;
+            var model = this.Cfg.Model;
             node.ShortId = ++this.ParentGroupListDetails.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             return node;
@@ -369,7 +357,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(isRegisterBalance == null);
             var res = new List<IProperty>();
-            var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             return res;
         }
@@ -389,22 +377,29 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var prp = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
 
-            prp = this.PropertyRefParent;
-            prp.SetPosition(IProperty.PropertyRefParentPosition);
+            if (this.ParentGroupListDetails.Parent is Catalog c)
+                prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG, false, c);
+            else if (this.ParentGroupListDetails.Parent is Detail dt)
+                prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DETAIL, false, dt);
+            else if (this.ParentGroupListDetails.Parent is Document d) // Timeline is parent record
+                prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DOCUMENT, false, d);
+            else if (this.ParentGroupListDetails.Parent is CatalogFolder cf)
+                prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER, false, cf);
+            else
+                ThrowHelper.ThrowNotSupportedException();
             res.Add(prp);
 
             if (isOptimistic)
             {
-                prp = this.Cfg.Model.GetPropertyVersion(this.GroupProperties, this.Cfg.Model.PropertyVersionGuid);
+                prp = Property.GetPropertyVersion(this);
                 res.Add(prp);
             }
         }
         public void GetNormalProperties(List<IProperty> res)
         {
-            var model = this.Cfg.Model;
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 res.Add(t);
@@ -426,8 +421,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             ViewListData? viewListData = null;
             Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
-            var pId = this.Cfg.Model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
-            viewListData = new ViewListData(pId);
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            viewListData = new ViewListData(prp);
             var lst = this.SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
             viewListData.ListViewProperties.AddRange(lst);
             return new ViewFormData(null, viewListData);

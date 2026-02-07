@@ -4,65 +4,66 @@ using System.ComponentModel;
 using Google.Protobuf.WellKnownTypes;
 using vSharpStudio.common.ViewModels;
 
-namespace vPlugin.Sample 
+namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:14
 {
     ///<summary>
     ///     Represents the caching modes that can be used when creating a new <see cref="SqliteConnection" />.
     /// </summary>
     /// <seealso href="http://sqlite.org/sharedcache.html">SQLite Shared-Cache Mode</seealso>
     
-    public partial interface IDbConnectionStringSettings 
+    public partial interface IDbConnectionStringSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:36
     {
     	// Represents the caching modes that can be used when creating a new <see cref="SqliteConnection" />.
-    	string StringSettings { get; } 
+    	string StringSettings { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
     }
     
-    public partial interface IPluginsGroupSolutionSubSettings 
+    public partial interface IPluginsGroupSolutionSubSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:36
     {
-    	bool IsSubParam1 { get; } 
-    	bool IsSubParam2 { get; } 
+    	bool IsSubParam1 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	bool IsSubParam2 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
     }
     
-    public partial interface IPluginsGroupSolutionSettings 
+    public partial interface IPluginsGroupSolutionSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:36
     {
-    	bool IsGroupParam1 { get; } 
-    	IPluginsGroupSolutionSubSettings SubSettings { get; } 
+    	bool IsGroupParam1 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	IPluginsGroupSolutionSubSettings SubSettings { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:62
+    	IDictionary<string, uint> TestMap { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:47
     }
     
-    public partial interface IPluginsGroupProjectSettings 
+    public partial interface IPluginsGroupProjectSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:36
     {
-    	bool IsGroupProjectParam1 { get; } 
+    	bool IsGroupProjectParam1 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
     }
     
-    public partial interface IGeneratorDbSchemaSettings 
+    public partial interface IGeneratorDbSchemaSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:36
     {
-    	bool IsSchemaParam1 { get; } 
-    	bool? IsSchemaParam2 { get; } 
-    	string SchemaParam3 { get; } 
+    	bool IsSchemaParam1 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	bool? IsSchemaParam2 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	string SchemaParam3 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
     }
     
-    public partial interface IGeneratorDbSchemaNodeSettings 
+    public partial interface IGeneratorDbSchemaNodeSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:36
     {
-    	bool IsParam1 { get; } 
-    	bool? IsIncluded { get; } 
-    	bool IsConstantParam1 { get; } 
-    	bool IsCatalogFormParam1 { get; } 
+    	bool IsParam1 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	bool? IsIncluded { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	bool IsConstantParam1 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	bool IsCatalogFormParam1 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
     }
     
-    public partial interface IGeneratorDbAccessSettings 
+    public partial interface IGeneratorDbAccessSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:36
     {
-    	bool IsAccessParam1 { get; } 
-    	bool? IsAccessParam2 { get; } 
-    	string AccessParam3 { get; } 
-    	string? AccessParam4 { get; } 
-    	bool IsGenerateNotValidCode { get; } 
+    	bool IsAccessParam1 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	bool? IsAccessParam2 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	string AccessParam3 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	string? AccessParam4 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	bool IsGenerateNotValidCode { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
     }
     
-    public partial interface IGeneratorDbAccessNodeSettings 
+    public partial interface IGeneratorDbAccessNodeSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:36
     {
-    	bool IsParam1 { get; } 
-    	bool? IsIncluded { get; } 
-    	bool IsPropertyParam1 { get; } 
-    	bool IsCatalogFormParam1 { get; } 
+    	bool IsParam1 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	bool? IsIncluded { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	bool IsPropertyParam1 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
+    	bool IsCatalogFormParam1 { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:58
     }
 }

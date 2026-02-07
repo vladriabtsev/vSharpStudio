@@ -76,7 +76,7 @@ namespace GenVmFromProto
             #line hidden
             
             #line 23 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt"
- if (!field.IsAny()) { 
+ if (!field.IsAny() && !field.IsMap()) { 
             
             #line default
             #line hidden

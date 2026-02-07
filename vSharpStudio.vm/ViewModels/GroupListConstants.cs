@@ -10,7 +10,8 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IEditableNode, IRoleAccess
+    public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, 
+        IEditableNodeGroup, IEditableNode, IRoleAccess
     {
         public override string NameShortId { get { return $"gc{this.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
@@ -104,7 +105,7 @@ namespace vSharpStudio.vm.ViewModels
             node.Parent = this.Parent;
             this.ParentGroupConstantGroups.ListConstantGroups.Add(node, this);
             this._Name = this._Name + "2";
-            var model = (Model)this.Cfg.Model;
+            var model = this.Cfg.Model;
             node.ShortId = ++this.ParentGroupConstantGroups.LastShortId;
             this.SetSelected(node);
             return node;
@@ -307,11 +308,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         public uint GetNextPosition()
         {
-            // For reserved positions see IProperty static members
-            if (this.LastGenPosition == 0)
-            {
-                this.LastGenPosition = IProperty.PropertyStartingPosition;
-            }
             this.LastGenPosition++;
             return this.LastGenPosition;
         }
@@ -343,13 +339,11 @@ namespace vSharpStudio.vm.ViewModels
 
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var model = this.ParentGroupConstantGroups.ParentModel;
-            var prp = model.GetPropertyPkId(this, this.ParentGroupConstantGroups.ParentModel.PropertyIdGuid);
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             if (isOptimistic)
             {
-                prp = model.GetPropertyVersion(this, this.ParentGroupConstantGroups.ParentModel.PropertyVersionGuid);
-                //prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
+                prp = Property.GetPropertyVersion(this);
                 res.Add(prp);
             }
         }

@@ -63,10 +63,12 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this._Guid = System.Guid.NewGuid().ToString();
             this._PropertyDataTimeGuid = System.Guid.NewGuid().ToString();
-            var m = (Model)this.Cfg.Model;
-            this._PropertyRefObj1 = (Property)m.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref1", 0, false);
+            var model = this.Cfg.Model;
+            //this._PropertyRefObj1 = (Property)model.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref1", 0, false);
+            this._PropertyRefObj1 = (Property)Property.GetPropertyRef(model, this, System.Guid.NewGuid().ToString(), "Ref1", 0, false);
             this._PropertyRefObj1.DataTypeEnum = EnumDataType.CATALOG;
-            this._PropertyRefObj2 = (Property)m.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref2", 0, false);
+            //this._PropertyRefObj2 = (Property)model.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref2", 0, false);
+            this._PropertyRefObj2 = (Property)Property.GetPropertyRef(model, this, System.Guid.NewGuid().ToString(), "Ref2", 0, false);
             this._PropertyRefObj2.DataTypeEnum = EnumDataType.CATALOG;
             Init();
         }
@@ -217,7 +219,7 @@ namespace vSharpStudio.vm.ViewModels
             node.Parent = this.Parent;
             this.ParentManyToManyGroupRelations.ListRelations.Add(node, this);
             this._Name = this._Name + "2";
-            var model = (Model)this.Cfg.Model;
+            var model = this.Cfg.Model;
             node.ShortId = ++this.ParentManyToManyGroupRelations.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
             this.SetSelected(node);
@@ -247,17 +249,17 @@ namespace vSharpStudio.vm.ViewModels
 
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var model = this.ParentManyToManyGroupRelations.ParentGroupRelations.ParentModel;
-            var prp = model.GetPropertyPkId(this.ParentManyToManyGroupRelations, this.Cfg.Model.PropertyIdGuid); // position 6
+            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             if (isOptimistic)
             {
-                prp = model.GetPropertyVersion(this.ParentManyToManyGroupRelations, this.Cfg.Model.PropertyVersionGuid); // position 7
+                prp = Property.GetPropertyVersion(this);
                 res.Add(prp);
             }
             if (this.IsUseHistory)
             {
-                prp = model.GetPropertyDateTimeUtc(this.ParentManyToManyGroupRelations, this.PropertyDataTimeGuid, "DataTimeUtc", 3, false);
+                prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.HISTORY_DATATIMEUTC);
+                //prp = model.GetPropertyDateTimeUtc(this.ParentManyToManyGroupRelations, this.PropertyDataTimeGuid, "DataTimeUtc", 3, false);
                 res.Add(prp);
             }
         }

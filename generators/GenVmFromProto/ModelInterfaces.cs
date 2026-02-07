@@ -233,10 +233,17 @@ namespace GenVmFromProto
             
             #line default
             #line hidden
-            this.Write("Dictionary<string, ");
+            this.Write("IDictionary<");
             
             #line 47 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.GetMapKeyCs()));
+            
+            #line default
+            #line hidden
+            this.Write(", ");
+            
+            #line 47 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.GetMapValueCs(true)));
             
             #line default
             #line hidden

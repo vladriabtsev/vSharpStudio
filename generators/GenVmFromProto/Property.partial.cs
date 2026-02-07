@@ -35,7 +35,6 @@ namespace GenVmFromProto
             if (this.IsCollection)
             {
                 this.refstr = "";
-                //if (this.IsObservable)
                 this.PropType = $"{CollectionName(field)}<{this.FieldType}>";
                 //else
                 //if (field.IsCsSimple() || field.IsMap || )
@@ -62,7 +61,7 @@ namespace GenVmFromProto
                 return false;
             return true;
         }
-        private bool IsCollection { get { return field.IsRepeated; } }
+        private bool IsCollection { get { return field.IsRepeated && !field.IsMap; } }
         private bool IsObservable { get { return field.IsRepeated && (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase())); } }
         private bool IsDictionary { get { return field.IsRepeated && field.IsMap; } }
         private string CollectionName()
