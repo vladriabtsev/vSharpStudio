@@ -25,7 +25,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode, 
+    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode,
         IRoleAccess, IPropertyAccessRoles, ILayoutFieldParameters
     {
         private string nameShortIdPrefix = "p";
@@ -1174,6 +1174,44 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(node is INodeWithStandartProperties);
             return GetGuidPosition(node, enumDataType).Guid;
         }
+        static string GetPropertyCodeGuid(ITreeConfigNode node)
+        {
+            string? res = null;
+            if (node is Catalog c)
+            {
+                if (c.GetUseCodeProperty())
+                {
+                    res = c.CodePropertySettings.SequenceType switch
+                    {
+                        EnumCodeType.Number =>
+                            Property.GetGuidPosition(c, EnumSpecialPropertyType.CODE_NUMBER_INT).Guid,
+                        EnumCodeType.Text =>
+                            Property.GetGuidPosition(c, EnumSpecialPropertyType.CODE_NUMBER_STRING).Guid,
+                        _ => throw new NotImplementedException(),
+                    };
+                }
+            }
+            else if (node is CatalogFolder cf)
+            {
+                if (cf.GetUseCodeProperty())
+                {
+                    res = cf.CodePropertySettings.SequenceType switch
+                    {
+                        EnumCodeType.Number =>
+                            Property.GetGuidPosition(cf, EnumSpecialPropertyType.CODE_NUMBER_INT).Guid,
+                        EnumCodeType.Text =>
+                            Property.GetGuidPosition(cf, EnumSpecialPropertyType.CODE_NUMBER_STRING).Guid,
+                        _ => throw new NotImplementedException(),
+                    };
+                }
+            }
+            else
+            {
+                Debug.Assert(false, "Not supported");
+            }
+            Debug.Assert(res != null);
+            return res;
+        }
         public static IProperty GetPropertyCodeStr(ITreeConfigNode node, bool isNullable, uint length)
         {
             var rec = GetGuidPosition(node, EnumSpecialPropertyType.CODE_NUMBER_STRING);
@@ -1336,7 +1374,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Property? res = null;
             var rec = GetGuidPosition(node, enumDataType);
-            switch(enumDataType)
+            switch (enumDataType)
             {
                 case EnumSpecialPropertyType.ACCUMULATOR_MONEY:
                     Debug.Assert(node is Register);
@@ -1654,7 +1692,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return dt;
         }
-        public static IDataType GetIdRefDataType(ITreeConfigNode parent, bool isNullable)
+        public static IDataType GetIdRefDataType(ITreeConfigNode? parent, bool isNullable)
         {
             switch (parent.Cfg.Model.PKeyType)
             {

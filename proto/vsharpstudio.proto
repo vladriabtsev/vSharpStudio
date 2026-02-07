@@ -704,6 +704,9 @@ message proto_model {
     // @attr [Description("Complex property description maximum length. Unlimited if zero")]
     uint32 complex_property_ref_descr_length = 43;
 
+    // @attr [Browsable(false)]
+    string property_id_guid = 51;
+
     // @attr [Category("DataGrid settings")]
     // @attr [DisplayName("Sortable")]
     // @attr [Description("Sortable in data grid")]
@@ -766,9 +769,11 @@ enum proto_enum_special_property_type {
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_data_type {
+    // @attr [Browsable(false)]
+    SPECIAL = 0;
     // @attr [Description("Char")]
     // @attr [Browsable(false)]
-    CHAR = 0;
+    CHAR = 1;
     // @attr [Description("String")]
     STRING = 11;
     // @attr [Browsable(false)]
@@ -2696,8 +2701,6 @@ message proto_register {
     // @attr [DisplayName("Qty accuracy")]
     // @attr [Description("Number of decimal places in fractional part for quantity data. If negative, than maximum possible accuracy")]
     uint32 property_qty_accumulator_accuracy = 18; 
-    // @attr [Browsable(false)]
-    string property_qty_accumulator_guid = 19; 
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Money")]
     // @attr [Description("Use money accumulator for register")]
@@ -2714,9 +2717,6 @@ message proto_register {
     // @attr [DisplayName("Money accuracy")]
     // @attr [Description("Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy")]
     uint32 property_money_accumulator_accuracy = 24; 
-    // @attr [Browsable(false)]
-    string property_money_accumulator_guid = 25; 
-
 
     // @attr [Browsable(false)]
     proto_group_list_register_dimensions group_register_dimensions = 28;

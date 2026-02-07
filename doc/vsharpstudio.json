@@ -393,8 +393,13 @@
           "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
-              "name": "CHAR",
+              "name": "SPECIAL",
               "number": "0",
+              "description": "@attr [Browsable(false)]"
+            },
+            {
+              "name": "CHAR",
+              "number": "1",
               "description": "@attr [Description(\"Char\")]\n@attr [Browsable(false)]"
             },
             {
@@ -11421,6 +11426,18 @@
               "defaultValue": ""
             },
             {
+              "name": "property_id_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "is_grid_sortable",
               "description": "@attr [Category(\"DataGrid settings\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
               "label": "",
@@ -12981,18 +12998,6 @@
               "defaultValue": ""
             },
             {
-              "name": "property_qty_accumulator_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "use_money_accumulator",
               "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Money\")]\n@attr [Description(\"Use money accumulator for register\")]",
               "label": "",
@@ -13035,18 +13040,6 @@
               "type": "uint32",
               "longType": "uint32",
               "fullType": "uint32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "property_money_accumulator_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

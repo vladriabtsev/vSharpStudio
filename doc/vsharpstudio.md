@@ -1777,6 +1777,7 @@ Configuration model
 | record_version_field_name | [string](#string) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Version field&#34;)] @attr [Description(&#34;Record version field name&#34;)] @attr [Category(&#34;Property settings&#34;)] |
 | record_version_field_type | [proto_enum_version_field_type](#proto_config-proto_enum_version_field_type) |  | @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Version type&#34;)] @attr [Description(&#34;Record version field type&#34;)] @attr [Category(&#34;Property settings&#34;)] |
 | complex_property_ref_descr_length | [uint32](#uint32) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Descr Max&#34;)] @attr [Description(&#34;Complex property description maximum length. Unlimited if zero&#34;)] |
+| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -2096,12 +2097,10 @@ Configuration model
 | property_qty_accumulator_name | [string](#string) |  | @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Qty name&#34;)] @attr [Description(&#34;Quantity accumulator property name&#34;)] |
 | property_qty_accumulator_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(17)] @attr [DisplayName(&#34;Qty Length&#34;)] @attr [Description(&#34;Maximum decimal digits for quantity data&#34;)] |
 | property_qty_accumulator_accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Qty accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for quantity data. If negative, than maximum possible accuracy&#34;)] |
-| property_qty_accumulator_guid | [string](#string) |  | @attr [Browsable(false)] |
 | use_money_accumulator | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Money&#34;)] @attr [Description(&#34;Use money accumulator for register&#34;)] |
 | property_money_accumulator_name | [string](#string) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Money name&#34;)] @attr [Description(&#34;Money accumulator property name&#34;)] |
 | property_money_accumulator_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Money Length&#34;)] @attr [Description(&#34;Maximum decimal digits for money data&#34;)] |
 | property_money_accumulator_accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Money accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy&#34;)] |
-| property_money_accumulator_guid | [string](#string) |  | @attr [Browsable(false)] |
 | group_register_dimensions | [proto_group_list_register_dimensions](#proto_config-proto_group_list_register_dimensions) |  | @attr [Browsable(false)] |
 | group_properties | [proto_group_list_properties](#proto_config-proto_group_list_properties) |  | @attr [Browsable(false)] |
 | property_doc_ref_guid_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Guid property&#34;)] @attr [Description(&#34;Document guid property name&#34;)] |
@@ -2772,7 +2771,8 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| CHAR | 0 | @attr [Description(&#34;Char&#34;)] @attr [Browsable(false)] |
+| SPECIAL | 0 | @attr [Browsable(false)] |
+| CHAR | 1 | @attr [Description(&#34;Char&#34;)] @attr [Browsable(false)] |
 | STRING | 11 | @attr [Description(&#34;String&#34;)] |
 | STRING_FIXED | 13 | @attr [Browsable(false)] @attr [Description(&#34;String Fixed&#34;)] not sure how work in c# with this typ |
 | ULID | 15 | @attr [Description(&#34;ULID&#34;)] https://github.com/Cysharp/Ulid |

@@ -7968,6 +7968,17 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                     cntx.AddFailure(new ValidationFailure("RecordVersionFieldName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
+            this.RuleFor(x => x.PropertyIdGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("PropertyIdGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
         }
     }
     // Configuration model
@@ -8040,6 +8051,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._RecordVersionFieldName = from.RecordVersionFieldName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._RecordVersionFieldType = from.RecordVersionFieldType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._ComplexPropertyRefDescrLength = from.ComplexPropertyRefDescrLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
+            vm._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._IsGridSortableCustom = from.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._IsGridFilterable = from.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
@@ -8081,6 +8093,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._RecordVersionFieldName = from.RecordVersionFieldName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._RecordVersionFieldType = from.RecordVersionFieldType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._ComplexPropertyRefDescrLength = from.ComplexPropertyRefDescrLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
+            to._PropertyIdGuid = from.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._IsGridSortableCustom = from.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._IsGridFilterable = from.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
@@ -8207,6 +8220,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._RecordVersionFieldName = m.RecordVersionFieldName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._RecordVersionFieldType = (EnumVersionFieldType)m.RecordVersionFieldType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._ComplexPropertyRefDescrLength = m.ComplexPropertyRefDescrLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
+            vm._PropertyIdGuid = m.PropertyIdGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._IsGridSortable = m.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._IsGridSortableCustom = m.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._IsGridFilterable = m.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
@@ -8298,6 +8312,14 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
             m.RecordVersionFieldType = (Proto.Config.proto_enum_version_field_type)vm.RecordVersionFieldType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:295
             m.ComplexPropertyRefDescrLength = vm.ComplexPropertyRefDescrLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:306
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:297
+            { 
+                m.PropertyIdGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyIdGuid)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'property_id_guid'", ex); 
+            }
             m.IsGridSortable = vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:306
             m.IsGridSortableCustom = vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:306
             m.IsGridFilterable = vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:306
@@ -8619,6 +8641,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private uint _ComplexPropertyRefDescrLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
         partial void OnComplexPropertyRefDescrLengthChanging(ref uint to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnComplexPropertyRefDescrLengthChanged();
+        
+        [Browsable(false)]
+        public string PropertyIdGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
+        { 
+            get { return this._PropertyIdGuid; }
+            set
+            {
+                // Use 'OnPropertyIdGuidChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._PropertyIdGuid, value, (t) => { bool isCancel = false; this.OnPropertyIdGuidChanging(ref value, ref isCancel); if (isCancel) return; this._PropertyIdGuid = value; this.OnPropertyIdGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
+                }
+            }
+        }
+        private string _PropertyIdGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
+        partial void OnPropertyIdGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
+        partial void OnPropertyIdGuidChanged();
         
         [Category("DataGrid settings")]
         [DisplayName("Sortable")]
@@ -26849,17 +26889,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                     cntx.AddFailure(new ValidationFailure("PropertyQtyAccumulatorName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
-            this.RuleFor(x => x.PropertyQtyAccumulatorGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PropertyQtyAccumulatorGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
             this.RuleFor(x => x.PropertyMoneyAccumulatorName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
             {
                 try
@@ -26869,17 +26898,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 catch(Exception ex)
                 {
                     cntx.AddFailure(new ValidationFailure("PropertyMoneyAccumulatorName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
-                }
-            });
-            this.RuleFor(x => x.PropertyMoneyAccumulatorGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
-            {
-                try
-                {
-                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
-                }
-                catch(Exception ex)
-                {
-                    cntx.AddFailure(new ValidationFailure("PropertyMoneyAccumulatorGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
             this.RuleFor(x => x.PropertyDocRefGuidName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -27086,12 +27104,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._PropertyQtyAccumulatorName = from.PropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._PropertyQtyAccumulatorLength = from.PropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._PropertyQtyAccumulatorAccuracy = from.PropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
-            vm._PropertyQtyAccumulatorGuid = from.PropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._UseMoneyAccumulator = from.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._PropertyMoneyAccumulatorName = from.PropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._PropertyMoneyAccumulatorLength = from.PropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._PropertyMoneyAccumulatorAccuracy = from.PropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
-            vm._PropertyMoneyAccumulatorGuid = from.PropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:68 IsDefaultBase=True
                 vm._GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Clone(vm, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:68 IsDefaultBase=True
@@ -27148,12 +27164,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._PropertyQtyAccumulatorName = from.PropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._PropertyQtyAccumulatorLength = from.PropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._PropertyQtyAccumulatorAccuracy = from.PropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
-            to._PropertyQtyAccumulatorGuid = from.PropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._UseMoneyAccumulator = from.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._PropertyMoneyAccumulatorName = from.PropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._PropertyMoneyAccumulatorLength = from.PropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._PropertyMoneyAccumulatorAccuracy = from.PropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
-            to._PropertyMoneyAccumulatorGuid = from.PropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:152
                 vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.Update((GroupListRegisterDimensions)to.GroupRegisterDimensions, from.GroupRegisterDimensions, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:152
@@ -27329,12 +27343,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._PropertyQtyAccumulatorName = m.PropertyQtyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._PropertyQtyAccumulatorLength = m.PropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._PropertyQtyAccumulatorAccuracy = m.PropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
-            vm._PropertyQtyAccumulatorGuid = m.PropertyQtyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._UseMoneyAccumulator = m.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._PropertyMoneyAccumulatorName = m.PropertyMoneyAccumulatorName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._PropertyMoneyAccumulatorLength = m.PropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._PropertyMoneyAccumulatorAccuracy = m.PropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
-            vm._PropertyMoneyAccumulatorGuid = m.PropertyMoneyAccumulatorGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm.GroupRegisterDimensions ??= new GroupListRegisterDimensions(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:232
             vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.ConvertToVM(m.GroupRegisterDimensions, (GroupListRegisterDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:236
             vm.GroupProperties ??= new GroupListProperties(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:232
@@ -27437,14 +27449,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
             m.PropertyQtyAccumulatorLength = vm.PropertyQtyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:306
             m.PropertyQtyAccumulatorAccuracy = vm.PropertyQtyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:306
-            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:297
-            { 
-                m.PropertyQtyAccumulatorGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyQtyAccumulatorGuid)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_qty_accumulator_guid'", ex); 
-            }
             m.UseMoneyAccumulator = vm.UseMoneyAccumulator; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:306
             try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:297
             { 
@@ -27456,14 +27460,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
             m.PropertyMoneyAccumulatorLength = vm.PropertyMoneyAccumulatorLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:306
             m.PropertyMoneyAccumulatorAccuracy = vm.PropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:306
-            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:297
-            { 
-                m.PropertyMoneyAccumulatorGuid = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.PropertyMoneyAccumulatorGuid)); 
-            }
-            catch (Exception ex) 
-            { 
-                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_register' field 'property_money_accumulator_guid'", ex); 
-            }
             m.GroupRegisterDimensions = vSharpStudio.vm.ViewModels.GroupListRegisterDimensions.ConvertToProto((GroupListRegisterDimensions)vm.GroupRegisterDimensions); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:291
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:291
             try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:297
@@ -27892,24 +27888,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnPropertyQtyAccumulatorAccuracyChanging(ref uint to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnPropertyQtyAccumulatorAccuracyChanged();
         
-        [Browsable(false)]
-        public string PropertyQtyAccumulatorGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
-        { 
-            get { return this._PropertyQtyAccumulatorGuid; }
-            set
-            {
-                // Use 'OnPropertyQtyAccumulatorGuidChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._PropertyQtyAccumulatorGuid, value, (t) => { bool isCancel = false; this.OnPropertyQtyAccumulatorGuidChanging(ref value, ref isCancel); if (isCancel) return; this._PropertyQtyAccumulatorGuid = value; this.OnPropertyQtyAccumulatorGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
-                }
-            }
-        }
-        private string _PropertyQtyAccumulatorGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
-        partial void OnPropertyQtyAccumulatorGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
-        partial void OnPropertyQtyAccumulatorGuidChanged();
-        
         [PropertyOrderAttribute(21)]
         [DisplayName("Use Money")]
         [Description("Use money accumulator for register")]
@@ -27989,24 +27967,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private uint _PropertyMoneyAccumulatorAccuracy; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
         partial void OnPropertyMoneyAccumulatorAccuracyChanging(ref uint to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnPropertyMoneyAccumulatorAccuracyChanged();
-        
-        [Browsable(false)]
-        public string PropertyMoneyAccumulatorGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
-        { 
-            get { return this._PropertyMoneyAccumulatorGuid; }
-            set
-            {
-                // Use 'OnPropertyMoneyAccumulatorGuidChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._PropertyMoneyAccumulatorGuid, value, (t) => { bool isCancel = false; this.OnPropertyMoneyAccumulatorGuidChanging(ref value, ref isCancel); if (isCancel) return; this._PropertyMoneyAccumulatorGuid = value; this.OnPropertyMoneyAccumulatorGuidChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
-                }
-            }
-        }
-        private string _PropertyMoneyAccumulatorGuid = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
-        partial void OnPropertyMoneyAccumulatorGuidChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
-        partial void OnPropertyMoneyAccumulatorGuidChanged();
         
         [Browsable(false)]
         public GroupListRegisterDimensions GroupRegisterDimensions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9

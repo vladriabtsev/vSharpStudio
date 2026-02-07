@@ -7605,6 +7605,13 @@ Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties 
                 </tr>
               
                 <tr>
+                  <td>property_id_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_grid_sortable</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -8822,13 +8829,6 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
-                  <td>property_qty_accumulator_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>use_money_accumulator</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -8862,13 +8862,6 @@ unique in object (can be used as Protobuf field position)
                   <td><p>@attr [PropertyOrderAttribute(24)]
 @attr [DisplayName(&#34;Money accuracy&#34;)]
 @attr [Description(&#34;Number of decimal places in fractional part for money data. If negative, than maximum possible accuracy&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_money_accumulator_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -11119,8 +11112,14 @@ with history</p></td>
           <tbody>
             
               <tr>
-                <td>CHAR</td>
+                <td>SPECIAL</td>
                 <td>0</td>
+                <td><p>@attr [Browsable(false)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>CHAR</td>
+                <td>1</td>
                 <td><p>@attr [Description(&#34;Char&#34;)]
 @attr [Browsable(false)]</p></td>
               </tr>

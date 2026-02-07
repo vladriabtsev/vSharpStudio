@@ -104,28 +104,43 @@ namespace vSharpStudio.common
 
         string GetShortDescription(StringBuilder sb);
 
+        static virtual IStandartPropertyGuidPosition GetGuidPosition(ITreeConfigNode node, EnumSpecialPropertyType enumDataType) { throw new NotImplementedException(); }
+        static virtual string GetPropertyGuid(ITreeConfigNode node, EnumSpecialPropertyType enumDataType) { throw new NotImplementedException(); }
         static string SpecialRefParentName { get; } = "Not implemented";
         static string SpecialRefTreeParentName { get; } = "Not implemented";
         static string SpecialPropertyNameRefTimeline { get; } = "Not implemented";
         static string SpecialPropertyHistoryDataTimeUtc { get; } = "Not implemented";
-        static IProperty GetPropertyCodeStr(ITreeConfigNode node, bool isNullable, uint length) { throw new NotImplementedException(); }
-        static IProperty GetPropertyCodeInt(ITreeConfigNode node, bool isNullable, uint length) { throw new NotImplementedException(); }
-        static IProperty GetPropertyName(ITreeConfigNode node, bool isNullable, uint length) { throw new NotImplementedException(); }
-        static IProperty GetPropertyDocumentDate(ITreeConfigNode node) { throw new NotImplementedException(); }
-        static IProperty GetPropertyDocNumberString(ITreeConfigNode node, uint length) { throw new NotImplementedException(); }
-        static IProperty GetPropertyDocNumberInt(ITreeConfigNode node, uint length) { throw new NotImplementedException(); }
-        static IProperty GetPropertyDescription(ITreeConfigNode node, bool isNullable, uint length) { throw new NotImplementedException(); }
-        static IProperty GetPropertyIsFolder(ITreeConfigNode node, bool isNullable) { throw new NotImplementedException(); }
-        static IProperty GetPropertyIsPosted(ITreeConfigNode node, bool isNullable) { throw new NotImplementedException(); }
-        static IProperty GetPropertyDocShortTypeId(ITreeConfigNode node, bool isNullable) { throw new NotImplementedException(); }
-        static IProperty GetPropertyBalanceOnDateInt(ITreeConfigNode node, bool isPKey) { throw new NotImplementedException(); }
-        static IProperty GetPropertyDateTimeUtc(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MKS_TIME_ACC) { throw new NotImplementedException(); }
-        static IProperty GetPropertyVersion(ITreeConfigNode node) { throw new NotImplementedException(); }
-        static IProperty GetPropertyVersionPrev(ITreeConfigNode node) { throw new NotImplementedException(); }
-        static IProperty GetPropertyNumber(ITreeConfigNode node, EnumSpecialPropertyType enumDataType, uint length, uint accuracy, bool isNullable) { throw new NotImplementedException(); }
-        static IProperty GetPropertyRefDimension(IRegisterDimension node, bool isNullable = false) { throw new NotImplementedException(); }
-        static IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable = false, bool is_pkey = false) { throw new NotImplementedException(); }
-        static IProperty GetPropertySpecial(ITreeConfigNode node, EnumSpecialPropertyType propertyType, bool? isNullable = null, ITreeConfigNode? toNode = null) { throw new NotImplementedException(); }
+        static string GetPropertyCodeGuid(ITreeConfigNode node) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyCodeStr(ITreeConfigNode node, bool isNullable, uint length) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyCodeInt(ITreeConfigNode node, bool isNullable, uint length) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyName(ITreeConfigNode node, bool isNullable, uint length) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyDocumentDate(ITreeConfigNode node) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyDocNumberString(ITreeConfigNode node, uint length) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyDocNumberInt(ITreeConfigNode node, uint length) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyDescription(ITreeConfigNode node, bool isNullable, uint length) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyIsFolder(ITreeConfigNode node, bool isNullable) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyIsPosted(ITreeConfigNode node, bool isNullable) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyDocShortTypeId(ITreeConfigNode node, bool isNullable) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyBalanceOnDateInt(ITreeConfigNode node, bool isPKey) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyDateTimeUtc(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MKS_TIME_ACC) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyVersion(ITreeConfigNode node) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyVersionPrev(ITreeConfigNode node) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyNumber(ITreeConfigNode node, EnumSpecialPropertyType enumDataType, uint length, uint accuracy, bool isNullable) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyRefDimension(IRegisterDimension node, bool isNullable = false) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable = false, bool is_pkey = false) { throw new NotImplementedException(); }
+        static virtual IProperty GetPropertySpecial(ITreeConfigNode node, EnumSpecialPropertyType propertyType, bool? isNullable = null, ITreeConfigNode? toNode = null) { throw new NotImplementedException(); }
+
+        static virtual IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, uint accuracy, bool isNullable) { throw new NotImplementedException(); }
+        static virtual IDataType GetDataTypeFromMaxValue(ITreeConfigNode? parent, System.Numerics.BigInteger maxValue, bool isPositive, bool isNullable, bool isPKey = false) { throw new NotImplementedException(); }
+        static virtual IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, bool isPositive, bool isNullable) { throw new NotImplementedException(); }
+        static virtual IDataType GetDataTypeInt(ITreeConfigNode? parent, bool isPositive, bool isNullable) { throw new NotImplementedException(); }
+        static virtual IDataType GetDataTypeString(ITreeConfigNode? parent, uint length, bool isNullable) { throw new NotImplementedException(); }
+        static virtual IDataType GetDataTypeDateTimeUtc(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable) { throw new NotImplementedException(); }
+        static virtual IDataType GetDataTypeStringFixed(ITreeConfigNode? parent, uint length, bool isNullable) { throw new NotImplementedException(); }
+        static virtual IDataType GetDataTypeStringGuid(ITreeConfigNode? parent, bool isNullable) { throw new NotImplementedException(); }
+        static virtual IDataType GetDataTypeBool(ITreeConfigNode? parent, bool isNullable) { throw new NotImplementedException(); }
+        static virtual IDataType GetIdDataType(ITreeConfigNode parent, bool isNullable) { throw new NotImplementedException(); }
+        static virtual IDataType GetIdRefDataType(ITreeConfigNode? parent, bool isNullable) { throw new NotImplementedException(); }
     }
     public interface IPropertyRangeValuesRequirements
     {
