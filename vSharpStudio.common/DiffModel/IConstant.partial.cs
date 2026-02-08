@@ -15,10 +15,7 @@ namespace vSharpStudio.common
         bool IsComplexDesc { get; }
         object? Tag { get; set; }
         //static IConfig Config { get; set; }
-        EnumConstantAccess GetRoleConstantAccess(IRole role);
-        EnumPrintAccess GetRoleConstantPrint(IRole role);
-        IReadOnlyList<string> GetRolesByAccess(EnumConstantAccess access);
-        IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
+        IRoleConstantsSettings GetRoleSettings(IRole role);
         string FullName { get; } // name with config name
         string? ComplexObjectName { get; set; }
         string PropValueValue { get; }

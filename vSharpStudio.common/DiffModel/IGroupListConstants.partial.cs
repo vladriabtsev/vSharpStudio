@@ -8,7 +8,6 @@ namespace vSharpStudio.common
         int IndexOf(IConstant cnst);
         IGroupConstantGroups ParentGroupConstantGroupsI { get; }
         IReadOnlyList<IProperty> GetIncludedConstantsAsProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
-        EnumConstantAccess GetRoleConstantAccess(IRole role);
-        EnumPrintAccess GetRoleConstantPrint(IRole role);
+        IRoleConstantsSettings GetRoleSettings(IRole role);
     }
 }

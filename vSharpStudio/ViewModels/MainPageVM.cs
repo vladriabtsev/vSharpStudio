@@ -471,8 +471,6 @@ namespace vSharpStudio.ViewModels
                 {
                     //Debug.Assert(!cfg._DicNodes.ContainsKey(n.Guid));
                     cfg._DicNodes[n.Guid] = n;
-                    if (n is IRoleAccess ra)
-                        ra.InitRoles();
                 });
                 // Restore Node Settings VM for all nodes, which are supporting INodeGenSettings
                 var nv = new ModelVisitorNodeGenSettings();

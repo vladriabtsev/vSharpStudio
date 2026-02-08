@@ -9,7 +9,7 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class GroupConstantGroups : ITreeModel, ICanGoRight, ICanGoLeft, ICanAddSubNode, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
+    public partial class GroupConstantGroups : ITreeModel, ICanGoRight, ICanGoLeft, ICanAddSubNode, INodeGenSettings, IEditableNodeGroup
     {
         private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(GroupConstantGroups));
         partial void OnDebugStringExtend(ref string mes)
@@ -85,7 +85,6 @@ namespace vSharpStudio.vm.ViewModels
             this.ListConstantGroups.OnAddedAction = (t) =>
             {
                 t.OnAdded();
-                t.InitRoles();
             };
             this.ListConstantGroups.OnRemovedAction = (t) =>
             {
@@ -125,16 +124,5 @@ namespace vSharpStudio.vm.ViewModels
             };
             return [.. lst];
         }
-
-        #region Roles
-        public EnumConstantAccess GetRoleConstantAccess(IRole role)
-        {
-            return role.DefaultConstantEditAccessSettings;
-        }
-        public EnumPrintAccess GetRoleConstantPrint(IRole role)
-        {
-            return role.DefaultConstantPrintAccessSettings;
-        }
-        #endregion Roles
     }
 }

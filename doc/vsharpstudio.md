@@ -62,6 +62,7 @@
     - [proto_group_list_registers](#proto_config-proto_group_list_registers)
     - [proto_group_list_reports](#proto_config-proto_group_list_reports)
     - [proto_group_list_roles](#proto_config-proto_group_list_roles)
+    - [proto_group_list_roles.DicRolesEntry](#proto_config-proto_group_list_roles-DicRolesEntry)
     - [proto_journal](#proto_config-proto_journal)
     - [proto_main_view_form](#proto_config-proto_main_view_form)
     - [proto_model](#proto_config-proto_model)
@@ -93,11 +94,21 @@
     - [proto_relations_one_to_one_group](#proto_config-proto_relations_one_to_one_group)
     - [proto_report](#proto_config-proto_report)
     - [proto_role](#proto_config-proto_role)
-    - [proto_role_catalog_access](#proto_config-proto_role_catalog_access)
-    - [proto_role_constant_access](#proto_config-proto_role_constant_access)
-    - [proto_role_detail_access](#proto_config-proto_role_detail_access)
-    - [proto_role_document_access](#proto_config-proto_role_document_access)
-    - [proto_role_property_access](#proto_config-proto_role_property_access)
+    - [proto_role_catalogs_settings](#proto_config-proto_role_catalogs_settings)
+    - [proto_role_catalogs_settings_with_null](#proto_config-proto_role_catalogs_settings_with_null)
+    - [proto_role_constants_settings](#proto_config-proto_role_constants_settings)
+    - [proto_role_constants_settings_with_null](#proto_config-proto_role_constants_settings_with_null)
+    - [proto_role_details_settings](#proto_config-proto_role_details_settings)
+    - [proto_role_details_settings_with_null](#proto_config-proto_role_details_settings_with_null)
+    - [proto_role_dic_node_rules](#proto_config-proto_role_dic_node_rules)
+    - [proto_role_dic_node_rules.DicNodeRulesEntry](#proto_config-proto_role_dic_node_rules-DicNodeRulesEntry)
+    - [proto_role_documents_settings](#proto_config-proto_role_documents_settings)
+    - [proto_role_documents_settings_with_null](#proto_config-proto_role_documents_settings_with_null)
+    - [proto_role_from_node](#proto_config-proto_role_from_node)
+    - [proto_role_properties_settings](#proto_config-proto_role_properties_settings)
+    - [proto_role_properties_settings_with_null](#proto_config-proto_role_properties_settings_with_null)
+    - [proto_role_reports_settings](#proto_config-proto_role_reports_settings)
+    - [proto_role_reports_settings_with_null](#proto_config-proto_role_reports_settings_with_null)
     - [proto_settings_config](#proto_config-proto_settings_config)
     - [proto_standart_property_guid_position](#proto_config-proto_standart_property_guid_position)
     - [proto_user_settings](#proto_config-proto_user_settings)
@@ -106,18 +117,15 @@
     - [enum_enumeration_type](#proto_config-enum_enumeration_type)
     - [proto_enum_address_data_type](#proto_config-proto_enum_address_data_type)
     - [proto_enum_catalog_code_unique_scope](#proto_config-proto_enum_catalog_code_unique_scope)
-    - [proto_enum_catalog_detail_access](#proto_config-proto_enum_catalog_detail_access)
     - [proto_enum_catalog_tree_icon](#proto_config-proto_enum_catalog_tree_icon)
     - [proto_enum_code_type](#proto_config-proto_enum_code_type)
     - [proto_enum_commerce_data_type](#proto_config-proto_enum_commerce_data_type)
     - [proto_enum_company_data_type](#proto_config-proto_enum_company_data_type)
-    - [proto_enum_constant_access](#proto_config-proto_enum_constant_access)
     - [proto_enum_data_type](#proto_config-proto_enum_data_type)
     - [proto_enum_database_data_type](#proto_config-proto_enum_database_data_type)
     - [proto_enum_date_data_type](#proto_config-proto_enum_date_data_type)
     - [proto_enum_date_time_accuracy_type](#proto_config-proto_enum_date_time_accuracy_type)
     - [proto_enum_doc_number_unique_scope](#proto_config-proto_enum_doc_number_unique_scope)
-    - [proto_enum_document_access](#proto_config-proto_enum_document_access)
     - [proto_enum_finance_data_type](#proto_config-proto_enum_finance_data_type)
     - [proto_enum_hacker_data_type](#proto_config-proto_enum_hacker_data_type)
     - [proto_enum_hidden_type](#proto_config-proto_enum_hidden_type)
@@ -129,8 +137,6 @@
     - [proto_enum_one_to_one_ref_type](#proto_config-proto_enum_one_to_one_ref_type)
     - [proto_enum_phone_data_type](#proto_config-proto_enum_phone_data_type)
     - [proto_enum_primary_key_type](#proto_config-proto_enum_primary_key_type)
-    - [proto_enum_print_access](#proto_config-proto_enum_print_access)
-    - [proto_enum_property_access](#proto_config-proto_enum_property_access)
     - [proto_enum_property_data_type](#proto_config-proto_enum_property_data_type)
     - [proto_enum_random_data_type](#proto_config-proto_enum_random_data_type)
     - [proto_enum_rant_data_type](#proto_config-proto_enum_rant_data_type)
@@ -367,7 +373,6 @@ Application project generator
 | group_details | [proto_group_list_details](#proto_config-proto_group_list_details) |  | @attr [Browsable(false)] |
 | group_forms | [proto_group_list_forms](#proto_config-proto_group_list_forms) |  | @attr [Browsable(false)] |
 | group_reports | [proto_group_list_reports](#proto_config-proto_group_list_reports) |  | @attr [Browsable(false)] |
-| list_role_catalog_access_settings | [proto_role_catalog_access](#proto_config-proto_role_catalog_access) | repeated | @attr [Browsable(false)] |
 | dic_positions_for_standart_properties | [proto_catalog.DicPositionsForStandartPropertiesEntry](#proto_config-proto_catalog-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
 | last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -446,7 +451,6 @@ Application project generator
 | group_details | [proto_group_list_details](#proto_config-proto_group_list_details) |  | @attr [Browsable(false)] |
 | group_forms | [proto_group_list_forms](#proto_config-proto_group_list_forms) |  | @attr [Browsable(false)] |
 | group_reports | [proto_group_list_reports](#proto_config-proto_group_list_reports) |  | @attr [Browsable(false)] |
-| list_role_catalog_access_settings | [proto_role_catalog_access](#proto_config-proto_role_catalog_access) | repeated | @attr [Browsable(false)] |
 | dic_positions_for_standart_properties | [proto_catalog_folder.DicPositionsForStandartPropertiesEntry](#proto_config-proto_catalog_folder-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
 | last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -548,7 +552,6 @@ Constant application wise value
 | tab_name | [string](#string) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Tab Name&#34;)] @attr [Description(&#34;If not empty, then start new tab in tab control. If empty, then continue adding fields in current control&#34;)] |
 | is_start_new_tab_control | [bool](#bool) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;New Tab Control&#34;)] @attr [Description(&#34;Start new tab control as current control&#34;)] |
 | is_stop_tab_control | [bool](#bool) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
-| list_role_constant_access_settings | [proto_role_constant_access](#proto_config-proto_role_constant_access) | repeated | @attr [Browsable(false)] |
 | ref_complex_object_gd_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for reference complex object type guid |
 | ref_complex_object_descr_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for reference complex object short description guid |
 | position_of_gd | [uint32](#uint32) |  | Position of complex type GUID for CATALOGS, or DOCUMENTS, or ANY unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
@@ -623,7 +626,6 @@ Constant application wise value
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | group_forms | [proto_group_list_forms](#proto_config-proto_group_list_forms) |  | @attr [Browsable(false)] |
-| list_role_detail_access_settings | [proto_role_detail_access](#proto_config-proto_role_detail_access) | repeated | @attr [Browsable(false)] |
 | dic_positions_for_standart_properties | [proto_detail.DicPositionsForStandartPropertiesEntry](#proto_config-proto_detail-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
 | last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -691,7 +693,6 @@ Constant application wise value
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| list_role_document_access_settings | [proto_role_document_access](#proto_config-proto_role_document_access) | repeated | @attr [Browsable(false)] |
 | dic_positions_for_standart_properties | [proto_document.DicPositionsForStandartPropertiesEntry](#proto_config-proto_document-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
 | last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -768,7 +769,6 @@ Constant application wise value
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
-| list_role_property_access_settings | [proto_role_property_access](#proto_config-proto_role_property_access) | repeated | @attr [Browsable(false)] |
 | dic_positions_for_standart_properties | [proto_document_timeline.DicPositionsForStandartPropertiesEntry](#proto_config-proto_document_timeline-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
 | last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -1348,7 +1348,6 @@ Common parameters section
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | last_short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in parent group @attr [Browsable(false)] |
-| list_role_constant_access_settings | [proto_role_constant_access](#proto_config-proto_role_constant_access) | repeated | @attr [Browsable(false)] |
 | dic_positions_for_standart_properties | [proto_group_list_constants.DicPositionsForStandartPropertiesEntry](#proto_config-proto_group_list_constants-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
 | last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -1395,7 +1394,6 @@ D E T A I L S
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| list_role_detail_access_settings | [proto_role_detail_access](#proto_config-proto_role_detail_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1428,7 +1426,6 @@ D E T A I L S
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| list_role_document_access_settings | [proto_role_document_access](#proto_config-proto_role_document_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1597,7 +1594,6 @@ P R O P E R T Y
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| list_role_property_access_settings | [proto_role_property_access](#proto_config-proto_role_property_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1624,7 +1620,6 @@ P R O P E R T Y
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| list_role_property_access_settings | [proto_role_property_access](#proto_config-proto_role_property_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1697,7 +1692,30 @@ R E P O R T S
 | sort_type | [proto_enum_sorting_type](#proto_config-proto_enum_sorting_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Sort&#34;)] @attr [Description(&#34;Sort type for config roles&#34;)] |
 | list_roles | [proto_role](#proto_config-proto_role) | repeated | @attr [Browsable(false)] |
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
+| default_constants_role_settings | [proto_role_constants_settings](#proto_config-proto_role_constants_settings) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Constants&#34;)] @attr [Description(&#34;Default constant access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
+| default_properties_role_settings | [proto_role_properties_settings](#proto_config-proto_role_properties_settings) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Properties&#34;)] @attr [Description(&#34;Default property access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
+| default_details_role_settings | [proto_role_details_settings](#proto_config-proto_role_details_settings) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Details&#34;)] @attr [Description(&#34;Default detail access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
+| default_catalogs_role_settings | [proto_role_catalogs_settings](#proto_config-proto_role_catalogs_settings) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Catalogs&#34;)] @attr [Description(&#34;Default catalog access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
+| default_documents_role_settings | [proto_role_documents_settings](#proto_config-proto_role_documents_settings) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(31)] @attr [DisplayName(&#34;Documents&#34;)] @attr [Description(&#34;Default document access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
+| default_reports_role_settings | [proto_role_reports_settings](#proto_config-proto_role_reports_settings) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(35)] @attr [DisplayName(&#34;Reports&#34;)] @attr [Description(&#34;Default report access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
+| dic_roles | [proto_group_list_roles.DicRolesEntry](#proto_config-proto_group_list_roles-DicRolesEntry) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config-proto_group_list_roles-DicRolesEntry"></a>
+
+### proto_group_list_roles.DicRolesEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [proto_role_dic_node_rules](#proto_config-proto_role_dic_node_rules) |  |  |
 
 
 
@@ -1988,7 +2006,6 @@ Configuration model
 | is_start_new_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(25)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Start Tab Control&#34;)] @attr [Description(&#34;Start new tab control as current control&#34;)] |
 | is_stop_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(27)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
 | data_generator | [proto_property_data_generator](#proto_config-proto_property_data_generator) |  | @attr [PropertyOrderAttribute(31)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Data Generator&#34;)] @attr [Browsable(false)] |
-| list_role_property_access_settings | [proto_role_property_access](#proto_config-proto_role_property_access) | repeated | @attr [Browsable(false)] |
 | dic_positions_for_standart_properties | [proto_property.DicPositionsForStandartPropertiesEntry](#proto_config-proto_property-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
 | last_position | [uint32](#uint32) |  | @attr [Browsable(false)]
 
@@ -2437,12 +2454,10 @@ Configuration model
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
-| default_constant_print_access_settings | [proto_enum_print_access](#proto_config-proto_enum_print_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Print Constants&#34;)] @attr [Description(&#34;Default constant-print access for role&#34;)] |
-| default_constant_edit_access_settings | [proto_enum_constant_access](#proto_config-proto_enum_constant_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Edit Constants&#34;)] @attr [Description(&#34;Default constant-edit access for role&#34;)] |
-| default_catalog_print_access_settings | [proto_enum_print_access](#proto_config-proto_enum_print_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Print Catalog&#34;)] @attr [Description(&#34;Default catalog-print access for role&#34;)] |
-| default_catalog_edit_access_settings | [proto_enum_catalog_detail_access](#proto_config-proto_enum_catalog_detail_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Edit Catalog&#34;)] @attr [Description(&#34;Default catalog-edit access for role&#34;)] |
-| default_document_print_access_settings | [proto_enum_print_access](#proto_config-proto_enum_print_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Print Document&#34;)] @attr [Description(&#34;Default document-print access for role&#34;)] |
-| default_document_edit_access_settings | [proto_enum_document_access](#proto_config-proto_enum_document_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Edit Document&#34;)] @attr [Description(&#34;Default document-edit access for role&#34;)] |
+| default_constants_role_settings | [proto_role_constants_settings_with_null](#proto_config-proto_role_constants_settings_with_null) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Constants&#34;)] @attr [Description(&#34;Default constant access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
+| default_catalogs_role_settings | [proto_role_catalogs_settings_with_null](#proto_config-proto_role_catalogs_settings_with_null) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Catalogs&#34;)] @attr [Description(&#34;Default catalog access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
+| default_documents_role_settings | [proto_role_documents_settings_with_null](#proto_config-proto_role_documents_settings_with_null) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(31)] @attr [DisplayName(&#34;Documents&#34;)] @attr [Description(&#34;Default document access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
+| default_reports_role_settings | [proto_role_reports_settings_with_null](#proto_config-proto_role_reports_settings_with_null) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(35)] @attr [DisplayName(&#34;Reports&#34;)] @attr [Description(&#34;Default report access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -2450,85 +2465,296 @@ Configuration model
 
 
 
-<a name="proto_config-proto_role_catalog_access"></a>
+<a name="proto_config-proto_role_catalogs_settings"></a>
 
-### proto_role_catalog_access
-@base VmValidatableWithSeverity
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Browsable(false)] |
-| edit_access | [proto_enum_catalog_detail_access](#proto_config-proto_enum_catalog_detail_access) |  |  |
-| print_access | [proto_enum_print_access](#proto_config-proto_enum_print_access) |  |  |
-
-
-
-
-
-
-<a name="proto_config-proto_role_constant_access"></a>
-
-### proto_role_constant_access
-@base VmValidatableWithSeverity
+### proto_role_catalogs_settings
+@base BaseSettings
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Browsable(false)] |
-| edit_access | [proto_enum_constant_access](#proto_config-proto_enum_constant_access) |  |  |
-| print_access | [proto_enum_print_access](#proto_config-proto_enum_print_access) |  |  |
+| can_print | [bool](#bool) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Print&#34;)] |
+| can_view | [bool](#bool) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;View&#34;)] |
+| can_view_fields | [bool](#bool) |  | @attr [PropertyOrderAttribute(6)] @attr [Description(&#34;View fields&#34;)] |
+| can_view_details | [bool](#bool) |  | @attr [PropertyOrderAttribute(7)] @attr [Description(&#34;View details&#34;)] |
+| can_edit_items | [bool](#bool) |  | @attr [PropertyOrderAttribute(11)] @attr [Description(&#34;Edit items&#34;)] |
+| can_edit_fields | [bool](#bool) |  | @attr [PropertyOrderAttribute(12)] @attr [Description(&#34;Edit fields&#34;)] |
+| can_edit_details | [bool](#bool) |  | @attr [PropertyOrderAttribute(13)] @attr [Description(&#34;Edit details&#34;)] |
+| can_edit_folders | [bool](#bool) |  | @attr [PropertyOrderAttribute(15)] @attr [Description(&#34;Edit folders&#34;)] |
+| can_move_items | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [Description(&#34;Move items&#34;)] |
+| can_move_folders | [bool](#bool) |  | @attr [PropertyOrderAttribute(25)] @attr [Description(&#34;Move folders&#34;)] |
+| can_mark_del | [bool](#bool) |  | @attr [PropertyOrderAttribute(41)] @attr [Description(&#34;Mark delete&#34;)] |
 
 
 
 
 
 
-<a name="proto_config-proto_role_detail_access"></a>
+<a name="proto_config-proto_role_catalogs_settings_with_null"></a>
 
-### proto_role_detail_access
-@base VmValidatableWithSeverity
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Browsable(false)] |
-| edit_access | [proto_enum_catalog_detail_access](#proto_config-proto_enum_catalog_detail_access) |  |  |
-| print_access | [proto_enum_print_access](#proto_config-proto_enum_print_access) |  |  |
-
-
-
-
-
-
-<a name="proto_config-proto_role_document_access"></a>
-
-### proto_role_document_access
-@base VmValidatableWithSeverity
+### proto_role_catalogs_settings_with_null
+@base VmEditable
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Browsable(false)] |
-| edit_access | [proto_enum_document_access](#proto_config-proto_enum_document_access) |  |  |
-| print_access | [proto_enum_print_access](#proto_config-proto_enum_print_access) |  |  |
+| can_print | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Print&#34;)] |
+| can_view | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;View&#34;)] |
+| can_view_fields | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(6)] @attr [Description(&#34;View fields&#34;)] |
+| can_view_details | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(7)] @attr [Description(&#34;View details&#34;)] |
+| can_edit | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(11)] @attr [Description(&#34;Edit&#34;)] |
+| can_edit_fields | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(12)] @attr [Description(&#34;Edit fields&#34;)] |
+| can_edit_details | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(13)] @attr [Description(&#34;Edit details&#34;)] |
+| can_edit_items | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(14)] @attr [Description(&#34;Edit items&#34;)] |
+| can_edit_folders | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(15)] @attr [Description(&#34;Edit folders&#34;)] |
+| can_move_items | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(21)] @attr [Description(&#34;Move items&#34;)] |
+| can_move_folders | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(25)] @attr [Description(&#34;Move folders&#34;)] |
+| can_mark_del | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(41)] @attr [Description(&#34;Mark delete&#34;)] |
 
 
 
 
 
 
-<a name="proto_config-proto_role_property_access"></a>
+<a name="proto_config-proto_role_constants_settings"></a>
 
-### proto_role_property_access
-@base VmValidatableWithSeverity
+### proto_role_constants_settings
+@base BaseSettings
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Browsable(false)] |
-| edit_access | [proto_enum_property_access](#proto_config-proto_enum_property_access) |  |  |
-| print_access | [proto_enum_print_access](#proto_config-proto_enum_print_access) |  |  |
+| can_print | [bool](#bool) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Print&#34;)] |
+| can_view | [bool](#bool) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;View&#34;)] |
+| can_edit | [bool](#bool) |  | @attr [PropertyOrderAttribute(11)] @attr [Description(&#34;Edit&#34;)] |
+
+
+
+
+
+
+<a name="proto_config-proto_role_constants_settings_with_null"></a>
+
+### proto_role_constants_settings_with_null
+@base VmEditable
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| can_print | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Print&#34;)] |
+| can_view | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;View&#34;)] |
+| can_edit | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(11)] @attr [Description(&#34;Edit&#34;)] |
+
+
+
+
+
+
+<a name="proto_config-proto_role_details_settings"></a>
+
+### proto_role_details_settings
+@base BaseSettings
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| can_print | [bool](#bool) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Print&#34;)] |
+| can_view | [bool](#bool) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;View&#34;)] |
+| can_view_fields | [bool](#bool) |  | @attr [PropertyOrderAttribute(6)] @attr [Description(&#34;View fields&#34;)] |
+| can_view_details | [bool](#bool) |  | @attr [PropertyOrderAttribute(7)] @attr [Description(&#34;View details&#34;)] |
+| can_edit | [bool](#bool) |  | @attr [PropertyOrderAttribute(11)] @attr [Description(&#34;Edit items&#34;)] |
+| can_edit_fields | [bool](#bool) |  | @attr [PropertyOrderAttribute(12)] @attr [Description(&#34;Edit fields&#34;)] |
+| can_edit_details | [bool](#bool) |  | @attr [PropertyOrderAttribute(13)] @attr [Description(&#34;Edit details&#34;)] |
+| can_mark_del | [bool](#bool) |  | @attr [PropertyOrderAttribute(41)] @attr [Description(&#34;Mark delete&#34;)] |
+
+
+
+
+
+
+<a name="proto_config-proto_role_details_settings_with_null"></a>
+
+### proto_role_details_settings_with_null
+@base VmEditable
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| can_print | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Print&#34;)] |
+| can_view | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;View&#34;)] |
+| can_view_fields | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(6)] @attr [Description(&#34;View fields&#34;)] |
+| can_view_details | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(7)] @attr [Description(&#34;View details&#34;)] |
+| can_edit | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(11)] @attr [Description(&#34;Edit items&#34;)] |
+| can_edit_fields | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(12)] @attr [Description(&#34;Edit fields&#34;)] |
+| can_edit_details | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(13)] @attr [Description(&#34;Edit details&#34;)] |
+| can_mark_del | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(41)] @attr [Description(&#34;Mark delete&#34;)] |
+
+
+
+
+
+
+<a name="proto_config-proto_role_dic_node_rules"></a>
+
+### proto_role_dic_node_rules
+@base VmBindable
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| dic_node_rules | [proto_role_dic_node_rules.DicNodeRulesEntry](#proto_config-proto_role_dic_node_rules-DicNodeRulesEntry) | repeated |  |
+
+
+
+
+
+
+<a name="proto_config-proto_role_dic_node_rules-DicNodeRulesEntry"></a>
+
+### proto_role_dic_node_rules.DicNodeRulesEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [proto_role_from_node](#proto_config-proto_role_from_node) |  |  |
+
+
+
+
+
+
+<a name="proto_config-proto_role_documents_settings"></a>
+
+### proto_role_documents_settings
+@base BaseSettings
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| can_print | [bool](#bool) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Print&#34;)] |
+| can_view | [bool](#bool) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;View&#34;)] |
+| can_view_fields | [bool](#bool) |  | @attr [PropertyOrderAttribute(6)] @attr [Description(&#34;View fields&#34;)] |
+| can_view_details | [bool](#bool) |  | @attr [PropertyOrderAttribute(7)] @attr [Description(&#34;View details&#34;)] |
+| can_edit | [bool](#bool) |  | @attr [PropertyOrderAttribute(11)] @attr [Description(&#34;Edit&#34;)] |
+| can_edit_fields | [bool](#bool) |  | @attr [PropertyOrderAttribute(12)] @attr [Description(&#34;Edit fields&#34;)] |
+| can_edit_details | [bool](#bool) |  | @attr [PropertyOrderAttribute(13)] @attr [Description(&#34;Edit details&#34;)] |
+| can_post | [bool](#bool) |  | @attr [PropertyOrderAttribute(15)] @attr [Description(&#34;Post&#34;)] |
+| can_view_post_data | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [Description(&#34;View post data&#34;)] |
+| can_unpost | [bool](#bool) |  | @attr [PropertyOrderAttribute(25)] @attr [Description(&#34;Unpost&#34;)] |
+| can_mark_del | [bool](#bool) |  | @attr [PropertyOrderAttribute(41)] @attr [Description(&#34;Mark delete&#34;)] |
+
+
+
+
+
+
+<a name="proto_config-proto_role_documents_settings_with_null"></a>
+
+### proto_role_documents_settings_with_null
+@base VmEditable
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| can_print | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Print&#34;)] |
+| can_view | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;View&#34;)] |
+| can_view_fields | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(6)] @attr [Description(&#34;View fields&#34;)] |
+| can_view_details | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(7)] @attr [Description(&#34;View details&#34;)] |
+| can_edit | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(11)] @attr [Description(&#34;Edit&#34;)] |
+| can_edit_fields | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(12)] @attr [Description(&#34;Edit fields&#34;)] |
+| can_edit_details | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(13)] @attr [Description(&#34;Edit details&#34;)] |
+| can_post | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(15)] @attr [Description(&#34;Post&#34;)] |
+| can_view_post_data | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(21)] @attr [Description(&#34;View post data&#34;)] |
+| can_unpost | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(25)] @attr [Description(&#34;Unpost&#34;)] |
+| can_mark_del | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(41)] @attr [Description(&#34;Mark delete&#34;)] |
+
+
+
+
+
+
+<a name="proto_config-proto_role_from_node"></a>
+
+### proto_role_from_node
+@base VmEditable
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| constant_settings | [proto_role_constants_settings_with_null](#proto_config-proto_role_constants_settings_with_null) |  |  |
+| property_settings | [proto_role_properties_settings_with_null](#proto_config-proto_role_properties_settings_with_null) |  |  |
+| detail_settings | [proto_role_details_settings_with_null](#proto_config-proto_role_details_settings_with_null) |  |  |
+| catalog_settings | [proto_role_catalogs_settings_with_null](#proto_config-proto_role_catalogs_settings_with_null) |  |  |
+| document_settings | [proto_role_documents_settings_with_null](#proto_config-proto_role_documents_settings_with_null) |  |  |
+| report_settings | [proto_role_reports_settings_with_null](#proto_config-proto_role_reports_settings_with_null) |  |  |
+
+
+
+
+
+
+<a name="proto_config-proto_role_properties_settings"></a>
+
+### proto_role_properties_settings
+@base BaseSettings
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| can_print | [bool](#bool) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Print&#34;)] |
+| can_view | [bool](#bool) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;View&#34;)] |
+| can_edit | [bool](#bool) |  | @attr [PropertyOrderAttribute(11)] @attr [Description(&#34;Edit items&#34;)] |
+
+
+
+
+
+
+<a name="proto_config-proto_role_properties_settings_with_null"></a>
+
+### proto_role_properties_settings_with_null
+@base VmEditable
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| can_print | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Print&#34;)] |
+| can_view | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;View&#34;)] |
+| can_edit | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(11)] @attr [Description(&#34;Edit items&#34;)] |
+
+
+
+
+
+
+<a name="proto_config-proto_role_reports_settings"></a>
+
+### proto_role_reports_settings
+@base BaseSettings
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| can_print | [bool](#bool) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Print&#34;)] |
+| can_view | [bool](#bool) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;View&#34;)] |
+
+
+
+
+
+
+<a name="proto_config-proto_role_reports_settings_with_null"></a>
+
+### proto_role_reports_settings_with_null
+@base VmEditable
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| can_print | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Print&#34;)] |
+| can_view | [google.protobuf.BoolValue](#google-protobuf-BoolValue) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;View&#34;)] |
 
 
 
@@ -2666,23 +2892,6 @@ https://github.com/bchavez/Bogus
 
 
 
-<a name="proto_config-proto_enum_catalog_detail_access"></a>
-
-### proto_enum_catalog_detail_access
-@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| C_FULL_ACCESS | 0 | @attr [Description(&#34;Full Access&#34;)] |
-| C_HIDE | 11 | @attr [Description(&#34;Hide&#34;)] |
-| C_VIEW | 21 | @attr [Description(&#34;View&#34;)] |
-| C_EDIT_ITEMS | 31 | @attr [Description(&#34;Edit Items&#34;)] |
-| C_EDIT_FOLDERS | 41 | @attr [Description(&#34;Edit Folders&#34;)] |
-| C_MARK_DEL | 51 | @attr [Description(&#34;Del&#34;)] |
-| C_BY_PARENT | 61 | @attr [Description(&#34;By Parent&#34;)] |
-
-
-
 <a name="proto_config-proto_enum_catalog_tree_icon"></a>
 
 ### proto_enum_catalog_tree_icon
@@ -2742,25 +2951,6 @@ https://github.com/bchavez/Bogus
 | P_COMPANY_SUFFIX | 2 |  |
 | P_CATCH_PHRASE | 3 |  |
 | P_BS | 4 |  |
-
-
-
-<a name="proto_config-proto_enum_constant_access"></a>
-
-### proto_enum_constant_access
-@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| CN_FULL_ACCESS | 0 | @attr [Description(&#34;Full Access&#34;)] |
-| CN_HIDE | 11 | @attr [Description(&#34;Hide&#34;)] |
-| CN_VIEW | 21 | @attr [Description(&#34;View&#34;)]
-
-with history |
-| CN_EDIT | 31 | @attr [Description(&#34;Edit&#34;)]
-
-with history |
-| CN_BY_PARENT | 41 | @attr [Description(&#34;By Parent&#34;)] |
 
 
 
@@ -2868,25 +3058,6 @@ with history |
 | DOC_UNIQUE_MONTH | 31 | @attr [Description(&#34;Month&#34;)] |
 | DOC_UNIQUE_WEEK | 34 | @attr [Description(&#34;Week&#34;)] |
 | DOC_UNIQUE_DAY | 37 | @attr [Description(&#34;Day&#34;)] |
-
-
-
-<a name="proto_config-proto_enum_document_access"></a>
-
-### proto_enum_document_access
-@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| D_FULL_ACCESS | 0 | @attr [Description(&#34;Full Access&#34;)] |
-| D_HIDE | 11 | @attr [Description(&#34;Hide&#34;)] |
-| D_VIEW | 21 | @attr [Description(&#34;View&#34;)] |
-| D_EDIT | 31 | @attr [Description(&#34;Edit&#34;)] |
-| D_POST | 41 | @attr [Description(&#34;Post&#34;)] |
-| D_VIEW_POST_DATA | 45 | @attr [Description(&#34;Post data&#34;)] |
-| D_UNPOST | 51 | @attr [Description(&#34;Unpost&#34;)] |
-| D_MARK_DEL | 61 | @attr [Description(&#34;Del&#34;)] |
-| D_BY_PARENT | 71 | @attr [Description(&#34;By Parent&#34;)] |
 
 
 
@@ -3108,38 +3279,6 @@ with history |
 | ---- | ------ | ----------- |
 | INT | 0 | @attr [Description(&#34;Int&#34;)] |
 | LONG | 11 | @attr [Description(&#34;Long&#34;)] |
-
-
-
-<a name="proto_config-proto_enum_print_access"></a>
-
-### proto_enum_print_access
-@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| PR_PRINT | 0 | @attr [Description(&#34;Print&#34;)] |
-| PR_NO_PRINT | 11 | @attr [Description(&#34;No print&#34;)] |
-| PR_BY_PARENT | 21 | @attr [Description(&#34;By Parent&#34;)] |
-
-
-
-<a name="proto_config-proto_enum_property_access"></a>
-
-### proto_enum_property_access
-@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| P_FULL_ACCESS | 0 | @attr [Description(&#34;Full Access&#34;)] |
-| P_HIDE | 11 | @attr [Description(&#34;Hide&#34;)] |
-| P_VIEW | 21 | @attr [Description(&#34;View&#34;)]
-
-with history |
-| P_EDIT | 31 | @attr [Description(&#34;Edit&#34;)]
-
-with history |
-| P_BY_PARENT | 41 | @attr [Description(&#34;By Parent&#34;)] |
 
 
 

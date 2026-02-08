@@ -31,7 +31,9 @@ public partial class Validation<#= root.Package.ToNameCs() #>Visitor : <#= root.
         foreach (var t in p.<#= field.Name.ToNameCs() #>) <#=t4.SrcCs()#>
             ValidateSubAndCollectErrors(p, t);
 <#     } else { #>
+<#       if (field.GetMessageDoc().IsValidatableBase) { #>
         ValidateSubAndCollectErrors(p, p.<#= field.Name.ToNameCs() #>); <#=t4.SrcCs()#>
+<#       } #>
 <#     } #>
 <#   } else { #>
 <#   } #>
@@ -41,7 +43,9 @@ public partial class Validation<#= root.Package.ToNameCs() #>Visitor : <#= root.
         foreach (var t in p.<#= field.Name.ToNameCs() #>) <#=t4.SrcCs()#>
             p.ValidateSubAndCollectErrors(t);
 <#     } else { #>
+<#       if (field.GetMessageDoc().IsValidatableBase) { #>
         p.ValidateSubAndCollectErrors(p.<#= field.Name.ToNameCs() #>); <#=t4.SrcCs()#>
+<#       } #>
 <#     } #>
 <#   } else { #>
 <#   } #>

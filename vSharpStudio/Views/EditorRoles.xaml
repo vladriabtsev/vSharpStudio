@@ -23,13 +23,16 @@
             <ctrls:TreeList.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn Width="150" Header="Name">
+                        <GridViewColumn Width="150">
+                            <GridViewColumn.Header>
+                                <TextBlock>Name</TextBlock>
+                            </GridViewColumn.Header>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <ctrls:RowExpander/>
-                                        <ContentControl Template="{Binding Node.IconName, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                                         <!--<Image Source="{Binding Converter={StaticResource RegImageConverter}}"  Margin="0, 0, 5, 0"/>-->
+                                        <ContentControl Template="{Binding Node.IconName, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
                                         <TextBlock Text="{Binding Node.Name}"></TextBlock>
                                     </StackPanel>
                                 </DataTemplate>

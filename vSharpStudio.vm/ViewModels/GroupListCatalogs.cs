@@ -8,7 +8,7 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
+    public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -100,7 +100,6 @@ namespace vSharpStudio.vm.ViewModels
             this.ListCatalogs.OnAddedAction = (t) =>
             {
                 t.OnAdded();
-                t.InitRoles();
             };
             this.ListCatalogs.OnRemovedAction = (t) =>
             {
@@ -161,41 +160,6 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-
-        #region Roles
-        public EnumCatalogDetailAccess GetRoleCatalogAccess(IRole role)
-        {
-            return role.DefaultCatalogEditAccessSettings;
-        }
-        public EnumPrintAccess GetRoleCatalogPrint(IRole role)
-        {
-            return role.DefaultCatalogPrintAccessSettings;
-        }
-        public EnumPropertyAccess GetRolePropertyAccess(IRole role)
-        {
-            var pa = role.DefaultCatalogEditAccessSettings;
-            switch (pa)
-            {
-                case EnumCatalogDetailAccess.C_HIDE:
-                    return EnumPropertyAccess.P_HIDE;
-                case EnumCatalogDetailAccess.C_VIEW:
-                    return EnumPropertyAccess.P_VIEW;
-                case EnumCatalogDetailAccess.C_EDIT_ITEMS:
-                case EnumCatalogDetailAccess.C_MARK_DEL:
-                case EnumCatalogDetailAccess.C_EDIT_FOLDERS:
-                    return EnumPropertyAccess.P_EDIT;
-                default:
-                    throw new NotImplementedException();
-            }
-        }
-        public EnumPrintAccess GetRolePropertyPrint(IRole role)
-        {
-            var pa = role.DefaultCatalogPrintAccessSettings;
-            if (pa == EnumPrintAccess.PR_BY_PARENT)
-                return EnumPrintAccess.PR_PRINT;
-            return pa;
-        }
-        #endregion Roles
 
         #region View
         public bool IsGridSortableGet()

@@ -7,7 +7,5 @@ namespace vSharpStudio.common
         int IndexOf(IGroupListConstants cnstg);
         IModel ParentModelI { get; }
         IReadOnlyList<IGroupListConstants> GetIncludedConstantGroups(string guidAppPrjGen);
-        EnumConstantAccess GetRoleConstantAccess(IRole role);
-        EnumPrintAccess GetRoleConstantPrint(IRole role);
     }
 }

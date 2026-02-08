@@ -86,8 +86,7 @@ namespace vSharpStudio.common
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();
-        EnumPropertyAccess GetRolePropertyAccess(IRole role);
-        IReadOnlyList<string> GetRolesByAccess(EnumPropertyAccess access);
+        IRolePropertiesSettings GetRoleSettings(IRole role);
 
         #region Plugin group model
         IProperty CreatePropertyFromJson(string settings, string subName, IDataType dt);

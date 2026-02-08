@@ -38,26 +38,26 @@ namespace GenVmFromProto
                 this.Doc.BaseClass = " : " + defaultBaseClass + "<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>, IComparable<" + message.Name.ToNameCs() + ">, I" + root.Package.ToNameCs() + "AcceptVisitor";
             }
-            else if (this.Doc.BaseClass == "VmBindable")
+            else if (this.Doc.BaseClass == "VmBindable") // without parent, simple constructor
             {
                 //this.Doc.BaseClass = " : " + this.Doc.BaseClass + "<" + message.Name.ToNameCs() + ">";
                 this.Doc.BaseClass = " : VmBindable";
             }
-            else if (this.Doc.BaseClass == "VmEditable")
+            else if (this.Doc.BaseClass == "VmEditable") // without parent, simple constructor
             {
                 this.Doc.BaseClass = " : VmEditable<" + message.Name.ToNameCs() + ">";
             }
-            else if (this.Doc.BaseClass == "VmValidatable")
+            else if (this.Doc.BaseClass == "VmValidatable") // without parent, simple constructor
             {
                 this.Doc.BaseClass = " : VmValidatable<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>";
             }
-            else if (this.Doc.BaseClass == "VmValidatableWithSeverity")
+            else if (this.Doc.BaseClass == "VmValidatableWithSeverity") // without parent, simple constructor
             {
                 this.Doc.BaseClass = " : VmValidatableWithSeverity<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>";
             }
-            else if (this.Doc.BaseClass == "VmValidatableWithSeverityAndAttributes")
+            else if (this.Doc.BaseClass == "VmValidatableWithSeverityAndAttributes") // without parent, simple constructor
             {
                 this.Doc.BaseClass = " : VmValidatableWithSeverityAndAttributes<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>";

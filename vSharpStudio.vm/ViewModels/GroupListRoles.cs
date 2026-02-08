@@ -45,6 +45,37 @@ namespace vSharpStudio.vm.ViewModels
         {
             OnSortTypeChanged();
             this._Name = Defaults.RolesGroupName;
+            this._DefaultConstantsRoleSettings.CanEdit = true;
+            this._DefaultConstantsRoleSettings.CanPrint = true;
+            this._DefaultConstantsRoleSettings.CanView = true;
+
+            this._DefaultCatalogsRoleSettings.CanEditFolders = true;
+            this._DefaultCatalogsRoleSettings.CanEditDetails = true;
+            this._DefaultCatalogsRoleSettings.CanEditFields = true;
+            this._DefaultCatalogsRoleSettings.CanEditItems = true;
+            this._DefaultCatalogsRoleSettings.CanMarkDel = true;
+            this._DefaultCatalogsRoleSettings.CanMoveFolders = true;
+            this._DefaultCatalogsRoleSettings.CanMoveItems = true;
+            this._DefaultCatalogsRoleSettings.CanPrint = true;
+            this._DefaultCatalogsRoleSettings.CanView = true;
+            this._DefaultCatalogsRoleSettings.CanViewDetails = true;
+            this._DefaultCatalogsRoleSettings.CanViewFields = true;
+
+            this._DefaultDocumentsRoleSettings.CanEdit = true;
+            this._DefaultDocumentsRoleSettings.CanEditDetails = true;
+            this._DefaultDocumentsRoleSettings.CanEditFields = true;
+            this._DefaultDocumentsRoleSettings.CanMarkDel = true;
+            this._DefaultDocumentsRoleSettings.CanPost = true;
+            this._DefaultDocumentsRoleSettings.CanPrint = true;
+            this._DefaultDocumentsRoleSettings.CanUnpost = true;
+            this._DefaultDocumentsRoleSettings.CanView = true;
+            this._DefaultDocumentsRoleSettings.CanViewDetails = true;
+            this._DefaultDocumentsRoleSettings.CanViewFields = true;
+            this._DefaultDocumentsRoleSettings.CanViewPostData = true;
+
+            this._DefaultReportsRoleSettings.CanPrint = true;
+            this._DefaultReportsRoleSettings.CanView = true;
+
             //VmBindable.IsNotifyingStatic = false;
             //var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             //children.Add(this.GroupRoles, 6);
@@ -57,21 +88,21 @@ namespace vSharpStudio.vm.ViewModels
             };
             this.ListRoles.OnAddedAction = (t) =>
             {
-                var nvb = new ModelVisitorBase();
-                nvb.RunFromRoot(this.Cfg, null, null, null, (p, n) =>
-                {
-                    if (n is IRoleAccess ra)
-                        ra.InitRoleAdd(t);
-                });
+                //var nvb = new ModelVisitorBase();
+                //nvb.RunFromRoot(this.Cfg, null, null, null, (p, n) =>
+                //{
+                //    if (n is IRoleAccess ra)
+                //        ra.InitRoleAdd(t);
+                //});
             };
             this.ListRoles.OnRemovedAction = (t) =>
             {
-                var nvb = new ModelVisitorBase();
-                nvb.RunFromRoot(this.Cfg, null, null, null, (p, n) =>
-                {
-                    if (n is IRoleAccess ra)
-                        ra.InitRoleRemove(t);
-                });
+                //var nvb = new ModelVisitorBase();
+                //nvb.RunFromRoot(this.Cfg, null, null, null, (p, n) =>
+                //{
+                //    if (n is IRoleAccess ra)
+                //        ra.InitRoleRemove(t);
+                //});
             };
             this.ListRoles.OnClearedAction = () =>
             {

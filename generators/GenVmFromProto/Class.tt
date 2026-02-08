@@ -62,12 +62,6 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
     partial void OnDebugStringExtend(ref string mes);
 <# } #>
     #region CTOR <#=t4.SrcCs()#>
-<# if (!this.Doc.IsWithParent) { #>
-    /*public <#= message.Name.ToNameCs() #>() <#=t4.SrcCs()#>
-    {
-        this.OnCreating();
-    }*/
-<# } #>
 <# if (this.Doc.IsWithParent) { #>
     public <#= message.Name.ToNameCs() #>(<#=this.Doc.ParentTypeName#>? parent) <#=t4.SrcCs()#>
         : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator)
@@ -105,9 +99,13 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
            continue;
 		if (t.IsRepeated) {#>
 <# if (!t.IsMessage() || t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-        this._<#= t.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= t.ToTypeCs() #>>(); <#=t4.SrcCs()#>
+        this._<#=t.Name.ToNameCs()#> = new ObservableCollectionWithActions<<#=t.ToTypeCs()#>>(); <#=t4.SrcCs()#>
 <# } else { #>
-        this._<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); <#=t4.SrcCs()#>
+<#	 if (t.IsMap) { #>
+        this._<#=t.Name.ToNameCs()#> = new <#= t.ToTypeCs()#>(); <#=t4.SrcCs()#>
+<#   } else { #>
+        this._<#=t.Name.ToNameCs()#> = new ConfigNodesCollection<<#= t.ToTypeCs()#>>(this); <#=t4.SrcCs()#>
+<#   } #>
 <# } #>
 <#		} else if (t.IsMessage()) { #>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>

@@ -9,7 +9,7 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class GroupListDetails : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup, IRoleAccess
+    public partial class GroupListDetails : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -65,7 +65,6 @@ namespace vSharpStudio.vm.ViewModels
             this.ListDetails.OnAddedAction = (t) =>
             {
                 t.OnAdded();
-                t.InitRoles();
             };
             this.ListDetails.OnRemovedAction = (t) =>
             {
@@ -179,121 +178,5 @@ namespace vSharpStudio.vm.ViewModels
                 return cf.IsGridSortableCustomGet();
             throw new NotImplementedException();
         }
-
-        #region Roles
-        public object GetRoleAccess(IRole role)
-        {
-            if (!this.dicDetailAccess.ContainsKey(role.Guid))
-            {
-                var rca = new RoleDetailAccess() { Guid = role.Guid };
-                this.ListRoleDetailAccessSettings.Add(rca);
-                this.dicDetailAccess[role.Guid] = rca;
-            }
-            return dicDetailAccess[role.Guid];
-        }
-        public void SetRoleAccess(IRole role, EnumCatalogDetailAccess? edit, EnumPrintAccess? print)
-        {
-            Debug.Assert(role != null);
-            Debug.Assert(dicDetailAccess.ContainsKey(role.Guid));
-            if (edit.HasValue)
-                dicDetailAccess[role.Guid].EditAccess = edit.Value;
-            if (print.HasValue)
-                dicDetailAccess[role.Guid].PrintAccess = print.Value;
-        }
-        internal Dictionary<string, RoleDetailAccess> dicDetailAccess = new();
-        public void InitRoles()
-        {
-            foreach (var tt in this.ListRoleDetailAccessSettings)
-            {
-                this.dicDetailAccess[tt.Guid] = tt;
-            }
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
-            {
-                if (!this.dicDetailAccess.ContainsKey(t.Guid))
-                {
-                    var rca = new RoleDetailAccess() { Guid = t.Guid };
-                    this.dicDetailAccess[t.Guid] = rca;
-                }
-            }
-        }
-        public void InitRoleAdd(IRole role)
-        {
-            var rca = new RoleDetailAccess() { Guid = role.Guid };
-            this.ListRoleDetailAccessSettings.Add(rca);
-            this.dicDetailAccess[rca.Guid] = rca;
-        }
-        public void InitRoleRemove(IRole role)
-        {
-            for (int i = 0; i < this.ListRoleDetailAccessSettings.Count; i++)
-            {
-                if (this.ListRoleDetailAccessSettings[i].Guid == role.Guid)
-                {
-                    this.ListRoleDetailAccessSettings.RemoveAt(i);
-                    break;
-                }
-            }
-            this.dicDetailAccess.Remove(role.Guid);
-        }
-        public EnumCatalogDetailAccess GetRoleDetailAccess(IRole role)
-        {
-            if (this.dicDetailAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
-                return r.EditAccess;
-            if (this.Parent is Detail dd)
-                return dd.GetRoleDetailAccess(role);
-            else if (this.Parent is Catalog c)
-                return c.GetRoleCatalogAccess(role);
-            else if (this.Parent is Document d)
-            {
-                var ra = d.GetRoleDocumentAccess(role);
-                switch (ra)
-                {
-                    case EnumDocumentAccess.D_BY_PARENT:
-                        throw new NotImplementedException();
-                    case EnumDocumentAccess.D_HIDE:
-                        return EnumCatalogDetailAccess.C_HIDE;
-                    case EnumDocumentAccess.D_VIEW:
-                        return EnumCatalogDetailAccess.C_VIEW;
-                    case EnumDocumentAccess.D_EDIT:
-                        return EnumCatalogDetailAccess.C_EDIT_ITEMS;
-                    case EnumDocumentAccess.D_MARK_DEL:
-                        return EnumCatalogDetailAccess.C_MARK_DEL;
-                    case EnumDocumentAccess.D_POST:
-                    case EnumDocumentAccess.D_UNPOST:
-                        return EnumCatalogDetailAccess.C_EDIT_ITEMS;
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
-            else if (this.Parent is CatalogFolder cf)
-                return cf.ParentCatalog.GetRoleCatalogAccess(role);
-            else
-                throw new NotImplementedException();
-        }
-        public EnumPrintAccess GetRoleDetailPrint(IRole role)
-        {
-            if (this.dicDetailAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                return r.PrintAccess;
-            if (this.Parent is Detail dd)
-                return dd.GetRoleDetailPrint(role);
-            else if (this.Parent is Catalog c)
-                return c.GetRoleCatalogPrint(role);
-            else if (this.Parent is Document d)
-                return d.GetRoleDocumentPrint(role);
-            else if (this.Parent is CatalogFolder cf)
-                return cf.ParentCatalog.GetRoleCatalogPrint(role);
-            else
-                throw new NotImplementedException();
-        }
-        //public IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access)
-        //{
-        //    var roles = new List<string>();
-        //    foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
-        //    {
-        //        if (GetRoleDetailAccess(role.Guid) == access)
-        //            roles.Add(role.Name);
-        //    }
-        //    return roles;
-        //}
-        #endregion Roles
     }
 }

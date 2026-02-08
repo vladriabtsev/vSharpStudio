@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
-        INodeWithProperties, ITreeConfigNodeSortable, IRoleAccess, ICatalogDetailAccessRoles
+        INodeWithProperties, ITreeConfigNodeSortable
     {
         public override string NameShortId { get { return $"c{this.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
@@ -797,119 +798,24 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
-        public object GetRoleAccess(IRole role)
+        public IRoleCatalogsSettings GetRoleSettings(IRole role)
         {
-            if (!this.dicCatalogAccess.TryGetValue(role.Guid, out var value))
-            {
-                var rca = new RoleCatalogAccess() { Guid = role.Guid };
-                this.ListRoleCatalogAccessSettings.Add(rca);
-                value = rca;
-                this.dicCatalogAccess[role.Guid] = value;
-            }
-            return value;
-        }
-        public void SetRoleAccess(IRole role, EnumCatalogDetailAccess? edit, EnumPrintAccess? print)
-        {
-            Debug.Assert(role != null);
-            Debug.Assert(dicCatalogAccess.ContainsKey(role.Guid));
-            if (edit.HasValue)
-                dicCatalogAccess[role.Guid].EditAccess = edit.Value;
-            if (print.HasValue)
-                dicCatalogAccess[role.Guid].PrintAccess = print.Value;
-        }
-        internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = [];
-        public void InitRoles()
-        {
-            foreach (var tt in this.ListRoleCatalogAccessSettings)
-            {
-                this.dicCatalogAccess[tt.Guid] = tt;
-            }
-            var model = this.Cfg.Model;
-            foreach (var t in model.GroupCommon.GroupRoles.ListRoles)
-            {
-                if (!this.dicCatalogAccess.ContainsKey(t.Guid))
-                {
-                    var rca = new RoleCatalogAccess() { Guid = t.Guid };
-                    this.dicCatalogAccess[t.Guid] = rca;
-                }
-            }
-        }
-        public void InitRoleAdd(IRole role)
-        {
-            var rca = new RoleCatalogAccess() { Guid = role.Guid };
-            this.ListRoleCatalogAccessSettings.Add(rca);
-            this.dicCatalogAccess[rca.Guid] = rca;
-        }
-        public void InitRoleRemove(IRole role)
-        {
-            for (int i = 0; i < this.ListRoleCatalogAccessSettings.Count; i++)
-            {
-                if (this.ListRoleCatalogAccessSettings[i].Guid == role.Guid)
-                {
-                    this.ListRoleCatalogAccessSettings.RemoveAt(i);
-                    break;
-                }
-            }
-            this.dicCatalogAccess.Remove(role.Guid);
-        }
-        public EnumPropertyAccess GetRolePropertyAccess(IRole role)
-        {
-            EnumCatalogDetailAccess ra = this.dicCatalogAccess[role.Guid].EditAccess;
-            if (ra == EnumCatalogDetailAccess.C_BY_PARENT)
-            {
-                ra = this.ParentGroupListCatalogs.GetRoleCatalogAccess(role);
-            }
-            return ra switch
-            {
-                EnumCatalogDetailAccess.C_HIDE => EnumPropertyAccess.P_HIDE,
-                EnumCatalogDetailAccess.C_VIEW => EnumPropertyAccess.P_VIEW,
-                EnumCatalogDetailAccess.C_EDIT_ITEMS or EnumCatalogDetailAccess.C_EDIT_FOLDERS or EnumCatalogDetailAccess.C_MARK_DEL => EnumPropertyAccess.P_EDIT,
-                _ => throw new NotImplementedException(),
-            };
-        }
-        public EnumPrintAccess GetRolePropertyPrint(IRole role)
-        {
-            EnumPrintAccess ra = EnumPrintAccess.PR_BY_PARENT;
-            if (!this.dicCatalogAccess.TryGetValue(role.Guid, out var r) || r.PrintAccess == EnumPrintAccess.PR_BY_PARENT)
-            {
-                ra = this.ParentGroupListCatalogs.GetRoleCatalogPrint(role);
-            }
-            Debug.Assert(ra != EnumPrintAccess.PR_BY_PARENT);
-            return ra;
-        }
-        public EnumCatalogDetailAccess GetRoleCatalogAccess(IRole role)
-        {
-            if (this.dicCatalogAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
-                return r.EditAccess;
-            return this.ParentGroupListCatalogs.GetRoleCatalogAccess(role);
-        }
-        public EnumPrintAccess GetRoleCatalogPrint(IRole role)
-        {
-            if (this.dicCatalogAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                return r.PrintAccess;
-            return this.ParentGroupListCatalogs.GetRoleCatalogPrint(role);
-        }
-        public IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access)
-        {
-            var roles = new List<string>();
-            var model = this.Cfg.Model;
-            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
-            {
-                if (GetRoleCatalogAccess(role) == access)
-                    roles.Add(role.Name);
-            }
-            return roles;
-        }
-        public IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access)
-        {
-            var roles = new List<string>();
-            var model = this.Cfg.Model;
-            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
-            {
-                if (GetRoleCatalogPrint(role) == access)
-                    roles.Add(role.Name);
-            }
-            return roles;
+            var roles = this.Cfg.Model.GroupCommon.GroupRoles;
+            var nodeRoleDic = roles.DicRoles[role.Guid];
+            nodeRoleDic.DicNodeRules.TryGetValue(this.Guid, out var roleFromNode);
+            var res = new RoleCatalogsSettings(this);
+            res.CanEditDetails = roleFromNode?.CatalogSettings.CanEditDetails ?? roles.DefaultCatalogsRoleSettings.CanEditDetails;
+            res.CanEditFields = roleFromNode?.CatalogSettings.CanEditFields ?? roles.DefaultCatalogsRoleSettings.CanEditFields;
+            res.CanEditFolders = roleFromNode?.CatalogSettings.CanEditFolders ?? roles.DefaultCatalogsRoleSettings.CanEditFolders;
+            res.CanEditItems = roleFromNode?.CatalogSettings.CanEditItems ?? roles.DefaultCatalogsRoleSettings.CanEditItems;
+            res.CanMarkDel = roleFromNode?.CatalogSettings.CanMarkDel ?? roles.DefaultCatalogsRoleSettings.CanMarkDel;
+            res.CanMoveFolders = roleFromNode?.CatalogSettings.CanMoveFolders ?? roles.DefaultCatalogsRoleSettings.CanMoveFolders;
+            res.CanMoveItems = roleFromNode?.CatalogSettings.CanMoveItems ?? roles.DefaultCatalogsRoleSettings.CanMoveItems;
+            res.CanPrint = roleFromNode?.CatalogSettings.CanPrint ?? roles.DefaultCatalogsRoleSettings.CanPrint;
+            res.CanView = roleFromNode?.CatalogSettings.CanView ?? roles.DefaultCatalogsRoleSettings.CanView;
+            res.CanViewDetails = roleFromNode?.CatalogSettings.CanViewDetails ?? roles.DefaultCatalogsRoleSettings.CanViewDetails;
+            res.CanViewFields = roleFromNode?.CatalogSettings.CanViewFields ?? roles.DefaultCatalogsRoleSettings.CanViewFields;
+            return res;
         }
         #endregion Roles
     }

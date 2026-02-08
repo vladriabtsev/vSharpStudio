@@ -2091,7 +2091,6 @@ namespace vSharpStudio.Unit
         }
 
         #region Roles
-        [Ignore]
         [TestMethod]
         public void Main101_RolesTests()
         {

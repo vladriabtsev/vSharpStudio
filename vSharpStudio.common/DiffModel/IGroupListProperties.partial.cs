@@ -4,7 +4,5 @@
     {
         uint GetNextPosition();
         int IndexOf(IProperty p);
-        EnumPropertyAccess GetRolePropertyAccess(IRole role);
-        EnumPrintAccess GetRolePropertyPrint(IRole role);
     }
 }

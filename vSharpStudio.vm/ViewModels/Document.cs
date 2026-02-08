@@ -15,7 +15,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, 
-        INodeWithProperties, IRoleAccess, IDocumentAccessRoles
+        INodeWithProperties
     {
         public override string NameShortId { get { return $"d{this.ShortId}"; } }
         partial void OnDebugStringExtend(ref string mes)
@@ -586,120 +586,23 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
-        public object GetRoleAccess(IRole role)
+        public IRoleDocumentsSettings GetRoleSettings(IRole role)
         {
-            if (!this.dicDocumentAccess.TryGetValue(role.Guid, out var value))
-            {
-                var rca = new RoleDocumentAccess() { Guid = role.Guid };
-                this.ListRoleDocumentAccessSettings.Add(rca);
-                value = rca;
-                this.dicDocumentAccess[role.Guid] = value;
-            }
-            return value;
-        }
-        public void SetRoleAccess(IRole role, EnumDocumentAccess? edit, EnumPrintAccess? print)
-        {
-            Debug.Assert(role != null);
-            Debug.Assert(dicDocumentAccess.ContainsKey(role.Guid));
-            if (edit.HasValue)
-                dicDocumentAccess[role.Guid].EditAccess = edit.Value;
-            if (print.HasValue)
-                dicDocumentAccess[role.Guid].PrintAccess = print.Value;
-        }
-        internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = [];
-        public void InitRoles()
-        {
-            foreach (var tt in this.ListRoleDocumentAccessSettings)
-            {
-                this.dicDocumentAccess[tt.Guid] = tt;
-            }
-            var model = this.Cfg.Model;
-            foreach (var t in model.GroupCommon.GroupRoles.ListRoles)
-            {
-                if (!this.dicDocumentAccess.ContainsKey(t.Guid))
-                {
-                    var rca = new RoleDocumentAccess() { Guid = t.Guid };
-                    this.dicDocumentAccess[t.Guid] = rca;
-                }
-            }
-        }
-        public void InitRoleAdd(IRole role)
-        {
-            var rca = new RoleDocumentAccess() { Guid = role.Guid };
-            this.ListRoleDocumentAccessSettings.Add(rca);
-            this.dicDocumentAccess[rca.Guid] = rca;
-        }
-        public void InitRoleRemove(IRole role)
-        {
-            for (int i = 0; i < this.ListRoleDocumentAccessSettings.Count; i++)
-            {
-                if (this.ListRoleDocumentAccessSettings[i].Guid == role.Guid)
-                {
-                    this.ListRoleDocumentAccessSettings.RemoveAt(i);
-                    break;
-                }
-            }
-            this.dicDocumentAccess.Remove(role.Guid);
-        }
-        public EnumDocumentAccess GetRoleDocumentAccess(IRole role)
-        {
-            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumDocumentAccess.D_BY_PARENT)
-                return r.EditAccess;
-            return this.ParentGroupListDocuments.GetRoleDocumentAccess(role);
-        }
-        public EnumPrintAccess GetRoleDocumentPrint(IRole role)
-        {
-            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                return r.PrintAccess;
-            return this.ParentGroupListDocuments.GetRoleDocumentPrint(role);
-        }
-        public EnumPropertyAccess GetRolePropertyAccess(IRole role)
-        {
-            var ra = EnumDocumentAccess.D_BY_PARENT;
-            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r))
-                ra = r.EditAccess;
-            if (ra == EnumDocumentAccess.D_BY_PARENT)
-                ra = this.ParentGroupListDocuments.GetRoleDocumentAccess(role);
-            Debug.Assert(ra != EnumDocumentAccess.D_BY_PARENT);
-            return ra switch
-            {
-                EnumDocumentAccess.D_HIDE => EnumPropertyAccess.P_HIDE,
-                EnumDocumentAccess.D_VIEW => EnumPropertyAccess.P_VIEW,
-                EnumDocumentAccess.D_EDIT or EnumDocumentAccess.D_MARK_DEL or EnumDocumentAccess.D_UNPOST or EnumDocumentAccess.D_POST => EnumPropertyAccess.P_EDIT,
-                _ => throw new NotImplementedException(),
-            };
-        }
-        public EnumPrintAccess GetRolePropertyPrint(IRole role)
-        {
-            var ra = EnumPrintAccess.PR_BY_PARENT;
-            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r))
-                ra = r.PrintAccess;
-            if (ra == EnumPrintAccess.PR_BY_PARENT)
-                ra = this.ParentGroupListDocuments.GetRoleDocumentPrint(role);
-            Debug.Assert(ra != EnumPrintAccess.PR_BY_PARENT);
-            return ra;
-        }
-        public IReadOnlyList<string> GetRolesByAccess(EnumDocumentAccess access)
-        {
-            var roles = new List<string>();
-            var model = this.Cfg.Model;
-            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
-            {
-                if (GetRoleDocumentAccess(role) == access)
-                    roles.Add(role.Name);
-            }
-            return roles;
-        }
-        public IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access)
-        {
-            var roles = new List<string>();
-            var model = this.Cfg.Model;
-            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
-            {
-                if (GetRoleDocumentPrint(role) == access)
-                    roles.Add(role.Name);
-            }
-            return roles;
+            var roles = this.Cfg.Model.GroupCommon.GroupRoles;
+            var nodeRoleDic = roles.DicRoles[role.Guid];
+            nodeRoleDic.DicNodeRules.TryGetValue(this.Guid, out var roleFromNode);
+            var res = new RoleDocumentsSettings(this);
+            res.CanEdit = roleFromNode?.DocumentSettings.CanEdit ?? roles.DefaultDocumentsRoleSettings.CanEdit;
+            res.CanPost = roleFromNode?.DocumentSettings.CanPost ?? roles.DefaultDocumentsRoleSettings.CanPost;
+            res.CanUnpost = roleFromNode?.DocumentSettings.CanUnpost ?? roles.DefaultDocumentsRoleSettings.CanUnpost;
+            res.CanEditDetails = roleFromNode?.DocumentSettings.CanEditDetails ?? roles.DefaultDocumentsRoleSettings.CanEditDetails;
+            res.CanEditFields = roleFromNode?.DocumentSettings.CanEditFields ?? roles.DefaultDocumentsRoleSettings.CanEditFields;
+            res.CanMarkDel = roleFromNode?.DocumentSettings.CanMarkDel ?? roles.DefaultDocumentsRoleSettings.CanMarkDel;
+            res.CanPrint = roleFromNode?.DocumentSettings.CanPrint ?? roles.DefaultDocumentsRoleSettings.CanPrint;
+            res.CanView = roleFromNode?.DocumentSettings.CanView ?? roles.DefaultDocumentsRoleSettings.CanView;
+            res.CanViewDetails = roleFromNode?.DocumentSettings.CanViewDetails ?? roles.DefaultDocumentsRoleSettings.CanViewDetails;
+            res.CanViewFields = roleFromNode?.DocumentSettings.CanViewFields ?? roles.DefaultDocumentsRoleSettings.CanViewFields;
+            return res;
         }
         #endregion Roles
 

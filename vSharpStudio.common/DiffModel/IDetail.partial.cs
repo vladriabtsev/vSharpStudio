@@ -11,12 +11,7 @@ namespace vSharpStudio.common
         bool IsGridSortableCustomGet();
         IGroupListDetails ParentGroupListDetailsI { get; }
 
-        EnumPropertyAccess GetRolePropertyAccess(IRole role);
-        EnumPrintAccess GetRolePropertyPrint(IRole role);
-        EnumCatalogDetailAccess GetRoleDetailAccess(IRole role);
-        EnumPrintAccess GetRoleDetailPrint(IRole roles);
-        IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access);
-        IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
+        IRoleDetailsSettings GetRoleSettings(IRole role);
         string FullName { get; } // name with config name
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);

@@ -15,12 +15,7 @@ namespace vSharpStudio.common
         bool GetUseCodeProperty();
         bool GetUseNameProperty();
         bool GetUseDescriptionProperty();
-        EnumPropertyAccess GetRolePropertyAccess(IRole role);
-        EnumPrintAccess GetRolePropertyPrint(IRole role);
-        EnumCatalogDetailAccess GetRoleCatalogAccess(IRole role);
-        EnumPrintAccess GetRoleCatalogPrint(IRole role);
-        IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access);
-        IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
+        IRoleCatalogsSettings GetRoleSettings(IRole role);
         string FullName { get; } // name with config name
         //string GetDebuggerDisplay(bool isOptimistic);
         IProperty? GetCodeProperty(List<IProperty> lst);

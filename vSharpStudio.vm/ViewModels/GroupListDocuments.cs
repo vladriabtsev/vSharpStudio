@@ -9,7 +9,7 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class GroupListDocuments : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleAccess
+    public partial class GroupListDocuments : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         partial void OnDebugStringExtend(ref string mes)
         {
@@ -67,7 +67,6 @@ namespace vSharpStudio.vm.ViewModels
             this.ListDocuments.OnAddedAction = (t) =>
             {
                 t.OnAdded();
-                t.InitRoles();
             };
             this.ListDocuments.OnRemovedAction = (t) =>
             {
@@ -113,74 +112,6 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
-
-        #region Roles
-        public object GetRoleAccess(IRole role)
-        {
-            if (!this.dicDocumentAccess.ContainsKey(role.Guid))
-            {
-                var rca = new RoleDocumentAccess() { Guid = role.Guid };
-                this.ListRoleDocumentAccessSettings.Add(rca);
-                this.dicDocumentAccess[role.Guid] = rca;
-            }
-            return dicDocumentAccess[role.Guid];
-        }
-        public void SetRoleAccess(IRole role, EnumDocumentAccess? edit, EnumPrintAccess? print)
-        {
-            Debug.Assert(role != null);
-            Debug.Assert(dicDocumentAccess.ContainsKey(role.Guid));
-            if (edit.HasValue)
-                dicDocumentAccess[role.Guid].EditAccess = edit.Value;
-            if (print.HasValue)
-                dicDocumentAccess[role.Guid].PrintAccess = print.Value;
-        }
-        internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = new();
-        public void InitRoles()
-        {
-            foreach (var tt in this.ListRoleDocumentAccessSettings)
-            {
-                this.dicDocumentAccess[tt.Guid] = tt;
-            }
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
-            {
-                if (!this.dicDocumentAccess.ContainsKey(t.Guid))
-                {
-                    var rca = new RoleDocumentAccess() { Guid = t.Guid };
-                    this.dicDocumentAccess[t.Guid] = rca;
-                }
-            }
-        }
-        public void InitRoleAdd(IRole role)
-        {
-            var rca = new RoleDocumentAccess() { Guid = role.Guid };
-            this.ListRoleDocumentAccessSettings.Add(rca);
-            this.dicDocumentAccess[rca.Guid] = rca;
-        }
-        public void InitRoleRemove(IRole role)
-        {
-            for (int i = 0; i < this.ListRoleDocumentAccessSettings.Count; i++)
-            {
-                if (this.ListRoleDocumentAccessSettings[i].Guid == role.Guid)
-                {
-                    this.ListRoleDocumentAccessSettings.RemoveAt(i);
-                    break;
-                }
-            }
-            this.dicDocumentAccess.Remove(role.Guid);
-        }
-        public EnumDocumentAccess GetRoleDocumentAccess(IRole role)
-        {
-            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumDocumentAccess.D_BY_PARENT)
-                return r.EditAccess;
-            return this.GetRoleDocumentAccess(role);
-        }
-        public EnumPrintAccess GetRoleDocumentPrint(IRole role)
-        {
-            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                return r.PrintAccess;
-            return this.GetRoleDocumentPrint(role);
-        }
-        #endregion Roles
 
         #region View
         public bool IsGridSortableGet()

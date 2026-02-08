@@ -8,7 +8,5 @@
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();
-        EnumDocumentAccess GetRoleDocumentAccess(IRole role);
-        EnumPrintAccess GetRoleDocumentPrint(IRole role);
     }
 }

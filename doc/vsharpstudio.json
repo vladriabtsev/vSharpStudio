@@ -169,49 +169,6 @@
           ]
         },
         {
-          "name": "proto_enum_catalog_detail_access",
-          "longName": "proto_enum_catalog_detail_access",
-          "fullName": "proto_config.proto_enum_catalog_detail_access",
-          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
-          "values": [
-            {
-              "name": "C_FULL_ACCESS",
-              "number": "0",
-              "description": "@attr [Description(\"Full Access\")]"
-            },
-            {
-              "name": "C_HIDE",
-              "number": "11",
-              "description": "@attr [Description(\"Hide\")]"
-            },
-            {
-              "name": "C_VIEW",
-              "number": "21",
-              "description": "@attr [Description(\"View\")]"
-            },
-            {
-              "name": "C_EDIT_ITEMS",
-              "number": "31",
-              "description": "@attr [Description(\"Edit Items\")]"
-            },
-            {
-              "name": "C_EDIT_FOLDERS",
-              "number": "41",
-              "description": "@attr [Description(\"Edit Folders\")]"
-            },
-            {
-              "name": "C_MARK_DEL",
-              "number": "51",
-              "description": "@attr [Description(\"Del\")]"
-            },
-            {
-              "name": "C_BY_PARENT",
-              "number": "61",
-              "description": "@attr [Description(\"By Parent\")]"
-            }
-          ]
-        },
-        {
           "name": "proto_enum_catalog_tree_icon",
           "longName": "proto_enum_catalog_tree_icon",
           "fullName": "proto_config.proto_enum_catalog_tree_icon",
@@ -350,39 +307,6 @@
               "name": "P_BS",
               "number": "4",
               "description": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_enum_constant_access",
-          "longName": "proto_enum_constant_access",
-          "fullName": "proto_config.proto_enum_constant_access",
-          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
-          "values": [
-            {
-              "name": "CN_FULL_ACCESS",
-              "number": "0",
-              "description": "@attr [Description(\"Full Access\")]"
-            },
-            {
-              "name": "CN_HIDE",
-              "number": "11",
-              "description": "@attr [Description(\"Hide\")]"
-            },
-            {
-              "name": "CN_VIEW",
-              "number": "21",
-              "description": "@attr [Description(\"View\")]\n\nwith history"
-            },
-            {
-              "name": "CN_EDIT",
-              "number": "31",
-              "description": "@attr [Description(\"Edit\")]\n\nwith history"
-            },
-            {
-              "name": "CN_BY_PARENT",
-              "number": "41",
-              "description": "@attr [Description(\"By Parent\")]"
             }
           ]
         },
@@ -708,59 +632,6 @@
               "name": "DOC_UNIQUE_DAY",
               "number": "37",
               "description": "@attr [Description(\"Day\")]"
-            }
-          ]
-        },
-        {
-          "name": "proto_enum_document_access",
-          "longName": "proto_enum_document_access",
-          "fullName": "proto_config.proto_enum_document_access",
-          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
-          "values": [
-            {
-              "name": "D_FULL_ACCESS",
-              "number": "0",
-              "description": "@attr [Description(\"Full Access\")]"
-            },
-            {
-              "name": "D_HIDE",
-              "number": "11",
-              "description": "@attr [Description(\"Hide\")]"
-            },
-            {
-              "name": "D_VIEW",
-              "number": "21",
-              "description": "@attr [Description(\"View\")]"
-            },
-            {
-              "name": "D_EDIT",
-              "number": "31",
-              "description": "@attr [Description(\"Edit\")]"
-            },
-            {
-              "name": "D_POST",
-              "number": "41",
-              "description": "@attr [Description(\"Post\")]"
-            },
-            {
-              "name": "D_VIEW_POST_DATA",
-              "number": "45",
-              "description": "@attr [Description(\"Post data\")]"
-            },
-            {
-              "name": "D_UNPOST",
-              "number": "51",
-              "description": "@attr [Description(\"Unpost\")]"
-            },
-            {
-              "name": "D_MARK_DEL",
-              "number": "61",
-              "description": "@attr [Description(\"Del\")]"
-            },
-            {
-              "name": "D_BY_PARENT",
-              "number": "71",
-              "description": "@attr [Description(\"By Parent\")]"
             }
           ]
         },
@@ -1404,62 +1275,6 @@
               "name": "LONG",
               "number": "11",
               "description": "@attr [Description(\"Long\")]"
-            }
-          ]
-        },
-        {
-          "name": "proto_enum_print_access",
-          "longName": "proto_enum_print_access",
-          "fullName": "proto_config.proto_enum_print_access",
-          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
-          "values": [
-            {
-              "name": "PR_PRINT",
-              "number": "0",
-              "description": "@attr [Description(\"Print\")]"
-            },
-            {
-              "name": "PR_NO_PRINT",
-              "number": "11",
-              "description": "@attr [Description(\"No print\")]"
-            },
-            {
-              "name": "PR_BY_PARENT",
-              "number": "21",
-              "description": "@attr [Description(\"By Parent\")]"
-            }
-          ]
-        },
-        {
-          "name": "proto_enum_property_access",
-          "longName": "proto_enum_property_access",
-          "fullName": "proto_config.proto_enum_property_access",
-          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
-          "values": [
-            {
-              "name": "P_FULL_ACCESS",
-              "number": "0",
-              "description": "@attr [Description(\"Full Access\")]"
-            },
-            {
-              "name": "P_HIDE",
-              "number": "11",
-              "description": "@attr [Description(\"Hide\")]"
-            },
-            {
-              "name": "P_VIEW",
-              "number": "21",
-              "description": "@attr [Description(\"View\")]\n\nwith history"
-            },
-            {
-              "name": "P_EDIT",
-              "number": "31",
-              "description": "@attr [Description(\"Edit\")]\n\nwith history"
-            },
-            {
-              "name": "P_BY_PARENT",
-              "number": "41",
-              "description": "@attr [Description(\"By Parent\")]"
             }
           ]
         },
@@ -3578,18 +3393,6 @@
               "defaultValue": ""
             },
             {
-              "name": "list_role_catalog_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_catalog_access",
-              "longType": "proto_role_catalog_access",
-              "fullType": "proto_config.proto_role_catalog_access",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "dic_positions_for_standart_properties",
               "description": "@attr [Browsable(false)]\nDictionary\u003cEnumDataType, StandartPropertyGuidPosition\u003e for sub properties (complex reference GD, TypeId, ...)",
               "label": "repeated",
@@ -4052,18 +3855,6 @@
               "type": "proto_group_list_reports",
               "longType": "proto_group_list_reports",
               "fullType": "proto_config.proto_group_list_reports",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "list_role_catalog_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_catalog_access",
-              "longType": "proto_role_catalog_access",
-              "fullType": "proto_config.proto_role_catalog_access",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -4634,18 +4425,6 @@
               "defaultValue": ""
             },
             {
-              "name": "list_role_constant_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_constant_access",
-              "longType": "proto_role_constant_access",
-              "fullType": "proto_config.proto_role_constant_access",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "ref_complex_object_gd_property_guid",
               "description": "@attr [Browsable(false)]\nextended property guid for reference complex object type guid",
               "label": "",
@@ -5210,18 +4989,6 @@
               "defaultValue": ""
             },
             {
-              "name": "list_role_detail_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_detail_access",
-              "longType": "proto_role_detail_access",
-              "fullType": "proto_config.proto_role_detail_access",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "dic_positions_for_standart_properties",
               "description": "@attr [Browsable(false)]\nDictionary\u003cEnumDataType, StandartPropertyGuidPosition\u003e for sub properties (complex reference GD, TypeId, ...)",
               "label": "repeated",
@@ -5540,18 +5307,6 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "list_role_document_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_document_access",
-              "longType": "proto_role_document_access",
-              "fullType": "proto_config.proto_role_document_access",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -5984,18 +5739,6 @@
               "type": "uint32",
               "longType": "uint32",
               "fullType": "uint32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "list_role_property_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_property_access",
-              "longType": "proto_role_property_access",
-              "fullType": "proto_config.proto_role_property_access",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -9110,18 +8853,6 @@
               "defaultValue": ""
             },
             {
-              "name": "list_role_constant_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_constant_access",
-              "longType": "proto_role_constant_access",
-              "fullType": "proto_config.proto_role_constant_access",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "dic_positions_for_standart_properties",
               "description": "@attr [Browsable(false)]\nDictionary\u003cEnumDataType, StandartPropertyGuidPosition\u003e for sub properties (complex reference GD, TypeId, ...)",
               "label": "repeated",
@@ -9332,18 +9063,6 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "list_role_detail_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_detail_access",
-              "longType": "proto_role_detail_access",
-              "fullType": "proto_config.proto_role_detail_access",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -9572,18 +9291,6 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "list_role_document_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_document_access",
-              "longType": "proto_role_document_access",
-              "fullType": "proto_config.proto_role_document_access",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -10406,18 +10113,6 @@
               "defaultValue": ""
             },
             {
-              "name": "list_role_property_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_property_access",
-              "longType": "proto_role_property_access",
-              "fullType": "proto_config.proto_role_property_access",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -10568,18 +10263,6 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "list_role_property_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_property_access",
-              "longType": "proto_role_property_access",
-              "fullType": "proto_config.proto_role_property_access",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -10958,12 +10641,132 @@
               "defaultValue": ""
             },
             {
+              "name": "default_constants_role_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Constants\")]\n@attr [Description(\"Default constant access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
+              "label": "",
+              "type": "proto_role_constants_settings",
+              "longType": "proto_role_constants_settings",
+              "fullType": "proto_config.proto_role_constants_settings",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "default_properties_role_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Properties\")]\n@attr [Description(\"Default property access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
+              "label": "",
+              "type": "proto_role_properties_settings",
+              "longType": "proto_role_properties_settings",
+              "fullType": "proto_config.proto_role_properties_settings",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "default_details_role_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Details\")]\n@attr [Description(\"Default detail access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
+              "label": "",
+              "type": "proto_role_details_settings",
+              "longType": "proto_role_details_settings",
+              "fullType": "proto_config.proto_role_details_settings",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "default_catalogs_role_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"Catalogs\")]\n@attr [Description(\"Default catalog access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
+              "label": "",
+              "type": "proto_role_catalogs_settings",
+              "longType": "proto_role_catalogs_settings",
+              "fullType": "proto_config.proto_role_catalogs_settings",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "default_documents_role_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(31)]\n@attr [DisplayName(\"Documents\")]\n@attr [Description(\"Default document access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
+              "label": "",
+              "type": "proto_role_documents_settings",
+              "longType": "proto_role_documents_settings",
+              "fullType": "proto_config.proto_role_documents_settings",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "default_reports_role_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(35)]\n@attr [DisplayName(\"Reports\")]\n@attr [Description(\"Default report access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
+              "label": "",
+              "type": "proto_role_reports_settings",
+              "longType": "proto_role_reports_settings",
+              "fullType": "proto_config.proto_role_reports_settings",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "dic_roles",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "DicRolesEntry",
+              "longType": "proto_group_list_roles.DicRolesEntry",
+              "fullType": "proto_config.proto_group_list_roles.DicRolesEntry",
+              "ismap": true,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
               "type": "proto_plugin_generator_node_settings",
               "longType": "proto_plugin_generator_node_settings",
               "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DicRolesEntry",
+          "longName": "proto_group_list_roles.DicRolesEntry",
+          "fullName": "proto_config.proto_group_list_roles.DicRolesEntry",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "key",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "",
+              "label": "",
+              "type": "proto_role_dic_node_rules",
+              "longType": "proto_role_dic_node_rules",
+              "fullType": "proto_config.proto_role_dic_node_rules",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -12344,18 +12147,6 @@
               "type": "proto_property_data_generator",
               "longType": "proto_property_data_generator",
               "fullType": "proto_config.proto_property_data_generator",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "list_role_property_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_property_access",
-              "longType": "proto_role_property_access",
-              "fullType": "proto_config.proto_role_property_access",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -14834,72 +14625,48 @@
               "defaultValue": ""
             },
             {
-              "name": "default_constant_print_access_settings",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Print Constants\")]\n@attr [Description(\"Default constant-print access for role\")]",
+              "name": "default_constants_role_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Constants\")]\n@attr [Description(\"Default constant access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
               "label": "",
-              "type": "proto_enum_print_access",
-              "longType": "proto_enum_print_access",
-              "fullType": "proto_config.proto_enum_print_access",
+              "type": "proto_role_constants_settings_with_null",
+              "longType": "proto_role_constants_settings_with_null",
+              "fullType": "proto_config.proto_role_constants_settings_with_null",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "default_constant_edit_access_settings",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Edit Constants\")]\n@attr [Description(\"Default constant-edit access for role\")]",
+              "name": "default_catalogs_role_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"Catalogs\")]\n@attr [Description(\"Default catalog access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
               "label": "",
-              "type": "proto_enum_constant_access",
-              "longType": "proto_enum_constant_access",
-              "fullType": "proto_config.proto_enum_constant_access",
+              "type": "proto_role_catalogs_settings_with_null",
+              "longType": "proto_role_catalogs_settings_with_null",
+              "fullType": "proto_config.proto_role_catalogs_settings_with_null",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "default_catalog_print_access_settings",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Print Catalog\")]\n@attr [Description(\"Default catalog-print access for role\")]",
+              "name": "default_documents_role_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(31)]\n@attr [DisplayName(\"Documents\")]\n@attr [Description(\"Default document access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
               "label": "",
-              "type": "proto_enum_print_access",
-              "longType": "proto_enum_print_access",
-              "fullType": "proto_config.proto_enum_print_access",
+              "type": "proto_role_documents_settings_with_null",
+              "longType": "proto_role_documents_settings_with_null",
+              "fullType": "proto_config.proto_role_documents_settings_with_null",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "default_catalog_edit_access_settings",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(14)]\n@attr [DisplayName(\"Edit Catalog\")]\n@attr [Description(\"Default catalog-edit access for role\")]",
+              "name": "default_reports_role_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(35)]\n@attr [DisplayName(\"Reports\")]\n@attr [Description(\"Default report access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
               "label": "",
-              "type": "proto_enum_catalog_detail_access",
-              "longType": "proto_enum_catalog_detail_access",
-              "fullType": "proto_config.proto_enum_catalog_detail_access",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "default_document_print_access_settings",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Print Document\")]\n@attr [Description(\"Default document-print access for role\")]",
-              "label": "",
-              "type": "proto_enum_print_access",
-              "longType": "proto_enum_print_access",
-              "fullType": "proto_config.proto_enum_print_access",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "default_document_edit_access_settings",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(16)]\n@attr [DisplayName(\"Edit Document\")]\n@attr [Description(\"Default document-edit access for role\")]",
-              "label": "",
-              "type": "proto_enum_document_access",
-              "longType": "proto_enum_document_access",
-              "fullType": "proto_config.proto_enum_document_access",
+              "type": "proto_role_reports_settings_with_null",
+              "longType": "proto_role_reports_settings_with_null",
+              "fullType": "proto_config.proto_role_reports_settings_with_null",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -14920,46 +14687,142 @@
           ]
         },
         {
-          "name": "proto_role_catalog_access",
-          "longName": "proto_role_catalog_access",
-          "fullName": "proto_config.proto_role_catalog_access",
-          "description": "@base VmValidatableWithSeverity",
+          "name": "proto_role_catalogs_settings",
+          "longName": "proto_role_catalogs_settings",
+          "fullName": "proto_config.proto_role_catalogs_settings",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "guid",
-              "description": "@attr [Browsable(false)]",
+              "name": "can_print",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Print\")]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "edit_access",
-              "description": "",
+              "name": "can_view",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"View\")]",
               "label": "",
-              "type": "proto_enum_catalog_detail_access",
-              "longType": "proto_enum_catalog_detail_access",
-              "fullType": "proto_config.proto_enum_catalog_detail_access",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "print_access",
-              "description": "",
+              "name": "can_view_fields",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Description(\"View fields\")]",
               "label": "",
-              "type": "proto_enum_print_access",
-              "longType": "proto_enum_print_access",
-              "fullType": "proto_config.proto_enum_print_access",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view_details",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [Description(\"View details\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_items",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [Description(\"Edit items\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_fields",
+              "description": "@attr [PropertyOrderAttribute(12)]\n@attr [Description(\"Edit fields\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_details",
+              "description": "@attr [PropertyOrderAttribute(13)]\n@attr [Description(\"Edit details\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_folders",
+              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [Description(\"Edit folders\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_move_items",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [Description(\"Move items\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_move_folders",
+              "description": "@attr [PropertyOrderAttribute(25)]\n@attr [Description(\"Move folders\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_mark_del",
+              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [Description(\"Mark delete\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -14968,46 +14831,154 @@
           ]
         },
         {
-          "name": "proto_role_constant_access",
-          "longName": "proto_role_constant_access",
-          "fullName": "proto_config.proto_role_constant_access",
-          "description": "@base VmValidatableWithSeverity",
+          "name": "proto_role_catalogs_settings_with_null",
+          "longName": "proto_role_catalogs_settings_with_null",
+          "fullName": "proto_config.proto_role_catalogs_settings_with_null",
+          "description": "@base VmEditable",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "guid",
-              "description": "@attr [Browsable(false)]",
+              "name": "can_print",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Print\")]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "edit_access",
-              "description": "",
+              "name": "can_view",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"View\")]",
               "label": "",
-              "type": "proto_enum_constant_access",
-              "longType": "proto_enum_constant_access",
-              "fullType": "proto_config.proto_enum_constant_access",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "print_access",
-              "description": "",
+              "name": "can_view_fields",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Description(\"View fields\")]",
               "label": "",
-              "type": "proto_enum_print_access",
-              "longType": "proto_enum_print_access",
-              "fullType": "proto_config.proto_enum_print_access",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view_details",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [Description(\"View details\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [Description(\"Edit\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_fields",
+              "description": "@attr [PropertyOrderAttribute(12)]\n@attr [Description(\"Edit fields\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_details",
+              "description": "@attr [PropertyOrderAttribute(13)]\n@attr [Description(\"Edit details\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_items",
+              "description": "@attr [PropertyOrderAttribute(14)]\n@attr [Description(\"Edit items\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_folders",
+              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [Description(\"Edit folders\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_move_items",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [Description(\"Move items\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_move_folders",
+              "description": "@attr [PropertyOrderAttribute(25)]\n@attr [Description(\"Move folders\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_mark_del",
+              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [Description(\"Mark delete\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -15016,46 +14987,46 @@
           ]
         },
         {
-          "name": "proto_role_detail_access",
-          "longName": "proto_role_detail_access",
-          "fullName": "proto_config.proto_role_detail_access",
-          "description": "@base VmValidatableWithSeverity",
+          "name": "proto_role_constants_settings",
+          "longName": "proto_role_constants_settings",
+          "fullName": "proto_config.proto_role_constants_settings",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "guid",
-              "description": "@attr [Browsable(false)]",
+              "name": "can_print",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Print\")]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "edit_access",
-              "description": "",
+              "name": "can_view",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"View\")]",
               "label": "",
-              "type": "proto_enum_catalog_detail_access",
-              "longType": "proto_enum_catalog_detail_access",
-              "fullType": "proto_config.proto_enum_catalog_detail_access",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "print_access",
-              "description": "",
+              "name": "can_edit",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [Description(\"Edit\")]",
               "label": "",
-              "type": "proto_enum_print_access",
-              "longType": "proto_enum_print_access",
-              "fullType": "proto_config.proto_enum_print_access",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -15064,46 +15035,46 @@
           ]
         },
         {
-          "name": "proto_role_document_access",
-          "longName": "proto_role_document_access",
-          "fullName": "proto_config.proto_role_document_access",
-          "description": "@base VmValidatableWithSeverity",
+          "name": "proto_role_constants_settings_with_null",
+          "longName": "proto_role_constants_settings_with_null",
+          "fullName": "proto_config.proto_role_constants_settings_with_null",
+          "description": "@base VmEditable",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "guid",
-              "description": "@attr [Browsable(false)]",
+              "name": "can_print",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Print\")]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "edit_access",
-              "description": "",
+              "name": "can_view",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"View\")]",
               "label": "",
-              "type": "proto_enum_document_access",
-              "longType": "proto_enum_document_access",
-              "fullType": "proto_config.proto_enum_document_access",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "print_access",
-              "description": "",
+              "name": "can_edit",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [Description(\"Edit\")]",
               "label": "",
-              "type": "proto_enum_print_access",
-              "longType": "proto_enum_print_access",
-              "fullType": "proto_config.proto_enum_print_access",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -15112,18 +15083,258 @@
           ]
         },
         {
-          "name": "proto_role_property_access",
-          "longName": "proto_role_property_access",
-          "fullName": "proto_config.proto_role_property_access",
-          "description": "@base VmValidatableWithSeverity",
+          "name": "proto_role_details_settings",
+          "longName": "proto_role_details_settings",
+          "fullName": "proto_config.proto_role_details_settings",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "guid",
-              "description": "@attr [Browsable(false)]",
+              "name": "can_print",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Print\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"View\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view_fields",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Description(\"View fields\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view_details",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [Description(\"View details\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [Description(\"Edit items\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_fields",
+              "description": "@attr [PropertyOrderAttribute(12)]\n@attr [Description(\"Edit fields\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_details",
+              "description": "@attr [PropertyOrderAttribute(13)]\n@attr [Description(\"Edit details\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_mark_del",
+              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [Description(\"Mark delete\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_details_settings_with_null",
+          "longName": "proto_role_details_settings_with_null",
+          "fullName": "proto_config.proto_role_details_settings_with_null",
+          "description": "@base VmEditable",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "can_print",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Print\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"View\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view_fields",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Description(\"View fields\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view_details",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [Description(\"View details\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [Description(\"Edit items\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_fields",
+              "description": "@attr [PropertyOrderAttribute(12)]\n@attr [Description(\"Edit fields\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_details",
+              "description": "@attr [PropertyOrderAttribute(13)]\n@attr [Description(\"Edit details\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_mark_del",
+              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [Description(\"Mark delete\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_dic_node_rules",
+          "longName": "proto_role_dic_node_rules",
+          "fullName": "proto_config.proto_role_dic_node_rules",
+          "description": "@base VmBindable",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "dic_node_rules",
+              "description": "",
+              "label": "repeated",
+              "type": "DicNodeRulesEntry",
+              "longType": "proto_role_dic_node_rules.DicNodeRulesEntry",
+              "fullType": "proto_config.proto_role_dic_node_rules.DicNodeRulesEntry",
+              "ismap": true,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DicNodeRulesEntry",
+          "longName": "proto_role_dic_node_rules.DicNodeRulesEntry",
+          "fullName": "proto_config.proto_role_dic_node_rules.DicNodeRulesEntry",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "key",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -15134,24 +15345,552 @@
               "defaultValue": ""
             },
             {
-              "name": "edit_access",
+              "name": "value",
               "description": "",
               "label": "",
-              "type": "proto_enum_property_access",
-              "longType": "proto_enum_property_access",
-              "fullType": "proto_config.proto_enum_property_access",
+              "type": "proto_role_from_node",
+              "longType": "proto_role_from_node",
+              "fullType": "proto_config.proto_role_from_node",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_documents_settings",
+          "longName": "proto_role_documents_settings",
+          "fullName": "proto_config.proto_role_documents_settings",
+          "description": "@base BaseSettings",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "can_print",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Print\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "print_access",
+              "name": "can_view",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"View\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view_fields",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Description(\"View fields\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view_details",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [Description(\"View details\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [Description(\"Edit\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_fields",
+              "description": "@attr [PropertyOrderAttribute(12)]\n@attr [Description(\"Edit fields\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_details",
+              "description": "@attr [PropertyOrderAttribute(13)]\n@attr [Description(\"Edit details\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_post",
+              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [Description(\"Post\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view_post_data",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [Description(\"View post data\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_unpost",
+              "description": "@attr [PropertyOrderAttribute(25)]\n@attr [Description(\"Unpost\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_mark_del",
+              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [Description(\"Mark delete\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_documents_settings_with_null",
+          "longName": "proto_role_documents_settings_with_null",
+          "fullName": "proto_config.proto_role_documents_settings_with_null",
+          "description": "@base VmEditable",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "can_print",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Print\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"View\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view_fields",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Description(\"View fields\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view_details",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [Description(\"View details\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [Description(\"Edit\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_fields",
+              "description": "@attr [PropertyOrderAttribute(12)]\n@attr [Description(\"Edit fields\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit_details",
+              "description": "@attr [PropertyOrderAttribute(13)]\n@attr [Description(\"Edit details\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_post",
+              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [Description(\"Post\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view_post_data",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [Description(\"View post data\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_unpost",
+              "description": "@attr [PropertyOrderAttribute(25)]\n@attr [Description(\"Unpost\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_mark_del",
+              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [Description(\"Mark delete\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_from_node",
+          "longName": "proto_role_from_node",
+          "fullName": "proto_config.proto_role_from_node",
+          "description": "@base VmEditable",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "constant_settings",
               "description": "",
               "label": "",
-              "type": "proto_enum_print_access",
-              "longType": "proto_enum_print_access",
-              "fullType": "proto_config.proto_enum_print_access",
+              "type": "proto_role_constants_settings_with_null",
+              "longType": "proto_role_constants_settings_with_null",
+              "fullType": "proto_config.proto_role_constants_settings_with_null",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "node_role",
+              "defaultValue": ""
+            },
+            {
+              "name": "property_settings",
+              "description": "",
+              "label": "",
+              "type": "proto_role_properties_settings_with_null",
+              "longType": "proto_role_properties_settings_with_null",
+              "fullType": "proto_config.proto_role_properties_settings_with_null",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "node_role",
+              "defaultValue": ""
+            },
+            {
+              "name": "detail_settings",
+              "description": "",
+              "label": "",
+              "type": "proto_role_details_settings_with_null",
+              "longType": "proto_role_details_settings_with_null",
+              "fullType": "proto_config.proto_role_details_settings_with_null",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "node_role",
+              "defaultValue": ""
+            },
+            {
+              "name": "catalog_settings",
+              "description": "",
+              "label": "",
+              "type": "proto_role_catalogs_settings_with_null",
+              "longType": "proto_role_catalogs_settings_with_null",
+              "fullType": "proto_config.proto_role_catalogs_settings_with_null",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "node_role",
+              "defaultValue": ""
+            },
+            {
+              "name": "document_settings",
+              "description": "",
+              "label": "",
+              "type": "proto_role_documents_settings_with_null",
+              "longType": "proto_role_documents_settings_with_null",
+              "fullType": "proto_config.proto_role_documents_settings_with_null",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "node_role",
+              "defaultValue": ""
+            },
+            {
+              "name": "report_settings",
+              "description": "",
+              "label": "",
+              "type": "proto_role_reports_settings_with_null",
+              "longType": "proto_role_reports_settings_with_null",
+              "fullType": "proto_config.proto_role_reports_settings_with_null",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "node_role",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_properties_settings",
+          "longName": "proto_role_properties_settings",
+          "fullName": "proto_config.proto_role_properties_settings",
+          "description": "@base BaseSettings",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "can_print",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Print\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"View\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [Description(\"Edit items\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_properties_settings_with_null",
+          "longName": "proto_role_properties_settings_with_null",
+          "fullName": "proto_config.proto_role_properties_settings_with_null",
+          "description": "@base VmEditable",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "can_print",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Print\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"View\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_edit",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [Description(\"Edit items\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_reports_settings",
+          "longName": "proto_role_reports_settings",
+          "fullName": "proto_config.proto_role_reports_settings",
+          "description": "@base BaseSettings",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "can_print",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Print\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"View\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_reports_settings_with_null",
+          "longName": "proto_role_reports_settings_with_null",
+          "fullName": "proto_config.proto_role_reports_settings_with_null",
+          "description": "@base VmEditable",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "can_print",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Print\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "can_view",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [Description(\"View\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
