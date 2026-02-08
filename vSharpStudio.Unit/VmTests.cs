@@ -518,7 +518,7 @@ namespace vSharpStudio.Unit
 
             // Map Money Accumulator to property with low accuracy
             var p_num28_5 = doc1.AddPropertyNumerical("num28_5", 28, 5);
-            Register.MappingRegPropertyAdd(reg1, doc1.Guid, Property.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_MONEY), p_num28_5.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, cfg.Model.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_MONEY), p_num28_5.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.AreEqual(0, cfg.CountWarnings);
             Assert.AreEqual(2, cfg.CountInfos);
@@ -529,9 +529,9 @@ namespace vSharpStudio.Unit
             valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' has accuracy less than accuracy 'num28_5' property of 'doc1' document."));
 
             // Map Money Accumulator
-            Register.MappingRegPropertyRemove(reg1, doc1.Guid, Property.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_MONEY));
+            Register.MappingRegPropertyRemove(reg1, doc1.Guid, cfg.Model.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_MONEY));
             var p_num10_2 = doc1.AddPropertyNumerical("num10_2", 10, 2);
-            Register.MappingRegPropertyAdd(reg1, doc1.Guid, Property.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_MONEY), p_num10_2.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, cfg.Model.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_MONEY), p_num10_2.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.AreEqual(0, cfg.CountInfos);
             Assert.AreEqual(0, cfg.CountWarnings);
@@ -551,8 +551,8 @@ namespace vSharpStudio.Unit
             valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Accumulator property 'AccumulatedMoney' not mapped on a same record as a deepest dimension 'cat_dimension1' of 'doc1' document."));
             // Map Money Accumulator on a same record as deepest dimension
             var pd_num10_2 = det1.AddPropertyNumerical("num10_2", 10, 2);
-            Register.MappingRegPropertyRemove(reg1, doc1.Guid, Property.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_MONEY));
-            Register.MappingRegPropertyAdd(reg1, doc1.Guid, Property.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_MONEY), pd_num10_2.Guid);
+            Register.MappingRegPropertyRemove(reg1, doc1.Guid, cfg.Model.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_MONEY));
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, cfg.Model.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_MONEY), pd_num10_2.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.AreEqual(0, cfg.CountInfos);
             Assert.AreEqual(0, cfg.CountWarnings);
@@ -561,7 +561,7 @@ namespace vSharpStudio.Unit
 
             // Map Qty Accumulator on a same record as deepest dimension
             var pd_num10_4 = det1.AddPropertyNumerical("num10_4", 10, 4);
-            Register.MappingRegPropertyAdd(reg1, doc1.Guid, Property.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_QTY), pd_num10_4.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, cfg.Model.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_QTY), pd_num10_4.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.AreEqual(0, cfg.CountInfos);
             Assert.AreEqual(0, cfg.CountWarnings);
@@ -569,7 +569,7 @@ namespace vSharpStudio.Unit
 
             // Add dimension
             var dim2 = (RegisterDimension)reg1.AddDimension("cat_dimension2");
-            Register.MappingRegPropertyAdd(reg1, doc1.Guid, Property.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_QTY), pd_num10_4.Guid);
+            Register.MappingRegPropertyAdd(reg1, doc1.Guid, cfg.Model.GetPropertyGuid(reg1, EnumSpecialPropertyType.ACCUMULATOR_QTY), pd_num10_4.Guid);
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.AreEqual(0, cfg.CountInfos);
             Assert.AreEqual(0, cfg.CountWarnings);

@@ -106,6 +106,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(c != null);
             FormGridSystemColumn? col = null;
             FormAutoLayoutBlock? ablock = null;
+            var model = this.Cfg.Model;
             switch (formType)
             {
                 case FormType.ListComboBox:
@@ -117,22 +118,22 @@ namespace vSharpStudio.vm.ViewModels
                         var tree = (FormTree)ablock.AddTree();
                         if (c.Folder.GetUseCodeProperty())
                             if (c.CodePropertySettings.SequenceType == EnumCodeType.Number)
-                                tree.ListGuidProperties.Add(Property.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_INT));
+                                tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_INT));
                             else
-                                tree.ListGuidProperties.Add(Property.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_STRING));
+                                tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_STRING));
                         if (c.Folder.GetUseNameProperty())
-                            tree.ListGuidProperties.Add(Property.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.NAME));
+                            tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.NAME));
                     }
                     col = (FormGridSystemColumn)row.AddGridSystemColumn();
                     ablock = (FormAutoLayoutBlock)col.AddAutoLayoutBlock();
                     var dg = (FormDataGrid)ablock.AddDataGrid();
                     if (c.GetUseCodeProperty())
                         if (c.CodePropertySettings.SequenceType == EnumCodeType.Number)
-                            dg.ListGuidProperties.Add(Property.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_INT));
+                            dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_INT));
                         else
-                            dg.ListGuidProperties.Add(Property.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_STRING));
+                            dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_STRING));
                     if (c.GetUseNameProperty())
-                        dg.ListGuidProperties.Add(Property.GetPropertyGuid(c, EnumSpecialPropertyType.NAME));
+                        dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.NAME));
                     break;
                 case FormType.ListDataGrid:
                     form.Name = "ViewListCustom";
@@ -143,26 +144,26 @@ namespace vSharpStudio.vm.ViewModels
                         var tree = (FormTree)ablock.AddTree();
                         if (c.Folder.GetUseCodeProperty())
                             if (c.CodePropertySettings.SequenceType == EnumCodeType.Number)
-                                tree.ListGuidProperties.Add(Property.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_INT));
+                                tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_INT));
                             else
-                                tree.ListGuidProperties.Add(Property.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_STRING));
+                                tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_STRING));
                         if (c.Folder.GetUseNameProperty())
-                            tree.ListGuidProperties.Add(Property.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.NAME));
+                            tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.NAME));
                         if (c.Folder.GetUseDescriptionProperty())
-                            tree.ListGuidProperties.Add(Property.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.DESCRIPTION));
+                            tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.DESCRIPTION));
                     }
                     col = (FormGridSystemColumn)row.AddGridSystemColumn();
                     ablock = (FormAutoLayoutBlock)col.AddAutoLayoutBlock();
                     dg = (FormDataGrid)ablock.AddDataGrid();
                     if (c.GetUseCodeProperty())
                         if (c.CodePropertySettings.SequenceType == EnumCodeType.Number)
-                            dg.ListGuidProperties.Add(Property.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_INT));
+                            dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_INT));
                         else
-                            dg.ListGuidProperties.Add(Property.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_STRING));
+                            dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_STRING));
                     if (c.GetUseNameProperty())
-                        dg.ListGuidProperties.Add(Property.GetPropertyGuid(c, EnumSpecialPropertyType.NAME));
+                        dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.NAME));
                     if (c.GetUseDescriptionProperty())
-                        dg.ListGuidProperties.Add(Property.GetPropertyGuid(c, EnumSpecialPropertyType.DESCRIPTION));
+                        dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.DESCRIPTION));
                     break;
                 default:
                     throw new NotImplementedException();

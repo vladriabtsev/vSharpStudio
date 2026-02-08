@@ -9,6 +9,44 @@ namespace vSharpStudio.common
         string PKeyTypeStr { get; }
         IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings?> DicGenNodeSettings { get; }
         uint LastTypeShortRefIdForNode(ITreeConfigNode n, uint shortId);
+
+        #region Properties
+        IStandartPropertyGuidPosition GetGuidPosition(ITreeConfigNode node, EnumSpecialPropertyType enumDataType);
+        string GetPropertyGuid(ITreeConfigNode node, EnumSpecialPropertyType enumDataType);
+        string GetPropertyCodeGuid(ITreeConfigNode node);
+        IProperty GetPropertyCodeStr(ITreeConfigNode node, bool isNullable, uint length);
+        IProperty GetPropertyCodeInt(ITreeConfigNode node, bool isNullable, uint length);
+        IProperty GetPropertyName(ITreeConfigNode node, bool isNullable, uint length);
+        IProperty GetPropertyDocumentDate(ITreeConfigNode node);
+        IProperty GetPropertyDocNumberString(ITreeConfigNode node, uint length);
+        IProperty GetPropertyDocNumberInt(ITreeConfigNode node, uint length);
+        IProperty GetPropertyDescription(ITreeConfigNode node, bool isNullable, uint length);
+        IProperty GetPropertyIsFolder(ITreeConfigNode node, bool isNullable);
+        IProperty GetPropertyIsPosted(ITreeConfigNode node, bool isNullable);
+        IProperty GetPropertyDocShortTypeId(ITreeConfigNode node, bool isNullable);
+        IProperty GetPropertyBalanceOnDateInt(ITreeConfigNode node, bool isPKey);
+        IProperty GetPropertyDateTimeUtc(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MKS_TIME_ACC);
+        IProperty GetPropertyVersion(ITreeConfigNode node);
+        IProperty GetPropertyVersionPrev(ITreeConfigNode node);
+        IProperty GetPropertyNumber(ITreeConfigNode node, EnumSpecialPropertyType enumDataType, uint length, uint accuracy, bool isNullable);
+        IProperty GetPropertyRefDimension(IRegisterDimension node, bool isNullable = false);
+        IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable = false, bool is_pkey = false);
+        IProperty GetPropertySpecial(ITreeConfigNode node, EnumSpecialPropertyType propertyType, bool? isNullable = null, ITreeConfigNode? toNode = null);
+
+        IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, uint accuracy, bool isNullable);
+        IDataType GetDataTypeFromMaxValue(ITreeConfigNode? parent, System.Numerics.BigInteger maxValue, bool isPositive, bool isNullable, bool isPKey = false);
+        IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, bool isPositive, bool isNullable);
+        IDataType GetDataTypeInt(ITreeConfigNode? parent, bool isPositive, bool isNullable);
+        IDataType GetDataTypeString(ITreeConfigNode? parent, uint length, bool isNullable);
+        IDataType GetDataTypeDateTimeUtc(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable);
+        IDataType GetDataTypeStringFixed(ITreeConfigNode? parent, uint length, bool isNullable);
+        IDataType GetDataTypeStringGuid(ITreeConfigNode? parent, bool isNullable);
+        IDataType GetDataTypeBool(ITreeConfigNode? parent, bool isNullable);
+        IDataType GetIdDataType(ITreeConfigNode parent, bool isNullable);
+        IDataType GetIdRefDataType(ITreeConfigNode? parent, bool isNullable);
+
+        #endregion Properties
+
         // Any
         IDataType GetDataType(ITreeConfigNode? parent, int enumDataType, uint length, uint accuracy, bool isPositive, string objectGuid, bool isNullable);
         IDataType GetDataType(ITreeConfigNode? parent, EnumDataType enumDataType, uint length, bool isPositive, bool isNullable);

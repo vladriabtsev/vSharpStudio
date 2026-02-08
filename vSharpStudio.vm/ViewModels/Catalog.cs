@@ -468,12 +468,13 @@ namespace vSharpStudio.vm.ViewModels
             IProperty? prp = null!;
             if (this.GetUseCodeProperty())
             {
+                var model = this.Cfg.Model;
                 prp = this.CodePropertySettings.SequenceType switch
                 {
                     EnumCodeType.Number =>
-                        Property.GetPropertyCodeInt(this, false, this.CodePropertySettings.MaxSequenceLength),
-                    EnumCodeType.Text => 
-                        Property.GetPropertyCodeStr(this, false, this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length),
+                        model.GetPropertyCodeInt(this, false, this.CodePropertySettings.MaxSequenceLength),
+                    EnumCodeType.Text =>
+                        model.GetPropertyCodeStr(this, false, this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length),
                     _ => throw new NotImplementedException(),
                 };
             }
@@ -481,7 +482,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             if (this.UseTree)
             {
@@ -489,11 +491,11 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (this.UseItemsAtRoot)
                     {
-                        prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER, true, this.Folder);
+                        prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER, true, this.Folder);
                     }
                     else
                     {
-                        prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER, false, this.Folder);
+                        prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER, false, this.Folder);
                     }
                     res.Add(prp);
                 }
@@ -501,20 +503,20 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (this.UseItemsAtRoot)
                     {
-                        prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT, true);
+                        prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT, true);
                     }
                     else
                     {
-                        prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT, false);
+                        prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT, false);
                     }
                     res.Add(prp);
-                    prp = Property.GetPropertyIsFolder(this, false);
+                    prp = model.GetPropertyIsFolder(this, false);
                     res.Add(prp);
                 }
             }
             if (isOptimistic)
             {
-                prp = Property.GetPropertyVersion(this);
+                prp = model.GetPropertyVersion(this);
                 res.Add(prp);
             }
         }
@@ -540,7 +542,8 @@ namespace vSharpStudio.vm.ViewModels
             IProperty prp = null!;
             if (this.GetUseNameProperty())
             {
-                prp = Property.GetPropertyName(this, false, this.MaxNameLength);
+                var model = this.Cfg.Model;
+                prp = model.GetPropertyName(this, false, this.MaxNameLength);
                 lst.Add(prp);
             }
             return prp;
@@ -550,7 +553,8 @@ namespace vSharpStudio.vm.ViewModels
             IProperty? prp = null!;
             if (this.GetUseDescriptionProperty())
             {
-                prp = Property.GetPropertyDescription(this, false, this.MaxDescriptionLength);
+                var model = this.Cfg.Model;
+                prp = model.GetPropertyDescription(this, false, this.MaxDescriptionLength);
                 lst.Add(prp);
             }
             return prp;
@@ -563,7 +567,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(isRegisterBalance == null);
             var res = new List<IProperty>();
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             return res;
         }
@@ -573,7 +578,8 @@ namespace vSharpStudio.vm.ViewModels
             if (!isExcludeSpecial)
                 this.GetSpecialProperties(res, isOptimistic);
             uint pos = this.GroupProperties.LastGenPosition;
-            foreach (var t in this.Cfg.Model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations)
+            var model = this.Cfg.Model;
+            foreach (var t in model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations)
             {
                 if (t.GuidObj1 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY))
                 {
@@ -583,7 +589,7 @@ namespace vSharpStudio.vm.ViewModels
                         var prp = (Property)t.PropertyRefObj2;
                         prp.Position = ++pos;
                         //prp.IsNullable = t.IsRelationReferenceNullable;
-                        //var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
+                        //var prp = model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
                     }
                     else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
@@ -591,7 +597,7 @@ namespace vSharpStudio.vm.ViewModels
                         var prp = (Property)t.PropertyRefObj2;
                         prp.Position = ++pos;
                         //prp.IsNullable = t.IsRelationReferenceNullable;
-                        //var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
+                        //var prp = model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
                     }
                     else
@@ -605,7 +611,7 @@ namespace vSharpStudio.vm.ViewModels
                         var prp = (Property)t.PropertyRefObj1;
                         prp.Position = ++pos;
                         //prp.IsNullable = t.IsRelationReferenceNullable;
-                        //var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
+                        //var prp = model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
                     }
                     else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
@@ -613,7 +619,7 @@ namespace vSharpStudio.vm.ViewModels
                         var prp = (Property)t.PropertyRefObj1;
                         prp.Position = ++pos;
                         //prp.IsNullable = t.IsRelationReferenceNullable;
-                        //var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
+                        //var prp = model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
                     }
                     else
@@ -698,15 +704,16 @@ namespace vSharpStudio.vm.ViewModels
         }
         public ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen)
         {
+            var model = this.Cfg.Model;
             ViewTreeData? viewTreeData = null;
             ViewListData? viewListData = null;
             Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             IProperty? pRefTreeParent = null;
             IProperty? pRefParent = null;
             if (this.UseTree)
             {
-                pRefTreeParent = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT);
+                pRefTreeParent = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT);
                 if (this.UseSeparateTreeForFolders) // self tree and separate data grid for children
                 {
                     viewTreeData = new ViewTreeData(prp, pRefTreeParent, null);
@@ -719,7 +726,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else // only self tree
                 {
-                    var pIsFolder = Property.GetPropertyIsFolder(this, false);
+                    var pIsFolder = model.GetPropertyIsFolder(this, false);
                     viewTreeData = new ViewTreeData(prp, pRefParent, pIsFolder);
                     var lst = this.SelectViewProperties(formType, this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
                     viewTreeData.ListViewProperties.AddRange(lst);
@@ -817,7 +824,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.dicCatalogAccess[tt.Guid] = tt;
             }
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var t in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (!this.dicCatalogAccess.ContainsKey(t.Guid))
                 {
@@ -884,7 +892,8 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access)
         {
             var roles = new List<string>();
-            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (GetRoleCatalogAccess(role) == access)
                     roles.Add(role.Name);
@@ -894,7 +903,8 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access)
         {
             var roles = new List<string>();
-            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (GetRoleCatalogPrint(role) == access)
                     roles.Add(role.Name);

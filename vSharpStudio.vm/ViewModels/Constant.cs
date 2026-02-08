@@ -534,7 +534,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.dicConstantAccess[tt.Guid] = tt;
             }
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var t in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (!this.dicConstantAccess.ContainsKey(t.Guid))
                 {
@@ -576,7 +577,8 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<string> GetRolesByAccess(EnumConstantAccess access)
         {
             var roles = new List<string>();
-            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (GetRoleConstantAccess(role) == access)
                     roles.Add(role.Name);
@@ -586,7 +588,8 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access)
         {
             var roles = new List<string>();
-            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (GetRoleConstantPrint(role) == access)
                     roles.Add(role.Name);
@@ -622,7 +625,8 @@ namespace vSharpStudio.vm.ViewModels
                 ParentConstant = this,
                 Guid = guid
             };
-            node.DataType = (DataType)Property.GetIdRefDataType(node, true);
+            var model = this.Cfg.Model;
+            node.DataType = (DataType)model.GetIdRefDataType(node, true);
             node.DataType.IsPKey = false;
             node.IsNullable = true;
             node.IsComplexRefId = true;
@@ -638,7 +642,8 @@ namespace vSharpStudio.vm.ViewModels
                 Name = subName,
                 Guid = guid
             };
-            node.DataType = (DataType)Property.GetDataTypeInt(node, false, true);
+            var model = this.Cfg.Model;
+            node.DataType = (DataType)model.GetDataTypeInt(node, false, true);
             node.IsNullable = true;
             node.ParentConstant = this;
             node.IsComplexRefGuid = true;
@@ -651,7 +656,8 @@ namespace vSharpStudio.vm.ViewModels
                 Name = subName,
                 Guid = guid
             };
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = this.Cfg.Model.ComplexPropertyRefDescrLength };
+            var model = this.Cfg.Model;
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = model.ComplexPropertyRefDescrLength };
             node.IsNullable = true;
             node.ParentConstant = this;
             node.IsComplexDesc = true;

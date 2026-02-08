@@ -166,6 +166,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.ListObjectDocRefs).Custom((lst, cntx) =>
             {
                 var r = (Register)cntx.InstanceToValidate;
+                var model = r.Cfg.Model;
                 foreach (var t in lst)
                 {
                     var doc = (Document)r.Cfg.DicNodes[t.ForeignObjectGuid];
@@ -302,7 +303,7 @@ namespace vSharpStudio.vm.ViewModels
                                 found = false;
                                 foreach (var dpm in dtr.ListMappings)
                                 {
-                                    if (dpm.RegPropGuid == Property.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_MONEY))
+                                    if (dpm.RegPropGuid == model.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_MONEY))
                                     {
                                         if (!string.IsNullOrWhiteSpace(dpm.DocPropGuid))
                                         {
@@ -358,7 +359,7 @@ namespace vSharpStudio.vm.ViewModels
                                 found = false;
                                 foreach (var dpm in dtr.ListMappings)
                                 {
-                                    if (dpm.RegPropGuid == Property.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_QTY))
+                                    if (dpm.RegPropGuid == model.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_QTY))
                                     {
                                         if (!string.IsNullOrWhiteSpace(dpm.DocPropGuid))
                                         {
@@ -456,11 +457,11 @@ namespace vSharpStudio.vm.ViewModels
                             }
                             if (string.IsNullOrEmpty(regPropName))
                             {
-                                if (Property.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_MONEY) == dpm.RegPropGuid)
+                                if (model.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_MONEY) == dpm.RegPropGuid)
                                 {
                                     regPropName = r.PropertyMoneyAccumulatorName;
                                 }
-                                else if (Property.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_QTY) == dpm.RegPropGuid)
+                                else if (model.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_QTY) == dpm.RegPropGuid)
                                 {
                                     regPropName = r.PropertyQtyAccumulatorName;
                                 }
@@ -546,7 +547,7 @@ namespace vSharpStudio.vm.ViewModels
                                 var deepestDimension = (RegisterDimension)r.Cfg.DicNodes[deepest.RegPropGuid];
                                 foreach (var pm in propMappings)
                                 {
-                                    if (r.UseMoneyAccumulator && Property.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_MONEY) == pm.RegPropGuid)
+                                    if (r.UseMoneyAccumulator && model.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_MONEY) == pm.RegPropGuid)
                                     {
                                         if (deepest.BranchPath != pm.BranchPath)
                                         {
@@ -558,7 +559,7 @@ namespace vSharpStudio.vm.ViewModels
                                             cntx.AddFailure(vf);
                                         }
                                     }
-                                    if (r.UseQtyAccumulator && Property.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_QTY) == pm.RegPropGuid)
+                                    if (r.UseQtyAccumulator && model.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_QTY) == pm.RegPropGuid)
                                     {
                                         if (deepest.BranchPath != pm.BranchPath)
                                         {

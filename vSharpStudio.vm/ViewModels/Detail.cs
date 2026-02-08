@@ -63,17 +63,18 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string GetDebuggerDisplay(bool isOptimistic)
         {
+            var model = this.Cfg.Model;
             var sb = new StringBuilder();
             sb.Append(this.Name);
             sb.Append(", ");
-            sb.Append(this.Cfg.Model.PKeyName);
+            sb.Append(model.PKeyName);
             sb.Append(":{");
-            sb.Append(this.Cfg.Model.PKeyName);
+            sb.Append(model.PKeyName);
             sb.Append(",nq}");
             if (isOptimistic)
             {
                 sb.Append(" RecVer:{");
-                sb.Append(this.Cfg.Model.RecordVersionFieldName);
+                sb.Append(model.RecordVersionFieldName);
                 sb.Append(",nq}");
             }
             sb.Append(" Ref");
@@ -357,7 +358,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(isRegisterBalance == null);
             var res = new List<IProperty>();
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             return res;
         }
@@ -377,24 +379,25 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
 
             if (this.ParentGroupListDetails.Parent is Catalog c)
-                prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG, false, c);
+                prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG, false, c);
             else if (this.ParentGroupListDetails.Parent is Detail dt)
-                prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DETAIL, false, dt);
+                prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DETAIL, false, dt);
             else if (this.ParentGroupListDetails.Parent is Document d) // Timeline is parent record
-                prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DOCUMENT, false, d);
+                prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DOCUMENT, false, d);
             else if (this.ParentGroupListDetails.Parent is CatalogFolder cf)
-                prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER, false, cf);
+                prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER, false, cf);
             else
                 ThrowHelper.ThrowNotSupportedException();
             res.Add(prp);
 
             if (isOptimistic)
             {
-                prp = Property.GetPropertyVersion(this);
+                prp = model.GetPropertyVersion(this);
                 res.Add(prp);
             }
         }
@@ -421,7 +424,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             ViewListData? viewListData = null;
             Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             viewListData = new ViewListData(prp);
             var lst = this.SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
             viewListData.ListViewProperties.AddRange(lst);
@@ -565,7 +569,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.dicDetailAccess[tt.Guid] = tt;
             }
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var t in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (!this.dicDetailAccess.ContainsKey(t.Guid))
                 {
@@ -689,7 +694,8 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access)
         {
             var roles = new List<string>();
-            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (GetRoleDetailAccess(role) == access)
                     roles.Add(role.Name);
@@ -699,7 +705,8 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access)
         {
             var roles = new List<string>();
-            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (GetRoleDetailPrint(role) == access)
                     roles.Add(role.Name);

@@ -337,7 +337,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(isRegisterBalance == null);
             var res = new List<IProperty>();
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             return res;
         }
@@ -350,7 +351,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.GetDocNumberProperty(res);
             uint pos = this.GroupProperties.LastGenPosition;
-            foreach (var t in this.Cfg.Model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations)
+            var model = this.Cfg.Model;
+            foreach (var t in model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations)
             {
                 if (t.GuidObj1 == this.Guid && (t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS || t.RefType == EnumOneToOneRefType.ONE_TO_ONE_REF_FROM_FIRST_TO_SECOND_ONLY))
                 {
@@ -359,7 +361,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         var prp = (Property)t.PropertyRefObj2;
                         prp.Position = ++pos;
-                        //var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
+                        //var prp = model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
                         if (!isOnlyShared)
                             res.Add(prp);
                     }
@@ -367,7 +369,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         var prp = (Property)t.PropertyRefObj2;
                         prp.Position = ++pos;
-                        //var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
+                        //var prp = model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
                         if (!isOnlyShared)
                             res.Add(prp);
                     }
@@ -381,7 +383,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         var prp = (Property)t.PropertyRefObj1;
                         prp.Position = ++pos;
-                        //var prp = this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
+                        //var prp = model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
                         if (!isOnlyShared)
                             res.Add(prp);
                     }
@@ -389,7 +391,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         var prp = (Property)t.PropertyRefObj1;
                         prp.Position = ++pos;
-                        //var prp = this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
+                        //var prp = model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
                         if (!isOnlyShared)
                             res.Add(prp);
                     }
@@ -422,11 +424,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             if (isOptimistic)
             {
-                prp = Property.GetPropertyVersion(this);
+                prp = model.GetPropertyVersion(this);
                 res.Add(prp);
             }
         }
@@ -447,7 +450,7 @@ namespace vSharpStudio.vm.ViewModels
         //    ViewListData? viewListData = null;
         //    var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
         //    Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
-        //    var pId = model.GetPropertyPkId(this.GroupProperties, this.Cfg.Model.PropertyIdGuid);
+        //    var pId = model.GetPropertyPkId(this.GroupProperties, model.PropertyIdGuid);
         //    viewListData = new ViewListData(pId);
         //    var lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
         //    viewListData.ListViewProperties.AddRange(lst);
@@ -455,14 +458,15 @@ namespace vSharpStudio.vm.ViewModels
         //}
         public IForm GetForm(FormType ftype, string guidAppPrjGen)
         {
+            var model = this.Cfg.Model;
             var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
             if (f == null)
             {
                 var lstp = new List<IProperty>();
                 this.GetDocNumberProperty(lstp);
-                var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+                var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
                 lstp.Add(prp);
-                prp = Property.GetPropertyDocumentDate(this);
+                prp = model.GetPropertyDocumentDate(this);
                 prp.IsSimple = true;
                 lstp.Add(prp);
                 f = new Form(this.GroupForms, ftype, lstp);
@@ -474,9 +478,9 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     lstp.Add((IProperty)t);
                 }
-                var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+                var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
                 lstp.Add(prp);
-                prp = Property.GetPropertyDocumentDate(this);
+                prp = model.GetPropertyDocumentDate(this);
                 prp.IsSimple = true;
                 lstp.Add(prp);
                 f = new Form(this.GroupForms, ftype, lstp);
@@ -495,10 +499,11 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetDocNumberProperty(List<IProperty> lst)
         {
             Debug.Assert(this.Sequence != null);
+            var model = this.Cfg.Model;
             var prp = this.Sequence.SequenceType switch
             {
-                EnumCodeType.Number => Property.GetPropertyDocNumberInt(this, this.Sequence.MaxSequenceLength),
-                EnumCodeType.Text => Property.GetPropertyDocNumberString(this, this.Sequence.MaxSequenceLength + (uint)this.Sequence.Prefix.Length),
+                EnumCodeType.Number => model.GetPropertyDocNumberInt(this, this.Sequence.MaxSequenceLength),
+                EnumCodeType.Text => model.GetPropertyDocNumberString(this, this.Sequence.MaxSequenceLength + (uint)this.Sequence.Prefix.Length),
                 _ => throw new NotImplementedException(),
             };
             lst.Add(prp);
@@ -608,7 +613,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.dicDocumentAccess[tt.Guid] = tt;
             }
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var t in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (!this.dicDocumentAccess.ContainsKey(t.Guid))
                 {
@@ -676,7 +682,8 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<string> GetRolesByAccess(EnumDocumentAccess access)
         {
             var roles = new List<string>();
-            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (GetRoleDocumentAccess(role) == access)
                     roles.Add(role.Name);
@@ -686,7 +693,8 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access)
         {
             var roles = new List<string>();
-            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (GetRoleDocumentPrint(role) == access)
                     roles.Add(role.Name);
@@ -707,7 +715,8 @@ namespace vSharpStudio.vm.ViewModels
 
             #region ListNotSelectedRegisters
             this.ListNotSelectedRegisters.Clear();
-            foreach (var t in this.Cfg.Model.GroupDocuments.GroupRegisters.ListRegisters)
+            var model = this.Cfg.Model;
+            foreach (var t in model.GroupDocuments.GroupRegisters.ListRegisters)
             {
                 bool found = false;
                 foreach (var tt in t.ListObjectDocRefs)
@@ -726,7 +735,7 @@ namespace vSharpStudio.vm.ViewModels
 
             #region ListSelectedRegisters
             this.ListSelectedRegisters.Clear();
-            foreach (var t in this.Cfg.Model.GroupDocuments.GroupRegisters.ListRegisters)
+            foreach (var t in model.GroupDocuments.GroupRegisters.ListRegisters)
             {
                 bool found = false;
                 foreach (var tt in t.ListObjectDocRefs)

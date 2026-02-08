@@ -310,20 +310,21 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
 
-            prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT, true);
+            prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT, true);
             res.Add(prp);
 
             if (this.ParentCatalog.UseTree && !this.ParentCatalog.UseSeparateTreeForFolders)
             {
-                prp = Property.GetPropertyIsFolder(this, false);
+                prp = model.GetPropertyIsFolder(this, false);
                 res.Add(prp);
             }
             if (isOptimistic)
             {
-                prp = Property.GetPropertyVersion(this);
+                prp = model.GetPropertyVersion(this);
                 res.Add(prp);
             }
         }
@@ -349,12 +350,13 @@ namespace vSharpStudio.vm.ViewModels
             IProperty? prp = null!;
             if (this.GetUseCodeProperty())
             {
+                var model = this.Cfg.Model;
                 prp = this.CodePropertySettings.SequenceType switch
                 {
                     EnumCodeType.Number =>
-                        Property.GetPropertyCodeInt(this, false, this.CodePropertySettings.MaxSequenceLength),
+                        model.GetPropertyCodeInt(this, false, this.CodePropertySettings.MaxSequenceLength),
                     EnumCodeType.Text =>
-                        Property.GetPropertyCodeStr(this, false, this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length),
+                        model.GetPropertyCodeStr(this, false, this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length),
                     _ => throw new NotImplementedException(),
                 };
             }
@@ -365,7 +367,8 @@ namespace vSharpStudio.vm.ViewModels
             IProperty prp = null!;
             if (this.GetUseNameProperty())
             {
-                prp = Property.GetPropertyName(this, false, this.MaxNameLength);
+                var model = this.Cfg.Model;
+                prp = model.GetPropertyName(this, false, this.MaxNameLength);
                 lst.Add(prp);
             }
             return prp;
@@ -375,7 +378,8 @@ namespace vSharpStudio.vm.ViewModels
             IProperty? prp = null!;
             if (this.GetUseDescriptionProperty())
             {
-                prp = Property.GetPropertyName(this, false, this.MaxDescriptionLength);
+                var model = this.Cfg.Model;
+                prp = model.GetPropertyName(this, false, this.MaxDescriptionLength);
                 lst.Add(prp);
             }
             return prp;
@@ -388,7 +392,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(isRegisterBalance == null);
             var res = new List<IProperty>();
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             return res;
         }
@@ -532,7 +537,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.dicCatalogAccess[tt.Guid] = tt;
             }
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var t in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (!this.dicCatalogAccess.ContainsKey(t.Guid))
                 {
@@ -606,7 +612,8 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access)
         {
             var roles = new List<string>();
-            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (GetRoleCatalogAccess(role) == access)
                     roles.Add(role.Name);
@@ -616,7 +623,8 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access)
         {
             var roles = new List<string>();
-            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (GetRoleCatalogPrint(role) == access)
                     roles.Add(role.Name);

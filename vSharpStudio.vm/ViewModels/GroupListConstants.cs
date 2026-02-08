@@ -339,11 +339,12 @@ namespace vSharpStudio.vm.ViewModels
 
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             if (isOptimistic)
             {
-                prp = Property.GetPropertyVersion(this);
+                prp = model.GetPropertyVersion(this);
                 res.Add(prp);
             }
         }
@@ -430,7 +431,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.dicConstantAccess[tt.Guid] = tt;
             }
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var t in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (!this.dicConstantAccess.ContainsKey(t.Guid))
                 {
@@ -472,7 +474,8 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<string> GetRolesByAccess(EnumConstantAccess access)
         {
             var roles = new List<string>();
-            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (GetRoleConstantAccess(role) == access)
                     roles.Add(role.Name);

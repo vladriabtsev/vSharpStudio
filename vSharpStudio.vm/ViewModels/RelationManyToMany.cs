@@ -65,10 +65,10 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyDataTimeGuid = System.Guid.NewGuid().ToString();
             var model = this.Cfg.Model;
             //this._PropertyRefObj1 = (Property)model.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref1", 0, false);
-            this._PropertyRefObj1 = (Property)Property.GetPropertyRef(model, this, System.Guid.NewGuid().ToString(), "Ref1", 0, false);
+            this._PropertyRefObj1 = (Property)model.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref1", 0, false);
             this._PropertyRefObj1.DataTypeEnum = EnumDataType.CATALOG;
             //this._PropertyRefObj2 = (Property)model.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref2", 0, false);
-            this._PropertyRefObj2 = (Property)Property.GetPropertyRef(model, this, System.Guid.NewGuid().ToString(), "Ref2", 0, false);
+            this._PropertyRefObj2 = (Property)model.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref2", 0, false);
             this._PropertyRefObj2.DataTypeEnum = EnumDataType.CATALOG;
             Init();
         }
@@ -249,16 +249,17 @@ namespace vSharpStudio.vm.ViewModels
 
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             if (isOptimistic)
             {
-                prp = Property.GetPropertyVersion(this);
+                prp = model.GetPropertyVersion(this);
                 res.Add(prp);
             }
             if (this.IsUseHistory)
             {
-                prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.HISTORY_DATATIMEUTC);
+                prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.HISTORY_DATATIMEUTC);
                 //prp = model.GetPropertyDateTimeUtc(this.ParentManyToManyGroupRelations, this.PropertyDataTimeGuid, "DataTimeUtc", 3, false);
                 res.Add(prp);
             }
@@ -276,9 +277,10 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
+            var model = this.Cfg.Model;
             if (!isExcludeSpecial)
                 this.GetSpecialProperties(res, isOptimistic);
-            foreach (var t in this.Cfg.Model.GroupCatalogs.GroupRelations.GroupListManyToManyRelations.ListRelations)
+            foreach (var t in model.GroupCatalogs.GroupRelations.GroupListManyToManyRelations.ListRelations)
             {
                 if (!string.IsNullOrWhiteSpace(t.GuidObj1))
                 {
@@ -287,14 +289,14 @@ namespace vSharpStudio.vm.ViewModels
                         var prp = (Property)t.PropertyRefObj1;
                         prp.Position = (uint)res.Count;
                         res.Add(prp);
-                        //res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
+                        //res.Add(model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
                     }
                     else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
                         var prp = (Property)t.PropertyRefObj1;
                         prp.Position = (uint)res.Count;
                         res.Add(prp);
-                        //res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
+                        //res.Add(model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
                     }
                     else
                         throw new NotImplementedException();
@@ -306,14 +308,14 @@ namespace vSharpStudio.vm.ViewModels
                         var prp = (Property)t.PropertyRefObj2;
                         prp.Position = (uint)res.Count;
                         res.Add(prp);
-                        //res.Add(this.Cfg.Model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));
+                        //res.Add(model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));
                     }
                     else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
                         var prp = (Property)t.PropertyRefObj2;
                         prp.Position = (uint)res.Count;
                         res.Add(prp);
-                        //res.Add(this.Cfg.Model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));
+                        //res.Add(model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));
                     }
                     else
                         throw new NotImplementedException();

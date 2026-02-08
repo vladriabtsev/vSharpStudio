@@ -318,7 +318,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(isRegisterBalance == null);
             var res = new List<IProperty>();
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             return res;
         }
@@ -330,20 +331,21 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial)
         {
             var lst = new List<IProperty>();
+            var model = this.Cfg.Model;
 
             // Field PK
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             lst.Add(prp);
 
             // Field document date and time value
-            prp = Property.GetPropertyDocumentDate(this);
+            prp = model.GetPropertyDocumentDate(this);
             //prp = model.GetPropertyDateTimeUtc(this, this.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, true, this.TimelineTimeAccuracy);
             //prp.SetPosition(IProperty.PropertyDocumentDatePosition);
             lst.Add(prp);
-            prp = Property.GetPropertyDocShortTypeId(this, false);
+            prp = model.GetPropertyDocShortTypeId(this, false);
             //prp = model.GetPropertyInt(this, model.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.GroupListDocuments.PropertyDocShortTypeIdName, IProperty.PropertyShortTypeIdPosition, false, false);
             lst.Add(prp);
-            prp = Property.GetPropertyIsPosted(this, true);
+            prp = model.GetPropertyIsPosted(this, true);
             //prp = model.GetPropertyBool(this, model.PropertyDocIsPostedGuid, "IsPosted", (uint)lst.Count, true);
             //prp.SetPosition(IProperty.PropertyIsPostedPosition);
             lst.Add(prp);
@@ -360,7 +362,7 @@ namespace vSharpStudio.vm.ViewModels
             // Field record version
             if (isOptimistic && !isExcludeSpecial)
             {
-                prp = Property.GetPropertyVersion(this);
+                prp = model.GetPropertyVersion(this);
                 lst.Add(prp);
             }
             return lst;
@@ -450,7 +452,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.dicPropertyAccess[tt.Guid] = tt;
             }
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            var model = this.Cfg.Model;
+            foreach (var t in model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (!this.dicPropertyAccess.ContainsKey(t.Guid))
                 {

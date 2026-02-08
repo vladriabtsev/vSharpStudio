@@ -120,8 +120,8 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyQtyAccumulatorName = "AccumulatedQty";
             this._PropertyQtyAccumulatorAccuracy = 4;
             this._PropertyQtyAccumulatorLength = 28;
-            //this._PropertyRefTimeline = (Property)this.Cfg.Model.GetPropertyRef(this, this.Cfg.Model.GroupDocuments.DocumentTimeline, System.Guid.NewGuid().ToString(),
-            //                                "Ref" + this.Cfg.Model.GroupDocuments.DocumentTimeline.CompositeName, 0, false);
+            //this._PropertyRefTimeline = (Property)model.GetPropertyRef(this, model.GroupDocuments.DocumentTimeline, System.Guid.NewGuid().ToString(),
+            //                                "Ref" + model.GroupDocuments.DocumentTimeline.CompositeName, 0, false);
             this._IndexDocDateGuid = System.Guid.NewGuid().ToString();
             this._IndexDocIdTypeGuid = System.Guid.NewGuid().ToString();
             this._TableTurnoverGuid = System.Guid.NewGuid().ToString();
@@ -252,7 +252,8 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty PropertyQtyAccumulator { get; private set; }
         private void RecreatePropertyQtyAccumulator()
         {
-            this.PropertyQtyAccumulator = Property.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_QTY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
+            var model = this.Cfg.Model;
+            this.PropertyQtyAccumulator = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_QTY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
             ((Config)this.Cfg)._DicNodes[this.PropertyQtyAccumulator.Guid] = this.PropertyQtyAccumulator;
         }
         partial void OnPropertyQtyAccumulatorAccuracyChanged()
@@ -271,7 +272,8 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty PropertyMoneyAccumulator { get; private set; }
         private void RecreatePropertyMoneyAccumulator()
         {
-            this.PropertyMoneyAccumulator = Property.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
+            var model = this.Cfg.Model;
+            this.PropertyMoneyAccumulator = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
             ((Config)this.Cfg)._DicNodes[this.PropertyMoneyAccumulator.Guid] = this.PropertyMoneyAccumulator;
         }
         partial void OnPropertyMoneyAccumulatorAccuracyChanged()
@@ -338,7 +340,7 @@ namespace vSharpStudio.vm.ViewModels
         //    {
         //        this.dicPropertyAccess[tt.Guid] = tt;
         //    }
-        //    foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+        //    foreach (var t in model.GroupCommon.GroupRoles.ListRoles)
         //    {
         //        if (!this.dicPropertyAccess.ContainsKey(t.Guid))
         //        {
@@ -380,7 +382,7 @@ namespace vSharpStudio.vm.ViewModels
         //public IReadOnlyList<string> GetRolesByAccess(EnumPropertyAccess access)
         //{
         //    var roles = new List<string>();
-        //    foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+        //    foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
         //    {
         //        if (GetRolePropertyAccess(role) == access)
         //            roles.Add(role.Name);
@@ -390,7 +392,7 @@ namespace vSharpStudio.vm.ViewModels
         //public IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access)
         //{
         //    var roles = new List<string>();
-        //    foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+        //    foreach (var role in model.GroupCommon.GroupRoles.ListRoles)
         //    {
         //        if (GetRolePropertyPrint(role) == access)
         //            roles.Add(role.Name);
@@ -460,7 +462,8 @@ namespace vSharpStudio.vm.ViewModels
                 Debug.Assert(this.RegisterType != EnumRegisterType.TURNOVER);
                 if (this.RegisterType == EnumRegisterType.BALANCE_AND_TURNOVER)
                 {
-                    res = Property.GetPropertyBalanceOnDateInt(this, true);
+                    var model = this.Cfg.Model;
+                    res = model.GetPropertyBalanceOnDateInt(this, true);
                 }
             }
             return res;
@@ -476,7 +479,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             else // not balance
             {
-                var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+                var model = this.Cfg.Model;
+                var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
                 res.Add(prp);
             }
             return res;
@@ -505,13 +509,13 @@ namespace vSharpStudio.vm.ViewModels
         //    if (!isExcludeSpecial)
         //    {
         //        // Id
-        //        var pId = m.GetPropertyPkId(this, this.Cfg.Model.PropertyIdGuid); // position 6
+        //        var pId = m.GetPropertyPkId(this, model.PropertyIdGuid); // position 6
         //        pId.TagInList = "id";
         //        lst.Add(pId);
 
         //        //// RefTimeline
         //        //var timelineName = "Ref" + this.ParentGroupListRegisters.ParentGroupDocuments.DocumentTimeline.CompositeName;
-        //        //var pRefTimeline = m.GetPropertyTimeline(this.GroupProperties, this.Cfg.Model.PropertyIdGuid, timelineName, 0, false, true);
+        //        //var pRefTimeline = m.GetPropertyTimeline(this.GroupProperties, model.PropertyIdGuid, timelineName, 0, false, true);
         //        ////var pId = m.GetPropertyPkId(this, this.Guid); // position 6
         //        //pRefTimeline.TagInList = "id";
         //        //lst.Add(pRefTimeline);
@@ -519,7 +523,7 @@ namespace vSharpStudio.vm.ViewModels
         //        if (isOptimistic)
         //        {
         //            // Version
-        //            var pVer = m.GetPropertyVersion(this, this.Cfg.Model.PropertyVersionGuid); // position 7
+        //            var pVer = m.GetPropertyVersion(this, model.PropertyVersionGuid); // position 7
         //            pVer.TagInList = "vr";
         //            lst.Add(pVer);
         //        }
@@ -537,21 +541,22 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedTurnoverProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
         {
             var lst = new List<IProperty>();
+            var model = this.Cfg.Model;
 
             // Id
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             prp.TagInList = "id";
             lst.Add(prp);
 
             //this.PropertyRefTimeline.Name = "Ref" + model.GroupDocuments.DocumentTimeline.CompositeName;
-            var pRefTimeline = Property.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TIMELINE, false, this.Cfg.Model.GroupDocuments.DocumentTimeline);
+            var pRefTimeline = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TIMELINE, false, model.GroupDocuments.DocumentTimeline);
             //pRefTimeline.Position = IProperty.PropertyRefParentPosition;
             lst.Add(pRefTimeline);
 
             // Money accumulator
             if (this.UseMoneyAccumulator)
             {
-                var pMoney = Property.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
+                var pMoney = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
                 //var pMoney = (Property)model.GetPropertyNumber(this, this.PropertyMoneyAccumulatorGuid, this.PropertyMoneyAccumulatorName, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
                 //pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
                 pMoney.TagInList = "ma";
@@ -561,7 +566,7 @@ namespace vSharpStudio.vm.ViewModels
             // Qty accumulator
             if (this.UseQtyAccumulator)
             {
-                var pQty = Property.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_QTY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
+                var pQty = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_QTY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
                 //var pQty = (Property)model.GetPropertyNumber(this, this.PropertyQtyAccumulatorGuid, this.PropertyQtyAccumulatorName, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
                 //pQty.Position = IProperty.PropertyQtyAccumulatorPosition;
                 pQty.TagInList = "qa";
@@ -606,7 +611,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (isOptimistic && !isExcludeSpecial)
             {
-                prp = Property.GetPropertyVersion(this);
+                prp = model.GetPropertyVersion(this);
                 lst.Add(prp);
             }
             return lst;
@@ -624,13 +629,16 @@ namespace vSharpStudio.vm.ViewModels
 
             if (isOptimistic && !isExcludeSpecial)
             {
-                var prp = Property.GetPropertyVersion(this);
+                var model = this.Cfg.Model;
+                var prp = model.GetPropertyVersion(this);
                 lst.Add(prp);
             }
             return lst;
         }
         private void AddNotDimensionProperties(List<IProperty> lst)
         {
+            var model = this.Cfg.Model;
+
             //// Id
             //var pId = m.GetPropertyPkId(this, this.TableBalancePropertyIdGuid); // position 6
             //pId.TagInList = "id";
@@ -642,7 +650,7 @@ namespace vSharpStudio.vm.ViewModels
                 // Balance date
                 // Only keep date accuracy up to one day. See: proto_enum_register_balance_periodicity
                 //var pPostDay = (Property)m.GetPropertyInt(this, this.TableBalancePropertyDateGuid, "OnDateInt", IProperty.PropertyDocumentDatePosition, false, false); // position 9
-                var pPostDay = Property.GetPropertyBalanceOnDateInt(this, true);
+                var pPostDay = model.GetPropertyBalanceOnDateInt(this, true);
                 pPostDay.TagInList = "pd";
                 lst.Add(pPostDay);
 
@@ -657,7 +665,7 @@ namespace vSharpStudio.vm.ViewModels
             // Money accumulator
             if (this.UseMoneyAccumulator)
             {
-                var pMoney = Property.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
+                var pMoney = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
                 //var pMoney = (Property)this.PropertyMoneyAccumulator;
                 //pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
                 pMoney.TagInList = "ma";
@@ -667,7 +675,7 @@ namespace vSharpStudio.vm.ViewModels
             // Qty accumulator
             if (this.UseQtyAccumulator)
             {
-                var pQty = Property.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_QTY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
+                var pQty = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_QTY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
                 pQty.TagInList = "qa";
                 lst.Add(pQty);
             }
@@ -781,10 +789,11 @@ namespace vSharpStudio.vm.ViewModels
         public override void OnOpeningEditor()
         {
             this.isOnOpeningEditor = true;
+            var model = this.Cfg.Model;
 
             #region ListNotSelectedDocuments
             this.ListNotSelectedDocuments.Clear();
-            foreach (var t in this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+            foreach (var t in model.GroupDocuments.GroupListDocuments.ListDocuments)
             {
                 bool found = false;
                 foreach (var tt in this.ListObjectDocRefs)
@@ -803,7 +812,7 @@ namespace vSharpStudio.vm.ViewModels
 
             #region ListSelectedDocuments
             this.ListSelectedDocuments.Clear();
-            foreach (var t in this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+            foreach (var t in model.GroupDocuments.GroupListDocuments.ListDocuments)
             {
                 bool found = false;
                 foreach (var tt in this.ListObjectDocRefs)
@@ -977,12 +986,12 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 if (reg.UseQtyAccumulator)
                 {
-                    var row = new RegisterMappingRow(doc, reg, Property.GetPropertyGuid(reg, EnumSpecialPropertyType.ACCUMULATOR_QTY), reg.PropertyQtyAccumulatorName);
+                    var row = new RegisterMappingRow(doc, reg, reg.Cfg.Model.GetPropertyGuid(reg, EnumSpecialPropertyType.ACCUMULATOR_QTY), reg.PropertyQtyAccumulatorName);
                     reg.ListMappings.Add(row);
                 }
                 if (reg.UseMoneyAccumulator)
                 {
-                    var row = new RegisterMappingRow(doc, reg, Property.GetPropertyGuid(reg, EnumSpecialPropertyType.ACCUMULATOR_MONEY), reg.PropertyMoneyAccumulatorName);
+                    var row = new RegisterMappingRow(doc, reg, reg.Cfg.Model.GetPropertyGuid(reg, EnumSpecialPropertyType.ACCUMULATOR_MONEY), reg.PropertyMoneyAccumulatorName);
                     reg.ListMappings.Add(row);
                 }
                 foreach (var t in reg.GroupProperties.ListProperties)
@@ -1025,12 +1034,12 @@ namespace vSharpStudio.vm.ViewModels
                         }
                         else if (!string.IsNullOrEmpty(t.RegPropertyGuid))
                         {
-                            if (Property.GetPropertyGuid(reg, EnumSpecialPropertyType.ACCUMULATOR_MONEY) == t.RegPropertyGuid && dicRegPropToDocProp.ContainsKey(t.RegPropertyGuid) && tt.Guid == dicRegPropToDocProp[t.RegPropertyGuid])
+                            if (reg.Cfg.Model.GetPropertyGuid(reg, EnumSpecialPropertyType.ACCUMULATOR_MONEY) == t.RegPropertyGuid && dicRegPropToDocProp.ContainsKey(t.RegPropertyGuid) && tt.Guid == dicRegPropToDocProp[t.RegPropertyGuid])
                             {
                                 selected = tt;
                                 cnt++;
                             }
-                            else if (Property.GetPropertyGuid(reg, EnumSpecialPropertyType.ACCUMULATOR_QTY) == t.RegPropertyGuid && dicRegPropToDocProp.ContainsKey(t.RegPropertyGuid) && tt.Guid == dicRegPropToDocProp[t.RegPropertyGuid])
+                            else if (reg.Cfg.Model.GetPropertyGuid(reg, EnumSpecialPropertyType.ACCUMULATOR_QTY) == t.RegPropertyGuid && dicRegPropToDocProp.ContainsKey(t.RegPropertyGuid) && tt.Guid == dicRegPropToDocProp[t.RegPropertyGuid])
                             {
                                 selected = tt;
                                 cnt++;
@@ -1153,14 +1162,14 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (p.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
                         return;
-                    if (row.RegPropertyGuid == Property.GetPropertyGuid(reg, EnumSpecialPropertyType.ACCUMULATOR_MONEY))
+                    if (row.RegPropertyGuid == reg.Cfg.Model.GetPropertyGuid(reg, EnumSpecialPropertyType.ACCUMULATOR_MONEY))
                     {
                         if (p.DataType.Accuracy > 0 && p.DataType.Accuracy > reg.PropertyMoneyAccumulatorAccuracy)
                             return;
                         if (p.DataType.Length > reg.PropertyMoneyAccumulatorLength)
                             return;
                     }
-                    else if (row.RegPropertyGuid == Property.GetPropertyGuid(reg, EnumSpecialPropertyType.ACCUMULATOR_QTY))
+                    else if (row.RegPropertyGuid == reg.Cfg.Model.GetPropertyGuid(reg, EnumSpecialPropertyType.ACCUMULATOR_QTY))
                     {
                         if (p.DataType.Accuracy > 0 && p.DataType.Accuracy > reg.PropertyQtyAccumulatorAccuracy)
                             return;

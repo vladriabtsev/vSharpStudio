@@ -54,8 +54,8 @@ namespace vSharpStudio.vm.ViewModels
             this._PropertyDataTimeGuid = System.Guid.NewGuid().ToString();
             this._IsRelationReferenceNullable = true;
             var model = this.Cfg.Model;
-            this._PropertyRefObj1 = (Property)Property.GetPropertyRef(model, this, System.Guid.NewGuid().ToString(), "Ref1", 0, true);
-            this._PropertyRefObj2 = (Property)Property.GetPropertyRef(model, this, System.Guid.NewGuid().ToString(), "Ref2", 0, true);
+            this._PropertyRefObj1 = (Property)model.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref1", 0, true);
+            this._PropertyRefObj2 = (Property)model.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref2", 0, true);
             Init();
         }
         protected override void OnInitFromDto()
@@ -236,33 +236,33 @@ namespace vSharpStudio.vm.ViewModels
 
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
-            var prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             res.Add(prp);
             if (isOptimistic)
             {
-                prp = Property.GetPropertyVersion(this);
+                prp = model.GetPropertyVersion(this);
                 res.Add(prp);
             }
-            var model = this.Cfg.Model;
             if (this.GuidObj1 != null)
             {
                 if (model.IsUseNameComposition)
-                    prp = Property.GetPropertyRef(model, this.ParentOneToOneGroupRelations, this.GuidObj1, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj1]).CompositeName, 1, false);
+                    prp = model.GetPropertyRef(this.ParentOneToOneGroupRelations, this.GuidObj1, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj1]).CompositeName, 1, false);
                 else
-                    prp = Property.GetPropertyRef(model, this.ParentOneToOneGroupRelations, this.GuidObj1, "Ref" + this.Cfg.DicNodes[this.GuidObj1].Name, 1, false);
+                    prp = model.GetPropertyRef(this.ParentOneToOneGroupRelations, this.GuidObj1, "Ref" + this.Cfg.DicNodes[this.GuidObj1].Name, 1, false);
                 res.Add(prp);
             }
             if (this.GuidObj2 != null)
             {
                 if (model.IsUseNameComposition)
-                    prp = Property.GetPropertyRef(model, this.ParentOneToOneGroupRelations, this.GuidObj2, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj2]).CompositeName, 2, false);
+                    prp = model.GetPropertyRef(this.ParentOneToOneGroupRelations, this.GuidObj2, "Ref" + ((ICompositeName)this.Cfg.DicNodes[this.GuidObj2]).CompositeName, 2, false);
                 else
-                    prp = Property.GetPropertyRef(model, this.ParentOneToOneGroupRelations, this.GuidObj2, "Ref" + this.Cfg.DicNodes[this.GuidObj2].Name, 2, false);
+                    prp = model.GetPropertyRef(this.ParentOneToOneGroupRelations, this.GuidObj2, "Ref" + this.Cfg.DicNodes[this.GuidObj2].Name, 2, false);
                 res.Add(prp);
             }
             if (this.IsUseHistory)
             {
-                prp = Property.GetPropertySpecial(this, EnumSpecialPropertyType.HISTORY_DATATIMEUTC);
+                prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.HISTORY_DATATIMEUTC);
                 //prp = model.GetPropertyDateTimeUtc(this.ParentOneToOneGroupRelations, this.PropertyDataTimeGuid, "DataTimeUtc", 3, false);
                 res.Add(prp);
             }
