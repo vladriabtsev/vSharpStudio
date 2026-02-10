@@ -1,51 +1,33 @@
-–
-$43c4549b-3d6c-4b59-bc9c-d87f8447aeddtest2*test2:‹éÆÃå¨ÉfÄ™B
-$1b233072-462d-4193-8a89-dad9f6a1e983BaseConfigsBaseConfigs@≤
-$37f0849f-ec44-43ea-891a-f7de28351c64Model *Model@rIdíReCoRdVeRsIoNò™D
-$fc864e2a-8329-4b7f-a0ac-84fc9c8234b4	Constants"	Constants2Cnst≤D
-$d7e15d49-0ae5-4dc8-90c6-0f34c8f6a17aEnumerations"Enumerations@∫í
-$915084ff-7708-4729-9e38-f0636415dce3Catalogs	"CatalogsB}
-$048c73ce-496e-4e6f-8729-09a34e79e7adListCatalogs"ListCatalogs2CtlgH∞∫Code¿ Name⁄DescriptionÄê¬IsFolderJ‘
-$ed977cda-3ce0-4da3-aef8-dca8ac75896d	Relations"	Relations:L
-$1731fe89-745b-4717-9bb2-cee5af60a123
+Ö
+$d4db11ab-6bd1-4cbc-ac33-fde01b704b12test2*test2:∑·ÆÃúÙï Ä™B
+$6ead66da-d6e5-46c3-bd91-cd85e7f497f6BaseConfigsBaseConfigs@≤
+$32d8eaa6-0ffd-48f8-adf3-64ba582b0bddModel *Model@rIdíReCoRdVeRsIoNò™D
+$baf41e0e-d088-4c33-98f8-03f343afe01b	Constants"	Constants2Cnst≤D
+$2ca868ad-ad63-40e4-8098-f7743a578166Enumerations"Enumerations@∫í
+$930a66a2-785e-456c-91d2-07ef5f8219e5Catalogs	"CatalogsB}
+$a8628c36-db4a-45dc-87eb-a1526bf04c81ListCatalogs"ListCatalogs2CtlgH∞∫Code¿ Name⁄DescriptionÄê¬IsFolderJ‘
+$aecb5bd9-e0fb-4e71-aa38-70d49eb75956	Relations"	Relations:L
+$fe1ae659-a58c-4bb5-a0e1-5d18eac62848
 ManyToMany"
 ManyToMany2
 ManyToManyHBF
-$88c61ce5-f8db-4419-bc92-a83ec1299f17OneToOne"OneToOne2OneToOneH¬È
-$0c7ed7b5-4cd0-4a89-89fd-ae84621492b6	Documents"	Documents:≤
-$f6674915-8f37-4360-b8ac-18401da45b85Timeline"Timeline@bDocDateTimej$ef51d8c7-a1b5-4221-9d0e-d3795350f024í@
-$770c7072-3af5-4bfc-a801-ca6135ffcb1d
+$0208ff78-87c3-4fb7-9734-679213908875OneToOne"OneToOne2OneToOneH¬È
+$780a16d9-82c5-42dd-8f5b-952d659fd996	Documents"	Documents:≤
+$45821f43-0b0b-4ce2-a230-c8ef63ed243aTimeline"Timeline@bDocDateTimej$306ce73e-1c2f-4bea-912e-604ee4396f8fí@
+$02a94ed1-6dc2-48b7-8d99-be495abe5927
 Properties"
 Properties@BÉ
-$d915e8ce-a631-4b96-b559-a7ecf7958d6fListDocuments"ListDocuments2Doc@rDocShortTypeId∫Ä»é¸çˇˇˇˇ 	DocNumber–⁄IsPosted¢m
-$40827364-4226-413e-8766-ffc05646f14c	Registers"	Registers0JRegÄ⁄$cef9e07c-7757-4f65-acdd-a923e147ccc0™<
-$6a386a1a-c657-4879-bacd-6bd82b32d605Journals"Journals@≤>
-$3052070c-467e-4926-ae3a-d7da2bfb1588	Sequences"	Sequences“å
-$26ff8d38-d1f8-4669-83c1-1e0fc37858e1Common"Common0:õ
-$3c3f65a8-a955-48b1-a2a3-380ced71d717Roles"Roles@™(X≤(X∫(08X`h» (08X`hx®»»˙(08X`hx®»»ö(B4
-$2b27308a-328a-4b5d-8279-a4ceb160bf3bViews"Views¬à
-$92f9a6bb-42f2-4095-b5bf-d7ae4141086cPluginsPlugins"ø
-$3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(2_
-$1E35FCDB-6425-4C66-B047-6882738AF552
-RepositoryDB repository code generation 2
-Repository:BlazorX"·
-$C94175E4-E8F4-4A84-871B-6994199A20760.1MsSql"7vSharpStudio plugin. Database design support for MS SQL(2i
-$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design MSSQL#DB structure creation and migration 2Design MSSQL:MsSqlX"˘
-$3A29FC48-3892-498A-AE36-CB0C9916C6C90.1
-PostgreSql";vSharpStudio plugin. Database design support for PostgreSql(2s
-$C641770F-CBA5-4FC5-8068-A21C00D6E492Design POSTGRESQL#DB structure creation and migration 2Design POSTGRESQL:
-PostgreSqlX"‘
-$052C7318-3D73-4605-B1AE-749FC7E104120.1DbRepository"4vSharpStudio plugin. DB access layer repository code(2Q
-$E59B393E-AF34-4438-977F-7BF120E28A0C
-RepositoryDb Access Layer 2
-Repository:DbRepositoryX"Â
-$16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(2k
-$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign SQLITE#DB structure creation and migration 2Design SQLITE:SqliteX"µ
-$ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators(2l
+$e7083143-0db4-4eaf-81e6-43b9df5f4da3ListDocuments"ListDocuments2Doc@rDocShortTypeId∫Ä»é¸çˇˇˇˇ 	DocNumber–⁄IsPosted¢m
+$6a284ba3-1d1a-4e37-9df8-0d34191acdc4	Registers"	Registers0JRegÄ⁄$a1f3fa29-6a02-4c3a-8273-d3ccf3b09a10™<
+$c817a30b-f8f7-4416-a882-8819ee548282Journals"Journals@≤>
+$9d5197db-49a4-4bda-b75f-28e754c3398c	Sequences"	Sequences“å
+$34139da7-67d8-46f5-9ab6-80e24e03e3e5Common"Common0:õ
+$4f7e34ac-435b-47ad-a6e1-c2532abc503eRoles"Roles@™(X≤(X∫(08X`h» (08X`hx®»»˙(08X`hx®»»ö(B4
+$ce1f5030-aaa1-499f-8d36-4b450def99b9Views"Views¬º
+$e474c1fe-3ea8-4c4d-92b0-147714a9fef4PluginsPlugins"µ
+$ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators(2l
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema 2AbstractDbSchema2Y
 $7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer 2DbAccess:SampleX"«
-$D535B939-6A33-4B96-B64C-F8FB78FD9F940.1Sample2"'vSharpStudio plugin with one generators(2[
-$8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer 2	DbAccess2:Sample2X"Ë
-$EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(2Ç
-$32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions 2gRPC service:gRPCX@	 D
-$523a49d7-b735-4cf3-8314-e2983743198cApplicationsApplications@
+$D535B939-6A33-4B96-B64C-F8FB78FD9F940.1Sample2"'vSharpStudio plugin with one generators(2[
+$8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer 2	DbAccess2:Sample2X@	 D
+$13896225-bb7d-40ad-8730-012064111b38ApplicationsApplications@
