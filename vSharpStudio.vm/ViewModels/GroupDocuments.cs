@@ -10,7 +10,7 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft /*INodeGenSettings,*/
+    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, IEditableNodeGroup /*INodeGenSettings,*/
     {
         partial void OnDebugStringExtend(ref string mes)
         {

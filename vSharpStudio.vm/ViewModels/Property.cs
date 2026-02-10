@@ -777,21 +777,33 @@ namespace vSharpStudio.vm.ViewModels
             var res = new RolePropertiesSettings(this);
             if (this.ParentGroupListProperties?.Parent is Catalog c)
             {
-                res.CanEdit = roleFromNode?.DetailSettings.CanEdit ?? c.GetRoleSettings(role).CanEditFields;
-                res.CanPrint = roleFromNode?.DetailSettings.CanPrint ?? c.GetRoleSettings(role).CanPrint;
-                res.CanView = roleFromNode?.DetailSettings.CanView ?? c.GetRoleSettings(role).CanView;
+                res.CanEdit = roleFromNode?.PropertySettings.CanEdit ?? c.GetRoleSettings(role).CanEditFields;
+                res.CanPrint = roleFromNode?.PropertySettings.CanPrint ?? c.GetRoleSettings(role).CanPrint;
+                res.CanView = roleFromNode?.PropertySettings.CanView ?? c.GetRoleSettings(role).CanView;
             }
             else if (this.ParentGroupListProperties?.Parent is Document d)
             {
-                res.CanEdit = roleFromNode?.DetailSettings.CanEdit ?? d.GetRoleSettings(role).CanEditFields;
-                res.CanPrint = roleFromNode?.DetailSettings.CanPrint ?? d.GetRoleSettings(role).CanPrint;
-                res.CanView = roleFromNode?.DetailSettings.CanView ?? d.GetRoleSettings(role).CanView;
+                res.CanEdit = roleFromNode?.PropertySettings.CanEdit ?? d.GetRoleSettings(role).CanEditFields;
+                res.CanPrint = roleFromNode?.PropertySettings.CanPrint ?? d.GetRoleSettings(role).CanPrint;
+                res.CanView = roleFromNode?.PropertySettings.CanView ?? d.GetRoleSettings(role).CanView;
             }
             else if (this.ParentGroupListProperties?.Parent is Detail t)
             {
-                res.CanEdit = roleFromNode?.DetailSettings.CanEdit ?? t.GetRoleSettings(role).CanEditFields;
-                res.CanPrint = roleFromNode?.DetailSettings.CanPrint ?? t.GetRoleSettings(role).CanPrint;
-                res.CanView = roleFromNode?.DetailSettings.CanView ?? t.GetRoleSettings(role).CanView;
+                res.CanEdit = roleFromNode?.PropertySettings.CanEdit ?? t.GetRoleSettings(role).CanEditFields;
+                res.CanPrint = roleFromNode?.PropertySettings.CanPrint ?? t.GetRoleSettings(role).CanPrint;
+                res.CanView = roleFromNode?.PropertySettings.CanView ?? t.GetRoleSettings(role).CanView;
+            }
+            else if (this.ParentGroupListProperties?.Parent is DocumentTimeline tm)
+            {
+                res.CanEdit = roleFromNode?.PropertySettings.CanEdit ?? tm.GetRoleSettings(role).CanEdit;
+                res.CanPrint = roleFromNode?.PropertySettings.CanPrint ?? tm.GetRoleSettings(role).CanPrint;
+                res.CanView = roleFromNode?.PropertySettings.CanView ?? tm.GetRoleSettings(role).CanView;
+            }
+            else if (this.ParentGroupListProperties?.Parent == null)
+            {
+                res.CanEdit = roleFromNode?.PropertySettings.CanEdit ?? roles.DefaultPropertiesRoleSettings.CanEdit;
+                res.CanPrint = roleFromNode?.PropertySettings.CanPrint ?? roles.DefaultPropertiesRoleSettings.CanPrint;
+                res.CanView = roleFromNode?.PropertySettings.CanView ?? roles.DefaultPropertiesRoleSettings.CanView;
             }
             else
             {

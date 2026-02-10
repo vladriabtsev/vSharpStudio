@@ -5733,6 +5733,18 @@
               "defaultValue": ""
             },
             {
+              "name": "group_properties",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_group_list_properties",
+              "longType": "proto_group_list_properties",
+              "fullType": "proto_config.proto_group_list_properties",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "last_gen_position",
               "description": "Last generated Protobuf field position\n@attr [ReadOnly(true)]",
               "label": "",
@@ -14619,54 +14631,6 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "default_constants_role_settings",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Constants\")]\n@attr [Description(\"Default constant access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
-              "label": "",
-              "type": "proto_role_constants_settings_with_null",
-              "longType": "proto_role_constants_settings_with_null",
-              "fullType": "proto_config.proto_role_constants_settings_with_null",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "default_catalogs_role_settings",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"Catalogs\")]\n@attr [Description(\"Default catalog access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
-              "label": "",
-              "type": "proto_role_catalogs_settings_with_null",
-              "longType": "proto_role_catalogs_settings_with_null",
-              "fullType": "proto_config.proto_role_catalogs_settings_with_null",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "default_documents_role_settings",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(31)]\n@attr [DisplayName(\"Documents\")]\n@attr [Description(\"Default document access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
-              "label": "",
-              "type": "proto_role_documents_settings_with_null",
-              "longType": "proto_role_documents_settings_with_null",
-              "fullType": "proto_config.proto_role_documents_settings_with_null",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "default_reports_role_settings",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(35)]\n@attr [DisplayName(\"Reports\")]\n@attr [Description(\"Default report access settings for all roles\")]\n@attr [ExpandableObjectAttribute()]",
-              "label": "",
-              "type": "proto_role_reports_settings_with_null",
-              "longType": "proto_role_reports_settings_with_null",
-              "fullType": "proto_config.proto_role_reports_settings_with_null",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

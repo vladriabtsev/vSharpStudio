@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Xml.Linq;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
@@ -49,6 +50,19 @@ namespace vSharpStudio.vm.ViewModels
             this._DefaultConstantsRoleSettings.CanPrint = true;
             this._DefaultConstantsRoleSettings.CanView = true;
 
+            this._DefaultPropertiesRoleSettings.CanEdit = true;
+            this._DefaultPropertiesRoleSettings.CanPrint = true;
+            this._DefaultPropertiesRoleSettings.CanView = true;
+
+            this._DefaultDetailsRoleSettings.CanEdit = true;
+            this._DefaultDetailsRoleSettings.CanEditDetails = true;
+            this._DefaultDetailsRoleSettings.CanEditFields = true;
+            this._DefaultDetailsRoleSettings.CanMarkDel = true;
+            this._DefaultDetailsRoleSettings.CanPrint = true;
+            this._DefaultDetailsRoleSettings.CanView = true;
+            this._DefaultDetailsRoleSettings.CanViewDetails = true;
+            this._DefaultDetailsRoleSettings.CanViewFields = true;
+
             this._DefaultCatalogsRoleSettings.CanEditFolders = true;
             this._DefaultCatalogsRoleSettings.CanEditDetails = true;
             this._DefaultCatalogsRoleSettings.CanEditFields = true;
@@ -88,6 +102,8 @@ namespace vSharpStudio.vm.ViewModels
             };
             this.ListRoles.OnAddedAction = (t) =>
             {
+                Debug.Assert(!this.DicRoles.ContainsKey(t.Guid));
+                this.DicRoles[t.Guid] = new RoleDicNodeRules();
                 //var nvb = new ModelVisitorBase();
                 //nvb.RunFromRoot(this.Cfg, null, null, null, (p, n) =>
                 //{
@@ -97,6 +113,8 @@ namespace vSharpStudio.vm.ViewModels
             };
             this.ListRoles.OnRemovedAction = (t) =>
             {
+                Debug.Assert(this.DicRoles.ContainsKey(t.Guid));
+                this.DicRoles.Remove(t.Guid);
                 //var nvb = new ModelVisitorBase();
                 //nvb.RunFromRoot(this.Cfg, null, null, null, (p, n) =>
                 //{
@@ -107,14 +125,31 @@ namespace vSharpStudio.vm.ViewModels
             this.ListRoles.OnClearedAction = () =>
             {
                 this.OnRemoveChild();
+                this.DicRoles.Clear();
             };
         }
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public void AddRole(Role node)
+        public Role AddRole()
         {
+            var node = new Role(this);
             this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Role AddRole(string name, string? guid = null)
+        {
+            var node = new Role(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            this.NodeAddNewSubNode(node);
+            return node;
         }
 
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)

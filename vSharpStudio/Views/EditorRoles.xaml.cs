@@ -37,7 +37,7 @@ namespace vSharpStudio.Views
                 gridView.Columns.Add(gvc);
                 i++;
             }
-            _tree.Model = new EditorRoleTreeVm(roles.ListRoles, roles.ParentGroupListCommon.ParentModel);
+            _tree.Model = new EditorRolesTreeVm(roles.ListRoles, roles.ParentGroupListCommon.ParentModel);
         }
     }
 }

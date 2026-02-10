@@ -9,7 +9,10 @@
     <Copyright>Copyright ©  2019</Copyright>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputPath>bin\$(Configuration)\</OutputPath>-->
-    <TargetFrameworks>net9.0</TargetFrameworks>
+    <TargetFramework>net9.0</TargetFramework>
+    <!--<TargetFrameworks>net9.0</TargetFrameworks>-->
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <!--<Platforms>x64</Platforms>-->
   </PropertyGroup>
   <!--<Import Project="..\..\Solution.targets" />-->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

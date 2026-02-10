@@ -173,6 +173,9 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     ValidateSpecialProperties(name, cntx, p, r);
                 }
+                else if (pg.Parent is DocumentTimeline)
+                {
+                }
                 else
                 {
                     Debug.Assert(false);
@@ -1248,6 +1251,18 @@ namespace vSharpStudio.vm.ViewModels
                     Severity = Severity.Error
                 };
                 cntx.AddFailure(vf);
+            }
+            foreach(var t in model.GroupDocuments.DocumentTimeline.GroupProperties.ListProperties)
+            {
+                if (t.Name == name)
+                {
+                    var vf = new ValidationFailure(nameof(p.Name),
+                        $"Document property '{p.Name}' name is already selected for Timeline property")
+                    {
+                        Severity = Severity.Error
+                    };
+                    cntx.AddFailure(vf);
+                }
             }
         }
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, GroupListDocuments gd)

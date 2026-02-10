@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class DocumentTimeline : IListProperties, ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
+    public partial class DocumentTimeline : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         public override string NameShortId { get { return "dt"; } }
         partial void OnDebugStringExtend(ref string mes)
@@ -75,8 +75,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Tree operations
 
-        public new ConfigNodesCollection<Property> Children { get { return this.ListProperties; } }
-
         partial void OnCreated()
         {
             this._PropertyTimelineDocDateTimeGuid = System.Guid.NewGuid().ToString();
@@ -112,6 +110,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+            if (this.Children.Count > 0)
+                return;
+            var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
+            children.Add(this.GroupProperties, 1);
         }
         public int IndexOf(IProperty p)
         {
@@ -422,5 +424,18 @@ namespace vSharpStudio.vm.ViewModels
             else
                 throw new NotImplementedException();
         }
+        #region Roles
+        public IRolePropertiesSettings GetRoleSettings(IRole role)
+        {
+            var roles = this.Cfg.Model.GroupCommon.GroupRoles;
+            var nodeRoleDic = roles.DicRoles[role.Guid];
+            nodeRoleDic.DicNodeRules.TryGetValue(this.Guid, out var roleFromNode);
+            var res = new RolePropertiesSettings(this);
+            res.CanEdit = roleFromNode?.DetailSettings.CanEdit ?? roles.DefaultPropertiesRoleSettings.CanEdit;
+            res.CanPrint = roleFromNode?.DetailSettings.CanPrint ?? roles.DefaultPropertiesRoleSettings.CanPrint;
+            res.CanView = roleFromNode?.DetailSettings.CanView ?? roles.DefaultPropertiesRoleSettings.CanView;
+            return res;
+        }
+        #endregion Roles
     }
 }

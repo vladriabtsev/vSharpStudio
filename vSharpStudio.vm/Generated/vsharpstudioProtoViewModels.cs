@@ -13384,10 +13384,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._DefaultConstantsRoleSettings = new RoleConstantsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:84
-            this._DefaultCatalogsRoleSettings = new RoleCatalogsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:84
-            this._DefaultDocumentsRoleSettings = new RoleDocumentsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:84
-            this._DefaultReportsRoleSettings = new RoleReportsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:84
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
             this.OnCreated();
         }
@@ -13416,14 +13412,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
-            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:71 IsDefaultBase=False
-                vm._DefaultConstantsRoleSettings = vSharpStudio.vm.ViewModels.RoleConstantsSettingsWithNull.Clone(from.DefaultConstantsRoleSettings, isDeep);
-            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:71 IsDefaultBase=False
-                vm._DefaultCatalogsRoleSettings = vSharpStudio.vm.ViewModels.RoleCatalogsSettingsWithNull.Clone(from.DefaultCatalogsRoleSettings, isDeep);
-            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:71 IsDefaultBase=False
-                vm._DefaultDocumentsRoleSettings = vSharpStudio.vm.ViewModels.RoleDocumentsSettingsWithNull.Clone(from.DefaultDocumentsRoleSettings, isDeep);
-            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:71 IsDefaultBase=False
-                vm._DefaultReportsRoleSettings = vSharpStudio.vm.ViewModels.RoleReportsSettingsWithNull.Clone(from.DefaultReportsRoleSettings, isDeep);
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:59
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:60
                 vm._ListNodeGeneratorsSettings.AddClone(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -13442,14 +13430,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._IsNew = from.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._IsMarkedForDeletion = from.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
-            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:152
-                vSharpStudio.vm.ViewModels.RoleConstantsSettingsWithNull.Update((RoleConstantsSettingsWithNull)to.DefaultConstantsRoleSettings, from.DefaultConstantsRoleSettings, isDeep);
-            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:152
-                vSharpStudio.vm.ViewModels.RoleCatalogsSettingsWithNull.Update((RoleCatalogsSettingsWithNull)to.DefaultCatalogsRoleSettings, from.DefaultCatalogsRoleSettings, isDeep);
-            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:152
-                vSharpStudio.vm.ViewModels.RoleDocumentsSettingsWithNull.Update((RoleDocumentsSettingsWithNull)to.DefaultDocumentsRoleSettings, from.DefaultDocumentsRoleSettings, isDeep);
-            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:152
-                vSharpStudio.vm.ViewModels.RoleReportsSettingsWithNull.Update((RoleReportsSettingsWithNull)to.DefaultReportsRoleSettings, from.DefaultReportsRoleSettings, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:99
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -13520,14 +13500,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._Description = m.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._IsNew = m.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._IsMarkedForDeletion = m.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
-            vm.DefaultConstantsRoleSettings ??= new RoleConstantsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:234
-            vSharpStudio.vm.ViewModels.RoleConstantsSettingsWithNull.ConvertToVM(m.DefaultConstantsRoleSettings, (RoleConstantsSettingsWithNull)vm.DefaultConstantsRoleSettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:236
-            vm.DefaultCatalogsRoleSettings ??= new RoleCatalogsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:234
-            vSharpStudio.vm.ViewModels.RoleCatalogsSettingsWithNull.ConvertToVM(m.DefaultCatalogsRoleSettings, (RoleCatalogsSettingsWithNull)vm.DefaultCatalogsRoleSettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:236
-            vm.DefaultDocumentsRoleSettings ??= new RoleDocumentsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:234
-            vSharpStudio.vm.ViewModels.RoleDocumentsSettingsWithNull.ConvertToVM(m.DefaultDocumentsRoleSettings, (RoleDocumentsSettingsWithNull)vm.DefaultDocumentsRoleSettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:236
-            vm.DefaultReportsRoleSettings ??= new RoleReportsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:234
-            vSharpStudio.vm.ViewModels.RoleReportsSettingsWithNull.ConvertToVM(m.DefaultReportsRoleSettings, (RoleReportsSettingsWithNull)vm.DefaultReportsRoleSettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:236
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:212
             foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:216
             {
@@ -13579,10 +13551,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
             m.IsNew = vm.IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:306
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:306
-            m.DefaultConstantsRoleSettings = vSharpStudio.vm.ViewModels.RoleConstantsSettingsWithNull.ConvertToProto((RoleConstantsSettingsWithNull)vm.DefaultConstantsRoleSettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:291
-            m.DefaultCatalogsRoleSettings = vSharpStudio.vm.ViewModels.RoleCatalogsSettingsWithNull.ConvertToProto((RoleCatalogsSettingsWithNull)vm.DefaultCatalogsRoleSettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:291
-            m.DefaultDocumentsRoleSettings = vSharpStudio.vm.ViewModels.RoleDocumentsSettingsWithNull.ConvertToProto((RoleDocumentsSettingsWithNull)vm.DefaultDocumentsRoleSettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:291
-            m.DefaultReportsRoleSettings = vSharpStudio.vm.ViewModels.RoleReportsSettingsWithNull.ConvertToProto((RoleReportsSettingsWithNull)vm.DefaultReportsRoleSettings); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:291
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:257
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:267
             return m;
@@ -13731,94 +13699,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private bool _IsMarkedForDeletion; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
         partial void OnIsMarkedForDeletionChanging(ref bool to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnIsMarkedForDeletionChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(21)]
-        [DisplayName("Constants")]
-        [Description("Default constant access settings for all roles")]
-        [ExpandableObjectAttribute()]
-        public RoleConstantsSettingsWithNull DefaultConstantsRoleSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
-        { 
-            get { return this._DefaultConstantsRoleSettings; }
-            set
-            {
-                // Use 'OnDefaultConstantsRoleSettingsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._DefaultConstantsRoleSettings, value, (t) => { bool isCancel = false; this.OnDefaultConstantsRoleSettingsChanging(ref value, ref isCancel); if (isCancel) return; this._DefaultConstantsRoleSettings = value; this.OnDefaultConstantsRoleSettingsChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
-                }
-            }
-        }
-        private RoleConstantsSettingsWithNull _DefaultConstantsRoleSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
-        partial void OnDefaultConstantsRoleSettingsChanging(ref RoleConstantsSettingsWithNull to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
-        partial void OnDefaultConstantsRoleSettingsChanged();
-        IRoleConstantsSettingsWithNull IRole.DefaultConstantsRoleSettings { get { return (this as Role).DefaultConstantsRoleSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:78
-        
-        [Category("")]
-        [PropertyOrderAttribute(25)]
-        [DisplayName("Catalogs")]
-        [Description("Default catalog access settings for all roles")]
-        [ExpandableObjectAttribute()]
-        public RoleCatalogsSettingsWithNull DefaultCatalogsRoleSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
-        { 
-            get { return this._DefaultCatalogsRoleSettings; }
-            set
-            {
-                // Use 'OnDefaultCatalogsRoleSettingsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._DefaultCatalogsRoleSettings, value, (t) => { bool isCancel = false; this.OnDefaultCatalogsRoleSettingsChanging(ref value, ref isCancel); if (isCancel) return; this._DefaultCatalogsRoleSettings = value; this.OnDefaultCatalogsRoleSettingsChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
-                }
-            }
-        }
-        private RoleCatalogsSettingsWithNull _DefaultCatalogsRoleSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
-        partial void OnDefaultCatalogsRoleSettingsChanging(ref RoleCatalogsSettingsWithNull to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
-        partial void OnDefaultCatalogsRoleSettingsChanged();
-        IRoleCatalogsSettingsWithNull IRole.DefaultCatalogsRoleSettings { get { return (this as Role).DefaultCatalogsRoleSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:78
-        
-        [Category("")]
-        [PropertyOrderAttribute(31)]
-        [DisplayName("Documents")]
-        [Description("Default document access settings for all roles")]
-        [ExpandableObjectAttribute()]
-        public RoleDocumentsSettingsWithNull DefaultDocumentsRoleSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
-        { 
-            get { return this._DefaultDocumentsRoleSettings; }
-            set
-            {
-                // Use 'OnDefaultDocumentsRoleSettingsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._DefaultDocumentsRoleSettings, value, (t) => { bool isCancel = false; this.OnDefaultDocumentsRoleSettingsChanging(ref value, ref isCancel); if (isCancel) return; this._DefaultDocumentsRoleSettings = value; this.OnDefaultDocumentsRoleSettingsChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
-                }
-            }
-        }
-        private RoleDocumentsSettingsWithNull _DefaultDocumentsRoleSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
-        partial void OnDefaultDocumentsRoleSettingsChanging(ref RoleDocumentsSettingsWithNull to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
-        partial void OnDefaultDocumentsRoleSettingsChanged();
-        IRoleDocumentsSettingsWithNull IRole.DefaultDocumentsRoleSettings { get { return (this as Role).DefaultDocumentsRoleSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:78
-        
-        [Category("")]
-        [PropertyOrderAttribute(35)]
-        [DisplayName("Reports")]
-        [Description("Default report access settings for all roles")]
-        [ExpandableObjectAttribute()]
-        public RoleReportsSettingsWithNull DefaultReportsRoleSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
-        { 
-            get { return this._DefaultReportsRoleSettings; }
-            set
-            {
-                // Use 'OnDefaultReportsRoleSettingsChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._DefaultReportsRoleSettings, value, (t) => { bool isCancel = false; this.OnDefaultReportsRoleSettingsChanging(ref value, ref isCancel); if (isCancel) return; this._DefaultReportsRoleSettings = value; this.OnDefaultReportsRoleSettingsChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
-                }
-            }
-        }
-        private RoleReportsSettingsWithNull _DefaultReportsRoleSettings; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
-        partial void OnDefaultReportsRoleSettingsChanging(ref RoleReportsSettingsWithNull to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
-        partial void OnDefaultReportsRoleSettingsChanged();
-        IRoleReportsSettingsWithNull IRole.DefaultReportsRoleSettings { get { return (this as Role).DefaultReportsRoleSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:78
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
@@ -32393,6 +32273,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
             this._ListProperties = new ConfigNodesCollection<Property>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
             this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
             this.OnCreated();
@@ -32434,6 +32315,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._IsGridSortableCustom = from.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._IsGridFilterable = from.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:68 IsDefaultBase=True
+                vm._GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
             vm._LastGenPosition = from.LastGenPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:55
             foreach (var t in from.DicPositionsForStandartProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:56
@@ -32498,6 +32381,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._IsGridSortableCustom = from.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             to._IsGridFilterable = from.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
+            if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:152
+                vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupProperties, from.GroupProperties, isDeep);
             to._LastGenPosition = from.LastGenPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:155
             foreach (var tt in from.DicPositionsForStandartProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:94
             {
@@ -32585,6 +32470,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._IsGridSortable = (EnumUseType)m.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._IsGridFilterable = (EnumUseType)m.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
+            vm.GroupProperties ??= new GroupListProperties(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:232
+            vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, (GroupListProperties)vm.GroupProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:236
             vm._LastGenPosition = m.LastGenPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:238
             vm._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:197
             foreach (var t in m.DicPositionsForStandartProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:198
@@ -32662,6 +32549,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:295
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:295
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:295
+            m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:291
             m.LastGenPosition = vm.LastGenPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:306
             foreach (var t in vm.DicPositionsForStandartProperties) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:257
                 m.DicPositionsForStandartProperties.Add(t.Key, StandartPropertyGuidPosition.ConvertToProto((StandartPropertyGuidPosition)t.Value)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:262
@@ -32683,6 +32571,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             {
                 t.AcceptConfigNodeVisitor(visitor);
             }
+            this.GroupProperties.AcceptConfigNodeVisitor(visitor); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:33
             foreach (var t in this.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:24
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -32941,6 +32830,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private EnumUseType _IsGridFilterable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
         partial void OnIsGridFilterableChanging(ref EnumUseType to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnIsGridFilterableChanged();
+        
+        [Browsable(false)]
+        public GroupListProperties GroupProperties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
+        { 
+            get { return this._GroupProperties; }
+            set
+            {
+                // Use 'OnGroupPropertiesChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._GroupProperties, value, (t) => { bool isCancel = false; this.OnGroupPropertiesChanging(ref value, ref isCancel); if (isCancel) return; this._GroupProperties = value; this.OnGroupPropertiesChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
+                }
+            }
+        }
+        private GroupListProperties _GroupProperties; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
+        partial void OnGroupPropertiesChanging(ref GroupListProperties to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
+        partial void OnGroupPropertiesChanged();
+        IGroupListProperties IDocumentTimeline.GroupProperties { get { return (this as DocumentTimeline).GroupProperties; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:78
         
         // Last generated Protobuf field position
         [ReadOnly(true)]

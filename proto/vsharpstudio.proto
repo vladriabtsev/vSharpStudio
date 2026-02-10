@@ -1313,31 +1313,6 @@ message proto_role {
     // @attr [Description("Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(21)]
-    // @attr [DisplayName("Constants")]
-    // @attr [Description("Default constant access settings for all roles")]
-    // @attr [ExpandableObjectAttribute()]
-    proto_role_constants_settings_with_null default_constants_role_settings = 21;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(25)]
-    // @attr [DisplayName("Catalogs")]
-    // @attr [Description("Default catalog access settings for all roles")]
-    // @attr [ExpandableObjectAttribute()]
-    proto_role_catalogs_settings_with_null default_catalogs_role_settings = 25;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(31)]
-    // @attr [DisplayName("Documents")]
-    // @attr [Description("Default document access settings for all roles")]
-    // @attr [ExpandableObjectAttribute()]
-    proto_role_documents_settings_with_null default_documents_role_settings = 31;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(35)]
-    // @attr [DisplayName("Reports")]
-    // @attr [Description("Default report access settings for all roles")]
-    // @attr [ExpandableObjectAttribute()]
-    proto_role_reports_settings_with_null default_reports_role_settings = 35;
-
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -3176,6 +3151,7 @@ message proto_document_timeline {
     // last id for property
     // @attr [Browsable(false)]
     uint32 last_short_id = 14;
+
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
     // @attr [Description("Sortable in data grid")]
@@ -3188,6 +3164,9 @@ message proto_document_timeline {
     // @attr [DisplayName("Filterable")]
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
+
+    // @attr [Browsable(false)]
+    proto_group_list_properties group_properties = 82;
 
     // Last generated Protobuf field position
     // @attr [ReadOnly(true)]

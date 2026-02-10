@@ -24,6 +24,9 @@ namespace vSharpStudio.wpf.Controls
     //    public static readonly DependencyProperty SelectedItem_Property = 
     //        DependencyProperty.Register("SelectedItemBindable", typeof(object), typeof(TreeViewExt), new UIPropertyMetadata(null));
     //}
+
+    // https://learn.microsoft.com/en-us/dotnet/desktop/wpf/controls/gridview
+    // https://learn.microsoft.com/en-us/dotnet/desktop/wpf/controls/treeview
     public class TreeViewEx : TreeView
     {
         public TreeViewEx()

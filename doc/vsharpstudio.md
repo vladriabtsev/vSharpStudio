@@ -768,6 +768,7 @@ Constant application wise value
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
+| group_properties | [proto_group_list_properties](#proto_config-proto_group_list_properties) |  | @attr [Browsable(false)] |
 | last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | dic_positions_for_standart_properties | [proto_document_timeline.DicPositionsForStandartPropertiesEntry](#proto_config-proto_document_timeline-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
 | last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
@@ -2454,10 +2455,6 @@ Configuration model
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
-| default_constants_role_settings | [proto_role_constants_settings_with_null](#proto_config-proto_role_constants_settings_with_null) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Constants&#34;)] @attr [Description(&#34;Default constant access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
-| default_catalogs_role_settings | [proto_role_catalogs_settings_with_null](#proto_config-proto_role_catalogs_settings_with_null) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Catalogs&#34;)] @attr [Description(&#34;Default catalog access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
-| default_documents_role_settings | [proto_role_documents_settings_with_null](#proto_config-proto_role_documents_settings_with_null) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(31)] @attr [DisplayName(&#34;Documents&#34;)] @attr [Description(&#34;Default document access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
-| default_reports_role_settings | [proto_role_reports_settings_with_null](#proto_config-proto_role_reports_settings_with_null) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(35)] @attr [DisplayName(&#34;Reports&#34;)] @attr [Description(&#34;Default report access settings for all roles&#34;)] @attr [ExpandableObjectAttribute()] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 

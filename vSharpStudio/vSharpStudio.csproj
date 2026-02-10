@@ -15,7 +15,8 @@
     <UseWPF>true</UseWPF>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
-    <TargetFramework>net9.0-windows7.0</TargetFramework>
+    <!--<TargetFramework>net9.0-windows</TargetFramework>-->
+    <!--<TargetFramework>net9.0-windows7.0</TargetFramework>-->
   </PropertyGroup>
   <Import Project="..\Solution.targets" />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

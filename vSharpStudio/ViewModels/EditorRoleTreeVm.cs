@@ -13,22 +13,21 @@ namespace vSharpStudio.ViewModels
     {
         readonly Model? model;
         public ITreeConfigNode Node { get; private set; }
-        private static ConfigNodesCollection<Role>? roles;
+        private static Role? role;
         public List<EditorRoleColumnVm> ListRoleColumns { get; private set; }
-        public EditorRoleTreeVm(ConfigNodesCollection<Role> roles, Model model)
+        public EditorRoleTreeVm(Role role, Model model)
         {
             this.model = model;
             this.Node = this.model;
-            EditorRoleTreeVm.roles = roles;
+            EditorRoleTreeVm.role = role;
             this.ListRoleColumns = new List<EditorRoleColumnVm>();
         }
         public EditorRoleTreeVm(ITreeConfigNode node)
         {
             this.Node = node;
             this.ListRoleColumns = new List<EditorRoleColumnVm>();
-            Debug.Assert(EditorRoleTreeVm.roles != null);
-            foreach (var role in EditorRoleTreeVm.roles)
-                this.ListRoleColumns.Add(new EditorRoleColumnVm(node, role, UpdateChildren));
+            Debug.Assert(EditorRoleTreeVm.role != null);
+            this.ListRoleColumns.Add(new EditorRoleColumnVm(node, EditorRoleTreeVm.role, UpdateChildren));
         }
         private void UpdateChildren(Role role)
         {
@@ -51,9 +50,11 @@ namespace vSharpStudio.ViewModels
             foreach (var t in node.GetListChildren())
             {
                 var tt = (ITreeConfigNode)t;
-                if (parent == null && (tt.Name == "Common" || tt.Name == "Enumerations" || tt.Name == "Journals"))
+                if (parent == null && (tt.Name == Defaults.EnumerationsGroupName))
                     continue;
-                else if (tt.Name == "Forms" || tt.Name == "Reports")
+                if (tt.Name == Defaults.RelationsGroupName || tt.Name == Defaults.SequenceGroupName || tt.Name == Defaults.RegisterGroupName || tt.Name == Defaults.RolesGroupName)
+                    continue;
+                else if (tt.Name == Defaults.FormsGroupName)
                     continue;
                 var nd = new EditorRoleTreeVm(tt);
                 res.Add(nd);
