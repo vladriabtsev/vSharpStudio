@@ -1374,7 +1374,7 @@ namespace vSharpStudio.vm.ViewModels
                         EnumCodeType.Number =>
                             this.GetGuidPosition(c, EnumSpecialPropertyType.CODE_NUMBER_INT).Guid,
                         EnumCodeType.Text =>
-                            this.GetGuidPosition(c, EnumSpecialPropertyType.CODE_NUMBER_STRING).Guid,
+                            this.GetGuidPosition(c, EnumSpecialPropertyType.CODE_NUMBER_TEXT).Guid,
                         _ => throw new NotImplementedException(),
                     };
                 }
@@ -1388,7 +1388,7 @@ namespace vSharpStudio.vm.ViewModels
                         EnumCodeType.Number =>
                             this.GetGuidPosition(cf, EnumSpecialPropertyType.CODE_NUMBER_INT).Guid,
                         EnumCodeType.Text =>
-                            this.GetGuidPosition(cf, EnumSpecialPropertyType.CODE_NUMBER_STRING).Guid,
+                            this.GetGuidPosition(cf, EnumSpecialPropertyType.CODE_NUMBER_TEXT).Guid,
                         _ => throw new NotImplementedException(),
                     };
                 }
@@ -1402,10 +1402,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyCodeStr(ITreeConfigNode node, bool isNullable, uint length)
         {
-            var rec = GetGuidPosition(node, EnumSpecialPropertyType.CODE_NUMBER_STRING);
+            var rec = GetGuidPosition(node, EnumSpecialPropertyType.CODE_NUMBER_TEXT);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupCatalogs.GroupListCatalogs.PropertyCodeName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, isNullable);
-            res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.CODE_NUMBER_STRING;
+            res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.CODE_NUMBER_TEXT;
             res.IsCsNullable = false;
             res.IsViewDefault = true;
             res.Position = rec.Position;
@@ -1435,10 +1435,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocumentDate(ITreeConfigNode node)
         {
-            var rec = GetGuidPosition(node, EnumSpecialPropertyType.DOC_DATE);
+            var rec = GetGuidPosition(node, EnumSpecialPropertyType.DOC_DATE_INT);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.TimeLineDocDateTimePropertyName, true);
             res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res, EnumTimeAccuracyType.MAX_TIME_ACC, false);
-            res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.DOC_DATE;
+            res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.DOC_DATE_INT;
             res.IsCsNullable = true;
             res.IsViewDefault = true;
             res.Position = rec.Position;
@@ -1446,10 +1446,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocNumberString(ITreeConfigNode node, uint length)
         {
-            var rec = GetGuidPosition(node, EnumSpecialPropertyType.CODE_NUMBER_STRING);
+            var rec = GetGuidPosition(node, EnumSpecialPropertyType.CODE_NUMBER_TEXT);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyDocNumberName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, true);
-            res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.CODE_NUMBER_STRING;
+            res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.CODE_NUMBER_TEXT;
             res.IsCsNullable = false;
             res.IsViewDefault = true;
             res.Position = rec.Position;
@@ -1489,14 +1489,26 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = rec.Position;
             return res;
         }
-        public IProperty GetPropertyIsPosted(ITreeConfigNode node, bool isNullable)
+        public IProperty GetPropertyTimelineIsPosted(ITreeConfigNode node, bool isNullable)
         {
-            Debug.Assert(node is Document);
+            Debug.Assert(node is DocumentTimeline);
             var rec = GetGuidPosition(node, EnumSpecialPropertyType.IS_POSTED);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyIsPostedName, true);
             res.DataType = new DataType(res) { DataTypeEnum = EnumDataType.BOOL };
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.IS_POSTED;
             res.IsHidden = true;
+            res.IsNullable = isNullable;
+            res.Position = rec.Position;
+            return res;
+        }
+        public IProperty GetPropertyTimelineShortTypeId(ITreeConfigNode node, bool isNullable)
+        {
+            Debug.Assert(node is DocumentTimeline);
+            var rec = GetGuidPosition(node, EnumSpecialPropertyType.SHORT_TYPE_ID);
+            var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyDocShortTypeIdName, true);
+            res.DataType = (DataType)GetDataTypeInt(res, false, isNullable);
+            res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.SHORT_TYPE_ID;
+            //res.IsHidden = true;
             res.IsNullable = isNullable;
             res.Position = rec.Position;
             return res;
@@ -1606,12 +1618,48 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType.IsPKey = is_pkey;
             return res;
         }
+        public IProperty GetPropertyRefParentDetail(ITreeConfigNode node, bool isNullable)
+        {
+            Debug.Assert(node is Detail);
+            Debug.Assert(node.Parent is Detail);
+            var rec = GetGuidPosition(node, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DETAIL);
+            var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyDocShortTypeIdName, true);
+            res.DataType = (DataType)GetDataTypeInt(res, false, isNullable);
+            res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.SHORT_TYPE_ID;
+            //res.IsHidden = true;
+            res.IsNullable = isNullable;
+            res.Position = rec.Position;
+            return res;
+        }
+        public IProperty GetPropertyRefParentCatalog(ITreeConfigNode node, bool isNullable)
+        {
+            Debug.Assert(node is Document);
+            var rec = GetGuidPosition(node, EnumSpecialPropertyType.SHORT_TYPE_ID);
+            var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyDocShortTypeIdName, true);
+            res.DataType = (DataType)GetDataTypeInt(res, false, isNullable);
+            res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.SHORT_TYPE_ID;
+            //res.IsHidden = true;
+            res.IsNullable = isNullable;
+            res.Position = rec.Position;
+            return res;
+        }
+        public IProperty GetPropertyRefParentDocument(ITreeConfigNode node, bool isNullable)
+        {
+            Debug.Assert(node is Document);
+            var rec = GetGuidPosition(node, EnumSpecialPropertyType.SHORT_TYPE_ID);
+            var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyDocShortTypeIdName, true);
+            res.DataType = (DataType)GetDataTypeInt(res, false, isNullable);
+            res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.SHORT_TYPE_ID;
+            //res.IsHidden = true;
+            res.IsNullable = isNullable;
+            res.Position = rec.Position;
+            return res;
+        }
         public IProperty GetPropertySpecial(ITreeConfigNode node, EnumSpecialPropertyType propertyType, bool? isNullable = null, ITreeConfigNode? toNode = null)
         {
             Debug.Assert(propertyType != EnumSpecialPropertyType.CONFIG_PROPERTY);
             Property? res = null;
             var rec = GetGuidPosition(node, propertyType);
-            var cnode = (ITreeConfigNode)node;
             switch (propertyType)
             {
                 case EnumSpecialPropertyType.IS_FOLDER:
@@ -1619,7 +1667,7 @@ namespace vSharpStudio.vm.ViewModels
                     //this._PropertyRefSelf = (Property)m.GetPropertyRef(this, this, System.Guid.NewGuid().ToString(), Property.SpecialPropertyNameRefTreeParent, 0, true);
                     break;
                 case EnumSpecialPropertyType.RECORD_ID:
-                    res = new Property(cnode, rec.Guid, node.Cfg.Model.PKeyName, true);
+                    res = new Property(node, rec.Guid, node.Cfg.Model.PKeyName, true);
                     res.DataType = (DataType)GetIdDataType(res, false);
                     res.DataType.IsPKey = true;
                     res.IsHidden = true;
@@ -1628,9 +1676,9 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(false);
                     break;
                 case EnumSpecialPropertyType.HISTORY_DATATIMEUTC:
-                    Debug.Assert(cnode is RelationManyToMany);
+                    Debug.Assert(node is RelationManyToMany);
                     Debug.Assert(isNullable != null);
-                    res = new Property(cnode, rec.Guid, Property.SpecialPropertyHistoryDataTimeUtc, false)
+                    res = new Property(node, rec.Guid, Property.SpecialPropertyHistoryDataTimeUtc, false)
                     {
                         Position = rec.Position,
                         IsCsNullable = isNullable.Value,
@@ -1638,100 +1686,77 @@ namespace vSharpStudio.vm.ViewModels
                     };
                     break;
                 case EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DETAIL:
-                    Debug.Assert(cnode is Detail);
+                    Debug.Assert(node is Detail);
                     Debug.Assert(isNullable != null);
-                    res = new Property(cnode, rec.Guid, Property.SpecialRefParentName, true)
-                    {
-                        Position = rec.Position,
-                        IsCsNullable = isNullable.Value,
-                        DataType = new DataType(cnode)
-                    };
-                    res.DataType.ObjectRef0.ForeignObjectGuid = cnode.Guid;
+                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, Property.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
+                    res.DataType.ObjectRef0.ForeignObjectGuid = node.Guid;
                     res.DataType.IsNullable = isNullable.Value;
+                    res.IsComplexRefId = true;
                     break;
                 case EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG:
-                    Debug.Assert(cnode is Detail);
+                    Debug.Assert(node is Detail);
                     Debug.Assert(isNullable != null);
                     Debug.Assert(toNode != null);
                     Debug.Assert(toNode is Catalog);
-                    res = new Property(cnode, rec.Guid, Property.SpecialRefParentName, true)
-                    {
-                        Position = rec.Position,
-                        IsCsNullable = isNullable.Value,
-                        DataType = new DataType(cnode)
-                    };
+                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, Property.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
                     res.DataType.ObjectRef0.ForeignObjectGuid = toNode.Guid;
                     res.DataType.IsNullable = isNullable.Value;
+                    res.IsComplexRefId = true;
                     break;
                 case EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER:
-                    Debug.Assert(cnode is Detail);
+                    Debug.Assert(node is Detail);
                     Debug.Assert(isNullable != null);
                     Debug.Assert(toNode != null);
                     Debug.Assert(toNode is CatalogFolder);
-                    res = new Property(cnode, rec.Guid, Property.SpecialRefParentName, true)
-                    {
-                        Position = rec.Position,
-                        IsCsNullable = isNullable.Value,
-                        DataType = new DataType(cnode)
-                    };
+                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, Property.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
                     res.DataType.ObjectRef0.ForeignObjectGuid = toNode.Guid;
                     res.DataType.IsNullable = isNullable.Value;
+                    res.IsComplexRefId = true;
                     break;
                 case EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DOCUMENT:
-                    Debug.Assert(cnode is Detail);
+                    Debug.Assert(node is Detail);
                     Debug.Assert(isNullable != null);
                     Debug.Assert(toNode != null);
                     Debug.Assert(toNode is Document);
-                    res = new Property(cnode, rec.Guid, Property.SpecialRefParentName, true)
-                    {
-                        Position = rec.Position,
-                        IsCsNullable = isNullable.Value,
-                        DataType = new DataType(cnode)
-                    };
+                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, Property.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
                     res.DataType.ObjectRef0.ForeignObjectGuid = toNode.Guid;
                     res.DataType.IsNullable = isNullable.Value;
+                    res.IsComplexRefId = true;
                     break;
                 case EnumSpecialPropertyType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER:
-                    Debug.Assert(cnode is Catalog);
+                    Debug.Assert(node is Catalog);
                     Debug.Assert(isNullable != null);
                     Debug.Assert(toNode != null);
                     Debug.Assert(toNode is CatalogFolder);
-                    res = new Property(cnode, rec.Guid, Property.SpecialRefParentName, true)
-                    {
-                        Position = rec.Position,
-                        IsCsNullable = isNullable.Value,
-                        DataType = new DataType(cnode)
-                    };
+                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, Property.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
                     res.DataType.ObjectRef0.ForeignObjectGuid = toNode.Guid;
                     res.DataType.IsNullable = isNullable.Value;
+                    res.IsComplexRefId = true;
                     break;
                 case EnumSpecialPropertyType.REF_TIMELINE:
-                    Debug.Assert(cnode is Register);
+                    Debug.Assert(node is Register);
                     Debug.Assert(isNullable != null);
                     Debug.Assert(toNode != null);
                     Debug.Assert(toNode is DocumentTimeline);
-                    res = new Property(cnode, rec.Guid, Property.SpecialPropertyNameRefTimeline, true)
+                    res = new Property(node, rec.Guid, Property.SpecialPropertyNameRefTimeline + node.Cfg.Model.PKeyName, true)
                     {
                         Position = rec.Position,
                         IsCsNullable = isNullable.Value,
-                        DataType = new DataType(cnode)
+                        DataType = new DataType(node)
                     };
                     res.DataType.ObjectRef0.ForeignObjectGuid = toNode.Guid;
                     res.DataType.IsNullable = isNullable.Value;
                     res.IsRefTimeline = true;
+                    res.IsComplexRefId = true;
                     break;
                 case EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT:
                 case EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT:
-                    Debug.Assert(cnode is Catalog || cnode is CatalogFolder);
+                    Debug.Assert(node is Catalog || node is CatalogFolder);
                     Debug.Assert(isNullable != null);
-                    res = new Property(cnode, rec.Guid, Property.SpecialRefTreeParentName, true)
-                    {
-                        Position = rec.Position,
-                        IsCsNullable = isNullable.Value,
-                        DataType = new DataType(cnode)
-                    };
-                    res.DataType.ObjectRef0.ForeignObjectGuid = cnode.Guid;
+                    res = (Property)this.GetPropertyRef(node, rec.Guid, Property.SpecialRefTreeParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
+                    res.DataType.ObjectRef0.ForeignObjectGuid = node.Guid;
                     res.DataType.IsNullable = isNullable.Value;
+                    res.IsComplexRefId = true;
                     break;
                 default:
                     Debug.Assert(false, "Not supported");

@@ -120,7 +120,7 @@ namespace vSharpStudio.vm.ViewModels
                             if (c.CodePropertySettings.SequenceType == EnumCodeType.Number)
                                 tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_INT));
                             else
-                                tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_STRING));
+                                tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_TEXT));
                         if (c.Folder.GetUseNameProperty())
                             tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.NAME));
                     }
@@ -131,7 +131,7 @@ namespace vSharpStudio.vm.ViewModels
                         if (c.CodePropertySettings.SequenceType == EnumCodeType.Number)
                             dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_INT));
                         else
-                            dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_STRING));
+                            dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_TEXT));
                     if (c.GetUseNameProperty())
                         dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.NAME));
                     break;
@@ -146,7 +146,7 @@ namespace vSharpStudio.vm.ViewModels
                             if (c.CodePropertySettings.SequenceType == EnumCodeType.Number)
                                 tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_INT));
                             else
-                                tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_STRING));
+                                tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.CODE_NUMBER_TEXT));
                         if (c.Folder.GetUseNameProperty())
                             tree.ListGuidProperties.Add(model.GetPropertyGuid(c.Folder, EnumSpecialPropertyType.NAME));
                         if (c.Folder.GetUseDescriptionProperty())
@@ -159,7 +159,7 @@ namespace vSharpStudio.vm.ViewModels
                         if (c.CodePropertySettings.SequenceType == EnumCodeType.Number)
                             dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_INT));
                         else
-                            dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_STRING));
+                            dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.CODE_NUMBER_TEXT));
                     if (c.GetUseNameProperty())
                         dg.ListGuidProperties.Add(model.GetPropertyGuid(c, EnumSpecialPropertyType.NAME));
                     if (c.GetUseDescriptionProperty())

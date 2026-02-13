@@ -22,7 +22,8 @@ namespace vSharpStudio.common
         IProperty GetPropertyDocNumberInt(ITreeConfigNode node, uint length);
         IProperty GetPropertyDescription(ITreeConfigNode node, bool isNullable, uint length);
         IProperty GetPropertyIsFolder(ITreeConfigNode node, bool isNullable);
-        IProperty GetPropertyIsPosted(ITreeConfigNode node, bool isNullable);
+        IProperty GetPropertyTimelineIsPosted(ITreeConfigNode node, bool isNullable);
+        IProperty GetPropertyTimelineShortTypeId(ITreeConfigNode node, bool isNullable);
         IProperty GetPropertyDocShortTypeId(ITreeConfigNode node, bool isNullable);
         IProperty GetPropertyBalanceOnDateInt(ITreeConfigNode node, bool isPKey);
         IProperty GetPropertyDateTimeUtc(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable, EnumTimeAccuracyType enumTimeAccuracyType = EnumTimeAccuracyType.MKS_TIME_ACC);
@@ -31,6 +32,8 @@ namespace vSharpStudio.common
         IProperty GetPropertyNumber(ITreeConfigNode node, EnumSpecialPropertyType enumDataType, uint length, uint accuracy, bool isNullable);
         IProperty GetPropertyRefDimension(IRegisterDimension node, bool isNullable = false);
         IProperty GetPropertyRef(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable = false, bool is_pkey = false);
+        IProperty GetPropertyRefCatalog(ITreeConfigNode parent, string guid, ICatalog c, uint position, bool isNullable);
+        IProperty GetPropertyRefDocument(IGroupListProperties parent, string guid, IDocument d, uint position, bool isNullable);
         IProperty GetPropertySpecial(ITreeConfigNode node, EnumSpecialPropertyType propertyType, bool? isNullable = null, ITreeConfigNode? toNode = null);
 
         IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, uint accuracy, bool isNullable);
@@ -66,9 +69,6 @@ namespace vSharpStudio.common
         IDataType GetDataTypeDateTimeOffset(ITreeConfigNode? parent, EnumTimeAccuracyType accuracyForTime, bool isNullable);
 
         //IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable);
-        IProperty GetPropertyRefCatalog(ITreeConfigNode parent, string guid, ICatalog c, uint position, bool isNullable);
-        IProperty GetPropertyRefDocument(IGroupListProperties parent, string guid, IDocument d, uint position, bool isNullable);
-
         IProperty GetPropertyCatalog(ITreeConfigNode parent, string guid, string name, string catGuid, uint position, bool isNullable);
         IProperty GetPropertyDocument(ITreeConfigNode parent, string guid, string name, string docGuid, uint position, bool isNullable);
         IProperty GetPropertyAny(ITreeConfigNode parent, string guid, string name, uint position, bool isNullable);

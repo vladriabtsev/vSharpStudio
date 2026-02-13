@@ -51,7 +51,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this._Guid = System.Guid.NewGuid().ToString();
-            this._PropertyDataTimeGuid = System.Guid.NewGuid().ToString();
             this._IsRelationReferenceNullable = true;
             var model = this.Cfg.Model;
             this._PropertyRefObj1 = (Property)model.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref1", 0, true);

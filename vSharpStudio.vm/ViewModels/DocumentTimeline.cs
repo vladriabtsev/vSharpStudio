@@ -77,7 +77,6 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._PropertyTimelineDocDateTimeGuid = System.Guid.NewGuid().ToString();
             this._TimeLineDocDateTimePropertyName = "DocDateTime";
             this.IsEditable = false;
             Init();
@@ -342,10 +341,10 @@ namespace vSharpStudio.vm.ViewModels
             //prp = model.GetPropertyDateTimeUtc(this, this.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, true, this.TimelineTimeAccuracy);
             //prp.SetPosition(IProperty.PropertyDocumentDatePosition);
             lst.Add(prp);
-            prp = model.GetPropertyDocShortTypeId(this, false);
+            prp = model.GetPropertyTimelineShortTypeId(this, false);
             //prp = model.GetPropertyInt(this, model.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.GroupListDocuments.PropertyDocShortTypeIdName, IProperty.PropertyShortTypeIdPosition, false, false);
             lst.Add(prp);
-            prp = model.GetPropertyIsPosted(this, true);
+            prp = model.GetPropertyTimelineIsPosted(this, true);
             //prp = model.GetPropertyBool(this, model.PropertyDocIsPostedGuid, "IsPosted", (uint)lst.Count, true);
             //prp.SetPosition(IProperty.PropertyIsPostedPosition);
             lst.Add(prp);

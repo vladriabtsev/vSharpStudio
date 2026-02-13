@@ -1054,7 +1054,18 @@ namespace vSharpStudio.vm.ViewModels
                     node.nameShortIdPrefix = "p";
                     break;
                 default:
-                    Debug.Assert(false);
+                    switch (t.DataType.SpecialPropertyTypeEnum)
+                    {
+                        case EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG:
+                            node.nameShortIdPrefix = "p";
+                            break;
+                        case EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DOCUMENT:
+                            node.nameShortIdPrefix = "p";
+                            break;
+                        default:
+                            Debug.Assert(false);
+                            break;
+                    }
                     break;
             }
             return node;
@@ -1065,7 +1076,7 @@ namespace vSharpStudio.vm.ViewModels
             if (string.IsNullOrEmpty(this.RefComplexObjectGdPropertyGuid))
                 this.RefComplexObjectGdPropertyGuid = System.Guid.NewGuid().ToString();
             node.Guid = this.RefComplexObjectGdPropertyGuid;
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = int.MaxValue, IsPositive = false, IsNullable = isNullable };
+            node.DataType = (DataType)this.Cfg.Model.GetDataTypeInt(node, false, isNullable);
             node.IsCsNullable = isCsNullable;
             node.ParentProperty = this;
             node.IsComplexRefGuid = true;

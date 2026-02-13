@@ -763,7 +763,6 @@ Constant application wise value
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | timeline_time_accuracy | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Timeline accuracy&#34;)] @attr [Description(&#34;Document time line accuracy. Only one document can posted at any point of time line.&#34;)] |
 | time_line_doc_date_time_property_name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Timeline property&#34;)] @attr [Description(&#34;Timeline property name in document timeline&#34;)] |
-| property_timeline_doc_date_time_guid | [string](#string) |  | @attr [Browsable(false)] |
 | last_short_id | [uint32](#uint32) |  | last id for property @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
@@ -1796,7 +1795,6 @@ Configuration model
 | record_version_field_name | [string](#string) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Version field&#34;)] @attr [Description(&#34;Record version field name&#34;)] @attr [Category(&#34;Property settings&#34;)] |
 | record_version_field_type | [proto_enum_version_field_type](#proto_config-proto_enum_version_field_type) |  | @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Version type&#34;)] @attr [Description(&#34;Record version field type&#34;)] @attr [Category(&#34;Property settings&#34;)] |
 | complex_property_ref_descr_length | [uint32](#uint32) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Descr Max&#34;)] @attr [Description(&#34;Complex property description maximum length. Unlimited if zero&#34;)] |
-| property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -2251,7 +2249,6 @@ Configuration model
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | property_ref_obj1 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
 | property_ref_obj2 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
-| property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
 | dic_positions_for_standart_properties | [proto_relation_many_to_many.DicPositionsForStandartPropertiesEntry](#proto_config-proto_relation_many_to_many-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
 | last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -2320,7 +2317,6 @@ Configuration model
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | property_ref_obj1 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
 | property_ref_obj2 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
-| property_data_time_guid | [string](#string) |  | @attr [Browsable(false)] |
 | dic_positions_for_standart_properties | [proto_relation_one_to_one.DicPositionsForStandartPropertiesEntry](#proto_config-proto_relation_one_to_one-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
 | last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
@@ -3433,10 +3429,10 @@ D A T A  T Y P E
 | RECORD_VERSION_PREV | 11 |  |
 | IS_FOLDER | 12 |  |
 | CODE_NUMBER_INT | 13 |  |
-| CODE_NUMBER_STRING | 14 |  |
+| CODE_NUMBER_TEXT | 14 |  |
 | NAME | 15 |  |
 | DESCRIPTION | 16 |  |
-| DOC_DATE | 17 |  |
+| DOC_DATE_INT | 17 |  |
 | IS_POSTED | 18 |  |
 | SHORT_TYPE_ID | 19 |  |
 | ACCUMULATOR_QTY | 20 |  |

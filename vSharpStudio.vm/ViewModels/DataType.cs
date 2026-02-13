@@ -497,6 +497,7 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.NUMERICAL:
+                    Debug.Assert(this.Length < 100);
                     if (this.Length > this.Accuracy)
                     {
                         this.MaxValue = string.Empty.PadRight((int)(this.Length - this.Accuracy), '9');

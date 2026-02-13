@@ -1674,7 +1674,7 @@
               "description": ""
             },
             {
-              "name": "CODE_NUMBER_STRING",
+              "name": "CODE_NUMBER_TEXT",
               "number": "14",
               "description": ""
             },
@@ -1689,7 +1689,7 @@
               "description": ""
             },
             {
-              "name": "DOC_DATE",
+              "name": "DOC_DATE_INT",
               "number": "17",
               "description": ""
             },
@@ -5663,18 +5663,6 @@
             {
               "name": "time_line_doc_date_time_property_name",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Timeline property\")]\n@attr [Description(\"Timeline property name in document timeline\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "property_timeline_doc_date_time_guid",
-              "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -11241,18 +11229,6 @@
               "defaultValue": ""
             },
             {
-              "name": "property_id_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "is_grid_sortable",
               "description": "@attr [Category(\"DataGrid settings\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
               "label": "",
@@ -13629,18 +13605,6 @@
               "defaultValue": ""
             },
             {
-              "name": "property_data_time_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "dic_positions_for_standart_properties",
               "description": "@attr [Browsable(false)]\nDictionary\u003cEnumDataType, StandartPropertyGuidPosition\u003e for sub properties (complex reference GD, TypeId, ...)",
               "label": "repeated",
@@ -13971,18 +13935,6 @@
               "type": "proto_property",
               "longType": "proto_property",
               "fullType": "proto_config.proto_property",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "property_data_time_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

@@ -704,9 +704,6 @@ message proto_model {
     // @attr [Description("Complex property description maximum length. Unlimited if zero")]
     uint32 complex_property_ref_descr_length = 43;
 
-    // @attr [Browsable(false)]
-    string property_id_guid = 51;
-
     // @attr [Category("DataGrid settings")]
     // @attr [DisplayName("Sortable")]
     // @attr [Description("Sortable in data grid")]
@@ -756,10 +753,10 @@ enum proto_enum_special_property_type {
     RECORD_VERSION_PREV = 11;
     IS_FOLDER = 12;
     CODE_NUMBER_INT = 13;
-    CODE_NUMBER_STRING = 14;
+    CODE_NUMBER_TEXT = 14;
     NAME = 15;
     DESCRIPTION = 16;
-    DOC_DATE = 17;
+    DOC_DATE_INT = 17;
     IS_POSTED = 18;
     SHORT_TYPE_ID = 19;
     ACCUMULATOR_QTY = 20;
@@ -3146,8 +3143,6 @@ message proto_document_timeline {
     // @attr [DisplayName("Timeline property")]
     // @attr [Description("Timeline property name in document timeline")]
     string time_line_doc_date_time_property_name = 12;
-    // @attr [Browsable(false)]
-    string property_timeline_doc_date_time_guid = 13;
     // last id for property
     // @attr [Browsable(false)]
     uint32 last_short_id = 14;
@@ -3447,9 +3442,6 @@ message proto_relation_many_to_many {
     proto_property property_ref_obj2 = 34;
 
     // @attr [Browsable(false)]
-    string property_data_time_guid = 62;
-
-    // @attr [Browsable(false)]
     // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
     map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
     // @attr [Browsable(false)]
@@ -3582,9 +3574,6 @@ message proto_relation_one_to_one {
     proto_property property_ref_obj1 = 33;
     // @attr [Browsable(false)]
     proto_property property_ref_obj2 = 34;
-
-    // @attr [Browsable(false)]
-    string property_data_time_guid = 62;
 
     // @attr [Browsable(false)]
     // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)

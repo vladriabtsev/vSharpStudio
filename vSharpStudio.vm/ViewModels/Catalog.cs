@@ -490,26 +490,12 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.UseSeparateTreeForFolders)
                 {
-                    if (this.UseItemsAtRoot)
-                    {
-                        prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER, true, this.Folder);
-                    }
-                    else
-                    {
-                        prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER, false, this.Folder);
-                    }
+                    prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER, true, this.Folder);
                     res.Add(prp);
                 }
                 else
                 {
-                    if (this.UseItemsAtRoot)
-                    {
-                        prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT, true);
-                    }
-                    else
-                    {
-                        prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT, false);
-                    }
+                    prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT, true);
                     res.Add(prp);
                     prp = model.GetPropertyIsFolder(this, false);
                     res.Add(prp);
@@ -714,7 +700,7 @@ namespace vSharpStudio.vm.ViewModels
             IProperty? pRefParent = null;
             if (this.UseTree)
             {
-                pRefTreeParent = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT);
+                pRefTreeParent = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT, true);
                 if (this.UseSeparateTreeForFolders) // self tree and separate data grid for children
                 {
                     viewTreeData = new ViewTreeData(prp, pRefTreeParent, null);

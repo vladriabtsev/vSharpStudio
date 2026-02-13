@@ -451,16 +451,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.AddAllAppGenSettingsVmsToNode();
         }
-        //[BrowsableAttribute(false)]
-        //public string DefaultValue
-        //{
-        //    get
-        //    {
-        //        if (this.DataType.IsNullable)
-        //            return "null";
-        //        return this.DataType.DefaultValue;
-        //    }
-        //}
         [PropertyOrder(100)]
         [ReadOnly(true)]
         [DisplayName("Composite")]
@@ -472,6 +462,7 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
+
         #region Tree operations
         public override ITreeConfigNode NodeAddClone()
         {
@@ -500,6 +491,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentGroupListConstants.ListConstants.Remove(this);
         }
         #endregion Tree operations
+
         //protected override string[]? OnGetWhatHideOnPropertyGrid()
         //{
         //    var lst = new List<string>();
