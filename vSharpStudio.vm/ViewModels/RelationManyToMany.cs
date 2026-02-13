@@ -97,63 +97,6 @@ namespace vSharpStudio.vm.ViewModels
             //};
         }
         protected override ConfigNodesCollection<RelationManyToMany>? GetParentCollection() { return this.ParentManyToManyGroupRelations.ListRelations; }
-
-        #region OnChanged
-        partial void OnNameChanged()
-        {
-            this.OnGuidObj1Changed();
-            this.OnGuidObj2Changed();
-        }
-        partial void OnRefObj1TypeChanged()
-        {
-            this.GuidObj1 = null;
-            this.OnPropertyChanged(nameof(this.ListObjectsNode1));
-        }
-        partial void OnGuidObj1Changed()
-        {
-            if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
-            {
-                this.PropertyRefObj1.DataTypeEnum = EnumDataType.CATALOG;
-            }
-            else if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
-            {
-                this.PropertyRefObj1.DataTypeEnum = EnumDataType.DOCUMENT;
-            }
-            else
-                ThrowHelper.ThrowInvalidOperationException();
-            this.PropertyRefObj1.DataType.ObjectRef0.ForeignObjectGuid = this.GuidObj1 ?? "";
-            this.PropertyRefObj1.Name = this.Name;
-            this.PropertyRefObj1.IsNullable = false;
-            this.PropertyRefObj1.Position = 0;
-            this.PropertyRefObj1.PositionOfDescr = 0;
-            this.PropertyRefObj1.PositionOfGd = 0;
-        }
-        partial void OnRefObj2TypeChanged()
-        {
-            this.GuidObj2 = null;
-            this.OnPropertyChanged(nameof(this.ListObjectsNode2));
-        }
-        partial void OnGuidObj2Changed()
-        {
-            if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
-            {
-                this.PropertyRefObj2.DataTypeEnum = EnumDataType.CATALOG;
-            }
-            else if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
-            {
-                this.PropertyRefObj2.DataTypeEnum = EnumDataType.DOCUMENT;
-            }
-            else
-                ThrowHelper.ThrowInvalidOperationException();
-            this.PropertyRefObj2.DataType.ObjectRef0.ForeignObjectGuid = this.GuidObj2 ?? "";
-            this.PropertyRefObj2.Name = this.Name;
-            this.PropertyRefObj2.IsNullable = false;
-            this.PropertyRefObj2.Position = 0;
-            this.PropertyRefObj2.PositionOfDescr = 0;
-            this.PropertyRefObj2.PositionOfGd = 0;
-        }
-        #endregion OnChanged
-
         private string GetName(bool isComposite)
         {
             Debug.Assert(this.Parent != null);
@@ -331,16 +274,70 @@ namespace vSharpStudio.vm.ViewModels
             throw new NotImplementedException();
         }
         #endregion Get Properties and Details
+
+        #region EDIT LOGIC
+        partial void OnNameChanged()
+        {
+            this.OnGuidObj1Changed();
+            this.OnGuidObj2Changed();
+        }
+        partial void OnRefObj1TypeChanged()
+        {
+            this.GuidObj1 = null;
+            this.OnPropertyChanged(nameof(this.ListObjectsNode1));
+        }
+        partial void OnGuidObj1Changed()
+        {
+            if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
+            {
+                this.PropertyRefObj1.DataTypeEnum = EnumDataType.CATALOG;
+            }
+            else if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
+            {
+                this.PropertyRefObj1.DataTypeEnum = EnumDataType.DOCUMENT;
+            }
+            else
+                ThrowHelper.ThrowInvalidOperationException();
+            this.PropertyRefObj1.DataType.ObjectRef0.ForeignObjectGuid = this.GuidObj1 ?? "";
+            this.PropertyRefObj1.Name = this.Name;
+            this.PropertyRefObj1.IsNullable = false;
+            this.PropertyRefObj1.Position = 0;
+            this.PropertyRefObj1.PositionOfDescr = 0;
+            this.PropertyRefObj1.PositionOfGd = 0;
+        }
+        partial void OnRefObj2TypeChanged()
+        {
+            this.GuidObj2 = null;
+            this.OnPropertyChanged(nameof(this.ListObjectsNode2));
+        }
+        partial void OnGuidObj2Changed()
+        {
+            if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
+            {
+                this.PropertyRefObj2.DataTypeEnum = EnumDataType.CATALOG;
+            }
+            else if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
+            {
+                this.PropertyRefObj2.DataTypeEnum = EnumDataType.DOCUMENT;
+            }
+            else
+                ThrowHelper.ThrowInvalidOperationException();
+            this.PropertyRefObj2.DataType.ObjectRef0.ForeignObjectGuid = this.GuidObj2 ?? "";
+            this.PropertyRefObj2.Name = this.Name;
+            this.PropertyRefObj2.IsNullable = false;
+            this.PropertyRefObj2.Position = 0;
+            this.PropertyRefObj2.PositionOfDescr = 0;
+            this.PropertyRefObj2.PositionOfGd = 0;
+        }
         [Browsable(false)]
         public SortedObservableCollection<ITreeConfigNodeSortable>? ListObjectsNode1
         {
             get
             {
-                Debug.Assert(this.Parent != null);
                 if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
-                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs);
+                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs);
                 else if (this.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
-                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
+                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
                 else throw new NotImplementedException();
             }
         }
@@ -349,13 +346,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                Debug.Assert(this.Parent != null);
                 if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
-                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs);
+                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Cfg.Model.GroupCatalogs.GroupListCatalogs.ListCatalogs);
                 else if (this.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
-                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Parent.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
+                    return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
                 else throw new NotImplementedException();
             }
         }
+        #endregion EDIT LOGIC
     }
 }

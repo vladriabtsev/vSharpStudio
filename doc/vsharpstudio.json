@@ -13474,7 +13474,7 @@
             },
             {
               "name": "ref_obj1_type",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Type 1\")]\n@attr [Description(\"Type of first configuration object for Many To Many relation\")]",
+              "description": "@attr [Browsable(false)]\n@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Type 1\")]\n@attr [Description(\"Type of first configuration object for Many To Many relation\")]",
               "label": "",
               "type": "proto_enum_relation_config_type",
               "longType": "proto_enum_relation_config_type",
@@ -13498,7 +13498,7 @@
             },
             {
               "name": "ref_obj2_type",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Type 2\")]\n@attr [Description(\"Type of second configuration object for Many To Many relation\")]",
+              "description": "@attr [Browsable(false)]\n@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Type 2\")]\n@attr [Description(\"Type of second configuration object for Many To Many relation\")]",
               "label": "",
               "type": "proto_enum_relation_config_type",
               "longType": "proto_enum_relation_config_type",
@@ -13786,7 +13786,7 @@
             },
             {
               "name": "ref_obj1_type",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Type 1\")]\n@attr [Description(\"Type of first configuration object for One To One relation\")]\n@attr [ReadOnly(true)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Type 1\")]\n@attr [Description(\"Type of first configuration object for One To One relation\")]",
               "label": "",
               "type": "proto_enum_relation_config_type",
               "longType": "proto_enum_relation_config_type",
@@ -13834,7 +13834,7 @@
             },
             {
               "name": "ref_obj2_type",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Type 2\")]\n@attr [Description(\"Type of second configuration object for One To One relation\")]\n@attr [ReadOnly(true)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Type 2\")]\n@attr [Description(\"Type of second configuration object for One To One relation\")]",
               "label": "",
               "type": "proto_enum_relation_config_type",
               "longType": "proto_enum_relation_config_type",

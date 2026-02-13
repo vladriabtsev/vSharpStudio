@@ -35441,6 +35441,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnDescriptionChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnDescriptionChanged();
         
+        [Browsable(false)]
         [Category("")]
         [PropertyOrderAttribute(11)]
         [DisplayName("Type 1")]
@@ -35484,6 +35485,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnGuidObj1Changing(ref string? to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnGuidObj1Changed();
         
+        [Browsable(false)]
         [Category("")]
         [PropertyOrderAttribute(15)]
         [DisplayName("Type 2")]
@@ -36705,7 +36707,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         [PropertyOrderAttribute(11)]
         [DisplayName("Type 1")]
         [Description("Type of first configuration object for One To One relation")]
-        [ReadOnly(true)]
         public EnumRelationConfigType RefObj1Type // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
             get { return this._RefObj1Type; }
@@ -36791,7 +36792,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         [PropertyOrderAttribute(15)]
         [DisplayName("Type 2")]
         [Description("Type of second configuration object for One To One relation")]
-        [ReadOnly(true)]
         public EnumRelationConfigType RefObj2Type // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
             get { return this._RefObj2Type; }

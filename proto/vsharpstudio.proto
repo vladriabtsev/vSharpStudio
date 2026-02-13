@@ -3394,6 +3394,8 @@ message proto_relation_many_to_many {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+
+    // @attr [Browsable(false)]
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(11)]
     // @attr [DisplayName("Type 1")]
@@ -3405,6 +3407,7 @@ message proto_relation_many_to_many {
     // @attr [Description("First configuration object for Many To Many relation")]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     google.protobuf.StringValue guid_obj1 = 12;
+    // @attr [Browsable(false)]
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(15)]
     // @attr [DisplayName("Type 2")]
@@ -3522,7 +3525,6 @@ message proto_relation_one_to_one {
     // @attr [PropertyOrderAttribute(11)]
     // @attr [DisplayName("Type 1")]
     // @attr [Description("Type of first configuration object for One To One relation")]
-    // @attr [ReadOnly(true)]
     proto_enum_relation_config_type ref_obj1_type = 11;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(12)]
@@ -3544,7 +3546,6 @@ message proto_relation_one_to_one {
     // @attr [PropertyOrderAttribute(15)]
     // @attr [DisplayName("Type 2")]
     // @attr [Description("Type of second configuration object for One To One relation")]
-    // @attr [ReadOnly(true)]
     proto_enum_relation_config_type ref_obj2_type = 15;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(16)]
