@@ -1,18 +1,18 @@
 ﻿{
   "currentConfig": {
-    "guid": "43cd1e83-fb09-440b-b9c9-7470a5f20a8c",
+    "guid": "237591e0-7369-49b2-8127-fc09b248ccc2",
     "name": "test2",
     "nameUi": "test2",
-    "lastUpdated": "2026-02-14T14:57:35.955441Z",
+    "lastUpdated": "2026-02-14T19:35:57.437868800Z",
     "isNeedCurrentUpdate": true,
     "groupConfigLinks": {
-      "guid": "e2741df4-83a7-4892-92a1-d3eea11a21b0",
+      "guid": "8b6e458b-3ffb-41e7-af5c-42c22e763dd0",
       "name": "BaseConfigs",
       "nameUi": "BaseConfigs",
       "explicitSortingPosition": 1
     },
     "model": {
-      "guid": "a3ad524b-7539-403e-b2aa-3a7210c31f00",
+      "guid": "18f87b95-430d-40bf-a7be-4be480bf6c26",
       "name": "Model",
       "explicitSortingPosition": 2,
       "nameUi": "Model",
@@ -21,25 +21,25 @@
       "recordVersionFieldName": "ReCoRdVeRsIoN",
       "recordVersionFieldType": "VER_INT",
       "groupConstantGroups": {
-        "guid": "96b54eed-73d6-4386-9e9f-45011c7cb312",
+        "guid": "c611c387-e960-410e-86f7-34b749530c88",
         "name": "Constants",
         "explicitSortingPosition": 8,
         "nameUi": "Constants",
         "prefixForCompositionNames": "Cnst"
       },
       "groupEnumerations": {
-        "guid": "d9d12018-8386-4c3c-a6eb-3a6e9c556b0e",
+        "guid": "e4895a02-beb5-48d5-9c04-40b16116c7c0",
         "name": "Enumerations",
         "nameUi": "Enumerations",
         "explicitSortingPosition": 7
       },
       "groupCatalogs": {
-        "guid": "f73129d9-a165-4a24-85ab-fbb2ce2db018",
+        "guid": "f9b00776-6099-4230-bfea-77ab48c85188",
         "name": "Catalogs",
         "explicitSortingPosition": 9,
         "nameUi": "Catalogs",
         "groupListCatalogs": {
-          "guid": "354c0711-fac7-4b33-a3b1-8742a7502717",
+          "guid": "f03408bf-0ff7-4e23-8cb2-5b8db91eafe8",
           "name": "ListCatalogs",
           "nameUi": "ListCatalogs",
           "prefixForCompositionNames": "Ctlg",
@@ -54,19 +54,19 @@
           "propertyIsFolderName": "IsFolder"
         },
         "groupRelations": {
-          "guid": "36e6cc1d-665c-4945-9296-35119ab63d7a",
+          "guid": "b611e2b0-3cfd-40f1-95e5-ea9ed4521414",
           "name": "Relations",
           "explicitSortingPosition": 2,
           "nameUi": "Relations",
           "groupListManyToManyRelations": {
-            "guid": "bed4eb33-4a6d-4b78-85b5-d443205a34a1",
+            "guid": "b43b17dc-117e-4bd0-a381-0d3656736520",
             "name": "ManyToMany",
             "nameUi": "ManyToMany",
             "prefixForCompositionNames": "ManyToMany",
             "explicitSortingPosition": 3
           },
           "groupListOneToOneRelations": {
-            "guid": "9656c3c1-209f-418f-b6a0-b9daad5c6c72",
+            "guid": "5d2651e7-db31-4916-83e7-aa3d90759eab",
             "name": "OneToOne",
             "nameUi": "OneToOne",
             "prefixForCompositionNames": "OneToOne",
@@ -75,25 +75,25 @@
         }
       },
       "groupDocuments": {
-        "guid": "a17c17a2-8e1d-4bc5-9dba-b32a0fbe0f7f",
+        "guid": "c8b28b45-271c-4d47-a315-831afd137914",
         "name": "Documents",
         "explicitSortingPosition": 11,
         "nameUi": "Documents",
         "documentTimeline": {
-          "guid": "9e1b60ee-db4f-404e-a2be-447bbd9afabd",
+          "guid": "aa44ebbf-79ba-4ca8-a83d-37c8b1a4480b",
           "name": "Timeline",
           "nameUi": "Timeline",
           "explicitSortingPosition": 1,
           "timeLineDocDateTimePropertyName": "DocDateTime",
           "groupProperties": {
-            "guid": "f0196963-fa79-49ec-9cae-58ca2f025cfa",
+            "guid": "217fa859-2762-4c23-b9c6-aad61435c2b4",
             "name": "Properties",
             "nameUi": "Properties",
             "explicitSortingPosition": 1
           }
         },
         "groupListDocuments": {
-          "guid": "6acb2206-84ca-4d33-a51c-96916a2f35fd",
+          "guid": "15e853ba-201e-40d4-9a91-63075d400113",
           "name": "ListDocuments",
           "nameUi": "ListDocuments",
           "prefixForCompositionNames": "Doc",
@@ -105,34 +105,34 @@
           "propertyIsPostedName": "IsPosted"
         },
         "groupRegisters": {
-          "guid": "9d185f1e-179f-4d9a-80ca-33b1ffe195b4",
+          "guid": "d8a73a97-cfe6-48d1-afcb-148a50c7e11b",
           "name": "Registers",
           "nameUi": "Registers",
           "maxAmountRegisterDimensions": 5,
           "prefixForCompositionNames": "Reg",
           "explicitSortingPosition": 4,
-          "propertyRegGuidGuid": "1e25ea30-bffb-46c6-a44f-5681a641d5a1"
+          "propertyRegGuidGuid": "fd80d1d6-3b1e-4328-8ed5-b4ab2bbd39a8"
         },
         "groupJournals": {
-          "guid": "636781a8-be9a-418f-adf8-daf55694188e",
+          "guid": "0164b0c5-5b9b-416e-bf3d-d977017b9403",
           "name": "Journals",
           "nameUi": "Journals",
           "explicitSortingPosition": 5
         },
         "groupListSequences": {
-          "guid": "4577f8f8-2bee-454a-bd3a-4d68c8b1a760",
+          "guid": "970985e0-6893-462a-94cc-aac752601852",
           "name": "Sequences",
           "explicitSortingPosition": 2,
           "nameUi": "Sequences"
         }
       },
       "groupCommon": {
-        "guid": "1363e27b-95cc-4cb8-aef2-a03b6df7974f",
+        "guid": "c29bb346-d219-4178-8687-8ebc4fdc37a3",
         "name": "Common",
         "nameUi": "Common",
         "explicitSortingPosition": 6,
         "groupRoles": {
-          "guid": "8fdc879b-76a8-44c1-95c0-5e5d38c1a0e2",
+          "guid": "ba33d70e-b54e-46fc-861f-aff9e321e1cc",
           "name": "Roles",
           "nameUi": "Roles",
           "explicitSortingPosition": 2,
@@ -188,14 +188,14 @@
           }
         },
         "groupViewForms": {
-          "guid": "7286a77c-328d-4f45-904f-ec361ed9612b",
+          "guid": "67535bca-4a6b-4e30-b557-82ec6ba526a6",
           "name": "Views",
           "nameUi": "Views"
         }
       }
     },
     "groupPlugins": {
-      "guid": "5e6e3448-7b28-4936-8a43-a9d287b1ff2c",
+      "guid": "6ae0c4ff-f1d5-40cb-a7dd-337fb502ae94",
       "name": "Plugins",
       "nameUi": "Plugins",
       "listPlugins": [
@@ -354,7 +354,7 @@
       "explicitSortingPosition": 9
     },
     "groupAppSolutions": {
-      "guid": "f0626427-f0e6-4e7e-bb6a-2034bdff02dc",
+      "guid": "11fd7ea7-e1a4-4708-ae6d-d0d570274d02",
       "name": "Applications",
       "nameUi": "Applications",
       "explicitSortingPosition": 10
