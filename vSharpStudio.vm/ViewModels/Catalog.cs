@@ -149,11 +149,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
-            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
-            this.GroupDetails.AddAllAppGenSettingsVmsToNode();
-            this.GroupForms.AddAllAppGenSettingsVmsToNode();
-            this.GroupReports.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
+            this.GroupProperties.AddOrRestoreAllAppGenSettingsVmsToNode();
+            this.GroupDetails.AddOrRestoreAllAppGenSettingsVmsToNode();
+            this.GroupForms.AddOrRestoreAllAppGenSettingsVmsToNode();
+            this.GroupReports.AddOrRestoreAllAppGenSettingsVmsToNode();
         }
         public Catalog(ITreeConfigNode parent, string name)
             : this(parent)

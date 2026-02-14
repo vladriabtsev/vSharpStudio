@@ -423,6 +423,7 @@ namespace vSharpStudio.vm.ViewModels
             var nv = new ModelVisitorNodeGenSettings();
             nv.NodeGenSettingsApplyAction(this, (p) =>
             {
+                p.AddOrRestoreAllAppGenSettingsVmsToNode();
                 p.SaveNodeAppGenSettings();
             });
             // Plugin group model

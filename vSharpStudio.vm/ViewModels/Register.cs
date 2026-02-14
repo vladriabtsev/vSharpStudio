@@ -197,7 +197,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
         }
         internal bool isSpecialItself;
 

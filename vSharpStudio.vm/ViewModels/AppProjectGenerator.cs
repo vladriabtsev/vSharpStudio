@@ -494,10 +494,10 @@ namespace vSharpStudio.vm.ViewModels
                     this._GenFileName = prevGenFileName;
                     this._RelativePathToGenFolder = prevRelativePathToGenFolder;
                 }
-                nv.NodeGenSettingsApplyAction(cfg, (p) =>
-                {
-                    p.AddNodeAppGenSettings(this.Guid);
-                });
+                //nv.NodeGenSettingsApplyAction(cfg, (p) =>
+                //{
+                //    p.AddOrRestoreNodeAppGenSettings(this.Guid);
+                //});
                 this._DynamicModelNodeSettings = this.cfg.Model.GetSettings(this.Guid);
                 OnConnStrChanged();
             }

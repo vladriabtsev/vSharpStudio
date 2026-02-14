@@ -39,7 +39,6 @@ namespace ViewModelBase
             }
             set
             {
-                Debug.Assert(value != null);
                 if (this.IsActivateActions && OnAddValue != null)
                     OnAddValue(key, value);
                 base[key] = value;

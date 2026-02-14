@@ -59,7 +59,7 @@ namespace vSharpStudio.vm.ViewModels
         protected override ConfigNodesCollection<MainViewForm>? GetParentCollection() { return this.ParentGroupListMainViewForms.ListMainViewForms; }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
             //this.GroupProperties.AddAllAppGenSettingsVmsToNode();
             //this.GroupForms.AddAllAppGenSettingsVmsToNode();
             //this.GroupReports.AddAllAppGenSettingsVmsToNode();

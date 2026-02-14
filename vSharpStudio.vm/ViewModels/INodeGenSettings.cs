@@ -9,7 +9,8 @@ namespace vSharpStudio.vm.ViewModels
         void RestoreNodeAppGenSettingsVm();
         void SaveNodeAppGenSettings();
         void RemoveNodeAppGenSettings(string appGenGuid);
-        void AddNodeAppGenSettings(string appGenGuid);
+        void AddOrRestoreNodeAppGenSettings(string appGenGuid);
+        void AddOrRestoreAllAppGenSettingsVmsToNode();
     }
     public interface INodeGenDicSettings
     {

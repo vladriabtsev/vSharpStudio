@@ -129,14 +129,10 @@ namespace vSharpStudio.vm.ViewModels
             //children.Add(this.GroupReports, 5);
             //this.CodePropertySettings.Parent = this;
         }
-        //public void OnAdded()
-        //{
-        //    this.AddAllAppGenSettingsVmsToNode();
-        //    this.GroupProperties.AddAllAppGenSettingsVmsToNode();
-        //    this.GroupDetails.AddAllAppGenSettingsVmsToNode();
-        //    this.GroupForms.AddAllAppGenSettingsVmsToNode();
-        //    this.GroupReports.AddAllAppGenSettingsVmsToNode();
-        //}
+        public void OnAdded()
+        {
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
+        }
 
         public RelationOneToOne(ITreeConfigNode parent, string name)
             : this(parent)

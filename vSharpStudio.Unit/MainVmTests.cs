@@ -347,7 +347,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.IsHasChanged);
 
             //AppProjectGenerator plugin node settings
-            var genModelSet = (GeneratorDbAccessNodeSettings)vm.Config.Model.GroupConstantGroups.DicGenNodeSettings[gen.Guid];
+            var genModelSet = (GeneratorDbAccessNodeSettings)vm.Config.Model.GroupConstantGroups.GetSettings(gen.Guid);
             genModelSet.IsCatalogFormParam1 = !genModelSet.IsCatalogFormParam1;
             Assert.IsTrue(vm.Config.IsHasChanged);
             Assert.IsTrue(vm.BtnConfigSave.CanExecute());
@@ -534,7 +534,7 @@ namespace vSharpStudio.Unit
             lst = c.GetAllProperties(true);
             Assert.HasCount(6, lst);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
-            Assert.AreEqual("RefTreeParent", lst[1].Name);
+            Assert.AreEqual("RefTreeParentId", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyIsFolderName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[3].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyCodeName, lst[4].Name);
@@ -546,14 +546,14 @@ namespace vSharpStudio.Unit
             lst = c.GetAllProperties(true);
             Assert.HasCount(5, lst);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
-            Assert.AreEqual("RefParent", lst[1].Name);
+            Assert.AreEqual("RefParentId", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyCodeName, lst[3].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyNameName, lst[4].Name);
             lst = c.GetAllFolderProperties(true);
             Assert.HasCount(5, lst);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
-            Assert.AreEqual("RefTreeParent", lst[1].Name);
+            Assert.AreEqual("RefTreeParentId", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyCodeName, lst[3].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.GroupListCatalogs.PropertyNameName, lst[4].Name);
@@ -1349,6 +1349,8 @@ namespace vSharpStudio.Unit
             prms.IsAccessParam2 = false;
             prms.AccessParam3 = "test";
 
+            vm.BtnConfigSave.Execute();
+
             Assert.HasCount(1, vm.Config.DicActiveAppProjectGenerators);
             Assert.IsEmpty(vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings);
             Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);
@@ -1417,6 +1419,8 @@ namespace vSharpStudio.Unit
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
 
+            vm.BtnConfigSave.Execute();
+
             // 3. When new generator is selected: old generator has to be removed from all model nodes, 
             //     and new generator settings has to be added for all model nodes
             Assert.HasCount(1, vm.Config.DicActiveAppProjectGenerators);
@@ -1443,6 +1447,9 @@ namespace vSharpStudio.Unit
             gen.PluginGeneratorGuid = genDbAccess.Guid;
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
+
+            vm.BtnConfigSave.Execute();
+
             Assert.HasCount(1, vm.Config.DicActiveAppProjectGenerators);
             Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);
             foreach (var t in vm.Config.Model.GroupConstantGroups.ListConstantGroups)
@@ -1535,6 +1542,9 @@ namespace vSharpStudio.Unit
             gen2.PluginGuid = pluginNode.Guid;
             // Expect attached settings for Property and Catalog.Form
             gen2.PluginGeneratorGuid = genDbAccess.Guid;
+
+            vm2.BtnConfigSave.Execute();
+
             Assert.HasCount(2, vm2.Config.DicActiveAppProjectGenerators);
             Assert.HasCount(2, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings);
             Assert.HasCount(2, vm2.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);

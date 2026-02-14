@@ -191,7 +191,7 @@ namespace vSharpStudio.vm.ViewModels
         protected override ConfigNodesCollection<Property>? GetParentCollection() { return this.ParentGroupListProperties.ListProperties; }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
         }
         internal bool isSpecialItself;
         internal Property(ITreeConfigNode parent, string guid, string name, bool isSpecial)

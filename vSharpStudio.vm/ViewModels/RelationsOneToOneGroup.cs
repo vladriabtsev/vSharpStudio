@@ -81,11 +81,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 t.IsNew = true;
             };
-            //this.ListDocumentsManyToManyRelations.OnAddedAction = (t) =>
-            //{
-            //    t.OnAdded();
-            //    t.InitRoles();
-            //};
+            this.ListRelations.OnAddedAction = (t) =>
+            {
+                t.OnAdded();
+            };
             this.ListRelations.OnRemovedAction = (t) =>
             {
                 this.OnRemoveChild();
@@ -96,26 +95,23 @@ namespace vSharpStudio.vm.ViewModels
             };
             this._Name = Defaults.RelationsOneToOneGroupName;
         }
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
+        {
+            var lst = new List<string>
+            {
+                nameof(this.Description),
+                nameof(this.Guid),
+                nameof(this.NameUi),
+                nameof(this.DynamicNodesSettings),
+                nameof(this.Parent),
+                nameof(this.Children)
+            };
+            return [.. lst];
+        }
         public int IndexOf(IRelationOneToOne relOneToOne)
         {
             return this.ListRelations.IndexOf((relOneToOne as RelationOneToOne)!);
         }
-        //protected override string[]? OnGetWhatHideOnPropertyGrid()
-        //{
-        //    var lst = new List<string>
-        //    {
-        //        nameof(this.Description),
-        //        nameof(this.Guid),
-        //        nameof(this.NameUi),
-        //        nameof(this.Parent),
-        //        nameof(this.Children)
-        //    };
-        //    //if (!this.UseCodeProperty)
-        //    //    lst.Add(nameof(this.PropertyCodeName));
-        //    //if (!this.UseNameProperty)
-        //    //    lst.Add(nameof(this.PropertyNameName));
-        //    return lst.ToArray();
-        //}
         public void Add(RelationOneToOne item) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\Property.tt Line:51
         {
             Debug.Assert(item != null);

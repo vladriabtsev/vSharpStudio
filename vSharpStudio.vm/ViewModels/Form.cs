@@ -154,8 +154,8 @@ namespace vSharpStudio.vm.ViewModels
         protected override ConfigNodesCollection<Form>? GetParentCollection() { return this.ParentGroupListForms.ListForms; }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
-            this.GridSystem.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
+            this.GridSystem.AddOrRestoreAllAppGenSettingsVmsToNode();
         }
 
         #region Tree operations

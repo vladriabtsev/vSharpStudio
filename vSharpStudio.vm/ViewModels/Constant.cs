@@ -449,7 +449,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
         }
         [PropertyOrder(100)]
         [ReadOnly(true)]

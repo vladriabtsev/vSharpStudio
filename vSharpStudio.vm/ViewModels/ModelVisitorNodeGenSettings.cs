@@ -129,6 +129,16 @@ namespace vSharpStudio.vm.ViewModels
             if (p is INodeGenSettings ns)
                 _act2(ns);
         }
+        protected override void BeginVisit(IRelationOneToOne p)
+        {
+            if (p is INodeGenSettings ns)
+                _act2(ns);
+        }
+        protected override void BeginVisit(IRelationManyToMany p)
+        {
+            if (p is INodeGenSettings ns)
+                _act2(ns);
+        }
         protected override void BeginVisit(IReport p)
         {
             if (p is INodeGenSettings ns)

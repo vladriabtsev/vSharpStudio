@@ -59,7 +59,7 @@ namespace vSharpStudio.vm.ViewModels
         protected override ConfigNodesCollection<Role>? GetParentCollection() { return this.ParentGroupListRoles.ListRoles; }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
             //this.GroupProperties.AddAllAppGenSettingsVmsToNode();
             //this.GroupForms.AddAllAppGenSettingsVmsToNode();
             //this.GroupReports.AddAllAppGenSettingsVmsToNode();

@@ -77,7 +77,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
         }
 
         #region ITree

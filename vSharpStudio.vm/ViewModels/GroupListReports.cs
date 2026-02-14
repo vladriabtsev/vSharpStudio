@@ -55,7 +55,7 @@ namespace vSharpStudio.vm.ViewModels
             };
             this.ListReports.OnAddedAction = (t) =>
             {
-                t.AddAllAppGenSettingsVmsToNode();
+                t.AddOrRestoreAllAppGenSettingsVmsToNode();
             };
             this.ListReports.OnRemovedAction = (t) =>
             {

@@ -106,11 +106,11 @@ namespace vSharpStudio.vm.ViewModels
         protected override ConfigNodesCollection<Document>? GetParentCollection() { return this.ParentGroupListDocuments.ListDocuments; }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
-            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
-            this.GroupDetails.AddAllAppGenSettingsVmsToNode();
-            this.GroupForms.AddAllAppGenSettingsVmsToNode();
-            this.GroupReports.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
+            this.GroupProperties.AddOrRestoreAllAppGenSettingsVmsToNode();
+            this.GroupDetails.AddOrRestoreAllAppGenSettingsVmsToNode();
+            this.GroupForms.AddOrRestoreAllAppGenSettingsVmsToNode();
+            this.GroupReports.AddOrRestoreAllAppGenSettingsVmsToNode();
         }
 
         #region Tree operations

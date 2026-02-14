@@ -110,10 +110,6 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
-        public int IndexOf(ICatalog cat)
-        {
-            return this.ListCatalogs.IndexOf((Catalog)cat);
-        }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>
@@ -129,6 +125,10 @@ namespace vSharpStudio.vm.ViewModels
             //if (!this.UseNameProperty)
             //    lst.Add(nameof(this.PropertyNameName));
             return [.. lst];
+        }
+        public int IndexOf(ICatalog cat)
+        {
+            return this.ListCatalogs.IndexOf((Catalog)cat);
         }
         //partial void OnUseCodePropertyChanged()
         //{

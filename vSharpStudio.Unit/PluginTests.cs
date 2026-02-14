@@ -779,6 +779,7 @@ namespace vSharpStudio.Unit
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
 
+            vm.BtnConfigSave.Execute();
             // 3. When new generator is selected: old generator has to be removed from all model nodes, 
             //     and new generator settings has to be added for all model nodes
             Assert.HasCount(1, vm.Config.DicActiveAppProjectGenerators);
@@ -809,6 +810,8 @@ namespace vSharpStudio.Unit
             gen.GenFileName = "test_file.cs";
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
+
+            vm.BtnConfigSave.Execute();
             Assert.HasCount(1, vm.Config.DicActiveAppProjectGenerators);
             Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.DicGenNodeSettings);
             Assert.HasCount(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings);

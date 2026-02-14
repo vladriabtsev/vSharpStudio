@@ -76,7 +76,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
         }
 
         public FormGridSystemRow(ITreeConfigNode parent, string name)

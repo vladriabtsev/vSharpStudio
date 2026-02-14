@@ -80,6 +80,7 @@ namespace vSharpStudio.vm.ViewModels
                 nameof(this.Description),
                 nameof(this.Guid),
                 nameof(this.NameUi),
+                nameof(this.DynamicNodesSettings),
                 nameof(this.Parent),
                 nameof(this.Children)
             };

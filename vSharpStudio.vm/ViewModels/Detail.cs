@@ -149,9 +149,9 @@ namespace vSharpStudio.vm.ViewModels
         protected override ConfigNodesCollection<Detail>? GetParentCollection() { return this.ParentGroupListDetails.ListDetails; }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
-            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
-            this.GroupDetails.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
+            this.GroupProperties.AddOrRestoreAllAppGenSettingsVmsToNode();
+            this.GroupDetails.AddOrRestoreAllAppGenSettingsVmsToNode();
         }
 
         #region Tree operations

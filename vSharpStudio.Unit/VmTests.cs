@@ -676,10 +676,10 @@ namespace vSharpStudio.Unit
             c2.UseTree = true;
             lst = [.. c1.GetAllProperties(false)];
             p1 = lst.Single(t => t.Name == gc.PropertyCodeName);
-            var p1h = lst.Single(t => t.Name == Property.SpecialRefTreeParentName);
+            var p1h = lst.Single(t => t.Name == Property.SpecialRefTreeParentName + "Id");
             lst = [.. c2.GetAllProperties(false)];
             p2 = lst.Single(t => t.Name == gc.PropertyCodeName);
-            var p2h = lst.Single(t => t.Name == Property.SpecialRefTreeParentName);
+            var p2h = lst.Single(t => t.Name == Property.SpecialRefTreeParentName + "Id");
             Assert.AreNotEqual(p1.Guid, p2.Guid);
             Assert.AreNotEqual(p1h.Guid, p2h.Guid);
 
@@ -688,19 +688,19 @@ namespace vSharpStudio.Unit
             c2.UseSeparateTreeForFolders = true;
             lst = [.. c1.GetAllFolderProperties(false)];
             p1 = lst.Single(t => t.Name == gc.PropertyCodeName);
-            p1h = lst.Single(t => t.Name == Property.SpecialRefTreeParentName);
+            p1h = lst.Single(t => t.Name == Property.SpecialRefTreeParentName + "Id");
             lst = [.. c2.GetAllFolderProperties(false)];
             p2 = lst.Single(t => t.Name == gc.PropertyCodeName);
-            p2h = lst.Single(t => t.Name == Property.SpecialRefTreeParentName);
+            p2h = lst.Single(t => t.Name == Property.SpecialRefTreeParentName + "Id");
             Assert.AreNotEqual(p1.Guid, p2.Guid);
             Assert.AreNotEqual(p1h.Guid, p2h.Guid);
 
             lst = [.. c1.GetAllProperties(false)];
             p1 = lst.Single(t => t.Name == gc.PropertyCodeName);
-            p1h = lst.Single(t => t.Name == Property.SpecialRefParentName);
+            p1h = lst.Single(t => t.Name == Property.SpecialRefParentName + "Id");
             lst = [.. c2.GetAllProperties(false)];
             p2 = lst.Single(t => t.Name == gc.PropertyCodeName);
-            p2h = lst.Single(t => t.Name == Property.SpecialRefParentName);
+            p2h = lst.Single(t => t.Name == Property.SpecialRefParentName + "Id");
             Assert.AreNotEqual(p1.Guid, p2.Guid);
             Assert.AreNotEqual(p1h.Guid, p2h.Guid);
 
@@ -708,22 +708,22 @@ namespace vSharpStudio.Unit
             var t1 = (Detail)c1.GroupDetails.NodeAddNewSubNode();
             lst.Clear();
             t1.GetSpecialProperties(lst, false);
-            p1h = lst.Single(t => t.Name == Property.SpecialRefParentName);
+            p1h = lst.Single(t => t.Name == Property.SpecialRefParentName + "Id");
             var t2 = (Detail)c2.GroupDetails.NodeAddNewSubNode();
             lst.Clear();
             t2.GetSpecialProperties(lst, false);
-            p2h = lst.Single(t => t.Name == Property.SpecialRefParentName);
+            p2h = lst.Single(t => t.Name == Property.SpecialRefParentName + "Id");
             Assert.AreNotEqual(p1h.Guid, p2h.Guid);
 
             // Catalog folder tabs
             t1 = (Detail)c1.Folder.GroupDetails.NodeAddNewSubNode();
             lst.Clear();
             t1.GetSpecialProperties(lst, false);
-            p1h = lst.Single(t => t.Name == Property.SpecialRefParentName);
+            p1h = lst.Single(t => t.Name == Property.SpecialRefParentName + "Id");
             t2 = (Detail)c2.Folder.GroupDetails.NodeAddNewSubNode();
             lst.Clear();
             t2.GetSpecialProperties(lst, false);
-            p2h = lst.Single(t => t.Name == Property.SpecialRefParentName);
+            p2h = lst.Single(t => t.Name == Property.SpecialRefParentName + "Id");
             Assert.AreNotEqual(p1h.Guid, p2h.Guid);
         }
         //[Ignore]

@@ -64,7 +64,7 @@ namespace vSharpStudio.vm.ViewModels
         protected override ConfigNodesCollection<EnumerationPair>? GetParentCollection() { return this.ParentEnumeration.ListEnumerationPairs; }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
         }
         public override ITreeConfigNode NodeAddClone()
         {

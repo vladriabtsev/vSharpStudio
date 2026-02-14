@@ -96,9 +96,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
-            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
-            this.GroupDetails.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
+            this.GroupProperties.AddOrRestoreAllAppGenSettingsVmsToNode();
+            this.GroupDetails.AddOrRestoreAllAppGenSettingsVmsToNode();
         }
 
         public CatalogFolder(ITreeConfigNode parent, string name)

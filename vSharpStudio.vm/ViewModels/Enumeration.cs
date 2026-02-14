@@ -67,7 +67,7 @@ namespace vSharpStudio.vm.ViewModels
         protected override ConfigNodesCollection<Enumeration>? GetParentCollection() { return this.ParentGroupListEnumerations.ListEnumerations; }
         public void OnAdded()
         {
-            this.AddAllAppGenSettingsVmsToNode();
+            this.AddOrRestoreAllAppGenSettingsVmsToNode();
         }
         [Browsable(false)]
         public string DefaultValue
