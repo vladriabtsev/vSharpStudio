@@ -1739,12 +1739,7 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(isNullable != null);
                     Debug.Assert(toNode != null);
                     Debug.Assert(toNode is DocumentTimeline);
-                    res = new Property(node, rec.Guid, Property.SpecialPropertyNameRefTimeline + node.Cfg.Model.PKeyName, true)
-                    {
-                        Position = rec.Position,
-                        IsCsNullable = isNullable.Value,
-                        DataType = new DataType(node)
-                    };
+                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, Property.SpecialPropertyNameRefTimeline + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
                     res.DataType.ObjectRef0.ForeignObjectGuid = toNode.Guid;
                     res.DataType.IsNullable = isNullable.Value;
                     res.IsRefTimeline = true;

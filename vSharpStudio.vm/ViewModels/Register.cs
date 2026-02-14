@@ -501,43 +501,6 @@ namespace vSharpStudio.vm.ViewModels
                 res.Add(t);
             }
         }
-        //public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
-        //{
-        //    var lst = new List<IProperty>();
-        //    var m = this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel;
-
-        //    if (!isExcludeSpecial)
-        //    {
-        //        // Id
-        //        var pId = m.GetPropertyPkId(this, model.PropertyIdGuid); // position 6
-        //        pId.TagInList = "id";
-        //        lst.Add(pId);
-
-        //        //// RefTimeline
-        //        //var timelineName = "Ref" + this.ParentGroupListRegisters.ParentGroupDocuments.DocumentTimeline.CompositeName;
-        //        //var pRefTimeline = m.GetPropertyTimeline(this.GroupProperties, model.PropertyIdGuid, timelineName, 0, false, true);
-        //        ////var pId = m.GetPropertyPkId(this, this.Guid); // position 6
-        //        //pRefTimeline.TagInList = "id";
-        //        //lst.Add(pRefTimeline);
-
-        //        if (isOptimistic)
-        //        {
-        //            // Version
-        //            var pVer = m.GetPropertyVersion(this, model.PropertyVersionGuid); // position 7
-        //            pVer.TagInList = "vr";
-        //            lst.Add(pVer);
-        //        }
-        //        //var pRegRef = (Property)m.GetPropertyRef(this, this.Guid, "Ref" + this.CompositeName, 11); // position 11
-        //        //pRegRef.TagInList = "rr";
-        //        //lst.Add(pRegRef);
-        //    }
-        //    // For all attached properties.
-        //    foreach (var t in this.GroupProperties.ListProperties)
-        //    {
-        //        lst.Add(t);
-        //    }
-        //    return lst;
-        //}
         public IReadOnlyList<IProperty> GetIncludedTurnoverProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
         {
             var lst = new List<IProperty>();
@@ -548,17 +511,13 @@ namespace vSharpStudio.vm.ViewModels
             prp.TagInList = "id";
             lst.Add(prp);
 
-            //this.PropertyRefTimeline.Name = "Ref" + model.GroupDocuments.DocumentTimeline.CompositeName;
             var pRefTimeline = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TIMELINE, false, model.GroupDocuments.DocumentTimeline);
-            //pRefTimeline.Position = IProperty.PropertyRefParentPosition;
             lst.Add(pRefTimeline);
 
             // Money accumulator
             if (this.UseMoneyAccumulator)
             {
-                var pMoney = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
-                //var pMoney = (Property)model.GetPropertyNumber(this, this.PropertyMoneyAccumulatorGuid, this.PropertyMoneyAccumulatorName, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
-                //pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
+                var pMoney = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
                 pMoney.TagInList = "ma";
                 lst.Add(pMoney);
             }
@@ -567,8 +526,6 @@ namespace vSharpStudio.vm.ViewModels
             if (this.UseQtyAccumulator)
             {
                 var pQty = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_QTY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
-                //var pQty = (Property)model.GetPropertyNumber(this, this.PropertyQtyAccumulatorGuid, this.PropertyQtyAccumulatorName, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
-                //pQty.Position = IProperty.PropertyQtyAccumulatorPosition;
                 pQty.TagInList = "qa";
                 lst.Add(pQty);
             }
@@ -665,7 +622,7 @@ namespace vSharpStudio.vm.ViewModels
             // Money accumulator
             if (this.UseMoneyAccumulator)
             {
-                var pMoney = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
+                var pMoney = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
                 //var pMoney = (Property)this.PropertyMoneyAccumulator;
                 //pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
                 pMoney.TagInList = "ma";
