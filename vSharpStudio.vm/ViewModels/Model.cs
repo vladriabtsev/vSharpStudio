@@ -1440,6 +1440,7 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res, EnumTimeAccuracyType.MAX_TIME_ACC, false);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.DOC_DATE_INT;
             res.IsCsNullable = true;
+            res.IsNullable = true;
             res.IsViewDefault = true;
             res.Position = rec.Position;
             return res;

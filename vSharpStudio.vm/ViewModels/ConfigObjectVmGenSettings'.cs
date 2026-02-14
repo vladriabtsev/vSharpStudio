@@ -544,9 +544,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public TValue? GetSettingsValue<T2, TValue>(string guidAppPrjGen, Action<ITreeConfigNode, T2, Result<TValue>> found)
         {
-            if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
-                throw new Exception();
             var p = (ITreeConfigNode)this;
+            if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+            {
+                this.AddOrRestoreNodeAppGenSettings(guidAppPrjGen);
+            }
+            Debug.Assert(DicGenNodeSettings.ContainsKey(guidAppPrjGen));
             Result<TValue> res = new Result<TValue>();
             while (p != null)
             {

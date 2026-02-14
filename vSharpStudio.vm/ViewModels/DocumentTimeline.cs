@@ -13,7 +13,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("{ToDebugString(),nq}")]
     public partial class DocumentTimeline : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
-        public override string NameShortId { get { return "dt"; } }
+        public override string NameShortId { get { return "tm"; } }
         partial void OnDebugStringExtend(ref string mes)
         {
             mes = mes + $" Count:{ListProperties.Count}";

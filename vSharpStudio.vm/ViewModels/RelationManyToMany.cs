@@ -57,6 +57,19 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
+        public IProperty? GetDateTimeUtcProperty(bool? isRegisterBalance = null)
+        {
+            return null;
+        }
+        public IReadOnlyList<IProperty> GetListIdPKeyProperties(bool? isRegisterBalance = null)
+        {
+            Debug.Assert(isRegisterBalance == null);
+            var res = new List<IProperty>();
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            res.Add(prp);
+            return res;
+        }
         //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
         partial void OnCreated()
         {
