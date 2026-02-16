@@ -30,10 +30,6 @@ namespace vSharpStudio.vm.ViewModels
     {
         private string nameShortIdPrefix = "p";
         public override string NameShortId { get { return $"{nameShortIdPrefix}{this.ShortId}"; } }
-        public static string SpecialRefParentName = "RefParent";
-        public static string SpecialRefTreeParentName = "RefTreeParent";
-        public static string SpecialPropertyNameRefTimeline = "RefTimeline";
-        public static string SpecialPropertyHistoryDataTimeUtc = "DataTimeUtc";
         partial void OnDebugStringExtend(ref string mes)
         {
             if (this.ParentProperty != null)
@@ -831,7 +827,17 @@ namespace vSharpStudio.vm.ViewModels
         /// Parent property if extended property is created
         /// </summary>
         public IProperty? ParentProperty { get; set; }
-        public string NameWithExtention { get { if (this.ParentProperty == null) return this.Name; return this.ParentProperty.Name + this.Name; } }
+        public string NameWithExtention
+        {
+            get
+            {
+                if (this.ParentProperty == null) 
+                    return this.Name; 
+                if (this.IsComplexDesc)
+                    return this.ParentProperty.Name + "Descr";
+                return this.ParentProperty.Name + this.Name;
+            }
+        }
         [Browsable(false)]
         public bool IsComplex { get { return this.DataType.IsComplex; } }
         [Browsable(false)]

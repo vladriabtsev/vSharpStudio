@@ -300,10 +300,11 @@ namespace vSharpStudio.vm.ViewModels
                             }
                             if (r.UseMoneyAccumulator)
                             {
+                                var propMoneyGuid = model.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_MONEY);
                                 found = false;
                                 foreach (var dpm in dtr.ListMappings)
                                 {
-                                    if (dpm.RegPropGuid == model.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_MONEY))
+                                    if (dpm.RegPropGuid == propMoneyGuid)
                                     {
                                         if (!string.IsNullOrWhiteSpace(dpm.DocPropGuid))
                                         {
@@ -356,10 +357,11 @@ namespace vSharpStudio.vm.ViewModels
                             }
                             if (r.UseQtyAccumulator)
                             {
+                                var propQtyGuid = model.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_QTY);
                                 found = false;
                                 foreach (var dpm in dtr.ListMappings)
                                 {
-                                    if (dpm.RegPropGuid == model.GetPropertyGuid(r, EnumSpecialPropertyType.ACCUMULATOR_QTY))
+                                    if (dpm.RegPropGuid == propQtyGuid)
                                     {
                                         if (!string.IsNullOrWhiteSpace(dpm.DocPropGuid))
                                         {

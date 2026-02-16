@@ -1556,7 +1556,7 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vButtonVmAsync<TestTransformation?>? _BtnConfigCurrentUpdateSql;
-        public void GenerateCode(bool isOnlySqlTextUpdate, CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
+        public void GenerateCode(bool isOnlySqlTextUpdate, CancellationToken cancellationToken, IConfig diffConfig, bool isDeleteDb = false)
         {
 #if PARALLEL
             ParallelOptions options = new()
@@ -1598,13 +1598,13 @@ namespace vSharpStudio.ViewModels
                     continue;
                 if (cancellationToken.IsCancellationRequested)
                     throw new CancellationException();
+                // app settings path, 
+                var dicAppSettings = new ConcurrentDictionary<string, StringBuilder>();
+                List<GeneratorData> lstGenData = new();
                 foreach (var tp in ts.ListAppProjects)
                 {
                     if (tp.IsMarkedForDeletion)
                         continue;
-                    // app settings path, 
-                    var dicAppSettings = new ConcurrentDictionary<string, StringBuilder>();
-                    List<GeneratorData> lstGenData = new();
                     foreach (var tpg in tp.ListAppProjectGenerators)
                     {
                         if (tpg.IsMarkedForDeletion)
@@ -1636,24 +1636,21 @@ namespace vSharpStudio.ViewModels
                             continue;
                         if (this.isExcludeCodeGeneration && gd.tpg.PluginDbGenerator == null)
                             continue;
-                        GeneratorApply(gd, diffConfig, step, nGen, isCurrentUpdate, isOnlySqlTextUpdate, isDeleteDb, dicAppSettings);
+                        GeneratorApply(gd, diffConfig, step, nGen, isOnlySqlTextUpdate, isDeleteDb, dicAppSettings);
 #if PARALLEL
                     });
 #else
                     }
 #endif
-                    if (isCurrentUpdate)
-                    {
-                        foreach (var t in dicAppSettings)
-                        {
-                            var sb = t.Value;
-                            sb.AppendLine(emptyStr);
-                            sb.AppendLine("\t}");
-                            sb.AppendLine("}");
-                            byte[] bytes = Encoding.UTF8.GetBytes(sb.ToString());
-                            FileUtils.WritesAllBytesWithRetryIfTextIsChanged(t.Key, bytes);
-                        }
-                    }
+                }
+                foreach (var t in dicAppSettings)
+                {
+                    var sb = t.Value;
+                    sb.AppendLine(emptyStr);
+                    sb.AppendLine("\t}");
+                    sb.AppendLine("}");
+                    byte[] bytes = Encoding.UTF8.GetBytes(sb.ToString());
+                    FileUtils.WritesAllBytesWithRetryIfTextIsChanged(t.Key, bytes);
                 }
             }
         }
@@ -1664,7 +1661,7 @@ namespace vSharpStudio.ViewModels
             public AppProjectGenerator tpg;
             public PluginGenerator tg;
         }
-        private void GeneratorApply(GeneratorData genData, IConfig diffConfig, int i, int nGens, bool isCurrentUpdate, bool isOnlySqlTextUpdate, bool isDeleteDb, ConcurrentDictionary<string, StringBuilder> dicAppSettings)
+        private void GeneratorApply(GeneratorData genData, IConfig diffConfig, int i, int nGens, bool isOnlySqlTextUpdate, bool isDeleteDb, ConcurrentDictionary<string, StringBuilder> dicAppSettings)
         {
             this.ProgressVM?.ProgressUpdateSubTask($"'{genData.ts.Name}'-'{genData.tp.Name}'-'{genData.tpg.Name}'-'{genData.tg.Name}'", 100 * (i - 1) / nGens);
             i++;
@@ -1725,31 +1722,29 @@ namespace vSharpStudio.ViewModels
                             genData.tpg.PluginDbGenerator.EnsureDbDeleted(genData.tpg.ConnStr);
                         }
                         genData.tpg.PluginDbGenerator.UpdateToModel(genData.tpg.ConnStr, diffConfig, genData.ts, genData.tp, genData.tpg, EnumDbUpdateLevels.TryKeepAll, false);
-                        if (isCurrentUpdate)
+                        //if (isCurrentUpdate)
+                        //{
+                        if (genData.tpg.IsGenerateSqlSqriptToUpdatePrevStable)
                         {
-                            if (genData.tpg.IsGenerateSqlSqriptToUpdatePrevStable)
-                            {
-                                //TODO generate Stable DB update SQL script
-                                var sql = genData.tpg.PluginDbGenerator.UpdateToModel(genData.tpg.ConnStr, diffConfig, genData.ts, genData.tp, genData.tpg, EnumDbUpdateLevels.TryKeepAll, true);
-                                string outSqlFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, genData.ts, genData.tp, genData.tpg, genData.tpg.GenScriptFileName);
-                                // tg.GetRelativeToConfigDiskPath()
-                                //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
-                                byte[] sqlBytes = Encoding.UTF8.GetBytes(code);
-                                FileUtils.WritesAllBytesWithRetryIfTextIsChanged(outSqlFile, sqlBytes);
-                            }
+                            //TODO generate Stable DB update SQL script
+                            var sql = genData.tpg.PluginDbGenerator.UpdateToModel(genData.tpg.ConnStr, diffConfig, genData.ts, genData.tp, genData.tpg, EnumDbUpdateLevels.TryKeepAll, true);
+                            string outSqlFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, genData.ts, genData.tp, genData.tpg, genData.tpg.GenScriptFileName);
+                            // tg.GetRelativeToConfigDiskPath()
+                            //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
+                            byte[] sqlBytes = Encoding.UTF8.GetBytes(code);
+                            FileUtils.WritesAllBytesWithRetryIfTextIsChanged(outSqlFile, sqlBytes);
                         }
-                        else
-                        {
-                            //TODO create copy of DEV DB into Stable DB. Same name with version suffix
-                            //genConn.DbGenerator
-                        }
+                        //}
+                        //else
+                        //{
+                        //    //TODO create copy of DEV DB into Stable DB. Same name with version suffix
+                        //    //genConn.DbGenerator
+                        //}
                     }
                     if (genData.tpg.PluginDbGenerator.IsDbDataStructureChanged)
                         this.IsDbDataStructureChanged = true;
                     break;
                 default:
-                    if (!isCurrentUpdate)
-                        break;
                     if (genData.tg.Generator is not IvPluginGenerator)
                         throw new Exception("Default generator has to have interface: " + typeof(IvPluginGenerator).Name);
                     Debug.Assert(genData.tpg.DynamicGeneratorSettings != null);
@@ -1757,15 +1752,15 @@ namespace vSharpStudio.ViewModels
                         code = genData.tpg.DynamicGeneratorSettings.GenerateCode(this.Config, genData.ts, genData.tp, genData.tpg);
                     break;
             }
-            if (isCurrentUpdate && !string.IsNullOrWhiteSpace(code))
-            {
-                Debug.Assert(this.Config.CurrentCfgFolderPath != null);
-                string outFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, genData.ts, genData.tp, genData.tpg, genData.tpg.GenFileName);
-                // tg.GetRelativeToConfigDiskPath()
-                //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
-                byte[] bytes = Encoding.UTF8.GetBytes(code);
-                FileUtils.WritesAllBytesWithRetryIfTextIsChanged(outFile, bytes);
-            }
+            //if (isCurrentUpdate && !string.IsNullOrWhiteSpace(code))
+            //{
+            //    Debug.Assert(this.Config.CurrentCfgFolderPath != null);
+            //    string outFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, genData.ts, genData.tp, genData.tpg, genData.tpg.GenFileName);
+            //    // tg.GetRelativeToConfigDiskPath()
+            //    //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
+            //    byte[] bytes = Encoding.UTF8.GetBytes(code);
+            //    FileUtils.WritesAllBytesWithRetryIfTextIsChanged(outFile, bytes);
+            //}
         }
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
         /// <summary>
@@ -1932,7 +1927,7 @@ namespace vSharpStudio.ViewModels
                     #region
                     this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Generating code/DB", iProgressStep * 100 / iProgressSteps);
                     iProgressStep++;
-                    this.GenerateCode(isOnlySqlTextUpdate, cancellationToken, this.Config, true);
+                    this.GenerateCode(isOnlySqlTextUpdate, cancellationToken, this.Config);
                     var vis = new ModelVisitorRemoveMarkedIfNewObjects(this.Config);
                     vis.DeleteNewMarkedForDeletion();
                     //this.Config.SetIsNeedCurrentUpdate(false);

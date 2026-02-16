@@ -478,6 +478,7 @@ namespace vSharpStudio.vm.ViewModels
                         model.GetPropertyCodeStr(this, false, this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length),
                     _ => throw new NotImplementedException(),
                 };
+                prp.Parent = this.GroupProperties;
             }
             return prp;
         }
@@ -531,6 +532,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 var model = this.Cfg.Model;
                 prp = model.GetPropertyName(this, false, this.MaxNameLength);
+                prp.Parent = this.GroupProperties;
                 lst.Add(prp);
             }
             return prp;
@@ -542,6 +544,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 var model = this.Cfg.Model;
                 prp = model.GetPropertyDescription(this, false, this.MaxDescriptionLength);
+                prp.Parent = this.GroupProperties;
                 lst.Add(prp);
             }
             return prp;

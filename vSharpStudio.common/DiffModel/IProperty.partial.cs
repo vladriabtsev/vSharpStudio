@@ -102,10 +102,10 @@ namespace vSharpStudio.common
         #endregion Plugin group model
 
         string GetShortDescription(StringBuilder sb);
-        static string SpecialRefParentName { get; } = "Not implemented";
-        static string SpecialRefTreeParentName { get; } = "Not implemented";
-        static string SpecialPropertyNameRefTimeline { get; } = "Not implemented";
-        static string SpecialPropertyHistoryDataTimeUtc { get; } = "Not implemented";
+        static string SpecialRefParentName { get; } = "RefParent";
+        static string SpecialRefTreeParentName { get; } = "RefTreeParent";
+        static string SpecialPropertyNameRefTimeline { get; } = "RefTimeline";
+        static string SpecialPropertyHistoryDataTimeUtc { get; } = "DataTimeUtc";
     }
     public interface IPropertyRangeValuesRequirements
     {

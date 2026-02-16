@@ -91,10 +91,10 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (c.UseSeparateTreeForFolders)
                         {
-                            if (name == Property.SpecialRefParentName && pg.ListProperties.Contains(p))
+                            if (name == IProperty.SpecialRefParentName && pg.ListProperties.Contains(p))
                             {
                                 var vf = new ValidationFailure(nameof(p.Name),
-                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name '{Property.SpecialRefParentName}' is reserved for auto generated property")
+                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name '{IProperty.SpecialRefParentName}' is reserved for auto generated property")
                                 {
                                     Severity = Severity.Error
                                 };
@@ -103,10 +103,10 @@ namespace vSharpStudio.vm.ViewModels
                         }
                         else
                         {
-                            if (name == Property.SpecialRefTreeParentName && pg.ListProperties.Contains(p))
+                            if (name == IProperty.SpecialRefTreeParentName && pg.ListProperties.Contains(p))
                             {
                                 var vf = new ValidationFailure(nameof(p.Name),
-                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'false'. Property name '{Property.SpecialRefTreeParentName}' is reserved for auto generated property")
+                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'false'. Property name '{IProperty.SpecialRefTreeParentName}' is reserved for auto generated property")
                                 {
                                     Severity = Severity.Error
                                 };
@@ -136,10 +136,10 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (cc.UseSeparateTreeForFolders)
                         {
-                            if (name == Property.SpecialRefTreeParentName && pg.ListProperties.Contains(p))
+                            if (name == IProperty.SpecialRefTreeParentName && pg.ListProperties.Contains(p))
                             {
                                 var vf = new ValidationFailure(nameof(p.Name),
-                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name '{Property.SpecialRefTreeParentName}' is reserved for auto generated property")
+                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name '{IProperty.SpecialRefTreeParentName}' is reserved for auto generated property")
                                 {
                                     Severity = Severity.Error
                                 };
@@ -150,10 +150,10 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else if (pg.Parent is Detail dd)
                 {
-                    if (name == Property.SpecialRefParentName && pg.ListProperties.Contains(p))
+                    if (name == IProperty.SpecialRefParentName && pg.ListProperties.Contains(p))
                     {
                         var vf = new ValidationFailure(nameof(p.Name),
-                            $"Property name '{Property.SpecialRefParentName}' is reserved for auto generated property")
+                            $"Property name '{IProperty.SpecialRefParentName}' is reserved for auto generated property")
                         {
                             Severity = Severity.Error
                         };

@@ -1340,6 +1340,24 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Properties
+        public string GetRecordVersionFieldType()
+        {
+            switch(this.RecordVersionFieldType)
+            {
+                case EnumVersionFieldType.VER_BYTE:
+                    return "byte";
+                case EnumVersionFieldType.VER_SHORT:
+                    return "short";
+                case EnumVersionFieldType.VER_INT:
+                    return "int";
+                case EnumVersionFieldType.VER_LONG:
+                    return "long";
+                default:
+                    break;
+            }
+            Debug.Assert(false, "Not supported");
+            return "Not supported";
+        }
         public IStandartPropertyGuidPosition GetGuidPosition(ITreeConfigNode node, EnumSpecialPropertyType enumDataType)
         {
             Debug.Assert(node is INodeWithStandartProperties);
@@ -1470,7 +1488,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyDescription(ITreeConfigNode node, bool isNullable, uint length)
         {
             var rec = GetGuidPosition(node, EnumSpecialPropertyType.DESCRIPTION);
-            var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupCatalogs.GroupListCatalogs.PropertyNameName, true);
+            var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupCatalogs.GroupListCatalogs.PropertyDescriptionName, true);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.DESCRIPTION;
             res.DataType = (DataType)this.GetDataTypeString(res, length, isNullable);
             res.IsCsNullable = false;
@@ -1679,7 +1697,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumSpecialPropertyType.HISTORY_DATATIMEUTC:
                     Debug.Assert(node is RelationManyToMany);
                     Debug.Assert(isNullable != null);
-                    res = new Property(node, rec.Guid, Property.SpecialPropertyHistoryDataTimeUtc, false)
+                    res = new Property(node, rec.Guid, IProperty.SpecialPropertyHistoryDataTimeUtc, false)
                     {
                         Position = rec.Position,
                         IsCsNullable = isNullable.Value,
@@ -1689,7 +1707,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DETAIL:
                     Debug.Assert(node is Detail);
                     Debug.Assert(isNullable != null);
-                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, Property.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
+                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, IProperty.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
                     res.DataType.ObjectRef0.ForeignObjectGuid = node.Guid;
                     res.DataType.IsNullable = isNullable.Value;
                     res.IsComplexRefId = true;
@@ -1699,7 +1717,7 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(isNullable != null);
                     Debug.Assert(toNode != null);
                     Debug.Assert(toNode is Catalog);
-                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, Property.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
+                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, IProperty.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
                     res.DataType.ObjectRef0.ForeignObjectGuid = toNode.Guid;
                     res.DataType.IsNullable = isNullable.Value;
                     res.IsComplexRefId = true;
@@ -1709,7 +1727,7 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(isNullable != null);
                     Debug.Assert(toNode != null);
                     Debug.Assert(toNode is CatalogFolder);
-                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, Property.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
+                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, IProperty.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
                     res.DataType.ObjectRef0.ForeignObjectGuid = toNode.Guid;
                     res.DataType.IsNullable = isNullable.Value;
                     res.IsComplexRefId = true;
@@ -1719,7 +1737,7 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(isNullable != null);
                     Debug.Assert(toNode != null);
                     Debug.Assert(toNode is Document);
-                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, Property.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
+                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, IProperty.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
                     res.DataType.ObjectRef0.ForeignObjectGuid = toNode.Guid;
                     res.DataType.IsNullable = isNullable.Value;
                     res.IsComplexRefId = true;
@@ -1729,7 +1747,7 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(isNullable != null);
                     Debug.Assert(toNode != null);
                     Debug.Assert(toNode is CatalogFolder);
-                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, Property.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
+                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, IProperty.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
                     res.DataType.ObjectRef0.ForeignObjectGuid = toNode.Guid;
                     res.DataType.IsNullable = isNullable.Value;
                     res.IsComplexRefId = true;
@@ -1739,7 +1757,7 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(isNullable != null);
                     Debug.Assert(toNode != null);
                     Debug.Assert(toNode is DocumentTimeline);
-                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, Property.SpecialPropertyNameRefTimeline + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
+                    res = (Property)this.GetPropertyRef(toNode, rec.Guid, IProperty.SpecialPropertyNameRefTimeline + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
                     res.DataType.ObjectRef0.ForeignObjectGuid = toNode.Guid;
                     res.DataType.IsNullable = isNullable.Value;
                     res.IsRefTimeline = true;
@@ -1749,7 +1767,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT:
                     Debug.Assert(node is Catalog || node is CatalogFolder);
                     Debug.Assert(isNullable != null);
-                    res = (Property)this.GetPropertyRef(node, rec.Guid, Property.SpecialRefTreeParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
+                    res = (Property)this.GetPropertyRef(node, rec.Guid, IProperty.SpecialRefTreeParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
                     res.DataType.ObjectRef0.ForeignObjectGuid = node.Guid;
                     res.DataType.IsNullable = isNullable.Value;
                     res.IsComplexRefId = true;

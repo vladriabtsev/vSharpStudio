@@ -1175,12 +1175,12 @@ namespace vSharpStudio.vm.ViewModels
             get
             {
                 return this.DataTypeEnum == EnumDataType.CATALOG || this.DataTypeEnum == EnumDataType.DOCUMENT
-                    || this.DataTypeEnum == EnumDataType.CATALOGS || this.DataTypeEnum == EnumDataType.DOCUMENTS || this.DataTypeEnum == EnumDataType.ANY
-                    || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG
-                    || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DETAIL
-                    || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DOCUMENT || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_TIMELINE
-                    || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT
-                    ;
+                    || this.DataTypeEnum == EnumDataType.CATALOGS || this.DataTypeEnum == EnumDataType.DOCUMENTS || this.DataTypeEnum == EnumDataType.ANY;
+                    //|| this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_CATALOG_TO_SEPARATE_CATALOG_FOLDER || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG
+                    //|| this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG_FOLDER || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DETAIL
+                    //|| this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DOCUMENT || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_TIMELINE
+                    //|| this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_FOLDER_PARENT || this.SpecialPropertyTypeEnum == EnumSpecialPropertyType.REF_TO_SELF_TREE_CATALOG_PARENT
+                    //;
             }
         }
         public bool IsComplexOne

@@ -11,6 +11,7 @@ namespace vSharpStudio.common
         uint LastTypeShortRefIdForNode(ITreeConfigNode n, uint shortId);
 
         #region Properties
+        string GetRecordVersionFieldType();
         IStandartPropertyGuidPosition GetGuidPosition(ITreeConfigNode node, EnumSpecialPropertyType enumDataType);
         string GetPropertyGuid(ITreeConfigNode node, EnumSpecialPropertyType enumDataType);
         string GetPropertyCodeGuid(ITreeConfigNode node);

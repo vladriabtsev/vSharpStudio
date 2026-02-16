@@ -866,6 +866,13 @@ namespace vSharpStudio.vm.ViewModels
             dic.Remove(regPropertyGuid);
             reg.IsChanged = true;
         }
+        /// <summary>
+        /// Mapping register property to cocument property
+        /// </summary>
+        /// <param name="reg">Register</param>
+        /// <param name="docGuid">Document GUID</param>
+        /// <param name="regPropertyGuid">Register property GUID</param>
+        /// <param name="docPropertyGuid">Document property GUID</param>
         public static void MappingRegPropertyAdd(Register reg, string docGuid, string regPropertyGuid, string docPropertyGuid)
         {
             Guard.IsNotNullOrWhiteSpace(docGuid);
