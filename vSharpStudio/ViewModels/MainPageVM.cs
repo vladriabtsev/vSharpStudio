@@ -1592,6 +1592,7 @@ namespace vSharpStudio.ViewModels
             //var nvb = new ModelVisitorBase();
             //nvb.Run(diffConfig, null, null, null, (p, n) => { if (n is Property pp) pp.Tag = null; });
             //int i = 0;
+            HashSet<string> hashSetConnStr = new();
             foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
             {
                 if (ts.IsMarkedForDeletion)
@@ -1599,7 +1600,7 @@ namespace vSharpStudio.ViewModels
                 if (cancellationToken.IsCancellationRequested)
                     throw new CancellationException();
                 // app settings path, 
-                var dicAppSettings = new ConcurrentDictionary<string, StringBuilder>();
+                var dicAppSettingsSb = new ConcurrentDictionary<string, StringBuilder>();
                 List<GeneratorData> lstGenData = new();
                 foreach (var tp in ts.ListAppProjects)
                 {
@@ -1636,14 +1637,14 @@ namespace vSharpStudio.ViewModels
                             continue;
                         if (this.isExcludeCodeGeneration && gd.tpg.PluginDbGenerator == null)
                             continue;
-                        GeneratorApply(gd, diffConfig, step, nGen, isOnlySqlTextUpdate, isDeleteDb, dicAppSettings);
+                        GeneratorApply(gd, diffConfig, step, nGen, isOnlySqlTextUpdate, isDeleteDb, dicAppSettingsSb, hashSetConnStr);
 #if PARALLEL
                     });
 #else
                     }
 #endif
                 }
-                foreach (var t in dicAppSettings)
+                foreach (var t in dicAppSettingsSb)
                 {
                     var sb = t.Value;
                     sb.AppendLine(emptyStr);
@@ -1661,7 +1662,7 @@ namespace vSharpStudio.ViewModels
             public AppProjectGenerator tpg;
             public PluginGenerator tg;
         }
-        private void GeneratorApply(GeneratorData genData, IConfig diffConfig, int i, int nGens, bool isOnlySqlTextUpdate, bool isDeleteDb, ConcurrentDictionary<string, StringBuilder> dicAppSettings)
+        private void GeneratorApply(GeneratorData genData, IConfig diffConfig, int i, int nGens, bool isOnlySqlTextUpdate, bool isDeleteDb, ConcurrentDictionary<string, StringBuilder> dicAppSettingsSb, HashSet<string> hashSetConnStr)
         {
             this.ProgressVM?.ProgressUpdateSubTask($"'{genData.ts.Name}'-'{genData.tp.Name}'-'{genData.tpg.Name}'-'{genData.tg.Name}'", 100 * (i - 1) / nGens);
             i++;
@@ -1683,40 +1684,44 @@ namespace vSharpStudio.ViewModels
                     else
                     {
                         Debug.Assert(this.Config.CurrentCfgFolderPath != null);
-                        string outFileConn = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, genData.ts, genData.tp, genData.tpg, genData.tpg.GenFileName);
-                        bool first = false;
-                        StringBuilder? sb = null;
-                        if (!dicAppSettings.ContainsKey(outFileConn))
-                        {
-                            first = true;
-                            sb = new StringBuilder();
-                            dicAppSettings[outFileConn] = sb;
-                            sb.AppendLine("{");
-#if DEBUG
-                            sb.Append("\t\"_generator_source\": \"");
-                            sb.Append(t4.Src().Replace("\\", "/"));
-                            sb.AppendLine("\",");
-#endif
-                            sb.AppendLine("\t\"db_conns\": {");
-                        }
-                        else
-                            sb = dicAppSettings[outFileConn];
-                        if (!first)
-                            sb.AppendLine(",");
-                        sb.Append("\t\t\"");
-                        sb.Append(genData.tpg.Name);
-                        sb.AppendLine("\": {");
-                        sb.Append("\t\t\t\"provider\": \"");
-                        Debug.Assert(genData.tpg.PluginDbGenerator != null);
-                        sb.Append(genData.tpg.PluginDbGenerator.ProviderName);
-                        sb.AppendLine("\",");
-                        sb.Append("\t\t\t\"connection_string\": \"");
                         Debug.Assert(genData.tpg.DynamicMainConnStrSettings != null);
                         var cnstr = genData.tpg.DynamicMainConnStrSettings.GenerateCode(this.Config, genData.ts, genData.tp, genData.tpg);
-                        sb.Append(cnstr);
-                        sb.AppendLine("\"");
-                        sb.Append("\t\t}");
-                        code = sb.ToString();
+                        if (!hashSetConnStr.Contains(cnstr))
+                        {
+                            hashSetConnStr.Add(cnstr);
+                            string outFileConn = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, genData.ts, genData.tp, genData.tpg, genData.tpg.GenFileName);
+                            bool first = false;
+                            StringBuilder? sb = null;
+                            if (!dicAppSettingsSb.ContainsKey(outFileConn))
+                            {
+                                first = true;
+                                sb = new StringBuilder();
+                                dicAppSettingsSb[outFileConn] = sb;
+                                sb.AppendLine("{");
+#if DEBUG
+                                sb.Append("\t\"_generator_source\": \"");
+                                sb.Append(t4.Src().Replace("\\", "/"));
+                                sb.AppendLine("\",");
+#endif
+                                sb.AppendLine("\t\"db_conns\": {");
+                            }
+                            else
+                                sb = dicAppSettingsSb[outFileConn];
+                            if (!first)
+                                sb.AppendLine(",");
+                            sb.Append("\t\t\"");
+                            sb.Append(genData.tpg.Name);
+                            sb.AppendLine("\": {");
+                            sb.Append("\t\t\t\"provider\": \"");
+                            Debug.Assert(genData.tpg.PluginDbGenerator != null);
+                            sb.Append(genData.tpg.PluginDbGenerator.ProviderName);
+                            sb.AppendLine("\",");
+                            sb.Append("\t\t\t\"connection_string\": \"");
+                            sb.Append(cnstr);
+                            sb.AppendLine("\"");
+                            sb.Append("\t\t}");
+                            code = sb.ToString();
+                        }
                         if (isDeleteDb)
                         {
                             genData.tpg.PluginDbGenerator.EnsureDbDeleted(genData.tpg.ConnStr);
