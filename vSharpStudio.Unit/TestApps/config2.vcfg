@@ -1,30 +1,30 @@
 «
-$237591e0-7369-49b2-8127-fc09b248ccc2test2*test2:ÃÌ€²åĞ€ªB
-$8b6e458b-3ffb-41e7-af5c-42c22e763dd0BaseConfigsBaseConfigs@²Ê
-$18f87b95-430d-40bf-a7be-4be480bf6c26Model *Model@rId’ReCoRdVeRsIoN˜ªD
-$c611c387-e960-410e-86f7-34b749530c88	Constants"	Constants2Cnst²D
-$e4895a02-beb5-48d5-9c04-40b16116c7c0Enumerations"Enumerations@º’
-$f9b00776-6099-4230-bfea-77ab48c85188Catalogs	"CatalogsB}
-$f03408bf-0ff7-4e23-8cb2-5b8db91eafe8ListCatalogs"ListCatalogs2CtlgH°ºCodeÀÊNameÚDescription€ÂIsFolderJÔ
-$b611e2b0-3cfd-40f1-95e5-ea9ed4521414	Relations"	Relations:L
-$b43b17dc-117e-4bd0-a381-0d3656736520
+$fbdc16b6-7d49-4e04-a1de-7042f5d05adftest2*test2:¤½ÔÌ¬ÍƒÄ€ªB
+$95ebce62-26c1-4f9b-9b16-4fe00f072a5dBaseConfigsBaseConfigs@²Ê
+$807e5b24-69fa-4c83-84a8-0cedc40fe6bcModel *Model@rId’ReCoRdVeRsIoN˜ªD
+$cec6323a-8755-42d5-8fef-61594fcc8c0e	Constants"	Constants2Cnst²D
+$fe57cbbe-fc05-489b-b03e-cd1fe4db4aa7Enumerations"Enumerations@º’
+$437f3b6b-4959-4211-b6cd-1e368e9536fbCatalogs	"CatalogsB}
+$4e8b7cad-94b0-4feb-a600-694c3933fab0ListCatalogs"ListCatalogs2CtlgH°ºCodeÀÊNameÚDescription€ÂIsFolderJÔ
+$5587177a-c47e-4bdc-832c-870dff17a90b	Relations"	Relations:L
+$f035e063-663f-41bb-9e85-557eea743a3b
 ManyToMany"
 ManyToMany2
 ManyToManyHBF
-$5d2651e7-db31-4916-83e7-aa3d90759eabOneToOne"OneToOne2OneToOneHÂÃ
-$c8b28b45-271c-4d47-a315-831afd137914	Documents"	Documents:Œ
-$aa44ebbf-79ba-4ca8-a83d-37c8b1a4480bTimeline"Timeline@bDocDateTime’@
-$217fa859-2762-4c23-b9c6-aad61435c2b4
+$2117e760-4665-4f2f-b388-170e17c6acb4OneToOne"OneToOne2OneToOneHÂÃ
+$2751cb43-e6b3-440f-b82b-0dc13e6d5a94	Documents"	Documents:Œ
+$c7fc6b76-f487-4d6a-8a10-f099c10b78eaTimeline"Timeline@bDocDateTime’@
+$2f0784c4-d3e5-410b-bda9-de46efdcd519
 Properties"
 Properties@Bƒ
-$15e853ba-201e-40d4-9a91-63075d400113ListDocuments"ListDocuments2Doc@rDocShortTypeIdº€ÈüÿÿÿÿÊ	DocNumberĞÚIsPosted¢m
-$d8a73a97-cfe6-48d1-afcb-148a50c7e11b	Registers"	Registers0JReg€Ú$fd80d1d6-3b1e-4328-8ed5-b4ab2bbd39a8ª<
-$0164b0c5-5b9b-416e-bf3d-d977017b9403Journals"Journals@²>
-$970985e0-6893-462a-94cc-aac752601852	Sequences"	SequencesÒŒ
-$c29bb346-d219-4178-8687-8ebc4fdc37a3Common"Common0:›
-$ba33d70e-b54e-46fc-861f-aff9e321e1ccRoles"Roles@ª(X²(Xº(08X`hÈÊ(08X`hx¨ÈÈú(08X`hx¨ÈÈš(B4
-$67535bca-4a6b-4e30-b557-82ec6ba526a6Views"ViewsÂˆ
-$6ae0c4ff-f1d5-40cb-a7dd-337fb502ae94PluginsPlugins"¿
+$7d942267-5948-43cb-a9a9-edec9832ce44ListDocuments"ListDocuments2Doc@rDocShortTypeIdº€ÈüÿÿÿÿÊ	DocNumberĞÚIsPosted¢m
+$fa2a17b9-f0af-4559-a4ce-9371281a6463	Registers"	Registers0JReg€Ú$4a6a3f7a-6b11-4cdd-b792-5728d6cd6729ª<
+$90327cda-6274-4fcb-96da-5c049cff8ad4Journals"Journals@²>
+$bfcd0776-999d-4576-8b9c-c46b8115fe2e	Sequences"	SequencesÒŒ
+$f50ece91-d90f-4e0a-80d3-de9ab49eb60dCommon"Common0:›
+$4748ce6d-fabf-46b1-8fd1-9ada72b808e6Roles"Roles@ª(X²(Xº(08X`hÈÊ(08X`hx¨ÈÈú(08X`hx¨ÈÈš(B4
+$db963568-2b26-4df3-be4c-5587d4772540Views"ViewsÂˆ
+$f3d82697-5fb2-446d-b431-5d0e8798d1ebPluginsPlugins"¿
 $3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(2_
 $1E35FCDB-6425-4C66-B047-6882738AF552
 RepositoryDB repository code generation 2
@@ -48,4 +48,4 @@ $D535B939-6A33-4B96-B64C-F8FB78FD9F940.1Sample2"'vSharpStudio plugin with on
 $8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer 2	DbAccess2:Sample2X"è
 $EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(2‚
 $32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions 2gRPC service:gRPCX@	ÊD
-$11fd7ea7-e1a4-4708-ae6d-d0d570274d02ApplicationsApplications@
+$ae4b0d76-c2d7-49fa-beb7-78e3a36f2c11ApplicationsApplications@
