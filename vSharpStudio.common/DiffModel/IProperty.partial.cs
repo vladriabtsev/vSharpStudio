@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.common
 {
-    public partial interface IProperty : IParent, ITreeConfigNodeSortable, IGetNodeSetting
+    public partial interface IProperty : IParent, ITreeConfigNodeSortable, IGetNodeSetting, INodeWithPositionProperties
     {
         //#region Standard Property Positions
         //#region DB record
@@ -94,9 +94,9 @@ namespace vSharpStudio.common
         IProperty? ParentProperty { get; set; }
         string NameWithExtention { get; }
         //List<IProperty> ListExtensionProperties { get; }
-        IProperty AddExtensionPropertyRefId(string subName, IProperty t, IComplexRef tt);
-        IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable, uint position);
-        IProperty AddExtensionPropertyDesc(string subName, bool isNullable, bool isCsNullable, uint position);
+        IProperty AddExtensionPropertyRefId(string subName, IComplexRef tt);
+        IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable);
+        IProperty AddExtensionPropertyDesc(string subName, bool isNullable, bool isCsNullable);
         IProperty AddExtensionPropertyString(string subName, uint length, string guid);
         IProperty AddExtensionPropertyNumerical(string subName, uint length, uint accuracy, string guid);
         #endregion Plugin group model
@@ -106,6 +106,7 @@ namespace vSharpStudio.common
         static string SpecialRefTreeParentName { get; } = "RefTreeParent";
         static string SpecialPropertyNameRefTimeline { get; } = "RefTimeline";
         static string SpecialPropertyHistoryDataTimeUtc { get; } = "DataTimeUtc";
+        static uint PositionReservation { get; } = 10;
     }
     public interface IPropertyRangeValuesRequirements
     {

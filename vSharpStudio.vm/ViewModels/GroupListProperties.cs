@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using CommunityToolkit.Diagnostics;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
@@ -12,7 +13,6 @@ namespace vSharpStudio.vm.ViewModels
     {
         ConfigNodesCollection<Property> ListProperties { get; }
         ConfigNodesCollection<Property> Children { get; }
-        uint GetNextPosition();
         bool GetIsGridSortable();
         bool GetIsGridFilterable();
         bool GetIsGridSortableCustom();
@@ -510,10 +510,14 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public uint GetNextPosition()
+        private uint GetNextPosition()
         {
-            this.LastGenPosition++;
-            return this.LastGenPosition;
+            if (this.Parent is INodeWithPositionProperties n)
+            {
+                return n.GetNextFreePosition();
+            }
+            Debug.Assert(false, "not implemented yet");
+            throw new Exception();
         }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {

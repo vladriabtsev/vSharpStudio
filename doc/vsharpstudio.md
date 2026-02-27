@@ -4,7 +4,6 @@
 ## Table of Contents
 
 - [vsharpstudio.proto](#vsharpstudio-proto)
-    - [complex_ref](#proto_config-complex_ref)
     - [proto_app_db_settings](#proto_config-proto_app_db_settings)
     - [proto_app_project](#proto_config-proto_app_project)
     - [proto_app_project_generator](#proto_config-proto_app_project_generator)
@@ -15,9 +14,11 @@
     - [proto_catalog_code_property_settings](#proto_config-proto_catalog_code_property_settings)
     - [proto_catalog_folder](#proto_config-proto_catalog_folder)
     - [proto_catalog_folder.DicPositionsForStandartPropertiesEntry](#proto_config-proto_catalog_folder-DicPositionsForStandartPropertiesEntry)
+    - [proto_complex_ref](#proto_config-proto_complex_ref)
     - [proto_config](#proto_config-proto_config)
     - [proto_config_short_history](#proto_config-proto_config_short_history)
     - [proto_constant](#proto_config-proto_constant)
+    - [proto_constant.DicPositionsForStandartPropertiesEntry](#proto_config-proto_constant-DicPositionsForStandartPropertiesEntry)
     - [proto_data_type](#proto_config-proto_data_type)
     - [proto_detail](#proto_config-proto_detail)
     - [proto_detail.DicPositionsForStandartPropertiesEntry](#proto_config-proto_detail-DicPositionsForStandartPropertiesEntry)
@@ -164,26 +165,6 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## vsharpstudio.proto
-
-
-
-<a name="proto_config-complex_ref"></a>
-
-### complex_ref
-@base VmValidatableWithSeverity
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] Complex property guid. Empty for register doc ??? |
-| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
-| position | [uint32](#uint32) |  | @attr [Browsable(false)] unique in object (can be used as Protobuf field position) |
-| foreign_object_guid | [string](#string) |  | @attr [Browsable(false)] |
-| ref_complex_object_id_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for foreign object id |
-
-
-
 
 
 
@@ -373,8 +354,8 @@ Application project generator
 | group_details | [proto_group_list_details](#proto_config-proto_group_list_details) |  | @attr [Browsable(false)] |
 | group_forms | [proto_group_list_forms](#proto_config-proto_group_list_forms) |  | @attr [Browsable(false)] |
 | group_reports | [proto_group_list_reports](#proto_config-proto_group_list_reports) |  | @attr [Browsable(false)] |
-| dic_positions_for_standart_properties | [proto_catalog.DicPositionsForStandartPropertiesEntry](#proto_config-proto_catalog-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
-| last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| dic_positions_for_standart_properties | [proto_catalog.DicPositionsForStandartPropertiesEntry](#proto_config-proto_catalog-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
+| last_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -451,8 +432,8 @@ Application project generator
 | group_details | [proto_group_list_details](#proto_config-proto_group_list_details) |  | @attr [Browsable(false)] |
 | group_forms | [proto_group_list_forms](#proto_config-proto_group_list_forms) |  | @attr [Browsable(false)] |
 | group_reports | [proto_group_list_reports](#proto_config-proto_group_list_reports) |  | @attr [Browsable(false)] |
-| dic_positions_for_standart_properties | [proto_catalog_folder.DicPositionsForStandartPropertiesEntry](#proto_config-proto_catalog_folder-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
-| last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| dic_positions_for_standart_properties | [proto_catalog_folder.DicPositionsForStandartPropertiesEntry](#proto_config-proto_catalog_folder-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
+| last_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -470,6 +451,26 @@ Application project generator
 | ----- | ---- | ----- | ----------- |
 | key | [int32](#int32) |  |  |
 | value | [proto_standart_property_guid_position](#proto_config-proto_standart_property_guid_position) |  |  |
+
+
+
+
+
+
+<a name="proto_config-proto_complex_ref"></a>
+
+### proto_complex_ref
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] Complex property guid. Empty for register doc ??? |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
+| position | [uint32](#uint32) |  | @attr [Browsable(false)] unique in object (can be used as Protobuf field position) |
+| foreign_object_guid | [string](#string) |  | @attr [Browsable(false)] |
+| ref_complex_object_id_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for foreign object id |
 
 
 
@@ -552,12 +553,25 @@ Constant application wise value
 | tab_name | [string](#string) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Tab Name&#34;)] @attr [Description(&#34;If not empty, then start new tab in tab control. If empty, then continue adding fields in current control&#34;)] |
 | is_start_new_tab_control | [bool](#bool) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;New Tab Control&#34;)] @attr [Description(&#34;Start new tab control as current control&#34;)] |
 | is_stop_tab_control | [bool](#bool) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
-| ref_complex_object_gd_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for reference complex object type guid |
-| ref_complex_object_descr_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for reference complex object short description guid |
-| position_of_gd | [uint32](#uint32) |  | Position of complex type GUID for CATALOGS, or DOCUMENTS, or ANY unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
-| position_of_descr | [uint32](#uint32) |  | Position of short description property for complex types unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
+| dic_positions_for_standart_properties | [proto_constant.DicPositionsForStandartPropertiesEntry](#proto_config-proto_constant-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
 | position | [uint32](#uint32) |  | Position of property unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config-proto_constant-DicPositionsForStandartPropertiesEntry"></a>
+
+### proto_constant.DicPositionsForStandartPropertiesEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [int32](#int32) |  |  |
+| value | [proto_standart_property_guid_position](#proto_config-proto_standart_property_guid_position) |  |  |
 
 
 
@@ -578,7 +592,7 @@ Constant application wise value
 | is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Positive&#34;)] @attr [Description(&#34;Expected numerical value always &gt;= 0&#34;)] |
 | accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for numeric data&#34;)] |
 | accuracy_for_time | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Time accuracy&#34;)] @attr [Description(&#34;Time accuracy for TimeOnly type. Business model is expecting selected accuracy&#34;)] |
-| list_object_refs | [complex_ref](#proto_config-complex_ref) | repeated | &lt;summary&gt; / Guids of selected complex types for data type CATALOGS or DOCUMENTS / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
+| list_object_refs | [proto_complex_ref](#proto_config-proto_complex_ref) | repeated | &lt;summary&gt; / Guids of selected complex types for data type CATALOGS or DOCUMENTS / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
 | is_nullable | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
 | timespan_accuracy | [proto_enum_timespan_boundary_type](#proto_config-proto_enum_timespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;TimeSpan accuracy&#34;)] @attr [Description(&#34;TimeSpan accuracy&#34;)] |
 | timespan_max_value | [proto_enum_timespan_boundary_type](#proto_config-proto_enum_timespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;TimeSpan Max&#34;)] @attr [Description(&#34;TimeSpan maximum value&#34;)] |
@@ -626,8 +640,8 @@ Constant application wise value
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | group_forms | [proto_group_list_forms](#proto_config-proto_group_list_forms) |  | @attr [Browsable(false)] |
-| dic_positions_for_standart_properties | [proto_detail.DicPositionsForStandartPropertiesEntry](#proto_config-proto_detail-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
-| last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| dic_positions_for_standart_properties | [proto_detail.DicPositionsForStandartPropertiesEntry](#proto_config-proto_detail-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
+| last_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -693,8 +707,8 @@ Constant application wise value
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| dic_positions_for_standart_properties | [proto_document.DicPositionsForStandartPropertiesEntry](#proto_config-proto_document-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
-| last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| dic_positions_for_standart_properties | [proto_document.DicPositionsForStandartPropertiesEntry](#proto_config-proto_document-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
+| last_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -768,9 +782,8 @@ Constant application wise value
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | group_properties | [proto_group_list_properties](#proto_config-proto_group_list_properties) |  | @attr [Browsable(false)] |
-| last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
-| dic_positions_for_standart_properties | [proto_document_timeline.DicPositionsForStandartPropertiesEntry](#proto_config-proto_document_timeline-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
-| last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| dic_positions_for_standart_properties | [proto_document_timeline.DicPositionsForStandartPropertiesEntry](#proto_config-proto_document_timeline-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
+| last_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1343,13 +1356,12 @@ Common parameters section
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | sort_type | [proto_enum_sorting_type](#proto_config-proto_enum_sorting_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Sort&#34;)] @attr [Description(&#34;Sort type for properties&#34;)] |
 | list_constants | [proto_constant](#proto_config-proto_constant) | repeated | @attr [Browsable(false)] |
-| last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted during update if object is new, or will be trated as deprecated if exists in previous version&#34;)] |
 | last_short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
 | short_id | [uint32](#uint32) |  | Sequential unique number in parent group @attr [Browsable(false)] |
-| dic_positions_for_standart_properties | [proto_group_list_constants.DicPositionsForStandartPropertiesEntry](#proto_config-proto_group_list_constants-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
-| last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| dic_positions_for_standart_properties | [proto_group_list_constants.DicPositionsForStandartPropertiesEntry](#proto_config-proto_group_list_constants-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
+| last_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1588,7 +1600,6 @@ P R O P E R T Y
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | sort_type | [proto_enum_sorting_type](#proto_config-proto_enum_sorting_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Sort&#34;)] @attr [Description(&#34;Sort type for properties&#34;)] |
 | list_properties | [proto_property](#proto_config-proto_property) | repeated | @attr [Browsable(false)] |
-| last_gen_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | last_short_id | [uint32](#uint32) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
@@ -2005,17 +2016,12 @@ Configuration model
 | is_start_new_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(25)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Start Tab Control&#34;)] @attr [Description(&#34;Start new tab control as current control&#34;)] |
 | is_stop_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(27)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
 | data_generator | [proto_property_data_generator](#proto_config-proto_property_data_generator) |  | @attr [PropertyOrderAttribute(31)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Data Generator&#34;)] @attr [Browsable(false)] |
-| dic_positions_for_standart_properties | [proto_property.DicPositionsForStandartPropertiesEntry](#proto_config-proto_property-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
-| last_position | [uint32](#uint32) |  | @attr [Browsable(false)]
+| dic_positions_for_standart_properties | [proto_property.DicPositionsForStandartPropertiesEntry](#proto_config-proto_property-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...)
 
 // @attr [PropertyOrderAttribute(28)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;Start Grid&#34;)] // @attr [Description(&#34;Start new container of 12 columns grid system&#34;)] bool is_start_12_col_grid_system = 28; // @attr [PropertyOrderAttribute(29)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;Stop Grid&#34;)] // @attr [Description(&#34;Stop current container of 12 columns grid system&#34;)] bool is_stop_12_col_grid_system = 29; // @attr [PropertyOrderAttribute(30)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;Start Column&#34;)] // @attr [Description(&#34;Start new column of 12 columns grid system&#34;)] bool is_start_new_column_12_col_grid_system = 30; // @attr [PropertyOrderAttribute(32)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;Start Row&#34;)] // @attr [Description(&#34;Start new row of 12 columns grid system&#34;)] bool is_start_new_row_12_col_grid_system = 31; // @attr [PropertyOrderAttribute(31)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;Column Name&#34;)] // @attr [Description(&#34;Column Name of 12 columns grid system&#34;)] string column_name_12_col_grid_system = 32; // @attr [PropertyOrderAttribute(33)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;When Hide&#34;)] // @attr [Description(&#34;Condition of hiding base on screen size&#34;)] proto_enum_hidden_type hide_type = 33; // @attr [PropertyOrderAttribute(34)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;XS&#34;)] // @attr [Description(&#34;Extra small. Small to large phone. Range: &lt; 600px&#34;)] google.protobuf.UInt32Value width_xs = 34; // @attr [PropertyOrderAttribute(35)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;SM&#34;)] // @attr [Description(&#34;Small. Small to medium tablet. Range: 600px &gt; &lt; 960px&#34;)] google.protobuf.UInt32Value width_sm = 35; // @attr [PropertyOrderAttribute(36)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;MD&#34;)] // @attr [Description(&#34;Medium. Large tablet to laptop. Range: 960px &gt; &lt; 1280px&#34;)] google.protobuf.UInt32Value width_md = 36; // @attr [PropertyOrderAttribute(37)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;LG&#34;)] // @attr [Description(&#34;Large. Desktop. Range: 1280px &gt; &lt; 1920px&#34;)] google.protobuf.UInt32Value width_lg = 37; // @attr [PropertyOrderAttribute(38)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;XL&#34;)] // @attr [Description(&#34;Extra Large. HD and 4k. Range: 1920px &gt; &lt; 2560px&#34;)] google.protobuf.UInt32Value width_xl = 38; // @attr [PropertyOrderAttribute(39)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;XX&#34;)] // @attr [Description(&#34;Extra Extra Large. 4k&#43; and ultra-wide. Range: &gt;= 2560px&#34;)] google.protobuf.UInt32Value width_xx = 39; |
 | is_grid_sortable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config-proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| ref_complex_object_gd_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for reference complex object type guid |
-| ref_complex_object_descr_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for reference complex object short description guid |
-| position_of_gd | [uint32](#uint32) |  | Position of complex type GUID for CATALOGS, or DOCUMENTS, or ANY unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
-| position_of_descr | [uint32](#uint32) |  | Position of short description property for complex types unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
 | position | [uint32](#uint32) |  | Position of property unique in object (can be used as Protobuf field position) @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
@@ -2121,7 +2127,7 @@ Configuration model
 | group_properties | [proto_group_list_properties](#proto_config-proto_group_list_properties) |  | @attr [Browsable(false)] |
 | property_doc_ref_guid_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Guid property&#34;)] @attr [Description(&#34;Document guid property name&#34;)] |
 | property_doc_ref_name | [string](#string) |  | @attr [DisplayName(&#34;Doc Ref property&#34;)] @attr [Description(&#34;Document reference property name&#34;)] |
-| list_object_doc_refs | [complex_ref](#proto_config-complex_ref) | repeated | &lt;summary&gt; / Guids of selected types of DOCUMENTS which can POST or UNPOST for this register / &lt;/summary&gt; @attr [Browsable(false)] |
+| list_object_doc_refs | [proto_complex_ref](#proto_config-proto_complex_ref) | repeated | &lt;summary&gt; / Guids of selected types of DOCUMENTS which can POST or UNPOST for this register / &lt;/summary&gt; @attr [Browsable(false)] |
 | index_doc_date_guid | [string](#string) |  | Guid for index of document date, dimensions. Auto generated. @attr [Browsable(false)] |
 | index_doc_id_type_guid | [string](#string) |  | Guid for index of document Id and type. Auto generated. @attr [Browsable(false)] |
 | property_ref_timeline | [proto_property](#proto_config-proto_property) |  | special RefTimeline property @attr [Browsable(false)] |
@@ -2135,8 +2141,8 @@ Configuration model
 | table_balance_property_date_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_doc_mappings | [proto_register_doc_to_reg](#proto_config-proto_register_doc_to_reg) | repeated | Mapping register properties to document properties @attr [Browsable(false)] |
 | group_reports | [proto_group_list_reports](#proto_config-proto_group_list_reports) |  | @attr [Browsable(false)] |
-| dic_positions_for_standart_properties | [proto_register.DicPositionsForStandartPropertiesEntry](#proto_config-proto_register-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
-| last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| dic_positions_for_standart_properties | [proto_register.DicPositionsForStandartPropertiesEntry](#proto_config-proto_register-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
+| last_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -2249,8 +2255,8 @@ Configuration model
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | property_ref_obj1 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
 | property_ref_obj2 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
-| dic_positions_for_standart_properties | [proto_relation_many_to_many.DicPositionsForStandartPropertiesEntry](#proto_config-proto_relation_many_to_many-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
-| last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| dic_positions_for_standart_properties | [proto_relation_many_to_many.DicPositionsForStandartPropertiesEntry](#proto_config-proto_relation_many_to_many-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
+| last_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -2317,8 +2323,8 @@ Configuration model
 | short_ref_id | [uint32](#uint32) |  | Combination of short_id and type group in higher bits @attr [Browsable(false)] |
 | property_ref_obj1 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
 | property_ref_obj2 | [proto_property](#proto_config-proto_property) |  | @attr [Browsable(false)] |
-| dic_positions_for_standart_properties | [proto_relation_one_to_one.DicPositionsForStandartPropertiesEntry](#proto_config-proto_relation_one_to_one-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumDataType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
-| last_position | [uint32](#uint32) |  | @attr [Browsable(false)] |
+| dic_positions_for_standart_properties | [proto_relation_one_to_one.DicPositionsForStandartPropertiesEntry](#proto_config-proto_relation_one_to_one-DicPositionsForStandartPropertiesEntry) | repeated | @attr [Browsable(false)] Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub properties (complex reference GD, TypeId, ...) |
+| last_position | [uint32](#uint32) |  | Last generated Protobuf field position @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -3439,6 +3445,9 @@ D A T A  T Y P E
 | ACCUMULATOR_MONEY | 21 |  |
 | REG_BALANCE_ONDATEINT | 22 |  |
 | HISTORY_DATATIMEUTC | 23 |  |
+| SUB_PROPERTY_REF_ID | 24 |  |
+| SUB_PROPERTY_DESCR | 25 |  |
+| SUB_PROPERTY_GD | 26 |  |
 
 
 

@@ -36,6 +36,10 @@ namespace vSharpStudio.common
         IProperty GetPropertyRefCatalog(ITreeConfigNode parent, string guid, ICatalog c, uint position, bool isNullable);
         IProperty GetPropertyRefDocument(IGroupListProperties parent, string guid, IDocument d, uint position, bool isNullable);
         IProperty GetPropertySpecial(ITreeConfigNode node, EnumSpecialPropertyType propertyType, bool? isNullable = null, ITreeConfigNode? toNode = null);
+        IProperty GetPropertyComplexDescr(ITreeConfigNode node, IProperty prop, IComplexRef? complexRef, string nameSuffix, uint length);
+        IProperty GetPropertyComplexGd(ITreeConfigNode node, IProperty prop, IComplexRef? complexRef, string nameSuffix);
+        IProperty GetPropertyComplexRefId(ITreeConfigNode node, IProperty prop, IComplexRef? complexRef, string nameSuffix);
+        IProperty GetPropertySpecial(ITreeConfigNode node, IProperty prop, IComplexRef? complexRef, EnumSpecialPropertyType propertyType, string nameSuffix, uint length = 0);
 
         IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, uint accuracy, bool isNullable);
         IDataType GetDataTypeFromMaxValue(ITreeConfigNode? parent, System.Numerics.BigInteger maxValue, bool isPositive, bool isNullable, bool isPKey = false);
@@ -46,8 +50,7 @@ namespace vSharpStudio.common
         IDataType GetDataTypeStringFixed(ITreeConfigNode? parent, uint length, bool isNullable);
         IDataType GetDataTypeStringGuid(ITreeConfigNode? parent, bool isNullable);
         IDataType GetDataTypeBool(ITreeConfigNode? parent, bool isNullable);
-        IDataType GetIdDataType(ITreeConfigNode parent, bool isNullable);
-        IDataType GetIdRefDataType(ITreeConfigNode? parent, bool isNullable);
+        IDataType GetDataTypePkId(ITreeConfigNode parent, bool isNullable);
 
         #endregion Properties
 

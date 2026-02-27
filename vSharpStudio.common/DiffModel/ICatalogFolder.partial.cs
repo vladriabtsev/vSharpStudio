@@ -3,7 +3,7 @@
 namespace vSharpStudio.common
 {
     public partial interface ICatalogFolder : ITreeConfigNodeSortable, IGetNodeSetting, 
-        ICompositeName, IPKey, INodeWithStandartProperties
+        ICompositeName, IPKey, INodeWithPositionProperties
     {
         ICatalog ParentCatalogI { get; }
         string GetDebuggerDisplay(bool isOptimistic);

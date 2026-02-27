@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Numerics;
 using System.Runtime.Versioning;
@@ -10,6 +11,175 @@ namespace vSharpStudio.common
 {
     public static class CommonUtils
     {
+        #region Model extensions
+
+        public static List<IProperty> GetIncludedExtendedConstantsAsProperties(this IGroupListConstants dt, string guidAppPrjDbGen, bool isOptimistic, bool isSkipComplex, bool isSkipComplexDescr, bool isExcludeSpecial)
+        {
+            var lst = dt.GetIncludedConstantsAsProperties(guidAppPrjDbGen, isOptimistic, isExcludeSpecial);
+            return ExtendComplexProperties(dt, lst, isSkipComplex, isSkipComplexDescr);
+        }
+        public static List<IProperty> GetIncludedExtendedProperties(this ICatalog c, string guidAppPrjDbGen, bool isOptimistic, bool isSkipComplex, bool isSkipComplexDescr, bool isExcludeSpecial)
+        {
+            var lst = c.GetIncludedProperties(guidAppPrjDbGen, isOptimistic, isExcludeSpecial);
+            return ExtendComplexProperties(c, lst, isSkipComplex, isSkipComplexDescr);
+        }
+
+        public static List<IProperty> GetIncludedExtendedProperties(this ICatalogFolder cf, string guidAppPrjDbGen, bool isOptimistic, bool isSkipComplex, bool isSkipComplexDescr, bool isExcludeSpecial)
+        {
+            var lst = cf.GetIncludedProperties(guidAppPrjDbGen, isOptimistic, isExcludeSpecial);
+            return ExtendComplexProperties(cf, lst, isSkipComplex, isSkipComplexDescr);
+        }
+
+        public static List<IProperty> GetIncludedExtendedProperties(this IDetail dt, string guidAppPrjDbGen, bool isOptimistic, bool isSkipComplex, bool isSkipComplexDescr, bool isExcludeSpecial)
+        {
+            var lst = dt.GetIncludedProperties(guidAppPrjDbGen, isOptimistic, isExcludeSpecial);
+            return ExtendComplexProperties(dt, lst, isSkipComplex, isSkipComplexDescr);
+        }
+
+        #region IDocument
+        public static List<IProperty> GetIncludedExtendedPropertiesShared(this IDocument d, string guidAppPrjDbGen, bool isOptimistic, bool isSkipComplex, bool isSkipComplexDescr)
+        {
+            var lst = d.GetIncludedProperties(guidAppPrjDbGen, isOptimistic, true, true);
+            return ExtendComplexProperties(d, lst, isSkipComplex, isSkipComplexDescr);
+        }
+        public static List<IProperty> GetIncludedExtendedProperties(this IDocument d, string guidAppPrjDbGen, bool isOptimistic, bool isSkipComplex, bool isSkipComplexDescr, bool isExcludeSpecial)
+        {
+            var lst = d.GetIncludedProperties(guidAppPrjDbGen, isOptimistic, isExcludeSpecial);
+            return ExtendComplexProperties(d, lst, isSkipComplex, isSkipComplexDescr);
+        }
+        public static List<IProperty> GetIncludedExtendedPropertiesWithoutShared(this IDocument d, string guidAppPrjDbGen, bool isOptimistic, bool isSkipComplex, bool isSkipComplexDescr, bool isExcludeSpecial)
+        {
+            var lst = d.GetIncludedProperties(guidAppPrjDbGen, isOptimistic, isExcludeSpecial, false, true);
+            return ExtendComplexProperties(d, lst, isSkipComplex, isSkipComplexDescr);
+        }
+        public static List<IProperty> GetIncludedExtendedProperties(this IDocumentTimeline tl, string guidAppPrjDbGen, bool isOptimistic, bool isSkipComplex, bool isSkipComplexDescr, bool isExcludeSpecial)
+        {
+            var lst = tl.GetIncludedProperties(guidAppPrjDbGen, isOptimistic, isExcludeSpecial);
+            return ExtendComplexProperties(tl, lst, isSkipComplex, isSkipComplexDescr);
+        }
+        #endregion IDocument
+
+        public static List<IProperty> GetIncludedExtendedProperties(this IRelationManyToMany r, string guidAppPrjDbGen, bool isOptimistic, bool isSkipComplex, bool isSkipComplexDescr, bool isExcludeSpecial)
+        {
+            var lst = r.GetIncludedProperties(guidAppPrjDbGen, isOptimistic, isExcludeSpecial);
+            return ExtendComplexProperties(r, lst, isSkipComplex, isSkipComplexDescr);
+        }
+        public static List<IProperty> GetIncludedTurnoverExtendedProperties(this IRegister r, string guidAppPrjDbGen, bool isOptimistic, bool isSkipComplex, bool isSkipComplexDescr, bool isExcludeSpecial)
+        {
+            var lst = r.GetIncludedTurnoverProperties(isOptimistic, isExcludeSpecial);
+            return ExtendComplexProperties(r, lst, isSkipComplex, isSkipComplexDescr);
+        }
+        public static List<IProperty> GetIncludedBalanceExtendedProperties(this IRegister r, string guidAppPrjDbGen, bool isOptimistic, bool isSkipComplex, bool isSkipComplexDescr, bool isExcludeSpecial)
+        {
+            var lst = r.GetIncludedBalanceProperties(isOptimistic, isExcludeSpecial);
+            return ExtendComplexProperties(r, lst, isSkipComplex, isSkipComplexDescr);
+        }
+        //public static List<IProperty> GetIncludedExtendedProperties(this IRegister r, string guidAppPrjDbGen, bool isOptimistic, bool isSkipComplex, bool isSkipComplexDescr, bool isExcludeSpecial)
+        //{
+        //    var lst = r.GetIncludedProperties(guidAppPrjDbGen, isOptimistic, isExcludeSpecial);
+        //    return ExtendComplexProperties(r, lst, isSkipComplex, isSkipComplexDescr);
+        //}
+        public static List<IProperty> GetExtendedProperties(this IForm r, bool isSkipComplex, bool isSkipComplexDescr, bool isExcludeSpecial)
+        {
+            return ExtendComplexProperties(r, r.ListProperties, isSkipComplex, isSkipComplexDescr);
+        }
+        public static List<IProperty> ToSimplePropertiesList(this IReadOnlyList<IProperty> lstModelProperties)
+        {
+            var res = new List<IProperty>();
+            foreach (var t in lstModelProperties)
+            {
+                if (t.IsComplex)
+                    continue;
+                res.Add(t);
+            }
+            return res;
+        }
+        public static List<IProperty> ExtendComplexProperties(ITreeConfigNode parentWithPositions, IReadOnlyList<IProperty> lstModelProperties, bool isSkipComplex, bool isSkipComplexDescr)
+        {
+            Debug.Assert(parentWithPositions is INodeWithPositionProperties);
+#if DEBUG
+            var hash = new HashSet<string>();
+#endif
+            var model = parentWithPositions.Cfg.Model;
+            var lst = new List<IProperty>();
+            foreach (var t in lstModelProperties)
+            {
+                if (t.IsViewDefault)
+                {
+                    lst.Add(t);
+                    continue;
+                }
+                switch (t.DataType.DataTypeEnum)
+                {
+                    case EnumDataType.CATALOG:
+                    case EnumDataType.DOCUMENT:
+                        Debug.Assert(t.IsComplex);
+                        var nameSuffix = "Ref" + ((ICompositeName)t.Cfg.DicNodes[t.DataType.ObjectRef.ForeignObjectGuid]).CompositeName;
+                        t.DataType.ComplexRefSuffix = nameSuffix;
+                        var p = model.GetPropertySpecial(parentWithPositions, t, null, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID, nameSuffix + "Id");
+                        lst.Add(p);
+#if DEBUG
+                        Debug.Assert(!hash.Contains(p.Guid));
+                        hash.Add(p.Guid);
+#endif
+                        if (!isSkipComplexDescr)
+                        {
+                            p = model.GetPropertySpecial(parentWithPositions, t, null, EnumSpecialPropertyType.SUB_PROPERTY_DESCR, "Descr");
+                            lst.Add(p);
+#if DEBUG
+                            Debug.Assert(!hash.Contains(p.Guid));
+                            hash.Add(p.Guid);
+#endif
+                        }
+                        if (isSkipComplex)
+                            continue;
+                        break;
+                    case EnumDataType.CATALOGS:
+                    case EnumDataType.DOCUMENTS:
+                    case EnumDataType.ANY:
+                        Debug.Assert(t.IsComplex);
+                        foreach (var tt in t.DataType.ListObjectRefs)
+                        {
+                            nameSuffix = "Ref" + ((ICompositeName)t.Cfg.DicNodes[tt.ForeignObjectGuid]).CompositeName;
+                            p = model.GetPropertySpecial(parentWithPositions, t, tt, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID, nameSuffix + "Id");
+                            lst.Add(p);
+#if DEBUG
+                            Debug.Assert(!hash.Contains(p.Guid));
+                            hash.Add(p.Guid);
+#endif
+                        }
+                        p = model.GetPropertySpecial(parentWithPositions, t, null, EnumSpecialPropertyType.SUB_PROPERTY_GD, "Gd");
+                        lst.Add(p);
+#if DEBUG
+                        Debug.Assert(!hash.Contains(p.Guid));
+                        hash.Add(p.Guid);
+#endif
+                        if (!isSkipComplexDescr)
+                        {
+                            p = model.GetPropertySpecial(parentWithPositions, t, null, EnumSpecialPropertyType.SUB_PROPERTY_DESCR, "Descr");
+                            lst.Add(p);
+#if DEBUG
+                            Debug.Assert(!hash.Contains(p.Guid));
+                            hash.Add(p.Guid);
+#endif
+                        }
+                        if (isSkipComplex)
+                            continue;
+                        break;
+                    default:
+                        break;
+                }
+                lst.Add(t);
+                //#if DEBUG
+                //                Debug.Assert(!hash.Contains(t.Guid));
+                //                hash.Add(t.Guid);
+                //#endif
+            }
+            return lst;
+        }
+
+        #endregion Model extensions
+
         public static T ParseJson<T>(string json, bool discardUnknownFields = true) where T : IMessage<T>, new()
         {
             var jp = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(discardUnknownFields));

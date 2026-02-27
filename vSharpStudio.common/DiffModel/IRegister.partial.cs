@@ -10,8 +10,8 @@ namespace vSharpStudio.common
         string GetDebuggerDisplayTurnover(bool isOptimistic);
         string GetDebuggerDisplayBalance(bool isOptimistic);
         //IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial);
-        IReadOnlyList<IProperty> GetIncludedTurnoverProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial);
-        IReadOnlyList<IProperty> GetIncludedBalanceProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial);
+        IReadOnlyList<IProperty> GetIncludedTurnoverProperties(bool isOptimistic, bool isExcludeSpecial);
+        IReadOnlyList<IProperty> GetIncludedBalanceProperties(bool isOptimistic, bool isExcludeSpecial);
         //IForm GetForm(FormType ftype, string guidAppPrjGen);
         string GetDebuggerDisplay(bool isOptimistic);
         IProperty PropertyMoneyAccumulator { get; }

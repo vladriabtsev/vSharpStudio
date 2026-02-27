@@ -10,7 +10,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, 
+    public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings,
         IEditableNodeGroup, IEditableNode
     {
         public override string NameShortId { get { return $"gc{this.ShortId}"; } }
@@ -26,6 +26,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this._Name = Defaults.ConstantsGroupName;
+            this._LastPosition = IProperty.PositionReservation;
             this.IsEditable = true;
             Init();
         }
@@ -53,6 +54,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
+            this.GetSpecialProperties(new List<IProperty>(), true); // position ang guids for special properties
         }
         protected override ConfigNodesCollection<GroupListConstants>? GetParentCollection() { return this.ParentGroupConstantGroups.ListConstantGroups; }
         //public SortedObservableCollection<AppProject> GetCollection()
@@ -173,7 +175,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Constant AddConstantTypeRefCatalog(string name, Catalog cat, string? guid = null)
+        public Constant AddConstantCatalog(string name, Catalog cat, string? guid = null)
         {
             var node = new Constant(this) { Name = name };
 #if DEBUG
@@ -191,7 +193,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Constant AddConstantTypeRefDocument(string name, Document d, string? guid = null)
+        public Constant AddConstantDocument(string name, Document d, string? guid = null)
         {
             var node = new Constant(this) { Name = name };
 #if DEBUG
@@ -262,7 +264,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Constant AddConstantTypeRefCatalogs(string name, Catalog cat, Catalog? cat2 = null, string? guid = null)
+        public Constant AddConstantCatalogs(string name, Catalog cat, Catalog cat2, string? guid = null)
         {
             var node = new Constant(this) { Name = name };
 #if DEBUG
@@ -276,10 +278,7 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType = new DataType(node);
             node.IsNullable = true;
             node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
-            if (cat2 != null)
-            {
-                node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat2.Guid));
-            }
+            node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat2.Guid));
             node.DataType.DataTypeEnum = EnumDataType.CATALOGS;
             this.NodeAddNewSubNode(node);
             return node;
@@ -305,11 +304,6 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public uint GetNextPosition()
-        {
-            this.LastGenPosition++;
-            return this.LastGenPosition;
-        }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
             Constant node = null!;
@@ -323,7 +317,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.Add(node);
             node.DataType.Parent = node;
-            node.Position = this.GetNextPosition();
+            node.Position = this.GetNextFreePosition();
             if (node_impl == null)
             {
                 this.GetUniqueName(Defaults.ConstantName, node, this.ListConstants);
@@ -336,6 +330,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Tree operations
 
+        #region Get Properties and Details
+        public uint GetNextFreePosition() { return ++this.LastPosition; }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.Cfg.Model;
@@ -347,9 +343,10 @@ namespace vSharpStudio.vm.ViewModels
                 res.Add(prp);
             }
         }
-        public IReadOnlyList<IProperty> GetIncludedConstantsAsProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false)
+        public IReadOnlyList<IProperty> GetIncludedConstantsAsProperties(string guidAppPrjGen, bool isOptimistic, bool isSkipComplexDescr, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
+            var model = this.Cfg.Model;
             this.GetSpecialProperties(res, isOptimistic);
             VmBindable.IsNotValidateAll = true;
             foreach (var t in this.ListConstants)
@@ -357,30 +354,6 @@ namespace vSharpStudio.vm.ViewModels
                 if (t.IsIncluded(guidAppPrjGen))
                 {
                     var p = new Property(this, t.Guid, t.Name, false) { DataType = t.DataType, IsCsNullable = true, IsNullable = true };
-                    switch (t.DataType.DataTypeEnum)
-                    {
-                        case EnumDataType.CATALOG:
-                        case EnumDataType.DOCUMENT:
-                            if (string.IsNullOrWhiteSpace(t.RefComplexObjectDescrPropertyGuid))
-                                t.RefComplexObjectDescrPropertyGuid = System.Guid.NewGuid().ToString();
-                            p.RefComplexObjectDescrPropertyGuid = t.RefComplexObjectDescrPropertyGuid;
-                            p.PositionOfDescr = t.PositionOfDescr;
-                            break;
-                        case EnumDataType.CATALOGS:
-                        case EnumDataType.DOCUMENTS:
-                        case EnumDataType.ANY:
-                            if (string.IsNullOrWhiteSpace(t.RefComplexObjectDescrPropertyGuid))
-                                t.RefComplexObjectDescrPropertyGuid = System.Guid.NewGuid().ToString();
-                            p.RefComplexObjectDescrPropertyGuid = t.RefComplexObjectDescrPropertyGuid;
-                            p.PositionOfDescr = t.PositionOfDescr;
-                            if (string.IsNullOrWhiteSpace(t.RefComplexObjectGdPropertyGuid))
-                                t.RefComplexObjectGdPropertyGuid = System.Guid.NewGuid().ToString();
-                            p.RefComplexObjectGdPropertyGuid = t.RefComplexObjectGdPropertyGuid;
-                            p.PositionOfGd = t.PositionOfGd;
-                            break;
-                        default:
-                            break;
-                    }
                     p.Guid = t.Guid;
                     p.Position = t.Position;
                     p.ShortId = t.ShortId;
@@ -390,6 +363,8 @@ namespace vSharpStudio.vm.ViewModels
             VmBindable.IsNotValidateAll = false;
             return res;
         }
+        #endregion Get Properties and Details
+
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>

@@ -174,7 +174,7 @@ namespace vSharpStudio.vm.ViewModels
         public dynamic? Setting { get; set; }
 
         #region Get Properties and Details
-
+        public uint GetNextFreePosition() { return ++this.LastPosition; }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.Cfg.Model;
@@ -265,8 +265,8 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyRefObj1.Name = this.Name;
             this.PropertyRefObj1.IsNullable = this.IsRelationReferenceNullable;
             this.PropertyRefObj1.Position = 0;
-            this.PropertyRefObj1.PositionOfDescr = 0;
-            this.PropertyRefObj1.PositionOfGd = 0;
+            //this.PropertyRefObj1.PositionOfDescr = 0;
+            //this.PropertyRefObj1.PositionOfGd = 0;
         }
         partial void OnRefObj2TypeChanged()
         {
@@ -289,8 +289,8 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyRefObj2.Name = this.Name;
             this.PropertyRefObj2.IsNullable = this.IsRelationReferenceNullable;
             this.PropertyRefObj2.Position = 0;
-            this.PropertyRefObj2.PositionOfDescr = 0;
-            this.PropertyRefObj2.PositionOfGd = 0;
+            //this.PropertyRefObj2.PositionOfDescr = 0;
+            //this.PropertyRefObj2.PositionOfGd = 0;
         }
         [Browsable(false)]
         public SortedObservableCollection<ITreeConfigNodeSortable>? ListObjectsNode1

@@ -23,79 +23,48 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreating()
         {
             this._ListObjectRefs = [];
-            this._ListObjectRefs.CollectionChanged += ListObjectRefs_CollectionChanged;
+            //this._ListObjectRefs.CollectionChanged += ListObjectRefs_CollectionChanged;
         }
-        private void ListObjectRefs_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        //private void ListObjectRefs_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        //{
+        //    //_logger.Trace();
+        //    if (e.NewItems != null)
+        //    {
+        //        foreach (var t in e.NewItems)
+        //        {
+        //            var cr = (ComplexRef)t;
+        //            this.GetPositions(cr);
+        //        }
+        //    }
+        //}
+        public uint GetNextFreePosition()
         {
-            //_logger.Trace();
-            if (e.NewItems != null)
-            {
-                foreach (var t in e.NewItems)
-                {
-                    var cr = (ComplexRef)t;
-                    this.GetPositions(cr);
-                }
-            }
-        }
-        private uint GetNextPosition()
-        {
+            Debug.Assert(this.Parent != null);
             if (this.Parent is Property tp)
             {
-                if (tp.Parent is GroupListProperties)
+                Debug.Assert(tp.Parent != null);
+                Debug.Assert(tp.Parent.Parent != null);
+                if (tp.Parent.Parent is INodeWithPositionProperties n)
                 {
-                    Debug.Assert(tp.ParentGroupListProperties != null);
-                    return tp.ParentGroupListProperties.GetNextPosition();
+                    return n.GetNextFreePosition();
                 }
-                else if (tp.Parent is DocumentTimeline dt)
-                {
-                    return dt.GetNextPosition();
-                }
-                else if (tp.Parent is RelationManyToMany) // rm)
-                {
-                    //tp.PositionOfDescr = rm.PropertyRefObj1. dt.GetNextPosition();
-                }
-                else if (tp.Parent is RelationOneToOne) // ro)
-                {
-                    //tp.PositionOfDescr = dt.GetNextPosition();
-                }
-                else
-                    ThrowHelper.ThrowInvalidOperationException();
+                Debug.Assert(false, "not implemented yet");
+                throw new NotImplementedException();
             }
-            else if (this.Parent is Constant) // tc)
+            else if (this.Parent is Constant cnst) // tc)
             {
-                //if (tc.PositionOfDescr == 0)
-                //{
-                //    tc.PositionOfDescr = tc.ParentGroupListProperties.GetNextPosition();
-                //}
+                Debug.Assert(cnst.Parent != null);
+                Debug.Assert(cnst.Parent.Parent != null);
+                if (cnst.Parent.Parent is INodeWithPositionProperties n)
+                {
+                    return n.GetNextFreePosition();
+                }
+                Debug.Assert(false, "not implemented yet");
+                throw new NotImplementedException();
             }
-            else
-                ThrowHelper.ThrowInvalidOperationException();
-            return 0;
+            Debug.Assert(false, "not implemented yet");
+            throw new NotImplementedException();
         }
-        private void GetPositions(ComplexRef cr)
-        {
-            if (cr.Position > 0)
-                return;
-            if (this.Parent is Property tp)
-            {
-                if (tp.PositionOfDescr == 0)
-                    tp.PositionOfDescr = this.GetNextPosition();
-                if (tp.PositionOfGd == 0)
-                    tp.PositionOfGd = this.GetNextPosition();
-                cr.Position = this.GetNextPosition();
-            }
-            else if (this.Parent is Constant tc)
-            {
-                if (tc.PositionOfDescr == 0)
-                    tc.PositionOfDescr = tc.ParentGroupListConstants.GetNextPosition();
-                if (tc.PositionOfGd == 0)
-                    tc.PositionOfGd = tc.ParentGroupListConstants.GetNextPosition();
-                cr.Position = tc.ParentGroupListConstants.GetNextPosition();
-            }
-            else
-                ThrowHelper.ThrowInvalidOperationException();
-        }
-
         partial void OnCreated()
         {
             this._Length = 10;
@@ -892,6 +861,26 @@ namespace vSharpStudio.vm.ViewModels
                 return null;
             }
         }
+        private ITreeConfigNode GetParentProperty()
+        {
+            Debug.Assert(this.Parent != null);
+            Debug.Assert(this.Parent.Parent != null);
+            Debug.Assert(this.Parent.Parent.Parent != null);
+            if (this.Parent is IProperty n1)
+            {
+                return n1;
+            }
+            else if (this.Parent.Parent is IProperty n2)
+            {
+                return n2;
+            }
+            else if (this.Parent is IConstant n3)
+            {
+                return n3;
+            }
+            Debug.Assert(false, "not implemented yet");
+            throw new NotImplementedException();
+        }
         partial void OnDataTypeEnumChanged()
         {
             if (this.Cfg == null)
@@ -933,10 +922,9 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    foreach (var t in this.ListObjectRefs)
-                    {
-                        GetPositions(t);
-                    }
+                    var model = this.Cfg.Model;
+                    model.GetGuidPosition(this.GetParentProperty(), this.ObjectRef0, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID);
+                    model.GetGuidPosition(this.GetParentProperty(), null, EnumSpecialPropertyType.SUB_PROPERTY_DESCR);
                     break;
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
@@ -948,10 +936,13 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    foreach (var t in this.ListObjectRefs)
+                    model = this.Cfg.Model;
+                    foreach(var t in this.ListObjectRefs)
                     {
-                        GetPositions(t);
+                        model.GetGuidPosition(this.GetParentProperty(), t, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID);
                     }
+                    model.GetGuidPosition(this.GetParentProperty(), null, EnumSpecialPropertyType.SUB_PROPERTY_GD);
+                    model.GetGuidPosition(this.GetParentProperty(), null, EnumSpecialPropertyType.SUB_PROPERTY_DESCR);
                     break;
                 case EnumDataType.ENUMERATION:
                     this.VisibilityIsPositive = Visibility.Collapsed;

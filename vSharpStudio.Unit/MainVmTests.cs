@@ -722,7 +722,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(gr.IsHasNew);
             Assert.IsFalse(gr.IsHasMarkedForDeletion);
             var cat = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("cat");
-            var c3 = gr.AddConstantTypeRefCatalog("c3", cat);
+            var c3 = gr.AddConstantCatalog("c3", cat);
             Assert.IsTrue(c2.IsNew);
             Assert.IsTrue(gr.IsHasNew);
             Assert.IsFalse(gr.IsHasMarkedForDeletion);

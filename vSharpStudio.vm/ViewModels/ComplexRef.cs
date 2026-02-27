@@ -1,4 +1,7 @@
-﻿namespace vSharpStudio.vm.ViewModels
+﻿using System.Diagnostics;
+using vSharpStudio.common;
+
+namespace vSharpStudio.vm.ViewModels
 {
     public partial class ComplexRef
     {

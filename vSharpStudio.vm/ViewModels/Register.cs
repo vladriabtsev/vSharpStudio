@@ -12,7 +12,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugString(),nq}")]
-    public partial class Register : ICanAddNode, ICanGoLeft, INodeGenSettings, ITreeConfigNodeSortable, IEditableNode, INodeWithStandartProperties
+    public partial class Register : ICanAddNode, ICanGoLeft, INodeGenSettings, ITreeConfigNodeSortable, IEditableNode, INodeWithPositionProperties
     {
         public override string NameShortId
         {
@@ -112,6 +112,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
+            this._LastPosition = IProperty.PositionReservation;
             this._UseMoneyAccumulator = true;
             this._PropertyMoneyAccumulatorName = "AccumulatedMoney";
             this._PropertyMoneyAccumulatorAccuracy = 2;
@@ -190,6 +191,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.OnRemoveChild();
             //};
+            this.UpdatePositionGuidSpecialProperties(); // position ang guids for special properties
         }
         protected override ConfigNodesCollection<Register>? GetParentCollection() { return this.ParentGroupListRegisters.ListRegisters; }
         // doc guid, reg prop guid, doc prop guid
@@ -247,6 +249,9 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
 
+        #region Get Properties and Details
+        public uint GetNextFreePosition() { return ++this.LastPosition; }
+
         #region Accumulator properties
         [Browsable(false)]
         public IProperty PropertyQtyAccumulator { get; private set; }
@@ -289,6 +294,215 @@ namespace vSharpStudio.vm.ViewModels
             RecreatePropertyMoneyAccumulator();
         }
         #endregion Accumulator properties
+
+        public IProperty? GetDateTimeUtcProperty(bool? isRegisterBalance = null)
+        {
+            Debug.Assert(isRegisterBalance != null);
+            IProperty res = null;
+            if (isRegisterBalance.Value) // balance
+            {
+                Debug.Assert(this.RegisterType != EnumRegisterType.TURNOVER);
+                if (this.RegisterType == EnumRegisterType.BALANCE_AND_TURNOVER)
+                {
+                    var model = this.Cfg.Model;
+                    res = model.GetPropertyBalanceOnDateInt(this, true);
+                }
+            }
+            return res;
+        }
+        public IReadOnlyList<IProperty> GetListIdPKeyProperties(bool? isRegisterBalance = null)
+        {
+            Debug.Assert(isRegisterBalance != null);
+            var res = new List<IProperty>();
+            if (isRegisterBalance.Value) // balance
+            {
+                Debug.Assert(this.RegisterType != EnumRegisterType.TURNOVER);
+                this.AddDimenshionIdsProperties(res);
+            }
+            else // not balance
+            {
+                var model = this.Cfg.Model;
+                var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+                res.Add(prp);
+            }
+            return res;
+        }
+        public void GetNormalBalanceProperties(List<IProperty> res)
+        {
+            var lst = this.GetIncludedBalanceProperties(false, true);
+            foreach (var t in lst)
+            {
+                res.Add(t);
+            }
+        }
+        public void GetNormalTurnoverProperties(List<IProperty> res)
+        {
+            var lst = this.GetIncludedTurnoverProperties(false, true);
+            foreach (var t in lst)
+            {
+                res.Add(t);
+            }
+        }
+        public IReadOnlyList<IProperty> GetIncludedTurnoverProperties(bool isOptimistic, bool isExcludeSpecial)
+        {
+            var lst = new List<IProperty>();
+            var model = this.Cfg.Model;
+
+            // Id
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            prp.TagInList = "id";
+            lst.Add(prp);
+
+            var pRefTimeline = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TIMELINE, false, model.GroupDocuments.DocumentTimeline);
+            lst.Add(pRefTimeline);
+
+            // Money accumulator
+            if (this.UseMoneyAccumulator)
+            {
+                var pMoney = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
+                pMoney.TagInList = "ma";
+                lst.Add(pMoney);
+            }
+
+            // Qty accumulator
+            if (this.UseQtyAccumulator)
+            {
+                var pQty = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_QTY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
+                pQty.TagInList = "qa";
+                lst.Add(pQty);
+            }
+
+            // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
+            // For all dimensions (catalogs).
+            foreach (var t in this.GroupRegisterDimensions.ListDimensions)
+            {
+                if (!string.IsNullOrEmpty(t.DimensionCatalogGuid))
+                {
+                    //if (m.ParentConfig.DicNodes.TryGetValue(t.DimensionCatalogGuid, out var node))
+                    //{
+                    //    if (node is Catalog c)
+                    //    {
+                    //this._PropertyRefDimensionCatalog = (Property)m.GetPropertyRef(this.ParentGroupListRegisterDimensions.ParentRegister.GroupProperties, this.Guid, "Ref2", 0, false);
+                    //this._PropertyRefDimensionCatalog.DataTypeEnum = EnumDataType.CATALOG;
+                    //this._PropertyRefDimensionCatalog.IsNullable = false;
+                    var pCat = Property.Clone(t, t.PropertyRefDimensionCatalog, true);
+                    pCat.Guid = t.Guid;
+                    pCat.Position = t.Position;
+                    pCat.IsPKey = false;
+                    pCat.IsNullable = false;
+                    pCat.IsCsNullable = true;
+                    lst.Add(pCat);
+                    //    }
+                    //    else
+                    //        ThrowHelper.ThrowNotSupportedException();
+                    //}
+                    //else
+                    //    ThrowHelper.ThrowNotSupportedException();
+                }
+                else
+                    ThrowHelper.ThrowNotSupportedException();
+            }
+
+            // For all attached properties.
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                lst.Add(t);
+            }
+            if (isOptimistic && !isExcludeSpecial)
+            {
+                prp = model.GetPropertyVersion(this);
+                lst.Add(prp);
+            }
+            return lst;
+        }
+        public IReadOnlyList<IProperty> GetIncludedBalanceProperties(bool isOptimistic, bool isExcludeSpecial)
+        {
+            var lst = new List<IProperty>();
+
+            AddNotDimensionProperties(lst);
+
+            // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
+
+            // For all dimensions (catalogs).
+            AddDimenshionIdsProperties(lst);
+
+            if (isOptimistic && !isExcludeSpecial)
+            {
+                var model = this.Cfg.Model;
+                var prp = model.GetPropertyVersion(this);
+                lst.Add(prp);
+            }
+            return lst;
+        }
+        private void AddNotDimensionProperties(List<IProperty> lst)
+        {
+            var model = this.Cfg.Model;
+
+            //// Id
+            //var pId = m.GetPropertyPkId(this, this.TableBalancePropertyIdGuid); // position 6
+            //pId.TagInList = "id";
+            //lst.Add(pId);
+
+            if (this.RegisterType != EnumRegisterType.BALANCE)
+            {
+
+                // Balance date
+                // Only keep date accuracy up to one day. See: proto_enum_register_balance_periodicity
+                //var pPostDay = (Property)m.GetPropertyInt(this, this.TableBalancePropertyDateGuid, "OnDateInt", IProperty.PropertyDocumentDatePosition, false, false); // position 9
+                var pPostDay = model.GetPropertyBalanceOnDateInt(this, true);
+                pPostDay.TagInList = "pd";
+                lst.Add(pPostDay);
+
+                //var pPostDate = (Property)m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateTime", IProperty.PropertyDocumentDatePosition, false); // position 9
+                //pPostDate.TagInList = "pd";
+                //pPostDate.DataType.IsPKey = true;
+                //pPostDate.IsCsNullable = false;
+                ////pPostDate.IsBalanceDate = true;
+                //lst.Add(pPostDate);
+            }
+
+            // Money accumulator
+            if (this.UseMoneyAccumulator)
+            {
+                var pMoney = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
+                //var pMoney = (Property)this.PropertyMoneyAccumulator;
+                //pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
+                pMoney.TagInList = "ma";
+                lst.Add(pMoney);
+            }
+
+            // Qty accumulator
+            if (this.UseQtyAccumulator)
+            {
+                var pQty = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_QTY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
+                pQty.TagInList = "qa";
+                lst.Add(pQty);
+            }
+        }
+        public IReadOnlyList<IProperty> GetBalanceDimensionProperties()
+        {
+            var lst = new List<IProperty>();
+            AddDimenshionIdsProperties(lst);
+            return lst;
+        }
+
+        public void UpdatePositionGuidSpecialProperties()
+        {
+            switch (this.RegisterType)
+            {
+                case EnumRegisterType.BALANCE:
+                    this.GetIncludedBalanceProperties(false, true);
+                    break;
+                case EnumRegisterType.BALANCE_AND_TURNOVER:
+                    this.GetIncludedBalanceProperties(false, true);
+                    this.GetIncludedTurnoverProperties(false, true);
+                    break;
+                case EnumRegisterType.TURNOVER:
+                    this.GetIncludedTurnoverProperties(false, true);
+                    break;
+            }
+        }
+        #endregion Get Properties and Details
 
         #region Editing logic
         partial void OnRegisterTypeChanged()
@@ -406,7 +620,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = new RegisterDimension(this.GroupRegisterDimensions)
             {
                 Name = name,
-                Position = this.GroupProperties.GetNextPosition()
+                Position = this.GetNextFreePosition()
             };
 #if DEBUG
             if (guid != null) // for test model generation
@@ -424,7 +638,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 Name = name,
                 DimensionCatalogGuid = c.Guid,
-                Position = this.GroupProperties.GetNextPosition(),
+                Position = this.GetNextFreePosition(),
             };
             //node.PropertyRefDimensionCatalog.ListObjectRefs.Add(new ComplexRef() { ForeignObjectGuid = c.Guid });
 #if DEBUG
@@ -452,196 +666,6 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType = new DataType(node) { DataTypeEnum = type, Length = length, Accuracy = accuracy };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
-        }
-        public IProperty? GetDateTimeUtcProperty(bool? isRegisterBalance = null)
-        {
-            Debug.Assert(isRegisterBalance != null);
-            IProperty res = null;
-            if (isRegisterBalance.Value) // balance
-            {
-                Debug.Assert(this.RegisterType != EnumRegisterType.TURNOVER);
-                if (this.RegisterType == EnumRegisterType.BALANCE_AND_TURNOVER)
-                {
-                    var model = this.Cfg.Model;
-                    res = model.GetPropertyBalanceOnDateInt(this, true);
-                }
-            }
-            return res;
-        }
-        public IReadOnlyList<IProperty> GetListIdPKeyProperties(bool? isRegisterBalance = null)
-        {
-            Debug.Assert(isRegisterBalance != null);
-            var res = new List<IProperty>();
-            if (isRegisterBalance.Value) // balance
-            {
-                Debug.Assert(this.RegisterType != EnumRegisterType.TURNOVER);
-                this.AddDimenshionIdsProperties(res);
-            }
-            else // not balance
-            {
-                var model = this.Cfg.Model;
-                var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
-                res.Add(prp);
-            }
-            return res;
-        }
-        public void GetNormalBalanceProperties(List<IProperty> res)
-        {
-            var lst = this.GetIncludedBalanceProperties("", false, true);
-            foreach (var t in lst)
-            {
-                res.Add(t);
-            }
-        }
-        public void GetNormalTurnoverProperties(List<IProperty> res)
-        {
-            var lst = this.GetIncludedTurnoverProperties("", false, true);
-            foreach (var t in lst)
-            {
-                res.Add(t);
-            }
-        }
-        public IReadOnlyList<IProperty> GetIncludedTurnoverProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
-        {
-            var lst = new List<IProperty>();
-            var model = this.Cfg.Model;
-
-            // Id
-            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
-            prp.TagInList = "id";
-            lst.Add(prp);
-
-            var pRefTimeline = model.GetPropertySpecial(this, EnumSpecialPropertyType.REF_TIMELINE, false, model.GroupDocuments.DocumentTimeline);
-            lst.Add(pRefTimeline);
-
-            // Money accumulator
-            if (this.UseMoneyAccumulator)
-            {
-                var pMoney = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
-                pMoney.TagInList = "ma";
-                lst.Add(pMoney);
-            }
-
-            // Qty accumulator
-            if (this.UseQtyAccumulator)
-            {
-                var pQty = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_QTY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
-                pQty.TagInList = "qa";
-                lst.Add(pQty);
-            }
-
-            // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
-            // For all dimensions (catalogs).
-            foreach (var t in this.GroupRegisterDimensions.ListDimensions)
-            {
-                if (!string.IsNullOrEmpty(t.DimensionCatalogGuid))
-                {
-                    //if (m.ParentConfig.DicNodes.TryGetValue(t.DimensionCatalogGuid, out var node))
-                    //{
-                    //    if (node is Catalog c)
-                    //    {
-                    //this._PropertyRefDimensionCatalog = (Property)m.GetPropertyRef(this.ParentGroupListRegisterDimensions.ParentRegister.GroupProperties, this.Guid, "Ref2", 0, false);
-                    //this._PropertyRefDimensionCatalog.DataTypeEnum = EnumDataType.CATALOG;
-                    //this._PropertyRefDimensionCatalog.IsNullable = false;
-                    var pCat = Property.Clone(t, t.PropertyRefDimensionCatalog, true);
-                    pCat.Guid = t.Guid;
-                    pCat.Position = t.Position;
-                    pCat.IsPKey = false;
-                    pCat.IsNullable = false;
-                    pCat.IsCsNullable = true;
-                    lst.Add(pCat);
-                    //    }
-                    //    else
-                    //        ThrowHelper.ThrowNotSupportedException();
-                    //}
-                    //else
-                    //    ThrowHelper.ThrowNotSupportedException();
-                }
-                else
-                    ThrowHelper.ThrowNotSupportedException();
-            }
-
-            // For all attached properties.
-            foreach (var t in this.GroupProperties.ListProperties)
-            {
-                lst.Add(t);
-            }
-            if (isOptimistic && !isExcludeSpecial)
-            {
-                prp = model.GetPropertyVersion(this);
-                lst.Add(prp);
-            }
-            return lst;
-        }
-        public IReadOnlyList<IProperty> GetIncludedBalanceProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial)
-        {
-            var lst = new List<IProperty>();
-
-            AddNotDimensionProperties(lst);
-
-            // Positions for dimentsions and attached properties are starting from 21. They are using same position sequence.
-
-            // For all dimensions (catalogs).
-            AddDimenshionIdsProperties(lst);
-
-            if (isOptimistic && !isExcludeSpecial)
-            {
-                var model = this.Cfg.Model;
-                var prp = model.GetPropertyVersion(this);
-                lst.Add(prp);
-            }
-            return lst;
-        }
-        private void AddNotDimensionProperties(List<IProperty> lst)
-        {
-            var model = this.Cfg.Model;
-
-            //// Id
-            //var pId = m.GetPropertyPkId(this, this.TableBalancePropertyIdGuid); // position 6
-            //pId.TagInList = "id";
-            //lst.Add(pId);
-
-            if (this.RegisterType != EnumRegisterType.BALANCE)
-            {
-
-                // Balance date
-                // Only keep date accuracy up to one day. See: proto_enum_register_balance_periodicity
-                //var pPostDay = (Property)m.GetPropertyInt(this, this.TableBalancePropertyDateGuid, "OnDateInt", IProperty.PropertyDocumentDatePosition, false, false); // position 9
-                var pPostDay = model.GetPropertyBalanceOnDateInt(this, true);
-                pPostDay.TagInList = "pd";
-                lst.Add(pPostDay);
-
-                //var pPostDate = (Property)m.GetPropertyDateTimeUtc(this, this.TableBalancePropertyDateGuid, "OnDateTime", IProperty.PropertyDocumentDatePosition, false); // position 9
-                //pPostDate.TagInList = "pd";
-                //pPostDate.DataType.IsPKey = true;
-                //pPostDate.IsCsNullable = false;
-                ////pPostDate.IsBalanceDate = true;
-                //lst.Add(pPostDate);
-            }
-
-            // Money accumulator
-            if (this.UseMoneyAccumulator)
-            {
-                var pMoney = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_MONEY, this.PropertyMoneyAccumulatorLength, this.PropertyMoneyAccumulatorAccuracy, false);
-                //var pMoney = (Property)this.PropertyMoneyAccumulator;
-                //pMoney.Position = IProperty.PropertyMoneyAccumulatorPosition;
-                pMoney.TagInList = "ma";
-                lst.Add(pMoney);
-            }
-
-            // Qty accumulator
-            if (this.UseQtyAccumulator)
-            {
-                var pQty = model.GetPropertyNumber(this, EnumSpecialPropertyType.ACCUMULATOR_QTY, this.PropertyQtyAccumulatorLength, this.PropertyQtyAccumulatorAccuracy, false);
-                pQty.TagInList = "qa";
-                lst.Add(pQty);
-            }
-        }
-        public IReadOnlyList<IProperty> GetBalanceDimensionProperties()
-        {
-            var lst = new List<IProperty>();
-            AddDimenshionIdsProperties(lst);
-            return lst;
         }
         private void AddDimenshionIdsProperties(List<IProperty> lst)
         {

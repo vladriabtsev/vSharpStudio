@@ -62,6 +62,7 @@ namespace vSharpStudio.vm.ViewModels
         public new string IconName { get { return "iconFolder"; } }
         partial void OnCreated()
         {
+            this._LastPosition = IProperty.PositionReservation;
             this._Name = "Folder";
             this._Description = "Catalog items groups";
             this.IsIncludableInModels = true;
@@ -93,6 +94,7 @@ namespace vSharpStudio.vm.ViewModels
             children.Add(this.GroupDetails, 3);
             children.Add(this.GroupForms, 4);
             children.Add(this.GroupReports, 5);
+            this.GetSpecialProperties(new List<IProperty>(), true); // position ang guids for special properties
         }
         public void OnAdded()
         {
@@ -172,6 +174,66 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             node.DataType = new DataType(node) { DataTypeEnum = type, Length = length, Accuracy = accuracy };
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyCatalog(string name, string catGuid, bool isNullable = false, bool isCsNullable = true, string? guidProperty = null)
+        {
+            var node = new Property(this.GroupProperties) { Name = name, IsNullable = isNullable, IsCsNullable = isCsNullable };
+#if DEBUG
+            if (guidProperty != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guidProperty))
+                    return node;
+                node.Guid = guidProperty;
+            }
+#endif
+            node.DataType = new DataType(node)
+            {
+                IsNullable = isNullable,
+                DataTypeEnum = EnumDataType.CATALOG,
+            };
+            node.ConfigObjectGuid = catGuid;
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyCatalog(string name, Catalog cat, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.IsNullable = true;
+            node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
+            node.DataType.DataTypeEnum = EnumDataType.CATALOG;
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyCatalogs(string name, Catalog cat, Catalog? cat2 = null, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.IsNullable = true;
+            node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
+            if (cat2 != null)
+            {
+                node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat2.Guid));
+            }
+            node.DataType.DataTypeEnum = EnumDataType.CATALOGS;
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
@@ -275,6 +337,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Get Properties and Details
+        public uint GetNextFreePosition() { return ++this.LastPosition; }
         public bool GetUseCodeProperty()
         {
             bool res = false;
@@ -431,6 +494,24 @@ namespace vSharpStudio.vm.ViewModels
             return res;
         }
         #endregion Get Properties and Details
+
+        #region OnChanged
+        partial void OnUseCodePropertyChanged()
+        {
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+            this.GetSpecialProperties(new List<IProperty>(), true); // position ang guids for special properties
+        }
+        partial void OnUseNamePropertyChanged()
+        {
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+            this.GetSpecialProperties(new List<IProperty>(), true); // position ang guids for special properties
+        }
+        partial void OnUseDescriptionPropertyChanged()
+        {
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+            this.GetSpecialProperties(new List<IProperty>(), true); // position ang guids for special properties
+        }
+        #endregion OnChanged
 
         public IForm GetForm(FormType ftype, string guidAppPrjGen)
         {

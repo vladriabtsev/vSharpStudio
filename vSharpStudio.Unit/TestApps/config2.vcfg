@@ -1,30 +1,30 @@
 ª
-$30c95c74-c069-4a2e-8df1-53af9689b501test2*test2:øÖØÌ´—€€ªB
-$6a8bd8f3-72d9-4032-9d5f-fef3ddb94ec2BaseConfigsBaseConfigs@²Ê
-$e3bb0144-7d72-4db4-8d71-8c5f8d2057d5Model *Model@rId’ReCoRdVeRsIoN˜ªD
-$160eab2c-0fc0-4c67-9da4-09a844fd5127	Constants"	Constants2Cnst²D
-$773cf1f1-649b-465c-a865-3c1a36cecafbEnumerations"Enumerations@º’
-$495e6392-c1b1-4d73-93e5-489ef659f637Catalogs	"CatalogsB}
-$a46c9eea-7ce1-47cc-99e8-7aef3375ece3ListCatalogs"ListCatalogs2CtlgH°ºCodeÀÊNameÚDescription€ÂIsFolderJÔ
-$e2f4e33b-d15f-46ea-a77f-1b5be4d12c3c	Relations"	Relations:L
-$d1b972d9-4cea-4112-823e-6b8ae9dbf360
+$39aaa718-735a-4137-be4a-d0abc3b8107atest2*test2:êê†ÍĞŸ:€ªB
+$d0e7c9b1-a532-4427-b28d-5974b3b425ebBaseConfigsBaseConfigs@²Ê
+$01f6dd3f-534c-4484-8463-1e4626a505b9Model *Model@rId’ReCoRdVeRsIoN˜ªD
+$b5b0e381-0dda-4ecf-a989-305b82d06109	Constants"	Constants2Cnst²D
+$aefcc619-24d1-4307-b458-ac068f813944Enumerations"Enumerations@º’
+$46fc762d-9f59-4010-932c-32c1aadbfdafCatalogs	"CatalogsB}
+$6fb6f290-28d9-4ec7-8c66-dff44b8805afListCatalogs"ListCatalogs2CtlgH°ºCodeÀÊNameÚDescription€ÂIsFolderJÔ
+$b4581708-aa07-4de7-801c-39d48c0f6bed	Relations"	Relations:L
+$fa7314fb-df03-4bf6-8f44-61bc851fd645
 ManyToMany"
 ManyToMany2
 ManyToManyHBF
-$9933f90a-80a3-4559-8e21-c713814bba0dOneToOne"OneToOne2OneToOneHÂÃ
-$8e088655-6b70-4e85-99bb-1680803a4752	Documents"	Documents:Œ
-$2a7d061a-61fe-413d-b086-9c1abe6fadf2Timeline"Timeline@bDocDateTime’@
-$4a1ecbb3-d6f7-4212-bafc-125b4dbffb21
+$86ec650d-dd0f-4f99-8e01-49ff27b453c2OneToOne"OneToOne2OneToOneHÂÃ
+$e3d2dcae-bfb1-4ca4-94a0-e62095c12e41	Documents"	Documents:Œ
+$89ccf3b1-c0f9-4a4c-ad1c-7fa13e5c136eTimeline"Timeline@bDocDateTime’@
+$37d652c1-2604-4252-855a-47ead2e08a89
 Properties"
 Properties@Bƒ
-$e0fddb8d-392d-47db-8294-97a1f14e9fd0ListDocuments"ListDocuments2Doc@rDocShortTypeIdº€ÈüÿÿÿÿÊ	DocNumberĞÚIsPosted¢m
-$3729aaa9-617b-4f8d-83c3-a593a73b67f4	Registers"	Registers0JReg€Ú$e8e3c2e0-7606-4a1d-862b-f0ddd62ac758ª<
-$671f6b1c-08ee-46a4-bdaa-fc7797fb871cJournals"Journals@²>
-$b1cfc238-83e1-46db-b19d-461e12996140	Sequences"	SequencesÒŒ
-$610ca031-83af-4949-a383-6a87cacdb3dfCommon"Common0:›
-$9f1fe063-b807-4fa9-b688-ce9e2d6f1993Roles"Roles@ª(X²(Xº(08X`hÈÊ(08X`hx¨ÈÈú(08X`hx¨ÈÈš(B4
-$bdbae8fd-3e2f-49cc-9814-62daa0702d26Views"ViewsÂˆ
-$b36d69d2-3878-4b33-9cda-f55aa870cc1ePluginsPlugins"¿
+$fdf4df33-5503-4bf9-97b0-c8570a4be0ffListDocuments"ListDocuments2Doc@rDocShortTypeIdº€ÈüÿÿÿÿÊ	DocNumberĞÚIsPosted¢m
+$7c54c69f-b753-4b89-9426-4ce2f46c478b	Registers"	Registers0JReg€Ú$2210d9ad-c673-4fe4-acf4-d97910b4b861ª<
+$aa87aab2-77e4-4147-9730-2cf451482664Journals"Journals@²>
+$1a96b335-4274-4c98-b18c-2eb0d210d8aa	Sequences"	SequencesÒŒ
+$29e8273c-74ba-4a64-9093-53ca77ce9a73Common"Common0:›
+$2da14011-3054-4845-a91c-658ca0829c44Roles"Roles@ª(X²(Xº(08X`hÈÊ(08X`hx¨ÈÈú(08X`hx¨ÈÈš(B4
+$70d51e58-d3bd-4846-971e-48ca0b8b716fViews"ViewsÂˆ
+$e9d25e25-f631-4278-b4fb-5da6dd2c8a42PluginsPlugins"¿
 $3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(2_
 $1E35FCDB-6425-4C66-B047-6882738AF552
 RepositoryDB repository code generation 2
@@ -48,4 +48,4 @@ $D535B939-6A33-4B96-B64C-F8FB78FD9F940.1Sample2"'vSharpStudio plugin with on
 $8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer 2	DbAccess2:Sample2X"è
 $EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(2‚
 $32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions 2gRPC service:gRPCX@	ÊD
-$3a663c2a-be1b-4e64-8123-884c1f776e0cApplicationsApplications@
+$50c36740-2dd8-4e15-80f4-016bee72dfabApplicationsApplications@

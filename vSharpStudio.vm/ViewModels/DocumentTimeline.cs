@@ -62,7 +62,7 @@ namespace vSharpStudio.vm.ViewModels
                 node = (Property)node_impl;
             }
             this.ListProperties.Add(node);
-            node.Position = this.GetNextPosition();
+            node.Position = this.GetNextFreePosition();
             //this.Add(node);
             if (node_impl == null)
             {
@@ -118,26 +118,26 @@ namespace vSharpStudio.vm.ViewModels
         {
             return this.ListProperties.IndexOf((p as Property)!);
         }
-        public uint GetNextPosition()
-        {
-            // Reserved positions
-            // 1  not used
-            // 2  not used
-            // 3  not used
-            // 4  __is_need_insert
-            // 5  __is_need_update
-            // 6  PropertyId
-            // 7  PropertyObjectVersion
-            // 8  Document data and time
-            // 9  Document type ID
-            // 10 IsPosted
-            if (this.LastGenPosition == 0)
-            {
-                this.LastGenPosition = 15;
-            }
-            this.LastGenPosition++;
-            return this.LastGenPosition;
-        }
+        //public uint GetNextPosition()
+        //{
+        //    // Reserved positions
+        //    // 1  not used
+        //    // 2  not used
+        //    // 3  not used
+        //    // 4  __is_need_insert
+        //    // 5  __is_need_update
+        //    // 6  PropertyId
+        //    // 7  PropertyObjectVersion
+        //    // 8  Document data and time
+        //    // 9  Document type ID
+        //    // 10 IsPosted
+        //    if (this.LastGenPosition == 0)
+        //    {
+        //        this.LastGenPosition = 15;
+        //    }
+        //    this.LastGenPosition++;
+        //    return this.LastGenPosition;
+        //}
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>
@@ -154,6 +154,9 @@ namespace vSharpStudio.vm.ViewModels
             //    lst.Add(nameof(this.PropertyNameName));
             return [.. lst];
         }
+
+        #region Get Properties and Details
+        public uint GetNextFreePosition() { return ++this.LastPosition; }
         //public Property AddProperty()
         //{
         //    var node = new Property(this);
@@ -366,6 +369,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst;
         }
+        #endregion Get Properties and Details
+
         public bool GetIsGridSortable()
         {
             if (this.IsGridSortable == EnumUseType.Yes)

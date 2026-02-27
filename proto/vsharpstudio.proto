@@ -763,6 +763,9 @@ enum proto_enum_special_property_type {
     ACCUMULATOR_MONEY = 21;
     REG_BALANCE_ONDATEINT = 22;
     HISTORY_DATATIMEUTC = 23;
+    SUB_PROPERTY_REF_ID = 24;
+    SUB_PROPERTY_DESCR = 25;
+    SUB_PROPERTY_GD = 26;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_data_type {
@@ -889,7 +892,7 @@ enum proto_enum_timespan_boundary_type {
     MKS_BNDR_ACC = 110;
 }
 // @base VmValidatableWithSeverity
-message complex_ref
+message proto_complex_ref
 {
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
@@ -939,7 +942,7 @@ message proto_data_type {
     /// Guids of selected complex types for data type CATALOGS or DOCUMENTS
     /// </summary>
     // @attr [PropertyOrderAttribute(8)]
-    repeated complex_ref list_object_refs = 8;
+    repeated proto_complex_ref list_object_refs = 8;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(9)]
     // @attr [DisplayName("Can be NULL")]
@@ -1471,9 +1474,6 @@ message proto_group_list_properties {
     proto_enum_sorting_type sort_type = 9;
     // @attr [Browsable(false)]
     repeated proto_property list_properties = 6;
-    // Last generated Protobuf field position
-    // @attr [ReadOnly(true)]
-    uint32 last_gen_position = 7;
     // @attr [Browsable(false)]
     int32 explicit_sorting_position = 8;
     // @attr [Browsable(false)]
@@ -1596,8 +1596,6 @@ message proto_property {
     // @attr [Browsable(false)]
     // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
     map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
-    // @attr [Browsable(false)]
-    uint32 last_position = 103;
 /*
     // @attr [PropertyOrderAttribute(28)]
     // @attr [Category("12 Column Grid System")]
@@ -1674,20 +1672,6 @@ message proto_property {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
-    // @attr [Browsable(false)]
-    // extended property guid for reference complex object type guid
-    string ref_complex_object_gd_property_guid = 106;
-    // @attr [Browsable(false)]
-    // extended property guid for reference complex object short description guid
-    string ref_complex_object_descr_property_guid = 107;
-    // Position of complex type GUID for CATALOGS, or DOCUMENTS, or ANY
-    // unique in object (can be used as Protobuf field position)
-    // @attr [ReadOnly(true)]
-    uint32 position_of_gd = 108;
-    // Position of short description property for complex types
-    // unique in object (can be used as Protobuf field position)
-    // @attr [ReadOnly(true)]
-    uint32 position_of_descr = 109;
     // Position of property
     // unique in object (can be used as Protobuf field position)
     // @attr [ReadOnly(true)]
@@ -1841,9 +1825,10 @@ message proto_detail {
     proto_group_list_forms group_forms = 84;
 
     // @attr [Browsable(false)]
-    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    // Dictionary<EnumSpecialPropertyType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
     map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
-    // @attr [Browsable(false)]
+    // Last generated Protobuf field position
+    // @attr [ReadOnly(true)]
     uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -1914,9 +1899,6 @@ message proto_group_list_constants {
     proto_enum_sorting_type sort_type = 10;
     // @attr [Browsable(false)]
     repeated proto_constant list_constants = 6;
-    // Last generated Protobuf field position
-    // @attr [ReadOnly(true)]
-    uint32 last_gen_position = 8;
     // @attr [Browsable(false)]
     bool is_new = 9;
     // @attr [DisplayName("For deletion")]
@@ -1929,9 +1911,10 @@ message proto_group_list_constants {
     uint32 short_id = 13;
 
     // @attr [Browsable(false)]
-    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    // Dictionary<EnumSpecialPropertyType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
     map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
-    // @attr [Browsable(false)]
+    // Last generated Protobuf field position
+    // @attr [ReadOnly(true)]
     uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -2030,19 +2013,8 @@ message proto_constant {
     bool is_stop_tab_control = 27;
 
     // @attr [Browsable(false)]
-    // extended property guid for reference complex object type guid
-    string ref_complex_object_gd_property_guid = 106;
-    // @attr [Browsable(false)]
-    // extended property guid for reference complex object short description guid
-    string ref_complex_object_descr_property_guid = 107;
-    // Position of complex type GUID for CATALOGS, or DOCUMENTS, or ANY
-    // unique in object (can be used as Protobuf field position)
-    // @attr [ReadOnly(true)]
-    uint32 position_of_gd = 108;
-    // Position of short description property for complex types
-    // unique in object (can be used as Protobuf field position)
-    // @attr [ReadOnly(true)]
-    uint32 position_of_descr = 109;
+    // Dictionary<EnumSpecialPropertyType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
     // Position of property
     // unique in object (can be used as Protobuf field position)
     // @attr [ReadOnly(true)]
@@ -2284,9 +2256,10 @@ message proto_catalog_folder {
     proto_group_list_reports group_reports = 85;
 
     // @attr [Browsable(false)]
-    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    // Dictionary<EnumSpecialPropertyType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
     map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
-    // @attr [Browsable(false)]
+    // Last generated Protobuf field position
+    // @attr [ReadOnly(true)]
     uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -2469,9 +2442,10 @@ message proto_catalog {
     //string guid_edit_form = 93;
 
     // @attr [Browsable(false)]
-    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    // Dictionary<EnumSpecialPropertyType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
     map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
-    // @attr [Browsable(false)]
+    // Last generated Protobuf field position
+    // @attr [ReadOnly(true)]
     uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -2898,7 +2872,7 @@ message proto_register {
     /// Guids of selected types of DOCUMENTS which can POST or UNPOST for this register
     /// </summary>
     // @attr [Browsable(false)]
-    repeated complex_ref list_object_doc_refs = 41;
+    repeated proto_complex_ref list_object_doc_refs = 41;
 
     // Guid for document reference property. Auto generated.
     // @attr [Browsable(false)]
@@ -2948,9 +2922,10 @@ message proto_register {
     proto_group_list_reports group_reports = 85;
 
     // @attr [Browsable(false)]
-    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    // Dictionary<EnumSpecialPropertyType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
     map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
-    // @attr [Browsable(false)]
+    // Last generated Protobuf field position
+    // @attr [ReadOnly(true)]
     uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -3163,14 +3138,11 @@ message proto_document_timeline {
     // @attr [Browsable(false)]
     proto_group_list_properties group_properties = 82;
 
+    // @attr [Browsable(false)]
+    // Dictionary<EnumSpecialPropertyType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
     // Last generated Protobuf field position
     // @attr [ReadOnly(true)]
-    uint32 last_gen_position = 100;
-
-    // @attr [Browsable(false)]
-    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
-    map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
-    // @attr [Browsable(false)]
     uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -3237,9 +3209,10 @@ message proto_document {
     proto_enum_use_type is_grid_filterable = 73;
     
     // @attr [Browsable(false)]
-    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    // Dictionary<EnumSpecialPropertyType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
     map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
-    // @attr [Browsable(false)]
+    // Last generated Protobuf field position
+    // @attr [ReadOnly(true)]
     uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -3445,9 +3418,10 @@ message proto_relation_many_to_many {
     proto_property property_ref_obj2 = 34;
 
     // @attr [Browsable(false)]
-    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    // Dictionary<EnumSpecialPropertyType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
     map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
-    // @attr [Browsable(false)]
+    // Last generated Protobuf field position
+    // @attr [ReadOnly(true)]
     uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -3577,9 +3551,10 @@ message proto_relation_one_to_one {
     proto_property property_ref_obj2 = 34;
 
     // @attr [Browsable(false)]
-    // Dictionary<EnumDataType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
+    // Dictionary<EnumSpecialPropertyType, StandartPropertyGuidPosition> for sub properties (complex reference GD, TypeId, ...)
     map<int32, proto_standart_property_guid_position> dic_positions_for_standart_properties = 102;
-    // @attr [Browsable(false)]
+    // Last generated Protobuf field position
+    // @attr [ReadOnly(true)]
     uint32 last_position = 103;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;

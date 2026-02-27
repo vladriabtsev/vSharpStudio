@@ -321,26 +321,276 @@ namespace vSharpStudio.Unit
         public void Position_001_Catalog_Prpperty()
         {
             var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            //mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
             mvm.BtnNewConfig.Execute();
-
             var cfg = mvm.Config;
-            uint catPos = 1;
-            cfg.Model.GroupCatalogs.GroupListCatalogs.NodeAddNewSubNode();
-            cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.NodeAddNewSubNode();
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].Position);
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.LastGenPosition);
-            cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.NodeAddNewSubNode();
-            catPos++;
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[1].Position);
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.LastGenPosition);
-            cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].NodeRemove();
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].Position);
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.LastGenPosition);
-            cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].NodeAddNew();
-            catPos++;
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties[0].Position);
-            Assert.AreEqual(catPos, cfg.Model.GroupCatalogs.GroupListCatalogs[0].GroupProperties.LastGenPosition);
+
+            uint pos_in_c1 = IProperty.PositionReservation;
+
+            var cref1 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
+            var cref2 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
+
+            var c1 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
+            // for ID, record version, Code, Name
+            pos_in_c1 += 4;
+            Assert.AreEqual(pos_in_c1, c1.LastPosition);
+            var c1p1 = c1.AddProperty("p1");
+            Assert.AreEqual(++pos_in_c1, c1.LastPosition);
+            Assert.AreEqual(pos_in_c1, c1p1.Position);
+            c1p1.Remove();
+            Assert.AreEqual(pos_in_c1, c1.LastPosition);
+            var c1p2 = c1.AddProperty("p2");
+            Assert.AreEqual(++pos_in_c1, c1.LastPosition);
+            Assert.AreEqual(pos_in_c1, c1p2.Position);
+            // Get positions for all special properties
+            var lst = c1.GetAllProperties(true).ToList();
+            Assert.AreEqual(pos_in_c1, c1.LastPosition);
+
+            // Catalog property
+            var c1pcat1 = c1.AddPropertyCatalog("cat1", cref1);
+            // for cat1, cat1Descr, cat1RefId
+            pos_in_c1 += 3;
+            Assert.AreEqual(pos_in_c1, c1.LastPosition);
+            Assert.AreEqual(pos_in_c1, c1pcat1.Position);
+            Assert.AreEqual(1, c1pcat1.ListObjectRefs.Count);
+            // Catalogs property
+            var c1pcat1_cat2 = c1.AddPropertyCatalogs("cat1_cat2", cref1, cref2);
+            // for cat1_cat2, cat1_cat2Descr, cat1_cat2Gd, cat1RefId, cat2RefId
+            pos_in_c1 += 5;
+            Assert.AreEqual(pos_in_c1, c1.LastPosition);
+            Assert.AreEqual(pos_in_c1, c1pcat1_cat2.Position);
+            Assert.AreEqual(2, c1pcat1_cat2.ListObjectRefs.Count);
+
+            // Any catalog property
+
+            // Document property
+
+            // Document property
+
+            // Any document property
+
+            uint pos_in_c1d1 = IProperty.PositionReservation;
+            var c1d1 = c1.AddDetails("detail1");
+            Assert.AreEqual(++pos_in_c1, c1.LastPosition);
+            Assert.AreEqual(pos_in_c1, c1d1.Position);
+            // for ID, record version, RefParent
+            pos_in_c1d1 += 3;
+            Assert.AreEqual(pos_in_c1d1, c1d1.LastPosition);
+            var c1d1p1 = c1d1.AddProperty("p1");
+            Assert.AreEqual(++pos_in_c1d1, c1d1.LastPosition);
+            Assert.AreEqual(pos_in_c1d1, c1d1p1.Position);
+
+            uint pos_c1d1d1 = IProperty.PositionReservation;
+            var c1d1d1 = c1d1.AddDetails("detail1");
+            Assert.AreEqual(++pos_in_c1d1, c1d1.LastPosition);
+            Assert.AreEqual(pos_in_c1d1, c1d1d1.Position);
+            Assert.AreEqual(pos_in_c1d1, c1d1.LastPosition);
+            var c1d1d1p1 = c1d1d1.AddProperty("p1");
+            // for ID, record version, RefParent
+            pos_c1d1d1 += 3;
+            Assert.AreEqual(++pos_c1d1d1, c1d1d1.LastPosition);
+            Assert.AreEqual(pos_c1d1d1, c1d1d1p1.Position);
+
+            // Catalog property
+            var c1d1pcat1 = c1d1.AddPropertyCatalog("cat1", cref1);
+            // for cat1, cat1Descr, cat1RefId
+            pos_in_c1d1 += 3;
+            Assert.AreEqual(pos_in_c1d1, c1d1.LastPosition);
+            Assert.AreEqual(pos_in_c1d1, c1d1pcat1.Position);
+            Assert.AreEqual(1, c1d1pcat1.ListObjectRefs.Count);
+            // Catalogs property
+            var c1d1pcat1_cat2 = c1d1.AddPropertyCatalogs("cat1_cat2", cref1, cref2);
+            // for cat1_cat2, cat1_cat2Descr, cat1_cat2Gd, cat1RefId, cat2RefId
+            pos_in_c1d1 += 5;
+            Assert.AreEqual(pos_in_c1d1, c1d1.LastPosition);
+            Assert.AreEqual(pos_in_c1d1, c1d1pcat1_cat2.Position);
+            Assert.AreEqual(2, c1d1pcat1_cat2.ListObjectRefs.Count);
+
+            // Any catalog property
+
+            // Document property
+
+            // Document property
+
+            // Any document property
+        }
+        [TestMethod]
+        public void Position_002_Document_Prpperty()
+        {
+            var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            mvm.BtnNewConfig.Execute();
+            var cfg = mvm.Config;
+
+            uint pos_in_d1 = IProperty.PositionReservation;
+
+            var cref1 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
+            var cref2 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
+
+            var d1 = cfg.Model.GroupDocuments.GroupListDocuments.AddDocument("doc1");
+            // for ID, record version
+            pos_in_d1 += 2;
+            Assert.AreEqual(pos_in_d1, d1.LastPosition);
+            var d1p1 = d1.AddProperty("p1");
+            Assert.AreEqual(++pos_in_d1, d1.LastPosition);
+            Assert.AreEqual(pos_in_d1, d1p1.Position);
+
+            d1p1.Remove();
+            Assert.AreEqual(pos_in_d1, d1.LastPosition);
+            var c1p2 = d1.AddProperty("p2");
+            Assert.AreEqual(++pos_in_d1, d1.LastPosition);
+            Assert.AreEqual(pos_in_d1, c1p2.Position);
+
+            // Catalog property
+            var d1pcat1 = d1.AddPropertyCatalog("cat1", cref1);
+            // for cat1, cat1Descr, cat1RefId
+            pos_in_d1 += 3;
+            Assert.AreEqual(pos_in_d1, d1.LastPosition);
+            Assert.AreEqual(pos_in_d1, d1pcat1.Position);
+            Assert.AreEqual(1, d1pcat1.ListObjectRefs.Count);
+            // Catalogs property
+            var d1pcat1_cat2 = d1.AddPropertyCatalogs("cat1_cat2", cref1, cref2);
+            // for cat1_cat2, cat1_cat2Descr, cat1_cat2Gd, cat1RefId, cat2RefId
+            pos_in_d1 += 5;
+            Assert.AreEqual(pos_in_d1, d1.LastPosition);
+            Assert.AreEqual(pos_in_d1, d1pcat1_cat2.Position);
+            Assert.AreEqual(2, d1pcat1_cat2.ListObjectRefs.Count);
+
+            // Any catalog property
+
+            // Document property
+
+            // Document property
+
+            // Any document property
+
+            uint pos_in_d1d1 = IProperty.PositionReservation;
+
+            var d1d1 = d1.AddDetails("detail1");
+            Assert.AreEqual(++pos_in_d1, d1.LastPosition);
+            Assert.AreEqual(pos_in_d1, d1d1.Position);
+            // for ID, record version, RefParent
+            pos_in_d1d1 += 3;
+            Assert.AreEqual(pos_in_d1d1, d1d1.LastPosition);
+
+            var d1d1p1 = d1d1.AddProperty("p1");
+            Assert.AreEqual(++pos_in_d1d1, d1d1.LastPosition);
+            Assert.AreEqual(pos_in_d1d1, d1d1p1.Position);
+
+            // Catalog property
+            var d1d1pcat1 = d1d1.AddPropertyCatalog("cat1", cref1);
+            // for ID, record version, RefParent
+            pos_in_d1d1 += 3;
+            Assert.AreEqual(pos_in_d1d1, d1d1.LastPosition);
+            Assert.AreEqual(pos_in_d1d1, d1d1pcat1.Position);
+            Assert.AreEqual(1, d1d1pcat1.ListObjectRefs.Count);
+            // Catalogs property
+            var d1d1pcat1_cat2 = d1d1.AddPropertyCatalogs("cat1_cat2", cref1, cref2);
+            // for cat1_cat2, cat1_cat2Descr, cat1_cat2Gd, cat1RefId, cat2RefId
+            pos_in_d1d1 += 5;
+            Assert.AreEqual(pos_in_d1d1, d1d1.LastPosition);
+            Assert.AreEqual(pos_in_d1d1, d1d1pcat1_cat2.Position);
+            Assert.AreEqual(2, d1d1pcat1_cat2.ListObjectRefs.Count);
+
+            // Any catalog property
+
+            // Document property
+
+            // Document property
+
+            // Any document property
+
+            pos_in_d1 = IProperty.PositionReservation;
+            var d2 = cfg.Model.GroupDocuments.GroupListDocuments.AddDocument("doc2");
+            // for ID, record version
+            pos_in_d1 += 2;
+            Assert.AreEqual(pos_in_d1, d2.LastPosition);
+            var c2p1 = d2.AddProperty("p1");
+            Assert.AreEqual(++pos_in_d1, d2.LastPosition);
+        }
+        [TestMethod]
+        public void Position_003_ManyToMany_Prpperty()
+        {
+            var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            mvm.BtnNewConfig.Execute();
+            var cfg = mvm.Config;
+
+            uint pos_in_m2m = IProperty.PositionReservation;
+
+            var cref1 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
+            var cref2 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
+
+            var m2m = cfg.Model.GroupCatalogs.GroupRelations.GroupListManyToManyRelations.AddRelation("testrel1", cref1, cref2, false);
+            // for ID, record version, -- without history
+            pos_in_m2m += 2;
+            // for cref1, cref2, cref1Descr, cref2Descr, cref1RefId, cref2RefId
+            pos_in_m2m += 6;
+            Assert.AreEqual(pos_in_m2m, m2m.LastPosition);
+        }
+        [TestMethod]
+        public void Position_004_Register_Property()
+        {
+            var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            mvm.BtnNewConfig.Execute();
+            var cfg = mvm.Config;
+
+            uint pos = IProperty.PositionReservation;
+
+            var r1 = cfg.Model.GroupDocuments.GroupRegisters.AddRegister();
+            pos += 4; // ID, record version, two accumulation properties
+            Assert.AreEqual(pos, r1.LastPosition);
+            var r1p1 = r1.AddAttachedProperty("p1");
+            Assert.AreEqual(++pos, r1.LastPosition);
+            Assert.AreEqual(pos, r1p1.Position);
+
+            r1p1.Remove();
+            Assert.AreEqual(pos, r1.LastPosition);
+            var r1p2 = r1.AddAttachedProperty("p2");
+            Assert.AreEqual(++pos, r1.LastPosition);
+            Assert.AreEqual(pos, r1p2.Position);
+
+            var cat = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("test_cat");
+            var r1d1 = r1.AddDimension("d1", cat);
+            // for test_cat, test_catDescr, test_catRefId
+            pos += 3;
+            Assert.AreEqual(pos, r1.LastPosition);
+            Assert.AreEqual(pos, r1d1.Position);
+
+            uint pos2 = IProperty.PositionReservation;
+            var r2 = cfg.Model.GroupDocuments.GroupRegisters.AddRegister();
+            pos2 += 4; // ID, record version, two accumulation properties
+            Assert.AreEqual(pos2, r2.LastPosition);
+            var r2p1 = r2.AddAttachedProperty("p1");
+            Assert.AreEqual(++pos2, r2.LastPosition);
+        }
+        [TestMethod]
+        public void Position_005_Constants()
+        {
+            var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            mvm.BtnNewConfig.Execute();
+            var cfg = mvm.Config;
+
+            var cref1 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
+            var cref2 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
+
+            var gn1 = cfg.Model.GroupConstantGroups.AddGroupConstants("set1");
+            uint pos_in_gn1 = IProperty.PositionReservation;
+            pos_in_gn1 += 2; // ID, record version
+            Assert.AreEqual(pos_in_gn1, gn1.LastPosition);
+
+            var n1 = gn1.AddConstant("n1");
+            Assert.AreEqual(++pos_in_gn1, gn1.LastPosition);
+            Assert.AreEqual(pos_in_gn1, n1.Position);
+
+            var n2 = gn1.AddConstantCatalog("test_cat", cref1); ;
+            // for test_cat, test_catDescr, test_catRefId
+            pos_in_gn1 += 3;
+            Assert.AreEqual(pos_in_gn1, gn1.LastPosition);
+            Assert.AreEqual(pos_in_gn1, n2.Position);
+
+            var n3 = gn1.AddConstantCatalogs("test_cats", cref1, cref2); ;
+            // for test_cat, test_catDescr, test_catRefId
+            pos_in_gn1 += 5;
+            Assert.AreEqual(pos_in_gn1, gn1.LastPosition);
+            Assert.AreEqual(pos_in_gn1, n3.Position);
         }
         [TestMethod]
         public void Property002_Sorting()
@@ -412,49 +662,6 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(2, g.IndexOf(p1));
             Assert.AreEqual(3, g.IndexOf(p2));
 
-        }
-        [TestMethod]
-        public void Register001_Property_Position()
-        {
-            var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
-            //mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
-            mvm.BtnNewConfig.Execute();
-
-            var cfg = mvm.Config;
-            uint pos = 0;
-            var reg = (Register)cfg.Model.GroupDocuments.GroupRegisters.NodeAddNewSubNode();
-            Assert.AreEqual(0u, reg.GroupProperties.LastGenPosition);
-
-            var dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
-            pos += 4;
-            Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
-            Assert.AreEqual(pos, dim.Position);
-
-            var cat = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("test_cat");
-            dim = reg.AddDimension("test_dim", cat);
-            pos += 4;
-            Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
-            Assert.AreEqual(pos, dim.Position);
-
-            dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
-            pos += 4;
-            Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
-            Assert.AreEqual(pos, dim.Position);
-
-            var prop = (IProperty)reg.GroupProperties.NodeAddNewSubNode();
-            pos++;
-            Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
-            Assert.AreEqual(pos, prop.Position);
-
-            dim = (IRegisterDimension)reg.GroupRegisterDimensions.NodeAddNewSubNode();
-            pos += 4;
-            Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
-            Assert.AreEqual(pos, dim.Position);
-
-            prop = (IProperty)reg.AddAttachedProperty("test_prop");
-            pos++;
-            Assert.AreEqual(pos, reg.GroupProperties.LastGenPosition);
-            Assert.AreEqual(pos, prop.Position);
         }
         #endregion Unique position for Protobuf
 

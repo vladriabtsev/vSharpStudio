@@ -2,7 +2,7 @@
 {
     public partial interface IGroupListProperties : ITreeConfigNodeSortable
     {
-        uint GetNextPosition();
+        //uint GetNextPosition();
         int IndexOf(IProperty p);
     }
 }

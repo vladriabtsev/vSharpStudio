@@ -4,7 +4,7 @@ using ViewModelBase;
 namespace vSharpStudio.common
 {
     public partial interface IRelationOneToOne : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue,
-        INodeWithStandartProperties
+        INodeWithPositionProperties
     {
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false);
         void GetSpecialProperties(List<IProperty> res, bool isOptimistic);

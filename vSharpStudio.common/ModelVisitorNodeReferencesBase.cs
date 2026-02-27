@@ -105,14 +105,14 @@ namespace vSharpStudio.common
                 switch (t.RegisterType)
                 {
                     case EnumRegisterType.BALANCE:
-                        ScanProperties(md, t.GetIncludedBalanceProperties(this.appDbGenGuid, false, true));
+                        ScanProperties(md, t.GetIncludedBalanceProperties(false, true));
                         break;
                     case EnumRegisterType.BALANCE_AND_TURNOVER:
-                        ScanProperties(md, t.GetIncludedBalanceProperties(this.appDbGenGuid, false, true));
-                        ScanProperties(md, t.GetIncludedTurnoverProperties(this.appDbGenGuid, false, true));
+                        ScanProperties(md, t.GetIncludedBalanceProperties(false, true));
+                        ScanProperties(md, t.GetIncludedTurnoverProperties(false, true));
                         break;
                     case EnumRegisterType.TURNOVER:
-                        ScanProperties(md, t.GetIncludedTurnoverProperties(this.appDbGenGuid, false, true));
+                        ScanProperties(md, t.GetIncludedTurnoverProperties(false, true));
                         break;
                 }
             }

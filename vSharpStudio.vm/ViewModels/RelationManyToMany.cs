@@ -57,23 +57,12 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
-        public IProperty? GetDateTimeUtcProperty(bool? isRegisterBalance = null)
-        {
-            return null;
-        }
-        public IReadOnlyList<IProperty> GetListIdPKeyProperties(bool? isRegisterBalance = null)
-        {
-            Debug.Assert(isRegisterBalance == null);
-            var res = new List<IProperty>();
-            var model = this.Cfg.Model;
-            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
-            res.Add(prp);
-            return res;
-        }
+
         //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
+            this._LastPosition = IProperty.PositionReservation;
             this._Guid = System.Guid.NewGuid().ToString();
             var model = this.Cfg.Model;
             //this._PropertyRefObj1 = (Property)model.GetPropertyRef(this, System.Guid.NewGuid().ToString(), "Ref1", 0, false);
@@ -108,6 +97,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.OnRemoveChild();
             //};
+            this.GetSpecialProperties(new List<IProperty>(), true); // position ang guids for special properties
         }
         protected override ConfigNodesCollection<RelationManyToMany>? GetParentCollection() { return this.ParentManyToManyGroupRelations.ListRelations; }
         private string GetName(bool isComposite)
@@ -196,7 +186,20 @@ namespace vSharpStudio.vm.ViewModels
         public dynamic? Setting { get; set; }
 
         #region Get Properties and Details
-
+        public uint GetNextFreePosition() { return ++this.LastPosition; }
+        public IProperty? GetDateTimeUtcProperty(bool? isRegisterBalance = null)
+        {
+            return null;
+        }
+        public IReadOnlyList<IProperty> GetListIdPKeyProperties(bool? isRegisterBalance = null)
+        {
+            Debug.Assert(isRegisterBalance == null);
+            var res = new List<IProperty>();
+            var model = this.Cfg.Model;
+            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            res.Add(prp);
+            return res;
+        }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.Cfg.Model;
@@ -210,7 +213,6 @@ namespace vSharpStudio.vm.ViewModels
             if (this.IsUseHistory)
             {
                 prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.HISTORY_DATATIMEUTC);
-                //prp = model.GetPropertyDateTimeUtc(this.ParentManyToManyGroupRelations, this.PropertyDataTimeGuid, "DataTimeUtc", 3, false);
                 res.Add(prp);
             }
         }
@@ -237,16 +239,12 @@ namespace vSharpStudio.vm.ViewModels
                     if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
                         var prp = (Property)t.PropertyRefObj1;
-                        prp.Position = (uint)res.Count;
                         res.Add(prp);
-                        //res.Add(model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
                     }
                     else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
                         var prp = (Property)t.PropertyRefObj1;
-                        prp.Position = (uint)res.Count;
                         res.Add(prp);
-                        //res.Add(model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, false));
                     }
                     else
                         throw new NotImplementedException();
@@ -256,16 +254,12 @@ namespace vSharpStudio.vm.ViewModels
                     if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
                         var prp = (Property)t.PropertyRefObj2;
-                        prp.Position = (uint)res.Count;
                         res.Add(prp);
-                        //res.Add(model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));
                     }
                     else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
                         var prp = (Property)t.PropertyRefObj2;
-                        prp.Position = (uint)res.Count;
                         res.Add(prp);
-                        //res.Add(model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, false));
                     }
                     else
                         throw new NotImplementedException();
@@ -284,10 +278,14 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Get Properties and Details
 
         #region EDIT LOGIC
+        partial void OnIsUseHistoryChanged()
+        {
+            this.GetSpecialProperties(new List<IProperty>(), true); // position ang guids for special properties
+        }
         partial void OnNameChanged()
         {
-            this.OnGuidObj1Changed();
-            this.OnGuidObj2Changed();
+            //this.OnGuidObj1Changed();
+            //this.OnGuidObj2Changed();
         }
         partial void OnRefObj1TypeChanged()
         {
@@ -309,9 +307,10 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyRefObj1.DataType.ObjectRef0.ForeignObjectGuid = this.GuidObj1 ?? "";
             this.PropertyRefObj1.Name = this.Name;
             this.PropertyRefObj1.IsNullable = false;
-            this.PropertyRefObj1.Position = 0;
-            this.PropertyRefObj1.PositionOfDescr = 0;
-            this.PropertyRefObj1.PositionOfGd = 0;
+            if (this.GuidObj1 == null)
+                this.PropertyRefObj1.Position = 0;
+            else
+                this.PropertyRefObj1.Position = this.GetNextFreePosition();
         }
         partial void OnRefObj2TypeChanged()
         {
@@ -333,9 +332,10 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyRefObj2.DataType.ObjectRef0.ForeignObjectGuid = this.GuidObj2 ?? "";
             this.PropertyRefObj2.Name = this.Name;
             this.PropertyRefObj2.IsNullable = false;
-            this.PropertyRefObj2.Position = 0;
-            this.PropertyRefObj2.PositionOfDescr = 0;
-            this.PropertyRefObj2.PositionOfGd = 0;
+            if (this.GuidObj2 == null)
+                this.PropertyRefObj2.Position = 0;
+            else
+                this.PropertyRefObj2.Position = this.GetNextFreePosition();
         }
         [Browsable(false)]
         public SortedObservableCollection<ITreeConfigNodeSortable>? ListObjectsNode1

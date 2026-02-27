@@ -255,7 +255,7 @@ namespace vSharpStudio.vm.ViewModels
 
             var node = new Property(this.Parent);
             this.ParentListPropertiesI.ListProperties.Add(node, this);
-            node.Position = this.ParentListPropertiesI.GetNextPosition();
+            node.Position = this.GetNextFreePosition();
             this.GetUniqueName(Defaults.PropertyName, node, this.ParentListPropertiesI.ListProperties);
             node.ShortId = ++this.ParentGroupListProperties.LastShortId;
             this.SetSelected(node);
@@ -831,8 +831,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                if (this.ParentProperty == null) 
-                    return this.Name; 
+                if (this.ParentProperty == null)
+                    return this.Name;
                 if (this.IsComplexDesc)
                     return this.ParentProperty.Name + "Descr";
                 return this.ParentProperty.Name + this.Name;
@@ -1031,24 +1031,45 @@ namespace vSharpStudio.vm.ViewModels
         //    return res;
         //}
 
-        public IProperty AddExtensionPropertyRefId(string subName, IProperty t, IComplexRef tt)
+        public uint GetNextFreePosition()
         {
+            Debug.Assert(this.Parent != null);
+            Debug.Assert(this.Parent.Parent != null);
+            if (this.Parent.Parent is INodeWithPositionProperties n2)
+            {
+                return n2.GetNextFreePosition();
+            }
+            else if (this.Parent is INodeWithPositionProperties n1)
+            {
+                return n1.GetNextFreePosition();
+            }
+            else if (this.Parent.Parent.Parent is INodeWithPositionProperties n3)
+            {
+                return n3.GetNextFreePosition();
+            }
+            Debug.Assert(false, "not implemented yet");
+            throw new NotImplementedException();
+        }
+        public IProperty AddExtensionPropertyRefId(string subName, IComplexRef tt)
+        {
+            var model = this.Cfg.Model;
+            var rec = model.GetGuidPosition(this, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID);
             var node = new Property(this)
             {
                 Name = subName,
                 ParentProperty = this,
-                Guid = tt.RefComplexObjectIdPropertyGuid
+                Guid = rec.Guid,
+                Position = rec.Position,
             };
-            node.DataType = (DataType)t.Cfg.Model.GetIdRefDataType(node, true);
-            node.DataType.IsPKey = t.IsPKey;
-            node.IsNullable = t.DataType.IsNullable;
-            node.IsCsNullable = t.IsCsNullable;
+            node.DataType = (DataType)model.GetDataTypePkId(node, true);
+            node.DataType.IsPKey = this.IsPKey;
+            node.IsNullable = this.DataType.IsNullable;
+            node.IsCsNullable = this.IsCsNullable;
             node.IsComplexRefId = true;
             node.DataType.ObjectRef0.ForeignObjectGuid = tt.ForeignObjectGuid;
             node.DataType.ObjectRef0.RefComplexObjectIdPropertyGuid = tt.RefComplexObjectIdPropertyGuid;
-            node.Position = tt.Position;
-            node.ShortId = t.ShortId;
-            switch (t.DataType.DataTypeEnum)
+            node.ShortId = this.ShortId;
+            switch (this.DataType.DataTypeEnum)
             {
                 case EnumDataType.CATALOG:
                 case EnumDataType.DOCUMENT:
@@ -1060,7 +1081,7 @@ namespace vSharpStudio.vm.ViewModels
                     node.nameShortIdPrefix = "p";
                     break;
                 default:
-                    switch (t.DataType.SpecialPropertyTypeEnum)
+                    switch (this.DataType.SpecialPropertyTypeEnum)
                     {
                         case EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_CATALOG:
                             node.nameShortIdPrefix = "p";
@@ -1076,33 +1097,39 @@ namespace vSharpStudio.vm.ViewModels
             }
             return node;
         }
-        public IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable, uint position)
+        public IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable)
         {
-            var node = new Property(this) { Name = subName };
-            if (string.IsNullOrEmpty(this.RefComplexObjectGdPropertyGuid))
-                this.RefComplexObjectGdPropertyGuid = System.Guid.NewGuid().ToString();
-            node.Guid = this.RefComplexObjectGdPropertyGuid;
-            node.DataType = (DataType)this.Cfg.Model.GetDataTypeInt(node, false, isNullable);
+            var model = this.Cfg.Model;
+            var rec = model.GetGuidPosition(this, EnumSpecialPropertyType.SUB_PROPERTY_GD);
+            var node = new Property(this)
+            {
+                Name = subName,
+                Guid = rec.Guid,
+                Position = rec.Position,
+            };
+            node.DataType = (DataType)model.GetDataTypeInt(node, false, isNullable);
             node.IsCsNullable = isCsNullable;
             node.ParentProperty = this;
             node.IsComplexRefGuid = true;
             node.nameShortIdPrefix = "pgd";
-            node.Position = position;
             return node;
         }
-        public IProperty AddExtensionPropertyDesc(string subName, bool isNullable, bool isCsNullable, uint position)
+        public IProperty AddExtensionPropertyDesc(string subName, bool isNullable, bool isCsNullable)
         {
-            var node = new Property(this) { Name = subName };
-            if (string.IsNullOrEmpty(this.RefComplexObjectDescrPropertyGuid))
-                this.RefComplexObjectDescrPropertyGuid = System.Guid.NewGuid().ToString();
-            node.Guid = this.RefComplexObjectDescrPropertyGuid;
+            var model = this.Cfg.Model;
+            var rec = model.GetGuidPosition(this, EnumSpecialPropertyType.SUB_PROPERTY_GD);
+            var node = new Property(this)
+            {
+                Name = subName,
+                Guid = rec.Guid,
+                Position = rec.Position,
+            };
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = this.Cfg.Model.ComplexPropertyRefDescrLength };
             node.IsNullable = isNullable;
             node.IsCsNullable = isCsNullable;
             node.ParentProperty = this;
             node.IsComplexDesc = true;
             node.nameShortIdPrefix = "pds";
-            node.Position = position;
             return node;
         }
         public IProperty AddExtensionPropertyString(string subName, uint length, string guid)

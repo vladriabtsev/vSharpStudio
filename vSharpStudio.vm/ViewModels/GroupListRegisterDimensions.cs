@@ -47,10 +47,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public uint GetNextPosition()
-        {
-            return this.ParentRegister.GroupProperties.GetNextPosition();
-        }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
             RegisterDimension node = null!;
@@ -58,7 +54,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = new RegisterDimension(this)
                 {
-                    Position = this.GetNextPosition()
+                    Position = this.ParentRegister.GetNextFreePosition()
                 };
             }
             else

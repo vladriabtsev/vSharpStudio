@@ -91,7 +91,8 @@ public static void Update(<#= message.Name.ToNameCs() #> to, I<#= message.Name.T
         if (field.IsRepeated) { #>
 <#        if (field.IsMessage()) { #>
 <#          if (field.IsMap()) { #>
-    foreach (var tt in from.<#=field.Name.ToNameCs()#>) <#=t4.SrcCs()#>
+    to.<#=field.Name.ToNameCs()#>.Clear(); <#=t4.SrcCs()#>
+    foreach (var tt in from.<#=field.Name.ToNameCs()#>)
     {
         to.<#=field.Name.ToNameCs()#>.Add(tt.Key, tt.Value);
     }

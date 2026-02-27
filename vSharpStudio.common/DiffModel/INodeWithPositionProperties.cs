@@ -2,9 +2,10 @@
 
 namespace vSharpStudio.common
 {
-    public interface INodeWithStandartProperties
+    public interface INodeWithPositionProperties
     {
-        uint LastPosition { get; set; }
+        uint GetNextFreePosition();
+        //uint LastPosition { get; }
         Dictionary<int, IStandartPropertyGuidPosition> DicPositionsForStandartProperties { get; }
     }
 }

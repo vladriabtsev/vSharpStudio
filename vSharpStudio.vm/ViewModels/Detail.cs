@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 using CommunityToolkit.Diagnostics;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -108,12 +109,11 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
+            this._LastPosition = IProperty.PositionReservation;
             this._IsIndexFk = true;
             this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();
             this._ViewListComboBoxGuid = System.Guid.NewGuid().ToString();
-            var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
-            Debug.Assert(glp != null);
-            this._Position = glp.GroupProperties.GetNextPosition();
+            this._Position = this.GetNextParentPosition();
 
             Init();
         }
@@ -145,6 +145,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.OnRemoveChild();
             //};
+            this.GetSpecialProperties(new List<IProperty>(), true); // position ang guids for special properties
         }
         protected override ConfigNodesCollection<Detail>? GetParentCollection() { return this.ParentGroupListDetails.ListDetails; }
         public void OnAdded()
@@ -156,14 +157,21 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
+        private uint GetNextParentPosition()
+        {
+            if (this.ParentGroupListDetails.Parent is INodeWithPositionProperties n)
+            {
+                return n.GetNextFreePosition();
+            }
+            Debug.Assert(false, "not implemented yet");
+            throw new NotImplementedException();
+        }
         public override ITreeConfigNode NodeAddClone()
         {
             Debug.Assert(this.Parent != null);
             var node = Detail.Clone(this.Parent, this, true, true);
             this.ParentGroupListDetails.ListDetails.Add(node, this);
-            var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
-            Debug.Assert(glp != null);
-            node.Position = glp.GroupProperties.GetNextPosition();
+            node.Position = this.GetNextParentPosition();
             this.Name = this.Name + "2";
             var model = this.Cfg.Model;
             node.ShortId = ++this.ParentGroupListDetails.LastShortId;
@@ -176,9 +184,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(this.Parent != null);
             var node = new Detail(this.Parent);
             this.ParentGroupListDetails.ListDetails.Add(node, this);
-            var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
-            Debug.Assert(glp != null);
-            node.Position = glp.GroupProperties.GetNextPosition();
+            node.Position = this.GetNextParentPosition();
             this.GetUniqueName(Defaults.DetailName, node, this.ParentGroupListDetails.ListDetails);
             var model = this.Cfg.Model;
             node.ShortId = ++this.ParentGroupListDetails.LastShortId;
@@ -198,9 +204,6 @@ namespace vSharpStudio.vm.ViewModels
             }
 #endif
             this.GroupDetails.NodeAddNewSubNode(node);
-            var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
-            Debug.Assert(glp != null);
-            node.Position = glp.GroupProperties.GetNextPosition();
             var model = this.Cfg.Model;
             node.ShortId = ++this.ParentGroupListDetails.LastShortId;
             node.ShortRefId = model.LastTypeShortRefIdForNode(node, node.ShortId);
@@ -329,6 +332,46 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddPropertyCatalog(string name, Catalog cat, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.IsNullable = true;
+            node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
+            node.DataType.DataTypeEnum = EnumDataType.CATALOG;
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyCatalogs(string name, Catalog cat, Catalog? cat2 = null, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.IsNullable = true;
+            node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
+            if (cat2 != null)
+            {
+                node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat2.Guid));
+            }
+            node.DataType.DataTypeEnum = EnumDataType.CATALOGS;
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
         public IEnumerable<ITreeConfigNode> GetParentList()
         {
             return this.ParentGroupListDetails.ListDetails;
@@ -350,6 +393,9 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
+
+        #region Get Properties and Details
+        public uint GetNextFreePosition() { return ++this.LastPosition; }
         public IProperty? GetDateTimeUtcProperty(bool? isRegisterBalance = null)
         {
             return null;
@@ -420,6 +466,11 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        #endregion Get Properties and Details
+
+        #region OnChanged
+        #endregion OnChanged
+
         public ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen)
         {
             ViewListData? viewListData = null;

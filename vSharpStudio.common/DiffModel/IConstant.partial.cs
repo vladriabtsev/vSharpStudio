@@ -2,7 +2,7 @@
 
 namespace vSharpStudio.common
 {
-    public partial interface IConstant : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName
+    public partial interface IConstant : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName, INodeWithPositionProperties
     {
         IGroupListConstants ParentGroupListConstantsI { get; }
         //string DefaultValue { get; }

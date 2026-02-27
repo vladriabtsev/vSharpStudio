@@ -80,6 +80,8 @@ namespace vSharpStudio.vm.ViewModels
             //this.GroupDetails.Parent = this;
             //this.GroupForms.Parent = this;
             //this.GroupReports.Parent = this;
+            this._LastPosition = IProperty.PositionReservation;
+
             this._ItemIconType = EnumCatalogTreeIcon.None;
 
             this._ViewListDatagridGuid = System.Guid.NewGuid().ToString();
@@ -129,6 +131,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.OnRemoveChild();
             //};
+            this.UpdatePositionGuidSpecialProperties(); // position ang guids for special properties
         }
         protected override ConfigNodesCollection<Catalog>? GetParentCollection() { return this.ParentGroupListCatalogs.ListCatalogs; }
         public void RefillChildren()
@@ -264,6 +267,66 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddPropertyCatalog(string name, string catGuid, bool isNullable = false, bool isCsNullable = true, string? guidProperty = null)
+        {
+            var node = new Property(this.GroupProperties) { Name = name, IsNullable = isNullable, IsCsNullable = isCsNullable };
+#if DEBUG
+            if (guidProperty != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guidProperty))
+                    return node;
+                node.Guid = guidProperty;
+            }
+#endif
+            node.DataType = new DataType(node)
+            {
+                IsNullable = isNullable,
+                DataTypeEnum = EnumDataType.CATALOG,
+            };
+            node.ConfigObjectGuid = catGuid;
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyCatalog(string name, Catalog cat, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.IsNullable = true;
+            node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
+            node.DataType.DataTypeEnum = EnumDataType.CATALOG;
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyCatalogs(string name, Catalog cat, Catalog? cat2 = null, string? guid = null)
+        {
+            var node = new Property(this) { Name = name };
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
+                node.Guid = guid;
+            }
+#endif
+            node.DataType = new DataType(node);
+            node.IsNullable = true;
+            node.DataType.ObjectRef0.ForeignObjectGuid = cat.Guid;
+            if (cat2 != null)
+            {
+                node.DataType.ListObjectRefs.Add(new ComplexRef(node.Guid, cat2.Guid));
+            }
+            node.DataType.DataTypeEnum = EnumDataType.CATALOGS;
+            this.GroupProperties.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddPropertyString(string name, uint length, string? guid = null)
         {
             var node = new Property(this.GroupProperties) { Name = name };
@@ -390,18 +453,22 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnUseCodePropertyChanged()
         {
             this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+            this.UpdatePositionGuidSpecialProperties(); // position ang guids for special properties
         }
         partial void OnUseNamePropertyChanged()
         {
             this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+            this.UpdatePositionGuidSpecialProperties(); // position ang guids for special properties
         }
         partial void OnUseDescriptionPropertyChanged()
         {
             this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+            this.UpdatePositionGuidSpecialProperties(); // position ang guids for special properties
         }
         //partial void OnUseItemsWithoutFolderInSeparateTreeForFoldersChanged()
         //{
         //    this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+        //    this.GetSpecialProperties(new List<IProperty>(), true);
         //}
         partial void OnUseSeparateTreeForFoldersChanged()
         {
@@ -410,6 +477,7 @@ namespace vSharpStudio.vm.ViewModels
             this.OnPropertyChanged(nameof(this.IsShowRefSelfTree));
             this.OnPropertyChanged(nameof(this.IsShowIsFolder));
             this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+            this.UpdatePositionGuidSpecialProperties(); // position ang guids for special properties
         }
         partial void OnUseTreeChanged()
         {
@@ -422,9 +490,11 @@ namespace vSharpStudio.vm.ViewModels
             this.OnPropertyChanged(nameof(this.PropertyDefinitions));
             this.OnPropertyChanged(nameof(this.IsShowRefSelfTree));
             this.OnPropertyChanged(nameof(this.IsShowIsFolder));
+            this.UpdatePositionGuidSpecialProperties(); // position ang guids for special properties
         }
         #endregion OnChanged
 
+        public uint GetNextFreePosition() { return ++this.LastPosition; }
         public bool GetUseCodeProperty()
         {
             if (this.UseCodeProperty == EnumUseType.Yes)
@@ -481,6 +551,14 @@ namespace vSharpStudio.vm.ViewModels
                 prp.Parent = this.GroupProperties;
             }
             return prp;
+        }
+        private void UpdatePositionGuidSpecialProperties()
+        {
+            List<IProperty> res = new();
+            this.GetSpecialProperties(res, true);
+            this.GetCodeProperty(res);
+            this.GetNameProperty(res);
+            this.GetDescriptionProperty(res);
         }
         public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
@@ -567,7 +645,17 @@ namespace vSharpStudio.vm.ViewModels
             var res = new List<IProperty>();
             if (!isExcludeSpecial)
                 this.GetSpecialProperties(res, isOptimistic);
-            uint pos = this.GroupProperties.LastGenPosition;
+            //uint pos = this.GroupProperties.LastGenPosition;
+            this.GetCodeProperty(res);
+            this.GetNameProperty(res);
+            this.GetDescriptionProperty(res);
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjDbGen))
+                {
+                    res.Add(t);
+                }
+            }
             var model = this.Cfg.Model;
             foreach (var t in model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations)
             {
@@ -577,7 +665,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
                         var prp = (Property)t.PropertyRefObj2;
-                        prp.Position = ++pos;
+                        //prp.Position = ++pos;
                         //prp.IsNullable = t.IsRelationReferenceNullable;
                         //var prp = model.GetPropertyCatalog(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
@@ -585,7 +673,7 @@ namespace vSharpStudio.vm.ViewModels
                     else if (t.RefObj2Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
                         var prp = (Property)t.PropertyRefObj2;
-                        prp.Position = ++pos;
+                        //prp.Position = ++pos;
                         //prp.IsNullable = t.IsRelationReferenceNullable;
                         //var prp = model.GetPropertyDocument(this, t.RefObj2PropGuid, t.Name, t.GuidObj2, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
@@ -599,7 +687,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeCatalogs)
                     {
                         var prp = (Property)t.PropertyRefObj1;
-                        prp.Position = ++pos;
+                        //prp.Position = ++pos;
                         //prp.IsNullable = t.IsRelationReferenceNullable;
                         //var prp = model.GetPropertyCatalog(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
@@ -607,23 +695,13 @@ namespace vSharpStudio.vm.ViewModels
                     else if (t.RefObj1Type == EnumRelationConfigType.RelConfigTypeDocuments)
                     {
                         var prp = (Property)t.PropertyRefObj1;
-                        prp.Position = ++pos;
+                        //prp.Position = ++pos;
                         //prp.IsNullable = t.IsRelationReferenceNullable;
                         //var prp = model.GetPropertyDocument(this, t.RefObj1PropGuid, t.Name, t.GuidObj1, (uint)res.Count, t.IsRelationReferenceNullable);
                         res.Add(prp);
                     }
                     else
                         throw new NotImplementedException();
-                }
-            }
-            this.GetCodeProperty(res);
-            this.GetNameProperty(res);
-            this.GetDescriptionProperty(res);
-            foreach (var t in this.GroupProperties.ListProperties)
-            {
-                if (t.IsIncluded(guidAppPrjDbGen))
-                {
-                    res.Add(t);
                 }
             }
             return res;

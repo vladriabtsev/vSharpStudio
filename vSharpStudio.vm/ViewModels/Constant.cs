@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using CommunityToolkit.Diagnostics;
 using Google.Protobuf;
 using Proto.Config;
 using ViewModelBase;
@@ -108,21 +109,22 @@ namespace vSharpStudio.vm.ViewModels
             //};
         }
         protected override ConfigNodesCollection<Constant>? GetParentCollection() { return this.ParentGroupListConstants.ListConstants; }
-
         public Constant(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)
             : this(parent)
         {
             this._Name = name;
             this._DataType = new DataType(this, type, guidOfType);
         }
-
         public Constant(ITreeConfigNode parent, string name, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null)
             : this(parent)
         {
             this._Name = name;
             this._DataType = new DataType(this, type, length, accuracy);
         }
-
+        public uint GetNextFreePosition()
+        {
+            return this.ParentGroupListConstants.GetNextFreePosition();
+        }
         [Category("")]
         [PropertyOrderAttribute(10)]
         public string ClrType
@@ -474,11 +476,20 @@ namespace vSharpStudio.vm.ViewModels
             this.SetSelected(node);
             return node;
         }
+        private uint GetNextPosition()
+        {
+            if (this.Parent is INodeWithPositionProperties n)
+            {
+                return n.GetNextFreePosition();
+            }
+            Debug.Assert(false, "not implemented yet");
+            throw new Exception();
+        }
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Constant(this.ParentGroupListConstants);
             this.ParentGroupListConstants.ListConstants.Add(node, this);
-            node.Position = this.ParentGroupListConstants.GetNextPosition();
+            node.Position = this.GetNextPosition();
             this.GetUniqueName(Defaults.ConstantName, node, this.ParentGroupListConstants.ListConstants);
             var model = this.ParentGroupListConstants.ParentGroupConstantGroups.ParentModel;
             node.ShortId = ++this.ParentGroupListConstants.LastShortId;
@@ -541,7 +552,7 @@ namespace vSharpStudio.vm.ViewModels
                 Guid = guid
             };
             var model = this.Cfg.Model;
-            node.DataType = (DataType)model.GetIdRefDataType(node, true);
+            node.DataType = (DataType)model.GetDataTypePkId(node, true);
             node.DataType.IsPKey = false;
             node.IsNullable = true;
             node.IsComplexRefId = true;

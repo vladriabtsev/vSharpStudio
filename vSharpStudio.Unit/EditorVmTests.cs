@@ -1109,7 +1109,6 @@ namespace vSharpStudio.Unit
             // Use History is saved and restored complex OneToMany data
             // Use History is saved and restored complex ManyToMany data
 
-
             #region One To One
             Assert.IsEmpty(cfg.Model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations);
             var c1 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("cat");
@@ -1127,8 +1126,8 @@ namespace vSharpStudio.Unit
             // RefCat2
             lst = c1.GetIncludedProperties(null, false, true);
             Assert.HasCount(3, lst);
-            Assert.AreEqual(EnumDataType.DOCUMENT, lst[0].DataType.DataTypeEnum);
-            Assert.AreEqual("test_one_to_one_rel", lst[0].Name);
+            Assert.AreEqual(EnumDataType.DOCUMENT, lst[2].DataType.DataTypeEnum);
+            Assert.AreEqual("test_one_to_one_rel", lst[2].Name);
             // RefCat1
             lst = d2.GetIncludedProperties(null, false, true);
             Assert.HasCount(2, lst);
@@ -1144,8 +1143,8 @@ namespace vSharpStudio.Unit
             // RefCat2
             lst = c1.GetIncludedProperties(null, false, true);
             Assert.HasCount(3, lst);
-            Assert.AreEqual(EnumDataType.DOCUMENT, lst[0].DataType.DataTypeEnum);
-            Assert.AreEqual("test_one_to_one_rel", lst[0].Name);
+            Assert.AreEqual(EnumDataType.DOCUMENT, lst[2].DataType.DataTypeEnum);
+            Assert.AreEqual("test_one_to_one_rel", lst[2].Name);
             // nothing
             lst = d2.GetIncludedProperties(null, false, true);
             Assert.HasCount(1, lst);
