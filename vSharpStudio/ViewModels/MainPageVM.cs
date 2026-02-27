@@ -1601,11 +1601,11 @@ namespace vSharpStudio.ViewModels
                     throw new CancellationException();
                 // app settings path, 
                 var dicAppSettingsSb = new ConcurrentDictionary<string, StringBuilder>();
-                List<GeneratorData> lstGenData = new();
                 foreach (var tp in ts.ListAppProjects)
                 {
                     if (tp.IsMarkedForDeletion)
                         continue;
+                    List<GeneratorData> lstGenData = new();
                     foreach (var tpg in tp.ListAppProjectGenerators)
                     {
                         if (tpg.IsMarkedForDeletion)

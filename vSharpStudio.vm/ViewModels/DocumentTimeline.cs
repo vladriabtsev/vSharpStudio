@@ -78,7 +78,9 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this._TimeLineDocDateTimePropertyName = "DocDateTime";
+            this._LastPosition = IProperty.PositionReservation;
             this.IsEditable = false;
+
             Init();
         }
         protected override void OnInitFromDto()
@@ -113,6 +115,7 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             children.Add(this.GroupProperties, 1);
+            this.GetSpecialProperties(new List<IProperty>(), true); // position ang guids for special properties
         }
         public int IndexOf(IProperty p)
         {
@@ -325,16 +328,9 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(prp);
             return res;
         }
-        /// <summary>
-        /// Only shared properties
-        /// </summary>
-        /// <param name="guidAppPrjGen"></param>
-        /// <returns></returns>
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial)
+        public void GetSpecialProperties(List<IProperty> lst, bool isOptimistic)
         {
-            var lst = new List<IProperty>();
             var model = this.Cfg.Model;
-
             // Field PK
             var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             lst.Add(prp);
@@ -351,7 +347,24 @@ namespace vSharpStudio.vm.ViewModels
             //prp = model.GetPropertyBool(this, model.PropertyDocIsPostedGuid, "IsPosted", (uint)lst.Count, true);
             //prp.SetPosition(IProperty.PropertyIsPostedPosition);
             lst.Add(prp);
+            // Field record version
+            if (isOptimistic)
+            {
+                prp = model.GetPropertyVersion(this);
+                lst.Add(prp);
+            }
+        }
+        /// <summary>
+        /// Only shared properties
+        /// </summary>
+        /// <param name="guidAppPrjGen"></param>
+        /// <returns></returns>
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial)
+        {
+            var lst = new List<IProperty>();
 
+            if (!isExcludeSpecial)
+                this.GetSpecialProperties(lst, isOptimistic);
             // shared properties
             foreach (var t in this.ListProperties)
             {
@@ -360,12 +373,6 @@ namespace vSharpStudio.vm.ViewModels
                     t.IsDocShared = true;
                     lst.Add(t);
                 }
-            }
-            // Field record version
-            if (isOptimistic && !isExcludeSpecial)
-            {
-                prp = model.GetPropertyVersion(this);
-                lst.Add(prp);
             }
             return lst;
         }

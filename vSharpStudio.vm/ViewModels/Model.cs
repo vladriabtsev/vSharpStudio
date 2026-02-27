@@ -1849,6 +1849,13 @@ namespace vSharpStudio.vm.ViewModels
             res.IsNullable = prop.IsNullable;
             res.IsCsNullable = prop.IsCsNullable;
             res.IsPKey = prop.IsPKey;
+            res.IsComplexRefId = true;
+            res.ShortId = prop.ShortId;
+            if (complexRef != null)
+            {
+                Debug.Assert(!string.IsNullOrWhiteSpace(complexRef.ForeignObjectGuid));
+                res.DataType.ObjectRef0.ForeignObjectGuid = complexRef.ForeignObjectGuid;
+            }
             return res;
         }
         public IProperty GetPropertySpecial(ITreeConfigNode node, IProperty prop, IComplexRef? complexRef, EnumSpecialPropertyType propertyType, string nameSuffix, uint length = 0)
@@ -1858,12 +1865,15 @@ namespace vSharpStudio.vm.ViewModels
             switch (propertyType)
             {
                 case EnumSpecialPropertyType.SUB_PROPERTY_DESCR:
+                    Debug.Assert(complexRef == null);
                     res = this.GetPropertyComplexDescr(node, prop, complexRef, nameSuffix, length);
                     break;
                 case EnumSpecialPropertyType.SUB_PROPERTY_GD:
+                    Debug.Assert(complexRef == null);
                     res = this.GetPropertyComplexGd(node, prop, complexRef, nameSuffix);
                     break;
                 case EnumSpecialPropertyType.SUB_PROPERTY_REF_ID:
+                    Debug.Assert(complexRef != null);
                     res = this.GetPropertyComplexRefId(node, prop, complexRef, nameSuffix);
                     break;
                 default:

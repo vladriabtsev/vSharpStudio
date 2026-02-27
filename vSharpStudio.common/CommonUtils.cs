@@ -96,7 +96,7 @@ namespace vSharpStudio.common
         }
         public static List<IProperty> ExtendComplexProperties(ITreeConfigNode parentWithPositions, IReadOnlyList<IProperty> lstModelProperties, bool isSkipComplex, bool isSkipComplexDescr)
         {
-            Debug.Assert(parentWithPositions is INodeWithPositionProperties);
+            Debug.Assert(parentWithPositions is IForm || parentWithPositions is INodeWithPositionProperties);
 #if DEBUG
             var hash = new HashSet<string>();
 #endif
@@ -116,7 +116,7 @@ namespace vSharpStudio.common
                         Debug.Assert(t.IsComplex);
                         var nameSuffix = "Ref" + ((ICompositeName)t.Cfg.DicNodes[t.DataType.ObjectRef.ForeignObjectGuid]).CompositeName;
                         t.DataType.ComplexRefSuffix = nameSuffix;
-                        var p = model.GetPropertySpecial(parentWithPositions, t, null, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID, nameSuffix + "Id");
+                        var p = model.GetPropertySpecial(parentWithPositions, t, t.DataType.ObjectRef, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID, nameSuffix + "Id");
                         lst.Add(p);
 #if DEBUG
                         Debug.Assert(!hash.Contains(p.Guid));

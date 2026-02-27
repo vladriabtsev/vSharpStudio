@@ -593,6 +593,37 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(pos_in_gn1, n3.Position);
         }
         [TestMethod]
+        public void Position_006_Timeline()
+        {
+            var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            mvm.BtnNewConfig.Execute();
+            var cfg = mvm.Config;
+
+            var cref1 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
+            var cref2 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog();
+
+            var tm = cfg.Model.GroupDocuments.DocumentTimeline;
+            uint pos_in_tm = IProperty.PositionReservation;
+            pos_in_tm += 2; // ID, record version
+            Assert.AreEqual(pos_in_tm, tm.LastPosition);
+
+            var n1 = tm.AddProperty("p1");
+            Assert.AreEqual(++pos_in_tm, tm.LastPosition);
+            Assert.AreEqual(pos_in_tm, n1.Position);
+
+            var n2 = tm.AddPropertyCatalog("test_cat", cref1); ;
+            // for test_cat, test_catDescr, test_catRefId
+            pos_in_tm += 3;
+            Assert.AreEqual(pos_in_tm, tm.LastPosition);
+            Assert.AreEqual(pos_in_tm, n2.Position);
+
+            var n3 = tm.AddPropertyCatalogs("test_cats", cref1, cref2); ;
+            // for test_cat, test_catDescr, test_catRefId
+            pos_in_tm += 5;
+            Assert.AreEqual(pos_in_tm, tm.LastPosition);
+            Assert.AreEqual(pos_in_tm, n3.Position);
+        }
+        [TestMethod]
         public void Property002_Sorting()
         {
             var mvm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
