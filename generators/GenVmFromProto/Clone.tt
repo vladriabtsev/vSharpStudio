@@ -230,9 +230,9 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
 <#      } else { #>
 <#        if (!field.IsCsSimple() && field.IsMessage() && !field.IsNullable()) { #>
 <#          if (field.GetMessageDoc().IsWithParent) { #>
-    vm.<#= field.Name.ToNameCs() #> ??= new <#= field.ToTypeCs() #>(vm); <#=t4.SrcCs()#>
+    vm.<#=field.Name.ToNameCs()#> ??= new <#= field.ToTypeCs() #>(vm); <#=t4.SrcCs()#>
 <#          } else { #>
-    vm.<#= field.Name.ToNameCs() #> ??= new <#= field.ToTypeCs() #>(); <#=t4.SrcCs()#>
+    vm.<#=field.Name.ToNameCs()#> ??= new <#= field.ToTypeCs() #>(); <#=t4.SrcCs()#>
 <#          } #>
     <#=nameSpace#>.<#= field.ToTypeCs() #>.ConvertToVM(m.<#= field.Name.ToNameCs() #>, (<#= field.ToTypeCs() #>)vm.<#= field.Name.ToNameCs() #>); <#=t4.SrcCs()#>
 <#        } else { #>

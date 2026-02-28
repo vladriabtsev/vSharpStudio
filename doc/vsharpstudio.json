@@ -4056,24 +4056,24 @@
               "defaultValue": ""
             },
             {
-              "name": "group_config_links",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "proto_group_list_base_config_links",
-              "longType": "proto_group_list_base_config_links",
-              "fullType": "proto_config.proto_group_list_base_config_links",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "model",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "proto_model",
               "longType": "proto_model",
               "fullType": "proto_config.proto_model",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "group_config_links",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_group_list_base_config_links",
+              "longType": "proto_group_list_base_config_links",
+              "fullType": "proto_config.proto_group_list_base_config_links",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -8028,18 +8028,6 @@
               "defaultValue": ""
             },
             {
-              "name": "document_timeline",
-              "description": "@attr [Browsable(false)]\n@attr [Description(\"Properties for all documents\")]",
-              "label": "",
-              "type": "proto_document_timeline",
-              "longType": "proto_document_timeline",
-              "fullType": "proto_config.proto_document_timeline",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "group_list_documents",
               "description": "@attr [Browsable(false)]",
               "label": "",
@@ -8082,6 +8070,18 @@
               "type": "proto_group_list_enumerator_sequences",
               "longType": "proto_group_list_enumerator_sequences",
               "fullType": "proto_config.proto_group_list_enumerator_sequences",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "document_timeline",
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"Properties for all documents\")]",
+              "label": "",
+              "type": "proto_document_timeline",
+              "longType": "proto_document_timeline",
+              "fullType": "proto_config.proto_document_timeline",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

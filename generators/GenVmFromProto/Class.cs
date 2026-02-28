@@ -786,11 +786,9 @@ namespace GenVmFromProto
             
             #line default
             #line hidden
-            this.Write("\r\n    // Use fields to set properties of this class during creation to avoid prop" +
-                    "erty change notification\r\n    partial void OnCreated();\r\n    #endregion CTOR\r\n  " +
-                    "  #region Procedures\r\n");
+            this.Write("\r\n    partial void OnCreated();\r\n    #endregion CTOR\r\n    #region Procedures\r\n");
             
-            #line 130 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
+            #line 129 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
 	
 	this.PushIndent("    ");
 	
@@ -811,14 +809,14 @@ namespace GenVmFromProto
             #line hidden
             this.Write("    #endregion Procedures\r\n    #region Properties ");
             
-            #line 146 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
+            #line 145 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 147 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
+            #line 146 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
 	this.PushIndent("    ");
 	foreach (var t in this.GetFields())
 	{
@@ -830,46 +828,46 @@ namespace GenVmFromProto
             #line default
             #line hidden
             
-            #line 154 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
+            #line 153 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
  if (this.Doc.IsWithParent) { 
             
             #line default
             #line hidden
             
-            #line 155 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
+            #line 154 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
    if (this.Doc.IsConfigObjectBase) { 
             
             #line default
             #line hidden
             this.Write("    protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } ");
             
-            #line 156 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
+            #line 155 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 157 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
+            #line 156 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
    } else { 
             
             #line default
             #line hidden
             
-            #line 158 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
+            #line 157 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 159 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
+            #line 158 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
  if (this.Doc.IsICanAddNode) { 
             
             #line default
             #line hidden
             this.Write("    partial void OnIsNewChanged() { OnNodeIsNewChanged(); } ");
             
-            #line 160 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
+            #line 159 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t4.SrcCs(message.Name)));
             
             #line default
@@ -877,13 +875,13 @@ namespace GenVmFromProto
             this.Write("\r\n    partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChan" +
                     "ged(); }\r\n");
             
-            #line 162 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
+            #line 161 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 163 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
+            #line 162 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
  } 
             
             #line default

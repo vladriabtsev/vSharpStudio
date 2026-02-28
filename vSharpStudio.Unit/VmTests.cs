@@ -604,7 +604,7 @@ namespace vSharpStudio.Unit
 
             var tm = cfg.Model.GroupDocuments.DocumentTimeline;
             uint pos_in_tm = IProperty.PositionReservation;
-            pos_in_tm += 2; // ID, record version
+            pos_in_tm += 5; // ID, record version
             Assert.AreEqual(pos_in_tm, tm.LastPosition);
 
             var n1 = tm.AddProperty("p1");

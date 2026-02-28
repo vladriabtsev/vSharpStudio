@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.DirectoryServices.ActiveDirectory;
+using System.Xml.Linq;
 using Polly.Caching;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -115,7 +117,7 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             children.Add(this.GroupProperties, 1);
-            this.GetSpecialProperties(new List<IProperty>(), true); // position ang guids for special properties
+            this.InitPositionsSpecialProperties(); // position ang guids for special properties
         }
         public int IndexOf(IProperty p)
         {
@@ -328,29 +330,42 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(prp);
             return res;
         }
+        public void InitPositionsSpecialProperties()
+        {
+            // Field PK
+            Model.GetGuidPosition(this, EnumSpecialPropertyType.RECORD_ID);
+
+            // Field document date and time value
+            Model.GetGuidPosition(this, EnumSpecialPropertyType.DOC_DATE_INT);
+
+            Model.GetGuidPosition(this, EnumSpecialPropertyType.SHORT_TYPE_ID);
+
+            Model.GetGuidPosition(this, EnumSpecialPropertyType.IS_POSTED);
+            // Field record version
+            Model.GetGuidPosition(this, EnumSpecialPropertyType.RECORD_VERSION);
+        }
         public void GetSpecialProperties(List<IProperty> lst, bool isOptimistic)
         {
-            var model = this.Cfg.Model;
             // Field PK
-            var prp = model.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
+            var prp = this.Mdl.GetPropertySpecial(this, EnumSpecialPropertyType.RECORD_ID);
             lst.Add(prp);
 
             // Field document date and time value
-            prp = model.GetPropertyDocumentDate(this);
+            prp = this.Mdl.GetPropertyDocumentDate(this);
             //prp = model.GetPropertyDateTimeUtc(this, this.PropertyTimelineDocDateTimeGuid, this.TimeLineDocDateTimePropertyName, 1, true, this.TimelineTimeAccuracy);
             //prp.SetPosition(IProperty.PropertyDocumentDatePosition);
             lst.Add(prp);
-            prp = model.GetPropertyTimelineShortTypeId(this, false);
+            prp = this.Mdl.GetPropertyTimelineShortTypeId(this, false);
             //prp = model.GetPropertyInt(this, model.PropertyDocShortTypeIdGuid, this.ParentGroupDocuments.GroupListDocuments.PropertyDocShortTypeIdName, IProperty.PropertyShortTypeIdPosition, false, false);
             lst.Add(prp);
-            prp = model.GetPropertyTimelineIsPosted(this, true);
+            prp = this.Mdl.GetPropertyTimelineIsPosted(this, true);
             //prp = model.GetPropertyBool(this, model.PropertyDocIsPostedGuid, "IsPosted", (uint)lst.Count, true);
             //prp.SetPosition(IProperty.PropertyIsPostedPosition);
             lst.Add(prp);
             // Field record version
             if (isOptimistic)
             {
-                prp = model.GetPropertyVersion(this);
+                prp = this.Mdl.GetPropertyVersion(this);
                 lst.Add(prp);
             }
         }

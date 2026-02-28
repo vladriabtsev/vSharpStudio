@@ -12,7 +12,6 @@ namespace vSharpStudio.common
 
         #region Properties
         string GetRecordVersionFieldType();
-        IStandartPropertyGuidPosition GetGuidPosition(ITreeConfigNode node, EnumSpecialPropertyType enumDataType);
         string GetPropertyGuid(ITreeConfigNode node, EnumSpecialPropertyType enumDataType);
         string GetPropertyCodeGuid(ITreeConfigNode node);
         IProperty GetPropertyCodeStr(ITreeConfigNode node, bool isNullable, uint length);

@@ -259,9 +259,9 @@ message proto_config {
     bool is_need_current_update = 16;
 
     // @attr [Browsable(false)]
-    proto_group_list_base_config_links group_config_links = 101;
+    proto_model model = 101;
     // @attr [Browsable(false)]
-    proto_model model = 102;
+    proto_group_list_base_config_links group_config_links = 102;
     // @attr [Browsable(false)]
     proto_group_list_plugins group_plugins = 104;
     // @attr [Browsable(false)]
@@ -3074,9 +3074,6 @@ message proto_group_documents {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [Browsable(false)]
-    // @attr [Description("Properties for all documents")]
-    proto_document_timeline document_timeline = 7;
-    // @attr [Browsable(false)]
     proto_group_list_documents group_list_documents = 8;
     // @attr [Browsable(false)]
     // @attr [Description("Registers for documents")]
@@ -3085,6 +3082,9 @@ message proto_group_documents {
     proto_group_list_journals group_journals = 21;
     // @attr [Browsable(false)]
     proto_group_list_enumerator_sequences group_list_sequences = 22;
+    // @attr [Browsable(false)]
+    // @attr [Description("Properties for all documents")]
+    proto_document_timeline document_timeline = 23;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

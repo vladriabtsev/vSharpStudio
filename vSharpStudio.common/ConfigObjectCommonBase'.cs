@@ -405,6 +405,16 @@
                 return this._cfg;
             }
         }
+        private IModel? _mdl;
+        [Browsable(false)]
+        public IModel Mdl
+        {
+            get
+            {
+                this._mdl ??= this.GetConfig().Model;
+                return this._mdl;
+            }
+        }
         private IConfig GetConfig()
         {
             if (this is IConfig tt)

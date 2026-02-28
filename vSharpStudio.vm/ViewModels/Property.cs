@@ -1052,8 +1052,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty AddExtensionPropertyRefId(string subName, IComplexRef tt)
         {
-            var model = this.Cfg.Model;
-            var rec = model.GetGuidPosition(this, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID);
+            var rec = Model.GetGuidPosition(this, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID);
             var node = new Property(this)
             {
                 Name = subName,
@@ -1061,6 +1060,7 @@ namespace vSharpStudio.vm.ViewModels
                 Guid = rec.Guid,
                 Position = rec.Position,
             };
+            var model = this.Cfg.Model;
             node.DataType = (DataType)model.GetDataTypePkId(node, true);
             node.DataType.IsPKey = this.IsPKey;
             node.IsNullable = this.DataType.IsNullable;
@@ -1099,14 +1099,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty AddExtensionPropertyGd(string subName, bool isNullable, bool isCsNullable)
         {
-            var model = this.Cfg.Model;
-            var rec = model.GetGuidPosition(this, EnumSpecialPropertyType.SUB_PROPERTY_GD);
+            var rec = Model.GetGuidPosition(this, EnumSpecialPropertyType.SUB_PROPERTY_GD);
             var node = new Property(this)
             {
                 Name = subName,
                 Guid = rec.Guid,
                 Position = rec.Position,
             };
+            var model = this.Cfg.Model;
             node.DataType = (DataType)model.GetDataTypeInt(node, false, isNullable);
             node.IsCsNullable = isCsNullable;
             node.ParentProperty = this;
@@ -1116,8 +1116,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty AddExtensionPropertyDesc(string subName, bool isNullable, bool isCsNullable)
         {
-            var model = this.Cfg.Model;
-            var rec = model.GetGuidPosition(this, EnumSpecialPropertyType.SUB_PROPERTY_GD);
+            var rec = Model.GetGuidPosition(this, EnumSpecialPropertyType.SUB_PROPERTY_GD);
             var node = new Property(this)
             {
                 Name = subName,

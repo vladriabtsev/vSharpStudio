@@ -922,9 +922,8 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    var model = this.Cfg.Model;
-                    model.GetGuidPosition(this.GetParentProperty(), this.ObjectRef0, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID);
-                    model.GetGuidPosition(this.GetParentProperty(), null, EnumSpecialPropertyType.SUB_PROPERTY_DESCR);
+                    Model.GetGuidPosition(this.GetParentProperty(), this.ObjectRef0, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID);
+                    Model.GetGuidPosition(this.GetParentProperty(), null, EnumSpecialPropertyType.SUB_PROPERTY_DESCR);
                     break;
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
@@ -936,13 +935,12 @@ namespace vSharpStudio.vm.ViewModels
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
-                    model = this.Cfg.Model;
                     foreach(var t in this.ListObjectRefs)
                     {
-                        model.GetGuidPosition(this.GetParentProperty(), t, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID);
+                        Model.GetGuidPosition(this.GetParentProperty(), t, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID);
                     }
-                    model.GetGuidPosition(this.GetParentProperty(), null, EnumSpecialPropertyType.SUB_PROPERTY_GD);
-                    model.GetGuidPosition(this.GetParentProperty(), null, EnumSpecialPropertyType.SUB_PROPERTY_DESCR);
+                    Model.GetGuidPosition(this.GetParentProperty(), null, EnumSpecialPropertyType.SUB_PROPERTY_GD);
+                    Model.GetGuidPosition(this.GetParentProperty(), null, EnumSpecialPropertyType.SUB_PROPERTY_DESCR);
                     break;
                 case EnumDataType.ENUMERATION:
                     this.VisibilityIsPositive = Visibility.Collapsed;

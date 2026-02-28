@@ -1360,7 +1360,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(false, "Not supported");
             return "Not supported";
         }
-        public IStandartPropertyGuidPosition GetGuidPosition(ITreeConfigNode propertyOrConstant, IComplexRef? complexRef, EnumSpecialPropertyType enumDataType)
+        public static IStandartPropertyGuidPosition GetGuidPosition(ITreeConfigNode propertyOrConstant, IComplexRef? complexRef, EnumSpecialPropertyType enumDataType)
         {
             Debug.Assert(propertyOrConstant is IProperty || propertyOrConstant is IConstant);
             Debug.Assert(enumDataType != EnumSpecialPropertyType.CONFIG_PROPERTY);
@@ -1392,7 +1392,7 @@ namespace vSharpStudio.vm.ViewModels
                 return rec;
             }
         }
-        public IStandartPropertyGuidPosition GetGuidPosition(ITreeConfigNode node, EnumSpecialPropertyType enumDataType)
+        public static IStandartPropertyGuidPosition GetGuidPosition(ITreeConfigNode node, EnumSpecialPropertyType enumDataType)
         {
             Debug.Assert(node is INodeWithPositionProperties);
             Debug.Assert(enumDataType != EnumSpecialPropertyType.CONFIG_PROPERTY);
@@ -1413,7 +1413,7 @@ namespace vSharpStudio.vm.ViewModels
         public string GetPropertyGuid(ITreeConfigNode node, EnumSpecialPropertyType enumDataType)
         {
             Debug.Assert(node is INodeWithPositionProperties);
-            return this.GetGuidPosition(node, enumDataType).Guid;
+            return Model.GetGuidPosition(node, enumDataType).Guid;
         }
         public string GetPropertyCodeGuid(ITreeConfigNode node)
         {
@@ -1425,9 +1425,9 @@ namespace vSharpStudio.vm.ViewModels
                     res = c.CodePropertySettings.SequenceType switch
                     {
                         EnumCodeType.Number =>
-                            this.GetGuidPosition(c, EnumSpecialPropertyType.CODE_NUMBER_INT).Guid,
+                            Model.GetGuidPosition(c, EnumSpecialPropertyType.CODE_NUMBER_INT).Guid,
                         EnumCodeType.Text =>
-                            this.GetGuidPosition(c, EnumSpecialPropertyType.CODE_NUMBER_TEXT).Guid,
+                            Model.GetGuidPosition(c, EnumSpecialPropertyType.CODE_NUMBER_TEXT).Guid,
                         _ => throw new NotImplementedException(),
                     };
                 }
@@ -1439,9 +1439,9 @@ namespace vSharpStudio.vm.ViewModels
                     res = cf.CodePropertySettings.SequenceType switch
                     {
                         EnumCodeType.Number =>
-                            this.GetGuidPosition(cf, EnumSpecialPropertyType.CODE_NUMBER_INT).Guid,
+                            Model.GetGuidPosition(cf, EnumSpecialPropertyType.CODE_NUMBER_INT).Guid,
                         EnumCodeType.Text =>
-                            this.GetGuidPosition(cf, EnumSpecialPropertyType.CODE_NUMBER_TEXT).Guid,
+                            Model.GetGuidPosition(cf, EnumSpecialPropertyType.CODE_NUMBER_TEXT).Guid,
                         _ => throw new NotImplementedException(),
                     };
                 }
@@ -1455,7 +1455,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyCodeStr(ITreeConfigNode node, bool isNullable, uint length)
         {
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.CODE_NUMBER_TEXT);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.CODE_NUMBER_TEXT);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupCatalogs.GroupListCatalogs.PropertyCodeName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, isNullable);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.CODE_NUMBER_TEXT;
@@ -1466,9 +1466,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyCodeInt(ITreeConfigNode node, bool isNullable, uint length)
         {
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.CODE_NUMBER_INT);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.CODE_NUMBER_INT);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupCatalogs.GroupListCatalogs.PropertyCodeName, true);
-            res.DataType = (DataType)this.GetDataTypeNumerical(res, length, true, isNullable);
+            res.DataType = (DataType)node.Cfg.Model.GetDataTypeNumerical(res, length, true, isNullable);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.CODE_NUMBER_INT;
             res.IsCsNullable = false;
             res.IsViewDefault = true;
@@ -1477,7 +1477,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyName(ITreeConfigNode node, bool isNullable, uint length)
         {
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.NAME);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.NAME);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupCatalogs.GroupListCatalogs.PropertyNameName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, isNullable);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.NAME;
@@ -1488,7 +1488,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocumentDate(ITreeConfigNode node)
         {
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.DOC_DATE_INT);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.DOC_DATE_INT);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.TimeLineDocDateTimePropertyName, true);
             res.DataType = (DataType)this.GetDataTypeDateTimeUtc(res, EnumTimeAccuracyType.MAX_TIME_ACC, false);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.DOC_DATE_INT;
@@ -1500,7 +1500,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocNumberString(ITreeConfigNode node, uint length)
         {
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.CODE_NUMBER_TEXT);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.CODE_NUMBER_TEXT);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyDocNumberName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, true);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.CODE_NUMBER_TEXT;
@@ -1511,9 +1511,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocNumberInt(ITreeConfigNode node, uint length)
         {
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.CODE_NUMBER_INT);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.CODE_NUMBER_INT);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyDocNumberName, true);
-            res.DataType = (DataType)this.GetDataTypeNumerical(res, length, true, true);
+            res.DataType = (DataType)node.Cfg.Model.GetDataTypeNumerical(res, length, true, true);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.CODE_NUMBER_INT;
             res.IsCsNullable = false;
             res.IsViewDefault = true;
@@ -1522,7 +1522,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDescription(ITreeConfigNode node, bool isNullable, uint length)
         {
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.DESCRIPTION);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.DESCRIPTION);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupCatalogs.GroupListCatalogs.PropertyDescriptionName, true);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.DESCRIPTION;
             res.DataType = (DataType)this.GetDataTypeString(res, length, isNullable);
@@ -1534,7 +1534,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyIsFolder(ITreeConfigNode node, bool isNullable)
         {
             Debug.Assert(node is CatalogFolder || node is Catalog);
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.IS_FOLDER);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.IS_FOLDER);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupCatalogs.GroupListCatalogs.PropertyIsFolderName, true);
             res.DataType = new DataType(res) { DataTypeEnum = EnumDataType.BOOL };
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.IS_FOLDER;
@@ -1546,7 +1546,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyTimelineIsPosted(ITreeConfigNode node, bool isNullable)
         {
             Debug.Assert(node is DocumentTimeline);
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.IS_POSTED);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.IS_POSTED);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyIsPostedName, true);
             res.DataType = new DataType(res) { DataTypeEnum = EnumDataType.BOOL };
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.IS_POSTED;
@@ -1558,7 +1558,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyTimelineShortTypeId(ITreeConfigNode node, bool isNullable)
         {
             Debug.Assert(node is DocumentTimeline);
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.SHORT_TYPE_ID);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.SHORT_TYPE_ID);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyDocShortTypeIdName, true);
             res.DataType = (DataType)GetDataTypeInt(res, false, isNullable);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.SHORT_TYPE_ID;
@@ -1570,7 +1570,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyDocShortTypeId(ITreeConfigNode node, bool isNullable)
         {
             Debug.Assert(node is Document);
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.SHORT_TYPE_ID);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.SHORT_TYPE_ID);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyDocShortTypeIdName, true);
             res.DataType = (DataType)GetDataTypeInt(res, false, isNullable);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.SHORT_TYPE_ID;
@@ -1582,7 +1582,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyBalanceOnDateInt(ITreeConfigNode node, bool isPKey)
         {
             Debug.Assert(node is Register);
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.REG_BALANCE_ONDATEINT);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.REG_BALANCE_ONDATEINT);
             var res = new Property((ITreeConfigNode)node, rec.Guid, "OnDateInt", true);
             res.DataType = (DataType)this.GetDataTypeInt(res, false, false);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.REG_BALANCE_ONDATEINT;
@@ -1602,7 +1602,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyVersion(ITreeConfigNode node)
         {
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.RECORD_VERSION);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.RECORD_VERSION);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.RecordVersionFieldName, true);
             res.DataType = (DataType)GetDataTypeFromMaxValue(res, int.MaxValue, false, false);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.RECORD_VERSION;
@@ -1614,7 +1614,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyVersionPrev(ITreeConfigNode node)
         {
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.RECORD_VERSION_PREV);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.RECORD_VERSION_PREV);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.RecordVersionFieldName + "Prev", true);
             res.DataType = (DataType)GetDataTypeFromMaxValue(res, int.MaxValue, false, false);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.RECORD_VERSION_PREV;
@@ -1627,7 +1627,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyNumber(ITreeConfigNode node, EnumSpecialPropertyType enumDataType, uint length, uint accuracy, bool isNullable)
         {
             Property? res = null;
-            var rec = this.GetGuidPosition(node, enumDataType);
+            var rec = Model.GetGuidPosition(node, enumDataType);
             switch (enumDataType)
             {
                 case EnumSpecialPropertyType.ACCUMULATOR_MONEY:
@@ -1676,7 +1676,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(node is Detail);
             Debug.Assert(node.Parent is Detail);
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DETAIL);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DETAIL);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyDocShortTypeIdName, true);
             res.DataType = (DataType)GetDataTypeInt(res, false, isNullable);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.SHORT_TYPE_ID;
@@ -1688,7 +1688,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyRefParentCatalog(ITreeConfigNode node, bool isNullable)
         {
             Debug.Assert(node is Document);
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.SHORT_TYPE_ID);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.SHORT_TYPE_ID);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyDocShortTypeIdName, true);
             res.DataType = (DataType)GetDataTypeInt(res, false, isNullable);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.SHORT_TYPE_ID;
@@ -1700,7 +1700,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyRefParentDocument(ITreeConfigNode node, bool isNullable)
         {
             Debug.Assert(node is Document);
-            var rec = this.GetGuidPosition(node, EnumSpecialPropertyType.SHORT_TYPE_ID);
+            var rec = Model.GetGuidPosition(node, EnumSpecialPropertyType.SHORT_TYPE_ID);
             var res = new Property((ITreeConfigNode)node, rec.Guid, node.Cfg.Model.GroupDocuments.GroupListDocuments.PropertyDocShortTypeIdName, true);
             res.DataType = (DataType)GetDataTypeInt(res, false, isNullable);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.SHORT_TYPE_ID;
@@ -1713,7 +1713,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(propertyType != EnumSpecialPropertyType.CONFIG_PROPERTY);
             Property? res = null;
-            var rec = this.GetGuidPosition(node, propertyType);
+            var rec = Model.GetGuidPosition(node, propertyType);
             switch (propertyType)
             {
                 case EnumSpecialPropertyType.IS_FOLDER:
@@ -1819,7 +1819,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyComplexDescr(ITreeConfigNode node, IProperty prop, IComplexRef? complexRef, string nameSuffix, uint length)
         {
-            var rec = this.GetGuidPosition(prop, complexRef, EnumSpecialPropertyType.SUB_PROPERTY_DESCR);
+            var rec = Model.GetGuidPosition(prop, complexRef, EnumSpecialPropertyType.SUB_PROPERTY_DESCR);
             var res = new Property(node, rec.Guid, $"{prop.Name}{nameSuffix}", true);
             res.DataType = (DataType)this.GetDataTypeString(res, length, true);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.SUB_PROPERTY_DESCR;
@@ -1831,7 +1831,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyComplexGd(ITreeConfigNode node, IProperty prop, IComplexRef? complexRef, string nameSuffix)
         {
-            var rec = this.GetGuidPosition(prop, complexRef, EnumSpecialPropertyType.SUB_PROPERTY_GD);
+            var rec = Model.GetGuidPosition(prop, complexRef, EnumSpecialPropertyType.SUB_PROPERTY_GD);
             var res = new Property(node, rec.Guid, $"{prop.Name}{nameSuffix}", true);
             res.DataType = (DataType)this.GetDataTypeString(res, 36, true);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.SUB_PROPERTY_GD;
@@ -1843,7 +1843,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyComplexRefId(ITreeConfigNode node, IProperty prop, IComplexRef? complexRef, string nameSuffix)
         {
-            var rec = this.GetGuidPosition(prop, complexRef, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID);
+            var rec = Model.GetGuidPosition(prop, complexRef, EnumSpecialPropertyType.SUB_PROPERTY_REF_ID);
             var res = (Property)this.GetPropertyRef(node, rec.Guid, $"{prop.Name}{nameSuffix}", rec.Position, true);
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.SUB_PROPERTY_REF_ID;
             res.IsNullable = prop.IsNullable;
@@ -1915,7 +1915,7 @@ namespace vSharpStudio.vm.ViewModels
             return dt;
         }
         // numerical
-        public uint GetLengthFromMaxValue(System.Numerics.BigInteger maxValue)
+        public static uint GetLengthFromMaxValue(System.Numerics.BigInteger maxValue)
         {
             uint length = 0;
             System.Numerics.BigInteger m = maxValue;

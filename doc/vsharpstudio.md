@@ -493,8 +493,8 @@ Configuration config
 | last_updated | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | @attr [PropertyOrderAttribute(6)] |
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | is_need_current_update | [bool](#bool) |  | @attr [Browsable(false)] / &lt;summary&gt; / True if configuration was changed since last code generation. / Set by SetIsNeedCurrentUpdate(bool val) function. / &lt;/summary&gt; |
-| group_config_links | [proto_group_list_base_config_links](#proto_config-proto_group_list_base_config_links) |  | @attr [Browsable(false)] |
 | model | [proto_model](#proto_config-proto_model) |  | @attr [Browsable(false)] |
+| group_config_links | [proto_group_list_base_config_links](#proto_config-proto_group_list_base_config_links) |  | @attr [Browsable(false)] |
 | group_plugins | [proto_group_list_plugins](#proto_config-proto_group_list_plugins) |  | @attr [Browsable(false)] |
 | group_app_solutions | [proto_group_list_app_solutions](#proto_config-proto_group_list_app_solutions) |  | @attr [Browsable(false)] |
 
@@ -1224,11 +1224,11 @@ C O N S T A N T
 | explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| document_timeline | [proto_document_timeline](#proto_config-proto_document_timeline) |  | @attr [Browsable(false)] @attr [Description(&#34;Properties for all documents&#34;)] |
 | group_list_documents | [proto_group_list_documents](#proto_config-proto_group_list_documents) |  | @attr [Browsable(false)] |
 | group_registers | [proto_group_list_registers](#proto_config-proto_group_list_registers) |  | @attr [Browsable(false)] @attr [Description(&#34;Registers for documents&#34;)] |
 | group_journals | [proto_group_list_journals](#proto_config-proto_group_list_journals) |  | @attr [Browsable(false)] |
 | group_list_sequences | [proto_group_list_enumerator_sequences](#proto_config-proto_group_list_enumerator_sequences) |  | @attr [Browsable(false)] |
+| document_timeline | [proto_document_timeline](#proto_config-proto_document_timeline) |  | @attr [Browsable(false)] @attr [Description(&#34;Properties for all documents&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
