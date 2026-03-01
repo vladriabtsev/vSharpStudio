@@ -591,6 +591,22 @@ namespace vSharpStudio.Unit
             pos_in_gn1 += 5;
             Assert.AreEqual(pos_in_gn1, gn1.LastPosition);
             Assert.AreEqual(pos_in_gn1, n3.Position);
+
+            var lst = gn1.GetAllConstantsAsProperties();
+
+            mvm.BtnConfigSaveAs.Execute(@".\test.vcfg");
+
+            mvm.BtnOpenConfig.Execute(@".\test.vcfg");
+            Assert.AreEqual(1, cfg.Model.GroupConstantGroups.ListConstantGroups.Count);
+            var gn2 = cfg.Model.GroupConstantGroups.ListConstantGroups[0];
+            var lst2 = gn2.GetAllConstantsAsProperties();
+            Assert.AreEqual(gn1.Count, gn2.Count);
+            for (int i = 0; i < gn1.Count(); i++)
+            {
+                Assert.AreEqual(gn1[i].Name, gn2[i].Name);
+                Assert.AreEqual(gn1[i].Guid, gn2[i].Guid);
+                Assert.AreEqual(gn1[i].Position, gn2[i].Position);
+            }
         }
         [TestMethod]
         public void Position_006_Timeline()

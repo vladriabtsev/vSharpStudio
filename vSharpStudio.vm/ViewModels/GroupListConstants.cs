@@ -363,6 +363,25 @@ namespace vSharpStudio.vm.ViewModels
             VmBindable.IsNotValidateAll = false;
             return res;
         }
+#if DEBUG
+        public IReadOnlyList<IProperty> GetAllConstantsAsProperties()
+        {
+            var res = new List<IProperty>();
+            var model = this.Cfg.Model;
+            this.GetSpecialProperties(res, true);
+            VmBindable.IsNotValidateAll = true;
+            foreach (var t in this.ListConstants)
+            {
+                var p = new Property(this, t.Guid, t.Name, false) { DataType = t.DataType, IsCsNullable = true, IsNullable = true };
+                p.Guid = t.Guid;
+                p.Position = t.Position;
+                p.ShortId = t.ShortId;
+                res.Add(p);
+            }
+            VmBindable.IsNotValidateAll = false;
+            return res;
+        }
+#endif
         #endregion Get Properties and Details
 
         protected override string[]? OnGetWhatHideOnPropertyGrid()
