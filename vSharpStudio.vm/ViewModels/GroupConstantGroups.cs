@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -8,13 +9,14 @@ using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class GroupConstantGroups : ITreeModel, ICanGoRight, ICanGoLeft, ICanAddSubNode, INodeGenSettings, IEditableNodeGroup
     {
         private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(GroupConstantGroups));
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" Count:{ListConstantGroups.Count}";
+            sb.Append(" Count:");
+            sb.Append(this.ListConstantGroups.Count);
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }

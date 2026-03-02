@@ -1,7 +1,7 @@
 ﻿namespace vSharpStudio.vm.ViewModels
 {
     //[DebuggerDisplay("RegisterDocToReg: Doc:{RelativeAppProjectPath,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    //[DebuggerDisplay("{ToDebugString(),nq}")]
+    //[DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class RegisterRegPropToDocProp
     {
         //public string ToDebugString()

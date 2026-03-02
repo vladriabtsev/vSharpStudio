@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 using CommunityToolkit.Diagnostics;
 using Google.Protobuf;
 using Proto.Config;
@@ -13,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, ILayoutFieldParameters
     {
         public override string NameShortId
@@ -24,9 +25,10 @@ namespace vSharpStudio.vm.ViewModels
                 return $"p{this.ShortId}";
             }
         }
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" Type:{DataType.GetTypeDesc(this.DataType)}";
+            sb.Append(" Type:");
+            sb.Append(DataType.GetTypeDesc(this.DataType));
         }
         [Browsable(false)]
         public GroupListConstants ParentGroupListConstants { get { Debug.Assert(this.Parent != null); return (GroupListConstants)this.Parent; } }

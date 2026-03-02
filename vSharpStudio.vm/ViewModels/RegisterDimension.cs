@@ -8,7 +8,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class RegisterDimension : ICanAddNode, ICanGoLeft, INodeGenSettings, ITreeConfigNodeSortable, IEditableNode
     {
         public override string NameShortId { get { return $"r{this.ParentGroupListRegisterDimensions.ParentRegister.ShortId}d{this.ShortId}"; } }

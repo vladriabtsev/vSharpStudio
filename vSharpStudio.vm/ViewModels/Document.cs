@@ -13,14 +13,19 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, 
         INodeWithProperties
     {
         public override string NameShortId { get { return $"d{this.ShortId}"; } }
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes += $" props:{GroupProperties.ListProperties.Count} details:{GroupDetails.ListDetails.Count} seq:{this.Sequence?.Name}";
+            sb.Append(" props:");
+            sb.Append(GroupProperties.ListProperties.Count);
+            sb.Append(" details:");
+            sb.Append(GroupDetails.ListDetails.Count);
+            sb.Append(" seq:");
+            sb.Append(this.Sequence?.Name);
         }
         public string GetDebuggerDisplay(bool isOptimistic)
         {

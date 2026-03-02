@@ -6,7 +6,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class RoleReportsSettings
     {
         //[Browsable(false)]
@@ -14,8 +14,10 @@ namespace vSharpStudio.vm.ViewModels
         //[Browsable(false)]
         //public IGroupListReports ParentGroupListReportsI { get { Debug.Assert(this.Parent != null); return (IGroupListReports)this.Parent; } }
 
-        //partial void OnCreated()
-        //{
-        //}
+        partial void OnCreated()
+        {
+            this._CanPrint = true;
+            this._CanView = true;
+        }
     }
 }

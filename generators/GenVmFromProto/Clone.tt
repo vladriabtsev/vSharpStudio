@@ -29,7 +29,7 @@ public override void Sort(Type type) <#=t4.SrcCs()#>
 <# if (this.Doc.IsWithParent /*message.IsDefaultBase()*/) { #>
 public static <#= message.Name.ToNameCs() #> Clone(<#=this.Doc.ParentTypeName#>? parent, I<#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (message.IsDefaultBase()) { #>, bool isNewGuid = false<# } #>) <#=t4.SrcCs()#>
 <# } else { #>
-public static <#= message.Name.ToNameCs() #> Clone(I<#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (message.IsDefaultBase()) { #>, bool isNewGuid = false<# } #>) <#=t4.SrcCs()#>
+public static <#= message.Name.ToNameCs() #> Clone(I<#=message.Name.ToNameCs()#> from, bool isDeep = true<# if (message.IsDefaultBase()) { #>, bool isNewGuid = false<# } #>) <#=t4.SrcCs()#>
 <# } #>
 {
     Debug.Assert(from != null);

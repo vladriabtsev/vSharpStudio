@@ -1,17 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 using vSharpStudio.common;
 using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class GroupListBaseConfigLinks : ITreeModel, ICanAddSubNode, ICanGoRight, IEditableNodeGroup // , INodeGenSettings
     {
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" configs:{ListBaseConfigLinks.Count}";
+            sb.Append(" configs:");
+            sb.Append(this.ListBaseConfigLinks.Count);
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }

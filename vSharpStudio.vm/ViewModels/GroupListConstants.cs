@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -9,14 +10,15 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings,
         IEditableNodeGroup, IEditableNode
     {
         public override string NameShortId { get { return $"gc{this.ShortId}"; } }
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" Count:{ListConstants.Count}";
+            sb.Append(" Count:");
+            sb.Append(this.ListConstants.Count);
         }
         [Browsable(false)]
         public GroupConstantGroups ParentGroupConstantGroups { get { Debug.Assert(this.Parent != null); return (GroupConstantGroups)this.Parent; } }
@@ -357,6 +359,7 @@ namespace vSharpStudio.vm.ViewModels
                     p.Guid = t.Guid;
                     p.Position = t.Position;
                     p.ShortId = t.ShortId;
+                    p.DicPositionsForStandartProperties = t.DicPositionsForStandartProperties;
                     res.Add(p);
                 }
             }

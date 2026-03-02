@@ -24,23 +24,31 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode,
         ILayoutFieldParameters
     {
         private string nameShortIdPrefix = "p";
         public override string NameShortId { get { return $"{nameShortIdPrefix}{this.ShortId}"; } }
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            if (this.ParentProperty != null)
+            sb.Append(" Complex:");
+            Debug.Assert(this.ParentProperty != null);
+            sb.Append(this.ParentProperty.Name);
+            sb.Append(" Type:");
+            sb.Append(DataType.GetTypeDesc(this.DataType));
+            sb.Append(" Tag:");
+            if (this.TagInList != null)
             {
-                mes = mes + " Complex:" + this.ParentProperty.Name;
+                if (this.TagInList is string s)
+                {
+                    sb.Append(s);
+                }
+                else
+                {
+                    sb.Append(this.TagInList?.ToString());
+                }
             }
-            mes += $" Type:{DataType.GetTypeDesc(this.DataType)}";
-            if (this.TagInList is string s)
-                mes += $" Tag:{s}";
-            else
-                mes += $" Tag:{this.TagInList?.ToString()}";
         }
         /// <summary>
         /// Property Path in object. Samples: Property1, Detail1->Property1
@@ -74,9 +82,9 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsSimple { get; set; }
         [Browsable(false)]
-        public GroupListProperties? ParentGroupListProperties { get { Debug.Assert(this.Parent != null); return this.Parent as GroupListProperties; } }
+        public GroupListProperties? ParentGroupListProperties { get { return this.Parent as GroupListProperties; } }
         [Browsable(false)]
-        public IGroupListProperties? ParentGroupListPropertiesI { get { Debug.Assert(this.Parent != null); return this.Parent as IGroupListProperties; } }
+        public IGroupListProperties? ParentGroupListPropertiesI { get { return this.Parent as IGroupListProperties; } }
         [Browsable(false)]
         public IListProperties ParentListPropertiesI { get { Debug.Assert(this.Parent != null); if (this.ParentProperty != null) return (IListProperties)this.ParentProperty.ParentGroupListPropertiesI; return (IListProperties)this.Parent; } }
         [Browsable(false)]
@@ -184,7 +192,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        protected override ConfigNodesCollection<Property>? GetParentCollection() { return this.ParentGroupListProperties.ListProperties; }
+        protected override ConfigNodesCollection<Property>? GetParentCollection() { return this.ParentGroupListProperties?.ListProperties; }
         public void OnAdded()
         {
             this.AddOrRestoreAllAppGenSettingsVmsToNode();
@@ -241,6 +249,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = Property.Clone(this.Parent, this, true, true);
             this.ParentListPropertiesI.ListProperties.Add(node, this);
             this._Name += "2";
+            Debug.Assert(this.ParentGroupListProperties != null);
             node.ShortId = ++this.ParentGroupListProperties.LastShortId;
             this.SetSelected(node);
             return node;
@@ -257,6 +266,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentListPropertiesI.ListProperties.Add(node, this);
             node.Position = this.GetNextFreePosition();
             this.GetUniqueName(Defaults.PropertyName, node, this.ParentListPropertiesI.ListProperties);
+            Debug.Assert(this.ParentGroupListProperties != null);
             node.ShortId = ++this.ParentGroupListProperties.LastShortId;
             this.SetSelected(node);
             return node;

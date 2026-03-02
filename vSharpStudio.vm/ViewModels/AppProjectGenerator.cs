@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using FluentValidation.Results;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -12,13 +13,16 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class AppProjectGenerator : ICanRemoveNode, ICanAddNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
         protected readonly ILogger? _logger = AppLogger.CreateLogger<AppProjectGenerator>();
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" Conn:{ConnStr} File:{GenFileName}";
+            sb.Append(" Conn:");
+            sb.Append(ConnStr);
+            sb.Append(" File:");
+            sb.Append(GenFileName);
         }
         private Config? cfg;
         [Browsable(false)]

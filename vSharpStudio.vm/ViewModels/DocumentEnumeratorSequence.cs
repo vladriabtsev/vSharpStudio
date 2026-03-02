@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.ViewModels;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class DocumentEnumeratorSequence : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" {this.ToString()}";
+            sb.Append(" ");
+            sb.Append(this.ToString());
         }
         public override string ToString()
         {

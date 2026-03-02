@@ -902,8 +902,6 @@ message proto_complex_ref
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [Browsable(false)]
-    int32 explicit_sorting_position = 3;
-    // @attr [Browsable(false)]
     // unique in object (can be used as Protobuf field position)
     uint32 position = 10;
     // @attr [Browsable(false)]

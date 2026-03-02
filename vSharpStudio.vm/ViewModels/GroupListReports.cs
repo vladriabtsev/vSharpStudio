@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 using vSharpStudio.common;
 using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class GroupListReports : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" Count:{ListReports.Count}";
+            sb.Append(" Count:");
+            sb.Append(this.ListReports.Count);
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 using FluentValidation.Results;
@@ -14,12 +15,14 @@ namespace ViewModelBase
         where TValidator : AbstractValidator<T>
         where T : VmValidatableWithSeverity<T, TValidator>//, IComparable<T>
     {
-        public override string ToDebugString()
+        public override void ToDebugString(StringBuilder sb)
         {
-            var mes = "";
+            base.ToDebugString(sb);
             if (this.CountErrors > 0)
-                mes = " ErrCnt:" + this.CountErrors;
-            return base.ToDebugString() + mes;
+            {
+                sb.Append(" ErrCnt:");
+                sb.Append(this.CountErrors);
+            }
         }
         public VmValidatableWithSeverity(TValidator? validator)
         {

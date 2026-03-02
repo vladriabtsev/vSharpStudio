@@ -44,7 +44,11 @@ public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefa
          this.PushIndent("\t"); #>
 <#= this.FieldDoc.Comments #><# if (field.IsRepeated) { #>
 <# if (field.IsMap()) { #>
+<#   if (field.Name.ToNameCs() == "DicPositionsForStandartProperties") { #>
+new IDictionary<<#=field.GetMapKeyCs()#>, <#=field.GetMapValueCs(true)#>> <#= field.Name.ToNameCs() #> { get; } <#=t4.SrcCs()#>
+<#   } else { #>
 IDictionary<<#=field.GetMapKeyCs()#>, <#=field.GetMapValueCs(true)#>> <#= field.Name.ToNameCs() #> { get; } <#=t4.SrcCs()#>
+<#   } #>
 <# } else if (field.IsCsSimple()) { #>
 IReadOnlyList<<#=field.ToTypeCs()#>> <#= field.Name.ToNameCs() #> { get; } <#=t4.SrcCs()#>
 <# } else { #>
@@ -55,7 +59,11 @@ int Count();
 <#   } #>
 <# } #>
 <#       } else if (field.IsCsSimple()) { #>
-<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; <#= this.Setter #>} <#=t4.SrcCs()#>
+<#         if (field.Name.ToNameCs() == "ExplicitSortingPosition") { #>
+new <#=field.ToTypeCs()#> <#= field.Name.ToNameCs() #> { get; <#= this.Setter #>} <#=t4.SrcCs()#>
+<#         } else { #>
+<#=field.ToTypeCs()#> <#= field.Name.ToNameCs() #> { get; <#= this.Setter #>} <#=t4.SrcCs()#>
+<#         } #>
 <#       } else if (field.IsAny() || field.IsNullable()) { #>
 <#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } <#=t4.SrcCs()#>
 <#       } else { #>

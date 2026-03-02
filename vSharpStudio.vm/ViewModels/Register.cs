@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class Register : ICanAddNode, ICanGoLeft, INodeGenSettings, ITreeConfigNodeSortable, IEditableNode, INodeWithPositionProperties
     {
         public override string NameShortId
@@ -22,9 +22,16 @@ namespace vSharpStudio.vm.ViewModels
                 return $"r{this.ShortId}";
             }
         }
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" Docs:{this.ListObjectDocRefs.Count} Dims:{this.GroupRegisterDimensions.ListDimensions.Count} Atchs:{this.GroupProperties.ListProperties.Count} Maps:{this.ListDocMappings.Count}";
+            sb.Append(" Docs:");
+            sb.Append(this.ListObjectDocRefs.Count);
+            sb.Append(" Dims:");
+            sb.Append(this.GroupRegisterDimensions.ListDimensions.Count);
+            sb.Append(" Atchs:");
+            sb.Append(this.GroupProperties.ListProperties.Count);
+            sb.Append(" Maps:");
+            sb.Append(this.ListDocMappings.Count);
         }
         public string GetDebuggerDisplay(bool isOptimistic)
         {
@@ -298,7 +305,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty? GetDateTimeUtcProperty(bool? isRegisterBalance = null)
         {
             Debug.Assert(isRegisterBalance != null);
-            IProperty res = null;
+            IProperty? res = null;
             if (isRegisterBalance.Value) // balance
             {
                 Debug.Assert(this.RegisterType != EnumRegisterType.TURNOVER);

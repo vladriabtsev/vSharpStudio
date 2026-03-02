@@ -4,12 +4,12 @@ using System.Diagnostics;
 
 namespace ViewModelBase
 {
-    public class DictionaryExt<TKey, TValue> : Dictionary<TKey, TValue>
+    public class DictionaryExt<TKey, TValue> : Dictionary<TKey, TValue?>
         where TKey : notnull
     {
         private readonly bool isReturnDefaultWhenNotInDictionary;
         public DictionaryExt(int initialSize = 100, bool isReturnDefaultWhenNotInDictionary = false, bool isActivateActions = false,
-            Action<TKey, TValue>? onAddValue = null, Action<TKey, TValue>? onRemoveValue = null, Action? onClear = null) : base(initialSize)
+            Action<TKey, TValue?>? onAddValue = null, Action<TKey, TValue?>? onRemoveValue = null, Action? onClear = null) : base(initialSize)
         {
             this.IsActivateActions = isActivateActions;
             this.OnAddValue = onAddValue;
@@ -18,8 +18,8 @@ namespace ViewModelBase
             this.isReturnDefaultWhenNotInDictionary = isReturnDefaultWhenNotInDictionary;
         }
         public bool IsActivateActions { get; set; }
-        public Action<TKey, TValue>? OnAddValue { get; set; }
-        public Action<TKey, TValue>? OnRemoveValue { get; set; }
+        public Action<TKey, TValue?>? OnAddValue { get; set; }
+        public Action<TKey, TValue?>? OnRemoveValue { get; set; }
         public Action? OnClear { get; set; }
         public new TValue? this[TKey key]
         {
@@ -29,7 +29,7 @@ namespace ViewModelBase
                 {
                     if (this.ContainsKey(key))
                         return base[key];
-                    return default(TValue);
+                    return default;
                 }
 #if DEBUG
                 if (!this.ContainsKey(key))
@@ -44,7 +44,7 @@ namespace ViewModelBase
                 base[key] = value;
             }
         }
-        public new void Add(TKey key, TValue value)
+        public new void Add(TKey key, TValue? value)
         {
             if (this.IsActivateActions && OnAddValue != null)
                 OnAddValue(key, value);
@@ -54,7 +54,7 @@ namespace ViewModelBase
         {
             if (this.IsActivateActions && OnRemoveValue != null)
             {
-                TValue value = base[key];
+                TValue? value = base[key];
                 OnRemoveValue(key, value);
             }
             return base.Remove(key);

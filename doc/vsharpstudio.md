@@ -467,7 +467,6 @@ Application project generator
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] Complex property guid. Empty for register doc ??? |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| explicit_sorting_position | [int32](#int32) |  | @attr [Browsable(false)] |
 | position | [uint32](#uint32) |  | @attr [Browsable(false)] unique in object (can be used as Protobuf field position) |
 | foreign_object_guid | [string](#string) |  | @attr [Browsable(false)] |
 | ref_complex_object_id_property_guid | [string](#string) |  | @attr [Browsable(false)] extended property guid for foreign object id |

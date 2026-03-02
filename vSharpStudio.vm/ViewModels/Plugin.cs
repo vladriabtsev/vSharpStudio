@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class Plugin : ICanGoLeft, ICanGoRight, ICanAddNode
     {
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" Count:{ListGenerators.Count}";
+            sb.Append(" Count:");
+            sb.Append(this.ListGenerators.Count);
         }
         [Browsable(false)]
         public GroupListPlugins ParentGroupListPlugins { get { Debug.Assert(this.Parent != null); return (GroupListPlugins)this.Parent; } }

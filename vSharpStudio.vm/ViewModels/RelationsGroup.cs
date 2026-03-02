@@ -1,18 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class RelationsGroup : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" ManyToMany:{this.GroupListManyToManyRelations.ListRelations.Count} OneToOne:{this.GroupListOneToOneRelations.ListRelations.Count}";
+            sb.Append(" ManyToMany:");
+            sb.Append(this.GroupListManyToManyRelations.ListRelations.Count);
+            sb.Append(" OneToOne:");
+            sb.Append(this.GroupListOneToOneRelations.ListRelations.Count);
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }

@@ -130,7 +130,7 @@ namespace vSharpStudio.Unit
         public void Validation001_ValidationCollectionEmptyAfterInit()
         {
             ConfigValidator.Reset();
-            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath(), null, true);
             var cfg = vm.Config;
             Assert.IsNotNull(cfg.ValidationCollection);
             Assert.IsEmpty(cfg.ValidationCollection);
@@ -144,7 +144,7 @@ namespace vSharpStudio.Unit
 
             ConfigValidator.Reset();
             CatalogValidator.Reset();
-            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath(), null, true);
             var cfg = vm.Config;
             //cfg.SolutionPath = @"..\..\..\..\";
 
@@ -273,7 +273,7 @@ namespace vSharpStudio.Unit
             var token = cancellation.Token;
 
             ConfigValidator.Reset();
-            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath(), null, true);
             var cfg = vm.Config;
             //cfg.SolutionPath = @"..\..\..\..\";
 

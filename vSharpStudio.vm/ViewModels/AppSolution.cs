@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using FluentValidation.Results;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -11,12 +12,13 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" prj:{ListAppProjects.Count}";
+            sb.Append(" prj:");
+            sb.Append(ListAppProjects.Count);
         }
         [Browsable(false)]
         public GroupListAppSolutions ParentGroupListAppSolutions { get { Debug.Assert(this.Parent != null); return (GroupListAppSolutions)this.Parent; } }

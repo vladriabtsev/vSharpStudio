@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class Detail : ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, INodeWithProperties,
         ILayoutParameters
     {
@@ -58,9 +58,12 @@ namespace vSharpStudio.vm.ViewModels
                 throw new NotImplementedException();
             }
         }
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" props:{GroupProperties.ListProperties.Count} details:{GroupDetails.ListDetails.Count}";
+            sb.Append(" props:");
+            sb.Append(GroupProperties.ListProperties.Count);
+            sb.Append(" details:");
+            sb.Append(GroupDetails.ListDetails.Count);
         }
         public string GetDebuggerDisplay(bool isOptimistic)
         {

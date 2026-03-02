@@ -11,14 +11,15 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup,
         INodeWithProperties
     {
         public override string NameShortId { get { return $"f{this.ParentCatalog.ShortId}"; } }
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" props:{GroupProperties.ListProperties.Count}";
+            sb.Append(" prj:");
+            sb.Append(GroupProperties.ListProperties.Count);
         }
         public string GetDebuggerDisplay(bool isOptimistic)
         {

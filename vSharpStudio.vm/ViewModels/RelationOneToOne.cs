@@ -10,14 +10,16 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class RelationOneToOne : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
         ITreeConfigNodeSortable
     {
         public override string NameShortId { get { return $"o{this.ShortId}"; } }
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" {this.GetName(false)} History:{this.IsUseHistory}";
+            sb.Append(this.GetName(false));
+            sb.Append(" History:");
+            sb.Append(this.IsUseHistory);
         }
         public string GetDebuggerDisplay(bool isOptimistic)
         {

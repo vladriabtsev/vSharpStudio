@@ -1,13 +1,20 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 
 namespace ViewModelBase
 {
     public class VmEditable<T> : VmBindable, IEditableObjectExt
         where T : VmEditable<T>
     {
-        public override string ToDebugString() { return base.ToDebugString() + (IsChanged ? " Changed" : ""); }
+        public override void ToDebugString(StringBuilder sb)
+        {
+            if (this.IsChanged)
+            {
+                sb.Append(" Changed");
+            }
+        }
         public VmEditable()
         {
             //if (!VmBindable.IsModifyIsChangedExplicitly)

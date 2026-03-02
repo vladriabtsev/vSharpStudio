@@ -5,13 +5,22 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ViewModelBase
 {
     public class VmBindable : ObservableObject
     {
-        public virtual string ToDebugString() { return ""; }
+        public string ToDebugInfo()
+        {
+            var sb = new StringBuilder();
+            this.ToDebugString(sb);
+            return sb.ToString();
+        }
+        public virtual void ToDebugString(StringBuilder sb)
+        {
+        }
         [BrowsableAttribute(false)]
         public string? ToolTipText
         {

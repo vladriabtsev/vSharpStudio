@@ -5,12 +5,11 @@ using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public class RegisterMappingRow : VmValidatable<RegisterMappingRow, RegisterMappingRowValidator>
     {
-        public override string ToDebugString()
+        public override void ToDebugString(StringBuilder sb)
         {
-            var sb = new StringBuilder();
             sb.Append("RegMapRow:");
             sb.Append(this.Name);
             sb.Append(" Reg:");
@@ -25,9 +24,8 @@ namespace vSharpStudio.vm.ViewModels
             if (this.AttachedProperty != null)
             {
                 sb.Append(" Att:");
-                sb.Append(this.AttachedProperty.ToDebugString());
+                this.AttachedProperty.ToDebugString(sb);
             }
-            return sb.ToString();
         }
         public Document Doc { get; private set; }
         public Register Reg { get; private set; }

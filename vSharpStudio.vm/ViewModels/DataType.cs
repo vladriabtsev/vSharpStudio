@@ -12,13 +12,14 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class DataType : IParent
     {
         //private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(DataType));
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes += $" Type:{DataType.GetTypeDesc(this)}";
+            sb.Append(" Type:");
+            sb.Append(DataType.GetTypeDesc(this));
         }
         partial void OnCreating()
         {

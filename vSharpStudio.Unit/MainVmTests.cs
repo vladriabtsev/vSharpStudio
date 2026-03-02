@@ -59,7 +59,8 @@ namespace vSharpStudio.Unit
             }
             else
             {
-                Assert.IsFalse(vm.Config.IsHasChanged);
+                Assert.IsTrue(vm.Config.IsHasChanged); // Timeline last position
+                //Assert.IsFalse(vm.Config.IsHasChanged);
             }
 
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsNew);
@@ -92,8 +93,8 @@ namespace vSharpStudio.Unit
 
             Assert.IsFalse(vm.Config.Model.IsNew);
             Assert.IsFalse(vm.Config.Model.IsChanged);
-            Assert.IsFalse(vm.Config.Model.IsChangedOrHasChanged);
-            Assert.IsFalse(vm.Config.Model.IsHasChanged);
+            Assert.IsTrue(vm.Config.Model.IsChangedOrHasChanged);
+            Assert.IsTrue(vm.Config.Model.IsHasChanged);
             Assert.IsFalse(vm.Config.Model.GroupCatalogs.IsNew);
             Assert.IsFalse(vm.Config.Model.GroupCatalogs.IsChanged);
             Assert.IsFalse(vm.Config.Model.GroupCatalogs.IsChangedOrHasChanged);
@@ -108,8 +109,8 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsHasChanged);
             Assert.IsFalse(vm.Config.Model.GroupDocuments.IsNew);
             Assert.IsFalse(vm.Config.Model.GroupDocuments.IsChanged);
-            Assert.IsFalse(vm.Config.Model.GroupDocuments.IsChangedOrHasChanged);
-            Assert.IsFalse(vm.Config.Model.GroupDocuments.IsHasChanged);
+            Assert.IsTrue(vm.Config.Model.GroupDocuments.IsChangedOrHasChanged);
+            Assert.IsTrue(vm.Config.Model.GroupDocuments.IsHasChanged);
             Assert.IsFalse(vm.Config.Model.GroupEnumerations.IsNew);
             Assert.IsFalse(vm.Config.Model.GroupEnumerations.IsChanged);
             Assert.IsFalse(vm.Config.Model.GroupEnumerations.IsChangedOrHasChanged);
@@ -141,7 +142,7 @@ namespace vSharpStudio.Unit
         public async Task Main001_IsNew_IsChanged_IsHasChanged()
         {
             this.remove_config();
-            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath());
+            var vm = MainPageVM.Create(MainPageVM.GetvSharpStudioPluginsPath(), null, true);
             CheckNewConfig(vm, false);
             vm.BtnNewConfig.Execute(); // not saved yet
             CheckNewConfig(vm, true);

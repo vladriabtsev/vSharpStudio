@@ -39,27 +39,40 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>, I<#= message.Name.ToNameCs() #> <#=t4.SrcCs()#>
 {
 <# if (this.Doc.IsBindableBase) { #>
-    public override string ToDebugString() <#=t4.SrcCs()#>
+    public override void ToDebugString(StringBuilder sb) <#=t4.SrcCs()#>
     {
+/*
         var t = this.GetType();
-        var mes = t.Name + ":";
+        sb.Append(t.Name);
+        sb.Append(":");
         var p = t.GetProperty("Name");
         if (p != null)
-            mes = mes + (string?)p.GetValue(this) + ":";
+        {
+            sb.Append((string?)p.GetValue(this));
+            sb.Append(":");
+        }*/
 <# if (this.Doc.IsConfigObjectBase) { #>
-        p = t.GetProperty("IsNew"); <#=t4.SrcCs()#>
+        sb.Append(this.Name);
+        sb.Append(":");
+        if (this.IsNew)
+            sb.Append(" New");
+        if (this.IsHasNew)
+            sb.Append(" HasNew");
+        if (this.IsHasChanged)
+            sb.Append(" HasChanged");
+/*        p = t.GetProperty("IsNew"); <#=t4.SrcCs()#>
         if (p != null)
             if ((bool?)p.GetValue(this) == true)
-                mes = mes + " New";
+                sb.Append(" New");
         p = t.GetProperty("IsHasNew");
         if (p != null)
             if ((bool?)p.GetValue(this) == true)
-                mes = mes + " HasNew";
+                sb.Append(" HasNew");*/
 <# } #>
-        OnDebugStringExtend(ref mes); <#=t4.SrcCs()#>
-        return mes + base.ToDebugString();
+        base.ToDebugString(sb); <#=t4.SrcCs()#>
+        OnDebugStringExtend(sb);
     }
-    partial void OnDebugStringExtend(ref string mes);
+    partial void OnDebugStringExtend(StringBuilder sb);
 <# } #>
     #region CTOR <#=t4.SrcCs()#>
 <# if (this.Doc.IsWithParent) { #>

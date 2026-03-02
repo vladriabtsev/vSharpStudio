@@ -6,7 +6,7 @@ namespace vSharpStudio.common
     public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, 
         ICompositeName, IPKey, INodeWithPositionProperties
     {
-        string GetDebuggerDisplay(bool isOptimistic);
+        //string GetDebuggerDisplay(bool isOptimistic);
         IGroupListCatalogs ParentGroupListCatalogsI { get; }
         bool IsGridSortableGet();
         bool IsGridFilterableGet();

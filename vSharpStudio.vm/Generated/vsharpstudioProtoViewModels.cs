@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Linq;
 using ViewModelBase;
 using System.Collections.ObjectModel;
@@ -15,13 +16,13 @@ using System.Diagnostics;
 using FluentValidation;
 using FluentValidation.Results;
 
-namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:26
+namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:27
 {
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
 
-    public interface IConfigAcceptVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:32
+    public interface IConfigAcceptVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:33
     {
         void AcceptConfigNodeVisitor(ConfigVisitor visitor);
     }
@@ -43,26 +44,31 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RectOnScreen : VmValidatableWithSeverity<RectOnScreen, RectOnScreenValidator>, IRectOnScreen // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
         public RectOnScreen() 
-            : base(RectOnScreenValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+            : base(RectOnScreenValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -140,7 +146,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         public double X // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
@@ -229,28 +235,33 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class UserSettings : VmValidatableWithSeverity<UserSettings, UserSettingsValidator>, IUserSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
         public UserSettings() 
-            : base(UserSettingsValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+            : base(UserSettingsValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
-            this._ListOpenConfigHistory = new ObservableCollectionWithActions<UserSettingsOpenedConfig>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:102
-            this._LastAppMainWindowRectOnVirtualScreen = new RectOnScreen(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:112
+            this._ListOpenConfigHistory = new ObservableCollectionWithActions<UserSettingsOpenedConfig>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:115
+            this._LastAppMainWindowRectOnVirtualScreen = new RectOnScreen(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -379,7 +390,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Browsable(false)]
         public ObservableCollectionWithActions<UserSettingsOpenedConfig> ListOpenConfigHistory // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
@@ -495,26 +506,31 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class UserSettingsOpenedConfig : VmValidatableWithSeverity<UserSettingsOpenedConfig, UserSettingsOpenedConfigValidator>, IUserSettingsOpenedConfig // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
         public UserSettingsOpenedConfig() 
-            : base(UserSettingsOpenedConfigValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+            : base(UserSettingsOpenedConfigValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -602,7 +618,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [ReadOnly(true)]
         public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
@@ -711,36 +727,49 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     [Description("Installed Plugins")]
     public partial class GroupListPlugins : ConfigObjectVmBase<GroupListPlugins, GroupListPluginsValidator>, IComparable<GroupListPlugins>, IConfigAcceptVisitor, IGroupListPlugins // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListPlugins(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListPlugins(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListPluginsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListPlugins = new ConfigNodesCollection<Plugin>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListPlugins = new ConfigNodesCollection<Plugin>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -901,7 +930,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -1018,7 +1047,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnExplicitSortingPositionChanged();
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -1094,36 +1123,49 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class Plugin : ConfigObjectVmBase<Plugin, PluginValidator>, IComparable<Plugin>, IConfigAcceptVisitor, IPlugin // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Plugin(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Plugin(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, PluginValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListGenerators = new ConfigNodesCollection<PluginGenerator>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListGenerators = new ConfigNodesCollection<PluginGenerator>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -1310,7 +1352,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -1458,7 +1500,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private bool _IsNew; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
         partial void OnIsNewChanging(ref bool to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnIsNewChanged();
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -1523,27 +1565,40 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class PluginGenerator : ConfigObjectVmBase<PluginGenerator, PluginGeneratorValidator>, IComparable<PluginGenerator>, IConfigAcceptVisitor, IPluginGenerator // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public PluginGenerator(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public PluginGenerator(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, PluginGeneratorValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -1551,7 +1606,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -1669,7 +1724,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [ReadOnly(true)]
         public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
@@ -1759,7 +1814,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         }
         partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnExplicitSortingPositionChanged();
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -1813,25 +1868,30 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class SettingsConfig : VmEditable<SettingsConfig>, ISettingsConfig // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public SettingsConfig() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public SettingsConfig() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -1923,7 +1983,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [ReadOnly(true)]
@@ -2053,27 +2113,32 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class ConfigShortHistory : VmEditable<ConfigShortHistory>, IConfigShortHistory // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public ConfigShortHistory() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public ConfigShortHistory() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
-            this._CurrentConfig = new Config(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:115
-            this._PrevStableConfig = new Config(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:115
+            this._CurrentConfig = new Config(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:128
+            this._PrevStableConfig = new Config(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:128
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -2160,7 +2225,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [ReadOnly(true)]
         public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
@@ -2293,37 +2358,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     [Description("Links to Base Configs")]
     public partial class GroupListBaseConfigLinks : ConfigObjectVmBase<GroupListBaseConfigLinks, GroupListBaseConfigLinksValidator>, IComparable<GroupListBaseConfigLinks>, IConfigAcceptVisitor, IGroupListBaseConfigLinks // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListBaseConfigLinks(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListBaseConfigLinks(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListBaseConfigLinksValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -2554,7 +2632,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -2729,7 +2807,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListBaseConfigLinks.ListNodeGeneratorsSettings { get { return (this as GroupListBaseConfigLinks).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -2805,36 +2883,49 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class BaseConfigLink : ConfigObjectVmBase<BaseConfigLink, BaseConfigLinkValidator>, IComparable<BaseConfigLink>, IConfigAcceptVisitor, IBaseConfigLink // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public BaseConfigLink(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public BaseConfigLink(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, BaseConfigLinkValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -3025,7 +3116,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -3192,7 +3283,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IBaseConfigLink.ListNodeGeneratorsSettings { get { return (this as BaseConfigLink).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -3258,39 +3349,52 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // Configuration config
     public partial class Config : ConfigObjectVmGenSettings<Config, ConfigValidator>, IComparable<Config>, IConfigAcceptVisitor, IConfig // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Config(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Config(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, ConfigValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._Model = new Model(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupConfigLinks = new GroupListBaseConfigLinks(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupPlugins = new GroupListPlugins(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupAppSolutions = new GroupListAppSolutions(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
+            this._Model = new Model(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupConfigLinks = new GroupListBaseConfigLinks(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupPlugins = new GroupListPlugins(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupAppSolutions = new GroupListAppSolutions(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -3454,7 +3558,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -3678,7 +3782,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnGroupAppSolutionsChanging(ref GroupListAppSolutions to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnGroupAppSolutionsChanged();
         IGroupListAppSolutions IConfig.GroupAppSolutions { get { return (this as Config).GroupAppSolutions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:78
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -3776,26 +3880,31 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class AppDbSettings : VmValidatable<AppDbSettings, AppDbSettingsValidator>, IAppDbSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
         public AppDbSettings() 
-            : base(AppDbSettingsValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+            : base(AppDbSettingsValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -3934,7 +4043,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]
@@ -4113,19 +4222,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class PluginGeneratorSolutionSettings : BaseSettings<PluginGeneratorSolutionSettings, PluginGeneratorSolutionSettingsValidator>, IPluginGeneratorSolutionSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public PluginGeneratorSolutionSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public PluginGeneratorSolutionSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, PluginGeneratorSolutionSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -4133,7 +4247,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -4218,7 +4332,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [ReadOnly(true)]
         public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
@@ -4297,19 +4411,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class PluginGeneratorProjectSettings : BaseSettings<PluginGeneratorProjectSettings, PluginGeneratorProjectSettingsValidator>, IPluginGeneratorProjectSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public PluginGeneratorProjectSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public PluginGeneratorProjectSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, PluginGeneratorProjectSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -4317,7 +4436,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -4402,7 +4521,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [ReadOnly(true)]
         public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
@@ -4504,36 +4623,49 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     [Description("User application settings (Solutions/Projects/Generators)")]
     public partial class GroupListAppSolutions : ConfigObjectVmBase<GroupListAppSolutions, GroupListAppSolutionsValidator>, IComparable<GroupListAppSolutions>, IConfigAcceptVisitor, IGroupListAppSolutions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListAppSolutions(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListAppSolutions(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListAppSolutionsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListAppSolutions = new ConfigNodesCollection<AppSolution>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListAppSolutions = new ConfigNodesCollection<AppSolution>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -4709,7 +4841,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -4864,7 +4996,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.ListAppSolutions.Remove(item); 
             item.Parent = null;
         }
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -4952,37 +5084,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     [Description("User settings for Solution")]
     public partial class AppSolution : ConfigObjectVmBase<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public AppSolution(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public AppSolution(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, AppSolutionValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListAppProjects = new ConfigNodesCollection<AppProject>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListGeneratorsSolutionSettings = new ObservableCollectionWithActions<PluginGeneratorSolutionSettings>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
+            this._ListAppProjects = new ConfigNodesCollection<AppProject>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListGeneratorsSolutionSettings = new ObservableCollectionWithActions<PluginGeneratorSolutionSettings>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -5239,7 +5384,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -5464,8 +5609,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGeneratorsSolutionSettingsChanged();
         IReadOnlyList<IPluginGeneratorSolutionSettings> IAppSolution.ListGeneratorsSolutionSettings { get { return (this as AppSolution).ListGeneratorsSolutionSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_app_solution
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_app_solution
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -5543,37 +5688,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     [Description("User settings for Project in the Solution")]
     public partial class AppProject : ConfigObjectVmBase<AppProject, AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public AppProject(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public AppProject(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, AppProjectValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListGeneratorsProjectSettings = new ObservableCollectionWithActions<PluginGeneratorProjectSettings>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
+            this._ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListGeneratorsProjectSettings = new ObservableCollectionWithActions<PluginGeneratorProjectSettings>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -5815,7 +5973,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -6001,8 +6159,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListGeneratorsProjectSettingsChanged();
         IReadOnlyList<IPluginGeneratorProjectSettings> IAppProject.ListGeneratorsProjectSettings { get { return (this as AppProject).ListGeneratorsProjectSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_app_project
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_app_project
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -6079,27 +6237,40 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class PluginGeneratorNodeSettings : ConfigObjectCommonBase<PluginGeneratorNodeSettings, PluginGeneratorNodeSettingsValidator>, IComparable<PluginGeneratorNodeSettings>, IConfigAcceptVisitor, IPluginGeneratorNodeSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public PluginGeneratorNodeSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public PluginGeneratorNodeSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, PluginGeneratorNodeSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -6107,7 +6278,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -6236,7 +6407,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [ReadOnly(true)]
         public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
@@ -6339,7 +6510,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private string _Settings = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
         partial void OnSettingsChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnSettingsChanged();
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -6382,19 +6553,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class PluginGroupModelExtensions : BaseSettings<PluginGroupModelExtensions, PluginGroupModelExtensionsValidator>, IPluginGroupModelExtensions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public PluginGroupModelExtensions(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public PluginGroupModelExtensions(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, PluginGroupModelExtensionsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -6402,7 +6578,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -6487,7 +6663,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         // plugin group Guid
         [ReadOnly(true)]
@@ -6600,19 +6776,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class PluginGeneratorSettings : BaseSettings<PluginGeneratorSettings, PluginGeneratorSettingsValidator>, IPluginGeneratorSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public PluginGeneratorSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public PluginGeneratorSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, PluginGeneratorSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -6620,7 +6801,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -6738,7 +6919,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [ReadOnly(true)]
         public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
@@ -7004,36 +7185,49 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     [Description("User settings for plugin generator in the Project")]
     public partial class AppProjectGenerator : ConfigObjectVmBase<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public AppProjectGenerator(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public AppProjectGenerator(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, AppProjectGeneratorValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._GeneratorSettingsVm = new PluginGeneratorSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
+            this._GeneratorSettingsVm = new PluginGeneratorSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -7281,7 +7475,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -7648,8 +7842,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private string _GenScriptFileName = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
         partial void OnGenScriptFileNameChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnGenScriptFileNameChanged();
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_app_project_generator
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_app_project_generator
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -7693,19 +7887,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class PluginGeneratorNodeDefaultSettings : BaseSettings<PluginGeneratorNodeDefaultSettings, PluginGeneratorNodeDefaultSettingsValidator>, IPluginGeneratorNodeDefaultSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public PluginGeneratorNodeDefaultSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public PluginGeneratorNodeDefaultSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, PluginGeneratorNodeDefaultSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -7713,7 +7912,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -7798,7 +7997,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         // Guid of solution-project-generator node
         public string NodeSettingsVmGuid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
@@ -7922,42 +8121,55 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     [Description("Model of application for generation in the 'Applications' group")]
     public partial class Model : ConfigObjectVmGenSettings<Model, ModelValidator>, IComparable<Model>, IConfigAcceptVisitor, IModel // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Model(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Model(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, ModelValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._GroupCommon = new GroupListCommon(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupConstantGroups = new GroupConstantGroups(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupEnumerations = new GroupListEnumerations(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupCatalogs = new GroupCatalogs(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupDocuments = new GroupDocuments(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListPluginGroupsModelExtensions = new ObservableCollectionWithActions<PluginGroupModelExtensions>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
+            this._GroupCommon = new GroupListCommon(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupConstantGroups = new GroupConstantGroups(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupEnumerations = new GroupListEnumerations(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupCatalogs = new GroupCatalogs(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupDocuments = new GroupDocuments(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListPluginGroupsModelExtensions = new ObservableCollectionWithActions<PluginGroupModelExtensions>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -8284,7 +8496,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -8750,7 +8962,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListPluginGroupsModelExtensionsChanged();
         IReadOnlyList<IPluginGroupModelExtensions> IModel.ListPluginGroupsModelExtensions { get { return (this as Model).ListPluginGroupsModelExtensions; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -8815,26 +9027,31 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class ComplexRef : VmValidatableWithSeverity<ComplexRef, ComplexRefValidator>, IComplexRef // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
         public ComplexRef() 
-            : base(ComplexRefValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+            : base(ComplexRefValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -8845,7 +9062,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             var vm = new ComplexRef(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:39
             vm._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
-            vm._ExplicitSortingPosition = from.ExplicitSortingPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._Position = from.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._ForeignObjectGuid = from.ForeignObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._RefComplexObjectIdPropertyGuid = from.RefComplexObjectIdPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
@@ -8857,7 +9073,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             Debug.Assert(from != null);
             to._Guid = from.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             to._Name = from.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
-            to._ExplicitSortingPosition = from.ExplicitSortingPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             to._Position = from.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             to._ForeignObjectGuid = from.ForeignObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             to._RefComplexObjectIdPropertyGuid = from.RefComplexObjectIdPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
@@ -8889,7 +9104,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             }
             vm._Guid = m.Guid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._Name = m.Name; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
-            vm._ExplicitSortingPosition = m.ExplicitSortingPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._Position = m.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._ForeignObjectGuid = m.ForeignObjectGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._RefComplexObjectIdPropertyGuid = m.RefComplexObjectIdPropertyGuid; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
@@ -8916,7 +9130,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             { 
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_complex_ref' field 'name'", ex); 
             }
-            m.ExplicitSortingPosition = vm.ExplicitSortingPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:307
             m.Position = vm.Position; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:307
             try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:298
             { 
@@ -8948,7 +9161,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         // Complex property guid. Empty for register doc ???
         [PropertyOrderAttribute(-2)]
@@ -8988,23 +9201,6 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private string _Name = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
         partial void OnNameChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnNameChanged();
-        
-        [Browsable(false)]
-        public int ExplicitSortingPosition // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
-        { 
-            get { return this._ExplicitSortingPosition; }
-            set
-            {
-                // Use 'OnExplicitSortingPositionChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ExplicitSortingPosition, value, (t) => { bool isCancel = false; this.OnExplicitSortingPositionChanging(ref value, ref isCancel); if (isCancel) return; this._ExplicitSortingPosition = value; this.OnExplicitSortingPositionChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
-                {
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
-                }
-            }
-        }
-        private int _ExplicitSortingPosition; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
-        partial void OnExplicitSortingPositionChanging(ref int to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
-        partial void OnExplicitSortingPositionChanged();
         
         // unique in object (can be used as Protobuf field position)
         [Browsable(false)]
@@ -9081,28 +9277,33 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class DataType : BaseSettings<DataType, DataTypeValidator>, IDataType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public DataType(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public DataType(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, DataTypeValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListObjectRefs = new ObservableCollectionWithActions<ComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
+            this._ListObjectRefs = new ObservableCollectionWithActions<ComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -9268,7 +9469,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [DisplayName("Type")]
@@ -9614,38 +9815,51 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // Common parameters section
     public partial class GroupListCommon : ConfigObjectVmGenSettings<GroupListCommon, GroupListCommonValidator>, IComparable<GroupListCommon>, IConfigAcceptVisitor, IGroupListCommon // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListCommon(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListCommon(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListCommonValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._GroupRoles = new GroupListRoles(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupViewForms = new GroupListMainViewForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._GroupRoles = new GroupListRoles(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupViewForms = new GroupListMainViewForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -9835,7 +10049,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -9982,7 +10196,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListCommon.ListNodeGeneratorsSettings { get { return (this as GroupListCommon).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -10003,19 +10217,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RoleConstantsSettings : BaseSettings<RoleConstantsSettings, RoleConstantsSettingsValidator>, IRoleConstantsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RoleConstantsSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RoleConstantsSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RoleConstantsSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -10023,7 +10242,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -10098,7 +10317,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [Description("Print")]
@@ -10176,19 +10395,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RolePropertiesSettings : BaseSettings<RolePropertiesSettings, RolePropertiesSettingsValidator>, IRolePropertiesSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RolePropertiesSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RolePropertiesSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RolePropertiesSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -10196,7 +10420,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -10271,7 +10495,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [Description("Print")]
@@ -10349,19 +10573,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RoleDetailsSettings : BaseSettings<RoleDetailsSettings, RoleDetailsSettingsValidator>, IRoleDetailsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RoleDetailsSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RoleDetailsSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RoleDetailsSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -10369,7 +10598,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -10464,7 +10693,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [Description("Print")]
@@ -10637,19 +10866,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RoleCatalogsSettings : BaseSettings<RoleCatalogsSettings, RoleCatalogsSettingsValidator>, IRoleCatalogsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RoleCatalogsSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RoleCatalogsSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RoleCatalogsSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -10657,7 +10891,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -10764,7 +10998,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [Description("Print")]
@@ -10994,19 +11228,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RoleDocumentsSettings : BaseSettings<RoleDocumentsSettings, RoleDocumentsSettingsValidator>, IRoleDocumentsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RoleDocumentsSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RoleDocumentsSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RoleDocumentsSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -11014,7 +11253,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -11121,7 +11360,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [Description("Print")]
@@ -11351,19 +11590,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RoleReportsSettings : BaseSettings<RoleReportsSettings, RoleReportsSettingsValidator>, IRoleReportsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RoleReportsSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RoleReportsSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RoleReportsSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -11371,7 +11615,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -11442,7 +11686,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [Description("Print")]
@@ -11501,25 +11745,30 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RoleConstantsSettingsWithNull : VmEditable<RoleConstantsSettingsWithNull>, IRoleConstantsSettingsWithNull // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RoleConstantsSettingsWithNull() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RoleConstantsSettingsWithNull() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -11582,7 +11831,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [Description("Print")]
@@ -11657,25 +11906,30 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RolePropertiesSettingsWithNull : VmEditable<RolePropertiesSettingsWithNull>, IRolePropertiesSettingsWithNull // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RolePropertiesSettingsWithNull() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RolePropertiesSettingsWithNull() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -11738,7 +11992,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [Description("Print")]
@@ -11813,25 +12067,30 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RoleDetailsSettingsWithNull : VmEditable<RoleDetailsSettingsWithNull>, IRoleDetailsSettingsWithNull // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RoleDetailsSettingsWithNull() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RoleDetailsSettingsWithNull() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -11914,7 +12173,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [Description("Print")]
@@ -12079,25 +12338,30 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RoleCatalogsSettingsWithNull : VmEditable<RoleCatalogsSettingsWithNull>, IRoleCatalogsSettingsWithNull // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RoleCatalogsSettingsWithNull() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RoleCatalogsSettingsWithNull() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -12196,7 +12460,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [Description("Print")]
@@ -12433,25 +12697,30 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RoleDocumentsSettingsWithNull : VmEditable<RoleDocumentsSettingsWithNull>, IRoleDocumentsSettingsWithNull // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RoleDocumentsSettingsWithNull() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RoleDocumentsSettingsWithNull() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -12546,7 +12815,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [Description("Print")]
@@ -12765,25 +13034,30 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RoleReportsSettingsWithNull : VmEditable<RoleReportsSettingsWithNull>, IRoleReportsSettingsWithNull // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RoleReportsSettingsWithNull() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RoleReportsSettingsWithNull() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -12842,7 +13116,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [Description("Print")]
@@ -12899,31 +13173,36 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RoleFromNode : VmEditable<RoleFromNode>, IRoleFromNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RoleFromNode() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RoleFromNode() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
-            this._ConstantSettings = new RoleConstantsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:112
-            this._PropertySettings = new RolePropertiesSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:112
-            this._DetailSettings = new RoleDetailsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:112
-            this._CatalogSettings = new RoleCatalogsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:112
-            this._DocumentSettings = new RoleDocumentsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:112
-            this._ReportSettings = new RoleReportsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:112
+            this._ConstantSettings = new RoleConstantsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+            this._PropertySettings = new RolePropertiesSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+            this._DetailSettings = new RoleDetailsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+            this._CatalogSettings = new RoleCatalogsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+            this._DocumentSettings = new RoleDocumentsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+            this._ReportSettings = new RoleReportsSettingsWithNull(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -13016,7 +13295,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         public RoleConstantsSettingsWithNull ConstantSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
@@ -13133,26 +13412,31 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RoleDicNodeRules : VmBindable, IRoleDicNodeRules // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RoleDicNodeRules() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RoleDicNodeRules() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
-            this._DicNodeRules = new Dictionary<string, IRoleFromNode>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:105
+            this._DicNodeRules = new Dictionary<string, IRoleFromNode>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:118
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -13199,7 +13483,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         public Dictionary<string, IRoleFromNode> DicNodeRules // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
@@ -13280,36 +13564,49 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class Role : ConfigObjectVmGenSettings<Role, RoleValidator>, IComparable<Role>, IConfigAcceptVisitor, IRole // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Role(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Role(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RoleValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -13491,7 +13788,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -13638,8 +13935,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IRole.ListNodeGeneratorsSettings { get { return (this as Role).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_role
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_role
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -13705,44 +14002,57 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class GroupListRoles : ConfigObjectVmGenSettings<GroupListRoles, GroupListRolesValidator>, IComparable<GroupListRoles>, IConfigAcceptVisitor, IGroupListRoles // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListRoles(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListRoles(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListRolesValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListRoles = new ConfigNodesCollection<Role>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._DefaultConstantsRoleSettings = new RoleConstantsSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DefaultPropertiesRoleSettings = new RolePropertiesSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DefaultDetailsRoleSettings = new RoleDetailsSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DefaultCatalogsRoleSettings = new RoleCatalogsSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DefaultDocumentsRoleSettings = new RoleDocumentsSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DefaultReportsRoleSettings = new RoleReportsSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DicRoles = new Dictionary<string, IRoleDicNodeRules>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListRoles = new ConfigNodesCollection<Role>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._DefaultConstantsRoleSettings = new RoleConstantsSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DefaultPropertiesRoleSettings = new RolePropertiesSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DefaultDetailsRoleSettings = new RoleDetailsSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DefaultCatalogsRoleSettings = new RoleCatalogsSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DefaultDocumentsRoleSettings = new RoleDocumentsSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DefaultReportsRoleSettings = new RoleReportsSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DicRoles = new Dictionary<string, IRoleDicNodeRules>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:87
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -14036,7 +14346,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -14361,7 +14671,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListRoles.ListNodeGeneratorsSettings { get { return (this as GroupListRoles).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -14426,37 +14736,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class MainViewForm : ConfigObjectVmGenSettings<MainViewForm, MainViewFormValidator>, IComparable<MainViewForm>, IConfigAcceptVisitor, IMainViewForm // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public MainViewForm(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public MainViewForm(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, MainViewFormValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._GroupListViewForms = new GroupListMainViewForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._GroupListViewForms = new GroupListMainViewForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -14646,7 +14969,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -14811,7 +15134,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IMainViewForm.ListNodeGeneratorsSettings { get { return (this as MainViewForm).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -14877,37 +15200,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // main view forms hierarchy node with children
     public partial class GroupListMainViewForms : ConfigObjectVmGenSettings<GroupListMainViewForms, GroupListMainViewFormsValidator>, IComparable<GroupListMainViewForms>, IConfigAcceptVisitor, IGroupListMainViewForms // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListMainViewForms(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListMainViewForms(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListMainViewFormsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListMainViewForms = new ConfigNodesCollection<MainViewForm>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListMainViewForms = new ConfigNodesCollection<MainViewForm>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -15140,7 +15476,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -15315,7 +15651,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListMainViewForms.ListNodeGeneratorsSettings { get { return (this as GroupListMainViewForms).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -15383,37 +15719,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // ####################################### P R O P E R T Y ##########################################
     public partial class GroupListProperties : ConfigObjectVmGenSettings<GroupListProperties, GroupListPropertiesValidator>, IComparable<GroupListProperties>, IConfigAcceptVisitor, IGroupListProperties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListProperties(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListProperties(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListPropertiesValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListProperties = new ConfigNodesCollection<Property>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListProperties = new ConfigNodesCollection<Property>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -15662,7 +16011,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -15915,7 +16264,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListProperties.ListNodeGeneratorsSettings { get { return (this as GroupListProperties).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -15947,25 +16296,30 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class StandartPropertyGuidPosition : VmBindable, IStandartPropertyGuidPosition // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public StandartPropertyGuidPosition() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public StandartPropertyGuidPosition() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -16014,7 +16368,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
@@ -16164,39 +16518,52 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class Property : ConfigObjectVmGenSettings<Property, PropertyValidator>, IComparable<Property>, IConfigAcceptVisitor, IProperty // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Property(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Property(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, PropertyValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._DataType = new DataType(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DataGenerator = new PropertyDataGenerator(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._DataType = new DataType(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DataGenerator = new PropertyDataGenerator(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:87
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -16502,7 +16869,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -17080,8 +17447,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IProperty.ListNodeGeneratorsSettings { get { return (this as Property).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_property
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_property
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -17150,37 +17517,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // ####################################### D E T A I L S ########################################
     public partial class GroupListDetails : ConfigObjectVmGenSettings<GroupListDetails, GroupListDetailsValidator>, IComparable<GroupListDetails>, IConfigAcceptVisitor, IGroupListDetails // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListDetails(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListDetails(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListDetailsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListDetails = new ConfigNodesCollection<Detail>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListDetails = new ConfigNodesCollection<Detail>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -17429,7 +17809,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -17682,7 +18062,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListDetails.ListNodeGeneratorsSettings { get { return (this as GroupListDetails).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -17780,40 +18160,53 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class Detail : ConfigObjectVmGenSettings<Detail, DetailValidator>, IComparable<Detail>, IConfigAcceptVisitor, IDetail // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Detail(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Detail(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, DetailValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupDetails = new GroupListDetails(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupForms = new GroupListForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupDetails = new GroupListDetails(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupForms = new GroupListForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:87
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -18117,7 +18510,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -18656,8 +19049,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IDetail.ListNodeGeneratorsSettings { get { return (this as Detail).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_detail
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_detail
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -18737,37 +19130,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // ####################################### C O N S T A N T ##########################################
     public partial class GroupConstantGroups : ConfigObjectVmGenSettings<GroupConstantGroups, GroupConstantGroupsValidator>, IComparable<GroupConstantGroups>, IConfigAcceptVisitor, IGroupConstantGroups // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupConstantGroups(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupConstantGroups(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupConstantGroupsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListConstantGroups = new ConfigNodesCollection<GroupListConstants>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListConstantGroups = new ConfigNodesCollection<GroupListConstants>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -19011,7 +19417,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -19185,7 +19591,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupConstantGroups.ListNodeGeneratorsSettings { get { return (this as GroupConstantGroups).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -19250,38 +19656,51 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class GroupListConstants : ConfigObjectVmGenSettings<GroupListConstants, GroupListConstantsValidator>, IComparable<GroupListConstants>, IConfigAcceptVisitor, IGroupListConstants // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListConstants(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListConstants(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListConstantsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListConstants = new ConfigNodesCollection<Constant>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListConstants = new ConfigNodesCollection<Constant>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:87
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -19547,7 +19966,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -19833,8 +20252,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListConstants.ListNodeGeneratorsSettings { get { return (this as GroupListConstants).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_group_list_constants
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_group_list_constants
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -19956,38 +20375,51 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // Constant application wise value
     public partial class Constant : ConfigObjectVmGenSettings<Constant, ConstantValidator>, IComparable<Constant>, IConfigAcceptVisitor, IConstant // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Constant(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Constant(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, ConstantValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._DataType = new DataType(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._DataType = new DataType(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:87
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -20285,7 +20717,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -20775,8 +21207,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IConstant.ListNodeGeneratorsSettings { get { return (this as Constant).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_constant
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_constant
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -20845,37 +21277,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // ####################################### E N U M E R A T I O N ##########################################
     public partial class GroupListEnumerations : ConfigObjectVmGenSettings<GroupListEnumerations, GroupListEnumerationsValidator>, IComparable<GroupListEnumerations>, IConfigAcceptVisitor, IGroupListEnumerations // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListEnumerations(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListEnumerations(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListEnumerationsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListEnumerations = new ConfigNodesCollection<Enumeration>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListEnumerations = new ConfigNodesCollection<Enumeration>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -21108,7 +21553,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -21283,7 +21728,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListEnumerations.ListNodeGeneratorsSettings { get { return (this as GroupListEnumerations).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -21348,37 +21793,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class Enumeration : ConfigObjectVmGenSettings<Enumeration, EnumerationValidator>, IComparable<Enumeration>, IConfigAcceptVisitor, IEnumeration // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Enumeration(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Enumeration(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, EnumerationValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListEnumerationPairs = new ConfigNodesCollection<EnumerationPair>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListEnumerationPairs = new ConfigNodesCollection<EnumerationPair>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -21623,7 +22081,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -21835,8 +22293,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IEnumeration.ListNodeGeneratorsSettings { get { return (this as Enumeration).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_enumeration
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_enumeration
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -21913,36 +22371,49 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class EnumerationPair : ConfigObjectVmGenSettings<EnumerationPair, EnumerationPairValidator>, IComparable<EnumerationPair>, IConfigAcceptVisitor, IEnumerationPair // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public EnumerationPair(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public EnumerationPair(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, EnumerationPairValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -22143,7 +22614,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -22352,8 +22823,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IEnumerationPair.ListNodeGeneratorsSettings { get { return (this as EnumerationPair).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_enumeration_pair
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_enumeration_pair
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -22474,42 +22945,55 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class CatalogFolder : ConfigObjectVmGenSettings<CatalogFolder, CatalogFolderValidator>, IComparable<CatalogFolder>, IConfigAcceptVisitor, ICatalogFolder // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public CatalogFolder(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public CatalogFolder(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, CatalogFolderValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._CodePropertySettings = new CatalogCodePropertySettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupDetails = new GroupListDetails(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupForms = new GroupListForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupReports = new GroupListReports(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._CodePropertySettings = new CatalogCodePropertySettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupDetails = new GroupListDetails(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupForms = new GroupListForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupReports = new GroupListReports(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:87
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -22835,7 +23319,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -23363,7 +23847,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> ICatalogFolder.ListNodeGeneratorsSettings { get { return (this as CatalogFolder).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -23395,19 +23879,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class CatalogCodePropertySettings : BaseSettings<CatalogCodePropertySettings, CatalogCodePropertySettingsValidator>, ICatalogCodePropertySettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public CatalogCodePropertySettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public CatalogCodePropertySettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, CatalogCodePropertySettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -23415,7 +23904,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -23509,7 +23998,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [DisplayName("Sequence type")]
@@ -23760,43 +24249,56 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class Catalog : ConfigObjectVmGenSettings<Catalog, CatalogValidator>, IComparable<Catalog>, IConfigAcceptVisitor, ICatalog // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Catalog(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Catalog(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, CatalogValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._CodePropertySettings = new CatalogCodePropertySettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._Folder = new CatalogFolder(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupDetails = new GroupListDetails(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupForms = new GroupListForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupReports = new GroupListReports(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._CodePropertySettings = new CatalogCodePropertySettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._Folder = new CatalogFolder(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupDetails = new GroupListDetails(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupForms = new GroupListForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupReports = new GroupListReports(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:87
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -24181,7 +24683,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -24943,8 +25445,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> ICatalog.ListNodeGeneratorsSettings { get { return (this as Catalog).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_catalog
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_catalog
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -25065,37 +25567,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class GroupListCatalogs : ConfigObjectVmGenSettings<GroupListCatalogs, GroupListCatalogsValidator>, IComparable<GroupListCatalogs>, IConfigAcceptVisitor, IGroupListCatalogs // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListCatalogs(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListCatalogs(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListCatalogsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListCatalogs = new ConfigNodesCollection<Catalog>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListCatalogs = new ConfigNodesCollection<Catalog>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -25423,7 +25938,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -25906,7 +26421,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListCatalogs.ListNodeGeneratorsSettings { get { return (this as GroupListCatalogs).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -25971,38 +26486,51 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class GroupCatalogs : ConfigObjectVmGenSettings<GroupCatalogs, GroupCatalogsValidator>, IComparable<GroupCatalogs>, IConfigAcceptVisitor, IGroupCatalogs // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupCatalogs(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupCatalogs(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupCatalogsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._GroupListCatalogs = new GroupListCatalogs(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupRelations = new RelationsGroup(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._GroupListCatalogs = new GroupListCatalogs(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupRelations = new RelationsGroup(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -26192,7 +26720,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -26340,7 +26868,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupCatalogs.ListNodeGeneratorsSettings { get { return (this as GroupCatalogs).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -26427,37 +26955,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class GroupListRegisters : ConfigObjectVmGenSettings<GroupListRegisters, GroupListRegistersValidator>, IComparable<GroupListRegisters>, IConfigAcceptVisitor, IGroupListRegisters // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListRegisters(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListRegisters(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListRegistersValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListRegisters = new ConfigNodesCollection<Register>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListRegisters = new ConfigNodesCollection<Register>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -26720,7 +27261,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -26974,7 +27515,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListRegisters.ListNodeGeneratorsSettings { get { return (this as GroupListRegisters).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -27050,37 +27591,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RegisterDimension : ConfigObjectVmGenSettings<RegisterDimension, RegisterDimensionValidator>, IComparable<RegisterDimension>, IConfigAcceptVisitor, IRegisterDimension // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RegisterDimension(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RegisterDimension(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RegisterDimensionValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._PropertyRefDimensionCatalog = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._PropertyRefDimensionCatalog = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -27289,7 +27843,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -27517,8 +28071,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IRegisterDimension.ListNodeGeneratorsSettings { get { return (this as RegisterDimension).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_register_dimension
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_register_dimension
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -27584,37 +28138,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class GroupListRegisterDimensions : ConfigObjectVmGenSettings<GroupListRegisterDimensions, GroupListRegisterDimensionsValidator>, IComparable<GroupListRegisterDimensions>, IConfigAcceptVisitor, IGroupListRegisterDimensions // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListRegisterDimensions(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListRegisterDimensions(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListRegisterDimensionsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListDimensions = new ConfigNodesCollection<RegisterDimension>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListDimensions = new ConfigNodesCollection<RegisterDimension>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -27863,7 +28430,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -28093,7 +28660,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListRegisterDimensions.ListNodeGeneratorsSettings { get { return (this as GroupListRegisterDimensions).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -28312,43 +28879,56 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class Register : ConfigObjectVmGenSettings<Register, RegisterValidator>, IComparable<Register>, IConfigAcceptVisitor, IRegister // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Register(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Register(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RegisterValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._GroupRegisterDimensions = new GroupListRegisterDimensions(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._ListObjectDocRefs = new ObservableCollectionWithActions<ComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
-            this._PropertyRefTimeline = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._ListDocMappings = new ObservableCollectionWithActions<RegisterDocToReg>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
-            this._GroupReports = new GroupListReports(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._GroupRegisterDimensions = new GroupListRegisterDimensions(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._ListObjectDocRefs = new ObservableCollectionWithActions<ComplexRef>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
+            this._PropertyRefTimeline = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._ListDocMappings = new ObservableCollectionWithActions<RegisterDocToReg>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
+            this._GroupReports = new GroupListReports(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:87
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -28871,7 +29451,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -29631,8 +30211,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IRegister.ListNodeGeneratorsSettings { get { return (this as Register).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_register
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_register
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -29676,15 +30256,15 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RegisterDocToReg : Object, IRegisterDocToReg // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RegisterDocToReg() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RegisterDocToReg() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
-            this._ListMappings = new ObservableCollectionWithActions<RegisterRegPropToDocProp>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:102
+            this._ListMappings = new ObservableCollectionWithActions<RegisterRegPropToDocProp>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:115
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -29791,7 +30371,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -29955,14 +30535,14 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RegisterRegPropToDocProp : Object, IRegisterRegPropToDocProp // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RegisterRegPropToDocProp() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RegisterRegPropToDocProp() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -30051,7 +30631,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -30234,36 +30814,49 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class DocumentEnumeratorSequence : ConfigObjectVmGenSettings<DocumentEnumeratorSequence, DocumentEnumeratorSequenceValidator>, IComparable<DocumentEnumeratorSequence>, IConfigAcceptVisitor, IDocumentEnumeratorSequence // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public DocumentEnumeratorSequence(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public DocumentEnumeratorSequence(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, DocumentEnumeratorSequenceValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -30476,7 +31069,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -30746,8 +31339,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IDocumentEnumeratorSequence.ListNodeGeneratorsSettings { get { return (this as DocumentEnumeratorSequence).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_document_enumerator_sequence
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_document_enumerator_sequence
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -30813,37 +31406,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class GroupListEnumeratorSequences : ConfigObjectVmGenSettings<GroupListEnumeratorSequences, GroupListEnumeratorSequencesValidator>, IComparable<GroupListEnumeratorSequences>, IConfigAcceptVisitor, IGroupListEnumeratorSequences // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListEnumeratorSequences(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListEnumeratorSequences(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListEnumeratorSequencesValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListEnumeratorSequences = new ConfigNodesCollection<DocumentEnumeratorSequence>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListEnumeratorSequences = new ConfigNodesCollection<DocumentEnumeratorSequence>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -31076,7 +31682,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -31252,7 +31858,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListEnumeratorSequences.ListNodeGeneratorsSettings { get { return (this as GroupListEnumeratorSequences).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -31317,41 +31923,54 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class GroupDocuments : ConfigObjectVmGenSettings<GroupDocuments, GroupDocumentsValidator>, IComparable<GroupDocuments>, IConfigAcceptVisitor, IGroupDocuments // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupDocuments(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupDocuments(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupDocumentsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._GroupListDocuments = new GroupListDocuments(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupRegisters = new GroupListRegisters(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupJournals = new GroupListJournals(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupListSequences = new GroupListEnumeratorSequences(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DocumentTimeline = new DocumentTimeline(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._GroupListDocuments = new GroupListDocuments(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupRegisters = new GroupListRegisters(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupJournals = new GroupListJournals(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupListSequences = new GroupListEnumeratorSequences(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DocumentTimeline = new DocumentTimeline(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -31565,7 +32184,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -31769,7 +32388,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupDocuments.ListNodeGeneratorsSettings { get { return (this as GroupDocuments).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -31845,39 +32464,52 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class DocumentTimeline : ConfigObjectVmGenSettings<DocumentTimeline, DocumentTimelineValidator>, IComparable<DocumentTimeline>, IConfigAcceptVisitor, IDocumentTimeline // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public DocumentTimeline(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public DocumentTimeline(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, DocumentTimelineValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListProperties = new ConfigNodesCollection<Property>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListProperties = new ConfigNodesCollection<Property>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:87
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -32162,7 +32794,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -32470,7 +33102,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IDocumentTimeline.ListNodeGeneratorsSettings { get { return (this as DocumentTimeline).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -32546,41 +33178,54 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class Document : ConfigObjectVmGenSettings<Document, DocumentValidator>, IComparable<Document>, IConfigAcceptVisitor, IDocument // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Document(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Document(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, DocumentValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupDetails = new GroupListDetails(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupForms = new GroupListForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupReports = new GroupListReports(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._GroupProperties = new GroupListProperties(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupDetails = new GroupListDetails(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupForms = new GroupListForms(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupReports = new GroupListReports(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:87
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -32842,7 +33487,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -33219,8 +33864,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IDocument.ListNodeGeneratorsSettings { get { return (this as Document).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_document
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_document
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -33330,37 +33975,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class GroupListDocuments : ConfigObjectVmGenSettings<GroupListDocuments, GroupListDocumentsValidator>, IComparable<GroupListDocuments>, IConfigAcceptVisitor, IGroupListDocuments // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListDocuments(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListDocuments(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListDocumentsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListDocuments = new ConfigNodesCollection<Document>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListDocuments = new ConfigNodesCollection<Document>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -33661,7 +34319,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -34041,7 +34699,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListDocuments.ListNodeGeneratorsSettings { get { return (this as GroupListDocuments).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -34106,38 +34764,51 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RelationsGroup : ConfigObjectVmGenSettings<RelationsGroup, RelationsGroupValidator>, IComparable<RelationsGroup>, IConfigAcceptVisitor, IRelationsGroup // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RelationsGroup(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RelationsGroup(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RelationsGroupValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._GroupListManyToManyRelations = new RelationsManyToManyGroup(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GroupListOneToOneRelations = new RelationsOneToOneGroup(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._GroupListManyToManyRelations = new RelationsManyToManyGroup(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GroupListOneToOneRelations = new RelationsOneToOneGroup(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -34327,7 +34998,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -34477,7 +35148,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IRelationsGroup.ListNodeGeneratorsSettings { get { return (this as RelationsGroup).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -34498,19 +35169,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RelationNode : BaseSettings<RelationNode, RelationNodeValidator>, IRelationNode // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RelationNode(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RelationNode(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RelationNodeValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -34518,7 +35194,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -34589,7 +35265,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(11)]
@@ -34697,39 +35373,52 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RelationManyToMany : ConfigObjectVmGenSettings<RelationManyToMany, RelationManyToManyValidator>, IComparable<RelationManyToMany>, IConfigAcceptVisitor, IRelationManyToMany // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RelationManyToMany(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RelationManyToMany(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RelationManyToManyValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._PropertyRefObj1 = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._PropertyRefObj2 = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._PropertyRefObj1 = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._PropertyRefObj2 = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:87
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -34972,7 +35661,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -35340,8 +36029,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IRelationManyToMany.ListNodeGeneratorsSettings { get { return (this as RelationManyToMany).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_relation_many_to_many
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_relation_many_to_many
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -35418,37 +36107,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RelationsManyToManyGroup : ConfigObjectVmGenSettings<RelationsManyToManyGroup, RelationsManyToManyGroupValidator>, IComparable<RelationsManyToManyGroup>, IConfigAcceptVisitor, IRelationsManyToManyGroup // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RelationsManyToManyGroup(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RelationsManyToManyGroup(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RelationsManyToManyGroupValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListRelations = new ConfigNodesCollection<RelationManyToMany>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListRelations = new ConfigNodesCollection<RelationManyToMany>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -35696,7 +36398,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -35886,7 +36588,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IRelationsManyToManyGroup.ListNodeGeneratorsSettings { get { return (this as RelationsManyToManyGroup).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -35951,39 +36653,52 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RelationOneToOne : ConfigObjectVmGenSettings<RelationOneToOne, RelationOneToOneValidator>, IComparable<RelationOneToOne>, IConfigAcceptVisitor, IRelationOneToOne // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RelationOneToOne(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RelationOneToOne(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RelationOneToOneValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._PropertyRefObj1 = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._PropertyRefObj2 = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._PropertyRefObj1 = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._PropertyRefObj2 = new Property(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DicPositionsForStandartProperties = new Dictionary<int, IStandartPropertyGuidPosition>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:87
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -36234,7 +36949,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -36642,8 +37357,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IRelationOneToOne.ListNodeGeneratorsSettings { get { return (this as RelationOneToOne).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_relation_one_to_one
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_relation_one_to_one
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -36720,37 +37435,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class RelationsOneToOneGroup : ConfigObjectVmGenSettings<RelationsOneToOneGroup, RelationsOneToOneGroupValidator>, IComparable<RelationsOneToOneGroup>, IConfigAcceptVisitor, IRelationsOneToOneGroup // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public RelationsOneToOneGroup(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public RelationsOneToOneGroup(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, RelationsOneToOneGroupValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListRelations = new ConfigNodesCollection<RelationOneToOne>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListRelations = new ConfigNodesCollection<RelationOneToOne>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -36998,7 +37726,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -37188,7 +37916,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IRelationsOneToOneGroup.ListNodeGeneratorsSettings { get { return (this as RelationsOneToOneGroup).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -37256,37 +37984,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // ####################################### J O U R N A L ##########################################
     public partial class GroupListJournals : ConfigObjectVmGenSettings<GroupListJournals, GroupListJournalsValidator>, IComparable<GroupListJournals>, IConfigAcceptVisitor, IGroupListJournals // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListJournals(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListJournals(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListJournalsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListJournals = new ConfigNodesCollection<Journal>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListJournals = new ConfigNodesCollection<Journal>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -37531,7 +38272,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -37767,7 +38508,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListJournals.ListNodeGeneratorsSettings { get { return (this as GroupListJournals).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -37832,37 +38573,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class Journal : ConfigObjectVmGenSettings<Journal, JournalValidator>, IComparable<Journal>, IConfigAcceptVisitor, IJournal // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Journal(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Journal(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, JournalValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListSelectedDocsWithProperties = new ObservableCollectionWithActions<DocInJournal>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListSelectedDocsWithProperties = new ObservableCollectionWithActions<DocInJournal>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -38107,7 +38861,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -38333,8 +39087,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IJournal.ListNodeGeneratorsSettings { get { return (this as Journal).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_journal
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_journal
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -38367,27 +39121,32 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class DocInJournal : VmValidatableWithSeverity<DocInJournal, DocInJournalValidator>, IDocInJournal // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
         public DocInJournal() 
-            : base(DocInJournalValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+            : base(DocInJournalValidator.Validator) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
-            this._ListPropertyGuids = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:102
+            this._ListPropertyGuids = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:115
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -38474,7 +39233,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         // doc guid
         public string Guid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
@@ -38579,37 +39338,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // ####################################### F O R M S ##########################################
     public partial class GroupListForms : ConfigObjectVmGenSettings<GroupListForms, GroupListFormsValidator>, IComparable<GroupListForms>, IConfigAcceptVisitor, IGroupListForms // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListForms(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListForms(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListFormsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListForms = new ConfigNodesCollection<Form>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListForms = new ConfigNodesCollection<Form>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -38842,7 +39614,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -39018,7 +39790,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListForms.ListNodeGeneratorsSettings { get { return (this as GroupListForms).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -39085,39 +39857,52 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //   - Children of Grid System
     public partial class Form : ConfigObjectVmGenSettings<Form, FormValidator>, IComparable<Form>, IConfigAcceptVisitor, IForm // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Form(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Form(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, FormValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._GridSystem = new FormGridSystem(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._ListGuidViewProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
-            this._ListGuidViewFolderProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._GridSystem = new FormGridSystem(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._ListGuidViewProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
+            this._ListGuidViewFolderProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -39371,7 +40156,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -39765,8 +40550,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IForm.ListNodeGeneratorsSettings { get { return (this as Form).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_form
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_form
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -39833,38 +40618,51 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // Children are collection of Grid System Rows 
     public partial class FormGridSystem : ConfigObjectVmGenSettings<FormGridSystem, FormGridSystemValidator>, IComparable<FormGridSystem>, IConfigAcceptVisitor, IFormGridSystem // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public FormGridSystem(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public FormGridSystem(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, FormGridSystemValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListRows = new ConfigNodesCollection<FormGridSystemRow>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListGuidProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListRows = new ConfigNodesCollection<FormGridSystemRow>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListGuidProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -40115,7 +40913,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -40304,8 +41102,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormGridSystem.ListNodeGeneratorsSettings { get { return (this as FormGridSystem).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_form_grid_system
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_form_grid_system
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -40372,37 +41170,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // Children are collection of Grid System Columns 
     public partial class FormGridSystemRow : ConfigObjectVmGenSettings<FormGridSystemRow, FormGridSystemRowValidator>, IComparable<FormGridSystemRow>, IConfigAcceptVisitor, IFormGridSystemRow // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public FormGridSystemRow(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public FormGridSystemRow(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, FormGridSystemRowValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListColumns = new ConfigNodesCollection<FormGridSystemColumn>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListColumns = new ConfigNodesCollection<FormGridSystemColumn>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -40639,7 +41450,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -40808,8 +41619,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormGridSystemRow.ListNodeGeneratorsSettings { get { return (this as FormGridSystemRow).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_form_grid_system_row
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_form_grid_system_row
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -40876,37 +41687,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // Children are collection of Auto Layout Block children
     public partial class FormGridSystemColumn : ConfigObjectVmGenSettings<FormGridSystemColumn, FormGridSystemColumnValidator>, IComparable<FormGridSystemColumn>, IConfigAcceptVisitor, IFormGridSystemColumn // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public FormGridSystemColumn(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public FormGridSystemColumn(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, FormGridSystemColumnValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._FormBlock = new FormAutoLayoutBlock(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._FormBlock = new FormAutoLayoutBlock(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -41124,7 +41948,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -41425,8 +42249,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormGridSystemColumn.ListNodeGeneratorsSettings { get { return (this as FormGridSystemColumn).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_form_grid_system_column
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_form_grid_system_column
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -41498,37 +42322,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     //   - Auto Layout Blocks
     public partial class FormAutoLayoutBlock : ConfigObjectVmGenSettings<FormAutoLayoutBlock, FormAutoLayoutBlockValidator>, IComparable<FormAutoLayoutBlock>, IConfigAcceptVisitor, IFormAutoLayoutBlock // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public FormAutoLayoutBlock(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public FormAutoLayoutBlock(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, FormAutoLayoutBlockValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListFormAutoLayoutSubBlock = new ConfigNodesCollection<FormAutoLayoutSubBlock>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListFormAutoLayoutSubBlock = new ConfigNodesCollection<FormAutoLayoutSubBlock>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -41765,7 +42602,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -41934,8 +42771,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormAutoLayoutBlock.ListNodeGeneratorsSettings { get { return (this as FormAutoLayoutBlock).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_form_auto_layout_block
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_form_auto_layout_block
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -42002,42 +42839,55 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // https://learn.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-6.0
     public partial class FormAutoLayoutSubBlock : ConfigObjectVmGenSettings<FormAutoLayoutSubBlock, FormAutoLayoutSubBlockValidator>, IComparable<FormAutoLayoutSubBlock>, IConfigAcceptVisitor, IFormAutoLayoutSubBlock // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public FormAutoLayoutSubBlock(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public FormAutoLayoutSubBlock(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, FormAutoLayoutSubBlockValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._TabControl = new FormTabControl(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._DataGridControl = new FormDataGrid(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._AutoLayoutBlockControl = new FormAutoLayoutBlock(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._FieldControl = new FormField(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._GridSystemControl = new FormGridSystem(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._TreeControl = new FormTree(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._TabControl = new FormTabControl(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._DataGridControl = new FormDataGrid(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._AutoLayoutBlockControl = new FormAutoLayoutBlock(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._FieldControl = new FormField(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._GridSystemControl = new FormGridSystem(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._TreeControl = new FormTree(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -42267,7 +43117,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -42519,8 +43369,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormAutoLayoutSubBlock.ListNodeGeneratorsSettings { get { return (this as FormAutoLayoutSubBlock).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_form_auto_layout_sub_block
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_form_auto_layout_sub_block
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -42586,36 +43436,49 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class FormField : ConfigObjectVmGenSettings<FormField, FormFieldValidator>, IComparable<FormField>, IConfigAcceptVisitor, IFormField // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public FormField(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public FormField(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, FormFieldValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -42797,7 +43660,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -42947,8 +43810,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormField.ListNodeGeneratorsSettings { get { return (this as FormField).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_form_field
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_form_field
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -43015,38 +43878,51 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // Children are collection of Auto Layout Block children
     public partial class FormTabControlTab : ConfigObjectVmGenSettings<FormTabControlTab, FormTabControlTabValidator>, IComparable<FormTabControlTab>, IConfigAcceptVisitor, IFormTabControlTab // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public FormTabControlTab(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public FormTabControlTab(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, FormTabControlTabValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListGuidProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
-            this._FormBlock = new FormAutoLayoutBlock(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListGuidProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
+            this._FormBlock = new FormAutoLayoutBlock(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -43250,7 +44126,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -43438,8 +44314,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormTabControlTab.ListNodeGeneratorsSettings { get { return (this as FormTabControlTab).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_form_tab_control_tab
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_form_tab_control_tab
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -43506,38 +44382,51 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // Children are collection of Tab Control Tabs
     public partial class FormTabControl : ConfigObjectVmGenSettings<FormTabControl, FormTabControlValidator>, IComparable<FormTabControl>, IConfigAcceptVisitor, IFormTabControl // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public FormTabControl(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public FormTabControl(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, FormTabControlValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListTabs = new ConfigNodesCollection<FormTabControlTab>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListGuidProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListTabs = new ConfigNodesCollection<FormTabControlTab>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListGuidProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -43788,7 +44677,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -43977,8 +44866,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormTabControl.ListNodeGeneratorsSettings { get { return (this as FormTabControl).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_form_tab_control
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_form_tab_control
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -44045,37 +44934,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // No Children
     public partial class FormDataGrid : ConfigObjectVmGenSettings<FormDataGrid, FormDataGridValidator>, IComparable<FormDataGrid>, IConfigAcceptVisitor, IFormDataGrid // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public FormDataGrid(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public FormDataGrid(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, FormDataGridValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListGuidProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListGuidProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -44271,7 +45173,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -44441,8 +45343,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormDataGrid.ListNodeGeneratorsSettings { get { return (this as FormDataGrid).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_form_data_grid
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_form_data_grid
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -44509,37 +45411,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // No Children
     public partial class FormTree : ConfigObjectVmGenSettings<FormTree, FormTreeValidator>, IComparable<FormTree>, IConfigAcceptVisitor, IFormTree // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public FormTree(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public FormTree(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, FormTreeValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListGuidProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:76
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListGuidProperties = new ObservableCollectionWithActions<string>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:89
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -44735,7 +45650,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -44905,8 +45820,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IFormTree.ListNodeGeneratorsSettings { get { return (this as FormTree).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_form_tree
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_form_tree
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -44975,37 +45890,50 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     // ####################################### R E P O R T S ##########################################
     public partial class GroupListReports : ConfigObjectVmGenSettings<GroupListReports, GroupListReportsValidator>, IComparable<GroupListReports>, IConfigAcceptVisitor, IGroupListReports // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GroupListReports(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GroupListReports(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GroupListReportsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListReports = new ConfigNodesCollection<Report>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListReports = new ConfigNodesCollection<Report>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -45238,7 +46166,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -45414,7 +46342,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListReports.ListNodeGeneratorsSettings { get { return (this as GroupListReports).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
         #endregion Properties
     }
     
@@ -45479,36 +46407,49 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class Report : ConfigObjectVmGenSettings<Report, ReportValidator>, IComparable<Report>, IConfigAcceptVisitor, IReport // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:50
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            sb.Append(this.Name);
+            sb.Append(":");
+            if (this.IsNew)
+                sb.Append(" New");
+            if (this.IsHasNew)
+                sb.Append(" HasNew");
+            if (this.IsHasChanged)
+                sb.Append(" HasChanged");
+    /*        p = t.GetProperty("IsNew"); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:63
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " New";
+                    sb.Append(" New");
             p = t.GetProperty("IsHasNew");
             if (p != null)
                 if ((bool?)p.GetValue(this) == true)
-                    mes = mes + " HasNew";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+                    sb.Append(" HasNew");*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public Report(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public Report(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, ReportValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:78
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:91
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -45690,7 +46631,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -45839,8 +46780,8 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnListNodeGeneratorsSettingsChanged();
         IReadOnlyList<IPluginGeneratorNodeSettings> IReport.ListNodeGeneratorsSettings { get { return (this as Report).ListNodeGeneratorsSettings; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:49
         
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:155
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:159 proto_report
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:168
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:172 proto_report
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -45895,25 +46836,30 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class ModelRow : VmBindable, IModelRow // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public ModelRow() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:94
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public ModelRow() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:107
         {
             this.OnCreating();
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -45984,7 +46930,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             return m;
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         public string GroupName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
@@ -46065,19 +47011,24 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
     }
     public partial class PropertyDataGenerator : BaseSettings<PropertyDataGenerator, PropertyDataGeneratorValidator>, IPropertyDataGenerator // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public PropertyDataGenerator(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public PropertyDataGenerator(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, PropertyDataGeneratorValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -46085,7 +47036,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -46216,7 +47167,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(3)]
         [DisplayName("Group")]

@@ -1,19 +1,30 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" Code:{(this.UseCodeProperty ? this.PropertyCodeName : "No")} Desc:{(this.UseDescriptionProperty ? this.PropertyDescriptionName : "No")} SepTreeCode:{this.UseCodePropertyInSeparateTree} SepTreeName:{this.UseNamePropertyInSeparateTree} Cats:{this.ListCatalogs.Count}";
-            mes = mes + $" Count:{ListCatalogs.Count}";
+            sb.Append(" Code:");
+            if (this.UseCodeProperty)
+                sb.Append(this.PropertyCodeName);
+            sb.Append(" Desc:");
+            if (this.UseDescriptionProperty)
+                sb.Append(this.PropertyDescriptionName);
+            sb.Append(" SepTreeCode:");
+            sb.Append(this.UseCodePropertyInSeparateTree);
+            sb.Append(" SepTreeName:");
+            sb.Append(this.UseNamePropertyInSeparateTree);
+            sb.Append(" Cats:");
+            sb.Append(this.ListCatalogs.Count);
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }

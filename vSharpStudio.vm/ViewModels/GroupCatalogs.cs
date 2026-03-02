@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 using Google.Protobuf.WellKnownTypes;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -9,12 +10,17 @@ using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class GroupCatalogs : ITreeModel, ICanGoRight, ICanGoLeft/*, INodeGenSettings*/, IEditableNodeGroup
     {
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" 1to1:{this.GroupRelations.GroupListOneToOneRelations.ListRelations.Count} MtoM:{this.GroupRelations.GroupListOneToOneRelations.ListRelations.Count} Cats:{this.GroupListCatalogs.ListCatalogs.Count}";
+            sb.Append(" 1to1:");
+            sb.Append(this.GroupRelations.GroupListOneToOneRelations.ListRelations.Count);
+            sb.Append(" MtoM:");
+            sb.Append(this.GroupRelations.GroupListManyToManyRelations.ListRelations.Count);
+            sb.Append(" Cats:");
+            sb.Append(this.GroupListCatalogs.ListCatalogs.Count);
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }

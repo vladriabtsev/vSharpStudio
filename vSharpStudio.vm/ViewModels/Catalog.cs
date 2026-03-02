@@ -15,14 +15,15 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
         INodeWithProperties, ITreeConfigNodeSortable
     {
         public override string NameShortId { get { return $"c{this.ShortId}"; } }
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes += $" props:{GroupProperties.ListProperties.Count}";
+            sb.Append(" props:");
+            sb.Append(GroupProperties.ListProperties.Count);
         }
         public string GetDebuggerDisplay(bool isOptimistic)
         {
@@ -57,6 +58,10 @@ namespace vSharpStudio.vm.ViewModels
                 sb.Append(this.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel.RecordVersionFieldName);
                 sb.Append(",nq}");
             }
+            //if (this.IsHasChanged)
+            //{
+            //    sb.Append(" HasChanged");
+            //}
             return sb.ToString();
         }
         [Browsable(false)]

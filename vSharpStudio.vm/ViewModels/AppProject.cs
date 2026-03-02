@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Xml.Linq;
 using FluentValidation.Results;
+using Microsoft.Extensions.Primitives;
 using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit;
@@ -12,13 +14,16 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
         private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(AppProject));
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes += $" Gens:{ListAppProjectGenerators.Count} RelPath:{RelativeAppProjectPath}";
+            sb.Append(" Gens:");
+            sb.Append(ListAppProjectGenerators.Count);
+            sb.Append(" RelPath:");
+            sb.Append(RelativeAppProjectPath);
         }
         [Browsable(false)]
         public AppSolution ParentAppSolution { get { Debug.Assert(this.Parent != null); return (AppSolution)this.Parent; } }

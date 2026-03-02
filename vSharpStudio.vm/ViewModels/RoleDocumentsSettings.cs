@@ -6,7 +6,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class RoleDocumentsSettings
     {
         //[Browsable(false)]
@@ -14,8 +14,19 @@ namespace vSharpStudio.vm.ViewModels
         //[Browsable(false)]
         //public IGroupListReports ParentGroupListReportsI { get { Debug.Assert(this.Parent != null); return (IGroupListReports)this.Parent; } }
 
-        //partial void OnCreated()
-        //{
-        //}
+        partial void OnCreated()
+        {
+            this._CanEdit = true;
+            this._CanEditDetails = true;
+            this._CanEditFields = true;
+            this._CanMarkDel = true;
+            this._CanPost = true;
+            this._CanPrint = true;
+            this._CanUnpost = true;
+            this._CanView = true;
+            this._CanViewDetails = true;
+            this._CanViewFields = true;
+            this._CanViewPostData = true;
+        }
     }
 }

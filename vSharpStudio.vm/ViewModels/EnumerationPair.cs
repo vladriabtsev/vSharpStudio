@@ -6,7 +6,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class EnumerationPair : IEditableNode, ICanAddNode, INodeGenSettings
     {
         [Browsable(false)]

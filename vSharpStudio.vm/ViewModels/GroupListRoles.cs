@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 using System.Xml.Linq;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -8,12 +9,13 @@ using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class GroupListRoles : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" Count:{ListRoles.Count}";
+            sb.Append(" Count:");
+            sb.Append(this.ListRoles.Count);
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -46,49 +48,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             OnSortTypeChanged();
             this._Name = Defaults.RolesGroupName;
-            this._DefaultConstantsRoleSettings.CanEdit = true;
-            this._DefaultConstantsRoleSettings.CanPrint = true;
-            this._DefaultConstantsRoleSettings.CanView = true;
-
-            this._DefaultPropertiesRoleSettings.CanEdit = true;
-            this._DefaultPropertiesRoleSettings.CanPrint = true;
-            this._DefaultPropertiesRoleSettings.CanView = true;
-
-            this._DefaultDetailsRoleSettings.CanEdit = true;
-            this._DefaultDetailsRoleSettings.CanEditDetails = true;
-            this._DefaultDetailsRoleSettings.CanEditFields = true;
-            this._DefaultDetailsRoleSettings.CanMarkDel = true;
-            this._DefaultDetailsRoleSettings.CanPrint = true;
-            this._DefaultDetailsRoleSettings.CanView = true;
-            this._DefaultDetailsRoleSettings.CanViewDetails = true;
-            this._DefaultDetailsRoleSettings.CanViewFields = true;
-
-            this._DefaultCatalogsRoleSettings.CanEditFolders = true;
-            this._DefaultCatalogsRoleSettings.CanEditDetails = true;
-            this._DefaultCatalogsRoleSettings.CanEditFields = true;
-            this._DefaultCatalogsRoleSettings.CanEditItems = true;
-            this._DefaultCatalogsRoleSettings.CanMarkDel = true;
-            this._DefaultCatalogsRoleSettings.CanMoveFolders = true;
-            this._DefaultCatalogsRoleSettings.CanMoveItems = true;
-            this._DefaultCatalogsRoleSettings.CanPrint = true;
-            this._DefaultCatalogsRoleSettings.CanView = true;
-            this._DefaultCatalogsRoleSettings.CanViewDetails = true;
-            this._DefaultCatalogsRoleSettings.CanViewFields = true;
-
-            this._DefaultDocumentsRoleSettings.CanEdit = true;
-            this._DefaultDocumentsRoleSettings.CanEditDetails = true;
-            this._DefaultDocumentsRoleSettings.CanEditFields = true;
-            this._DefaultDocumentsRoleSettings.CanMarkDel = true;
-            this._DefaultDocumentsRoleSettings.CanPost = true;
-            this._DefaultDocumentsRoleSettings.CanPrint = true;
-            this._DefaultDocumentsRoleSettings.CanUnpost = true;
-            this._DefaultDocumentsRoleSettings.CanView = true;
-            this._DefaultDocumentsRoleSettings.CanViewDetails = true;
-            this._DefaultDocumentsRoleSettings.CanViewFields = true;
-            this._DefaultDocumentsRoleSettings.CanViewPostData = true;
-
-            this._DefaultReportsRoleSettings.CanPrint = true;
-            this._DefaultReportsRoleSettings.CanView = true;
 
             //VmBindable.IsNotifyingStatic = false;
             //var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;

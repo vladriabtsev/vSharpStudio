@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.DirectoryServices.ActiveDirectory;
+using System.Text;
 using System.Xml.Linq;
 using Polly.Caching;
 using vSharpStudio.common;
@@ -12,13 +13,14 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class DocumentTimeline : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         public override string NameShortId { get { return "tm"; } }
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" Count:{ListProperties.Count}";
+            sb.Append(" props:");
+            sb.Append(ListProperties.Count);
         }
         [Browsable(false)]
         public bool IsNew { get { return false; } }

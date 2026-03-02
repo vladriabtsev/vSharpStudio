@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Linq;
 using ViewModelBase;
 using System.Collections.ObjectModel;
@@ -15,13 +16,13 @@ using System.Diagnostics;
 using FluentValidation;
 using FluentValidation.Results;
 
-namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:26
+namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:27
 {
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
 
-    public interface IPluginSampleAcceptVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:32
+    public interface IPluginSampleAcceptVisitor // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\NameSpace.tt Line:33
     {
         void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor);
     }
@@ -58,19 +59,24 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     /// <seealso href="http://sqlite.org/sharedcache.html">SQLite Shared-Cache Mode</seealso>
     public partial class DbConnectionStringSettings : BaseSettings<DbConnectionStringSettings, DbConnectionStringSettingsValidator>, IDbConnectionStringSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public DbConnectionStringSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public DbConnectionStringSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, DbConnectionStringSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -78,7 +84,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -152,7 +158,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         // Represents the caching modes that can be used when creating a new <see cref="SqliteConnection" />.
         public string StringSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
@@ -191,19 +197,24 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     }
     public partial class PluginsGroupSolutionSubSettings : BaseSubSettings<PluginsGroupSolutionSubSettings, PluginsGroupSolutionSubSettingsValidator>, IPluginsGroupSolutionSubSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public PluginsGroupSolutionSubSettings(IEditableObjectExt? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public PluginsGroupSolutionSubSettings(IEditableObjectExt? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, PluginsGroupSolutionSubSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -211,7 +222,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -282,7 +293,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         public bool IsSubParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
@@ -337,29 +348,34 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     }
     public partial class PluginsGroupSolutionSettings : BaseSettings<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator>, IPluginsGroupSolutionSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public PluginsGroupSolutionSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public PluginsGroupSolutionSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, PluginsGroupSolutionSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
             this.OnCreating();
-            this._SubSettings = new PluginsGroupSolutionSubSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:82
-            this._TestMap = new Dictionary<string, uint>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:74
+            this._SubSettings = new PluginsGroupSolutionSubSettings(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:95
+            this._TestMap = new Dictionary<string, uint>(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:87
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -447,7 +463,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         [PropertyOrderAttribute(1)]
         [DisplayName("Param1")]
@@ -526,19 +542,24 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     }
     public partial class PluginsGroupProjectSettings : BaseSettings<PluginsGroupProjectSettings, PluginsGroupProjectSettingsValidator>, IPluginsGroupProjectSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public PluginsGroupProjectSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public PluginsGroupProjectSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, PluginsGroupProjectSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -546,7 +567,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -613,7 +634,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         public bool IsGroupProjectParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
@@ -662,19 +683,24 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     }
     public partial class GeneratorDbSchemaSettings : BaseSettings<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator>, IGeneratorDbSchemaSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GeneratorDbSchemaSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GeneratorDbSchemaSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GeneratorDbSchemaSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -682,7 +708,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -764,7 +790,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         public bool IsSchemaParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
@@ -836,19 +862,24 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     }
     public partial class GeneratorDbSchemaNodeSettings : BaseSettings<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator>, IGeneratorDbSchemaNodeSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GeneratorDbSchemaNodeSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GeneratorDbSchemaNodeSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GeneratorDbSchemaNodeSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -856,7 +887,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -935,7 +966,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         public bool IsParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
@@ -1035,19 +1066,24 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     }
     public partial class GeneratorDbAccessSettings : BaseSettings<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator>, IGeneratorDbAccessSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GeneratorDbAccessSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GeneratorDbAccessSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GeneratorDbAccessSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -1055,7 +1091,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -1145,7 +1181,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         public bool IsAccessParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
@@ -1251,19 +1287,24 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
     }
     public partial class GeneratorDbAccessNodeSettings : BaseSettings<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator>, IGeneratorDbAccessNodeSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:39
     {
-        public override string ToDebugString() // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
+        public override void ToDebugString(StringBuilder sb) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:42
         {
+    /*
             var t = this.GetType();
-            var mes = t.Name + ":";
+            sb.Append(t.Name);
+            sb.Append(":");
             var p = t.GetProperty("Name");
             if (p != null)
-                mes = mes + (string?)p.GetValue(this) + ":";
-            OnDebugStringExtend(ref mes); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:59
-            return mes + base.ToDebugString();
+            {
+                sb.Append((string?)p.GetValue(this));
+                sb.Append(":");
+            }*/
+            base.ToDebugString(sb); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:72
+            OnDebugStringExtend(sb);
         }
-        partial void OnDebugStringExtend(ref string mes);
-        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:64
-        public GeneratorDbAccessNodeSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:66
+        partial void OnDebugStringExtend(StringBuilder sb);
+        #region CTOR // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:77
+        public GeneratorDbAccessNodeSettings(ITreeConfigNode? parent) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:79
             : base(parent, GeneratorDbAccessNodeSettingsValidator.Validator)
         {
             //Debug.Assert(/*!VmBindable.isUnitTests*/ this is IDataType || this is IConfig || parent != null);
@@ -1271,7 +1312,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             this.OnCreated();
         }
         // Use fields to set properties of this class during creation to avoid property change notification
-        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:125
+        partial void OnCreating(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:138
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
@@ -1350,7 +1391,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
             visitor.VisitEnd(this); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\AcceptNodeVisitor.tt Line:38
         }
         #endregion Procedures
-        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:145
+        #region Properties // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:158
         
         public bool IsParam1 // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 

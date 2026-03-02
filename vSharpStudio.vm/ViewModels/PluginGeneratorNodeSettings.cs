@@ -1,17 +1,23 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using System.Text;
+using Microsoft.Extensions.Primitives;
 using ViewModelBase;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("{ToDebugString(),nq}")]
+    [DebuggerDisplay("{ToDebugInfo(),nq}")]
     public partial class PluginGeneratorNodeSettings : ISortingValue, ITreeConfigNode
     {
+        [Browsable(false)]
+        public bool IsNew { get { return false; } }
         public bool IsCanSortByName { get { return false; } }
         public string NameToCompare { get { return string.Empty; } }
-        partial void OnDebugStringExtend(ref string mes)
+        partial void OnDebugStringExtend(StringBuilder sb)
         {
-            mes = mes + $" Path:{ModelPath}";
+            sb.Append(" Path:");
+            sb.Append(this.ModelPath);
         }
         public IvPluginGeneratorNodeSettings? SettingsVm { get; set; }
         //public PluginGeneratorNodeSettings(ITreeConfigNode parent, string appProjectGeneratorGuid, IvPluginGeneratorNodeSettings t) : this(parent)
