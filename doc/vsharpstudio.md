@@ -3030,16 +3030,16 @@ https://github.com/bchavez/Bogus
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| MAX_DT_ACC | 0 | @attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)] |
-| YEAR_DT_ACC | 10 | @attr [Description(&#34;Year&#34;)] |
-| MOUNTH_DT_ACC | 20 | @attr [Description(&#34;Month&#34;)] |
-| WEEK_DT_ACC | 30 | @attr [Description(&#34;Week&#34;)] |
-| DAY_DT_ACC | 40 | @attr [Description(&#34;Day&#34;)] |
-| HOUR_DT_ACC | 50 | @attr [Description(&#34;Hour&#34;)] |
-| MINUTE_DT_ACC | 60 | @attr [Description(&#34;Minute&#34;)] |
-| SECOND_DT_ACC | 70 | @attr [Description(&#34;Second&#34;)] |
-| MS_DT_ACC | 80 | @attr [Description(&#34;Millisecond&#34;)] |
-| MKS_DT_ACC | 90 | @attr [Description(&#34;Microsecond&#34;)] |
+| MKS_DT_ACC | 0 | @attr [Description(&#34;Microsecond&#34;)] |
+| MS_DT_ACC | 10 | @attr [Description(&#34;Millisecond&#34;)] |
+| SECOND_DT_ACC | 20 | @attr [Description(&#34;Second&#34;)] |
+| MINUTE_DT_ACC | 30 | @attr [Description(&#34;Minute&#34;)] |
+| HOUR_DT_ACC | 40 | @attr [Description(&#34;Hour&#34;)] |
+| DAY_DT_ACC | 50 | @attr [Description(&#34;Day&#34;)] |
+| WEEK_DT_ACC | 60 | @attr [Description(&#34;Week&#34;)] |
+| MOUNTH_DT_ACC | 70 | @attr [Description(&#34;Month&#34;)] |
+| YEAR_DT_ACC | 80 | @attr [Description(&#34;Year&#34;)] |
+| MAX_DT_ACC | 90 | @attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)] |
 
 
 
@@ -3483,13 +3483,13 @@ D A T A  T Y P E
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| MAX_TIME_ACC | 0 | @attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)] |
+| MKS_TIME_ACC | 0 | @attr [Description(&#34;Microsecond&#34;)] |
+| MS_TIME_ACC | 10 | @attr [Description(&#34;Millisecond&#34;)] |
+| TEN_MS_TIME_ACC | 20 | @attr [Description(&#34;Ten Milliseconds&#34;)] |
+| SECOND_TIME_ACC | 30 | @attr [Description(&#34;Second&#34;)] |
+| MINUTE_TIME_ACC | 40 | @attr [Description(&#34;Minute&#34;)] |
 | HOUR_TIME_ACC | 50 | @attr [Description(&#34;Hour&#34;)] |
-| MINUTE_TIME_ACC | 60 | @attr [Description(&#34;Minute&#34;)] |
-| SECOND_TIME_ACC | 70 | @attr [Description(&#34;Second&#34;)] |
-| TEN_MS_TIME_ACC | 75 | @attr [Description(&#34;Ten Milliseconds&#34;)] |
-| MS_TIME_ACC | 80 | @attr [Description(&#34;Millisecond&#34;)] |
-| MKS_TIME_ACC | 90 | @attr [Description(&#34;Microsecond&#34;)] |
+| MAX_TIME_ACC | 60 | @attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)] |
 
 
 

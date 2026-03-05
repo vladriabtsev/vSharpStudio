@@ -181,26 +181,26 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumDateTimeAccuracyType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
 	{
-		[Description("Max accuracy (may be limited by DB)")]
-		MAX_DT_ACC = 0,
-		[Description("Year")]
-		YEAR_DT_ACC = 10,
-		[Description("Month")]
-		MOUNTH_DT_ACC = 20,
-		[Description("Week")]
-		WEEK_DT_ACC = 30,
-		[Description("Day")]
-		DAY_DT_ACC = 40,
-		[Description("Hour")]
-		HOUR_DT_ACC = 50,
-		[Description("Minute")]
-		MINUTE_DT_ACC = 60,
-		[Description("Second")]
-		SECOND_DT_ACC = 70,
-		[Description("Millisecond")]
-		MS_DT_ACC = 80,
 		[Description("Microsecond")]
-		MKS_DT_ACC = 90,
+		MKS_DT_ACC = 0,
+		[Description("Millisecond")]
+		MS_DT_ACC = 10,
+		[Description("Second")]
+		SECOND_DT_ACC = 20,
+		[Description("Minute")]
+		MINUTE_DT_ACC = 30,
+		[Description("Hour")]
+		HOUR_DT_ACC = 40,
+		[Description("Day")]
+		DAY_DT_ACC = 50,
+		[Description("Week")]
+		WEEK_DT_ACC = 60,
+		[Description("Month")]
+		MOUNTH_DT_ACC = 70,
+		[Description("Year")]
+		YEAR_DT_ACC = 80,
+		[Description("Max accuracy (may be limited by DB)")]
+		MAX_DT_ACC = 90,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumDocNumberUniqueScope // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
@@ -562,20 +562,20 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumTimeAccuracyType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
 	{
-		[Description("Max accuracy (may be limited by DB)")]
-		MAX_TIME_ACC = 0,
+		[Description("Microsecond")]
+		MKS_TIME_ACC = 0,
+		[Description("Millisecond")]
+		MS_TIME_ACC = 10,
+		[Description("Ten Milliseconds")]
+		TEN_MS_TIME_ACC = 20,
+		[Description("Second")]
+		SECOND_TIME_ACC = 30,
+		[Description("Minute")]
+		MINUTE_TIME_ACC = 40,
 		[Description("Hour")]
 		HOUR_TIME_ACC = 50,
-		[Description("Minute")]
-		MINUTE_TIME_ACC = 60,
-		[Description("Second")]
-		SECOND_TIME_ACC = 70,
-		[Description("Ten Milliseconds")]
-		TEN_MS_TIME_ACC = 75,
-		[Description("Millisecond")]
-		MS_TIME_ACC = 80,
-		[Description("Microsecond")]
-		MKS_TIME_ACC = 90,
+		[Description("Max accuracy (may be limited by DB)")]
+		MAX_TIME_ACC = 60,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumTimespanBoundaryType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19

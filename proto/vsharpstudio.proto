@@ -826,43 +826,43 @@ enum proto_enum_data_type {
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_time_accuracy_type {
-    // @attr [Description("Max accuracy (may be limited by DB)")]
-    MAX_TIME_ACC = 0;
+    // @attr [Description("Microsecond")]
+    MKS_TIME_ACC = 0;
+    // @attr [Description("Millisecond")]
+    MS_TIME_ACC = 10;
+    // @attr [Description("Ten Milliseconds")]
+    TEN_MS_TIME_ACC = 20;
+    // @attr [Description("Second")]
+    SECOND_TIME_ACC = 30;
+    // @attr [Description("Minute")]
+    MINUTE_TIME_ACC = 40;
     // @attr [Description("Hour")]
     HOUR_TIME_ACC = 50;
-    // @attr [Description("Minute")]
-    MINUTE_TIME_ACC = 60;
-    // @attr [Description("Second")]
-    SECOND_TIME_ACC = 70;
-    // @attr [Description("Ten Milliseconds")]
-    TEN_MS_TIME_ACC = 75;
-    // @attr [Description("Millisecond")]
-    MS_TIME_ACC = 80;
-    // @attr [Description("Microsecond")]
-    MKS_TIME_ACC = 90;
+    // @attr [Description("Max accuracy (may be limited by DB)")]
+    MAX_TIME_ACC = 60;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_date_time_accuracy_type {
-    // @attr [Description("Max accuracy (may be limited by DB)")]
-    MAX_DT_ACC = 0;
-    // @attr [Description("Year")]
-    YEAR_DT_ACC = 10;
-    // @attr [Description("Month")]
-    MOUNTH_DT_ACC = 20;
-    // @attr [Description("Week")]
-    WEEK_DT_ACC = 30;
-    // @attr [Description("Day")]
-    DAY_DT_ACC = 40;
-    // @attr [Description("Hour")]
-    HOUR_DT_ACC = 50;
-    // @attr [Description("Minute")]
-    MINUTE_DT_ACC = 60;
-    // @attr [Description("Second")]
-    SECOND_DT_ACC = 70;
-    // @attr [Description("Millisecond")]
-    MS_DT_ACC = 80;
     // @attr [Description("Microsecond")]
-    MKS_DT_ACC = 90;
+    MKS_DT_ACC = 0;
+    // @attr [Description("Millisecond")]
+    MS_DT_ACC = 10;
+    // @attr [Description("Second")]
+    SECOND_DT_ACC = 20;
+    // @attr [Description("Minute")]
+    MINUTE_DT_ACC = 30;
+    // @attr [Description("Hour")]
+    HOUR_DT_ACC = 40;
+    // @attr [Description("Day")]
+    DAY_DT_ACC = 50;
+    // @attr [Description("Week")]
+    WEEK_DT_ACC = 60;
+    // @attr [Description("Month")]
+    MOUNTH_DT_ACC = 70;
+    // @attr [Description("Year")]
+    YEAR_DT_ACC = 80;
+    // @attr [Description("Max accuracy (may be limited by DB)")]
+    MAX_DT_ACC = 90;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_timespan_boundary_type {
