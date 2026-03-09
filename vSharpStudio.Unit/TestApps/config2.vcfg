@@ -1,57 +1,39 @@
-ö
-$56bb59e7-2903-475e-a935-84571092a9catest2*test2:£ìÕË·πèÄ™π
-$7e9f2036-3253-4edf-b693-d5019afa6da5Model *Model@rIdíReCoRdVeRsIoNò™D
-$fca6703f-9310-4e32-8b61-4f83874470f9	Constants"	Constants2Cnst≤D
-$6d301e15-f7b1-4ed8-ab85-cf5af58bb960Enumerations"Enumerations@∫í
-$2654a4ed-7b24-43ea-9cf5-c835ab214590Catalogs	"CatalogsB}
-$b3facf97-3289-41f0-a13d-fbdf704ad8f9ListCatalogs"ListCatalogs2CtlgH∞∫Code¿ Name⁄DescriptionÄê¬IsFolderJ‘
-$a2faae9e-8a27-41ec-8ab3-6ce2fc1b22e8	Relations"	Relations:L
-$e3119c8d-e546-473f-9d4f-935ba5778030
+Œ
+$babac93f-f014-4cce-b128-7cfe6bd4a2d2test2*test2:˚∞≥Õåà•ØÄ™π
+$8cc9af9d-e2ce-432e-952f-3d8d30f362cfModel *Model@rIdíReCoRdVeRsIoNò™D
+$d292451b-c2a9-46e8-aa18-ae56f3e99720	Constants"	Constants2Cnst≤D
+$92871a9b-1fd2-4232-90ff-dc09c90f6c60Enumerations"Enumerations@∫í
+$bf91e548-b23a-41de-be76-c335da40a1faCatalogs	"CatalogsB}
+$1ac73744-adcc-4931-b5b5-3dd516e2aacaListCatalogs"ListCatalogs2CtlgH∞∫Code¿ Name⁄DescriptionÄê¬IsFolderJ‘
+$6fad8d47-94d4-4851-b03f-0dd3edb425f2	Relations"	Relations:L
+$a15c4500-420c-416a-96ee-5584abb35943
 ManyToMany"
 ManyToMany2
 ManyToManyHBF
-$2ca2d8d3-a60b-4d9b-9032-c7fddad3c49cOneToOne"OneToOne2OneToOneH¬≤
-$9a726a52-9aff-4e56-98fc-ba602d5cb3dd	Documents"	DocumentsBÉ
-$3ec07788-ad2c-4b5d-b1ac-020b5473af63ListDocuments"ListDocuments2Doc@rDocShortTypeId∫Ä»é¸çˇˇˇˇ 	DocNumber–⁄IsPosted¢m
-$41a0f585-90fe-4cd9-840a-c8a7b6c458e0	Registers"	Registers0JRegÄ⁄$128bc115-8416-41f7-915f-9307b1ae659e™<
-$087cfb2a-d4ed-498c-bb44-2f4a69fb7c6cJournals"Journals@≤>
-$e27b87ba-8ddb-49c8-ab8e-b35f5b20721c	Sequences"	Sequences∫˙
-$ad2daa38-be21-4b0e-9769-87db5182ed95Timeline"Timeline@bDocDateTimeí@
-$624fc7af-9c52-4e50-be41-940dd32af88b
+$527b666c-3625-438b-b069-da04fea0a514OneToOne"OneToOne2OneToOneH¬≤
+$72c823ad-0249-49c2-a225-c1f45e82318b	Documents"	DocumentsBÉ
+$ca998298-8e1c-4fe9-98fe-d65cecc2fb49ListDocuments"ListDocuments2Doc@rDocShortTypeId∫Ä»é¸çˇˇˇˇ 	DocNumber–⁄IsPosted¢m
+$b46bc140-e96b-44a8-9247-8e7ebfd579d1	Registers"	Registers0JRegÄ⁄$31bcc324-9c18-4f78-893b-2e16621ff76c™<
+$eacf3a97-8610-4997-9771-a58c8a46f3a1Journals"Journals@≤>
+$42c1fd44-440b-4efe-a97d-e2f1aa14fae6	Sequences"	Sequences∫˙
+$e05155eb-c997-4406-bb02-4a4277831521Timeline"Timeline@bDocDateTimeí@
+$fd1565a0-1a6b-47ef-bbad-df3f43672749
 Properties"
 Properties@≤,	(
-$bd748457-22b7-4a49-991e-59c049b98e72≤,(
-$a7979c69-550a-4022-ab66-f132e311cbeb≤,(
-$d24eb925-d3cd-473c-8716-7396fd2a16f3≤,(
-$41d303e5-0f54-48fe-8ab9-1758c8620904≤,
+$65a80340-cfb0-490e-9da7-97095f085fb0≤,(
+$18a5b77c-a25f-43bb-8002-0914a262db5b≤,(
+$6a04fab1-b5e3-4eb5-a6c0-a478ef8a348a≤,(
+$39e91e36-ae15-4c9c-b33c-f1a80f9ca46e≤,
 (
-$6f5053a6-b552-48d7-9746-3ef23e25e700∏“å
-$c143c508-29d9-4648-a36d-23bec050981aCommon"Common0:õ
-$5d6396a4-ea15-4b51-9cc6-1772904517f2Roles"Roles@™(X≤(X∫(08X`h» (08X`hx®»»˙(08X`hx®»»ö(B4
-$d0b38cfe-7659-4ed1-9cbe-a94a7ee3c9b1Views"Views≤B
-$167a091b-c9ee-4e7e-9dde-7cc7e79e87a7BaseConfigsBaseConfigs@¬à
-$82bce33a-dabe-45c6-8ec6-15aadd0bbfc1PluginsPlugins"ø
-$3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(2_
-$1E35FCDB-6425-4C66-B047-6882738AF552
-RepositoryDB repository code generation 2
-Repository:BlazorX"·
-$C94175E4-E8F4-4A84-871B-6994199A20760.1MsSql"7vSharpStudio plugin. Database design support for MS SQL(2i
-$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design MSSQL#DB structure creation and migration 2Design MSSQL:MsSqlX"˘
-$3A29FC48-3892-498A-AE36-CB0C9916C6C90.1
-PostgreSql";vSharpStudio plugin. Database design support for PostgreSql(2s
-$C641770F-CBA5-4FC5-8068-A21C00D6E492Design POSTGRESQL#DB structure creation and migration 2Design POSTGRESQL:
-PostgreSqlX"‘
-$052C7318-3D73-4605-B1AE-749FC7E104120.1DbRepository"4vSharpStudio plugin. DB access layer repository code(2Q
-$E59B393E-AF34-4438-977F-7BF120E28A0C
-RepositoryDb Access Layer 2
-Repository:DbRepositoryX"Â
-$16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(2k
-$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign SQLITE#DB structure creation and migration 2Design SQLITE:SqliteX"µ
-$ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators(2l
+$298c650e-9bae-4056-8159-40bdd26c5ca9∏“å
+$fc5ec2fa-5c37-4d78-862a-c2fd519faaddCommon"Common0:õ
+$00dd6d38-3404-482b-9bba-829d23e4bfdaRoles"Roles@™(X≤(X∫(08X`h» (08X`hx®»»˙(08X`hx®»»ö(B4
+$ef44d517-49fe-47b7-9cc6-eab207c9ddbbViews"Views≤B
+$2afcfaa4-a807-4a24-b87f-b71931709db4BaseConfigsBaseConfigs@¬º
+$3ce7da74-8959-43ac-9df3-7f9362d3be2dPluginsPlugins"µ
+$ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators(2l
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema 2AbstractDbSchema2Y
 $7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer 2DbAccess:SampleX"«
-$D535B939-6A33-4B96-B64C-F8FB78FD9F940.1Sample2"'vSharpStudio plugin with one generators(2[
-$8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer 2	DbAccess2:Sample2X"Ë
-$EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(2Ç
-$32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions 2gRPC service:gRPCX@	 D
-$c9be2342-f9f7-4177-b1ba-85d31be52233ApplicationsApplications@
+$D535B939-6A33-4B96-B64C-F8FB78FD9F940.1Sample2"'vSharpStudio plugin with one generators(2[
+$8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer 2	DbAccess2:Sample2X@	 D
+$8c40a1c8-c1fb-4f4e-acb4-32bb25ba7650ApplicationsApplications@
