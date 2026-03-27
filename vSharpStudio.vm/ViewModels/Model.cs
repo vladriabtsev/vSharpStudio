@@ -1620,7 +1620,7 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType.SpecialPropertyTypeEnum = EnumSpecialPropertyType.RECORD_VERSION_PREV;
             res.IsRecordVersion = true;
             res.IsHidden = true;
-            res.IsNullable = false;
+            res.IsNullable = true;
             res.Position = rec.Position;
             return res;
         }
