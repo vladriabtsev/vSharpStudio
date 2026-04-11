@@ -85,8 +85,8 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(this.ParentGroupListDetails.Parent != null);
             var compName = ((ICompositeName)this.ParentGroupListDetails.Parent).CompositeName;
             sb.Append(compName);
-            sb.Append(":{Ref");
-            sb.Append(compName);
+            sb.Append(":{RefParent");
+            sb.Append(model.PKeyName);
             sb.Append(",nq}");
             return sb.ToString();
         }
