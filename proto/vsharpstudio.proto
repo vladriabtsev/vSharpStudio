@@ -3004,13 +3004,17 @@ message proto_document_enumerator_sequence {
     // @attr [Description("Code has to be unique in selected scope")]
     proto_enum_doc_number_unique_scope scope_of_unique = 14;
     // @attr [PropertyOrderAttribute(15)]
+    // @attr [DisplayName("Start Year")]
+    // @attr [Description("Start year of scope period")]
+    google.protobuf.Int32Value scope_period_start_year = 15;
+    // @attr [PropertyOrderAttribute(16)]
     // @attr [DisplayName("Start Month")]
     // @attr [Description("Start month of scope period")]
-    proto_enum_months scope_period_start_month = 15;
-    // @attr [PropertyOrderAttribute(16)]
+    proto_enum_months scope_period_start_month = 16;
+    // @attr [PropertyOrderAttribute(17)]
     // @attr [DisplayName("Start Day")]
     // @attr [Description("Start month day of scope period")]
-    uint32 scope_period_start_month_day = 16;
+    uint32 scope_period_start_month_day = 17;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;

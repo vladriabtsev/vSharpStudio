@@ -5532,8 +5532,20 @@
               "defaultValue": ""
             },
             {
+              "name": "scope_period_start_year",
+              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Start Year\")]\n@attr [Description(\"Start year of scope period\")]",
+              "label": "",
+              "type": "Int32Value",
+              "longType": "google.protobuf.Int32Value",
+              "fullType": "google.protobuf.Int32Value",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "scope_period_start_month",
-              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Start Month\")]\n@attr [Description(\"Start month of scope period\")]",
+              "description": "@attr [PropertyOrderAttribute(16)]\n@attr [DisplayName(\"Start Month\")]\n@attr [Description(\"Start month of scope period\")]",
               "label": "",
               "type": "proto_enum_months",
               "longType": "proto_enum_months",
@@ -5545,7 +5557,7 @@
             },
             {
               "name": "scope_period_start_month_day",
-              "description": "@attr [PropertyOrderAttribute(16)]\n@attr [DisplayName(\"Start Day\")]\n@attr [Description(\"Start month day of scope period\")]",
+              "description": "@attr [PropertyOrderAttribute(17)]\n@attr [DisplayName(\"Start Day\")]\n@attr [Description(\"Start month day of scope period\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",

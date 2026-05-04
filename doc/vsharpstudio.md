@@ -751,8 +751,9 @@ Constant application wise value
 | max_sequence_length | [uint32](#uint32) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] |
 | prefix | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
 | scope_of_unique | [proto_enum_doc_number_unique_scope](#proto_config-proto_enum_doc_number_unique_scope) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
-| scope_period_start_month | [proto_enum_months](#proto_config-proto_enum_months) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Start Month&#34;)] @attr [Description(&#34;Start month of scope period&#34;)] |
-| scope_period_start_month_day | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Start Day&#34;)] @attr [Description(&#34;Start month day of scope period&#34;)] |
+| scope_period_start_year | [google.protobuf.Int32Value](#google-protobuf-Int32Value) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Start Year&#34;)] @attr [Description(&#34;Start year of scope period&#34;)] |
+| scope_period_start_month | [proto_enum_months](#proto_config-proto_enum_months) |  | @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Start Month&#34;)] @attr [Description(&#34;Start month of scope period&#34;)] |
+| scope_period_start_month_day | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(17)] @attr [DisplayName(&#34;Start Day&#34;)] @attr [Description(&#34;Start month day of scope period&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 

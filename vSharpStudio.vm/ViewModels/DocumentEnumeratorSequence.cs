@@ -27,16 +27,16 @@ namespace vSharpStudio.vm.ViewModels
                     unique = "Unique";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
-                    unique = $"Year: {conv.ConvertTo(null, null, this.ScopePeriodStartMonth, typeof(string))} {this.ScopePeriodStartMonthDay}";
+                    unique = $"Year starting month: {conv.ConvertTo(null, null, this.ScopePeriodStartMonth, typeof(string))} day: {this.ScopePeriodStartMonthDay}";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
-                    unique = $"Quater: {conv.ConvertTo(null, null, this.ScopePeriodStartMonth, typeof(string))} {this.ScopePeriodStartMonthDay}";
+                    unique = $"Quater starting month: {conv.ConvertTo(null, null, this.ScopePeriodStartMonth, typeof(string))} day: {this.ScopePeriodStartMonthDay}";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
-                    unique = "Month";
+                    unique = $"Month: {this.ScopePeriodStartMonthDay}";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
-                    unique = "Week";
+                    unique = $"Week starting year: {this.ScopePeriodStartYear} month: {conv.ConvertTo(null, null, this.ScopePeriodStartMonth, typeof(string))} day: {this.ScopePeriodStartMonthDay}";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
                     unique = "Day";
@@ -137,6 +137,11 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentGroupListSequences.ListEnumeratorSequences.Remove(this);
         }
         #endregion Tree operations
+
+        partial void OnScopeOfUniqueChanged()
+        {
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+        }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>
@@ -146,12 +151,30 @@ namespace vSharpStudio.vm.ViewModels
             };
             switch (this.ScopeOfUnique)
             {
-                case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
-                case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
-                    break;
-                default:
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
+                    lst.Add(nameof(this.ScopePeriodStartYear));
                     lst.Add(nameof(this.ScopePeriodStartMonth));
                     lst.Add(nameof(this.ScopePeriodStartMonthDay));
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
+                    lst.Add(nameof(this.ScopePeriodStartYear));
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
+                    lst.Add(nameof(this.ScopePeriodStartYear));
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
+                    lst.Add(nameof(this.ScopePeriodStartYear));
+                    lst.Add(nameof(this.ScopePeriodStartMonth));
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
+                    lst.Add(nameof(this.ScopePeriodStartYear));
+                    lst.Add(nameof(this.ScopePeriodStartMonth));
+                    lst.Add(nameof(this.ScopePeriodStartMonthDay));
+                    break;
+                default:
+                    Debug.Assert(false);
                     break;
             }
             return [.. lst];

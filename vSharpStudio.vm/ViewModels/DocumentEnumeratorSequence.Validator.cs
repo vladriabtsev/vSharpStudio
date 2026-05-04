@@ -50,6 +50,21 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             });
+            this.RuleFor(x => x.ScopePeriodStartYear).Custom((prefix, cntx) =>
+            {
+                var p = (DocumentEnumeratorSequence)cntx.InstanceToValidate;
+                if (p.Parent == null)
+                    return;
+                if (p.ScopeOfUnique == common.EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK && p.ScopePeriodStartYear == null)
+                {
+                    var vf = new ValidationFailure(nameof(p.ScopePeriodStartYear),
+                        $"Week staring year is empty")
+                    {
+                        Severity = Severity.Error
+                    };
+                    cntx.AddFailure(vf);
+                }
+            });
         }
     }
 }
