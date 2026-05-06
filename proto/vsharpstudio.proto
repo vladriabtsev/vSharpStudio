@@ -602,6 +602,25 @@ enum proto_enum_months {
     MONTH_DECEMBER = 12;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+enum proto_enum_week_days {
+    // @attr [Description("Not Selected")]
+    WEEK_NOT_SELECTED = 0;
+    // @attr [Description("Sunday")]
+    WEEK_SUNDAY = 1;
+    // @attr [Description("Monday")]
+    WEEK_MONDAY = 2;
+    // @attr [Description("Tuesday")]
+    WEEK_TUESDAY = 3;
+    // @attr [Description("Wednesday")]
+    WEEK_WEDNESDAY = 4;
+    // @attr [Description("Thursday")]
+    WEEK_THURSDAY = 5;
+    // @attr [Description("Friday")]
+    WEEK_FRIDAY = 6;
+    // @attr [Description("Saturday")]
+    WEEK_SATURDAY = 7;
+}
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_primary_key_type {
     // @attr [Description("Int")]
     INT = 0;
@@ -2580,35 +2599,24 @@ message proto_group_catalogs {
  */
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_doc_number_unique_scope {
+    // Document number has to be unique
     // @attr [Description("Allways")]
     DOC_UNIQUE_FOREVER = 0;
+    // Document number has to be unique in financial year. 
+    // Financial year can be defined with month and day shift.
     // @attr [Description("Year")]
     DOC_UNIQUE_YEAR = 11;
+    // Document number has to be unique in financial quater. 
+    // Financial quater is quater of financial year.
     // @attr [Description("Quater")]
     DOC_UNIQUE_QUATER = 21;
+    // Document number has to be unique in financial month. 
     // @attr [Description("Month")]
     DOC_UNIQUE_MONTH = 31;
     // @attr [Description("Week")]
     DOC_UNIQUE_WEEK = 34;
     // @attr [Description("Day")]
     DOC_UNIQUE_DAY = 37;
-}
-// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-enum proto_enum_week_days {
-    // @attr [Description("Sunday")]
-    WEEK_SUNDAY = 0;
-    // @attr [Description("Monday")]
-    WEEK_MONDAY = 1;
-    // @attr [Description("Tuesday")]
-    WEEK_TUESDAY = 2;
-    // @attr [Description("Wednesday")]
-    WEEK_WEDNESDAY = 3;
-    // @attr [Description("Thursday")]
-    WEEK_THURSDAY = 4;
-    // @attr [Description("Friday")]
-    WEEK_FRIDAY = 5;
-    // @attr [Description("Saturday")]
-    WEEK_SATURDAY = 6;
 }
 message proto_group_list_registers {
     // @attr [Category("")]
@@ -2999,22 +3007,36 @@ message proto_document_enumerator_sequence {
     // @attr [Description("Prefix for text code sequence")]
     string prefix = 13;
 
+    // @attr [Category("Unique Scope Period")]
     // @attr [PropertyOrderAttribute(14)]
-    // @attr [DisplayName("Unique Scope")]
+    // @attr [DisplayName("Scope type")]
     // @attr [Description("Code has to be unique in selected scope")]
     proto_enum_doc_number_unique_scope scope_of_unique = 14;
+    // @attr [Category("Unique Scope Period")]
     // @attr [PropertyOrderAttribute(15)]
-    // @attr [DisplayName("Start Year")]
-    // @attr [Description("Start year of scope period")]
-    google.protobuf.Int32Value scope_period_start_year = 15;
+    // @attr [DisplayName("Week start on")]
+    // @attr [Description("Start week day of scope period")]
+    proto_enum_week_days scope_period_start_week_day = 15;
+    // @attr [Category("Unique Scope Period")]
     // @attr [PropertyOrderAttribute(16)]
-    // @attr [DisplayName("Start Month")]
+    // @attr [DisplayName("Start on Month")]
     // @attr [Description("Start month of scope period")]
     proto_enum_months scope_period_start_month = 16;
+    // @attr [Category("Unique Scope Period")]
     // @attr [PropertyOrderAttribute(17)]
-    // @attr [DisplayName("Start Day")]
+    // @attr [DisplayName("Start on Day")]
     // @attr [Description("Start month day of scope period")]
     uint32 scope_period_start_month_day = 17;
+    // @attr [Category("Unique Scope Period")]
+    // @attr [PropertyOrderAttribute(18)]
+    // @attr [DisplayName("Start on Hour")]
+    // @attr [Description("Start time zone hour of scope period. Relative to UTC-0. Usually UTC time of head office.")]
+    int32 scope_period_start_time_zone_hour = 18;
+    // @attr [Category("Unique Scope Period")]
+    // @attr [PropertyOrderAttribute(19)]
+    // @attr [DisplayName("Start on Minute")]
+    // @attr [Description("Start time zone minute of scope period. Relative to UTC-0. Usually UTC time of head office.")]
+    int32 scope_period_start_time_zone_minute = 19;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;

@@ -30883,9 +30883,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._MaxSequenceLength = from.MaxSequenceLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._Prefix = from.Prefix; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._ScopeOfUnique = from.ScopeOfUnique; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
-            vm._ScopePeriodStartYear = from.ScopePeriodStartYear; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
+            vm._ScopePeriodStartWeekDay = from.ScopePeriodStartWeekDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._ScopePeriodStartMonth = from.ScopePeriodStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._ScopePeriodStartMonthDay = from.ScopePeriodStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
+            vm._ScopePeriodStartTimeZoneHour = from.ScopePeriodStartTimeZoneHour; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
+            vm._ScopePeriodStartTimeZoneMinute = from.ScopePeriodStartTimeZoneMinute; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:59
             foreach (var t in from.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:60
                 vm._ListNodeGeneratorsSettings.AddClone(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -30908,9 +30910,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._MaxSequenceLength = from.MaxSequenceLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             to._Prefix = from.Prefix; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             to._ScopeOfUnique = from.ScopeOfUnique; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
-            to._ScopePeriodStartYear = from.ScopePeriodStartYear; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
+            to._ScopePeriodStartWeekDay = from.ScopePeriodStartWeekDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             to._ScopePeriodStartMonth = from.ScopePeriodStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             to._ScopePeriodStartMonthDay = from.ScopePeriodStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
+            to._ScopePeriodStartTimeZoneHour = from.ScopePeriodStartTimeZoneHour; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
+            to._ScopePeriodStartTimeZoneMinute = from.ScopePeriodStartTimeZoneMinute; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:100
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -30985,9 +30989,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._MaxSequenceLength = m.MaxSequenceLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._Prefix = m.Prefix; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._ScopeOfUnique = (EnumDocNumberUniqueScope)m.ScopeOfUnique; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
-            vm._ScopePeriodStartYear = m.ScopePeriodStartYear; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
+            vm._ScopePeriodStartWeekDay = (EnumWeekDays)m.ScopePeriodStartWeekDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._ScopePeriodStartMonth = (EnumMonths)m.ScopePeriodStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._ScopePeriodStartMonthDay = m.ScopePeriodStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
+            vm._ScopePeriodStartTimeZoneHour = m.ScopePeriodStartTimeZoneHour; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
+            vm._ScopePeriodStartTimeZoneMinute = m.ScopePeriodStartTimeZoneMinute; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:213
             foreach (var t in m.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:217
             {
@@ -31050,9 +31056,11 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_document_enumerator_sequence' field 'prefix'", ex); 
             }
             m.ScopeOfUnique = (Proto.Config.proto_enum_doc_number_unique_scope)vm.ScopeOfUnique; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:296
-            m.ScopePeriodStartYear = vm.ScopePeriodStartYear; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:307
+            m.ScopePeriodStartWeekDay = (Proto.Config.proto_enum_week_days)vm.ScopePeriodStartWeekDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:296
             m.ScopePeriodStartMonth = (Proto.Config.proto_enum_months)vm.ScopePeriodStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:296
             m.ScopePeriodStartMonthDay = vm.ScopePeriodStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:307
+            m.ScopePeriodStartTimeZoneHour = vm.ScopePeriodStartTimeZoneHour; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:307
+            m.ScopePeriodStartTimeZoneMinute = vm.ScopePeriodStartTimeZoneMinute; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:307
             foreach (var t in vm.ListNodeGeneratorsSettings) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:258
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:268
             return m;
@@ -31265,8 +31273,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnPrefixChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnPrefixChanged();
         
+        [Category("Unique Scope Period")]
         [PropertyOrderAttribute(14)]
-        [DisplayName("Unique Scope")]
+        [DisplayName("Scope type")]
         [Description("Code has to be unique in selected scope")]
         public EnumDocNumberUniqueScope ScopeOfUnique // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
@@ -31285,28 +31294,30 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnScopeOfUniqueChanging(ref EnumDocNumberUniqueScope to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnScopeOfUniqueChanged();
         
+        [Category("Unique Scope Period")]
         [PropertyOrderAttribute(15)]
-        [DisplayName("Start Year")]
-        [Description("Start year of scope period")]
-        public int? ScopePeriodStartYear // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
+        [DisplayName("Week start on")]
+        [Description("Start week day of scope period")]
+        public EnumWeekDays ScopePeriodStartWeekDay // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
-            get { return this._ScopePeriodStartYear; }
+            get { return this._ScopePeriodStartWeekDay; }
             set
             {
-                // Use 'OnScopePeriodStartYearChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ScopePeriodStartYear, value, (t) => { bool isCancel = false; this.OnScopePeriodStartYearChanging(ref value, ref isCancel); if (isCancel) return; this._ScopePeriodStartYear = value; this.OnScopePeriodStartYearChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
+                // Use 'OnScopePeriodStartWeekDayChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._ScopePeriodStartWeekDay, value, (t) => { bool isCancel = false; this.OnScopePeriodStartWeekDayChanging(ref value, ref isCancel); if (isCancel) return; this._ScopePeriodStartWeekDay = value; this.OnScopePeriodStartWeekDayChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
                 }
             }
         }
-        private int? _ScopePeriodStartYear; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
-        partial void OnScopePeriodStartYearChanging(ref int? to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
-        partial void OnScopePeriodStartYearChanged();
+        private EnumWeekDays _ScopePeriodStartWeekDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
+        partial void OnScopePeriodStartWeekDayChanging(ref EnumWeekDays to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
+        partial void OnScopePeriodStartWeekDayChanged();
         
+        [Category("Unique Scope Period")]
         [PropertyOrderAttribute(16)]
-        [DisplayName("Start Month")]
+        [DisplayName("Start on Month")]
         [Description("Start month of scope period")]
         public EnumMonths ScopePeriodStartMonth // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
@@ -31325,8 +31336,9 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnScopePeriodStartMonthChanging(ref EnumMonths to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnScopePeriodStartMonthChanged();
         
+        [Category("Unique Scope Period")]
         [PropertyOrderAttribute(17)]
-        [DisplayName("Start Day")]
+        [DisplayName("Start on Day")]
         [Description("Start month day of scope period")]
         public uint ScopePeriodStartMonthDay // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
@@ -31344,6 +31356,48 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         private uint _ScopePeriodStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
         partial void OnScopePeriodStartMonthDayChanging(ref uint to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnScopePeriodStartMonthDayChanged();
+        
+        [Category("Unique Scope Period")]
+        [PropertyOrderAttribute(18)]
+        [DisplayName("Start on Hour")]
+        [Description("Start time zone hour of scope period. Relative to UTC-0. Usually UTC time of head office.")]
+        public int ScopePeriodStartTimeZoneHour // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
+        { 
+            get { return this._ScopePeriodStartTimeZoneHour; }
+            set
+            {
+                // Use 'OnScopePeriodStartTimeZoneHourChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._ScopePeriodStartTimeZoneHour, value, (t) => { bool isCancel = false; this.OnScopePeriodStartTimeZoneHourChanging(ref value, ref isCancel); if (isCancel) return; this._ScopePeriodStartTimeZoneHour = value; this.OnScopePeriodStartTimeZoneHourChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
+                }
+            }
+        }
+        private int _ScopePeriodStartTimeZoneHour; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
+        partial void OnScopePeriodStartTimeZoneHourChanging(ref int to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
+        partial void OnScopePeriodStartTimeZoneHourChanged();
+        
+        [Category("Unique Scope Period")]
+        [PropertyOrderAttribute(19)]
+        [DisplayName("Start on Minute")]
+        [Description("Start time zone minute of scope period. Relative to UTC-0. Usually UTC time of head office.")]
+        public int ScopePeriodStartTimeZoneMinute // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
+        { 
+            get { return this._ScopePeriodStartTimeZoneMinute; }
+            set
+            {
+                // Use 'OnScopePeriodStartTimeZoneMinuteChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._ScopePeriodStartTimeZoneMinute, value, (t) => { bool isCancel = false; this.OnScopePeriodStartTimeZoneMinuteChanging(ref value, ref isCancel); if (isCancel) return; this._ScopePeriodStartTimeZoneMinute = value; this.OnScopePeriodStartTimeZoneMinuteChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
+                }
+            }
+        }
+        private int _ScopePeriodStartTimeZoneMinute; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
+        partial void OnScopePeriodStartTimeZoneMinuteChanging(ref int to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
+        partial void OnScopePeriodStartTimeZoneMinuteChanged();
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9

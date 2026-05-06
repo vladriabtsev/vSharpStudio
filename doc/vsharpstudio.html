@@ -3328,26 +3328,29 @@ Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub 
                   <td>scope_of_unique</td>
                   <td><a href="#proto_config.proto_enum_doc_number_unique_scope">proto_enum_doc_number_unique_scope</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(14)]
-@attr [DisplayName(&#34;Unique Scope&#34;)]
+                  <td><p>@attr [Category(&#34;Unique Scope Period&#34;)]
+@attr [PropertyOrderAttribute(14)]
+@attr [DisplayName(&#34;Scope type&#34;)]
 @attr [Description(&#34;Code has to be unique in selected scope&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>scope_period_start_year</td>
-                  <td><a href="#google.protobuf.Int32Value">google.protobuf.Int32Value</a></td>
+                  <td>scope_period_start_week_day</td>
+                  <td><a href="#proto_config.proto_enum_week_days">proto_enum_week_days</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(15)]
-@attr [DisplayName(&#34;Start Year&#34;)]
-@attr [Description(&#34;Start year of scope period&#34;)] </p></td>
+                  <td><p>@attr [Category(&#34;Unique Scope Period&#34;)]
+@attr [PropertyOrderAttribute(15)]
+@attr [DisplayName(&#34;Week start on&#34;)]
+@attr [Description(&#34;Start week day of scope period&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>scope_period_start_month</td>
                   <td><a href="#proto_config.proto_enum_months">proto_enum_months</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(16)]
-@attr [DisplayName(&#34;Start Month&#34;)]
+                  <td><p>@attr [Category(&#34;Unique Scope Period&#34;)]
+@attr [PropertyOrderAttribute(16)]
+@attr [DisplayName(&#34;Start on Month&#34;)]
 @attr [Description(&#34;Start month of scope period&#34;)] </p></td>
                 </tr>
               
@@ -3355,9 +3358,30 @@ Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub 
                   <td>scope_period_start_month_day</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(17)]
-@attr [DisplayName(&#34;Start Day&#34;)]
+                  <td><p>@attr [Category(&#34;Unique Scope Period&#34;)]
+@attr [PropertyOrderAttribute(17)]
+@attr [DisplayName(&#34;Start on Day&#34;)]
 @attr [Description(&#34;Start month day of scope period&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scope_period_start_time_zone_hour</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Unique Scope Period&#34;)]
+@attr [PropertyOrderAttribute(18)]
+@attr [DisplayName(&#34;Start on Hour&#34;)]
+@attr [Description(&#34;Start time zone hour of scope period. Relative to UTC-0. Usually UTC time of head office.&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scope_period_start_time_zone_minute</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Unique Scope Period&#34;)]
+@attr [PropertyOrderAttribute(19)]
+@attr [DisplayName(&#34;Start on Minute&#34;)]
+@attr [Description(&#34;Start time zone minute of scope period. Relative to UTC-0. Usually UTC time of head office.&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -12038,25 +12062,31 @@ which DB type to use for whole TimeSpan ???</p></td>
               <tr>
                 <td>DOC_UNIQUE_FOREVER</td>
                 <td>0</td>
-                <td><p>@attr [Description(&#34;Allways&#34;)]</p></td>
+                <td><p>Document number has to be unique
+@attr [Description(&#34;Allways&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DOC_UNIQUE_YEAR</td>
                 <td>11</td>
-                <td><p>@attr [Description(&#34;Year&#34;)]</p></td>
+                <td><p>Document number has to be unique in financial year. 
+Financial year can be defined with month and day shift.
+@attr [Description(&#34;Year&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DOC_UNIQUE_QUATER</td>
                 <td>21</td>
-                <td><p>@attr [Description(&#34;Quater&#34;)]</p></td>
+                <td><p>Document number has to be unique in financial quater. 
+Financial quater is quater of financial year.
+@attr [Description(&#34;Quater&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DOC_UNIQUE_MONTH</td>
                 <td>31</td>
-                <td><p>@attr [Description(&#34;Month&#34;)]</p></td>
+                <td><p>Document number has to be unique in financial month. 
+@attr [Description(&#34;Month&#34;)]</p></td>
               </tr>
             
               <tr>
@@ -13803,44 +13833,50 @@ which DB type to use for whole TimeSpan ???</p></td>
           <tbody>
             
               <tr>
-                <td>WEEK_SUNDAY</td>
+                <td>WEEK_NOT_SELECTED</td>
                 <td>0</td>
+                <td><p>@attr [Description(&#34;Not Selected&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEEK_SUNDAY</td>
+                <td>1</td>
                 <td><p>@attr [Description(&#34;Sunday&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>WEEK_MONDAY</td>
-                <td>1</td>
+                <td>2</td>
                 <td><p>@attr [Description(&#34;Monday&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>WEEK_TUESDAY</td>
-                <td>2</td>
+                <td>3</td>
                 <td><p>@attr [Description(&#34;Tuesday&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>WEEK_WEDNESDAY</td>
-                <td>3</td>
+                <td>4</td>
                 <td><p>@attr [Description(&#34;Wednesday&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>WEEK_THURSDAY</td>
-                <td>4</td>
+                <td>5</td>
                 <td><p>@attr [Description(&#34;Thursday&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>WEEK_FRIDAY</td>
-                <td>5</td>
+                <td>6</td>
                 <td><p>@attr [Description(&#34;Friday&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>WEEK_SATURDAY</td>
-                <td>6</td>
+                <td>7</td>
                 <td><p>@attr [Description(&#34;Saturday&#34;)]</p></td>
               </tr>
             

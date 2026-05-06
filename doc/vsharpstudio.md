@@ -750,10 +750,12 @@ Constant application wise value
 | sequence_type | [proto_enum_code_type](#proto_config-proto_enum_code_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Sequence type&#34;)] @attr [Description(&#34;Sequence type for code&#34;)] |
 | max_sequence_length | [uint32](#uint32) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] |
 | prefix | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
-| scope_of_unique | [proto_enum_doc_number_unique_scope](#proto_config-proto_enum_doc_number_unique_scope) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
-| scope_period_start_year | [google.protobuf.Int32Value](#google-protobuf-Int32Value) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Start Year&#34;)] @attr [Description(&#34;Start year of scope period&#34;)] |
-| scope_period_start_month | [proto_enum_months](#proto_config-proto_enum_months) |  | @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Start Month&#34;)] @attr [Description(&#34;Start month of scope period&#34;)] |
-| scope_period_start_month_day | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(17)] @attr [DisplayName(&#34;Start Day&#34;)] @attr [Description(&#34;Start month day of scope period&#34;)] |
+| scope_of_unique | [proto_enum_doc_number_unique_scope](#proto_config-proto_enum_doc_number_unique_scope) |  | @attr [Category(&#34;Unique Scope Period&#34;)] @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Scope type&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
+| scope_period_start_week_day | [proto_enum_week_days](#proto_config-proto_enum_week_days) |  | @attr [Category(&#34;Unique Scope Period&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Week start on&#34;)] @attr [Description(&#34;Start week day of scope period&#34;)] |
+| scope_period_start_month | [proto_enum_months](#proto_config-proto_enum_months) |  | @attr [Category(&#34;Unique Scope Period&#34;)] @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Start on Month&#34;)] @attr [Description(&#34;Start month of scope period&#34;)] |
+| scope_period_start_month_day | [uint32](#uint32) |  | @attr [Category(&#34;Unique Scope Period&#34;)] @attr [PropertyOrderAttribute(17)] @attr [DisplayName(&#34;Start on Day&#34;)] @attr [Description(&#34;Start month day of scope period&#34;)] |
+| scope_period_start_time_zone_hour | [int32](#int32) |  | @attr [Category(&#34;Unique Scope Period&#34;)] @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Start on Hour&#34;)] @attr [Description(&#34;Start time zone hour of scope period. Relative to UTC-0. Usually UTC time of head office.&#34;)] |
+| scope_period_start_time_zone_minute | [int32](#int32) |  | @attr [Category(&#34;Unique Scope Period&#34;)] @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Start on Minute&#34;)] @attr [Description(&#34;Start time zone minute of scope period. Relative to UTC-0. Usually UTC time of head office.&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -3051,10 +3053,10 @@ https://github.com/bchavez/Bogus
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| DOC_UNIQUE_FOREVER | 0 | @attr [Description(&#34;Allways&#34;)] |
-| DOC_UNIQUE_YEAR | 11 | @attr [Description(&#34;Year&#34;)] |
-| DOC_UNIQUE_QUATER | 21 | @attr [Description(&#34;Quater&#34;)] |
-| DOC_UNIQUE_MONTH | 31 | @attr [Description(&#34;Month&#34;)] |
+| DOC_UNIQUE_FOREVER | 0 | Document number has to be unique @attr [Description(&#34;Allways&#34;)] |
+| DOC_UNIQUE_YEAR | 11 | Document number has to be unique in financial year. Financial year can be defined with month and day shift. @attr [Description(&#34;Year&#34;)] |
+| DOC_UNIQUE_QUATER | 21 | Document number has to be unique in financial quater. Financial quater is quater of financial year. @attr [Description(&#34;Quater&#34;)] |
+| DOC_UNIQUE_MONTH | 31 | Document number has to be unique in financial month. @attr [Description(&#34;Month&#34;)] |
 | DOC_UNIQUE_WEEK | 34 | @attr [Description(&#34;Week&#34;)] |
 | DOC_UNIQUE_DAY | 37 | @attr [Description(&#34;Day&#34;)] |
 
@@ -3566,13 +3568,14 @@ D A T A  T Y P E
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| WEEK_SUNDAY | 0 | @attr [Description(&#34;Sunday&#34;)] |
-| WEEK_MONDAY | 1 | @attr [Description(&#34;Monday&#34;)] |
-| WEEK_TUESDAY | 2 | @attr [Description(&#34;Tuesday&#34;)] |
-| WEEK_WEDNESDAY | 3 | @attr [Description(&#34;Wednesday&#34;)] |
-| WEEK_THURSDAY | 4 | @attr [Description(&#34;Thursday&#34;)] |
-| WEEK_FRIDAY | 5 | @attr [Description(&#34;Friday&#34;)] |
-| WEEK_SATURDAY | 6 | @attr [Description(&#34;Saturday&#34;)] |
+| WEEK_NOT_SELECTED | 0 | @attr [Description(&#34;Not Selected&#34;)] |
+| WEEK_SUNDAY | 1 | @attr [Description(&#34;Sunday&#34;)] |
+| WEEK_MONDAY | 2 | @attr [Description(&#34;Monday&#34;)] |
+| WEEK_TUESDAY | 3 | @attr [Description(&#34;Tuesday&#34;)] |
+| WEEK_WEDNESDAY | 4 | @attr [Description(&#34;Wednesday&#34;)] |
+| WEEK_THURSDAY | 5 | @attr [Description(&#34;Thursday&#34;)] |
+| WEEK_FRIDAY | 6 | @attr [Description(&#34;Friday&#34;)] |
+| WEEK_SATURDAY | 7 | @attr [Description(&#34;Saturday&#34;)] |
 
 
 

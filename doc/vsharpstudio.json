@@ -606,22 +606,22 @@
             {
               "name": "DOC_UNIQUE_FOREVER",
               "number": "0",
-              "description": "@attr [Description(\"Allways\")]"
+              "description": "Document number has to be unique\n@attr [Description(\"Allways\")]"
             },
             {
               "name": "DOC_UNIQUE_YEAR",
               "number": "11",
-              "description": "@attr [Description(\"Year\")]"
+              "description": "Document number has to be unique in financial year. \nFinancial year can be defined with month and day shift.\n@attr [Description(\"Year\")]"
             },
             {
               "name": "DOC_UNIQUE_QUATER",
               "number": "21",
-              "description": "@attr [Description(\"Quater\")]"
+              "description": "Document number has to be unique in financial quater. \nFinancial quater is quater of financial year.\n@attr [Description(\"Quater\")]"
             },
             {
               "name": "DOC_UNIQUE_MONTH",
               "number": "31",
-              "description": "@attr [Description(\"Month\")]"
+              "description": "Document number has to be unique in financial month. \n@attr [Description(\"Month\")]"
             },
             {
               "name": "DOC_UNIQUE_WEEK",
@@ -2035,38 +2035,43 @@
           "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
-              "name": "WEEK_SUNDAY",
+              "name": "WEEK_NOT_SELECTED",
               "number": "0",
+              "description": "@attr [Description(\"Not Selected\")]"
+            },
+            {
+              "name": "WEEK_SUNDAY",
+              "number": "1",
               "description": "@attr [Description(\"Sunday\")]"
             },
             {
               "name": "WEEK_MONDAY",
-              "number": "1",
+              "number": "2",
               "description": "@attr [Description(\"Monday\")]"
             },
             {
               "name": "WEEK_TUESDAY",
-              "number": "2",
+              "number": "3",
               "description": "@attr [Description(\"Tuesday\")]"
             },
             {
               "name": "WEEK_WEDNESDAY",
-              "number": "3",
+              "number": "4",
               "description": "@attr [Description(\"Wednesday\")]"
             },
             {
               "name": "WEEK_THURSDAY",
-              "number": "4",
+              "number": "5",
               "description": "@attr [Description(\"Thursday\")]"
             },
             {
               "name": "WEEK_FRIDAY",
-              "number": "5",
+              "number": "6",
               "description": "@attr [Description(\"Friday\")]"
             },
             {
               "name": "WEEK_SATURDAY",
-              "number": "6",
+              "number": "7",
               "description": "@attr [Description(\"Saturday\")]"
             }
           ]
@@ -5521,7 +5526,7 @@
             },
             {
               "name": "scope_of_unique",
-              "description": "@attr [PropertyOrderAttribute(14)]\n@attr [DisplayName(\"Unique Scope\")]\n@attr [Description(\"Code has to be unique in selected scope\")]",
+              "description": "@attr [Category(\"Unique Scope Period\")]\n@attr [PropertyOrderAttribute(14)]\n@attr [DisplayName(\"Scope type\")]\n@attr [Description(\"Code has to be unique in selected scope\")]",
               "label": "",
               "type": "proto_enum_doc_number_unique_scope",
               "longType": "proto_enum_doc_number_unique_scope",
@@ -5532,12 +5537,12 @@
               "defaultValue": ""
             },
             {
-              "name": "scope_period_start_year",
-              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Start Year\")]\n@attr [Description(\"Start year of scope period\")]",
+              "name": "scope_period_start_week_day",
+              "description": "@attr [Category(\"Unique Scope Period\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Week start on\")]\n@attr [Description(\"Start week day of scope period\")]",
               "label": "",
-              "type": "Int32Value",
-              "longType": "google.protobuf.Int32Value",
-              "fullType": "google.protobuf.Int32Value",
+              "type": "proto_enum_week_days",
+              "longType": "proto_enum_week_days",
+              "fullType": "proto_config.proto_enum_week_days",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -5545,7 +5550,7 @@
             },
             {
               "name": "scope_period_start_month",
-              "description": "@attr [PropertyOrderAttribute(16)]\n@attr [DisplayName(\"Start Month\")]\n@attr [Description(\"Start month of scope period\")]",
+              "description": "@attr [Category(\"Unique Scope Period\")]\n@attr [PropertyOrderAttribute(16)]\n@attr [DisplayName(\"Start on Month\")]\n@attr [Description(\"Start month of scope period\")]",
               "label": "",
               "type": "proto_enum_months",
               "longType": "proto_enum_months",
@@ -5557,11 +5562,35 @@
             },
             {
               "name": "scope_period_start_month_day",
-              "description": "@attr [PropertyOrderAttribute(17)]\n@attr [DisplayName(\"Start Day\")]\n@attr [Description(\"Start month day of scope period\")]",
+              "description": "@attr [Category(\"Unique Scope Period\")]\n@attr [PropertyOrderAttribute(17)]\n@attr [DisplayName(\"Start on Day\")]\n@attr [Description(\"Start month day of scope period\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
               "fullType": "uint32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "scope_period_start_time_zone_hour",
+              "description": "@attr [Category(\"Unique Scope Period\")]\n@attr [PropertyOrderAttribute(18)]\n@attr [DisplayName(\"Start on Hour\")]\n@attr [Description(\"Start time zone hour of scope period. Relative to UTC-0. Usually UTC time of head office.\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "scope_period_start_time_zone_minute",
+              "description": "@attr [Category(\"Unique Scope Period\")]\n@attr [PropertyOrderAttribute(19)]\n@attr [DisplayName(\"Start on Minute\")]\n@attr [Description(\"Start time zone minute of scope period. Relative to UTC-0. Usually UTC time of head office.\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

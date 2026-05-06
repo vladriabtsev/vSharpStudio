@@ -205,12 +205,18 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumDocNumberUniqueScope // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
 	{
+		// Document number has to be unique
 		[Description("Allways")]
 		DOC_UNIQUE_FOREVER = 0,
+		// Document number has to be unique in financial year. 
+		// Financial year can be defined with month and day shift.
 		[Description("Year")]
 		DOC_UNIQUE_YEAR = 11,
+		// Document number has to be unique in financial quater. 
+		// Financial quater is quater of financial year.
 		[Description("Quater")]
 		DOC_UNIQUE_QUATER = 21,
+		// Document number has to be unique in financial month. 
 		[Description("Month")]
 		DOC_UNIQUE_MONTH = 31,
 		[Description("Week")]
@@ -640,20 +646,22 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumWeekDays // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
 	{
+		[Description("Not Selected")]
+		WEEK_NOT_SELECTED = 0,
 		[Description("Sunday")]
-		WEEK_SUNDAY = 0,
+		WEEK_SUNDAY = 1,
 		[Description("Monday")]
-		WEEK_MONDAY = 1,
+		WEEK_MONDAY = 2,
 		[Description("Tuesday")]
-		WEEK_TUESDAY = 2,
+		WEEK_TUESDAY = 3,
 		[Description("Wednesday")]
-		WEEK_WEDNESDAY = 3,
+		WEEK_WEDNESDAY = 4,
 		[Description("Thursday")]
-		WEEK_THURSDAY = 4,
+		WEEK_THURSDAY = 5,
 		[Description("Friday")]
-		WEEK_FRIDAY = 5,
+		WEEK_FRIDAY = 6,
 		[Description("Saturday")]
-		WEEK_SATURDAY = 6,
+		WEEK_SATURDAY = 7,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum FormOrientation // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
@@ -1712,9 +1720,11 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	uint MaxSequenceLength { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
     	string Prefix { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
     	EnumDocNumberUniqueScope ScopeOfUnique { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
-    	int? ScopePeriodStartYear { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
+    	EnumWeekDays ScopePeriodStartWeekDay { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
     	EnumMonths ScopePeriodStartMonth { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
     	uint ScopePeriodStartMonthDay { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
+    	int ScopePeriodStartTimeZoneHour { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
+    	int ScopePeriodStartTimeZoneMinute { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:55
     }
     
