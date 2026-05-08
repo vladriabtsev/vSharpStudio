@@ -3017,26 +3017,6 @@ message proto_document_enumerator_sequence {
     // @attr [DisplayName("Week start on")]
     // @attr [Description("Start week day of scope period")]
     proto_enum_week_days scope_period_start_week_day = 15;
-    // @attr [Category("Unique Scope Period")]
-    // @attr [PropertyOrderAttribute(16)]
-    // @attr [DisplayName("Start on Month")]
-    // @attr [Description("Start month of scope period")]
-    proto_enum_months scope_period_start_month = 16;
-    // @attr [Category("Unique Scope Period")]
-    // @attr [PropertyOrderAttribute(17)]
-    // @attr [DisplayName("Start on Day")]
-    // @attr [Description("Start month day of scope period")]
-    uint32 scope_period_start_month_day = 17;
-    // @attr [Category("Unique Scope Period")]
-    // @attr [PropertyOrderAttribute(18)]
-    // @attr [DisplayName("Start on Hour")]
-    // @attr [Description("Start time zone hour of scope period. Relative to UTC-0. Usually UTC time of head office.")]
-    int32 scope_period_start_time_zone_hour = 18;
-    // @attr [Category("Unique Scope Period")]
-    // @attr [PropertyOrderAttribute(19)]
-    // @attr [DisplayName("Start on Minute")]
-    // @attr [Description("Start time zone minute of scope period. Relative to UTC-0. Usually UTC time of head office.")]
-    int32 scope_period_start_time_zone_minute = 19;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -3099,6 +3079,28 @@ message proto_group_documents {
     string description = 5;
     // @attr [Browsable(false)]
     proto_group_list_documents group_list_documents = 8;
+
+    // @attr [Category("Head office")]
+    // @attr [PropertyOrderAttribute(16)]
+    // @attr [DisplayName("Start on Month")]
+    // @attr [Description("Start month of financial year and document number scope period")]
+    proto_enum_months scope_period_start_month = 16;
+    // @attr [Category("Head office")]
+    // @attr [PropertyOrderAttribute(17)]
+    // @attr [DisplayName("Start on Day")]
+    // @attr [Description("Start month day of financial year and document number scope period")]
+    uint32 scope_period_start_month_day = 17;
+    // @attr [Category("Head office")]
+    // @attr [PropertyOrderAttribute(18)]
+    // @attr [DisplayName("Zone Hour")]
+    // @attr [Description("Time zone hour of head office. Relative to UTC-0. Usually UTC time of head office.")]
+    int32 scope_period_start_time_zone_hour = 18;
+    // @attr [Category("Head office")]
+    // @attr [PropertyOrderAttribute(19)]
+    // @attr [DisplayName("Zone Minute")]
+    // @attr [Description("Time zone minute of head office. Relative to UTC-0. Usually UTC time of head office.")]
+    int32 scope_period_start_time_zone_minute = 19;
+
     // @attr [Browsable(false)]
     // @attr [Description("Registers for documents")]
     proto_group_list_registers group_registers = 20;

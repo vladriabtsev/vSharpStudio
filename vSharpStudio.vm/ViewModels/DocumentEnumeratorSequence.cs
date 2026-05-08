@@ -21,25 +21,26 @@ namespace vSharpStudio.vm.ViewModels
         {
             string unique = "";
             var conv = new EnumDescriptionTypeConverter(typeof(EnumMonths));
+            var gd = this.ParentGroupListSequences.ParentGroupDocuments;
             switch (this.ScopeOfUnique)
             {
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
                     unique = "Unique";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
-                    unique = $"Year starting month: {conv.ConvertTo(null, null, this.ScopePeriodStartMonth, typeof(string))} day: {this.ScopePeriodStartMonthDay} hour: {this.ScopePeriodStartTimeZoneHour} minute: {this.ScopePeriodStartTimeZoneMinute}";
+                    unique = $"Year starting month: {conv.ConvertTo(null, null, gd.ScopePeriodStartMonth, typeof(string))} day: {gd.ScopePeriodStartMonthDay} hour: {gd.ScopePeriodStartTimeZoneHour} minute: {gd.ScopePeriodStartTimeZoneMinute}";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
-                    unique = $"Quater starting month: {conv.ConvertTo(null, null, this.ScopePeriodStartMonth, typeof(string))} day: {this.ScopePeriodStartMonthDay} hour: {this.ScopePeriodStartTimeZoneHour} minute: {this.ScopePeriodStartTimeZoneMinute}";
+                    unique = $"Quater starting month: {conv.ConvertTo(null, null, gd.ScopePeriodStartMonth, typeof(string))} day: {gd.ScopePeriodStartMonthDay} hour: {gd.ScopePeriodStartTimeZoneHour} minute: {gd.ScopePeriodStartTimeZoneMinute}";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
-                    unique = $"Month: {this.ScopePeriodStartMonthDay} hour: {this.ScopePeriodStartTimeZoneHour} minute: {this.ScopePeriodStartTimeZoneMinute}";
+                    unique = $"Month: {gd.ScopePeriodStartMonthDay} hour: {gd.ScopePeriodStartTimeZoneHour} minute: {gd.ScopePeriodStartTimeZoneMinute}";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
-                    unique = $"Week starting week day: {conv.ConvertTo(null, null, this.ScopePeriodStartWeekDay, typeof(string))} hour: {this.ScopePeriodStartTimeZoneHour} minute: {this.ScopePeriodStartTimeZoneMinute}";
+                    unique = $"Week starting week day: {conv.ConvertTo(null, null, this.ScopePeriodStartWeekDay, typeof(string))} hour: {gd.ScopePeriodStartTimeZoneHour} minute: {gd.ScopePeriodStartTimeZoneMinute}";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
-                    unique = $"Day: hour: {this.ScopePeriodStartTimeZoneHour} minute: {this.ScopePeriodStartTimeZoneMinute}";
+                    unique = $"Day: hour: {gd.ScopePeriodStartTimeZoneHour} minute: {gd.ScopePeriodStartTimeZoneMinute}";
                     break;
                 default:
                     throw new NotImplementedException();
@@ -74,9 +75,6 @@ namespace vSharpStudio.vm.ViewModels
             this._MaxSequenceLength = 9;
             this._Prefix = "";
             this._ScopeOfUnique = common.EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR;
-            this._ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
-            this._ScopePeriodStartMonthDay = 1;
-
             Init();
         }
         protected override void OnInitFromDto()
@@ -150,11 +148,7 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.ScopeOfUnique)
             {
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
-                    lst.Add(nameof(this.ScopePeriodStartMonth));
-                    lst.Add(nameof(this.ScopePeriodStartMonthDay));
                     lst.Add(nameof(this.ScopePeriodStartWeekDay));
-                    lst.Add(nameof(this.ScopePeriodStartTimeZoneHour));
-                    lst.Add(nameof(this.ScopePeriodStartTimeZoneMinute));
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
                     lst.Add(nameof(this.ScopePeriodStartWeekDay));
@@ -164,16 +158,11 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
                     lst.Add(nameof(this.ScopePeriodStartWeekDay));
-                    lst.Add(nameof(this.ScopePeriodStartMonth));
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
-                    lst.Add(nameof(this.ScopePeriodStartMonth));
-                    lst.Add(nameof(this.ScopePeriodStartMonthDay));
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
                     lst.Add(nameof(this.ScopePeriodStartWeekDay));
-                    lst.Add(nameof(this.ScopePeriodStartMonth));
-                    lst.Add(nameof(this.ScopePeriodStartMonthDay));
                     break;
                 default:
                     Debug.Assert(false);

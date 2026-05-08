@@ -11,7 +11,7 @@ using vSharpStudio.wpf.Controls;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("{ToDebugInfo(),nq}")]
-    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, IEditableNodeGroup /*INodeGenSettings,*/
+    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, IEditableNodeGroup, INodeGenSettings
     {
         partial void OnDebugStringExtend(StringBuilder sb)
         {
@@ -44,11 +44,17 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsEditable = false;
+            this._ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
+            this._ScopePeriodStartMonthDay = 1;
             Init();
         }
         protected override void OnInitFromDto()
         {
             Init();
+            if (this._ScopePeriodStartMonth == EnumMonths.MONTH_NOT_SELECTED)
+                this._ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
+            if (this._ScopePeriodStartMonthDay == 0)
+                this._ScopePeriodStartMonthDay = 1;
         }
         private void Init()
         {

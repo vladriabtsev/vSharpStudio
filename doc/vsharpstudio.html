@@ -3345,46 +3345,6 @@ Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub 
                 </tr>
               
                 <tr>
-                  <td>scope_period_start_month</td>
-                  <td><a href="#proto_config.proto_enum_months">proto_enum_months</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Unique Scope Period&#34;)]
-@attr [PropertyOrderAttribute(16)]
-@attr [DisplayName(&#34;Start on Month&#34;)]
-@attr [Description(&#34;Start month of scope period&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>scope_period_start_month_day</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Unique Scope Period&#34;)]
-@attr [PropertyOrderAttribute(17)]
-@attr [DisplayName(&#34;Start on Day&#34;)]
-@attr [Description(&#34;Start month day of scope period&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>scope_period_start_time_zone_hour</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Unique Scope Period&#34;)]
-@attr [PropertyOrderAttribute(18)]
-@attr [DisplayName(&#34;Start on Hour&#34;)]
-@attr [Description(&#34;Start time zone hour of scope period. Relative to UTC-0. Usually UTC time of head office.&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>scope_period_start_time_zone_minute</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Unique Scope Period&#34;)]
-@attr [PropertyOrderAttribute(19)]
-@attr [DisplayName(&#34;Start on Minute&#34;)]
-@attr [Description(&#34;Start time zone minute of scope period. Relative to UTC-0. Usually UTC time of head office.&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
@@ -5240,6 +5200,46 @@ Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub 
                   <td><a href="#proto_config.proto_group_list_documents">proto_group_list_documents</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scope_period_start_month</td>
+                  <td><a href="#proto_config.proto_enum_months">proto_enum_months</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Head office&#34;)]
+@attr [PropertyOrderAttribute(16)]
+@attr [DisplayName(&#34;Start on Month&#34;)]
+@attr [Description(&#34;Start month of financial year and document number scope period&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scope_period_start_month_day</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Head office&#34;)]
+@attr [PropertyOrderAttribute(17)]
+@attr [DisplayName(&#34;Start on Day&#34;)]
+@attr [Description(&#34;Start month day of financial year and document number scope period&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scope_period_start_time_zone_hour</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Head office&#34;)]
+@attr [PropertyOrderAttribute(18)]
+@attr [DisplayName(&#34;Zone Hour&#34;)]
+@attr [Description(&#34;Time zone hour of head office. Relative to UTC-0. Usually UTC time of head office.&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scope_period_start_time_zone_minute</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Head office&#34;)]
+@attr [PropertyOrderAttribute(19)]
+@attr [DisplayName(&#34;Zone Minute&#34;)]
+@attr [Description(&#34;Time zone minute of head office. Relative to UTC-0. Usually UTC time of head office.&#34;)] </p></td>
                 </tr>
               
                 <tr>

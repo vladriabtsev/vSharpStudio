@@ -752,10 +752,6 @@ Constant application wise value
 | prefix | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
 | scope_of_unique | [proto_enum_doc_number_unique_scope](#proto_config-proto_enum_doc_number_unique_scope) |  | @attr [Category(&#34;Unique Scope Period&#34;)] @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Scope type&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
 | scope_period_start_week_day | [proto_enum_week_days](#proto_config-proto_enum_week_days) |  | @attr [Category(&#34;Unique Scope Period&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Week start on&#34;)] @attr [Description(&#34;Start week day of scope period&#34;)] |
-| scope_period_start_month | [proto_enum_months](#proto_config-proto_enum_months) |  | @attr [Category(&#34;Unique Scope Period&#34;)] @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Start on Month&#34;)] @attr [Description(&#34;Start month of scope period&#34;)] |
-| scope_period_start_month_day | [uint32](#uint32) |  | @attr [Category(&#34;Unique Scope Period&#34;)] @attr [PropertyOrderAttribute(17)] @attr [DisplayName(&#34;Start on Day&#34;)] @attr [Description(&#34;Start month day of scope period&#34;)] |
-| scope_period_start_time_zone_hour | [int32](#int32) |  | @attr [Category(&#34;Unique Scope Period&#34;)] @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Start on Hour&#34;)] @attr [Description(&#34;Start time zone hour of scope period. Relative to UTC-0. Usually UTC time of head office.&#34;)] |
-| scope_period_start_time_zone_minute | [int32](#int32) |  | @attr [Category(&#34;Unique Scope Period&#34;)] @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Start on Minute&#34;)] @attr [Description(&#34;Start time zone minute of scope period. Relative to UTC-0. Usually UTC time of head office.&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config-proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1227,6 +1223,10 @@ C O N S T A N T
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | group_list_documents | [proto_group_list_documents](#proto_config-proto_group_list_documents) |  | @attr [Browsable(false)] |
+| scope_period_start_month | [proto_enum_months](#proto_config-proto_enum_months) |  | @attr [Category(&#34;Head office&#34;)] @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Start on Month&#34;)] @attr [Description(&#34;Start month of financial year and document number scope period&#34;)] |
+| scope_period_start_month_day | [uint32](#uint32) |  | @attr [Category(&#34;Head office&#34;)] @attr [PropertyOrderAttribute(17)] @attr [DisplayName(&#34;Start on Day&#34;)] @attr [Description(&#34;Start month day of financial year and document number scope period&#34;)] |
+| scope_period_start_time_zone_hour | [int32](#int32) |  | @attr [Category(&#34;Head office&#34;)] @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Zone Hour&#34;)] @attr [Description(&#34;Time zone hour of head office. Relative to UTC-0. Usually UTC time of head office.&#34;)] |
+| scope_period_start_time_zone_minute | [int32](#int32) |  | @attr [Category(&#34;Head office&#34;)] @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Zone Minute&#34;)] @attr [Description(&#34;Time zone minute of head office. Relative to UTC-0. Usually UTC time of head office.&#34;)] |
 | group_registers | [proto_group_list_registers](#proto_config-proto_group_list_registers) |  | @attr [Browsable(false)] @attr [Description(&#34;Registers for documents&#34;)] |
 | group_journals | [proto_group_list_journals](#proto_config-proto_group_list_journals) |  | @attr [Browsable(false)] |
 | group_list_sequences | [proto_group_list_enumerator_sequences](#proto_config-proto_group_list_enumerator_sequences) |  | @attr [Browsable(false)] |
