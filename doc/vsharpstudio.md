@@ -2965,7 +2965,7 @@ https://github.com/bchavez/Bogus
 | SPECIAL | 0 | @attr [Browsable(false)] |
 | CHAR | 1 | @attr [Description(&#34;Char&#34;)] @attr [Browsable(false)] |
 | STRING | 11 | @attr [Description(&#34;String&#34;)] |
-| STRING_FIXED | 13 | @attr [Browsable(false)] @attr [Description(&#34;String Fixed&#34;)] not sure how work in c# with this typ |
+| STRING_FIXED | 13 | @attr [Description(&#34;String Fixed&#34;)] in c# min and max string length are equal fixed string length? |
 | ULID | 15 | @attr [Description(&#34;ULID&#34;)] https://github.com/Cysharp/Ulid |
 | NUMERICAL | 21 | @attr [Description(&#34;Numerical&#34;)] |
 | BOOL | 31 | @attr [Description(&#34;Boolean&#34;)] |

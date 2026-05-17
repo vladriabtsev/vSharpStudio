@@ -103,8 +103,7 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		CHAR = 1,
 		[Description("String")]
 		STRING = 11,
-		// not sure how work in c# with this typ
-		[Browsable(false)]
+		// in c# min and max string length are equal fixed string length?
 		[Description("String Fixed")]
 		STRING_FIXED = 13,
 		// https://github.com/Cysharp/Ulid

@@ -334,7 +334,7 @@
             {
               "name": "STRING_FIXED",
               "number": "13",
-              "description": "@attr [Browsable(false)]\n@attr [Description(\"String Fixed\")]\nnot sure how work in c# with this typ"
+              "description": "@attr [Description(\"String Fixed\")]\nin c# min and max string length are equal fixed string length?"
             },
             {
               "name": "ULID",

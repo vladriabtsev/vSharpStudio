@@ -795,9 +795,8 @@ enum proto_enum_data_type {
     CHAR = 1;
     // @attr [Description("String")]
     STRING = 11;
-    // @attr [Browsable(false)]
     // @attr [Description("String Fixed")]
-    // not sure how work in c# with this typ
+    // in c# min and max string length are equal fixed string length?
     STRING_FIXED = 13;
     // @attr [Description("ULID")]
     // https://github.com/Cysharp/Ulid
