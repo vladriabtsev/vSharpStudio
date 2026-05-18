@@ -375,8 +375,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (this.DataType.DataTypeEnum != EnumDataType.TIMESPAN)
             {
-                lst.Add(nameof(this.DataType.TimespanAccuracy));
-                lst.Add(nameof(this.DataType.TimespanMaxValue));
+                lst.Add(nameof(this.DataType.DatetimespanAccuracy));
+                lst.Add(nameof(this.DataType.DatetimespanMaxValue));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
@@ -487,12 +487,12 @@ namespace vSharpStudio.vm.ViewModels
         [DisplayName("Accuracy")]
         [Description("TimeSpan accuracy")]
         [PropertyOrderAttribute(12)]
-        public EnumTimespanBoundaryType TimespanAccuracy
+        public EnumDatetimespanBoundaryType DatetimespanAccuracy
         {
-            get { return this.DataType.TimespanAccuracy; }
+            get { return this.DataType.DatetimespanAccuracy; }
             set
             {
-                this.DataType.TimespanAccuracy = value;
+                this.DataType.DatetimespanAccuracy = value;
                 this.OnPropertyChanged();
                 this.ValidateProperty();
             }
@@ -501,12 +501,12 @@ namespace vSharpStudio.vm.ViewModels
         [DisplayName("Max value")]
         [Description("TimeSpan maximum value")]
         [PropertyOrderAttribute(13)]
-        public EnumTimespanBoundaryType TimespanMaxValue
+        public EnumDatetimespanBoundaryType DatetimespanMaxValue
         {
-            get { return this.DataType.TimespanMaxValue; }
+            get { return this.DataType.DatetimespanMaxValue; }
             set
             {
-                this.DataType.TimespanMaxValue = value;
+                this.DataType.DatetimespanMaxValue = value;
                 this.OnPropertyChanged();
                 this.ValidateProperty();
             }

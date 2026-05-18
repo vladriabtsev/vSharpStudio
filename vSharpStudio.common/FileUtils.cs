@@ -8,7 +8,7 @@ namespace vSharpStudio.common
     public static class FileUtils
     {
         public static Policy RetryPolicy = Policy
-            .Handle<Exception>(ex => false)
+            .Handle<IOException>()
             .WaitAndRetry(new[]
             {
                     TimeSpan.FromSeconds(5),

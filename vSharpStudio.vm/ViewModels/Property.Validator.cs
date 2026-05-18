@@ -334,17 +334,17 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                 }
             });
-            this.RuleFor(x => x.TimespanAccuracy).Custom((acc, cntx) =>
+            this.RuleFor(x => x.DatetimespanAccuracy).Custom((acc, cntx) =>
             {
                 var p = (Property)cntx.InstanceToValidate;
                 if (p.DataTypeEnum != EnumDataType.TIMESPAN)
                     return;
-                if (acc == EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC)
+                if (acc == EnumDatetimespanBoundaryType.NOT_SELECTED_BNDR)
                     return;
-                if (p.TimespanMaxValue != EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC && (int)p.TimespanMaxValue < (int)acc)
+                if ((int)p.DatetimespanMaxValue < (int)acc)
                 {
-                    p.ClearValidationForProperty(nameof(p.TimespanMaxValue));
-                    var vf = new ValidationFailure(nameof(p.TimespanAccuracy),
+                    p.ClearValidationForProperty(nameof(p.DatetimespanMaxValue));
+                    var vf = new ValidationFailure(nameof(p.DatetimespanAccuracy),
                         $"TimeSpan Accuracy has to be less or equal than TimeSpan Max value")
                     {
                         Severity = Severity.Error
@@ -352,17 +352,17 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.TimespanMaxValue).Custom((acc, cntx) =>
+            this.RuleFor(x => x.DatetimespanMaxValue).Custom((acc, cntx) =>
             {
                 var p = (Property)cntx.InstanceToValidate;
                 if (p.DataTypeEnum != EnumDataType.TIMESPAN)
                     return;
-                if (acc == EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC)
+                if (acc == EnumDatetimespanBoundaryType.NOT_SELECTED_BNDR)
                     return;
-                if (p.TimespanAccuracy != EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC && (int)p.TimespanAccuracy > (int)acc)
+                if ((int)p.DatetimespanAccuracy > (int)acc)
                 {
-                    p.ClearValidationForProperty(nameof(p.TimespanAccuracy));
-                    var vf = new ValidationFailure(nameof(p.TimespanMaxValue),
+                    p.ClearValidationForProperty(nameof(p.DatetimespanAccuracy));
+                    var vf = new ValidationFailure(nameof(p.DatetimespanMaxValue),
                         $"TimeSpan Max has to be greater or equal than TimeSpan Accuracy")
                     {
                         Severity = Severity.Error

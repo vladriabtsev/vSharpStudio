@@ -883,31 +883,31 @@ enum proto_enum_date_time_accuracy_type {
     MAX_DT_ACC = 90;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-enum proto_enum_timespan_boundary_type {
+enum proto_enum_datetimespan_boundary_type {
     // @attr [Description("Not Selected")]
-    NOT_SELECTED_BNDR_ACC = 0;
-    // @attr [Description("Millennium")]
-    MILLENNIUM_BNDR_ACC = 10;
-    // @attr [Description("Century")]
-    CENTURY_BNDR_ACC = 20;
-    // @attr [Description("Year")]
-    YEAR_BNDR_ACC = 30;
-    // @attr [Description("Month")]
-    MOUNTH_BNDR_ACC = 40;
-    // @attr [Description("Week")]
-    WEEK_BNDR_ACC = 50;
-    // @attr [Description("Day")]
-    DAY_BNDR_ACC = 60;
-    // @attr [Description("Hour")]
-    HOUR_BNDR_ACC = 70;
-    // @attr [Description("Minute")]
-    MINUTE_BNDR_ACC = 80;
-    // @attr [Description("Second")]
-    SECOND_BNDR_ACC = 90;
-    // @attr [Description("Millisecond")]
-    MS_BNDR_ACC = 100;
+    NOT_SELECTED_BNDR = 0;
     // @attr [Description("Microsecond")]
-    MKS_BNDR_ACC = 110;
+    MKS_BNDR = 10;
+    // @attr [Description("Millisecond")]
+    MS_BNDR = 20;
+    // @attr [Description("Second")]
+    SECOND_BNDR = 30;
+    // @attr [Description("Minute")]
+    MINUTE_BNDR = 40;
+    // @attr [Description("Hour")]
+    HOUR_BNDR = 50;
+    // @attr [Description("Day")]
+    DAY_BNDR = 60;
+    // @attr [Description("Week")]
+    WEEK_BNDR = 70;
+    // @attr [Description("Month")]
+    MOUNTH_BNDR = 80;
+    // @attr [Description("Year")]
+    YEAR_BNDR = 90;
+    // @attr [Description("Century")]
+    CENTURY_BNDR = 100;
+    // @attr [Description("Millennium")]
+    MILLENNIUM_BNDR = 110;
 }
 // @base VmValidatableWithSeverity
 message proto_complex_ref
@@ -968,12 +968,12 @@ message proto_data_type {
     // @attr [PropertyOrderAttribute(11)]
     // @attr [DisplayName("TimeSpan accuracy")]
     // @attr [Description("TimeSpan accuracy")]
-    proto_enum_timespan_boundary_type timespan_accuracy = 11;
+    proto_enum_datetimespan_boundary_type datetimespan_accuracy = 11;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(12)]
     // @attr [DisplayName("TimeSpan Max")]
     // @attr [Description("TimeSpan maximum value")]
-    proto_enum_timespan_boundary_type timespan_max_value = 12;
+    proto_enum_datetimespan_boundary_type datetimespan_max_value = 12;
     // @attr [Browsable(false)]
     proto_enum_special_property_type special_property_type_enum = 13;
     // @attr [Category("")]

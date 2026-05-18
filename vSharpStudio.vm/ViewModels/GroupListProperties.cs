@@ -363,8 +363,8 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyTimeSpan(string name, bool isNullable = false, EnumTimespanBoundaryType accuracy = EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC,
-            EnumTimespanBoundaryType maxValue = EnumTimespanBoundaryType.NOT_SELECTED_BNDR_ACC, string? guid = null)
+        public Property AddPropertyTimeSpan(string name, bool isNullable = false, EnumDatetimespanBoundaryType accuracy = EnumDatetimespanBoundaryType.NOT_SELECTED_BNDR,
+            EnumDatetimespanBoundaryType maxValue = EnumDatetimespanBoundaryType.NOT_SELECTED_BNDR, string? guid = null)
         {
             var node = new Property(this) { Name = name };
 #if DEBUG
@@ -377,8 +377,8 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.TIMESPAN };
             node.IsNullable = isNullable;
-            node.TimespanAccuracy = accuracy;
-            node.TimespanMaxValue = maxValue;
+            node.DatetimespanAccuracy = accuracy;
+            node.DatetimespanMaxValue = maxValue;
             this.NodeAddNewSubNode(node);
             return node;
         }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Google.Protobuf.WellKnownTypes;
@@ -200,6 +200,34 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		YEAR_DT_ACC = 80,
 		[Description("Max accuracy (may be limited by DB)")]
 		MAX_DT_ACC = 90,
+	}
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
+	public enum EnumDatetimespanBoundaryType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
+	{
+		[Description("Not Selected")]
+		NOT_SELECTED_BNDR = 0,
+		[Description("Microsecond")]
+		MKS_BNDR = 10,
+		[Description("Millisecond")]
+		MS_BNDR = 20,
+		[Description("Second")]
+		SECOND_BNDR = 30,
+		[Description("Minute")]
+		MINUTE_BNDR = 40,
+		[Description("Hour")]
+		HOUR_BNDR = 50,
+		[Description("Day")]
+		DAY_BNDR = 60,
+		[Description("Week")]
+		WEEK_BNDR = 70,
+		[Description("Month")]
+		MOUNTH_BNDR = 80,
+		[Description("Year")]
+		YEAR_BNDR = 90,
+		[Description("Century")]
+		CENTURY_BNDR = 100,
+		[Description("Millennium")]
+		MILLENNIUM_BNDR = 110,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumDocNumberUniqueScope // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
@@ -583,34 +611,6 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		MAX_TIME_ACC = 60,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumTimespanBoundaryType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
-	{
-		[Description("Not Selected")]
-		NOT_SELECTED_BNDR_ACC = 0,
-		[Description("Millennium")]
-		MILLENNIUM_BNDR_ACC = 10,
-		[Description("Century")]
-		CENTURY_BNDR_ACC = 20,
-		[Description("Year")]
-		YEAR_BNDR_ACC = 30,
-		[Description("Month")]
-		MOUNTH_BNDR_ACC = 40,
-		[Description("Week")]
-		WEEK_BNDR_ACC = 50,
-		[Description("Day")]
-		DAY_BNDR_ACC = 60,
-		[Description("Hour")]
-		HOUR_BNDR_ACC = 70,
-		[Description("Minute")]
-		MINUTE_BNDR_ACC = 80,
-		[Description("Second")]
-		SECOND_BNDR_ACC = 90,
-		[Description("Millisecond")]
-		MS_BNDR_ACC = 100,
-		[Description("Microsecond")]
-		MKS_BNDR_ACC = 110,
-	}
-	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumUseType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
 	{
 		[Description("Inherited")]
@@ -963,8 +963,8 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	/// </summary>
     	IReadOnlyList<IComplexRef> ListObjectRefs { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:55
     	bool IsNullable { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
-    	EnumTimespanBoundaryType TimespanAccuracy { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
-    	EnumTimespanBoundaryType TimespanMaxValue { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
+    	EnumDatetimespanBoundaryType DatetimespanAccuracy { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
+    	EnumDatetimespanBoundaryType DatetimespanMaxValue { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
     	EnumSpecialPropertyType SpecialPropertyTypeEnum { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
     	bool IsUseHistory { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
     	bool IsPKey { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65

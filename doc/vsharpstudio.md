@@ -126,6 +126,7 @@
     - [proto_enum_database_data_type](#proto_config-proto_enum_database_data_type)
     - [proto_enum_date_data_type](#proto_config-proto_enum_date_data_type)
     - [proto_enum_date_time_accuracy_type](#proto_config-proto_enum_date_time_accuracy_type)
+    - [proto_enum_datetimespan_boundary_type](#proto_config-proto_enum_datetimespan_boundary_type)
     - [proto_enum_doc_number_unique_scope](#proto_config-proto_enum_doc_number_unique_scope)
     - [proto_enum_finance_data_type](#proto_config-proto_enum_finance_data_type)
     - [proto_enum_hacker_data_type](#proto_config-proto_enum_hacker_data_type)
@@ -149,7 +150,6 @@
     - [proto_enum_special_property_type](#proto_config-proto_enum_special_property_type)
     - [proto_enum_system_data_type](#proto_config-proto_enum_system_data_type)
     - [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type)
-    - [proto_enum_timespan_boundary_type](#proto_config-proto_enum_timespan_boundary_type)
     - [proto_enum_use_type](#proto_config-proto_enum_use_type)
     - [proto_enum_vehicle_data_type](#proto_config-proto_enum_vehicle_data_type)
     - [proto_enum_version_field_type](#proto_config-proto_enum_version_field_type)
@@ -593,8 +593,8 @@ Constant application wise value
 | accuracy_for_time | [proto_enum_time_accuracy_type](#proto_config-proto_enum_time_accuracy_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Time accuracy&#34;)] @attr [Description(&#34;Time accuracy for TimeOnly type. Business model is expecting selected accuracy&#34;)] |
 | list_object_refs | [proto_complex_ref](#proto_config-proto_complex_ref) | repeated | &lt;summary&gt; / Guids of selected complex types for data type CATALOGS or DOCUMENTS / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
 | is_nullable | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
-| timespan_accuracy | [proto_enum_timespan_boundary_type](#proto_config-proto_enum_timespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;TimeSpan accuracy&#34;)] @attr [Description(&#34;TimeSpan accuracy&#34;)] |
-| timespan_max_value | [proto_enum_timespan_boundary_type](#proto_config-proto_enum_timespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;TimeSpan Max&#34;)] @attr [Description(&#34;TimeSpan maximum value&#34;)] |
+| datetimespan_accuracy | [proto_enum_datetimespan_boundary_type](#proto_config-proto_enum_datetimespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;TimeSpan accuracy&#34;)] @attr [Description(&#34;TimeSpan accuracy&#34;)] |
+| datetimespan_max_value | [proto_enum_datetimespan_boundary_type](#proto_config-proto_enum_datetimespan_boundary_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;TimeSpan Max&#34;)] @attr [Description(&#34;TimeSpan maximum value&#34;)] |
 | special_property_type_enum | [proto_enum_special_property_type](#proto_config-proto_enum_special_property_type) |  | @attr [Browsable(false)] |
 | is_use_history | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Use History&#34;)] @attr [Description(&#34;Use history for property value&#34;)] |
 | is_p_key | [bool](#bool) |  | @attr [Browsable(false)] |
@@ -3046,6 +3046,28 @@ https://github.com/bchavez/Bogus
 
 
 
+<a name="proto_config-proto_enum_datetimespan_boundary_type"></a>
+
+### proto_enum_datetimespan_boundary_type
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NOT_SELECTED_BNDR | 0 | @attr [Description(&#34;Not Selected&#34;)] |
+| MKS_BNDR | 10 | @attr [Description(&#34;Microsecond&#34;)] |
+| MS_BNDR | 20 | @attr [Description(&#34;Millisecond&#34;)] |
+| SECOND_BNDR | 30 | @attr [Description(&#34;Second&#34;)] |
+| MINUTE_BNDR | 40 | @attr [Description(&#34;Minute&#34;)] |
+| HOUR_BNDR | 50 | @attr [Description(&#34;Hour&#34;)] |
+| DAY_BNDR | 60 | @attr [Description(&#34;Day&#34;)] |
+| WEEK_BNDR | 70 | @attr [Description(&#34;Week&#34;)] |
+| MOUNTH_BNDR | 80 | @attr [Description(&#34;Month&#34;)] |
+| YEAR_BNDR | 90 | @attr [Description(&#34;Year&#34;)] |
+| CENTURY_BNDR | 100 | @attr [Description(&#34;Century&#34;)] |
+| MILLENNIUM_BNDR | 110 | @attr [Description(&#34;Millennium&#34;)] |
+
+
+
 <a name="proto_config-proto_enum_doc_number_unique_scope"></a>
 
 ### proto_enum_doc_number_unique_scope
@@ -3493,28 +3515,6 @@ D A T A  T Y P E
 | MINUTE_TIME_ACC | 40 | @attr [Description(&#34;Minute&#34;)] |
 | HOUR_TIME_ACC | 50 | @attr [Description(&#34;Hour&#34;)] |
 | MAX_TIME_ACC | 60 | @attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)] |
-
-
-
-<a name="proto_config-proto_enum_timespan_boundary_type"></a>
-
-### proto_enum_timespan_boundary_type
-@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| NOT_SELECTED_BNDR_ACC | 0 | @attr [Description(&#34;Not Selected&#34;)] |
-| MILLENNIUM_BNDR_ACC | 10 | @attr [Description(&#34;Millennium&#34;)] |
-| CENTURY_BNDR_ACC | 20 | @attr [Description(&#34;Century&#34;)] |
-| YEAR_BNDR_ACC | 30 | @attr [Description(&#34;Year&#34;)] |
-| MOUNTH_BNDR_ACC | 40 | @attr [Description(&#34;Month&#34;)] |
-| WEEK_BNDR_ACC | 50 | @attr [Description(&#34;Week&#34;)] |
-| DAY_BNDR_ACC | 60 | @attr [Description(&#34;Day&#34;)] |
-| HOUR_BNDR_ACC | 70 | @attr [Description(&#34;Hour&#34;)] |
-| MINUTE_BNDR_ACC | 80 | @attr [Description(&#34;Minute&#34;)] |
-| SECOND_BNDR_ACC | 90 | @attr [Description(&#34;Second&#34;)] |
-| MS_BNDR_ACC | 100 | @attr [Description(&#34;Millisecond&#34;)] |
-| MKS_BNDR_ACC | 110 | @attr [Description(&#34;Microsecond&#34;)] |
 
 
 

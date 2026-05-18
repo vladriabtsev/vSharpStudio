@@ -664,6 +664,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_enum_datetimespan_boundary_type"><span class="badge">E</span>proto_enum_datetimespan_boundary_type</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_enum_doc_number_unique_scope"><span class="badge">E</span>proto_enum_doc_number_unique_scope</a>
                 </li>
               
@@ -753,10 +757,6 @@
               
                 <li>
                   <a href="#proto_config.proto_enum_time_accuracy_type"><span class="badge">E</span>proto_enum_time_accuracy_type</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_enum_timespan_boundary_type"><span class="badge">E</span>proto_enum_timespan_boundary_type</a>
                 </li>
               
                 <li>
@@ -2645,8 +2645,8 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
-                  <td>timespan_accuracy</td>
-                  <td><a href="#proto_config.proto_enum_timespan_boundary_type">proto_enum_timespan_boundary_type</a></td>
+                  <td>datetimespan_accuracy</td>
+                  <td><a href="#proto_config.proto_enum_datetimespan_boundary_type">proto_enum_datetimespan_boundary_type</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(11)]
@@ -2655,8 +2655,8 @@ unique in object (can be used as Protobuf field position)
                 </tr>
               
                 <tr>
-                  <td>timespan_max_value</td>
-                  <td><a href="#proto_config.proto_enum_timespan_boundary_type">proto_enum_timespan_boundary_type</a></td>
+                  <td>datetimespan_max_value</td>
+                  <td><a href="#proto_config.proto_enum_datetimespan_boundary_type">proto_enum_datetimespan_boundary_type</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(12)]
@@ -12050,6 +12050,89 @@ which DB type to use for whole TimeSpan ???</p></td>
           </tbody>
         </table>
       
+        <h3 id="proto_config.proto_enum_datetimespan_boundary_type">proto_enum_datetimespan_boundary_type</h3>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>NOT_SELECTED_BNDR</td>
+                <td>0</td>
+                <td><p>@attr [Description(&#34;Not Selected&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MKS_BNDR</td>
+                <td>10</td>
+                <td><p>@attr [Description(&#34;Microsecond&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MS_BNDR</td>
+                <td>20</td>
+                <td><p>@attr [Description(&#34;Millisecond&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>SECOND_BNDR</td>
+                <td>30</td>
+                <td><p>@attr [Description(&#34;Second&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MINUTE_BNDR</td>
+                <td>40</td>
+                <td><p>@attr [Description(&#34;Minute&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>HOUR_BNDR</td>
+                <td>50</td>
+                <td><p>@attr [Description(&#34;Hour&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DAY_BNDR</td>
+                <td>60</td>
+                <td><p>@attr [Description(&#34;Day&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEEK_BNDR</td>
+                <td>70</td>
+                <td><p>@attr [Description(&#34;Week&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MOUNTH_BNDR</td>
+                <td>80</td>
+                <td><p>@attr [Description(&#34;Month&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>YEAR_BNDR</td>
+                <td>90</td>
+                <td><p>@attr [Description(&#34;Year&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>CENTURY_BNDR</td>
+                <td>100</td>
+                <td><p>@attr [Description(&#34;Century&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MILLENNIUM_BNDR</td>
+                <td>110</td>
+                <td><p>@attr [Description(&#34;Millennium&#34;)]</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="proto_config.proto_enum_doc_number_unique_scope">proto_enum_doc_number_unique_scope</h3>
         <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
@@ -13624,89 +13707,6 @@ Financial quater is quater of financial year.
                 <td>MAX_TIME_ACC</td>
                 <td>60</td>
                 <td><p>@attr [Description(&#34;Max accuracy (may be limited by DB)&#34;)]</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="proto_config.proto_enum_timespan_boundary_type">proto_enum_timespan_boundary_type</h3>
-        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>NOT_SELECTED_BNDR_ACC</td>
-                <td>0</td>
-                <td><p>@attr [Description(&#34;Not Selected&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>MILLENNIUM_BNDR_ACC</td>
-                <td>10</td>
-                <td><p>@attr [Description(&#34;Millennium&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>CENTURY_BNDR_ACC</td>
-                <td>20</td>
-                <td><p>@attr [Description(&#34;Century&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>YEAR_BNDR_ACC</td>
-                <td>30</td>
-                <td><p>@attr [Description(&#34;Year&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>MOUNTH_BNDR_ACC</td>
-                <td>40</td>
-                <td><p>@attr [Description(&#34;Month&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>WEEK_BNDR_ACC</td>
-                <td>50</td>
-                <td><p>@attr [Description(&#34;Week&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>DAY_BNDR_ACC</td>
-                <td>60</td>
-                <td><p>@attr [Description(&#34;Day&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>HOUR_BNDR_ACC</td>
-                <td>70</td>
-                <td><p>@attr [Description(&#34;Hour&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>MINUTE_BNDR_ACC</td>
-                <td>80</td>
-                <td><p>@attr [Description(&#34;Minute&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>SECOND_BNDR_ACC</td>
-                <td>90</td>
-                <td><p>@attr [Description(&#34;Second&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>MS_BNDR_ACC</td>
-                <td>100</td>
-                <td><p>@attr [Description(&#34;Millisecond&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>MKS_BNDR_ACC</td>
-                <td>110</td>
-                <td><p>@attr [Description(&#34;Microsecond&#34;)]</p></td>
               </tr>
             
           </tbody>

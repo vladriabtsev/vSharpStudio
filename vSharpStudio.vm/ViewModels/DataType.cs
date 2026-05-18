@@ -643,9 +643,9 @@ namespace vSharpStudio.vm.ViewModels
                     //case EnumDataType.DATETIME:
                     return "DateTime";
                 case EnumDataType.DATETIMEOFFSET:
+                case EnumDataType.TIMESPAN:
                     return "DateTimeOffset";
                 case EnumDataType.TIMESPAN_TIME_ONLY:
-                case EnumDataType.TIMESPAN:
                     return "TimeSpan";
                 case EnumDataType.BOOL:
                     return "bool";

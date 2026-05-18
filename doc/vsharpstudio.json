@@ -598,6 +598,74 @@
           ]
         },
         {
+          "name": "proto_enum_datetimespan_boundary_type",
+          "longName": "proto_enum_datetimespan_boundary_type",
+          "fullName": "proto_config.proto_enum_datetimespan_boundary_type",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
+          "values": [
+            {
+              "name": "NOT_SELECTED_BNDR",
+              "number": "0",
+              "description": "@attr [Description(\"Not Selected\")]"
+            },
+            {
+              "name": "MKS_BNDR",
+              "number": "10",
+              "description": "@attr [Description(\"Microsecond\")]"
+            },
+            {
+              "name": "MS_BNDR",
+              "number": "20",
+              "description": "@attr [Description(\"Millisecond\")]"
+            },
+            {
+              "name": "SECOND_BNDR",
+              "number": "30",
+              "description": "@attr [Description(\"Second\")]"
+            },
+            {
+              "name": "MINUTE_BNDR",
+              "number": "40",
+              "description": "@attr [Description(\"Minute\")]"
+            },
+            {
+              "name": "HOUR_BNDR",
+              "number": "50",
+              "description": "@attr [Description(\"Hour\")]"
+            },
+            {
+              "name": "DAY_BNDR",
+              "number": "60",
+              "description": "@attr [Description(\"Day\")]"
+            },
+            {
+              "name": "WEEK_BNDR",
+              "number": "70",
+              "description": "@attr [Description(\"Week\")]"
+            },
+            {
+              "name": "MOUNTH_BNDR",
+              "number": "80",
+              "description": "@attr [Description(\"Month\")]"
+            },
+            {
+              "name": "YEAR_BNDR",
+              "number": "90",
+              "description": "@attr [Description(\"Year\")]"
+            },
+            {
+              "name": "CENTURY_BNDR",
+              "number": "100",
+              "description": "@attr [Description(\"Century\")]"
+            },
+            {
+              "name": "MILLENNIUM_BNDR",
+              "number": "110",
+              "description": "@attr [Description(\"Millennium\")]"
+            }
+          ]
+        },
+        {
           "name": "proto_enum_doc_number_unique_scope",
           "longName": "proto_enum_doc_number_unique_scope",
           "fullName": "proto_config.proto_enum_doc_number_unique_scope",
@@ -1868,74 +1936,6 @@
               "name": "MAX_TIME_ACC",
               "number": "60",
               "description": "@attr [Description(\"Max accuracy (may be limited by DB)\")]"
-            }
-          ]
-        },
-        {
-          "name": "proto_enum_timespan_boundary_type",
-          "longName": "proto_enum_timespan_boundary_type",
-          "fullName": "proto_config.proto_enum_timespan_boundary_type",
-          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
-          "values": [
-            {
-              "name": "NOT_SELECTED_BNDR_ACC",
-              "number": "0",
-              "description": "@attr [Description(\"Not Selected\")]"
-            },
-            {
-              "name": "MILLENNIUM_BNDR_ACC",
-              "number": "10",
-              "description": "@attr [Description(\"Millennium\")]"
-            },
-            {
-              "name": "CENTURY_BNDR_ACC",
-              "number": "20",
-              "description": "@attr [Description(\"Century\")]"
-            },
-            {
-              "name": "YEAR_BNDR_ACC",
-              "number": "30",
-              "description": "@attr [Description(\"Year\")]"
-            },
-            {
-              "name": "MOUNTH_BNDR_ACC",
-              "number": "40",
-              "description": "@attr [Description(\"Month\")]"
-            },
-            {
-              "name": "WEEK_BNDR_ACC",
-              "number": "50",
-              "description": "@attr [Description(\"Week\")]"
-            },
-            {
-              "name": "DAY_BNDR_ACC",
-              "number": "60",
-              "description": "@attr [Description(\"Day\")]"
-            },
-            {
-              "name": "HOUR_BNDR_ACC",
-              "number": "70",
-              "description": "@attr [Description(\"Hour\")]"
-            },
-            {
-              "name": "MINUTE_BNDR_ACC",
-              "number": "80",
-              "description": "@attr [Description(\"Minute\")]"
-            },
-            {
-              "name": "SECOND_BNDR_ACC",
-              "number": "90",
-              "description": "@attr [Description(\"Second\")]"
-            },
-            {
-              "name": "MS_BNDR_ACC",
-              "number": "100",
-              "description": "@attr [Description(\"Millisecond\")]"
-            },
-            {
-              "name": "MKS_BNDR_ACC",
-              "number": "110",
-              "description": "@attr [Description(\"Microsecond\")]"
             }
           ]
         },
@@ -4613,24 +4613,24 @@
               "defaultValue": ""
             },
             {
-              "name": "timespan_accuracy",
+              "name": "datetimespan_accuracy",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"TimeSpan accuracy\")]\n@attr [Description(\"TimeSpan accuracy\")]",
               "label": "",
-              "type": "proto_enum_timespan_boundary_type",
-              "longType": "proto_enum_timespan_boundary_type",
-              "fullType": "proto_config.proto_enum_timespan_boundary_type",
+              "type": "proto_enum_datetimespan_boundary_type",
+              "longType": "proto_enum_datetimespan_boundary_type",
+              "fullType": "proto_config.proto_enum_datetimespan_boundary_type",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "timespan_max_value",
+              "name": "datetimespan_max_value",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"TimeSpan Max\")]\n@attr [Description(\"TimeSpan maximum value\")]",
               "label": "",
-              "type": "proto_enum_timespan_boundary_type",
-              "longType": "proto_enum_timespan_boundary_type",
-              "fullType": "proto_config.proto_enum_timespan_boundary_type",
+              "type": "proto_enum_datetimespan_boundary_type",
+              "longType": "proto_enum_datetimespan_boundary_type",
+              "fullType": "proto_config.proto_enum_datetimespan_boundary_type",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
