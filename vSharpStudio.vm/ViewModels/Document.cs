@@ -108,7 +108,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             //    this.OnRemoveChild();
             //};
-            this.GetSpecialProperties(new List<IProperty>(), true); // position ang guids for special properties
+            this.GetSpecialProperties([], true); // position ang guids for special properties
         }
         protected override ConfigNodesCollection<Document>? GetParentCollection() { return this.ParentGroupListDocuments.ListDocuments; }
         public void OnAdded()

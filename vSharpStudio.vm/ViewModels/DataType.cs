@@ -834,7 +834,7 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         /// <param name="to">New data type format</param>
         /// <returns>Description of problems. Null if there are no data lost</returns>
-        public string? CanLooseData(DataType to)
+        public static string? CanLooseData(DataType to)
         {
             string? res = null;
 

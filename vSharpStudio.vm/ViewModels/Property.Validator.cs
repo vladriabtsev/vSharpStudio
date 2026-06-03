@@ -16,7 +16,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             return PropertyRangeValuesRequirements.GetRangeValidation(p);
         }
-        private void ValidateRangeValuesRequirements(ValidationContext<Property> cntx, Property p)
+        private static void ValidateRangeValuesRequirements(ValidationContext<Property> cntx, Property p)
         {
             var req = PropertyValidator.GetRangeValidation(p);
             if (req.IsHasErrors)
@@ -1373,7 +1373,7 @@ namespace vSharpStudio.vm.ViewModels
             //    }
             //}
         }
-        private bool ParsableToBigInteger(string val)
+        private static bool ParsableToBigInteger(string val)
         {
             if (string.IsNullOrWhiteSpace(val))
             {

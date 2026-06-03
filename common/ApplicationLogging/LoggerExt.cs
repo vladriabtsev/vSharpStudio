@@ -222,7 +222,7 @@ namespace ApplicationLogging
             string msg = "";
             if (AppLogger.IndentShift != -1)
             {
-                int n = Environment.StackTrace.Split(Environment.NewLine).Count();
+                int n = Environment.StackTrace.Split(Environment.NewLine).Length;
                 if (n < AppLogger.IndentShift)
                 {
                     msg = $"#####################  S T A C K  S H I F T:  from {AppLogger.IndentShift} to {n} ######################\n";
