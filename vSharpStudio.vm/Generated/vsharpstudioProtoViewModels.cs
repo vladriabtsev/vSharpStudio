@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Linq;
 using ViewModelBase;
@@ -740,7 +740,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 sb.Append(":");
             }*/
             sb.Append(this.Name);
-            sb.Append(':');
+            sb.Append(":");
             if (this.IsNew)
                 sb.Append(" New");
             if (this.IsHasNew)
