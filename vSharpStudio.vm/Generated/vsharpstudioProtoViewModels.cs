@@ -31971,10 +31971,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:68 IsDefaultBase=True
                 vm._GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.Clone(vm, from.GroupListDocuments, isDeep);
-            vm._ScopePeriodStartMonth = from.ScopePeriodStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
-            vm._ScopePeriodStartMonthDay = from.ScopePeriodStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
-            vm._ScopePeriodStartTimeZoneHour = from.ScopePeriodStartTimeZoneHour; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
-            vm._ScopePeriodStartTimeZoneMinute = from.ScopePeriodStartTimeZoneMinute; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
+            vm._FiscalYearStartMethod = from.FiscalYearStartMethod; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
+            vm._FiscalYearStartWeekDay = from.FiscalYearStartWeekDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
+            vm._FiscalYearStartMonth = from.FiscalYearStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
+            vm._FiscalYearStartMonthDay = from.FiscalYearStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:68 IsDefaultBase=True
                 vm._GroupRegisters = vSharpStudio.vm.ViewModels.GroupListRegisters.Clone(vm, from.GroupRegisters, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:68 IsDefaultBase=True
@@ -32001,10 +32001,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._Description = from.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:153
                 vSharpStudio.vm.ViewModels.GroupListDocuments.Update((GroupListDocuments)to.GroupListDocuments, from.GroupListDocuments, isDeep);
-            to._ScopePeriodStartMonth = from.ScopePeriodStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
-            to._ScopePeriodStartMonthDay = from.ScopePeriodStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
-            to._ScopePeriodStartTimeZoneHour = from.ScopePeriodStartTimeZoneHour; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
-            to._ScopePeriodStartTimeZoneMinute = from.ScopePeriodStartTimeZoneMinute; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
+            to._FiscalYearStartMethod = from.FiscalYearStartMethod; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
+            to._FiscalYearStartWeekDay = from.FiscalYearStartWeekDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
+            to._FiscalYearStartMonth = from.FiscalYearStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
+            to._FiscalYearStartMonthDay = from.FiscalYearStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:153
                 vSharpStudio.vm.ViewModels.GroupListRegisters.Update((GroupListRegisters)to.GroupRegisters, from.GroupRegisters, isDeep);
             if (isDeep) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:153
@@ -32083,10 +32083,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._Description = m.Description; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm.GroupListDocuments ??= new GroupListDocuments(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:233
             vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToVM(m.GroupListDocuments, (GroupListDocuments)vm.GroupListDocuments); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
-            vm._ScopePeriodStartMonth = (EnumMonths)m.ScopePeriodStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
-            vm._ScopePeriodStartMonthDay = m.ScopePeriodStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
-            vm._ScopePeriodStartTimeZoneHour = m.ScopePeriodStartTimeZoneHour; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
-            vm._ScopePeriodStartTimeZoneMinute = m.ScopePeriodStartTimeZoneMinute; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
+            vm._FiscalYearStartMethod = (EnumFiscalYearStartMethod)m.FiscalYearStartMethod; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
+            vm._FiscalYearStartWeekDay = (EnumWeekDays)m.FiscalYearStartWeekDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
+            vm._FiscalYearStartMonth = (EnumMonths)m.FiscalYearStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
+            vm._FiscalYearStartMonthDay = m.FiscalYearStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm.GroupRegisters ??= new GroupListRegisters(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:233
             vSharpStudio.vm.ViewModels.GroupListRegisters.ConvertToVM(m.GroupRegisters, (GroupListRegisters)vm.GroupRegisters); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:237
             vm.GroupJournals ??= new GroupListJournals(vm); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:233
@@ -32145,10 +32145,10 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_group_documents' field 'description'", ex); 
             }
             m.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToProto((GroupListDocuments)vm.GroupListDocuments); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:292
-            m.ScopePeriodStartMonth = (Proto.Config.proto_enum_months)vm.ScopePeriodStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:296
-            m.ScopePeriodStartMonthDay = vm.ScopePeriodStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:307
-            m.ScopePeriodStartTimeZoneHour = vm.ScopePeriodStartTimeZoneHour; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:307
-            m.ScopePeriodStartTimeZoneMinute = vm.ScopePeriodStartTimeZoneMinute; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:307
+            m.FiscalYearStartMethod = (Proto.Config.proto_enum_fiscal_year_start_method)vm.FiscalYearStartMethod; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:296
+            m.FiscalYearStartWeekDay = (Proto.Config.proto_enum_week_days)vm.FiscalYearStartWeekDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:296
+            m.FiscalYearStartMonth = (Proto.Config.proto_enum_months)vm.FiscalYearStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:296
+            m.FiscalYearStartMonthDay = vm.FiscalYearStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:307
             m.GroupRegisters = vSharpStudio.vm.ViewModels.GroupListRegisters.ConvertToProto((GroupListRegisters)vm.GroupRegisters); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:292
             m.GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.ConvertToProto((GroupListJournals)vm.GroupJournals); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:292
             m.GroupListSequences = vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.ConvertToProto((GroupListEnumeratorSequences)vm.GroupListSequences); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:292
@@ -32290,89 +32290,89 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnGroupListDocumentsChanged();
         IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return (this as GroupDocuments).GroupListDocuments; } } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:78
         
-        [Category("Head office")]
-        [PropertyOrderAttribute(16)]
-        [DisplayName("Start on Month")]
-        [Description("Start month of financial year and document number scope period")]
-        public EnumMonths ScopePeriodStartMonth // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
+        [Category("Fiscal year")]
+        [PropertyOrderAttribute(12)]
+        [DisplayName("Method")]
+        [Description("Fiscal year gefenition method.")]
+        public EnumFiscalYearStartMethod FiscalYearStartMethod // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
-            get { return this._ScopePeriodStartMonth; }
+            get { return this._FiscalYearStartMethod; }
             set
             {
-                // Use 'OnScopePeriodStartMonthChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ScopePeriodStartMonth, value, (t) => { bool isCancel = false; this.OnScopePeriodStartMonthChanging(ref value, ref isCancel); if (isCancel) return; this._ScopePeriodStartMonth = value; this.OnScopePeriodStartMonthChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
+                // Use 'OnFiscalYearStartMethodChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._FiscalYearStartMethod, value, (t) => { bool isCancel = false; this.OnFiscalYearStartMethodChanging(ref value, ref isCancel); if (isCancel) return; this._FiscalYearStartMethod = value; this.OnFiscalYearStartMethodChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
                 }
             }
         }
-        private EnumMonths _ScopePeriodStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
-        partial void OnScopePeriodStartMonthChanging(ref EnumMonths to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
-        partial void OnScopePeriodStartMonthChanged();
+        private EnumFiscalYearStartMethod _FiscalYearStartMethod; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
+        partial void OnFiscalYearStartMethodChanging(ref EnumFiscalYearStartMethod to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
+        partial void OnFiscalYearStartMethodChanged();
         
-        [Category("Head office")]
+        [Category("Fiscal year")]
+        [PropertyOrderAttribute(13)]
+        [DisplayName("Week day")]
+        [Description("First week day before or equal start month and month day of financial year")]
+        public EnumWeekDays FiscalYearStartWeekDay // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
+        { 
+            get { return this._FiscalYearStartWeekDay; }
+            set
+            {
+                // Use 'OnFiscalYearStartWeekDayChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._FiscalYearStartWeekDay, value, (t) => { bool isCancel = false; this.OnFiscalYearStartWeekDayChanging(ref value, ref isCancel); if (isCancel) return; this._FiscalYearStartWeekDay = value; this.OnFiscalYearStartWeekDayChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
+                }
+            }
+        }
+        private EnumWeekDays _FiscalYearStartWeekDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
+        partial void OnFiscalYearStartWeekDayChanging(ref EnumWeekDays to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
+        partial void OnFiscalYearStartWeekDayChanged();
+        
+        [Category("Fiscal year")]
+        [PropertyOrderAttribute(15)]
+        [DisplayName("Month")]
+        [Description("Month of financial year")]
+        public EnumMonths FiscalYearStartMonth // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
+        { 
+            get { return this._FiscalYearStartMonth; }
+            set
+            {
+                // Use 'OnFiscalYearStartMonthChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._FiscalYearStartMonth, value, (t) => { bool isCancel = false; this.OnFiscalYearStartMonthChanging(ref value, ref isCancel); if (isCancel) return; this._FiscalYearStartMonth = value; this.OnFiscalYearStartMonthChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
+                }
+            }
+        }
+        private EnumMonths _FiscalYearStartMonth; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
+        partial void OnFiscalYearStartMonthChanging(ref EnumMonths to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
+        partial void OnFiscalYearStartMonthChanged();
+        
+        [Category("Fiscal year")]
         [PropertyOrderAttribute(17)]
-        [DisplayName("Start on Day")]
-        [Description("Start month day of financial year and document number scope period")]
-        public uint ScopePeriodStartMonthDay // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
+        [DisplayName("Day of month")]
+        [Description("Month day of financial year")]
+        public uint FiscalYearStartMonthDay // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
         { 
-            get { return this._ScopePeriodStartMonthDay; }
+            get { return this._FiscalYearStartMonthDay; }
             set
             {
-                // Use 'OnScopePeriodStartMonthDayChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ScopePeriodStartMonthDay, value, (t) => { bool isCancel = false; this.OnScopePeriodStartMonthDayChanging(ref value, ref isCancel); if (isCancel) return; this._ScopePeriodStartMonthDay = value; this.OnScopePeriodStartMonthDayChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
+                // Use 'OnFiscalYearStartMonthDayChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._FiscalYearStartMonthDay, value, (t) => { bool isCancel = false; this.OnFiscalYearStartMonthDayChanging(ref value, ref isCancel); if (isCancel) return; this._FiscalYearStartMonthDay = value; this.OnFiscalYearStartMonthDayChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
                 {
                     this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
                     this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
                 }
             }
         }
-        private uint _ScopePeriodStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
-        partial void OnScopePeriodStartMonthDayChanging(ref uint to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
-        partial void OnScopePeriodStartMonthDayChanged();
-        
-        [Category("Head office")]
-        [PropertyOrderAttribute(18)]
-        [DisplayName("Zone Hour")]
-        [Description("Time zone hour of head office. Relative to UTC-0. Usually UTC time of head office.")]
-        public int ScopePeriodStartTimeZoneHour // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
-        { 
-            get { return this._ScopePeriodStartTimeZoneHour; }
-            set
-            {
-                // Use 'OnScopePeriodStartTimeZoneHourChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ScopePeriodStartTimeZoneHour, value, (t) => { bool isCancel = false; this.OnScopePeriodStartTimeZoneHourChanging(ref value, ref isCancel); if (isCancel) return; this._ScopePeriodStartTimeZoneHour = value; this.OnScopePeriodStartTimeZoneHourChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
-                }
-            }
-        }
-        private int _ScopePeriodStartTimeZoneHour; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
-        partial void OnScopePeriodStartTimeZoneHourChanging(ref int to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
-        partial void OnScopePeriodStartTimeZoneHourChanged();
-        
-        [Category("Head office")]
-        [PropertyOrderAttribute(19)]
-        [DisplayName("Zone Minute")]
-        [Description("Time zone minute of head office. Relative to UTC-0. Usually UTC time of head office.")]
-        public int ScopePeriodStartTimeZoneMinute // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
-        { 
-            get { return this._ScopePeriodStartTimeZoneMinute; }
-            set
-            {
-                // Use 'OnScopePeriodStartTimeZoneMinuteChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
-                if (SetProperty(this._ScopePeriodStartTimeZoneMinute, value, (t) => { bool isCancel = false; this.OnScopePeriodStartTimeZoneMinuteChanging(ref value, ref isCancel); if (isCancel) return; this._ScopePeriodStartTimeZoneMinute = value; this.OnScopePeriodStartTimeZoneMinuteChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
-                {
-                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
-                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
-                }
-            }
-        }
-        private int _ScopePeriodStartTimeZoneMinute; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
-        partial void OnScopePeriodStartTimeZoneMinuteChanging(ref int to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
-        partial void OnScopePeriodStartTimeZoneMinuteChanged();
+        private uint _FiscalYearStartMonthDay; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
+        partial void OnFiscalYearStartMonthDayChanging(ref uint to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
+        partial void OnFiscalYearStartMonthDayChanged();
         
         [Browsable(false)]
         [Description("Registers for documents")]

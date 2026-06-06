@@ -672,14 +672,24 @@
           "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
-              "name": "DOC_UNIQUE_FOREVER",
+              "name": "DOC_UNIQUE_NOT_SELECTED",
               "number": "0",
+              "description": "@attr [Description(\"Not selected\")]"
+            },
+            {
+              "name": "DOC_UNIQUE_FOREVER",
+              "number": "1",
               "description": "Document number has to be unique\n@attr [Description(\"Allways\")]"
             },
             {
-              "name": "DOC_UNIQUE_YEAR",
+              "name": "DOC_UNIQUE_CALENDAR_YEAR",
               "number": "11",
-              "description": "Document number has to be unique in financial year. \nFinancial year can be defined with month and day shift.\n@attr [Description(\"Year\")]"
+              "description": "@attr [Description(\"Year\")]"
+            },
+            {
+              "name": "DOC_UNIQUE_FISCAL_YEAR",
+              "number": "16",
+              "description": "Document number has to be unique in financial year. \nFinancial year can be defined with month, day shift and week day.\n@attr [Description(\"Fiscal Year\")]"
             },
             {
               "name": "DOC_UNIQUE_QUATER",
@@ -768,6 +778,29 @@
               "name": "F_IBAN",
               "number": "11",
               "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_fiscal_year_start_method",
+          "longName": "proto_enum_fiscal_year_start_method",
+          "fullName": "proto_config.proto_enum_fiscal_year_start_method",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
+          "values": [
+            {
+              "name": "FISCAL_YEAR_START_METHOD_NOT_SELECTED",
+              "number": "0",
+              "description": "@attr [Description(\"Not Selected\")]"
+            },
+            {
+              "name": "FISCAL_YEAR_START_METHOD_WEEK_DAY_MONTH_DAY",
+              "number": "1",
+              "description": "@attr [Description(\"Week day before Month and Day\")]"
+            },
+            {
+              "name": "FISCAL_YEAR_START_METHOD_MONTH_DAY",
+              "number": "2",
+              "description": "@attr [Description(\"Month and Day\")]"
             }
           ]
         },
@@ -8021,8 +8054,32 @@
               "defaultValue": ""
             },
             {
-              "name": "scope_period_start_month",
-              "description": "@attr [Category(\"Head office\")]\n@attr [PropertyOrderAttribute(16)]\n@attr [DisplayName(\"Start on Month\")]\n@attr [Description(\"Start month of financial year and document number scope period\")]",
+              "name": "fiscal_year_start_method",
+              "description": "@attr [Category(\"Fiscal year\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Method\")]\n@attr [Description(\"Fiscal year gefenition method.\")]",
+              "label": "",
+              "type": "proto_enum_fiscal_year_start_method",
+              "longType": "proto_enum_fiscal_year_start_method",
+              "fullType": "proto_config.proto_enum_fiscal_year_start_method",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "fiscal_year_start_week_day",
+              "description": "@attr [Category(\"Fiscal year\")]\n@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Week day\")]\n@attr [Description(\"First week day before or equal start month and month day of financial year\")]",
+              "label": "",
+              "type": "proto_enum_week_days",
+              "longType": "proto_enum_week_days",
+              "fullType": "proto_config.proto_enum_week_days",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "fiscal_year_start_month",
+              "description": "@attr [Category(\"Fiscal year\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Month\")]\n@attr [Description(\"Month of financial year\")]",
               "label": "",
               "type": "proto_enum_months",
               "longType": "proto_enum_months",
@@ -8033,36 +8090,12 @@
               "defaultValue": ""
             },
             {
-              "name": "scope_period_start_month_day",
-              "description": "@attr [Category(\"Head office\")]\n@attr [PropertyOrderAttribute(17)]\n@attr [DisplayName(\"Start on Day\")]\n@attr [Description(\"Start month day of financial year and document number scope period\")]",
+              "name": "fiscal_year_start_month_day",
+              "description": "@attr [Category(\"Fiscal year\")]\n@attr [PropertyOrderAttribute(17)]\n@attr [DisplayName(\"Day of month\")]\n@attr [Description(\"Month day of financial year\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
               "fullType": "uint32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "scope_period_start_time_zone_hour",
-              "description": "@attr [Category(\"Head office\")]\n@attr [PropertyOrderAttribute(18)]\n@attr [DisplayName(\"Zone Hour\")]\n@attr [Description(\"Time zone hour of head office. Relative to UTC-0. Usually UTC time of head office.\")]",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "scope_period_start_time_zone_minute",
-              "description": "@attr [Category(\"Head office\")]\n@attr [PropertyOrderAttribute(19)]\n@attr [DisplayName(\"Zone Minute\")]\n@attr [Description(\"Time zone minute of head office. Relative to UTC-0. Usually UTC time of head office.\")]",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

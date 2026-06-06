@@ -676,6 +676,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_enum_fiscal_year_start_method"><span class="badge">E</span>proto_enum_fiscal_year_start_method</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_enum_hacker_data_type"><span class="badge">E</span>proto_enum_hacker_data_type</a>
                 </li>
               
@@ -5203,43 +5207,43 @@ Dictionary&lt;EnumSpecialPropertyType, StandartPropertyGuidPosition&gt; for sub 
                 </tr>
               
                 <tr>
-                  <td>scope_period_start_month</td>
+                  <td>fiscal_year_start_method</td>
+                  <td><a href="#proto_config.proto_enum_fiscal_year_start_method">proto_enum_fiscal_year_start_method</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Fiscal year&#34;)]
+@attr [PropertyOrderAttribute(12)]
+@attr [DisplayName(&#34;Method&#34;)]
+@attr [Description(&#34;Fiscal year gefenition method.&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fiscal_year_start_week_day</td>
+                  <td><a href="#proto_config.proto_enum_week_days">proto_enum_week_days</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Fiscal year&#34;)]
+@attr [PropertyOrderAttribute(13)]
+@attr [DisplayName(&#34;Week day&#34;)]
+@attr [Description(&#34;First week day before or equal start month and month day of financial year&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fiscal_year_start_month</td>
                   <td><a href="#proto_config.proto_enum_months">proto_enum_months</a></td>
                   <td></td>
-                  <td><p>@attr [Category(&#34;Head office&#34;)]
-@attr [PropertyOrderAttribute(16)]
-@attr [DisplayName(&#34;Start on Month&#34;)]
-@attr [Description(&#34;Start month of financial year and document number scope period&#34;)] </p></td>
+                  <td><p>@attr [Category(&#34;Fiscal year&#34;)]
+@attr [PropertyOrderAttribute(15)]
+@attr [DisplayName(&#34;Month&#34;)]
+@attr [Description(&#34;Month of financial year&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>scope_period_start_month_day</td>
+                  <td>fiscal_year_start_month_day</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [Category(&#34;Head office&#34;)]
+                  <td><p>@attr [Category(&#34;Fiscal year&#34;)]
 @attr [PropertyOrderAttribute(17)]
-@attr [DisplayName(&#34;Start on Day&#34;)]
-@attr [Description(&#34;Start month day of financial year and document number scope period&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>scope_period_start_time_zone_hour</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Head office&#34;)]
-@attr [PropertyOrderAttribute(18)]
-@attr [DisplayName(&#34;Zone Hour&#34;)]
-@attr [Description(&#34;Time zone hour of head office. Relative to UTC-0. Usually UTC time of head office.&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>scope_period_start_time_zone_minute</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;Head office&#34;)]
-@attr [PropertyOrderAttribute(19)]
-@attr [DisplayName(&#34;Zone Minute&#34;)]
-@attr [Description(&#34;Time zone minute of head office. Relative to UTC-0. Usually UTC time of head office.&#34;)] </p></td>
+@attr [DisplayName(&#34;Day of month&#34;)]
+@attr [Description(&#34;Month day of financial year&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -12142,18 +12146,30 @@ which DB type to use for whole TimeSpan ???</p></td>
           <tbody>
             
               <tr>
-                <td>DOC_UNIQUE_FOREVER</td>
+                <td>DOC_UNIQUE_NOT_SELECTED</td>
                 <td>0</td>
+                <td><p>@attr [Description(&#34;Not selected&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DOC_UNIQUE_FOREVER</td>
+                <td>1</td>
                 <td><p>Document number has to be unique
 @attr [Description(&#34;Allways&#34;)]</p></td>
               </tr>
             
               <tr>
-                <td>DOC_UNIQUE_YEAR</td>
+                <td>DOC_UNIQUE_CALENDAR_YEAR</td>
                 <td>11</td>
+                <td><p>@attr [Description(&#34;Year&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DOC_UNIQUE_FISCAL_YEAR</td>
+                <td>16</td>
                 <td><p>Document number has to be unique in financial year. 
-Financial year can be defined with month and day shift.
-@attr [Description(&#34;Year&#34;)]</p></td>
+Financial year can be defined with month, day shift and week day.
+@attr [Description(&#34;Fiscal Year&#34;)]</p></td>
               </tr>
             
               <tr>
@@ -12264,6 +12280,35 @@ Financial quater is quater of financial year.
                 <td>F_IBAN</td>
                 <td>11</td>
                 <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_fiscal_year_start_method">proto_enum_fiscal_year_start_method</h3>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>FISCAL_YEAR_START_METHOD_NOT_SELECTED</td>
+                <td>0</td>
+                <td><p>@attr [Description(&#34;Not Selected&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>FISCAL_YEAR_START_METHOD_WEEK_DAY_MONTH_DAY</td>
+                <td>1</td>
+                <td><p>@attr [Description(&#34;Week day before Month and Day&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>FISCAL_YEAR_START_METHOD_MONTH_DAY</td>
+                <td>2</td>
+                <td><p>@attr [Description(&#34;Month and Day&#34;)]</p></td>
               </tr>
             
           </tbody>

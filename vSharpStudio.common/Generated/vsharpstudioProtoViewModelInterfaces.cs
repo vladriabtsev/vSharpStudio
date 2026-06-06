@@ -232,13 +232,17 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumDocNumberUniqueScope // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
 	{
+		[Description("Not selected")]
+		DOC_UNIQUE_NOT_SELECTED = 0,
 		// Document number has to be unique
 		[Description("Allways")]
-		DOC_UNIQUE_FOREVER = 0,
-		// Document number has to be unique in financial year. 
-		// Financial year can be defined with month and day shift.
+		DOC_UNIQUE_FOREVER = 1,
 		[Description("Year")]
-		DOC_UNIQUE_YEAR = 11,
+		DOC_UNIQUE_CALENDAR_YEAR = 11,
+		// Document number has to be unique in financial year. 
+		// Financial year can be defined with month, day shift and week day.
+		[Description("Fiscal Year")]
+		DOC_UNIQUE_FISCAL_YEAR = 16,
 		// Document number has to be unique in financial quater. 
 		// Financial quater is quater of financial year.
 		[Description("Quater")]
@@ -266,6 +270,16 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		F_ROUTING_NUMBER = 9,
 		F_BIC = 10,
 		F_IBAN = 11,
+	}
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
+	public enum EnumFiscalYearStartMethod // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
+	{
+		[Description("Not Selected")]
+		FISCAL_YEAR_START_METHOD_NOT_SELECTED = 0,
+		[Description("Week day before Month and Day")]
+		FISCAL_YEAR_START_METHOD_WEEK_DAY_MONTH_DAY = 1,
+		[Description("Month and Day")]
+		FISCAL_YEAR_START_METHOD_MONTH_DAY = 2,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumHackerDataType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
@@ -1741,10 +1755,10 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
     	new int ExplicitSortingPosition { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:63
     	string Description { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
     	IGroupListDocuments GroupListDocuments { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:70
-    	EnumMonths ScopePeriodStartMonth { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
-    	uint ScopePeriodStartMonthDay { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
-    	int ScopePeriodStartTimeZoneHour { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
-    	int ScopePeriodStartTimeZoneMinute { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
+    	EnumFiscalYearStartMethod FiscalYearStartMethod { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
+    	EnumWeekDays FiscalYearStartWeekDay { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
+    	EnumMonths FiscalYearStartMonth { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
+    	uint FiscalYearStartMonthDay { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:65
     	IGroupListRegisters GroupRegisters { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:70
     	IGroupListJournals GroupJournals { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:70
     	IGroupListEnumeratorSequences GroupListSequences { get; } // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:70

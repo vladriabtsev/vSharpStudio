@@ -621,6 +621,15 @@ enum proto_enum_week_days {
     WEEK_SATURDAY = 7;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+enum proto_enum_fiscal_year_start_method {
+    // @attr [Description("Not Selected")]
+    FISCAL_YEAR_START_METHOD_NOT_SELECTED = 0;
+    // @attr [Description("Week day before Month and Day")]
+    FISCAL_YEAR_START_METHOD_WEEK_DAY_MONTH_DAY = 1;
+    // @attr [Description("Month and Day")]
+    FISCAL_YEAR_START_METHOD_MONTH_DAY = 2;
+}
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_primary_key_type {
     // @attr [Description("Int")]
     INT = 0;
@@ -2598,13 +2607,17 @@ message proto_group_catalogs {
  */
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_doc_number_unique_scope {
+    // @attr [Description("Not selected")]
+    DOC_UNIQUE_NOT_SELECTED = 0;
     // Document number has to be unique
     // @attr [Description("Allways")]
-    DOC_UNIQUE_FOREVER = 0;
-    // Document number has to be unique in financial year. 
-    // Financial year can be defined with month and day shift.
+    DOC_UNIQUE_FOREVER = 1;
     // @attr [Description("Year")]
-    DOC_UNIQUE_YEAR = 11;
+    DOC_UNIQUE_CALENDAR_YEAR = 11;
+    // Document number has to be unique in financial year. 
+    // Financial year can be defined with month, day shift and week day.
+    // @attr [Description("Fiscal Year")]
+    DOC_UNIQUE_FISCAL_YEAR = 16;
     // Document number has to be unique in financial quater. 
     // Financial quater is quater of financial year.
     // @attr [Description("Quater")]
@@ -3079,26 +3092,27 @@ message proto_group_documents {
     // @attr [Browsable(false)]
     proto_group_list_documents group_list_documents = 8;
 
-    // @attr [Category("Head office")]
-    // @attr [PropertyOrderAttribute(16)]
-    // @attr [DisplayName("Start on Month")]
-    // @attr [Description("Start month of financial year and document number scope period")]
-    proto_enum_months scope_period_start_month = 16;
-    // @attr [Category("Head office")]
+    // @attr [Category("Fiscal year")]
+    // @attr [PropertyOrderAttribute(12)]
+    // @attr [DisplayName("Method")]
+    // @attr [Description("Fiscal year gefenition method.")]
+    proto_enum_fiscal_year_start_method fiscal_year_start_method = 12;
+    // @attr [Category("Fiscal year")]
+    // @attr [PropertyOrderAttribute(13)]
+    // @attr [DisplayName("Week day")]
+    // @attr [Description("First week day before or equal start month and month day of financial year")]
+    proto_enum_week_days fiscal_year_start_week_day = 13;
+    // @attr [Category("Fiscal year")]
+    // @attr [PropertyOrderAttribute(15)]
+    // @attr [DisplayName("Month")]
+    // @attr [Description("Month of financial year")]
+    proto_enum_months fiscal_year_start_month = 16;
+    // @attr [Category("Fiscal year")]
     // @attr [PropertyOrderAttribute(17)]
-    // @attr [DisplayName("Start on Day")]
-    // @attr [Description("Start month day of financial year and document number scope period")]
-    uint32 scope_period_start_month_day = 17;
-    // @attr [Category("Head office")]
-    // @attr [PropertyOrderAttribute(18)]
-    // @attr [DisplayName("Zone Hour")]
-    // @attr [Description("Time zone hour of head office. Relative to UTC-0. Usually UTC time of head office.")]
-    int32 scope_period_start_time_zone_hour = 18;
-    // @attr [Category("Head office")]
-    // @attr [PropertyOrderAttribute(19)]
-    // @attr [DisplayName("Zone Minute")]
-    // @attr [Description("Time zone minute of head office. Relative to UTC-0. Usually UTC time of head office.")]
-    int32 scope_period_start_time_zone_minute = 19;
+    // @attr [DisplayName("Day of month")]
+    // @attr [Description("Month day of financial year")]
+    uint32 fiscal_year_start_month_day = 17;
+    
 
     // @attr [Browsable(false)]
     // @attr [Description("Registers for documents")]

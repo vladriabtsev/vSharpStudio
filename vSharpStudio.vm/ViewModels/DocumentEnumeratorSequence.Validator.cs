@@ -50,6 +50,21 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             });
+            this.RuleFor(x => x.ScopeOfUnique).Custom((prefix, cntx) =>
+            {
+                var p = (DocumentEnumeratorSequence)cntx.InstanceToValidate;
+                if (p.Parent == null)
+                    return;
+                if (p.ScopeOfUnique == common.EnumDocNumberUniqueScope.DOC_UNIQUE_NOT_SELECTED)
+                {
+                    var vf = new ValidationFailure(nameof(p.ScopeOfUnique),
+                        $"Scope of uniqueness for document number is not selected.")
+                    {
+                        Severity = Severity.Error
+                    };
+                    cntx.AddFailure(vf);
+                }
+            });
             this.RuleFor(x => x.ScopePeriodStartWeekDay).Custom((prefix, cntx) =>
             {
                 var p = (DocumentEnumeratorSequence)cntx.InstanceToValidate;

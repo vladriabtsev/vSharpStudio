@@ -129,6 +129,7 @@
     - [proto_enum_datetimespan_boundary_type](#proto_config-proto_enum_datetimespan_boundary_type)
     - [proto_enum_doc_number_unique_scope](#proto_config-proto_enum_doc_number_unique_scope)
     - [proto_enum_finance_data_type](#proto_config-proto_enum_finance_data_type)
+    - [proto_enum_fiscal_year_start_method](#proto_config-proto_enum_fiscal_year_start_method)
     - [proto_enum_hacker_data_type](#proto_config-proto_enum_hacker_data_type)
     - [proto_enum_hidden_type](#proto_config-proto_enum_hidden_type)
     - [proto_enum_image_data_type](#proto_config-proto_enum_image_data_type)
@@ -1223,10 +1224,10 @@ C O N S T A N T
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | group_list_documents | [proto_group_list_documents](#proto_config-proto_group_list_documents) |  | @attr [Browsable(false)] |
-| scope_period_start_month | [proto_enum_months](#proto_config-proto_enum_months) |  | @attr [Category(&#34;Head office&#34;)] @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Start on Month&#34;)] @attr [Description(&#34;Start month of financial year and document number scope period&#34;)] |
-| scope_period_start_month_day | [uint32](#uint32) |  | @attr [Category(&#34;Head office&#34;)] @attr [PropertyOrderAttribute(17)] @attr [DisplayName(&#34;Start on Day&#34;)] @attr [Description(&#34;Start month day of financial year and document number scope period&#34;)] |
-| scope_period_start_time_zone_hour | [int32](#int32) |  | @attr [Category(&#34;Head office&#34;)] @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Zone Hour&#34;)] @attr [Description(&#34;Time zone hour of head office. Relative to UTC-0. Usually UTC time of head office.&#34;)] |
-| scope_period_start_time_zone_minute | [int32](#int32) |  | @attr [Category(&#34;Head office&#34;)] @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Zone Minute&#34;)] @attr [Description(&#34;Time zone minute of head office. Relative to UTC-0. Usually UTC time of head office.&#34;)] |
+| fiscal_year_start_method | [proto_enum_fiscal_year_start_method](#proto_config-proto_enum_fiscal_year_start_method) |  | @attr [Category(&#34;Fiscal year&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Method&#34;)] @attr [Description(&#34;Fiscal year gefenition method.&#34;)] |
+| fiscal_year_start_week_day | [proto_enum_week_days](#proto_config-proto_enum_week_days) |  | @attr [Category(&#34;Fiscal year&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Week day&#34;)] @attr [Description(&#34;First week day before or equal start month and month day of financial year&#34;)] |
+| fiscal_year_start_month | [proto_enum_months](#proto_config-proto_enum_months) |  | @attr [Category(&#34;Fiscal year&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Month&#34;)] @attr [Description(&#34;Month of financial year&#34;)] |
+| fiscal_year_start_month_day | [uint32](#uint32) |  | @attr [Category(&#34;Fiscal year&#34;)] @attr [PropertyOrderAttribute(17)] @attr [DisplayName(&#34;Day of month&#34;)] @attr [Description(&#34;Month day of financial year&#34;)] |
 | group_registers | [proto_group_list_registers](#proto_config-proto_group_list_registers) |  | @attr [Browsable(false)] @attr [Description(&#34;Registers for documents&#34;)] |
 | group_journals | [proto_group_list_journals](#proto_config-proto_group_list_journals) |  | @attr [Browsable(false)] |
 | group_list_sequences | [proto_group_list_enumerator_sequences](#proto_config-proto_group_list_enumerator_sequences) |  | @attr [Browsable(false)] |
@@ -3075,8 +3076,10 @@ https://github.com/bchavez/Bogus
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| DOC_UNIQUE_FOREVER | 0 | Document number has to be unique @attr [Description(&#34;Allways&#34;)] |
-| DOC_UNIQUE_YEAR | 11 | Document number has to be unique in financial year. Financial year can be defined with month and day shift. @attr [Description(&#34;Year&#34;)] |
+| DOC_UNIQUE_NOT_SELECTED | 0 | @attr [Description(&#34;Not selected&#34;)] |
+| DOC_UNIQUE_FOREVER | 1 | Document number has to be unique @attr [Description(&#34;Allways&#34;)] |
+| DOC_UNIQUE_CALENDAR_YEAR | 11 | @attr [Description(&#34;Year&#34;)] |
+| DOC_UNIQUE_FISCAL_YEAR | 16 | Document number has to be unique in financial year. Financial year can be defined with month, day shift and week day. @attr [Description(&#34;Fiscal Year&#34;)] |
 | DOC_UNIQUE_QUATER | 21 | Document number has to be unique in financial quater. Financial quater is quater of financial year. @attr [Description(&#34;Quater&#34;)] |
 | DOC_UNIQUE_MONTH | 31 | Document number has to be unique in financial month. @attr [Description(&#34;Month&#34;)] |
 | DOC_UNIQUE_WEEK | 34 | @attr [Description(&#34;Week&#34;)] |
@@ -3103,6 +3106,19 @@ https://github.com/bchavez/Bogus
 | F_ROUTING_NUMBER | 9 |  |
 | F_BIC | 10 |  |
 | F_IBAN | 11 |  |
+
+
+
+<a name="proto_config-proto_enum_fiscal_year_start_method"></a>
+
+### proto_enum_fiscal_year_start_method
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| FISCAL_YEAR_START_METHOD_NOT_SELECTED | 0 | @attr [Description(&#34;Not Selected&#34;)] |
+| FISCAL_YEAR_START_METHOD_WEEK_DAY_MONTH_DAY | 1 | @attr [Description(&#34;Week day before Month and Day&#34;)] |
+| FISCAL_YEAR_START_METHOD_MONTH_DAY | 2 | @attr [Description(&#34;Month and Day&#34;)] |
 
 
 

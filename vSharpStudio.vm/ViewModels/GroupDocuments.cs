@@ -44,17 +44,13 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsEditable = false;
-            this._ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
-            this._ScopePeriodStartMonthDay = 1;
+            this._FiscalYearStartMonth = EnumMonths.MONTH_JANUARY;
+            this._FiscalYearStartMonthDay = 1;
             Init();
         }
         protected override void OnInitFromDto()
         {
             Init();
-            if (this._ScopePeriodStartMonth == EnumMonths.MONTH_NOT_SELECTED)
-                this._ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
-            if (this._ScopePeriodStartMonthDay == 0)
-                this._ScopePeriodStartMonthDay = 1;
         }
         private void Init()
         {
@@ -127,6 +123,14 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private string? _TimeLineDocDateTimePropertyName = null;
+        partial void OnFiscalYearStartMethodChanged()
+        {
+            this.OnPropertyChanged(nameof(this.PropertyDefinitions));
+            this.OnPropertyChanged(nameof(this.FiscalYearStartMethod));
+            this.OnPropertyChanged(nameof(this.FiscalYearStartWeekDay));
+            //this.ValidateProperty(nameof(this.FiscalYearStartMethod));
+            //this.ValidateProperty(nameof(this.FiscalYearStartWeekDay));
+        }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>
@@ -138,6 +142,10 @@ namespace vSharpStudio.vm.ViewModels
                 nameof(this.Children),
                 nameof(this.DynamicNodesSettings)
             };
+            if (this.FiscalYearStartMethod != EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_WEEK_DAY_MONTH_DAY)
+            {
+                lst.Add(nameof(this.FiscalYearStartWeekDay));
+            }
             return [.. lst];
         }
     }

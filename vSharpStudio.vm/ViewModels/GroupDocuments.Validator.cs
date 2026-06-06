@@ -10,14 +10,14 @@ namespace vSharpStudio.vm.ViewModels
         public GroupDocumentsValidator()
         {
             this.GeneralRules();
-            this.RuleFor(x => x.ScopePeriodStartMonth).Custom((prefix, cntx) =>
+            this.RuleFor(x => x.FiscalYearStartMonth).Custom((prefix, cntx) =>
             {
                 var p = (GroupDocuments)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
-                if (p.ScopePeriodStartMonth == common.EnumMonths.MONTH_NOT_SELECTED)
+                if (p.FiscalYearStartMonth == common.EnumMonths.MONTH_NOT_SELECTED)
                 {
-                    var vf = new ValidationFailure(nameof(p.ScopePeriodStartMonth),
+                    var vf = new ValidationFailure(nameof(p.FiscalYearStartMonth),
                         $"Financial start month is not selected.")
                     {
                         Severity = Severity.Error
@@ -25,63 +25,45 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.ScopePeriodStartMonthDay).Custom((prefix, cntx) =>
+            this.RuleFor(x => x.FiscalYearStartMonthDay).Custom((prefix, cntx) =>
             {
                 var p = (GroupDocuments)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
-                if (p.ScopePeriodStartMonthDay < 1 || p.ScopePeriodStartMonthDay > 28)
+                if (p.FiscalYearStartMonthDay < 1 || p.FiscalYearStartMonthDay > 31)
                 {
-                    var vf = new ValidationFailure(nameof(p.ScopePeriodStartMonthDay),
-                        $"Valid start day of month has to be from 1 to 28.")
+                    var vf = new ValidationFailure(nameof(p.FiscalYearStartMonthDay),
+                        $"Valid start day of month has to be from 1 to 31.")
                     {
                         Severity = Severity.Error
                     };
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.ScopePeriodStartTimeZoneHour).Custom((prefix, cntx) =>
+            this.RuleFor(x => x.FiscalYearStartMethod).Custom((prefix, cntx) =>
             {
                 var p = (GroupDocuments)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
-                if (p.ScopePeriodStartTimeZoneHour < -12 || p.ScopePeriodStartTimeZoneHour > 12)
+                if (p.FiscalYearStartMethod == common.EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_NOT_SELECTED)
                 {
-                    var vf = new ValidationFailure(nameof(p.ScopePeriodStartTimeZoneHour),
-                        $"Valid zone hour has to be from -12 to 12.")
-                    {
-                        Severity = Severity.Error
-                    };
-                    cntx.AddFailure(vf);
-                }
-                if (p.ScopePeriodStartTimeZoneHour != 0 && p.ScopePeriodStartTimeZoneMinute != 0 && Math.Sign(p.ScopePeriodStartTimeZoneHour) != Math.Sign(p.ScopePeriodStartTimeZoneMinute))
-                {
-                    var vf = new ValidationFailure(nameof(p.ScopePeriodStartTimeZoneHour),
-                        $"Time zone hours and minutes has to have same sign.")
+                    var vf = new ValidationFailure(nameof(p.FiscalYearStartMethod),
+                        $"Fiscal year start method is not selected.")
                     {
                         Severity = Severity.Error
                     };
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.ScopePeriodStartTimeZoneMinute).Custom((prefix, cntx) =>
+            this.RuleFor(x => x.FiscalYearStartWeekDay).Custom((prefix, cntx) =>
             {
                 var p = (GroupDocuments)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
-                if (p.ScopePeriodStartTimeZoneMinute < -30 || p.ScopePeriodStartTimeZoneMinute > 30)
+                if (p.FiscalYearStartMethod == common.EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_WEEK_DAY_MONTH_DAY && p.FiscalYearStartWeekDay == common.EnumWeekDays.WEEK_NOT_SELECTED)
                 {
-                    var vf = new ValidationFailure(nameof(p.ScopePeriodStartTimeZoneMinute),
-                        $"Valid zone minutes has to be from -30 to 30.")
-                    {
-                        Severity = Severity.Error
-                    };
-                    cntx.AddFailure(vf);
-                }
-                if (p.ScopePeriodStartTimeZoneHour != 0 && p.ScopePeriodStartTimeZoneMinute != 0 && Math.Sign(p.ScopePeriodStartTimeZoneHour) != Math.Sign(p.ScopePeriodStartTimeZoneMinute))
-                {
-                    var vf = new ValidationFailure(nameof(p.ScopePeriodStartTimeZoneMinute),
-                        $"Time zone hours and minutes has to have same sign.")
+                    var vf = new ValidationFailure(nameof(p.FiscalYearStartWeekDay),
+                        $"Fiscal year start week day is not selected.")
                     {
                         Severity = Severity.Error
                     };

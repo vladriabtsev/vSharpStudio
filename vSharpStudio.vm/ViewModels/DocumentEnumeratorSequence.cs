@@ -27,20 +27,34 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
                     unique = "Unique";
                     break;
-                case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
-                    unique = $"Year starting month: {conv.ConvertTo(null, null, gd.ScopePeriodStartMonth, typeof(string))} day: {gd.ScopePeriodStartMonthDay} hour: {gd.ScopePeriodStartTimeZoneHour} minute: {gd.ScopePeriodStartTimeZoneMinute}";
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_CALENDAR_YEAR:
+                    unique = $"Unique for every calendar year";
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_FISCAL_YEAR:
+                    switch (gd.FiscalYearStartMethod)
+                    {
+                        case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_MONTH_DAY:
+                            unique = $"Unique for fiscal year starting on {gd.FiscalYearStartMonthDay} {conv.ConvertTo(null, null, gd.FiscalYearStartMonth, typeof(string))}";
+                            break;
+                        case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_WEEK_DAY_MONTH_DAY:
+                            unique = $"Unique for fiscal year startin on '{gd.FiscalYearStartWeekDay.ToString()}' before starting month: {conv.ConvertTo(null, null, gd.FiscalYearStartMonth, typeof(string))} day: {gd.FiscalYearStartMonthDay}";
+                            break;
+                        case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_NOT_SELECTED:
+                            unique = $"Fiscal year method is not selected";
+                            break;
+                    }
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
-                    unique = $"Quater starting month: {conv.ConvertTo(null, null, gd.ScopePeriodStartMonth, typeof(string))} day: {gd.ScopePeriodStartMonthDay} hour: {gd.ScopePeriodStartTimeZoneHour} minute: {gd.ScopePeriodStartTimeZoneMinute}";
+                    unique = $"Unique for every calendar quater";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
-                    unique = $"Month: {gd.ScopePeriodStartMonthDay} hour: {gd.ScopePeriodStartTimeZoneHour} minute: {gd.ScopePeriodStartTimeZoneMinute}";
+                    unique = $"Unique for every calendar month";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
-                    unique = $"Week starting week day: {conv.ConvertTo(null, null, this.ScopePeriodStartWeekDay, typeof(string))} hour: {gd.ScopePeriodStartTimeZoneHour} minute: {gd.ScopePeriodStartTimeZoneMinute}";
+                    unique = $"Unique for every week. Starting week day: {conv.ConvertTo(null, null, this.ScopePeriodStartWeekDay, typeof(string))}";
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
-                    unique = $"Day: hour: {gd.ScopePeriodStartTimeZoneHour} minute: {gd.ScopePeriodStartTimeZoneMinute}";
+                    unique = $"Unique for every day";
                     break;
                 default:
                     throw new NotImplementedException();
@@ -74,7 +88,17 @@ namespace vSharpStudio.vm.ViewModels
             this._SequenceType = EnumCodeType.Text;
             this._MaxSequenceLength = 9;
             this._Prefix = "";
+            /*
+            if (this.ParentGroupListSequences.ParentGroupDocuments.FiscalYearStartMethod == EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_MONTH_DAY)
+            {
+
+            }
+            else if (this.ParentGroupListSequences.ParentGroupDocuments.FiscalYearStartMethod == EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_MONTH_DAY_WEEK_DAY)
+            {
+
+            }
             this._ScopeOfUnique = common.EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR;
+            */
             Init();
         }
         protected override void OnInitFromDto()
@@ -150,8 +174,19 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
                     lst.Add(nameof(this.ScopePeriodStartWeekDay));
                     break;
-                case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_CALENDAR_YEAR:
                     lst.Add(nameof(this.ScopePeriodStartWeekDay));
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_FISCAL_YEAR:
+                    switch(this.ParentGroupListSequences.ParentGroupDocuments.FiscalYearStartMethod)
+                    {
+                        case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_NOT_SELECTED:
+                        case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_MONTH_DAY:
+                            lst.Add(nameof(this.ScopePeriodStartWeekDay));
+                            break;
+                        //case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_MONTH_DAY_WEEK_DAY:
+                        //    break;
+                    }
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
                     lst.Add(nameof(this.ScopePeriodStartWeekDay));
