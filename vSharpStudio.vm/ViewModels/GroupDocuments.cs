@@ -142,7 +142,7 @@ namespace vSharpStudio.vm.ViewModels
                 nameof(this.Children),
                 nameof(this.DynamicNodesSettings)
             };
-            if (this.FiscalYearStartMethod != EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_WEEK_DAY_MONTH_DAY)
+            if (this.FiscalYearStartMethod != EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_WEEK_DAY_BEFORE_MONTH_DAY)
             {
                 lst.Add(nameof(this.FiscalYearStartWeekDay));
             }

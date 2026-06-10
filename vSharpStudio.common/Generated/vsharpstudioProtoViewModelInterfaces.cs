@@ -277,7 +277,7 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		[Description("Not Selected")]
 		FISCAL_YEAR_START_METHOD_NOT_SELECTED = 0,
 		[Description("Week day before Month and Day")]
-		FISCAL_YEAR_START_METHOD_WEEK_DAY_MONTH_DAY = 1,
+		FISCAL_YEAR_START_METHOD_WEEK_DAY_BEFORE_MONTH_DAY = 1,
 		[Description("Month and Day")]
 		FISCAL_YEAR_START_METHOD_MONTH_DAY = 2,
 	}

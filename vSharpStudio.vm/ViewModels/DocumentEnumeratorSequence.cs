@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
                         case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_MONTH_DAY:
                             unique = $"Unique for fiscal year starting on {gd.FiscalYearStartMonthDay} {conv.ConvertTo(null, null, gd.FiscalYearStartMonth, typeof(string))}";
                             break;
-                        case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_WEEK_DAY_MONTH_DAY:
+                        case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_WEEK_DAY_BEFORE_MONTH_DAY:
                             unique = $"Unique for fiscal year startin on '{gd.FiscalYearStartWeekDay.ToString()}' before starting month: {conv.ConvertTo(null, null, gd.FiscalYearStartMonth, typeof(string))} day: {gd.FiscalYearStartMonthDay}";
                             break;
                         case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_NOT_SELECTED:
@@ -178,15 +178,7 @@ namespace vSharpStudio.vm.ViewModels
                     lst.Add(nameof(this.ScopePeriodStartWeekDay));
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_FISCAL_YEAR:
-                    switch(this.ParentGroupListSequences.ParentGroupDocuments.FiscalYearStartMethod)
-                    {
-                        case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_NOT_SELECTED:
-                        case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_MONTH_DAY:
-                            lst.Add(nameof(this.ScopePeriodStartWeekDay));
-                            break;
-                        //case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_MONTH_DAY_WEEK_DAY:
-                        //    break;
-                    }
+                    lst.Add(nameof(this.ScopePeriodStartWeekDay));
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
                     lst.Add(nameof(this.ScopePeriodStartWeekDay));

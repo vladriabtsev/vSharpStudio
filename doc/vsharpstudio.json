@@ -793,7 +793,7 @@
               "description": "@attr [Description(\"Not Selected\")]"
             },
             {
-              "name": "FISCAL_YEAR_START_METHOD_WEEK_DAY_MONTH_DAY",
+              "name": "FISCAL_YEAR_START_METHOD_WEEK_DAY_BEFORE_MONTH_DAY",
               "number": "1",
               "description": "@attr [Description(\"Week day before Month and Day\")]"
             },

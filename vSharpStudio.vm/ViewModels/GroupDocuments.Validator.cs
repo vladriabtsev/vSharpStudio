@@ -60,7 +60,7 @@ namespace vSharpStudio.vm.ViewModels
                 var p = (GroupDocuments)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
-                if (p.FiscalYearStartMethod == common.EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_WEEK_DAY_MONTH_DAY && p.FiscalYearStartWeekDay == common.EnumWeekDays.WEEK_NOT_SELECTED)
+                if (p.FiscalYearStartMethod == common.EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_WEEK_DAY_BEFORE_MONTH_DAY && p.FiscalYearStartWeekDay == common.EnumWeekDays.WEEK_NOT_SELECTED)
                 {
                     var vf = new ValidationFailure(nameof(p.FiscalYearStartWeekDay),
                         $"Fiscal year start week day is not selected.")
