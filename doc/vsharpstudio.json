@@ -801,6 +801,11 @@
               "name": "FISCAL_YEAR_START_METHOD_MONTH_DAY",
               "number": "2",
               "description": "@attr [Description(\"Month and Day\")]"
+            },
+            {
+              "name": "FISCAL_NORMAL_CALENDAR",
+              "number": "3",
+              "description": "@attr [Description(\"Calendar\")]"
             }
           ]
         },

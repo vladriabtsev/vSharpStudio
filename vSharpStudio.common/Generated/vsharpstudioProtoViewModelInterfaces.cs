@@ -280,6 +280,8 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 		FISCAL_YEAR_START_METHOD_WEEK_DAY_BEFORE_MONTH_DAY = 1,
 		[Description("Month and Day")]
 		FISCAL_YEAR_START_METHOD_MONTH_DAY = 2,
+		[Description("Calendar")]
+		FISCAL_NORMAL_CALENDAR = 3,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumHackerDataType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
