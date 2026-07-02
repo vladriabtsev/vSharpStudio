@@ -39,7 +39,7 @@ namespace vSharpStudio.common
         {
             var encod = new UTF8Encoding(true);
             byte[] bytes = encod.GetBytes(code);
-            string outFolder = Path.Combine(path, fileRelativePath);
+            string outFolder = Path.Combine(path, fileRelativePath ?? "");
             string outFile;
             if (Path.EndsInDirectorySeparator(outFolder))
                 outFile = $"{outFolder}{fileName}";
