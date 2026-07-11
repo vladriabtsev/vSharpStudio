@@ -8115,6 +8115,17 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                     cntx.AddFailure(new ValidationFailure("RecordVersionFieldName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
+            this.RuleFor(x => x.RecordStateFieldName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
+            {
+                try
+                {
+                    System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(str));
+                }
+                catch(Exception ex)
+                {
+                    cntx.AddFailure(new ValidationFailure("RecordStateFieldName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                }
+            });
         }
     }
     // Configuration model
@@ -8198,6 +8209,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._PKeyType = from.PKeyType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._RecordVersionFieldName = from.RecordVersionFieldName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._RecordVersionFieldType = from.RecordVersionFieldType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
+            vm._RecordStateFieldName = from.RecordStateFieldName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._ComplexPropertyRefDescrLength = from.ComplexPropertyRefDescrLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
             vm._IsGridSortableCustom = from.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:74
@@ -8239,6 +8251,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             to._PKeyType = from.PKeyType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             to._RecordVersionFieldName = from.RecordVersionFieldName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             to._RecordVersionFieldType = from.RecordVersionFieldType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
+            to._RecordStateFieldName = from.RecordStateFieldName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             to._ComplexPropertyRefDescrLength = from.ComplexPropertyRefDescrLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             to._IsGridSortable = from.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
             to._IsGridSortableCustom = from.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:156
@@ -8365,6 +8378,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
             vm._PKeyType = (EnumPrimaryKeyType)m.PKeyType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._RecordVersionFieldName = m.RecordVersionFieldName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._RecordVersionFieldType = (EnumVersionFieldType)m.RecordVersionFieldType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
+            vm._RecordStateFieldName = m.RecordStateFieldName; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._ComplexPropertyRefDescrLength = m.ComplexPropertyRefDescrLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._IsGridSortable = m.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
             vm._IsGridSortableCustom = m.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:239
@@ -8456,6 +8470,14 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'record_version_field_name'", ex); 
             }
             m.RecordVersionFieldType = (Proto.Config.proto_enum_version_field_type)vm.RecordVersionFieldType; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:296
+            try // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:298
+            { 
+                m.RecordStateFieldName = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Default.GetBytes(vm.RecordStateFieldName)); 
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception("Error while converting to PROTO and encoding from Default to UTF8. For 'vsharpstudio.proto' message 'proto_model' field 'record_state_field_name'", ex); 
+            }
             m.ComplexPropertyRefDescrLength = vm.ComplexPropertyRefDescrLength; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:307
             m.IsGridSortable = vm.IsGridSortable; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:307
             m.IsGridSortableCustom = vm.IsGridSortableCustom; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Clone.tt Line:307
@@ -8753,8 +8775,29 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
         partial void OnRecordVersionFieldTypeChanging(ref EnumVersionFieldType to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
         partial void OnRecordVersionFieldTypeChanged();
         
-        [Category("Property settings")]
         [PropertyOrderAttribute(20)]
+        [DisplayName("State field")]
+        [Description("Record state field name")]
+        [Category("Property settings")]
+        public string RecordStateFieldName // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9
+        { 
+            get { return this._RecordStateFieldName; }
+            set
+            {
+                // Use 'OnRecordStateFieldNameChanging' to change 'value' before setting property. It is a partial method and expected will be implemented not often.
+                if (SetProperty(this._RecordStateFieldName, value, (t) => { bool isCancel = false; this.OnRecordStateFieldNameChanging(ref value, ref isCancel); if (isCancel) return; this._RecordStateFieldName = value; this.OnRecordStateFieldNameChanged(); })) // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:16
+                {
+                    this.ValidateProperty(); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:19
+                    this.IsChanged = true; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:22
+                }
+            }
+        }
+        private string _RecordStateFieldName = string.Empty; // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:44
+        partial void OnRecordStateFieldNameChanging(ref string to, ref bool isCancel); // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:46
+        partial void OnRecordStateFieldNameChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(43)]
         [DisplayName("Descr Max")]
         [Description("Complex property description maximum length. Unlimited if zero")]
         public uint ComplexPropertyRefDescrLength // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Property.tt Line:9

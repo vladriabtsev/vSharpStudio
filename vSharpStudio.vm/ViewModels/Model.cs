@@ -58,6 +58,7 @@ namespace vSharpStudio.vm.ViewModels
 
             this._PKeyName = "Id";
             this._PKeyType = EnumPrimaryKeyType.INT;
+            this._RecordStateFieldName = "ReCoRdStAtE";
             this._RecordVersionFieldName = "ReCoRdVeRsIoN";
             this._RecordVersionFieldType = EnumVersionFieldType.VER_INT;
 
@@ -67,6 +68,7 @@ namespace vSharpStudio.vm.ViewModels
         protected override void OnInitFromDto()
         {
             Init();
+            if (this._RecordStateFieldName == string.Empty) this._RecordStateFieldName = "ReCoRdStAtE";
         }
         private void Init()
         {

@@ -11263,8 +11263,20 @@
               "defaultValue": ""
             },
             {
+              "name": "record_state_field_name",
+              "description": "@attr [PropertyOrderAttribute(20)]\n@attr [DisplayName(\"State field\")]\n@attr [Description(\"Record state field name\")]\n@attr [Category(\"Property settings\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "complex_property_ref_descr_length",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(20)]\n@attr [DisplayName(\"Descr Max\")]\n@attr [Description(\"Complex property description maximum length. Unlimited if zero\")]",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(43)]\n@attr [DisplayName(\"Descr Max\")]\n@attr [Description(\"Complex property description maximum length. Unlimited if zero\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",

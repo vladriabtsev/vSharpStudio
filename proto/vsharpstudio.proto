@@ -728,8 +728,14 @@ message proto_model {
     // @attr [Description("Record version field type")]
     // @attr [Category("Property settings")]
     proto_enum_version_field_type record_version_field_type = 19;
-    // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(20)]
+    // @attr [DisplayName("State field")]
+    // @attr [Description("Record state field name")]
+    // @attr [Category("Property settings")]
+    string record_state_field_name = 20;
+
+    // @attr [Category("Property settings")]
+    // @attr [PropertyOrderAttribute(43)]
     // @attr [DisplayName("Descr Max")]
     // @attr [Description("Complex property description maximum length. Unlimited if zero")]
     uint32 complex_property_ref_descr_length = 43;
