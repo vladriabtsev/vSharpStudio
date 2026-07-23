@@ -27,14 +27,17 @@ namespace vSharpStudio.vm.ViewModels
             sb.Append("FOL ");
             sb.Append(this.Name);
             sb.Append(", ");
-            sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel.PKeyName);
+            sb.Append(this.Cfg.Model.PKeyName);
             sb.Append(":{");
-            sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel.PKeyName);
+            sb.Append(this.Cfg.Model.PKeyName);
             sb.Append(",nq} RefTreeParent:{RefTreeParent,nq}");
+            sb.Append(" State:{");
+            sb.Append(this.Cfg.Model.RecordStateFieldName);
+            sb.Append(",nq}");
             if (isOptimistic)
             {
                 sb.Append(" RecVer:{");
-                sb.Append(this.ParentCatalog.ParentGroupListCatalogs.ParentGroupCatalogs.ParentModel.RecordVersionFieldName);
+                sb.Append(this.Cfg.Model.RecordVersionFieldName);
                 sb.Append(",nq}");
             }
             return sb.ToString();
@@ -390,6 +393,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 prp = model.GetPropertyVersion(this);
                 res.Add(prp);
+                //prp = model.GetPropertyVersionPrev(this);
+                //res.Add(prp);
             }
         }
         public void GetNormalProperties(List<IProperty> res)

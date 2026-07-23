@@ -369,6 +369,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 prp = this.Mdl.GetPropertyVersion(this);
                 lst.Add(prp);
+                //prp = this.Mdl.GetPropertyVersionPrev(this);
+                //lst.Add(prp);
             }
         }
         /// <summary>

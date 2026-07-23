@@ -39,16 +39,19 @@ namespace vSharpStudio.vm.ViewModels
             sb.Append("REG ");
             sb.Append(this.Name);
             sb.Append(", ");
-            sb.Append(this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel.PKeyName);
+            sb.Append(this.Cfg.Model.PKeyName);
             sb.Append(":{");
-            sb.Append(this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel.PKeyName);
+            sb.Append(this.Cfg.Model.PKeyName);
             sb.Append(",nq}");
             sb.Append(", Doc:{DocDescr,nq}");
             sb.Append(", Turnovers:{ListTurnovers.Count}");
+            sb.Append(" State:{");
+            sb.Append(this.Cfg.Model.RecordStateFieldName);
+            sb.Append(",nq}");
             if (isOptimistic)
             {
                 sb.Append(" RecVer:{");
-                sb.Append(this.ParentGroupListRegisters.ParentGroupDocuments.ParentModel.RecordVersionFieldName);
+                sb.Append(this.Cfg.Model.RecordVersionFieldName);
                 sb.Append(",nq}");
             }
             return sb.ToString();
@@ -419,6 +422,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 prp = model.GetPropertyVersion(this);
                 lst.Add(prp);
+                //prp = model.GetPropertyVersionPrev(this);
+                //lst.Add(prp);
             }
             return lst;
         }
@@ -438,6 +443,8 @@ namespace vSharpStudio.vm.ViewModels
                 var model = this.Cfg.Model;
                 var prp = model.GetPropertyVersion(this);
                 lst.Add(prp);
+                //prp = model.GetPropertyVersionPrev(this);
+                //lst.Add(prp);
             }
             return lst;
         }

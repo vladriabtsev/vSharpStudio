@@ -33,14 +33,17 @@ namespace vSharpStudio.vm.ViewModels
             sb.Append("DOC ");
             sb.Append(this.Name);
             sb.Append(", ");
-            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PKeyName);
+            sb.Append(this.Cfg.Model.PKeyName);
             sb.Append(":{");
-            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PKeyName);
+            sb.Append(this.Cfg.Model.PKeyName);
+            sb.Append(",nq}");
+            sb.Append(" State:{");
+            sb.Append(this.Cfg.Model.RecordStateFieldName);
             sb.Append(",nq}");
             if (isOptimistic)
             {
                 sb.Append(" RecVer:{");
-                sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.RecordVersionFieldName);
+                sb.Append(this.Cfg.Model.RecordVersionFieldName);
                 sb.Append(",nq}");
             }
             sb.Append(" Number:{");
@@ -481,6 +484,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 prp = model.GetPropertyVersion(this);
                 res.Add(prp);
+                //prp = model.GetPropertyVersionPrev(this);
+                //res.Add(prp);
             }
         }
         public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)

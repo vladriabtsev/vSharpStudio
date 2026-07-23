@@ -211,6 +211,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 prp = model.GetPropertyVersion(this);
                 res.Add(prp);
+                //prp = model.GetPropertyVersionPrev(this);
+                //res.Add(prp);
             }
             if (this.IsUseHistory)
             {

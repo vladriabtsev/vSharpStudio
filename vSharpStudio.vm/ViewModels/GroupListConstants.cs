@@ -343,6 +343,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 prp = model.GetPropertyVersion(this);
                 res.Add(prp);
+                //prp = model.GetPropertyVersionPrev(this);
+                //res.Add(prp);
             }
         }
         public IReadOnlyList<IProperty> GetIncludedConstantsAsProperties(string guidAppPrjGen, bool isOptimistic, bool isSkipComplexDescr, bool isExcludeSpecial = false)

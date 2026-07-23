@@ -75,6 +75,9 @@ namespace vSharpStudio.vm.ViewModels
             sb.Append(":{");
             sb.Append(model.PKeyName);
             sb.Append(",nq}");
+            sb.Append(" State:{");
+            sb.Append(this.Cfg.Model.RecordStateFieldName);
+            sb.Append(",nq}");
             if (isOptimistic)
             {
                 sb.Append(" RecVer:{");
@@ -448,6 +451,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 prp = model.GetPropertyVersion(this);
                 res.Add(prp);
+                //prp = model.GetPropertyVersionPrev(this);
+                //res.Add(prp);
             }
         }
         public void GetNormalProperties(List<IProperty> res)
