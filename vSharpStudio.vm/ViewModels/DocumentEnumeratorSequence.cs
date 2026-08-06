@@ -39,9 +39,6 @@ namespace vSharpStudio.vm.ViewModels
                         case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_WEEK_DAY_BEFORE_MONTH_DAY:
                             unique = $"Unique for fiscal year startin on '{gd.FiscalYearStartWeekDay.ToString()}' before starting month: {conv.ConvertTo(null, null, gd.FiscalYearStartMonth, typeof(string))} day: {gd.FiscalYearStartMonthDay}";
                             break;
-                        case EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_NOT_SELECTED:
-                            unique = $"Fiscal year method is not selected";
-                            break;
                     }
                     break;
                 case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:

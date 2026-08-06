@@ -788,9 +788,9 @@
           "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
-              "name": "FISCAL_YEAR_START_METHOD_NOT_SELECTED",
+              "name": "FISCAL_NORMAL_CALENDAR_YEAR",
               "number": "0",
-              "description": "@attr [Description(\"Not Selected\")]"
+              "description": "@attr [Description(\"Calendar year\")]"
             },
             {
               "name": "FISCAL_YEAR_START_METHOD_WEEK_DAY_BEFORE_MONTH_DAY",
@@ -801,11 +801,6 @@
               "name": "FISCAL_YEAR_START_METHOD_MONTH_DAY",
               "number": "2",
               "description": "@attr [Description(\"Month and Day\")]"
-            },
-            {
-              "name": "FISCAL_NORMAL_CALENDAR",
-              "number": "3",
-              "description": "@attr [Description(\"Calendar\")]"
             }
           ]
         },

@@ -40,21 +40,6 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             });
-            this.RuleFor(x => x.FiscalYearStartMethod).Custom((prefix, cntx) =>
-            {
-                var p = (GroupDocuments)cntx.InstanceToValidate;
-                if (p.Parent == null)
-                    return;
-                if (p.FiscalYearStartMethod == common.EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_NOT_SELECTED)
-                {
-                    var vf = new ValidationFailure(nameof(p.FiscalYearStartMethod),
-                        $"Fiscal year start method is not selected.")
-                    {
-                        Severity = Severity.Error
-                    };
-                    cntx.AddFailure(vf);
-                }
-            });
             this.RuleFor(x => x.FiscalYearStartWeekDay).Custom((prefix, cntx) =>
             {
                 var p = (GroupDocuments)cntx.InstanceToValidate;

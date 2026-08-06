@@ -274,14 +274,12 @@ namespace vSharpStudio.common // D:\dev\vSharpStudio.pro\submodules\vSharpStudio
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumFiscalYearStartMethod // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19
 	{
-		[Description("Not Selected")]
-		FISCAL_YEAR_START_METHOD_NOT_SELECTED = 0,
+		[Description("Calendar year")]
+		FISCAL_NORMAL_CALENDAR_YEAR = 0,
 		[Description("Week day before Month and Day")]
 		FISCAL_YEAR_START_METHOD_WEEK_DAY_BEFORE_MONTH_DAY = 1,
 		[Description("Month and Day")]
 		FISCAL_YEAR_START_METHOD_MONTH_DAY = 2,
-		[Description("Calendar")]
-		FISCAL_NORMAL_CALENDAR = 3,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumHackerDataType // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\ModelInterfaces.tt Line:19

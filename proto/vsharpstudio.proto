@@ -622,14 +622,12 @@ enum proto_enum_week_days {
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_fiscal_year_start_method {
-    // @attr [Description("Not Selected")]
-    FISCAL_YEAR_START_METHOD_NOT_SELECTED = 0;
+    // @attr [Description("Calendar year")]
+    FISCAL_NORMAL_CALENDAR_YEAR = 0;
     // @attr [Description("Week day before Month and Day")]
     FISCAL_YEAR_START_METHOD_WEEK_DAY_BEFORE_MONTH_DAY = 1;
     // @attr [Description("Month and Day")]
     FISCAL_YEAR_START_METHOD_MONTH_DAY = 2;
-    // @attr [Description("Calendar")]
-    FISCAL_NORMAL_CALENDAR = 3;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_primary_key_type {

@@ -142,13 +142,7 @@ namespace vSharpStudio.vm.ViewModels
                 nameof(this.Children),
                 nameof(this.DynamicNodesSettings)
             };
-            if (this.FiscalYearStartMethod == EnumFiscalYearStartMethod.FISCAL_YEAR_START_METHOD_NOT_SELECTED)
-            {
-                lst.Add(nameof(this.FiscalYearStartWeekDay));
-                lst.Add(nameof(this.FiscalYearStartMonth));
-                lst.Add(nameof(this.FiscalYearStartMonthDay));
-            }
-            else if (this.FiscalYearStartMethod == EnumFiscalYearStartMethod.FISCAL_NORMAL_CALENDAR)
+            if (this.FiscalYearStartMethod == EnumFiscalYearStartMethod.FISCAL_NORMAL_CALENDAR_YEAR)
             {
                 lst.Add(nameof(this.FiscalYearStartWeekDay));
                 lst.Add(nameof(this.FiscalYearStartMonth));

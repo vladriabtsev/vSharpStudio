@@ -3117,10 +3117,9 @@ https://github.com/bchavez/Bogus
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| FISCAL_YEAR_START_METHOD_NOT_SELECTED | 0 | @attr [Description(&#34;Not Selected&#34;)] |
+| FISCAL_NORMAL_CALENDAR_YEAR | 0 | @attr [Description(&#34;Calendar year&#34;)] |
 | FISCAL_YEAR_START_METHOD_WEEK_DAY_BEFORE_MONTH_DAY | 1 | @attr [Description(&#34;Week day before Month and Day&#34;)] |
 | FISCAL_YEAR_START_METHOD_MONTH_DAY | 2 | @attr [Description(&#34;Month and Day&#34;)] |
-| FISCAL_NORMAL_CALENDAR | 3 | @attr [Description(&#34;Calendar&#34;)] |
 
 
 
