@@ -158,15 +158,15 @@ namespace GenVmFromProto
             }
             catch(Exception ex)
             {
-                cntx.AddFailure(new ValidationFailure(""");
+                cntx.AddFailure(Common.CreateValidationFailure(""");
             
             #line 32 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
             
             #line default
             #line hidden
-            this.Write("\", $\"Can\'t convert to UTF8. Error: {ex.Message}\") { Severity = Severity.Error });" +
-                    "\r\n            }\r\n        });\r\n");
+            this.Write("\", $\"Can\'t convert to UTF8. Error: {ex.Message}\"));\r\n            }\r\n        });\r\n" +
+                    "");
             
             #line 35 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt"
        }

@@ -1113,7 +1113,8 @@ namespace vSharpStudio.Unit
             Assert.IsEmpty(cfg.Model.GroupCatalogs.GroupRelations.GroupListOneToOneRelations.ListRelations);
             var c1 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("cat");
             var d2 = cfg.Model.GroupDocuments.AddDocument("test_doc");
-            var seq = cfg.Model.GroupDocuments.GroupListSequences.AddSequence("seq");
+            var seq = (DocumentEnumeratorSequence)cfg.Model.GroupDocuments.GroupListSequences.AddSequence("seq");
+            seq.ScopeOfUnique = EnumDocNumberUniqueScope.DOC_UNIQUE_CALENDAR_YEAR;
             d2.SequenceGuid = seq.Guid;
 
             // 1. EnumOneToOneRefType.ONE_TO_ONE_REF_BOTH_DIRECTIONS
@@ -1169,7 +1170,8 @@ namespace vSharpStudio.Unit
             Assert.IsEmpty(cfg.Model.GroupCatalogs.GroupRelations.GroupListManyToManyRelations.ListRelations);
             c1 = cfg.Model.GroupCatalogs.GroupListCatalogs.AddCatalog("cat2");
             d2 = cfg.Model.GroupDocuments.AddDocument("test_doc2");
-            var seq2 = cfg.Model.GroupDocuments.GroupListSequences.AddSequence("seq2");
+            var seq2 = (DocumentEnumeratorSequence)cfg.Model.GroupDocuments.GroupListSequences.AddSequence("seq2");
+            seq2.ScopeOfUnique = EnumDocNumberUniqueScope.DOC_UNIQUE_CALENDAR_YEAR;
             d2.SequenceGuid = seq2.Guid;
 
             // 1. EnumOneToOneRefType.ONE_TO_ONE_NOT_SELECTED

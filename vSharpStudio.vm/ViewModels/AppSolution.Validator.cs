@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using FluentValidation;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -37,11 +38,11 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (!string.IsNullOrEmpty(path))
                     {
-                        var pg = (AppSolution)cntx.InstanceToValidate;
+                        var pg = cntx.InstanceToValidate;
                         var slnPath = pg.GetSolutionPath();
                         if (!File.Exists(slnPath))
                         {
-                            cntx.AddFailure($"Solution file was not found {slnPath}");
+                            cntx.AddFailure(Common.CreateValidationFailure(cntx.PropertyPath, $"Solution file was not found {slnPath}"));
                         }
                     }
                 });

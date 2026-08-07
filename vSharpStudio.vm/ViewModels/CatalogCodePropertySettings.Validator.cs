@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -13,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.MaxSequenceLength).LessThan(20u);
             this.RuleFor(x => x.Prefix).Custom((prefix, cntx) =>
             {
-                var p = (CatalogCodePropertySettings)cntx.InstanceToValidate;
+                var p = cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
                 //if (string.IsNullOrWhiteSpace(p.SequenceGuid))
@@ -22,11 +23,8 @@ namespace vSharpStudio.vm.ViewModels
                     p.Prefix = "";
                 if (p.Prefix.Length > 0 && (p.SequenceType == common.EnumCodeType.Number))
                 {
-                    var vf = new ValidationFailure(nameof(p.Prefix),
-                        $"Prefix for numbers is not used. Expected to be empty")
-                    {
-                        Severity = Severity.Error
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(p.Prefix),
+                        $"Prefix for numbers is not used. Expected to be empty");
                     cntx.AddFailure(vf);
                 }
                 //}

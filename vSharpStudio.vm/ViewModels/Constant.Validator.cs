@@ -26,18 +26,15 @@ namespace vSharpStudio.vm.ViewModels
             // RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Document).WithMessage("Please select document name");
             this.RuleFor(x => x.IsMarkedForDeletion).Custom((name, cntx) =>
             {
-                var p = (Constant)cntx.InstanceToValidate;
+                var p = cntx.InstanceToValidate;
                 if (p.IsMarkedForDeletion)
                     return;
                 if (p.DataTypeEnum == EnumDataType.ENUMERATION)
                 {
                     if (string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
                     {
-                        var vf = new ValidationFailure(nameof(p.ConfigObjectGuid),
-                            $"Constant general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtype is not selected")
-                        {
-                            Severity = Severity.Error
-                        };
+                        var vf = Common.CreateValidationFailure(nameof(p.ConfigObjectGuid),
+                            $"Constant general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtype is not selected");
                         cntx.AddFailure(vf);
                         return;
                     }
@@ -53,11 +50,8 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             if (!p.IsMarkedForDeletion && !pe.IsMarkedForDeletion)
                             {
-                                var vf = new ValidationFailure(nameof(p.IsMarkedForDeletion),
-                                    $"Constant type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this constant is not marked for deletion")
-                                {
-                                    Severity = Severity.Error
-                                };
+                                var vf = Common.CreateValidationFailure(nameof(p.IsMarkedForDeletion),
+                                    $"Constant type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this constant is not marked for deletion");
                                 cntx.AddFailure(vf);
                             }
                         }
@@ -67,11 +61,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (string.IsNullOrWhiteSpace(p.ConfigObjectGuid))
                     {
-                        var vf = new ValidationFailure(nameof(p.ConfigObjectGuid),
-                            $"Constant general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtype is not selected")
-                        {
-                            Severity = Severity.Error
-                        };
+                        var vf = Common.CreateValidationFailure(nameof(p.ConfigObjectGuid),
+                            $"Constant general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtype is not selected");
                         cntx.AddFailure(vf);
                         return;
                     }
@@ -87,11 +78,8 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             if (!p.IsMarkedForDeletion && !pe.IsMarkedForDeletion)
                             {
-                                var vf = new ValidationFailure(nameof(p.IsMarkedForDeletion),
-                                    $"Constant type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this constant is not marked for deletion")
-                                {
-                                    Severity = Severity.Error
-                                };
+                                var vf = Common.CreateValidationFailure(nameof(p.IsMarkedForDeletion),
+                                    $"Constant type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this constant is not marked for deletion");
                                 cntx.AddFailure(vf);
                             }
                         }
@@ -101,11 +89,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (p.ListObjectRefs.Count == 0)
                     {
-                        var vf = new ValidationFailure(nameof(p.ConfigObjectGuid),
-                            $"Constant general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtypes are not selected")
-                        {
-                            Severity = Severity.Error
-                        };
+                        var vf = Common.CreateValidationFailure(nameof(p.ConfigObjectGuid),
+                            $"Constant general type is {Enum.GetName<EnumDataType>(p.DataTypeEnum)}, but subtypes are not selected");
                         cntx.AddFailure(vf);
                         return;
                     }
@@ -123,11 +108,8 @@ namespace vSharpStudio.vm.ViewModels
                             {
                                 if (!p.IsMarkedForDeletion && !pe.IsMarkedForDeletion)
                                 {
-                                    var vf = new ValidationFailure(nameof(p.IsMarkedForDeletion),
-                                        $"Constant type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this constant can use it as it's type")
-                                    {
-                                        Severity = Severity.Error
-                                    };
+                                    var vf = Common.CreateValidationFailure(nameof(p.IsMarkedForDeletion),
+                                        $"Constant type is {refObj.GetType().Name}:'{refObj.Name}'. This type is marked for deletion, but this constant can use it as it's type");
                                     cntx.AddFailure(vf);
                                 }
                             }

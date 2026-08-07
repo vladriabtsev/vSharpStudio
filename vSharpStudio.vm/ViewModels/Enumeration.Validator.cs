@@ -59,17 +59,15 @@ namespace vSharpStudio.vm.ViewModels
 
             this.RuleFor(x => x.DataTypeLength).Custom((path, cntx) =>
             {
-                var pg = (Enumeration)cntx.InstanceToValidate;
+                var pg = cntx.InstanceToValidate;
                 var prev = (Enumeration?)pg.PrevCurrentVersion();
                 var ver = "CURRENT";
                 if (prev != null && pg.DataTypeEnum == prev.DataTypeEnum)
                 {
                     if (pg.DataTypeLength < prev.DataTypeLength)
                     {
-                        var vf = new ValidationFailure(nameof(pg.DataTypeLength), $"Comparison with previous {ver} version. Length was reduced from '{prev.DataTypeLength}' to '{pg.DataTypeLength}'")
-                        {
-                            Severity = Severity.Warning
-                        };
+                        var vf = Common.CreateValidationFailure(nameof(pg.DataTypeLength), $"Comparison with previous {ver} version. Length was reduced from '{prev.DataTypeLength}' to '{pg.DataTypeLength}'",
+                        Severity.Warning);
                         cntx.AddFailure(vf);
                     }
                 }
@@ -79,10 +77,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (pg.DataTypeLength < prev.DataTypeLength)
                     {
-                        var vf = new ValidationFailure(nameof(pg.DataTypeLength), $"Comparison with previous {ver} version. Length was reduced from '{prev.DataTypeLength}' to '{pg.DataTypeLength}'")
-                        {
-                            Severity = Severity.Warning
-                        };
+                        var vf = Common.CreateValidationFailure(nameof(pg.DataTypeLength), $"Comparison with previous {ver} version. Length was reduced from '{prev.DataTypeLength}' to '{pg.DataTypeLength}'",
+                        Severity.Warning);
                         cntx.AddFailure(vf);
                     }
                 }
@@ -90,27 +86,23 @@ namespace vSharpStudio.vm.ViewModels
 
             this.RuleFor(x => x.DataTypeEnum).Custom((path, cntx) =>
             {
-                var pg = (Enumeration)cntx.InstanceToValidate;
+                var pg = cntx.InstanceToValidate;
                 var prev = (Enumeration?)pg.PrevCurrentVersion();
                 var ver = "CURRENT";
                 if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {
-                    var vf = new ValidationFailure(nameof(pg.DataTypeEnum),
-                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumEnumerationType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumEnumerationType), pg.DataTypeEnum)}'")
-                    {
-                        Severity = Severity.Warning
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(pg.DataTypeEnum),
+                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumEnumerationType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumEnumerationType), pg.DataTypeEnum)}'",
+                        Severity.Warning);
                     cntx.AddFailure(vf);
                 }
                 prev = (Enumeration?)pg.PrevStableVersion();
                 ver = "STABLE";
                 if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {
-                    var vf = new ValidationFailure(nameof(pg.DataTypeEnum),
-                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumEnumerationType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumEnumerationType), pg.DataTypeEnum)}'")
-                    {
-                        Severity = Severity.Warning
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(pg.DataTypeEnum),
+                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumEnumerationType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumEnumerationType), pg.DataTypeEnum)}'",
+                        Severity.Warning);
                     cntx.AddFailure(vf);
                 }
             });

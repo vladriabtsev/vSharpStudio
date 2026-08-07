@@ -19,39 +19,31 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (ft == FormType.FormTypeNotSelected)
                     {
-                        var vf = new ValidationFailure(cntx.PropertyPath, $"Form type is not selected")
-                        {
-                            Severity = Severity.Warning
-                        };
+                        var vf = Common.CreateValidationFailure(cntx.PropertyPath, $"Form type is not selected",
+                        Severity.Warning);
                         cntx.AddFailure(vf);
                         return;
                     }
-                    var instance = (Form)cntx.InstanceToValidate;
+                    var instance = cntx.InstanceToValidate;
                     if (ft == FormType.ListDataGrid || ft == FormType.ListComboBox)
                     {
                         if (instance.ListSelectedNotSpecialProperties.Count == 0)
                         {
-                            var vf = new ValidationFailure(cntx.PropertyPath, $"No properties are selected for view")
-                            {
-                                Severity = Severity.Warning
-                            };
+                            var vf = Common.CreateValidationFailure(cntx.PropertyPath, $"No properties are selected for view",
+                            Severity.Warning);
                             cntx.AddFailure(vf);
                         }
                         if (instance.UseSeparateTreeForFolders && instance.ListSeparateTreeSelectedNotSpecialProperties.Count == 0)
                         {
-                            var vf = new ValidationFailure(cntx.PropertyPath, $"No properties are selected for separate tree view")
-                            {
-                                Severity = Severity.Warning
-                            };
+                            var vf = Common.CreateValidationFailure(cntx.PropertyPath, $"No properties are selected for separate tree view",
+                            Severity.Warning);
                             cntx.AddFailure(vf);
                         }
                     }
                     else
                     {
-                        var vf = new ValidationFailure(cntx.PropertyPath, $"Form type {Enum.GetName<FormType>(ft)} is not supported yet")
-                        {
-                            Severity = Severity.Warning
-                        };
+                        var vf = Common.CreateValidationFailure(cntx.PropertyPath, $"Form type {Enum.GetName<FormType>(ft)} is not supported yet",
+                        Severity.Warning);
                         cntx.AddFailure(vf);
                     }
                 });
@@ -99,7 +91,7 @@ namespace vSharpStudio.vm.ViewModels
 
             //    this.RuleFor(x => x.DataTypeLength).Custom((path, cntx) =>
             //    {
-            //        var pg = (Enumeration)cntx.InstanceToValidate;
+            //        var pg = cntx.InstanceToValidate;
             //        var prev = (Enumeration?)pg.PrevCurrentVersion();
             //        var ver = "CURRENT";
             //        if (prev != null && pg.DataTypeEnum == prev.DataTypeEnum)
@@ -126,7 +118,7 @@ namespace vSharpStudio.vm.ViewModels
 
             //    this.RuleFor(x => x.DataTypeEnum).Custom((path, cntx) =>
             //    {
-            //        var pg = (Enumeration)cntx.InstanceToValidate;
+            //        var pg = cntx.InstanceToValidate;
             //        var prev = (Enumeration?)pg.PrevCurrentVersion();
             //        var ver = "CURRENT";
             //        if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)

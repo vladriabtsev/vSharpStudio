@@ -488,7 +488,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.ConfigPath).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -499,7 +499,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("ConfigPath", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("ConfigPath", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -697,7 +697,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -708,7 +708,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -719,7 +719,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -1072,7 +1072,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Version).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -1083,7 +1083,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Version", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Version", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -1094,7 +1094,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -1105,7 +1105,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -1116,7 +1116,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -1525,7 +1525,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -1536,7 +1536,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -1547,7 +1547,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -1558,7 +1558,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -1839,7 +1839,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -1850,7 +1850,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -1861,7 +1861,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -2095,7 +2095,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -2106,7 +2106,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -2317,7 +2317,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -2328,7 +2328,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -2339,7 +2339,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -2350,7 +2350,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -2832,7 +2832,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -2843,7 +2843,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -2854,7 +2854,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -2865,7 +2865,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.RelativeConfigFilePath).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -2876,7 +2876,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(Utils.ValidationFailure("RelativeConfigFilePath", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("RelativeConfigFilePath", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -3308,7 +3308,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -3319,7 +3319,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -3330,7 +3330,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -3341,7 +3341,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -3807,7 +3807,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PluginGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PluginGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PluginName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -3818,7 +3818,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PluginName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PluginName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Version).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -3829,7 +3829,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Version", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Version", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PluginGenGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -3840,7 +3840,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PluginGenGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PluginGenGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PluginGenName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -3851,7 +3851,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PluginGenName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PluginGenName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.ConnGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -3862,7 +3862,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("ConnGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("ConnGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.ConnName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -3873,7 +3873,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("ConnName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("ConnName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -4204,7 +4204,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Settings).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -4215,7 +4215,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Settings", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Settings", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -4393,7 +4393,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Settings).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -4404,7 +4404,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Settings", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Settings", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -4582,7 +4582,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -4593,7 +4593,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -4604,7 +4604,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -4615,7 +4615,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -5021,7 +5021,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -5032,7 +5032,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -5043,7 +5043,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -5054,7 +5054,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.ShortIdForCacheKey).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -5065,7 +5065,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("ShortIdForCacheKey", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("ShortIdForCacheKey", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.RelativeAppSolutionPath).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -5076,7 +5076,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("RelativeAppSolutionPath", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("RelativeAppSolutionPath", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -5636,7 +5636,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -5647,7 +5647,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -5658,7 +5658,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -5669,7 +5669,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.RelativeAppProjectPath).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -5680,7 +5680,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("RelativeAppProjectPath", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("RelativeAppProjectPath", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -6186,7 +6186,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.AppProjectGeneratorGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -6197,7 +6197,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("AppProjectGeneratorGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("AppProjectGeneratorGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -6208,7 +6208,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -6219,7 +6219,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Settings).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -6230,7 +6230,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Settings", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Settings", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -6535,7 +6535,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Settings).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -6546,7 +6546,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Settings", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Settings", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -6725,7 +6725,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -6736,7 +6736,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -6747,7 +6747,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.AppProjectGeneratorGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -6758,7 +6758,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("AppProjectGeneratorGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("AppProjectGeneratorGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Settings).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -6769,7 +6769,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Settings", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Settings", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -7033,7 +7033,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7044,7 +7044,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7055,7 +7055,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7066,7 +7066,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PluginGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7077,7 +7077,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PluginGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PluginGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.DescriptionPlugin).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7088,7 +7088,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("DescriptionPlugin", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("DescriptionPlugin", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PluginGeneratorGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7099,7 +7099,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PluginGeneratorGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PluginGeneratorGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.DescriptionGenerator).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7110,7 +7110,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("DescriptionGenerator", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("DescriptionGenerator", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.RelativePathToGenFolder).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7121,7 +7121,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("RelativePathToGenFolder", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("RelativePathToGenFolder", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.GenFileName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7132,7 +7132,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("GenFileName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("GenFileName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.GeneratorSettings).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7143,7 +7143,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("GeneratorSettings", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("GeneratorSettings", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.ConnStr).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7154,7 +7154,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("ConnStr", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("ConnStr", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.ConnStrToPrevStable).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7165,7 +7165,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("ConnStrToPrevStable", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("ConnStrToPrevStable", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.GenScriptFileName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7176,7 +7176,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("GenScriptFileName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("GenScriptFileName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -7869,7 +7869,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NodeSettingsVmGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NodeSettingsVmGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Settings).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -7880,7 +7880,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Settings", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Settings", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -8057,7 +8057,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -8068,7 +8068,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -8079,7 +8079,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -8090,7 +8090,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PKeyName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -8101,7 +8101,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PKeyName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PKeyName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.RecordVersionFieldName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -8112,7 +8112,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("RecordVersionFieldName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("RecordVersionFieldName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.RecordStateFieldName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -8123,7 +8123,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("RecordStateFieldName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("RecordStateFieldName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -9030,7 +9030,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -9041,7 +9041,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.ForeignObjectGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -9052,7 +9052,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("ForeignObjectGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("ForeignObjectGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.RefComplexObjectIdPropertyGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -9063,7 +9063,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("RefComplexObjectIdPropertyGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("RefComplexObjectIdPropertyGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -9817,7 +9817,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -9828,7 +9828,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -9839,7 +9839,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -9850,7 +9850,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -13567,7 +13567,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -13578,7 +13578,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -13589,7 +13589,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -13600,7 +13600,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -14005,7 +14005,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -14016,7 +14016,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -14027,7 +14027,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -14038,7 +14038,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -14739,7 +14739,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -14750,7 +14750,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -14761,7 +14761,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -14772,7 +14772,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -15202,7 +15202,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -15213,7 +15213,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -15224,7 +15224,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -15235,7 +15235,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -15719,7 +15719,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -15730,7 +15730,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -15741,7 +15741,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -15752,7 +15752,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -16332,7 +16332,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -16466,7 +16466,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -16477,7 +16477,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -16488,7 +16488,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -16499,7 +16499,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.DefaultValue).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -16510,7 +16510,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("DefaultValue", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("DefaultValue", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.RangeValuesRequirementStr).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -16521,7 +16521,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("RangeValuesRequirementStr", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("RangeValuesRequirementStr", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.MinLengthRequirement).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -16532,7 +16532,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("MinLengthRequirement", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("MinLengthRequirement", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.MaxLengthRequirement).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -16543,7 +16543,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("MaxLengthRequirement", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("MaxLengthRequirement", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.TabName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -16554,7 +16554,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("TabName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("TabName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -17517,7 +17517,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -17528,7 +17528,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -17539,7 +17539,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -17550,7 +17550,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -18130,7 +18130,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -18141,7 +18141,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -18152,7 +18152,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -18163,7 +18163,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.TabName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -18174,7 +18174,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("TabName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("TabName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.ViewListDatagridGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -18185,7 +18185,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("ViewListDatagridGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("ViewListDatagridGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.ViewListComboBoxGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -18196,7 +18196,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("ViewListComboBoxGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("ViewListComboBoxGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -19119,7 +19119,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -19130,7 +19130,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -19141,7 +19141,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -19152,7 +19152,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PrefixForCompositionNames).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -19163,7 +19163,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -19659,7 +19659,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -19670,7 +19670,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -19681,7 +19681,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -19692,7 +19692,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -20322,7 +20322,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -20333,7 +20333,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -20344,7 +20344,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -20355,7 +20355,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.DefaultValue).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -20366,7 +20366,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("DefaultValue", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("DefaultValue", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.RangeValuesRequirementStr).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -20377,7 +20377,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("RangeValuesRequirementStr", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("RangeValuesRequirementStr", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.MinLengthRequirement).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -20388,7 +20388,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("MinLengthRequirement", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("MinLengthRequirement", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.MaxLengthRequirement).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -20399,7 +20399,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("MaxLengthRequirement", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("MaxLengthRequirement", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.TabName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -20410,7 +20410,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("TabName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("TabName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -21277,7 +21277,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -21288,7 +21288,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -21299,7 +21299,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -21310,7 +21310,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -21796,7 +21796,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -21807,7 +21807,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -21818,7 +21818,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -21829,7 +21829,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -22363,7 +22363,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -22374,7 +22374,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -22385,7 +22385,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -22396,7 +22396,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Value).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -22407,7 +22407,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Value", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Value", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -22893,7 +22893,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -22904,7 +22904,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -22915,7 +22915,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -22926,7 +22926,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.IndexUniqueCodeGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -22937,7 +22937,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("IndexUniqueCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("IndexUniqueCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.IndexRefTreeParentCodeGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -22948,7 +22948,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("IndexRefTreeParentCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("IndexRefTreeParentCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.IndexNotUniqueCodeGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -22959,7 +22959,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("IndexNotUniqueCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("IndexNotUniqueCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.ViewListDatagridGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -22970,7 +22970,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("ViewListDatagridGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("ViewListDatagridGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.ViewListComboBoxGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -22981,7 +22981,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("ViewListComboBoxGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("ViewListComboBoxGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -23915,7 +23915,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Prefix", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Prefix", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -24186,7 +24186,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -24197,7 +24197,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -24208,7 +24208,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -24219,7 +24219,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.IndexUniqueCodeGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -24230,7 +24230,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("IndexUniqueCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("IndexUniqueCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.IndexRefFolderCodeGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -24241,7 +24241,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("IndexRefFolderCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("IndexRefFolderCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.IndexRefTreeParentCodeGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -24252,7 +24252,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("IndexRefTreeParentCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("IndexRefTreeParentCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.IndexNotUniqueCodeGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -24263,7 +24263,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("IndexNotUniqueCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("IndexNotUniqueCodeGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.ViewListDatagridGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -24274,7 +24274,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("ViewListDatagridGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("ViewListDatagridGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.ViewListComboBoxGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -24285,7 +24285,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("ViewListComboBoxGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("ViewListComboBoxGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -25515,7 +25515,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -25526,7 +25526,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -25537,7 +25537,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -25548,7 +25548,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PrefixForCompositionNames).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -25559,7 +25559,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PropertyCodeName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -25570,7 +25570,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PropertyCodeName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PropertyCodeName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PropertyNameName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -25581,7 +25581,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PropertyNameName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PropertyNameName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PropertyDescriptionName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -25592,7 +25592,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PropertyDescriptionName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PropertyDescriptionName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PropertyIsFolderName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -25603,7 +25603,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PropertyIsFolderName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PropertyIsFolderName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -26489,7 +26489,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -26500,7 +26500,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -26511,7 +26511,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -26522,7 +26522,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -26936,7 +26936,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -26947,7 +26947,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -26958,7 +26958,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -26969,7 +26969,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PrefixForCompositionNames).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -26980,7 +26980,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PropertyRegGuidGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -26991,7 +26991,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PropertyRegGuidGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PropertyRegGuidGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -27583,7 +27583,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -27594,7 +27594,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -27605,7 +27605,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -27616,7 +27616,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.DimensionCatalogGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -27627,7 +27627,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("DimensionCatalogGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("DimensionCatalogGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -28141,7 +28141,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28152,7 +28152,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28163,7 +28163,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28174,7 +28174,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -28728,7 +28728,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28739,7 +28739,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28750,7 +28750,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28761,7 +28761,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PropertyQtyAccumulatorName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28772,7 +28772,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PropertyQtyAccumulatorName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PropertyQtyAccumulatorName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PropertyMoneyAccumulatorName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28783,7 +28783,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PropertyMoneyAccumulatorName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PropertyMoneyAccumulatorName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PropertyDocRefGuidName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28794,7 +28794,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PropertyDocRefGuidName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PropertyDocRefGuidName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PropertyDocRefName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28805,7 +28805,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PropertyDocRefName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PropertyDocRefName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.IndexDocDateGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28816,7 +28816,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("IndexDocDateGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("IndexDocDateGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.IndexDocIdTypeGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28827,7 +28827,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("IndexDocIdTypeGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("IndexDocIdTypeGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.TableTurnoverPropertyIdGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28838,7 +28838,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("TableTurnoverPropertyIdGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("TableTurnoverPropertyIdGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.TableTurnoverPropertyVersionGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28849,7 +28849,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("TableTurnoverPropertyVersionGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("TableTurnoverPropertyVersionGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.TableTurnoverGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28860,7 +28860,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("TableTurnoverGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("TableTurnoverGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.TableTurnoverPropertyPostDateGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28871,7 +28871,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("TableTurnoverPropertyPostDateGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("TableTurnoverPropertyPostDateGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.TableBalancePropertyIdGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28882,7 +28882,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("TableBalancePropertyIdGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("TableBalancePropertyIdGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.TableBalancePropertyVersionGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28893,7 +28893,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("TableBalancePropertyVersionGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("TableBalancePropertyVersionGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.TableBalanceGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28904,7 +28904,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("TableBalanceGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("TableBalanceGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.TableBalancePropertyDateGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -28915,7 +28915,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("TableBalancePropertyDateGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("TableBalancePropertyDateGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -30281,7 +30281,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.DocGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -30292,7 +30292,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("DocGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("DocGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -30527,7 +30527,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.RegPropGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -30538,7 +30538,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("RegPropGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("RegPropGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.DocPropGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -30549,7 +30549,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("DocPropGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("DocPropGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.RegGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -30560,7 +30560,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("RegGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("RegGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.DocGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -30571,7 +30571,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("DocGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("DocGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -30806,7 +30806,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -30817,7 +30817,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -30828,7 +30828,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -30839,7 +30839,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Prefix).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -30850,7 +30850,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Prefix", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Prefix", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -31387,7 +31387,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -31398,7 +31398,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -31409,7 +31409,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -31420,7 +31420,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -31904,7 +31904,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -31915,7 +31915,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -31926,7 +31926,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -31937,7 +31937,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -32534,7 +32534,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -32545,7 +32545,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -32556,7 +32556,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -32567,7 +32567,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.TimeLineDocDateTimePropertyName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -32578,7 +32578,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("TimeLineDocDateTimePropertyName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("TimeLineDocDateTimePropertyName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -33248,7 +33248,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -33259,7 +33259,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -33270,7 +33270,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -33281,7 +33281,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.SequenceGuid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -33292,7 +33292,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("SequenceGuid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("SequenceGuid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -34012,7 +34012,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -34023,7 +34023,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -34034,7 +34034,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -34045,7 +34045,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PrefixForCompositionNames).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -34056,7 +34056,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PropertyDocShortTypeIdName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -34067,7 +34067,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PropertyDocShortTypeIdName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PropertyDocShortTypeIdName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PropertyDocNumberName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -34078,7 +34078,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PropertyDocNumberName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PropertyDocNumberName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PropertyIsPostedName).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -34089,7 +34089,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PropertyIsPostedName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PropertyIsPostedName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -34845,7 +34845,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -34856,7 +34856,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -34867,7 +34867,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -34878,7 +34878,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -35454,7 +35454,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -35465,7 +35465,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -35476,7 +35476,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -35487,7 +35487,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -36177,7 +36177,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -36188,7 +36188,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -36199,7 +36199,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -36210,7 +36210,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PrefixForCompositionNames).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -36221,7 +36221,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -36734,7 +36734,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -36745,7 +36745,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -36756,7 +36756,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -36767,7 +36767,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -37505,7 +37505,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -37516,7 +37516,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -37527,7 +37527,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -37538,7 +37538,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.PrefixForCompositionNames).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -37549,7 +37549,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("PrefixForCompositionNames", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -38062,7 +38062,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -38073,7 +38073,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -38084,7 +38084,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -38095,7 +38095,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -38654,7 +38654,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -38665,7 +38665,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -38676,7 +38676,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -38687,7 +38687,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -39235,7 +39235,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -39416,7 +39416,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -39427,7 +39427,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -39438,7 +39438,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -39449,7 +39449,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -39936,7 +39936,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -39947,7 +39947,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -39958,7 +39958,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -39969,7 +39969,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -40698,7 +40698,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -40709,7 +40709,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -40720,7 +40720,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -40731,7 +40731,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -41250,7 +41250,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -41261,7 +41261,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -41272,7 +41272,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -41283,7 +41283,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -41767,7 +41767,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -41778,7 +41778,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -41789,7 +41789,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -41800,7 +41800,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -42397,7 +42397,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -42408,7 +42408,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -42419,7 +42419,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -42430,7 +42430,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -42919,7 +42919,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -42930,7 +42930,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -42941,7 +42941,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -42952,7 +42952,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -43517,7 +43517,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -43528,7 +43528,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -43539,7 +43539,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -43550,7 +43550,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -43958,7 +43958,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -43969,7 +43969,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -43980,7 +43980,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -43991,7 +43991,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -44462,7 +44462,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -44473,7 +44473,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -44484,7 +44484,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -44495,7 +44495,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -45014,7 +45014,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -45025,7 +45025,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -45036,7 +45036,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -45047,7 +45047,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -45491,7 +45491,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -45502,7 +45502,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -45513,7 +45513,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -45524,7 +45524,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -45968,7 +45968,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -45979,7 +45979,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -45990,7 +45990,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -46001,7 +46001,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -46488,7 +46488,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -46499,7 +46499,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.NameUi).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -46510,7 +46510,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("NameUi", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Description).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -46521,7 +46521,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Description", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -46928,7 +46928,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("GroupName", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("GroupName", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Name).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -46939,7 +46939,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Name", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
             this.RuleFor(x => x.Guid).Custom((str, cntx) => // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenVmFromProto\Class.tt Line:24
@@ -46950,7 +46950,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("Guid", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }

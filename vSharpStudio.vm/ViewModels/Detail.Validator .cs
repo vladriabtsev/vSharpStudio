@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -14,7 +15,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
             this.RuleFor(x => x.Name).Custom((name, cntx) =>
             {
-                var p = (Detail)cntx.InstanceToValidate;
+                var p = cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
                 var pg = (GroupListDetails)p.Parent;
@@ -27,11 +28,8 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (name == c.Folder.Name)
                         {
-                            var vf = new ValidationFailure(nameof(p.Name),
-                                $"Properties tab name can't be same as catalog folder name '{name}'")
-                            {
-                                Severity = Severity.Error
-                            };
+                            var vf = Common.CreateValidationFailure(nameof(p.Name),
+                                $"Properties tab name can't be same as catalog folder name '{name}'");
                             cntx.AddFailure(vf);
                         }
                     }
@@ -40,11 +38,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if ((p.Guid != t.Guid) && (name == t.Name))
                     {
-                        var vf = new ValidationFailure(nameof(p.Name),
-                            $"Not unique properties tab name '{name}'")
-                        {
-                            Severity = Severity.Error
-                        };
+                        var vf = Common.CreateValidationFailure(nameof(p.Name),
+                            $"Not unique properties tab name '{name}'");
                         cntx.AddFailure(vf);
                     }
                 }
@@ -54,16 +49,13 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (!isStopTabControl)
                     return;
-                var p = (Detail)cntx.InstanceToValidate;
+                var p = cntx.InstanceToValidate;
                 var grp = p.ParentGroupListDetails;
                 var indx = grp.ListDetails.IndexOf(p);
                 if (indx == 0)
                 {
-                    var vf = new ValidationFailure(nameof(p.IsStopTabControl),
-                        $"Can't stop using tab control when it is first field")
-                    {
-                        Severity = Severity.Error
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(p.IsStopTabControl),
+                        $"Can't stop using tab control when it is first field");
                     cntx.AddFailure(vf);
                     return;
                 }
@@ -79,11 +71,8 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 if (!is_tab)
                 {
-                    var vf = new ValidationFailure(nameof(p.IsStopTabControl),
-                        $"Can't stop using tab control when there are no current tab control")
-                    {
-                        Severity = Severity.Error
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(p.IsStopTabControl),
+                        $"Can't stop using tab control when there are no current tab control");
                     cntx.AddFailure(vf);
                     return;
                 }
@@ -92,14 +81,11 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (!isStartNewTabControl)
                     return;
-                var p = (Detail)cntx.InstanceToValidate;
+                var p = cntx.InstanceToValidate;
                 if (p.IsStopTabControl)
                 {
-                    var vf = new ValidationFailure(nameof(p.IsStartNewTabControl),
-                        $"Can't start new tab control and stop at the same time")
-                    {
-                        Severity = Severity.Error
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(p.IsStartNewTabControl),
+                        $"Can't start new tab control and stop at the same time");
                     cntx.AddFailure(vf);
                 }
             });

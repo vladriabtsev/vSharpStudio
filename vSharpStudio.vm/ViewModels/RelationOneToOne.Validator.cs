@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -17,49 +18,37 @@ namespace vSharpStudio.vm.ViewModels
             //this.RuleFor(x => x.RefObj2Type).Must((o, rf) => { return rf != common.EnumRelationConfigType.RelNone; }).WithMessage("Configuration type is not selected.");
             this.RuleFor(x => x.GuidObj1).Custom((guid, cntx) =>
             {
-                var rel = (RelationOneToOne)cntx.InstanceToValidate;
+                var rel = cntx.InstanceToValidate;
                 //if (rel.RefObj1Type == common.EnumRelationConfigType.RelNone)
                 //    return;
                 if (string.IsNullOrEmpty(guid))
                 {
-                    var vf = new ValidationFailure(nameof(rel.GuidObj1), "Object type is not selected.")
-                    {
-                        Severity = Severity.Error
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(rel.GuidObj1), "Object type is not selected.");
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (!rel.Cfg.DicNodes.ContainsKey(guid))
                 {
-                    var vf = new ValidationFailure(nameof(rel.GuidObj1),
-                        "Selected object type is not exists in configuration.")
-                    {
-                        Severity = Severity.Error
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(rel.GuidObj1),
+                        "Selected object type is not exists in configuration.");
                     cntx.AddFailure(vf);
                 }
             });
             this.RuleFor(x => x.GuidObj2).Custom((guid, cntx) =>
             {
-                var rel = (RelationOneToOne)cntx.InstanceToValidate;
+                var rel = cntx.InstanceToValidate;
                 //if (rel.RefObj2Type == common.EnumRelationConfigType.RelNone)
                 //    return;
                 if (string.IsNullOrEmpty(guid))
                 {
-                    var vf = new ValidationFailure(nameof(rel.GuidObj2), "Object type is not selected.")
-                    {
-                        Severity = Severity.Error
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(rel.GuidObj2), "Object type is not selected.");
                     cntx.AddFailure(vf);
                     return;
                 }
                 if (!rel.Cfg.DicNodes.ContainsKey(guid))
                 {
-                    var vf = new ValidationFailure(nameof(rel.GuidObj2),
-                        "Selected object type is not exists in configuration.")
-                    {
-                        Severity = Severity.Error
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(rel.GuidObj2),
+                        "Selected object type is not exists in configuration.");
                     cntx.AddFailure(vf);
                 }
             });

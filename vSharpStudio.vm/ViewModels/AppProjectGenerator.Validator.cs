@@ -24,11 +24,11 @@ namespace vSharpStudio.vm.ViewModels
             //this.RuleFor(x => x.FilePathPrivateConnStr)
             //    .Custom((file, cntx) =>
             //    {
-            //        var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+            //        var pg = cntx.InstanceToValidate;
             //        var dir = Path.GetDirectoryName(Path.GetFullPath(file));
             //        if (!string.IsNullOrEmpty(file) && !Directory.Exists(dir))
             //        {
-            //            cntx.AddFailure("Folder doesn't exists: " + dir);
+            //            cntx.AddFailure(Common.CreateValidationFailure(cntx.PropertyPath, "Folder doesn't exists: " + dir));
             //        }
             //    });
             this.RuleFor(x => x.RelativePathToGenFolder)
@@ -36,10 +36,10 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (!string.IsNullOrEmpty(path))
                     {
-                        var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                        var pg = cntx.InstanceToValidate;
                         if (!Directory.Exists(pg.GetGenerationFolderPath()))
                         {
-                            cntx.AddFailure("Output generation folder was not found:" + pg.GetGenerationFolderPath());
+                            cntx.AddFailure(Common.CreateValidationFailure(cntx.PropertyPath, "Output generation folder was not found:" + pg.GetGenerationFolderPath()));
                         }
                     }
                 });
@@ -51,7 +51,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (!string.IsNullOrEmpty(file))
                     {
-                        var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                        var pg = cntx.InstanceToValidate;
                         if (pg.PluginDbGenerator != null)
                             return;
                         var path = pg.GetGenerationFilePath();
@@ -85,7 +85,7 @@ namespace vSharpStudio.vm.ViewModels
                         if (count > 1)
                         {
                             sb.Append(". Change generation file path");
-                            cntx.AddFailure(sb.ToString());
+                            cntx.AddFailure(Common.CreateValidationFailure(cntx.PropertyPath, sb.ToString()));
                         }
                     }
                 });
@@ -98,12 +98,12 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     else
                     {
-                        var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                        var pg = cntx.InstanceToValidate;
                         var cfg = pg.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
                         Debug.Assert(cfg != null);
                         Debug.Assert(cfg.DicPlugins != null);
                         if (!cfg.DicPlugins.ContainsKey(guid))
-                            cntx.AddFailure($"Plugin is not found. Guid:{guid}");
+                            cntx.AddFailure(Common.CreateValidationFailure(cntx.PropertyPath, $"Plugin is not found. Guid:{guid}"));
                     }
                 });
             this.RuleFor(x => x.PluginGeneratorGuid)
@@ -115,23 +115,23 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     else
                     {
-                        var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                        var pg = cntx.InstanceToValidate;
                         var cfg = pg.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
                         Debug.Assert(cfg != null);
                         Debug.Assert(cfg.DicGenerators != null);
                         if (!cfg.DicGenerators.ContainsKey(guid))
-                            cntx.AddFailure($"Generator is not found. Guid:{guid}");
+                            cntx.AddFailure(Common.CreateValidationFailure(cntx.PropertyPath, $"Generator is not found. Guid:{guid}"));
                     }
                 });
             this.RuleFor(x => x.ConnStr)
                 .Custom((connStr, cntx) =>
                 {
-                    var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                    var pg = cntx.InstanceToValidate;
                     if (pg.PluginDbGenerator == null)
                         return;
                     if (string.IsNullOrEmpty(connStr))
                     {
-                        cntx.AddFailure("Connection String is empty");
+                        cntx.AddFailure(Common.CreateValidationFailure(cntx.PropertyPath, "Connection String is empty"));
                         return;
                     }
                     var cfg = pg.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
@@ -175,6 +175,7 @@ namespace vSharpStudio.vm.ViewModels
                 switch (t.Level)
                 {
                     case ValidationPluginMessage.EnumValidationMessage.Error:
+                        Debug.Assert(false);
                         r.Severity = Severity.Error;
                         break;
                     case ValidationPluginMessage.EnumValidationMessage.Warning:

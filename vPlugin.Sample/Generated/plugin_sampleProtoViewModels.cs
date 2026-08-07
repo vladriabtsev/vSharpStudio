@@ -48,7 +48,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("StringSettings", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("StringSettings", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -676,7 +676,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("SchemaParam3", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("SchemaParam3", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }
@@ -1059,7 +1059,7 @@ namespace vPlugin.Sample // D:\dev\vSharpStudio.pro\submodules\vSharpStudio\gene
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("AccessParam3", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Common.CreateValidationFailure("AccessParam3", $"Can't convert to UTF8. Error: {ex.Message}"));
                 }
             });
         }

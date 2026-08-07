@@ -222,51 +222,43 @@ namespace vSharpStudio.vm.ViewModels
             //TODO: Migration one DataTypeEnum to another need creation new property an made current OBSOLETE. Need data migration code. Deletion of OBSOLETE objects for next iteration.
             this.RuleFor(x => x.DataTypeEnum).Custom((path, cntx) =>
             {
-                var pg = (DataType)cntx.InstanceToValidate;
+                var pg = cntx.InstanceToValidate;
                 var prev = pg.PrevCurrentVersion();
                 var ver = "CURRENT";
                 if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {
-                    var vf = new ValidationFailure(nameof(pg.DataTypeEnum),
-                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumDataType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumDataType), pg.DataTypeEnum)}'")
-                    {
-                        Severity = Severity.Warning
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(pg.DataTypeEnum),
+                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumDataType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumDataType), pg.DataTypeEnum)}'",
+                        Severity.Warning);
                     cntx.AddFailure(vf);
                 }
                 prev = pg.PrevStableVersion();
                 ver = "STABLE";
                 if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {
-                    var vf = new ValidationFailure(nameof(pg.DataTypeEnum),
-                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumDataType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumDataType), pg.DataTypeEnum)}'")
-                    {
-                        Severity = Severity.Warning
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(pg.DataTypeEnum),
+                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumDataType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumDataType), pg.DataTypeEnum)}'",
+                        Severity.Warning);
                     cntx.AddFailure(vf);
                 }
             });
             this.RuleFor(x => x.Length).Custom((path, cntx) =>
             {
-                var pg = (DataType)cntx.InstanceToValidate;
+                var pg = cntx.InstanceToValidate;
                 var prev = pg.PrevCurrentVersion();
                 var ver = "CURRENT";
                 if (prev != null && pg.DataTypeEnum == prev.DataTypeEnum)
                 {
                     if (pg.Length > 0 && prev.Length > 0 && pg.Length < prev.Length)
                     {
-                        var vf = new ValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from '{prev.Length}' to '{pg.Length}'")
-                        {
-                            Severity = Severity.Warning
-                        };
+                        var vf = Common.CreateValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from '{prev.Length}' to '{pg.Length}'",
+                        Severity.Warning);
                         cntx.AddFailure(vf);
                     }
                     else if (pg.Length > 0 && prev.Length == 0)
                     {
-                        var vf = new ValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from 'MAX' to '{pg.Length}'")
-                        {
-                            Severity = Severity.Warning
-                        };
+                        var vf = Common.CreateValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from 'MAX' to '{pg.Length}'",
+                        Severity.Warning);
                         cntx.AddFailure(vf);
                     }
                 }
@@ -276,18 +268,14 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (pg.Length > 0 && prev.Length > 0 && pg.Length < prev.Length)
                     {
-                        var vf = new ValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from '{prev.Length}' to '{pg.Length}'")
-                        {
-                            Severity = Severity.Warning
-                        };
+                        var vf = Common.CreateValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from '{prev.Length}' to '{pg.Length}'",
+                        Severity.Warning);
                         cntx.AddFailure(vf);
                     }
                     else if (pg.Length > 0 && prev.Length == 0)
                     {
-                        var vf = new ValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from 'MAX' to '{pg.Length}'")
-                        {
-                            Severity = Severity.Warning
-                        };
+                        var vf = Common.CreateValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from 'MAX' to '{pg.Length}'",
+                        Severity.Warning);
                         cntx.AddFailure(vf);
                         return;
                     }
@@ -295,7 +283,7 @@ namespace vSharpStudio.vm.ViewModels
             });
             this.RuleFor(x => x.Accuracy).Custom((path, cntx) =>
             {
-                var pg = (DataType)cntx.InstanceToValidate;
+                var pg = cntx.InstanceToValidate;
                 var prev = pg.PrevCurrentVersion();
                 var ver = "CURRENT";
                 if (prev != null && pg.DataTypeEnum == prev.DataTypeEnum)
@@ -304,10 +292,8 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (pg.Accuracy < prev.Accuracy)
                         {
-                            var vf = new ValidationFailure(nameof(pg.Accuracy), $"Comparison with previous {ver} version. Accuracy was reduced from '{prev.Accuracy}' to '{pg.Accuracy}'")
-                            {
-                                Severity = Severity.Warning
-                            };
+                            var vf = Common.CreateValidationFailure(nameof(pg.Accuracy), $"Comparison with previous {ver} version. Accuracy was reduced from '{prev.Accuracy}' to '{pg.Accuracy}'",
+                            Severity.Warning);
                             cntx.AddFailure(vf);
                         }
                     }
@@ -320,10 +306,8 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (pg.Accuracy < prev.Accuracy)
                         {
-                            var vf = new ValidationFailure(nameof(pg.Accuracy), $"Comparison with previous {ver} version. Accuracy was reduced from '{prev.Accuracy}' to '{pg.Accuracy}'")
-                            {
-                                Severity = Severity.Warning
-                            };
+                            var vf = Common.CreateValidationFailure(nameof(pg.Accuracy), $"Comparison with previous {ver} version. Accuracy was reduced from '{prev.Accuracy}' to '{pg.Accuracy}'",
+                            Severity.Warning);
                             cntx.AddFailure(vf);
                         }
                     }

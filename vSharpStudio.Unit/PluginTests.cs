@@ -839,7 +839,8 @@ namespace vSharpStudio.Unit
             vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupForms.NodeAddNewSubNode();
             Assert.HasCount(1, vm.Config.Model.GroupCatalogs.GroupListCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings);
             var d = (Document)vm.Config.Model.GroupDocuments.GroupListDocuments.NodeAddNewSubNode();
-            var seq = vm.Config.Model.GroupDocuments.GroupListSequences.NodeAddNewSubNode();
+            var seq = (DocumentEnumeratorSequence)vm.Config.Model.GroupDocuments.GroupListSequences.NodeAddNewSubNode();
+            seq.ScopeOfUnique = EnumDocNumberUniqueScope.DOC_UNIQUE_CALENDAR_YEAR;
             d.SequenceGuid = seq.Guid;
             Assert.HasCount(1, vm.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings);
             vm.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties.NodeAddNewSubNode();

@@ -736,15 +736,24 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, cfg.CountInfos);
             Assert.AreEqual(0, cfg.CountWarnings);
             Assert.AreEqual(1, cfg.CountErrors);
-            //cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimensions are not selected."));
             var valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. List of Document types for Register is empty"));
 
-            // Remove one error by adding document for register
+            // Remove one error by adding document for register, but introduce two new errors
             var doc1 = cfg.Model.GroupDocuments.AddDocument("doc1");
-            var seq = cfg.Model.GroupDocuments.GroupListSequences.NodeAddNewSubNode();
+            var seq = (DocumentEnumeratorSequence)cfg.Model.GroupDocuments.GroupListSequences.NodeAddNewSubNode();
             doc1.SequenceGuid = seq.Guid;
             reg1.SelectedDoc = doc1;
             reg1.ListObjectDocRefs.Add(new ComplexRef("", doc1.Guid));
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
+            Assert.AreEqual(0, cfg.CountInfos);
+            Assert.AreEqual(0, cfg.CountWarnings);
+            Assert.AreEqual(2, cfg.CountErrors);
+            //cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. Dimensions are not selected."));
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Register 'turnover'. There are no any mappings for 'doc1' document."));
+            valmesstmp = cfg.ValidationCollection.Single(err => err.Message.StartsWith("Sequence 'Sequence1'. Scope of uniqueness for document number is not selected."));
+
+            // Remove one error by setting sequence scope
+            seq.ScopeOfUnique = EnumDocNumberUniqueScope.DOC_UNIQUE_CALENDAR_YEAR;
             await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.AreEqual(0, cfg.CountInfos);
             Assert.AreEqual(0, cfg.CountWarnings);

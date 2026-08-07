@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using FluentValidation;
 using FluentValidation.Results;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -16,18 +17,15 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (string.IsNullOrEmpty(name))
                     return;
-                var p = (Journal)cntx.InstanceToValidate;
+                var p = cntx.InstanceToValidate;
                 Debug.Assert(p.Parent != null);
                 var pg = p.ParentGroupListJournals;
                 foreach (var t in pg.ListJournals)
                 {
                     if ((p.Guid != t.Guid) && (name == t.Name))
                     {
-                        var vf = new ValidationFailure(nameof(p.Name),
-                            $"Not unique journal name '{name}'")
-                        {
-                            Severity = Severity.Error
-                        };
+                        var vf = Common.CreateValidationFailure(nameof(p.Name),
+                            $"Not unique journal name '{name}'");
                         cntx.AddFailure(vf);
                     }
                 }

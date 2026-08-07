@@ -15,7 +15,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (plg == null)
                 {
-                    var pg = (Plugin)cntx.InstanceToValidate;
+                    var pg = cntx.InstanceToValidate;
                     Debug.Assert(pg.Parent != null);
                     var sb = new StringBuilder();
                     sb.Append("Plugin '");
@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Guid).NotEmpty().WithMessage(Config.ValidationMessages.GUID_IS_EMPTY);
             this.RuleFor(x => x.Guid).Custom((guid, cntx) =>
             {
-                var pg = (Plugin)cntx.InstanceToValidate;
+                var pg = cntx.InstanceToValidate;
                 Debug.Assert(pg.Parent != null);
                 GroupListPlugins lst = (GroupListPlugins)pg.Parent;
                 StringBuilder sb = new StringBuilder();
@@ -61,7 +61,7 @@ namespace vSharpStudio.vm.ViewModels
             //    {
             //        if (!string.IsNullOrEmpty(file))
             //        {
-            //            var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+            //            var pg = cntx.InstanceToValidate;
             //            var path = pg.GetGenerationFilePath();
             //            var gs = (GroupListAppSolutions)pg.Parent.Parent.Parent;
             //            StringBuilder sb = new StringBuilder();

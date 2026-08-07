@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using ViewModelBase;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -14,7 +15,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (sel == null)
                     return;
-                var row = (RegisterMappingRow)cntx.InstanceToValidate;
+                var row = cntx.InstanceToValidate;
                 var nmap = 0;
                 foreach (var t in row.Reg.ListMappings)
                 {
@@ -44,11 +45,8 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 if (nmap > 0)
                 {
-                    var vf = new ValidationFailure(nameof(row.Selected),
-                        $"Selected catalog property '{sel.Name}' is used more than ones for mapping")
-                    {
-                        Severity = Severity.Error
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(row.Selected),
+                        $"Selected catalog property '{sel.Name}' is used more than ones for mapping");
                     cntx.AddFailure(vf);
                 }
             });
@@ -59,7 +57,7 @@ namespace vSharpStudio.vm.ViewModels
             //this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
             //this.RuleFor(x => x.Dimension.TableTurnoverPropertyMoneyAccumulatorAccuracy).Custom((acc, cntx) =>
             //{
-            //    var p = (RegisterMappingRow)cntx.InstanceToValidate;
+            //    var p = cntx.InstanceToValidate;
             //    if (!p.UseMoneyAccumulator)
             //        return;
             //    if (acc >= p.TableTurnoverPropertyMoneyAccumulatorLength)

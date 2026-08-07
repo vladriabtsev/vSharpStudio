@@ -16,7 +16,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (plg == null)
                 {
-                    var pg = (PluginGenerator)cntx.InstanceToValidate;
+                    var pg = cntx.InstanceToValidate;
                     Debug.Assert(pg.Parent != null);
                     var sb = new StringBuilder();
                     sb.Append("Generator '");
@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Guid).NotEmpty().WithMessage(Config.ValidationMessages.GUID_IS_EMPTY);
             this.RuleFor(x => x.Guid).Custom((guid, cntx) =>
             {
-                PluginGenerator pg = (PluginGenerator)cntx.InstanceToValidate;
+                PluginGenerator pg = cntx.InstanceToValidate;
                 if (pg.Parent == null)
                 {
                     return;
@@ -72,7 +72,7 @@ namespace vSharpStudio.vm.ViewModels
             });
             this.RuleFor(x => x).Custom((name, cntx) =>
             {
-                PluginGenerator pg = (PluginGenerator)cntx.InstanceToValidate;
+                PluginGenerator pg = cntx.InstanceToValidate;
                 if (pg.Generator == null)
                 {
                     return;

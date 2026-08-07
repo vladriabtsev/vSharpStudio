@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -17,14 +18,11 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (string.IsNullOrEmpty(cguid))
                     return;
-                var rd = (RegisterDimension)cntx.InstanceToValidate;
+                var rd = cntx.InstanceToValidate;
                 if (!rd.Cfg.DicNodes.ContainsKey(cguid))
                 {
-                    var vf = new ValidationFailure(nameof(rd.DimensionCatalogGuid),
-                        $"Selected catalog type for register dimension is not found in the configuration.")
-                    {
-                        Severity = Severity.Error
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(rd.DimensionCatalogGuid),
+                        $"Selected catalog type for register dimension is not found in the configuration.");
                     cntx.AddFailure(vf);
                 }
                 var r = rd.ParentGroupListRegisterDimensions.ParentRegister;
@@ -33,11 +31,8 @@ namespace vSharpStudio.vm.ViewModels
                     if (t.Guid == rd.Guid) continue;
                     if (t.DimensionCatalogGuid == rd.DimensionCatalogGuid)
                     {
-                        var vf = new ValidationFailure(nameof(rd.DimensionCatalogGuid),
-                            $"Register '{r.Name}' dimension '{rd.Name}'. Selected catalog type for register dimension is already used for '{t.Name}' dimension.")
-                        {
-                            Severity = Severity.Error
-                        };
+                        var vf = Common.CreateValidationFailure(nameof(rd.DimensionCatalogGuid),
+                            $"Register '{r.Name}' dimension '{rd.Name}'. Selected catalog type for register dimension is already used for '{t.Name}' dimension.");
                         cntx.AddFailure(vf);
                     }
                 }

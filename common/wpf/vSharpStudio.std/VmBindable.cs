@@ -49,6 +49,7 @@ namespace ViewModelBase
         public static bool isUnitTests;
         public static bool IsNotValidateAll;
         public bool IsNotValidate;
+        public static bool IsDebugStopOnCreateValidationFailure;
         //public static ushort MaxSortingWeightShift = 4;
         //public static ushort MaxSortingWeight = (ushort)(ulong.MaxValue - (ulong.MaxValue << MaxSortingWeightShift));
         //public static ulong SortingWeightBase = ((ulong)1) << (64 - MaxSortingWeightShift);

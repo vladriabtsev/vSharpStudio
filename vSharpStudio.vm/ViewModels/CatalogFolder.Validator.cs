@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -14,7 +15,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
             this.RuleFor(x => x.Name).Custom((name, cntx) =>
             {
-                var p = (CatalogFolder)cntx.InstanceToValidate;
+                var p = cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
                 var c = (Catalog)p.Parent;
@@ -24,11 +25,8 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (name == t.Name)
                         {
-                            var vf = new ValidationFailure(nameof(p.Name),
-                                $"Catalog folder name can't be same as properties tab name '{name}'")
-                            {
-                                Severity = Severity.Error
-                            };
+                            var vf = Common.CreateValidationFailure(nameof(p.Name),
+                                $"Catalog folder name can't be same as properties tab name '{name}'");
                             cntx.AddFailure(vf);
                         }
                     }

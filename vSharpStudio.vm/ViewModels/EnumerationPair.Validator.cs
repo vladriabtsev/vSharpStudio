@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentValidation;
 using FluentValidation.Results;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -36,27 +37,23 @@ namespace vSharpStudio.vm.ViewModels
 
             this.RuleFor(x => x.Value).Custom((path, cntx) =>
             {
-                var pg = (EnumerationPair)cntx.InstanceToValidate;
+                var pg = cntx.InstanceToValidate;
                 var prev = (EnumerationPair?)pg.PrevCurrentVersion();
                 var ver = "CURRENT";
                 if (prev != null && pg.Value != prev.Value)
                 {
-                    var vf = new ValidationFailure(nameof(pg.Value),
-                        $"Comparison with previous {ver} version. Enumeration value was changed from '{prev.Value}' to '{pg.Value}'")
-                    {
-                        Severity = Severity.Warning
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(pg.Value),
+                        $"Comparison with previous {ver} version. Enumeration value was changed from '{prev.Value}' to '{pg.Value}'",
+                        Severity.Warning);
                     cntx.AddFailure(vf);
                 }
                 prev = (EnumerationPair?)pg.PrevStableVersion();
                 ver = "STABLE";
                 if (prev != null && pg.Value != prev.Value)
                 {
-                    var vf = new ValidationFailure(nameof(pg.Value),
-                        $"Comparison with previous {ver} version. Enumeration value was changed from '{prev.Value}' to '{pg.Value}'")
-                    {
-                        Severity = Severity.Warning
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(pg.Value),
+                        $"Comparison with previous {ver} version. Enumeration value was changed from '{prev.Value}' to '{pg.Value}'",
+                        Severity.Warning);
                     cntx.AddFailure(vf);
                 }
             });

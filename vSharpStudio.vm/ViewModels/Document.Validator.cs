@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -16,37 +17,28 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (string.IsNullOrEmpty(name))
                     return;
-                var p = (Document)cntx.InstanceToValidate;
+                var p = cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
                 if (string.IsNullOrWhiteSpace(p.SequenceGuid))
                 {
-                    var vf = new ValidationFailure(nameof(p.SequenceGuid),
-                        $"Document enumerator sequence is not selected.")
-                    {
-                        Severity = Severity.Error
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(p.SequenceGuid),
+                        $"Document enumerator sequence is not selected.");
                     cntx.AddFailure(vf);
                 }
                 var pg = p.ParentGroupListDocuments;
                 if (name == pg.ParentGroupDocuments.TimeLineDocDateTimePropertyName)
                 {
-                    var vf = new ValidationFailure(nameof(p.Name),
-                        $"Document date and time property name is set to '{pg.ParentGroupDocuments.TimeLineDocDateTimePropertyName}'. This name is reserved for document timeline property.")
-                    {
-                        Severity = Severity.Error
-                    };
+                    var vf = Common.CreateValidationFailure(nameof(p.Name),
+                        $"Document date and time property name is set to '{pg.ParentGroupDocuments.TimeLineDocDateTimePropertyName}'. This name is reserved for document timeline property.");
                     cntx.AddFailure(vf);
                 }
                 foreach (var t in pg.ListDocuments)
                 {
                     if ((p.Guid != t.Guid) && (name == t.Name))
                     {
-                        var vf = new ValidationFailure(nameof(p.Name),
-                            $"Not unique document name '{name}'")
-                        {
-                            Severity = Severity.Error
-                        };
+                        var vf = Common.CreateValidationFailure(nameof(p.Name),
+                            $"Not unique document name '{name}'");
                         cntx.AddFailure(vf);
                     }
                 }

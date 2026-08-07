@@ -29,7 +29,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
             }
             catch(Exception ex)
             {
-                cntx.AddFailure(new ValidationFailure("<#=t.Name.ToNameCs()#>", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                cntx.AddFailure(Common.CreateValidationFailure("<#=t.Name.ToNameCs()#>", $"Can't convert to UTF8. Error: {ex.Message}"));
             }
         });
 <#       }

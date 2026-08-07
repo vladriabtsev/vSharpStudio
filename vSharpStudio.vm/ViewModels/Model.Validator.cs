@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (val)
                     return;
                 var recom = " Conside change object name or enable usage composite names.";
-                var m = (Model)cntx.InstanceToValidate;
+                var m = cntx.InstanceToValidate;
                 CheckObjectsWithDbTables(cntx, recom, m, true);
             });
             this.RuleFor(x => x.RecordVersionFieldName).NotEmpty();
@@ -121,7 +121,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void CheckName(string name, ValidationContext<Model> cntx)
         {
-            var model = (Model)cntx.InstanceToValidate;
+            var model = cntx.InstanceToValidate;
             int nerr = 0;
             int nerrMax = 10;
 
@@ -134,7 +134,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (model.RecordVersionFieldName == tt.Name)
                     {
                         nerr++;
-                        cntx.AddFailure(new ValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for constant field in constant group '{t.Name}'"));
+                        cntx.AddFailure(Common.CreateValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for constant field in constant group '{t.Name}'"));
                     }
                 }
             }
@@ -147,7 +147,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (model.RecordVersionFieldName == tt.Name)
                     {
                         nerr++;
-                        cntx.AddFailure(new ValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog '{t.Name}'"));
+                        cntx.AddFailure(Common.CreateValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog '{t.Name}'"));
                     }
                 }
                 foreach (var tt in t.GroupDetails.ListDetails)
@@ -163,7 +163,7 @@ namespace vSharpStudio.vm.ViewModels
                         if (model.RecordVersionFieldName == tt.Name)
                         {
                             nerr++;
-                            cntx.AddFailure(new ValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog folder '{t.Name}'"));
+                            cntx.AddFailure(Common.CreateValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog folder '{t.Name}'"));
                         }
                     }
                     foreach (var tt in t.Folder.GroupDetails.ListDetails)
@@ -180,7 +180,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (model.RecordVersionFieldName == t.Name)
                 {
                     nerr++;
-                    cntx.AddFailure(new ValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for shared field for documents"));
+                    cntx.AddFailure(Common.CreateValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for shared field for documents"));
                 }
             }
             if (nerr >= nerrMax) return;
@@ -192,7 +192,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (model.RecordVersionFieldName == tt.Name)
                     {
                         nerr++;
-                        cntx.AddFailure(new ValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in document '{t.Name}'"));
+                        cntx.AddFailure(Common.CreateValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in document '{t.Name}'"));
                     }
                 }
                 foreach (var tt in t.GroupDetails.ListDetails)
@@ -210,7 +210,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (set.RecordVersionFieldName == tt.Name)
                 {
                     nerr++;
-                    cntx.AddFailure(new ValidationFailure(nameof(set.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in '{path}.{t.Name}'"));
+                    cntx.AddFailure(Common.CreateValidationFailure(nameof(set.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in '{path}.{t.Name}'"));
                 }
             }
             foreach (var tt in t.GroupDetails.ListDetails)
