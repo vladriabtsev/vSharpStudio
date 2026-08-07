@@ -2876,7 +2876,7 @@ namespace vSharpStudio.vm.ViewModels // D:\dev\vSharpStudio.pro\submodules\vShar
                 }
                 catch(Exception ex)
                 {
-                    cntx.AddFailure(new ValidationFailure("RelativeConfigFilePath", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
+                    cntx.AddFailure(Utils.ValidationFailure("RelativeConfigFilePath", $"Can't convert to UTF8. Error: {ex.Message}") { Severity = Severity.Error });
                 }
             });
         }
